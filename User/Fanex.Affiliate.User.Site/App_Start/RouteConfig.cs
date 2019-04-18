@@ -9,31 +9,32 @@ namespace Fanex.Affiliate.User.Site
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            const string IndexAction = "Index";
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.Add(new HandleLegacyUrlRoute(new Dictionary<string, UrlSchema> {
                 {
-                    @"/default.aspx",new UrlSchema{Controller="Home",Action="Index"}
+                    @"/default.aspx",new UrlSchema{Controller="Home",Action=IndexAction }
                 },
                 {
-                    @"/index.aspx",new UrlSchema{Controller="Home",Action="Index"}
+                    @"/index.aspx",new UrlSchema{Controller="Home",Action=IndexAction }
                 },
                 {
-                    @"/programdetails.aspx",new UrlSchema{Controller="CommissionStructure",Action="Index"}
+                    @"/programdetails.aspx",new UrlSchema{Controller="CommissionStructure",Action=IndexAction}
                 },
                 {
-                    @"/condition.aspx",new UrlSchema{Controller="TermAndCondition",Action="Index"}
+                    @"/condition.aspx",new UrlSchema{Controller="TermAndCondition",Action=IndexAction}
                 },
                 {
-                    @"/faqs.aspx",new UrlSchema{Controller="FAQ",Action="Index"}
+                    @"/faqs.aspx",new UrlSchema{Controller="FAQ",Action=IndexAction}
                 },
                 {
-                    @"/contactus.aspx",new UrlSchema{Controller="ContactUs",Action="Index"}
+                    @"/contactus.aspx",new UrlSchema{Controller="ContactUs",Action=IndexAction}
                 },
                 {
-                    @"/forgetpass.aspx",new UrlSchema{Controller="Password",Action="Index"}
+                    @"/forgetpass.aspx",new UrlSchema{Controller="Password",Action=IndexAction}
                 },
                 {
-                    @"/signup.aspx",new UrlSchema{Controller="Signup",Action="Index"}
+                    @"/signup.aspx",new UrlSchema{Controller="Signup",Action=IndexAction}
                 }
             }));
             var encryptedRoute = new Route("Execute/{encryptedQuery}", new EncryptedRouteHandler());
@@ -42,13 +43,13 @@ namespace Fanex.Affiliate.User.Site
             routes.MapRoute(
               name: "UserPanel",
               url: "UserPanel/{controller}/{action}/{id}",
-              defaults: new { controller = "AccountOverview", action = "Index", id = UrlParameter.Optional }
+              defaults: new { controller = "AccountOverview", action = IndexAction, id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = IndexAction, id = UrlParameter.Optional }
             );
         }
     }

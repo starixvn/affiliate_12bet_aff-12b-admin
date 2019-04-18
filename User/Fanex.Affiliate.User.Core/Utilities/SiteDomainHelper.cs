@@ -20,14 +20,15 @@
 
         private static string GetScheme(HttpRequestBase request, bool isProduction)
         {
-            return isProduction ?
-                request.Url.Scheme :
-                (IsSecure(request) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp);
+            return isProduction ? request.Url.Scheme : GetSchemeByRequest(request);
         }
 
-        private static bool IsSecure(HttpRequestBase request)
+        private static string GetSchemeByRequest(HttpRequestBase request)
         {
-            return request.IsSecureConnection || String.Equals(request.ServerVariables["HTTP_X_FORWARDED_PROTO"], "https", StringComparison.OrdinalIgnoreCase);
+            var isSecure = request.IsSecureConnection ||
+                string.Equals(request.ServerVariables["HTTP_X_FORWARDED_PROTO"], Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase);
+
+            return isSecure ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
         }
     }
 }

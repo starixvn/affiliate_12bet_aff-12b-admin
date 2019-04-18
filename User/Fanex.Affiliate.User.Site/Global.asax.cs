@@ -1,18 +1,18 @@
 ﻿using System;
+using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Data;
 using Fanex.Data.OldConnectionStringProvider;
-using System.Configuration;
 
 namespace Fanex.Affiliate.User.Site
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        [SuppressMessage("Sonar Code Smell", "S2325:Methods and properties should be static", Justification = "Reviewed.")]
         protected void Application_Start()
         {
             var env = ConfigurationManager.AppSettings["Environment"];
@@ -36,6 +36,7 @@ namespace Fanex.Affiliate.User.Site
               .Run();
         }
 
+        [SuppressMessage("Sonar Code Smell", "S2325:Methods and properties should be static", Justification = "Reviewed.")]
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
             var application = sender as HttpApplication;

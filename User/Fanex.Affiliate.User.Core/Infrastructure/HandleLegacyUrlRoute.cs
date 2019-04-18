@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
         {
             if (urlMap == null)
             {
-                throw new ArgumentNullException("urlMap");
+                throw new ArgumentNullException(nameof(urlMap));
             }
 
             this.urlMap = urlMap;

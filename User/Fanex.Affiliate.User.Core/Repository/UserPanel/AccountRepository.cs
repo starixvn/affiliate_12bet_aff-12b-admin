@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -220,8 +221,8 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             {
                 objectDb.DB.AddInParameter("AffId", SqlDbType.Int, affId);
                 objectDb.DB.AddInParameter("SecretKey", SqlDbType.VarChar, secretKey);
-                objectDb.DB.AddOutParameter("ErrCode", SqlDbType.Int, 4);
-                objectDb.DB.AddOutParameter("ErrMsg", SqlDbType.NVarChar, 2000);
+                objectDb.DB.AddOutParameter("ErrCode", SqlDbType.Int, DbParam.ErrCodeSize);
+                objectDb.DB.AddOutParameter("ErrMsg", SqlDbType.NVarChar, DbParam.ErrMsgSize);
 
                 objectDb.DB.ExecuteNonQuery();
 

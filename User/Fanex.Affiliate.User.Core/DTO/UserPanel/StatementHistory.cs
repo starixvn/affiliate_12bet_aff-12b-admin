@@ -61,11 +61,11 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
             {
                 switch (TransType)
                 {
-                    case 203:
+                    case Constants.TransType.Adjustment:
                         return Resources.Lang.Adjustment;
-                    case 201:
+                    case Constants.TransType.Commission:
                         return Resources.Lang.MonthlyWinlost;
-                    case 202:
+                    case Constants.TransType.Payment:
                         return Resources.Lang.PaymentRequest;
 
                     default:

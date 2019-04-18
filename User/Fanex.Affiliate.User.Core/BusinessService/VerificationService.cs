@@ -198,7 +198,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private static string GenerateSecretKey()
         {
-            return Base32Encoding.ToString(KeyGeneration.GenerateRandomKey(20));
+            return Base32Encoding.ToString(KeyGeneration.GenerateRandomKey(Number.Twenty));
         }
 
         private static SendCodeResult CreateSendCodeFailedResult()

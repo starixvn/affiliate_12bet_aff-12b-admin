@@ -45,19 +45,19 @@
             <tbody>
                 <tr>
                     <td>@Lang.NewSignup:</td>
-                    <td class="text-right">@statistics.NewSignups.ToStringNumber()</td>
+                    <td class="text-right">@statistics.NewSignups.FormatNumber()</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>@Lang.TotalActive:</td>
-                    <td class="text-right">@statistics.ActivePlayers.ToStringNumber()</td>
+                    <td class="text-right">@statistics.ActivePlayers.FormatNumber()</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>@Lang.TotalQualifiedMembers:</td>
-                    <td class="text-right">@statistics.QualifiedMembers.ToStringNumber()</td>
+                    <td class="text-right">@statistics.QualifiedMembers.FormatNumber()</td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -96,7 +96,7 @@
             <tbody>
                 <tr>
                     <td>@Lang.TotalPlay:</td>
-                    <td class="text-right">@statistics.TotalPlayers.ToStringNumber()</td>
+                    <td class="text-right">@statistics.TotalPlayers.FormatNumber()</td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -148,7 +148,7 @@
                         var item = commissionSettings.ElementAt(i);
                         var isLastRow = i == totalRow - 1;
                         var maxAmount = isLastRow ? "+" : " - " + item.MaxAmount.ToStringMoneyWithSymbol();
-                        var maxQm = isLastRow ? "+" : " - " + item.MaxQm.ToStringNumber();
+                        var maxQm = isLastRow ? "+" : " - " + item.MaxQm.FormatNumber();
                         <tr>
                             @if (isFirstRow)
                             {

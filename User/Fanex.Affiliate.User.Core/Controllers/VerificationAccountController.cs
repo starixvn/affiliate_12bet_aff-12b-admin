@@ -17,6 +17,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
 {
     public class VerificationAccountController : AuthBaseController
     {
+        private const int CaptchaImgWidth = 100;
+        private const int CaptchaImgHeight = 28;
+
         private readonly IAccountRepository _accountRepository;
         private readonly IVerificationService _verificationService;
 
@@ -58,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             var captcha = Generator.GetRandomString(4);
             SessionService.VerificationSession.Captcha = captcha;
-            return File(CaptchaService.GenerateImageBuffer(captcha, 100, 28, true), "image/png");
+            return File(CaptchaService.GenerateImageBuffer(captcha, CaptchaImgWidth, CaptchaImgHeight, true), "image/png");
         }
 
         [AjaxOnly]

@@ -78,9 +78,9 @@
             try
             {
                 var content = GetEmailContent(criteria);
-                var subject = "Affilite 12Bet testing";
+                const string Subject = "Affilite 12Bet testing";
 
-                _mailProcessor.Send(content, criteria.EmailAddress, subject);
+                _mailProcessor.Send(content, criteria.EmailAddress, Subject);
             }
             catch (Exception ex)
             {
@@ -171,13 +171,16 @@
 
         private object GetPaymentModel(PaymentRequestType type)
         {
+            const long TranId = 10008751L;
+            const decimal Amount = 989;
+
             return new PaymentEmailParam
             {
                 User = GetUserInfo(),
                 MailContact = MailContact,
-                TransId = 10008751L,
+                TransId = TranId,
                 RequestDate = DateTime.Now.Date,
-                Amount = 989,
+                Amount = Amount,
                 RootDomain = SiteDomainHelper.GetRootUrl(this),
                 MailTo = MailContact,
                 PaymentType = type

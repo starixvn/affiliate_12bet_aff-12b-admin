@@ -220,9 +220,15 @@
     <Compile Include="BusinessService\PaymentService.cs" />
     <Compile Include="BusinessService\TwoFactorAuthService.cs" />
     <Compile Include="BusinessService\VerificationService.cs" />
+    <Compile Include="Constants\ActionName.cs" />
     <Compile Include="Constants\CommGroupName.cs" />
+    <Compile Include="Constants\CommissionType.cs" />
+    <Compile Include="Constants\ControllerName.cs" />
+    <Compile Include="Constants\DbParam.cs" />
+    <Compile Include="Constants\Number.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\Product.cs" />
+    <Compile Include="Constants\TransType.cs" />
     <Compile Include="Controllers\AuthBaseController.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionController.cs" />
@@ -240,10 +246,8 @@
     <Compile Include="Controllers\UserPanel\MediaGalleryController.cs" />
     <Compile Include="Controllers\UserPanel\MarketingController.cs" />
     <Compile Include="Controllers\VerificationAccountController.cs" />
-    <Compile Include="CoreService\CookieService.cs" />
     <Compile Include="BusinessService\CryptographyService.cs" />
     <Compile Include="BusinessService\IAuthService.cs" />
-    <Compile Include="CoreService\ICookieService.cs" />
     <Compile Include="BusinessService\ICryptographyService.cs" />
     <Compile Include="BusinessService\ILanguageService.cs" />
     <Compile Include="BusinessService\IMarketingService.cs" />
@@ -251,7 +255,6 @@
     <Compile Include="BusinessService\MarketingService.cs" />
     <Compile Include="Constants\BannerTypeName.cs" />
     <Compile Include="Constants\CacheKey.cs" />
-    <Compile Include="Constants\CookieName.cs" />
     <Compile Include="Constants\SystemLanguage.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Controllers\AuthController.cs" />

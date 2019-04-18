@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
 using System.Text.RegularExpressions;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
@@ -56,6 +57,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public byte[] GenerateImageBuffer(string captcha, int width, int height, bool isComplex = false)
         {
+            const int RedNumber = 62;
+            const int GreenNumber = 164;
+            const int BlueNumber = 189;
+
             byte[] buffer = null;
 
             using (var memoryStream = new MemoryStream())
@@ -67,7 +72,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 graphics.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
                 graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-                graphics.Clear(Color.FromArgb(62, 164, 189));
+                graphics.Clear(Color.FromArgb(RedNumber, GreenNumber, BlueNumber));
 
                 if (isComplex)
                 {
@@ -76,10 +81,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 else
                 {
                     // Add captcha
-                    graphics.DrawString(captcha, new Font("Montserrat", 14), Brushes.White, random.Next(2, 10), random.Next(0, 2));
+                    var font = new Font("Montserrat", Number.Fourteen);
+                    graphics.DrawString(captcha, font, Brushes.White, random.Next(Number.Two, Number.Ten), random.Next(Number.Zero, Number.Two));
                 }
 
-                for (int i = 0; i < 50; i++)
+                for (int i = 0; i < Number.Fifty; i++)
                 {
                     int x = random.Next(bitmap.Width);
                     int y = random.Next(bitmap.Height);
@@ -99,7 +105,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var rectangleF = new RectangleF(0, 0, width, height);
             var brush = new HatchBrush(
                 hatchStyleList[random.Next(hatchStyleList.Length - 1)],
-                Color.FromArgb((random.Next(150, 255)), (random.Next(150, 255)), (random.Next(150, 255))),
+                CreateRandomColor(random, Number.OneFiveZero, Number.TwoDoubleFive),
                 Color.White);
             graphics.FillRectangle(brush, rectangleF);
             var matrix = new Matrix();
@@ -109,10 +115,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 matrix.Reset();
                 int charLength = captcha.Length;
                 int x = (width / (charLength + 1) * i) + 5;
-                int y = random.Next(0, 2);
+                int y = random.Next(Number.Zero, Number.Two);
 
                 //Rotate text Random
-                matrix.RotateAt(random.Next(-20, 15), new PointF(x, y));
+                matrix.RotateAt(random.Next(Number.NegativeTwenty, Number.Fifteen), new PointF(x, y));
                 graphics.Transform = matrix;
 
                 //Draw the letters with Randon Font Type, Size and Color
@@ -122,7 +128,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     //Random Font Name and Style
                     new Font(fontNameList[random.Next(fontNameList.Length - 1)], fontEmSizeList[random.Next(fontEmSizeList.Length - 1)], fontStyleList[random.Next(fontStyleList.Length - 1)]),
                     //Random Color (Darker colors RGB 0 to 100)
-                    new SolidBrush(Color.FromArgb(random.Next(0, 100), random.Next(0, 100), random.Next(0, 100))),
+                    new SolidBrush(CreateRandomColor(random, Number.Zero, Number.OneHundred)),
                     x,
                     y);
                 graphics.ResetTransform();
@@ -143,6 +149,15 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private bool IsValidHostAddress(string userHostAddress)
         {
             return _appSetting.IsLocal || Regex.IsMatch(userHostAddress, _appSetting.GetValue("CompanyIP"));
+        }
+
+        private static Color CreateRandomColor(Random random, int min, int max)
+        {
+            var red = random.Next(min, max);
+            var green = random.Next(min, max);
+            var blue = random.Next(min, max);
+
+            return Color.FromArgb(red, green, blue);
         }
     }
 }

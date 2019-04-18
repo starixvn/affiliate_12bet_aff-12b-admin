@@ -30,21 +30,11 @@ namespace Fanex.Affiliate.User.Site
             // the class in Global.asax.)
             builder.RegisterControllers(asselmblyList);
 
-            // OPTIONAL: Register model binders that require DI.
-            // builder.RegisterModelBinders(asselmblyList);
-            //builder.RegisterModelBinderProvider();
-
             // OPTIONAL: Register web abstractions like HttpContextBase.
             builder.RegisterModule<AutofacWebTypesModule>();
 
-            // OPTIONAL: Enable property injection in view pages.
-            //builder.RegisterSource(new ViewRegistrationSource());
-
             // OPTIONAL: Enable property injection into action filters.
             builder.RegisterFilterProvider();
-
-            // OPTIONAL: Enable action method parameter injection (RARE).
-            //builder.InjectActionInvoker();
 
             // Set the dependency resolver to be Autofac.
 
@@ -78,7 +68,6 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<AppSetting>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<LanguageService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<CookieService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MarketingRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemoryCacheService>().AsImplementedInterfaces().InstancePerLifetimeScope();

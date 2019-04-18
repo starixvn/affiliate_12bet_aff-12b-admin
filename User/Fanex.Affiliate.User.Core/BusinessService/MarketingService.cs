@@ -81,6 +81,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
         {
+            const int LengthOfSplittingSize = 2;
             var uSpKey = IsSearchByCategory(bannerParam.Category, bannerParam.SubCategory) ? "Aff_BannerSelByParentCate" : "Aff_BannerSel_1";
             var bannerList = _marketingRepository.GetBannerList(bannerParam, uSpKey);
 
@@ -90,7 +91,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 banner.SelectedDomainName = bannerParam.SelectedDomain.DomainName;
 
                 var sizes = banner.Size.Split('x');
-                if (sizes.Count() == 2)
+                if (sizes.Count() == LengthOfSplittingSize)
                 {
                     banner.Width = Convert.ToInt32(sizes[0]);
                     banner.Height = Convert.ToInt32(sizes[1]);

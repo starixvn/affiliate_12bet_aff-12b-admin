@@ -4,10 +4,12 @@ namespace Fanex.Affiliate.User.Core.Utilities
 {
     public static class EmailHelper
     {
+        private const int MandatoryLengthForSplittingEmail = 2;
+
         public static string HideEmailPart(string email, int emailLengthToCheck = 8)
         {
             var emailParts = email.Split(new[] { '@' }, StringSplitOptions.RemoveEmptyEntries);
-            if (emailParts.Length != 2)
+            if (emailParts.Length != MandatoryLengthForSplittingEmail)
             {
                 return string.Empty;
             }

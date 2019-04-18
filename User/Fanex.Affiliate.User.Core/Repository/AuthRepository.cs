@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -107,8 +108,8 @@ namespace Fanex.Affiliate.User.Core.Repository
             objectDb.AddInParameter("Language", SqlDbType.VarChar, param.Language);
             objectDb.AddInParameter("IsSuccessful", SqlDbType.Bit, param.IsSuccessful);
 
-            objectDb.AddOutParameter("ErrCode", SqlDbType.Int, 4);
-            objectDb.AddOutParameter("ErrMsg", SqlDbType.NVarChar, 2000);
+            objectDb.AddOutParameter("ErrCode", SqlDbType.Int, DbParam.ErrCodeSize);
+            objectDb.AddOutParameter("ErrMsg", SqlDbType.NVarChar, DbParam.ErrMsgSize);
         }
     }
 }

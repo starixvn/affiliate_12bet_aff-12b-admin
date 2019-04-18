@@ -16,6 +16,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
 {
     public class AuthController : AuthBaseController
     {
+        private const int CaptchaImgWidth = 65;
+        private const int CaptchaImgHeight = 26;
+
         public AuthController(
             ISessionService sessionService,
             IAppSetting appSetting,
@@ -179,7 +182,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 SessionService.SignUpCaptchaCode = captcha;
             }
 
-            return File(CaptchaService.GenerateImageBuffer(captcha, 65, 26), "image/png");
+            return File(CaptchaService.GenerateImageBuffer(captcha, CaptchaImgWidth, CaptchaImgHeight), "image/png");
         }
 
         private void DoSignOut()
