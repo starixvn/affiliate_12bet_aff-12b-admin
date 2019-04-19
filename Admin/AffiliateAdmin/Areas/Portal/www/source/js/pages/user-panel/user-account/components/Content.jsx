@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Container, Button, Row, Col } from 'reactstrap';
 
 import Section from './Section';
@@ -8,7 +8,7 @@ import {EmailFormat} from './sections/EmailFormat';
 import {WebSite} from './sections/WebSite';
 import {Payment} from './sections/Payment';
 
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -53,7 +53,7 @@ export class Content extends Component {
                     </Col>
                 </Row>
 
-                <Button>Submit</Button>
+                <Button color="success">Submit</Button>
             </Container>
         );
     }
