@@ -155,23 +155,20 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             var result = new List<ISoftbetReport>();
             foreach (var groupedItem in groupedData)
             {
-                var betItem = groupedItem.FirstOrDefault(p => p.Type.ToLowerInvariant() == "bet");
-                var winItem = groupedItem.FirstOrDefault(p => p.Type.ToLowerInvariant() == "win");
+                var betAmount = groupedItem.Where(p => p.Type.ToLowerInvariant() == "bet").Sum(p => p.Amount);
+                var winAmount = groupedItem.Where(p => p.Type.ToLowerInvariant() == "win").Sum(p => p.Amount);
 
-                if (betItem != null && winItem != null)
+                result.Add(new ISoftbetReport
                 {
-                    result.Add(new ISoftbetReport
-                    {
-                        PlayerId = groupedItem.Key.PlayerId,
-                        SessionId = groupedItem.Key.SessionId,
-                        GameId = groupedItem.Key.GameId,
-                        RoundId = groupedItem.Key.RoundId,
-                        Currency = winItem.Currency,
-                        Time = winItem.Time,
-                        Turnover = betItem.Amount,
-                        Winloss = winItem.Amount - betItem.Amount
-                    });
-                }
+                    PlayerId = groupedItem.Key.PlayerId,
+                    SessionId = groupedItem.Key.SessionId,
+                    GameId = groupedItem.Key.GameId,
+                    RoundId = groupedItem.Key.RoundId,
+                    Currency = groupedItem.FirstOrDefault()?.Currency,
+                    Time = groupedItem.FirstOrDefault().Time,
+                    Turnover = betAmount,
+                    Winloss = winAmount - betAmount
+                });
             }
 
             return result;
