@@ -1,13 +1,19 @@
 ﻿using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     public class UserAccountController : BaseController
     {
-        public UserAccountController(ISessionService sessionService) : base(sessionService)
+        private readonly IUserAccountRepository _userAccountRepository;
+
+        public UserAccountController(
+            ISessionService sessionService,
+            IUserAccountRepository userAccountRepository) : base(sessionService)
         {
+            _userAccountRepository = userAccountRepository;
         }
 
         [HttpGet]
@@ -17,5 +23,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
             return View("~/Areas/Portal/Views/UserPanel/UserAccount/Index.cshtml", param);
         }
+
+        [HttpPost]
+        public JsonResult GetUserAccountInfo (int affId)
+        {
+            return new JsonResult
+            {
+                Data = _userAccountRepository.GetUserAccountInfo(affId == 0 ? SessionService.AffId : affId)
+            };
+        }
+
     }
 }
