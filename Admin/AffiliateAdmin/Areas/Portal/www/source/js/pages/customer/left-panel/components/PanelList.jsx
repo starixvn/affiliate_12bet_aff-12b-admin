@@ -8,7 +8,7 @@ import Panel from './Panel';
 import { updateAffType, updateClosedStatus, getAffiliateInfo, getOnLineList, toggleLoader, updateStatus } from '../actions';
 
 import { affType, status, resource, message } from '../modules/constants';
-import { formatDecimal } from '../../../../modules/numberFormat';
+import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { resolveClientUrl } from '../../../../modules/utils';
 
 export class PanelList extends React.Component {
@@ -131,7 +131,7 @@ export class PanelList extends React.Component {
                 </tr>
                 <tr>
                     <td>{resource.BalanceForward}</td>
-                    <td className="r">${formatDecimal(affiliateInfo.BalanceBf)}</td>
+                    <td className="text-right">{formatDecimalWithCurrencySymbol(affiliateInfo.BalanceBf)}</td>
                 </tr>
             </Panel>
         )
@@ -215,7 +215,7 @@ export class PanelList extends React.Component {
                                         {item.Ip}
                                     </a>
                                 </td>
-                                <td className="text-left">{item.ReloadTimeText}</td>
+                                <td className="text-center">{item.ReloadTimeText}</td>
                             </tr>
                         )
                     })

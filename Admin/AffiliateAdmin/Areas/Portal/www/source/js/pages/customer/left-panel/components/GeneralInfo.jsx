@@ -105,8 +105,8 @@ export class GeneralInfo extends React.Component {
         const arryContactApps = JSON.parse(affiliateInfo && affiliateInfo.ContactApps);
 
         return affiliateInfo && (
-            <div className="general-info pt-3">
-                <Row>
+            <div className="general-info pt-2">
+                <Row className="border-0 py-1">
                     <Col sm={5}>
                         <span className='text_bold'>{resource.Affiliate}</span>
                     </Col>

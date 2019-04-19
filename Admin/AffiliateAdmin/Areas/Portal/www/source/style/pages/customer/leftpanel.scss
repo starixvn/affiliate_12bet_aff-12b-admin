@@ -1,23 +1,69 @@
 ﻿@import "../customer-statistics";
 @import "../../components/modal";
+
 .left-panel {
     line-height: 1.8;
     width: 254px;
+
+    input {
+        font-weight: bold;
+        color: #385294;
+        text-transform: uppercase;
+    }
 
     .general-info {
         overflow: hidden;
 
         .row {
             border-bottom: 1px solid #dee2e6!important;
+            white-space: normal;
+            word-break: break-word;
         }
     }
+
+    #left_submenu {
+        margin-top: 10px;
+
+        #left_tab {
+            border-bottom: 1px #849FD6 solid;
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                a {
+                    text-decoration: none;
+
+                    span {
+                        font-weight: bold;
+                        color: #656565;
+                        padding: 1px 5px 5px 9px;
+                        border-top: 1px #bdc9e2 solid;
+                        border-left: 1px #bdc9e2 solid;
+                        border-right: 1px #bdc9e2 solid;
+                        border-radius: 3px;
+                        background-image: linear-gradient(#d6e0f6, #ffffff)
+                    }
+                }
+            }
+        }
+
+        #Bleft_Sub0 {
+            border-bottom: 1px #bdc9e2 solid;
+            border-left: 1px #bdc9e2 solid;
+            border-right: 1px #bdc9e2 solid;
+            padding: 0px 3px 0px 3px;
+        }
+    }
+}
+
+.right-panel {
+    width: calc(100% - 286px);
 }
 
 #user-panel{
     width: 100%;
     border: none;
     height: calc(100% - 90px);
-}
-.right-panel {
-    width: calc(100% - 286px);
 }
