@@ -1,14 +1,22 @@
 ﻿@{
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+@model Fanex.Affiliate.Admin.Core.ViewModels.Customer.CustomerViewModel
+
+@section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/customer/leftpanel.css")" rel="stylesheet" />
 }
 
-@{ 
-    var queryString = Request.QueryString.ToString();
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            leftPanel: {
+                monthDate: '@DateTime.Now.ToString("MM/dd/yyyy")',
+                affName: '@Model.AffName',
+                languageList: @Html.Raw(Json.Encode(Model.LanguageList))
+            }
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/customer/mainpage.js")"></script>
 }
-
-<div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Portal/CustomerLeftPanel?" + queryString)"></iframe>
-</div>
-@*<div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Customer/AffDefault.aspx?" + queryString)"></iframe>
-</div>*@
+<div id="root"></div>

@@ -385,7 +385,7 @@
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
-    <Compile Include="ViewModels\Customer\LeftPanelViewModel.cs" />
+    <Compile Include="ViewModels\Customer\CustomerViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\CustomerMemberViewModel.cs" />

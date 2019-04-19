@@ -2,12 +2,12 @@
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Repository.Customer;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Services;
-using Fanex.Affiliate.Admin.Core.ViewModels.Customer;
-using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
+using Fanex.Affiliate.Admin.Core.Repository.Customer;
+using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.ViewModels.Customer;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         public ActionResult Index(string user)
         {
-            var model = new LeftPanelViewModel
+            var model = new CustomerViewModel
             {
                 AffName = user,
                 LanguageList = _languageService.GetLanguageList()

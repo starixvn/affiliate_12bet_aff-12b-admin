@@ -58,7 +58,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ affiliateInfo, affName, monthDate, iframeUrl }) {
+function mapStateToProps({ leftPanel }) {
+    const { affiliateInfo, affName, monthDate, iframeUrl } = leftPanel;
     return Object.assign({}, { affiliateInfo, affName, monthDate, iframeUrl });
 };
 

@@ -1,9 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.DTO;
 
 namespace Fanex.Affiliate.Admin.Core.ViewModels.Customer
 {
-    public class LeftPanelViewModel
+    public class CustomerViewModel
     {
         public string AffName { get; set; }
 

@@ -20,7 +20,8 @@ export class MainInfo extends React.Component {
     }
 }
 
-function mapStateToProps({ affiliateInfo }) {
+function mapStateToProps({ leftPanel }) {
+    const { affiliateInfo } = leftPanel;
     return Object.assign({}, { affiliateInfo });
 }
 

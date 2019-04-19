@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Modal, ModalHeader, ModalBody, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 import { updateLanguage, getAffiliateInfo, setLanguage, changePassword } from '../actions';
 
@@ -171,7 +171,8 @@ export class GeneralInfo extends React.Component {
     }
 }
 
-function mapStateToProps({ affiliateInfo, languageList, affName }) {
+function mapStateToProps({ leftPanel }) {
+    const { affiliateInfo, languageList, affName } = leftPanel;
     return Object.assign({}, { affiliateInfo, languageList, affName });
 }
 

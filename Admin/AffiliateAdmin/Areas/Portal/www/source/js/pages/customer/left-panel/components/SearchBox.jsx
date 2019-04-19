@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAffiliateInfo, setAffName } from '../actions';
 
-import { Col, Button, Form, Label, Input, FormGroup } from 'reactstrap';
+import { Col, Button, Form, Input, FormGroup } from 'reactstrap';
 
 export class SearchBox extends React.Component {
     constructor(props) {
@@ -51,7 +51,8 @@ export class SearchBox extends React.Component {
     }
 }
 
-function mapStateToProps({ affiliateInfo, affName }) {
+function mapStateToProps({ leftPanel }) {
+    const { affiliateInfo, affName } = leftPanel;
     return Object.assign({}, { affiliateInfo, affName });
 };
 

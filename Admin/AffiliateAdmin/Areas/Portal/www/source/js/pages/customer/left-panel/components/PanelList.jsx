@@ -238,7 +238,8 @@ export class PanelList extends React.Component {
     }
 }
 
-function mapStateToProps({ affiliateInfo, affName }) {
+function mapStateToProps({ leftPanel }) {
+    const { affiliateInfo, affName } = leftPanel;
     return Object.assign({}, { affiliateInfo, affName });
 };
 
