@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Username", DbType.String, affId);
+                objectDb.AddInParameter("AffId", DbType.Int32, affId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             AffName = Convert.ToString(reader["UserName"]),
                             FirstName = Convert.ToString(reader["FirstName"]),
                             LastName = Convert.ToString(reader["LastName"]),
-                            Gender = Convert.ToBoolean(reader["Gender"]),
+                            Gender = reader["Gender"] == DBNull.Value ? (bool?)null : Convert.ToBoolean(reader["Gender"]),
                             Status = Convert.ToString(reader["Status"]),
                             Email = Convert.ToString(reader["Email"]),
                             Phone = Convert.ToString(reader["Phone"]),
@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             Address = Convert.ToString(reader["Address"]),
                             City = Convert.ToString(reader["City"]),
                             State = Convert.ToString(reader["State"]),
-                            Postal = Convert.ToString(reader["Postal"]),
+                            Postcode = Convert.ToString(reader["Postal"]),
                             Country = Convert.ToString(reader["Country"]),
                             MoreSiteUrl = Convert.ToString(reader["MoreSiteUrls"]),
                             SiteUrl = Convert.ToString(reader["SiteUrl"]),
@@ -49,12 +49,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             MoneybookersEmail = Convert.ToString(reader["Moneybookers_Email"]),
                             BankName = Convert.ToString(reader["Wire_BankName"]),
                             BankAddress = Convert.ToString(reader["Wire_BankAddress"]),
-                            BankSwiftCode = Convert.ToString(reader["Wire_SwiftCode"]),
+                            BankCode = Convert.ToString(reader["Wire_SwiftCode"]),
                             BankAccountName = Convert.ToString(reader["Wire_AccountName"]),
-                            BankAccountNo = Convert.ToString(reader["Wire_AccountNo"]),
+                            BankAccountNumber = Convert.ToString(reader["Wire_AccountNo"]),
                             Question = Convert.ToString(reader["Question"]),
                             Answer = Convert.ToString(reader["Answer"]),
-                            MailOption = Convert.ToBoolean(reader["MailOption"])
+                            MailOption = reader["MailOption"] == DBNull.Value ? (bool?)null : Convert.ToBoolean(reader["MailOption"])
                         };
                     }
                 }

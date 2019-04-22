@@ -1,20 +1,30 @@
 import React, { PureComponent } from "react";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Container, Button, Row, Col } from 'reactstrap';
 
+import { getUserAccountInfo } from '../actions';
+
 import Section from './Section';
-import {Personal} from './sections/Personal';
-import {Additional} from './sections/Additional';
-import {EmailFormat} from './sections/EmailFormat';
-import {WebSite} from './sections/WebSite';
-import {Payment} from './sections/Payment';
+import Personal from './sections/Personal';
+import Additional from './sections/Additional';
+import EmailFormat from './sections/EmailFormat';
+import WebSite from './sections/WebSite';
+import Payment from './sections/Payment';
 
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
     }
 
+    componentDidMount() {
+        const { affId, getUserAccountInfo } = this.props;
+        affId && getUserAccountInfo(affId);
+    }
+
     render() {
-        return (
+        console.log(this.props.userAccountInfo);
+        return this.props.userAccountInfo && (
             <Container fluid={true} className="user-account-container">
                 <Row>
                     <Col xs="6">
@@ -58,3 +68,13 @@ export class Content extends PureComponent {
         );
     }
 }
+
+function mapStateToProps({ affId, userAccountInfo }) {
+    return Object.assign({}, { affId, userAccountInfo });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ getUserAccountInfo }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

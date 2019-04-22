@@ -1,23 +1,37 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
-import { renderInputForm } from '../../modules/service';
+
+import { renderInputForm, capitalizeFirstChar } from '../../modules/service';
+import { countriesList } from '../../modules/constants';
+import { setUserAccountInfo } from '../../actions';
 
 export class Additional extends PureComponent {
     constructor(props) {
         super(props);
     }
 
-    _renderCountry() {
+    handleChange = (event) => {
+        const target = event.target;
+        const name = capitalizeFirstChar(target.name);
+
+        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { [name]: target.value })
+        this.props.setUserAccountInfo(newUserAccountInfo);
+    }
+
+    _renderCountry(country) {
         return (
             <FormGroup row>
                 <Label for="country" sm={3} xl={2}>Country</Label>
                 <Col sm={9} xl={10}>
-                    <Input type="select" id="country" name="country">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <Input type="select" id="country" name="country" value={country} onChange={this.handleChange}>
+                        <option value="">Select One</option>
+                        {
+                            Object.keys(countriesList).map((key) => {
+                                return (<option key={'country-' + key} value={key}>{countriesList[key]}</option>)
+                            })
+                        }
                     </Input>
                 </Col>
             </FormGroup>
@@ -25,16 +39,28 @@ export class Additional extends PureComponent {
     }
 
     render() {
-        return (
+        const { userAccountInfo } = this.props;
+
+        return userAccountInfo && (
             <Form tag="div">
-                {renderInputForm('address', 'Address', 'Address Value')}
-                {renderInputForm('city', 'City', 'City Value')}
-                {renderInputForm('state', 'State', 'State Value')}
-                {renderInputForm('postCode', 'Postcode/Zip', 'Postcode/Zip Value')}
-                {this._renderCountry()}
-                {renderInputForm('securityQuestion', 'Security Question', 'What?', true)}
-                {renderInputForm('answer', 'Answer', 'What?', true)}
+                {renderInputForm('address', 'Address', userAccountInfo.Address, false, this.handleChange)}
+                {renderInputForm('city', 'City', userAccountInfo.City, false, this.handleChange)}
+                {renderInputForm('state', 'State', userAccountInfo.State, false, this.handleChange)}
+                {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, false, this.handleChange)}
+                {this._renderCountry(userAccountInfo.Country)}
+                {renderInputForm('question', 'Security Question', userAccountInfo.Question, true)}
+                {renderInputForm('answer', 'Answer', userAccountInfo.Answer, true)}
             </Form>
         )
     }
 }
+
+function mapStateToProps({ userAccountInfo }) {
+    return Object.assign({}, { userAccountInfo });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setUserAccountInfo }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Additional);

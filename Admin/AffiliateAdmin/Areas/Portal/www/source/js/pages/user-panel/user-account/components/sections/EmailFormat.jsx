@@ -1,24 +1,38 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
+
+import { setUserAccountInfo } from '../../actions';
 
 export class EmailFormat extends PureComponent {
     constructor(props) {
         super(props);
     }
 
+    handleChange = (event) => {
+        const value = event.target.value === '1' ? true: false;
+
+        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { MailOption: value })
+        this.props.setUserAccountInfo(newUserAccountInfo);
+    }
+
     render() {
-        return (
+        const { userAccountInfo } = this.props;
+        const isTextFormat = userAccountInfo && userAccountInfo.MailOption;
+
+        return userAccountInfo && (
             <Form tag="div">
                 <FormGroup row>
                     <Col sm={5}>
                         <FormGroup check className="d-inline-block mr-3">
                             <Label check>
-                                <Input type="radio" name="emailFormat" />{' '} Plain Text Format
+                                <Input type="radio" value="1" checked={isTextFormat != null && isTextFormat} onChange={this.handleChange} />{' '} Plain Text Format
                             </Label>
                         </FormGroup>
                         <FormGroup check className="d-inline-block">
                             <Label check>
-                                <Input type="radio" name="emailFormat" />{' '} Html Format
+                                <Input type="radio" value="0" checked={isTextFormat != null && !isTextFormat} onChange={this.handleChange} />{' '} Html Format
                             </Label>
                         </FormGroup>
                     </Col>
@@ -27,3 +41,13 @@ export class EmailFormat extends PureComponent {
         )
     }
 }
+
+function mapStateToProps({ userAccountInfo }) {
+    return Object.assign({}, { userAccountInfo });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setUserAccountInfo }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmailFormat);

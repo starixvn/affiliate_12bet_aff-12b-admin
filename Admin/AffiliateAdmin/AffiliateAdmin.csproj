@@ -1641,6 +1641,11 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\modules\Constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\service.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\modules\constants.js" />
@@ -2084,6 +2089,15 @@
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\user-account.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\Section.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\Additional.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\EmailFormat.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\Payment.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\Personal.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\WebSite.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\index.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

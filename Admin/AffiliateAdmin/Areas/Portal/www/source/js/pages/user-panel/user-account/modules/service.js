@@ -14,3 +14,7 @@ export const renderInputForm = (name, label, inputValue, isStatic, changeHandler
         </FormGroup>
     )
 }
+
+export const capitalizeFirstChar = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}

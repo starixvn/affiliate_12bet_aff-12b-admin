@@ -1,5 +1,10 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
+
+import { capitalizeFirstChar } from '../../modules/service';
+import { setUserAccountInfo } from '../../actions';
 
 const playerMethod = 'Player';
 const netellerMethod = 'Neteller';
@@ -21,16 +26,27 @@ export class Payment extends PureComponent {
             selectedPaymentMethod: playerMethod
         }
 
-        this.formByMethod = {
-            [playerMethod]: this._renderPaymentForm('playerUsername', '12BET User Name', 'qatest01'),
-            [netellerMethod]: this._renderPaymentForm('neteller', 'Neteller Account ID', 'Neteller value'),
-            [moneybookersMethod]: this._renderPaymentForm('moneybookers', 'Moneybookers Email', 'Moneybookers value'),
-            [wireMethod]: this._renderWireForm()
+        const { userAccountInfo } = this.props;
+
+        this.formByMethod = userAccountInfo && {
+            [playerMethod]: this._renderPaymentForm('playerUsername', '12BET User Name', userAccountInfo.PlayerUsername, this.handleChange),
+            [netellerMethod]: this._renderPaymentForm('netellerAccountID', 'Neteller Account ID', userAccountInfo.NetellerAccountID, this.handleChange),
+            [moneybookersMethod]: this._renderPaymentForm('moneybookersEmail', 'Moneybookers Email', userAccountInfo.MoneybookersEmail, this.handleChange),
+            [wireMethod]: this._renderWireForm(userAccountInfo)
         }
     }
 
-    handleChange = (event) => {
+    handleChangePaymentMethod = (event) => {
         this.setState({ [event.target.name]: event.target.value });
+    }
+
+    handleChange = (event) => {
+        const { selectedPaymentMethod } = this.state;
+        const target = event.target;
+        const name = capitalizeFirstChar(target.name);
+
+        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { [name]: target.value })
+        this.props.setUserAccountInfo(newUserAccountInfo);
     }
 
     _renderPaymentForm(name, label, inputValue, changeHandler) {
@@ -44,27 +60,28 @@ export class Payment extends PureComponent {
         )
     }
 
-    _renderWireForm() {
+    _renderWireForm(userAccountInfo) {
         return (
             <React.Fragment>
-                {this._renderPaymentForm('bankName', 'Bank Name', 'Bank Name value')}
-                {this._renderPaymentForm('bankAddress', 'Bank Address', 'Bank Address value')}
-                {this._renderPaymentForm('bankCode', 'Bank ABA/Swift/Sort Code', 'Bank ABA/Swift/Sort Code value')}
-                {this._renderPaymentForm('bankAccountName', 'Bank Account Name', 'Bank Account Name value')}
-                {this._renderPaymentForm('bankAccountNumber', 'Bank Account Number', 'Bank Account Number value')}
+                {this._renderPaymentForm('bankName', 'Bank Name', userAccountInfo.BankName, this.handleChange)}
+                {this._renderPaymentForm('bankAddress', 'Bank Address', userAccountInfo.BankAddress, this.handleChange)}
+                {this._renderPaymentForm('bankCode', 'Bank ABA/Swift/Sort Code', userAccountInfo.BankCode, this.handleChange)}
+                {this._renderPaymentForm('bankAccountName', 'Bank Account Name', userAccountInfo.BankAccountName, this.handleChange)}
+                {this._renderPaymentForm('bankAccountNumber', 'Bank Account Number', userAccountInfo.BankAccountNumber, this.handleChange)}
             </React.Fragment>
         )
     }
 
     render() {
-        const {selectedPaymentMethod} = this.state;
+        const { selectedPaymentMethod } = this.state;
+        const { userAccountInfo } = this.props;
 
-        return (
+        return userAccountInfo && (
             <Form tag="div">
                 <FormGroup row>
                     <Label for="selectedPaymentMethod" sm={3} xl={2}>Preferred Payment Method</Label>
                     <Col sm={5} xl={6}>
-                        <Input type="select" id="selectedPaymentMethod" name="selectedPaymentMethod" onChange={this.handleChange} value={selectedPaymentMethod}>
+                        <Input type="select" id="selectedPaymentMethod" name="selectedPaymentMethod" onChange={this.handleChangePaymentMethod} value={selectedPaymentMethod}>
                             {paymentMethodList.map(item => {
                                 return (<option key={item.key} value={item.key}>{item.value}</option>)
                             })}
@@ -77,3 +94,13 @@ export class Payment extends PureComponent {
         )
     }
 }
+
+function mapStateToProps({ userAccountInfo }) {
+    return Object.assign({}, { userAccountInfo });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setUserAccountInfo }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Payment);

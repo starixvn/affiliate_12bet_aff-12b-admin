@@ -12,7 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string LastName { get; set; }
 
-        public bool Gender { get; set; }
+        public bool? Gender { get; set; }
 
         public string Status { get; set; }
 
@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string State { get; set; }
 
-        public string Postal { get; set; }
+        public string Postcode { get; set; }
 
         public string Country { get; set; }
 
@@ -54,16 +54,16 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string BankAddress { get; set; }
 
-        public string BankSwiftCode { get; set; }
+        public string BankCode { get; set; }
 
         public string BankAccountName { get; set; }
 
-        public string BankAccountNo { get; set; }
+        public string BankAccountNumber { get; set; }
 
         public string Question { get; set; }
 
         public string Answer { get; set; }
 
-        public bool MailOption { get; set; }
+        public bool? MailOption { get; set; }
     }
 }

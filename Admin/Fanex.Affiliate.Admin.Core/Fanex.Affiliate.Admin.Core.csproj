@@ -217,6 +217,7 @@
     <Compile Include="DTO\UserPanel\Referrers.cs" />
     <Compile Include="DTO\UserPanel\StatementHistory.cs" />
     <Compile Include="DTO\UserPanel\TrackingStatistics.cs" />
+    <Compile Include="DTO\UserPanel\UserAccount.cs" />
     <Compile Include="DTO\UserPanel\ViewLog.cs" />
     <Compile Include="Extensions\DataReaderExtension.cs" />
     <Compile Include="Extensions\JsonNetResult.cs" />
@@ -255,6 +256,7 @@
     <Compile Include="MetaModels\UserPanel\StatementHistoryParam.cs" />
     <Compile Include="MetaModels\UserPanel\TrackingStatisticsDetailParam.cs" />
     <Compile Include="MetaModels\UserPanel\TrackingStatisticsParam.cs" />
+    <Compile Include="MetaModels\UserPanel\UserAccountParam.cs" />
     <Compile Include="MetaModels\UserPanel\ViewLogParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -296,6 +298,7 @@
     <Compile Include="Repository\UserPanel\IReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\ITrackingStatisticsRepository.cs" />
+    <Compile Include="Repository\UserPanel\IUserAccountRepository.cs" />
     <Compile Include="Repository\UserPanel\IViewLogRepository.cs" />
     <Compile Include="Repository\UserPanel\LandingPageStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\NoteRepository.cs" />
@@ -303,6 +306,7 @@
     <Compile Include="Repository\UserPanel\ReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\StatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\TrackingStatisticsRepository.cs" />
+    <Compile Include="Repository\UserPanel\UserAccountRepository.cs" />
     <Compile Include="Repository\UserPanel\ViewLogRepository.cs" />
     <Compile Include="Resources\Lang.zh-TW.Designer.cs">
       <DependentUpon>Lang.zh-TW.resx</DependentUpon>

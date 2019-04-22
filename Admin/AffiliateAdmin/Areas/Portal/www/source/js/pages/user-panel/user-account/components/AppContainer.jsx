@@ -1,8 +1,8 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import AppLayout from "../../../../layouts/AppLayout";
-import {Content} from "./Content";
+import AppLayout from '../../../../layouts/AppLayout';
+import Content from './Content';
 import Loader from '../../../../components/Loader';
 
 export class AppContainer extends PureComponent {
