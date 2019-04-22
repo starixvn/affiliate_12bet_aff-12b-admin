@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import MonthPicker from '@9softstudio/react-monthpicker';
-import { Table, Button } from 'reactstrap';
+import { Table } from 'reactstrap';
 import { rowTitle, resource } from '../modules/constants';
 import { shortedMonthNames, minMonthDate } from '../../../../modules/constants';
 import { post } from '../../../../modules/ajaxRequest';
@@ -164,8 +164,9 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ monthDate, affId, affName }) {
-    return Object.assign({}, { monthDate, affId, affName });
+function mapStateToProps({ affCommonInfo, today }) {
+    const { affId } = affCommonInfo;
+    return Object.assign({}, { monthDate: today, affId });
 }
 
 function mapDispatchToProps(dispatch) {

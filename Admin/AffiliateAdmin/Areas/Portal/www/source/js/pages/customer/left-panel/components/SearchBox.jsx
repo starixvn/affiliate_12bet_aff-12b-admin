@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAffiliateInfo, setAffName } from '../actions';
 
 import { Col, Button, Form, Input, FormGroup } from 'reactstrap';
 
-export class SearchBox extends React.Component {
+export class SearchBox extends PureComponent {
     constructor(props) {
         super(props);
 

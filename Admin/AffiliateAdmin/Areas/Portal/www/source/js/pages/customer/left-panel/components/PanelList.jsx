@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -11,7 +11,7 @@ import { affType, status, resource, message } from '../modules/constants';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { resolveClientUrl } from '../../../../modules/utils';
 
-export class PanelList extends React.Component {
+export class PanelList extends PureComponent {
     constructor(props) {
         super(props);
         

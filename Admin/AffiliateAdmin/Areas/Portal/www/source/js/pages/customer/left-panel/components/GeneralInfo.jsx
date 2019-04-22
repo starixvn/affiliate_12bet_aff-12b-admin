@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Row, Col } from 'reactstrap';
@@ -11,7 +11,7 @@ import { toggleLoader } from '../../../../actions/loaderAction';
 
 import { ChangePasswordForm } from '../../../affiliate-info/components/ChangePasswordForm';
 
-export class GeneralInfo extends React.Component {
+export class GeneralInfo extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -25,7 +25,7 @@ export class GeneralInfo extends React.Component {
         const isConfirmed = window.confirm("Are you sure you want to change language for this affiliate?");
         if (isConfirmed) {
             const preferredLanguage = event.target.value;
-            const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, PreferredLanguage: preferredLanguage});
+            const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, PreferredLanguage: preferredLanguage });
             const data = await this.props.updateLanguage(param);
 
             if (data.IsSuccessful) {
@@ -85,12 +85,12 @@ export class GeneralInfo extends React.Component {
                     <Col sm={5}>{resource.Password}</Col>
                     <Col sm={7} className='text-right'>
                         <span className='popup' onClick={() => this.toggleChangingPassword(true)}>[{resource.Change}]</span>
-                            { affiliateInfo && <ChangePasswordForm
-                                showPopupPassword={isChangingPassword}
-                                affId={affiliateInfo.AffId}
-                                setShowPopupPassword={this.toggleChangingPassword}
-                                toggleLoader={toggleLoader}
-                            />}
+                        {affiliateInfo && <ChangePasswordForm
+                            showPopupPassword={isChangingPassword}
+                            affId={affiliateInfo.AffId}
+                            setShowPopupPassword={this.toggleChangingPassword}
+                            toggleLoader={toggleLoader}
+                        />}
                     </Col>
                 </Row>
                 <a href={resolveClientUrl(`Portal/Member?txtAffUsername=${affName}`)} target='fMain'>{resource.MemberList}</a>

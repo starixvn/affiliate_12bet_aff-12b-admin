@@ -14,11 +14,9 @@ const monthDate = createReducer(defaultMonthDate, {
 })
 
 export const affId = createReducer('', {});
-export const affName = createReducer('', {});
 
 export default combineReducers({
     monthDate,
     isShowLoader,
-    affId,
-    affName
+    affId
 });

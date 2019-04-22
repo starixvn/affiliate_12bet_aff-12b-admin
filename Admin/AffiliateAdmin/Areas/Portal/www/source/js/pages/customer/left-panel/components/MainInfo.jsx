@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import GeneralInfo from './GeneralInfo';
 import PanelList from './PanelList';
-import { Col, Button, Form, Label, Input, FormGroup } from 'reactstrap';
 
-export class MainInfo extends React.Component {
+export class MainInfo extends PureComponent {
     constructor(props) {
         super(props);
     }

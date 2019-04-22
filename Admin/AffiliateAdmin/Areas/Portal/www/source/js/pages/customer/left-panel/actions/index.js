@@ -2,6 +2,7 @@ import { LEFTPANEL_RECEIVE_AFFINFO, SET_AFF_NAME, SET_MONTHDATE, SET_IFRAME_URL 
 import { post } from '../../../../modules/ajaxRequest';
 import { resolveClientUrl } from '../../../../modules/utils';
 import { toggleLoader } from '../../../../actions/loaderAction';
+import { setAffCommonInfo, loadCustomerStatisticsState, setCustomerStatistics, loadUserPanelState } from './commonAction';
 
 export { toggleLoader };
 
@@ -45,6 +46,9 @@ export const getAffiliateInfo = (affName) => async(dispatch) => {
 
     dispatch(receiveLeftMenuInfo(data));
     dispatch(setIframeUrl(iframeUrl));
+
+    data && dispatch(setAffCommonInfo({ affId: data.AffId, affName })) && loadCustomerStatisticsState();
+
     dispatch(toggleLoader(false));
 }
 
