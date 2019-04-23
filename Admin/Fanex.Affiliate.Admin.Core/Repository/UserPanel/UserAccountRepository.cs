@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             State = Convert.ToString(reader["State"]),
                             Postcode = Convert.ToString(reader["Postal"]),
                             Country = Convert.ToString(reader["Country"]),
-                            MoreSiteUrl = Convert.ToString(reader["MoreSiteUrls"]),
+                            MoreSiteUrls = Convert.ToString(reader["MoreSiteUrls"]),
                             SiteUrl = Convert.ToString(reader["SiteUrl"]),
                             PreferredPayment = Convert.ToString(reader["PreferredPayment"]),
                             PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),

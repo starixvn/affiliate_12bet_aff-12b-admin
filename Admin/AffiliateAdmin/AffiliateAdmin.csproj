@@ -1603,6 +1603,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\reduxComponentFactory.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\shared\service.js" />
@@ -2098,6 +2102,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\Personal.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\WebSite.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\components\AppContainer.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { capitalizeFirstChar } from '../../modules/service';
-import { setUserAccountInfo } from '../../actions';
+import { setUserAccountInfo, setSelectedPaymentMethod } from '../../actions';
 
 const playerMethod = 'Player';
 const netellerMethod = 'Neteller';
@@ -21,32 +21,27 @@ const paymentMethodList = [
 export class Payment extends PureComponent {
     constructor(props) {
         super(props);
-
-        this.state = {
-            selectedPaymentMethod: playerMethod
-        }
-
-        const { userAccountInfo } = this.props;
-
-        this.formByMethod = userAccountInfo && {
-            [playerMethod]: this._renderPaymentForm('playerUsername', '12BET User Name', userAccountInfo.PlayerUsername, this.handleChange),
-            [netellerMethod]: this._renderPaymentForm('netellerAccountID', 'Neteller Account ID', userAccountInfo.NetellerAccountID, this.handleChange),
-            [moneybookersMethod]: this._renderPaymentForm('moneybookersEmail', 'Moneybookers Email', userAccountInfo.MoneybookersEmail, this.handleChange),
-            [wireMethod]: this._renderWireForm(userAccountInfo)
-        }
     }
 
     handleChangePaymentMethod = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
+        this.props.setSelectedPaymentMethod(event.target.value);
     }
 
     handleChange = (event) => {
-        const { selectedPaymentMethod } = this.state;
         const target = event.target;
         const name = capitalizeFirstChar(target.name);
 
         const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { [name]: target.value })
         this.props.setUserAccountInfo(newUserAccountInfo);
+    }
+
+    _renderFormByMethod(userAccountInfo) {
+        return {
+            [playerMethod]: this._renderPaymentForm('playerUsername', '12BET User Name', userAccountInfo.PlayerUsername, this.handleChange),
+            [netellerMethod]: this._renderPaymentForm('netellerAccountID', 'Neteller Account ID', userAccountInfo.NetellerAccountID, this.handleChange),
+            [moneybookersMethod]: this._renderPaymentForm('moneybookersEmail', 'Moneybookers Email', userAccountInfo.MoneybookersEmail, this.handleChange),
+            [wireMethod]: this._renderWireForm(userAccountInfo)
+        }
     }
 
     _renderPaymentForm(name, label, inputValue, changeHandler) {
@@ -73,8 +68,8 @@ export class Payment extends PureComponent {
     }
 
     render() {
-        const { selectedPaymentMethod } = this.state;
-        const { userAccountInfo } = this.props;
+        const { userAccountInfo, selectedPaymentMethod } = this.props;
+        const renderFormByMethod = userAccountInfo && this._renderFormByMethod(userAccountInfo);
 
         return userAccountInfo && (
             <Form tag="div">
@@ -89,18 +84,18 @@ export class Payment extends PureComponent {
                     </Col>
                 </FormGroup>
 
-                {this.formByMethod[selectedPaymentMethod]}
+                {renderFormByMethod[selectedPaymentMethod]}
             </Form>
         )
     }
 }
 
-function mapStateToProps({ userAccountInfo }) {
-    return Object.assign({}, { userAccountInfo });
+function mapStateToProps({ userAccountInfo, selectedPaymentMethod }) {
+    return Object.assign({}, { userAccountInfo, selectedPaymentMethod });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setUserAccountInfo }, dispatch);
+    return bindActionCreators({ setUserAccountInfo, setSelectedPaymentMethod }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Payment);

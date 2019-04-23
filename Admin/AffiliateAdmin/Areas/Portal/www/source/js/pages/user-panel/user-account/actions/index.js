@@ -1,5 +1,5 @@
 import { post } from '../../../../modules/ajaxRequest';
-import { SET_USER_ACCOUNT_INFO } from './types'
+import { SET_USER_ACCOUNT_INFO, SET_MORE_SITE_URLS_ARRAY, SET_SELECTED_PAYMENT_METHOD } from './types'
 import { setPagingOption } from '../../../../actions/pagingAction';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
@@ -12,6 +12,20 @@ export const setUserAccountInfo = (data) => {
     }
 }
 
+export const setMoreSiteUrlsArray = (data) => {
+    return {
+        type: SET_MORE_SITE_URLS_ARRAY,
+        data
+    }
+}
+
+export const setSelectedPaymentMethod = (data) => {
+    return {
+        type: SET_SELECTED_PAYMENT_METHOD,
+        data
+    }
+}
+
 export const getUserAccountInfo = (affId) => async(dispatch) => {
     dispatch(toggleLoader(true));
     const url = 'Portal/UserPanel/UserAccount/GetUserAccountInfo';
@@ -20,6 +34,17 @@ export const getUserAccountInfo = (affId) => async(dispatch) => {
 
     const data = response && response.status === 200 ? response.data : null;
 
+    const moreSiteUrls = data && data.MoreSiteUrls;
+    const moreSiteUrlsArray = moreSiteUrls && moreSiteUrls.split(';');
+
     dispatch(setUserAccountInfo(data));
+    dispatch(setMoreSiteUrlsArray(moreSiteUrlsArray));
     dispatch(toggleLoader(false));
+}
+
+export const updateUserAccount = async (param) => {
+    const url = 'Portal/UserPanel/UserAccount/updateUserAccount';
+    const response = await post(url, param);
+
+    return response && response.status === 200 ? response.data : null;
 }

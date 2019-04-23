@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Container, Button, Row, Col } from 'reactstrap';
+import { Container, Button, Row, Col, Alert } from 'reactstrap';
 
-import { getUserAccountInfo } from '../actions';
+import { getUserAccountInfo, updateUserAccount } from '../actions';
 
 import Section from './Section';
 import Personal from './sections/Personal';
@@ -15,6 +15,12 @@ import Payment from './sections/Payment';
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
+
+        this.state = {
+            isSuccess: true,
+            isShowMessage: false,
+            message: ''
+        }
     }
 
     componentDidMount() {
@@ -22,10 +28,43 @@ export class Content extends PureComponent {
         affId && getUserAccountInfo(affId);
     }
 
+    handleSubmit = async () => {
+        const { userAccountInfo, moreSiteUrlsArray, selectedPaymentMethod } = this.props;
+
+        const newUserAccountInfo = Object.assign({}, userAccountInfo, { MoreSiteUrls: JSON.stringify(moreSiteUrlsArray) });
+
+        const data = await this.props.updateUserAccount(newUserAccountInfo);
+
+        if (data) {
+            this.setState({
+                isShowMessage: true,
+                isSuccess: data.IsSuccessful,
+                message: data.IsSuccessful ? `${userAccountInfo.UserName} has been updated successfully!` : data.Message,
+            }, () => window.setTimeout(this.hideMessage, 3000));
+        }
+        else {
+            this.setState({
+                isSuccess: false,
+                isShowMessage: true,
+                message: 'Update User Account is failed!',
+            }, () => window.setTimeout(this.hideMessage, 3000));
+        }
+    }
+
+    hideMessage = () => {
+        this.setState({
+            isShowMessage: false
+        });
+    }
+
     render() {
-        console.log(this.props.userAccountInfo);
+        const { isSuccess, isShowMessage, message } = this.state;
+
         return this.props.userAccountInfo && (
             <Container fluid={true} className="user-account-container">
+                <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                </Alert>
                 <Row>
                     <Col xs="6">
                         <Section title="Personal Information">
@@ -63,18 +102,18 @@ export class Content extends PureComponent {
                     </Col>
                 </Row>
 
-                <Button color="success">Submit</Button>
+                <Button color="success" onClick={this.handleSubmit}>Submit</Button>
             </Container>
         );
     }
 }
 
-function mapStateToProps({ affId, userAccountInfo }) {
-    return Object.assign({}, { affId, userAccountInfo });
+function mapStateToProps({ affId, userAccountInfo, moreSiteUrlsArray, selectedPaymentMethod }) {
+    return Object.assign({}, { affId, userAccountInfo, moreSiteUrlsArray, selectedPaymentMethod });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getUserAccountInfo }, dispatch);
+    return bindActionCreators({ getUserAccountInfo, updateUserAccount }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
