@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { combineReducers } from 'redux';
 
-import reducer from './mainpage/reducers';
-import AppContainer from './mainpage/components/AppContainer';
+import reducer from './reducers';
+import AppContainer from './components/AppContainer';
 import { configureStore } from '../../modules/store';
 import reducerRegistry from '../../modules/reducerRegistry';
 
