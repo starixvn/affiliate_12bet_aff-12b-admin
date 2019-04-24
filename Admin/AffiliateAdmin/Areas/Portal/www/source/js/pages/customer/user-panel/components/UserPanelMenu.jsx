@@ -1,5 +1,5 @@
 import React from 'react';
-import { userPanelMenuList } from '../modules/userPanelMenu';
+import { userPanelMenuList } from '../modules/menu';
 
 const UserPanelMenu = (props) => {
     const { selectedUserPanel, onClickMenu } = props;

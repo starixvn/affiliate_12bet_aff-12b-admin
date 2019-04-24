@@ -1,1 +1,0 @@
-export const SET_AFF_COMMON_INFO = 'SET_AFF_COMMON_INFO';

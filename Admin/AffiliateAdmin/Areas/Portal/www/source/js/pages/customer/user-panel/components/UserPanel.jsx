@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import UserPanelMenu from './UserPanelMenu';
-import { userPanelMenuList } from '../modules/userPanelMenu';
+import { userPanelMenuList } from '../modules/menu';
 
 const UserPanel = (props) => {
     const { selectedUserPanel, onClickMenu } = props;

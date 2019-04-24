@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import createReducer from '../../../../modules/createReducer';
 
-import { LEFTPANEL_RECEIVE_AFFINFO, SET_AFF_NAME, SET_IFRAME_URL } from '../actions/types';
+import { SET_AFF_NAME } from '../actions/types';
+import { LEFTPANEL_RECEIVE_AFFINFO } from '../../mainpage/actions/types';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 const affName = createReducer('', {
@@ -11,12 +12,6 @@ const affName = createReducer('', {
 });
 
 const languageList = createReducer({}, {});
-
-const iframeUrl = createReducer('', {
-    [SET_IFRAME_URL](prevState, action) {
-        return action.data;
-    }
-})
 
 const affiliateInfo = createReducer(null, {
     [LEFTPANEL_RECEIVE_AFFINFO](prevState, action) {
@@ -28,6 +23,5 @@ export default combineReducers({
     isShowLoader,
     affName,
     languageList,
-    iframeUrl,
     affiliateInfo
 });

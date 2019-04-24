@@ -60,12 +60,7 @@ export class Content extends PureComponent {
     render() {
         const { isSuccess, isShowMessage, message } = this.state;
 
-        console.log(this.props.userAccountInfo);
-        if (!this.props.userAccountInfo) {
-            return null;
-        }
-
-        return (
+        return this.props.userAccountInfo && (
             <Container fluid={true} className="user-account-container">
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message }}></div>

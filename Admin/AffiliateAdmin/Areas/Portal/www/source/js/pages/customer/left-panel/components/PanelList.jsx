@@ -5,9 +5,10 @@ import { bindActionCreators } from 'redux';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import Panel from './Panel';
-import { updateAffType, updateClosedStatus, getAffiliateInfo, getOnLineList, toggleLoader, updateStatus } from '../actions';
+import { updateAffType, updateClosedStatus, getOnLineList, toggleLoader, updateStatus } from '../actions';
+import { getAffiliateInfo } from '../../mainpage/actions/loadingDataAction';
 
-import { affType, status, resource, message } from '../modules/constants';
+import { affType, status, resource } from '../modules/constants';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { resolveClientUrl } from '../../../../modules/utils';
 
@@ -238,8 +239,10 @@ export class PanelList extends PureComponent {
     }
 }
 
-function mapStateToProps({ leftPanel }) {
-    const { affiliateInfo, affName } = leftPanel;
+function mapStateToProps({ affCommonInfo, leftPanel }) {
+    const { affiliateInfo } = leftPanel;
+    const { affName } = affCommonInfo;
+
     return Object.assign({}, { affiliateInfo, affName });
 };
 

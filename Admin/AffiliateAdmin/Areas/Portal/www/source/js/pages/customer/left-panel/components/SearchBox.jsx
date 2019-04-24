@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getAffiliateInfo, setAffName } from '../actions';
+import { setAffName } from '../actions';
+import { getAffiliateInfo } from '../../mainpage/actions/loadingDataAction';
 
 import { Col, Button, Form, Input, FormGroup } from 'reactstrap';
 

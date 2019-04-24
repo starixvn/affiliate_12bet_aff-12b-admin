@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -14,7 +14,7 @@ import { toggleLoader } from '../../../../actions/loaderAction';
 import { setMonthDate } from '../actions';
 
 const API_URL = "Portal/CustomerStatistics/GetCustomerStatistics";
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
 

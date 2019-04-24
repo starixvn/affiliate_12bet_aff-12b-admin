@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Row, Col } from 'reactstrap';
 
-import { updateLanguage, getAffiliateInfo, setLanguage, changePassword } from '../actions';
+import { updateLanguage, setLanguage, changePassword } from '../actions';
+import { getAffiliateInfo } from '../../mainpage/actions/loadingDataAction';
 
 import { status, resource } from '../modules/constants';
 import { resolveClientUrl } from '../../../../modules/utils';
@@ -171,8 +172,9 @@ export class GeneralInfo extends PureComponent {
     }
 }
 
-function mapStateToProps({ leftPanel }) {
-    const { affiliateInfo, languageList, affName } = leftPanel;
+function mapStateToProps({ affCommonInfo, leftPanel }) {
+    const { affiliateInfo, languageList } = leftPanel;
+    const { affName } = affCommonInfo;
     return Object.assign({}, { affiliateInfo, languageList, affName });
 }
 

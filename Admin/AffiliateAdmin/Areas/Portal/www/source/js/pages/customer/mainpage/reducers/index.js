@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 
-import reducerRegistry from '../../../modules/reducerRegistry';
-import leftPanel from '../left-panel/reducers';
-import { affCommonInfo, today, selectedUserPanel } from '../left-panel/reducers/commonReducers';
+import reducerRegistry from '../../../../modules/reducerRegistry';
+import leftPanel from '../../left-panel/reducers';
+import { affCommonInfo, today } from './commonReducer';
+import { selectedUserPanel } from '../../user-panel/reducers';
 
 reducerRegistry.register('today', today);
 reducerRegistry.register('selectedUserPanel', selectedUserPanel);

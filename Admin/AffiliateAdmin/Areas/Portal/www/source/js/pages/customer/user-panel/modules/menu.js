@@ -1,38 +1,38 @@
 import React from 'react';
-import statementHistoryReducer from '../../user-panel/statement-history/reducers';
-import userAccountReducer from '../../user-panel/user-account/reducers';
-import noteReducer from '../../user-panel/note/reducers';
-import adjustmentReducer from '../../user-panel/adjustment/reducers';
-import trackingStatisticsReducer from '../../user-panel/tracking-statistics/reducers';
-import memberReducer from '../../user-panel/customer-member/reducers';
-import viewLogReducer from '../../user-panel/view-log/reducers';
-import referrerStatisticsReducer from '../../user-panel/referrers/reducers';
-import landingPageStatisticsReducer from '../../user-panel/landing-page-statistics/reducers';
+import statementHistoryReducer from '../../../user-panel/statement-history/reducers';
+import userAccountReducer from '../../../user-panel/user-account/reducers';
+import noteReducer from '../../../user-panel/note/reducers';
+import adjustmentReducer from '../../../user-panel/adjustment/reducers';
+import trackingStatisticsReducer from '../../../user-panel/tracking-statistics/reducers';
+import memberReducer from '../../../user-panel/customer-member/reducers';
+import viewLogReducer from '../../../user-panel/view-log/reducers';
+import referrerStatisticsReducer from '../../../user-panel/referrers/reducers';
+import landingPageStatisticsReducer from '../../../user-panel/landing-page-statistics/reducers';
 
 const StatementHistory = React.lazy(() =>
-    import ( /* webpackChunkName: "statementHistory" */ '../../user-panel/statement-history/components/AppContainer'));
+    import ( /* webpackChunkName: "statementHistory" */ '../../../user-panel/statement-history/components/AppContainer'));
 const DailyEarning = React.lazy(() =>
-    import ( /* webpackChunkName: "dailyEarning" */ '../../user-panel/daily-earning/components/AppContainer'));
+    import ( /* webpackChunkName: "dailyEarning" */ '../../../user-panel/daily-earning/components/AppContainer'));
 const DailyEarningDetail = React.lazy(() =>
-    import ( /* webpackChunkName: "dailyEarningDetail" */ '../../user-panel/daily-earning-detail/components/AppContainer'));
+    import ( /* webpackChunkName: "dailyEarningDetail" */ '../../../user-panel/daily-earning-detail/components/AppContainer'));
 const UserAccount = React.lazy(() =>
-    import ( /* webpackChunkName: "userAccount" */ '../../user-panel/user-account/components/AppContainer'));
+    import ( /* webpackChunkName: "userAccount" */ '../../../user-panel/user-account/components/AppContainer'));
 const Note = React.lazy(() =>
-    import ( /* webpackChunkName: "note" */ '../../user-panel/note/components/AppContainer'));
+    import ( /* webpackChunkName: "note" */ '../../../user-panel/note/components/AppContainer'));
 const PlayerDetail = React.lazy(() =>
-    import ( /* webpackChunkName: "playerDetail" */ '../../user-panel/player-detail/components/AppContainer'));
+    import ( /* webpackChunkName: "playerDetail" */ '../../../user-panel/player-detail/components/AppContainer'));
 const Adjustment = React.lazy(() =>
-    import ( /* webpackChunkName: "adjustment" */ '../../user-panel/adjustment/components/AppContainer'));
+    import ( /* webpackChunkName: "adjustment" */ '../../../user-panel/adjustment/components/AppContainer'));
 const TrackingStatistics = React.lazy(() =>
-    import ( /* webpackChunkName: "trackingStatistics" */ '../../user-panel/tracking-statistics/components/AppContainer'));
+    import ( /* webpackChunkName: "trackingStatistics" */ '../../../user-panel/tracking-statistics/components/AppContainer'));
 const Member = React.lazy(() =>
-    import ( /* webpackChunkName: "member" */ '../../user-panel/customer-member/components/AppContainer'));
+    import ( /* webpackChunkName: "member" */ '../../../user-panel/customer-member/components/AppContainer'));
 const ViewLog = React.lazy(() =>
-    import ( /* webpackChunkName: "viewLog" */ '../../user-panel/view-log/components/AppContainer'));
+    import ( /* webpackChunkName: "viewLog" */ '../../../user-panel/view-log/components/AppContainer'));
 const ReferrerStatistics = React.lazy(() =>
-    import ( /* webpackChunkName: "referrerStatistics" */ '../../user-panel/referrers/components/AppContainer'));
+    import ( /* webpackChunkName: "referrerStatistics" */ '../../../user-panel/referrers/components/AppContainer'));
 const LandingPageStatistics = React.lazy(() =>
-    import ( /* webpackChunkName: "landingPageStatistics" */ '../../user-panel/landing-page-statistics/components/AppContainer'));
+    import ( /* webpackChunkName: "landingPageStatistics" */ '../../../user-panel/landing-page-statistics/components/AppContainer'));
 
 export const menuKey = {
     statementHistory: 'StatementHistory',

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-export default class ChangePasswordForm extends React.Component {
+export default class ChangePasswordForm extends PureComponent {
     constructor(props) {
         super(props);
 

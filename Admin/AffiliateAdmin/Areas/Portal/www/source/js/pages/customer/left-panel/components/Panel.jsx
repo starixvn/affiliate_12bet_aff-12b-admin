@@ -24,4 +24,4 @@ const Panel = (props) => {
     )
 }
 
-export default Panel;
+export default React.memo(Panel);
