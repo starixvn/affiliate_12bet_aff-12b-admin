@@ -1,3 +1,25 @@
+export const regexEmail = '^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$';
+
+export const errorsList = {
+    FirstName: 'First Name is required',
+    LastName: 'Last Name is required',
+    Gender: 'Gender is empty, Please Check!',
+    Email: 'Email Address is invalid',
+    Phone: 'Contact Number is required',
+    Address: 'Address is required',
+    City: 'City is required',
+    Postcode: 'Postcode/Zip is required',
+    Country: 'Please select country',
+    SiteUrl: 'Website URL is required',
+    PlayerUsername: '12BET User Name is required',
+    NetellerAccountId: 'Neteller Account ID is required',
+    MoneybookersEmail: 'Moneybookers Email is required',
+    BankName: 'Bank Name is required',
+    BankAddress: 'Bank Address is required',
+    BankAccountName: 'Bank Account Name is required',
+    BankAccountNumber: 'Bank Account Number is required',
+}
+
 export const countriesList = {
     'Albania': 'Albania',
     'Algeria': 'Algeria',

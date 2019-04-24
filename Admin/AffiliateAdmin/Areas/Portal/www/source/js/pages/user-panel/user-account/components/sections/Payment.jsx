@@ -37,17 +37,17 @@ export class Payment extends PureComponent {
 
     _renderFormByMethod(userAccountInfo) {
         return {
-            [playerMethod]: this._renderPaymentForm('playerUsername', '12BET User Name', userAccountInfo.PlayerUsername, this.handleChange),
-            [netellerMethod]: this._renderPaymentForm('netellerAccountID', 'Neteller Account ID', userAccountInfo.NetellerAccountID, this.handleChange),
-            [moneybookersMethod]: this._renderPaymentForm('moneybookersEmail', 'Moneybookers Email', userAccountInfo.MoneybookersEmail, this.handleChange),
+            [playerMethod]: this._renderPaymentForm('playerUsername', '12BET User Name', userAccountInfo.PlayerUsername, true, this.handleChange),
+            [netellerMethod]: this._renderPaymentForm('netellerAccountId', 'Neteller Account ID', userAccountInfo.NetellerAccountId, true, this.handleChange),
+            [moneybookersMethod]: this._renderPaymentForm('moneybookersEmail', 'Moneybookers Email', userAccountInfo.MoneybookersEmail, true, this.handleChange),
             [wireMethod]: this._renderWireForm(userAccountInfo)
         }
     }
 
-    _renderPaymentForm(name, label, inputValue, changeHandler) {
+    _renderPaymentForm(name, label, inputValue, isRequired, changeHandler) {
         return (
             <FormGroup row>
-                <Label for={name} sm={3} xl={2}>{label}</Label>
+                <Label for={name} sm={3} xl={2} className={isRequired ? "required" : ""}>{label}</Label>
                 <Col sm={5} xl={6}>
                     <Input type="text" id={name} name={name} value={inputValue} onChange={changeHandler} />
                 </Col>
@@ -58,11 +58,11 @@ export class Payment extends PureComponent {
     _renderWireForm(userAccountInfo) {
         return (
             <React.Fragment>
-                {this._renderPaymentForm('bankName', 'Bank Name', userAccountInfo.BankName, this.handleChange)}
-                {this._renderPaymentForm('bankAddress', 'Bank Address', userAccountInfo.BankAddress, this.handleChange)}
-                {this._renderPaymentForm('bankCode', 'Bank ABA/Swift/Sort Code', userAccountInfo.BankCode, this.handleChange)}
-                {this._renderPaymentForm('bankAccountName', 'Bank Account Name', userAccountInfo.BankAccountName, this.handleChange)}
-                {this._renderPaymentForm('bankAccountNumber', 'Bank Account Number', userAccountInfo.BankAccountNumber, this.handleChange)}
+                {this._renderPaymentForm('bankName', 'Bank Name', userAccountInfo.BankName, true, this.handleChange)}
+                {this._renderPaymentForm('bankAddress', 'Bank Address', userAccountInfo.BankAddress, true, this.handleChange)}
+                {this._renderPaymentForm('bankCode', 'Bank ABA/Swift/Sort Code', userAccountInfo.BankCode, false, this.handleChange)}
+                {this._renderPaymentForm('bankAccountName', 'Bank Account Name', userAccountInfo.BankAccountName, true, this.handleChange)}
+                {this._renderPaymentForm('bankAccountNumber', 'Bank Account Number', userAccountInfo.BankAccountNumber, true, this.handleChange)}
             </React.Fragment>
         )
     }

@@ -35,7 +35,7 @@ export const getUserAccountInfo = (affId) => async(dispatch) => {
     const data = response && response.status === 200 ? response.data : null;
 
     const moreSiteUrls = data && data.MoreSiteUrls;
-    const moreSiteUrlsArray = moreSiteUrls && moreSiteUrls.split(';');
+    const moreSiteUrlsArray = moreSiteUrls && moreSiteUrls != '' && moreSiteUrls.split(';');
 
     dispatch(setUserAccountInfo(data));
     dispatch(setMoreSiteUrlsArray(moreSiteUrlsArray));

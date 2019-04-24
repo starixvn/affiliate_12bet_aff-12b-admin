@@ -14,8 +14,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public bool? Gender { get; set; }
 
-        public string Status { get; set; }
-
         public string Email { get; set; }
 
         public string Phone { get; set; }
@@ -42,11 +40,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string PreferredPayment { get; set; }
 
-        public string PreferredLanguage { get; set; }
-
         public string PlayerUsername { get; set; }
 
-        public string NetellerAccountID { get; set; }
+        public string NetellerAccountId { get; set; }
 
         public string MoneybookersEmail { get; set; }
 

@@ -2,9 +2,14 @@
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class UserAccountController : BaseController
     {
         private readonly IUserAccountRepository _userAccountRepository;
@@ -25,6 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public JsonResult GetUserAccountInfo (int affId)
         {
             return new JsonResult
@@ -33,5 +39,31 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             };
         }
 
+        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult UpdateUserAccount(UserAccountParam param)
+        {
+            if(ModelState.IsValid)
+            {
+                param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
+                param.UserId = SessionService.UserId;
+                param.Ip = Request.UserHostAddress;
+
+                return new JsonResult
+                {
+                    Data = _userAccountRepository.UpdateUserAccount(param)
+                };
+            }
+
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Update User Account is failed!"
+                }
+            };
+        }
     }
 }

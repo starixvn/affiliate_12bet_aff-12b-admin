@@ -62,11 +62,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                 param.UserId = SessionService.UserId;
                 param.Ip = Request.UserHostAddress;
 
-                var model = _adjustmentRepository.InsertAdjustment(param);
-
                 return new JsonNetResult
                 {
-                    Data = model
+                    Data = _adjustmentRepository.InsertAdjustment(param)
                 };
             }
 
@@ -74,7 +72,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 Data = new ResultInfo
                 {
-                    Code = -1,
+                    Code = Code.GeneralErrorCode,
                     Message = Lang.AmountIsInvalid
                 }
             };

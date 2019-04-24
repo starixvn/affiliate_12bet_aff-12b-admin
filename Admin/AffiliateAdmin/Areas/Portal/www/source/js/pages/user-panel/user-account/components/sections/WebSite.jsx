@@ -29,7 +29,8 @@ export class WebSite extends PureComponent {
 
     handleAddUrl = () => {
         let { moreSiteUrlsArray } = this.props;
-        const findIndex = moreSiteUrlsArray.indexOf('');
+        const newMoreSiteUrlsArray = moreSiteUrlsArray.map(siteUrl => siteUrl.trim());
+        const findIndex = newMoreSiteUrlsArray.indexOf('');
 
         if(findIndex === -1) {
             moreSiteUrlsArray.push('');
@@ -54,7 +55,7 @@ export class WebSite extends PureComponent {
                     moreSiteUrlsArray.map((value, index) => {
                         return (
                             <FormGroup row>
-                                <Label for={index} sm={3} xl={2}>Website URL {index + 2}</Label>
+                                <Label for={index} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
                                 <Col sm={5} xl={6}>
                                     <Input type="text" id={index} name={index} value={value} onChange={this.handleChangeMoreUrl}/>
                                 </Col>
@@ -69,18 +70,19 @@ export class WebSite extends PureComponent {
 
     render() {
         const { userAccountInfo, moreSiteUrlsArray } = this.props;
+        console.log(moreSiteUrlsArray);
 
         return (
             <Form tag="div">
                 <FormGroup row>
-                    <Label for="siteUrl" sm={3} xl={2}>Website URL</Label>
+                    <Label for="siteUrl" sm={3} xl={2} className="required">Website URL</Label>
                     <Col sm={5} xl={6}>
                         <Input type="text" id="siteUrl" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange}/>
                     </Col>
                     <Button color="primary" onClick={this.handleAddUrl}><span aria-hidden>Add Url</span></Button>
                 </FormGroup>
                 {
-                    moreSiteUrlsArray && moreSiteUrlsArray[0] && this._renderMoreSiteUrl(moreSiteUrlsArray)
+                    moreSiteUrlsArray && this._renderMoreSiteUrl(moreSiteUrlsArray)
                 }
                 <FormGroup row>
                     <Label for="noSiteDescription" sm={3} xl={2}>I do not have a website Please describe how you would like to promote 12Bet if you do not have the URL .</Label>

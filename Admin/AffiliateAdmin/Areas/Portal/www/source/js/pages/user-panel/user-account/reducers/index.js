@@ -11,7 +11,7 @@ const userAccountInfo = createReducer(null, {
     }
 });
 
-const moreSiteUrlsArray = createReducer(null, {
+const moreSiteUrlsArray = createReducer([], {
     [SET_MORE_SITE_URLS_ARRAY](prevState, action) {
         return [...action.data];
     }

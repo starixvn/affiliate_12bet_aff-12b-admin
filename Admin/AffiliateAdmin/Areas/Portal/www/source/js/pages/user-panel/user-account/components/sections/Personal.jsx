@@ -32,7 +32,7 @@ export class Personal extends PureComponent {
     _renderGenderForm(isMale) {
         return (
             <FormGroup row>
-                <Label for={name} sm={3} xl={2}>Gender</Label>
+                <Label for={name} sm={3} xl={2} className="required">Gender</Label>
                 <Col sm={9} xl={10}>
                     <FormGroup check className="d-inline-block mr-3">
                         <Label check>
@@ -55,12 +55,12 @@ export class Personal extends PureComponent {
         return userAccountInfo && (
             <Form tag="div">
                 {renderInputForm('username', 'User Name', userAccountInfo.AffName, true,)}
-                {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, this.handleChange)}
-                {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, this.handleChange)}
+                {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, true, this.handleChange)}
+                {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, true, this.handleChange)}
                 {this._renderGenderForm(userAccountInfo.Gender)}
-                {renderInputForm('email', 'Email Address', userAccountInfo.Email, false, this.handleChange)}
-                {renderInputForm('phone', 'Contact Number', userAccountInfo.Phone, false, this.handleChange)}
-                {this.arrayContactApps && this.arrayContactApps[0] && renderInputForm('contactApp', this.arrayContactApps[0].Name, this.arrayContactApps[0].Value, false, this.handleChangeContactApps)}
+                {renderInputForm('email', 'Email Address', userAccountInfo.Email, false, true, this.handleChange)}
+                {renderInputForm('phone', 'Contact Number', userAccountInfo.Phone, false, true, this.handleChange)}
+                {this.arrayContactApps && this.arrayContactApps[0] && renderInputForm('contactApp', this.arrayContactApps[0].Name, this.arrayContactApps[0].Value, false, false, this.handleChangeContactApps)}
             </Form>
         )
     }

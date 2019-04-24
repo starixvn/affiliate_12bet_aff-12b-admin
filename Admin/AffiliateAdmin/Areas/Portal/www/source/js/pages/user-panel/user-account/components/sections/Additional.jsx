@@ -23,7 +23,7 @@ export class Additional extends PureComponent {
     _renderCountry(country) {
         return (
             <FormGroup row>
-                <Label for="country" sm={3} xl={2}>Country</Label>
+                <Label for="country" sm={3} xl={2} className="required">Country</Label>
                 <Col sm={9} xl={10}>
                     <Input type="select" id="country" name="country" value={country} onChange={this.handleChange}>
                         <option value="">Select One</option>
@@ -43,10 +43,10 @@ export class Additional extends PureComponent {
 
         return userAccountInfo && (
             <Form tag="div">
-                {renderInputForm('address', 'Address', userAccountInfo.Address, false, this.handleChange)}
-                {renderInputForm('city', 'City', userAccountInfo.City, false, this.handleChange)}
-                {renderInputForm('state', 'State', userAccountInfo.State, false, this.handleChange)}
-                {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, false, this.handleChange)}
+                {renderInputForm('address', 'Address', userAccountInfo.Address, false, true, this.handleChange)}
+                {renderInputForm('city', 'City', userAccountInfo.City, false, true, this.handleChange)}
+                {renderInputForm('state', 'State', userAccountInfo.State, false, false, this.handleChange)}
+                {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, false, true, this.handleChange)}
                 {this._renderCountry(userAccountInfo.Country)}
                 {renderInputForm('question', 'Security Question', userAccountInfo.Question, true)}
                 {renderInputForm('answer', 'Answer', userAccountInfo.Answer, true)}
