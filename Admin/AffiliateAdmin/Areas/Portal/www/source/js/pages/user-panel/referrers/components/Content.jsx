@@ -107,8 +107,11 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ param }) {
-    return Object.assign({}, { param });
+function mapStateToProps({ affCommonInfo, userPanel }) {
+    const { param } = userPanel;
+    return Object.assign({}, { 
+        param: param && param.AffId ? param : { AffId: affCommonInfo.affId }
+    });
 }
 
 function mapDispatchToProps(dispatch) {

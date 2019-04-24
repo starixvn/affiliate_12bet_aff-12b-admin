@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
@@ -7,7 +7,7 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import Content from './Content';
 
-export class AppContainer extends Component {
+export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
     }

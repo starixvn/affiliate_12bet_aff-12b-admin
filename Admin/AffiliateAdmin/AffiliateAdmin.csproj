@@ -2008,7 +2008,7 @@
     <Content Include="Areas\Portal\Views\UserPanel\Note\Index.cshtml" />
     <Content Include="Areas\Portal\Views\UserPanel\Referrers\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\ExchangeSummaryTransaction\Index.cshtml" />
-    <Content Include="Areas\Portal\Views\UserPanel\TrackingStatistics\index.cshtml" />
+    <Content Include="Areas\Portal\Views\UserPanel\TrackingStatistics\Index.cshtml" />
     <Content Include="Areas\Portal\Views\UserPanel\ViewLog\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Content.jsx" />

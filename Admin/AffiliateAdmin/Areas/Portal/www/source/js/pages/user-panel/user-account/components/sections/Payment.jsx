@@ -90,7 +90,8 @@ export class Payment extends PureComponent {
     }
 }
 
-function mapStateToProps({ userAccountInfo, selectedPaymentMethod }) {
+function mapStateToProps({ userPanel }) {
+    const { userAccountInfo, selectedPaymentMethod } = userPanel;
     return Object.assign({}, { userAccountInfo, selectedPaymentMethod });
 }
 

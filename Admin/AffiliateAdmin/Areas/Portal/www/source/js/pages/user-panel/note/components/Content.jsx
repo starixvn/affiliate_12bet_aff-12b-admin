@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,7 +10,7 @@ import { globalResource } from '../../../../modules/globalResource';
 
 import { setShowPopup, setNoteInfo, setPagingOption, getNoteList, getNoteContentById, toggleLoader } from '../actions';
 
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -130,8 +130,15 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ pagingOption, noteList, noteInfo }) {
-    return Object.assign({}, { pagingOption, noteList, noteInfo });
+function mapStateToProps({ affCommonInfo, userPanel }) {
+    console.log('note/Content');
+    const { pagingOption, noteList, noteInfo } = userPanel;
+
+    return Object.assign({}, { 
+        pagingOption, 
+        noteList, 
+        noteInfo: noteInfo && noteInfo.AffId ? noteInfo : { AffId: affCommonInfo.affId, NoteId: 0, NoteContent: '' } 
+    });
 }
 
 function mapDispatchToProps(dispatch) {

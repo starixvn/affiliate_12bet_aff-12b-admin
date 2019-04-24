@@ -6,17 +6,22 @@
 @section styles{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/customer/leftpanel.css")" rel="stylesheet" />
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/user-panel-layout.css")" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/statement-history.css")" rel="stylesheet" />
 }
 
 @section scripts{
     <script type="text/javascript">
         window.initialState = {
             today: '@DateTime.Now.ToString("MM/dd/yyyy")',
+            selectedUserPanel: null,
+            affCommonInfo: null,
             leftPanel: {
                 monthDate: '@DateTime.Now.ToString("MM/dd/yyyy")',
                 affName: '@Model.AffName',
                 languageList: @Html.Raw(Json.Encode(Model.LanguageList))
-            }
+            },
+            customerStatistics: null,
+            userPanel: null
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/customer/mainpage.js")"></script>

@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -9,7 +9,7 @@ import Content from './Content';
 import PaymentRequestUpdateForm from '../../../payment-request/components/shared/PaymentRequestUpdateForm';
 import { setTransactionId, setParam } from '../actions';
 
-export class AppContainer extends Component {
+export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -40,7 +40,8 @@ export class AppContainer extends Component {
     }
 }
 
-function mapStateToProps({ isShowLoader, transactionId, param }) {
+function mapStateToProps({ userPanel }) {
+    const { isShowLoader, transactionId, param } = userPanel;
     return Object.assign({}, { isShowLoader, transactionId, param });
 }
 

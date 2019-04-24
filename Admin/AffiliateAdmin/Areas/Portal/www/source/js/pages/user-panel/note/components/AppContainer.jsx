@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
@@ -6,7 +6,7 @@ import Content from './Content';
 import InsertUpdateNoteForm from './InsertUpdateNoteForm';
 import Loader from '../../../../components/Loader';
 
-export class AppContainer extends Component {
+export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
     }

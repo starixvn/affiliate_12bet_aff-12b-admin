@@ -116,9 +116,14 @@ export class Detail extends Component {
     }
 }
 
+function mapStateToProps({ affCommonInfo, userPanel }) {
+    const { pagingOption, param, selectedSiteUrl } = userPanel;
 
-function mapStateToProps({ pagingOption, param, selectedSiteUrl }) {
-    return Object.assign({}, { pagingOption, param, selectedSiteUrl });
+    return Object.assign({}, { 
+        pagingOption,
+        selectedSiteUrl,
+        param: param && param.AffId ? param : { AffId: affCommonInfo.affId }
+    });
 }
 
 function mapDispatchToProps(dispatch) {

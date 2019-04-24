@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -8,7 +8,7 @@ import { setParam, setSelectedMonth } from '../actions';
 import { resource } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-export class Filter extends Component {
+export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -55,8 +55,13 @@ export class Filter extends Component {
     }
 }
 
-function mapStateToProps({ trackingCodeList, param }) {
-    return Object.assign({}, { trackingCodeList, param });
+function mapStateToProps({ affCommonInfo, userPanel }) {
+    const { param, trackingCodeList } = userPanel;
+    
+    return Object.assign({}, {
+        trackingCodeList,
+        param: param && param.AffId ? param : { AffId: affCommonInfo.affId, TrackingCode: '' }
+    });
 }
 
 function mapDispatchToProps(dispatch) {

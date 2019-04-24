@@ -1,4 +1,4 @@
-﻿import React, { Component } from "react";
+﻿import React, { PureComponent } from "react";
 import { connect } from 'react-redux';
 
 import AppLayout from "../../../../layouts/AppLayout";
@@ -6,7 +6,7 @@ import Filter from "./Filter";
 import Content from "./Content";
 import Loader from '../../../../components/Loader';
 
-export class AppContainer extends Component {
+export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -22,7 +22,8 @@ export class AppContainer extends Component {
     }
 }
 
-function mapStateToProps({ isShowLoader }) {
+function mapStateToProps({ userPanel }) {
+    const { isShowLoader } = userPanel;
     return Object.assign({}, { isShowLoader });
 }
 

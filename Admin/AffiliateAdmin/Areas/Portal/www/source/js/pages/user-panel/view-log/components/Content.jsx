@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,7 +10,7 @@ import { globalResource } from '../../../../modules/globalResource';
 
 import { setPagingOption, toggleLoader, setShowIdList, fetchData } from '../actions';
 
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -159,8 +159,14 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ pagingOption, param, showIdList }) {
-    return Object.assign({}, { pagingOption, param, showIdList });
+function mapStateToProps({ affCommonInfo, userPanel }) {
+    const { pagingOption, param, showIdList } = userPanel;
+
+    return Object.assign({}, { 
+        pagingOption,
+        showIdList,
+        param: param && param.AffId ? param : { AffId: affCommonInfo.affId }
+    });
 }
 
 function mapDispatchToProps(dispatch) {

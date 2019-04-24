@@ -2,7 +2,7 @@ import React from 'react';
 import { userPanelMenuList } from '../modules/userPanelMenu';
 
 const UserPanelMenu = (props) => {
-    const { selectedUserPanel } = props;
+    const { selectedUserPanel, onClickMenu } = props;
 
     return (
         <div className="user-panel-menu-container">
@@ -18,7 +18,8 @@ const UserPanelMenu = (props) => {
                                     userPanelMenuList.filter(item => !item.isChild).map(item => {
                                         return (
                                             <li key={item.key} className="up-item">
-                                                <a className={`upitem-link ${selectedUserPanel === item.key ? 'active' : ''}`}>
+                                                <a className={`upitem-link ${selectedUserPanel === item.key ? 'active' : ''}`}
+                                                    onClick={() => onClickMenu(item.key)}>
                                                     <span class="menu-text">{item.name}</span>
                                                 </a>
                                             </li>

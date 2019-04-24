@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -8,7 +8,7 @@ import { setShowPopup, getNoteList, toggleLoader, post } from '../actions';
 import { resource, maxLength } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-export class InsertUpdateNoteForm extends Component {
+export class InsertUpdateNoteForm extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -130,8 +130,15 @@ export class InsertUpdateNoteForm extends Component {
     }
 }
 
-function mapStateToProps({ isShowPopup, noteInfo, pagingOption }) {
-    return Object.assign({}, { isShowPopup, noteInfo, pagingOption });
+function mapStateToProps({ affCommonInfo, userPanel }) {
+    console.log('note/Form');
+    const { pagingOption, noteInfo, isShowPopup } = userPanel;
+
+    return Object.assign({}, { 
+        isShowPopup, 
+        pagingOption,
+        noteInfo: noteInfo && noteInfo.AffId ? noteInfo : { AffId: affCommonInfo.affId, NoteId: 0, NoteContent: '' } 
+    });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
@@ -12,7 +12,7 @@ const regexCheckAmount = new RegExp(regExp.checkAmount);
 const regexValidAmount = new RegExp(regExp.validAmount);
 const regexShouldFormatAmount = new RegExp(regExp.shouldFormatAmount);
 
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -164,7 +164,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ affInfo }) {
+function mapStateToProps({ affCommonInfo }) {
+    const affInfo = { AffId: affCommonInfo.affId, AffName: affCommonInfo.affName };
     return Object.assign({}, { affInfo });
 }
 

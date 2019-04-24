@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,7 +10,7 @@ import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../a
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { resolveClientUrl } from '../../../../modules/utils';
 
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -148,7 +148,8 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ pagingOption, param }) {
+function mapStateToProps({ userPanel }) {
+    const { pagingOption, param }= userPanel;
     return Object.assign({}, { pagingOption, param });
 }
 

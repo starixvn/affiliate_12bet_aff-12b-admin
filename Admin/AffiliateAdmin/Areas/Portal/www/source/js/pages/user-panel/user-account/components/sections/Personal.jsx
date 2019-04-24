@@ -66,7 +66,8 @@ export class Personal extends PureComponent {
     }
 }
 
-function mapStateToProps({ userAccountInfo }) {
+function mapStateToProps({ userPanel }) {
+    const { userAccountInfo } = userPanel;
     return Object.assign({}, { userAccountInfo });
 }
 

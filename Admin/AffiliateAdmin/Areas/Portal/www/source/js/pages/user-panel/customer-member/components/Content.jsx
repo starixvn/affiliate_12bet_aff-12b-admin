@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
@@ -9,7 +9,7 @@ import { defaultPagingOption } from '../../../../modules/constants';
 import { resource } from '../modules/constants';
 import { toggleLoader } from '../actions';
 
-export class Content extends React.Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -17,7 +17,7 @@ export class Content extends React.Component {
             data: null,
             pagingOption: Object.assign({}, defaultPagingOption)
         }
-    }
+    }    
 
     componentDidUpdate(prevProps, prevState) {
         if (this.props.param !== prevProps.param) {
@@ -128,7 +128,8 @@ export class Content extends React.Component {
     }
 }
 
-function mapStateToProps({ param, canViewMemberEmail }) {
+function mapStateToProps({ userPanel }) {
+    const { param, canViewMemberEmail } = userPanel;
     return Object.assign({}, { param, canViewMemberEmail });
 }
 

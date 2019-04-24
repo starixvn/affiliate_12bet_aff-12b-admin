@@ -42,7 +42,8 @@ export class EmailFormat extends PureComponent {
     }
 }
 
-function mapStateToProps({ userAccountInfo }) {
+function mapStateToProps({ userPanel }) {
+    const { userAccountInfo } = userPanel;
     return Object.assign({}, { userAccountInfo });
 }
 

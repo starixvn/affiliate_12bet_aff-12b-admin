@@ -6,11 +6,17 @@ import { Row } from 'reactstrap';
 import AppLayout from '../../../layouts/AppLayout';
 import { LeftPanel } from '../modules/reduxComponentFactory';
 import UserPanel from './UserPanel';
+import { setSelectedUserPanel, loadUserPanelState } from '../left-panel/actions/commonAction';
 
 const CustomerStatistics = React.lazy(() => import(/* webpackChunkName: "customer-statistics" */ '../customer-statistics/components/Content'));
 export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
+    }
+
+    handleClickMenu = (selectedMenuKey) => {
+        this.props.setSelectedUserPanel(selectedMenuKey);
+        loadUserPanelState(selectedMenuKey)
     }
 
     render() {
@@ -29,7 +35,10 @@ export class AppContainer extends PureComponent {
                                     <CustomerStatistics />
                                 </Suspense>
                             }
-                            { affCommonInfo && selectedUserPanel && <UserPanel selectedUserPanel={selectedUserPanel} /> }
+                            { 
+                                affCommonInfo && selectedUserPanel && 
+                                <UserPanel selectedUserPanel={selectedUserPanel} onClickMenu={this.handleClickMenu} /> 
+                            }
                         </div>
                     </Row>
                 </div>
@@ -42,4 +51,8 @@ function mapStateToProps({ selectedUserPanel, affCommonInfo }) {
     return Object.assign({}, { selectedUserPanel, affCommonInfo });
 }
 
-export default connect(mapStateToProps)(AppContainer);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setSelectedUserPanel }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

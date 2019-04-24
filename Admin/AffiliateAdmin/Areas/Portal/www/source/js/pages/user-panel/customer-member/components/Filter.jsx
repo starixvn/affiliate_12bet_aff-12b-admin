@@ -99,7 +99,8 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, affId }) {
+function mapStateToProps({ userPanel }) {
+    const { today, affId } = userPanel;
     return Object.assign({}, { today, affId });
 }
 

@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -9,7 +9,7 @@ import { headerText } from '../modules/constants';
 import { setSelectedMonth, fetchData } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -95,8 +95,12 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ param }) {
-    return Object.assign({}, { param });
+function mapStateToProps({ affCommonInfo, userPanel }) {
+    const { param } = userPanel;
+
+    return Object.assign({}, {
+        param: param && param.AffId ? param : { AffId: affCommonInfo.affId, TrackingCode: '' }
+    });
 }
 
 function mapDispatchToProps(dispatch) {

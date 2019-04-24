@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, {PureComponent} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
@@ -10,7 +10,7 @@ import { setParam } from '../actions';
 
 const minDate = new Date(2009, 11, 1);
 
-export class Filter extends React.Component {
+export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -94,7 +94,8 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, param }) {
+function mapStateToProps({ today, userPanel }) {
+    const { param } = userPanel;
     return Object.assign({}, { today, param });
 }
 

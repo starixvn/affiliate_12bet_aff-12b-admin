@@ -91,8 +91,12 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, param }) {
-    return Object.assign({}, { today, param });
+function mapStateToProps({ today, affCommonInfo, userPanel }) {
+    const { param } = userPanel;
+    return Object.assign({}, { 
+        today,
+        param: param && param.AffId ? param : { AffId: affCommonInfo.affId }
+    });
 }
 
 function mapDispatchToProps(dispatch) {

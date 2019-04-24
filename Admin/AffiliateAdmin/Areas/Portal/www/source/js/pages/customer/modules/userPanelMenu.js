@@ -1,6 +1,13 @@
 import React from 'react';
 import statementHistoryReducer from '../../user-panel/statement-history/reducers';
 import userAccountReducer from '../../user-panel/user-account/reducers';
+import noteReducer from '../../user-panel/note/reducers';
+import adjustmentReducer from '../../user-panel/adjustment/reducers';
+import trackingStatisticsReducer from '../../user-panel/tracking-statistics/reducers';
+import memberReducer from '../../user-panel/customer-member/reducers';
+import viewLogReducer from '../../user-panel/view-log/reducers';
+import referrerStatisticsReducer from '../../user-panel/referrers/reducers';
+import landingPageStatisticsReducer from '../../user-panel/landing-page-statistics/reducers';
 
 const StatementHistory = React.lazy(() =>
     import ( /* webpackChunkName: "statementHistory" */ '../../user-panel/statement-history/components/AppContainer'));
@@ -19,7 +26,7 @@ const Adjustment = React.lazy(() =>
 const TrackingStatistics = React.lazy(() =>
     import ( /* webpackChunkName: "trackingStatistics" */ '../../user-panel/tracking-statistics/components/AppContainer'));
 const Member = React.lazy(() =>
-    import ( /* webpackChunkName: "member" */ '../../user-panel/member/components/AppContainer'));
+    import ( /* webpackChunkName: "member" */ '../../user-panel/customer-member/components/AppContainer'));
 const ViewLog = React.lazy(() =>
     import ( /* webpackChunkName: "viewLog" */ '../../user-panel/view-log/components/AppContainer'));
 const ReferrerStatistics = React.lazy(() =>
@@ -59,5 +66,15 @@ export const userPanelMenuList = [
 
 export const userPanelReducer = {
     [menuKey.statementHistory]: statementHistoryReducer,
-    [menuKey.edit]: userAccountReducer
+    [menuKey.dailyEarning]: userAccountReducer,
+    [menuKey.dailyEarningDetail]: null,
+    [menuKey.edit]: userAccountReducer,
+    [menuKey.note]: noteReducer,
+    [menuKey.playerDetail]: null,
+    [menuKey.adjustment]: adjustmentReducer,
+    [menuKey.trackingStatistics]: trackingStatisticsReducer,
+    [menuKey.member]: memberReducer,
+    [menuKey.viewLog]: viewLogReducer,
+    [menuKey.clickStatistics]: referrerStatisticsReducer,
+    [menuKey.landingPageStatistics]: landingPageStatisticsReducer
 }
