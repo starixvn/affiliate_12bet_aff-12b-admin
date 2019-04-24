@@ -13,8 +13,8 @@ const clientRoot = projectPath.clientInputPath;
 const devConfig = config(environment.development)[0];
 
 devConfig.entry = {
-    [`${jsDist}/pages/customer/mainpage`]: clientRoot + "/js/pages/customer/index.jsx",
-    [`${styleDist}/pages/customer/leftpanel`]: clientRoot + "/style/pages/customer/leftpanel.scss"
+    [`${jsDist}/pages/customer/customer`]: clientRoot + "/js/pages/customer/index.jsx",
+    [`${styleDist}/pages/customer`]: clientRoot + "/style/pages/customer/main.scss",
 }
 
 console.log(devConfig.entry);

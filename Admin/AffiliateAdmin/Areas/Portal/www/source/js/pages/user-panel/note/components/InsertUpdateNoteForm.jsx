@@ -131,7 +131,6 @@ export class InsertUpdateNoteForm extends PureComponent {
 }
 
 function mapStateToProps({ affCommonInfo, userPanel }) {
-    console.log('note/Form');
     const { pagingOption, noteInfo, isShowPopup } = userPanel;
 
     return Object.assign({}, { 

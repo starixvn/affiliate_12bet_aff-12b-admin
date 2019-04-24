@@ -131,7 +131,6 @@ export class Content extends PureComponent {
 
 
 function mapStateToProps({ affCommonInfo, userPanel }) {
-    console.log('note/Content');
     const { pagingOption, noteList, noteInfo } = userPanel;
 
     return Object.assign({}, { 
