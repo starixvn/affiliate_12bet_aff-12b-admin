@@ -8,7 +8,8 @@ import { Button } from 'reactstrap';
 import { headerText, globalResource, transTypeList, transaction, MONTHLY_WINLOST, PAYMENT_REQUEST } from '../modules/constants';
 import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
-import { resolveClientUrl } from '../../../../modules/utils';
+import { setParamForDailyEarning } from '../../../customer/user-panel/actions';
+import { selectedAllProduct } from '../../../../modules/constants';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -18,13 +19,15 @@ export class Content extends PureComponent {
             gridData: null,
             shouldResetScrollPosition: true
         }
+
+        this.transTypeClickHandler = this._getClickHandlerByTransType();
     }
 
     componentDidUpdate(prevProps) {
         const { pagingOption, param } = this.props;
 
         if (param !== prevProps.param) {
-            const newParam = Object.assign({}, param, { PageIndex: 1, PageSize: pagingOption.PageSize });
+            const newParam = Object.assign({}, param, { pageIndex: 1, pageSize: pagingOption.PageSize });
             this.fetchData(newParam);
         }
     }
@@ -32,10 +35,11 @@ export class Content extends PureComponent {
     async fetchData(param) {
         this.props.toggleLoader(true);
 
-        const data = await this.props.fetchData(param);
+        const postParam = { ...param, affId: this.props.affId };
+        const data = await this.props.fetchData(postParam);
 
         this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
-        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0 });
 
         this.props.toggleLoader(false);
     }
@@ -76,10 +80,28 @@ export class Content extends PureComponent {
         return dataRows;
     }
 
+    _getClickHandlerByTransType() {
+        return {
+            [PAYMENT_REQUEST]: (dataItem) => () => {
+                return this.handleSetTransactionId(dataItem.TransId);
+            },
+            [MONTHLY_WINLOST]: (dataItem) => () => {
+                const { affId } = this.props;
+                const dailyEarningParam = {
+                    affId,
+                    monthDate: dataItem.DateText,
+                    productId: selectedAllProduct
+                }
+
+                return this.props.setParamForDailyEarning(dailyEarningParam);
+            }
+        }
+    }
+
     _buildDataRow(dataItem, index) {
-        const { param } = this.props;
         const amount = formatDecimalWithCurrencySymbol(dataItem.Amount)
         const transType = dataItem.TransType;
+        const clickHandler = this.transTypeClickHandler[transType];
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -87,14 +109,11 @@ export class Content extends PureComponent {
                 <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
                 <Cell title={transType} className="text-center">{transTypeList[transType] || transaction}</Cell>
                 <Cell title={amount} className="text-right">
-                    {transType === PAYMENT_REQUEST ? <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
-                        {amount}
-                    </Button> : (transType === MONTHLY_WINLOST ?
-                        <a href={`${resolveClientUrl('Portal/UserPanel/StatementHistory/DailyEarning')}` +
-                            `?affId=${param.AffId}&affName=${param.AffName}&monthDate=${dataItem.DateText}`} target="fContent">
+                    {clickHandler ?
+                        (<Button className="p-0" color="link" onClick={clickHandler(dataItem)}>
                             {amount}
-                        </a> : amount)
-                    }
+                        </Button>) :
+                        amount}
                 </Cell>
                 <Cell title={dataItem.Status} className="text-center">{dataItem.Status === 'pending' ?
                     <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
@@ -117,7 +136,7 @@ export class Content extends PureComponent {
             PageIndex: pageIndex,
             PageSize: pageSize
         };
-        const newParam = Object.assign({}, this.props.param, newPaging);
+        const newParam = {...this.props.param, pageIndex: newPaging.PageIndex, pageSize: newPaging.PageSize};
 
         this.props.setPagingOption(newPaging);
         this.fetchData(newParam);
@@ -126,7 +145,7 @@ export class Content extends PureComponent {
     render() {
         const { gridData, shouldResetScrollPosition } = this.state;
 
-        return (
+        return gridData && (
             <div className="data-content">
                 <div className="table-responsive table-striped my-2">
                     <Table
@@ -148,13 +167,15 @@ export class Content extends PureComponent {
 }
 
 
-function mapStateToProps({ userPanel }) {
-    const { pagingOption, param }= userPanel;
-    return Object.assign({}, { pagingOption, param });
+function mapStateToProps({ today, affCommonInfo, userPanel }) {
+    const { pagingOption, param } = userPanel;
+    const { affId } = affCommonInfo;
+
+    return Object.assign({}, { today, affId, pagingOption, param });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, fetchData, setTransactionId }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, fetchData, setTransactionId, setParamForDailyEarning }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

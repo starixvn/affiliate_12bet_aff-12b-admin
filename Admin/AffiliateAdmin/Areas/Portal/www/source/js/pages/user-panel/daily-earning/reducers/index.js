@@ -6,14 +6,11 @@ import createReducer from '../../../../modules/createReducer';
 
 const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
-        return Object.assign({}, prevState, action.data);
+        return {...action.data };
     }
 })
 
-const productList = createReducer([], {})
-
 export default combineReducers({
-    productList,
     param,
     isShowLoader
 });

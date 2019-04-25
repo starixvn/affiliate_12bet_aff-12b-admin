@@ -9,6 +9,7 @@ import viewLogReducer from '../../../user-panel/view-log/reducers';
 import referrerStatisticsReducer from '../../../user-panel/referrers/reducers';
 import landingPageStatisticsReducer from '../../../user-panel/landing-page-statistics/reducers';
 import playerDetailReducer from '../../../user-panel/player-detail/reducers';
+import dailyEarningReducer from '../../../user-panel/daily-earning/reducers';
 
 const StatementHistory = React.lazy(() =>
     import ( /* webpackChunkName: "statementHistory" */ '../../../user-panel/statement-history/components/AppContainer'));
@@ -51,23 +52,23 @@ export const menuKey = {
 }
 
 export const userPanelMenuList = [
-    { key: menuKey.statementHistory, name: 'Statement History', component: StatementHistory, isChild: false },
-    { key: menuKey.dailyEarning, name: '', component: DailyEarning, isChild: true },
-    { key: menuKey.dailyEarningDetail, name: '', component: DailyEarningDetail, isChild: true },
-    { key: menuKey.edit, name: 'Edit', component: UserAccount, isChild: false },
-    { key: menuKey.note, name: 'Note', component: Note, isChild: false },
-    { key: menuKey.playerDetail, name: 'Players Detail', component: PlayerDetail, isChild: false },
-    { key: menuKey.adjustment, name: 'Adjustment', component: Adjustment, isChild: false },
-    { key: menuKey.trackingStatistics, name: 'Tracking Statistics', component: TrackingStatistics, isChild: false },
-    { key: menuKey.member, name: 'Member', component: Member, isChild: false },
-    { key: menuKey.viewLog, name: 'View Log', component: ViewLog, isChild: false },
-    { key: menuKey.clickStatistics, name: 'Click Statistics', component: ReferrerStatistics, isChild: false },
-    { key: menuKey.landingPageStatistics, name: '', component: LandingPageStatistics, isChild: true }
+    { key: menuKey.statementHistory, name: 'Statement History', component: StatementHistory, parent: null },
+    { key: menuKey.dailyEarning, name: '', component: DailyEarning, parent: menuKey.statementHistory },
+    { key: menuKey.dailyEarningDetail, name: '', component: DailyEarningDetail, parent: menuKey.statementHistory },
+    { key: menuKey.edit, name: 'Edit', component: UserAccount, parent: null },
+    { key: menuKey.note, name: 'Note', component: Note, parent: null },
+    { key: menuKey.playerDetail, name: 'Players Detail', component: PlayerDetail, parent: null },
+    { key: menuKey.adjustment, name: 'Adjustment', component: Adjustment, parent: null },
+    { key: menuKey.trackingStatistics, name: 'Tracking Statistics', component: TrackingStatistics, parent: null },
+    { key: menuKey.member, name: 'Member', component: Member, parent: null },
+    { key: menuKey.viewLog, name: 'View Log', component: ViewLog, parent: null },
+    { key: menuKey.clickStatistics, name: 'Click Statistics', component: ReferrerStatistics, parent: null },
+    { key: menuKey.landingPageStatistics, name: '', component: LandingPageStatistics, parent: menuKey.clickStatistics }
 ]
 
 export const userPanelReducer = {
     [menuKey.statementHistory]: statementHistoryReducer,
-    [menuKey.dailyEarning]: userAccountReducer,
+    [menuKey.dailyEarning]: dailyEarningReducer,
     [menuKey.dailyEarningDetail]: null,
     [menuKey.edit]: userAccountReducer,
     [menuKey.note]: noteReducer,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,10 +9,9 @@ import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { resolveClientUrl } from '../../../../modules/utils';
 import { resource } from '../modules/constants';
+import { selectedAllProduct } from '../../../../modules/constants';
 
-const allProduct = 0;
-
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -40,7 +39,7 @@ export class Content extends Component {
         if (response && response.status === 200) {
             const { MainData, Total } = response.data;
 
-            this.setState({ gridData: MainData, total: Total, isSelectedAllProducts: param.ProductId === allProduct });
+            this.setState({ gridData: MainData, total: Total, isSelectedAllProducts: param.ProductId === selectedAllProduct });
         }
         this.props.toggleLoader(false);
     }
@@ -121,7 +120,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ param }) {
+function mapStateToProps({ userPanel }) {
+    const { param } = userPanel;
     return Object.assign({}, { param });
 }
 

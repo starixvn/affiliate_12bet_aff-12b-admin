@@ -1,5 +1,7 @@
 import React from 'react';
 import { userPanelMenuList } from '../modules/menu';
+import { isActiveMenu } from '../modules/service';
+import UserPanelMenuItem from './UserPanelMenuItem';
 
 const UserPanelMenu = (props) => {
     const { selectedUserPanel, onClickMenu } = props;
@@ -15,14 +17,11 @@ const UserPanelMenu = (props) => {
                         <td>
                             <ul class="d-inline-block menu-list">
                                 {
-                                    userPanelMenuList.filter(item => !item.isChild).map(item => {
+                                    userPanelMenuList.filter(item => !item.parent).map(item => {
                                         return (
-                                            <li key={item.key} className="up-item">
-                                                <a className={`upitem-link ${selectedUserPanel === item.key ? 'active' : ''}`}
-                                                    onClick={() => onClickMenu(item.key)}>
-                                                    <span class="menu-text">{item.name}</span>
-                                                </a>
-                                            </li>
+                                            <UserPanelMenuItem key={item.key} item={item} 
+                                                isActive={isActiveMenu(selectedUserPanel, item)}
+                                                onClickMenu={onClickMenu} />
                                         )
                                     })
                                 }

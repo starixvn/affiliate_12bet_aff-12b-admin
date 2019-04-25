@@ -13,3 +13,5 @@ export const money = {
     MaxValue: 922337203685477,
     MinValue: -922337203685477
 }
+
+export const selectedAllProduct = 0;

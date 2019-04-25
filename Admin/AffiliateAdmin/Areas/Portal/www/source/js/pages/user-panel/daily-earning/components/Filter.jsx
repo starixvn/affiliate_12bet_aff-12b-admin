@@ -1,39 +1,47 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Form, FormGroup, Input, Label } from 'reactstrap';
 
 import { setParam } from '../actions';
+import { selectedAllProduct } from '../../../../modules/constants';
+import { getProductList } from '../../../customer/user-panel/modules/service';
 
-export class Filter extends Component {
+export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { param } = this.props;
-
         this.state = {
-            selectedProduct: param.ProductId
+            selectedProduct: selectedAllProduct,
+            productList: []
         }
+    }
+
+    componentDidMount() {
+        if (this.state.productList.length === 0) {
+            this._fetchProductList();
+        }
+    }
+
+    async _fetchProductList(){
+        const productList = await getProductList();
+        this.setState({ productList });
     }
 
     handleChangeProduct = (event) => {
         const selectedProduct = Number(event.target.value);
-
         this.setState({ selectedProduct });
-
         this._submit(selectedProduct);
     }
 
     _submit(selectedProduct) {
-        const param = Object.assign(this.props.param, { ProductId: selectedProduct });
-
+        const param = Object.assign(this.props.param, { productId: selectedProduct });
         this.props.setParam(param);
     }
 
     render() {
-        const { selectedProduct } = this.state;
-        const { productList } = this.props;
+        const { productList, selectedProduct } = this.state;
 
         return (
             <div className="filter-container">
@@ -55,8 +63,9 @@ export class Filter extends Component {
     }
 }
 
-function mapStateToProps({ productList, param }) {
-    return Object.assign({}, { productList, param });
+function mapStateToProps({ userPanel }) {
+    const { param } = userPanel;
+    return Object.assign({}, { param });
 }
 
 function mapDispatchToProps(dispatch) {

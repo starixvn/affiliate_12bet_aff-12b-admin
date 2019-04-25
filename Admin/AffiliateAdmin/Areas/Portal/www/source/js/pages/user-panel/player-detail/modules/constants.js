@@ -18,5 +18,3 @@ export const resource = {
     Product: globalResource.Product,
     Month: 'Month'
 }
-
-export const selectedAllProduct = 0;

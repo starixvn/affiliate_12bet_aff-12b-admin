@@ -10,7 +10,8 @@ import MonthPicker from '@9softstudio/react-monthpicker';
 import { shortedMonthNames, minMonthDate } from '../../../../modules/constants';
 import { resource } from '../modules/constants';
 import { setParam } from '../actions/index';
-import { selectedAllProduct } from '../modules/constants';
+import { selectedAllProduct } from '../../../../modules/constants';
+import { getProductList } from '../../../customer/user-panel/modules/service';
 
 import ReportExcel from '../modules/reportExcel';
 
@@ -30,15 +31,9 @@ export class Filter extends PureComponent {
 
     componentDidMount() {
         if (this.state.productList.length === 0) {
-            this._fetchProductList();
+            const productList = await getProductList();
+            this.setState({ productList });
         }
-    }
-
-    _fetchProductList = async () => {
-        const response = await post('Portal/CommonSetting/GetProductList');
-        const productList = response && response.status === 200 ? response.data : [];
-
-        this.setState({ productList });
     }
 
     handleSelectMonth = (month, year) => {
@@ -108,7 +103,6 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        console.log('playerdetail/Filter');
         const { productList, selectedProduct, monthDate } = this.state;
 
         return (

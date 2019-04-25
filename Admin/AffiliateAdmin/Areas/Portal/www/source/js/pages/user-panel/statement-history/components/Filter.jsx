@@ -35,10 +35,10 @@ export class Filter extends PureComponent {
 
     handleSetParam() {
         const { isGetAll, fromDate, toDate } = this.state;
-        const newParam = Object.assign({}, this.props.param, {
-            IsGetAll: isGetAll,
-            FromDate: isGetAll ? `${minDate.getMonth() + 1}/${minDate.getDate()}/${minDate.getFullYear()}` : fromDate,
-            ToDate: isGetAll ? this.nowString : toDate
+        const newParam = Object.assign({}, {
+            isGetAll,
+            fromDate: isGetAll ? `${minDate.getMonth() + 1}/${minDate.getDate()}/${minDate.getFullYear()}` : fromDate,
+            toDate: isGetAll ? this.nowString : toDate
         });
         this.props.setParam(newParam);
     }
@@ -94,9 +94,8 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ today, userPanel }) {
-    const { param } = userPanel;
-    return Object.assign({}, { today, param });
+function mapStateToProps({ today }) {
+    return Object.assign({}, { today });
 }
 
 function mapDispatchToProps(dispatch) {

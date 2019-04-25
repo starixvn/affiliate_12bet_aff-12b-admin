@@ -9,7 +9,7 @@ const today = createReducer(null, {});
 
 export const param = createReducer({}, {
     [SET_PARAM](prevState, action) {
-        return Object.assign({}, prevState, action.data);
+        return {...action.data };
     }
 });
 
