@@ -155,6 +155,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommissionGroupController.cs" />
+    <Compile Include="Controllers\CommonSettingController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\CustomerLeftPanelController.cs" />
     <Compile Include="Controllers\CustomerStatisticsController.cs" />

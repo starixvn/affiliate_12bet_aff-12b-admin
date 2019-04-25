@@ -1,11 +1,42 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { post } from '../../../../modules/ajaxRequest';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { headerText } from '../modules/constants';
+import { setPagingOption } from '../actions/index';
+import { selectedAllProduct } from '../modules/constants';
 
-export default class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
+
+        this.state = {
+            data: null
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const { param, pagingOption } = this.props;
+        if (param !== prevProps.param) {
+            const postParam = Object.assign({}, param, { PageIndex: 1, PageSize: pagingOption.PageSize });
+            this._fetchData(postParam);
+        }
+    }
+
+    async _fetchData(param) {
+        const response = await post('Portal/UserPanel/PlayerDetail/GetPlayerDetailList', param);
+        if (response && response.status === 200) {
+            const { MainData, TotalItem } = response.data;
+
+            this.props.setPagingOption({ TotalItem });
+
+            this.setState({
+                data: { gridData: MainData }
+            });
+        }
     }
 
     _renderHeader() {
@@ -24,7 +55,9 @@ export default class Content extends Component {
         )
     }
 
-    _renderDataSection(dataList, productColumnClassName) {
+    _renderDataSection(dataList) {
+        const { productId } = this.props;
+        const productColumnClassName = productId === selectedAllProduct ? 'text-right' : 'text-right highlight';
         const dataRows = [];
 
         const { pagingOption } = this.props;
@@ -66,21 +99,24 @@ export default class Content extends Component {
             PageSize: size
         }
 
-        this.props.onPaging(newPaging);
+        this.props.setPagingOption(newPaging);
+
+        const newParam = Object.assign({}, this.props.param, newPaging);
+        this._fetchData(newParam);
     }
 
     render() {
-        const { pagingOption, data, productColumnClassName } = this.props;
-        const { gridData } = data;
+        const { pagingOption } = this.props;
+        const { data } = this.state;
 
-        return gridData && (
+        return data && data.gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1000}
                     autoWidth={true}
                     bodyHeight={300}
                     header={this._renderHeader()}
-                    body={this._renderDataSection(gridData, productColumnClassName)}
+                    body={this._renderDataSection(data.gridData)}
                     containerPadding={10}
                     isPaging={true}
                     pageOption={pagingOption}
@@ -90,3 +126,15 @@ export default class Content extends Component {
         );
     }
 }
+
+function mapStateToProps({ userPanel }) {
+    const { param, pagingOption } = userPanel;
+
+    return Object.assign({}, { param, pagingOption });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setPagingOption }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

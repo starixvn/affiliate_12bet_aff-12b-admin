@@ -1,22 +1,44 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { post } from '../../../../modules/ajaxRequest';
 
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import MonthPicker from '@9softstudio/react-monthpicker';
 
 import { shortedMonthNames, minMonthDate } from '../../../../modules/constants';
 import { resource } from '../modules/constants';
+import { setParam } from '../actions/index';
+import { selectedAllProduct } from '../modules/constants';
 
-export default class Filter extends Component {
+import ReportExcel from '../modules/reportExcel';
+
+export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { productList, selectedProduct, monthDate } = this.props;
-        this.productList = productList;
+        const { today } = this.props;
+        const monthDate = new Date(today);
 
         this.state = {
-            selectedProduct,
-            monthDate
+            selectedProduct: selectedAllProduct,
+            monthDate,
+            productList: []
         }
+    }
+
+    componentDidMount() {
+        if (this.state.productList.length === 0) {
+            this._fetchProductList();
+        }
+    }
+
+    _fetchProductList = async () => {
+        const response = await post('Portal/CommonSetting/GetProductList');
+        const productList = response && response.status === 200 ? response.data : [];
+
+        this.setState({ productList });
     }
 
     handleSelectMonth = (month, year) => {
@@ -41,25 +63,34 @@ export default class Filter extends Component {
         event.preventDefault();
 
         const { selectedProduct, monthDate } = this.state;
+        const { affId } = this.props;
 
         const param = {
-            ProductId: selectedProduct,
-            MonthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`
+            productId: selectedProduct,
+            monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
+            affId
         }
 
-        this.props.onSubmit(param);
+        this.props.setParam(param);
     }
 
-    handleExportExcel = () => {
+    handleExportExcel = async () => {
         const { selectedProduct, monthDate } = this.state;
+        const { affId } = this.props;
 
         const param = {
-            ProductId: selectedProduct,
-            MonthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`
+            IsExportExcel: true,
+            productId: selectedProduct,
+            monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
+            affId
         }
 
-        const title = this._getReportTitle();
-        this.props.onExportExcel(param, title);
+        const response = await post('Portal/UserPanel/PlayerDetail/GetPlayerDetailList', param);
+        if (response && response.status === 200) {
+            const title = this._getReportTitle();
+            const reportExcel = new ReportExcel(response.data, title);
+            reportExcel.export();
+        }
     }
 
     _getReportTitle() {
@@ -71,13 +102,14 @@ export default class Filter extends Component {
     }
 
     _getSelectedProductName(productId) {
-        const selectedProduct = this.productList.find(p => p.ProductId === productId);
+        const selectedProduct = this.state.productList.find(p => p.ProductId === productId);
 
         return selectedProduct ? selectedProduct.ProductName : '';
     }
 
     render() {
-        const { selectedProduct, monthDate } = this.state;
+        console.log('playerdetail/Filter');
+        const { productList, selectedProduct, monthDate } = this.state;
 
         return (
             <div className="filter-container">
@@ -87,7 +119,7 @@ export default class Filter extends Component {
                         <Input type="select" name="Product" id="Product" value={selectedProduct} onChange={this.handleChangeProduct}>
                             <option value="0">{resource.All}</option>
                             {
-                                this.productList.map(p => {
+                                productList.map(p => {
                                     return (<option value={p.ProductId}>{p.ProductName}</option>)
                                 })
                             }
@@ -116,3 +148,18 @@ export default class Filter extends Component {
         );
     }
 }
+
+function mapStateToProps({ today, affCommonInfo }) {
+    const { affId } = affCommonInfo;
+
+    return Object.assign({}, {
+        today,
+        affId
+    });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setParam }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);
