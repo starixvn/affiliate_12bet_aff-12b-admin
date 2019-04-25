@@ -11,7 +11,7 @@ export class EmailFormat extends PureComponent {
     }
 
     handleChange = (event) => {
-        const value = event.target.value === '1' ? true: false;
+        const value = event.target.value === '1' ? true : false;
 
         const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { MailOption: value })
         this.props.setUserAccountInfo(newUserAccountInfo);

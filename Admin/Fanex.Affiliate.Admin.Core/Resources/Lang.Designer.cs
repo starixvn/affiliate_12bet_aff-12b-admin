@@ -421,6 +421,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update is failed!.
+        /// </summary>
+        public static string UpdateIsFailed {
+            get {
+                return ResourceManager.GetString("UpdateIsFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wrong discount.
         /// </summary>
         public static string UpdatePaymentErr1 {

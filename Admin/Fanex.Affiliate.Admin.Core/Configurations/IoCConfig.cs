@@ -97,6 +97,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<PaymentRequestService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CustomerLeftPanelRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<UserAccountRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<UserAccountService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

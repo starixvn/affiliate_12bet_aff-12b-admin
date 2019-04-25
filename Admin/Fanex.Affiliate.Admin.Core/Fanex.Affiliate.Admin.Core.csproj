@@ -146,6 +146,7 @@
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
     <Compile Include="Constants\Money.cs" />
+    <Compile Include="Constants\PaymentMethod.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Constants\UserPanelConstant.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
@@ -379,7 +380,9 @@
     <Compile Include="Services\UserPanel\CustomerMemberService.cs" />
     <Compile Include="Services\UserPanel\ICustomerMemberService.cs" />
     <Compile Include="Services\UserPanel\IStatementHistoryService.cs" />
+    <Compile Include="Services\UserPanel\IUserAccountService.cs" />
     <Compile Include="Services\UserPanel\StatementHistoryService.cs" />
+    <Compile Include="Services\UserPanel\UserAccountService.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />

@@ -16,7 +16,7 @@ export class Personal extends PureComponent {
 
     handleChange = (event) => {
         const target = event.target;
-        const value = target.type === 'radio' ? (target.value === '1' ? true: false) : target.value;
+        const value = target.type === 'radio' ? (target.value === '1' ? true : false) : target.value;
         const name = capitalizeFirstChar(target.name);
 
         const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { [name]: value })
@@ -54,7 +54,7 @@ export class Personal extends PureComponent {
 
         return userAccountInfo && (
             <Form tag="div">
-                {renderInputForm('username', 'User Name', userAccountInfo.AffName, true,)}
+                {renderInputForm('username', 'User Name', userAccountInfo.AffName, true)}
                 {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, true, this.handleChange)}
                 {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, true, this.handleChange)}
                 {this._renderGenderForm(userAccountInfo.Gender)}

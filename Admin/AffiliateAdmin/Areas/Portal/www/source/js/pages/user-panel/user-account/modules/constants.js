@@ -1,6 +1,6 @@
 export const regexEmail = '^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$';
 
-export const errorsList = {
+export const messagesList = {
     FirstName: 'First Name is required',
     LastName: 'Last Name is required',
     Gender: 'Gender is empty, Please Check!',

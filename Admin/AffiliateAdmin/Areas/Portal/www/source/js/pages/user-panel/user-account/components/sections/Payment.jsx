@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { capitalizeFirstChar } from '../../modules/service';
-import { setUserAccountInfo, setSelectedPaymentMethod } from '../../actions';
+import { setUserAccountInfo } from '../../actions';
 
 const playerMethod = 'Player';
 const netellerMethod = 'Neteller';
@@ -24,7 +24,8 @@ export class Payment extends PureComponent {
     }
 
     handleChangePaymentMethod = (event) => {
-        this.props.setSelectedPaymentMethod(event.target.value);
+        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { PreferredPayment: event.target.value })
+        this.props.setUserAccountInfo(newUserAccountInfo);
     }
 
     handleChange = (event) => {
@@ -68,35 +69,34 @@ export class Payment extends PureComponent {
     }
 
     render() {
-        const { userAccountInfo, selectedPaymentMethod } = this.props;
+        const { userAccountInfo } = this.props;
         const renderFormByMethod = userAccountInfo && this._renderFormByMethod(userAccountInfo);
 
         return userAccountInfo && (
             <Form tag="div">
                 <FormGroup row>
-                    <Label for="selectedPaymentMethod" sm={3} xl={2}>Preferred Payment Method</Label>
+                    <Label for="preferredPayment" sm={3} xl={2}>Preferred Payment Method</Label>
                     <Col sm={5} xl={6}>
-                        <Input type="select" id="selectedPaymentMethod" name="selectedPaymentMethod" onChange={this.handleChangePaymentMethod} value={selectedPaymentMethod}>
+                        <Input type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
                             {paymentMethodList.map(item => {
                                 return (<option key={item.key} value={item.key}>{item.value}</option>)
                             })}
                         </Input>
                     </Col>
                 </FormGroup>
-
-                {renderFormByMethod[selectedPaymentMethod]}
+                {renderFormByMethod[userAccountInfo.PreferredPayment]}
             </Form>
         )
     }
 }
 
 function mapStateToProps({ userPanel }) {
-    const { userAccountInfo, selectedPaymentMethod } = userPanel;
-    return Object.assign({}, { userAccountInfo, selectedPaymentMethod });
+    const { userAccountInfo } = userPanel;
+    return Object.assign({}, { userAccountInfo });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setUserAccountInfo, setSelectedPaymentMethod }, dispatch);
+    return bindActionCreators({ setUserAccountInfo }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Payment);

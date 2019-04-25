@@ -32,7 +32,7 @@ export class WebSite extends PureComponent {
         const newMoreSiteUrlsArray = moreSiteUrlsArray.map(siteUrl => siteUrl.trim());
         const findIndex = newMoreSiteUrlsArray.indexOf('');
 
-        if(findIndex === -1) {
+        if (findIndex === -1) {
             moreSiteUrlsArray.push('');
             this.props.setMoreSiteUrlsArray(moreSiteUrlsArray);
         } else {
@@ -57,7 +57,7 @@ export class WebSite extends PureComponent {
                             <FormGroup row>
                                 <Label for={index} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
                                 <Col sm={5} xl={6}>
-                                    <Input type="text" id={index} name={index} value={value} onChange={this.handleChangeMoreUrl}/>
+                                    <Input type="text" id={index} name={index} value={value} onChange={this.handleChangeMoreUrl} />
                                 </Col>
                                 <Button color="primary" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
                             </FormGroup>
@@ -70,14 +70,13 @@ export class WebSite extends PureComponent {
 
     render() {
         const { userAccountInfo, moreSiteUrlsArray } = this.props;
-        console.log(moreSiteUrlsArray);
 
         return (
             <Form tag="div">
                 <FormGroup row>
                     <Label for="siteUrl" sm={3} xl={2} className="required">Website URL</Label>
                     <Col sm={5} xl={6}>
-                        <Input type="text" id="siteUrl" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange}/>
+                        <Input type="text" id="siteUrl" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
                     </Col>
                     <Button color="primary" onClick={this.handleAddUrl}><span aria-hidden>Add Url</span></Button>
                 </FormGroup>
@@ -87,7 +86,7 @@ export class WebSite extends PureComponent {
                 <FormGroup row>
                     <Label for="noSiteDescription" sm={3} xl={2}>I do not have a website Please describe how you would like to promote 12Bet if you do not have the URL .</Label>
                     <Col sm={6} xl={7}>
-                        <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={userAccountInfo.NoSiteDescription} onChange={this.handleChange}/>
+                        <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={userAccountInfo.NoSiteDescription} onChange={this.handleChange} />
                     </Col>
                 </FormGroup>
             </Form>

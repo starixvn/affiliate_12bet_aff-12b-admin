@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SET_USER_ACCOUNT_INFO, SET_MORE_SITE_URLS_ARRAY, SET_SELECTED_PAYMENT_METHOD } from '../actions/types';
+import { SET_USER_ACCOUNT_INFO, SET_MORE_SITE_URLS_ARRAY } from '../actions/types';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import createReducer from '../../../../modules/createReducer';
 
@@ -17,16 +17,9 @@ const moreSiteUrlsArray = createReducer([], {
     }
 });
 
-const selectedPaymentMethod = createReducer('Player', {
-    [SET_SELECTED_PAYMENT_METHOD](prevState, action) {
-        return action.data;
-    }
-});
-
 export default combineReducers({
     isShowLoader,
     affId,
     userAccountInfo,
-    moreSiteUrlsArray,
-    selectedPaymentMethod
+    moreSiteUrlsArray
 });

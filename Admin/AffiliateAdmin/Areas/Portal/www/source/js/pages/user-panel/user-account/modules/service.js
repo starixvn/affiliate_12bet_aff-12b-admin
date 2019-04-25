@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 export const renderInputForm = (name, label, inputValue, isStatic, isRequired, changeHandler) => {

@@ -1,24 +1,25 @@
 ﻿using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using Fanex.Affiliate.Admin.Core.Resources;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class UserAccountController : BaseController
     {
-        private readonly IUserAccountRepository _userAccountRepository;
+        private readonly IUserAccountService _userAccountService;
 
         public UserAccountController(
             ISessionService sessionService,
-            IUserAccountRepository userAccountRepository) : base(sessionService)
+            IUserAccountService userAccountService) : base(sessionService)
         {
-            _userAccountRepository = userAccountRepository;
+            _userAccountService = userAccountService;
         }
 
         [HttpGet]
@@ -35,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             return new JsonResult
             {
-                Data = _userAccountRepository.GetUserAccountInfo(affId == 0 ? SessionService.AffId : affId)
+                Data = _userAccountService.GetUserAccountInfo(affId == 0 ? SessionService.AffId : affId)
             };
         }
 
@@ -52,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
                 return new JsonResult
                 {
-                    Data = _userAccountRepository.UpdateUserAccount(param)
+                    Data = _userAccountService.UpdateUserAccount(param)
                 };
             }
 
@@ -61,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Update User Account is failed!"
+                    Message = Lang.UpdateIsFailed
                 }
             };
         }

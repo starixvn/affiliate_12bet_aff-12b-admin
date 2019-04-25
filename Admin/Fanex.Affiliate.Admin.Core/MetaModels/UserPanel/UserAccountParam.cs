@@ -29,6 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [Required]
         public string City { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string State { get; set; }
 
         [Required]
@@ -37,15 +38,18 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [Required]
         public string Country { get; set; }
 
-        [Required]
         [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
+        [Required]
         public string SiteUrl { get; set; }
 
         [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string MoreSiteUrls { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string NoSiteDescription { get; set; }
 
+        [Required]
         public string PreferredPayment { get; set; }
 
         public string PlayerUsername { get; set; }
@@ -58,6 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 
         public string BankAddress { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string BankCode { get; set; }
 
         public string BankAccountName { get; set; }
