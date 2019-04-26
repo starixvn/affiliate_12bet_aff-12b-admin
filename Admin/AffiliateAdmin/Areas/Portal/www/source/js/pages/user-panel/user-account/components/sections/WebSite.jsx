@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 import { capitalizeFirstChar } from '../../modules/service';
-import { setUserAccountInfo, setMoreSiteUrlsArray } from '../../actions';
+import { setUserAccountInfo, setMoreSiteUrlsList } from '../../actions';
 
 export class WebSite extends PureComponent {
     constructor(props) {
@@ -20,21 +20,21 @@ export class WebSite extends PureComponent {
     }
 
     handleChangeMoreUrl = (event) => {
-        let { moreSiteUrlsArray } = this.props;
+        let { moreSiteUrlsList } = this.props;
         const target = event.target;
-        moreSiteUrlsArray[target.name] = target.value;
+        moreSiteUrlsList[target.name] = target.value;
 
-        this.props.setMoreSiteUrlsArray(moreSiteUrlsArray);
+        this.props.setMoreSiteUrlsList(moreSiteUrlsList);
     }
 
     handleAddUrl = () => {
-        let { moreSiteUrlsArray } = this.props;
-        const newMoreSiteUrlsArray = moreSiteUrlsArray.map(siteUrl => siteUrl.trim());
-        const findIndex = newMoreSiteUrlsArray.indexOf('');
+        let { moreSiteUrlsList } = this.props;
+        const newMoreSiteUrlsList = moreSiteUrlsList.map(siteUrl => siteUrl.trim());
+        const findIndex = newMoreSiteUrlsList.indexOf('');
 
         if (findIndex === -1) {
-            moreSiteUrlsArray.push('');
-            this.props.setMoreSiteUrlsArray(moreSiteUrlsArray);
+            moreSiteUrlsList.push('');
+            this.props.setMoreSiteUrlsList(moreSiteUrlsList);
         } else {
             window.alert(`Please input Website URL ${findIndex + 2}`);
             document.getElementById(findIndex).focus();
@@ -42,17 +42,17 @@ export class WebSite extends PureComponent {
     }
 
     handleDeleteUrl = (siteIndex) => {
-        let { moreSiteUrlsArray } = this.props;
-        moreSiteUrlsArray.splice(siteIndex, 1);
+        let { moreSiteUrlsList } = this.props;
+        moreSiteUrlsList.splice(siteIndex, 1);
 
-        this.props.setMoreSiteUrlsArray(moreSiteUrlsArray);
+        this.props.setMoreSiteUrlsList(moreSiteUrlsList);
     }
 
-    _renderMoreSiteUrl(moreSiteUrlsArray) {
+    _renderMoreSiteUrl(moreSiteUrlsList) {
         return (
             <React.Fragment>
                 {
-                    moreSiteUrlsArray.map((value, index) => {
+                    moreSiteUrlsList.map((value, index) => {
                         return (
                             <FormGroup row>
                                 <Label for={index} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
@@ -69,7 +69,7 @@ export class WebSite extends PureComponent {
     }
 
     render() {
-        const { userAccountInfo, moreSiteUrlsArray } = this.props;
+        const { userAccountInfo, moreSiteUrlsList } = this.props;
 
         return (
             <Form tag="div">
@@ -81,7 +81,7 @@ export class WebSite extends PureComponent {
                     <Button color="primary" onClick={this.handleAddUrl}><span aria-hidden>Add Url</span></Button>
                 </FormGroup>
                 {
-                    moreSiteUrlsArray && this._renderMoreSiteUrl(moreSiteUrlsArray)
+                    moreSiteUrlsList && this._renderMoreSiteUrl(moreSiteUrlsList)
                 }
                 <FormGroup row>
                     <Label for="noSiteDescription" sm={3} xl={2}>I do not have a website Please describe how you would like to promote 12Bet if you do not have the URL .</Label>
@@ -95,12 +95,12 @@ export class WebSite extends PureComponent {
 }
 
 function mapStateToProps({ userPanel }) {
-    const { userAccountInfo, moreSiteUrlsArray } = userPanel;
-    return Object.assign({}, { userAccountInfo, moreSiteUrlsArray });
+    const { userAccountInfo, moreSiteUrlsList } = userPanel;
+    return Object.assign({}, { userAccountInfo, moreSiteUrlsList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setUserAccountInfo, setMoreSiteUrlsArray }, dispatch);
+    return bindActionCreators({ setUserAccountInfo, setMoreSiteUrlsList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(WebSite);

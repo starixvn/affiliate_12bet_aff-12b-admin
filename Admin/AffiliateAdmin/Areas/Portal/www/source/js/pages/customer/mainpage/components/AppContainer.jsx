@@ -17,7 +17,7 @@ const AppContainer = (props) => {
         <AppLayout>
             <div className='data-content m-2'>
                 <Row>
-                    <div className="leftpanel">
+                        <div className="left-panel">
                         <LeftPanel />
                     </div>
                     <div className="right-panel customer-statistics mx-2">

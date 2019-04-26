@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SET_USER_ACCOUNT_INFO, SET_MORE_SITE_URLS_ARRAY } from '../actions/types';
+import { SET_USER_ACCOUNT_INFO, SET_MORE_SITE_URLS_LIST } from '../actions/types';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import createReducer from '../../../../modules/createReducer';
 
@@ -9,8 +9,8 @@ const userAccountInfo = createReducer(null, {
     }
 });
 
-const moreSiteUrlsArray = createReducer([], {
-    [SET_MORE_SITE_URLS_ARRAY](prevState, action) {
+const moreSiteUrlsList = createReducer([], {
+    [SET_MORE_SITE_URLS_LIST](prevState, action) {
         return [...action.data];
     }
 });
@@ -18,5 +18,5 @@ const moreSiteUrlsArray = createReducer([], {
 export default combineReducers({
     isShowLoader,
     userAccountInfo,
-    moreSiteUrlsArray
+    moreSiteUrlsList
 });

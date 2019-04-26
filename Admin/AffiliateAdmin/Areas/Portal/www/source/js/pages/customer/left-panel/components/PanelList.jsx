@@ -112,7 +112,7 @@ export class PanelList extends PureComponent {
             <Panel heading={resource.Commission}>
                 <tr>
                     <td>{resource.CommGroup}</td>
-                    <td className='text-right'>
+                    <td className='text-right text-primary'>
                         {
                             affiliateInfo.Closed ? affiliateInfo.CommGroupName : 
                             (<span className='popup' onClick={() => this.toggleEditingCommissionPopup(true)}>{affiliateInfo.CommGroupName}</span>)
@@ -146,7 +146,7 @@ export class PanelList extends PureComponent {
             <Panel heading={resource.Setting}>
                 <tr>
                     <td>{resource.AffiliateType}</td>
-                    <td className="text-right">
+                    <td className="text-right text-primary">
                         <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} defaultValue={affiliateInfo.AffType}
                             onBlur={this.toggleChangingAffType.bind(this, false)} ref={this.affTypeDropdown}
                             onChange={this.handleChangeAffType}>
@@ -167,7 +167,7 @@ export class PanelList extends PureComponent {
                             isApproved ?
                                 affiliateInfo.Status :
                                 (
-                                    <div>
+                                    <div className="text-primary">
                                         <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} defaultValue={affiliateInfo.Status}
                                             onBlur={this.toggleChangingAffStatus.bind(this, false)}
                                             onChange={this.handleChangeStatus} ref={this.affStatusDropdown}>
@@ -186,8 +186,8 @@ export class PanelList extends PureComponent {
                     isApproved &&
                     <tr>
                         <td>{resource.Closed}</td>
-                        <td className="text-right">
-                            <a className="text_box" onClick={this.handleChangeClosedStatus}>{affiliateInfo.IsClosed ? resource.Yes : resource.No}</a>
+                        <td className="text-right text-primary">
+                            <a className="text_box px-1 border border-secondary" onClick={this.handleChangeClosedStatus}>{affiliateInfo.IsClosed ? resource.Yes : resource.No}</a>
                         </td>
                     </tr>
                 }
@@ -199,7 +199,7 @@ export class PanelList extends PureComponent {
         const { onlineInfoList } = this.state;
 
         return onlineInfoList && (
-            <Panel heading={resource.CurrentOnlineList} style={{ overflow: 'auto', maxHeight: 125 }}>
+            <Panel heading={resource.CurrentOnlineList} style={{ overflow: 'auto', maxHeight: 130 }}>
                 <tr>
                     <td width="10" className="text_bold text-center">{resource.Index}</td>
                     <td width="70" className="text_bold text-center">{resource.Ip}</td>

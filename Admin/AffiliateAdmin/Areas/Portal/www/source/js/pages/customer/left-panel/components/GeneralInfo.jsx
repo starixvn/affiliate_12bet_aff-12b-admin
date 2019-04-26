@@ -69,7 +69,7 @@ export class GeneralInfo extends PureComponent {
                     onClick={this.clickChangeLanguage}>
                     {
                         languageList.map(language => {
-                            return (affiliateInfo.PreferredLanguage === language.LanguageCode) && (<option value={language.LanguageCode} key={`language-${language.LanguageCode}`}>{language.LanguageName}</option>)
+                            return affiliateInfo.PreferredLanguage === language.LanguageCode && language.LanguageName
                         })
                     }
                 </span>
@@ -84,7 +84,7 @@ export class GeneralInfo extends PureComponent {
             <React.Fragment>
                 <Row>
                     <Col sm={5}>{resource.Password}</Col>
-                    <Col sm={7} className='text-right'>
+                    <Col sm={7} className='text-right text-primary'>
                         <span className='popup' onClick={() => this.toggleChangingPassword(true)}>[{resource.Change}]</span>
                         {affiliateInfo && <ChangePasswordForm
                             showPopupPassword={isChangingPassword}
@@ -133,7 +133,7 @@ export class GeneralInfo extends PureComponent {
                     <Col sm={7} className='text-right'>{affiliateInfo.Gender === null ? '' : (affiliateInfo.Gender === true ? resource.Male : resource.Female)}</Col>
                 </Row>
                 <Row>
-                    <Col sm={5}>{resource.ContactNumber}</Col>
+                    <Col sm={5} className="pr-0">{resource.ContactNumber}</Col>
                     <Col sm={7} className='text-right'>{affiliateInfo.Phone}</Col>
                 </Row>
                 <Row>
@@ -142,7 +142,7 @@ export class GeneralInfo extends PureComponent {
                 </Row>
                 <Row>
                     <Col sm={5}>{resource.Language}</Col>
-                    <Col sm={7} className='text-right'>{this._renderLanguage()}</Col>
+                    <Col sm={7} className='text-right text-primary'>{this._renderLanguage()}</Col>
                 </Row>
                 <Row>
                     <Col sm={5}>{resource.WebsiteUrl}</Col>

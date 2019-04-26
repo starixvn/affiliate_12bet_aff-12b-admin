@@ -30,10 +30,12 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
-        this._fetchProductList();
+        if (this.state.productList.length === 0) {
+            this.handleGetProductList();
+        }
     }
 
-    async _fetchProductList() {
+    handleGetProductList = async() => {
         const productList = await getProductList();
         this.setState({ productList });
     }

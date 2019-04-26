@@ -8,7 +8,7 @@ import { toggleLoader } from '../actions';
 
 const Content = (props) => {
     return (
-        <div className="left-panel border m-2 p-2">
+        <div className="left-panel-container p-2">
             <SearchBox />
             {props.affiliateInfo && <MainInfo />}
         </div>

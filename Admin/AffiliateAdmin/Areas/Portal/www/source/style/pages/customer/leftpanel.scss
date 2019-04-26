@@ -1,36 +1,55 @@
 ﻿.left-panel {
-    line-height: 1.8;
-    width: 254px;
-
-    input {
-        font-weight: bold;
-        color: #385294;
-        text-transform: uppercase;
+    .app-container{
+        border-top: 10px solid #B9D8EA!important;
+        border-left: 5px solid #B9D8EA!important;
+        border-style: outset;
+        margin: .5rem!important;
     }
 
-    .general-info {
-        overflow: hidden;
+    &-container {
+        line-height: 1.8;
+        font-weight: 500;
+        width: 248px;
+        border-bottom: 10px solid #B9D8EA!important;
+        border-right: 5px solid #B9D8EA!important;
+        border-style: inset;
 
-        .row {
-            border-bottom: 1px solid #dee2e6!important;
-            white-space: normal;
-            word-break: break-word;
+        input {
+            font-weight: bold;
+            color: #385294;
+            text-transform: uppercase;
         }
-    }
+        a {
+            text-decoration: none;
+            &:hover {
+                color: #FF6600 !important;
+            }
+        }
 
-    #left_submenu {
-        margin-top: 10px;
+        .text-primary:hover {
+            color: #FF6600 !important;
+        }
 
-        #left_tab {
-            border-bottom: 1px #849FD6 solid;
+        .general-info {
+            overflow: hidden;
 
-            ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
+            .row {
+                border-bottom: 1px solid #dee2e6!important;
+                white-space: normal;
+                word-break: break-word;
+            }
+        }
 
-                a {
-                    text-decoration: none;
+        #left_submenu {
+            margin-top: 10px;
+
+            #left_tab {
+                border-bottom: 1px #849FD6 solid;
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
 
                     span {
                         font-weight: bold;
@@ -44,23 +63,31 @@
                     }
                 }
             }
-        }
 
-        #Bleft_Sub0 {
-            border-bottom: 1px #bdc9e2 solid;
-            border-left: 1px #bdc9e2 solid;
-            border-right: 1px #bdc9e2 solid;
-            padding: 0px 3px 0px 3px;
+            #Bleft_Sub0 {
+                border-bottom: 1px #bdc9e2 solid;
+                border-left: 1px #bdc9e2 solid;
+                border-right: 1px #bdc9e2 solid;
+                padding: 0px 3px 0px 3px;
+
+                .text_box {
+                    background-color: gainsboro;
+
+                    &:hover {
+                        background-color: cornflowerblue;
+                    }
+                }
+            }
         }
     }
 }
 
 .right-panel {
-    width: calc(100% - 286px);
-}
+    width: calc(100% - 288px);
 
-#user-panel{
-    width: 100%;
-    border: none;
-    height: calc(100% - 90px);
+    #user-panel{
+        width: 100%;
+        border: none;
+        height: calc(100% - 90px);
+    }
 }

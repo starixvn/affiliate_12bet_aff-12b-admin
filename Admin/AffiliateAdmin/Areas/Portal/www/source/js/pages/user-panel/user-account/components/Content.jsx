@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Container, Button, Row, Col, Alert } from 'reactstrap';
 
 import { getUserAccountInfo, updateUserAccount } from '../actions';
-import { messagesList, regexEmail } from '../modules/constants';
+import { messageList, regexEmail } from '../modules/constants';
 import { countriesList } from '../modules/constants';
 
 import Section from './Section';
@@ -31,11 +31,11 @@ export class Content extends PureComponent {
     }
 
     getMessage = (message, fieldName, value) => {
-        return message = value == '' ? message + messagesList[fieldName] + "<br />" : message;
+        return message = value == '' ? message + messageList[fieldName] + "<br />" : message;
     }
 
-    validateMoreSiteUrls = (moreSiteUrlsArray, message, isValid) => {
-        const moreSiteUrls = moreSiteUrlsArray.map(siteUrl => siteUrl.trim());
+    validateMoreSiteUrls = (moreSiteUrlsList, message, isValid) => {
+        const moreSiteUrls = moreSiteUrlsList.map(siteUrl => siteUrl.trim());
         const emptySiteUrlIndex = moreSiteUrls.indexOf('');
         const isNotEmptySiteUrl = emptySiteUrlIndex == -1;
         message = isNotEmptySiteUrl ? message : message + `Website URL ${emptySiteUrlIndex + 2} is required<br />`;
@@ -73,7 +73,7 @@ export class Content extends PureComponent {
         return result;
     }
 
-    validateUserAccount = (userAccountInfo, moreSiteUrlsArray) => {
+    validateUserAccount = (userAccountInfo, moreSiteUrlsList) => {
         let message = '';
         const checkEmail = new RegExp(regexEmail);
         const isValidGender = userAccountInfo.Gender != null;
@@ -82,8 +82,8 @@ export class Content extends PureComponent {
 
         message = this.getMessage(message, 'FirstName', userAccountInfo.FirstName);
         message = this.getMessage(message, 'LastName', userAccountInfo.LastName);
-        message = isValidGender ? message : message + messagesList.Gender + "<br />";
-        message = isValidEmail ? message : message + messagesList.Email + "<br />";
+        message = isValidGender ? message : message + messageList.Gender + "<br />";
+        message = isValidEmail ? message : message + messageList.Email + "<br />";
         message = this.getMessage(message, 'Phone', userAccountInfo.Phone);
         message = this.getMessage(message, 'Address', userAccountInfo.Address);
         message = this.getMessage(message, 'City', userAccountInfo.City);
@@ -95,29 +95,29 @@ export class Content extends PureComponent {
             userAccountInfo.Phone != '' && userAccountInfo.Address != '' && userAccountInfo.City != '' &&
             userAccountInfo.Postcode != '' && userAccountInfo.Country != '' && userAccountInfo.SiteUrl != '';
 
-        const result = moreSiteUrlsArray ? this.validateMoreSiteUrls(moreSiteUrlsArray, message, isValid) : ({ message, isValid });
+        const result = moreSiteUrlsList ? this.validateMoreSiteUrls(moreSiteUrlsList, message, isValid) : ({ message, isValid });
 
         return this.validatePaymentMethod(userAccountInfo, result);
     }
 
-    handleGetMoreSiteUrls = (moreSiteUrlsArray) => {
+    handleGetMoreSiteUrls = (moreSiteUrlsList) => {
         let moreSiteUrls = "";
-        moreSiteUrlsArray && moreSiteUrlsArray.map(siteUrl => moreSiteUrls += siteUrl.trim() + ";");
+        moreSiteUrlsList && moreSiteUrlsList.map(siteUrl => moreSiteUrls += siteUrl.trim() + ";");
 
         return moreSiteUrls.slice(0, -1);
     }
 
     handleSubmit = async () => {
-        const { affId, userAccountInfo, moreSiteUrlsArray } = this.props;
+        const { affId, userAccountInfo, moreSiteUrlsList } = this.props;
         const userAccountInfoAfterTrim = Object.assign({}, userAccountInfo)
         Object.keys(userAccountInfoAfterTrim).map(key => userAccountInfo[key] = typeof userAccountInfo[key] === 'string' ? userAccountInfo[key].trim() : userAccountInfo[key]);
 
-        const validateUserAccount = this.validateUserAccount(userAccountInfoAfterTrim, moreSiteUrlsArray);
+        const validateUserAccount = this.validateUserAccount(userAccountInfoAfterTrim, moreSiteUrlsList);
 
         window.scrollTo({ top: 0, behavior: "smooth" });
 
         if (validateUserAccount.isValid) {
-            const moreSiteUrls = this.handleGetMoreSiteUrls(moreSiteUrlsArray);
+            const moreSiteUrls = this.handleGetMoreSiteUrls(moreSiteUrlsList);
             const newUserAccountInfo = Object.assign({}, userAccountInfoAfterTrim, { MoreSiteUrls: moreSiteUrls });
 
             const data = await this.props.updateUserAccount(newUserAccountInfo);
@@ -206,8 +206,8 @@ export class Content extends PureComponent {
 
 function mapStateToProps({ affCommonInfo, userPanel }) {
     const { affId } = affCommonInfo;
-    const { userAccountInfo, moreSiteUrlsArray } = userPanel;
-    return Object.assign({}, { affId, userAccountInfo, moreSiteUrlsArray });
+    const { userAccountInfo, moreSiteUrlsList } = userPanel;
+    return Object.assign({}, { affId, userAccountInfo, moreSiteUrlsList });
 }
 
 function mapDispatchToProps(dispatch) {
