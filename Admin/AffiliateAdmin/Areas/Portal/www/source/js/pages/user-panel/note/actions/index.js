@@ -3,7 +3,7 @@ import { toggleLoader } from '../../../../actions/loaderAction';
 import { SET_NOTE_LIST, SET_SHOW_POPUP, SET_NOTE_INFO } from './types';
 import { setPagingOption } from '../../../../actions/pagingAction';
 
-export { setPagingOption, toggleLoader, post };
+export { toggleLoader, post };
 
 export const setNoteList = (data) => {
     return {
@@ -23,10 +23,10 @@ export const getNoteList = (param) => async(dispatch) => {
 
         dispatch(setNoteList(MainData));
 
-        const { PageIndex, PageSize } = param;
+        const { pageIndex, pageSize } = param;
         const pagingOption = {
-            PageIndex,
-            PageSize,
+            PageIndex: pageIndex,
+            PageSize: pageSize,
             TotalItem: TotalItem
         };
         dispatch(setPagingOption(pagingOption));
@@ -48,7 +48,7 @@ export const setNoteInfo = (data) => {
     }
 }
 
-export const getNoteContentById = (param) => async () => {
+export const getNoteContentById = (param) => async() => {
     const url = 'Portal/UserPanel/Note/GetNoteContentById';
     const response = await post(url, param);
 

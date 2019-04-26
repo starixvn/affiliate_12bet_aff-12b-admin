@@ -33,9 +33,7 @@ export class Filter extends React.Component {
     }
 
     handleSetParam() {
-        const { logType, fromDate, toDate } = this.state;
-        const newParam = Object.assign({}, this.props.param, { LogType: logType, FromDate: fromDate, ToDate: toDate });
-        this.props.setParam(newParam);
+        this.props.setParam(this.state);
     }
 
     handleChange = (event) => {
@@ -103,12 +101,9 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo, userPanel }) {
-    const { param } = userPanel;
-
+function mapStateToProps({ today }) {
     return Object.assign({}, {
-        today,
-        param: param && param.AffId ? param : { AffId: affCommonInfo.affId }
+        today
     });
 }
 

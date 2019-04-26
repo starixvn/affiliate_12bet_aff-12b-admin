@@ -19,7 +19,8 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ isShowLoader }) {
+function mapStateToProps({ userPanel }) {
+    const { isShowLoader } = userPanel;
     return Object.assign({}, { isShowLoader });
 }
 

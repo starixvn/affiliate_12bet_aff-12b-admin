@@ -8,7 +8,7 @@ import { Button } from 'reactstrap';
 import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-import { setShowPopup, setNoteInfo, setPagingOption, getNoteList, getNoteContentById, toggleLoader } from '../actions';
+import { setShowPopup, setNoteInfo, getNoteList, getNoteContentById, toggleLoader } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -16,8 +16,8 @@ export class Content extends PureComponent {
     }
 
     componentDidMount() {
-        const { noteInfo, pagingOption } = this.props;
-        const param = Object.assign({}, { AffId: noteInfo.AffId, PageIndex: 1, PageSize: pagingOption.PageSize });
+        const { pagingOption, affId } = this.props;
+        const param = Object.assign({}, { affId, pageIndex: 1, pageSize: pagingOption.PageSize });
         this.props.getNoteList(param);
     }
 
@@ -71,35 +71,33 @@ export class Content extends PureComponent {
     }
 
     handleShowPopup = (noteId) => {
-        const newNoteInfo = Object.assign({}, this.props.noteInfo, { NoteId: noteId, NoteContent: '' });
-
-        noteId === 0 ? this.props.setNoteInfo(newNoteInfo) : this.getNoteContentById(newNoteInfo);
+        if (noteId === 0) {
+            this.props.setNoteInfo({ noteId, noteContent: '' });
+        }
+        else {
+            this.getNoteContentById(noteId);
+        }
 
         this.props.setShowPopup(true);
     }
 
-    async getNoteContentById(noteInfo) {
+    async getNoteContentById(noteId) {
         this.props.toggleLoader(true);
 
-        const data = await this.props.getNoteContentById(noteInfo);
+        const { affId } = this.props;
+        const data = await this.props.getNoteContentById({ affId, noteId });
 
         if (data) {
-            const newNoteInfo = Object.assign({}, noteInfo, { NoteContent: data.NoteContent });
-            this.props.setNoteInfo(newNoteInfo);
+            const { NoteId, NoteContent } = data;
+            const noteItem = { noteId: NoteId, noteContent: NoteContent };
+            this.props.setNoteInfo(noteItem);
         }
 
         this.props.toggleLoader(false);
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const newPaging = {
-            PageIndex: pageIndex,
-            PageSize: pageSize
-        };
-
-        this.props.setPagingOption(newPaging);
-
-        const newParam = Object.assign({}, newPaging, { AffId: this.props.noteInfo.AffId });
+        const newParam = { affId: this.props.affId, pageIndex, pageSize };
         this.props.getNoteList(newParam);
     };
 
@@ -132,16 +130,18 @@ export class Content extends PureComponent {
 
 function mapStateToProps({ affCommonInfo, userPanel }) {
     const { pagingOption, noteList, noteInfo } = userPanel;
+    const { affId } = affCommonInfo;
 
-    return Object.assign({}, { 
-        pagingOption, 
-        noteList, 
-        noteInfo: noteInfo && noteInfo.AffId ? noteInfo : { AffId: affCommonInfo.affId, NoteId: 0, NoteContent: '' } 
+    return Object.assign({}, {
+        affId,
+        pagingOption,
+        noteList,
+        noteInfo
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopup, setNoteInfo, setPagingOption, toggleLoader, getNoteList, getNoteContentById }, dispatch);
+    return bindActionCreators({ setShowPopup, setNoteInfo, toggleLoader, getNoteList, getNoteContentById }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

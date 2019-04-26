@@ -4,66 +4,51 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { defaultPagingOption } from '../../../../modules/constants';
 
 import { resource } from '../modules/constants';
-import { toggleLoader } from '../actions';
+import { toggleLoader, setPagingOption } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
         this.state = {
-            data: null,
-            pagingOption: Object.assign({}, defaultPagingOption)
+            data: null
         }
-    }    
+    }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.param !== prevProps.param) {
-            const pagingParam = {
-                PageIndex: this.props.param.PageIndex,
-                PageSize: this.state.pagingOption.PageSize
-            }
-
-            this._setStateAndFetchData(pagingParam);
+        const { param, pagingOption } = this.props;
+        if (param !== prevProps.param) {
+            const postParam = { ...param, pageIndex: 1, pageSize: pagingOption.PageSize };
+            this.fetchData(postParam);
         }
     }
 
     fetchData = async (param) => {
         this.props.toggleLoader(true);
+        const postParam = { ...param, affId: this.props.affId };
         const url = 'Portal/UserPanel/CustomerMember/GetCustomerMember';
-        const response = await post(url, param);
+        const response = await post(url, postParam);
         if (response && response.status === 200) {
             const { MainData, TotalItem } = response.data;
-            const { pagingOption } = this.state;
 
-            this.setState({
-                data: MainData,
-                pagingOption: Object.assign({}, pagingOption, { TotalItem: TotalItem })
-            });
+            this.setState({ data: MainData });
+            this.props.setPagingOption({ TotalItem });
         }
 
         this.props.toggleLoader(false);
     }
 
-    handlePaging = (index, size) => {
-        const pagingParam = {
-            PageIndex: index,
-            PageSize: size
-        }
+    handlePaging = (pageIndex, pageSize) => {
+        const newPaging = {
+            PageIndex: pageIndex,
+            PageSize: pageSize
+        };
+        const newParam = {...this.props.param, pageIndex, pageSize};
 
-        this._setStateAndFetchData(pagingParam);
-    }
-
-    _setStateAndFetchData = (pagingParam) => {
-        const { pagingOption } = this.state;
-        this.setState({
-            pagingOption: Object.assign({}, pagingOption, pagingParam)
-        });
-
-        const param = Object.assign({}, this.props.param, pagingParam);
-        this.fetchData(param);
+        this.props.setPagingOption(newPaging);
+        this.fetchData(newParam);
     }
 
     _renderHeader() {
@@ -81,7 +66,7 @@ export class Content extends PureComponent {
     }
 
     _renderDataSection(dataList, canViewMemberEmail) {
-        const { pagingOption } = this.state;
+        const { pagingOption } = this.props;
         const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
         const dataRows = [];
 
@@ -108,7 +93,8 @@ export class Content extends PureComponent {
     }
 
     render() {
-        const { data, pagingOption } = this.state;
+        const { pagingOption } = this.props;
+        const { data } = this.state;
 
         return data && (
             <div className="table-responsive table-striped my-2">
@@ -128,13 +114,15 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ userPanel }) {
-    const { param, canViewMemberEmail } = userPanel;
-    return Object.assign({}, { param, canViewMemberEmail });
+function mapStateToProps({ affCommonInfo, userPanel }) {
+    const { param, canViewMemberEmail, pagingOption } = userPanel;
+    const { affId } = affCommonInfo;
+
+    return Object.assign({}, { affId, param, pagingOption, canViewMemberEmail });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader }, dispatch);
+    return bindActionCreators({ toggleLoader, setPagingOption }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

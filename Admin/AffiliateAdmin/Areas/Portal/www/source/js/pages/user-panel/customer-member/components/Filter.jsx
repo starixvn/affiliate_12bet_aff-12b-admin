@@ -15,10 +15,10 @@ export class Filter extends React.Component {
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
         this.state = {
-            MemberType: '0',
-            FromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
-            ToDate: this.nowString,
-            IsGetAll: false
+            memberType: '0',
+            fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
+            toDate: this.nowString,
+            isGetAll: false
         }
     }
 
@@ -33,35 +33,37 @@ export class Filter extends React.Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        const { ToDate } = this.state;
+        const { toDate } = this.state;
         const selectedDateString = momentDate.format("MM/DD/YYYY");
-        const fromDate = new Date(selectedDateString);
-        const toDate = new Date(ToDate);
+        const from = new Date(selectedDateString);
+        const to = new Date(toDate);
 
-        const isOutsideRange = fromDate.getTime() > toDate.getTime();
-        const newState = isOutsideRange ? { FromDate: selectedDateString, ToDate: selectedDateString } : { FromDate: selectedDateString }
+        const isOutsideRange = from.getTime() > to.getTime();
+        const newState = isOutsideRange ? 
+            { fromDate: selectedDateString, toDate: selectedDateString } : 
+            { fromDate: selectedDateString }
 
         this.setState(newState);
     }
 
     handleChangeToDate = (momentDate) => {
-        this.setState({ ToDate: momentDate.format("MM/DD/YYYY") });
+        this.setState({ toDate: momentDate.format("MM/DD/YYYY") });
     }
 
     handleSearch = () => {
-        const param = Object.assign({}, this.state, { PageIndex: 1, AffId: this.props.affId });
+        const param = Object.assign({}, this.state);
         this.props.setParam(param);
     }
 
     render() {
-        const { MemberType, FromDate, ToDate, IsGetAll } = this.state;
+        const { memberType, fromDate, toDate, isGetAll } = this.state;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="Affiliate" className="mr-sm-2">{resource.Member}</Label>
-                        <Input type="select" name="MemberType" id="MemberType" value={MemberType} onChange={this.handleChangeInput}>
+                        <Label for="memberType" className="mr-sm-2">{resource.Member}</Label>
+                        <Input type="select" name="memberType" id="memberType" value={memberType} onChange={this.handleChangeInput}>
                             <option key="memberType-0" value="0">Select</option>
                             {
                                 Object.keys(memberTypes).map(k => {
@@ -72,13 +74,13 @@ export class Filter extends React.Component {
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">{resource.From}</Label>
-                        <DatePicker minDate={minDate} maxDate={this.nowString} date={FromDate} isEnable={!IsGetAll}
+                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">{resource.To}</Label>
-                        <DatePicker minDate={FromDate} maxDate={this.nowString} date={ToDate} isEnable={!IsGetAll}
+                        <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeToDate} />
                     </FormGroup>
@@ -86,7 +88,7 @@ export class Filter extends React.Component {
                         <FormGroup check>
                             <Label check>
                                 {resource.GetAll}
-                                <Input name="IsGetAll" className="ml-1 mr-2" type="checkbox" checked={IsGetAll} onChange={this.handleChangeInput} />
+                                <Input name="isGetAll" className="ml-1 mr-2" type="checkbox" checked={isGetAll} onChange={this.handleChangeInput} />
                             </Label>
                         </FormGroup>
                     </FormGroup>
@@ -99,9 +101,8 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ userPanel }) {
-    const { today, affId } = userPanel;
-    return Object.assign({}, { today, affId });
+function mapStateToProps({ today }) {
+    return Object.assign({}, { today });
 }
 
 function mapDispatchToProps(dispatch) {

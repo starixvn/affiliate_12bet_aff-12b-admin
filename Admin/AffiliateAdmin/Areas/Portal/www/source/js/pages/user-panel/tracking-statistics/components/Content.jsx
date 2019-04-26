@@ -18,22 +18,20 @@ export class Content extends PureComponent {
         }
     }
 
-    componentDidMount() {
-        this.fetchData(this.props.param);
-    }
-
     componentDidUpdate(prevProps) {
         const { param } = this.props;
 
         if (param !== prevProps.param) {
-            this.fetchData(this.props.param);
+            this.fetchData(param);
         }
     }
 
     async fetchData(param) {
         this.props.toggleLoader(true);
 
-        const data = await this.props.fetchData(param);
+        const { affId } = this.props;
+        const postParam = { ...param, affId };
+        const data = await this.props.fetchData(postParam);
 
         this.setState({ gridData: data });
         this.props.toggleLoader(false);
@@ -97,9 +95,11 @@ export class Content extends PureComponent {
 
 function mapStateToProps({ affCommonInfo, userPanel }) {
     const { param } = userPanel;
+    const { affId } = affCommonInfo;
 
     return Object.assign({}, {
-        param: param && param.AffId ? param : { AffId: affCommonInfo.affId, TrackingCode: '' }
+        affId,
+        param
     });
 }
 

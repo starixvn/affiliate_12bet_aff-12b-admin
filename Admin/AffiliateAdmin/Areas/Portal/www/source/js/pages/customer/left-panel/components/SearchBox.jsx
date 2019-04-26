@@ -16,11 +16,13 @@ export class SearchBox extends PureComponent {
     }
 
     componentDidMount() {
-        this.props.getAffiliateInfo(this.state.affName);
+        const { affName } = this.state;
+        affName && this.props.getAffiliateInfo(affName);
     }
 
     handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value.trim() });
+        const { name, value } = event.target;
+        this.setState({ [name]: value.trim() });
     }
 
     handleClick = (event) => {

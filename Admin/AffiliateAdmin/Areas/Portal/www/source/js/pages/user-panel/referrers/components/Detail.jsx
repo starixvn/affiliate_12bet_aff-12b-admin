@@ -19,21 +19,24 @@ export class Detail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { pagingOption, selectedSiteUrl } = this.props;
+        const { pagingOption, selectedSiteUrl, param } = this.props;
 
         if (selectedSiteUrl && selectedSiteUrl !== prevProps.selectedSiteUrl) {
-            const param = Object.assign({}, this.props.param, { SelectedSiteUrl: selectedSiteUrl, PageIndex: 1, PageSize: pagingOption.PageSize });
-            this.fetchData(param);
+            const postParam = { ...param, selectedSiteUrl, pageIndex: 1, pageSize: pagingOption.PageSize };
+            this.fetchData(postParam);
         }
     }
 
     async fetchData(param) {
         this.props.toggleLoader(true);
 
-        const data = await this.props.fetchDetailData(param);
+        const { affId } = this.props;
+        const postData = { ...param, affId };
+        const data = await this.props.fetchDetailData(postData);
 
-        this.setState({ gridData: data ? data.MainData : null });
-        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
+        const { MainData, TotalItem } = data;
+        this.setState({ gridData: MainData });
+        this.props.setPagingOption({ TotalItem });
 
         this.props.toggleLoader(false);
     }
@@ -90,7 +93,8 @@ export class Detail extends Component {
 
         this.props.setPagingOption(newPaging);
 
-        const newParam = Object.assign({}, this.props.param, { SelectedSiteUrl: this.props.selectedSiteUrl, ...newPaging });
+        const { param, selectedSiteUrl } = this.props;
+        const newParam = { ...param, selectedSiteUrl, pageIndex, pageSize };
         this.fetchData(newParam);
     }
 
@@ -118,11 +122,13 @@ export class Detail extends Component {
 
 function mapStateToProps({ affCommonInfo, userPanel }) {
     const { pagingOption, param, selectedSiteUrl } = userPanel;
+    const { affId } = affCommonInfo;
 
-    return Object.assign({}, { 
+    return Object.assign({}, {
+        affId,
         pagingOption,
         selectedSiteUrl,
-        param: param && param.AffId ? param : { AffId: affCommonInfo.affId }
+        param
     });
 }
 

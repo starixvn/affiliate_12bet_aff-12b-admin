@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React from 'react';
 import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
@@ -8,25 +8,20 @@ import Filter from './Filter';
 import Content from './Content';
 import Detail from './Detail';
 
-export class AppContainer extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <AppLayout>
-                <Loader show={this.props.isShowLoader} />
-                <Filter />
-                <Content />
-                <Detail />
-            </AppLayout>
-        );
-    }
+const AppContainer = (props) => {
+    return (
+        <AppLayout>
+            <Loader show={props.isShowLoader} />
+            <Filter />
+            <Content />
+            {props.selectedSiteUrl && <Detail />}
+        </AppLayout>
+    );
 }
 
-function mapStateToProps({ isShowLoader }) {
-    return Object.assign({}, { isShowLoader });
+function mapStateToProps({ userPanel }) {
+    const { isShowLoader, selectedSiteUrl } = userPanel;
+    return Object.assign({}, { isShowLoader, selectedSiteUrl });
 }
 
 export default connect(mapStateToProps)(AppContainer);

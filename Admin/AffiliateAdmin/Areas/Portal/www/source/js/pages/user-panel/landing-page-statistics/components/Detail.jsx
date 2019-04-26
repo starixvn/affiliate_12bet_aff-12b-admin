@@ -118,7 +118,8 @@ export class Detail extends Component {
 }
 
 
-function mapStateToProps({ pagingOption, param, selectedPage }) {
+function mapStateToProps({ userPanel }) {
+    const { pagingOption, param, selectedPage } = userPanel;
     return Object.assign({}, { pagingOption, param, selectedPage });
 }
 

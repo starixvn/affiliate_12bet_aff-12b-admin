@@ -24,7 +24,7 @@ export class Content extends PureComponent {
         const { pagingOption, param } = this.props;
 
         if (param !== prevProps.param) {
-            const newParam = Object.assign({}, param, { PageIndex: 1, PageSize: pagingOption.PageSize });
+            const newParam = Object.assign({}, param, { pageIndex: 1, pageSize: pagingOption.PageSize });
             this.fetchData(newParam);
         }
     }
@@ -32,10 +32,13 @@ export class Content extends PureComponent {
     async fetchData(param) {
         this.props.toggleLoader(true);
 
-        const data = await this.props.fetchData(param);
+        const { affId } = this.props;
+        const postData = { ...param, affId };
+        const data = await this.props.fetchData(postData);
 
-        this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
-        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
+        const { MainData, TotalItem } = data;
+        this.setState({ gridData: MainData, shouldResetScrollPosition: true });
+        this.props.setPagingOption({ TotalItem });
 
         this.props.toggleLoader(false);
     }
@@ -127,7 +130,7 @@ export class Content extends PureComponent {
             PageIndex: pageIndex,
             PageSize: pageSize
         };
-        const newParam = Object.assign({}, this.props.param, newPaging);
+        const newParam = { ...this.props.param, pageIndex, pageSize };
 
         this.props.setPagingOption(newPaging);
         this.fetchData(newParam);
@@ -161,11 +164,13 @@ export class Content extends PureComponent {
 
 function mapStateToProps({ affCommonInfo, userPanel }) {
     const { pagingOption, param, showIdList } = userPanel;
+    const { affId } = affCommonInfo;
 
-    return Object.assign({}, { 
+    return Object.assign({}, {
+        affId,
         pagingOption,
         showIdList,
-        param: param && param.AffId ? param : { AffId: affCommonInfo.affId }
+        param
     });
 }
 

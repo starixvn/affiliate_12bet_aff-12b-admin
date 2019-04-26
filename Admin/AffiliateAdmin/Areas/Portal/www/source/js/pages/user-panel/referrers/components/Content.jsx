@@ -19,10 +19,6 @@ export class Content extends Component {
         }
     }
 
-    componentDidMount() {
-        this.fetchData(this.props.param);
-    }
-
     componentDidUpdate(prevProps) {
         const { param } = this.props;
 
@@ -34,7 +30,9 @@ export class Content extends Component {
     async fetchData(param) {
         this.props.toggleLoader(true);
 
-        const data = await this.props.fetchData(param);
+        const { affId } = this.props;
+        const postData = { ...param, affId };
+        const data = await this.props.fetchData(postData);
 
         this.setState({ gridData: data });
         this.props.toggleLoader(false);
@@ -91,7 +89,7 @@ export class Content extends Component {
     render() {
         const { gridData } = this.state;
 
-        return (
+        return gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1010}
@@ -109,8 +107,11 @@ export class Content extends Component {
 
 function mapStateToProps({ affCommonInfo, userPanel }) {
     const { param } = userPanel;
-    return Object.assign({}, { 
-        param: param && param.AffId ? param : { AffId: affCommonInfo.affId }
+    const { affId } = affCommonInfo;
+
+    return Object.assign({}, {
+        affId,
+        param
     });
 }
 

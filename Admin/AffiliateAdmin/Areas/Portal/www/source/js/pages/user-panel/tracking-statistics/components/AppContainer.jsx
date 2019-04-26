@@ -1,4 +1,4 @@
-﻿import React, { PureComponent } from 'react';
+﻿import React from 'react';
 import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
@@ -7,25 +7,20 @@ import Content from './Content';
 import Detail from './Detail';
 import Loader from '../../../../components/Loader';
 
-export class AppContainer extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <AppLayout>
-                <Loader show={this.props.isShowLoader} />
-                <Filter />
-                <Content />
-                <Detail />
-            </AppLayout>
-        );
-    }
+const AppContainer = (props) => {
+    return (
+        <AppLayout>
+            <Loader show={props.isShowLoader} />
+            <Filter />
+            <Content />
+            {props.selectedMonth && <Detail />}
+        </AppLayout>
+    );
 }
 
-function mapStateToProps({ isShowLoader }) {
-    return Object.assign({}, { isShowLoader });
+function mapStateToProps({ userPanel }) {
+    const { isShowLoader, selectedMonth } = userPanel;
+    return Object.assign({}, { isShowLoader, selectedMonth });
 }
 
-export default connect(mapStateToProps)(AppContainer);
+export default connect(mapStateToProps)(React.memo(AppContainer));

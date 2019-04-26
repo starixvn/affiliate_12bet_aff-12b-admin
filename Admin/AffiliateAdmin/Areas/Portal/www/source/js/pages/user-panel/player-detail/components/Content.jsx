@@ -21,7 +21,7 @@ export class Content extends PureComponent {
     componentDidUpdate(prevProps) {
         const { param, pagingOption } = this.props;
         if (param !== prevProps.param) {
-            const postParam = Object.assign({}, param, { PageIndex: 1, PageSize: pagingOption.PageSize });
+            const postParam = { ...param, pageIndex: 1, pageSize: pagingOption.PageSize };
             this._fetchData(postParam);
         }
     }
@@ -93,15 +93,15 @@ export class Content extends PureComponent {
         )
     }
 
-    handlePaging = (index, size) => {
+    handlePaging = (pageIndex, pageSize) => {
         const newPaging = {
-            PageIndex: index,
-            PageSize: size
+            PageIndex: pageIndex,
+            PageSize: pageSize
         }
 
         this.props.setPagingOption(newPaging);
 
-        const newParam = Object.assign({}, this.props.param, newPaging);
+        const newParam = { ...this.props.param, pageIndex, pageSize };
         this._fetchData(newParam);
     }
 

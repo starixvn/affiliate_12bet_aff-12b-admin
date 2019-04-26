@@ -23,7 +23,7 @@ export class Detail extends PureComponent {
 
         if (selectedMonth && selectedMonth !== prevProps.selectedMonth) {
             const dateTime = new Date(selectedMonth);
-            const newParam = Object.assign({}, this.props.param, { SelectedMonth: dateTime });
+            const newParam = { ...this.props.param, selectedMonth: dateTime };
             this.fetchData(newParam);
         }
     }
@@ -31,7 +31,8 @@ export class Detail extends PureComponent {
     async fetchData(param) {
         this.props.toggleLoader(true);
 
-        const data = await this.props.fetchDetailData(param);
+        const postParam = { ...param, affId };
+        const data = await this.props.fetchDetailData(postParam);
 
         this.setState({ gridData: data });
         this.props.toggleLoader(false);
@@ -100,10 +101,12 @@ export class Detail extends PureComponent {
 
 function mapStateToProps({ affCommonInfo, userPanel }) {
     const { param, selectedMonth } = userPanel;
-    
+    const { affId } = affCommonInfo;
+
     return Object.assign({}, {
+        affId,
         selectedMonth,
-        param: param && param.AffId ? param : { AffId: affCommonInfo.affId, TrackingCode: '' }
+        param
     });
 }
 

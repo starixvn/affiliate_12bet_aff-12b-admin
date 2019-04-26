@@ -17,12 +17,18 @@ export class Filter extends PureComponent {
         }
     }
 
+    componentDidMount () {
+        this.handleClickSearch();
+    }
+    
+
     handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
     }
 
     handleClickSearch = () => {
-        const param = Object.assign({}, this.props.param, { TrackingCode: this.state.selectedTrackingCode });
+        const param = { trackingCode: this.state.selectedTrackingCode };
 
         this.props.setParam(param);
         this.props.setSelectedMonth(null);
@@ -55,12 +61,11 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, userPanel }) {
-    const { param, trackingCodeList } = userPanel;
-    
+function mapStateToProps({ userPanel }) {
+    const { trackingCodeList } = userPanel;
+
     return Object.assign({}, {
-        trackingCodeList,
-        param: param && param.AffId ? param : { AffId: affCommonInfo.affId, TrackingCode: '' }
+        trackingCodeList
     });
 }
 

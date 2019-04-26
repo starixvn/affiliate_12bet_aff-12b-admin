@@ -8,7 +8,7 @@ export const loadUserPanelState = (selectedUserPanel) => {
 }
 
 export const isActiveMenu = (selectedMenu, menuItem) => {
-    return selectedMenu === menuItem.key || selectedMenu === menuItem.parent;
+    return selectedMenu && (selectedMenu.key === menuItem.key || selectedMenu.parent === menuItem.key);
 }
 
 export const getProductList = async() => {

@@ -24,7 +24,7 @@ export class InsertUpdateNoteForm extends PureComponent {
         const { noteInfo } = this.props;
 
         if (noteInfo !== prevProps.noteInfo) {
-            this.setState({ noteContent: noteInfo.NoteContent })
+            this.setState({ noteContent: noteInfo.noteContent })
         }
     }
 
@@ -48,7 +48,7 @@ export class InsertUpdateNoteForm extends PureComponent {
     }
 
     handleSave = () => {
-        const newNoteInfo = Object.assign({}, this.props.noteInfo, { NoteContent: this.state.noteContent });
+        const newNoteInfo = Object.assign({}, this.props.noteInfo, { noteContent: this.state.noteContent });
         this.Save(newNoteInfo);
     }
 
@@ -56,17 +56,20 @@ export class InsertUpdateNoteForm extends PureComponent {
         this.props.toggleLoader(true);
         this.setState({ isShowMessage: true });
 
-        var url = noteInfo.NoteId == 0 ? 'Portal/UserPanel/Note/InsertNote' : 'Portal/UserPanel/Note/UpdateNote';
-        var message = noteInfo.NoteId == 0 ? resource.AddNoteSuccess : resource.UpdateNoteSuccess;
+        const isInsert = noteInfo.noteId === 0;
+        var url = isInsert ? 'Portal/UserPanel/Note/InsertNote' : 'Portal/UserPanel/Note/UpdateNote';
+        var message = isInsert ? resource.AddNoteSuccess : resource.UpdateNoteSuccess;
 
-        const response = await post(url, noteInfo);
+        const { affId } = this.props;
+        const param = { ...noteInfo, affId };
+        const response = await post(url, param);
 
         if (response && response.status === 200) {
             const result = response.data;
 
             if (result.IsSuccessful) {
-                const { noteInfo, pagingOption } = this.props;
-                const param = Object.assign({}, { AffId: noteInfo.AffId, PageIndex: 1, PageSize: pagingOption.PageSize });
+                const { pagingOption } = this.props;
+                const param = Object.assign({}, { affId, pageIndex: 1, pageSize: pagingOption.PageSize });
 
                 window.setTimeout(() => this.props.setShowPopup(false), 3000);
                 window.setTimeout(() => this.props.getNoteList(param), 3500);
@@ -95,8 +98,10 @@ export class InsertUpdateNoteForm extends PureComponent {
     render() {
         const { isShowMessage, isSuccess, message } = this.state;
         const { isShowPopup, noteInfo } = this.props;
-        const popupTitle = noteInfo.NoteId == 0 ? resource.AddNote : resource.UpdateNote;
-        const buttonTitle = noteInfo.NoteId == 0 ? globalResource.Add : globalResource.Update;
+
+        const isInsert = noteInfo.noteId === 0;
+        const popupTitle = isInsert ? resource.AddNote : resource.UpdateNote;
+        const buttonTitle = isInsert ? globalResource.Add : globalResource.Update;
 
         const noteContentValidation = this._validateNoteContent();
 
@@ -132,11 +137,13 @@ export class InsertUpdateNoteForm extends PureComponent {
 
 function mapStateToProps({ affCommonInfo, userPanel }) {
     const { pagingOption, noteInfo, isShowPopup } = userPanel;
+    const { affId } = affCommonInfo;
 
-    return Object.assign({}, { 
-        isShowPopup, 
+    return Object.assign({}, {
+        affId,
+        isShowPopup,
         pagingOption,
-        noteInfo: noteInfo && noteInfo.AffId ? noteInfo : { AffId: affCommonInfo.affId, NoteId: 0, NoteContent: '' } 
+        noteInfo
     });
 }
 

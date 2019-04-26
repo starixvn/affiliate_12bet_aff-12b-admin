@@ -25,7 +25,8 @@ export class AppContainer extends Component {
     }
 }
 
-function mapStateToProps({ isShowLoader }) {
+function mapStateToProps({ userPanel }) {
+    const { isShowLoader } = userPanel;
     return Object.assign({}, { isShowLoader });
 }
 

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
@@ -9,21 +9,28 @@ import { globalResource } from '../../../../modules/globalResource';
 
 const minDate = new Date(2009, 11, 1);
 
-export class Filter extends React.Component {
+export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
         const { today, param } = this.props;
+        const { deviceType, fromDate, toDate } = param;
 
         const now = new Date(today);
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+        const firstDayOfCurrentMonth = `${now.getMonth() + 1}/01/${now.getFullYear()}`;
 
         this.state = {
-            deviceType: param.DeviceType,
-            fromDate: param.FromDate,
-            toDate: param.ToDate
+            deviceType: deviceType || deviceTypes[0],
+            fromDate: fromDate || firstDayOfCurrentMonth,
+            toDate: toDate || this.nowString
         }
     }
+
+    componentDidMount() {
+        this.handleSearch();
+    }
+
 
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
@@ -48,9 +55,7 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        const { deviceType, fromDate, toDate } = this.state;
-        const newParam = Object.assign({}, this.props.param, { DeviceType: deviceType, FromDate: fromDate, ToDate: toDate });
-        this.props.setParam(newParam);
+        this.props.setParam(this.state);
         this.props.setSelectedSiteUrl(null);
     }
 
@@ -91,11 +96,12 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo, userPanel }) {
+function mapStateToProps({ today, userPanel }) {
     const { param } = userPanel;
-    return Object.assign({}, { 
+
+    return Object.assign({}, {
         today,
-        param: param && param.AffId ? param : { AffId: affCommonInfo.affId }
+        param
     });
 }
 

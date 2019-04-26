@@ -5,6 +5,7 @@ import UserPanelMenuItem from './UserPanelMenuItem';
 
 const UserPanelMenu = (props) => {
     const { selectedUserPanel, onClickMenu } = props;
+    const selectedMenuItem = userPanelMenuList.find(p => p.key === selectedUserPanel);
 
     return (
         <div className="user-panel-menu-container">
@@ -20,7 +21,7 @@ const UserPanelMenu = (props) => {
                                     userPanelMenuList.filter(item => !item.parent).map(item => {
                                         return (
                                             <UserPanelMenuItem key={item.key} item={item} 
-                                                isActive={isActiveMenu(selectedUserPanel, item)}
+                                                isActive={isActiveMenu(selectedMenuItem, item)}
                                                 onClickMenu={onClickMenu} />
                                         )
                                     })

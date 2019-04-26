@@ -30,10 +30,12 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
-        if (this.state.productList.length === 0) {
-            const productList = await getProductList();
-            this.setState({ productList });
-        }
+        this._fetchProductList();
+    }
+
+    async _fetchProductList() {
+        const productList = await getProductList();
+        this.setState({ productList });
     }
 
     handleSelectMonth = (month, year) => {

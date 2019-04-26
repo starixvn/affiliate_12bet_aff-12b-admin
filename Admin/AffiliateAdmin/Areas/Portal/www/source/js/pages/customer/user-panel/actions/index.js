@@ -2,7 +2,6 @@ import { SET_SELECTED_USERPANEL } from './types';
 import { loadUserPanelState } from '../modules/service';
 import { menuKey } from '../modules/menu';
 import { setParam } from '../../../user-panel/daily-earning/actions';
-import reducerRegistry from '../../../../modules/reducerRegistry';
 
 const activeUserPanel = (data) => {
     return {
