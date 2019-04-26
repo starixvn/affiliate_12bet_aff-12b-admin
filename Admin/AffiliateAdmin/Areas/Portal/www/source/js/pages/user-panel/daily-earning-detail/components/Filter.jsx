@@ -1,21 +1,43 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { Form, FormGroup, Input, Label } from 'reactstrap';
 import { globalResource } from '../../../../modules/globalResource';
+import { setParam } from '../actions';
+import { getProductList } from '../../../customer/user-panel/modules/service';
+import { selectedAllProduct } from '../../../../modules/constants';
 
-export default class Filter extends Component {
+export class Filter extends PureComponent {
     constructor(props) {
         super(props);
+
+        const { param } = this.props;
+
+        this.state = {
+            productList: [],
+            selectedProduct: param.productId || selectedAllProduct
+        }
+    }
+
+    componentDidMount() {
+        this._fetchProductList();
+        this.props.setParam({...this.props.param, productId: this.state.selectedProduct});
+    }
+
+    async _fetchProductList() {
+        const productList = await getProductList();
+        this.setState({ productList });
     }
 
     handleChangeProduct = (event) => {
         const selectedProduct = Number(event.target.value);
-
-        this.props.onChangeProduct(selectedProduct);
+        const param = { ...this.props.param, productId: selectedProduct }
+        this.props.setParam(param);
     }
 
     render() {
-        const { productList, selectedProduct } = this.props;
+        const { productList, selectedProduct } = this.state;
 
         return (
             <div className="filter-container">
@@ -36,3 +58,14 @@ export default class Filter extends Component {
         );
     }
 }
+
+function mapStateToProps({ userPanel }) {
+    const { param } = userPanel;
+    return Object.assign({}, { param });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setParam }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

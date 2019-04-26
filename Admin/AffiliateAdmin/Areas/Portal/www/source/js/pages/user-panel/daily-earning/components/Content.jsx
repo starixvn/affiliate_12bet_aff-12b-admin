@@ -2,14 +2,15 @@ import React, { PureComponent } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { resolveClientUrl } from '../../../../modules/utils';
 import { resource } from '../modules/constants';
 import { selectedAllProduct } from '../../../../modules/constants';
+import { setParamForDailyEarningDetail } from '../../../customer/user-panel/actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -22,20 +23,19 @@ export class Content extends PureComponent {
         }
     }
 
-    componentDidMount() {
-        this.fetchData(this.props.param);
-    }
-
     componentDidUpdate(prevProps) {
-        if (this.props.param !== prevProps.param) {
-            this.fetchData(this.props.param);
+        const { param } = this.props;
+        if (param !== prevProps.param) {
+            this.fetchData(param);
         }
     }
 
     async fetchData(param) {
         this.props.toggleLoader(true);
         const url = 'Portal/UserPanel/StatementHistory/GetDailyEarning';
-        const response = await post(url, param);
+        const { affId } = this.props;
+        const postData = { ...param, affId };
+        const response = await post(url, postData);
         if (response && response.status === 200) {
             const { MainData, Total } = response.data;
 
@@ -81,15 +81,22 @@ export class Content extends PureComponent {
         const bonus = formatDecimal(dataItem.Bonus);
         const bankingFee = formatDecimal(dataItem.BankingFee);
 
-        const { param } = this.props;
-        const queryString = `AffId=${param.AffId}&AffName=${param.AffName}&ProductId=${param.ProductId}&MonthDate=${dataItem.Date}`;
-        const dateLink = resolveClientUrl('Portal/UserPanel/StatementHistory/DailyEarningDetail') + '?' + queryString;
+        const { param, affId } = this.props;
+        const dailyEarningDetailParam = {
+            affId,
+            monthDate: dataItem.Date,
+            productId: param.productId
+        }        
 
         return (
             <Row>
                 {rowNumber && <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>}
                 <Cell className="text-center" title={dataItem.Date} colSpan={!rowNumber && 2}>
-                    {rowNumber ? (<a href={dateLink}>{dataItem.Date}</a>) : dataItem.Date}
+                    {rowNumber ? 
+                        (<Button className="p-0" color="link" 
+                            onClick={() => this.props.setParamForDailyEarningDetail(dailyEarningDetailParam)}>{dataItem.Date}</Button>) : 
+                        dataItem.Date
+                    }
                 </Cell>
                 <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
@@ -120,13 +127,15 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ userPanel }) {
+function mapStateToProps({ affCommonInfo, userPanel }) {
     const { param } = userPanel;
-    return Object.assign({}, { param });
+    const { affId } = affCommonInfo;
+
+    return Object.assign({}, { affId, param });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader }, dispatch);
+    return bindActionCreators({ toggleLoader, setParamForDailyEarningDetail }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

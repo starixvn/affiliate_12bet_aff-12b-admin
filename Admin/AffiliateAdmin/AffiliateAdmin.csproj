@@ -1602,7 +1602,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\reducers\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\reduxComponentFactory.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\reducers\index.js" />

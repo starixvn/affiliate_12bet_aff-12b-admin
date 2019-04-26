@@ -1,7 +1,8 @@
 import { SET_SELECTED_USERPANEL } from './types';
 import { loadUserPanelState } from '../modules/service';
 import { menuKey } from '../modules/menu';
-import { setParam } from '../../../user-panel/daily-earning/actions';
+import { setParam as setDailyEarningParam } from '../../../user-panel/daily-earning/actions';
+import { setParam as setDailyEarningDetailParam } from '../../../user-panel/daily-earning-detail/actions';
 
 const activeUserPanel = (data) => {
     return {
@@ -17,5 +18,10 @@ export const setSelectedUserPanel = (data) => (dispatch) => {
 
 export const setParamForDailyEarning = (data) => (dispatch) => {
     dispatch(setSelectedUserPanel(menuKey.dailyEarning));
-    dispatch(setParam(data));
+    dispatch(setDailyEarningParam(data));
+}
+
+export const setParamForDailyEarningDetail = (data) => (dispatch) => {
+    dispatch(setSelectedUserPanel(menuKey.dailyEarningDetail));
+    dispatch(setDailyEarningDetailParam(data));
 }

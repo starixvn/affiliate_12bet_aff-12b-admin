@@ -19,14 +19,13 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
-        if (this.state.productList.length === 0) {
-            this._fetchProductList();
-        }
+        const callback = () => this._submit(selectedAllProduct);
+        this._fetchProductList(callback);
     }
 
-    async _fetchProductList(){
+    async _fetchProductList(callback) {
         const productList = await getProductList();
-        this.setState({ productList });
+        this.setState({ productList }, callback);
     }
 
     handleChangeProduct = (event) => {

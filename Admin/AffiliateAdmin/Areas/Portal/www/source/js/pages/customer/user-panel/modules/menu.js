@@ -10,6 +10,7 @@ import referrerStatisticsReducer from '../../../user-panel/referrers/reducers';
 import landingPageStatisticsReducer from '../../../user-panel/landing-page-statistics/reducers';
 import playerDetailReducer from '../../../user-panel/player-detail/reducers';
 import dailyEarningReducer from '../../../user-panel/daily-earning/reducers';
+import dailyEarningDetailReducer from '../../../user-panel/daily-earning-detail/reducers';
 
 const StatementHistory = React.lazy(() =>
     import ( /* webpackChunkName: "statementHistory" */ '../../../user-panel/statement-history/components/AppContainer'));
@@ -69,7 +70,7 @@ export const userPanelMenuList = [
 export const userPanelReducer = {
     [menuKey.statementHistory]: statementHistoryReducer,
     [menuKey.dailyEarning]: dailyEarningReducer,
-    [menuKey.dailyEarningDetail]: null,
+    [menuKey.dailyEarningDetail]: dailyEarningDetailReducer,
     [menuKey.edit]: userAccountReducer,
     [menuKey.note]: noteReducer,
     [menuKey.playerDetail]: playerDetailReducer,

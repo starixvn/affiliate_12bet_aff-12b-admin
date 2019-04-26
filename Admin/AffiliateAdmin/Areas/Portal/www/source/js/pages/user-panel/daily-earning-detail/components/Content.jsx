@@ -1,15 +1,49 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
+import { toggleLoader } from '../../../../actions/loaderAction';
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { resource } from '../modules/constants';
+import { selectedAllProduct } from '../../../../modules/constants';
+import { fetchData } from '../actions';
 
-export default class Content extends Component{
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
+
+        this.state = {
+            gridData: null,
+            total: null,
+            isSelectedAllProducts: true
+        }
     }
 
-    _renderHeader(){
+    componentDidUpdate(prevProps) {
+        const { param } = this.props;
+        if (param !== prevProps.param) {
+            this.fetchData(param);
+        }
+    }
+
+    async fetchData(param) {
+        this.props.toggleLoader(true);
+        const { affId } = this.props;
+        const postData = { ...param, affId };
+        const data = await this.props.fetchData(postData);
+
+        this.setState({
+            gridData: data && data.MainData,
+            total: data && data.Total,
+            isSelectedAllProducts: param.ProductId === selectedAllProduct
+        });
+
+        this.props.toggleLoader(false);
+    }
+
+    _renderHeader() {
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
@@ -28,7 +62,7 @@ export default class Content extends Component{
         const dataRows = [];
         const isTotalRow = dataList.length === 1 && !dataList[0].IbcUserName;
 
-        if(isTotalRow){
+        if (isTotalRow) {
             dataList[0].IbcUserName = resource.Total;
         }
 
@@ -62,8 +96,8 @@ export default class Content extends Component{
     }
 
     render() {
-        const { gridData, total } = this.props.data;
-        const { productColumnClassName } = this.props;
+        const { gridData, total, isSelectedAllProducts } = this.state;
+        const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
 
         return gridData && total && (
             <div className="table-responsive table-striped my-2">
@@ -80,3 +114,16 @@ export default class Content extends Component{
         );
     }
 }
+
+function mapStateToProps({ affCommonInfo, userPanel }) {
+    const { param } = userPanel;
+    const { affId } = affCommonInfo;
+
+    return Object.assign({}, { affId, param });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ toggleLoader, fetchData }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);
