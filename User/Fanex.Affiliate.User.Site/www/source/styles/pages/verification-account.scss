@@ -8,12 +8,20 @@
         height: 28px;
         margin-left: 15px;
         color: #ffffff;
-        background-color: #BDBDBD;
+        background: #fe2400;
         box-shadow: -1px 4px 4px #ABABAB;
 
-        &:not([disabled]):hover {
-            background-color: #9f9898;
+        &:hover, &:focus {
+            background: darken(#fe2400, 5%);
         }
+
+        &:disabled {
+            background-color: #BDBDBD;
+        }
+    }
+
+    .btn-login {
+        box-shadow: -1px 4px 4px #ABABAB;
     }
 
     .validation-value {

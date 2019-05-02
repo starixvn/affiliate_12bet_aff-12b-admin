@@ -70,12 +70,13 @@ var VerificationAccount = (function () {
 
     function isValidEmail(email) {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return email !== '' && re.test(email);
+        return re.test(email);
     }
 
     function toggleMessageForEmail(isValid) {
         $('#emailGroup').toggleClass('has-error', !isValid);
         $('#emailValidationMessage').toggleClass('hide', isValid);
+        $('#emailValidationMessage').text("Invalid email.");
     }
 
     var _me = {
@@ -96,10 +97,19 @@ var VerificationAccount = (function () {
                 _me.generateCaptcha();
                 registerRefreshCaptcha();
             });
-            $('#verification-account input').on('keypress', function (e) {
+            $('#verificationAccountForm input').on('keypress', function (e) {
                 var code = e.keyCode || e.which;
                 if (code === 13) {
+                    e.preventDefault();
                     _me.submitForm();
+                }
+            });
+
+            $('#Email').on('keypress', function (e) {
+                var code = e.keyCode || e.which;
+                if (code === 13) {
+                    e.preventDefault();
+                    _me.sendCode();
                 }
             });
         },
@@ -108,45 +118,53 @@ var VerificationAccount = (function () {
             $("#captchaVerificationAccount").attr("src", captchaUrl);
         },
         sendCode: function () {
-            var email = $('#Email').val().trim();
-            var token = $('input[name="__RequestVerificationToken"]', $("#verificationAccountForm")).val();
+            var $form = $("#sendCodeForm");
+            var validator = $form.validate();
+            var isValidForm = validator.form();
+            
+            if (isValidForm) {
+                var email = $('#Email').val().trim();
+                var token = $('input[name="__RequestVerificationToken"]', $("#verificationAccountForm")).val();
+                var isValidInputEmail = isValidEmail(email);
 
-            var isValidInputEmail = isValidEmail(email);
-            toggleMessageForEmail(isValidInputEmail);
-            if (!isValidInputEmail) {
-                return;
-            }
-
-            $.ajax({
-                type: "POST",
-                url: Site.resolveRelativeUrl("VerificationAccount/SendCode"),
-                data: { __RequestVerificationToken: token, email: email },
-                dataType: "json",
-                cache: false,
-                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                success: function (response) {
-                    $('#btnSendCode').prop("disabled", true);
-                    _me.countDown(INTERVAL_SENDCODE_SECOND);
-                    $('#VerificationToken').val(response.VerificationToken);
-                    updateAction(response.Action);
-
-                    if (!response.IsOk) {
-                        alert(response.Message);
-                    }
-                },
-                beforeSend: function () {
-                    Site.showLoader();
-                },
-                complete: function () {
-                    Site.hideLoader();
+                if (!isValidInputEmail) {
+                    toggleMessageForEmail(isValidInputEmail);
+                    return;
                 }
-            });
+
+                $.ajax({
+                    type: "POST",
+                    url: Site.resolveRelativeUrl("VerificationAccount/SendCode"),
+                    data: { __RequestVerificationToken: token, email: email },
+                    dataType: "json",
+                    cache: false,
+                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                    success: function (response) {
+                        $('#btnSendCode').prop("disabled", true);
+                        $('#Email').prop("disabled", true);
+                        _me.countDown(INTERVAL_SENDCODE_SECOND);
+                        $('#VerificationToken').val(response.VerificationToken);
+                        updateAction(response.Action);
+
+                        if (!response.IsOk) {
+                            alert(response.Message);
+                        }
+                    },
+                    beforeSend: function () {
+                        Site.showLoader();
+                    },
+                    complete: function () {
+                        Site.hideLoader();
+                    }
+                });
+            }
         },
         countDown: function (second) {
             clearTimeout(_countdownResendCodeTimeoutId);
             if (second === 0) {
                 $('#btnSendCode').text(_originalSendCodeText);
                 $('#btnSendCode').prop('disabled', false);
+                $('#Email').prop('disabled', false);
             } else {
                 $('#btnSendCode').text(_originalSendCodeText + ' (' + second + ')');
                 _countdownResendCodeTimeoutId = setTimeout(_me.countDown, 1000, --second);
