@@ -243,6 +243,7 @@
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestUpdateParam.cs" />
+    <Compile Include="MetaModels\Payment\ProcessingPaymentRequestParam.cs" />
     <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
     <Compile Include="MetaModels\UserPanel\AdjustmentParam.cs" />
     <Compile Include="MetaModels\UserPanel\AffiliateLinkParam.cs" />

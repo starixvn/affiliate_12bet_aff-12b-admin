@@ -38,10 +38,7 @@ export const errorList = {
     UpdateFailed: 'Update transaction failed!',
 }
 
-export const searchByList = {
-    UserName: 'User Name',
-    Others: 'Others'
-}
+export const searchByList = ['User Name', 'Others']
 
 export const pending = 'Pending';
 export const statusList = {

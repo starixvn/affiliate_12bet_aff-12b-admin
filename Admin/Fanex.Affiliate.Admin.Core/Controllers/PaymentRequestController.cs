@@ -23,9 +23,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             _paymentRequestService = paymentRequestService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(ProcessingPaymentRequestParam param)
         {
-            return View("~/Areas/Portal/Views/PaymentRequest/Index.cshtml");
+            return View("~/Areas/Portal/Views/PaymentRequest/Index.cshtml", param);
         }
 
         [HttpPost]

@@ -14,7 +14,7 @@ export class Filter extends Component {
     constructor(props) {
         super(props);
 
-        const { today } = this.props;
+        const { today, param } = this.props;
         const now = new Date(today);
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
@@ -22,10 +22,10 @@ export class Filter extends Component {
         yesterday.setDate(yesterday.getDate() - 1);
 
         this.state = {
-            searchBy: searchByList.UserName,
+            searchBy: param.SearchBy,
             userName: null,
-            status: null,
-            fromDate: `${yesterday.getMonth() + 1}/${yesterday.getDate()}/${yesterday.getFullYear()}`,
+            status: param.Status,
+            fromDate: param.FromDate ? param.FromDate : `${yesterday.getMonth() + 1}/${yesterday.getDate()}/${yesterday.getFullYear()}`,
             toDate: this.nowString,
             isGetAll: false
         }
@@ -37,7 +37,7 @@ export class Filter extends Component {
 
     handleSetParam() {
         const { searchBy, userName, status, fromDate, toDate, isGetAll } = this.state;
-        const isSearchByUserName = searchBy === searchByList.UserName;
+        const isSearchByUserName = searchBy == 0;
 
         const newParam = Object.assign({}, this.props.param, {
             Username: isSearchByUserName ? userName : null,
@@ -126,13 +126,13 @@ export class Filter extends Component {
                         <Label className="mr-2">{resource.SearchBy}</Label>
                         <Input type="select" name="searchBy" value={searchBy} onChange={this.handleChange}>
                             {
-                                Object.keys(searchByList).map(key => {
-                                    return (<option key={'searchBy-' + key} value={searchByList[key]}>{searchByList[key]}</option>)
+                                searchByList.map((value, index) => {
+                                    return (<option key={'searchBy-' + index} value={index}>{value}</option>)
                                 })
                             }
                         </Input>
                     </FormGroup>
-                    {searchBy === searchByList.UserName ? (
+                    {searchBy == 0 ? (
                         <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                             <Label className="mr-2">{resource.UserName}</Label>
                             <Input type="text" name="userName" value={userName} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />
