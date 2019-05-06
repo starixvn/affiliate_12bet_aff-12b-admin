@@ -97,6 +97,7 @@
                         $('#Email').prop("disabled", true);
                         _me.countDown(INTERVAL_SENDCODE_SECOND);
                         $('#VerificationToken').val(response.VerificationToken);
+                        $('#verificationAccountGroup').toggleClass('hide', !response.IsOk);
                         updateAction(response.Action);
 
                         if (!response.IsOk) {
