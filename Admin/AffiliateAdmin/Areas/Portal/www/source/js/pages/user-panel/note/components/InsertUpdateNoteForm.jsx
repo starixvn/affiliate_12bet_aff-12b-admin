@@ -54,7 +54,6 @@ export class InsertUpdateNoteForm extends PureComponent {
 
     async Save(noteInfo) {
         this.props.toggleLoader(true);
-        this.setState({ isShowMessage: true });
 
         const isInsert = noteInfo.noteId === 0;
         var url = isInsert ? 'Portal/UserPanel/Note/InsertNote' : 'Portal/UserPanel/Note/UpdateNote';
@@ -77,11 +76,13 @@ export class InsertUpdateNoteForm extends PureComponent {
 
             this.setState({
                 isSuccess: result.IsSuccessful,
+                isShowMessage: true,
                 message: result.IsSuccessful ? message : result.Message
             }, () => window.setTimeout(this.hideMessage, 3000));
         } else {
             this.setState({
                 isSuccess: false,
+                isShowMessage: true,
                 message: resource.Failed
             }, () => window.setTimeout(this.hideMessage, 3000));
         }

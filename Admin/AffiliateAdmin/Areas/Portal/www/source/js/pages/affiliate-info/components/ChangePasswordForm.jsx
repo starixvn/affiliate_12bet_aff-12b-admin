@@ -2,8 +2,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { resource, regExp } from '../modules/constants';
+import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
+import { resource, regExp, messages } from '../modules/constants';
 import { setShowPopupPassword } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
@@ -14,7 +14,10 @@ export class ChangePasswordForm extends Component {
 
         this.state = {
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            isShowMessage: false,
+            isSuccess: true,
+            message: ''
         }
     }
 
@@ -22,7 +25,7 @@ export class ChangePasswordForm extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    handleChangePassword = () => {
+    handleSubmit = () => {
         const { affId } = this.props;
         const { password, confirmPassword } = this.state;
 
@@ -46,29 +49,39 @@ export class ChangePasswordForm extends Component {
         const url = `Portal/AffiliateInfo/ChangePassword`;
         const response = await post(url, param);
 
-        if (response ) {
-            if (response.data.IsSuccessful) {
-                alert(resource.ChangePasswordSuccess);
+        if (response && response.status === 200) {
+            const result = response.data;
 
-                this.props.setShowPopupPassword(false);
+            if (result.IsSuccessful) {
+                window.setTimeout(this.handleClosePopup, 3000);
+            }
 
-                this.setState({
-                    password: '',
-                    confirmPassword: ''
-                })
-            }
-            else {
-                alert(response.data.Message);
-            }
+            this.setState({
+                isSuccess: result.IsSuccessful,
+                isShowMessage: true,
+                message: result.IsSuccessful ? messages.ChangePasswordSuccess : result.Message
+            }, () => window.setTimeout(this.hideMessage, 3000));
+        } else {
+            this.setState({
+                isSuccess: false,
+                isShowMessage: true,
+                message: messages.ChangePasswordFailed
+            }, () => window.setTimeout(this.hideMessage, 3000));
         }
 
         this.props.toggleLoader(false);
     }
 
+    hideMessage = () => {
+        this.setState({
+            isShowMessage: false
+        });
+    }
+
     _validatePassword(password) {
         const result = {
             isValid: false,
-            message: resource.RequiredPassword
+            message: messages.RequiredPassword
         }
 
         if (password) {
@@ -76,7 +89,7 @@ export class ChangePasswordForm extends Component {
             const isValid = regexCheckPassword.test(password);
 
             result.isValid = isValid;
-            result.message = isValid ? "" : resource.PasswordErrorMessage;
+            result.message = isValid ? "" : messages.PasswordErrorMessage;
         }
 
         return result;
@@ -85,14 +98,14 @@ export class ChangePasswordForm extends Component {
     _validateConfirmPassword(password, confirmPassword) {
         const result = {
             isValid: false,
-            message: resource.RequiredConfirmPassword
+            message: messages.RequiredConfirmPassword
         }
 
         if (confirmPassword) {
             const isValid = confirmPassword === password;
 
             result.isValid = isValid;
-            result.message = isValid ? "" : resource.ConfirmPasswordErrorMessage;
+            result.message = isValid ? "" : messages.ConfirmPasswordErrorMessage;
         }
 
         return result;
@@ -100,7 +113,7 @@ export class ChangePasswordForm extends Component {
 
     render() {
         const { showPopupPassword, affId } = this.props;
-        const { password, confirmPassword } = this.state;
+        const { password, confirmPassword, isShowMessage, isSuccess, message } = this.state;
 
         const passwordValidation = this._validatePassword(password);
         const confirmPasswordValidation = this._validateConfirmPassword(password, confirmPassword);
@@ -112,6 +125,9 @@ export class ChangePasswordForm extends Component {
                 <ModalBody>
                     <div className="modal-body-wrapper">
                         <div className="change-password-form-container">
+                            <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                            </Alert>
                             <Form tag="form" className="mb-5" autocomplete="off">
                                 <FormGroup row className="mb-2">
                                     <Label for="Password" sm={4} className="required">Password:</Label>
@@ -134,7 +150,7 @@ export class ChangePasswordForm extends Component {
                                 </FormGroup>
                             </Form>
 
-                            <Button type="button" color="success" className="mr-3" disabled={!isValid} onClick={this.handleChangePassword}>{resource.Submit}</Button>
+                            <Button type="button" color="success" className="mr-3" disabled={!isValid} onClick={this.handleSubmit}>{resource.Submit}</Button>
                             <Button type="button" color="info" onClick={this.handleClosePopup}>{resource.Cancel}</Button>
                         </div>
                     </div>
