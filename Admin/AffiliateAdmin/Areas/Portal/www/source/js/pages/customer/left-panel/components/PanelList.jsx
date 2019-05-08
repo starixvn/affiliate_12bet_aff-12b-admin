@@ -105,8 +105,8 @@ export class PanelList extends PureComponent {
     _renderCommissionPanel() {
         const { isChangingCommissionGroup } = this.state;
         const { affiliateInfo } = this.props;
-        const url = resolveClientUrl('GroupSetting/AssignGroup.aspx') + `?affid=${affiliateInfo.AffId}&affName=${affiliateInfo.UserName}`;
-        const title = 'Change Commission Group For \"' + affiliateInfo.UserName + '\"';
+        const url = resolveClientUrl(`Portal/CommissionGroup/AssignGroup?affid=${affiliateInfo.AffId}`);
+        const title = `Change Commission Group For "${affiliateInfo.AffName}"`;
 
         return (
             <Panel heading={resource.Commission}>
@@ -211,7 +211,7 @@ export class PanelList extends PureComponent {
                         return (
                             <tr key={`onl-info-${index}`}>
                                 <td className="text-center">{index + 1}</td>
-                                <td className="text-center">
+                                <td className="text-center mx-1">
                                     <a target="_blank" href={`http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${item.Ip}&j=1`}>
                                         {item.Ip}
                                     </a>
