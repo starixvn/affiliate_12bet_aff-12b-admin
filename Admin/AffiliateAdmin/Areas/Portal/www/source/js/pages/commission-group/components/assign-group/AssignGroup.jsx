@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { post } from '../../../../modules/ajaxRequest';
-import { Col, FormGroup, Label, Button, Input } from 'reactstrap';
+import { Col, FormGroup, Label, Button, Input, Alert } from 'reactstrap';
 import { resolveClientUrl } from '../../../../modules/utils';
 import { messages } from '../../modules/constant';
 import Loader from '../../../../components/Loader';
@@ -14,7 +14,13 @@ export default class AssignGroup extends Component {
             selectedGroup = commGroupList.length ? Number(commGroupList[0].Id) : 0
         }
 
-        this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, { isPrivateGroup: false, isShowLoader: false });
+        this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, {
+            isPrivateGroup: false,
+            isShowLoader: false,
+            isShowMessage: false,
+            isSuccess: true,
+            message: ''
+        });
     }
 
     handleChange = (event) => {
@@ -36,7 +42,11 @@ export default class AssignGroup extends Component {
         }
         else {
             if (affInfo.GroupId > 0 && affInfo.GroupId === selectedGroup) {
-                window.alert(messages.choseAnotherGroup);
+                this.setState({
+                    isShowMessage: true,
+                    isSuccess: false,
+                    message: messages.choseAnotherGroup
+                }, () => window.setTimeout(this.hideMessage, 3000));
                 return;
             }
 
@@ -54,17 +64,28 @@ export default class AssignGroup extends Component {
                     const result = response.data;
 
                     if (result.IsSuccessful) {
-                        window.alert(messages.assignGroupSuccessfully);
+                        this.setState({
+                            isShowMessage: true,
+                            isSuccess: result.IsSuccessful,
+                            message: messages.assignGroupSuccessfully
+                        }, () => window.setTimeout(this.hideMessage, 3000));
+
                         const mainFrame = top.frames["mainFrame"];
-                        if (mainFrame) {
-                            mainFrame.location.reload();
-                        }
-                        else {
-                            window.location.reload();
-                        }
+                        window.setTimeout(() => {
+                            if (mainFrame) {
+                                mainFrame.location.reload();
+                            }
+                            else {
+                                parent.postMessage('closePopup', window.location.origin);
+                            }
+                        }, 3100);
                     }
                     else {
-                        window.alert(result.Message);
+                        this.setState({
+                            isShowMessage: true,
+                            isSuccess: false,
+                            message: result.Message
+                        }, () => window.setTimeout(this.hideMessage, 3000));
                     }
                 }
 
@@ -73,11 +94,20 @@ export default class AssignGroup extends Component {
         }
     }
 
+    hideMessage = () => {
+        this.setState({
+            isShowMessage: false
+        });
+    }
+
     render() {
-        const { commGroupList, selectedGroup, affInfo, isPrivateGroup, isShowLoader } = this.state;
+        const { commGroupList, selectedGroup, affInfo, isPrivateGroup, isShowLoader, isShowMessage, isSuccess, message } = this.state;
         return (
             <div className="assign-normal-group" style={{ padding: 10 }}>
                 <Loader show={isShowLoader} />
+                <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                </Alert>
                 <fieldset>
                     <legend><h6 className="font-weight-bold">Assignee</h6></legend>
                     <p>{affInfo.UserName}</p>

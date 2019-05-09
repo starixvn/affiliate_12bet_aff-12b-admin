@@ -9,7 +9,8 @@
     &-container {
         line-height: 1.8;
         font-weight: 500;
-        width: 248px;
+        font-size: .71rem;
+        width: 242px;
         border-bottom: 10px solid #B9D8EA!important;
         border-right: 5px solid #B9D8EA!important;
         border-style: inset;
@@ -34,9 +35,12 @@
             overflow: hidden;
 
             .row {
-                border-bottom: 1px solid #dee2e6!important;
+                border-bottom: 1px solid #dee2e6;
                 white-space: normal;
                 word-break: break-word;
+                .d-inline-block {
+                    line-height: 1.2;
+                }
             }
         }
 
@@ -83,7 +87,7 @@
 }
 
 .right-panel {
-    width: calc(100% - 288px);
+    width: calc(100% - 282px);
 
     #user-panel{
         width: 100%;

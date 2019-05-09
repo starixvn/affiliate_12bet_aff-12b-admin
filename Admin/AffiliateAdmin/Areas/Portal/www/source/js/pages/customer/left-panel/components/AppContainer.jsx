@@ -9,7 +9,7 @@ export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
     }
-    
+
     render() {
         return (
             <AppLayout>

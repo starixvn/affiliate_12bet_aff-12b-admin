@@ -15,35 +15,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     public class CustomerLeftPanelController : BaseController
     {
         private readonly ICustomerLeftPanelRepository _customerLeftPanelRepository;
-        private readonly IAffiliateService _affiliateService;
-        private readonly ILanguageService _languageService;
 
         public CustomerLeftPanelController(
             ISessionService sessionService,
-            ICustomerLeftPanelRepository customerLeftPanelRepository,
-            IAffiliateService affiliateService,
-            ILanguageService languageService) : base(sessionService)
+            ICustomerLeftPanelRepository customerLeftPanelRepository
+            ) : base(sessionService)
         {
             _customerLeftPanelRepository = customerLeftPanelRepository;
-            _affiliateService = affiliateService;
-            _languageService = languageService;
-        }
-
-        public ActionResult Index(string user)
-        {
-            var model = new CustomerViewModel
-            {
-                AffName = user,
-                LanguageList = _languageService.GetLanguageList()
-            };
-
-            if (string.IsNullOrEmpty(user) && SessionService.AffId != 0)
-            {
-                var affInfo = _affiliateService.GetAffiliateBasicInfo(SessionService.AffId);
-                model.AffName = affInfo.UserName;
-            }
-
-            return View("~/Areas/Portal/Views/Customer/LeftPanel.cshtml", model);
         }
 
         [ValidateAntiForgeryHeader]

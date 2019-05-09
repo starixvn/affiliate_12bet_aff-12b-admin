@@ -15,7 +15,7 @@ import { resolveClientUrl } from '../../../../modules/utils';
 export class PanelList extends PureComponent {
     constructor(props) {
         super(props);
-        
+
         this.affTypeDropdown = React.createRef();
         this.affStatusDropdown = React.createRef();
 
@@ -28,7 +28,27 @@ export class PanelList extends PureComponent {
     }
 
     componentDidMount() {
+        window.addEventListener('message', this.handleClosePopupEvent);
         this.handleGetOnLineList(this.props.affName);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('message', this.handleClosePopupEvent);
+    }
+
+    handleClosePopupEvent = (event) => {
+        if (event.data === 'closePopup') {
+            this.toggleEditingCommissionPopup(false);
+            this.props.getAffiliateInfo(this.props.affName);
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const { affName } = this.props;
+
+        if (affName !== prevProps.affName) {
+            this.handleGetOnLineList(affName);
+        }
     }
 
     async handleGetOnLineList(affName) {
@@ -53,7 +73,7 @@ export class PanelList extends PureComponent {
         const isConfirmed = window.confirm("Are you sure you want to change status for this affiliate?");
         if (isConfirmed) {
             const status = event.target.value;
-            const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: status});
+            const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: status });
             const data = await this.props.updateStatus(param);
 
             if (data.IsSuccessful) {
@@ -112,18 +132,18 @@ export class PanelList extends PureComponent {
             <Panel heading={resource.Commission}>
                 <tr>
                     <td>{resource.CommGroup}</td>
-                    <td className='text-right text-primary'>
+                    <td className='text-right'>
                         {
-                            affiliateInfo.Closed ? affiliateInfo.CommGroupName : 
-                            (<span className='popup' onClick={() => this.toggleEditingCommissionPopup(true)}>{affiliateInfo.CommGroupName}</span>)
+                            affiliateInfo.IsClosed ? (<span className='text-truncate'>{affiliateInfo.CommGroupName}</span>) :
+                                (<span className='popup text-primary' onClick={() => this.toggleEditingCommissionPopup(true)}>{affiliateInfo.CommGroupName}</span>)
                         }
 
-                        <Modal isOpen={isChangingCommissionGroup} backdrop='static' style={{maxWidth: 570}}>
+                        <Modal isOpen={isChangingCommissionGroup} backdrop='static' style={{ maxWidth: 570 }}>
                             <ModalHeader toggle={() => this.toggleEditingCommissionPopup(false)}>
                                 <span className="iconpopup"></span>{title}
                             </ModalHeader>
                             <ModalBody>
-                                <div className="modal-body-wrapper" style={{height: 283, padding: 0}}>
+                                <div className="modal-body-wrapper" style={{ height: 283, padding: 0 }}>
                                     <iframe src={url} width="100%" height="100%" frameBorder="0"></iframe>
                                 </div>
                             </ModalBody>
@@ -199,7 +219,7 @@ export class PanelList extends PureComponent {
         const { onlineInfoList } = this.state;
 
         return onlineInfoList && (
-            <Panel heading={resource.CurrentOnlineList} style={{ overflow: 'auto', maxHeight: 130 }}>
+            <Panel heading={resource.CurrentOnlineList} style={{ overflow: 'auto', maxHeight: 125 }}>
                 <tr>
                     <td width="10" className="text_bold text-center">{resource.Index}</td>
                     <td width="70" className="text_bold text-center">{resource.Ip}</td>

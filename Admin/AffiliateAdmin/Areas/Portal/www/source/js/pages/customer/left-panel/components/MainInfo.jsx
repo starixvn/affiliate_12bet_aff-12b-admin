@@ -10,11 +10,7 @@ export class MainInfo extends PureComponent {
     }
 
     render() {
-        if(!this.props.affiliateInfo){
-            return null;
-        }
-
-        return (
+        return this.props.affiliateInfo && (
             <div>
                 <GeneralInfo />
                 <PanelList />

@@ -12,7 +12,7 @@ const Panel = (props) => {
                 </div>
                 <div id='clear'>
                 </div>
-                <div id='Bleft_Sub0' style={{...style}}>
+                <div id='Bleft_Sub0' style={{ ...style }}>
                     <table className='ltable' width='100%' border='0' cellSpacing='0' cellPadding='0'>
                         <tbody>
                             {children}

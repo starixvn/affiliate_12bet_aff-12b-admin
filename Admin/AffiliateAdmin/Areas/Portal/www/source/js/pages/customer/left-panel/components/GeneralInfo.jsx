@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Row, Col } from 'reactstrap';
 
-import { updateLanguage, setLanguage, changePassword } from '../actions';
+import { updateLanguage } from '../actions';
 import { getAffiliateInfo } from '../../mainpage/actions/loadingDataAction';
 
 import { status, resource } from '../modules/constants';
@@ -113,7 +113,7 @@ export class GeneralInfo extends PureComponent {
                     </Col>
                     <Col sm={7} className='text-right d-inline-block'>
                         {
-                            isApproved && !affiliateInfo.Closed ?
+                            isApproved && !affiliateInfo.IsClosed ?
                                 (<a href="#" className='upper b' target='_blank'>{affiliateInfo.AffName}</a>) :
                                 (<span>{affiliateInfo.AffName}</span>)
                         }{' '}
@@ -179,7 +179,7 @@ function mapStateToProps({ affCommonInfo, leftPanel }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateLanguage, getAffiliateInfo, setLanguage, changePassword }, dispatch);
+    return bindActionCreators({ updateLanguage, getAffiliateInfo }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneralInfo);

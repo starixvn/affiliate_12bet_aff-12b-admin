@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setAffName } from '../actions';
 import { getAffiliateInfo } from '../../mainpage/actions/loadingDataAction';
+import { globalResource } from '../../../../modules/globalResource';
 
 import { Col, Button, Form, Input, FormGroup } from 'reactstrap';
 
@@ -47,7 +48,7 @@ export class SearchBox extends PureComponent {
                     <Col sm={8}>
                         <Input type="text" name="affName" onChange={this.handleChange} onKeyPress={this.handlePressEnter} value={affName} />
                     </Col>
-                    <Button id="search-affName" onClick={this.handleClick}>Search</Button>
+                    <Button id="search-affName" onClick={this.handleClick}>{globalResource.Search}</Button>
                 </FormGroup>
             </Form >
         )
