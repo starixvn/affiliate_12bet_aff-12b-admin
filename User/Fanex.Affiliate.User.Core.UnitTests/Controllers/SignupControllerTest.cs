@@ -213,14 +213,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             ISessionService sessionService = null,
             IAppSetting appSetting = null,
             ICaptchaService captchaService = null,
-            ILanguageService languageService = null)
+            ILanguageService languageService = null,
+            ISecurityQuestionService securityQuestionService = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
             appSetting = appSetting ?? Mock.Of<IAppSetting>();
             captchaService = captchaService ?? Mock.Of<ICaptchaService>();
             languageService = languageService ?? Mock.Of<ILanguageService>();
+            securityQuestionService = securityQuestionService ?? Mock.Of<ISecurityQuestionService>();
 
-            var controller = new SignupController(sessionService, appSetting, accountService, languageService, captchaService);
+            var controller = new SignupController(sessionService, appSetting, accountService, languageService, captchaService, securityQuestionService);
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();
             server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");
@@ -286,7 +288,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 MoreSiteUrls = "EncodedMoreSiteUrls",
                 NoSiteDesc = "EncodedNoSiteDesc",
                 PreferredLanguage = "EncodedPreferredLanguage",
-                Question = "EncodedQuestion",
+                QuestionId = "EncodedQuestion",
                 Answer = "EncodedAnswer",
                 Player_UserName = "EncodedPlayer_UserName",
                 Gender = true,

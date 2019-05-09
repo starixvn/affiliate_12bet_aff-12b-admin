@@ -8,4 +8,7 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_SecretKeyIns" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_VerificationUpd" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_VerificationSuccessIns" Suffix="_xtest"></item>
+
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_SecurityQuestions_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_Affiliate_Ins" Suffix="_xtest"></item>
 </Root>

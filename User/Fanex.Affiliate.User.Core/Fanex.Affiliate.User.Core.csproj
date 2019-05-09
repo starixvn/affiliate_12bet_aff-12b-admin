@@ -204,6 +204,7 @@
     <Compile Include="BusinessService\ContactService.cs" />
     <Compile Include="BusinessService\ICaptchaService.cs" />
     <Compile Include="BusinessService\ICommissionReportService.cs" />
+    <Compile Include="BusinessService\ISecurityQuestionService.cs" />
     <Compile Include="BusinessService\ITwoFactorAuthService.cs" />
     <Compile Include="BusinessService\IVerificationService.cs" />
     <Compile Include="BusinessService\MemberTransactionService.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="BusinessService\IEmailService.cs" />
     <Compile Include="BusinessService\INewsService.cs" />
     <Compile Include="BusinessService\PaymentService.cs" />
+    <Compile Include="BusinessService\SecurityQuestionService.cs" />
     <Compile Include="BusinessService\TwoFactorAuthService.cs" />
     <Compile Include="BusinessService\VerificationService.cs" />
     <Compile Include="Constants\ActionName.cs" />
@@ -287,6 +289,7 @@
     <Compile Include="DTO\Payment.cs" />
     <Compile Include="DTO\ProductItem.cs" />
     <Compile Include="DTO\RsaKeyPair.cs" />
+    <Compile Include="DTO\SecurityQuestion.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResult.cs" />
     <Compile Include="DTO\Transaction.cs" />
@@ -387,7 +390,9 @@
     <Compile Include="Repository\BetList\IBetListRepository.cs" />
     <Compile Include="Repository\EmailHistoryRepository.cs" />
     <Compile Include="Repository\IEmailHistoryRepository.cs" />
+    <Compile Include="Repository\ISecurityQuestionRepository.cs" />
     <Compile Include="Repository\IVerificationRepository.cs" />
+    <Compile Include="Repository\SecurityQuestionRepository.cs" />
     <Compile Include="Repository\UserPanel\CommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\ICommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\MemberRepository.cs" />
@@ -524,6 +529,7 @@
     <Compile Include="ViewModels\LoginResultViewModel.cs" />
     <Compile Include="ViewModels\MemberTransactionViewModel.cs" />
     <Compile Include="ViewModels\ProductPageViewModel.cs" />
+    <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\AccountOverviewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\CommissionReportDataViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningDetailViewModel.cs" />

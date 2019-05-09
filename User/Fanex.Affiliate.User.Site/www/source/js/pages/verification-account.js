@@ -178,7 +178,7 @@
                     },
                     error: function (jqXHR) {
                         var data = jqXHR.responseJSON;
-                        var message = data.IsExpired ? resource.verificationFailed : data.Message;
+                        var message = data ? (data.IsExpired ? resource.verificationFailed : data.Message) : resource.General;
                         message && alert(message);
                     },
                     beforeSend: function () {

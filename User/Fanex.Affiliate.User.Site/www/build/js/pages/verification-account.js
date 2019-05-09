@@ -146,7 +146,7 @@ var VerificationAccount = (function () {
                         $('#VerificationToken').val(response.VerificationToken);
                         $('#verificationAccountGroup').toggleClass('hide', !response.IsOk);
                         updateAction(response.Action);
-                        
+
                         if (!response.IsOk) {
                             alert(response.Message);
                         }
@@ -225,7 +225,7 @@ var VerificationAccount = (function () {
                     },
                     error: function (jqXHR) {
                         var data = jqXHR.responseJSON;
-                        var message = data.IsExpired ? resource.verificationFailed : data.Message;
+                        var message = data ? (data.IsExpired ? resource.verificationFailed : data.Message) : resource.General;
                         message && alert(message);
                     },
                     beforeSend: function () {

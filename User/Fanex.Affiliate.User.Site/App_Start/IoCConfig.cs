@@ -96,6 +96,8 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<VerificationService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<WrapperUtility>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<VerificationRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<SecurityQuestionRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<SecurityQuestionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
