@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label require">@Lang.FName</label>
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(p => p.UserSignUpParam.FirstName, new { @class = "form-control" })
+                        @Html.TextBoxFor(p => p.UserSignUpParam.FirstName, new { Name = "FirstName", @class = "form-control" })
                     </div>
                     <div class="col-sm-offset-3 col-sm-9">
                         @Html.ValidationMessageFor(x => x.UserSignUpParam.FirstName, string.Empty, new { @class = "help-block hide" })
@@ -67,7 +67,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label require">@Lang.LName</label>
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(p => p.UserSignUpParam.LastName, new { @class = "form-control" })
+                        @Html.TextBoxFor(p => p.UserSignUpParam.LastName, new { Name = "LastName", @class = "form-control" })
                     </div>
                     <div class="col-sm-offset-3 col-sm-9">
                         @Html.ValidationMessageFor(x => x.UserSignUpParam.LastName, string.Empty, new { @class = "help-block hide" })
@@ -89,7 +89,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label require">@Lang.EmailSignup</label>
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(p => p.UserSignUpParam.Email, new { @class = "form-control emailInput" })
+                        @Html.TextBoxFor(p => p.UserSignUpParam.Email, new { Name = "Email", @class = "form-control emailInput" })
                     </div>
                     <div class="col-sm-offset-3 col-sm-9">
                         @Html.ValidationMessageFor(x => x.UserSignUpParam.Email, string.Empty, new { @class = "help-block hide" })
@@ -99,7 +99,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label require">@Lang.ReEmail</label>
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(p => p.UserSignUpParam.VerifyEmail, new { @class = "form-control emailInput" })
+                        @Html.TextBoxFor(p => p.UserSignUpParam.VerifyEmail, new { Name = "VerifyEmail", @class = "form-control emailInput" })
                     </div>
                     <div class="col-sm-offset-3 col-sm-9">
                         @Html.ValidationMessageFor(x => x.UserSignUpParam.VerifyEmail, string.Empty, new { @class = "help-block hide" })
@@ -109,7 +109,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label require">@Lang.ContactNumber</label>
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(p => p.UserSignUpParam.Phone, new { @class = "form-control" })
+                        @Html.TextBoxFor(p => p.UserSignUpParam.Phone, new { Name = "Phone", @class = "form-control" })
                     </div>
                     <div class="col-sm-offset-3 col-sm-9">
                         @Html.ValidationMessageFor(x => x.UserSignUpParam.Phone, string.Empty, new { @class = "help-block hide" })
@@ -128,7 +128,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label require">@Lang.Address</label>
                         <div class="col-sm-4">
-                            @Html.TextBoxFor(p => p.UserSignUpParam.Address, new { @class = "form-control" })
+                            @Html.TextBoxFor(p => p.UserSignUpParam.Address, new { Name = "Address", @class = "form-control" })
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
                             @Html.ValidationMessageFor(x => x.UserSignUpParam.Address, string.Empty, new { @class = "help-block hide" })
@@ -138,7 +138,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label require">@Lang.City</label>
                         <div class="col-sm-4">
-                            @Html.TextBoxFor(p => p.UserSignUpParam.City, new { @class = "form-control" })
+                            @Html.TextBoxFor(p => p.UserSignUpParam.City, new { Name = "City", @class = "form-control" })
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
                             @Html.ValidationMessageFor(x => x.UserSignUpParam.City, string.Empty, new { @class = "help-block hide" })
@@ -161,7 +161,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label require">@Lang.PostCode</label>
                         <div class="col-sm-4">
-                            @Html.TextBoxFor(p => p.UserSignUpParam.Postal, new { @class = "form-control" })
+                            @Html.TextBoxFor(p => p.UserSignUpParam.Postal, new { Name = "Postal", @class = "form-control" })
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
                             @Html.ValidationMessageFor(x => x.UserSignUpParam.Postal, string.Empty, new { @class = "help-block hide" })
@@ -200,7 +200,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label require">@Lang.WebsiteURL</label>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(p => p.UserSignUpParam.SiteUrl, new { @class = "form-control" })
+                                @Html.TextBoxFor(p => p.UserSignUpParam.SiteUrl, new { Name = "SiteUrl", @class = "form-control" })
                             </div>
                             <div class="col-sm-1">
                                 <button type="button" class="btn btn-submit" id="btnAddUrl" title="@Lang.AddUrl"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
@@ -224,7 +224,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label require">@Lang.DescWebsite</label>
                         <div class="col-sm-4">
-                            @Html.TextAreaFor(p => p.UserSignUpParam.NoSiteDesc, new { @class = "form-control", @rows = 5, @disabled = "disabled" })
+                            @Html.TextAreaFor(p => p.UserSignUpParam.NoSiteDesc, new { Name = "NoSiteDesc", @class = "form-control", @rows = 5, @disabled = "disabled" })
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
                             @Html.ValidationMessageFor(p => p.UserSignUpParam.NoSiteDesc, string.Empty, new { @class = "help-block hide" })
@@ -257,7 +257,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label require">@Lang.lblSecureQuestion</label>
                         <div class="col-sm-4">
-                            <select class="form-control" name="Question" id="Question" data-val="true" data-val-required="@Lang.errSecQuestionEmpty">
+                            <select class="form-control" name="QuestionId" id="QuestionId" data-val="true" data-val-required="@Lang.errSecQuestionEmpty">
                                 <option value="">@Lang.SelectOne</option>
                                 @foreach (var item in Model.SecurityQuestionList)
                                 {
@@ -273,7 +273,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label require">@Lang.lblYourAnswer</label>
                         <div class="col-sm-4">
-                            @Html.TextBoxFor(p => p.UserSignUpParam.Answer, new { @class = "form-control" })
+                            @Html.TextBoxFor(p => p.UserSignUpParam.Answer, new { Name = "Answer", @class = "form-control" })
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
                             @Html.ValidationMessageFor(x => x.UserSignUpParam.Answer, string.Empty, new { @class = "help-block hide" })
@@ -283,7 +283,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label require">@Lang.Validation</label>
                         <div class="col-sm-4 preference-validation">
-                            @Html.TextBoxFor(p => p.UserSignUpParam.Captcha, new { @class = "form-control", @autocomplete = "off" })
+                            @Html.TextBoxFor(p => p.UserSignUpParam.Captcha, new { Name = "Captcha", @class = "form-control", @autocomplete = "off" })
                             <div class="captcha">
                                 <div class="validation-value"><img id="signupCaptcha" src="" alt="captcha" /></div>
                             </div>
@@ -310,7 +310,7 @@
                                 <label class="control-label require">@Lang.UsernameSignUp</label>
                                 <label class="text-red">(@Lang.NonDeposited)</label>
                                 <div class="">
-                                    @Html.TextBoxFor(p => p.UserSignUpParam.Player_UserName, new { @class = "form-control", @autocomplete = "off" })
+                                    @Html.TextBoxFor(p => p.UserSignUpParam.Player_UserName, new { Name = "Player_UserName", @class = "form-control", @autocomplete = "off" })
                                 </div>
                                 <div class="">
                                     @Html.ValidationMessageFor(x => x.UserSignUpParam.Player_UserName, string.Empty, new { @class = "help-block hide" })
@@ -333,6 +333,6 @@
                     </div>
                 </div>
             </div>
-                                    }
+         }
     </div>
 </div>
