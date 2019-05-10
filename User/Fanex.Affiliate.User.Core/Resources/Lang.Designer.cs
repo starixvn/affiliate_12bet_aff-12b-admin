@@ -79,6 +79,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12ESPORTS.
+        /// </summary>
+        public static string _12ESports {
+            get {
+                return ResourceManager.GetString("_12ESports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12SPORTS.
+        /// </summary>
+        public static string _12Sports {
+            get {
+                return ResourceManager.GetString("_12Sports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About Us.
         /// </summary>
         public static string AboutUs {
@@ -736,6 +754,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BTi SPORTS.
+        /// </summary>
+        public static string BTiSports {
+            get {
+                return ResourceManager.GetString("BTiSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bulgaria .
         /// </summary>
         public static string Bulgaria {
@@ -876,6 +903,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CasinoClubs {
             get {
                 return ResourceManager.GetString("CasinoClubs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Casino Game.
+        /// </summary>
+        public static string CasinoGame {
+            get {
+                return ResourceManager.GetString("CasinoGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Casino Hold&apos;em.
+        /// </summary>
+        public static string CasinoHold {
+            get {
+                return ResourceManager.GetString("CasinoHold", resourceCulture);
             }
         }
         
@@ -1518,6 +1563,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string DominicanRep {
             get {
                 return ResourceManager.GetString("DominicanRep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dragon /Tiger.
+        /// </summary>
+        public static string Dragon {
+            get {
+                return ResourceManager.GetString("Dragon", resourceCulture);
             }
         }
         
@@ -2584,6 +2638,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IM ESPORTS (ESPORTS BULL).
+        /// </summary>
+        public static string ImESports {
+            get {
+                return ResourceManager.GetString("ImESports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Important.
         /// </summary>
         public static string Important {
@@ -2944,11 +3007,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Live Games.
+        ///   Looks up a localized string similar to Live Casino.
         /// </summary>
-        public static string LiveGames {
+        public static string LiveCasino {
             get {
-                return ResourceManager.GetString("LiveGames", resourceCulture);
+                return ResourceManager.GetString("LiveCasino", resourceCulture);
             }
         }
         
@@ -3361,6 +3424,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Msgkickout {
             get {
                 return ResourceManager.GetString("Msgkickout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiplayer.
+        /// </summary>
+        public static string Multiplayer {
+            get {
+                return ResourceManager.GetString("Multiplayer", resourceCulture);
             }
         }
         
@@ -4310,7 +4382,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12DIAMOND (OPUS &amp; PRAGMATIC PLAY).
+        ///   Looks up a localized string similar to 12DIAMOND (OPUS).
         /// </summary>
         public static string Product12DIAMOND {
             get {
@@ -4346,7 +4418,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12PEARL (ASIA GAMING) .
+        ///   Looks up a localized string similar to 12PEARL (ASIA GAMING).
         /// </summary>
         public static string Product12PEARL {
             get {
@@ -4355,7 +4427,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12QUARZT (ISOFTBET).
+        ///   Looks up a localized string similar to 12QUARZT (ISOFTBET, PRAGMATIC PLAY).
         /// </summary>
         public static string Product12QUARZT {
             get {
