@@ -67,7 +67,7 @@
     <Setting Key="Aff_AffiliateUpdStatus" SpName="Aff_AffiliateUpdStatus" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateUpdClosedStatus" SpName="Aff_AffiliateUpdClosedStatus" DbName="affiliate_12bet" />
     <Setting Key="Aff_UpdAffType" SpName="Aff_UpdAffType" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateSelEditInfo" SpName="Aff_AffiliateSelEditInfo" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateSelEditInfo" SpName="Aff_AffiliateSelEditInfo_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateUpdInfo" SpName="Aff_AffiliateUpdInfo" DbName="affiliate_12bet" />
   </Function>
   <Function Name="MediaGallery">
