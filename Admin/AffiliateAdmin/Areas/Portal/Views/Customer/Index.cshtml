@@ -1,27 +1,12 @@
 ﻿@{
-    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
-}
-@model Fanex.Affiliate.Admin.Core.ViewModels.Customer.CustomerViewModel
-
-@section styles{
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/user-panel-layout.css")" rel="stylesheet" />
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/customer.css")" rel="stylesheet" />
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
 }
 
-@section scripts{
-    <script type="text/javascript">
-        window.initialState = {
-            today: '@DateTime.Now.ToString("MM/dd/yyyy")',
-            selectedUserPanel: null,
-            affCommonInfo: null,
-            leftPanel: {
-                affName: '@Model.AffName',
-                languageList: @Html.Raw(Json.Encode(Model.LanguageList))
-            },
-            customerStatistics: null,
-            userPanel: null
-        }
-    </script>
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/customer/customer.js")"></script>
+@{
+    var queryString = Request.QueryString.ToString();
+    var defaultRelativeUrl = Url.Content("~/Portal/Customer/Main") + queryString;
 }
-<div id="root"></div>
+
+<div class="mainFrameWrapper">
+    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content(defaultRelativeUrl)"></iframe>
+</div>

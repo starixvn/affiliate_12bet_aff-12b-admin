@@ -2103,6 +2103,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\main.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\main.scss" />
+    <Content Include="Areas\Portal\Views\Customer\Main.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
