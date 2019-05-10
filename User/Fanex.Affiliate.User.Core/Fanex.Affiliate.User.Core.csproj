@@ -521,6 +521,7 @@
     <Compile Include="Utilities\RequestHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="DTO\UserPanel\AccountInformation.cs" />
+    <Compile Include="Utilities\SymmetricEncryptionUtility.cs" />
     <Compile Include="Utilities\WrapperUtility.cs" />
     <Compile Include="ViewModels\AuthenticationFormViewModel.cs" />
     <Compile Include="ViewModels\BetList\MainBetListViewModel.cs" />

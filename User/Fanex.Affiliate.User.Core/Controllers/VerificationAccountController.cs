@@ -91,7 +91,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 Message = result.Message,
                 VerificationToken = verificationSession.Token,
                 Action = _verificationService.CreateActionLink(
-                    AppSetting.RsaPublicKeyEncodedXml,
+                    AppSetting.SymmetricPassword,
+                    AppSetting.SymmetricSalt,
                     Convert.ToInt32(AppSetting.GetValue("ExpirationCodeInMinute")))
             });
         }
@@ -200,7 +201,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 IsOk = result.IsOk,
                 Message = result.Message,
                 Action = _verificationService.CreateActionLink(
-                    AppSetting.RsaPublicKeyEncodedXml,
+                    AppSetting.SymmetricPassword,
+                    AppSetting.SymmetricSalt,
                     Convert.ToInt32(AppSetting.GetValue("ExpirationCodeInMinute")))
             };
         }

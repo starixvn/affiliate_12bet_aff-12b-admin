@@ -41,10 +41,12 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         string RsaPrivateKey { get; }
 
-        string RsaPublicKeyEncodedXml { get; }
-
         int LoginTimeout { get; }
 
         DateTime StatementAvailableFrom { get; }
+
+        string SymmetricPassword { get; }
+
+        string SymmetricSalt { get; }
     }
 }

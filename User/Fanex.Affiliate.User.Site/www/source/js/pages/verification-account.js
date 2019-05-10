@@ -146,7 +146,7 @@
                 var authMessage = encryptedQueryString + verificationToken + captcha + code;
                 var hashMessage = CryptoJS.HmacSHA256(authMessage, verificationToken).toString();
 
-                var url = Site.resolveRelativeUrl("Execute") + '/' + encodeURIComponent($('#ActionLink').val());
+                var url = Site.resolveRelativeUrl("Execute") + '?callInfo=' + encodeURIComponent($('#ActionLink').val());
                 var param = {
                     __RequestVerificationToken: csrfToken,
                     LoginInfo: encryptedQueryString,

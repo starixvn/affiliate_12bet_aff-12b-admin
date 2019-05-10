@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.Filters
     {
         public override bool IsValidForRequest(ControllerContext controllerContext, MethodInfo methodInfo)
         {
-            return controllerContext.HttpContext.Request.RawUrl.StartsWith(VirtualPathUtility.ToAbsolute("~/Execute/"));
+            return controllerContext.HttpContext.Request.RawUrl.StartsWith(VirtualPathUtility.ToAbsolute("~/Execute"));
         }
     }
 }

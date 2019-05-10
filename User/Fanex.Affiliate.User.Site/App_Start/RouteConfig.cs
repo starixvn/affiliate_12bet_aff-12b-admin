@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.User.Site
                     @"/signup.aspx",new UrlSchema{Controller="Signup",Action=IndexAction}
                 }
             }));
-            var encryptedRoute = new Route("Execute/{encryptedQuery}", new EncryptedRouteHandler());
+            var encryptedRoute = new Route("Execute", new EncryptedRouteHandler());
             routes.Add(encryptedRoute);
 
             routes.MapRoute(

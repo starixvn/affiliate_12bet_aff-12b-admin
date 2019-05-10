@@ -102,14 +102,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return isValid;
         }
 
-        public VerificationAction CreateActionLink(string publicKey, int expirationInMinute)
+        public VerificationAction CreateActionLink(string key, string salt, int expirationInMinute)
         {
             var nowTicks = _wrapperUtility.GetNowDateTime().Ticks.ToString();
             var queryString = "controller=VerificationAccount&action=VerifyAccount&t=" + nowTicks + "&e=" + expirationInMinute;
 
             return new VerificationAction
             {
-                Link = ConverterUtils.Base64Encode(_cryptographyService.RsaEncrypt(publicKey, queryString)),
+                Link = ConverterUtils.Base64Encode(SymmetricEncryptionUtility.Encrypt<AesManaged>(queryString, key, salt)),
                 TimeToken = nowTicks
             };
         }

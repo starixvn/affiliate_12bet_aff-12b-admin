@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.SessionState;
-using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
@@ -29,15 +29,13 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
             }
         }
 
-        public ICryptographyService CryptographyService { get; set; }
-
         public IAppSetting AppSetting { get; set; }
 
         public void ProcessRequest(HttpContext context)
         {
             try
             {
-                var encryptedQuery = _requestContext.RouteData.GetRequiredString("encryptedQuery")?.Trim();
+                var encryptedQuery = _requestContext.HttpContext.Request.QueryString["callInfo"]?.Trim();
                 var parseQueryResult = TryParseQueryString(encryptedQuery);
 
                 if (!parseQueryResult.IsValid && parseQueryResult.IsExpired)
@@ -109,12 +107,11 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
 
         private string DecryptQueryString(string encryptedQuery)
         {
-            var cryptographyService = CryptographyService ?? DependencyResolver.Current.GetService<ICryptographyService>();
             var appSetting = AppSetting ?? DependencyResolver.Current.GetService<IAppSetting>();
 
             var decodedString = ConverterUtils.Base64Decode(encryptedQuery);
 
-            return cryptographyService.RsaDecrypt(appSetting.RsaPrivateKey, decodedString);
+            return SymmetricEncryptionUtility.Decrypt<AesManaged>(decodedString, appSetting.SymmetricPassword, appSetting.SymmetricSalt);
         }
 
         private static bool IsExpired(string timeTickString, int expirationByMinute)

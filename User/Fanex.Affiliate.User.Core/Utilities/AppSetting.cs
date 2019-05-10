@@ -44,9 +44,11 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string RsaPrivateKey => GetValue("RsaPrivateKey");
 
-        public string RsaPublicKeyEncodedXml => GetValue("RsaPublicKeyEncodedXml");
-
         public int LoginTimeout => Convert.ToInt32(GetValue("LoginTimeout"));
+
+        public string SymmetricPassword => GetValue("SymmetricPassword");
+
+        public string SymmetricSalt => GetValue("SymmetricSalt");
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }

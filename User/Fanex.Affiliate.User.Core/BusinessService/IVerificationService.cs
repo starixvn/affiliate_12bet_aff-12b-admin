@@ -9,6 +9,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         bool IsValidOtp(VerificationOtpParam param);
 
-        VerificationAction CreateActionLink(string publicKey, int expirationInMinute);
+        VerificationAction CreateActionLink(string key, string salt, int expirationInMinute);
     }
 }
