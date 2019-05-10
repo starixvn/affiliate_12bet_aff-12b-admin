@@ -19,7 +19,7 @@ namespace DataHandler
             hsParam.Add("aff_minneteller", "0");
             hsParam.Add("aff_minmoneybookers", "0");
             hsParam.Add("aff_minplayer", "0");
-            DbResult result = DbHelper.Execute("Aff_AffiliateSelEditInfo", DBType.AFFILIATE_12BET, hsParam);
+            DbResult result = DbHelper.Execute("Aff_AffiliateSelEditInfo_xtest", DBType.AFFILIATE_12BET, hsParam);
             strMinMoneyBooker = NumberFormat.DecFormat(result.Outputs["aff_minmoneybookers"], 0);
             strMinNetteller = NumberFormat.DecFormat(result.Outputs["aff_minneteller"], 0);
             strMinWire = NumberFormat.DecFormat(result.Outputs["aff_minwire"], 0);
