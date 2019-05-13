@@ -5,9 +5,15 @@
     .btn-link {
         height: 40px;
         line-height: 40px;
+        margin-right: 0;
 
         &:hover {
             background-color: #c11b00;
+        }
+    }
+    @media screen and (max-width: 374px) {
+        .btn-link {
+            font-size: 11px;
         }
     }
 }

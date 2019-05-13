@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
@@ -836,9 +836,13 @@
     <Content Include="www\source\styles\Images\banner-main-right.jpg" />
     <Content Include="www\source\styles\Images\bg-adv_contact.png" />
     <Content Include="www\source\styles\Images\bg-banner-signup.png" />
+    <Content Include="www\build\styles\Images\products\bg-casino_affiliate.jpg" />
+    <Content Include="www\source\styles\Images\products\bg-casino_affiliate.jpg" />
     <Content Include="www\source\styles\Images\bg-Commission-Structure_Banner.png" />
     <Content Include="www\source\styles\Images\bg-FAQ_banner.png" />
     <Content Include="www\source\styles\Images\bg-get-banner.png" />
+    <Content Include="www\build\styles\Images\products\bg-sports_affiliate.jpg" />
+    <Content Include="www\source\styles\Images\products\bg-sports_affiliate.jpg" />
     <Content Include="www\source\styles\Images\bg-Sports_products.png" />
     <Content Include="www\source\styles\Images\bg-Terms_&amp;_conditions_banner.png" />
     <Content Include="www\source\styles\Images\bgLeft.jpg" />
@@ -1131,6 +1135,10 @@
     <Content Include="Views\UserPanel\Popup\Index.cshtml" />
     <Content Include="www\source\styles\pages\user-panel.scss" />
     <Content Include="packages.config" />
+    <Content Include="www\build\styles\Images\products\bg-casino_affiliate.webp" />
+    <Content Include="www\build\styles\Images\products\bg-sports_affiliate.webp" />
+    <Content Include="www\source\styles\Images\products\bg-sports_affiliate.webp" />
+    <Content Include="www\source\styles\Images\products\bg-casino_affiliate.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

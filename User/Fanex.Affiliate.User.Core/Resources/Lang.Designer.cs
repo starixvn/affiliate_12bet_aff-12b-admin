@@ -1567,7 +1567,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dragon /Tiger.
+        ///   Looks up a localized string similar to Dragon/Tiger.
         /// </summary>
         public static string Dragon {
             get {
