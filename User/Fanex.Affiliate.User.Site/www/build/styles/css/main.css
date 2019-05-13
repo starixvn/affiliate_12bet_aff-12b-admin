@@ -1054,50 +1054,36 @@ input[type="checkbox"], input[type="radio"] {
   @media screen and (max-width: 767px) {
     .banner-product {
       height: 120px; } }
-
-.banner-product-sport {
-  flex-direction: column;
-  justify-content: center; }
-  .banner-product-sport .text-red {
-    margin-bottom: -260px; }
-  @media screen and (min-width: 768px) and (max-width: 1199px) {
-    .banner-product-sport {
-      height: 200px; }
-      .banner-product-sport .text-red {
+  .banner-product.banner-product-sport {
+    flex-direction: column;
+    justify-content: center; }
+    .banner-product.banner-product-sport .text-red {
+      margin-bottom: -260px; }
+    @media screen and (min-width: 768px) and (max-width: 1199px) {
+      .banner-product.banner-product-sport .text-red {
         margin-bottom: -170px; } }
-  @media screen and (max-width: 767px) {
-    .banner-product-sport {
-      height: 120px; }
-      .banner-product-sport .text-red {
+    @media screen and (max-width: 767px) {
+      .banner-product.banner-product-sport .text-red {
         margin-bottom: -30px; } }
-
-.banner-product-casino .text-red {
-  margin-top: -2rem;
-  font-size: 15px; }
-
-@media screen and (min-width: 768px) and (max-width: 1199px) {
-  .banner-product-casino {
-    height: 200px; }
-    .banner-product-casino .text-red {
+  .banner-product.banner-product-casino .text-red {
+    margin-top: -2rem;
+    font-size: 15px; }
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    .banner-product.banner-product-casino .text-red {
       margin-top: -3.25rem; } }
-
-@media screen and (max-width: 767px) {
-  .banner-product-casino {
-    height: 120px; }
-    .banner-product-casino .text-red {
+  @media screen and (max-width: 767px) {
+    .banner-product.banner-product-casino .text-red {
       margin-top: -4.25rem;
       font-size: 12px; } }
-
-@media screen and (max-width: 424px) {
-  .banner-product-casino .text-red {
-    margin-top: -4rem;
-    margin-left: -0.75rem;
-    font-size: 10px; } }
-
-@media screen and (max-width: 374px) {
-  .banner-product-casino .text-red {
-    margin-top: -4.25rem;
-    margin-left: -1.75rem; } }
+  @media screen and (max-width: 424px) {
+    .banner-product.banner-product-casino .text-red {
+      margin-top: -4rem;
+      margin-left: -0.75rem;
+      font-size: 10px; } }
+  @media screen and (max-width: 374px) {
+    .banner-product.banner-product-casino .text-red {
+      margin-top: -4.25rem;
+      margin-left: -1.75rem; } }
 
 .no-webp .banner-terms-condition {
   background-image: url("../Images/bg-Terms_&_conditions_banner.png"); }
