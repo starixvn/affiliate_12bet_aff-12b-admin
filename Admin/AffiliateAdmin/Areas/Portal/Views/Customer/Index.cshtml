@@ -4,7 +4,7 @@
 
 @{
     var queryString = Request.QueryString.ToString();
-    var defaultRelativeUrl = Url.Content("~/Portal/Customer/Main") + queryString;
+    var defaultRelativeUrl = Url.Content("~/Portal/Customer/Main?") + queryString;
 }
 
 <div class="mainFrameWrapper">
