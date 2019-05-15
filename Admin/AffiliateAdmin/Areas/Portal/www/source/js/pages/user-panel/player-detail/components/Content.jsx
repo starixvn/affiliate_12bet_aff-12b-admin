@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { post } from '../../../../modules/ajaxRequest';
+import { maxWidth } from '../../../../modules/constants';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { headerText } from '../modules/constants';
@@ -113,7 +114,7 @@ export class Content extends PureComponent {
             <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1000}
-                    autoWidth={true}
+                    maxWidth={maxWidth}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(data.gridData)}

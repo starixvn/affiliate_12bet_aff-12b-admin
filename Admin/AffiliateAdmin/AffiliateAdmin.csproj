@@ -1605,6 +1605,11 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\reduxComponentFactory.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\menu.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\service.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\shared\service.js" />
@@ -2104,6 +2109,9 @@
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\main.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\main.scss" />
     <Content Include="Areas\Portal\Views\Customer\Main.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenu.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenuItem.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

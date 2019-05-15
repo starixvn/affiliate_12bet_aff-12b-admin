@@ -7,6 +7,7 @@ import { Button } from 'reactstrap';
 
 import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
+import { maxWidth } from '../../../../modules/constants';
 
 import { setSelectedSiteUrl, toggleLoader, fetchData } from '../actions';
 
@@ -92,8 +93,8 @@ export class Content extends Component {
         return gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1010}
-                    autoWidth={true}
+                    minWidth={1000}
+                    maxWidth={maxWidth}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}

@@ -9,7 +9,7 @@ import { headerText, globalResource, transTypeList, transaction, MONTHLY_WINLOST
 import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { setParamForDailyEarning } from '../../../customer/user-panel/actions';
-import { selectedAllProduct } from '../../../../modules/constants';
+import { selectedAllProduct, maxWidth } from '../../../../modules/constants';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -136,7 +136,7 @@ export class Content extends PureComponent {
             PageIndex: pageIndex,
             PageSize: pageSize
         };
-        const newParam = {...this.props.param, pageIndex, pageSize};
+        const newParam = { ...this.props.param, pageIndex, pageSize };
 
         this.props.setPagingOption(newPaging);
         this.fetchData(newParam);
@@ -150,7 +150,7 @@ export class Content extends PureComponent {
                 <div className="table-responsive table-striped my-2">
                     <Table
                         minWidth={1000}
-                        autoWidth={true}
+                        maxWidth={maxWidth}
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}

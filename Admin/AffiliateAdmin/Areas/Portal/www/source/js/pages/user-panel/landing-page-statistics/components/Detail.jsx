@@ -6,6 +6,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerTitle } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
+import { maxWidth } from '../../../../modules/constants';
 
 import { toggleLoader, setPagingOption, fetchDetailData } from '../actions';
 
@@ -101,8 +102,8 @@ export class Detail extends Component {
         return this.props.selectedPage && (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1010}
-                    autoWidth={true}
+                    minWidth={1000}
+                    maxWidth={maxWidth}
                     autoHeight={false}
                     bodyHeight={300}
                     header={this._renderHeader()}

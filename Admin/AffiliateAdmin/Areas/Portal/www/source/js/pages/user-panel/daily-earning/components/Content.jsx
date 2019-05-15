@@ -9,7 +9,7 @@ import { formatDecimal } from '../../../../modules/numberFormat';
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { resource } from '../modules/constants';
-import { selectedAllProduct } from '../../../../modules/constants';
+import { selectedAllProduct, maxWidth } from '../../../../modules/constants';
 import { setParamForDailyEarningDetail } from '../../../customer/user-panel/actions';
 
 export class Content extends PureComponent {
@@ -115,7 +115,7 @@ export class Content extends PureComponent {
             <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1000}
-                    autoWidth={true}
+                    maxWidth={maxWidth}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData, productColumnClassName)}

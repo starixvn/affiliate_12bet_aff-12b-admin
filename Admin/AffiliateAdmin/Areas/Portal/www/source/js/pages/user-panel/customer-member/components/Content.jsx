@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { post } from '../../../../modules/ajaxRequest';
+import { maxWidth } from '../../../../modules/constants';
 
 import { resource } from '../modules/constants';
 import { toggleLoader, setPagingOption } from '../actions';
@@ -100,7 +101,7 @@ export class Content extends PureComponent {
             <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1000}
-                    autoWidth={true}
+                    maxWidth={maxWidth}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(data)}

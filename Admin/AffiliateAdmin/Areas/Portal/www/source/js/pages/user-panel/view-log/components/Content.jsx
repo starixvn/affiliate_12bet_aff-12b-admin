@@ -7,6 +7,7 @@ import { Button } from 'reactstrap';
 
 import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
+import { maxWidth } from '../../../../modules/constants';
 
 import { setPagingOption, toggleLoader, setShowIdList, fetchData } from '../actions';
 
@@ -145,7 +146,7 @@ export class Content extends PureComponent {
                 <div className="table-responsive table-striped my-2">
                     <Table
                         minWidth={1000}
-                        autoWidth={true}
+                        maxWidth={maxWidth}
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}

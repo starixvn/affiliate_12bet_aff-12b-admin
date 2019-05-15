@@ -15,3 +15,8 @@ export const money = {
 }
 
 export const selectedAllProduct = 0;
+
+const maxRightPanelWidth = window.innerWidth - 278;
+const customerStatisticWidth = 1010;
+
+export const maxWidth = customerStatisticWidth > maxRightPanelWidth ? customerStatisticWidth : maxRightPanelWidth;
