@@ -13,7 +13,6 @@
     using MetalModels;
     using Newtonsoft.Json;
     using Resources;
-    using Extensions;
 
     [CustomAuthorize]
     public class MyAccountController : BaseController

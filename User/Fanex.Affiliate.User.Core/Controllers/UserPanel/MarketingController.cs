@@ -96,7 +96,8 @@
             var selectedDomain = _marketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
                                                     .FirstOrDefault(d => d.DomainId == selectedDomainId);
             var bannerTypeList = _marketingService.GetBannerTypeList(SessionService.IsInternal);
-            var languageList = string.IsNullOrEmpty(selectedLanguage) ? GetLanguageList(bannerTypeList) : null;
+            var languageList = string.IsNullOrEmpty(selectedLanguage) ?
+                MarketingHelper.GetLanguageList(bannerTypeList, userSession.PreferredLanguage) : null;
 
             var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);
 
@@ -144,27 +145,6 @@
             };
 
             return _marketingService.GenerateLinkList(linkGenerationParam);
-        }
-        private IEnumerable<SelectListItem> GetLanguageList(IEnumerable<BannerType> bannerTypeList)
-        {
-            var languageByType = bannerTypeList.Where(t => t.Type.MatchWith(BannerTypeName.Language));
-
-            var dataList = new List<SelectListItem>();
-            foreach (var item in languageByType)
-            {
-                var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.EnglishName.MatchWith(item.Value));
-                if (language != null)
-                {
-                    dataList.Add(new SelectListItem
-                    {
-                        Value = language.Code,
-                        Text = SystemLanguage.GetLanguageText(item.Value),
-                        Selected = language.Code.MatchWith(SessionService.UserSession.PreferredLanguage)
-                    });
-                }
-            }
-
-            return dataList;
         }
     }
 }

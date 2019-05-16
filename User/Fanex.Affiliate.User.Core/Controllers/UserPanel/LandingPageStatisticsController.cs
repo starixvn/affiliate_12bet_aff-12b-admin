@@ -6,12 +6,12 @@
     using System.Web.Mvc;
     using Constants;
     using DTO.UserPanel;
-    using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
+    using Utilities;
     using ViewModels.UserPanel.Statistics;
 
     [CustomAuthorize]
@@ -48,9 +48,11 @@
                 ToDate = now
             };
 
+            var bennerTypeList = _marketingService.GetBannerTypeList(SessionService.IsInternal);
+
             var viewModel = new LandingPageStatisticsViewModel
             {
-                LanguageList = GetLanguageList(),
+                LanguageList = MarketingHelper.GetLanguageList(bennerTypeList, userSession.PreferredLanguage),
                 MemberSitePageList = _marketingService.GetLandingPageList(isInternal),
                 FromDate = landingPageParam.FromDate,
                 ToDate = landingPageParam.ToDate,
@@ -83,29 +85,6 @@
             };
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_LandingPageStatisticsContent.cshtml", viewModel);
-        }
-
-        private IEnumerable<SelectListItem> GetLanguageList()
-        {
-            var languageList = _marketingService.GetBannerTypeList(SessionService.IsInternal)
-                                    .Where(t => t.Type.MatchWith(BannerTypeName.Language));
-
-            var dataList = new List<SelectListItem>();
-            foreach (var item in languageList)
-            {
-                var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.EnglishName.MatchWith(item.Value));
-                if (language != null)
-                {
-                    dataList.Add(new SelectListItem
-                    {
-                        Value = language.Code,
-                        Text = SystemLanguage.GetLanguageText(item.Value),
-                        Selected = language.Code.MatchWith(SessionService.UserSession.PreferredLanguage)
-                    });
-                }
-            }
-
-            return dataList;
         }
 
         private IEnumerable<LandingPageStatistics> GetLandingPageStatisticsData(LandingPageStatisticsParam landingPageParam)

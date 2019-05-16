@@ -515,8 +515,8 @@
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\IAppSetting.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
-    <Compile Include="Utilities\MemberSitePageHelper.cs" />
     <Compile Include="CoreService\MemoryCacheService.cs" />
+    <Compile Include="Utilities\MarketingHelper.cs" />
     <Compile Include="Utilities\Parser.cs" />
     <Compile Include="Utilities\RequestHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />

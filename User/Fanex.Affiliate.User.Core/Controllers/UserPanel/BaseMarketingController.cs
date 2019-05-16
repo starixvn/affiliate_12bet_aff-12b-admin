@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             var viewModel = new SearchFormViewModel
             {
                 CategoryList = GetDataByType(bannerTypeList, categoryType),
-                LanguageList = GetLanguageList(bannerTypeList),
+                LanguageList = MarketingHelper.GetLanguageList(bannerTypeList, SessionService.UserSession.PreferredLanguage),
                 CurrencyList = GetDataByType(bannerTypeList, BannerTypeName.Currency)
             };
 
@@ -61,28 +61,6 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             };
 
             return viewModel;
-        }
-
-        protected IEnumerable<SelectListItem> GetLanguageList(IEnumerable<BannerType> bannerTypeList)
-        {
-            var languageByType = bannerTypeList.Where(t => t.Type.MatchWith(BannerTypeName.Language));
-
-            var dataList = new List<SelectListItem>();
-            foreach (var item in languageByType)
-            {
-                var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.EnglishName.MatchWith(item.Value));
-                if (language != null)
-                {
-                    dataList.Add(new SelectListItem
-                    {
-                        Value = language.Code,
-                        Text = SystemLanguage.GetLanguageText(item.Value),
-                        Selected = language.Code.MatchWith(SessionService.UserSession.PreferredLanguage)
-                    });
-                }
-            }
-
-            return dataList;
         }
 
         protected IEnumerable<SelectListItem> GetDataByType(IEnumerable<BannerType> bannerTypeList, string type)

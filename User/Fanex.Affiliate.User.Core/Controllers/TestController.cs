@@ -171,7 +171,7 @@
 
         private object GetPaymentModel(PaymentRequestType type)
         {
-            const long TranId = 10008751L;
+            const long TranId = 1L;
             const decimal Amount = 989;
 
             return new PaymentEmailParam
