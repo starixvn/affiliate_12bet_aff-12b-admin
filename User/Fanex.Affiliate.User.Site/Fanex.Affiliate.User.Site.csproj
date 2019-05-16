@@ -622,15 +622,6 @@
     <Content Include="www\build\styles\Images\notify\note_icon.gif" />
     <Content Include="www\build\styles\Images\notify\sry.png" />
     <Content Include="www\build\styles\Images\notify\srynf.png" />
-    <Content Include="www\build\styles\Images\products\ad-banner.jpg" />
-    <Content Include="www\build\styles\Images\products\game.en-US.jpg" />
-    <Content Include="www\build\styles\Images\products\game.hi-IN.jpg" />
-    <Content Include="www\build\styles\Images\products\game.id-ID.jpg" />
-    <Content Include="www\build\styles\Images\products\game.ko-KR.jpg" />
-    <Content Include="www\build\styles\Images\products\game.th-TH.jpg" />
-    <Content Include="www\build\styles\Images\products\game.vi-VN.jpg" />
-    <Content Include="www\build\styles\Images\products\game.zh-CN.jpg" />
-    <Content Include="www\build\styles\Images\products\game.zh-TW.jpg" />
     <Content Include="www\source\js\components\jquery.extension.js" />
     <Content Include="www\source\js\components\pagetracking.js" />
     <Content Include="www\source\js\components\validation.custom.js" />
@@ -1115,17 +1106,6 @@
     <Content Include="www\build\styles\Images\apply12bet\3step.zh-TW.webp" />
     <Content Include="www\build\styles\Images\apply12bet\3step.ja-JP.webp" />
     <Content Include="www\build\styles\Images\apply12bet\3step.hi-IN.webp" />
-    <Content Include="www\build\styles\Images\products\ad-banner.webp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\build\styles\Images\products\game.en-US.webp" />
-    <Content Include="www\build\styles\Images\products\game.hi-IN.webp" />
-    <Content Include="www\build\styles\Images\products\game.id-ID.webp" />
-    <Content Include="www\build\styles\Images\products\game.ko-KR.webp" />
-    <Content Include="www\build\styles\Images\products\game.th-TH.webp" />
-    <Content Include="www\build\styles\Images\products\game.vi-VN.webp" />
-    <Content Include="www\build\styles\Images\products\game.zh-CN.webp" />
-    <Content Include="www\build\styles\Images\products\game.zh-TW.webp" />
     <Content Include="Views\UnderMaintenance\Index.cshtml" />
     <Content Include="www\source\styles\Images\banner-main-left.webp" />
     <Content Include="www\source\styles\Images\banner-main-right.webp" />
