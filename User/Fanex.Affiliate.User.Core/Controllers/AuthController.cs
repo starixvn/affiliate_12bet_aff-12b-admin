@@ -135,12 +135,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     }
                     else
                     {
-                        return Redirect(Url.Action("PageNotFound", "Notify"));
+                        return Redirect(Url.Content("~/Notify/PageNotFound"));
                     }
                 }
                 else
                 {
-                    return Redirect(Url.Action("PageNotFound", "Notify"));
+                    return Redirect(Url.Content("~/Notify/PageNotFound"));
                 }
             }
 

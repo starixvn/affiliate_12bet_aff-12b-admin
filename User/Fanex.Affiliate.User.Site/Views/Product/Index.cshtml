@@ -23,7 +23,7 @@
     @if (!Model.IsAuthenticated)
     {
         <div class="col-sm-offset-3 col-sm-6 signup-block">
-            <a href="@Url.Action("Index", "SignUp")" class="btn btn-link btn-block nounderline">@Lang.SignUpAffiliateProgramNow</a>
+            <a href="@Url.Content("~/SignUp")" class="btn btn-link btn-block nounderline">@Lang.SignUpAffiliateProgramNow</a>
         </div>
     }
     @RazorHelper.RenderMovingTopButton()
