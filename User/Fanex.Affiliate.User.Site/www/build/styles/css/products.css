@@ -3,9 +3,13 @@
   margin-bottom: 20px; }
   .signup-block .btn-link {
     height: 40px;
-    line-height: 40px; }
+    line-height: 40px;
+    margin-right: 0; }
     .signup-block .btn-link:hover {
       background-color: #c11b00; }
+  @media screen and (max-width: 374px) {
+    .signup-block .btn-link {
+      font-size: 11px; } }
 
 .table .game-list tr {
   background: transparent; }

@@ -1925,20 +1925,20 @@
     <value>12BET CASINO CLUBS</value>
     <comment>87923</comment>
   </data>
-  <data name="LiveGames" xml:space="preserve">
-    <value>Live Games</value>
+  <data name="LiveCasino" xml:space="preserve">
+    <value>Live Casino</value>
     <comment>87923</comment>
   </data>
-  <data name="SlotGames" xml:space="preserve">
-    <value>Slot Games</value>
+  <data name="Dragon" xml:space="preserve">
+    <value>Dragon/Tiger</value>
     <comment>87923</comment>
   </data>
-  <data name="ProgressiveGames" xml:space="preserve">
-    <value>Progressive Games</value>
+  <data name="CasinoHold" xml:space="preserve">
+    <value>Casino Hold'em</value>
     <comment>87923</comment>
   </data>
-  <data name="TableCardGames" xml:space="preserve">
-    <value>Table/Card Games</value>
+  <data name="Multiplayer" xml:space="preserve">
+    <value>Multiplayer</value>
     <comment>87923</comment>
   </data>
   <data name="ScratchArcadeGames" xml:space="preserve">
@@ -1958,11 +1958,11 @@
     <comment>87923</comment>
   </data>
   <data name="Product12DIAMOND" xml:space="preserve">
-    <value>12DIAMOND (OPUS &amp; PRAGMATIC PLAY)</value>
+    <value>12DIAMOND (OPUS)</value>
     <comment>87923</comment>
   </data>
   <data name="Product12PEARL" xml:space="preserve">
-    <value>12PEARL (ASIA GAMING) </value>
+    <value>12PEARL (ASIA GAMING)</value>
     <comment>87923</comment>
   </data>
   <data name="Product12TOPAZ" xml:space="preserve">
@@ -1986,7 +1986,7 @@
     <comment>87923</comment>
   </data>
   <data name="Product12QUARZT" xml:space="preserve">
-    <value>12QUARZT (ISOFTBET)</value>
+    <value>12QUARZT (ISOFTBET, PRAGMATIC PLAY)</value>
     <comment>87923</comment>
   </data>
   <data name="Product12AMBER" xml:space="preserve">
@@ -2220,5 +2220,29 @@
   </data>
   <data name="EmailSignup" xml:space="preserve">
     <value>Email Address</value>
+  </data>
+  <data name="_12Sports" xml:space="preserve">
+    <value>12SPORTS</value>
+  </data>
+  <data name="BTiSports" xml:space="preserve">
+    <value>BTi SPORTS</value>
+  </data>
+  <data name="_12ESports" xml:space="preserve">
+    <value>12ESPORTS</value>
+  </data>
+  <data name="ImESports" xml:space="preserve">
+    <value>IM ESPORTS (ESPORTS BULL)</value>
+  </data>
+  <data name="CasinoGame" xml:space="preserve">
+    <value>Casino Game</value>
+  </data>
+  <data name="SlotGames" xml:space="preserve">
+    <value>Slot Games</value>
+  </data>
+  <data name="ProgressiveGames" xml:space="preserve">
+    <value>Progressive Games</value>
+  </data>
+  <data name="TableCardGames" xml:space="preserve">
+    <value>Table/Card Games</value>
   </data>
 </root>

@@ -283,7 +283,7 @@
     <value>不丹</value>
   </data>
   <data name="Blackjack" xml:space="preserve">
-    <value>21点</value>
+    <value>二十一点</value>
   </data>
   <data name="Bolivia" xml:space="preserve">
     <value>玻利维亚</value>
@@ -1717,17 +1717,17 @@
   <data name="CasinoClubs" xml:space="preserve">
     <value>12BET 娱乐城</value>
   </data>
-  <data name="LiveGames" xml:space="preserve">
-    <value>真人荷官</value>
+  <data name="LiveCasino" xml:space="preserve">
+    <value>真人娱乐城</value>
   </data>
-  <data name="SlotGames" xml:space="preserve">
-    <value>老虎机游戏</value>
+  <data name="Dragon" xml:space="preserve">
+    <value>龙虎</value>
   </data>
-  <data name="ProgressiveGames" xml:space="preserve">
-    <value>累积游戏</value>
+  <data name="CasinoHold" xml:space="preserve">
+    <value>赌场 Hold'em</value>
   </data>
-  <data name="TableCardGames" xml:space="preserve">
-    <value>桌面/纸牌游戏</value>
+  <data name="Multiplayer" xml:space="preserve">
+    <value>多人游戏</value>
   </data>
   <data name="ScratchArcadeGames" xml:space="preserve">
     <value>刮刮乐/大型电游</value>
@@ -1736,37 +1736,37 @@
     <value>视频扑克</value>
   </data>
   <data name="Product12EMERALD" xml:space="preserve">
-    <value>PT翡翠厅</value>
+    <value>PT翡翠厅 (PLAYTECH)</value>
   </data>
   <data name="Product12RUBY" xml:space="preserve">
-    <value>红宝厅</value>
+    <value>红宝厅 (12BET)</value>
   </data>
   <data name="Product12DIAMOND" xml:space="preserve">
-    <value>钻石厅</value>
+    <value>钻石厅 (OPUS)</value>
   </data>
   <data name="Product12PEARL" xml:space="preserve">
-    <value>珍珠厅</value>
+    <value>珍珠厅 (ASIA GAMING)</value>
   </data>
   <data name="Product12TOPAZ" xml:space="preserve">
-    <value>黄玉厅</value>
+    <value>黄玉厅 (MICRO GAMING、NETENT、FLOW GAMING)</value>
   </data>
   <data name="Product12CRYSTAL" xml:space="preserve">
-    <value>水晶厅</value>
+    <value>水晶厅 (GAME PLAY INTERACTIVE)</value>
   </data>
   <data name="Product12OPAL" xml:space="preserve">
-    <value>欧泊厅</value>
+    <value>欧泊厅 (EBET)</value>
   </data>
   <data name="Product12AMETHYST" xml:space="preserve">
-    <value>紫晶厅</value>
+    <value>紫晶厅 (GOLD DELUXE)</value>
   </data>
   <data name="Product12ONYX" xml:space="preserve">
-    <value>玛瑙厅</value>
+    <value>玛瑙厅 (ALLBET)</value>
   </data>
   <data name="Product12QUARZT" xml:space="preserve">
-    <value>石英厅</value>
+    <value>石英厅 (ISOFTBET、PRAGMATIC PLAY)</value>
   </data>
   <data name="Product12AMBER" xml:space="preserve">
-    <value>琥珀厅</value>
+    <value>琥珀厅 (BETSOFT)</value>
   </data>
   <data name="RevenueShare" xml:space="preserve">
     <value>佣金分成</value>
@@ -2091,5 +2091,29 @@
   </data>
   <data name="EmailSignup" xml:space="preserve">
     <value>电邮地址</value>
+  </data>
+  <data name="_12Sports" xml:space="preserve">
+    <value>12体育</value>
+  </data>
+  <data name="BTiSports" xml:space="preserve">
+    <value>BTi 体育</value>
+  </data>
+  <data name="_12ESports" xml:space="preserve">
+    <value>12电竞</value>
+  </data>
+  <data name="ImESports" xml:space="preserve">
+    <value>IM电竞牛</value>
+  </data>
+  <data name="CasinoGame" xml:space="preserve">
+    <value>娱乐城</value>
+  </data>
+  <data name="SlotGames" xml:space="preserve">
+    <value>老虎机 游戏</value>
+  </data>
+  <data name="ProgressiveGames" xml:space="preserve">
+    <value>累积游戏</value>
+  </data>
+  <data name="TableCardGames" xml:space="preserve">
+    <value>桌面/纸牌游戏</value>
   </data>
 </root>

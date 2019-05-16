@@ -205,7 +205,7 @@
     <value>อาเซอร์ไบจัน</value>
   </data>
   <data name="Baccarat" xml:space="preserve">
-    <value>บ้คคาร่า</value>
+    <value>บาคาร่า</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>ย้อนกลับ</value>
@@ -1709,17 +1709,17 @@
   <data name="CasinoClubs" xml:space="preserve">
     <value>คาสิโนคลับต่างๆใน12BET</value>
   </data>
-  <data name="LiveGames" xml:space="preserve">
+  <data name="LiveCasino" xml:space="preserve">
     <value>คาสิโนสด</value>
   </data>
-  <data name="SlotGames" xml:space="preserve">
-    <value>เกมส์สล็อต</value>
+  <data name="Dragon" xml:space="preserve">
+    <value>มังกร/พยัคฆ์</value>
   </data>
-  <data name="ProgressiveGames" xml:space="preserve">
-    <value>เกมส์โปรเกรสซีฟ</value>
+  <data name="CasinoHold" xml:space="preserve">
+    <value>คาสิโน โฮลเอ็ม</value>
   </data>
-  <data name="TableCardGames" xml:space="preserve">
-    <value>เกมส์โต๊ะ/เกมส์ไพ่</value>
+  <data name="Multiplayer" xml:space="preserve">
+    <value>เล่นทีละหลายโต๊ะ</value>
   </data>
   <data name="ScratchArcadeGames" xml:space="preserve">
     <value>เกมส์ขูดการ์ด/เกมส์ตู้</value>
@@ -1734,7 +1734,7 @@
     <value>12RUBY (12BET)</value>
   </data>
   <data name="Product12DIAMOND" xml:space="preserve">
-    <value>12DIAMOND (OPUS &amp; PRAGMATIC PLAY)</value>
+    <value>12DIAMOND (OPUS)</value>
   </data>
   <data name="Product12PEARL" xml:space="preserve">
     <value>12PEARL (ASIA GAMING) </value>
@@ -1755,7 +1755,7 @@
     <value>12ONYX (ALLBET)</value>
   </data>
   <data name="Product12QUARZT" xml:space="preserve">
-    <value>12QUARZT (ISOFTBET)</value>
+    <value>12QUARZT (ISOFTBET, PRAGMATIC PLAY)</value>
   </data>
   <data name="Product12AMBER" xml:space="preserve">
     <value>12AMBER (BETSOFT)</value>
@@ -2083,5 +2083,29 @@
   </data>
   <data name="EmailSignup" xml:space="preserve">
     <value>อีเมลล์แอดเดรส</value>
+  </data>
+  <data name="_12Sports" xml:space="preserve">
+    <value>หน้ากีฬา 12BET</value>
+  </data>
+  <data name="BTiSports" xml:space="preserve">
+    <value>หน้ากีฬา BTi</value>
+  </data>
+  <data name="_12ESports" xml:space="preserve">
+    <value>12อีสปอร์ต</value>
+  </data>
+  <data name="ImESports" xml:space="preserve">
+    <value>IM อีสปอร์ต (อีสปอร์ตบลู)</value>
+  </data>
+  <data name="CasinoGame" xml:space="preserve">
+    <value>เกมส์คาสิโน</value>
+  </data>
+  <data name="SlotGames" xml:space="preserve">
+    <value>เกมส์สล็อต</value>
+  </data>
+  <data name="ProgressiveGames" xml:space="preserve">
+    <value>เกมส์โปรเกรสซีฟ</value>
+  </data>
+  <data name="TableCardGames" xml:space="preserve">
+    <value>เกมส์โต๊ะ/เกมส์ไพ่</value>
   </data>
 </root>

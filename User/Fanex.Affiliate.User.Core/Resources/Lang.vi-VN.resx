@@ -1706,25 +1706,25 @@
     <value>Xác nhận đơn đăng ký chương trình kết nối 12BET</value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
-    <value>12BET CASINO </value>
+    <value>12BET CASINO CLUBS</value>
   </data>
-  <data name="LiveGames" xml:space="preserve">
-    <value>Game Trực Tuyến</value>
+  <data name="LiveCasino" xml:space="preserve">
+    <value>Live Casino</value>
   </data>
-  <data name="SlotGames" xml:space="preserve">
-    <value>Game Slot</value>
+  <data name="Dragon" xml:space="preserve">
+    <value>Dragon/Tiger</value>
   </data>
-  <data name="ProgressiveGames" xml:space="preserve">
-    <value>Game Lũy Tiến</value>
+  <data name="CasinoHold" xml:space="preserve">
+    <value>Casino Hold'em</value>
   </data>
-  <data name="TableCardGames" xml:space="preserve">
-    <value>Game Bàn &amp; Bài</value>
+  <data name="Multiplayer" xml:space="preserve">
+    <value>Multiplayer</value>
   </data>
   <data name="ScratchArcadeGames" xml:space="preserve">
     <value>Game Scratch/Arcade</value>
   </data>
   <data name="VideoPokerGames" xml:space="preserve">
-    <value>Video Poker </value>
+    <value>Video Poker Games</value>
   </data>
   <data name="Product12EMERALD" xml:space="preserve">
     <value>12EMERALD (PLAYTECH)</value>
@@ -1733,7 +1733,7 @@
     <value>12RUBY (12BET)</value>
   </data>
   <data name="Product12DIAMOND" xml:space="preserve">
-    <value>12DIAMOND (OPUS &amp; PRAGMATIC PLAY)</value>
+    <value>12DIAMOND (OPUS)</value>
   </data>
   <data name="Product12PEARL" xml:space="preserve">
     <value>12PEARL (ASIA GAMING) </value>
@@ -1754,7 +1754,7 @@
     <value>12ONYX (ALLBET)</value>
   </data>
   <data name="Product12QUARZT" xml:space="preserve">
-    <value>12QUARZT (ISOFTBET)</value>
+    <value>12QUARZT (ISOFTBET, PRAGMATIC PLAY)</value>
   </data>
   <data name="Product12AMBER" xml:space="preserve">
     <value>12AMBER (BETSOFT)</value>
@@ -2085,5 +2085,29 @@
   </data>
   <data name="EmailSignup" xml:space="preserve">
     <value>Địa chỉ email</value>
+  </data>
+  <data name="_12Sports" xml:space="preserve">
+    <value>12THỂ THAO</value>
+  </data>
+  <data name="BTiSports" xml:space="preserve">
+    <value>BTi THỂ THAO</value>
+  </data>
+  <data name="_12ESports" xml:space="preserve">
+    <value>12ESPORT</value>
+  </data>
+  <data name="ImESports" xml:space="preserve">
+    <value>IM ESPORTS (ESPORTS BULL)</value>
+  </data>
+  <data name="CasinoGame" xml:space="preserve">
+    <value>Casino Game</value>
+  </data>
+  <data name="SlotGames" xml:space="preserve">
+    <value>Slot Games</value>
+  </data>
+  <data name="ProgressiveGames" xml:space="preserve">
+    <value>Progressive Games</value>
+  </data>
+  <data name="TableCardGames" xml:space="preserve">
+    <value>Table/Card Games</value>
   </data>
 </root>
