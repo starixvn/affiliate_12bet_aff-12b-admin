@@ -11,7 +11,6 @@
     using Newtonsoft.Json;
     using Resources;
     using Utilities;
-    using ViewModels;
 
     public class SignupController : BaseController
     {
@@ -37,13 +36,16 @@
         [HttpGet]
         public ActionResult Index()
         {
-            var model = new SignUpViewModel
-            {
-                SecurityQuestionList = _securityQuestionService.GetSecurityQuestions(SessionService.CurrentLanguage),
-                UserSignUpParam = new UserSignUpParam()
-            };
+            return View(new UserSignUpParam());
+        }
 
-            return View(model);
+        [HttpGet]
+        [ChildActionOnly]
+        public ActionResult SecurityQuestion()
+        {
+            var model = _securityQuestionService.GetSecurityQuestions(SessionService.CurrentLanguage);
+
+            return PartialView("~/Views/Signup/_SecurityQuestion.cshtml", model);
         }
 
         [HttpPost]

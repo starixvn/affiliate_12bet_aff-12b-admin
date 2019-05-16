@@ -337,9 +337,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="karma.conf.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Views\CommissionStructure\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Promotion\Index.cshtml" />
@@ -1143,6 +1140,7 @@
     <Content Include="Views\Shared\Email\VerificationAccount\Content.vi-VN.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.zh-TW.cshtml" />
+    <Content Include="Views\Signup\_SecurityQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
