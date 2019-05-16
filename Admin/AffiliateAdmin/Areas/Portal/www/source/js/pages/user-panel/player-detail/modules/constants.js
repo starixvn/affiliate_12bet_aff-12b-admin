@@ -1,5 +1,7 @@
 ﻿import { globalResource } from '../../../../modules/globalResource';
 
+export { globalResource };
+
 export const headerText = {
     Index: '#',
     UserName: 'User Name',

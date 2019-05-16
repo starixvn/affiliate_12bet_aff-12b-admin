@@ -24,9 +24,9 @@ export class Content extends PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        const { pagingOption, param } = this.props;
+        const { pagingOption, param, affId } = this.props;
 
-        if (param !== prevProps.param) {
+        if (param !== prevProps.param || affId !== prevProps.affId) {
             const newParam = Object.assign({}, param, { pageIndex: 1, pageSize: pagingOption.PageSize });
             this.fetchData(newParam);
         }
@@ -39,7 +39,7 @@ export class Content extends PureComponent {
         const data = await this.props.fetchData(postParam);
 
         this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
-        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0 });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
 
         this.props.toggleLoader(false);
     }

@@ -37,9 +37,8 @@ export class Content extends PureComponent {
         const postData = { ...param, affId };
         const data = await this.props.fetchData(postData);
 
-        const { MainData, TotalItem } = data;
-        this.setState({ gridData: MainData, shouldResetScrollPosition: true });
-        this.props.setPagingOption({ TotalItem });
+        this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
 
         this.props.toggleLoader(false);
     }

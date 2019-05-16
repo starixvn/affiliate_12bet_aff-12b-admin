@@ -14,14 +14,14 @@ const AppContainer = (props) => {
             <Loader show={props.isShowLoader} />
             <Filter />
             <Content />
-            {props.selectedSiteUrl && <Detail />}
+            <Detail />
         </AppLayout>
     );
 }
 
 function mapStateToProps({ userPanel }) {
-    const { isShowLoader, selectedSiteUrl } = userPanel;
-    return Object.assign({}, { isShowLoader, selectedSiteUrl });
+    const { isShowLoader } = userPanel;
+    return Object.assign({}, { isShowLoader });
 }
 
 export default connect(mapStateToProps)(AppContainer);

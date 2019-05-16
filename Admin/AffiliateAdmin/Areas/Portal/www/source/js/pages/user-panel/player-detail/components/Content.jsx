@@ -6,8 +6,8 @@ import { post } from '../../../../modules/ajaxRequest';
 import { maxWidth } from '../../../../modules/constants';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { headerText } from '../modules/constants';
-import { setPagingOption } from '../actions/index';
+import { headerText, globalResource } from '../modules/constants';
+import { setPagingOption, toggleLoader, fetchData } from '../actions';
 import { selectedAllProduct } from '../modules/constants';
 
 export class Content extends PureComponent {
@@ -28,16 +28,14 @@ export class Content extends PureComponent {
     }
 
     async _fetchData(param) {
-        const response = await post('Portal/UserPanel/PlayerDetail/GetPlayerDetailList', param);
-        if (response && response.status === 200) {
-            const { MainData, TotalItem } = response.data;
+        this.props.toggleLoader(true);
 
-            this.props.setPagingOption({ TotalItem });
+        const data = await this.props.fetchData(param);
 
-            this.setState({
-                data: { gridData: MainData }
-            });
-        }
+        this.setState({ data: { gridData: data ? data.MainData : null } });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
+
+        this.props.toggleLoader(false);
     }
 
     _renderHeader() {
@@ -61,12 +59,20 @@ export class Content extends PureComponent {
         const productColumnClassName = productId === selectedAllProduct ? 'text-right' : 'text-right highlight';
         const dataRows = [];
 
-        const { pagingOption } = this.props;
-        const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
+        if (dataList && dataList.length) {
+            const { pagingOption } = this.props;
+            const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
-        for (let i = 0; i < dataList.length; i++) {
-            const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, startIndex + i, productColumnClassName));
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
+
+                dataRows.push(this._buildDataRow(dataItem, startIndex + i, productColumnClassName));
+            }
+        }
+        else {
+            dataRows.push(<Row>
+                <Cell className="text-center" colSpan="9">{globalResource.NoInfo}</Cell>
+            </Row>);
         }
 
         return dataRows;
@@ -135,7 +141,7 @@ function mapStateToProps({ userPanel }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

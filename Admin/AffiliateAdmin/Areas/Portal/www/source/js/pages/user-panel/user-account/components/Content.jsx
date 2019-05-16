@@ -207,7 +207,8 @@ export class Content extends PureComponent {
 function mapStateToProps({ affCommonInfo, userPanel }) {
     const { affId } = affCommonInfo;
     const { userAccountInfo, moreSiteUrlsList } = userPanel;
-    return Object.assign({}, { affId, userAccountInfo, moreSiteUrlsList });
+
+    return Object.assign({}, { affId, userAccountInfo: userAccountInfo ? userAccountInfo : null, moreSiteUrlsList });
 }
 
 function mapDispatchToProps(dispatch) {

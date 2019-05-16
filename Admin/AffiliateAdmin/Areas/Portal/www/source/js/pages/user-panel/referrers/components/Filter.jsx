@@ -21,7 +21,7 @@ export class Filter extends PureComponent {
         const firstDayOfCurrentMonth = `${now.getMonth() + 1}/01/${now.getFullYear()}`;
 
         this.state = {
-            deviceType: deviceType || deviceTypes[0],
+            deviceType: deviceType || 0,
             fromDate: fromDate || firstDayOfCurrentMonth,
             toDate: toDate || this.nowString
         }
@@ -31,6 +31,14 @@ export class Filter extends PureComponent {
         this.handleSearch();
     }
 
+    componentDidUpdate(prevProps) {
+        const { param } = this.props;
+
+        if (param !== prevProps.param) {
+            this.setState({ deviceType: param.deviceType, fromDate: param.fromDate, toDate: param.toDate });
+            this.props.setSelectedSiteUrl(null);
+        }
+    }
 
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
@@ -98,7 +106,6 @@ export class Filter extends PureComponent {
 
 function mapStateToProps({ today, userPanel }) {
     const { param } = userPanel;
-
     return Object.assign({}, {
         today,
         param

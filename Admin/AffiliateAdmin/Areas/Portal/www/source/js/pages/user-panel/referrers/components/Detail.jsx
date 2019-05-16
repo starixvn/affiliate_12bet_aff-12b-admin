@@ -23,7 +23,7 @@ export class Detail extends Component {
         const { pagingOption, selectedSiteUrl, param } = this.props;
 
         if (selectedSiteUrl && selectedSiteUrl !== prevProps.selectedSiteUrl) {
-            const postParam = { ...param, selectedSiteUrl, pageIndex: 1, pageSize: pagingOption.PageSize };
+            const postParam = { ...param, selectedSiteUrl, PageIndex: 1, PageSize: pagingOption.PageSize };
             this.fetchData(postParam);
         }
     }
@@ -35,9 +35,8 @@ export class Detail extends Component {
         const postData = { ...param, affId };
         const data = await this.props.fetchDetailData(postData);
 
-        const { MainData, TotalItem } = data;
-        this.setState({ gridData: MainData });
-        this.props.setPagingOption({ TotalItem });
+        this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.PageSize });
 
         this.props.toggleLoader(false);
     }
@@ -128,7 +127,7 @@ function mapStateToProps({ affCommonInfo, userPanel }) {
     return Object.assign({}, {
         affId,
         pagingOption,
-        selectedSiteUrl,
+        selectedSiteUrl: selectedSiteUrl ? selectedSiteUrl : null,
         param
     });
 }

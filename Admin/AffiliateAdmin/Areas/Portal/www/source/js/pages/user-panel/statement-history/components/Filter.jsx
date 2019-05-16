@@ -1,4 +1,4 @@
-﻿import React, {PureComponent} from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
@@ -30,10 +30,10 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
-        this.handleSetParam();
+        this.handleSearch();
     }
 
-    handleSetParam() {
+    handleSearch = () => {
         const { isGetAll, fromDate, toDate } = this.state;
         const newParam = Object.assign({}, {
             isGetAll,
@@ -53,10 +53,6 @@ export class Filter extends PureComponent {
 
     handleChangeToDate = (momentDate) => {
         this.setState({ toDate: momentDate.format("MM/DD/YYYY") });
-    }
-
-    handleSearch = () => {
-        this.handleSetParam();
     }
 
     render() {

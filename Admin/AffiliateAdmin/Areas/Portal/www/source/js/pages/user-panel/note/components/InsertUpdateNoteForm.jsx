@@ -23,7 +23,7 @@ export class InsertUpdateNoteForm extends PureComponent {
     componentDidUpdate(prevProps) {
         const { noteInfo } = this.props;
 
-        if (noteInfo !== prevProps.noteInfo) {
+        if (noteInfo && noteInfo !== prevProps.noteInfo) {
             this.setState({ noteContent: noteInfo.noteContent })
         }
     }
@@ -100,7 +100,7 @@ export class InsertUpdateNoteForm extends PureComponent {
         const { isShowMessage, isSuccess, message } = this.state;
         const { isShowPopup, noteInfo } = this.props;
 
-        const isInsert = noteInfo.noteId === 0;
+        const isInsert = noteInfo && noteInfo.noteId === 0;
         const popupTitle = isInsert ? resource.AddNote : resource.UpdateNote;
         const buttonTitle = isInsert ? globalResource.Add : globalResource.Update;
 
@@ -144,7 +144,7 @@ function mapStateToProps({ affCommonInfo, userPanel }) {
         affId,
         isShowPopup,
         pagingOption,
-        noteInfo
+        noteInfo: noteInfo ? noteInfo : null
     });
 }
 

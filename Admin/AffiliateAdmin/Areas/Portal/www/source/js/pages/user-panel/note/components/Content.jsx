@@ -105,7 +105,7 @@ export class Content extends PureComponent {
     render() {
         const { noteList } = this.props;
 
-        return (
+        return noteList && (
             <div className="data-content">
                 <div className="my-2">
                     <Button outline type="button" onClick={() => this.handleShowPopup(0)}>{globalResource.Add}</Button>
@@ -136,7 +136,7 @@ function mapStateToProps({ affCommonInfo, userPanel }) {
     return Object.assign({}, {
         affId,
         pagingOption,
-        noteList,
+        noteList: noteList ? noteList : null,
         noteInfo
     });
 }

@@ -17,10 +17,10 @@ export class Filter extends PureComponent {
         }
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.handleClickSearch();
     }
-    
+
 
     handleChange = (event) => {
         const { name, value } = event.target;
@@ -38,7 +38,7 @@ export class Filter extends PureComponent {
         const { selectedTrackingCode } = this.state;
         const { trackingCodeList } = this.props;
 
-        return (
+        return trackingCodeList && (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
@@ -65,7 +65,7 @@ function mapStateToProps({ userPanel }) {
     const { trackingCodeList } = userPanel;
 
     return Object.assign({}, {
-        trackingCodeList
+        trackingCodeList: trackingCodeList ? trackingCodeList : null
     });
 }
 

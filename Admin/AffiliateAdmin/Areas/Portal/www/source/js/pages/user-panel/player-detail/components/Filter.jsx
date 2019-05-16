@@ -30,12 +30,23 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
+        this.handleSearch();
+
         if (this.state.productList.length === 0) {
             this.handleGetProductList();
         }
     }
 
-    handleGetProductList = async() => {
+    componentDidUpdate(prevProps) {
+        const { today } = this.props;
+        if (prevProps.today !== today) {
+            const monthDate = new Date(today);
+
+            this.setState({ monthDate });
+        }
+    }
+
+    handleGetProductList = async () => {
         const productList = await getProductList();
         this.setState({ productList });
     }
@@ -58,9 +69,7 @@ export class Filter extends PureComponent {
         return `${shortedMonthNames[month - 1]}-${year}`
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-
+    handleSearch = () => {
         const { selectedProduct, monthDate } = this.state;
         const { affId } = this.props;
 
@@ -134,7 +143,7 @@ export class Filter extends PureComponent {
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                     </FormGroup>
 
-                    <Button outline color="primary" type="button" onClick={this.handleSubmit}>
+                    <Button outline color="primary" type="button" onClick={this.handleSearch}>
                         <span className="oi oi-magnifying-glass"></span> {resource.Search}
                     </Button>
 
@@ -147,11 +156,14 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo }) {
+function mapStateToProps({ today, affCommonInfo, userPanel }) {
+    const { param } = userPanel;
     const { affId } = affCommonInfo;
+    const monthDate = param && param.monthDate;
+    const newMonthDate = monthDate === undefined || monthDate === '' ? today : monthDate;
 
     return Object.assign({}, {
-        today,
+        today: newMonthDate,
         affId
     });
 }

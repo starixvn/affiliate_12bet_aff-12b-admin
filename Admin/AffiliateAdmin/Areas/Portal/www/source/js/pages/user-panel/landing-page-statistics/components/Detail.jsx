@@ -35,7 +35,7 @@ export class Detail extends Component {
         const data = await this.props.fetchDetailData(param);
 
         this.setState({ gridData: data ? data.MainData : null });
-        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
 
         this.props.toggleLoader(false);
     }

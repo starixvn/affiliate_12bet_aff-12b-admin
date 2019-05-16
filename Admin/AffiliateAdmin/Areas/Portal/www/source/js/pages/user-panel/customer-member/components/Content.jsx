@@ -7,7 +7,7 @@ import { post } from '../../../../modules/ajaxRequest';
 import { maxWidth } from '../../../../modules/constants';
 
 import { resource } from '../modules/constants';
-import { toggleLoader, setPagingOption } from '../actions';
+import { toggleLoader, setPagingOption, fetchData } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -28,15 +28,12 @@ export class Content extends PureComponent {
 
     fetchData = async (param) => {
         this.props.toggleLoader(true);
-        const postParam = { ...param, affId: this.props.affId };
-        const url = 'Portal/UserPanel/CustomerMember/GetCustomerMember';
-        const response = await post(url, postParam);
-        if (response && response.status === 200) {
-            const { MainData, TotalItem } = response.data;
 
-            this.setState({ data: MainData });
-            this.props.setPagingOption({ TotalItem });
-        }
+        const postParam = { ...param, affId: this.props.affId };
+        const data = await this.props.fetchData(postParam);
+
+        this.setState({ data: data ? data.MainData : null });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
 
         this.props.toggleLoader(false);
     }
@@ -46,7 +43,7 @@ export class Content extends PureComponent {
             PageIndex: pageIndex,
             PageSize: pageSize
         };
-        const newParam = {...this.props.param, pageIndex, pageSize};
+        const newParam = { ...this.props.param, pageIndex, pageSize };
 
         this.props.setPagingOption(newPaging);
         this.fetchData(newParam);
@@ -67,13 +64,22 @@ export class Content extends PureComponent {
     }
 
     _renderDataSection(dataList, canViewMemberEmail) {
-        const { pagingOption } = this.props;
-        const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
         const dataRows = [];
 
-        for (let i = 0; i < dataList.length; i++) {
-            const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, startIndex + i, canViewMemberEmail));
+        if (dataList && dataList.length) {
+            const { pagingOption } = this.props;
+            const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
+
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
+
+                dataRows.push(this._buildDataRow(dataItem, startIndex + i, canViewMemberEmail));
+            }
+        }
+        else {
+            dataRows.push(<Row>
+                <Cell className="text-center" colSpan="6">{resource.NoInfo}</Cell>
+            </Row>);
         }
 
         return dataRows;
@@ -123,7 +129,7 @@ function mapStateToProps({ affCommonInfo, userPanel }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setPagingOption }, dispatch);
+    return bindActionCreators({ toggleLoader, setPagingOption, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

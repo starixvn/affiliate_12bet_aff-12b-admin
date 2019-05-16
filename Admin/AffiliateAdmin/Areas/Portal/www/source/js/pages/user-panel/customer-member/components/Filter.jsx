@@ -22,6 +22,10 @@ export class Filter extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.handleSearch();
+    }
+
     handleChangeInput = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -39,8 +43,8 @@ export class Filter extends React.Component {
         const to = new Date(toDate);
 
         const isOutsideRange = from.getTime() > to.getTime();
-        const newState = isOutsideRange ? 
-            { fromDate: selectedDateString, toDate: selectedDateString } : 
+        const newState = isOutsideRange ?
+            { fromDate: selectedDateString, toDate: selectedDateString } :
             { fromDate: selectedDateString }
 
         this.setState(newState);

@@ -7,24 +7,34 @@ import { Table } from 'reactstrap';
 import { rowTitle, resource } from '../modules/constants';
 import { shortedMonthNames, minMonthDate } from '../../../../modules/constants';
 import { post } from '../../../../modules/ajaxRequest';
-import { resolveClientUrl } from '../../../../modules/utils';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { setMonthDate } from '../actions';
+import { setParamForPlayerDetail, setParamForTrackingStatistics, setParamForReferrers } from '../../user-panel/actions';
 
 const API_URL = "Portal/CustomerStatistics/GetCustomerStatistics";
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
+        const { monthDate } = this.props;
 
         this.state = {
-            data: null
+            data: null,
+            monthDate
         }
     }
 
     componentDidMount() {
         this.fetchData(this.props.monthDate);
+    }
+
+    componentDidUpdate(prevProps) {
+        const { affId, monthDate } = this.props;
+
+        if (prevProps.affId !== affId) {
+            this.setState({ monthDate });
+            this.fetchData(monthDate);
+        }
     }
 
     fetchData = async (monthDate) => {
@@ -47,7 +57,7 @@ export class Content extends PureComponent {
 
     handleSelectMonth = (month, year) => {
         const monthDate = `${month}/1/${year}`;
-        this.props.setMonthDate(monthDate);
+        this.setState({ monthDate });
 
         this.fetchData(monthDate);
     }
@@ -79,7 +89,6 @@ export class Content extends PureComponent {
 
     _renderData(monthDate, data) {
         const { affId, affName } = this.props;
-        const affiliateLinkParam = affId && affName && "&affId=" + affId + "&affName=" + affName;
 
         const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
         const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
@@ -104,7 +113,7 @@ export class Content extends PureComponent {
                     this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
-                                <a href="javascript:;" onClick={() => this.props.handleSetUrl(resolveClientUrl(`Portal/UserPanel/PlayerDetail/Index?isFromStatistics=true&monthDate=${startMonthString}${affiliateLinkParam}`))}>
+                                <a href="javascript:;" onClick={() => this.props.setParamForPlayerDetail({ monthDate: startMonthString })}>
                                     {format(data.ActivePlayerByMonth)}
                                 </a>) : format(data.ActivePlayerByMonth)
                         ),
@@ -116,21 +125,21 @@ export class Content extends PureComponent {
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRate,
-                        (<a href="javascript:;" onClick={() => this.props.handleSetUrl(resolveClientUrl(`Portal/UserPanel/TrackingStatistics/Index?${affiliateLinkParam}`))}>
+                        (<a href="javascript:;" onClick={() => this.props.setParamForTrackingStatistics()}>
                             {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
-                        (<a href="javascript:;" onClick={() => this.props.handleSetUrl(resolveClientUrl(`Portal/UserPanel/Referrers/Index?fromDate=${startMonthString}&toDate=${endMonthString}&deviceType=0${affiliateLinkParam}`))}>
+                        (<a href="javascript:;" onClick={() => this.props.setParamForReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: 0, affId, affName })}>
                             {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
-                        (<a href="javascript:;" onClick={() => this.props.handleSetUrl(resolveClientUrl(`Portal/UserPanel/Referrers/Index?fromDate=${startMonthString}&toDate=${endMonthString}&deviceType=1${affiliateLinkParam}`))}>
+                        (<a href="javascript:;" onClick={() => this.props.setParamForReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: 1, affId, affName })}>
                             {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
                         </a>),
                         resource.NA)
@@ -151,7 +160,7 @@ export class Content extends PureComponent {
 
     render() {
         const { data } = this.state;
-        const monthDate = new Date(this.props.monthDate);
+        const monthDate = new Date(this.state.monthDate);
 
         return data && (
             <div className="my-2">
@@ -170,7 +179,7 @@ function mapStateToProps({ affCommonInfo, today }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setMonthDate, toggleLoader }, dispatch);
+    return bindActionCreators({ toggleLoader, setParamForPlayerDetail, setParamForTrackingStatistics, setParamForReferrers }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
