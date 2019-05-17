@@ -1,11 +1,10 @@
 import React from 'react';
-import { userPanelMenuList } from '../modules/menu';
 import { isActiveMenu } from '../modules/service';
 import UserPanelMenuItem from './UserPanelMenuItem';
 
 const UserPanelMenu = (props) => {
-    const { selectedUserPanel, onClickMenu } = props;
-    const selectedMenuItem = userPanelMenuList.find(p => p.key === selectedUserPanel);
+    const { selectedUserPanel, onClickMenu, isPending, menuList } = props;
+    const selectedMenuItem = menuList.find(p => p.key === selectedUserPanel);
 
     return (
         <div className="user-panel-menu-container">
@@ -18,7 +17,7 @@ const UserPanelMenu = (props) => {
                         <td>
                             <ul class="d-inline-block menu-list">
                                 {
-                                    userPanelMenuList.filter(item => !item.parent).map(item => {
+                                    menuList.filter(item => !item.parent).map(item => {
                                         return (
                                             <UserPanelMenuItem key={item.key} item={item} 
                                                 isActive={isActiveMenu(selectedMenuItem, item)}

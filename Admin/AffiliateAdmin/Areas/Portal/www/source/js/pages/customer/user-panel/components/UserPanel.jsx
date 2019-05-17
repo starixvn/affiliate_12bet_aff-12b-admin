@@ -1,15 +1,21 @@
 import React, { Suspense } from 'react';
 import UserPanelMenu from './UserPanelMenu';
-import { userPanelMenuList } from '../modules/menu';
+import { userPanelMenuList, userPanelPendingMenuList, menuKey } from '../modules/menu';
 
 const UserPanel = (props) => {
-    const { selectedUserPanel, onClickMenu } = props;
-    const componentIndex = userPanelMenuList.findIndex(p => p.key === selectedUserPanel);
-    const UserPanelComponent = componentIndex === -1 ? null : userPanelMenuList[componentIndex].component;
+    const { selectedUserPanel, onClickMenu, isPending } = props;
+
+    if(isPending && selectedUserPanel === menuKey.statementHistory) {
+        props.onClickMenu(menuKey.edit);
+    }
+
+    const menuList = isPending ? userPanelPendingMenuList : userPanelMenuList;
+    const componentIndex = menuList.findIndex(p => p.key === selectedUserPanel);
+    const UserPanelComponent = componentIndex === -1 ? null : menuList[componentIndex].component;
 
     return (
         <div className="user-panel-container">
-            <UserPanelMenu selectedUserPanel={selectedUserPanel} onClickMenu={onClickMenu} />
+            <UserPanelMenu selectedUserPanel={selectedUserPanel} onClickMenu={onClickMenu} isPending={isPending} menuList={menuList}/>
 
             <div class="user-panel-content-container">
                 {

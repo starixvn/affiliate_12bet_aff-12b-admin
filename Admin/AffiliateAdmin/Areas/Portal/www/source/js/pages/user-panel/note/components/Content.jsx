@@ -19,6 +19,7 @@ export class Content extends PureComponent {
     componentDidMount() {
         const { pagingOption, affId } = this.props;
         const param = Object.assign({}, { affId, pageIndex: 1, pageSize: pagingOption.PageSize });
+
         this.props.getNoteList(param);
     }
 
@@ -103,9 +104,9 @@ export class Content extends PureComponent {
     };
 
     render() {
-        const { noteList } = this.props;
+        const { noteList, pagingOption } = this.props;
 
-        return noteList && (
+        return noteList && pagingOption && (
             <div className="data-content">
                 <div className="my-2">
                     <Button outline type="button" onClick={() => this.handleShowPopup(0)}>{globalResource.Add}</Button>
@@ -135,7 +136,7 @@ function mapStateToProps({ affCommonInfo, userPanel }) {
 
     return Object.assign({}, {
         affId,
-        pagingOption,
+        pagingOption: pagingOption ? pagingOption : null,
         noteList: noteList ? noteList : null,
         noteInfo
     });

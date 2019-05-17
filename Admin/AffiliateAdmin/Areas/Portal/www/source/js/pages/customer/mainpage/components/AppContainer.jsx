@@ -12,24 +12,26 @@ const CustomerStatistics = React.lazy(() =>
     import(/* webpackChunkName: "customer-statistics" */ '../../customer-statistics/components/Content'));
 
 const AppContainer = (props) => {
-    const { affId, selectedUserPanel } = props;
+    const { affId, selectedUserPanel, status } = props;
+    const isPending = status && (status.toLowerCase() === 'pending' || status.toLowerCase() === 'disapproved');
+
     return (
         <AppLayout>
             <div className='data-content m-2'>
                 <Row>
-                        <div className="left-panel">
+                    <div className="left-panel">
                         <LeftPanel />
                     </div>
                     <div className="right-panel customer-statistics mx-2">
                         {
-                            affId &&
+                            affId && !isPending &&
                             <Suspense fallback={<div>Loading...</div>}>
                                 <CustomerStatistics />
                             </Suspense>
                         }
                         {
                             affId && selectedUserPanel &&
-                            <UserPanel selectedUserPanel={selectedUserPanel} onClickMenu={props.setSelectedUserPanel} />
+                            <UserPanel selectedUserPanel={selectedUserPanel} onClickMenu={props.setSelectedUserPanel} isPending={isPending} />
                         }
                     </div>
                 </Row>
@@ -39,7 +41,7 @@ const AppContainer = (props) => {
 }
 
 function mapStateToProps({ selectedUserPanel, affCommonInfo }) {
-    return Object.assign({}, { selectedUserPanel, affId: affCommonInfo ? affCommonInfo.affId : null });
+    return Object.assign({}, { selectedUserPanel, affId: affCommonInfo ? affCommonInfo.affId : null, status: affCommonInfo ? affCommonInfo.status : null });
 }
 
 function mapDispatchToProps(dispatch) {

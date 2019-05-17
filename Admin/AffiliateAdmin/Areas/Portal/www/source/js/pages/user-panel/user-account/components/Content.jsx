@@ -162,12 +162,12 @@ export class Content extends PureComponent {
                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                 </Alert>
                 <Row>
-                    <Col xs="6">
+                    <Col xs="6" className="pl-0">
                         <Section title="Personal Information">
                             <Personal />
                         </Section>
                     </Col>
-                    <Col xs="6">
+                    <Col xs="6" className="pr-0">
                         <Section title="Additional Information">
                             <Additional />
                         </Section>
@@ -175,7 +175,7 @@ export class Content extends PureComponent {
                 </Row>
 
                 <Row>
-                    <Col xs="12">
+                    <Col xs="12" className="px-0">
                         <Section title="Email Format Preference">
                             <EmailFormat />
                         </Section>
@@ -183,7 +183,7 @@ export class Content extends PureComponent {
                 </Row>
 
                 <Row>
-                    <Col xs="12">
+                    <Col xs="12" className="px-0">
                         <Section title="Website Information">
                             <WebSite />
                         </Section>
@@ -191,14 +191,16 @@ export class Content extends PureComponent {
                 </Row>
 
                 <Row>
-                    <Col xs="12">
+                    <Col xs="12" className="px-0">
                         <Section title="Payment Information">
                             <Payment />
                         </Section>
                     </Col>
                 </Row>
 
-                <Button className="mb-3" color="success" onClick={this.handleSubmit}>Submit</Button>
+                <Row>
+                    <Button className="mb-3" color="success" onClick={this.handleSubmit}>Submit</Button>
+                </Row>
             </Container>
         );
     }
