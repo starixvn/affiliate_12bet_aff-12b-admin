@@ -23,7 +23,7 @@ class AppContainer extends PureComponent {
         return (
             <AppLayout>
                 <Loader show={this.props.isShowLoader} />
-				<LinkMenu />
+				<LinkMenu param={this.props.param} />
                 <Filter />
                 <Content />
             </AppLayout>
@@ -32,8 +32,8 @@ class AppContainer extends PureComponent {
 }
 
 function mapStateToProps({ dailyEarning }) {
-    const { isShowLoader } = dailyEarning;
-    return Object.assign({}, { isShowLoader });
+    const { isShowLoader, param } = dailyEarning;
+    return Object.assign({}, { isShowLoader, param });
 }
 
 function mapDispatchToProps(dispatch) {

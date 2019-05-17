@@ -2,7 +2,6 @@ import { LEFTPANEL_RECEIVE_AFFINFO, SET_AFF_COMMON_INFO } from './types';
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
-import { loadCustomerStatisticsState } from '../../customer-statistics/modules/service';
 import { setSelectedUserPanel } from '../../user-panel/actions';
 import { userPanelMenuKey } from '../../common/modules/constants';
 
@@ -29,7 +28,7 @@ export const getAffiliateInfo = (affName) => async(dispatch) => {
     const data = response && response.status === 200 && response.data ? response.data : null;
 
     const affCommonInfo = data && { affId: data.AffId, affName, status: data.Status };
-    dispatch(setAffCommonInfo(affCommonInfo)) && affCommonInfo && loadCustomerStatisticsState();
+    dispatch(setAffCommonInfo(affCommonInfo)) && affCommonInfo;
     dispatch(receiveLeftMenuInfo(data));
     data && dispatch(setSelectedUserPanel(userPanelMenuKey.statementHistory));
 

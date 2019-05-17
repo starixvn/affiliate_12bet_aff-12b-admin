@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { setSelectedUserPanel, redirectToDailyEarning } from '../../../customer/user-panel/actions';
-import { selectedAllProduct, monthNames } from '../../../../modules/constants';
+import { monthNames } from '../../../../modules/constants';
+import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
 const LinkMenu = (props) => {
     const { param, affId } = props;
@@ -12,24 +13,31 @@ const LinkMenu = (props) => {
     const dailyEarningParam = {
         affId,
         monthDate,
-        productId: selectedAllProduct
+        productId: param.selectedProductId
     }
 
     return monthDate && (
         <div className="breadcrumb-container">
             <ol className="breadcrumb">
-                <li className="breadcrumb-item"><a href="javascript:;" onClick={() => props.setSelectedUserPanel("StatementHistory")}>Statement History</a></li>
-                <li className="breadcrumb-item"><a href="javascript:;" onClick={() => props.redirectToDailyEarning(dailyEarningParam)}>{`${monthNames[date.getMonth()]} ${date.getFullYear()}`}</a></li>
+                <li className="breadcrumb-item">
+                    <a href="javascript:;" onClick={() => props.setSelectedUserPanel(userPanelMenuKey.statementHistory)}>
+                        Statement History
+                    </a>
+                </li>
+                <li className="breadcrumb-item">
+                    <a href="javascript:;" onClick={() => props.redirectToDailyEarning(dailyEarningParam)}>
+                        {`${monthNames[date.getMonth()]} ${date.getFullYear()}`}
+                    </a>
+                </li>
                 <li className="breadcrumb-item active">{monthDate}</li>
             </ol>
         </div>
     );
 }
 
-function mapStateToProps({ affCommonInfo, userPanel }) {
-    const { param } = userPanel;
+function mapStateToProps({ affCommonInfo }) {
     const { affId } = affCommonInfo;
-    return Object.assign({}, { param, affId });
+    return Object.assign({}, { affId });
 }
 
 function mapDispatchToProps(dispatch) {
