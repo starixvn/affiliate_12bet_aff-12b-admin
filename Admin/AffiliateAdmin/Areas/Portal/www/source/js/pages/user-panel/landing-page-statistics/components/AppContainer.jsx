@@ -1,5 +1,6 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
@@ -8,9 +9,16 @@ import Filter from './Filter';
 import Content from './Content';
 import Detail from './Detail';
 
-export class AppContainer extends Component {
+import { resetUserPanel } from '../../../customer/common/actions';
+import { userPanelMenuKey } from '../../../customer/common/modules/constants';
+
+export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
+    }
+
+    componentWillUnmount() {
+        this.props.resetUserPanel(userPanelMenuKey.landingPageStatistics);
     }
 
     render() {
@@ -25,9 +33,13 @@ export class AppContainer extends Component {
     }
 }
 
-function mapStateToProps({ userPanel }) {
-    const { isShowLoader } = userPanel;
+function mapStateToProps({ landingPageStatistics }) {
+    const { isShowLoader } = landingPageStatistics;
     return Object.assign({}, { isShowLoader });
 }
 
-export default connect(mapStateToProps)(AppContainer);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ resetUserPanel }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

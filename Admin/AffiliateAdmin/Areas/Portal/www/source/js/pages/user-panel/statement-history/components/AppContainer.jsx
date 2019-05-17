@@ -8,11 +8,18 @@ import Filter from './Filter';
 import Content from './Content';
 import PaymentRequestUpdateForm from '../../../payment-request/components/shared/PaymentRequestUpdateForm';
 import { setTransactionId, setParam } from '../actions';
+import { resetUserPanel } from '../../../customer/common/actions';
+import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
     }
+
+    componentWillUnmount () {
+        this.props.resetUserPanel(userPanelMenuKey.statementHistory);
+    }
+    
 
     handleClosePopup = () => {
         this.props.setTransactionId(null);
@@ -40,13 +47,13 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ userPanel }) {
-    const { isShowLoader, transactionId, param } = userPanel;
+function mapStateToProps({ statementHistory }) {
+    const { isShowLoader, transactionId, param } = statementHistory;
     return Object.assign({}, { isShowLoader, transactionId, param });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setTransactionId, setParam }, dispatch);
+    return bindActionCreators({ setTransactionId, setParam, resetUserPanel }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

@@ -167,8 +167,8 @@ export class Content extends PureComponent {
 }
 
 
-function mapStateToProps({ today, affCommonInfo, userPanel }) {
-    const { pagingOption, param } = userPanel;
+function mapStateToProps({ today, affCommonInfo, statementHistory }) {
+    const { pagingOption, param } = statementHistory;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, { today, affId, pagingOption, param });

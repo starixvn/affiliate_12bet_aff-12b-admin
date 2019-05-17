@@ -206,9 +206,9 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, userPanel }) {
+function mapStateToProps({ affCommonInfo, edit }) {
     const { affId } = affCommonInfo;
-    const { userAccountInfo, moreSiteUrlsList } = userPanel;
+    const { userAccountInfo, moreSiteUrlsList } = edit;
 
     return Object.assign({}, { affId, userAccountInfo: userAccountInfo || null, moreSiteUrlsList });
 }

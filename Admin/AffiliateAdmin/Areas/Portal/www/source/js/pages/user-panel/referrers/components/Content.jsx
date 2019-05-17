@@ -106,8 +106,8 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ affCommonInfo, userPanel }) {
-    const { param } = userPanel;
+function mapStateToProps({ affCommonInfo, clickStatistics }) {
+    const { param } = clickStatistics;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {

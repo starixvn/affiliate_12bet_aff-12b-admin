@@ -9,9 +9,10 @@ import { configureStore } from '../../modules/store';
 import reducerRegistry from '../../modules/reducerRegistry';
 
 const store = configureStore(window.initialState, reducer);
-reducerRegistry.setChangeListener(reducers => {
-    store.replaceReducer(combineReducers(reducers));
-});
+console.log(store.getState());
+// reducerRegistry.setChangeListener(reducers => {
+//     store.replaceReducer(combineReducers(reducers));
+// });
 
 export default class App extends React.PureComponent {
     constructor(props) {

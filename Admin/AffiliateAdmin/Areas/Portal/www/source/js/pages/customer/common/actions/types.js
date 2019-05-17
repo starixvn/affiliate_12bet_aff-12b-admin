@@ -1,0 +1,1 @@
+export const RESET_USER_PANEL = 'RESET_USER_PANEL';

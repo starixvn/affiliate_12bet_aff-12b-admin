@@ -156,8 +156,8 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo, userPanel }) {
-    const { param } = userPanel;
+function mapStateToProps({ today, affCommonInfo, playerDetail }) {
+    const { param } = playerDetail;
     const { affId } = affCommonInfo;
     const monthDate = param && param.monthDate;
     const newMonthDate = monthDate ? today : monthDate;

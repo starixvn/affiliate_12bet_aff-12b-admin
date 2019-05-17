@@ -134,8 +134,8 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ userPanel }) {
-    const { param, pagingOption } = userPanel;
+function mapStateToProps({ playerDetail }) {
+    const { param, pagingOption } = playerDetail;
 
     return Object.assign({}, { param, pagingOption });
 }

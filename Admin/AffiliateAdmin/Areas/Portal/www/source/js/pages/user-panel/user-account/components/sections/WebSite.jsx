@@ -94,8 +94,8 @@ export class WebSite extends PureComponent {
     }
 }
 
-function mapStateToProps({ userPanel }) {
-    const { userAccountInfo, moreSiteUrlsList } = userPanel;
+function mapStateToProps({ edit }) {
+    const { userAccountInfo, moreSiteUrlsList } = edit;
     return Object.assign({}, { userAccountInfo, moreSiteUrlsList });
 }
 

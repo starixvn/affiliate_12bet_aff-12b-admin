@@ -130,8 +130,8 @@ export class Content extends PureComponent {
 }
 
 
-function mapStateToProps({ affCommonInfo, userPanel }) {
-    const { pagingOption, noteList, noteInfo } = userPanel;
+function mapStateToProps({ affCommonInfo, note }) {
+    const { pagingOption, noteList, noteInfo } = note;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {

@@ -120,8 +120,8 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ userPanel }) {
-    const { today, param, languageList, pageList } = userPanel;
+function mapStateToProps({ landingPageStatistics }) {
+    const { today, param, languageList, pageList } = landingPageStatistics;
     return Object.assign({}, { today, param, languageList, pageList });
 }
 

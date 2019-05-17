@@ -1,24 +1,40 @@
-﻿import React from "react";
+﻿import React, { PureComponent } from "react";
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import AppLayout from "../../../../layouts/AppLayout";
 import Filter from "./Filter";
 import Content from "./Content";
 import Loader from '../../../../components/Loader';
+import { resetUserPanel } from '../../../customer/common/actions';
+import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
-const AppContainer = (props) => {
-    return (
-        <AppLayout>
-            <Loader show={props.isShowLoader} />
-            <Filter />
-            <Content />
-        </AppLayout>
-    );
+class AppContainer extends PureComponent {
+    constructor(props) {
+        super(props);
+    }
+
+    componentWillUnmount() {
+        this.props.resetUserPanel(userPanelMenuKey.member);
+    }
+
+    render() {
+        return (
+            <AppLayout>
+                <Loader show={this.props.isShowLoader} />
+                <Filter />
+                <Content />
+            </AppLayout>
+        );
+    }
 }
 
-function mapStateToProps({ userPanel }) {
-    const { isShowLoader } = userPanel;
+function mapStateToProps({ member }) {
+    const { isShowLoader } = member;
     return Object.assign({}, { isShowLoader });
 }
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ resetUserPanel }, dispatch);
+}
 
-export default connect(mapStateToProps)(React.memo(AppContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

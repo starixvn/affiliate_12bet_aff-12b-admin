@@ -4,7 +4,7 @@ import { toggleLoader } from '../../../../actions/loaderAction';
 
 import { loadCustomerStatisticsState } from '../../customer-statistics/modules/service';
 import { setSelectedUserPanel } from '../../user-panel/actions';
-import { menuKey } from '../../user-panel/modules/menu';
+import { userPanelMenuKey } from '../../common/modules/constants';
 
 const receiveLeftMenuInfo = (data) => {
     return {
@@ -20,7 +20,7 @@ export const setAffCommonInfo = (data) => {
     }
 }
 
-export const getAffiliateInfo = (affName) => async (dispatch) => {
+export const getAffiliateInfo = (affName) => async(dispatch) => {
     dispatch(toggleLoader(true));
 
     const url = 'Portal/CustomerLeftPanel/GetAffiliateInfo';
@@ -31,7 +31,7 @@ export const getAffiliateInfo = (affName) => async (dispatch) => {
     const affCommonInfo = data && { affId: data.AffId, affName, status: data.Status };
     dispatch(setAffCommonInfo(affCommonInfo)) && affCommonInfo && loadCustomerStatisticsState();
     dispatch(receiveLeftMenuInfo(data));
-    data && dispatch(setSelectedUserPanel(menuKey.statementHistory));
+    data && dispatch(setSelectedUserPanel(userPanelMenuKey.statementHistory));
 
     dispatch(toggleLoader(false));
 }

@@ -120,8 +120,8 @@ export class Detail extends Component {
     }
 }
 
-function mapStateToProps({ affCommonInfo, userPanel }) {
-    const { pagingOption, param, selectedSiteUrl } = userPanel;
+function mapStateToProps({ affCommonInfo, clickStatistics }) {
+    const { pagingOption, param, selectedSiteUrl } = clickStatistics;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {

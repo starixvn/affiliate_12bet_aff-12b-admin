@@ -3,8 +3,8 @@ import { userPanelReducer } from './menu';
 import { post } from '../../../../modules/ajaxRequest';
 
 export const loadUserPanelState = (selectedUserPanel) => {
-    const reducer = selectedUserPanel ? userPanelReducer[selectedUserPanel] : null;
-    reducerRegistry.register('userPanel', reducer);
+    // const reducer = selectedUserPanel ? userPanelReducer[selectedUserPanel] : null;
+    // reducerRegistry.register('userPanel', reducer);
 }
 
 export const isActiveMenu = (selectedMenu, menuItem) => {

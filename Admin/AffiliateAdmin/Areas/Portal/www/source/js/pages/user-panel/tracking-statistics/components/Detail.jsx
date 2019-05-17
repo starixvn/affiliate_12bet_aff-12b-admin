@@ -99,8 +99,8 @@ export class Detail extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, userPanel }) {
-    const { param, selectedMonth } = userPanel;
+function mapStateToProps({ affCommonInfo, trackingStatistics }) {
+    const { param, selectedMonth } = trackingStatistics;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {

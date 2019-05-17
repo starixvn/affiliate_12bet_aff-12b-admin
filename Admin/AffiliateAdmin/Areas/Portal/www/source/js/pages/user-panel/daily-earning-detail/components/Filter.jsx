@@ -59,8 +59,8 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ userPanel }) {
-    const { param } = userPanel;
+function mapStateToProps({ dailyEarningDetail }) {
+    const { param } = dailyEarningDetail;
     return Object.assign({}, { param });
 }
 

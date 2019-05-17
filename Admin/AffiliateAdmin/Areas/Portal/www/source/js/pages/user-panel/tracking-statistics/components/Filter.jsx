@@ -61,8 +61,8 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ userPanel }) {
-    const { trackingCodeList } = userPanel;
+function mapStateToProps({ trackingStatistics }) {
+    const { trackingCodeList } = trackingStatistics;
 
     return Object.assign({}, {
         trackingCodeList: trackingCodeList || null

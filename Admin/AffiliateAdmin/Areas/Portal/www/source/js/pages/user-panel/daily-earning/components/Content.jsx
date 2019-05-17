@@ -127,8 +127,8 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, userPanel }) {
-    const { param } = userPanel;
+function mapStateToProps({ affCommonInfo, dailyEarning }) {
+    const { param } = dailyEarning;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, { affId, param });
