@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void Index_WhenCallWithPost_ModelStateIsInvalid_ReturnCorrectResult()
+        public void Index_ModelStateIsInvalid_ReturnCorrectResult()
         {
             // Arrange
             const string ErrorMessage1 = "ErrorMessage1";
@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void Index_WhenCallWithPost_ContactAppListIsInvalid_ReturnCorrectResult()
+        public void Index_ContactAppListIsInvalid_ReturnCorrectResult()
         {
             // Arrange
             var accountService = new Mock<IAccountService>();
@@ -79,22 +79,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             accountService.Verify(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailBaseParam>()), Times.Never);
             Assert.False(result.IsOk);
             Assert.Equal(Error.RequireIMAccount, result.Message);
-        }
-
-        [Fact]
-        public void Index_WhenCallWithPost_ContactAppListHasAtLeastOneValue_CallServiceSuccessfully()
-        {
-            // Arrange
-            var accountService = new Mock<IAccountService>();
-            var controller = CreateController(accountService.Object);
-            var contactAppList = CreateAppContactList();
-            contactAppList[0].Value = null;
-
-            // Action
-            controller.Index(new UserSignUpParam { Captcha = Constant.Captcha, ContactAppList = contactAppList });
-
-            // Assert
-            accountService.Verify(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailBaseParam>()), Times.Once);
         }
 
         [Fact]
@@ -169,7 +153,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void Index_WhenCallWithPost_ModelStateIsValid_CallServiceWithCorrectEmailParam()
+        public void Index_ModelStateIsValid_CallServiceWithCorrectEmailParam()
         {
             // Arrange
             EmailBaseParam passedEmailParam = null;
@@ -217,8 +201,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             ISecurityQuestionService securityQuestionService = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
+            sessionService.SignUpCaptchaCode = Constant.Captcha;
             appSetting = appSetting ?? Mock.Of<IAppSetting>();
-            captchaService = captchaService ?? Mock.Of<ICaptchaService>();
+            captchaService = captchaService ?? CreateDefaultCaptchaService();
             languageService = languageService ?? Mock.Of<ILanguageService>();
             securityQuestionService = securityQuestionService ?? Mock.Of<ISecurityQuestionService>();
 
@@ -237,6 +222,15 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             controller.Url = new UrlHelper(requestContext);
 
             return controller;
+        }
+
+        private static ICaptchaService CreateDefaultCaptchaService()
+        {
+            var mockCaptchaService = new Mock<ICaptchaService>();
+            mockCaptchaService.Setup(p => p.IsValid(Constant.Captcha, Constant.Captcha, It.IsAny<string>()))
+                .Returns(true);
+
+            return mockCaptchaService.Object;
         }
 
         private UserSignUpParam CreateParam()
