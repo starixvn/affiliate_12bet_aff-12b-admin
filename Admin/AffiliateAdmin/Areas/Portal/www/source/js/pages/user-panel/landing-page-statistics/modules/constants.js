@@ -1,6 +1,4 @@
-﻿import { deviceTypes, headerText } from '../../referrers/modules/constants.js';
-
-export { deviceTypes };
+﻿import { headerText } from '../../referrers/modules/constants.js';
 
 export const headerTitle = {
     Page: 'Page',

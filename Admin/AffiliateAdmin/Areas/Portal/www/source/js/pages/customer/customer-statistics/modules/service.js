@@ -1,4 +1,4 @@
-import customerStatisticsReducer from '../actions';
+import customerStatisticsReducer from '../reducers';
 import reducerRegistry from '../../../../modules/reducerRegistry';
 
 export const loadCustomerStatisticsState = () => {

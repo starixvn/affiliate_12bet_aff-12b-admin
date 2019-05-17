@@ -10,34 +10,34 @@ import { post } from '../../../../modules/ajaxRequest';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { setParamForPlayerDetail, setParamForTrackingStatistics, setParamForReferrers } from '../../user-panel/actions';
+import { redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers } from '../../user-panel/actions';
+import { deviceTypes } from '../../user-panel/modules/constants';
+import { setMonthDate } from '../actions';
 
 const API_URL = "Portal/CustomerStatistics/GetCustomerStatistics";
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
-        const { monthDate } = this.props;
 
         this.state = {
-            data: null,
-            monthDate
+            data: null
         }
     }
 
     componentDidMount() {
-        this.fetchData(this.props.monthDate);
+        this.fetchData(this.props.today);
     }
 
     componentDidUpdate(prevProps) {
-        const { affId, monthDate } = this.props;
+        const { affId, today } = this.props;
 
         if (prevProps.affId !== affId) {
-            this.setState({ monthDate });
-            this.fetchData(monthDate);
+            this.fetchData(today);
         }
     }
 
     fetchData = async (monthDate) => {
+        this.props.setMonthDate(monthDate);
         this.props.toggleLoader(true);
         const { affId } = this.props;
 
@@ -57,8 +57,6 @@ export class Content extends PureComponent {
 
     handleSelectMonth = (month, year) => {
         const monthDate = `${month}/1/${year}`;
-        this.setState({ monthDate });
-
         this.fetchData(monthDate);
     }
 
@@ -113,7 +111,7 @@ export class Content extends PureComponent {
                     this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
-                                <a href="javascript:;" onClick={() => this.props.setParamForPlayerDetail({ monthDate: startMonthString })}>
+                                <a href="javascript:;" onClick={() => this.props.redirectToPlayerDetail({ monthDate: startMonthString })}>
                                     {format(data.ActivePlayerByMonth)}
                                 </a>) : format(data.ActivePlayerByMonth)
                         ),
@@ -125,21 +123,21 @@ export class Content extends PureComponent {
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRate,
-                        (<a href="javascript:;" onClick={() => this.props.setParamForTrackingStatistics()}>
+                        (<a href="javascript:;" onClick={() => this.props.redirectToTrackingStatistics()}>
                             {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
-                        (<a href="javascript:;" onClick={() => this.props.setParamForReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: 0, affId, affName })}>
+                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes['PC/Laptop'] })}>
                             {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
-                        (<a href="javascript:;" onClick={() => this.props.setParamForReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: 1, affId, affName })}>
+                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes.Mobile })}>
                             {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
                         </a>),
                         resource.NA)
@@ -160,7 +158,7 @@ export class Content extends PureComponent {
 
     render() {
         const { data } = this.state;
-        const monthDate = new Date(this.state.monthDate);
+        const monthDate = new Date(this.props.monthDate);
 
         return data && (
             <div className="my-2">
@@ -173,13 +171,13 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, today }) {
+function mapStateToProps({ affCommonInfo, today, customerStatistics }) {
     const { affId } = affCommonInfo;
-    return Object.assign({}, { monthDate: today, affId });
+    return Object.assign({}, { monthDate: customerStatistics.monthDate, today, affId });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setParamForPlayerDetail, setParamForTrackingStatistics, setParamForReferrers }, dispatch);
+    return bindActionCreators({ setMonthDate, toggleLoader, redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

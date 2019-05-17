@@ -144,7 +144,7 @@ function mapStateToProps({ affCommonInfo, userPanel }) {
         affId,
         isShowPopup,
         pagingOption,
-        noteInfo: noteInfo ? noteInfo : null
+        noteInfo: noteInfo || null
     });
 }
 

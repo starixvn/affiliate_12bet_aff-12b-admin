@@ -140,7 +140,7 @@ export class Content extends PureComponent {
     render() {
         const { gridData, shouldResetScrollPosition } = this.state;
 
-        return (
+        return this.props.showIdList && (
             <div className="data-content">
                 <div className="table-responsive table-striped my-2">
                     <Table
@@ -169,7 +169,7 @@ function mapStateToProps({ affCommonInfo, userPanel }) {
     return Object.assign({}, {
         affId,
         pagingOption,
-        showIdList,
+        showIdList: showIdList || null,
         param
     });
 }

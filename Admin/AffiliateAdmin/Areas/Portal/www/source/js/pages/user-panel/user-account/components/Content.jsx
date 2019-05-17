@@ -210,7 +210,7 @@ function mapStateToProps({ affCommonInfo, userPanel }) {
     const { affId } = affCommonInfo;
     const { userAccountInfo, moreSiteUrlsList } = userPanel;
 
-    return Object.assign({}, { affId, userAccountInfo: userAccountInfo ? userAccountInfo : null, moreSiteUrlsList });
+    return Object.assign({}, { affId, userAccountInfo: userAccountInfo || null, moreSiteUrlsList });
 }
 
 function mapDispatchToProps(dispatch) {

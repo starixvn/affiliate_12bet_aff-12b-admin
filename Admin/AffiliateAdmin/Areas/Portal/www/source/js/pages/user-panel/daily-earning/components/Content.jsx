@@ -10,7 +10,7 @@ import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { resource } from '../modules/constants';
 import { selectedAllProduct, maxWidth } from '../../../../modules/constants';
-import { setParamForDailyEarningDetail } from '../../../customer/user-panel/actions';
+import { redirectToDailyEarningDetail } from '../../../customer/user-panel/actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -86,15 +86,15 @@ export class Content extends PureComponent {
             affId,
             monthDate: dataItem.Date,
             productId: param.productId
-        }        
+        }
 
         return (
             <Row>
                 {rowNumber && <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>}
                 <Cell className="text-center" title={dataItem.Date} colSpan={!rowNumber && 2}>
-                    {rowNumber ? 
-                        (<Button className="p-0" color="link" 
-                            onClick={() => this.props.setParamForDailyEarningDetail(dailyEarningDetailParam)}>{dataItem.Date}</Button>) : 
+                    {rowNumber ?
+                        (<Button className="p-0" color="link"
+                            onClick={() => this.props.redirectToDailyEarningDetail(dailyEarningDetailParam)}>{dataItem.Date}</Button>) :
                         dataItem.Date
                     }
                 </Cell>
@@ -135,7 +135,7 @@ function mapStateToProps({ affCommonInfo, userPanel }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setParamForDailyEarningDetail }, dispatch);
+    return bindActionCreators({ toggleLoader, redirectToDailyEarningDetail }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

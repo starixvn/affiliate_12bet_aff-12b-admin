@@ -65,7 +65,7 @@ function mapStateToProps({ userPanel }) {
     const { trackingCodeList } = userPanel;
 
     return Object.assign({}, {
-        trackingCodeList: trackingCodeList ? trackingCodeList : null
+        trackingCodeList: trackingCodeList || null
     });
 }
 

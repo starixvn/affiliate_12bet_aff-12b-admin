@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
-import { deviceTypes, headerTitle } from '../modules/constants';
+import { headerTitle } from '../modules/constants';
 import { setSelectedPage, setParam, setSelectedLanguage } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
+import { deviceTypes } from '../../../customer/user-panel/modules/constants';
 
 const minDate = new Date(2009, 11, 1);
 
@@ -104,8 +105,8 @@ export class Filter extends React.Component {
                         <Label for="deviceType" className="mr-sm-2">{headerTitle.Device}</Label>
                         <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this.handleChange}>
                             {
-                                Object.keys(deviceTypes).map(index => {
-                                    return (<option key={`deviceType-${index}`} value={index}>{deviceTypes[index]}</option>)
+                                Object.keys(deviceTypes).map(key => {
+                                    return (<option key={`deviceType-${deviceTypes[key]}`} value={deviceTypes[key]}>{key}</option>)
                                 })
                             }
                         </Input>

@@ -1,9 +1,4 @@
-﻿export const deviceTypes = {
-    0: 'PC/Laptop',
-    1: 'Mobile'
-}
-
-export const headerText = {
+﻿export const headerText = {
     SiteUrls: 'Site URLs',
     TotalClick: 'Total Click',
     UniqueClick: 'Unique Click',

@@ -8,7 +8,7 @@ import { Button } from 'reactstrap';
 import { headerText, globalResource, transTypeList, transaction, MONTHLY_WINLOST, PAYMENT_REQUEST } from '../modules/constants';
 import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
-import { setParamForDailyEarning } from '../../../customer/user-panel/actions';
+import { redirectToDailyEarning } from '../../../customer/user-panel/actions';
 import { selectedAllProduct, maxWidth } from '../../../../modules/constants';
 
 export class Content extends PureComponent {
@@ -93,7 +93,7 @@ export class Content extends PureComponent {
                     productId: selectedAllProduct
                 }
 
-                return this.props.setParamForDailyEarning(dailyEarningParam);
+                return this.props.redirectToDailyEarning(dailyEarningParam);
             }
         }
     }
@@ -175,7 +175,7 @@ function mapStateToProps({ today, affCommonInfo, userPanel }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, fetchData, setTransactionId, setParamForDailyEarning }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, fetchData, setTransactionId, redirectToDailyEarning }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

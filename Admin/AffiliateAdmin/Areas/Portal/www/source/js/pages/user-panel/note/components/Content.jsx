@@ -136,8 +136,8 @@ function mapStateToProps({ affCommonInfo, userPanel }) {
 
     return Object.assign({}, {
         affId,
-        pagingOption: pagingOption ? pagingOption : null,
-        noteList: noteList ? noteList : null,
+        pagingOption: pagingOption || null,
+        noteList: noteList || null,
         noteInfo
     });
 }

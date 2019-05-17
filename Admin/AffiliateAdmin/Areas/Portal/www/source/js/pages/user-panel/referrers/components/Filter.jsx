@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
-import { deviceTypes, headerText } from '../modules/constants';
+import { headerText } from '../modules/constants';
 import { setSelectedSiteUrl, setParam } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
+import { deviceTypes } from '../../../customer/user-panel/modules/constants';
 
 const minDate = new Date(2009, 11, 1);
 
@@ -21,7 +22,7 @@ export class Filter extends PureComponent {
         const firstDayOfCurrentMonth = `${now.getMonth() + 1}/01/${now.getFullYear()}`;
 
         this.state = {
-            deviceType: deviceType || 0,
+            deviceType: deviceType || deviceTypes['PC/Laptop'],
             fromDate: fromDate || firstDayOfCurrentMonth,
             toDate: toDate || this.nowString
         }
@@ -89,8 +90,8 @@ export class Filter extends PureComponent {
                         <Label for="deviceType" className="mr-sm-2">{headerText.Device}</Label>
                         <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this.handleChange}>
                             {
-                                Object.keys(deviceTypes).map(index => {
-                                    return (<option key={`deviceType-${index}`} value={index}>{deviceTypes[index]}</option>)
+                                Object.keys(deviceTypes).map(key => {
+                                    return (<option key={`deviceType-${deviceTypes[key]}`} value={deviceTypes[key]}>{key}</option>)
                                 })
                             }
                         </Input>

@@ -127,7 +127,7 @@ function mapStateToProps({ affCommonInfo, userPanel }) {
     return Object.assign({}, {
         affId,
         pagingOption,
-        selectedSiteUrl: selectedSiteUrl ? selectedSiteUrl : null,
+        selectedSiteUrl: selectedSiteUrl || null,
         param
     });
 }

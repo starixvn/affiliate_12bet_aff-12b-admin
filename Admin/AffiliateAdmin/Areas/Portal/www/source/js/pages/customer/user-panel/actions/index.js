@@ -19,26 +19,26 @@ export const setSelectedUserPanel = (data) => (dispatch) => {
     dispatch(activeUserPanel(data))
 }
 
-export const setParamForDailyEarning = (data) => (dispatch) => {
+export const redirectToDailyEarning = (data) => (dispatch) => {
     dispatch(setSelectedUserPanel(menuKey.dailyEarning));
     dispatch(setDailyEarningParam(data));
 }
 
-export const setParamForDailyEarningDetail = (data) => (dispatch) => {
+export const redirectToDailyEarningDetail = (data) => (dispatch) => {
     dispatch(setSelectedUserPanel(menuKey.dailyEarningDetail));
     dispatch(setDailyEarningDetailParam(data));
 }
 
-export const setParamForPlayerDetail = (data) => (dispatch) => {
+export const redirectToPlayerDetail = (data) => (dispatch) => {
     dispatch(setSelectedUserPanel(menuKey.playerDetail));
     dispatch(setPlayerDetailParam(data));
 }
 
-export const setParamForTrackingStatistics = () => (dispatch) => {
+export const redirectToTrackingStatistics = () => (dispatch) => {
     dispatch(setSelectedUserPanel(menuKey.trackingStatistics));
 }
 
-export const setParamForReferrers = (data) => (dispatch) => {
+export const redirectToReferrers = (data) => (dispatch) => {
     dispatch(setSelectedUserPanel(menuKey.clickStatistics));
     dispatch(setReferrersParam(data));
 }

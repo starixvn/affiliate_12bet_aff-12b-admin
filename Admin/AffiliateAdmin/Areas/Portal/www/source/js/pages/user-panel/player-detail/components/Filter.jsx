@@ -160,7 +160,7 @@ function mapStateToProps({ today, affCommonInfo, userPanel }) {
     const { param } = userPanel;
     const { affId } = affCommonInfo;
     const monthDate = param && param.monthDate;
-    const newMonthDate = monthDate === undefined || monthDate === '' ? today : monthDate;
+    const newMonthDate = monthDate ? today : monthDate;
 
     return Object.assign({}, {
         today: newMonthDate,
