@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { RESET_USER_PANEL } from '../../common/actions/types';
+import { RESET_USER_PANEL } from '../../left-panel/actions/types';
 
 import leftPanel from '../../left-panel/reducers';
 import { affCommonInfo, today } from './commonReducer';

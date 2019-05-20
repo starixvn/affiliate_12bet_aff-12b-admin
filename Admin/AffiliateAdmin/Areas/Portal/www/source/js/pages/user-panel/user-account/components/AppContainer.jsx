@@ -5,16 +5,10 @@ import { bindActionCreators } from 'redux';
 import AppLayout from '../../../../layouts/AppLayout';
 import Content from './Content';
 import Loader from '../../../../components/Loader';
-import { resetUserPanel } from '../../../customer/common/actions';
-import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
 class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
-    }
-
-    componentWillUnmount() {
-        this.props.resetUserPanel(userPanelMenuKey.edit);
     }
 
     render() {
@@ -33,7 +27,7 @@ function mapStateToProps({ edit }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ resetUserPanel }, dispatch);
+    return bindActionCreators({ }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

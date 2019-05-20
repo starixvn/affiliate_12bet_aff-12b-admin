@@ -7,16 +7,10 @@ import LinkMenu from './LinkMenu';
 import Filter from './Filter';
 import Content from './Content';
 import Loader from '../../../../components/Loader';
-import { resetUserPanel } from '../../../customer/common/actions';
-import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
 class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
-    }
-
-    componentWillUnmount() {
-        this.props.resetUserPanel(userPanelMenuKey.dailyEarning);
     }
 
     render() {
@@ -37,7 +31,7 @@ function mapStateToProps({ dailyEarning }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ resetUserPanel }, dispatch);
+    return bindActionCreators({ }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

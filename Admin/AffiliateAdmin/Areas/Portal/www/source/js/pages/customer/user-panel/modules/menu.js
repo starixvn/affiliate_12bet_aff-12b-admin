@@ -1,5 +1,6 @@
 import React from 'react';
 import { userPanelMenuKey as menuKey } from '../../common/modules/constants';
+import { withUserPanel } from '../modules/withUserPanel';
 
 const StatementHistory = React.lazy(() =>
     import ( /* webpackChunkName: "statementHistory" */ '../../../user-panel/statement-history/components/AppContainer'));
@@ -27,21 +28,21 @@ const LandingPageStatistics = React.lazy(() =>
     import ( /* webpackChunkName: "landingPageStatistics" */ '../../../user-panel/landing-page-statistics/components/AppContainer'));
 
 export const userPanelMenuList = [
-    { key: menuKey.statementHistory, name: 'Statement History', component: StatementHistory, parent: null },
-    { key: menuKey.dailyEarning, name: '', component: DailyEarning, parent: menuKey.statementHistory },
-    { key: menuKey.dailyEarningDetail, name: '', component: DailyEarningDetail, parent: menuKey.statementHistory },
-    { key: menuKey.edit, name: 'Edit', component: UserAccount, parent: null },
-    { key: menuKey.note, name: 'Note', component: Note, parent: null },
-    { key: menuKey.playerDetail, name: 'Players Detail', component: PlayerDetail, parent: null },
-    { key: menuKey.adjustment, name: 'Adjustment', component: Adjustment, parent: null },
-    { key: menuKey.trackingStatistics, name: 'Tracking Statistics', component: TrackingStatistics, parent: null },
-    { key: menuKey.member, name: 'Member', component: Member, parent: null },
-    { key: menuKey.viewLog, name: 'View Log', component: ViewLog, parent: null },
-    { key: menuKey.clickStatistics, name: 'Click Statistics', component: ReferrerStatistics, parent: null },
-    { key: menuKey.landingPageStatistics, name: '', component: LandingPageStatistics, parent: menuKey.clickStatistics }
+    { key: menuKey.statementHistory, name: 'Statement History', component: withUserPanel(StatementHistory, menuKey.statementHistory), parent: null },
+    { key: menuKey.dailyEarning, name: '', component: withUserPanel(DailyEarning, menuKey.dailyEarning), parent: menuKey.statementHistory },
+    { key: menuKey.dailyEarningDetail, name: '', component: withUserPanel(DailyEarningDetail, menuKey.dailyEarningDetail), parent: menuKey.statementHistory },
+    { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null },
+    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null },
+    { key: menuKey.playerDetail, name: 'Players Detail', component: withUserPanel(PlayerDetail, menuKey.playerDetail), parent: null },
+    { key: menuKey.adjustment, name: 'Adjustment', component: withUserPanel(Adjustment, menuKey.adjustment), parent: null },
+    { key: menuKey.trackingStatistics, name: 'Tracking Statistics', component: withUserPanel(TrackingStatistics, menuKey.trackingStatistics), parent: null },
+    { key: menuKey.member, name: 'Member', component: withUserPanel(Member, menuKey.member), parent: null },
+    { key: menuKey.viewLog, name: 'View Log', component: withUserPanel(ViewLog, menuKey.viewLog), parent: null },
+    { key: menuKey.clickStatistics, name: 'Click Statistics', component: withUserPanel(ReferrerStatistics, menuKey.clickStatistics), parent: null },
+    { key: menuKey.landingPageStatistics, name: '', component: withUserPanel(LandingPageStatistics, menuKey.landingPageStatistics), parent: menuKey.clickStatistics }
 ]
 
 export const userPanelPendingMenuList = [
-    { key: menuKey.edit, name: 'Edit', component: UserAccount, parent: null },
-    { key: menuKey.note, name: 'Note', component: Note, parent: null }
+    { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null },
+    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null }
 ]

@@ -9,16 +9,9 @@ import Filter from './Filter';
 import Content from './Content';
 import Detail from './Detail';
 
-import { resetUserPanel } from '../../../customer/common/actions';
-import { userPanelMenuKey } from '../../../customer/common/modules/constants';
-
 export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
-    }
-
-    componentWillUnmount() {
-        this.props.resetUserPanel(userPanelMenuKey.landingPageStatistics);
     }
 
     render() {
@@ -39,7 +32,7 @@ function mapStateToProps({ landingPageStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ resetUserPanel }, dispatch);
+    return bindActionCreators({ }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

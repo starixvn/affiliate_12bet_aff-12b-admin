@@ -8,16 +8,9 @@ import Content from './Content';
 import Detail from './Detail';
 import Loader from '../../../../components/Loader';
 
-import { resetUserPanel } from '../../../customer/common/actions';
-import { userPanelMenuKey } from '../../../customer/common/modules/constants';
-
 class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
-    }
-
-    componentWillUnmount() {
-        this.props.resetUserPanel(userPanelMenuKey.trackingStatistics);
     }
 
     render() {
@@ -38,7 +31,7 @@ function mapStateToProps({ trackingStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ resetUserPanel }, dispatch);
+    return bindActionCreators({ }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
