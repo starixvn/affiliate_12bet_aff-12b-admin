@@ -1,4 +1,7 @@
-﻿export const deviceTypes = {
-    'PC/Laptop': 0,
-    'Mobile': 1
+﻿export const pcLaptop = 'PC/Laptop';
+export const mobile = 'Mobile';
+
+export const deviceTypes = {
+    [pcLaptop]: 0,
+    [mobile]: 1
 }

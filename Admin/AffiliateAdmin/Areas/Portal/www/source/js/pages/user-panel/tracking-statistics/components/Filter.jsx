@@ -17,11 +17,6 @@ export class Filter extends PureComponent {
         }
     }
 
-    componentDidMount() {
-        this.handleClickSearch();
-    }
-
-
     handleChange = (event) => {
         const { name, value } = event.target;
         this.setState({ [name]: value });

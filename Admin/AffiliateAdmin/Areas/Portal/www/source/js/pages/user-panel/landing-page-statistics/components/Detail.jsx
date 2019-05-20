@@ -23,7 +23,7 @@ export class Detail extends Component {
         const { pagingOption, selectedPage } = this.props;
 
         if (selectedPage !== prevProps.selectedPage) {
-            const param = Object.assign({}, this.props.param, { PageIndex: 1, PageSize: pagingOption.PageSize, ...selectedPage });
+            const param = Object.assign({}, this.props.param, { pageIndex: 1, pageSize: pagingOption.PageSize, ...selectedPage });
 
             this.fetchData(param);
         }
@@ -121,7 +121,7 @@ export class Detail extends Component {
 
 function mapStateToProps({ landingPageStatistics }) {
     const { pagingOption, param, selectedPage } = landingPageStatistics;
-    return Object.assign({}, { pagingOption, param, selectedPage });
+    return Object.assign({}, { pagingOption, param, selectedPage: selectedPage || null });
 }
 
 function mapDispatchToProps(dispatch) {

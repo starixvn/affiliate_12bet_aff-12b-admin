@@ -1,4 +1,4 @@
-﻿import React, { PureComponent } from 'react';
+﻿import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -8,22 +8,23 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import Content from './Content';
 import Detail from './Detail';
+import NavMenu from '../../referrers/components/NavMenu';
+import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
 
-export class AppContainer extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <AppLayout>
-                <Loader show={this.props.isShowLoader} />
-                <Filter />
-                <Content />
-                <Detail />
-            </AppLayout>
-        );
-    }
+const AppContainer = (props) => {
+    const navMenuList = [
+        { isActive: false, handleClick: () => props.setSelectedUserPanel('clickStatistics'), title: 'Referrers' },
+        { isActive: true, handleClick: () => props.setSelectedUserPanel('landingPageStatistics'), title: 'Landing Pages' }
+    ];
+    return (
+        <AppLayout>
+            <Loader show={props.isShowLoader} />
+            <NavMenu navMenuList={navMenuList} />
+            <Filter />
+            <Content />
+            <Detail />
+        </AppLayout>
+    );
 }
 
 function mapStateToProps({ landingPageStatistics }) {
@@ -32,7 +33,7 @@ function mapStateToProps({ landingPageStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ }, dispatch);
+    return bindActionCreators({ setSelectedUserPanel }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));

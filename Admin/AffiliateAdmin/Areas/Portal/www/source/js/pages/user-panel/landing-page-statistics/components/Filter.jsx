@@ -7,6 +7,7 @@ import { headerTitle } from '../modules/constants';
 import { setSelectedPage, setParam, setSelectedLanguage } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 import { deviceTypes } from '../../../customer/user-panel/modules/constants';
+import { getLanguageList, getPageList } from '../../../customer/user-panel/modules/service';
 
 const minDate = new Date(2009, 11, 1);
 
@@ -22,18 +23,29 @@ export class Filter extends React.Component {
             languageCode: '',
             fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
             toDate: this.nowString,
-            deviceType: 0
+            deviceType: 0,
+            languageList: [],
+            pageList: []
         };
     }
 
     componentDidMount() {
-        this.handleSetParam();
+        if (this.state.languageList.length === 0 || this.state.pageList.length === 0) {
+            this.handleGetLanguageList();
+            this.handleGetPageList();
+        }
     }
 
-    handleSetParam() {
-        const { selectedPage, languageCode, fromDate, toDate, deviceType } = this.state
-        const newParam = Object.assign({}, this.props.param, { SelectedPage: selectedPage, LanguageCode: languageCode, FromDate: fromDate, ToDate: toDate, DeviceType: deviceType });
-        this.props.setParam(newParam);
+    handleGetLanguageList = async () => {
+        const languageList = await getLanguageList();
+
+        this.setState({ languageList });
+    }
+
+    handleGetPageList = async () => {
+        const pageList = await getPageList();
+
+        this.setState({ pageList });
     }
 
     handleChange = (event) => {
@@ -56,13 +68,15 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        this.handleSetParam();
+        const { selectedPage, languageCode, fromDate, toDate, deviceType } = this.state;
+        const param = Object.assign({}, { selectedPage, languageCode, fromDate, toDate, deviceType, affId: this.props.affId });
+
+        this.props.setParam(param);
         this.props.setSelectedPage(null);
     }
 
     render() {
-        const { selectedPage, languageCode, deviceType, fromDate, toDate } = this.state;
-        const { languageList, pageList } = this.props;
+        const { selectedPage, languageCode, deviceType, fromDate, toDate, languageList, pageList } = this.state;
 
         return (
             <div className="filter-container">
@@ -83,8 +97,8 @@ export class Filter extends React.Component {
                         <Input type="select" name="languageCode" id="languageCode" value={languageCode} onChange={this.handleChange}>
                             <option value="">{globalResource.All}</option>
                             {
-                                Object.keys(languageList).map(languageCode => {
-                                    return (<option key={`language-${languageCode}`} value={languageCode}>{languageList[languageCode]}</option>)
+                                languageList.map(language => {
+                                    return (<option key={`language-${language.LanguageCode}`} value={language.LanguageCode}>{language.LanguageName}</option>)
                                 })
                             }
                         </Input>
@@ -120,9 +134,12 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ landingPageStatistics }) {
-    const { today, param, languageList, pageList } = landingPageStatistics;
-    return Object.assign({}, { today, param, languageList, pageList });
+function mapStateToProps({ today, affCommonInfo }) {
+    const { affId } = affCommonInfo;
+    return Object.assign({}, {
+        today,
+        affId
+    });
 }
 
 function mapDispatchToProps(dispatch) {

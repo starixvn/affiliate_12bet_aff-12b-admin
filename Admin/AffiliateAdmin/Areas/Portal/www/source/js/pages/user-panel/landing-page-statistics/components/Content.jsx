@@ -39,7 +39,7 @@ export class Content extends Component {
     }
 
     handleSelectedPage = (page, languageCode) => {
-        const selectedPage = Object.assign({}, { SelectedPage: page, LanguageCode: languageCode });
+        const selectedPage = Object.assign({}, { selectedPage: page, languageCode });
 
         this.props.setSelectedPage(selectedPage);
     }
@@ -100,7 +100,7 @@ export class Content extends Component {
     render() {
         const { gridData } = this.state;
 
-        return (
+        return gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1000}
@@ -116,8 +116,9 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ landingPageStatistics }) {
+function mapStateToProps({ affCommonInfo, userPanel }) {
     const { param, languageList } = landingPageStatistics;
+
     return Object.assign({}, { param, languageList });
 }
 

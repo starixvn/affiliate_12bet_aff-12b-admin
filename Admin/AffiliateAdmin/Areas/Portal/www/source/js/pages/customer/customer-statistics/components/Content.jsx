@@ -11,7 +11,7 @@ import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/num
 
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers } from '../../user-panel/actions';
-import { deviceTypes } from '../../user-panel/modules/constants';
+import { deviceTypes, pcLaptop, mobile } from '../../user-panel/modules/constants';
 import { setMonthDate } from '../actions';
 
 const API_URL = "Portal/CustomerStatistics/GetCustomerStatistics";
@@ -111,7 +111,7 @@ export class Content extends PureComponent {
                     this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
-                                <a href="javascript:;" onClick={() => this.props.redirectToPlayerDetail({ monthDate: startMonthString })}>
+                                <a href="javascript:;" onClick={() => this.props.redirectToPlayerDetail({ monthDate: startMonthString, isClickLink: true })}>
                                     {format(data.ActivePlayerByMonth)}
                                 </a>) : format(data.ActivePlayerByMonth)
                         ),
@@ -130,14 +130,14 @@ export class Content extends PureComponent {
                 }
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
-                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes['PC/Laptop'] })}>
+                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[pcLaptop], isClickLink: true })}>
                             {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
-                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes.Mobile })}>
+                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[mobile], isClickLink: true })}>
                             {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
                         </a>),
                         resource.NA)

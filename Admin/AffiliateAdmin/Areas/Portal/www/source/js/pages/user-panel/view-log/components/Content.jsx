@@ -140,7 +140,7 @@ export class Content extends PureComponent {
     render() {
         const { gridData, shouldResetScrollPosition } = this.state;
 
-        return this.props.showIdList && (
+        return gridData && this.props.showIdList && (
             <div className="data-content">
                 <div className="table-responsive table-striped my-2">
                     <Table

@@ -6,7 +6,7 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 import { headerText } from '../modules/constants';
 import { setSelectedSiteUrl, setParam } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
-import { deviceTypes } from '../../../customer/user-panel/modules/constants';
+import { deviceTypes, pcLaptop } from '../../../customer/user-panel/modules/constants';
 
 const minDate = new Date(2009, 11, 1);
 
@@ -22,14 +22,10 @@ export class Filter extends PureComponent {
         const firstDayOfCurrentMonth = `${now.getMonth() + 1}/01/${now.getFullYear()}`;
 
         this.state = {
-            deviceType: deviceType || deviceTypes['PC/Laptop'],
+            deviceType: deviceType || deviceTypes[pcLaptop],
             fromDate: fromDate || firstDayOfCurrentMonth,
             toDate: toDate || this.nowString
         }
-    }
-
-    componentDidMount() {
-        this.handleSearch();
     }
 
     componentDidUpdate(prevProps) {

@@ -28,14 +28,6 @@ export class Filter extends React.Component {
         }
     }
 
-    componentDidMount() {
-        this.handleSetParam();
-    }
-
-    handleSetParam() {
-        this.props.setParam(this.state);
-    }
-
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
@@ -59,7 +51,7 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        this.handleSetParam();
+        this.props.setParam(this.state);
         this.props.setShowIdList({});
     }
 

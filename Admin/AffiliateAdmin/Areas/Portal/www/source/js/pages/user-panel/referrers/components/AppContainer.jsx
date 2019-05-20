@@ -8,16 +8,19 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import Content from './Content';
 import Detail from './Detail';
+import NavMenu from './NavMenu';
+import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
 
 class AppContainer extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
-
+    const navMenuList = [
+        { isActive: true, handleClick: () => props.setSelectedUserPanel('clickStatistics'), title: 'Referrers' },
+        { isActive: false, handleClick: () => props.setSelectedUserPanel('landingPageStatistics'), title: 'Landing Pages' }
+    ];
     render() {
         return (
             <AppLayout>
                 <Loader show={this.props.isShowLoader} />
+            <NavMenu navMenuList={navMenuList} />
                 <Filter />
                 <Content />
                 <Detail />
@@ -32,7 +35,7 @@ function mapStateToProps({ clickStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ }, dispatch);
+    return bindActionCreators({ setSelectedUserPanel }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));

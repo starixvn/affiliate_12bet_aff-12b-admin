@@ -2114,7 +2114,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenuItem.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\LinkMenu.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\LinkMenu.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\NavMenu.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
