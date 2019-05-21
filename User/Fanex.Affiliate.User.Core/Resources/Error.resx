@@ -162,6 +162,9 @@
   <data name="VerificationSendCodeFailed" xml:space="preserve">
     <value>Security validation failed</value>
   </data>
+  <data name="Wait60Seconds" xml:space="preserve">
+    <value>You have to wait 60 seconds before sending a new code.</value>
+  </data>
   <data name="YourSessionHasExpired" xml:space="preserve">
     <value>Your session has expired!</value>
   </data>

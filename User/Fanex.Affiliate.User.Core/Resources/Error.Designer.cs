@@ -196,6 +196,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have to wait 60 seconds before sending a new code..
+        /// </summary>
+        public static string Wait60Seconds {
+            get {
+                return ResourceManager.GetString("Wait60Seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your session has expired!.
         /// </summary>
         public static string YourSessionHasExpired {

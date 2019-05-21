@@ -5832,16 +5832,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You placed an invalid captcha..
-        /// </summary>
-        public static string ValidationCaptcha {
-            get {
-                return ResourceManager.GetString("ValidationCaptcha", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You placed an invalid code..
+        ///   Looks up a localized string similar to You placed an invalid captcha code..
         /// </summary>
         public static string ValidationCode {
             get {

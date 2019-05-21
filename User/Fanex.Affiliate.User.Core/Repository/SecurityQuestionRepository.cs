@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.User.Core.Repository
 {
     public class SecurityQuestionRepository : ISecurityQuestionRepository
     {
-        public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool? isIncludeOldData = false)
+        public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false)
         {
             const string spKey = "Aff_User_SecurityQuestions_Sel";
 

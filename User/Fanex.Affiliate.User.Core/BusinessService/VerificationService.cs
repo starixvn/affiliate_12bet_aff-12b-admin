@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 var userInfo = _accountRepository.GetUserInfoById(param.AffId, false);
                 if (!param.Email.MatchWith(userInfo.Email))
                 {
-                    return CreateSendCodeFailedResult();
+                    return CreateSendCodeFailedResult(Error.VerificationSendCodeFailed);
                 }
 
                 if (string.IsNullOrEmpty(userInfo.SecretKey))
@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 };
             }
 
-            return CreateSendCodeFailedResult();
+            return CreateSendCodeFailedResult(Error.Wait60Seconds);
         }
 
         public bool IsValidOtp(VerificationOtpParam param)
@@ -201,12 +201,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return Base32Encoding.ToString(KeyGeneration.GenerateRandomKey(Number.Twenty));
         }
 
-        private static SendCodeResult CreateSendCodeFailedResult()
+        private static SendCodeResult CreateSendCodeFailedResult(string message)
         {
             return new SendCodeResult
             {
                 IsOk = false,
-                Message = string.Format(Error.VerificationSendCodeFailed)
+                Message = message
             };
         }
     }

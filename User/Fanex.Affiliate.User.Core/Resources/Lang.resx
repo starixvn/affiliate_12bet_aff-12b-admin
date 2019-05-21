@@ -1761,7 +1761,7 @@
     <comment>87923</comment>
   </data>
   <data name="ValidationCode" xml:space="preserve">
-    <value>You placed an invalid code.</value>
+    <value>You placed an invalid captcha code.</value>
   </data>
   <data name="Venezuela" xml:space="preserve">
     <value>Venezuela </value>
@@ -2256,8 +2256,5 @@
   </data>
   <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
     <value>Please enter verification code.</value>
-  </data>
-  <data name="ValidationCaptcha" xml:space="preserve">
-    <value>You placed an invalid captcha.</value>
   </data>
 </root>
