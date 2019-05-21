@@ -7,7 +7,7 @@ import { headerTitle } from '../modules/constants';
 import { setSelectedPage, setParam, setSelectedLanguage } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 import { deviceTypes } from '../../../customer/user-panel/modules/constants';
-import { getLanguageList, getPageList } from '../../../customer/user-panel/modules/service';
+import { getPageList } from '../../../customer/user-panel/modules/service';
 
 const minDate = new Date(2009, 11, 1);
 
@@ -30,16 +30,9 @@ export class Filter extends React.Component {
     }
 
     componentDidMount() {
-        if (this.state.languageList.length === 0 || this.state.pageList.length === 0) {
-            this.handleGetLanguageList();
+        if (this.state.pageList.length === 0) {
             this.handleGetPageList();
         }
-    }
-
-    handleGetLanguageList = async () => {
-        const languageList = await getLanguageList();
-
-        this.setState({ languageList });
     }
 
     handleGetPageList = async () => {
@@ -76,7 +69,7 @@ export class Filter extends React.Component {
     }
 
     render() {
-        const { selectedPage, languageCode, deviceType, fromDate, toDate, languageList, pageList } = this.state;
+        const { selectedPage, languageCode, deviceType, fromDate, toDate, pageList } = this.state;
 
         return (
             <div className="filter-container">
@@ -97,7 +90,7 @@ export class Filter extends React.Component {
                         <Input type="select" name="languageCode" id="languageCode" value={languageCode} onChange={this.handleChange}>
                             <option value="">{globalResource.All}</option>
                             {
-                                languageList.map(language => {
+                                this.props.languageList.map(language => {
                                     return (<option key={`language-${language.LanguageCode}`} value={language.LanguageCode}>{language.LanguageName}</option>)
                                 })
                             }
@@ -134,11 +127,12 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo }) {
+function mapStateToProps({ today, affCommonInfo, languageList }) {
     const { affId } = affCommonInfo;
     return Object.assign({}, {
         today,
-        affId
+        affId,
+        languageList
     });
 }
 

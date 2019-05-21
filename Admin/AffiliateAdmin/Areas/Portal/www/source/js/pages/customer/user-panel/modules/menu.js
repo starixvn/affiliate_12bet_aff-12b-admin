@@ -27,7 +27,6 @@ const ReferrerStatistics = React.lazy(() =>
 const LandingPageStatistics = React.lazy(() =>
     import ( /* webpackChunkName: "landingPageStatistics" */ '../../../user-panel/landing-page-statistics/components/AppContainer'));
 
-    statementHistory: 'statementHistory',
 export const userPanelMenuList = [
     { key: menuKey.statementHistory, name: 'Statement History', component: withUserPanel(StatementHistory, menuKey.statementHistory), parent: null },
     { key: menuKey.dailyEarning, name: '', component: withUserPanel(DailyEarning, menuKey.dailyEarning), parent: menuKey.statementHistory },

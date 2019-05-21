@@ -10,36 +10,42 @@ import Loader from '../../../../components/Loader';
 
 import { setSelectedUserPanel, redirectToDailyEarning } from '../../../customer/user-panel/actions';
 import { selectedAllProduct, monthNames } from '../../../../modules/constants';
+import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
-    }
-    const { param, affId } = props;
-    const monthDate = param && param.monthDate;
-    const date = new Date(monthDate);
-    const dailyEarningParam = {
-        affId,
-        monthDate,
-        productId: selectedAllProduct
+export class AppContainer extends PureComponent {
+    constructor(props) {
+        super(props);
     }
 
-    const linkMenuList = [
-        { handleClick: () => props.setSelectedUserPanel('statementHistory'), title: 'Statement History' },
-        { handleClick: () => props.redirectToDailyEarning(dailyEarningParam), title: `${monthNames[date.getMonth()]} ${date.getFullYear()}` },
-        { title: monthDate }
-    ];
+    render() {
+        const { param, affId } = props;
+        const monthDate = param && param.monthDate;
+        const date = new Date(monthDate);
+        const dailyEarningParam = {
+            affId,
+            monthDate,
+            productId: param.selectedProductId
+        }
 
-    return monthDate && (
-            <AppLayout>
-                <Loader show={this.props.isShowLoader} />
-            <LinkMenu linkMenuList={linkMenuList} />
-                <Filter />
-                <Content />
-            </AppLayout>
-        );
+        const linkMenuList = [
+            { handleClick: () => props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History' },
+            { handleClick: () => props.redirectToDailyEarning(dailyEarningParam), title: `${monthNames[date.getMonth()]} ${date.getFullYear()}` },
+            { title: monthDate }
+        ];
+
+        return monthDate && (
+                <AppLayout>
+                    <Loader show={this.props.isShowLoader} />
+                <LinkMenu linkMenuList={linkMenuList} />
+                    <Filter />
+                    <Content />
+                </AppLayout>
+            );
     }
 }
 
-function mapStateToProps({ affCommonInfo, userPanel }) {
-    const { isShowLoader, param } = userPanel;
+function mapStateToProps({ affCommonInfo, dailyEarningDetail }) {
+    const { isShowLoader, param } = dailyEarningDetail;
     const { affId } = affCommonInfo;
     return Object.assign({}, { isShowLoader, param, affId });
 }

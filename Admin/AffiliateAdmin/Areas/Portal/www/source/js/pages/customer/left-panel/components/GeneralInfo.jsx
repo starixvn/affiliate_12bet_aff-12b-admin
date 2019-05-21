@@ -172,8 +172,8 @@ export class GeneralInfo extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, leftPanel }) {
-    const { affiliateInfo, languageList } = leftPanel;
+function mapStateToProps({ affCommonInfo, leftPanel, languageList }) {
+    const { affiliateInfo } = leftPanel;
     const { affName } = affCommonInfo;
     return Object.assign({}, { affiliateInfo, languageList, affName });
 }

@@ -1,29 +1,35 @@
 ﻿import React from 'react';
-import { connect } from 'react-redux';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
-import { userPanelMenuKey } from '../../../customer/common/modules/constants';
-const LinkMenu = (props) => {
-    const { linkMenuList } = props;
-    const lastIndex = linkMenuList && linkMenuList.length - 1;
+class LinkMenu extends React.PureComponent {
+    constructor(props) {
+        super(props);
+    }
 
-    return (
-        <div>
+    _renderBreadcrumbItem = (linkMenuList) => {
+        const arrayItem = [];
+        const lastIndex = linkMenuList.length - 1;
+
+        for( let i = 0; i < lastIndex; i ++) {
+            arrayItem.push(<BreadcrumbItem><a href="javascript:;" onClick={linkMenuList[i].handleClick}>{linkMenuList[i].title}</a></BreadcrumbItem>);
+        }
+
+        arrayItem.push(<BreadcrumbItem active>{linkMenuList[lastIndex].title}</BreadcrumbItem>)
+        
+        return arrayItem;
+    }
+
+    render() {
+        const linkMenuList = this.props.linkMenuList || null;
+
+        return linkMenuList && (
             <Breadcrumb>
             {
-                linkMenuList.map((item, index) => {
-                    return (
-                        index === lastIndex ? (
-                            <BreadcrumbItem active>{item.title}</BreadcrumbItem>
-                        ) : (
-                            <BreadcrumbItem><a href="javascript:;" onClick={item.handleClick}>{item.title}</a></BreadcrumbItem>
-                        )
-                    )
-                })
+                this._renderBreadcrumbItem(linkMenuList)
             }
             </Breadcrumb>
-        </div>
-    );
+        );
+    }
 }
 
-export default connect()(React.memo(LinkMenu));
+export default (React.memo(LinkMenu));

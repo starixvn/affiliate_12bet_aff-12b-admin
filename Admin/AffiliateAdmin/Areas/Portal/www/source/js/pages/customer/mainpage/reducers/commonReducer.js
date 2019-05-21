@@ -11,8 +11,10 @@ const affCommonInfo = createReducer(null, {
 const now = new Date();
 const defaultToday = `${now.getMonth()}/${now.getDate()}/${now.getFullYear()}`;
 const today = createReducer(defaultToday, {});
+const languageList = createReducer(null, {});
 
 export {
     affCommonInfo,
-    today
+    today,
+    languageList
 }

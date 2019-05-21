@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -11,20 +11,27 @@ import Detail from './Detail';
 import NavMenu from '../../referrers/components/NavMenu';
 import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
 
-const AppContainer = (props) => {
-    const navMenuList = [
-        { isActive: false, handleClick: () => props.setSelectedUserPanel('clickStatistics'), title: 'Referrers' },
-        { isActive: true, handleClick: () => props.setSelectedUserPanel('landingPageStatistics'), title: 'Landing Pages' }
-    ];
-    return (
-        <AppLayout>
-            <Loader show={props.isShowLoader} />
-            <NavMenu navMenuList={navMenuList} />
-            <Filter />
-            <Content />
-            <Detail />
-        </AppLayout>
-    );
+class AppContainer extends PureComponent {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const navMenuList = [
+            { isActive: false, handleClick: () => this.props.setSelectedUserPanel('clickStatistics'), title: 'Referrers' },
+            { isActive: true, handleClick: () => this.props.setSelectedUserPanel('landingPageStatistics'), title: 'Landing Pages' }
+        ];
+
+        return (
+            <AppLayout>
+                <Loader show={this.props.isShowLoader} />
+                <NavMenu navMenuList={navMenuList} />
+                <Filter />
+                <Content />
+                <Detail />
+            </AppLayout>
+        );
+    }
 }
 
 function mapStateToProps({ landingPageStatistics }) {

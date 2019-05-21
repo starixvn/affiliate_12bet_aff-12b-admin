@@ -1594,6 +1594,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\common\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\modules\constants.js" />
@@ -1610,6 +1611,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\menu.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\service.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\withUserPanel.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
@@ -1624,8 +1626,13 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\actions\types.js" />
@@ -1635,8 +1642,11 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\reportExcel.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\modules\constants.js" />
@@ -2270,11 +2280,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65181</DevelopmentServerPort>
           <DevelopmentServerVPath>/V1</DevelopmentServerVPath>
-          <IISUrl>http://localhost:65181/Aff12BetAdmin</IISUrl>
+          <IISUrl>http://localhost:65186</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

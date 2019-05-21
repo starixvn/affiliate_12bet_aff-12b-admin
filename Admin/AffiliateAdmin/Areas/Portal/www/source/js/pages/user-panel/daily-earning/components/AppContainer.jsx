@@ -9,18 +9,24 @@ import Content from './Content';
 import Loader from '../../../../components/Loader';
 import { monthNames } from '../../../../modules/constants';
 import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
+import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
 class AppContainer extends PureComponent {
-    const { param } = props;
-    const monthDate = param && param.monthDate;
-    const date = new Date(monthDate);
+    constructor(props) {
+        super(props);
+    }
 
-    const linkMenuList = [
-        { handleClick: () => props.setSelectedUserPanel('statementHistory'), title: 'Statement History'},
-        { title: `${monthNames[date.getMonth()]} ${date.getFullYear()}`}
-    ];
+    render() {
+        const { param } = props;
+        const monthDate = param && param.monthDate;
+        const date = new Date(monthDate);
 
-    return monthDate && (
+        const linkMenuList = [
+            { handleClick: () => props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History'},
+            { title: `${monthNames[date.getMonth()]} ${date.getFullYear()}`}
+        ];
+
+        return monthDate && (
             <AppLayout>
                 <Loader show={this.props.isShowLoader} />
             <LinkMenu linkMenuList={linkMenuList} />
@@ -32,7 +38,7 @@ class AppContainer extends PureComponent {
 }
 
 function mapStateToProps({ dailyEarning }) {
-    const { isShowLoader, param } = userPanel;
+    const { isShowLoader, param } = dailyEarning;
     return Object.assign({}, { isShowLoader, param });
 }
 

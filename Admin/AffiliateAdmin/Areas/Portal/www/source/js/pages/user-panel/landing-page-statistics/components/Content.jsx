@@ -116,8 +116,8 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ affCommonInfo, userPanel }) {
-    const { param, languageList } = landingPageStatistics;
+function mapStateToProps({ languageList, landingPageStatistics }) {
+    const { param } = landingPageStatistics;
 
     return Object.assign({}, { param, languageList });
 }

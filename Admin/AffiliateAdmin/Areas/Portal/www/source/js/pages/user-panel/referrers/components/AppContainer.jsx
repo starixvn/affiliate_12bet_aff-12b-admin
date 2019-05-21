@@ -12,11 +12,12 @@ import NavMenu from './NavMenu';
 import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
 
 class AppContainer extends PureComponent {
-    const navMenuList = [
-        { isActive: true, handleClick: () => props.setSelectedUserPanel('clickStatistics'), title: 'Referrers' },
-        { isActive: false, handleClick: () => props.setSelectedUserPanel('landingPageStatistics'), title: 'Landing Pages' }
-    ];
     render() {
+        const navMenuList = [
+            { isActive: true, handleClick: () => this.props.setSelectedUserPanel('clickStatistics'), title: 'Referrers' },
+            { isActive: false, handleClick: () => this.props.setSelectedUserPanel('landingPageStatistics'), title: 'Landing Pages' }
+        ];
+        
         return (
             <AppLayout>
                 <Loader show={this.props.isShowLoader} />
