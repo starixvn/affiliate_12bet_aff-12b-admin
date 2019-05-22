@@ -196,7 +196,8 @@ namespace Fanex.Affiliate.DataService.Importer
             foreach (var item in ebetSummary.BetHistories)
             {
                 var payoutTime = DateTimeConverter.ToGMT(DateTimeOffset.FromUnixTimeSeconds(item.PayoutUnixTime).DateTime, TimeZoneId.GmtPlus8);
-                builder.AppendLine($"<BETHISTORY ID=\"{item.BetHistoryId}\" USERNAME=\"{item.UserName}\" BET=\"{item.Bet}\" PAYOUT=\"{item.Payout}\" PAYOUTTIME=\"{payoutTime.ToString()}\" />");
+                var createTime = DateTimeConverter.ToGMT(DateTimeOffset.FromUnixTimeSeconds(item.CreateUnixTime).DateTime, TimeZoneId.GmtPlus8);
+                builder.AppendLine($"<BETHISTORY ID=\"{item.BetHistoryId}\" USERNAME=\"{item.UserName}\" BET=\"{item.Bet}\" PAYOUT=\"{item.Payout}\" PAYOUTTIME=\"{payoutTime.ToString()}\" CREATETIME=\"{createTime.ToString()}\" />");
             }
             builder.AppendLine("</BETHISTORYLIST>");
 

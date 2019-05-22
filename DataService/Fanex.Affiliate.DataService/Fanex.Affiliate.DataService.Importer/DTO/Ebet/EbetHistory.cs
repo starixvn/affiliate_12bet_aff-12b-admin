@@ -12,5 +12,7 @@
 
         public long PayoutUnixTime { get; set; }
 
+        public long CreateUnixTime { get; set; }
+
     }
 }
