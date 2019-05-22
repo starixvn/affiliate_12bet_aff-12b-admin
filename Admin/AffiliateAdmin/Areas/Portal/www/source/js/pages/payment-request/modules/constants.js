@@ -1,6 +1,6 @@
-﻿import { globalResource } from '../../../modules/globalResource';
+﻿import { globalResource, resource as resources, statusList, pending } from '../../../components/pages/modules/constants/PaymentRequestUpdate';
 
-export { globalResource }
+export { globalResource, statusList, pending }
 
 export const headerText = {
     Index: '#',
@@ -11,39 +11,7 @@ export const headerText = {
 export const resource = {
     SearchBy: 'Search By',
 
-    AccountInformation: 'Account Information',
-    UserName: 'User Name',
-    RequestedDate: 'Requested Date',
-    EmailAddress: 'Email Address',
-    FirstName: 'First Name',
-    LastName: 'Last Name',
-
-    PaymentInformation: 'Payment Information',
-    PaymentMethod: 'Payment Method',
-    Amount: 'Amount',
-    Status: 'Status',
-    UserName12Bet: '12BET User Name',
-    CompletedDate: 'Completed Date',
-    UpdatedBy: 'Updated By',
-
-    AdminNote: 'Admin Note',
-    VisibleAdmin: 'Visible only to admin',
-
-    AffiliateNote: 'Affiliate Note',
-    VisibleAffiliate: 'Visible also to affiliate',
-}
-
-export const errorList = {
-    NotChoose: 'You must choose Approved or Rejected for this request!',
-    UpdateFailed: 'Update transaction failed!',
+    ...resources
 }
 
 export const searchByList = ['User Name', 'Others']
-
-export const pending = 'Pending';
-export const statusList = {
-    [pending]: 'Processing',
-    Approved: 'Approved',
-    Rejected: 'Rejected',
-    Cancelled: 'Cancelled'
-}

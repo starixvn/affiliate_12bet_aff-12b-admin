@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
 const NavMenu = (props) => {
-    const { navMenuList } = props;
+    const navMenuList = props.navMenuList || null;
 
     return navMenuList && (
         <div className="sub-menu-container">

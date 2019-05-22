@@ -8,7 +8,7 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import Content from './Content';
 import Detail from './Detail';
-import NavMenu from './NavMenu';
+import NavMenu from '../../../../components/pages/common/NavMenu';
 import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
 
 class AppContainer extends PureComponent {
@@ -17,11 +17,11 @@ class AppContainer extends PureComponent {
             { isActive: true, handleClick: () => this.props.setSelectedUserPanel('clickStatistics'), title: 'Referrers' },
             { isActive: false, handleClick: () => this.props.setSelectedUserPanel('landingPageStatistics'), title: 'Landing Pages' }
         ];
-        
+
         return (
             <AppLayout>
                 <Loader show={this.props.isShowLoader} />
-            <NavMenu navMenuList={navMenuList} />
+                <NavMenu navMenuList={navMenuList} />
                 <Filter />
                 <Content />
                 <Detail />
@@ -39,4 +39,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setSelectedUserPanel }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

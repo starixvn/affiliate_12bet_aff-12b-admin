@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, Alert, Button, Form, Row, Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { resource, globalResource, statusList, errorList, pending } from '../../modules/constants';
-import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
-import { getPaymentRequestDetail, updatePaymentRequest } from './service';
+import { resource, globalResource, statusList, errorList, pending } from '../modules/constants/PaymentRequestUpdate';
+import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
+import { getPaymentRequestDetail, updatePaymentRequest } from '../modules/service';
 
 const pendingStatus = pending.toLowerCase();
 const approvedStatus = statusList.Approved.toLowerCase();

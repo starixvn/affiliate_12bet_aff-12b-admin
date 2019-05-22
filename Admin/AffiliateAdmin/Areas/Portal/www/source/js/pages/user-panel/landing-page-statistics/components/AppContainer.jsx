@@ -8,7 +8,7 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import Content from './Content';
 import Detail from './Detail';
-import NavMenu from '../../referrers/components/NavMenu';
+import NavMenu from '../../../../components/pages/common/NavMenu';
 import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
 
 class AppContainer extends PureComponent {
@@ -43,4 +43,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setSelectedUserPanel }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

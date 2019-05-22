@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
-import LinkMenu from '../../daily-earning/components/LinkMenu';
+import LinkMenu from '../../../../components/pages/common/LinkMenu';
 import Filter from './Filter';
 import Content from './Content';
 import Loader from '../../../../components/Loader';
 
 import { setSelectedUserPanel, redirectToDailyEarning } from '../../../customer/user-panel/actions';
-import { selectedAllProduct, monthNames } from '../../../../modules/constants';
+import { monthNames } from '../../../../modules/constants';
 import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
 export class AppContainer extends PureComponent {
@@ -18,7 +18,7 @@ export class AppContainer extends PureComponent {
     }
 
     render() {
-        const { param, affId } = props;
+        const { param, affId } = this.props;
         const monthDate = param && param.monthDate;
         const date = new Date(monthDate);
         const dailyEarningParam = {
@@ -28,19 +28,19 @@ export class AppContainer extends PureComponent {
         }
 
         const linkMenuList = [
-            { handleClick: () => props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History' },
-            { handleClick: () => props.redirectToDailyEarning(dailyEarningParam), title: `${monthNames[date.getMonth()]} ${date.getFullYear()}` },
+            { handleClick: () => this.props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History' },
+            { handleClick: () => this.props.redirectToDailyEarning(dailyEarningParam), title: `${monthNames[date.getMonth()]} ${date.getFullYear()}` },
             { title: monthDate }
         ];
 
         return monthDate && (
-                <AppLayout>
-                    <Loader show={this.props.isShowLoader} />
+            <AppLayout>
+                <Loader show={this.props.isShowLoader} />
                 <LinkMenu linkMenuList={linkMenuList} />
-                    <Filter />
-                    <Content />
-                </AppLayout>
-            );
+                <Filter />
+                <Content />
+            </AppLayout>
+        );
     }
 }
 
@@ -54,4 +54,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setSelectedUserPanel, redirectToDailyEarning }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

@@ -1558,6 +1558,11 @@
     <Content Include="Areas\Portal\www\source\js\actions\actionTypes.js" />
     <Content Include="Areas\Portal\www\source\js\actions\loaderAction.js" />
     <Content Include="Areas\Portal\www\source\js\actions\pagingAction.js" />
+    <Content Include="Areas\Portal\www\source\js\components\pages\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\components\pages\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\components\pages\modules\constants\ChangePassword.js" />
+    <Content Include="Areas\Portal\www\source\js\components\pages\modules\constants\PaymentRequestUpdate.js" />
+    <Content Include="Areas\Portal\www\source\js\components\pages\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
     <Content Include="Areas\Portal\www\source\js\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
@@ -1615,7 +1620,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\shared\service.js" />
+    <Content Include="Areas\Portal\www\source\js\components\pages\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
@@ -1973,7 +1978,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\GridData.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\ChangePasswordForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\pages\common\ChangePasswordForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\EditCommissionGroup.jsx" />
     <Content Include=".babelrc" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Filter.test.js" />
@@ -2068,7 +2073,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\ChangePasswordForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\GeneralInfo.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\MainInfo.jsx" />
@@ -2099,7 +2103,7 @@
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.th-TH.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.vi-VN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.zh-CN.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\shared\PaymentRequestUpdateForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\pages\common\PaymentRequestUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\leftpanel.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-modal.scss" />
     <Content Include="Areas\Portal\Views\UserPanel\UserAccount\Index.cshtml" />
@@ -2123,8 +2127,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanel.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenuItem.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\LinkMenu.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\NavMenu.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\pages\common\LinkMenu.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\pages\common\NavMenu.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

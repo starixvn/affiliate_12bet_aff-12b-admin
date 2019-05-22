@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
-import LinkMenu from './LinkMenu';
+import LinkMenu from '../../../../components/pages/common/LinkMenu';
 import Filter from './Filter';
 import Content from './Content';
 import Loader from '../../../../components/Loader';
@@ -17,12 +17,12 @@ class AppContainer extends PureComponent {
     }
 
     render() {
-        const { param } = props;
+        const { param } = this.props;
         const monthDate = param && param.monthDate;
         const date = new Date(monthDate);
 
         const linkMenuList = [
-            { handleClick: () => props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History'},
+            { handleClick: () => this.props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History'},
             { title: `${monthNames[date.getMonth()]} ${date.getFullYear()}`}
         ];
 
@@ -46,4 +46,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setSelectedUserPanel }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

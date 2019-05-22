@@ -5,7 +5,7 @@ import AppLayout from '../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
 import EditCommissionGroup from './EditCommissionGroup';
-import ChangePasswordForm from './ChangePasswordForm';
+import ChangePasswordForm from '../../../components/pages/common/ChangePasswordForm';
 import Loader from '../../../components/Loader';
 
 export class AppContainer extends Component {

@@ -10,7 +10,7 @@ import { status, resource } from '../modules/constants';
 import { resolveClientUrl } from '../../../../modules/utils';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
-import { ChangePasswordForm } from '../../../affiliate-info/components/ChangePasswordForm';
+import { ChangePasswordForm } from '../../../../components/pages/common/ChangePasswordForm';
 
 export class GeneralInfo extends PureComponent {
     constructor(props) {

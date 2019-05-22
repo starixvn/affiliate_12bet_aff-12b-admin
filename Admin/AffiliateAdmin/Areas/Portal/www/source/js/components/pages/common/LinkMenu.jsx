@@ -10,12 +10,12 @@ class LinkMenu extends React.PureComponent {
         const arrayItem = [];
         const lastIndex = linkMenuList.length - 1;
 
-        for( let i = 0; i < lastIndex; i ++) {
+        for (let i = 0; i < lastIndex; i++) {
             arrayItem.push(<BreadcrumbItem><a href="javascript:;" onClick={linkMenuList[i].handleClick}>{linkMenuList[i].title}</a></BreadcrumbItem>);
         }
 
         arrayItem.push(<BreadcrumbItem active>{linkMenuList[lastIndex].title}</BreadcrumbItem>)
-        
+
         return arrayItem;
     }
 
@@ -24,12 +24,12 @@ class LinkMenu extends React.PureComponent {
 
         return linkMenuList && (
             <Breadcrumb>
-            {
-                this._renderBreadcrumbItem(linkMenuList)
-            }
+                {
+                    this._renderBreadcrumbItem(linkMenuList)
+                }
             </Breadcrumb>
         );
     }
 }
 
-export default (React.memo(LinkMenu));
+export default (LinkMenu);

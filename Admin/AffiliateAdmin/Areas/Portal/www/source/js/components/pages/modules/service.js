@@ -1,4 +1,4 @@
-﻿import { post } from '../../../../modules/ajaxRequest';
+﻿import { post } from '../../../modules/ajaxRequest';
 
 export const getPaymentRequestDetail = async (param) => {
     const url = 'Portal/PaymentRequest/GetPaymentRequestDetail';

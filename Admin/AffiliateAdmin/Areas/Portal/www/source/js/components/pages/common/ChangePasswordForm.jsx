@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { resource, regExp, messages } from '../modules/constants';
+import { resource, regExp, messages } from '../modules/constants/ChangePassword';
 import { setShowPopupPassword } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
@@ -130,7 +130,7 @@ export class ChangePasswordForm extends Component {
                             </Alert>
                             <Form tag="form" className="mb-5" autocomplete="off">
                                 <FormGroup row className="mb-2">
-                                    <Label for="Password" sm={4} className="required">Password:</Label>
+                                    <Label for="Password" sm={4} className="required">{resource.Password}:</Label>
                                     <Col sm={8}>
                                         <Input type="password" name="password" id="Password" autocomplete="false"
                                             value={password} onChange={this.handleChange} invalid={!passwordValidation.isValid} />
@@ -140,7 +140,7 @@ export class ChangePasswordForm extends Component {
                                 </FormGroup>
 
                                 <FormGroup row className="mb-2">
-                                    <Label for="ConfirmPassword" sm={4} className="required">Confirm Password:</Label>
+                                    <Label for="ConfirmPassword" sm={4} className="required">{resource.ConfirmPassword}:</Label>
                                     <Col sm={8}>
                                         <Input type="password" name="confirmPassword" id="ConfirmPassword" autocomplete="false"
                                             value={confirmPassword} onChange={this.handleChange} invalid={!confirmPasswordValidation.isValid} />
