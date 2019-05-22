@@ -137,9 +137,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         return Json(CreateVerifyAccountResult(loginResult.Result));
                     }
                 }
+                return Json(CreateVerifyAccountResult(GetErrorResult(Error.LoginWrongInfo)));
             }
 
-            return Json(CreateVerifyAccountResult(GetErrorResult(Error.LoginWrongInfo)));
+            return Json(CreateVerifyAccountResult(GetErrorResult(Error.VerificationFailed)));
         }
 
         private SendCodeParam CreateSendCodeParam()
