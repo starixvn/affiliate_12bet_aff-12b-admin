@@ -19,32 +19,34 @@ export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { today } = this.props;
-        const monthDate = new Date(today);
+        const { today, param } = this.props;
+        const monthDate = param.isClickLink ? (param.monthDate || today) : today;
+        const newMonthDate = new Date(monthDate);
 
         this.state = {
             selectedProduct: selectedAllProduct,
-            monthDate,
-            productList: []
+            monthDate: newMonthDate,
+            productList: null
         }
     }
 
     componentDidMount() {
-        if (this.state.productList.length === 0) {
+        if (!this.state.productList) {
             this.handleGetProductList();
         }
-        if (this.props.isClickLink) {
-            this.handleSearch(this.state.monthDate);
+        if (this.props.param.isClickLink) {
+            const { monthDate } = this.state;
+            this.handleSearch(monthDate);
         }
     }
 
     componentDidUpdate(prevProps) {
-        const { today, isClickLink } = this.props;
-        if (isClickLink && today !== prevProps.today) {
-            const monthDate = new Date(today);
+        const { param } = this.props;
+        if (param.isClickLink && param !== prevProps.param) {
+            const newMonthDate = new Date(param.monthDate);
 
-            this.setState({ monthDate });
-            this.handleSearch(monthDate);
+            this.setState({ monthDate: newMonthDate });
+            this.handleSearch(newMonthDate);
         }
     }
 
@@ -73,14 +75,11 @@ export class Filter extends PureComponent {
 
     handleSearch = (monthDate) => {
         const { selectedProduct } = this.state;
-        const { affId } = this.props;
 
         const param = {
             productId: selectedProduct,
             monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
-            affId
         }
-
         this.props.setParam(param);
     }
 
@@ -120,7 +119,7 @@ export class Filter extends PureComponent {
     render() {
         const { productList, selectedProduct, monthDate } = this.state;
 
-        return (
+        return productList && (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
@@ -161,13 +160,11 @@ export class Filter extends PureComponent {
 function mapStateToProps({ today, affCommonInfo, playerDetail }) {
     const { param } = playerDetail;
     const { affId } = affCommonInfo;
-    const isClickLink = param && param.isClickLink;
-    const monthDate = param && param.monthDate;
 
     return Object.assign({}, {
-        today: monthDate || today,
+        param,
         affId,
-        isClickLink: isClickLink || false
+        today
     });
 }
 

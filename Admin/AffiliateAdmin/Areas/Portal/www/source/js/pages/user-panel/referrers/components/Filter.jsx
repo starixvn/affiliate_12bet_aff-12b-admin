@@ -22,9 +22,15 @@ export class Filter extends PureComponent {
         const firstDayOfCurrentMonth = `${now.getMonth() + 1}/01/${now.getFullYear()}`;
 
         this.state = {
-            deviceType: deviceType || deviceTypes[pcLaptop],
-            fromDate: fromDate || firstDayOfCurrentMonth,
-            toDate: toDate || this.nowString
+            deviceType: param.isClickLink ? deviceType : deviceTypes[pcLaptop],
+            fromDate: param.isClickLink ? fromDate : firstDayOfCurrentMonth,
+            toDate: param.isClickLink ? toDate : this.nowString
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.param.isClickLink) {
+            this.handleSearch(this.state);
         }
     }
 
@@ -32,8 +38,14 @@ export class Filter extends PureComponent {
         const { param } = this.props;
 
         if (param !== prevProps.param) {
-            this.setState({ deviceType: param.deviceType, fromDate: param.fromDate, toDate: param.toDate });
+            const newState = Object.assign({}, { deviceType: param.deviceType, fromDate: param.fromDate, toDate: param.toDate });
+
+            this.setState(newState);
             this.props.setSelectedSiteUrl(null);
+
+            if (param.isClickLink) {
+                this.handleSearch(newState);
+            }
         }
     }
 
@@ -59,8 +71,8 @@ export class Filter extends PureComponent {
         this.setState({ toDate: momentDate.format("MM/DD/YYYY") });
     }
 
-    handleSearch = () => {
-        this.props.setParam(this.state);
+    handleSearch = (state) => {
+        this.props.setParam(state);
         this.props.setSelectedSiteUrl(null);
     }
 
@@ -92,7 +104,7 @@ export class Filter extends PureComponent {
                             }
                         </Input>
                     </FormGroup>
-                    <Button outline color="primary" type="button" onClick={this.handleSearch}>
+                    <Button outline color="primary" type="button" onClick={() => this.handleSearch(this.state)}>
                         <span className="oi oi-magnifying-glass"></span> {globalResource.Search}
                     </Button>
                 </Form>
@@ -103,6 +115,7 @@ export class Filter extends PureComponent {
 
 function mapStateToProps({ today, clickStatistics }) {
     const { param } = clickStatistics;
+
     return Object.assign({}, {
         today,
         param

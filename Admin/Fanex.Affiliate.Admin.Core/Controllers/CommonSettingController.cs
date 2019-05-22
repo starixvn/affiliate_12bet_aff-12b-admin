@@ -2,26 +2,26 @@
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     public class CommonSettingController : Controller
     {
         private readonly IProductRepository _productRepository;
-        private readonly ILanguageService _languageService;
         private readonly ILandingPageRepository _landingPageRepository;
+        private readonly ITrackingStatisticsRepository _trackingStatisticsRepository;
 
         public CommonSettingController(
             IProductRepository productRepository,
-            ILanguageService languageService,
-            ILandingPageRepository landingPageRepository
+            ILandingPageRepository landingPageRepository,
+            ITrackingStatisticsRepository trackingStatisticsRepository
             )
         {
             _productRepository = productRepository;
-            _languageService = languageService;
             _landingPageRepository = landingPageRepository;
+            _trackingStatisticsRepository = trackingStatisticsRepository;
         }
 
         [HttpPost]
@@ -38,22 +38,22 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetLanguageList()
+        public ActionResult GetPageList()
         {
             return new JsonNetResult
             {
-                Data = _languageService.GetLanguageList()
+                Data = _landingPageRepository.GetLandingPageList()
             };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetPageList()
+        public ActionResult GetTrackingCodeList(int affId)
         {
             return new JsonNetResult
             {
-                Data = _landingPageRepository.GetLandingPageList()
+                Data = _trackingStatisticsRepository.GetTrackingCodeList(affId)
             };
         }
     }

@@ -24,13 +24,12 @@ export class Filter extends React.Component {
             fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
             toDate: this.nowString,
             deviceType: 0,
-            languageList: [],
-            pageList: []
+            pageList: null
         };
     }
 
     componentDidMount() {
-        if (this.state.pageList.length === 0) {
+        if (!this.state.pageList) {
             this.handleGetPageList();
         }
     }
@@ -71,7 +70,7 @@ export class Filter extends React.Component {
     render() {
         const { selectedPage, languageCode, deviceType, fromDate, toDate, pageList } = this.state;
 
-        return (
+        return pageList && (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">

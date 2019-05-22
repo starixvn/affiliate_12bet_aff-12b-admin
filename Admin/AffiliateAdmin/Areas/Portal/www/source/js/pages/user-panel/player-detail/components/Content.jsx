@@ -30,7 +30,9 @@ export class Content extends PureComponent {
     async _fetchData(param) {
         this.props.toggleLoader(true);
 
-        const data = await this.props.fetchData(param);
+        const { affId } = this.props;
+        const postData = { ...param, affId };
+        const data = await this.props.fetchData(postData);
 
         this.setState({ data: { gridData: data ? data.MainData : null } });
         this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
@@ -105,10 +107,11 @@ export class Content extends PureComponent {
             PageIndex: pageIndex,
             PageSize: pageSize
         }
+        const { param } = this.props;
 
         this.props.setPagingOption(newPaging);
 
-        const newParam = { ...this.props.param, pageIndex, pageSize };
+        const newParam = { productId: param.productId, monthDate: param.monthDate, pageIndex, pageSize };
         this._fetchData(newParam);
     }
 
@@ -134,10 +137,11 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ playerDetail }) {
+function mapStateToProps({ affCommonInfo, playerDetail }) {
     const { param, pagingOption } = playerDetail;
+    const { affId } = affCommonInfo;
 
-    return Object.assign({}, { param, pagingOption });
+    return Object.assign({}, { param, pagingOption, affId });
 }
 
 function mapDispatchToProps(dispatch) {

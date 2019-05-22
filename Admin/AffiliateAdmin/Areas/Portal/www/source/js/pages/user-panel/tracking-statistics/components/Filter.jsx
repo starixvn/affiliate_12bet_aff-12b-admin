@@ -7,14 +7,38 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { setParam, setSelectedMonth } from '../actions';
 import { resource } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
+import { getTrackingCodeList } from '../../../customer/user-panel/modules/service';
 
 export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
         this.state = {
-            selectedTrackingCode: ''
+            selectedTrackingCode: '',
+            trackingCodeList: null
         }
+    }
+
+    componentDidMount() {
+        if (!this.state.trackingCodeList) {
+            this.handleGetTrackingCodeList(this.props.affId);
+        }
+
+        if (this.props.isClickLink) {
+            this.handleClickSearch();
+        }
+    }
+
+    componentDidUpdate() {
+        if (this.props.isClickLink) {
+            this.handleClickSearch();
+        }
+    }
+
+    handleGetTrackingCodeList = async (affId) => {
+        const trackingCodeList = await this.props.getTrackingCodeList(affId);
+
+        this.setState({ trackingCodeList });
     }
 
     handleChange = (event) => {
@@ -30,8 +54,7 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        const { selectedTrackingCode } = this.state;
-        const { trackingCodeList } = this.props;
+        const { selectedTrackingCode, trackingCodeList } = this.state;
 
         return trackingCodeList && (
             <div className="filter-container">
@@ -56,16 +79,19 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ trackingStatistics }) {
-    const { trackingCodeList } = trackingStatistics;
+function mapStateToProps({ affCommonInfo, trackingStatistics }) {
+    const { trackingCodeList, param } = trackingStatistics;
+    const { affId } = affCommonInfo;
 
     return Object.assign({}, {
-        trackingCodeList: trackingCodeList || null
+        trackingCodeList: trackingCodeList || null,
+        isClickLink: param.isClickLink || false,
+        affId
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, setSelectedMonth }, dispatch);
+    return bindActionCreators({ setParam, setSelectedMonth, getTrackingCodeList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

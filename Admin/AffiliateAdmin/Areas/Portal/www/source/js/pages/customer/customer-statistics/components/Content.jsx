@@ -111,7 +111,7 @@ export class Content extends PureComponent {
                     this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
-                                <a href="javascript:;" onClick={() => this.props.redirectToPlayerDetail({ monthDate: startMonthString, isClickLink: true })}>
+                                <a href="javascript:;" onClick={() => this.props.redirectToPlayerDetail({ productId: 0, monthDate: startMonthString, isClickLink: true })}>
                                     {format(data.ActivePlayerByMonth)}
                                 </a>) : format(data.ActivePlayerByMonth)
                         ),
@@ -123,7 +123,7 @@ export class Content extends PureComponent {
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRate,
-                        (<a href="javascript:;" onClick={() => this.props.redirectToTrackingStatistics()}>
+                        (<a href="javascript:;" onClick={() => this.props.redirectToTrackingStatistics({ isClickLink: true })}>
                             {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
                         </a>),
                         resource.NA)
