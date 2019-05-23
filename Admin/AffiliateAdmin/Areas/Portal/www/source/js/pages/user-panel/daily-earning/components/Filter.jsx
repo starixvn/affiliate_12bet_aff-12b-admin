@@ -12,14 +12,16 @@ export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
+        const { param } = this.props;
+
         this.state = {
-            selectedProduct: selectedAllProduct,
+            selectedProduct: param.productId || selectedAllProduct,
             productList: []
         }
     }
 
     componentDidMount() {
-        const callback = () => this._submit(selectedAllProduct);
+        const callback = () => this._submit(this.state.selectedProduct);
         this._fetchProductList(callback);
     }
 
@@ -64,6 +66,7 @@ export class Filter extends PureComponent {
 
 function mapStateToProps({ dailyEarning }) {
     const { param } = dailyEarning;
+    console.log(param);
     return Object.assign({}, { param });
 }
 

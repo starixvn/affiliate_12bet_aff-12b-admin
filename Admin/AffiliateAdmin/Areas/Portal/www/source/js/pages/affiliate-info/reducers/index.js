@@ -5,7 +5,7 @@ import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_COMMGROUP, SET_AFFID, SET_C
 
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
-import { showPopupPassword } from '../../../components/pages/reducers';
+import { showPopupPassword } from '../../common/reducers';
 
 export const commGroupList = createReducer({}, {});
 

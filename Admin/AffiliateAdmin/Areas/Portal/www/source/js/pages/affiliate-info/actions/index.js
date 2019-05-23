@@ -1,6 +1,6 @@
 ﻿import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_COMMGROUP, SET_AFFID, SET_COMM_GROUP, SET_SELECTED_COLUMN } from './types';
 import { setPagingOption } from '../../../actions/pagingAction';
-import { setShowPopupPassword } from '../../../components/pages/actions';
+import { setShowPopupPassword } from '../../common/actions/changePassword';
 
 export { setPagingOption, setShowPopupPassword };
 

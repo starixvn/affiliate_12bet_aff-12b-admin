@@ -1,4 +1,4 @@
-﻿import { globalResource, resource as resources, statusList, pending } from '../../../components/pages/modules/constants/PaymentRequestUpdate';
+﻿import { globalResource, resource as resources, statusList, pending } from '../../common/modules/constants/paymentRequestUpdate';
 
 export { globalResource, statusList, pending }
 

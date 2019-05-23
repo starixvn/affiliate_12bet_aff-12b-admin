@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
-import LinkMenu from '../../../../components/pages/common/LinkMenu';
+import UserPanelBreadcrumb from '../../../common/components/UserPanelBreadcrumb';
 import Filter from './Filter';
 import Content from './Content';
 import Loader from '../../../../components/Loader';
@@ -15,28 +15,31 @@ import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
+
+        const { param, affId } = this.props;
+        this.affId = affId;
+        this.monthDate = param && param.monthDate;
+        this.date = new Date(this.monthDate);
     }
 
     render() {
-        const { param, affId } = this.props;
-        const monthDate = param && param.monthDate;
-        const date = new Date(monthDate);
+        const { param } = this.props;
         const dailyEarningParam = {
-            affId,
-            monthDate,
-            productId: param.selectedProductId
+            affId: this.affId,
+            monthDate: this.monthDate,
+            productId: param.productId
         }
 
-        const linkMenuList = [
+        const breadcrumbList = [
             { handleClick: () => this.props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History' },
-            { handleClick: () => this.props.redirectToDailyEarning(dailyEarningParam), title: `${monthNames[date.getMonth()]} ${date.getFullYear()}` },
-            { title: monthDate }
+            { handleClick: () => this.props.redirectToDailyEarning(dailyEarningParam), title: `${monthNames[this.date.getMonth()]} ${this.date.getFullYear()}` },
+            { title: this.monthDate }
         ];
 
-        return monthDate && (
+        return this.monthDate && (
             <AppLayout>
                 <Loader show={this.props.isShowLoader} />
-                <LinkMenu linkMenuList={linkMenuList} />
+                <UserPanelBreadcrumb breadcrumbList={breadcrumbList} />
                 <Filter />
                 <Content />
             </AppLayout>

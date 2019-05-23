@@ -6,7 +6,7 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import Content from './Content';
-import PaymentRequestUpdateForm from '../../../../components/pages/common/PaymentRequestUpdateForm';
+import PaymentRequestUpdateForm from '../../../common/components/PaymentRequestUpdateForm';
 import { setTransactionId, setParam } from '../actions';
 
 export class AppContainer extends PureComponent {

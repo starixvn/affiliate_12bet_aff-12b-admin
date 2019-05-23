@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
-import LinkMenu from '../../../../components/pages/common/LinkMenu';
+import UserPanelBreadcrumb from '../../../common/components/UserPanelBreadcrumb';
 import Filter from './Filter';
 import Content from './Content';
 import Loader from '../../../../components/Loader';
@@ -14,22 +14,21 @@ import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
-    }
-
-    render() {
         const { param } = this.props;
-        const monthDate = param && param.monthDate;
-        const date = new Date(monthDate);
+        this.monthDate = param && param.monthDate;
+        const date = new Date(this.monthDate);
 
-        const linkMenuList = [
+        this.breadcrumbList = [
             { handleClick: () => this.props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History'},
             { title: `${monthNames[date.getMonth()]} ${date.getFullYear()}`}
         ];
+    }
 
-        return monthDate && (
+    render() {
+        return this.monthDate && (
             <AppLayout>
                 <Loader show={this.props.isShowLoader} />
-            <LinkMenu linkMenuList={linkMenuList} />
+                <UserPanelBreadcrumb breadcrumbList={this.breadcrumbList} />
                 <Filter />
                 <Content />
             </AppLayout>

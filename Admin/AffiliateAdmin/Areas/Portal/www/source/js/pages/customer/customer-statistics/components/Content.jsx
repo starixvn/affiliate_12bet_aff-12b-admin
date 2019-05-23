@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import { Table } from 'reactstrap';
 import { rowTitle, resource } from '../modules/constants';
-import { shortedMonthNames, minMonthDate } from '../../../../modules/constants';
+import { shortedMonthNames, minMonthDate, selectedAllProduct } from '../../../../modules/constants';
 import { post } from '../../../../modules/ajaxRequest';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 
@@ -111,7 +111,7 @@ export class Content extends PureComponent {
                     this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
-                                <a href="javascript:;" onClick={() => this.props.redirectToPlayerDetail({ productId: 0, monthDate: startMonthString, isClickLink: true })}>
+                                <a href="javascript:;" onClick={() => this.props.redirectToPlayerDetail({ productId: selectedAllProduct, monthDate: startMonthString, isClickLink: true })}>
                                     {format(data.ActivePlayerByMonth)}
                                 </a>) : format(data.ActivePlayerByMonth)
                         ),

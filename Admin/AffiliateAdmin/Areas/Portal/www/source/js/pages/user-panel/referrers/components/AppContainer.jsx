@@ -8,20 +8,24 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import Content from './Content';
 import Detail from './Detail';
-import NavMenu from '../../../../components/pages/common/NavMenu';
+import UserPanelSubMenu from '../../../common/components/UserPanelSubMenu';
 import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
 
 class AppContainer extends PureComponent {
-    render() {
-        const navMenuList = [
+    constructor(props) {
+        super(props);
+
+        this.subMenuList = [
             { isActive: true, handleClick: () => this.props.setSelectedUserPanel('clickStatistics'), title: 'Referrers' },
             { isActive: false, handleClick: () => this.props.setSelectedUserPanel('landingPageStatistics'), title: 'Landing Pages' }
         ];
+    }
 
+    render() {
         return (
             <AppLayout>
                 <Loader show={this.props.isShowLoader} />
-                <NavMenu navMenuList={navMenuList} />
+                <UserPanelSubMenu subMenuList={this.subMenuList} />
                 <Filter />
                 <Content />
                 <Detail />

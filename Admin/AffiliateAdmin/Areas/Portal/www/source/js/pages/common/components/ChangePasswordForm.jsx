@@ -1,14 +1,14 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { resource, regExp, messages } from '../modules/constants/ChangePassword';
-import { setShowPopupPassword } from '../actions';
+import { resource, regExp, messages } from '../modules/constants/changePassword';
+import { setShowPopupPassword, updateChangePasswword } from '../actions/changePassword';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
 
-export class ChangePasswordForm extends Component {
+export class ChangePasswordForm extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -46,20 +46,17 @@ export class ChangePasswordForm extends Component {
     async saveChangePassword(param) {
         this.props.toggleLoader(true);
 
-        const url = `Portal/AffiliateInfo/ChangePassword`;
-        const response = await post(url, param);
+        const data = this.props.updateChangePasswword(param);
 
-        if (response && response.status === 200) {
-            const result = response.data;
-
-            if (result.IsSuccessful) {
+        if (data) {
+            if (data.IsSuccessful) {
                 window.setTimeout(this.handleClosePopup, 3000);
             }
 
             this.setState({
-                isSuccess: result.IsSuccessful,
+                isSuccess: data.IsSuccessful,
                 isShowMessage: true,
-                message: result.IsSuccessful ? messages.ChangePasswordSuccess : result.Message
+                message: data.IsSuccessful ? messages.ChangePasswordSuccess : data.Message
             }, () => window.setTimeout(this.hideMessage, 3000));
         } else {
             this.setState({
@@ -165,7 +162,7 @@ function mapStateToProps({ showPopupPassword, affId }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopupPassword, toggleLoader }, dispatch);
+    return bindActionCreators({ setShowPopupPassword, toggleLoader, updateChangePasswword }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangePasswordForm);

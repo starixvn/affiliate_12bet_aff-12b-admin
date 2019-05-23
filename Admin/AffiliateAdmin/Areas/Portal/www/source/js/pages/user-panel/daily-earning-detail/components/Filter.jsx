@@ -32,8 +32,10 @@ export class Filter extends PureComponent {
 
     handleChangeProduct = (event) => {
         const selectedProduct = Number(event.target.value);
-        const param = { ...this.props.param, productId: selectedProduct }
+        const param = { ...this.props.param, productId: selectedProduct };
+
         this.props.setParam(param);
+        this.setState({ selectedProduct });
     }
 
     render() {

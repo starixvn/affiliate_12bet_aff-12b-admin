@@ -1,15 +1,17 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Modal, ModalHeader, ModalBody, Alert, Button, Form, Row, Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { resource, globalResource, statusList, errorList, pending } from '../modules/constants/PaymentRequestUpdate';
+import { resource, globalResource, statusList, errorList, pending } from '../modules/constants/paymentRequestUpdate';
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
-import { getPaymentRequestDetail, updatePaymentRequest } from '../modules/service';
+import { getPaymentRequestDetail, updatePaymentRequest } from '../actions/paymentRequestUpdate';
 
 const pendingStatus = pending.toLowerCase();
 const approvedStatus = statusList.Approved.toLowerCase();
 const rejectedStatus = statusList.Rejected.toLowerCase();
 
-export default class PaymentRequestUpdateForm extends Component {
+export class PaymentRequestUpdateForm extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -35,7 +37,7 @@ export default class PaymentRequestUpdateForm extends Component {
     }
 
     handleGetPaymentRequestInfo = async (transId) => {
-        const data = await getPaymentRequestDetail({ transId });
+        const data = await this.props.getPaymentRequestDetail({ transId });
 
         data && this.setState({ paymentRequestInfo: data, originalStatus: data.Status });
     }
@@ -54,7 +56,7 @@ export default class PaymentRequestUpdateForm extends Component {
                 AdminDesc: paymentRequestInfo.AdminDesc,
                 AffDesc: paymentRequestInfo.AffDesc
             });
-            const data = await updatePaymentRequest(paymentInfo);
+            const data = await this.updatePaymentRequest(paymentInfo);
 
             if (data) {
                 this.setState({
@@ -245,3 +247,11 @@ export default class PaymentRequestUpdateForm extends Component {
         );
     }
 }
+
+function mapStateToProps() {}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ getPaymentRequestDetail, updatePaymentRequest }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestUpdateForm);

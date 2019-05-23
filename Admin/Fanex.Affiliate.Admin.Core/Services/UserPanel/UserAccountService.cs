@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 return false;
             }
 
-            if (PaymentMethod.Wire.Equals(param.PreferredPayment) && isInvalidWirePaymentMethod(param))
+            if (PaymentMethod.Wire.Equals(param.PreferredPayment) && !isValidWirePaymentMethod(param))
             {
                 return false;
             }
@@ -62,14 +62,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             return true;
         }
 
-        private static bool isInvalidWirePaymentMethod(UserAccountParam param)
+        private static bool isValidWirePaymentMethod(UserAccountParam param)
         {
-            if (string.IsNullOrEmpty(param.BankName) || string.IsNullOrEmpty(param.BankAddress) ||
-                string.IsNullOrEmpty(param.BankAccountName) || string.IsNullOrEmpty(param.BankAccountNumber))
-            {
-                return true;
-            }
-            return false;
+            return !(string.IsNullOrEmpty(param.BankName) || string.IsNullOrEmpty(param.BankAddress) ||
+                string.IsNullOrEmpty(param.BankAccountName) || string.IsNullOrEmpty(param.BankAccountNumber));
         }
     }
 }
