@@ -43,6 +43,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
                     var response = _requestContext.HttpContext.Response;
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
                     response.ContentType = "application/json";
+                    response.TrySkipIisCustomErrors = true;
                     response.Write(JsonConvert.SerializeObject(
                         new { IsOk = false, IsExpired = true, Message = Error.General }
                     ));
