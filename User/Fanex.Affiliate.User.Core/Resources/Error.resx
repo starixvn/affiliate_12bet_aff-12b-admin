@@ -129,6 +129,9 @@
   <data name="General" xml:space="preserve">
     <value>An error occurred while processing your request</value>
   </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Invalid email.</value>
+  </data>
   <data name="LoginClosedAccount" xml:space="preserve">
     <value>Your account is closed. Please contact your administrator!</value>
   </data>
@@ -157,10 +160,7 @@
     <value>At least one IM account is required</value>
   </data>
   <data name="VerificationFailed" xml:space="preserve">
-    <value>Invalid/expired verification code, please try again or request a new one</value>
-  </data>
-  <data name="VerificationSendCodeFailed" xml:space="preserve">
-    <value>Security validation failed</value>
+    <value>Invalid/expired verification code, please try again or request a new one.</value>
   </data>
   <data name="Wait60Seconds" xml:space="preserve">
     <value>You have to wait 60 seconds before sending a new code.</value>

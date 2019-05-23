@@ -97,6 +97,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid email..
+        /// </summary>
+        public static string InvalidEmail {
+            get {
+                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your account is closed. Please contact your administrator!.
         /// </summary>
         public static string LoginClosedAccount {
@@ -178,20 +187,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid/expired verification code, please try again or request a new one.
+        ///   Looks up a localized string similar to Invalid/expired verification code, please try again or request a new one..
         /// </summary>
         public static string VerificationFailed {
             get {
                 return ResourceManager.GetString("VerificationFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Security validation failed.
-        /// </summary>
-        public static string VerificationSendCodeFailed {
-            get {
-                return ResourceManager.GetString("VerificationSendCodeFailed", resourceCulture);
             }
         }
         

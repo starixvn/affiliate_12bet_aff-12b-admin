@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 var userInfo = _accountRepository.GetUserInfoById(param.AffId, false);
                 if (!param.Email.MatchWith(userInfo.Email))
                 {
-                    return CreateSendCodeFailedResult(Error.VerificationSendCodeFailed);
+                    return CreateSendCodeFailedResult(Error.InvalidEmail);
                 }
 
                 if (string.IsNullOrEmpty(userInfo.SecretKey))
