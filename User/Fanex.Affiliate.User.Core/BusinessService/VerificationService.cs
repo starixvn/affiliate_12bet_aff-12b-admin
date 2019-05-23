@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 var userInfo = _accountRepository.GetUserInfoById(param.AffId, false);
                 if (!param.Email.MatchWith(userInfo.Email))
                 {
-                    return CreateSendCodeFailedResult(Error.InvalidEmail);
+                    return CreateSendCodeFailedResult(Error.InvalidEmail, false);
                 }
 
                 if (string.IsNullOrEmpty(userInfo.SecretKey))
@@ -201,12 +201,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return Base32Encoding.ToString(KeyGeneration.GenerateRandomKey(Number.Twenty));
         }
 
-        private static SendCodeResult CreateSendCodeFailedResult(string message)
+        private static SendCodeResult CreateSendCodeFailedResult(string message, bool isCountDown = true)
         {
             return new SendCodeResult
             {
                 IsOk = false,
-                Message = message
+                Message = message,
+                IsCountDown = isCountDown
             };
         }
     }

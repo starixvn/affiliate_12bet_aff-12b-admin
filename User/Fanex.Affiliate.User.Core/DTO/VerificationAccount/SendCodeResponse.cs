@@ -5,5 +5,7 @@
         public string VerificationToken { get; set; }
 
         public VerificationAction Action { get; set; }
+
+        public bool IsCountDown { get; set; }
     }
 }

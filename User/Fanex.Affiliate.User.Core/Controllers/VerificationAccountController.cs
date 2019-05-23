@@ -89,6 +89,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             {
                 IsOk = result.IsOk,
                 Message = result.Message,
+                IsCountDown = result.IsCountDown,
                 VerificationToken = verificationSession.Token,
                 Action = _verificationService.CreateActionLink(
                     AppSetting.SymmetricPassword,

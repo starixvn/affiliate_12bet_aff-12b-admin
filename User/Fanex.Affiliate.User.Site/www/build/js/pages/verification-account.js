@@ -140,16 +140,21 @@ var VerificationAccount = (function () {
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
-                        $('#btnSendCode').prop("disabled", true);
-                        $('#Email').prop("disabled", true);
-                        _me.countDown(INTERVAL_SENDCODE_SECOND);
+                        if (response.IsCountDown) {
+                            $('#btnSendCode').prop("disabled", true);
+                            $('#Email').prop("disabled", true);
+                            _me.countDown(INTERVAL_SENDCODE_SECOND);
+                            
+                            if (!response.IsOk) {
+                                alert(response.Message);
+                            }
+                        } else {
+                            alert(response.Message);
+                        }
+
                         $('#VerificationToken').val(response.VerificationToken);
                         $('#verificationAccountGroup').toggleClass('hide', !response.IsOk);
                         updateAction(response.Action);
-
-                        if (!response.IsOk) {
-                            alert(response.Message);
-                        }
                     },
                     beforeSend: function () {
                         Site.showLoader();
