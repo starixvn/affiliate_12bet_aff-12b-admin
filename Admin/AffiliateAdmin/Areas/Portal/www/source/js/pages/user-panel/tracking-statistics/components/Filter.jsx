@@ -85,7 +85,7 @@ function mapStateToProps({ affCommonInfo, trackingStatistics }) {
 
     return Object.assign({}, {
         trackingCodeList: trackingCodeList || null,
-        isClickLink: param.isClickLink || false,
+        isClickLink: !!param.isClickLink,
         affId
     });
 }

@@ -5,6 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { memberTypes, resource } from '../modules/constants';
 import { setParam } from '../actions';
+import { getDateArrange } from '../../../../modules/utils';
 
 const minDate = new Date(2009, 11, 1);
 export class Filter extends React.Component {
@@ -33,17 +34,7 @@ export class Filter extends React.Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        const { toDate } = this.state;
-        const selectedDateString = momentDate.format("MM/DD/YYYY");
-        const from = new Date(selectedDateString);
-        const to = new Date(toDate);
-
-        const isOutsideRange = from.getTime() > to.getTime();
-        const newState = isOutsideRange ?
-            { fromDate: selectedDateString, toDate: selectedDateString } :
-            { fromDate: selectedDateString }
-
-        this.setState(newState);
+        this.setState(getDateArrange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {

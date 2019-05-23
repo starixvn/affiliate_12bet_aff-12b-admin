@@ -8,6 +8,7 @@ import { setSelectedPage, setParam, setSelectedLanguage } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 import { deviceTypes } from '../../../customer/user-panel/modules/constants';
 import { getPageList } from '../../../customer/user-panel/modules/service';
+import { getDateArrange } from '../../../../modules/utils';
 
 const minDate = new Date(2009, 11, 1);
 
@@ -45,14 +46,7 @@ export class Filter extends React.Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        const selectedDateString = momentDate.format("MM/DD/YYYY");
-        const fromDate = new Date(selectedDateString);
-        const toDate = new Date(this.state.toDate);
-
-        const isOutsideRange = fromDate.getTime() > toDate.getTime();
-        const newToDate = isOutsideRange ? selectedDateString : this.state.toDate;
-
-        this.setState({ fromDate: selectedDateString, toDate: newToDate });
+        this.setState(getDateArrange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {
