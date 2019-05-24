@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Alert, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { setShowPopup, getNoteList, toggleLoader, post } from '../actions';
+import { setShowPopup, getNoteList, toggleLoader, insertNote, updateNote } from '../actions';
 
 import { resource, maxLength } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
@@ -56,29 +56,27 @@ export class InsertUpdateNoteForm extends PureComponent {
         this.props.toggleLoader(true);
 
         const isInsert = noteInfo.noteId === 0;
-        var url = isInsert ? 'Portal/UserPanel/Note/InsertNote' : 'Portal/UserPanel/Note/UpdateNote';
-        var message = isInsert ? resource.AddNoteSuccess : resource.UpdateNoteSuccess;
+
+        let message = isInsert ? resource.AddNoteSuccess : resource.UpdateNoteSuccess;
 
         const { affId } = this.props;
         const param = { ...noteInfo, affId };
-        const response = await post(url, param);
+        const data = isInsert ? await this.props.insertNote(param) : await this.props.updateNote(param);
 
-        if (response && response.status === 200) {
-            const result = response.data;
+        if (data) {
+            this.setState({
+                isSuccess: data.IsSuccessful,
+                isShowMessage: true,
+                message: data.IsSuccessful ? message : data.Message
+            }, () => window.setTimeout(this.hideMessage, 3000));
 
-            if (result.IsSuccessful) {
+            if (data.IsSuccessful) {
                 const { pagingOption } = this.props;
                 const param = Object.assign({}, { affId, pageIndex: 1, pageSize: pagingOption.PageSize });
 
                 window.setTimeout(() => this.props.setShowPopup(false), 3000);
-                window.setTimeout(() => this.props.getNoteList(param), 3500);
+                window.setTimeout(() => this.props.getNoteList(param), 3200);
             }
-
-            this.setState({
-                isSuccess: result.IsSuccessful,
-                isShowMessage: true,
-                message: result.IsSuccessful ? message : result.Message
-            }, () => window.setTimeout(this.hideMessage, 3000));
         } else {
             this.setState({
                 isSuccess: false,
@@ -149,7 +147,7 @@ function mapStateToProps({ affCommonInfo, note }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopup, toggleLoader, getNoteList }, dispatch);
+    return bindActionCreators({ setShowPopup, toggleLoader, getNoteList, insertNote, updateNote }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InsertUpdateNoteForm);

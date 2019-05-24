@@ -13,6 +13,8 @@ import Additional from './sections/Additional';
 import EmailFormat from './sections/EmailFormat';
 import WebSite from './sections/WebSite';
 import Payment from './sections/Payment';
+import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
+import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -108,7 +110,7 @@ export class Content extends PureComponent {
     }
 
     handleSubmit = async () => {
-        const { affId, userAccountInfo, moreSiteUrlsList } = this.props;
+        const { affId, affName, userAccountInfo, moreSiteUrlsList } = this.props;
         const userAccountInfoAfterTrim = Object.assign({}, userAccountInfo)
         Object.keys(userAccountInfoAfterTrim).map(key => userAccountInfo[key] = typeof userAccountInfo[key] === 'string' ? userAccountInfo[key].trim() : userAccountInfo[key]);
 
@@ -129,7 +131,10 @@ export class Content extends PureComponent {
                     message: data.IsSuccessful ? `${userAccountInfo.AffName} has been updated successfully!` : data.Message,
                 }, () => window.setTimeout(this.hideMessage, 3000));
 
-                this.props.getUserAccountInfo(affId);
+                if (data.IsSuccessful) {
+                    this.props.getUserAccountInfo(affId);
+                    window.setTimeout(() => this.props.getAffiliateInfo(affName, userPanelMenuKey.edit), 3000);
+                }
             }
             else {
                 this.setState({
@@ -207,14 +212,14 @@ export class Content extends PureComponent {
 }
 
 function mapStateToProps({ affCommonInfo, edit }) {
-    const { affId } = affCommonInfo;
+    const { affId, affName } = affCommonInfo;
     const { userAccountInfo, moreSiteUrlsList } = edit;
 
-    return Object.assign({}, { affId, userAccountInfo: userAccountInfo || null, moreSiteUrlsList });
+    return Object.assign({}, { affId, affName, userAccountInfo: userAccountInfo || null, moreSiteUrlsList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getUserAccountInfo, updateUserAccount }, dispatch);
+    return bindActionCreators({ getUserAccountInfo, updateUserAccount, getAffiliateInfo }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

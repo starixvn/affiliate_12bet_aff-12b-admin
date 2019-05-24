@@ -7,6 +7,8 @@ import { toggleLoader, getBalanceBroughtForward, handleSubmit } from '../actions
 import { message, resource, regExp } from '../modules/constants';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 import { money } from '../../../../modules/constants';
+import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
+import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
 const regexCheckAmount = new RegExp(regExp.checkAmount);
 const regexValidAmount = new RegExp(regExp.validAmount);
@@ -82,9 +84,10 @@ export class Content extends PureComponent {
         const amountValidation = this._validateAmount();
 
         if (amountValidation.isValid) {
+            const { affInfo } = this.props;
             const { amount, description } = this.state;
             const amountNumber = Number(amount.replace(/,/g, ''));
-            const adjustmentInfo = Object.assign({}, { AffId: this.props.affInfo.AffId, Amount: amountNumber, Description: description });
+            const adjustmentInfo = Object.assign({}, { AffId: affInfo.AffId, Amount: amountNumber, Description: description });
             const data = await this.props.handleSubmit(adjustmentInfo);
 
             this.setState({
@@ -95,7 +98,10 @@ export class Content extends PureComponent {
                 description: data.IsSuccessful ? '' : description
             }, () => window.setTimeout(this.hideMessage, 3000));
 
-            this.getBalanceBroughtForward();
+            if (data.IsSuccessful) {
+                this.getBalanceBroughtForward();
+                window.setTimeout(() => this.props.getAffiliateInfo(affInfo.AffName, userPanelMenuKey.adjustment), 3000);
+            }
         } else {
             this.setState({
                 isSuccess: false,
@@ -170,7 +176,7 @@ function mapStateToProps({ affCommonInfo }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, getBalanceBroughtForward, handleSubmit }, dispatch);
+    return bindActionCreators({ toggleLoader, getBalanceBroughtForward, handleSubmit, getAffiliateInfo }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

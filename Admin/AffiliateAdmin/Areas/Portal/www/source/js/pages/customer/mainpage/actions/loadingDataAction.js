@@ -19,7 +19,7 @@ export const setAffCommonInfo = (data) => {
     }
 }
 
-export const getAffiliateInfo = (affName) => async(dispatch) => {
+export const getAffiliateInfo = (affName, selectedUserPanel = userPanelMenuKey.statementHistory) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
     const url = 'Portal/CustomerLeftPanel/GetAffiliateInfo';
@@ -30,7 +30,7 @@ export const getAffiliateInfo = (affName) => async(dispatch) => {
     const affCommonInfo = data && { affId: data.AffId, affName, status: data.Status };
     dispatch(setAffCommonInfo(affCommonInfo)) && affCommonInfo;
     dispatch(receiveLeftMenuInfo(data));
-    data && dispatch(setSelectedUserPanel(userPanelMenuKey.statementHistory));
+    data && dispatch(setSelectedUserPanel(selectedUserPanel));
 
     dispatch(toggleLoader(false));
 }
