@@ -6,7 +6,6 @@ import AppLayout from '../../../../layouts/AppLayout';
 import UserPanelBreadcrumb from '../../../common/components/UserPanelBreadcrumb';
 import Filter from './Filter';
 import Content from './Content';
-import Loader from '../../../../components/Loader';
 
 import { setSelectedUserPanel, redirectToDailyEarning } from '../../../customer/user-panel/actions';
 import { monthNames } from '../../../../modules/constants';
@@ -38,7 +37,6 @@ export class AppContainer extends PureComponent {
 
         return this.monthDate && (
             <AppLayout>
-                <Loader show={this.props.isShowLoader} />
                 <UserPanelBreadcrumb breadcrumbList={breadcrumbList} />
                 <Filter />
                 <Content />
@@ -48,9 +46,9 @@ export class AppContainer extends PureComponent {
 }
 
 function mapStateToProps({ affCommonInfo, dailyEarningDetail }) {
-    const { isShowLoader, param } = dailyEarningDetail;
+    const { param } = dailyEarningDetail;
     const { affId } = affCommonInfo;
-    return Object.assign({}, { isShowLoader, param, affId });
+    return Object.assign({}, { param, affId });
 }
 
 function mapDispatchToProps(dispatch) {

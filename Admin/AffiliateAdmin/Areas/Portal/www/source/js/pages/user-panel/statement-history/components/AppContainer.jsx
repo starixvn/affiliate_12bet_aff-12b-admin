@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
-import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import Content from './Content';
 import PaymentRequestUpdateForm from '../../../common/components/PaymentRequestUpdateForm';
@@ -27,7 +26,6 @@ export class AppContainer extends PureComponent {
 
         return (
             <AppLayout>
-                <Loader show={isShowLoader} />
                 <Filter />
                 <Content />
                 <PaymentRequestUpdateForm
@@ -41,8 +39,8 @@ export class AppContainer extends PureComponent {
 }
 
 function mapStateToProps({ statementHistory }) {
-    const { isShowLoader, transactionId, param } = statementHistory;
-    return Object.assign({}, { isShowLoader, transactionId, param });
+    const { transactionId, param } = statementHistory;
+    return Object.assign({}, { transactionId, param });
 }
 
 function mapDispatchToProps(dispatch) {

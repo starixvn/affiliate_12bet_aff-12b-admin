@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
-import Loader from '../../../../components/Loader';
 
 import Filter from './Filter';
 import Content from './Content';
@@ -24,7 +23,6 @@ class AppContainer extends PureComponent {
     render() {
         return (
             <AppLayout>
-                <Loader show={this.props.isShowLoader} />
                 <UserPanelSubMenu subMenuList={this.subMenuList} />
                 <Filter />
                 <Content />
@@ -34,10 +32,7 @@ class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ landingPageStatistics }) {
-    const { isShowLoader } = landingPageStatistics;
-    return Object.assign({}, { isShowLoader });
-}
+function mapStateToProps() {}
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setSelectedUserPanel }, dispatch);

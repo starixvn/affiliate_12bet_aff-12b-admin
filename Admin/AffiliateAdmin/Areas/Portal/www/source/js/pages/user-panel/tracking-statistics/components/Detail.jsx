@@ -31,6 +31,7 @@ export class Detail extends PureComponent {
     async fetchData(param) {
         this.props.toggleLoader(true);
 
+        const { affId } = this.props;
         const postParam = { ...param, affId };
         const data = await this.props.fetchDetailData(postParam);
 
@@ -83,7 +84,7 @@ export class Detail extends PureComponent {
     render() {
         const { gridData } = this.state;
 
-        return this.props.selectedMonth && (
+        return this.props.selectedMonth && gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     width={1020}
@@ -105,7 +106,7 @@ function mapStateToProps({ affCommonInfo, trackingStatistics }) {
 
     return Object.assign({}, {
         affId,
-        selectedMonth,
+        selectedMonth: selectedMonth || null,
         param
     });
 }

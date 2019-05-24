@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import AppLayout from '../../../../layouts/AppLayout';
 import Content from './Content';
 import InsertUpdateNoteForm from './InsertUpdateNoteForm';
-import Loader from '../../../../components/Loader';
 
 class AppContainer extends PureComponent {
     constructor(props) {
@@ -15,7 +14,6 @@ class AppContainer extends PureComponent {
     render() {
         return (
             <AppLayout>
-                <Loader show={this.props.isShowLoader} />
                 <Content />
                 <InsertUpdateNoteForm />
             </AppLayout>
@@ -23,10 +21,7 @@ class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ note }) {
-    const { isShowLoader } = note;
-    return Object.assign({}, { isShowLoader });
-}
+function mapStateToProps() {}
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ }, dispatch);
