@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, Row, Col } from 'reactstrap';
 
 import Panel from './Panel';
 import { updateAffType, updateClosedStatus, getOnLineList, toggleLoader, updateStatus } from '../actions';
@@ -130,11 +130,11 @@ export class PanelList extends PureComponent {
 
         return (
             <Panel heading={resource.Commission}>
-                <tr>
-                    <td>{resource.CommGroup}</td>
-                    <td className='text-right'>
+                <Row>
+                    <Col sm={7}>{resource.CommGroup}</Col>
+                    <Col sm={5} className='text-right text-truncate'>
                         {
-                            affiliateInfo.IsClosed ? (<span className='text-truncate'>{affiliateInfo.CommGroupName}</span>) :
+                            affiliateInfo.IsClosed ? (<span>{affiliateInfo.CommGroupName}</span>) :
                                 (<span className='popup text-primary' onClick={() => this.toggleEditingCommissionPopup(true)}>{affiliateInfo.CommGroupName}</span>)
                         }
 
@@ -148,12 +148,12 @@ export class PanelList extends PureComponent {
                                 </div>
                             </ModalBody>
                         </Modal>
-                    </td>
-                </tr>
-                <tr>
-                    <td>{resource.BalanceForward}</td>
-                    <td className="text-right">{formatDecimalWithCurrencySymbol(affiliateInfo.BalanceBf)}</td>
-                </tr>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={7} className="pr-0">{resource.BalanceForward}</Col>
+                    <Col sm={5} className="text-right text-break pl-0">{formatDecimalWithCurrencySymbol(affiliateInfo.BalanceBf)}</Col>
+                </Row>
             </Panel>
         )
     }
@@ -164,9 +164,9 @@ export class PanelList extends PureComponent {
 
         return (
             <Panel heading={resource.Setting}>
-                <tr>
-                    <td>{resource.AffiliateType}</td>
-                    <td className="text-right text-primary">
+                <Row>
+                    <Col>{resource.AffiliateType}</Col>
+                    <Col className="text-right text-primary">
                         <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} defaultValue={affiliateInfo.AffType}
                             onBlur={this.toggleChangingAffType.bind(this, false)} ref={this.affTypeDropdown}
                             onChange={this.handleChangeAffType}>
@@ -178,11 +178,11 @@ export class PanelList extends PureComponent {
                         </select>
                         <span className="popup" style={{ display: isChangingAffType ? 'none' : 'block' }}
                             onClick={this.toggleChangingAffType.bind(this, true)}>{affType[affiliateInfo.AffType]}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>{resource.Status}</td>
-                    <td className="text-right">
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>{resource.Status}</Col>
+                    <Col className="text-right">
                         {
                             isApproved ?
                                 affiliateInfo.Status :
@@ -200,16 +200,16 @@ export class PanelList extends PureComponent {
                                     </div>
                                 )
                         }
-                    </td>
-                </tr>
+                    </Col>
+                </Row>
                 {
                     isApproved &&
-                    <tr>
-                        <td>{resource.Closed}</td>
-                        <td className="text-right text-primary">
+                    <Row>
+                        <Col>{resource.Closed}</Col>
+                        <Col className="text-right text-primary">
                             <a className="text_box px-1 border border-secondary" onClick={this.handleChangeClosedStatus}>{affiliateInfo.IsClosed ? resource.Yes : resource.No}</a>
-                        </td>
-                    </tr>
+                        </Col>
+                    </Row>
                 }
             </Panel>
         )
@@ -220,24 +220,24 @@ export class PanelList extends PureComponent {
 
         return onlineInfoList && (
             <Panel heading={resource.CurrentOnlineList} style={{ overflow: 'auto', maxHeight: 125 }}>
-                <tr>
-                    <td width="10" className="text_bold text-center">{resource.Index}</td>
-                    <td width="70" className="text_bold text-center">{resource.Ip}</td>
-                    <td width="120" className="text_bold text-center">{resource.LastCheckIn}</td>
-                </tr>
+                <Row className="mr-0">
+                    <Col sm={2} className="text_bold text-center pr-0">{resource.Index}</Col>
+                    <Col sm={5} className="text_bold text-center px-0">{resource.Ip}</Col>
+                    <Col sm={5} className="text_bold text-center px-0">{resource.LastCheckIn}</Col>
+                </Row>
 
                 {
                     onlineInfoList && onlineInfoList.map((item, index) => {
                         return (
-                            <tr key={`onl-info-${index}`}>
-                                <td className="text-center">{index + 1}</td>
-                                <td className="text-center mx-1">
+                            <Row className="mr-0" key={`onl-info-${index}`}>
+                                <Col sm={2} className="text-center pr-0">{index + 1}</Col>
+                                <Col sm={5} className="text-center px-0">
                                     <a target="_blank" href={`http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${item.Ip}&j=1`}>
                                         {item.Ip}
                                     </a>
-                                </td>
-                                <td className="text-center">{item.ReloadTimeText}</td>
-                            </tr>
+                                </Col>
+                                <Col sm={5} className="text-center px-0">{item.ReloadTimeText}</Col>
+                            </Row>
                         )
                     })
                 }
