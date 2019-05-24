@@ -168,7 +168,6 @@
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
-                        console.log('complete', response);
                         if (response.IsOk) {
                             Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
                         }
@@ -183,7 +182,6 @@
                         updateAction(response.Action);
                     },
                     error: function (jqXHR) {
-                        console.log('error' ,jqXHR);
                         var data = jqXHR.responseJSON;
                         var message = data ? (data.IsExpired ? resource.verificationFailed : data.Message) : resource.General;
                         message && alert(message);
@@ -192,7 +190,6 @@
                         Site.showLoader();
                     },
                     complete: function (jqXHR, textStatus) {
-                        console.log('complete', jqXHR, textStatus);
                         Site.hideLoader();
                     }
                 });

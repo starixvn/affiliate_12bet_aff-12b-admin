@@ -41,12 +41,20 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
                 if (!parseQueryResult.IsValid && parseQueryResult.IsExpired)
                 {
                     var response = _requestContext.HttpContext.Response;
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    response.ContentType = "application/json";
-                    response.TrySkipIisCustomErrors = true;
-                    response.Write(JsonConvert.SerializeObject(
-                        new { IsOk = false, IsExpired = true, Message = Error.General }
-                    ));
+                    var request = new HttpRequestWrapper(context.Request);
+                    if (request.IsAjaxRequest())
+                    {
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        response.ContentType = "application/json";
+                        response.TrySkipIisCustomErrors = true;
+                        response.Write(JsonConvert.SerializeObject(
+                            new { IsOk = false, IsExpired = true, Message = Error.General }
+                        ));
+                    }
+                    else
+                    {
+                        response.Redirect(VirtualPathUtility.ToAbsolute("~/Notify/Error"));
+                    }
 
                     return;
                 }
