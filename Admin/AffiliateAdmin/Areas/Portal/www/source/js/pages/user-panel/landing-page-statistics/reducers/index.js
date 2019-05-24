@@ -1,13 +1,10 @@
 ﻿import { combineReducers } from 'redux';
-import { SET_SELECTED_PAGE, SET_PARAM } from '../actions/types';
+import { SET_SELECTED_PAGE, SET_PARAM, SET_SHORT_CODE_LANGUAGE_LIST } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
-import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 export const today = createReducer(null, {});
-
-export const languageList = createReducer({}, {});
 
 export const pageList = createReducer([], {});
 
@@ -23,11 +20,16 @@ export const param = createReducer({}, {
     }
 });
 
+export const shortCodeLanguageList = createReducer({}, {
+    [SET_SHORT_CODE_LANGUAGE_LIST](prevState, action) {
+        return { ...action.data };
+    }
+});
+
 export default combineReducers({
     pagingOption,
-    isShowLoader,
     today,
-    languageList,
+    shortCodeLanguageList,
     pageList,
     selectedPage,
     param

@@ -4,20 +4,43 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { headerTitle } from '../modules/constants';
-import { setSelectedPage, setParam, setSelectedLanguage } from '../actions';
+import { setSelectedPage, setParam, setSelectedLanguage, setShortCodeLanguageList } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 import { deviceTypes } from '../../../customer/user-panel/modules/constants';
 import { getPageList } from '../../../customer/user-panel/modules/service';
 import { getDateArrange } from '../../../../modules/utils';
 
+const shortCodeLanguageList = {};
+const shortCodeList = {
+    'en-GB': 'eneuro',
+    'en-US': 'en',
+    'es-ES': 'es',
+    'hi-IN': 'hien',
+    'id-ID': 'id',
+    'ja-JP': 'jp',
+    'ko-KR': 'ko',
+    'th-TH': 'th',
+    'vi-VN': 'vn',
+    'zh-CN': 'cs',
+    'zh-TW': 'ch',
+};
 const minDate = new Date(2009, 11, 1);
 
 export class Filter extends React.Component {
     constructor(props) {
         super(props);
 
+        const { today, languageList } = this.props;
         const now = new Date(this.props.today);
+
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+
+        for (let i = 0; i < languageList.length; i++) {
+            const languageItem = languageList[i];
+            const shortCode = shortCodeList[languageItem.LanguageCode] || languageItem.LanguageCode;
+            shortCodeLanguageList[shortCode] = languageItem.LanguageName;
+        }
+        this.props.setShortCodeLanguageList(shortCodeLanguageList);
 
         this.state = {
             selectedPage: '',
@@ -83,8 +106,8 @@ export class Filter extends React.Component {
                         <Input type="select" name="languageCode" id="languageCode" value={languageCode} onChange={this.handleChange}>
                             <option value="">{globalResource.All}</option>
                             {
-                                this.props.languageList.map(language => {
-                                    return (<option key={`language-${language.LanguageCode}`} value={language.LanguageCode}>{language.LanguageName}</option>)
+                                Object.keys(shortCodeLanguageList).map(key => {
+                                    return (<option key={`language-${key}`} value={key}>{shortCodeLanguageList[key]}</option>)
                                 })
                             }
                         </Input>
@@ -130,7 +153,7 @@ function mapStateToProps({ today, affCommonInfo, languageList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedPage, setParam, setSelectedLanguage }, dispatch);
+    return bindActionCreators({ setSelectedPage, setParam, setSelectedLanguage, setShortCodeLanguageList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

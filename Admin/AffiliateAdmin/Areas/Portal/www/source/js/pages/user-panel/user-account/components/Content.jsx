@@ -215,7 +215,7 @@ function mapStateToProps({ affCommonInfo, edit }) {
     const { affId, affName } = affCommonInfo;
     const { userAccountInfo, moreSiteUrlsList } = edit;
 
-    return Object.assign({}, { affId, affName, userAccountInfo: userAccountInfo || null, moreSiteUrlsList });
+    return Object.assign({}, { affId, affName, userAccountInfo, moreSiteUrlsList });
 }
 
 function mapDispatchToProps(dispatch) {

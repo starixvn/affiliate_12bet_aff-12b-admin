@@ -2,10 +2,6 @@
 import { SET_PARAM, SET_SELECTED_MONTH } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
-import { isShowLoader } from '../../../../reducers/loaderReducer';
-
-export const trackingCodeList = createReducer([], {});
-
 export const param = createReducer({}, {
     [SET_PARAM](prevState, action) {
         return {...action.data };
@@ -19,8 +15,6 @@ export const selectedMonth = createReducer(null, {
 });
 
 export default combineReducers({
-    isShowLoader,
-    trackingCodeList,
     param,
     selectedMonth
 });

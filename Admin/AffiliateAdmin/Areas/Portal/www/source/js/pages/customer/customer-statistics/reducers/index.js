@@ -1,7 +1,6 @@
 ﻿import { combineReducers } from 'redux';
 import { SET_MONTHDATE } from '../actions/types';
 
-import { isShowLoader } from '../../../../reducers/loaderReducer';
 import createReducer from '../../../../modules/createReducer';
 
 const monthDate = createReducer(null, {
@@ -11,6 +10,5 @@ const monthDate = createReducer(null, {
 })
 
 export default combineReducers({
-    monthDate,
-    isShowLoader
+    monthDate
 });

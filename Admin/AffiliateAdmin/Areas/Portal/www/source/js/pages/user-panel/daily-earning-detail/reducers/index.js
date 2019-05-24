@@ -3,7 +3,6 @@ import { SET_PARAM } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
-import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 export const param = createReducer({}, {
     [SET_PARAM](prevState, action) {
@@ -14,6 +13,5 @@ export const param = createReducer({}, {
 
 export default combineReducers({
     pagingOption,
-    isShowLoader,
     param
 });

@@ -80,11 +80,10 @@ export class Filter extends PureComponent {
 }
 
 function mapStateToProps({ affCommonInfo, trackingStatistics }) {
-    const { trackingCodeList, param } = trackingStatistics;
+    const { param } = trackingStatistics;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {
-        trackingCodeList: trackingCodeList || null,
         isClickLink: !!param.isClickLink,
         affId
     });

@@ -98,7 +98,7 @@ export class InsertUpdateNoteForm extends PureComponent {
         const { isShowMessage, isSuccess, message } = this.state;
         const { isShowPopup, noteInfo } = this.props;
 
-        const isInsert = noteInfo && noteInfo.noteId === 0;
+        const isInsert = noteInfo.noteId === 0;
         const popupTitle = isInsert ? resource.AddNote : resource.UpdateNote;
         const buttonTitle = isInsert ? globalResource.Add : globalResource.Update;
 
@@ -142,7 +142,7 @@ function mapStateToProps({ affCommonInfo, note }) {
         affId,
         isShowPopup,
         pagingOption,
-        noteInfo: noteInfo || null
+        noteInfo
     });
 }
 

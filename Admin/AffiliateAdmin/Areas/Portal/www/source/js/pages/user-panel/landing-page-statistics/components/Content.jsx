@@ -38,10 +38,10 @@ export class Content extends Component {
         this.props.toggleLoader(false);
     }
 
-    handleSelectedPage = (page, languageCode) => {
-        const selectedPage = Object.assign({}, { selectedPage: page, languageCode });
+    handleSelectedPage = (selectedPage, languageCode) => {
+        const param = Object.assign({}, { selectedPage, languageCode });
 
-        this.props.setSelectedPage(selectedPage);
+        this.props.setSelectedPage(param);
     }
 
     _renderHeader() {
@@ -78,12 +78,12 @@ export class Content extends Component {
     }
 
     _buildDataRow(dataItem, index) {
-        const language = this.props.languageList[dataItem.LanguageCode] || dataItem.LanguageCode;
+        const language = this.props.shortCodeLanguageList[dataItem.LanguageCode] || dataItem.LanguageCode;
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={dataItem.SiteUrl}>
-                    {(dataItem.Page == "Old URL" || dataItem.Page == "none") ? dataItem.Page :
+                    {(dataItem.Page.toLowerCase() === "old url" || dataItem.Page.toLowerCase() === "none") ? dataItem.Page :
                         (<Button color="link" className="p-0" onClick={() => this.handleSelectedPage(dataItem.Page, dataItem.LanguageCode)}>
                             {dataItem.Page}
                         </Button>)}
@@ -116,10 +116,10 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ languageList, landingPageStatistics }) {
-    const { param } = landingPageStatistics;
+function mapStateToProps({ landingPageStatistics }) {
+    const { param, shortCodeLanguageList } = landingPageStatistics;
 
-    return Object.assign({}, { param, languageList });
+    return Object.assign({}, { param, shortCodeLanguageList });
 }
 
 function mapDispatchToProps(dispatch) {

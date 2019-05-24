@@ -3,7 +3,6 @@ import { SET_NOTE_LIST, SET_SHOW_POPUP, SET_NOTE_INFO } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
-import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 export const noteList = createReducer([], {
     [SET_NOTE_LIST](prevState, action) {
@@ -26,7 +25,6 @@ export const noteInfo = createReducer({...defaultNote }, {
 
 export default combineReducers({
     pagingOption,
-    isShowLoader,
     isShowPopup,
     noteList,
     noteInfo

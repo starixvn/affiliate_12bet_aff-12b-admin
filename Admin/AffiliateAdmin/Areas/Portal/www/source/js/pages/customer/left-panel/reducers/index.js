@@ -3,7 +3,6 @@ import createReducer from '../../../../modules/createReducer';
 
 import { SET_AFF_NAME } from '../actions/types';
 import { LEFTPANEL_RECEIVE_AFFINFO } from '../../mainpage/actions/types';
-import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 const affName = createReducer('', {
     [SET_AFF_NAME](prevState, action) {
@@ -20,7 +19,6 @@ const affiliateInfo = createReducer(null, {
 });
 
 export default combineReducers({
-    isShowLoader,
     affName,
     languageList,
     affiliateInfo

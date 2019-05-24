@@ -3,7 +3,6 @@ import { SET_PARAM, TRANSACTION_ID } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
-import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 export const param = createReducer({}, {
     [SET_PARAM](prevState, action) {
@@ -20,7 +19,6 @@ export const transactionId = createReducer(null, {
 
 export default combineReducers({
     pagingOption,
-    isShowLoader,
     param,
     transactionId
 });

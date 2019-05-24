@@ -15,7 +15,7 @@ export class Detail extends Component {
         super(props);
 
         this.state = {
-            gridData: []
+            gridData: null
         }
     }
 
@@ -99,7 +99,7 @@ export class Detail extends Component {
     render() {
         const { gridData } = this.state;
 
-        return this.props.selectedPage && (
+        return this.props.selectedPage && gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1000}
@@ -121,7 +121,7 @@ export class Detail extends Component {
 
 function mapStateToProps({ landingPageStatistics }) {
     const { pagingOption, param, selectedPage } = landingPageStatistics;
-    return Object.assign({}, { pagingOption, param, selectedPage: selectedPage || null });
+    return Object.assign({}, { pagingOption, param, selectedPage });
 }
 
 function mapDispatchToProps(dispatch) {

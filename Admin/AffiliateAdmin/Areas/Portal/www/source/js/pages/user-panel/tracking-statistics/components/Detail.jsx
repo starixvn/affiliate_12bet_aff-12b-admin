@@ -84,7 +84,7 @@ export class Detail extends PureComponent {
     render() {
         const { gridData } = this.state;
 
-        return this.props.selectedMonth && gridData && (
+        return gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     width={1020}
@@ -106,7 +106,7 @@ function mapStateToProps({ affCommonInfo, trackingStatistics }) {
 
     return Object.assign({}, {
         affId,
-        selectedMonth: selectedMonth || null,
+        selectedMonth,
         param
     });
 }
