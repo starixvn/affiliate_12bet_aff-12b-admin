@@ -140,20 +140,20 @@ var VerificationAccount = (function () {
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
-                        if (response.IsCountDown) {
+                        if (response.IsValidEmail) {
                             $('#btnSendCode').prop("disabled", true);
                             $('#Email').prop("disabled", true);
                             _me.countDown(INTERVAL_SENDCODE_SECOND);
                             
-                            if (!response.IsOk) {
-                                alert(response.Message);
+                            if (!response.CanSendCode) {
+                                alert(resource.wait60Seconds);
                             }
                         } else {
-                            alert(response.Message);
+                            alert(resource.invalidEmail);
                         }
 
                         $('#VerificationToken').val(response.VerificationToken);
-                        $('#verificationAccountGroup').toggleClass('hide', !response.IsOk);
+                        $('#verificationAccountGroup').toggleClass('hide', !(response.IsValidEmail && response.CanSendCode));
                         updateAction(response.Action);
                     },
                     beforeSend: function () {

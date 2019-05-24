@@ -78,7 +78,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var sendCodeParam = CreateSendCodeParam();
             sendCodeParam.Email = email;
             var result = _verificationService.SendCode(sendCodeParam);
-            if (result.IsOk)
+            if (result.CanSendCode && result.IsValidEmail)
             {
                 verificationSession.Counter = result.NewCounter;
                 verificationSession.SentCodeTime = result.NewSendCodeTime;
@@ -87,9 +87,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             return Json(new SendCodeResponse
             {
-                IsOk = result.IsOk,
-                Message = result.Message,
-                IsCountDown = result.IsCountDown,
+                CanSendCode = result.CanSendCode,
+                IsValidEmail = result.IsValidEmail,
                 VerificationToken = verificationSession.Token,
                 Action = _verificationService.CreateActionLink(
                     AppSetting.SymmetricPassword,
