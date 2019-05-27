@@ -4,8 +4,6 @@ import createReducer from '../../../../modules/createReducer';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
 
-const today = createReducer(null, {});
-
 export const param = createReducer({}, {
     [SET_PARAM](prevState, action) {
         return {...action.data };
@@ -20,7 +18,6 @@ export const showIdList = createReducer({}, {
 
 export default combineReducers({
     pagingOption,
-    today,
     param,
     showIdList
 });

@@ -4,8 +4,6 @@ import createReducer from '../../../../modules/createReducer';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
 
-export const today = createReducer(null, {});
-
 export const pageList = createReducer([], {});
 
 export const selectedPage = createReducer(null, {
@@ -28,7 +26,6 @@ export const shortCodeLanguageList = createReducer({}, {
 
 export default combineReducers({
     pagingOption,
-    today,
     shortCodeLanguageList,
     pageList,
     selectedPage,

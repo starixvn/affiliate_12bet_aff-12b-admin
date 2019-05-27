@@ -4,6 +4,7 @@ import { toggleLoader } from '../../../../actions/loaderAction';
 
 import { setSelectedUserPanel } from '../../user-panel/actions';
 import { userPanelMenuKey } from '../../common/modules/constants';
+import { setIsValidUserName } from '../../left-panel/actions';
 
 const receiveLeftMenuInfo = (data) => {
     return {
@@ -31,6 +32,7 @@ export const getAffiliateInfo = (affName, selectedUserPanel = userPanelMenuKey.s
     dispatch(setAffCommonInfo(affCommonInfo)) && affCommonInfo;
     dispatch(receiveLeftMenuInfo(data));
     data && dispatch(setSelectedUserPanel(selectedUserPanel));
+    data === null ? dispatch(setIsValidUserName(false)) : dispatch(setIsValidUserName(true));
 
     dispatch(toggleLoader(false));
 }

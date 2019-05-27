@@ -22,7 +22,7 @@ export class AppContainer extends PureComponent {
     }
 
     render() {
-        const { isShowLoader, transactionId } = this.props;
+        const { transactionId } = this.props;
 
         return (
             <AppLayout>

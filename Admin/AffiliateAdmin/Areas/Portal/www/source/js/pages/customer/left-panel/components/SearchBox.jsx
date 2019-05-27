@@ -42,6 +42,7 @@ export class SearchBox extends PureComponent {
 
     render() {
         const { affName } = this.state;
+
         return (
             <Form tag="div">
                 <FormGroup row>
@@ -50,14 +51,19 @@ export class SearchBox extends PureComponent {
                     </Col>
                     <Button id="search-affName" onClick={this.handleClick}>{globalResource.Search}</Button>
                 </FormGroup>
+                {
+                    !this.props.isValidUserName && (
+                        <p className="m-0">Invalid username</p>
+                    )
+                }
             </Form >
         )
     }
 }
 
 function mapStateToProps({ leftPanel }) {
-    const { affiliateInfo, affName } = leftPanel;
-    return Object.assign({}, { affiliateInfo, affName });
+    const { affiliateInfo, affName, isValidUserName } = leftPanel;
+    return Object.assign({}, { affiliateInfo, affName, isValidUserName });
 };
 
 function mapDispatchToProps(dispatch) {
