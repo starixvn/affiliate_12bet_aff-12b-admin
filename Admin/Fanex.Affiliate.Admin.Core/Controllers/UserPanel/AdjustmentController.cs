@@ -56,7 +56,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         public ActionResult InsertAdjustment(AdjustmentParam param)
         {
             var absBalanceBf = Math.Abs(_adjustmentRepository.GetBalanceBroughtForward(param.AffId == 0 ? SessionService.AffId : param.AffId));
-            if (ModelState.IsValid && param.Amount != 0 && param.Amount - absBalanceBf > Money.MinValue && param.Amount + absBalanceBf < Money.MaxValue)
+
+            if (ModelState.IsValid && param.IsValid(absBalanceBf))
             {
                 param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
                 param.UserId = SessionService.UserId;
