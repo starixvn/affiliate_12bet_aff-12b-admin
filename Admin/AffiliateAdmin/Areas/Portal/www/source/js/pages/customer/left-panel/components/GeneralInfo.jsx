@@ -16,6 +16,8 @@ export class GeneralInfo extends PureComponent {
     constructor(props) {
         super(props);
 
+        this.languageDropdown = React.createRef();
+
         this.state = {
             isChangingLanguage: false,
             isChangingPassword: false
@@ -27,24 +29,20 @@ export class GeneralInfo extends PureComponent {
         if (isConfirmed) {
             const preferredLanguage = event.target.value;
             const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, PreferredLanguage: preferredLanguage });
-            const data = await this.props.updateLanguage(param);
+            const result = await this.props.updateLanguage(param);
 
-            if (data.IsSuccessful) {
+            if (result.IsSuccessful) {
                 window.alert("The language has been updated successfully!");
                 this.props.getAffiliateInfo(this.props.affName);
             }
             else {
-                window.alert(data.Message);
+                window.alert(result.Message);
             }
         }
     }
 
-    clickChangeLanguage = () => {
-        this.setState({ isChangingLanguage: true });
-    }
-
-    handleBlurLanguage = () => {
-        this.setState({ isChangingLanguage: false });
+    toggleChangingLanguage = (isChanging) => {
+        this.setState({ isChangingLanguage: isChanging }, () => isChanging && this.languageDropdown.current.focus());
     }
 
     toggleChangingPassword = (isChanging) => {
@@ -58,21 +56,21 @@ export class GeneralInfo extends PureComponent {
         return (
             <React.Fragment>
                 <select style={{ display: isChangingLanguage ? 'inline-block' : 'none' }}
-                    defaultValue={affiliateInfo.PreferredLanguage} onChange={this.handleChangeLanguage} onBlur={this.handleBlurLanguage}>
+                    defaultValue={affiliateInfo.PreferredLanguage} onChange={this.handleChangeLanguage} onBlur={() => this.toggleChangingLanguage(false)} ref={this.languageDropdown}>
                     {
                         languageList.map(language => {
                             return (<option value={language.LanguageCode} key={`affinfo-lang-${language.LanguageCode}`}>{language.LanguageName}</option>)
                         })
                     }
                 </select>
-                <span className='popup' style={{ display: isChangingLanguage ? 'none' : 'block' }}
-                    onClick={this.clickChangeLanguage}>
+                <a href="javascript:;" style={{ display: isChangingLanguage ? 'none' : 'inline-block' }}
+                    onClick={() => this.toggleChangingLanguage(true)}>
                     {
                         languageList.map(language => {
                             return affiliateInfo.PreferredLanguage === language.LanguageCode && language.LanguageName
                         })
                     }
-                </span>
+                </a>
             </React.Fragment>
         )
     }
@@ -85,7 +83,7 @@ export class GeneralInfo extends PureComponent {
                 <Row>
                     <Col sm={5}>{resource.Password}</Col>
                     <Col sm={7} className='text-right text-primary'>
-                        <span className='popup' onClick={() => this.toggleChangingPassword(true)}>[{resource.Change}]</span>
+                        <a href="javascript:;" onClick={() => this.toggleChangingPassword(true)}>[{resource.Change}]</a>
                         {affiliateInfo && <ChangePasswordForm
                             showPopupPassword={isChangingPassword}
                             affId={affiliateInfo.AffId}

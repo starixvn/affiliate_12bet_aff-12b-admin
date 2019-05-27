@@ -12,9 +12,8 @@ import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/num
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers } from '../../user-panel/actions';
 import { deviceTypes, pcLaptop, mobile } from '../../user-panel/modules/constants';
-import { setMonthDate } from '../actions';
+import { setMonthDate, fetchData } from '../actions';
 
-const API_URL = "Portal/CustomerStatistics/GetCustomerStatistics";
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
@@ -45,13 +44,9 @@ export class Content extends PureComponent {
             monthDate,
             affId
         }
-        const response = await post(API_URL, param);
-        if (response && response.status === 200) {
-            this.setState({
-                data: response.data
-            });
-        }
+        const data = await this.props.fetchData(param);
 
+        this.setState({ data });
         this.props.toggleLoader(false);
     }
 
@@ -177,7 +172,7 @@ function mapStateToProps({ affCommonInfo, today, customerStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setMonthDate, toggleLoader, redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers }, dispatch);
+    return bindActionCreators({ setMonthDate, toggleLoader, redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

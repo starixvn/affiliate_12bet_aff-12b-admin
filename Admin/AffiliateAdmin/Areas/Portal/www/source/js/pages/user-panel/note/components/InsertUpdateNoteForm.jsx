@@ -57,7 +57,7 @@ export class InsertUpdateNoteForm extends PureComponent {
 
         const isInsert = noteInfo.noteId === 0;
 
-        let message = isInsert ? resource.AddNoteSuccess : resource.UpdateNoteSuccess;
+        const message = isInsert ? resource.AddNoteSuccess : resource.UpdateNoteSuccess;
 
         const { affId } = this.props;
         const param = { ...noteInfo, affId };

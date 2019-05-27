@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Row } from 'reactstrap';
+import { Row, Spinner } from 'reactstrap';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import LeftPanel from '../../left-panel/components/AppContainer';
@@ -25,7 +25,7 @@ const AppContainer = (props) => {
                     <div className="right-panel customer-statistics mx-2">
                         {
                             affId && !isPending &&
-                            <Suspense fallback={<div>Loading...</div>}>
+                            <Suspense fallback={<Spinner color="secondary" />}>
                                 <CustomerStatistics />
                             </Suspense>
                         }

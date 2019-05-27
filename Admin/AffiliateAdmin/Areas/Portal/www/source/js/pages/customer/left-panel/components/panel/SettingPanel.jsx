@@ -1,0 +1,150 @@
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import Panel from '../Panel';
+import { Row, Col } from 'reactstrap';
+
+import { affType, resource } from '../../modules/constants';
+import { getAffiliateInfo } from '../../../mainpage/actions/loadingDataAction';
+import { updateAffType, updateClosedStatus, updateStatus } from '../../actions';
+
+export class SettingPanel extends PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.affTypeDropdown = React.createRef();
+        this.affStatusDropdown = React.createRef();
+
+        this.state = {
+            isChangingAffType: false,
+            isChangingAffStatus: false
+        }
+    }
+
+    toggleChangingAffType(isChanging) {
+        this.setState({ isChangingAffType: isChanging }, () => isChanging && this.affTypeDropdown.current.focus());
+    }
+
+    toggleChangingAffStatus(isChanging) {
+        this.setState({ isChangingAffStatus: isChanging }, () => isChanging && this.affStatusDropdown.current.focus());
+    }
+
+    handleChangeStatus = async (event) => {
+        const isConfirmed = window.confirm("Are you sure you want to change status for this affiliate?");
+        if (isConfirmed) {
+            const status = event.target.value;
+            const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: status });
+            const data = await this.props.updateStatus(param);
+
+            if (data.IsSuccessful) {
+                window.alert("The status has been updated successfully!");
+                this.props.getAffiliateInfo(this.props.affName);
+            }
+            else {
+                window.alert(data.Message);
+            }
+        }
+    }
+
+    handleChangeClosedStatus = async () => {
+        const { affiliateInfo } = this.props;
+        const nextStatus = !affiliateInfo.IsClosed;
+        const isConfirmed = confirm('Are you sure you want to ' + (nextStatus ? 'close' : 'open') + ' this affiliate?');
+        if (isConfirmed) {
+            const param = { AffId: this.props.affiliateInfo.AffId, IsClosed: nextStatus };
+            const data = await this.props.updateClosedStatus(param);
+
+            if (data.IsSuccessful) {
+                window.alert("The status has been updated successfully!");
+                this.props.getAffiliateInfo(this.props.affName);
+            }
+            else {
+                window.alert(data.Message);
+            }
+        }
+    }
+
+    handleChangeAffType = async (event) => {
+        const affType = event.target.value;
+        const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, AffType: affType });
+        const data = await this.props.updateAffType(param);
+
+        if (data.IsSuccessful) {
+            this.props.getAffiliateInfo(this.props.affName);
+            this.toggleChangingAffType(false);
+        }
+        else {
+            window.alert("Occur an error when updating affiliate type!");
+        }
+    }
+
+    render() {
+        const { affiliateInfo, isApproved } = this.props;
+        const { isChangingAffType, isChangingAffStatus } = this.state;
+
+        return(
+            <Panel heading={resource.Setting}>
+                <Row>
+                    <Col>{resource.AffiliateType}</Col>
+                    <Col className="text-right text-primary">
+                        <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} defaultValue={affiliateInfo.AffType}
+                            onBlur={this.toggleChangingAffType.bind(this, false)} ref={this.affTypeDropdown}
+                            onChange={this.handleChangeAffType}>
+                            {
+                                Object.keys(affType).map((key, index) => {
+                                    return (<option value={key} key={`affinfo-type-${index}`}>{affType[key]}</option>)
+                                })
+                            }
+                        </select>
+                        <a href="javascript:;" style={{ display: isChangingAffType ? 'none' : 'inline-block' }}
+                            onClick={this.toggleChangingAffType.bind(this, true)}>{affType[affiliateInfo.AffType]}</a>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>{resource.Status}</Col>
+                    <Col className="text-right">
+                        {
+                            isApproved ?
+                                affiliateInfo.Status :
+                                (
+                                    <div className="text-primary">
+                                        <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} defaultValue={affiliateInfo.Status}
+                                            onBlur={this.toggleChangingAffStatus.bind(this, false)}
+                                            onChange={this.handleChangeStatus} ref={this.affStatusDropdown}>
+                                            <option value="Approved">Approved</option>
+                                            <option value="Disapproved">Disapproved</option>
+                                            <option value="Pending">Pending</option>
+                                        </select>
+                                        <a href="javascript:;" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }}
+                                            onClick={this.toggleChangingAffStatus.bind(this, true)}>{affiliateInfo.Status}</a>
+                                    </div>
+                                )
+                        }
+                    </Col>
+                </Row>
+                {
+                    isApproved && (
+                    <Row>
+                        <Col>{resource.Closed}</Col>
+                        <Col className="text-right text-primary">
+                            <a href="javascript:;" className="text_box px-1 border border-secondary" onClick={this.handleChangeClosedStatus}>{affiliateInfo.IsClosed ? resource.Yes : resource.No}</a>
+                        </Col>
+                    </Row>)
+                }
+            </Panel>
+        );
+    }
+}
+
+function mapStateToProps({ leftPanel }) {
+    const { affiliateInfo, affName } = leftPanel;
+
+    return Object.assign({}, { affiliateInfo, affName });
+};
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ getAffiliateInfo, updateAffType, updateClosedStatus, updateStatus }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingPanel);

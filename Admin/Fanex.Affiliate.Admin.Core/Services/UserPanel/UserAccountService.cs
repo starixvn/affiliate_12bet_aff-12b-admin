@@ -39,30 +39,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         private static bool ValidatePaymentMethod(UserAccountParam param)
         {
-            if (PaymentMethod.Player.Equals(param.PreferredPayment) && string.IsNullOrEmpty(param.PlayerUsername))
-            {
-                return false;
-            }
+            var isPlayerUsername = PaymentMethod.Player.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.PlayerUsername);
+            var isNetellerAccountId = PaymentMethod.Neteller.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.NetellerAccountId);
+            var isMoneybookersEmail = PaymentMethod.Moneybookers.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.MoneybookersEmail);
+            var isBankTranfer = PaymentMethod.Wire.Equals(param.PreferredPayment) && IsValidWirePaymentMethod(param);
 
-            if (PaymentMethod.Neteller.Equals(param.PreferredPayment) && string.IsNullOrEmpty(param.NetellerAccountId))
-            {
-                return false;
-            }
-
-            if (PaymentMethod.Moneybookers.Equals(param.PreferredPayment) && string.IsNullOrEmpty(param.MoneybookersEmail))
-            {
-                return false;
-            }
-
-            if (PaymentMethod.Wire.Equals(param.PreferredPayment) && !isValidWirePaymentMethod(param))
-            {
-                return false;
-            }
-
-            return true;
+            return isPlayerUsername || isNetellerAccountId || isMoneybookersEmail || isBankTranfer;
         }
 
-        private static bool isValidWirePaymentMethod(UserAccountParam param)
+        private static bool IsValidWirePaymentMethod(UserAccountParam param)
         {
             return !(string.IsNullOrEmpty(param.BankName) || string.IsNullOrEmpty(param.BankAddress) ||
                 string.IsNullOrEmpty(param.BankAccountName) || string.IsNullOrEmpty(param.BankAccountNumber));

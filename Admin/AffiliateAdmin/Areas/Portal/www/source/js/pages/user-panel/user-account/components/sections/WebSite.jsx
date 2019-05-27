@@ -20,7 +20,7 @@ export class WebSite extends PureComponent {
     }
 
     handleChangeMoreUrl = (event) => {
-        let { moreSiteUrlsList } = this.props;
+        const { moreSiteUrlsList } = this.props;
         const target = event.target;
         moreSiteUrlsList[target.name] = target.value;
 
@@ -28,7 +28,7 @@ export class WebSite extends PureComponent {
     }
 
     handleAddUrl = () => {
-        let { moreSiteUrlsList } = this.props;
+        const { moreSiteUrlsList } = this.props;
         const newMoreSiteUrlsList = moreSiteUrlsList.map(siteUrl => siteUrl.trim());
         const findIndex = newMoreSiteUrlsList.indexOf('');
 
@@ -42,7 +42,7 @@ export class WebSite extends PureComponent {
     }
 
     handleDeleteUrl = (siteIndex) => {
-        let { moreSiteUrlsList } = this.props;
+        const { moreSiteUrlsList } = this.props;
         moreSiteUrlsList.splice(siteIndex, 1);
 
         this.props.setMoreSiteUrlsList(moreSiteUrlsList);

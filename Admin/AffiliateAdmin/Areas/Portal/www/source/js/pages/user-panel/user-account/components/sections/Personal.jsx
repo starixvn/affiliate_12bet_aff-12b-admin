@@ -36,12 +36,12 @@ export class Personal extends PureComponent {
                 <Col sm={9} xl={10}>
                     <FormGroup check className="d-inline-block mr-3">
                         <Label check>
-                            <Input type="radio" name="gender" value="1" checked={isMale != null && isMale} onChange={this.handleChange} />{' '} Male
+                            <Input type="radio" name="gender" value="1" checked={!!isMale} onChange={this.handleChange} />{' '} Male
                             </Label>
                     </FormGroup>
                     <FormGroup check className="d-inline-block">
                         <Label check>
-                            <Input type="radio" name="gender" value="0" checked={isMale != null && !isMale} onChange={this.handleChange} />{' '} Female
+                            <Input type="radio" name="gender" value="0" checked={!isMale} onChange={this.handleChange} />{' '} Female
                             </Label>
                     </FormGroup>
                 </Col>

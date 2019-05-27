@@ -28,8 +28,8 @@ export class Content extends PureComponent {
     }
 
     componentDidMount() {
-        const { affId, getUserAccountInfo } = this.props;
-        affId && getUserAccountInfo(affId);
+        const { affId } = this.props;
+        affId && this.props.getUserAccountInfo(affId);
     }
 
     getMessage = (message, fieldName, value) => {
@@ -103,16 +103,21 @@ export class Content extends PureComponent {
     }
 
     handleGetMoreSiteUrls = (moreSiteUrlsList) => {
-        let moreSiteUrls = "";
-        moreSiteUrlsList && moreSiteUrlsList.map(siteUrl => moreSiteUrls += siteUrl.trim() + ";");
+        const moreSiteUrls = moreSiteUrlsList && moreSiteUrlsList.reducer((accumulator, siteUrl) => accumulator +=  siteUrl.trim() + ";", '');
 
         return moreSiteUrls.slice(0, -1);
     }
 
     handleSubmit = async () => {
         const { affId, affName, userAccountInfo, moreSiteUrlsList } = this.props;
-        const userAccountInfoAfterTrim = Object.assign({}, userAccountInfo)
-        Object.keys(userAccountInfoAfterTrim).map(key => userAccountInfo[key] = typeof userAccountInfo[key] === 'string' ? userAccountInfo[key].trim() : userAccountInfo[key]);
+
+        const userAccountInfoAfterTrim = Object.keys(userAccountInfo).reduce((accumulator, key) => {
+            let item = userAccountInfo[key];
+            if (typeof item === 'string') {
+                item = item.trim();
+            }
+            accumulator.push(item);
+        }, [])
 
         const validateUserAccount = this.validateUserAccount(userAccountInfoAfterTrim, moreSiteUrlsList);
 
@@ -122,16 +127,16 @@ export class Content extends PureComponent {
             const moreSiteUrls = this.handleGetMoreSiteUrls(moreSiteUrlsList);
             const newUserAccountInfo = Object.assign({}, userAccountInfoAfterTrim, { MoreSiteUrls: moreSiteUrls });
 
-            const data = await this.props.updateUserAccount(newUserAccountInfo);
+            const result = await this.props.updateUserAccount(newUserAccountInfo);
 
-            if (data) {
+            if (result) {
                 this.setState({
                     isShowMessage: true,
-                    isSuccess: data.IsSuccessful,
-                    message: data.IsSuccessful ? `${userAccountInfo.AffName} has been updated successfully!` : data.Message,
+                    isSuccess: result.IsSuccessful,
+                    message: result.IsSuccessful ? `${userAccountInfo.AffName} has been updated successfully!` : result.Message,
                 }, () => window.setTimeout(this.hideMessage, 3000));
 
-                if (data.IsSuccessful) {
+                if (result.IsSuccessful) {
                     this.props.getUserAccountInfo(affId);
                     window.setTimeout(() => this.props.getAffiliateInfo(affName, userPanelMenuKey.edit), 3000);
                 }

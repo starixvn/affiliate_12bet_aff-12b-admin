@@ -5,7 +5,7 @@ const UserPanelSubMenu = (props) => {
     const subMenuList = props.subMenuList || null;
 
     return subMenuList && (
-        <div className="sub-menu-container">
+        <div className="sub-menu-container pt-1">
             <Nav>
                 {
                     subMenuList.map(item => {

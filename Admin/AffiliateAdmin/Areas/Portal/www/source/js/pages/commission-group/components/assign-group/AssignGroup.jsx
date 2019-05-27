@@ -76,7 +76,7 @@ export default class AssignGroup extends Component {
                                 mainFrame.location.reload();
                             }
                             else {
-                                parent.postMessage('closePopup', window.location.origin);
+                                parent.postMessage('closePopupAssignCommissionGroup', window.location.origin);
                             }
                         }, 3100);
                     }

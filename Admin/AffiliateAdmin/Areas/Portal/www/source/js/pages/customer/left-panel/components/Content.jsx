@@ -11,7 +11,7 @@ export class Content extends PureComponent {
 
     render() {
         return (
-            <div className="left-panel-container p-2">
+            <div className="left-panel-container">
                 <SearchBox />
                 {this.props.affiliateInfo && <MainInfo />}
             </div>

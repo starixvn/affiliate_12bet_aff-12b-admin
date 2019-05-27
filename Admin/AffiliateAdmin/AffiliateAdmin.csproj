@@ -2129,6 +2129,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenuItem.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\UserPanelBreadcrumb.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\UserPanelSubMenu.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\CommissionPanel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\OnlineInfoPanel" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\SettingPanel" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
