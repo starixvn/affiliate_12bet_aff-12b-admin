@@ -216,6 +216,7 @@ var VerificationAccount = (function () {
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
                         if (response.IsOk) {
+                            Site.showLoader();
                             Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
                         }
                         else if (response.IsExpired) {
@@ -224,13 +225,13 @@ var VerificationAccount = (function () {
                         else {
                             var message = response.Message || resource.General;
                             message && alert(message);
-                            $('#Password').val('');
-                            $('#Captcha').val('');
+                            updateAction(response.Action);
                             _me.generateCaptcha();
                             registerRefreshCaptcha();
                         }
 
-                        updateAction(response.Action);
+                        $('#Password').val('');
+                        $('#Captcha').val('');
                     },
                     beforeSend: function () {
                         Site.showLoader();
