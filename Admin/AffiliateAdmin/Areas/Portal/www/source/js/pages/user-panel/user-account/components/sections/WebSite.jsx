@@ -55,9 +55,9 @@ export class WebSite extends PureComponent {
                     moreSiteUrlsList.map((value, index) => {
                         return (
                             <FormGroup row>
-                                <Label for={index} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
+                                <Label for={'siteUrl' + index} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
                                 <Col sm={5} xl={6}>
-                                    <Input type="text" id={index} name={index} value={value} onChange={this.handleChangeMoreUrl} />
+                                    <Input type="text" id={'siteUrl' + index} name={'siteUrl' + index} value={value} onChange={this.handleChangeMoreUrl} />
                                 </Col>
                                 <Button color="primary" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
                             </FormGroup>

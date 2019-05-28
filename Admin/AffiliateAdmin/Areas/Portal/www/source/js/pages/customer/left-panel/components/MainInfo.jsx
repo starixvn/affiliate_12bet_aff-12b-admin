@@ -1,22 +1,16 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import GeneralInfo from './GeneralInfo';
 import PanelList from './PanelList';
 
-export class MainInfo extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return this.props.affiliateInfo && (
-            <div>
-                <GeneralInfo />
-                <PanelList />
-            </div >
-        );
-    }
+const MainInfo = (props) => {
+    return props.affiliateInfo && (
+        <div>
+            <GeneralInfo />
+            <PanelList />
+        </div >
+    );
 }
 
 function mapStateToProps({ leftPanel }) {
@@ -24,4 +18,4 @@ function mapStateToProps({ leftPanel }) {
     return Object.assign({}, { affiliateInfo });
 }
 
-export default connect(mapStateToProps)(MainInfo);
+export default connect(mapStateToProps)(React.memo(MainInfo));

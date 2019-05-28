@@ -1,4 +1,5 @@
 import React, { Suspense, useEffect  } from 'react';
+import { Spinner } from 'reactstrap';
 import UserPanelMenu from './UserPanelMenu';
 import { userPanelMenuList, userPanelPendingMenuList } from '../modules/menu';
 import { userPanelMenuKey } from '../../common/modules/constants';
@@ -23,7 +24,7 @@ const UserPanel = (props) => {
             <div class="user-panel-content-container">
                 {
                     componentIndex !== -1 &&
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<Spinner color="secondary" />}>
                         <UserPanelComponent />
                     </Suspense>
                 }

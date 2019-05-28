@@ -25,4 +25,4 @@ function mapStateToProps({ leftPanel }) {
     return Object.assign({}, { affiliateInfo });
 };
 
-export default connect(mapStateToProps)(PanelList);
+export default connect(mapStateToProps)(React.memo(PanelList));

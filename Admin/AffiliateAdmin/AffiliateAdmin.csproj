@@ -1668,6 +1668,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\service.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\validation.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\types.js" />
@@ -2132,6 +2133,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\CommissionPanel.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\OnlineInfoPanel" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\SettingPanel" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Body.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

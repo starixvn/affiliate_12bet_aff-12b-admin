@@ -4,8 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Container, Button, Row, Col, Alert } from 'reactstrap';
 
 import { getUserAccountInfo, updateUserAccount } from '../actions';
-import { messageList, regexEmail } from '../modules/constants';
-import { countriesList } from '../modules/constants';
+import { validateUserAccount } from '../modules/validation';
 
 import Section from './Section';
 import Personal from './sections/Personal';
@@ -32,78 +31,8 @@ export class Content extends PureComponent {
         affId && this.props.getUserAccountInfo(affId);
     }
 
-    getMessage = (message, fieldName, value) => {
-        return message = value == '' ? message + messageList[fieldName] + "<br />" : message;
-    }
-
-    validateMoreSiteUrls = (moreSiteUrlsList, message, isValid) => {
-        const moreSiteUrls = moreSiteUrlsList.map(siteUrl => siteUrl.trim());
-        const emptySiteUrlIndex = moreSiteUrls.indexOf('');
-        const isNotEmptySiteUrl = emptySiteUrlIndex == -1;
-        message = isNotEmptySiteUrl ? message : message + `Website URL ${emptySiteUrlIndex + 2} is required<br />`;
-        return {
-            message,
-            isValid: isValid && isNotEmptySiteUrl
-        }
-    }
-
-    validatePaymentMethod = (userAccountInfo, result) => {
-        if (userAccountInfo.PreferredPayment === 'Player') {
-            result.message = this.getMessage(result.message, 'PlayerUsername', userAccountInfo.PlayerUsername);
-            result.isValid = result.isValid && userAccountInfo.PlayerUsername != '';
-        }
-
-        if (userAccountInfo.PreferredPayment === 'Neteller') {
-            result.message = this.getMessage(result.message, 'NetellerAccountId', userAccountInfo.NetellerAccountId);
-            result.isValid = result.isValid && userAccountInfo.NetellerAccountId != '';
-        }
-
-        if (userAccountInfo.PreferredPayment === 'Moneybookers') {
-            result.message = this.getMessage(result.message, 'MoneybookersEmail', userAccountInfo.MoneybookersEmail);
-            result.isValid = result.isValid && userAccountInfo.MoneybookersEmail != '';
-        }
-
-        if (userAccountInfo.PreferredPayment === 'Wire') {
-            result.message = this.getMessage(result.message, 'BankName', userAccountInfo.BankName);
-            result.message = this.getMessage(result.message, 'BankAddress', userAccountInfo.BankAddress);
-            result.message = this.getMessage(result.message, 'BankAccountName', userAccountInfo.BankAccountName);
-            result.message = this.getMessage(result.message, 'BankAccountNumber', userAccountInfo.BankAccountNumber);
-            result.isValid = result.isValid && userAccountInfo.BankName != '' && userAccountInfo.BankAddress != '' &&
-                userAccountInfo.BankAccountName != '' && userAccountInfo.BankAccountNumber != '';
-        }
-
-        return result;
-    }
-
-    validateUserAccount = (userAccountInfo, moreSiteUrlsList) => {
-        let message = '';
-        const checkEmail = new RegExp(regexEmail);
-        const isValidGender = userAccountInfo.Gender != null;
-        const isValidEmail = checkEmail.test(userAccountInfo.Email);
-        const country = countriesList[userAccountInfo.Country] === undefined ? "" : userAccountInfo.Country;
-
-        message = this.getMessage(message, 'FirstName', userAccountInfo.FirstName);
-        message = this.getMessage(message, 'LastName', userAccountInfo.LastName);
-        message = isValidGender ? message : message + messageList.Gender + "<br />";
-        message = isValidEmail ? message : message + messageList.Email + "<br />";
-        message = this.getMessage(message, 'Phone', userAccountInfo.Phone);
-        message = this.getMessage(message, 'Address', userAccountInfo.Address);
-        message = this.getMessage(message, 'City', userAccountInfo.City);
-        message = this.getMessage(message, 'Postcode', userAccountInfo.Postcode);
-        message = this.getMessage(message, 'Country', country);
-        message = this.getMessage(message, 'SiteUrl', userAccountInfo.SiteUrl);
-
-        let isValid = isValidGender && isValidEmail && userAccountInfo.FirstName != '' && userAccountInfo.LastName != '' &&
-            userAccountInfo.Phone != '' && userAccountInfo.Address != '' && userAccountInfo.City != '' &&
-            userAccountInfo.Postcode != '' && userAccountInfo.Country != '' && userAccountInfo.SiteUrl != '';
-
-        const result = moreSiteUrlsList ? this.validateMoreSiteUrls(moreSiteUrlsList, message, isValid) : ({ message, isValid });
-
-        return this.validatePaymentMethod(userAccountInfo, result);
-    }
-
     handleGetMoreSiteUrls = (moreSiteUrlsList) => {
-        const moreSiteUrls = moreSiteUrlsList && moreSiteUrlsList.reducer((accumulator, siteUrl) => accumulator +=  siteUrl.trim() + ";", '');
+        let moreSiteUrls = moreSiteUrlsList && moreSiteUrlsList.reduce((accumulator, siteUrl) => accumulator + siteUrl.trim() + ";", '');
 
         return moreSiteUrls.slice(0, -1);
     }
@@ -116,14 +45,16 @@ export class Content extends PureComponent {
             if (typeof item === 'string') {
                 item = item.trim();
             }
-            accumulator.push(item);
-        }, [])
+            accumulator[key] = item;
 
-        const validateUserAccount = this.validateUserAccount(userAccountInfoAfterTrim, moreSiteUrlsList);
+            return accumulator;
+        }, {});
+
+        const resultValidateUserAccount = validateUserAccount(userAccountInfoAfterTrim, moreSiteUrlsList);
 
         window.scrollTo({ top: 0, behavior: "smooth" });
 
-        if (validateUserAccount.isValid) {
+        if (resultValidateUserAccount.isValid) {
             const moreSiteUrls = this.handleGetMoreSiteUrls(moreSiteUrlsList);
             const newUserAccountInfo = Object.assign({}, userAccountInfoAfterTrim, { MoreSiteUrls: moreSiteUrls });
 
@@ -137,7 +68,6 @@ export class Content extends PureComponent {
                 }, () => window.setTimeout(this.hideMessage, 3000));
 
                 if (result.IsSuccessful) {
-                    this.props.getUserAccountInfo(affId);
                     window.setTimeout(() => this.props.getAffiliateInfo(affName, userPanelMenuKey.edit), 3000);
                 }
             }
@@ -151,8 +81,8 @@ export class Content extends PureComponent {
         } else {
             this.setState({
                 isSuccess: false,
-                isShowMessage: !validateUserAccount.isValid,
-                message: validateUserAccount.message,
+                isShowMessage: !resultValidateUserAccount.isValid,
+                message: resultValidateUserAccount.message,
             }, () => window.setTimeout(this.hideMessage, 3000));
         }
     }
