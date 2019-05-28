@@ -2,13 +2,12 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { post } from '../../../../modules/ajaxRequest';
 import { maxWidth } from '../../../../modules/constants';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { headerText, globalResource } from '../modules/constants';
 import { setPagingOption, toggleLoader, fetchData } from '../actions';
-import { selectedAllProduct } from '../modules/constants';
+import { selectedAllProduct } from '../../../../modules/constants';
 
 export class Content extends PureComponent {
     constructor(props) {

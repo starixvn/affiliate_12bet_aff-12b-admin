@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { headerTitle } from '../modules/constants';
-import { setSelectedPage, setParam, setSelectedLanguage, setShortCodeLanguageList } from '../actions';
+import { setSelectedPage, setParam, setShortCodeLanguageList } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 import { deviceTypes } from '../../../customer/user-panel/modules/constants';
 import { getPageList } from '../../../customer/user-panel/modules/service';
@@ -153,7 +153,7 @@ function mapStateToProps({ today, affCommonInfo, languageList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedPage, setParam, setSelectedLanguage, setShortCodeLanguageList }, dispatch);
+    return bindActionCreators({ setSelectedPage, setParam, setShortCodeLanguageList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
