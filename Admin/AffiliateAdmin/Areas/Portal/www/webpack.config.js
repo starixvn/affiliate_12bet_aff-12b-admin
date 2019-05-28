@@ -7,6 +7,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const { environment, projectPath } = require("./config-utils/constant");
 const entry = require("./config-utils/entry");
+const layoutEntry = require("./config-utils/layoutEntry");
 
 let pathsToClean = ["dist/js/**/*.*", "dist/style/**/*.*"];
 
@@ -104,5 +105,10 @@ module.exports = env => {
         devtool: isDevBuild ? "source-map" : undefined
     });
 
-    return [clientBundleConfig];
+    const layoutBundleConfig = merge(sharedConfig(), {
+        entry: layoutEntry,
+        devtool: isDevBuild ? "source-map" : undefined
+    });
+
+    return [clientBundleConfig, layoutBundleConfig];
 };

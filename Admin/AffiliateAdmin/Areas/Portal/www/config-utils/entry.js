@@ -9,8 +9,6 @@ module.exports = {
     [`${jsDist}/pages/commission/commission-group`]: clientRoot + "/js/pages/commission-group/index.jsx",
     [`${jsDist}/pages/commission/assign-group`]: clientRoot + "/js/pages/commission-group/components/assign-group/index.jsx",
     [`${jsDist}/pages/commission/assign-private-group`]: clientRoot + "/js/pages/commission-group/components/assign-private-group/index.jsx",
-    [`${jsDist}/pages/Recheckin/recheckin`]: clientRoot + "/js/pages/RecheckIn/recheckin",
-    [`${jsDist}/pages/layout/pagelayout`]: clientRoot + "/js/pagelayout/pagelayout.js",
     [`${jsDist}/pages/report/affiliate-report`]: clientRoot + "/js/pages/affiliate-report/index.jsx",
     [`${jsDist}/pages/media-gallery/landing-page`]: clientRoot + "/js/pages/media-gallery/landing-page/index.jsx",
     [`${jsDist}/pages/affiliate/affiliate-info`]: clientRoot + "/js/pages/affiliate-info/index.jsx",
