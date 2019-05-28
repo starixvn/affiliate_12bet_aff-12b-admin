@@ -206,7 +206,7 @@ var VerificationAccount = (function () {
                     Captcha: captcha,
                     HashMessage: hashMessage,
                     t: $('#ActionToken').val()
-                }
+                };
                 $.ajax({
                     type: "POST",
                     url: url,
@@ -218,20 +218,19 @@ var VerificationAccount = (function () {
                         if (response.IsOk) {
                             Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
                         }
+                        else if (response.IsExpired) {
+                            alert(resource.verificationFailed);
+                        }
                         else {
-                            response.Message && alert(response.Message);
-                            $('#Password').val("");
-                            $('#Captcha').val("");
+                            var message = response.Message || resource.General;
+                            message && alert(message);
+                            $('#Password').val('');
+                            $('#Captcha').val('');
                             _me.generateCaptcha();
                             registerRefreshCaptcha();
                         }
 
                         updateAction(response.Action);
-                    },
-                    error: function (jqXHR) {
-                        var data = jqXHR.responseJSON;
-                        var message = data ? (data.IsExpired ? resource.verificationFailed : data.Message) : resource.General;
-                        message && alert(message);
                     },
                     beforeSend: function () {
                         Site.showLoader();
@@ -241,7 +240,7 @@ var VerificationAccount = (function () {
                     }
                 });
             }
-        },
+        }
     };
     return _me;
 })();

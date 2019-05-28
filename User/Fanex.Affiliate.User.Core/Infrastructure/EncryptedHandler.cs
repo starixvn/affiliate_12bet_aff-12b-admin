@@ -6,9 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.SessionState;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
-using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.User.Core.Infrastructure
 {
@@ -44,12 +42,10 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
                     var request = new HttpRequestWrapper(context.Request);
                     if (request.IsAjaxRequest())
                     {
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        response.ContentType = "application/json";
-                        response.TrySkipIisCustomErrors = true;
-                        response.Write(JsonConvert.SerializeObject(
-                            new { IsOk = false, IsExpired = true, Message = Error.General }
-                        ));
+                        var controller = ControllerBuilder.Current.GetControllerFactory()
+                                    .CreateController(_requestContext, "Notify");
+                        _requestContext.RouteData.Values["action"] = "CodeExpired";
+                        controller.Execute(_requestContext);
                     }
                     else
                     {
