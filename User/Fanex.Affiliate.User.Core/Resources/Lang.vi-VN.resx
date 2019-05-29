@@ -1807,8 +1807,8 @@
   <data name="ESports" xml:space="preserve">
     <value>Esports</value>
   </data>
-  <data name="Keno" xml:space="preserve">
-    <value>KENO</value>
+  <data name="RngKeno" xml:space="preserve">
+    <value>RNG KENO</value>
   </data>
   <data name="Lottery" xml:space="preserve">
     <value>XỔ SỐ</value>
