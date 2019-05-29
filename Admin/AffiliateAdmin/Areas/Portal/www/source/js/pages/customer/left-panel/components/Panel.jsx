@@ -1,14 +1,19 @@
 import React from 'react';
+import { Button } from 'reactstrap';
 
 const Panel = (props) => {
     const { heading, children, style, ...attributes } = props;
 
     return (
-        <div className='left-submenu' {...attributes}>
+        <div className="left-submenu" {...attributes}>
             <ul>
-                <li><a href='javascript:;'><span>{heading}</span></a></li>
+                <li>
+                    <Button color="link hide-link">
+                        {heading}
+                    </Button>
+                </li>
             </ul>
-            <div className='content' style={{ ...style }}>
+            <div className="content" style={{ ...style }}>
                 {children}
             </div>
         </div>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Panel from '../Panel';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Input, Button } from 'reactstrap';
 
 import { affType, resource } from '../../modules/constants';
 import { getAffiliateInfo } from '../../../mainpage/actions/loadingDataAction';
@@ -83,22 +83,22 @@ export class SettingPanel extends PureComponent {
         const { affiliateInfo, isApproved } = this.props;
         const { isChangingAffType, isChangingAffStatus } = this.state;
 
-        return(
+        return (
             <Panel heading={resource.Setting}>
                 <Row>
                     <Col>{resource.AffiliateType}</Col>
                     <Col className="text-right text-primary">
-                        <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} defaultValue={affiliateInfo.AffType}
-                            onBlur={this.toggleChangingAffType.bind(this, false)} ref={this.affTypeDropdown}
-                            onChange={this.handleChangeAffType}>
+                        <Input type="select" style={{ display: isChangingAffType ? 'inline-block' : 'none' }} value={affiliateInfo.AffType}
+                            onChange={this.handleChangeAffType} onBlur={this.toggleChangingAffType.bind(this, false)} ref={this.affTypeDropdown}>
                             {
                                 Object.keys(affType).map((key, index) => {
                                     return (<option value={key} key={`affinfo-type-${index}`}>{affType[key]}</option>)
                                 })
                             }
-                        </select>
-                        <a href="javascript:;" style={{ display: isChangingAffType ? 'none' : 'inline-block' }}
-                            onClick={this.toggleChangingAffType.bind(this, true)}>{affType[affiliateInfo.AffType]}</a>
+                        </Input>
+                        <Button color="link p-0" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={this.toggleChangingAffType.bind(this, true)}>
+                            {affType[affiliateInfo.AffType]}
+                        </Button>
                     </Col>
                 </Row>
                 <Row>
@@ -109,15 +109,15 @@ export class SettingPanel extends PureComponent {
                                 affiliateInfo.Status :
                                 (
                                     <div className="text-primary">
-                                        <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} defaultValue={affiliateInfo.Status}
-                                            onBlur={this.toggleChangingAffStatus.bind(this, false)}
-                                            onChange={this.handleChangeStatus} ref={this.affStatusDropdown}>
+                                        <Input type="select" style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} value={affiliateInfo.Status}
+                                            onChange={this.handleChangeStatus} onBlur={this.toggleChangingAffStatus.bind(this, false)} ref={this.affStatusDropdown}>
                                             <option value="Approved">Approved</option>
                                             <option value="Disapproved">Disapproved</option>
                                             <option value="Pending">Pending</option>
-                                        </select>
-                                        <a href="javascript:;" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }}
-                                            onClick={this.toggleChangingAffStatus.bind(this, true)}>{affiliateInfo.Status}</a>
+                                        </Input>
+                                        <Button color="link p-0" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }} onClick={this.toggleChangingAffStatus.bind(this, true)}>
+                                            {affiliateInfo.Status}
+                                        </Button>
                                     </div>
                                 )
                         }
@@ -125,12 +125,14 @@ export class SettingPanel extends PureComponent {
                 </Row>
                 {
                     isApproved && (
-                    <Row>
-                        <Col>{resource.Closed}</Col>
-                        <Col className="text-right text-primary">
-                            <a href="javascript:;" className="text_box px-1 border border-secondary" onClick={this.handleChangeClosedStatus}>{affiliateInfo.IsClosed ? resource.Yes : resource.No}</a>
-                        </Col>
-                    </Row>)
+                        <Row>
+                            <Col>{resource.Closed}</Col>
+                            <Col className="text-right text-primary">
+                                <Button color="link" className="border border-secondary" onClick={this.handleChangeClosedStatus}>
+                                    {affiliateInfo.IsClosed ? resource.Yes : resource.No}
+                                </Button>
+                            </Col>
+                        </Row>)
                 }
             </Panel>
         );

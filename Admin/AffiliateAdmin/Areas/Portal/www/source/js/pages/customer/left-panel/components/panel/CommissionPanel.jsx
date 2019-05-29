@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Panel from '../Panel';
-import { Modal, ModalHeader, ModalBody, Row, Col } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, Row, Col, Input, Button } from 'reactstrap';
 
 import { resolveClientUrl } from '../../../../../modules/utils';
 import { resource } from '../../modules/constants';
@@ -43,14 +43,16 @@ export class CommissionPanel extends PureComponent {
         const { affiliateInfo } = this.props;
         const url = resolveClientUrl(`Portal/CommissionGroup/AssignGroup?affid=${affiliateInfo.AffId}`);
         const title = `Change Commission Group For "${affiliateInfo.AffName}"`;
-        return(
+        return (
             <Panel heading={resource.Commission}>
                 <Row>
                     <Col sm={7}>{resource.CommGroup}</Col>
                     <Col sm={5} className='text-right text-truncate pl-0'>
                         {
                             affiliateInfo.IsClosed ? (<span>{affiliateInfo.CommGroupName}</span>) :
-                                (<span className='popup text-primary' onClick={() => this.toggleEditingCommissionPopup(true)}>{affiliateInfo.CommGroupName}</span>)
+                                (<Button color="link p-0" onClick={() => this.toggleEditingCommissionPopup(true)}>
+                                    {affiliateInfo.CommGroupName}
+                                </Button>)
                         }
 
                         <Modal isOpen={isChangingCommissionGroup} backdrop='static' style={{ maxWidth: 570 }}>

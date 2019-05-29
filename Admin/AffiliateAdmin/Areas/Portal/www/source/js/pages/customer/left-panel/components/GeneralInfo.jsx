@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Input, Button } from 'reactstrap';
 
 import { updateLanguage } from '../actions';
 import { getAffiliateInfo } from '../../mainpage/actions/loadingDataAction';
@@ -55,22 +55,21 @@ export class GeneralInfo extends PureComponent {
 
         return (
             <React.Fragment>
-                <select style={{ display: isChangingLanguage ? 'inline-block' : 'none' }}
-                    defaultValue={affiliateInfo.PreferredLanguage} onChange={this.handleChangeLanguage} onBlur={() => this.toggleChangingLanguage(false)} ref={this.languageDropdown}>
+                <Input type="select" style={{ display: isChangingLanguage ? 'inline-block' : 'none' }} value={affiliateInfo.PreferredLanguage}
+                    onChange={this.handleChangeLanguage} onBlur={() => this.toggleChangingLanguage(false)} ref={this.languageDropdown}>
                     {
                         languageList.map(language => {
                             return (<option value={language.LanguageCode} key={`affinfo-lang-${language.LanguageCode}`}>{language.LanguageName}</option>)
                         })
                     }
-                </select>
-                <a href="javascript:;" style={{ display: isChangingLanguage ? 'none' : 'inline-block' }}
-                    onClick={() => this.toggleChangingLanguage(true)}>
+                </Input>
+                <Button color="link p-0" style={{ display: isChangingLanguage ? 'none' : 'inline-block' }} onClick={() => this.toggleChangingLanguage(true)}>
                     {
                         languageList.map(language => {
                             return affiliateInfo.PreferredLanguage === language.LanguageCode && language.LanguageName
                         })
                     }
-                </a>
+                </Button>
             </React.Fragment>
         )
     }
@@ -83,7 +82,9 @@ export class GeneralInfo extends PureComponent {
                 <Row>
                     <Col sm={5}>{resource.Password}</Col>
                     <Col sm={7} className='text-right text-primary'>
-                        <a href="javascript:;" onClick={() => this.toggleChangingPassword(true)}>[{resource.Change}]</a>
+                        <Button color="link p-0" onClick={() => this.toggleChangingPassword(true)}>
+                            [{resource.Change}]
+                        </Button>
                         {affiliateInfo && <ChangePasswordForm
                             showPopupPassword={isChangingPassword}
                             affId={affiliateInfo.AffId}
