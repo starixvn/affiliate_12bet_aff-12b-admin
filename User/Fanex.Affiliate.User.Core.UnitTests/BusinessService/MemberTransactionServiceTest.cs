@@ -75,7 +75,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Assert.Equal(expectedResult, result);
         }
 
-        private XmlNode CreateXmlData(string xmlContent = null)
+        private static XmlNode CreateXmlData(string xmlContent = null)
         {
             xmlContent = xmlContent ?? CreateXmlContent();
             XmlDocument doc = new XmlDocument();
@@ -83,7 +83,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             return doc.DocumentElement;
         }
 
-        private string CreateXmlContent(int returnCode = 0, bool isDeposit = true)
+        private static string CreateXmlContent(int returnCode = 0, bool isDeposit = true)
         {
             var elementName = isDeposit ? "DepositInfo" : "WithdrawalInfo";
             var builder = new StringBuilder();

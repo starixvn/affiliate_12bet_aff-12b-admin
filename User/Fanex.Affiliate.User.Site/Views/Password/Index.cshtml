@@ -22,7 +22,7 @@
 
     <div class="alert" role="alert" id="messageResult" style="display: none"></div>
     <div id="mainContent">
-        <p>@Html.Raw(Lang.TitelForgetPass.Replace("{0}", Url.Action("Index", "ContactUs")))</p>
+        <p>@Html.Raw(Lang.TitelForgetPass.Replace("{0}", Url.Content("~/ContactUs")))</p>
 
         <form id="forgotPasswordForm" class="form-horizontal" style="margin-top:30px;">
             @Html.AntiForgeryToken()

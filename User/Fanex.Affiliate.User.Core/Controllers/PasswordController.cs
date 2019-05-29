@@ -63,10 +63,11 @@
                 Language = SessionService.CurrentLanguage
             };
 
+            var contactUsForAnyReasonText = Lang.Foranyreasonyou.Replace("{0}", Url.Content($"~/{ControllerName.ContactUs}"));
             var result = new ResultInfo
             {
                 IsOk = true,
-                Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.Foranyreasonyou.Replace("{0}", Url.Action("Index", "ContactUs"))}"
+                Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{contactUsForAnyReasonText}"
             };
             var userInfo = _accountRepository.GetUserInfoByEmail(param);
 
@@ -74,7 +75,7 @@
             {
                 result.IsOk = false;
                 result.Message = Common.GetErrorMessage("ForgotPassword", param.ErrCode)
-                                    .Replace("{0}", Url.Action("Index", "ContactUs"));
+                                    .Replace("{0}", Url.Content($"~/{ControllerName.ContactUs}"));
             }
             else
             {
@@ -113,14 +114,14 @@
             var result = new ResultInfo
             {
                 IsOk = true,
-                Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.Foranyreasonyou.Replace("{0}", Url.Action("Index", "ContactUs"))}"
+                Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.Foranyreasonyou.Replace("{0}", Url.Content("~/ContactUs"))}"
             };
 
             if (param.ErrCode != 0)
             {
                 result.IsOk = false;
                 result.Message = Common.GetErrorMessage("RecoverPassword", param.ErrCode)
-                                    .Replace("{0}", Url.Action("Index", "ContactUs"));
+                                    .Replace("{0}", Url.Content("~/ContactUs"));
             }
             else
             {

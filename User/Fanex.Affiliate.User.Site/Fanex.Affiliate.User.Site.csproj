@@ -337,9 +337,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="karma.conf.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Views\CommissionStructure\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Promotion\Index.cshtml" />
@@ -433,15 +430,6 @@
     <Content Include="Views\UserPanel\Member\Index.cshtml" />
     <Content Include="Views\UserPanel\Member\_DataContent.cshtml" />
     <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
-    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_en-US.cshtml" />
-    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_es-ES.cshtml" />
-    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_id-ID.cshtml" />
-    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_ja-JP.cshtml" />
-    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_ko-KR.cshtml" />
-    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_th-TH.cshtml" />
-    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_vi-VN.cshtml" />
-    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_zh-CN.cshtml" />
-    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_zh-TW.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -488,6 +476,8 @@
       <DependentUpon>layout.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\lib\bootstrap.min.js" />
+    <Content Include="www\build\js\lib\hmac-sha256.js" />
+    <Content Include="www\build\js\lib\hmac-sha256.min.js" />
     <Content Include="www\build\js\lib\jquery-3.3.1.min.js" />
     <Content Include="www\build\js\lib\modernizr-webp.js" />
     <Content Include="www\build\js\lib\modernizr-webp.min.js">
@@ -513,6 +503,10 @@
     <Content Include="www\build\js\myaccount.min.js">
       <DependentUpon>myaccount.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\pages\changepassword.js" />
+    <Content Include="www\build\js\pages\changepassword.min.js">
+      <DependentUpon>changepassword.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\pages\commission-report.js" />
     <Content Include="www\build\js\pages\commission-report.min.js">
       <DependentUpon>commission-report.js</DependentUpon>
@@ -520,6 +514,14 @@
     <Content Include="www\build\js\pages\home.js" />
     <Content Include="www\build\js\pages\home.min.js">
       <DependentUpon>home.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\pages\login.js" />
+    <Content Include="www\build\js\pages\login.min.js">
+      <DependentUpon>login.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\pages\verification-account.js" />
+    <Content Include="www\build\js\pages\verification-account.min.js">
+      <DependentUpon>verification-account.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\pagetracking.js" />
     <Content Include="www\build\js\pagetracking.min.js">
@@ -573,6 +575,10 @@
     <Content Include="www\build\styles\css\user-panel.min.css">
       <DependentUpon>user-panel.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\verification-account.css" />
+    <Content Include="www\build\styles\css\verification-account.min.css">
+      <DependentUpon>verification-account.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\fonts\Montserrat\font.css" />
     <Content Include="www\build\styles\fonts\Montserrat\font.min.css">
       <DependentUpon>font.css</DependentUpon>
@@ -622,10 +628,12 @@
     <Content Include="www\build\styles\Images\notify\note_icon.gif" />
     <Content Include="www\build\styles\Images\notify\sry.png" />
     <Content Include="www\build\styles\Images\notify\srynf.png" />
+    <Content Include="www\source\js\components\authhelper.js" />
     <Content Include="www\source\js\components\jquery.extension.js" />
     <Content Include="www\source\js\components\pagetracking.js" />
     <Content Include="www\source\js\components\validation.custom.js" />
     <Content Include="www\source\js\components\website.js" />
+    <Content Include="www\source\js\lib\hmac-sha256.js" />
     <Content Include="www\source\js\lib\jquery.validate.min.js" />
     <Content Include="www\source\js\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="www\source\js\lib\modernizr-webp.js" />
@@ -800,6 +808,7 @@
     <Content Include="www\source\js\pages\test.js" />
     <Content Include="www\source\js\pages\marketing\textbox.js" />
     <Content Include="www\source\js\pages\user-panel.js" />
+    <Content Include="www\source\js\pages\verification-account.js" />
     <Content Include="www\source\js\recheckin.js" />
     <Content Include="www\source\js\site.js" />
     <Content Include="www\source\js\spec\layout.spec.js" />
@@ -966,7 +975,6 @@
     <Content Include="Views\TermAndCondition\Popup.cshtml" />
     <Content Include="Views\UserPanel\MemberTransaction\Index.cshtml" />
     <Content Include="www\source\styles\scss\components\_modal.scss" />
-    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_hi-IN.cshtml" />
     <Content Include="www\source\styles\scss\base\_pureicon.scss" />
     <Content Include="www\source\styles\scss\layout\_footer.scss" />
     <Content Include="Views\UserPanel\CommissionReport\Index.cshtml" />
@@ -1119,6 +1127,20 @@
     <Content Include="www\build\styles\Images\products\bg-sports_affiliate.webp" />
     <Content Include="www\source\styles\Images\products\bg-sports_affiliate.webp" />
     <Content Include="www\source\styles\Images\products\bg-casino_affiliate.webp" />
+    <Content Include="Views\VerificationAccount\Index.cshtml" />
+    <Content Include="www\source\styles\pages\verification-account.scss" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.en-GB.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.es-ES.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.ja-JP.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.zh-TW.cshtml" />
+    <Content Include="Views\Signup\_SecurityQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1445,9 +1467,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.13.0.8313\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.13.0.8313\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.13.0.8313\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1463,11 +1485,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56553</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55690/</IISUrl>
+          <IISUrl>http://localhost:56555/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

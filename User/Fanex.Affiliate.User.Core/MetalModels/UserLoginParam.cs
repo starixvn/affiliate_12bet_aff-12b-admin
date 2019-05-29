@@ -18,5 +18,9 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public string LoginIp { get; set; }
 
         public string Language { get; set; }
+
+        public string UserAgent { get; set; }
+
+        public bool IsVerifyingAccount { get; set; }
     }
 }

@@ -52,10 +52,6 @@
     "inputFile": "www/source/js/pages/test.js"
   },
   {
-    "outputFile": "www/build/js/login.js",
-    "inputFile": "www/source/js/pages/login.js"
-  },
-  {
     "outputFile": "www/build/js/site.js",
     "inputFile": "www/source/js/site.js"
   },
@@ -154,5 +150,9 @@
   {
     "outputFile": "www/build/styles/css/user-panel.css",
     "inputFile": "www/source/styles/pages/user-panel.scss"
+  },
+  {
+    "outputFile": "www/build/styles/css/verification-account.css",
+    "inputFile": "www/source/styles/pages/verification-account.scss"
   }
 ]

@@ -236,7 +236,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             };
         }
 
-        private PaymentService CreatePaymentService(
+        private static PaymentService CreatePaymentService(
             IAccountRepository accountRepository = null,
             IAccountService accountService = null,
             IPaymentRepository paymentRepository = null,

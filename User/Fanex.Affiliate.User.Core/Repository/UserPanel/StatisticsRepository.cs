@@ -9,6 +9,10 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public class StatisticsRepository : IStatisticsRepository
     {
+        private const string UniqueClickColumn = "UniqueClick";
+
+        private const string TotalClickColumn = "TotalClick";
+
         public IEnumerable<string> GetTrackingCode(int affId, bool isInternal)
         {
             const string uSpkey = "Aff_AffiliateSelTrackingCode";
@@ -85,8 +89,8 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                         dataList.Add(new ReferrerStatistics
                         {
                             DomainReferrer = reader["UrlReferrer"].ToString(),
-                            TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
-                            UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"]),
+                            TotalClick = reader[TotalClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[TotalClickColumn]),
+                            UniqueClick = reader[UniqueClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[UniqueClickColumn]),
                             SignUps = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),
                             Fdm = reader["FDM"] == DBNull.Value ? 0 : Convert.ToInt32(reader["FDM"])
                         });
@@ -126,8 +130,8 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             return new TrackingStatistics
             {
                 Date = date,
-                TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
-                UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"])
+                TotalClick = reader[TotalClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[TotalClickColumn]),
+                UniqueClick = reader[UniqueClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[UniqueClickColumn])
             };
         }
     }

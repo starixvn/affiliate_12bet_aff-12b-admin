@@ -163,7 +163,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.Equal(ExpectedStartRowNumber, startRowNumber);
         }
 
-        private MemberController CreateController(
+        private static MemberController CreateController(
             IMemberRepository memberRepository,
             ISessionService sessionService = null,
             ILanguageService languageService = null)

@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
         }
 
-        private XmlNode CreateXmlNode()
+        private static XmlNode CreateXmlNode()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml("<Root></Root>");

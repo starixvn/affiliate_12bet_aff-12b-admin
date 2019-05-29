@@ -2,25 +2,6 @@
     var _refreshCaptchaTimeoutId = null;
     var REFRESH_CAPTCHA_INTERVAL = 600000;
 
-    function encrypt(plainText, key) {
-        var encrypt = new JSEncrypt();
-        encrypt.setPublicKey(key);
-
-        return encrypt.encrypt(plainText);
-    }
-
-    function base64DecodeUnicode(str) {
-        return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-        }).join(''))
-    }
-
-    function getUtcUnixTimeStamp() {
-        var now = new Date();
-        return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),
-              now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
-    }
-
     function registerRefreshLoginCaptcha(isShowingModal) {
         function refreshCaptcha() {
             if (isShowingModal) {
@@ -119,10 +100,11 @@
             var validationResult = _me.validate(username, password, validation, prefix);
             if (validationResult.isValid) {
                 var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
-                var publicKey = base64DecodeUnicode($("#PublicKey").val());
+                var publicKey = AuthHelper.base64DecodeUnicode($("#PublicKey").val());
+                var timeStamp = AuthHelper.getUtcUnixTimeStamp();
 
-                var queryString = 'u=' + encodeURIComponent(username.trim()) + '&p=' + encodeURIComponent(password) + '&t=' + getUtcUnixTimeStamp();
-                var encryptedQueryString = encrypt(queryString, publicKey);
+                var queryString = 'u=' + encodeURIComponent(username.trim()) + '&p=' + encodeURIComponent(password) + '&t=' + timeStamp;
+                var encryptedQueryString = AuthHelper.encrypt(queryString, publicKey);
                 $password.val(encryptedQueryString);
 
                 var postData = {
@@ -153,16 +135,23 @@
                             }
                         }
                         else {
-                            alert($("<div/>").html(response.Message).text());
-                            if (onDialog) {
-                                $username.val("");
-                                $password.val("");
-                                $validation.val("");
+                            if (response.ShouldVerifyAccount) {
+                                Site.redirect(Site.resolveRelativeUrl('VerificationAccount'));
                             }
                             else {
-                                Site.reload();
+                                alert(response.Message);
+                                if (onDialog) {
+                                    $username.val("");
+                                    $password.val("");
+                                    $validation.val("");
+                                    _me.generateDialogCaptcha();
+                                    registerRefreshLoginCaptcha(true);
+                                }
+                                else {
+                                    Site.reload();
+                                }
+                                toggleLoginButton(true, onDialog);
                             }
-                            toggleLoginButton(true, onDialog);
                         }
                     },
                     beforeSend: function () {

@@ -24,6 +24,14 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             return View();
         }
-       
+
+        public ActionResult CodeExpired()
+        {
+            return Json(new
+            {
+                IsOk = false,
+                IsExpired = true
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

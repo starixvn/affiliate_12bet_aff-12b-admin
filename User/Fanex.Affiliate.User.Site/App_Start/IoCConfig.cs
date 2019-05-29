@@ -23,28 +23,18 @@ namespace Fanex.Affiliate.User.Site
         {
             var builder = new ContainerBuilder();
             //Register repository
-            RegisterRepository(builder);
+            RegisterDependencies(builder);
 
             var asselmblyList = GetExecutingAssembly();
             // Register your MVC controllers. (MvcApplication is the name of
             // the class in Global.asax.)
             builder.RegisterControllers(asselmblyList);
 
-            // OPTIONAL: Register model binders that require DI.
-            // builder.RegisterModelBinders(asselmblyList);
-            //builder.RegisterModelBinderProvider();
-
             // OPTIONAL: Register web abstractions like HttpContextBase.
             builder.RegisterModule<AutofacWebTypesModule>();
 
-            // OPTIONAL: Enable property injection in view pages.
-            //builder.RegisterSource(new ViewRegistrationSource());
-
             // OPTIONAL: Enable property injection into action filters.
             builder.RegisterFilterProvider();
-
-            // OPTIONAL: Enable action method parameter injection (RARE).
-            //builder.InjectActionInvoker();
 
             // Set the dependency resolver to be Autofac.
 
@@ -68,7 +58,7 @@ namespace Fanex.Affiliate.User.Site
                 .ToArray();
         }
 
-        private static void RegisterRepository(ContainerBuilder builder)
+        private static void RegisterDependencies(ContainerBuilder builder)
         {
             builder.RegisterType<MaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterInstance(CacheService.CreateInstance(CacheType.MemoryCache)).As<ICache>();
@@ -78,7 +68,6 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<AppSetting>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<LanguageService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<CookieService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MarketingRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemoryCacheService>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -103,6 +92,12 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<CommissionReportRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionReportService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CaptchaService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<TwoFactorAuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<VerificationService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<WrapperUtility>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<VerificationRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<SecurityQuestionRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<SecurityQuestionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

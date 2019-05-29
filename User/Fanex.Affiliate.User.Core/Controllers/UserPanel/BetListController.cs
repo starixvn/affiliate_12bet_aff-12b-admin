@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult Index(BetListParam param)
         {
-            var viewPath = "~/Views/UserPanel/BetList/Index.cshtml";
+            const string ViewPath = "~/Views/UserPanel/BetList/Index.cshtml";
             if (ModelState.IsValid)
             {
                 param.AffId = SessionService.UserSession.AffId;
@@ -68,12 +68,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
                             UserName = param.UserName
                         };
 
-                        return View(viewPath, viewModel);
+                        return View(ViewPath, viewModel);
                     }
                 }
             }
 
-            return View(viewPath, new MainBetListViewModel());
+            return View(ViewPath, new MainBetListViewModel());
         }
 
         [HttpPost]

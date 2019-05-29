@@ -68,10 +68,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             controller.Index(param);
 
             // Assert
-            Assert.Equal(DateTime.Now.Date, param.Date.Value.Date); ;
+            Assert.Equal(DateTime.Now.Date, param.Date.Value.Date);
         }
 
-        private MemberTransactionController CreateController(
+        private static MemberTransactionController CreateController(
             ISessionService sessionService = null,
             ILanguageService languageService = null,
             IMemberTransactionService memberTransactionService = null)

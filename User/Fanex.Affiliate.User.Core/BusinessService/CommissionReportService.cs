@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
@@ -9,6 +10,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class CommissionReportService : ICommissionReportService
     {
+        private const int DecimalDigit = 2;
+        private const int PercentageUnit = 100;
+
         private readonly ICommissionReportRepository _commissionReportRepository;
         public CommissionReportService(ICommissionReportRepository commissionReportRepository)
         {
@@ -16,7 +20,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         }
         private static string GetCalculatedNote(int? type)
         {
-            if (!type.HasValue || type == 2)
+            if (!type.HasValue || type == CommissionType.Calculated)
             {
                 return string.Empty;
             }
@@ -42,7 +46,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var total = new AffiliateCommission();
             foreach (var item in byMonth)
             {
-                item.Data.CommissionRate = decimal.Round(item.Data.CommissionRate, 2) * 100;
+                item.Data.CommissionRate = decimal.Round(item.Data.CommissionRate, DecimalDigit) * PercentageUnit;
 
                 total.TurnOver += item.Data.TurnOver;
                 total.WinLoss += item.Data.WinLoss;

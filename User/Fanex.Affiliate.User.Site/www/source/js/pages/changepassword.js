@@ -1,17 +1,4 @@
 ﻿var ChangePassword = (function ($) {
-    function encrypt(plainText, key) {
-        var encrypt = new JSEncrypt();
-        encrypt.setPublicKey(key);
-
-        return encrypt.encrypt(plainText);
-    }
-
-    function base64DecodeUnicode(str) {
-        return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-        }).join(''))
-    }
-
     var _me = {
         initialize: function () {
             _me.initEvent();
@@ -44,11 +31,11 @@
                     return;
                 }
 
-                var publicKey = base64DecodeUnicode($("#PublicKey").val());
+                var publicKey = AuthHelper.base64DecodeUnicode($("#PublicKey").val());
 
-                var encryptedOldPassword = encrypt($oldPassword.val(), publicKey);
-                var encryptedNewPassword = encrypt($newPassword.val(), publicKey);
-                var confirmedNewPassword = encrypt($confirmedNewPassword.val(), publicKey);
+                var encryptedOldPassword = AuthHelper.encrypt($oldPassword.val(), publicKey);
+                var encryptedNewPassword = AuthHelper.encrypt($newPassword.val(), publicKey);
+                var confirmedNewPassword = AuthHelper.encrypt($confirmedNewPassword.val(), publicKey);
 
                 $oldPassword.val(encryptedOldPassword);
                 $newPassword.val(encryptedNewPassword);

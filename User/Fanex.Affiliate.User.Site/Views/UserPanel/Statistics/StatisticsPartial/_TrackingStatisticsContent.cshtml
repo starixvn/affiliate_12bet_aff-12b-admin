@@ -35,8 +35,8 @@
                                 <a href="javascript:;" data-date="@item.Date.ToString("MM/dd/yyyy")" class="statisticsItem">@monthText</a>
                             }
                         </td>
-                        <td class="text-right">@item.TotalClick.ToStringNumber()</td>
-                        <td class="text-center">@item.UniqueClick.ToStringNumber()</td>
+                        <td class="text-right">@item.TotalClick.FormatNumber()</td>
+                        <td class="text-center">@item.UniqueClick.FormatNumber()</td>
                     </tr>
 
                     index++;

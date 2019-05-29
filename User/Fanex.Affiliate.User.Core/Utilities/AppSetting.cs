@@ -46,6 +46,10 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public int LoginTimeout => Convert.ToInt32(GetValue("LoginTimeout"));
 
+        public string SymmetricPassword => GetValue("SymmetricPassword");
+
+        public string SymmetricSalt => GetValue("SymmetricSalt");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

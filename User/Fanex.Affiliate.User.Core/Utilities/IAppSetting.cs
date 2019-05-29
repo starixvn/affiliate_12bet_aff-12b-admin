@@ -44,5 +44,9 @@ namespace Fanex.Affiliate.User.Core.Utilities
         int LoginTimeout { get; }
 
         DateTime StatementAvailableFrom { get; }
+
+        string SymmetricPassword { get; }
+
+        string SymmetricSalt { get; }
     }
 }

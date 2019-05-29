@@ -262,21 +262,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam)).Returns(new ResultInfo());
 
             var accountService = CreateAccountService(accountRepository.Object);
+            var times = isLocalTest ? Times.Never() : Times.Once();
 
             // Action
             accountService.CreateAffiliate(signUpParam, new EmailBaseParam());
 
             // Assert
             accountRepository.Verify(ac => ac.CreateAffiliate(signUpParam), Times.Once);
-
-            if (isLocalTest)
-            {
-                accountRepository.Verify(ac => ac.GetDepositPlayerAccount(It.IsAny<string>()), Times.Never);
-            }
-            else
-            {
-                accountRepository.Verify(ac => ac.GetDepositPlayerAccount(It.IsAny<string>()), Times.Once);
-            }
+            accountRepository.Verify(ac => ac.GetDepositPlayerAccount(It.IsAny<string>()), times);
         }
 
         [Fact]
@@ -399,7 +392,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Assert.Equal(Constant.DefaultUserName, passedParam.UserName);
         }
 
-        private AccountService CreateAccountService(IAccountRepository repository, IEmailService emailService = null)
+        private static AccountService CreateAccountService(IAccountRepository repository, IEmailService emailService = null)
         {
             return new AccountService(repository, emailService ?? Mock.Of<IEmailService>());
         }

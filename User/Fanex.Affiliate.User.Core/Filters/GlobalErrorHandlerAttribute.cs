@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -18,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Filters
         {
             var exception = filterContext.Exception;
             var httpException = exception as HttpException;
-            if (filterContext.ExceptionHandled || (httpException != null && httpException.GetHttpCode() == 404))
+            if (filterContext.ExceptionHandled || (httpException != null && httpException.GetHttpCode() == (int)HttpStatusCode.NotFound))
             {
                 return;
             }
@@ -33,11 +34,9 @@ namespace Fanex.Affiliate.User.Core.Filters
 
             if (httpContext.Request.IsAjaxRequest())
             {
-                httpContext.ClearError();
-
                 var response = httpContext.Response;
                 response.ContentType = "application/json";
-                response.StatusCode = 500;
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                 filterContext.Result = new JsonResult
                 {

@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Fanex.Affiliate.User.Core.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\SonarQube\12betAFFUserCSharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -135,6 +135,10 @@
       <HintPath>..\..\packages\ONEbook.UM.2.0.2.9\lib\net40\ONEbook.UM.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Otp.NET, Version=1.2.1.0, Culture=neutral, PublicKeyToken=38a48df817e173a6, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Otp.NET.1.2.1\lib\net45\Otp.NET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
       <Private>True</Private>
@@ -200,6 +204,9 @@
     <Compile Include="BusinessService\ContactService.cs" />
     <Compile Include="BusinessService\ICaptchaService.cs" />
     <Compile Include="BusinessService\ICommissionReportService.cs" />
+    <Compile Include="BusinessService\ISecurityQuestionService.cs" />
+    <Compile Include="BusinessService\ITwoFactorAuthService.cs" />
+    <Compile Include="BusinessService\IVerificationService.cs" />
     <Compile Include="BusinessService\MemberTransactionService.cs" />
     <Compile Include="BusinessService\MemberInfoServiceWrapper.cs" />
     <Compile Include="BusinessService\EmailService.cs" />
@@ -212,9 +219,19 @@
     <Compile Include="BusinessService\IEmailService.cs" />
     <Compile Include="BusinessService\INewsService.cs" />
     <Compile Include="BusinessService\PaymentService.cs" />
+    <Compile Include="BusinessService\SecurityQuestionService.cs" />
+    <Compile Include="BusinessService\TwoFactorAuthService.cs" />
+    <Compile Include="BusinessService\VerificationService.cs" />
+    <Compile Include="Constants\ActionName.cs" />
     <Compile Include="Constants\CommGroupName.cs" />
+    <Compile Include="Constants\CommissionType.cs" />
+    <Compile Include="Constants\ControllerName.cs" />
+    <Compile Include="Constants\DbParam.cs" />
+    <Compile Include="Constants\Number.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\Product.cs" />
+    <Compile Include="Constants\TransType.cs" />
+    <Compile Include="Controllers\AuthBaseController.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionController.cs" />
     <Compile Include="Controllers\UserPanel\MemberController.cs" />
@@ -230,10 +247,9 @@
     <Compile Include="Controllers\UserPanel\TextBoxController.cs" />
     <Compile Include="Controllers\UserPanel\MediaGalleryController.cs" />
     <Compile Include="Controllers\UserPanel\MarketingController.cs" />
-    <Compile Include="CoreService\CookieService.cs" />
+    <Compile Include="Controllers\VerificationAccountController.cs" />
     <Compile Include="BusinessService\CryptographyService.cs" />
     <Compile Include="BusinessService\IAuthService.cs" />
-    <Compile Include="CoreService\ICookieService.cs" />
     <Compile Include="BusinessService\ICryptographyService.cs" />
     <Compile Include="BusinessService\ILanguageService.cs" />
     <Compile Include="BusinessService\IMarketingService.cs" />
@@ -241,7 +257,6 @@
     <Compile Include="BusinessService\MarketingService.cs" />
     <Compile Include="Constants\BannerTypeName.cs" />
     <Compile Include="Constants\CacheKey.cs" />
-    <Compile Include="Constants\CookieName.cs" />
     <Compile Include="Constants\SystemLanguage.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -270,9 +285,13 @@
     <Compile Include="DTO\ExtraUserInfo.cs" />
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\LatestHotNews.cs" />
+    <Compile Include="DTO\LoginResultInfo.cs" />
     <Compile Include="DTO\Payment.cs" />
     <Compile Include="DTO\ProductItem.cs" />
     <Compile Include="DTO\RsaKeyPair.cs" />
+    <Compile Include="DTO\SecurityQuestion.cs" />
+    <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />
+    <Compile Include="DTO\VerificationAccount\SendCodeResult.cs" />
     <Compile Include="DTO\Transaction.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
@@ -297,6 +316,11 @@
     <Compile Include="DTO\UserPanel\TrackingStatistics.cs" />
     <Compile Include="DTO\UserSession.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
+    <Compile Include="DTO\VerificationAccount\VerificationInfo.cs" />
+    <Compile Include="DTO\VerificationAccount\QueryStringResult.cs" />
+    <Compile Include="DTO\VerificationAccount\VerificationAction.cs" />
+    <Compile Include="DTO\VerificationAccount\VerificationSession.cs" />
+    <Compile Include="DTO\VerificationAccount\VerifyAccountResult.cs" />
     <Compile Include="Enum\AffiliateType.cs" />
     <Compile Include="Enum\DeviceType.cs" />
     <Compile Include="Enum\MemberType.cs" />
@@ -308,10 +332,14 @@
     <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Filters\CustomAuthorize.cs" />
+    <Compile Include="Filters\EncryptedActionAttribute.cs" />
     <Compile Include="Filters\GlobalErrorHandlerAttribute.cs" />
+    <Compile Include="Infrastructure\EncryptedHandler.cs" />
+    <Compile Include="Infrastructure\EncryptedRouteHandler.cs" />
     <Compile Include="Infrastructure\HandleLegacyUrlRoute.cs" />
     <Compile Include="Infrastructure\UrlSchema.cs" />
     <Compile Include="MetalModels\Attributes\RequiredByCheckedAttribute.cs" />
+    <Compile Include="MetalModels\AuthResultBaseParam.cs" />
     <Compile Include="MetalModels\BetList\BetListCashoutDetailParam.cs" />
     <Compile Include="MetalModels\BetList\BetListNewParlayParam.cs" />
     <Compile Include="MetalModels\BetList\BetListParam.cs" />
@@ -319,6 +347,7 @@
     <Compile Include="MetalModels\BetList\BetListResultParam.cs" />
     <Compile Include="MetalModels\BetList\BetListValidationParam.cs" />
     <Compile Include="MetalModels\ContactUsParam.cs" />
+    <Compile Include="MetalModels\Email\VerificationAccountEmailParam.cs" />
     <Compile Include="MetalModels\MemberTransactionParam.cs" />
     <Compile Include="MetalModels\Email\EmailBaseParam.cs" />
     <Compile Include="MetalModels\Email\NoticeEmailParam.cs" />
@@ -326,6 +355,7 @@
     <Compile Include="MetalModels\Email\RecoverPasswordEmailParam.cs" />
     <Compile Include="MetalModels\Email\NewPasswordEmailParam.cs" />
     <Compile Include="MetalModels\PasswordRecoveryParam.cs" />
+    <Compile Include="MetalModels\SendCodeParam.cs" />
     <Compile Include="MetalModels\UserPanel\MemberParam.cs" />
     <Compile Include="MetalModels\UserPanel\DepositPlayerAccountParam.cs" />
     <Compile Include="MetalModels\UserPanel\MessageHistoryParam.cs" />
@@ -353,11 +383,16 @@
     <Compile Include="MetalModels\UserPanel\StatisticsOverviewParam.cs" />
     <Compile Include="MetalModels\UserPanel\TrackingStatisticsDetailParam.cs" />
     <Compile Include="MetalModels\UserSignUpParam.cs" />
+    <Compile Include="MetalModels\VerificationAccountParam.cs" />
+    <Compile Include="MetalModels\VerificationOtpParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BetList\BetListRepository.cs" />
     <Compile Include="Repository\BetList\IBetListRepository.cs" />
     <Compile Include="Repository\EmailHistoryRepository.cs" />
     <Compile Include="Repository\IEmailHistoryRepository.cs" />
+    <Compile Include="Repository\ISecurityQuestionRepository.cs" />
+    <Compile Include="Repository\IVerificationRepository.cs" />
+    <Compile Include="Repository\SecurityQuestionRepository.cs" />
     <Compile Include="Repository\UserPanel\CommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\ICommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\MemberRepository.cs" />
@@ -378,6 +413,7 @@
     <Compile Include="Repository\UserPanel\MarketingRepository.cs" />
     <Compile Include="Repository\UserPanel\StatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\StatisticsRepository.cs" />
+    <Compile Include="Repository\VerificationRepository.cs" />
     <Compile Include="Resources\Error.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -470,17 +506,23 @@
     </Compile>
     <Compile Include="Utilities\AppSetting.cs" />
     <Compile Include="Utilities\Common.cs" />
+    <Compile Include="Utilities\ConverterUtils.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
+    <Compile Include="Utilities\EmailHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="CoreService\IMemoryCacheService.cs" />
+    <Compile Include="Utilities\IWrapperUtility.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\IAppSetting.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
-    <Compile Include="Utilities\MemberSitePageHelper.cs" />
     <Compile Include="CoreService\MemoryCacheService.cs" />
+    <Compile Include="Utilities\MarketingHelper.cs" />
+    <Compile Include="Utilities\Parser.cs" />
     <Compile Include="Utilities\RequestHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="DTO\UserPanel\AccountInformation.cs" />
+    <Compile Include="Utilities\SymmetricEncryptionUtility.cs" />
+    <Compile Include="Utilities\WrapperUtility.cs" />
     <Compile Include="ViewModels\AuthenticationFormViewModel.cs" />
     <Compile Include="ViewModels\BetList\MainBetListViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
@@ -502,11 +544,7 @@
     <Compile Include="ViewModels\UserPanel\Statistics\ReferrerStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\TrackingStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\UserPanelMainViewModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.dll" />
+    <Compile Include="ViewModels\VerificationAccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Error.ko-KR.resx">
@@ -621,6 +659,11 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.13.0.8313\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.13.0.8313\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.13.0.8313\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

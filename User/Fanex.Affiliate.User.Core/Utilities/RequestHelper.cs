@@ -7,11 +7,12 @@ namespace Fanex.Affiliate.User.Core.Utilities
     public static class RequestHelper
     {
         [SuppressMessage("Sonar Code Smell", "S1313:MakeIpAddressConfigurable", Justification = "Reviewed. Suppression is OK here.")]
-        public static string GetClientIPAddress()
+        public static string GetClientIPAddress(HttpRequestBase httpRequest = null)
         {
-            string ips = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-            string ip = ips == null ?
-                HttpContext.Current.Request.UserHostAddress :
+            var request = httpRequest ?? new HttpRequestWrapper(HttpContext.Current.Request);
+            var ips = request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            var ip = ips == null ?
+                request.UserHostAddress :
                 ips.Split(',').First().Trim();
 
             if (ip == "::1")

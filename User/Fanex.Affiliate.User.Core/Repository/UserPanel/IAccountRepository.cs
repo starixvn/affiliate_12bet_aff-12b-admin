@@ -30,6 +30,8 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         ResultInfo CreateAffiliate(UserSignUpParam signUpParam);
 
+        int CreateSecretKey(int affId, string secretKey);
+
         IEnumerable<CommissionSetting> GetCommissionSettingList(int affId, bool isInternal);
 
     }

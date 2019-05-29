@@ -17,23 +17,35 @@
         private readonly IAccountService _accountService;
         private readonly IAppSetting _appSetting;
         private readonly ICaptchaService _captchaService;
+        private readonly ISecurityQuestionService _securityQuestionService;
 
         public SignupController(
             ISessionService sessionService,
             IAppSetting appSetting,
             IAccountService accountService,
             ILanguageService languageService,
-            ICaptchaService captchaService) : base(sessionService, languageService)
+            ICaptchaService captchaService,
+            ISecurityQuestionService securityQuestionService) : base(sessionService, languageService)
         {
             _accountService = accountService;
             _captchaService = captchaService;
             _appSetting = appSetting;
+            _securityQuestionService = securityQuestionService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
             return View(new UserSignUpParam());
+        }
+
+        [HttpGet]
+        [ChildActionOnly]
+        public ActionResult SecurityQuestion()
+        {
+            var model = _securityQuestionService.GetSecurityQuestions(SessionService.CurrentLanguage);
+
+            return PartialView("~/Views/Signup/_SecurityQuestion.cshtml", model);
         }
 
         [HttpPost]
@@ -65,7 +77,7 @@
                     MoreSiteUrls = Server.HtmlEncode(param.MoreSiteUrls),
                     NoSiteDesc = Server.HtmlEncode(param.NoSiteDesc),
                     PreferredLanguage = Server.HtmlEncode(param.PreferredLanguage),
-                    Question = Server.HtmlEncode(param.Question),
+                    QuestionId = param.QuestionId,
                     Answer = Server.HtmlEncode(param.Answer),
                     Player_UserName = Server.HtmlEncode(param.Player_UserName),
                     ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
@@ -87,7 +99,7 @@
                     MailCc = _appSetting.MailCc,
                     MailContact = _appSetting.MailContact,
                     MailBcc = _appSetting.MailBcc,
-                    RootDomain = SiteDomainHelper.GetRootUrl(this),
+                    RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
                     MailTo = _appSetting.MailContact
                 };
 

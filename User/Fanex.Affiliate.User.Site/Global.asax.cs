@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Data;
 using Fanex.Data.OldConnectionStringProvider;
 
@@ -12,11 +12,16 @@ namespace Fanex.Affiliate.User.Site
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        [SuppressMessage("Sonar Code Smell", "S2325:Methods and properties should be static", Justification = "Reviewed.")]
         protected void Application_Start()
         {
+            var env = ConfigurationManager.AppSettings["Environment"];
             IoCConfig.Register();
             AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            if (env != "LOCAL")
+            {
+                FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            }
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MvcHandler.DisableMvcResponseHeader = true;
             AntiForgeryConfig.RequireSsl = false;
@@ -31,6 +36,7 @@ namespace Fanex.Affiliate.User.Site
               .Run();
         }
 
+        [SuppressMessage("Sonar Code Smell", "S2325:Methods and properties should be static", Justification = "Reviewed.")]
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
             var application = sender as HttpApplication;
@@ -39,5 +45,6 @@ namespace Fanex.Affiliate.User.Site
                 application.Context.Response.Headers.Remove("Server");
             }
         }
+
     }
 }

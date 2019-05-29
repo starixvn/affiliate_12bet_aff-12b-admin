@@ -8,28 +8,27 @@
     public static class SiteDomainHelper
     {
         [SuppressMessage("Sonar Code Smell", "S3995:UriReturnValuesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
-        public static string GetRootUrl(Controller controller)
+        public static string GetRootUrl(Controller controller, IAppSetting appSetting = null)
         {
-            var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
-            var isUatOrProEnv = string.Equals("UAT", appSetting.Environment, StringComparison.OrdinalIgnoreCase) || appSetting.IsProduction;
+            var setting = appSetting ?? DependencyResolver.Current.GetService<IAppSetting>();
+            var isUatOrProEnv = string.Equals("UAT", setting.Environment, StringComparison.OrdinalIgnoreCase) || setting.IsProduction;
             var requestUrl = controller.Request.Url;
 
-            return GetScheme(controller.Request) + Uri.SchemeDelimiter + requestUrl.Host +
+            return GetScheme(controller.Request, setting.IsProduction) + Uri.SchemeDelimiter + requestUrl.Host +
                 (requestUrl.IsDefaultPort || isUatOrProEnv ? string.Empty : ":" + requestUrl.Port) + controller.Url.Content("~/");
         }
 
-        private static string GetScheme(HttpRequestBase request)
+        private static string GetScheme(HttpRequestBase request, bool isProduction)
         {
-            var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
-
-            return (appSetting != null && appSetting.IsProduction) ?
-                request.Url.Scheme :
-                (IsSecure(request) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp);
+            return isProduction ? request.Url.Scheme : GetSchemeByRequest(request);
         }
 
-        private static bool IsSecure(HttpRequestBase request)
+        private static string GetSchemeByRequest(HttpRequestBase request)
         {
-            return request.IsSecureConnection || String.Equals(request.ServerVariables["HTTP_X_FORWARDED_PROTO"], "https", StringComparison.OrdinalIgnoreCase);
+            var isSecure = request.IsSecureConnection ||
+                string.Equals(request.ServerVariables["HTTP_X_FORWARDED_PROTO"], Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase);
+
+            return isSecure ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
         }
     }
 }

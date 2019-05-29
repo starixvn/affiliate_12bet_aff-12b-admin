@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
     public class MyAccountControllerTest
     {
         private const string PlayerUserName = "player";
-        private MyAccountController FakeAccountController(
+        private static MyAccountController CreateAccountController(
             ISessionService sessionService = null,
             IAccountRepository accountRepository = null,
             ILanguageService languageService = null)
@@ -30,6 +30,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var controller = new MyAccountController(fakeSessionService, fakeLanguageService, fakeAccountRepository);
             return MockingHelper.FakeController(controller) as MyAccountController;
         }
+
         [Fact]
         public void GetMyAccount_WhenCall_ReturnCorrectModel()
         {
@@ -37,7 +38,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var expectedAccount = new AccountInformation { PreferredLanguage = Constant.DefaultLanguage };
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(expectedAccount);
-            var controller = FakeAccountController(null, accountRepository: accountRepository.Object);
+            var controller = CreateAccountController(null, accountRepository: accountRepository.Object);
 
             // Action
             var actionResult = controller.Index() as ViewResult;
@@ -63,7 +64,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             };
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(expectedAccount);
-            var controller = FakeAccountController(null, accountRepository: accountRepository.Object);
+            var controller = CreateAccountController(null, accountRepository: accountRepository.Object);
 
             // Action
             var actionResult = controller.Index() as ViewResult;
@@ -84,11 +85,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             sessionService.CurrentLanguage = "zh-TW";
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(expectedAccount);
-            var controller = FakeAccountController(accountRepository: accountRepository.Object, sessionService: sessionService);
+            var controller = CreateAccountController(accountRepository: accountRepository.Object, sessionService: sessionService);
 
             // Action
-            var actionResult = controller.Index() as ViewResult;
-            var result = actionResult.Model as AccountInformation;
+            controller.Index();
 
             // Assert
             Assert.True(expectedAccount.IsRenderState);
@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var sessionService = MockingHelper.GetSessionService();
             sessionService.IsInternal = true;
 
-            var controller = FakeAccountController(sessionService, null);
+            var controller = CreateAccountController(sessionService, null);
 
             // Action
             var actionResult = controller.Index(new AccountInformation()) as JsonResult;
@@ -117,7 +117,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void PostMyAccount_InvalidContactApp_ReturnCorrectResult()
         {
             // Arrange
-            var controller = FakeAccountController(null, null);
+            var controller = CreateAccountController(null, null);
             var contactAppList = CreateContactAppList();
             contactAppList.ForEach(item => item.Value = null);
 
@@ -137,13 +137,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation { PlayerUsername = PlayerUserName });
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(new DepositAccountInfo { Success = 1 });
-            var controller = FakeAccountController(null, accountRepository.Object);
+            var controller = CreateAccountController(null, accountRepository.Object);
             var contactAppList = CreateContactAppList();
             contactAppList[0].Value = null;
 
             // Action
-            var actionResult = controller.Index(new AccountInformation { ContactAppList = contactAppList }) as JsonResult;
-            var result = actionResult.Data as ResultInfo;
+            controller.Index(new AccountInformation { ContactAppList = contactAppList });
 
             // Assert
             accountRepository.Verify(ac => ac.GetAccountInfo(Constant.DefaultAffId), Times.Once);
@@ -156,7 +155,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation { PlayerUsername = PlayerUserName });
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(new DepositAccountInfo { Success = 1 });
-            var controller = FakeAccountController(null, accountRepository.Object);
+            var controller = CreateAccountController(null, accountRepository.Object);
 
             // Action
             var actionResult = controller.Index(new AccountInformation { ContactAppList = CreateContactAppList() }) as JsonResult;
@@ -175,7 +174,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation { PlayerUsername = PlayerUserName });
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(new DepositAccountInfo { Success = 0 });
             accountRepository.Setup(ac => ac.UpdateAccountInformation(It.IsAny<UpdateAccountParam>())).Returns(new ResultInfo { IsOk = true });
-            var controller = FakeAccountController(null, accountRepository.Object);
+            var controller = CreateAccountController(null, accountRepository.Object);
 
             // Action
             var actionResult = controller.Index(new AccountInformation { ContactAppList = CreateContactAppList() }) as JsonResult;
@@ -189,7 +188,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void PostMyAccount_UpdateAccount_PasssedParamCorrectly()
         {
             // Arrange
-            var param = CreateParam();
             UpdateAccountParam passedParam = null;
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation());
@@ -197,29 +195,26 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             accountRepository.Setup(ac => ac.UpdateAccountInformation(It.IsAny<UpdateAccountParam>()))
                 .Returns(new ResultInfo { IsOk = true })
                 .Callback<UpdateAccountParam>(p => passedParam = p);
-            var controller = FakeAccountController(null, accountRepository.Object);
 
             var expectedResult = JsonConvert.SerializeObject(CreateExpectedParam());
-
-            // Action
-            var actionResult = controller.Index(param);
-            var result = JsonConvert.SerializeObject(passedParam);
-
-            // Assert
-            Assert.Equal(expectedResult, result);
-        }
-
-        private AccountInformation CreateParam()
-        {
-            return new AccountInformation
+            var controller = CreateAccountController(null, accountRepository.Object);
+            var requestParam = new AccountInformation
             {
+                ContactAppList = CreateContactAppList(),
+                PlayerUsername = PlayerUserName,
                 Phone = "Phone",
                 SiteUrl = "SiteUrl",
                 MoreSiteUrls = "MoreSiteUrls",
                 NoSiteDesc = "NoSiteDesc",
-                PlayerUsername = PlayerUserName,
-                ContactAppList = CreateContactAppList()
+                AffId = Constant.DefaultAffId
             };
+
+            // Action
+            controller.Index(requestParam);
+            var result = JsonConvert.SerializeObject(passedParam);
+
+            // Assert
+            Assert.Equal(expectedResult, result);
         }
 
         private UpdateAccountParam CreateExpectedParam()

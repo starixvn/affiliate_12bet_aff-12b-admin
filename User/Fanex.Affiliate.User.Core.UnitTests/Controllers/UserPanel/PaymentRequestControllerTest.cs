@@ -9,7 +9,6 @@ using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
@@ -22,7 +21,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 {
     public class PaymentRequestControllerTest
     {
-        private PaymentRequestController CreatePaymentRequestController(ISessionService sessionService = null,
+        private static PaymentRequestController CreatePaymentRequestController(ISessionService sessionService = null,
             IAppSetting appSetting = null,
             ILanguageService languageService = null,
             IPaymentService paymentServic = null)
@@ -60,26 +59,27 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void PaymentRequest_GetPaymentList_ReturnOutputInfoCorrectly()
         {
             // Arrange
-            const decimal expectedBalBroughtForward = 100m, expectedMinAmount = 10m;
-            const string expectedPreferredPayment = "PlayerAccount";
+            const decimal ExpectedBalBroughtForward = 100m;
+            const decimal ExpectedMinAmount = 10m;
+            const string ExpectedPreferredPayment = "PlayerAccount";
 
             var paymentService = new Mock<IPaymentService>();
             paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
                 .Returns(new List<Payment>())
                 .Callback<PaymentParam>(p =>
                 {
-                    p.BalBroughtForward = expectedBalBroughtForward;
-                    p.MinAmount = expectedMinAmount;
-                    p.PreferredPayment = expectedPreferredPayment;
+                    p.BalBroughtForward = ExpectedBalBroughtForward;
+                    p.MinAmount = ExpectedMinAmount;
+                    p.PreferredPayment = ExpectedPreferredPayment;
                 });
 
             var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
 
             var expectedResult = new PaymentViewModel
             {
-                BalBroughtForward = expectedBalBroughtForward,
-                MinAmount = expectedMinAmount,
-                PreferredPayment = expectedPreferredPayment
+                BalBroughtForward = ExpectedBalBroughtForward,
+                MinAmount = ExpectedMinAmount,
+                PreferredPayment = ExpectedPreferredPayment
             };
 
             // Action
@@ -90,41 +90,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(expectedResult.BalBroughtForward, result.BalBroughtForward);
             Assert.Equal(expectedResult.MinAmount, result.MinAmount);
             Assert.Equal(expectedResult.PreferredPayment, result.PreferredPayment);
-        }
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void PaymentRequest_PassedParamInfo_ParamValuesAreCorrect(bool isInternal)
-        {
-            // Arrange
-            PaymentParam passedParam = null;
-            var paymentService = new Mock<IPaymentService>();
-            paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
-                .Returns(new List<Payment>())
-                .Callback<PaymentParam>(p =>
-                {
-                    passedParam = p;
-                });
-
-            var sessionService = MockingHelper.GetSessionService();
-            sessionService.IsInternal = isInternal;
-
-            var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
-
-            var param = new PaymentParam
-            {
-                AffId = TestHelper.Constant.DefaultAffId,
-                IsInternal = isInternal
-            };
-            var expectedParam = JsonConvert.SerializeObject(param);
-
-            // Action
-            controller.Index();
-            var result = JsonConvert.SerializeObject(passedParam);
-
-            // Assert
-            Assert.Equal(expectedParam, result);
         }
 
         [Theory]
@@ -220,7 +185,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var paymentService = new Mock<IPaymentService>();
             paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
                             .Returns(new ResultInfo())
-                            .Callback<PaymentCancelParam>(p => passedParam = p);
+                            .Callback<PaymentCancelParam, PaymentEmailParam>((p, e) => passedParam = p);
 
             var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
 
@@ -228,7 +193,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             {
                 UserId = Constant.DefaultAffId,
                 Language = Constant.DefaultLanguage,
-                Status = "Cancelled",
                 TransId = TransId,
                 Ip = "::1"
             });
@@ -279,15 +243,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
             var paymentService = new Mock<IPaymentService>();
             paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
-                            .Returns(new ResultInfo { IsOk = true });
+                            .Returns(new ResultInfo { IsOk = true })
+                            .Callback<PaymentCancelParam, PaymentEmailParam>((p, e) => emailParam = e);
 
             var appSetting = GetMockAppSetting();
-            var accountRepository = GetMockAccountRepository();
 
             var controller = CreatePaymentRequestController(appSetting: appSetting, paymentServic: paymentService.Object);
 
-
-            var expectedResult = JsonConvert.SerializeObject(GetExpectedEmailParam(PaymentRequestType.Cancel));
+            var expectedEmailParam = GetExpectedEmailParam(PaymentRequestType.Cancel);
+            expectedEmailParam.PaymentType = 0;
+            var expectedResult = JsonConvert.SerializeObject(expectedEmailParam);
 
             // Action
             controller.CancelPaymentRequest(param);
@@ -340,40 +305,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void CreatePaymentRequest_InvalidAmount_DoNoThingAndSetResultInfoCorrectly()
-        {
-            // Arrange
-            var appSetting = Mock.Of<IAppSetting>(a => a.IsLocal);
-            var creationParam = new PaymentCreationParam()
-            {
-                AffId = Constant.DefaultAffId,
-                Amount = 0,
-                MinAmount = 100,
-                BalBroughtForward = 150
-            };
-            var controller = CreatePaymentRequestController(appSetting: appSetting);
-            var expectedResult = new ResultInfo
-            {
-                IsOk = false,
-                Message = Error.PaymentAmountInvalid
-            };
-
-            // Action
-            var actionResult = controller.CreatePaymentRequest(creationParam) as JsonResult;
-            var result = actionResult.Data as ResultInfo;
-
-            // Assert
-            Assert.Equal(expectedResult.IsOk, result.IsOk);
-            Assert.Equal(expectedResult.Message, result.Message);
-        }
-
-        [Fact]
-        public void CreatePaymentRequest_CheckAccountIsActived_PassedParamCorrectly()
+        public void CreatePaymentRequest_WhenCall_PassedCreationParamCorrectly()
         {
             // Arrange
             PaymentCreationParam passedParam = null;
-            var transDate = new DateTime(2018, 6, 13);
-            var creationParam = new PaymentCreationParam()
+            var creationParam = new PaymentCreationParam
             {
                 AffId = Constant.DefaultAffId,
                 Amount = 100,
@@ -382,17 +318,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             };
 
             var paymentService = new Mock<IPaymentService>();
-            paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
-                            .Returns(new ResultInfo { IsOk = true })
-                            .Callback<PaymentCreationParam>(p =>
-                            {
-                                p.TransDate = transDate;
-                                passedParam = p;
-                            });
+            paymentService.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>(), It.IsAny<PaymentEmailParam>()))
+                .Returns(new ResultInfo { IsOk = true })
+                .Callback<PaymentCreationParam, PaymentEmailParam>((p, e) =>
+                {
+                    passedParam = p;
+                });
 
             var appSetting = GetMockAppSetting();
-
-
             var controller = CreatePaymentRequestController(appSetting: appSetting, paymentServic: paymentService.Object);
 
             var expectedParam = new PaymentCreationParam
@@ -401,7 +334,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 Amount = creationParam.Amount,
                 Ip = "::1",
                 Language = Constant.DefaultLanguage,
-                TransDate = transDate,
                 MinAmount = 100m,
                 BalBroughtForward = 150m,
                 IsLocalTest = true
@@ -420,7 +352,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void CreatePaymentRequest_AccountIsNotActived_ReturnCheckingResultIntermediately()
         {
             // Arrange
-            var creationParam = new PaymentCreationParam()
+            var creationParam = new PaymentCreationParam
             {
                 Amount = 100,
                 MinAmount = 100,
@@ -433,6 +365,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             };
 
             var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>(), It.IsAny<PaymentEmailParam>()))
+                .Returns(checkingActiveResult);
             var appSetting = Mock.Of<IAppSetting>(ap => ap.IsLocal);
 
             var controller = CreatePaymentRequestController(appSetting: appSetting, paymentServic: paymentService.Object);
@@ -449,7 +383,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void CreatePaymentRequest_AccountIsActivedButCreatePaymentRequestFailed_ReturnCreationResultIntermediately()
         {
             // Arrange
-            var creationParam = new PaymentCreationParam()
+            var creationParam = new PaymentCreationParam
             {
                 AffId = Constant.DefaultAffId,
                 Amount = 100,
@@ -481,9 +415,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             // Arrange
             PaymentEmailParam emailParam = null;
-            const int TransId = 1;
-            var transDate = new DateTime(2018, 6, 12);
-            var creationParam = new PaymentCreationParam()
+            var creationParam = new PaymentCreationParam
             {
                 Amount = 100,
                 MinAmount = 100,
@@ -493,21 +425,19 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var paymentService = new Mock<IPaymentService>();
             paymentService.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>(), It.IsAny<PaymentEmailParam>()))
                             .Returns(new ResultInfo { IsOk = true })
-                            .Callback<PaymentCreationParam>(p =>
+                            .Callback<PaymentCreationParam, PaymentEmailParam>((p, e) =>
                             {
-                                p.TransDate = transDate;
-                                p.TransId = TransId;
+                                emailParam = e;
                             });
 
             var appSetting = GetMockAppSetting();
-
-
             var controller = CreatePaymentRequestController(appSetting: appSetting, paymentServic: paymentService.Object);
 
 
             var expectedEmailParam = GetExpectedEmailParam(PaymentRequestType.Create);
-            expectedEmailParam.TransId = TransId;
-            expectedEmailParam.RequestDate = transDate;
+            expectedEmailParam.RequestDate = DateTime.MinValue;
+            expectedEmailParam.TransId = 0;
+            expectedEmailParam.Amount = 0;
             var expectedResult = JsonConvert.SerializeObject(expectedEmailParam);
 
             // Action
@@ -518,16 +448,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(expectedResult, result);
         }
 
-        private IAccountRepository GetMockAccountRepository(UserInfo userInfo = null)
-        {
-            var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(ac => ac.GetUserInfoById(Constant.DefaultAffId, false))
-                .Returns(userInfo ?? GetUserInfo());
-
-            return accountRepository.Object;
-        }
-
-        private IAppSetting GetMockAppSetting()
+        private static IAppSetting GetMockAppSetting()
         {
             return Mock.Of<IAppSetting>(ap =>
                 ap.IsLocal &&
@@ -538,33 +459,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
         private PaymentEmailParam GetExpectedEmailParam(PaymentRequestType paymentType)
         {
-            var user = GetUserInfo();
-
             return new PaymentEmailParam
             {
-                User = user,
                 Amount = 100m,
                 MailBcc = "",
                 MailCc = Constant.DefaultMailCc,
                 MailContact = Constant.DefaultMailContact,
-                MailTo = user.Email,
                 RequestDate = new DateTime(2018, 6, 12),
                 RootDomain = Constant.DefaultRootDomain + "/",
                 TransId = 1,
                 PaymentType = paymentType
-            };
-        }
-
-        private UserInfo GetUserInfo()
-        {
-            return new UserInfo
-            {
-                AffId = Constant.DefaultAffId,
-                Email = Constant.DefaultMailUser,
-                FirstName = "Testing",
-                MailOption = false,
-                PreferredLanguage = Constant.DefaultLanguage,
-                UserName = "test"
             };
         }
     }

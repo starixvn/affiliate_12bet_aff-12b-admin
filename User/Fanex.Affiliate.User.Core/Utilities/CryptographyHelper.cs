@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Text;
+using Fanex.Affiliate.User.Core.Constants;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
@@ -13,24 +14,25 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         private static string CfsEnCode(string codeStr)
         {
-            int num = 30;
-            int num2 = num - codeStr.Length;
+            const int Num = 30;
+            int num2 = Num - codeStr.Length;
 
             var codeBuilder = new StringBuilder();
             codeBuilder.Append(codeStr);
             if (num2 > 1)
             {
+                const int SectionSignNumber = 21;
                 for (int i = 1; i <= num2; i++)
                 {
-                    codeBuilder.Append(Convert.ToChar(21));
+                    codeBuilder.Append(Convert.ToChar(SectionSignNumber));
                 }
             }
 
             var codeString = codeBuilder.ToString();
             double num3 = 1.0;
-            for (int j = 1; j <= num; j++)
+            for (int j = 1; j <= Num; j++)
             {
-                int num4 = num + Convert.ToInt32(Convert.ToChar(codeString.Substring(j - 1, 1))) * j;
+                int num4 = Num + Convert.ToInt32(Convert.ToChar(codeString.Substring(j - 1, 1))) * j;
                 num3 *= num4;
             }
             var num3String = num3.ToString(CultureInfo.InvariantCulture);
@@ -43,7 +45,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
             var text = textBuilder.ToString();
             var text2 = new StringBuilder();
-            for (int l = 20; l <= text.Length - 18; l += 2)
+            for (int l = 20; l <= text.Length - Number.Eighteen; l += Number.Two)
             {
                 text2.Append(text.Substring(l - 1, 1));
             }

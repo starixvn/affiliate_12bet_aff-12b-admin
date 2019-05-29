@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         const string PromotionTemplate = "https://promotions.{0}.com?lang=en&act=sports";
 
         [Theory]
-        [InlineData(false, "/SignUp/Index", "javascript:;")]
+        [InlineData(false, "/SignUp", "javascript:;")]
         [InlineData(true, "/UserPanel/Main/#AccountOverView", "/UserPanel/Main/#MediaGallery")]
         public void Index_CheckIsAuthenticated_ReturnCorrectViewModel(bool isAuthenticated, string expectedSignupLink, string expectedBannerlink)
         {
@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(expectedResult, result.Promotion12BetLink);
         }
 
-        private HomeController CreateController(
+        private static HomeController CreateController(
             ILanguageService languageService = null,
             ISessionService sessionService = null,
             IAppSetting appSetting = null,

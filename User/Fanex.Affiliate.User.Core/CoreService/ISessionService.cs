@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO.Auth;
+using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 
 namespace Fanex.Affiliate.User.Core.CoreService
 {
@@ -17,5 +18,7 @@ namespace Fanex.Affiliate.User.Core.CoreService
         string PrivateKey { get; set; }
 
         void AssignSessions(AuthorizedUserInfo authorizedUser);
+
+        VerificationSession VerificationSession { get; set; }
     }
 }

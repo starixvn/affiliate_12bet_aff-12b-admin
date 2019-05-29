@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public string Player_UserName { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errSecQuestionEmpty")]
-        public string Question { get; set; }
+        public byte QuestionId { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errYourAnswer")]
         public string Answer { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Data;
@@ -77,9 +78,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             objectDb.AddInParameter("AffID", SqlDbType.Int, param.AffId);
             objectDb.AddInParameter("Year", SqlDbType.Int, param.Year);
 
-            objectDb.AddOutParameter("PreferredPayment", SqlDbType.VarChar, 20);
-            objectDb.AddOutParameter("BalBroughtForward", SqlDbType.Money, 16);
-            objectDb.AddOutParameter("MinAmount", SqlDbType.Money, 16);
+            objectDb.AddOutParameter("PreferredPayment", SqlDbType.VarChar, DbParam.PreferPaymentSize);
+            objectDb.AddOutParameter("BalBroughtForward", SqlDbType.Money, DbParam.MoneySize);
+            objectDb.AddOutParameter("MinAmount", SqlDbType.Money, DbParam.MoneySize);
         }
 
         private static Payment BuildPaymentItem(IDataReader reader)

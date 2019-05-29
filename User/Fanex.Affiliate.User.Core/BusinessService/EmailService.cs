@@ -87,6 +87,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
         }
 
+        public void SendVerificationEmail(VerificationAccountEmailParam emailParam)
+        {
+            const string TemplateName = "VerificationAccount";
+            var emailContent = GetEmailTextContent(TemplateName, emailParam.User.PreferredLanguage, emailParam);
+            if (!emailParam.User.MailOption)
+            {
+                emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTittleVerificationAccount, emailParam.User.PreferredLanguage, emailParam.RootDomain);
+            }
+
+            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectVerificationAccount, emailParam.MailBcc, emailParam.MailCc);
+        }
+
         private string GetEmailTextContent(string templateName, string prefrerredLanguage, object model)
         {
             var viewPath = string.Format(TemplateString.EmailTemplatePath, templateName, prefrerredLanguage);
