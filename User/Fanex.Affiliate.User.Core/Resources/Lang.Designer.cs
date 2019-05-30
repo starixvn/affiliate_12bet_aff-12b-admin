@@ -2872,15 +2872,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keno.
-        /// </summary>
-        public static string Keno {
-            get {
-                return ResourceManager.GetString("Keno", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Kenya .
         /// </summary>
         public static string Kenya {
@@ -4738,6 +4729,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string RMB {
             get {
                 return ResourceManager.GetString("RMB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RNG KENO.
+        /// </summary>
+        public static string RngKeno {
+            get {
+                return ResourceManager.GetString("RngKeno", resourceCulture);
             }
         }
         

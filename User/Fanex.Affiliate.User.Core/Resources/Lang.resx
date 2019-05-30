@@ -1845,8 +1845,8 @@
     <value>E-Sports</value>
     <comment>87923</comment>
   </data>
-  <data name="Keno" xml:space="preserve">
-    <value>Keno</value>
+  <data name="RngKeno" xml:space="preserve">
+    <value>RNG KENO</value>
     <comment>87923</comment>
   </data>
   <data name="Lottery" xml:space="preserve">
