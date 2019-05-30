@@ -9,6 +9,8 @@ import { setUserAccountInfo, setMoreSiteUrlsList } from '../../actions';
 export class WebSite extends PureComponent {
     constructor(props) {
         super(props);
+
+        this.moreSiteUrlRefs = [];
     }
 
     handleChange = (event) => {
@@ -33,11 +35,12 @@ export class WebSite extends PureComponent {
         const findIndex = newMoreSiteUrlsList.indexOf('');
 
         if (findIndex === -1) {
+            this.moreSiteUrlRefs.push(React.createRef());
             moreSiteUrlsList.push('');
             this.props.setMoreSiteUrlsList(moreSiteUrlsList);
         } else {
             window.alert(`Please input Website URL ${findIndex + 2}`);
-            document.getElementById(findIndex).focus();
+            this.moreSiteUrlRefs[findIndex].current.focus();
         }
     }
 
@@ -55,9 +58,9 @@ export class WebSite extends PureComponent {
                     moreSiteUrlsList.map((value, index) => {
                         return (
                             <FormGroup row>
-                                <Label for={'siteUrl' + index} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
+                                <Label for={index} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
                                 <Col sm={5} xl={6}>
-                                    <Input type="text" id={'siteUrl' + index} name={'siteUrl' + index} value={value} onChange={this.handleChangeMoreUrl} />
+                                    <Input type="text" name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]}/>
                                 </Col>
                                 <Button color="primary" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
                             </FormGroup>
@@ -76,7 +79,7 @@ export class WebSite extends PureComponent {
                 <FormGroup row>
                     <Label for="siteUrl" sm={3} xl={2} className="required">Website URL</Label>
                     <Col sm={5} xl={6}>
-                        <Input type="text" id="siteUrl" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
+                        <Input type="text" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
                     </Col>
                     <Button color="primary" onClick={this.handleAddUrl}><span aria-hidden>Add Url</span></Button>
                 </FormGroup>

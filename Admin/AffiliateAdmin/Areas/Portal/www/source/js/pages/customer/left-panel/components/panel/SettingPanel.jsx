@@ -35,14 +35,14 @@ export class SettingPanel extends PureComponent {
         if (isConfirmed) {
             const status = event.target.value;
             const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: status });
-            const data = await this.props.updateStatus(param);
+            const result = await this.props.updateStatus(param);
 
-            if (data.IsSuccessful) {
+            if (result.IsSuccessful) {
                 window.alert("The status has been updated successfully!");
                 this.props.getAffiliateInfo(this.props.affName);
             }
             else {
-                window.alert(data.Message);
+                window.alert(result.Message);
             }
         }
     }
@@ -53,14 +53,14 @@ export class SettingPanel extends PureComponent {
         const isConfirmed = confirm('Are you sure you want to ' + (nextStatus ? 'close' : 'open') + ' this affiliate?');
         if (isConfirmed) {
             const param = { AffId: this.props.affiliateInfo.AffId, IsClosed: nextStatus };
-            const data = await this.props.updateClosedStatus(param);
+            const result = await this.props.updateClosedStatus(param);
 
-            if (data.IsSuccessful) {
+            if (result.IsSuccessful) {
                 window.alert("The status has been updated successfully!");
                 this.props.getAffiliateInfo(this.props.affName);
             }
             else {
-                window.alert(data.Message);
+                window.alert(result.Message);
             }
         }
     }
@@ -68,9 +68,9 @@ export class SettingPanel extends PureComponent {
     handleChangeAffType = async (event) => {
         const affType = event.target.value;
         const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, AffType: affType });
-        const data = await this.props.updateAffType(param);
+        const result = await this.props.updateAffType(param);
 
-        if (data.IsSuccessful) {
+        if (result.IsSuccessful) {
             this.props.getAffiliateInfo(this.props.affName);
             this.toggleChangingAffType(false);
         }

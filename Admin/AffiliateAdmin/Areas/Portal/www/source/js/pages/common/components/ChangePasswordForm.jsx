@@ -6,7 +6,6 @@ import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalH
 import { resource, regExp, messages } from '../modules/constants/changePassword';
 import { setShowPopupPassword, updateChangePasswword } from '../actions/changePassword';
 import { toggleLoader } from '../../../actions/loaderAction';
-import { post } from '../../../modules/ajaxRequest';
 
 export class ChangePasswordForm extends PureComponent {
     constructor(props) {
@@ -46,17 +45,17 @@ export class ChangePasswordForm extends PureComponent {
     async saveChangePassword(param) {
         this.props.toggleLoader(true);
 
-        const data = this.props.updateChangePasswword(param);
+        const result = await this.props.updateChangePasswword(param);
 
-        if (data) {
-            if (data.IsSuccessful) {
+        if (result) {
+            if (result.IsSuccessful) {
                 window.setTimeout(this.handleClosePopup, 3000);
             }
 
             this.setState({
-                isSuccess: data.IsSuccessful,
+                isSuccess: result.IsSuccessful,
                 isShowMessage: true,
-                message: data.IsSuccessful ? messages.ChangePasswordSuccess : data.Message
+                message: result.IsSuccessful ? messages.ChangePasswordSuccess : result.Message
             }, () => window.setTimeout(this.hideMessage, 3000));
         } else {
             this.setState({

@@ -61,16 +61,16 @@ export class InsertUpdateNoteForm extends PureComponent {
 
         const { affId } = this.props;
         const param = { ...noteInfo, affId };
-        const data = isInsert ? await this.props.insertNote(param) : await this.props.updateNote(param);
+        const result = isInsert ? await this.props.insertNote(param) : await this.props.updateNote(param);
 
-        if (data) {
+        if (result) {
             this.setState({
-                isSuccess: data.IsSuccessful,
+                isSuccess: result.IsSuccessful,
                 isShowMessage: true,
-                message: data.IsSuccessful ? message : data.Message
+                message: result.IsSuccessful ? message : result.Message
             }, () => window.setTimeout(this.hideMessage, 3000));
 
-            if (data.IsSuccessful) {
+            if (result.IsSuccessful) {
                 const { pagingOption } = this.props;
                 const param = Object.assign({}, { affId, pageIndex: 1, pageSize: pagingOption.PageSize });
 

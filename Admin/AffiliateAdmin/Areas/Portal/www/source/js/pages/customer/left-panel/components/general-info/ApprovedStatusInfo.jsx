@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Row, Col, Button } from 'reactstrap';
 
 import { ChangePasswordForm } from '../../../../common/components/ChangePasswordForm';
 import { toggleLoader } from '../../../../../actions/loaderAction';
 import { resource } from '../../modules/constants';
 import { resolveClientUrl } from '../../../../../modules/utils';
+import { updateChangePasswword } from '../../../../common/actions/changePassword';
+
 
 const ApprovedStatusInfo = (props) => {
     const [isChangingPassword, setChangingPassword] = useState(false);
@@ -27,7 +30,8 @@ const ApprovedStatusInfo = (props) => {
                         showPopupPassword={isChangingPassword}
                         affId={affiliateInfo.AffId}
                         setShowPopupPassword={toggleChangingPassword}
-                        toggleLoader={toggleLoader}
+                        toggleLoader={props.toggleLoader}
+                        updateChangePasswword={props.updateChangePasswword}
                     />}
                 </Col>
             </Row>
@@ -42,4 +46,8 @@ function mapStateToProps({ affCommonInfo, leftPanel }) {
     return Object.assign({}, { affiliateInfo, affName });
 }
 
-export default connect(mapStateToProps)(React.memo(ApprovedStatusInfo));
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ toggleLoader, updateChangePasswword }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ApprovedStatusInfo));

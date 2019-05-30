@@ -81,8 +81,6 @@ export class Content extends PureComponent {
     }
 
     _renderData(monthDate, data) {
-        const { affId, affName } = this.props;
-
         const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
         const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
         const TurnoverByMonth = formatDecimalWithCurrencySymbol(data.TurnoverByMonth);

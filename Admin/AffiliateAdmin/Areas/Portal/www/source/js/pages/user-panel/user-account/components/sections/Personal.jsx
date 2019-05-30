@@ -5,6 +5,7 @@ import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { renderInputForm, capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo } from '../../actions';
+import { updateObjectInArray } from '../../../../../modules/dataHandler';
 
 export class Personal extends PureComponent {
     constructor(props) {
@@ -24,7 +25,11 @@ export class Personal extends PureComponent {
     }
 
     handleChangeContactApps = (event) => {
-        this.arrayContactApps[0] = Object.assign({}, this.arrayContactApps[0], { Value: event.target.value });
+        const { name, value } = event.target
+        const indexItem = this.arrayContactApps.findIndex(item => item.Name === name);
+        const updateItem = Object.assign({}, this.arrayContactApps[indexItem], { Value: value });
+        this.arrayContactApps = updateObjectInArray(this.arrayContactApps, indexItem, updateItem)
+
         const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { ContactApps: JSON.stringify(this.arrayContactApps) })
         this.props.setUserAccountInfo(newUserAccountInfo);
     }
@@ -60,7 +65,13 @@ export class Personal extends PureComponent {
                 {this._renderGenderForm(userAccountInfo.Gender)}
                 {renderInputForm('email', 'Email Address', userAccountInfo.Email, false, true, this.handleChange)}
                 {renderInputForm('phone', 'Contact Number', userAccountInfo.Phone, false, true, this.handleChange)}
-                {this.arrayContactApps && this.arrayContactApps[0] && renderInputForm('contactApp', this.arrayContactApps[0].Name, this.arrayContactApps[0].Value, false, false, this.handleChangeContactApps)}
+                {
+                    this.arrayContactApps && this.arrayContactApps.map(contactApp => {
+                        return (
+                            renderInputForm(contactApp.Name, contactApp.Name, contactApp.Value, false, false, this.handleChangeContactApps)
+                        )
+                    })
+                }
             </Form>
         )
     }

@@ -49,23 +49,22 @@ export class PaymentRequestUpdateForm extends PureComponent {
         if (originalStatus.toLowerCase() === pendingStatus &&
             (selectedStatus.toLowerCase() === approvedStatus || selectedStatus.toLowerCase() === rejectedStatus)) {
 
-            const { adminDesc, affDesc } = this.state;
             const paymentInfo = Object.assign({}, {
                 TransId: paymentRequestInfo.TransId,
                 Status: selectedStatus,
                 AdminDesc: paymentRequestInfo.AdminDesc,
                 AffDesc: paymentRequestInfo.AffDesc
             });
-            const data = await this.updatePaymentRequest(paymentInfo);
+            const result = await this.updatePaymentRequest(paymentInfo);
 
-            if (data) {
+            if (result) {
                 this.setState({
                     isShowMessage: true,
-                    isSuccess: data.IsSuccessful,
-                    message: data.IsSuccessful ? `Transaction ID ${paymentRequestInfo.TransId} has been updated successfully!` : data.Message,
+                    isSuccess: result.IsSuccessful,
+                    message: result.IsSuccessful ? `Transaction ID ${paymentRequestInfo.TransId} has been updated successfully!` : result.Message,
                 }, () => window.setTimeout(this.hideMessage, 3000));
 
-                if (data.IsSuccessful) {
+                if (result.IsSuccessful) {
                     window.setTimeout(() => this.props.handleClosePopup(), 3000);
                     window.setTimeout(() => this.props.handleFetchData(), 3200);
                 }

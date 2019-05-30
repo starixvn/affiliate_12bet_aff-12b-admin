@@ -88,17 +88,17 @@ export class Content extends PureComponent {
             const { amount, description } = this.state;
             const amountNumber = Number(amount.replace(/,/g, ''));
             const adjustmentInfo = Object.assign({}, { AffId: affInfo.AffId, Amount: amountNumber, Description: description });
-            const data = await this.props.handleSubmit(adjustmentInfo);
+            const result = await this.props.handleSubmit(adjustmentInfo);
 
             this.setState({
                 isShowMessage: true,
-                isSuccess: data.IsSuccessful,
-                message: data.IsSuccessful ? message.Success : data.Message,
-                amount: data.IsSuccessful ? '' : amount,
-                description: data.IsSuccessful ? '' : description
+                isSuccess: result.IsSuccessful,
+                message: result.IsSuccessful ? message.Success : result.Message,
+                amount: result.IsSuccessful ? '' : amount,
+                description: result.IsSuccessful ? '' : description
             }, () => window.setTimeout(this.hideMessage, 3000));
 
-            if (data.IsSuccessful) {
+            if (result.IsSuccessful) {
                 this.getBalanceBroughtForward();
                 window.setTimeout(() => this.props.getAffiliateInfo(affInfo.AffName, userPanelMenuKey.adjustment), 3000);
             }
