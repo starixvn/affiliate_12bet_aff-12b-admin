@@ -1,4 +1,18 @@
 ﻿.left-panel {
+    a, &-btn-link {
+        text-decoration: none;
+        &:hover {
+            text-decoration: none;
+            color: #FF6600;
+        }
+    }
+
+    &-btn-link {
+        &:active  {
+            text-decoration: none;
+        }
+    }
+
     .app-container{
         border-top: 5px solid #B9D8EA!important;
         border-left: 3px solid #B9D8EA!important;
@@ -21,20 +35,6 @@
             color: #385294;
             text-transform: uppercase;
         }
-        a, .btn-link {
-            text-decoration: none;
-            &:hover {
-                color: #FF6600;
-            }
-        }
-
-        .btn-link {
-            &:active  {
-                text-decoration: none;
-            }
-        }
-
-
 
         .general-info {
             overflow: hidden;
@@ -82,7 +82,7 @@
                 border-right: 1px #bdc9e2 solid;
                 padding: 0px 3px 0px 3px;
 
-                .border-secondary {
+                .btn-closed {
                     padding: 2px;
                     margin-bottom: 2px;
                     background-color: gainsboro;

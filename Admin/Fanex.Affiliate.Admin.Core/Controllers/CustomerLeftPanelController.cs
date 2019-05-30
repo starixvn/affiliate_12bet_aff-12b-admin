@@ -4,24 +4,22 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
-using Fanex.Affiliate.Admin.Core.Repository.Customer;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.ViewModels.Customer;
+using Fanex.Affiliate.Admin.Core.Services.Customer;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class CustomerLeftPanelController : BaseController
     {
-        private readonly ICustomerLeftPanelRepository _customerLeftPanelRepository;
+        private readonly ICustomerLeftPanelService _customerLeftPanelService;
 
         public CustomerLeftPanelController(
             ISessionService sessionService,
-            ICustomerLeftPanelRepository customerLeftPanelRepository
+            ICustomerLeftPanelService customerLeftPanelService
             ) : base(sessionService)
         {
-            _customerLeftPanelRepository = customerLeftPanelRepository;
+            _customerLeftPanelService = customerLeftPanelService;
         }
 
         [ValidateAntiForgeryHeader]
@@ -29,9 +27,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [Compress]
         public ActionResult GetAffiliateInfo(string affUsername)
         {
+            var accId = SessionService.UserId.ToString();
+            var accOnId = SessionService.OnUserId.ToString();
+            var sessionId = Session.SessionID;
+            var affiliateInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, accId, accOnId, sessionId);
+
             return new JsonNetResult
             {
-                Data = _customerLeftPanelRepository.GetAffiliateInfoOnLeftPanel(affUsername)
+                Data = affiliateInfo
             };
         }
 
@@ -42,7 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             return new JsonNetResult
             {
-                Data = _customerLeftPanelRepository.GetOnlineList(affUsername)
+                Data = _customerLeftPanelService.GetOnlineList(affUsername)
             };
         }
 
@@ -51,7 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         public ActionResult UpdateLanguage(UpdateLanguageParam param)
         {
             AssignParam(param);
-            var test = _customerLeftPanelRepository.UpdateLanguage(param);
+            var test = _customerLeftPanelService.UpdateLanguage(param);
             return new JsonNetResult
             {
                 Data = test
@@ -65,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             AssignParam(param);
             param.Language = LanguageSystem.DefaultLanguage;
 
-            var test = _customerLeftPanelRepository.UpdateAffType(param);
+            var test = _customerLeftPanelService.UpdateAffType(param);
             return new JsonNetResult
             {
                 Data = test
@@ -79,7 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             AssignParam(param);
             return new JsonNetResult
             {
-                Data = _customerLeftPanelRepository.UpdateStatus(param)
+                Data = _customerLeftPanelService.UpdateStatus(param)
             };
         }
 
@@ -90,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             AssignParam(param);
             return new JsonNetResult
             {
-                Data = _customerLeftPanelRepository.UpdateClosedStatus(param)
+                Data = _customerLeftPanelService.UpdateClosedStatus(param)
             };
         }
 

@@ -19,6 +19,7 @@ using Fanex.Affiliate.Admin.Core.Services.Payment;
 using Fanex.Affiliate.Admin.Core.Services.Report;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Affiliate.Admin.Core.Services.Customer;
 
 namespace Fanex.Affiliate.Admin.Core.Configurations
 {
@@ -96,6 +97,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<PaymentRequestRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PaymentRequestService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CustomerLeftPanelRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<CustomerLeftPanelService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<UserAccountRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<UserAccountService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }

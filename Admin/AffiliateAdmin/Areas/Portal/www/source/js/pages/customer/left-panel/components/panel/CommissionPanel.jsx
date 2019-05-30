@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Panel from '../Panel';
-import { Modal, ModalHeader, ModalBody, Row, Col, Input, Button } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, Row, Col, Button } from 'reactstrap';
 
 import { resolveClientUrl } from '../../../../../modules/utils';
 import { resource } from '../../modules/constants';
@@ -50,7 +50,7 @@ export class CommissionPanel extends PureComponent {
                     <Col sm={5} className='text-right text-truncate pl-0'>
                         {
                             affiliateInfo.IsClosed ? (<span>{affiliateInfo.CommGroupName}</span>) :
-                                (<Button color="link p-0" onClick={() => this.toggleEditingCommissionPopup(true)}>
+                                (<Button color="link p-0 left-panel-btn-link" onClick={() => this.toggleEditingCommissionPopup(true)}>
                                     {affiliateInfo.CommGroupName}
                                 </Button>)
                         }

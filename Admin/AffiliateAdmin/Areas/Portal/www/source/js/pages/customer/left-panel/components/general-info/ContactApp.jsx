@@ -1,0 +1,32 @@
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { Row, Col } from 'reactstrap';
+
+export class ContactApp extends PureComponent {
+    render() {
+        const { affiliateInfo } = this.props;
+        const contactAppList = JSON.parse(affiliateInfo && affiliateInfo.ContactApps);
+
+        return contactAppList && (
+            <React.Fragment>
+                {
+                    contactAppList.map(contactApp => {
+                        return (
+                            <Row>
+                                <Col sm={5}>{contactApp.Name}</Col>
+                                <Col sm={7} className='text-right'>{contactApp.Value}</Col>
+                            </Row>
+                        )
+                    })
+                }
+            </React.Fragment>
+        )
+    }
+}
+
+function mapStateToProps({ leftPanel }) {
+    const { affiliateInfo } = leftPanel;
+    return Object.assign({}, { affiliateInfo });
+}
+
+export default connect(mapStateToProps)(ContactApp);

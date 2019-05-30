@@ -96,7 +96,7 @@ export class SettingPanel extends PureComponent {
                                 })
                             }
                         </Input>
-                        <Button color="link p-0" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={this.toggleChangingAffType.bind(this, true)}>
+                        <Button color="link p-0 left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={this.toggleChangingAffType.bind(this, true)}>
                             {affType[affiliateInfo.AffType]}
                         </Button>
                     </Col>
@@ -128,7 +128,7 @@ export class SettingPanel extends PureComponent {
                         <Row>
                             <Col>{resource.Closed}</Col>
                             <Col className="text-right text-primary">
-                                <Button color="link" className="border border-secondary" onClick={this.handleChangeClosedStatus}>
+                                <Button color="link" className="border border-secondary left-panel-btn-link btn-closed" onClick={this.handleChangeClosedStatus}>
                                     {affiliateInfo.IsClosed ? resource.Yes : resource.No}
                                 </Button>
                             </Col>

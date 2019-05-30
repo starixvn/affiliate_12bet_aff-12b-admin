@@ -48,5 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
         public string PreferredLanguage { get; set; }
 
         public string Phone { get; set; }
+
+        public string AffLink { get; set; }
     }
 }
