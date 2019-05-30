@@ -58,17 +58,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             var user = _authRepository.GetUserInfo(userParam.UserName, true);
             var checkingActiveUserResult = CheckActiveUser(user);
-            if (!checkingActiveUserResult.IsOk)
-            {
-                return new LoginResultViewModel { Result = checkingActiveUserResult };
-            }
-
-            var loginResultInfo = _authRepository.UpdateLoginResult(CreateLoginResultParam(userParam, true, user.AffId), true);
 
             return new LoginResultViewModel
             {
                 UserInfo = user,
-                Result = loginResultInfo
+                Result = checkingActiveUserResult
             };
         }
 
@@ -107,7 +101,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             userParam.Password = loginInfo["p"];
             var isMatchPassword = IsMatchPassword(userParam.Password, user.Password);
             var loginResultParam = CreateLoginResultParam(userParam, isMatchPassword, user.AffId, hashedDeviceInfo);
-            var loginResultInfo = _authRepository.UpdateLoginResult(loginResultParam, false);
+            var loginResultInfo = _authRepository.UpdateLoginResult(loginResultParam);
 
             var isSuccessful = loginResultInfo.IsOk && isMatchPassword;
 

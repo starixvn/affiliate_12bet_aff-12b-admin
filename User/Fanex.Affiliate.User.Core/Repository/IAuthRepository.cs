@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.Repository
     {
         AuthorizedUserInfo GetUserInfo(string userName, bool isInternal);
 
-        LoginResultInfo UpdateLoginResult(LoginResultParam loginResultParam, bool isInternal);
+        LoginResultInfo UpdateLoginResult(LoginResultParam loginResultParam);
 
         int GetOnUserId(OnUserIdParam onUserIdParam);
 
