@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.User.Core.Filters
                             action = "Index",
                         };
 
-                        filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(routeValue));
+                        filterContext.Result = new RedirectToRouteResult("Default", new RouteValueDictionary(routeValue));
                     }
 
                     context.Session.Clear();

@@ -49,12 +49,11 @@ namespace Fanex.Affiliate.User.Core.Repository
             }
         }
 
-        public LoginResultInfo UpdateLoginResult(LoginResultParam loginResultParam, bool isInternal)
+        public LoginResultInfo UpdateLoginResult(LoginResultParam loginResultParam)
         {
             const string spKey = "Aff_User_Login_ResultUpd";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDbBuilder = new ObjectDBBuilder(spKey, dbMode))
+            using (var objectDbBuilder = new ObjectDBBuilder(spKey))
             {
                 var objectDb = objectDbBuilder.DB;
                 AssignUpdateLoginResultParam(objectDb, loginResultParam);
