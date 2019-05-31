@@ -55,7 +55,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
                 AdminDesc: paymentRequestInfo.AdminDesc,
                 AffDesc: paymentRequestInfo.AffDesc
             });
-            const result = await this.updatePaymentRequest(paymentInfo);
+            const result = await this.props.updatePaymentRequest(paymentInfo);
 
             if (result) {
                 this.setState({

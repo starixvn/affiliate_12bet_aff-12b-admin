@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, resource, regExp } from '../modules/constants';
-import { setPagingOption, setParam, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup } from '../actions';
+import { setPagingOption, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
 import { format, formatDecimal } from '../../../modules/numberFormat';

@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Row, Col, Button } from 'reactstrap';
 
-import { ChangePasswordForm } from '../../../../common/components/ChangePasswordForm';
+import ChangePasswordForm from '../../../../common/components/ChangePasswordForm';
 import { resource } from '../../modules/constants';
 import { resolveClientUrl } from '../../../../../modules/utils';
-import { updateChangePasswword } from '../../../../common/actions/changePassword';
 
 
 const ApprovedStatusInfo = (props) => {
@@ -29,7 +28,6 @@ const ApprovedStatusInfo = (props) => {
                         showPopupPassword={isChangingPassword}
                         affId={affiliateInfo.AffId}
                         setShowPopupPassword={toggleChangingPassword}
-                        updateChangePasswword={props.updateChangePasswword}
                     />}
                 </Col>
             </Row>
@@ -44,8 +42,4 @@ function mapStateToProps({ affCommonInfo, leftPanel }) {
     return Object.assign({}, { affiliateInfo, affName });
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateChangePasswword }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ApprovedStatusInfo));
+export default connect(mapStateToProps)(React.memo(ApprovedStatusInfo));

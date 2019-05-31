@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { resource, regExp, messages } from '../modules/constants/changePassword';
-import { setShowPopupPassword, updateChangePasswword } from '../actions/changePassword';
+import { updateChangePasswword } from '../actions/changePassword';
 
 export class ChangePasswordForm extends PureComponent {
     constructor(props) {
@@ -151,12 +151,10 @@ export class ChangePasswordForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ showPopupPassword, affId }) {
-    return Object.assign({}, { showPopupPassword, affId });
-}
+function mapStateToProps() {}
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopupPassword, updateChangePasswword }, dispatch);
+    return bindActionCreators({ updateChangePasswword }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangePasswordForm);

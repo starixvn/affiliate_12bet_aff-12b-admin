@@ -8,7 +8,6 @@ import Filter from './Filter';
 import Content from './Content';
 import PaymentRequestUpdateForm from '../../common/components/PaymentRequestUpdateForm';
 import { setTransactionId, setParam } from '../actions';
-import { getPaymentRequestDetail, updatePaymentRequest } from '../../common/actions/paymentRequestUpdate';
 
 export class AppContainer extends Component {
     constructor(props) {
