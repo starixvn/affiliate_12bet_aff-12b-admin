@@ -3,3 +3,11 @@
 @import "user-account";
 @import "view-log";
 @import "../../layout/menu";
+
+.user-panel {
+    .loader {
+        .backdrop, .spinner {
+            margin-top: 218px;
+        }
+    }
+}

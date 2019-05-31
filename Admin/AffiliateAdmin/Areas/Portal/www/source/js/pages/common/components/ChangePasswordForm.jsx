@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { resource, regExp, messages } from '../modules/constants/changePassword';
 import { setShowPopupPassword, updateChangePasswword } from '../actions/changePassword';
-import { toggleLoader } from '../../../actions/loaderAction';
 
 export class ChangePasswordForm extends PureComponent {
     constructor(props) {
@@ -43,8 +42,6 @@ export class ChangePasswordForm extends PureComponent {
     }
 
     async saveChangePassword(param) {
-        this.props.toggleLoader(true);
-
         const result = await this.props.updateChangePasswword(param);
 
         if (result) {
@@ -64,8 +61,6 @@ export class ChangePasswordForm extends PureComponent {
                 message: messages.ChangePasswordFailed
             }, () => window.setTimeout(this.hideMessage, 3000));
         }
-
-        this.props.toggleLoader(false);
     }
 
     hideMessage = () => {
@@ -108,7 +103,7 @@ export class ChangePasswordForm extends PureComponent {
     }
 
     render() {
-        const { showPopupPassword, affId } = this.props;
+        const { showPopupPassword } = this.props;
         const { password, confirmPassword, isShowMessage, isSuccess, message } = this.state;
 
         const passwordValidation = this._validatePassword(password);
@@ -161,7 +156,7 @@ function mapStateToProps({ showPopupPassword, affId }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopupPassword, toggleLoader, updateChangePasswword }, dispatch);
+    return bindActionCreators({ setShowPopupPassword, updateChangePasswword }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangePasswordForm);

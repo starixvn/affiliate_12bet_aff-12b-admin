@@ -1,14 +1,12 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
-import { headerTitle } from '../modules/constants';
-import { setSelectedPage, setParam, setShortCodeLanguageList } from '../actions';
-import { globalResource } from '../../../../modules/globalResource';
-import { deviceTypes } from '../../../customer/user-panel/modules/constants';
-import { getPageList } from '../../../customer/user-panel/modules/service';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
 import { getDateArrange } from '../../../../modules/utils';
+import { headerTitle, deviceTypes, globalResource } from '../modules/constants';
+import { setSelectedPage, setParam, setShortCodeLanguageList, getPageList } from '../actions';
 
 const shortCodeLanguageList = {};
 const shortCodeList = {
@@ -31,7 +29,7 @@ export class Filter extends React.Component {
         super(props);
 
         const { today, languageList } = this.props;
-        const now = new Date(this.props.today);
+        const now = new Date(today);
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
@@ -59,7 +57,7 @@ export class Filter extends React.Component {
     }
 
     handleGetPageList = async () => {
-        const pageList = await getPageList();
+        const pageList = await this.props.getPageList();
 
         this.setState({ pageList });
     }
@@ -153,7 +151,7 @@ function mapStateToProps({ today, affCommonInfo, languageList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedPage, setParam, setShortCodeLanguageList }, dispatch);
+    return bindActionCreators({ setSelectedPage, setParam, setShortCodeLanguageList, getPageList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

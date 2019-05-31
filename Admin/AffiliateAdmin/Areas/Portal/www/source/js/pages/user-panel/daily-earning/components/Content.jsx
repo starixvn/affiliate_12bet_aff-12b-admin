@@ -1,16 +1,12 @@
 import React, { PureComponent } from 'react';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { post } from '../../../../modules/ajaxRequest';
-import { toggleLoader } from '../../../../actions/loaderAction';
-import { resource } from '../modules/constants';
-import { selectedAllProduct, maxWidth } from '../../../../modules/constants';
-import { redirectToDailyEarningDetail } from '../../../customer/user-panel/actions';
+import { toggleLoaderUserPanel, fetchData, redirectToDailyEarningDetail } from '../actions';
+import { resource, selectedAllProduct, maxWidth } from '../modules/constants';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -31,17 +27,15 @@ export class Content extends PureComponent {
     }
 
     async fetchData(param) {
-        this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/StatementHistory/GetDailyEarning';
-        const { affId } = this.props;
-        const postData = { ...param, affId };
-        const response = await post(url, postData);
-        if (response && response.status === 200) {
-            const { MainData, Total } = response.data;
+        this.props.toggleLoaderUserPanel(true);
 
-            this.setState({ gridData: MainData, total: Total, isSelectedAllProducts: param.ProductId === selectedAllProduct });
-        }
-        this.props.toggleLoader(false);
+        const { affId } = this.props;
+        const postParam = { ...param, affId };
+        const data = await this.props.fetchData(postParam);
+
+        this.setState({ gridData: data ? data.MainData : null, total: data ? data.Total : 0, isSelectedAllProducts: param.ProductId === selectedAllProduct });
+
+        this.props.toggleLoaderUserPanel(false);
     }
 
     _renderHeader() {
@@ -135,7 +129,7 @@ function mapStateToProps({ affCommonInfo, dailyEarning }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, redirectToDailyEarningDetail }, dispatch);
+    return bindActionCreators({ toggleLoaderUserPanel, fetchData, redirectToDailyEarningDetail }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
-
 import Filter from './Filter';
 import Content from './Content';
 import Detail from './Detail';
 import UserPanelSubMenu from '../../../common/components/UserPanelSubMenu';
-import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
+
+import { setSelectedUserPanel } from '../actions';
 
 class AppContainer extends PureComponent {
     constructor(props) {

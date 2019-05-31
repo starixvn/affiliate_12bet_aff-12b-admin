@@ -1,14 +1,11 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { toggleLoader } from '../../../../actions/loaderAction';
+import { resource, selectedAllProduct, maxWidth } from '../modules/constants';
+import { fetchData, toggleLoaderUserPanel } from '../actions';
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { resource } from '../modules/constants';
-import { selectedAllProduct, maxWidth } from '../../../../modules/constants';
-import { fetchData } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -29,18 +26,18 @@ export class Content extends PureComponent {
     }
 
     async fetchData(param) {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
         const { affId } = this.props;
         const postData = { ...param, affId };
         const data = await this.props.fetchData(postData);
 
         this.setState({
-            gridData: data && data.MainData,
-            total: data && data.Total,
+            gridData: data ? data.MainData : null,
+            total: data ? data.Total : 0,
             isSelectedAllProducts: param.ProductId === selectedAllProduct
         });
 
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     _renderHeader() {
@@ -123,7 +120,7 @@ function mapStateToProps({ affCommonInfo, dailyEarningDetail }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, fetchData }, dispatch);
+    return bindActionCreators({ toggleLoaderUserPanel, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -1,3 +1,7 @@
+import { userPanelMenuKey } from '../../../customer/common/modules/constants';
+
+export { userPanelMenuKey }
+
 export const regexEmail = '^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$';
 
 export const messageList = {
@@ -23,6 +27,11 @@ export const messageList = {
 export const requiredFieldList = [ 'FirstName', 'LastName', 'Phone', 'Address', 'City', 'Postcode', 'SiteUrl' ]
 
 export const requiredBankTranferList = [ 'BankName', 'BankAddress', 'BankAccountName', 'BankAccountNumber' ]
+
+export const playerMethod = 'Player';
+export const netellerMethod = 'Neteller';
+export const moneybookersMethod = 'Moneybookers';
+export const wireMethod = 'Wire';
 
 export const countriesList = {
     'Albania': 'Albania',

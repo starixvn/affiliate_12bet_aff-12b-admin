@@ -1,15 +1,11 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerTitle } from '../modules/constants';
-import { globalResource } from '../../../../modules/globalResource';
-import { maxWidth } from '../../../../modules/constants';
-
-import { setSelectedPage, toggleLoader, fetchData } from '../actions';
+import { headerTitle, globalResource, maxWidth } from '../modules/constants';
+import { setSelectedPage, toggleLoaderUserPanel, fetchData } from '../actions';
 
 export class Content extends Component {
     constructor(props) {
@@ -29,13 +25,13 @@ export class Content extends Component {
     }
 
     async fetchData(param) {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
 
         const data = await this.props.fetchData(param);
 
         this.setState({ gridData: data });
 
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     handleSelectedPage = (selectedPage, languageCode) => {
@@ -123,7 +119,7 @@ function mapStateToProps({ landingPageStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setSelectedPage, fetchData }, dispatch);
+    return bindActionCreators({ toggleLoaderUserPanel, setSelectedPage, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

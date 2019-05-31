@@ -1,18 +1,11 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import { post } from '../../../../modules/ajaxRequest';
-
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import MonthPicker from '@9softstudio/react-monthpicker';
 
-import { shortedMonthNames, minMonthDate } from '../../../../modules/constants';
-import { resource } from '../modules/constants';
-import { setParam } from '../actions/index';
-import { selectedAllProduct } from '../../../../modules/constants';
-import { getProductList } from '../../../customer/user-panel/modules/service';
-
+import { resource, selectedAllProduct, shortedMonthNames, minMonthDate } from '../modules/constants';
+import { setParam, getProductList, exportExcel } from '../actions';
 import ReportExcel from '../modules/reportExcel';
 
 export class Filter extends PureComponent {
@@ -51,7 +44,7 @@ export class Filter extends PureComponent {
     }
 
     handleGetProductList = async () => {
-        const productList = await getProductList();
+        const productList = await this.props.getProductList();
         this.setState({ productList });
     }
 
@@ -94,10 +87,11 @@ export class Filter extends PureComponent {
             affId
         }
 
-        const response = await post('Portal/UserPanel/PlayerDetail/GetPlayerDetailList', param);
-        if (response && response.status === 200) {
+        const data = await this.props.exportExcel(param);
+
+        if (data) {
             const title = this._getReportTitle();
-            const reportExcel = new ReportExcel(response.data, title);
+            const reportExcel = new ReportExcel(data, title);
             reportExcel.export();
         }
     }
@@ -169,7 +163,7 @@ function mapStateToProps({ today, affCommonInfo, playerDetail }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam }, dispatch);
+    return bindActionCreators({ setParam, exportExcel, getProductList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

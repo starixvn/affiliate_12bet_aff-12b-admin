@@ -1,4 +1,9 @@
-﻿const COMMISSION_GROUP = 1;
+﻿import { maxWidth } from '../../../../modules/constants';
+import { globalResource } from '../../../../modules/globalResource';
+
+export { globalResource, maxWidth }
+
+const COMMISSION_GROUP = 1;
 const USER_INFO = 2;
 const TRANSACTION = 3;
 const PAYOUT = 4;

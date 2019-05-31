@@ -6,9 +6,9 @@ import AppLayout from '../../../../layouts/AppLayout';
 import UserPanelBreadcrumb from '../../../common/components/UserPanelBreadcrumb';
 import Filter from './Filter';
 import Content from './Content';
-import { monthNames } from '../../../../modules/constants';
-import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
-import { userPanelMenuKey } from '../../../customer/common/modules/constants';
+
+import { monthNames, userPanelMenuKey } from '../modules/constants';
+import { setSelectedUserPanel } from '../actions';
 
 class AppContainer extends PureComponent {
     constructor(props) {

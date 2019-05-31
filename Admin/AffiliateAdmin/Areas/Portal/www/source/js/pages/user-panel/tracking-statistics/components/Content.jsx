@@ -1,13 +1,11 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { headerText } from '../modules/constants';
-import { setSelectedMonth, fetchData } from '../actions';
-import { toggleLoader } from '../../../../actions/loaderAction';
+import { setSelectedMonth, fetchData, toggleLoaderUserPanel } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -27,14 +25,14 @@ export class Content extends PureComponent {
     }
 
     async fetchData(param) {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
 
         const { affId } = this.props;
         const postParam = { ...param, affId };
         const data = await this.props.fetchData(postParam);
 
         this.setState({ gridData: data });
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     _renderHeader() {
@@ -104,7 +102,7 @@ function mapStateToProps({ affCommonInfo, trackingStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setSelectedMonth, fetchData }, dispatch);
+    return bindActionCreators({ toggleLoaderUserPanel, setSelectedMonth, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

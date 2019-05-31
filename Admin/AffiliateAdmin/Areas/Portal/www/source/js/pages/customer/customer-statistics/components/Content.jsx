@@ -6,13 +6,11 @@ import MonthPicker from '@9softstudio/react-monthpicker';
 import { Table } from 'reactstrap';
 import { rowTitle, resource } from '../modules/constants';
 import { shortedMonthNames, minMonthDate, selectedAllProduct } from '../../../../modules/constants';
-import { post } from '../../../../modules/ajaxRequest';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 
-import { toggleLoader } from '../../../../actions/loaderAction';
 import { redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers } from '../../user-panel/actions';
 import { deviceTypes, pcLaptop, mobile } from '../../user-panel/modules/constants';
-import { setMonthDate, fetchData } from '../actions';
+import { setMonthDate, fetchData, toggleLoaderCustomerStatistics } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -37,7 +35,7 @@ export class Content extends PureComponent {
 
     fetchData = async (monthDate) => {
         this.props.setMonthDate(monthDate);
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderCustomerStatistics(true);
         const { affId } = this.props;
 
         const param = {
@@ -47,7 +45,7 @@ export class Content extends PureComponent {
         const data = await this.props.fetchData(param);
 
         this.setState({ data });
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderCustomerStatistics(false);
     }
 
     handleSelectMonth = (month, year) => {
@@ -170,7 +168,7 @@ function mapStateToProps({ affCommonInfo, today, customerStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setMonthDate, toggleLoader, redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers, fetchData }, dispatch);
+    return bindActionCreators({ setMonthDate, toggleLoaderCustomerStatistics, redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

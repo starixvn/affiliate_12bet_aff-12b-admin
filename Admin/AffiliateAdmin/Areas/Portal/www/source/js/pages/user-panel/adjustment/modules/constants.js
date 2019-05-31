@@ -1,4 +1,9 @@
-﻿export const resource = {
+﻿import { money } from '../../../../modules/constants';
+import { userPanelMenuKey } from '../../../customer/common/modules/constants';
+
+export { userPanelMenuKey, money }
+
+export const resource = {
     BalanceBf: 'Balance Brought Forward',
     Amount: 'Amount',
     Description: 'Description',

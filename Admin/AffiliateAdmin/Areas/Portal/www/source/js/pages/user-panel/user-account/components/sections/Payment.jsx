@@ -5,11 +5,7 @@ import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo } from '../../actions';
-
-const playerMethod = 'Player';
-const netellerMethod = 'Neteller';
-const moneybookersMethod = 'Moneybookers';
-const wireMethod = 'Wire';
+import { playerMethod, netellerMethod, moneybookersMethod, wireMethod } from '../../modules/constants';
 
 const paymentMethodList = [
     { key: playerMethod, value: '12BET player account' },

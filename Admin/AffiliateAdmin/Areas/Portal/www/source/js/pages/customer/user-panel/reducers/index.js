@@ -1,5 +1,5 @@
 import createReducer from '../../../../modules/createReducer';
-import { SET_SELECTED_USERPANEL } from '../actions/types';
+import { SET_SELECTED_USERPANEL, TOGGLE_LOADER_USER_PANEL } from '../actions/types';
 import { userPanelMenuKey as menuKey } from '../../common/modules/constants';
 
 import statementHistoryReducer from '../../../user-panel/statement-history/reducers';
@@ -17,6 +17,12 @@ import dailyEarningDetailReducer from '../../../user-panel/daily-earning-detail/
 
 export const selectedUserPanel = createReducer(null, {
     [SET_SELECTED_USERPANEL](prevState, action) {
+        return action.data;
+    }
+});
+
+export const isShowLoaderUserPanel = createReducer(null, {
+    [TOGGLE_LOADER_USER_PANEL](prevState, action) {
         return action.data;
     }
 });

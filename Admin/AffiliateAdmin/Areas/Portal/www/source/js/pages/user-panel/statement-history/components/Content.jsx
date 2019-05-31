@@ -1,15 +1,12 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText, globalResource, transTypeList, transaction, MONTHLY_WINLOST, PAYMENT_REQUEST } from '../modules/constants';
-import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
-import { redirectToDailyEarning } from '../../../customer/user-panel/actions';
-import { selectedAllProduct, maxWidth } from '../../../../modules/constants';
+import { setPagingOption, toggleLoaderUserPanel, fetchData, setTransactionId, redirectToDailyEarning } from '../actions';
+import { headerText, globalResource, transTypeList, transaction, MONTHLY_WINLOST, PAYMENT_REQUEST, selectedAllProduct, maxWidth } from '../modules/constants';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -33,7 +30,7 @@ export class Content extends PureComponent {
     }
 
     async fetchData(param) {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
 
         const postParam = { ...param, affId: this.props.affId };
         const data = await this.props.fetchData(postParam);
@@ -41,7 +38,7 @@ export class Content extends PureComponent {
         this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
         this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
 
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     _renderHeader() {
@@ -175,7 +172,7 @@ function mapStateToProps({ today, affCommonInfo, statementHistory }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, fetchData, setTransactionId, redirectToDailyEarning }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoaderUserPanel, fetchData, setTransactionId, redirectToDailyEarning }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

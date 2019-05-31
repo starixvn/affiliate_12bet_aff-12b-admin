@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
-import { logTypes, headerText } from '../modules/constants';
+
+import { logTypes, headerText, globalResource } from '../modules/constants';
 import { setParam, setShowIdList } from '../actions';
-import { globalResource } from '../../../../modules/globalResource';
 import { getDateArrange } from '../../../../modules/utils';
 
 const minDate = new Date(2009, 11, 1);

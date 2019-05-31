@@ -1,6 +1,6 @@
 import { LEFTPANEL_RECEIVE_AFFINFO, SET_AFF_COMMON_INFO } from './types';
 import { post } from '../../../../modules/ajaxRequest';
-import { toggleLoader } from '../../../../actions/loaderAction';
+import { toggleLoaderLeftPanel } from '../../left-panel/actions';
 
 import { setSelectedUserPanel } from '../../user-panel/actions';
 import { userPanelMenuKey } from '../../common/modules/constants';
@@ -21,7 +21,7 @@ export const setAffCommonInfo = (data) => {
 }
 
 export const getAffiliateInfo = (affName, selectedUserPanel = userPanelMenuKey.statementHistory) => async (dispatch) => {
-    dispatch(toggleLoader(true));
+    dispatch(toggleLoaderLeftPanel(true));
 
     const url = 'Portal/CustomerLeftPanel/GetAffiliateInfo';
     const param = { affUsername: affName };
@@ -34,5 +34,5 @@ export const getAffiliateInfo = (affName, selectedUserPanel = userPanelMenuKey.s
     data && dispatch(setSelectedUserPanel(selectedUserPanel));
     data === null ? dispatch(setIsValidUserName(false)) : dispatch(setIsValidUserName(true));
 
-    dispatch(toggleLoader(false));
+    dispatch(toggleLoaderLeftPanel(false));
 }

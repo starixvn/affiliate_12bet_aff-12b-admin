@@ -1,4 +1,8 @@
-﻿export const headerText = {
+﻿import { globalResource } from '../../../../modules/globalResource';
+
+export { globalResource }
+
+export const headerText = {
     Index: '#',
     Month: 'Month',
     TotalClicks: 'Total Clicks',

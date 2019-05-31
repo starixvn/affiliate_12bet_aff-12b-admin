@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Alert, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { setShowPopup, getNoteList, toggleLoader, insertNote, updateNote } from '../actions';
+import { setShowPopup, getNoteList, insertNote, updateNote } from '../actions';
 
 import { resource, maxLength } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
@@ -53,8 +53,6 @@ export class InsertUpdateNoteForm extends PureComponent {
     }
 
     async Save(noteInfo) {
-        this.props.toggleLoader(true);
-
         const isInsert = noteInfo.noteId === 0;
 
         const message = isInsert ? resource.AddNoteSuccess : resource.UpdateNoteSuccess;
@@ -84,8 +82,6 @@ export class InsertUpdateNoteForm extends PureComponent {
                 message: resource.Failed
             }, () => window.setTimeout(this.hideMessage, 3000));
         }
-
-        this.props.toggleLoader(false);
     }
 
     hideMessage = () => {
@@ -147,7 +143,7 @@ function mapStateToProps({ affCommonInfo, note }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopup, toggleLoader, getNoteList, insertNote, updateNote }, dispatch);
+    return bindActionCreators({ setShowPopup, getNoteList, insertNote, updateNote }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InsertUpdateNoteForm);

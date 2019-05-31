@@ -1,4 +1,4 @@
-import { SET_SELECTED_USERPANEL, RESET_USER_PANEL } from './types';
+import { SET_SELECTED_USERPANEL, RESET_USER_PANEL, TOGGLE_LOADER_USER_PANEL } from './types';
 import { userPanelMenuKey } from '../../common/modules/constants';
 import { setParam as setDailyEarningParam } from '../../../user-panel/daily-earning/actions';
 import { setParam as setDailyEarningDetailParam } from '../../../user-panel/daily-earning-detail/actions';
@@ -17,6 +17,13 @@ export const setSelectedUserPanel = (data) => {
 export const resetUserPanel = (data) => {
     return {
         type: RESET_USER_PANEL,
+        data
+    }
+}
+
+export const toggleLoaderUserPanel = (data) => {
+    return {
+        type: TOGGLE_LOADER_USER_PANEL,
         data
     }
 }

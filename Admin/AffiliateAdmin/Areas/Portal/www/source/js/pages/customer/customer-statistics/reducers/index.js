@@ -1,5 +1,5 @@
 ﻿import { combineReducers } from 'redux';
-import { SET_MONTHDATE } from '../actions/types';
+import { SET_MONTHDATE, TOGGLE_LOADER_CUSTOMER_STATISTICS } from '../actions/types';
 
 import createReducer from '../../../../modules/createReducer';
 
@@ -9,6 +9,13 @@ const monthDate = createReducer(null, {
     }
 })
 
+export const isShowLoader = createReducer(false, {
+    [TOGGLE_LOADER_CUSTOMER_STATISTICS](prevState, action) {
+        return action.data;
+    }
+})
+
 export default combineReducers({
-    monthDate
+    monthDate,
+    isShowLoader
 });

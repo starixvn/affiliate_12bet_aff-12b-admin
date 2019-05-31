@@ -1,12 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Form, FormGroup, Input, Label } from 'reactstrap';
-import { globalResource } from '../../../../modules/globalResource';
-import { setParam } from '../actions';
-import { getProductList } from '../../../customer/user-panel/modules/service';
-import { selectedAllProduct } from '../../../../modules/constants';
+
+import { selectedAllProduct, globalResource } from '../modules/constants';
+import { setParam, getProductList } from '../actions';
 
 export class Filter extends PureComponent {
     constructor(props) {
@@ -26,7 +24,7 @@ export class Filter extends PureComponent {
     }
 
     async _fetchProductList() {
-        const productList = await getProductList();
+        const productList = await this.props.getProductList();
         this.setState({ productList });
     }
 
@@ -67,7 +65,7 @@ function mapStateToProps({ dailyEarningDetail }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam }, dispatch);
+    return bindActionCreators({ setParam, getProductList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

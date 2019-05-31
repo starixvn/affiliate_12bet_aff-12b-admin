@@ -1,9 +1,11 @@
-﻿import { setPagingOption } from '../../../../actions/pagingAction';
-import { toggleLoader } from '../../../../actions/loaderAction';
+﻿import { post } from '../../../../modules/ajaxRequest';
+import { setPagingOption } from '../../../../actions/pagingAction';
+import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
+import { redirectToDailyEarning } from '../../../customer/user-panel/actions';
+import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
 import { SET_PARAM, TRANSACTION_ID } from '../actions/types';
-import { post } from '../../../../modules/ajaxRequest';
 
-export { setPagingOption, toggleLoader };
+export { setPagingOption, toggleLoaderUserPanel, getAffiliateInfo, redirectToDailyEarning };
 
 export const setParam = (data) => {
     return {

@@ -1,4 +1,14 @@
-﻿import { messageList, regexEmail, countriesList, requiredFieldList, requiredBankTranferList } from './constants'
+﻿import {
+    messageList,
+    regexEmail,
+    countriesList,
+    requiredFieldList,
+    requiredBankTranferList,
+    playerMethod,
+    netellerMethod,
+    moneybookersMethod,
+    wireMethod
+} from './constants'
 
 const getMessage = (fieldName, value) => {
     return value === '' ? messageList[fieldName] + "<br />" : '';
@@ -21,19 +31,19 @@ const validatePaymentMethod = (userAccountInfo) => {
     let isValid = true;
 
     switch (userAccountInfo.PreferredPayment) {
-        case 'Player':
+        case playerMethod:
             message = getMessage('PlayerUsername', userAccountInfo.PlayerUsername);
             isValid = userAccountInfo.PlayerUsername !== '';
             break;
-        case 'Neteller':
+        case netellerMethod:
             message = getMessage('NetellerAccountId', userAccountInfo.NetellerAccountId);
             isValid = userAccountInfo.NetellerAccountId !== '';
             break;
-        case 'Moneybookers':
+        case moneybookersMethod:
             message = getMessage('MoneybookersEmail', userAccountInfo.MoneybookersEmail);
             isValid = userAccountInfo.MoneybookersEmail !== '';
             break;
-        case 'Wire':
+        case wireMethod:
             message = requiredBankTranferList.reduce((accumulator, field) => { return accumulator + getMessage(field, userAccountInfo[field]) }, '');
             isValid = userAccountInfo.BankName !== '' && userAccountInfo.BankAddress !== '' &&
                 userAccountInfo.BankAccountName !== '' && userAccountInfo.BankAccountNumber !== '';

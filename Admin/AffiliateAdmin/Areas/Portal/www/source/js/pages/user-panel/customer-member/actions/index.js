@@ -1,9 +1,9 @@
-import { setPagingOption } from '../../../../actions/pagingAction';
-import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_PARAM } from '../actions/types';
 import { post } from '../../../../modules/ajaxRequest';
+import { setPagingOption } from '../../../../actions/pagingAction';
+import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
+import { SET_PARAM } from './types';
 
-export { setPagingOption, toggleLoader };
+export { setPagingOption, toggleLoaderUserPanel };
 
 export const setParam = (data) => {
     return {

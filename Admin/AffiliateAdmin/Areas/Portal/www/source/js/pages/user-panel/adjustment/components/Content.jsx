@@ -3,12 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { toggleLoader, getBalanceBroughtForward, handleSubmit } from '../actions';
-import { message, resource, regExp } from '../modules/constants';
+import { toggleLoaderUserPanel, getBalanceBroughtForward, handleSubmit, getAffiliateInfo } from '../actions';
+import { message, resource, regExp, userPanelMenuKey, money } from '../modules/constants';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
-import { money } from '../../../../modules/constants';
-import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
-import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
 const regexCheckAmount = new RegExp(regExp.checkAmount);
 const regexValidAmount = new RegExp(regExp.validAmount);
@@ -33,12 +30,12 @@ export class Content extends PureComponent {
     }
 
     async getBalanceBroughtForward() {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
 
         const data = await this.props.getBalanceBroughtForward(this.props.affInfo);
 
         this.setState({ balanceBf: data });
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     handleChange = (event) => {
@@ -79,7 +76,7 @@ export class Content extends PureComponent {
     }
 
     handleSubmit = async () => {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
 
         const amountValidation = this._validateAmount();
 
@@ -110,7 +107,7 @@ export class Content extends PureComponent {
             }, () => window.setTimeout(this.hideMessage, 3000));
         }
 
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     hideMessage = () => {
@@ -176,7 +173,7 @@ function mapStateToProps({ affCommonInfo }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, getBalanceBroughtForward, handleSubmit, getAffiliateInfo }, dispatch);
+    return bindActionCreators({ toggleLoaderUserPanel, getBalanceBroughtForward, handleSubmit, getAffiliateInfo }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -6,7 +6,7 @@ import Panel from '../Panel';
 import { Row, Col } from 'reactstrap';
 
 import { resource } from '../../modules/constants';
-import { toggleLoader, getOnLineList } from '../../actions';
+import { toggleLoaderLeftPanel, getOnLineList } from '../../actions';
 
 export class OnlineInfoPanel extends PureComponent {
     constructor(props) {
@@ -30,13 +30,13 @@ export class OnlineInfoPanel extends PureComponent {
     }
 
     async handleGetOnLineList(affName) {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderLeftPanel(true);
 
         const data = await this.props.getOnLineList(affName);
 
         this.setState({ onlineInfoList: data });
 
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderLeftPanel(false);
     }
 
     render() {
@@ -77,7 +77,7 @@ function mapStateToProps({ leftPanel }) {
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, getOnLineList }, dispatch);
+    return bindActionCreators({ toggleLoaderLeftPanel, getOnLineList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(OnlineInfoPanel);

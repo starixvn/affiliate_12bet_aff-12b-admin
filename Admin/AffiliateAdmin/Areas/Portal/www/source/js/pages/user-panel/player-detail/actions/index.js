@@ -1,9 +1,10 @@
-import { SET_PRODUCT_LIST, SET_PARAM } from './types';
-import { setPagingOption } from '../../../../actions/pagingAction';
-import { toggleLoader } from '../../../../actions/loaderAction';
 import { post } from '../../../../modules/ajaxRequest';
+import { setPagingOption } from '../../../../actions/pagingAction';
+import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
+import { getProductList } from '../../../customer/user-panel/modules/service';
+import { SET_PRODUCT_LIST, SET_PARAM } from './types';
 
-export { setPagingOption, toggleLoader }
+export { setPagingOption, toggleLoaderUserPanel, getProductList }
 
 export const setProductList = (data) => {
     return {
@@ -20,6 +21,13 @@ export const setParam = (data) => {
 }
 
 export const fetchData = (param) => async () => {
+    const url = 'Portal/UserPanel/PlayerDetail/GetPlayerDetailList';
+    const response = await post(url, param);
+
+    return response && response.status === 200 ? response.data : null;
+}
+
+export const exportExcel = (param) => async () => {
     const url = 'Portal/UserPanel/PlayerDetail/GetPlayerDetailList';
     const response = await post(url, param);
 

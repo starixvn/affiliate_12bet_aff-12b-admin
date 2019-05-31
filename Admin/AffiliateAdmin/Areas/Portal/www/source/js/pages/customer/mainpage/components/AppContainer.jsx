@@ -9,7 +9,7 @@ import UserPanel from '../../user-panel/components/UserPanel';
 import { setSelectedUserPanel } from '../../user-panel/actions';
 
 const CustomerStatistics = React.lazy(() =>
-    import(/* webpackChunkName: "customer-statistics" */ '../../customer-statistics/components/Content'));
+    import(/* webpackChunkName: "customer-statistics" */ '../../customer-statistics/components/AppContainer'));
 
 const AppContainer = (props) => {
     const { affId, selectedUserPanel, status } = props;
@@ -22,18 +22,26 @@ const AppContainer = (props) => {
                     <div className="left-panel">
                         <LeftPanel />
                     </div>
-                    <div className="right-panel customer-statistics mx-2">
-                        {
-                            affId && !isPending &&
-                            <Suspense fallback={<Spinner color="secondary" />}>
-                                <CustomerStatistics />
-                            </Suspense>
-                        }
-                        {
-                            affId && selectedUserPanel &&
-                            <UserPanel selectedUserPanel={selectedUserPanel} onClickMenu={props.setSelectedUserPanel} isPending={isPending} />
-                        }
-                    </div>
+                    {
+                        affId && (
+                            <div className="right-panel mx-2">
+                                <div className="customer-statistics">
+                                    {
+                                        !isPending &&
+                                        <Suspense fallback={<Spinner color="secondary" />}>
+                                            <CustomerStatistics />
+                                        </Suspense>
+                                    }
+                                </div>
+                                <div className="user-panel">
+                                    {
+                                        selectedUserPanel &&
+                                        <UserPanel selectedUserPanel={selectedUserPanel} onClickMenu={props.setSelectedUserPanel} isPending={isPending} />
+                                    }
+                                </div>
+                            </div>
+                        )
+                    }
                 </Row>
             </div>
         </AppLayout>

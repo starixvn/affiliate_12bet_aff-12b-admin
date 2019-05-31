@@ -1609,8 +1609,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\loadingDataAction.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\reduxComponentFactory.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\reducers\commonReducer.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\actions\types.js" />
@@ -2131,9 +2133,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\components\UserPanelBreadcrumb.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\UserPanelSubMenu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\CommissionPanel.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\OnlineInfoPanel" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\SettingPanel" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Body.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\ApprovedStatusInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\ContactApp.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\Language.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\SettingPanel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\OnlineInfoPanel.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\customer\rightpanel.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

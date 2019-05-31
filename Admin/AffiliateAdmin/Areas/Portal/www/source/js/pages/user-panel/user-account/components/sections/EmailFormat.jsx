@@ -10,7 +10,7 @@ export class EmailFormat extends PureComponent {
         super(props);
     }
 
-    handleChange = (event) => {
+    handleChange = () => {
         const { userAccountInfo } = this.props;
         const newUserAccountInfo = Object.assign({}, userAccountInfo, { MailOption: !userAccountInfo.MailOption });
 

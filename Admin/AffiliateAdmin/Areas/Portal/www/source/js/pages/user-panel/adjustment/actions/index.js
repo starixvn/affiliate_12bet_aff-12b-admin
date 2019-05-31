@@ -1,7 +1,8 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
-import { toggleLoader } from '../../../../actions/loaderAction';
+import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
+import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
 
-export { toggleLoader }
+export { toggleLoaderUserPanel, getAffiliateInfo }
 
 export const getBalanceBroughtForward = (param) => async () => {
     const url = 'Portal/UserPanel/Adjustment/GetBalanceBroughtForward';

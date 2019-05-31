@@ -1,9 +1,11 @@
-﻿import { setPagingOption } from '../../../../actions/pagingAction';
-import { toggleLoader } from '../../../../actions/loaderAction';
+﻿import { post } from '../../../../modules/ajaxRequest';
+import { setPagingOption } from '../../../../actions/pagingAction';
+import { getPageList } from '../../../customer/user-panel/modules/service';
+import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
+import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 import { SET_SELECTED_PAGE, SET_PARAM, SET_SHORT_CODE_LANGUAGE_LIST } from '../actions/types';
-import { post } from '../../../../modules/ajaxRequest';
 
-export { setPagingOption, toggleLoader };
+export { setPagingOption, toggleLoaderUserPanel, getPageList, setSelectedUserPanel };
 
 export const setSelectedPage = (data) => {
     return {

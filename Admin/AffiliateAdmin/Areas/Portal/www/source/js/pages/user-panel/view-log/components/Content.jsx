@@ -1,15 +1,11 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText } from '../modules/constants';
-import { globalResource } from '../../../../modules/globalResource';
-import { maxWidth } from '../../../../modules/constants';
-
-import { setPagingOption, toggleLoader, setShowIdList, fetchData } from '../actions';
+import { headerText, globalResource, maxWidth } from '../modules/constants';
+import { setPagingOption, toggleLoaderUserPanel, setShowIdList, fetchData } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -31,7 +27,7 @@ export class Content extends PureComponent {
     }
 
     async fetchData(param) {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
 
         const { affId } = this.props;
         const postData = { ...param, affId };
@@ -40,7 +36,7 @@ export class Content extends PureComponent {
         this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
         this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
 
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     handleShow = (id) => {
@@ -175,7 +171,7 @@ function mapStateToProps({ affCommonInfo, viewLog }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, setShowIdList, fetchData }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoaderUserPanel, setShowIdList, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

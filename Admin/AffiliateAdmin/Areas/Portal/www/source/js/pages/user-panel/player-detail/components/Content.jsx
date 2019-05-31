@@ -1,13 +1,11 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import { maxWidth } from '../../../../modules/constants';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
+
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { headerText, globalResource } from '../modules/constants';
-import { setPagingOption, toggleLoader, fetchData } from '../actions';
-import { selectedAllProduct } from '../../../../modules/constants';
+import { headerText, globalResource, selectedAllProduct, maxWidth } from '../modules/constants';
+import { setPagingOption, toggleLoaderUserPanel, fetchData } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -27,7 +25,7 @@ export class Content extends PureComponent {
     }
 
     async _fetchData(param) {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
 
         const { affId } = this.props;
         const postData = { ...param, affId };
@@ -36,7 +34,7 @@ export class Content extends PureComponent {
         this.setState({ data: { gridData: data ? data.MainData : null } });
         this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
 
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     _renderHeader() {
@@ -144,7 +142,7 @@ function mapStateToProps({ affCommonInfo, playerDetail }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, fetchData }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoaderUserPanel, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

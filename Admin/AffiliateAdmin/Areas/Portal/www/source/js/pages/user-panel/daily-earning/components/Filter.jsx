@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 
 import { Form, FormGroup, Input, Label } from 'reactstrap';
 
-import { setParam } from '../actions';
+import { setParam, getProductList } from '../actions';
 import { selectedAllProduct } from '../../../../modules/constants';
-import { getProductList } from '../../../customer/user-panel/modules/service';
+
 
 export class Filter extends PureComponent {
     constructor(props) {
@@ -26,7 +26,7 @@ export class Filter extends PureComponent {
     }
 
     async _fetchProductList(callback) {
-        const productList = await getProductList();
+        const productList = await this.props.getProductList();
         this.setState({ productList }, callback);
     }
 
@@ -70,7 +70,7 @@ function mapStateToProps({ dailyEarning }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam }, dispatch);
+    return bindActionCreators({ setParam, getProductList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

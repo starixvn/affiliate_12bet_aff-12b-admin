@@ -1,14 +1,10 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { headerTitle } from '../modules/constants';
-import { globalResource } from '../../../../modules/globalResource';
-import { maxWidth } from '../../../../modules/constants';
-
-import { toggleLoader, setPagingOption, fetchDetailData } from '../actions';
+import { headerTitle, maxWidth, globalResource } from '../modules/constants';
+import { toggleLoaderUserPanel, setPagingOption, fetchDetailData } from '../actions';
 
 export class Detail extends Component {
     constructor(props) {
@@ -30,14 +26,14 @@ export class Detail extends Component {
     }
 
     async fetchData(param) {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
 
         const data = await this.props.fetchDetailData(param);
 
         this.setState({ gridData: data ? data.MainData : null });
         this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
 
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     _renderHeader() {
@@ -125,7 +121,7 @@ function mapStateToProps({ landingPageStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setPagingOption, fetchDetailData }, dispatch);
+    return bindActionCreators({ toggleLoaderUserPanel, setPagingOption, fetchDetailData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

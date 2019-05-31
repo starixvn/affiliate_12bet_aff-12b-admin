@@ -1,9 +1,10 @@
-﻿import { setPagingOption } from '../../../../actions/pagingAction';
-import { toggleLoader } from '../../../../actions/loaderAction';
+﻿import { post } from '../../../../modules/ajaxRequest';
+import { setPagingOption } from '../../../../actions/pagingAction';
+import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
+import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 import { SET_SELECTED_SITE_URL, SET_PARAM } from '../actions/types';
-import { post } from '../../../../modules/ajaxRequest';
 
-export { setPagingOption, toggleLoader };
+export { setPagingOption, toggleLoaderUserPanel, setSelectedUserPanel };
 
 export const setSelectedSiteUrl = (data) => {
     return {

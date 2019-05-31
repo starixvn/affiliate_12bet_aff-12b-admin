@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { post } from '../../../../modules/ajaxRequest';
-import { maxWidth } from '../../../../modules/constants';
-
-import { resource } from '../modules/constants';
-import { toggleLoader, setPagingOption, fetchData } from '../actions';
+import { resource, maxWidth } from '../modules/constants';
+import { toggleLoaderUserPanel, setPagingOption, fetchData } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -27,7 +24,7 @@ export class Content extends PureComponent {
     }
 
     fetchData = async (param) => {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
 
         const postParam = { ...param, affId: this.props.affId };
         const data = await this.props.fetchData(postParam);
@@ -35,7 +32,7 @@ export class Content extends PureComponent {
         this.setState({ data: data ? data.MainData : null });
         this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
 
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     handlePaging = (pageIndex, pageSize) => {
@@ -129,7 +126,7 @@ function mapStateToProps({ affCommonInfo, member }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setPagingOption, fetchData }, dispatch);
+    return bindActionCreators({ toggleLoaderUserPanel, setPagingOption, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

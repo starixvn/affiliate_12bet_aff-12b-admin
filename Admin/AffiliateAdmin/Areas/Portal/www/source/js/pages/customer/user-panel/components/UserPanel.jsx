@@ -1,11 +1,14 @@
-import React, { Suspense, useEffect  } from 'react';
+import React, { Suspense, useEffect } from 'react';
+import { connect } from 'react-redux';
+import Loader from '../../../../components/Loader';
 import { Spinner } from 'reactstrap';
 import UserPanelMenu from './UserPanelMenu';
 import { userPanelMenuList, userPanelPendingMenuList } from '../modules/menu';
 import { userPanelMenuKey } from '../../common/modules/constants';
+import { spinnerLoaderWidth, spinnerLoaderUserPanelHeight } from '../../../../modules/constants';
 
 const UserPanel = (props) => {
-    const { selectedUserPanel, onClickMenu, isPending } = props;
+    const { selectedUserPanel, onClickMenu, isPending, isShowLoader } = props;
 
     useEffect(() => {
         if (isPending && selectedUserPanel === userPanelMenuKey.statementHistory) {
@@ -19,8 +22,9 @@ const UserPanel = (props) => {
 
     return (
         <div className="user-panel-container">
+            <Loader show={isShowLoader} style={{ top: spinnerLoaderUserPanelHeight, left: spinnerLoaderWidth }} />
             <UserPanelMenu selectedUserPanel={selectedUserPanel} onClickMenu={onClickMenu} isPending={isPending} menuList={menuList} />
- 
+
             <div class="user-panel-content-container">
                 {
                     componentIndex !== -1 &&
@@ -33,4 +37,8 @@ const UserPanel = (props) => {
     )
 }
 
-export default React.memo(UserPanel);
+function mapStateToProps({ isShowLoaderUserPanel }) {
+    return Object.assign({}, { isShowLoader: isShowLoaderUserPanel });
+}
+
+export default connect(mapStateToProps)(React.memo(UserPanel));

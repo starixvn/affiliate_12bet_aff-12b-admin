@@ -1,15 +1,11 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText } from '../modules/constants';
-import { globalResource } from '../../../../modules/globalResource';
-import { maxWidth } from '../../../../modules/constants';
-
-import { setSelectedSiteUrl, toggleLoader, fetchData } from '../actions';
+import { headerText, globalResource, maxWidth } from '../modules/constants';
+import { setSelectedSiteUrl, toggleLoaderUserPanel, fetchData } from '../actions';
 
 export class Content extends Component {
     constructor(props) {
@@ -29,14 +25,14 @@ export class Content extends Component {
     }
 
     async fetchData(param) {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
 
         const { affId } = this.props;
         const postData = { ...param, affId };
         const data = await this.props.fetchData(postData);
 
         this.setState({ gridData: data });
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     _renderHeader() {
@@ -117,7 +113,7 @@ function mapStateToProps({ affCommonInfo, clickStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setSelectedSiteUrl, fetchData }, dispatch);
+    return bindActionCreators({ toggleLoaderUserPanel, setSelectedSiteUrl, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

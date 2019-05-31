@@ -7,9 +7,8 @@ import UserPanelBreadcrumb from '../../../common/components/UserPanelBreadcrumb'
 import Filter from './Filter';
 import Content from './Content';
 
-import { setSelectedUserPanel, redirectToDailyEarning } from '../../../customer/user-panel/actions';
-import { monthNames } from '../../../../modules/constants';
-import { userPanelMenuKey } from '../../../customer/common/modules/constants';
+import { setSelectedUserPanel, redirectToDailyEarning } from '../actions';
+import { monthNames, userPanelMenuKey } from '../modules/constants';
 
 export class AppContainer extends PureComponent {
     constructor(props) {

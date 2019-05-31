@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, Button, Row, Col, Alert } from 'reactstrap';
 
-import { getUserAccountInfo, updateUserAccount } from '../actions';
+import { getUserAccountInfo, updateUserAccount, getAffiliateInfo } from '../actions';
 import { validateUserAccount } from '../modules/validation';
+import { userPanelMenuKey } from '../modules/constants';
 
 import Section from './Section';
 import Personal from './sections/Personal';
@@ -12,8 +13,6 @@ import Additional from './sections/Additional';
 import EmailFormat from './sections/EmailFormat';
 import WebSite from './sections/WebSite';
 import Payment from './sections/Payment';
-import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
-import { userPanelMenuKey } from '../../../customer/common/modules/constants';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -38,7 +37,7 @@ export class Content extends PureComponent {
     }
 
     handleSubmit = async () => {
-        const { affId, affName, userAccountInfo, moreSiteUrlsList } = this.props;
+        const { affName, userAccountInfo, moreSiteUrlsList } = this.props;
 
         const userAccountInfoAfterTrim = Object.keys(userAccountInfo).reduce((accumulator, key) => {
             let item = userAccountInfo[key];

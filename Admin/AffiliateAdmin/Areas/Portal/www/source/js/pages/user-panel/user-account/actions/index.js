@@ -1,9 +1,9 @@
 import { post } from '../../../../modules/ajaxRequest';
+import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
+import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
 import { SET_USER_ACCOUNT_INFO, SET_MORE_SITE_URLS_LIST } from './types'
-import { setPagingOption } from '../../../../actions/pagingAction';
-import { toggleLoader } from '../../../../actions/loaderAction';
 
-export { setPagingOption, toggleLoader };
+export { getAffiliateInfo }
 
 export const setUserAccountInfo = (data) => {
     return {
@@ -20,7 +20,7 @@ export const setMoreSiteUrlsList = (data) => {
 }
 
 export const getUserAccountInfo = (affId) => async(dispatch) => {
-    dispatch(toggleLoader(true));
+    dispatch(toggleLoaderUserPanel(true));
     const url = 'Portal/UserPanel/UserAccount/GetUserAccountInfo';
 
     const response = await post(url, {affId});
@@ -32,7 +32,7 @@ export const getUserAccountInfo = (affId) => async(dispatch) => {
 
     dispatch(setUserAccountInfo(data));
     dispatch(setMoreSiteUrlsList(moreSiteUrlsList));
-    dispatch(toggleLoader(false));
+    dispatch(toggleLoaderUserPanel(false));
 }
 
 export const updateUserAccount = (param) => async() => {

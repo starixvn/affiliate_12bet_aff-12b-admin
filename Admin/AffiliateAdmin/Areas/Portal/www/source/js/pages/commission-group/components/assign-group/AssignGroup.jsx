@@ -70,14 +70,8 @@ export default class AssignGroup extends Component {
                             message: messages.assignGroupSuccessfully
                         }, () => window.setTimeout(this.hideMessage, 3000));
 
-                        const mainFrame = top.frames["mainFrame"];
                         window.setTimeout(() => {
-                            if (mainFrame) {
-                                mainFrame.location.reload();
-                            }
-                            else {
-                                parent.postMessage('closePopupAssignCommissionGroup', window.location.origin);
-                            }
+                            parent.postMessage('closePopupAssignCommissionGroup', window.location.origin);
                         }, 3100);
                     }
                     else {

@@ -1,15 +1,11 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText } from '../modules/constants';
-import { globalResource } from '../../../../modules/globalResource';
-import { maxWidth } from '../../../../modules/constants';
-
-import { setShowPopup, setNoteInfo, getNoteList, getNoteContentById, toggleLoader } from '../actions';
+import { headerText, maxWidth, globalResource } from '../modules/constants';
+import { setShowPopup, setNoteInfo, getNoteList, getNoteContentById, toggleLoaderUserPanel } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -84,7 +80,7 @@ export class Content extends PureComponent {
     }
 
     async getNoteContentById(noteId) {
-        this.props.toggleLoader(true);
+        this.props.toggleLoaderUserPanel(true);
 
         const { affId } = this.props;
         const data = await this.props.getNoteContentById({ affId, noteId });
@@ -95,7 +91,7 @@ export class Content extends PureComponent {
             this.props.setNoteInfo(noteItem);
         }
 
-        this.props.toggleLoader(false);
+        this.props.toggleLoaderUserPanel(false);
     }
 
     handlePaging = (pageIndex, pageSize) => {
@@ -143,7 +139,7 @@ function mapStateToProps({ affCommonInfo, note }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopup, setNoteInfo, toggleLoader, getNoteList, getNoteContentById }, dispatch);
+    return bindActionCreators({ setShowPopup, setNoteInfo, toggleLoaderUserPanel, getNoteList, getNoteContentById }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

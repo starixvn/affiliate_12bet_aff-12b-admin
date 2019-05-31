@@ -1,9 +1,9 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
-import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_NOTE_LIST, SET_SHOW_POPUP, SET_NOTE_INFO } from './types';
 import { setPagingOption } from '../../../../actions/pagingAction';
+import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
+import { SET_NOTE_LIST, SET_SHOW_POPUP, SET_NOTE_INFO } from './types';
 
-export { toggleLoader, post };
+export { toggleLoaderUserPanel };
 
 export const setNoteList = (data) => {
     return {
@@ -13,7 +13,7 @@ export const setNoteList = (data) => {
 }
 
 export const getNoteList = (param) => async(dispatch) => {
-    dispatch(toggleLoader(true));
+    dispatch(toggleLoaderUserPanel(true));
 
     const url = 'Portal/UserPanel/Note/GetNoteList';
     const response = await post(url, param);
@@ -31,7 +31,7 @@ export const getNoteList = (param) => async(dispatch) => {
         };
         dispatch(setPagingOption(pagingOption));
     }
-    dispatch(toggleLoader(false));
+    dispatch(toggleLoaderUserPanel(false));
 }
 
 export const setShowPopup = (data) => {

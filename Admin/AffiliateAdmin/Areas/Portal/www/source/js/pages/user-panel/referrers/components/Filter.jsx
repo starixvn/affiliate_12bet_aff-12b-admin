@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
-import { headerText } from '../modules/constants';
+
 import { setSelectedSiteUrl, setParam } from '../actions';
-import { globalResource } from '../../../../modules/globalResource';
-import { deviceTypes, pcLaptop } from '../../../customer/user-panel/modules/constants';
 import { getDateArrange } from '../../../../modules/utils';
+import { headerText, globalResource, deviceTypes, pcLaptop } from '../modules/constants';
 
 const minDate = new Date(2009, 11, 1);
 

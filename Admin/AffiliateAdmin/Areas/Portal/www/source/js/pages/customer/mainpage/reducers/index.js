@@ -3,14 +3,14 @@ import { RESET_USER_PANEL } from '../../user-panel/actions/types';
 
 import leftPanel from '../../left-panel/reducers';
 import { affCommonInfo, today, languageList } from './commonReducer';
-import { selectedUserPanel } from '../../user-panel/reducers';
-import { userPanelReducer } from '../../user-panel/reducers';
+import { userPanelReducer, selectedUserPanel, isShowLoaderUserPanel } from '../../user-panel/reducers';
 import customerStatistics from '../../customer-statistics/reducers';
 
 const allReducers = combineReducers({
     today,
     languageList,
     selectedUserPanel,
+    isShowLoaderUserPanel,
     affCommonInfo,
     leftPanel,
     customerStatistics,
@@ -18,7 +18,7 @@ const allReducers = combineReducers({
 });
 
 export const rootReducer = (state, action) => {
-    const newState = {...state };
+    const newState = { ...state };
     if (action.type === RESET_USER_PANEL) {
         const userPanelName = action.data;
         newState[userPanelName] = {};

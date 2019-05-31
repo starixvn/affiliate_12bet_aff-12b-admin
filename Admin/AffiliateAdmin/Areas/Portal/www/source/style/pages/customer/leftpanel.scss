@@ -1,16 +1,22 @@
 ﻿.left-panel {
+    .loader {
+        .backdrop {
+            width: 268px;
+        }
+
+        .spinner {
+            left: 102px;
+        }
+    }
     a, &-btn-link {
-        text-decoration: none;
         &:hover {
             text-decoration: none;
             color: #FF6600;
         }
     }
 
-    &-btn-link {
-        &:active  {
-            text-decoration: none;
-        }
+    &-btn-link:focus  {
+        text-decoration: none;
     }
 
     .app-container{

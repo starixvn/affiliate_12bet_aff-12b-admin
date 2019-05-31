@@ -6,7 +6,8 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
 import PaymentRequestUpdateForm from '../../../common/components/PaymentRequestUpdateForm';
-import { setTransactionId, setParam } from '../actions';
+
+import { setTransactionId, setParam, getAffiliateInfo } from '../actions';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -18,7 +19,9 @@ export class AppContainer extends PureComponent {
     }
 
     handleFetchData = () => {
-        this.props.setParam(this.props.param);
+        const { affName, param } = this.props;
+        this.props.setParam(param);
+        this.props.getAffiliateInfo(affName);
     }
 
     render() {
@@ -38,13 +41,14 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ statementHistory }) {
+function mapStateToProps({ statementHistory, affCommonInfo }) {
     const { transactionId, param } = statementHistory;
-    return Object.assign({}, { transactionId, param });
+    const { affName } = affCommonInfo;
+    return Object.assign({}, { transactionId, param, affName });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setTransactionId, setParam }, dispatch);
+    return bindActionCreators({ setTransactionId, setParam, getAffiliateInfo }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

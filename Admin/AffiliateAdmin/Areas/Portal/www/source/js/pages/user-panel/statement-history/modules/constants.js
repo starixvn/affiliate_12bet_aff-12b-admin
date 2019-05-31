@@ -1,6 +1,7 @@
 ﻿import { globalResource } from '../../../../modules/globalResource';
+import { selectedAllProduct, maxWidth } from '../../../../modules/constants';
 
-export { globalResource }
+export { globalResource, selectedAllProduct, maxWidth }
 
 export const headerText = {
     Index: '#',

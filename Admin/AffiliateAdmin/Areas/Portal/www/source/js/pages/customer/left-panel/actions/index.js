@@ -1,8 +1,5 @@
 import { post } from '../../../../modules/ajaxRequest';
-import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_AFF_NAME, SET_IS_VALID_USERNAME } from './types';
-
-export { toggleLoader };
+import { SET_AFF_NAME, SET_IS_VALID_USERNAME, TOGGLE_LOADER_LEFT_PANEL } from './types';
 
 export const setAffName = (data) => {
     return {
@@ -14,6 +11,13 @@ export const setAffName = (data) => {
 export const setIsValidUserName = (data) => {
     return {
         type: SET_IS_VALID_USERNAME,
+        data
+    }
+}
+
+export const toggleLoaderLeftPanel = (data) => {
+    return {
+        type: TOGGLE_LOADER_LEFT_PANEL,
         data
     }
 }
