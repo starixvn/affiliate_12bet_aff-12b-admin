@@ -52,13 +52,24 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private static string Decrypt(string privateKey, string cipherText)
         {
+            const byte BitInByte = 8;
             using (var rsa = new RSACryptoServiceProvider(KeySize))
             {
                 rsa.PersistKeyInCsp = true;
                 rsa.FromXmlString(privateKey);
 
-                var encodedCipherText = Convert.FromBase64String(cipherText);
-                var plain = rsa.Decrypt(encodedCipherText, false);
+                var bytes = Convert.FromBase64String(cipherText);
+
+                // Correct the error in the JS encryptor.
+                var rsaLength = rsa.KeySize / BitInByte;
+                if (bytes.Length < rsaLength)
+                {
+                    byte[] tmp = new byte[rsaLength];
+                    Buffer.BlockCopy(bytes, 0, tmp, tmp.Length - bytes.Length, bytes.Length);
+                    bytes = tmp;
+                }
+
+                var plain = rsa.Decrypt(bytes, false);
 
                 return Encoding.UTF8.GetString(plain);
             }
