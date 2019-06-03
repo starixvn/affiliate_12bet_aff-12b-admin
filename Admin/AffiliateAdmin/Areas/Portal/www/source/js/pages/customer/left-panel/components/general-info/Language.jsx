@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Input, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 
-import { getAffiliateInfo } from '../../../mainpage/actions/loadingDataAction';
-import { updateLanguage } from '../../actions';
+import { updateLanguage, getAffiliateInfo } from '../../actions';
+import CustomSelectInput from '../../../../common/components/CustomSelectInput';
 
 export class Language extends PureComponent {
     constructor(props) {
@@ -35,7 +35,7 @@ export class Language extends PureComponent {
     }
 
     toggleChangingLanguage = (isChanging) => {
-        this.setState({ isChangingLanguage: isChanging }, () => isChanging && this.languageDropdown.current.focus());
+        this.setState({ isChangingLanguage: isChanging }, () => isChanging && this.languageDropdown.current.focusSelectInput());
     }
 
     render() {
@@ -44,14 +44,14 @@ export class Language extends PureComponent {
 
         return (
             <React.Fragment>
-                <Input type="select" style={{ display: isChangingLanguage ? 'inline-block' : 'none' }} value={affiliateInfo.PreferredLanguage}
+                <CustomSelectInput style={{ display: isChangingLanguage ? 'inline-block' : 'none' }} value={affiliateInfo.PreferredLanguage}
                     onChange={this.handleChangeLanguage} onBlur={() => this.toggleChangingLanguage(false)} ref={this.languageDropdown}>
                     {
                         languageList.map(language => {
                             return (<option value={language.LanguageCode} key={`affinfo-lang-${language.LanguageCode}`}>{language.LanguageName}</option>)
                         })
                     }
-                </Input>
+                </CustomSelectInput>
                 <Button color="link p-0 left-panel-btn-link" style={{ display: isChangingLanguage ? 'none' : 'inline-block' }} onClick={() => this.toggleChangingLanguage(true)}>
                     {
                         languageList.map(language => {

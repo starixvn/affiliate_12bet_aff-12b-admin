@@ -124,7 +124,9 @@ export class Content extends PureComponent {
                 <Row>
                     <Col xs="12" className="px-0">
                         <Section title="Website Information">
-                            <WebSite />
+                            {
+                                this.props.moreSiteUrlsList && <WebSite />
+                            }
                         </Section>
                     </Col>
                 </Row>

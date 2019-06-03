@@ -5,12 +5,17 @@ import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 import { capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo, setMoreSiteUrlsList } from '../../actions';
+import CustomTextInput from '../../../../common/components/CustomTextInput';
 
 export class WebSite extends PureComponent {
     constructor(props) {
         super(props);
 
         this.moreSiteUrlRefs = [];
+
+        for (let i = 0; i < this.props.moreSiteUrlsList.length; i++) {
+            this.moreSiteUrlRefs.push(React.createRef());
+        }
     }
 
     handleChange = (event) => {
@@ -33,6 +38,7 @@ export class WebSite extends PureComponent {
         const { moreSiteUrlsList } = this.props;
         const newMoreSiteUrlsList = moreSiteUrlsList.map(siteUrl => siteUrl.trim());
         const findIndex = newMoreSiteUrlsList.indexOf('');
+        console.log(this.moreSiteUrlRefs);
 
         if (findIndex === -1) {
             this.moreSiteUrlRefs.push(React.createRef());
@@ -40,13 +46,14 @@ export class WebSite extends PureComponent {
             this.props.setMoreSiteUrlsList(moreSiteUrlsList);
         } else {
             window.alert(`Please input Website URL ${findIndex + 2}`);
-            this.moreSiteUrlRefs[findIndex].current.focus();
+            this.moreSiteUrlRefs[findIndex].current.focusTextInput();
         }
     }
 
     handleDeleteUrl = (siteIndex) => {
         const { moreSiteUrlsList } = this.props;
         moreSiteUrlsList.splice(siteIndex, 1);
+        this.moreSiteUrlRefs.splice(siteIndex, 1);
 
         this.props.setMoreSiteUrlsList(moreSiteUrlsList);
     }
@@ -57,10 +64,10 @@ export class WebSite extends PureComponent {
                 {
                     moreSiteUrlsList.map((value, index) => {
                         return (
-                            <FormGroup row>
+                            <FormGroup row key={`siteUrl${index}`}>
                                 <Label for={index} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
                                 <Col sm={5} xl={6}>
-                                    <Input type="text" name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]}/>
+                                    <CustomTextInput name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
                                 </Col>
                                 <Button color="primary" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
                             </FormGroup>
@@ -84,7 +91,7 @@ export class WebSite extends PureComponent {
                     <Button color="primary" onClick={this.handleAddUrl}><span aria-hidden>Add Url</span></Button>
                 </FormGroup>
                 {
-                    moreSiteUrlsList && this._renderMoreSiteUrl(moreSiteUrlsList)
+                    this._renderMoreSiteUrl(moreSiteUrlsList)
                 }
                 <FormGroup row>
                     <Label for="noSiteDescription" sm={3} xl={2}>I do not have a website Please describe how you would like to promote 12Bet if you do not have the URL .</Label>

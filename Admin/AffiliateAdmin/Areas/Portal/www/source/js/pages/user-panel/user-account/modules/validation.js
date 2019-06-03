@@ -44,7 +44,7 @@ const validatePaymentMethod = (userAccountInfo) => {
             isValid = userAccountInfo.MoneybookersEmail !== '';
             break;
         case wireMethod:
-            message = requiredBankTranferList.reduce((accumulator, field) => { return accumulator + getMessage(field, userAccountInfo[field]) }, '');
+            message = requiredBankTranferList.reduce((accumulator, field) => accumulator + getMessage(field, userAccountInfo[field]), '');
             isValid = userAccountInfo.BankName !== '' && userAccountInfo.BankAddress !== '' &&
                 userAccountInfo.BankAccountName !== '' && userAccountInfo.BankAccountNumber !== '';
             break;

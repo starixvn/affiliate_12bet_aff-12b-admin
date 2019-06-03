@@ -8,7 +8,7 @@ import { Modal, ModalHeader, ModalBody, Row, Col, Button } from 'reactstrap';
 import { resolveClientUrl } from '../../../../../modules/utils';
 import { resource } from '../../modules/constants';
 import { formatDecimalWithCurrencySymbol } from '../../../../../modules/numberFormat';
-import { getAffiliateInfo } from '../../../mainpage/actions/loadingDataAction';
+import { getAffiliateInfo } from '../../actions';
 
 export class CommissionPanel extends PureComponent {
     constructor(props) {

@@ -8,7 +8,7 @@ const userAccountInfo = createReducer(null, {
     }
 });
 
-const moreSiteUrlsList = createReducer([], {
+const moreSiteUrlsList = createReducer(null, {
     [SET_MORE_SITE_URLS_LIST](prevState, action) {
         return [...action.data];
     }

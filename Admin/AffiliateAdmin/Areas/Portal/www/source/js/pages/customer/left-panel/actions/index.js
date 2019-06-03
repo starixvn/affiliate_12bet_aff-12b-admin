@@ -1,5 +1,8 @@
 import { post } from '../../../../modules/ajaxRequest';
+import { getAffiliateInfo } from '../../mainpage/actions/loadingDataAction';
 import { SET_AFF_NAME, SET_IS_VALID_USERNAME, TOGGLE_LOADER_LEFT_PANEL } from './types';
+
+export { getAffiliateInfo };
 
 export const setAffName = (data) => {
     return {

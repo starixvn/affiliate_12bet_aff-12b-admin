@@ -19,23 +19,23 @@ export const setMoreSiteUrlsList = (data) => {
     }
 }
 
-export const getUserAccountInfo = (affId) => async(dispatch) => {
+export const getUserAccountInfo = (affId) => async (dispatch) => {
     dispatch(toggleLoaderUserPanel(true));
     const url = 'Portal/UserPanel/UserAccount/GetUserAccountInfo';
 
-    const response = await post(url, {affId});
+    const response = await post(url, { affId });
 
     const data = response && response.status === 200 ? response.data : null;
 
     const moreSiteUrls = data && data.MoreSiteUrls;
     const moreSiteUrlsList = moreSiteUrls && moreSiteUrls != '' && moreSiteUrls.split(';');
 
-    dispatch(setUserAccountInfo(data));
     dispatch(setMoreSiteUrlsList(moreSiteUrlsList));
+    dispatch(setUserAccountInfo(data));
     dispatch(toggleLoaderUserPanel(false));
 }
 
-export const updateUserAccount = (param) => async() => {
+export const updateUserAccount = (param) => async () => {
     const url = 'Portal/UserPanel/UserAccount/updateUserAccount';
     const response = await post(url, param);
 
