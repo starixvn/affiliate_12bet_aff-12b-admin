@@ -102,17 +102,37 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             try
             {
-                var resultDataList = GetResultDataList(param);
-                foreach (EbetApiResult dataItem in resultDataList)
-                {
-                    var ebetSummary = EbetParser.FromJson(dataItem.JsonData);
-                    if (ebetSummary.ResultInfo.Status != 200)
-                    {
-                        throw new ThirdPartyProductException($"Error: Ebet - ProductId: {Products.EbetProductId}\n{dataItem.JsonData}\nParam:{JsonConvert.SerializeObject(param)}");
-                    }
+                var startDate = new DateTime(param.StartTime.Year, param.StartTime.Month, param.StartTime.Day, param.StartTime.Hour, param.StartTime.Minute, param.StartTime.Second);
+                var endDate = new DateTime(param.EndTime.Year, param.EndTime.Month, param.EndTime.Day, param.EndTime.Hour, param.EndTime.Minute, param.EndTime.Second);
 
-                    var xml = ConvertToXml(ebetSummary, dataItem.Param);
-                    Import(xml);
+                for (var start = startDate; DateTime.Compare(start, endDate) < 0; start = start.AddHours(1))
+                {
+                    var endTimeByBatch = start.AddHours(1);
+                    var paramByBatch = new EbetParam
+                    {
+                        UserName = param.UserName,
+                        StartTime = start,
+                        EndTime = DateTime.Compare(endTimeByBatch, endDate) > 0 ? endDate : endTimeByBatch,
+                        ChannelId = param.ChannelId,
+                        ApiUrl = param.ApiUrl,
+                        PrivateKey = param.PrivateKey,
+                        CurrencyId = param.CurrencyId,
+                        PageNumber = param.PageNumber,
+                        PageSize = param.PageSize,
+                    };
+
+                    var resultDataList = GetResultDataList(paramByBatch);
+                    foreach (EbetApiResult dataItem in resultDataList)
+                    {
+                        var ebetSummary = EbetParser.FromJson(dataItem.JsonData);
+                        if (ebetSummary.ResultInfo.Status != 200)
+                        {
+                            throw new ThirdPartyProductException($"Error: Ebet - ProductId: {Products.EbetProductId}\nResult: {JsonConvert.SerializeObject(ebetSummary.ResultInfo)}\n{dataItem.JsonData}\nParam:{JsonConvert.SerializeObject(param)}");
+                        }
+
+                        var xml = ConvertToXml(ebetSummary, dataItem.Param);
+                        Import(xml);
+                    }
                 }
             }
             catch (Exception ex)
