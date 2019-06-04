@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using Fanex.Affiliate.DataService.CheckSum;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Logging;
 using Quartz;
@@ -15,7 +14,6 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             try
             {
                 var dataMap = context.JobDetail.JobDataMap;
-                var sumService = (IDailyMemberCheckSumRunner)dataMap.Get("dailyMemberCheckSumRunner");
                 var importService = (IDataImportingRunner)dataMap.Get("dataImportingRunner");
 
                 var _umBusiness = (UMBusiness)dataMap.Get("umBusiness");
@@ -28,7 +26,6 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     {
                         LogService.Error($"{importResult.Code}\n{importResult.Message}");
                     }
-                    sumService.Run();
                 }
                 else
                 {
