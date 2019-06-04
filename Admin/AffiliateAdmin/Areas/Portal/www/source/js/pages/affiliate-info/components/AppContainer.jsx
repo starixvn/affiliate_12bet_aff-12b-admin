@@ -5,11 +5,11 @@ import { bindActionCreators } from 'redux';
 import AppLayout from '../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
-import EditCommissionGroup from './EditCommissionGroup';
+import CommissionGroupPopup from '../../common/components/CommissionGroupPopup';
 import ChangePasswordForm from '../../common/components/ChangePasswordForm';
 import Loader from '../../../components/Loader';
 
-import { setShowPopupPassword } from '../actions'
+import { setShowPopupPassword, setShowPopupCommGroup } from '../actions'
 
 export class AppContainer extends Component {
     constructor(props) {
@@ -17,13 +17,19 @@ export class AppContainer extends Component {
     }
 
     render() {
-        const { isShowLoader, showPopupPassword, affId } = this.props;
+        const { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup } = this.props;
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
                 <Filter />
                 <Content />
-                <EditCommissionGroup />
+                <CommissionGroupPopup
+                    showPopupCommGroup={showPopupCommGroup}
+                    isPrivateGroup={true}
+                    affId={affId}
+                    affName={commGroup}
+                    setShowPopupCommGroup={this.props.setShowPopupCommGroup}
+                />
                 <ChangePasswordForm
                     showPopupPassword={showPopupPassword}
                     affId={affId}
@@ -34,12 +40,12 @@ export class AppContainer extends Component {
     }
 }
 
-function mapStateToProps({ isShowLoader, showPopupPassword, affId }) {
-    return Object.assign({}, { isShowLoader, showPopupPassword, affId });
+function mapStateToProps({ isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup }) {
+    return Object.assign({}, { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopupPassword }, dispatch);
+    return bindActionCreators({ setShowPopupPassword, setShowPopupCommGroup }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

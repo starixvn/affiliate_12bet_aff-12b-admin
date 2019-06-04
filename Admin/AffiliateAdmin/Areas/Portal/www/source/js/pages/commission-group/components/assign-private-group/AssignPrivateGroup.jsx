@@ -52,7 +52,7 @@ export class AssignPrivateGroup extends React.Component {
                 isShowMessage: !validationResult.isValid,
                 isSuccess: validationResult.isValid,
                 message: validationResult.messageList
-            });
+            }, () => window.setTimeout(this.hideMessage, 3000));
         }
         else {
             this.setState({ isShowLoader: true });
@@ -76,7 +76,7 @@ export class AssignPrivateGroup extends React.Component {
                     isSuccess: result.IsSuccessful,
                     message: [resultMessage],
                     isShowLoader: false
-                });
+                }, () => window.setTimeout(this.hideMessage, 3000));
 
                 if (result.IsSuccessful) {
                     const mainFrame = top.frames["mainFrame"];
@@ -86,12 +86,18 @@ export class AssignPrivateGroup extends React.Component {
                             mainFrame.location.reload();
                         }
                         else {
-                            parent.postMessage('closePopup', window.location.origin);
+                            parent.postMessage('closePrivateCommissionGroupPopup', window.location.origin);
                         }
-                    }, 2000)
+                    }, 3100)
                 }
             }
         }
+    }
+
+    hideMessage = () => {
+        this.setState({
+            isShowMessage: false
+        });
     }
 
     _validate() {

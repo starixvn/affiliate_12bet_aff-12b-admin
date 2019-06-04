@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { post } from '../../../../modules/ajaxRequest';
 import { Col, FormGroup, Label, Button, Input, Alert } from 'reactstrap';
-import { resolveClientUrl } from '../../../../modules/utils';
 import { messages } from '../../modules/constant';
 import Loader from '../../../../components/Loader';
 
@@ -36,9 +35,7 @@ export default class AssignGroup extends Component {
     handleSave = async () => {
         const { isPrivateGroup, affInfo, selectedGroup } = this.state;
         if (isPrivateGroup) {
-            const url = resolveClientUrl('Portal/CommissionGroup/AssignPrivateGroup') + '?affId=' + affInfo.AffId;
-            var left = parent.innerWidth / 2 - 400;
-            parent.ibcWnd.open(url, `Approve affiliate ${affInfo.UserName} with a private commission group`, left, 50, 800, 529, 'class1', 'class2');
+            parent.postMessage('usingPrivateGroup', window.location.origin);
         }
         else {
             if (affInfo.GroupId > 0 && affInfo.GroupId === selectedGroup) {
@@ -69,9 +66,8 @@ export default class AssignGroup extends Component {
                             isSuccess: result.IsSuccessful,
                             message: messages.assignGroupSuccessfully
                         }, () => window.setTimeout(this.hideMessage, 3000));
-
                         window.setTimeout(() => {
-                            parent.postMessage('closePopupAssignCommissionGroup', window.location.origin);
+                            parent.postMessage('closeCommissionGroupPopup', window.location.origin);
                         }, 3100);
                     }
                     else {

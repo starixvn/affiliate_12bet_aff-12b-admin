@@ -1,0 +1,84 @@
+﻿import React, { PureComponent } from 'react';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { resolveClientUrl } from '../../../modules/utils';
+
+export default class CommissionGroupPopup extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isUsingPrivateGroup: false
+        }
+    }
+
+    componentDidMount() {
+        window.addEventListener('message', this.handleClosePopupEvent);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('message', this.handleClosePopupEvent);
+    }
+
+    handleClosePopupEvent = (event) => {
+        switch (event.data) {
+            case 'closePrivateCommissionGroupPopup': {
+                this.handleClosePopup();
+                if (this.state.isUsingPrivateGroup) {
+                    this.props.getAffiliateInfo(this.props.affName);
+                }
+                break;
+            }
+            case 'closeCommissionGroupPopup': {
+                this.props.getAffiliateInfo(this.props.affName);
+                this.props.setShowPopupCommGroup(false);
+                break;
+            }
+            case 'usingPrivateGroup':
+                this.setState({ isUsingPrivateGroup: true });
+                break;
+        }
+    }
+
+    handleClosePopup = () => {
+        this.props.setShowPopupCommGroup(false);
+        window.setTimeout(this.resetState, 500);
+    }
+
+    resetState = () => {
+        this.setState({
+            isUsingPrivateGroup: false
+        });
+    }
+
+    render() {
+        const { isUsingPrivateGroup } = this.state;
+        const { showPopupCommGroup, affName, affId, isPrivateGroup } = this.props;
+
+        const isPrivate = isPrivateGroup || isUsingPrivateGroup;
+        const title = isPrivateGroup ? `Edit Commission Group for ${affName}` : `Change Commission Group for ${affName}`;
+
+        const url = isPrivate ? resolveClientUrl(`Portal/CommissionGroup/AssignPrivateGroup?affId=${affId}`) : resolveClientUrl(`Portal/CommissionGroup/AssignGroup?affId=${affId}`);
+        const size = isPrivate ? 'lg' : '';
+        const maxWidth = isPrivate ? '' : 570;
+
+        return (
+            <div className="data-content">
+                <Modal isOpen={showPopupCommGroup} toggle={this.handleClosePopup} backdrop='static' size={size} style={{ maxWidth }}>
+                    <ModalHeader toggle={this.handleClosePopup}>
+                        <span className="iconpopup"></span>{isUsingPrivateGroup ? `Approve affiliate ${affName} with a private commission group` : title}
+                    </ModalHeader>
+                    <ModalBody>
+                        {
+                            isPrivate ? (<div className="modal-body-wrapper embed-responsive embed-responsive-4by3" style={{ height: 515 }}>
+                                <iframe className="embed-responsive-item" src={url}></iframe>
+                            </div>) : (
+                                    <div className="modal-body-wrapper" style={{ height: 280, padding: 0 }}>
+                                        <iframe src={url} width="100%" height="100%" frameBorder="0"></iframe>
+                                    </div>
+                                )
+                        }
+                    </ModalBody>
+                </Modal>
+            </div >
+        );
+    }
+}

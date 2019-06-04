@@ -1982,7 +1982,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\ChangePasswordForm.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\EditCommissionGroup.jsx" />
     <Content Include=".babelrc" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Filter.test.js" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Home\Index.cshtml" />
@@ -2139,6 +2138,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\SettingPanel.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\OnlineInfoPanel.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\rightpanel.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\CustomTextInput.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\CustomSelectInput.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\CommissionGroupPopup.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

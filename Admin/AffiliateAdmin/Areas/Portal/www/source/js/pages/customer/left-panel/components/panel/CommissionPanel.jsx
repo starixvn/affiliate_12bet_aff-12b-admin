@@ -3,35 +3,28 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Panel from '../Panel';
-import { Modal, ModalHeader, ModalBody, Row, Col, Button } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 
-import { resolveClientUrl } from '../../../../../modules/utils';
 import { resource } from '../../modules/constants';
 import { formatDecimalWithCurrencySymbol } from '../../../../../modules/numberFormat';
 import { getAffiliateInfo } from '../../actions';
+import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
 
 export class CommissionPanel extends PureComponent {
     constructor(props) {
         super(props);
+        const { affiliateInfo } = this.props;
 
         this.state = {
-            isChangingCommissionGroup: false
+            isChangingCommissionGroup: false,
+            isPrivateGroup: affiliateInfo.AffName.toLowerCase() === affiliateInfo.CommGroupName.toLowerCase()
         }
     }
 
-    componentDidMount() {
-        window.addEventListener('message', this.handleClosePopupEvent);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('message', this.handleClosePopupEvent);
-    }
-
-    handleClosePopupEvent = (event) => {
-        if (event.data === 'closePopupAssignCommissionGroup') {
-            this.toggleEditingCommissionPopup(false);
-            this.props.getAffiliateInfo(this.props.affName);
-        }
+    componentDidUpdate() {
+        const { affiliateInfo } = this.props;
+        const isPrivateGroup = affiliateInfo.AffName.toLowerCase() === affiliateInfo.CommGroupName.toLowerCase();
+        this.setState({ isPrivateGroup });
     }
 
     toggleEditingCommissionPopup = (isChanging) => {
@@ -39,10 +32,9 @@ export class CommissionPanel extends PureComponent {
     }
 
     render() {
-        const { isChangingCommissionGroup } = this.state;
+        const { isChangingCommissionGroup, isPrivateGroup } = this.state;
         const { affiliateInfo } = this.props;
-        const url = resolveClientUrl(`Portal/CommissionGroup/AssignGroup?affid=${affiliateInfo.AffId}`);
-        const title = `Change Commission Group For "${affiliateInfo.AffName}"`;
+
         return (
             <Panel heading={resource.Commission}>
                 <Row>
@@ -54,17 +46,14 @@ export class CommissionPanel extends PureComponent {
                                     {affiliateInfo.CommGroupName}
                                 </Button>)
                         }
-
-                        <Modal isOpen={isChangingCommissionGroup} backdrop='static' style={{ maxWidth: 570 }}>
-                            <ModalHeader toggle={() => this.toggleEditingCommissionPopup(false)}>
-                                <span className="iconpopup"></span>{title}
-                            </ModalHeader>
-                            <ModalBody>
-                                <div className="modal-body-wrapper" style={{ height: 283, padding: 0 }}>
-                                    <iframe src={url} width="100%" height="100%" frameBorder="0"></iframe>
-                                </div>
-                            </ModalBody>
-                        </Modal>
+                        <CommissionGroupPopup
+                            showPopupCommGroup={isChangingCommissionGroup}
+                            isPrivateGroup={isPrivateGroup}
+                            affName={affiliateInfo.AffName}
+                            affId={affiliateInfo.AffId}
+                            setShowPopupCommGroup={this.toggleEditingCommissionPopup}
+                            getAffiliateInfo={this.props.getAffiliateInfo}
+                        />
                     </Col>
                 </Row>
                 <Row>
@@ -77,9 +66,9 @@ export class CommissionPanel extends PureComponent {
 }
 
 function mapStateToProps({ leftPanel }) {
-    const { affiliateInfo, affName } = leftPanel;
+    const { affiliateInfo } = leftPanel;
 
-    return Object.assign({}, { affiliateInfo, affName });
+    return Object.assign({}, { affiliateInfo });
 };
 
 function mapDispatchToProps(dispatch) {
