@@ -141,34 +141,6 @@ namespace DataHandler
         }
 
         //@Vinh
-        //Statistics
-        public static DbResult SelBalanceBF(int affiliateID)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affiliateID);
-            hsParam.Add("balbroughtforward", 0);
-            return DbHelper.Execute("Aff_CustomerSelBalBF", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        public static DataTable SelAffEarningDaily(int intAffID, int SportType, DateTime dtmMonthDate)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", intAffID);
-            hsParam.Add("sporttype", SportType);
-            hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDaily", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP).ResultSet.Tables[0]; ;
-        }
-
-        public static DataTable SelAffEarningDetail(int intAffId, int SportType, DateTime dtmMonthDate)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", intAffId);
-            hsParam.Add("sporttype", SportType);
-            hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDetail", DBType.AFFILIATE_12BET, hsParam).ResultSet.Tables[0]; ;
-        }
-
-        //@Vinh
         public static DbResult SelMemberReportByAff(int intCustId, DateTime dtmFDate, DateTime dtmTDate, int affType)
         {
             Hashtable hsParam = new Hashtable();
@@ -217,71 +189,6 @@ namespace DataHandler
             hsParam.Add("isgetall", isGetAll);
             hsParam.Add("affid", 0);
             return DbHelper.Execute("Aff_Admin_AffiliateReport_Detail_Sel", DBType.AFFILIATE_12BET, hsParam, 180);
-        }
-
-        //@Vinh
-        public static DbResult SelNoteList(int affid, int pageIndex, ref int rows, ref int totalPages, int pageSize)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affid);
-            hsParam.Add("pagesize", pageSize);
-            hsParam.Add("pageindex", pageIndex);
-            hsParam.Add("totalpages", 0);
-            hsParam.Add("nrows", 0);
-            DbResult rs = DbHelper.Execute("Aff_AdminNoteSel", DBType.AFFILIATE_12BET, hsParam);
-            rows = CastAide.AsInt32(rs.Outputs["nrows"]);
-            totalPages = CastAide.AsInt32(rs.Outputs["totalpages"]);
-            return rs;
-        }
-
-        //@Vinh
-        public static DbResult SelNoteDetail(int affid, object noteid)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affid);
-            hsParam.Add("noteid", noteid);
-            DbResult rs = DbHelper.Execute("Aff_AdminNoteSel", DBType.AFFILIATE_12BET, hsParam);
-            return rs;
-        }
-
-        //@Vinh
-        public static DbResult AddNote(int custid, int updateby, string strNote)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("noteid", 0);
-            hsParam.Add("note", HttpContext.Current.Server.HtmlEncode(strNote));
-            hsParam.Add("custid", custid);
-            hsParam.Add("updatedby", updateby);
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_AdminNoteIns", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        public static DbResult UpdateNote(int CustId, int updateby, int noteid, string strNote)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("noteid", noteid);
-            hsParam.Add("note", HttpContext.Current.Server.HtmlEncode(strNote));
-            hsParam.Add("userid", CustId);
-            hsParam.Add("updatedby", updateby);
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_AdminNoteUpd", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //@Vinh
-        public static DbResult DeleteNote(int AffId, int UserId, string strListNote)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", AffId);
-            hsParam.Add("userid", UserId);
-            hsParam.Add("listnode", strListNote);
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_AdminNoteDel", DBType.AFFILIATE_12BET, hsParam);
         }
 
         //@Vinh
@@ -351,26 +258,6 @@ namespace DataHandler
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hsParam.Add("errmsg", string.Empty);
             return DbHelper.Execute("Aff_PreferLangUpd", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //Vinh@20090512
-        public static int Adjustment(decimal Amt, int CustId, int UserId, string Desc, ref Int64 intTransId, ref string strErrorMsg)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("amount", Amt);
-            hsParam.Add("affid", CustId);
-            hsParam.Add("adminid", UserId);
-            hsParam.Add("transdesc", HttpContext.Current.Server.HtmlEncode(Desc));
-            hsParam.Add("transid", 0);
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", "");
-
-            DbResult result = DbHelper.Execute("Aff_AdjustmentIns", DBType.AFFILIATE_12BET, hsParam, 600);
-            intTransId = CastAide.AsInt32(result.Outputs["transid"]);
-            //dtmWinlostDate = CastAide.AsDateTime(result.Outputs["winlostdate"]);
-            strErrorMsg = result.Outputs["errmsg"].ToString();
-            return CastAide.AsInt32(result.Outputs["errcode"]);
         }
 
         //Vinh@20090512
