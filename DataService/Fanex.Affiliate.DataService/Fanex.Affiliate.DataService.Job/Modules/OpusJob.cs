@@ -12,6 +12,7 @@ using Sunplus.UMControllerLibrary;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
+    [DisallowConcurrentExecution]
     public class OpusJob : IJob
     {
         private readonly IAppSettings _appSetting;

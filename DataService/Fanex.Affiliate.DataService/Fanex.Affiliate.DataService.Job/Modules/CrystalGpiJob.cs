@@ -12,6 +12,7 @@ using Sunplus.UMControllerLibrary;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
+    [DisallowConcurrentExecution]
     public class CrystalGpiJob : IJob
     {
         private readonly IAppSettings _appSetting;
