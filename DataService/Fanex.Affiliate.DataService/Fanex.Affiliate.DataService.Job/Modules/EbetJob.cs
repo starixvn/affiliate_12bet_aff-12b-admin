@@ -58,28 +58,35 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                         if (DateTime.Compare(lastQueryTime, nowByHour) < 0)
                         {
-                            var param = new EbetParam
-                            {
-                                UserName = string.Empty,
-                                StartTime = lastQueryTime,
-                                EndTime = nowByHour,
-                                ChannelId = config.ChannelId,
-                                ApiUrl = config.ApiServerHost,
-                                PrivateKey = config.PrivateKey,
-                                CurrencyId = config.CurrencyID,
-                                PageNumber = 1,
-                                PageSize = pageSize,
-                            };
+                            var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
+                            var endTime = new DateTime(nowByHour.Year, nowByHour.Month, nowByHour.Day, nowByHour.Hour, nowByHour.Minute, nowByHour.Second);
 
-                            _ebetService.Import(param);
-
-                            var saveTimeParam = new InsertTimeTrackerParam
+                            for (var start = startTime; DateTime.Compare(start, endTime) < 0; start = start.AddHours(1))
                             {
-                                ProductId = Products.EbetProductId,
-                                Currency = currency,
-                                CallTime = nowByHour
-                            };
-                            _timeTracker.SaveTime(saveTimeParam);
+                                var endTimeByBatch = start.AddHours(1);
+                                var param = new EbetParam
+                                {
+                                    UserName = string.Empty,
+                                    StartTime = start,
+                                    EndTime = DateTime.Compare(endTimeByBatch, endTime) > 0 ? endTime : endTimeByBatch,
+                                    ChannelId = config.ChannelId,
+                                    ApiUrl = config.ApiServerHost,
+                                    PrivateKey = config.PrivateKey,
+                                    CurrencyId = config.CurrencyID,
+                                    PageNumber = 1,
+                                    PageSize = pageSize,
+                                };
+
+                                _ebetService.Import(param);
+
+                                var saveTimeParam = new InsertTimeTrackerParam
+                                {
+                                    ProductId = Products.EbetProductId,
+                                    Currency = currency,
+                                    CallTime = nowByHour
+                                };
+                                _timeTracker.SaveTime(saveTimeParam);
+                            }
                         }
                     }
                 }
