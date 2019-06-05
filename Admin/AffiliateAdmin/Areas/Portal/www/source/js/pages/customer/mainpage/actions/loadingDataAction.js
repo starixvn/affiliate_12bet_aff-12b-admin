@@ -29,10 +29,10 @@ export const getAffiliateInfo = (affName, selectedUserPanel = userPanelMenuKey.s
     const data = response && response.status === 200 && response.data ? response.data : null;
 
     const affCommonInfo = data && { affId: data.AffId, affName, status: data.Status };
-    dispatch(setAffCommonInfo(affCommonInfo)) && affCommonInfo;
+    dispatch(setAffCommonInfo(affCommonInfo));
     dispatch(receiveLeftMenuInfo(data));
     data && dispatch(setSelectedUserPanel(selectedUserPanel));
-    data === null ? dispatch(setIsValidUserName(false)) : dispatch(setIsValidUserName(true));
+    dispatch(setIsValidUserName(!!data));
 
     dispatch(toggleLoaderLeftPanel(false));
 }

@@ -38,7 +38,6 @@ export class WebSite extends PureComponent {
         const { moreSiteUrlsList } = this.props;
         const newMoreSiteUrlsList = moreSiteUrlsList.map(siteUrl => siteUrl.trim());
         const findIndex = newMoreSiteUrlsList.indexOf('');
-        console.log(this.moreSiteUrlRefs);
 
         if (findIndex === -1) {
             this.moreSiteUrlRefs.push(React.createRef());
@@ -69,7 +68,7 @@ export class WebSite extends PureComponent {
                                 <Col sm={5} xl={6}>
                                     <CustomTextInput name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
                                 </Col>
-                                <Button color="primary" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
+                                <Button outline color="secondary mb-2" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
                             </FormGroup>
                         )
                     })
@@ -88,7 +87,7 @@ export class WebSite extends PureComponent {
                     <Col sm={5} xl={6}>
                         <Input type="text" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
                     </Col>
-                    <Button color="primary" onClick={this.handleAddUrl}><span aria-hidden>Add Url</span></Button>
+                    <Button outline color="secondary mb-2" onClick={this.handleAddUrl}>Add Url</Button>
                 </FormGroup>
                 {
                     this._renderMoreSiteUrl(moreSiteUrlsList)

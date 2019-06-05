@@ -81,7 +81,7 @@ export class Detail extends PureComponent {
     render() {
         const { gridData } = this.state;
 
-        return gridData && (
+        return this.props.selectedMonth && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     width={1020}
