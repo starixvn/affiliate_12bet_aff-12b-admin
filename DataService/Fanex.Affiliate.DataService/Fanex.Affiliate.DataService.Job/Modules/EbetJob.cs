@@ -83,7 +83,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                                 {
                                     ProductId = Products.EbetProductId,
                                     Currency = currency,
-                                    CallTime = nowByHour
+                                    CallTime = param.EndTime
                                 };
                                 _timeTracker.SaveTime(saveTimeParam);
                             }
