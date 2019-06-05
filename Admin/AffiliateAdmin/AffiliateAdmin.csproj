@@ -1537,7 +1537,6 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\timetracker.js" />
     <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
-    <Content Include="Areas\Portal\www\dist\style\assets\i_customer.png" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-info.css" />
@@ -1611,7 +1610,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\loadingDataAction.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\reduxComponentFactory.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\reducers\commonReducer.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\actions\index.js" />
@@ -2276,7 +2274,9 @@
       <CachedSettingsPropName>AffiliateAdmin_AffBetlistService_AffiliateAPI</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\" />
+  </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
