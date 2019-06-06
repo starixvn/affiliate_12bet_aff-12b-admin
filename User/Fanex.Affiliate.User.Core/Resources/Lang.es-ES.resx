@@ -1601,9 +1601,6 @@
   <data name="Validation" xml:space="preserve">
     <value>Validación</value>
   </data>
-  <data name="ValidationCode" xml:space="preserve">
-    <value>El código de validación introducido no es válido.</value>
-  </data>
   <data name="Venezuela" xml:space="preserve">
     <value>Venezuela </value>
   </data>

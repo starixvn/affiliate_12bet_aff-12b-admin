@@ -150,4 +150,13 @@
   <data name="RequireIMAccount" xml:space="preserve">
     <value>請填寫Line帳號</value>
   </data>
+  <data name="VerificationFailed" xml:space="preserve">
+    <value>郵件驗證碼無效或過期，請重新輸入或重新申請。</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>無效電子郵箱</value>
+  </data>
+  <data name="Wait60Seconds" xml:space="preserve">
+    <value>在重新發送密碼前，請先等待60秒。</value>
+  </data>
 </root>

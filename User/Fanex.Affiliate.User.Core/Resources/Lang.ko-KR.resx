@@ -1670,7 +1670,7 @@
     <value>확인 코드</value>
   </data>
   <data name="ValidationCode" xml:space="preserve">
-    <value>잘못된 인증번호를 입력하셨습니다.</value>
+    <value>보안 문자가 틀렸습니다.</value>
   </data>
   <data name="Venezuela" xml:space="preserve">
     <value>베네수엘라</value>
@@ -2100,5 +2100,50 @@
   </data>
   <data name="TableCardGames" xml:space="preserve">
     <value>테이블/카드 게임</value>
+  </data>
+  <data name="DearCustomer" xml:space="preserve">
+    <value>xxx 제휴사님께,</value>
+  </data>
+  <data name="DueTo" xml:space="preserve">
+    <value>잘못된 정보로 로그인이 반복적으로 시도되었습니다.다음 단계를 진행하십시오.</value>
+  </data>
+  <data name="YourRegisterEmail" xml:space="preserve">
+    <value>가입 이메일 주소  &lt;strong&gt;{0}&lt;/strong&gt; 입니다. 이메일 주소를 입력하시고 보안코드 전송을 클릭하세요.</value>
+  </data>
+  <data name="EmailVerification" xml:space="preserve">
+    <value>이메일</value>
+  </data>
+  <data name="SendCode" xml:space="preserve">
+    <value>보안 코드 전송</value>
+  </data>
+  <data name="EmailIsRequired" xml:space="preserve">
+    <value>이메일을 입력하세요.</value>
+  </data>
+  <data name="AVerificationCode" xml:space="preserve">
+    <value>보안코드가 전송되었습니다. 아이디,비밀번호와 보안코드를 입력하시고 로그인하세요.</value>
+  </data>
+  <data name="UsernameVerification" xml:space="preserve">
+    <value>아이디</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>아이디 입력</value>
+  </data>
+  <data name="PasswordVerification" xml:space="preserve">
+    <value>비밀번호</value>
+  </data>
+  <data name="PasswordIsRequired" xml:space="preserve">
+    <value>비밀번호 입력</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>보안 코드</value>
+  </data>
+  <data name="VerificationCodeIsRequired" xml:space="preserve">
+    <value>보안 코드 입력</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>보안 문자</value>
+  </data>
+  <data name="CaptchaIsRequired" xml:space="preserve">
+    <value>보안 문자 문자입력</value>
   </data>
 </root>

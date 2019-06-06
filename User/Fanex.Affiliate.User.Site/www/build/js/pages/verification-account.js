@@ -76,7 +76,7 @@ var VerificationAccount = (function () {
     function toggleMessageForEmail(isValid) {
         $('#emailGroup').toggleClass('has-error', !isValid);
         $('#emailValidationMessage').toggleClass('hide', isValid);
-        $('#emailValidationMessage').text("Invalid email.");
+        $('#emailValidationMessage').text(resource.invalidEmail);
     }
 
     var _me = {

@@ -133,7 +133,7 @@
     <value>Tài khoản của bạn bị khóa tạm thời do đăng nhập sai 5 lần liên tiếp. Vui lòng thử lại sau 10 phút hoặc liên hệ với quản trị viên của bạn!</value>
   </data>
   <data name="LoginWrongInfo" xml:space="preserve">
-    <value>Tên truy cập hoặc mật khẩu sai.</value>
+    <value>Tên đăng nhập và mật khẩu không chính xác</value>
   </data>
   <data name="PaymentBalanceInvalid" xml:space="preserve">
     <value>Bạn không thể yêu cầu thanh toán vì số dư không đủ.</value>
@@ -149,5 +149,14 @@
   </data>
   <data name="RequireIMAccount" xml:space="preserve">
     <value>Bạn cần có ít nhất 1 tài khoản IM</value>
+  </data>
+  <data name="VerificationFailed" xml:space="preserve">
+    <value>Mã xác nhận hết hiệu lực, vui lòng thử lại hoặc yêu cầu mã xác thực mới</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Email không hợp lệ</value>
+  </data>
+  <data name="Wait60Seconds" xml:space="preserve">
+    <value>Vui lòng đợi 60 giây trước khi gửi yêu cầu nhận mã xác nhận mới</value>
   </data>
 </root>

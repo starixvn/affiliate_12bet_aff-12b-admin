@@ -1643,7 +1643,7 @@
     <value>驗證碼</value>
   </data>
   <data name="ValidationCode" xml:space="preserve">
-    <value>驗證碼無效！</value>
+    <value>驗證碼錯誤！</value>
   </data>
   <data name="Venezuela" xml:space="preserve">
     <value>委內瑞拉</value>
@@ -2112,5 +2112,50 @@
   </data>
   <data name="TableCardGames" xml:space="preserve">
     <value>桌面/紙牌遊戲</value>
+  </data>
+  <data name="DearCustomer" xml:space="preserve">
+    <value>敬愛的顧客，</value>
+  </data>
+  <data name="DueTo" xml:space="preserve">
+    <value>該帳戶出現登入失敗次數過多，基於安全考慮，請協助驗證步驟。</value>
+  </data>
+  <data name="YourRegisterEmail" xml:space="preserve">
+    <value>您註冊的電子郵箱是&lt;strong&gt;{0}&lt;/strong&gt;，請在下方輸入完整的電郵地址，然後點選寄送驗證碼。</value>
+  </data>
+  <data name="EmailVerification" xml:space="preserve">
+    <value>電子郵箱</value>
+  </data>
+  <data name="SendCode" xml:space="preserve">
+    <value>寄送郵件碼證碼</value>
+  </data>
+  <data name="EmailIsRequired" xml:space="preserve">
+    <value>請輸入電子郵箱</value>
+  </data>
+  <data name="AVerificationCode" xml:space="preserve">
+    <value>驗證碼已發送到電子郵箱地址。請輸入您的用戶名、密碼和郵件驗證碼進行登錄。</value>
+  </data>
+  <data name="UsernameVerification" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>請輸入用戶名</value>
+  </data>
+  <data name="PasswordVerification" xml:space="preserve">
+    <value>密碼</value>
+  </data>
+  <data name="PasswordIsRequired" xml:space="preserve">
+    <value>請輸入密碼</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>郵件驗證碼</value>
+  </data>
+  <data name="VerificationCodeIsRequired" xml:space="preserve">
+    <value>請輸入郵件驗證碼</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>驗證碼</value>
+  </data>
+  <data name="CaptchaIsRequired" xml:space="preserve">
+    <value>請填寫驗證碼</value>
   </data>
 </root>

@@ -5,19 +5,19 @@
     var contacUsLink = Model.RootDomain + "ContactUs";
 }
 <div>
-    <h3>Dear @userInfo.FirstName @userInfo.LastName,</h3><br />
+    <h3>Kính Chào Quý Khách @userInfo.FirstName,</h3><br />
 
-    Here is the verification code you need to login to account @userInfo.UserName:<br />
+    Đây là mã nhận để Quý Khách đăng nhập vào tài khoản @userInfo.UserName:<br />
 
     <h3>@Model.Code</h3><br />
 
-    This email was generated because of many consecutive failed logins from a web or mobile device located at <a href="@string.Format("https://iplocation.com/?ip={0}", Model.Ip)">@Model.Ip</a><br />
-    The verification code is required to complete the login. The code will be expired after 15 minutes.<br />
-    If you are not attempting to login then please change the password, and consider changing your email password as well to ensure your account security.<br /><br />
+    Email này được tạo ra vì có nhiều hoạt động đăng nhập thất bại từ website hoặc thiết bị điện thoại có địa chỉ IP tại <a href="@string.Format("https://iplocation.com/?ip={0}", Model.Ip)">@Model.Ip</a><br />
+    Mã xác nhận được yêu cầu để hoàn tất việc đăng nhập. Mã xác nhận sẽ hết hiệu lực trong vòng 15 phút.<br />
+    Vui lòng thay đổi lại mật khẩu mới sau khi đăng nhập thành công, đồng thời cân nhắc việc thay đổi mật khẩu email của Quý Khách để đảm bảo việc bảo mật.<br /><br />
 
-    If you are unable to access your account then <a href='@forgotPasswordUrl'>use this forgot password link</a> for assistance obtaining a new password.<br /><br />
+    Nếu Quý Khách không thể đăng nhập thành công, vui lòng sử dụng chức năng <a href='@forgotPasswordUrl'>Quên Mật Khẩu</a> để được hỗ trợ nhận mật khẩu mới.<br /><br />
 
-    The 12Bet Affiliate team<br />
+    Bộ Phận Đại Lý 12BET<br />
 
     <a href="@contacUsLink">@contacUsLink</a>
 </div>

@@ -1638,7 +1638,7 @@
     <value>รหัสตรวจสอบ</value>
   </data>
   <data name="ValidationCode" xml:space="preserve">
-    <value>คุณกรอกหมายเลขตรวจสอบที่ไม่ถูกต้อง</value>
+    <value>คุณกรอกรหัสCaptchaไม่ถูกต้อง</value>
   </data>
   <data name="Venezuela" xml:space="preserve">
     <value>เวเนซุเอล่า</value>
@@ -2107,5 +2107,50 @@
   </data>
   <data name="TableCardGames" xml:space="preserve">
     <value>เกมส์โต๊ะ/เกมส์ไพ่</value>
+  </data>
+  <data name="DearCustomer" xml:space="preserve">
+    <value>เรียนสมาชิกพันธมิตร</value>
+  </data>
+  <data name="DueTo" xml:space="preserve">
+    <value>เนื่องจากคุณทำการเข้าสู่ระบบผิดพลาดบ่อยครั้ง, โปรดทำการยืนยันความปลอดภัยด้วยค่ะ</value>
+  </data>
+  <data name="YourRegisterEmail" xml:space="preserve">
+    <value>อีเมล์ที่คุณสมัครพันธมิตรคือ &lt;strong&gt;{0}&lt;/strong&gt;. โปรดกรอกอีเมล์ที่ถูกต้องในช่องด้านล่างและกดปุ่มส่งรหัสยืนยัน</value>
+  </data>
+  <data name="EmailVerification" xml:space="preserve">
+    <value>อีเมล์ที่ใช้</value>
+  </data>
+  <data name="SendCode" xml:space="preserve">
+    <value>ส่งรหัสยืนยัน</value>
+  </data>
+  <data name="EmailIsRequired" xml:space="preserve">
+    <value>คุณต้องกรอกอีเมล์สมัครพันธมิตรที่ถูกต้อง</value>
+  </data>
+  <data name="AVerificationCode" xml:space="preserve">
+    <value>รหัสยืนยันความปลอดภัยได้ส่งไปที่อีเมล์ของคุณแล้ว. โปรดกรอกชื่อผู้ใช้เข้าระบบ, รหัสผ่าน และรหัสยืนยันความปลอดภัยในช่องว่างด้านล่างค่ะ</value>
+  </data>
+  <data name="UsernameVerification" xml:space="preserve">
+    <value>ชื่อผู้ใช้เข้าสู่ระบบ</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>โปรดกรอกชื่อผู้ใช้เข้าสู่ระบบ</value>
+  </data>
+  <data name="PasswordVerification" xml:space="preserve">
+    <value>รหัสผ่าน</value>
+  </data>
+  <data name="PasswordIsRequired" xml:space="preserve">
+    <value>โปรดกรอกรหัสผ่าน</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>รหัสยืนยันความปลอดภัย</value>
+  </data>
+  <data name="VerificationCodeIsRequired" xml:space="preserve">
+    <value>โปรดกรอกรหัสยืนยันความปลอดภัย</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>กรอกCaptcha</value>
+  </data>
+  <data name="CaptchaIsRequired" xml:space="preserve">
+    <value>โปรดกรอกCaptcha ที่แสดงด้านข้าง</value>
   </data>
 </root>

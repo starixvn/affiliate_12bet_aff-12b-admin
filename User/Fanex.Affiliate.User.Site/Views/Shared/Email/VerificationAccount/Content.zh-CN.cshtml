@@ -5,19 +5,19 @@
     var contacUsLink = Model.RootDomain + "ContactUs";
 }
 <div>
-    <h3>Dear @userInfo.FirstName @userInfo.LastName,</h3><br />
+    <h3>敬爱的 @userInfo.FirstName @userInfo.LastName,</h3><br />
 
-    Here is the verification code you need to login to account @userInfo.UserName:<br />
+    以下是登录账号@(userInfo.UserName)所需的验证码：<br />
 
     <h3>@Model.Code</h3><br />
 
-    This email was generated because of many consecutive failed logins from a web or mobile device located at <a href="@string.Format("https://iplocation.com/?ip={0}", Model.Ip)">@Model.Ip</a><br />
-    The verification code is required to complete the login. The code will be expired after 15 minutes.<br />
-    If you are not attempting to login then please change the password, and consider changing your email password as well to ensure your account security.<br /><br />
+    这封电邮的发送，是由于来自<a href="@string.Format("https://iplocation.com/?ip={0}", Model.Ip)">@Model.Ip</a>，从电脑或移动设备，连续密码输入错误所产生的。<br />
+    完成登录需要输入此验证码，代码将在15分钟后失效。<br />
+    如果您没有尝试登录账号，建议更改账户及邮箱密码，已确保账号安全。<br /><br />
 
-    If you are unable to access your account then <a href='@forgotPasswordUrl'>use this forgot password link</a> for assistance obtaining a new password.<br /><br />
+    如果您无法登录自己的账户，请点击<a href='@forgotPasswordUrl'>忘记密码</a>，以获取新密码。<br /><br />
 
-    The 12Bet Affiliate team<br />
+    12BET合作伙伴团队<br />
 
     <a href="@contacUsLink">@contacUsLink</a>
 </div>

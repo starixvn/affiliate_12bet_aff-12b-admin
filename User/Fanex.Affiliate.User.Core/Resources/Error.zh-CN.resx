@@ -150,4 +150,13 @@
   <data name="RequireIMAccount" xml:space="preserve">
     <value>请填写QQ或微信账号</value>
   </data>
+  <data name="VerificationFailed" xml:space="preserve">
+    <value>邮箱验证码无效或过期，请重新输入或重新申请。</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>无效电子邮箱</value>
+  </data>
+  <data name="Wait60Seconds" xml:space="preserve">
+    <value>在重新发送密码前，请先等待60秒。</value>
+  </data>
 </root>

@@ -7,17 +7,18 @@
 <div>
     <h3>Dear @userInfo.FirstName @userInfo.LastName,</h3><br />
 
-    Here is the verification code you need to login to account @userInfo.UserName:<br />
+    Ini adalah kode verifikasi Anda silahkan lakukan login di Akun Anda @userInfo.UserName:<br />
 
     <h3>@Model.Code</h3><br />
 
-    This email was generated because of many consecutive failed logins from a web or mobile device located at <a href="@string.Format("https://iplocation.com/?ip={0}", Model.Ip)">@Model.Ip</a><br />
-    The verification code is required to complete the login. The code will be expired after 15 minutes.<br />
-    If you are not attempting to login then please change the password, and consider changing your email password as well to ensure your account security.<br /><br />
+    Email ini terdeteksi telah berkali kali gagal dalam melakukan login di web ataupun ponsel lokasi di <a href="@string.Format("https://iplocation.com/?ip={0}", Model.Ip)">@Model.Ip</a><br />
+    Verifikasi kode diperlukan agar dapat melakukan login. Kode ini akan kadaluarsa setelah 15 menit.<br />
+    Jika Anda tidak melakukan login sebelumnya,silahkan lakukan pergantian password, dan
+    kami pertimbangkan Anda untuk mengubah kata sandi email Anda juga untuk memastikan keamanan akun Anda.<br /><br />
 
-    If you are unable to access your account then <a href='@forgotPasswordUrl'>use this forgot password link</a> for assistance obtaining a new password.<br /><br />
+    Jika Anda tidak bisa masuk dalam Akun Anda, <a href='@forgotPasswordUrl'>silahkan gunakan link lupa password ini</a> untuk bantuan mendapatkan password terbaru Anda.<br /><br />
 
-    The 12Bet Affiliate team<br />
+    12BET Affiliate Team<br />
 
     <a href="@contacUsLink">@contacUsLink</a>
 </div>

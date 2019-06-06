@@ -132,9 +132,6 @@
   <data name="LoginLockedAccount" xml:space="preserve">
     <value>Se ha cerrado su cuenta. Póngase en contacto con el administrador.</value>
   </data>
-  <data name="LoginWrongInfo" xml:space="preserve">
-    <value>El nombre de usuario o la contraseña son incorrectos</value>
-  </data>
   <data name="PaymentBalanceInvalid" xml:space="preserve">
     <value>No puede solicitar el pago porque no tiene saldo suficiente.</value>
   </data>

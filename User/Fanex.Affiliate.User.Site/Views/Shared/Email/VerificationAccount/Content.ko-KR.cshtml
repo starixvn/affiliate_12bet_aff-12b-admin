@@ -5,19 +5,19 @@
     var contacUsLink = Model.RootDomain + "ContactUs";
 }
 <div>
-    <h3>Dear @userInfo.FirstName @userInfo.LastName,</h3><br />
+    <h3>@userInfo.FirstName @(userInfo.LastName)제휴사님께,</h3><br />
 
-    Here is the verification code you need to login to account @userInfo.UserName:<br />
+    @userInfo.UserName 계정의 로그인을 위한 보안 코드입니다.<br />
 
     <h3>@Model.Code</h3><br />
 
-    This email was generated because of many consecutive failed logins from a web or mobile device located at <a href="@string.Format("https://iplocation.com/?ip={0}", Model.Ip)">@Model.Ip</a><br />
-    The verification code is required to complete the login. The code will be expired after 15 minutes.<br />
-    If you are not attempting to login then please change the password, and consider changing your email password as well to ensure your account security.<br /><br />
+    현재 웹또는 모바일을 통해 비정상적인 로그인 시도가 감지되었습니다.<a href="@string.Format("https://iplocation.com/?ip={0}", Model.Ip)">@Model.Ip</a><br />
+    지금 인증을 완료하세요. 보안 코드는 15분후에 만료됩니다. <br />
+    만약 도용이 의심되는 경우 현재 계정의 비밀번호를 변경하시거나 가입된 이메일의  비밀번호를 변경하십시오.<br /><br />
 
-    If you are unable to access your account then <a href='@forgotPasswordUrl'>use this forgot password link</a> for assistance obtaining a new password.<br /><br />
+    보안상의 이유로 비밀번호를 변경하거나 잊어버린 경우 <a href='@forgotPasswordUrl'>비밀번호 찾기</a> 로  재설정할 수 있습니다.<br /><br />
 
-    The 12Bet Affiliate team<br />
+    12BET 제휴팀<br />
 
     <a href="@contacUsLink">@contacUsLink</a>
 </div>
