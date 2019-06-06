@@ -6,6 +6,8 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
+using Fanex.Affiliate.Admin.Core.Utilities;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -80,9 +82,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         public ActionResult UpdateStatus(UpdateStatusParam param)
         {
             AssignParam(param);
+            var emailParam = new AffInformationEmail
+            {
+                RootUrl = SiteDomainHelper.GetRootUrl(this)
+            };
+
             return new JsonNetResult
             {
-                Data = _customerLeftPanelService.UpdateStatus(param)
+                Data = _customerLeftPanelService.UpdateStatus(param, emailParam)
             };
         }
 

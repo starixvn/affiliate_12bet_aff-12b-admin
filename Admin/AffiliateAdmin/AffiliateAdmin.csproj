@@ -2005,6 +2005,17 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\components\CustomSelectInput.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\CommissionGroupPopup.jsx" />
     <Content Include="Handler\UpdateAcc.ashx" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.en-GB.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.en-US.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.es-ES.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.hi-IN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.id-ID.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.ja-JP.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.ko-KR.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.th-TH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.vi-VN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.zh-CN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.zh-TW.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

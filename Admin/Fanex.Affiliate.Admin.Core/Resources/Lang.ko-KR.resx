@@ -153,4 +153,10 @@
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>고객님의 지불요청이 거부되었습니다</value>
   </data>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>제휴 신청</value>
+  </data>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>12Bet제휴사– 제휴 신청</value>
+  </data>
 </root>

@@ -153,4 +153,10 @@
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>Yêu cầu thanh toán của bạn bị từ chối.</value>
   </data>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>Đơn đăng ký chương trình liên kết 12BET bị từ chối</value>
+  </data>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>12Bet Affiliates – Đơn đăng ký chương trình liên kết 12BET bị từ chối</value>
+  </data>
 </root>

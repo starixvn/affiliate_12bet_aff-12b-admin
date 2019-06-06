@@ -150,10 +150,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                 objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("Ip", DbType.String, param.Ip);
                 objectDb.AddInParameter("Status", DbType.String, param.Status);
-                if (param.GroupId != -1)
-                {
-                    objectDb.AddInParameter("GroupId", DbType.Int32, param.GroupId);
-                }
 
                 AssignResultOutputParam(objectDb);
 

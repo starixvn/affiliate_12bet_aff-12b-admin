@@ -153,4 +153,10 @@
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>您的提款申请未被核准</value>
   </data>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>您的加盟申请</value>
+  </data>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>12Bet 合作伙伴 – 您的加盟申请</value>
+  </data>
 </root>

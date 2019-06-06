@@ -153,4 +153,10 @@
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>Su solicitud de pago se ha rechazado</value>
   </data>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>Su solicitud</value>
+  </data>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>Afiliados de 12BET: Su solicitud</value>
+  </data>
 </root>

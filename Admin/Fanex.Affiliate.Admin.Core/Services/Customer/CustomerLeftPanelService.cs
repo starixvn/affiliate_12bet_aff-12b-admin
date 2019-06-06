@@ -9,15 +9,30 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {
     public class CustomerLeftPanelService : ICustomerLeftPanelService
     {
+        private readonly IEmailService _emailService;
+        private readonly IAffiliateService _affiliateService;
+        private readonly IUserAccountService _userAccountService;
         private readonly ICustomerLeftPanelRepository _customerLeftPanelRepository;
 
-        public CustomerLeftPanelService(ICustomerLeftPanelRepository customerLeftPanelRepository)
+        public CustomerLeftPanelService(
+            IEmailService emailService,
+            IAffiliateService affiliateService,
+            IUserAccountService userAccountService,
+            ICustomerLeftPanelRepository customerLeftPanelRepository)
         {
+            _emailService = emailService;
+            _affiliateService = affiliateService;
+            _userAccountService = userAccountService;
             _customerLeftPanelRepository = customerLeftPanelRepository;
         }
         public AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName, string accId, string accOnId, string sessionId)
@@ -50,9 +65,28 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             return _customerLeftPanelRepository.UpdateLanguage(param);
         }
 
-        public ResultInfo UpdateStatus(UpdateStatusParam param)
+        public ResultInfo UpdateStatus(UpdateStatusParam param, AffInformationEmail emailParam)
         {
-            return _customerLeftPanelRepository.UpdateStatus(param);
+            var result = _customerLeftPanelRepository.UpdateStatus(param);
+
+            if (result.IsSuccessful && string.Equals(param.Status, AffStatus.Disapproved, StringComparison.InvariantCultureIgnoreCase))
+            {
+                var affInfo = _affiliateService.GetAffiliateBasicInfo(param.AffId);
+
+                SendEmailDisapprove(emailParam, affInfo);
+            }
+
+            return result;
+        }
+        private void SendEmailDisapprove(AffInformationEmail emailParam, AffiliateBasicInfo affInfo)
+        {
+            emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(affInfo.AffType);
+            emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguage;
+            emailParam.FirstName = affInfo.FirstName;
+            emailParam.MailTo = affInfo.Email;
+            emailParam.IsHtml = !affInfo.MailOption;
+
+            _emailService.SendDisapprovedEmail(emailParam);
         }
 
         private static string GenerateUrl(string custName, int affType, string accId, string accOnId, string sessionId)

@@ -7,5 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         void SendApprovedEmail(AffInformationEmail emailParam);
 
         void SendPaymentRequestUpdateEmail(PaymentRequestUpdateEmail emailParam);
+
+        void SendDisapprovedEmail(AffInformationEmail emailParam);
     }
 }

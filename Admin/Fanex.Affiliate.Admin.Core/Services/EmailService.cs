@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
@@ -133,6 +134,32 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
             _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
             _languageService.SetCulture(LanguageSystem.DefaultLanguage);
+        }
+
+        public void SendDisapprovedEmail(AffInformationEmail emailParam)
+        {
+            _languageService.SetCulture(emailParam.Language);
+            SendDisapprovedAffEmail(emailParam);
+            _languageService.SetCulture(LanguageSystem.DefaultLanguage);
+        }
+
+        private void SendDisapprovedAffEmail(AffInformationEmail emailParam)
+        {
+            const string TemplateName = "AffiliateDisapproved";
+            var model = new AffInformationEmail
+            {
+                MailContact = _appSetting.MailContact,
+                FirstName = emailParam.FirstName
+            };
+
+            var content = GetEmailTextContent(TemplateName, emailParam.Language, model);
+            var subject = Lang.EmailSubjectAffDisapproved;
+
+            var contentToSend = emailParam.IsHtml ?
+                GetEmailHtmlContent(content, Lang.EmailTitleAffDisapproved, emailParam.Language, emailParam.RootUrl) :
+                content;
+
+            _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
         }
     }
 }

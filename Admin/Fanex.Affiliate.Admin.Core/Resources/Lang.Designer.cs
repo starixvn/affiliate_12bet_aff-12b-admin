@@ -214,6 +214,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliates – Your Application.
+        /// </summary>
+        public static string EmailSubjectAffDisapproved {
+            get {
+                return ResourceManager.GetString("EmailSubjectAffDisapproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 12Bet Affiliates - Your Affiliate Information.
         /// </summary>
         public static string EmailSubjectAffInfor {
@@ -255,6 +264,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string EmailTitleAffApproved {
             get {
                 return ResourceManager.GetString("EmailTitleAffApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Application.
+        /// </summary>
+        public static string EmailTitleAffDisapproved {
+            get {
+                return ResourceManager.GetString("EmailTitleAffDisapproved", resourceCulture);
             }
         }
         

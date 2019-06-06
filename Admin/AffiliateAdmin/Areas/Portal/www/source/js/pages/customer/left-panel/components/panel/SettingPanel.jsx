@@ -5,9 +5,10 @@ import { bindActionCreators } from 'redux';
 import Panel from '../Panel';
 import { Row, Col, Button } from 'reactstrap';
 
-import { affType, resource } from '../../modules/constants';
+import { affType, resource, status } from '../../modules/constants';
 import { updateAffType, updateClosedStatus, updateStatus, getAffiliateInfo } from '../../actions';
 import CustomSelectInput from '../../../../common/components/CustomSelectInput';
+import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
 
 export class SettingPanel extends PureComponent {
     constructor(props) {
@@ -18,7 +19,8 @@ export class SettingPanel extends PureComponent {
 
         this.state = {
             isChangingAffType: false,
-            isChangingAffStatus: false
+            isChangingAffStatus: false,
+            isAssignCommissionGroup: false
         }
     }
 
@@ -30,19 +32,27 @@ export class SettingPanel extends PureComponent {
         this.setState({ isChangingAffStatus: isChanging }, () => isChanging && this.affStatusDropdown.current.focusSelectInput());
     }
 
+    toggleAssignCommissionPopup = (isChanging) => {
+        this.setState({ isAssignCommissionGroup: isChanging })
+    }
+
     handleChangeStatus = async (event) => {
         const isConfirmed = window.confirm("Are you sure you want to change status for this affiliate?");
         if (isConfirmed) {
-            const status = event.target.value;
-            const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: status });
-            const result = await this.props.updateStatus(param);
+            const selectedStatus = event.target.value;
+            if (selectedStatus.toLowerCase() === status.Approved) {
+                this.setState({ isAssignCommissionGroup: true });
+            } else {
+                const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: selectedStatus });
+                const result = await this.props.updateStatus(param);
 
-            if (result.IsSuccessful) {
-                window.alert("The status has been updated successfully!");
-                this.props.getAffiliateInfo(this.props.affName);
-            }
-            else {
-                window.alert(result.Message);
+                if (result.IsSuccessful) {
+                    window.alert("The status has been updated successfully!");
+                    this.props.getAffiliateInfo(this.props.affName);
+                }
+                else {
+                    window.alert(result.Message);
+                }
             }
         }
     }
@@ -81,7 +91,7 @@ export class SettingPanel extends PureComponent {
 
     render() {
         const { affiliateInfo, isApproved } = this.props;
-        const { isChangingAffType, isChangingAffStatus } = this.state;
+        const { isChangingAffType, isChangingAffStatus, isAssignCommissionGroup } = this.state;
 
         return (
             <Panel heading={resource.Setting}>
@@ -121,6 +131,15 @@ export class SettingPanel extends PureComponent {
                                     </div>
                                 )
                         }
+                        <CommissionGroupPopup
+                            showPopupCommGroup={isAssignCommissionGroup}
+                            isPrivateGroup={false}
+                            isNewAffiliate={true}
+                            affName={affiliateInfo.AffName}
+                            affId={affiliateInfo.AffId}
+                            setShowPopupCommGroup={this.toggleAssignCommissionPopup}
+                            getAffiliateInfo={this.props.getAffiliateInfo}
+                        />
                     </Col>
                 </Row>
                 {

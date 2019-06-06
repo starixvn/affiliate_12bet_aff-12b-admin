@@ -2,6 +2,7 @@
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {
@@ -15,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
 
         ResultInfo UpdateAffType(UpdateAffTypeParam param);
 
-        ResultInfo UpdateStatus(UpdateStatusParam param);
+        ResultInfo UpdateStatus(UpdateStatusParam param, AffInformationEmail emailParam);
 
         ResultInfo UpdateClosedStatus(UpdateClosedStatusParam param);
     }

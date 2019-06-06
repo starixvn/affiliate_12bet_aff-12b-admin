@@ -153,4 +153,10 @@
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>เรื่อง  กาขอถอนเงินขอท่านได้ถูกปฎิเสธ</value>
   </data>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>เรื่อง  สถานะการสมัครของท่าน</value>
+  </data>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>เรื่อง  สถานะการสมัครของท่าน</value>
+  </data>
 </root>

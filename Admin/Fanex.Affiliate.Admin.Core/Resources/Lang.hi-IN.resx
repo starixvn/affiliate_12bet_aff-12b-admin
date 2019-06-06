@@ -153,4 +153,10 @@
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>Your payment request has been rejected</value>
   </data>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>Your Application</value>
+  </data>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>12Bet Affiliates – Your Application</value>
+  </data>
 </root>

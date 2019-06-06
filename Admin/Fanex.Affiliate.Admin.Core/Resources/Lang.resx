@@ -354,4 +354,10 @@
   <data name="UpdateIsFailed" xml:space="preserve">
     <value>Update is failed!</value>
   </data>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>Your Application</value>
+  </data>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>12Bet Affiliates – Your Application</value>
+  </data>
 </root>
