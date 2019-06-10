@@ -1281,6 +1281,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\withUserPanel.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\modules\constants.js" />
@@ -1796,6 +1800,13 @@
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.vi-VN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.zh-CN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.zh-TW.cshtml" />
+    <Content Include="Areas\Portal\Views\EmailHistory\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\EmailDetailForm.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\email-history.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\index.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

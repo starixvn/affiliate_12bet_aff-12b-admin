@@ -14,6 +14,7 @@ module.exports = {
     [`${jsDist}/pages/affiliate/affiliate-info`]: clientRoot + "/js/pages/affiliate-info/index.jsx",
     [`${jsDist}/pages/payment/payment-request`]: clientRoot + "/js/pages/payment-request/index.jsx",
     [`${jsDist}/pages/customer/customer`]: clientRoot + "/js/pages/customer/index.jsx",
+    [`${jsDist}/pages/affiliate/email-history`]: clientRoot + "/js/pages/email-history/index.jsx",
 
     //For Thirdparty Product pages
     [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",
@@ -34,4 +35,5 @@ module.exports = {
     [`${styleDist}/pages/affiliate-info`]: clientRoot + "/style/pages/affiliate-info.scss",
     [`${styleDist}/pages/payment/payment-request`]: clientRoot + "/style/pages/payment/payment-request.scss",
     [`${styleDist}/pages/customer`]: clientRoot + "/style/pages/customer/main.scss",
+    [`${styleDist}/pages/email-history`]: clientRoot + "/style/pages/email-history.scss",
 };

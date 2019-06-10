@@ -21,7 +21,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/AffiliateInfo/Index") },
                 new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content($"~/Portal/PaymentRequest/Index?SearchBy={param.SearchBy}&Status={param.Status}&FromDate={param.FromDate}") },
                 new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/Portal/CommissionGroup") },
-                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Others/EmailHistory.aspx") }
+                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Others/EmailHistory.aspx") },
+                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory/Index") }
             };
 
             var activeIndex = current > subMenu.Count - 1 ? 0 : current;

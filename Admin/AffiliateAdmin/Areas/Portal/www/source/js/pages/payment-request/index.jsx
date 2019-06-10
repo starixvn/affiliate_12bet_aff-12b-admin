@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
@@ -8,7 +8,7 @@ import { configureStore } from '../../modules/store';
 
 const store = configureStore(window.initialState, reducer);
 
-export default class App extends Component {
+export default class App extends PureComponent {
     constructor(props) {
         super(props);
     }

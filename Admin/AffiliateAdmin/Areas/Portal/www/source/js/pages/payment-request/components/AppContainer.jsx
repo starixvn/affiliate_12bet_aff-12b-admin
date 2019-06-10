@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -9,7 +9,7 @@ import Content from './Content';
 import PaymentRequestUpdateForm from '../../common/components/PaymentRequestUpdateForm';
 import { setTransactionId, setParam } from '../actions';
 
-export class AppContainer extends Component {
+export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
     }
