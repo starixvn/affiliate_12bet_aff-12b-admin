@@ -11,6 +11,7 @@ export class ChangePasswordForm extends PureComponent {
         super(props);
 
         this.state = {
+            isClickedSubmit: false,
             password: '',
             confirmPassword: '',
             isShowMessage: false,
@@ -23,22 +24,26 @@ export class ChangePasswordForm extends PureComponent {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    handleSubmit = () => {
-        const { affId } = this.props;
-        const { password, confirmPassword } = this.state;
+    handleSubmit = (isValid) => {
+        this.setState({ isClickedSubmit: true });
 
-        const param = {
-            AffId: affId,
-            Password: password,
-            ConfirmPassword: confirmPassword
+        if (isValid) {
+            const { affId } = this.props;
+            const { password, confirmPassword } = this.state;
+
+            const param = {
+                AffId: affId,
+                Password: password,
+                ConfirmPassword: confirmPassword
+            }
+
+            this.saveChangePassword(param)
         }
-
-        this.saveChangePassword(param)
     }
 
     handleClosePopup = () => {
         this.props.setShowPopupPassword(false);
-        this.setState({ password: '', confirmPassword: '' });
+        this.setState({ password: '', confirmPassword: '', isClickedSubmit: false });
     }
 
     async saveChangePassword(param) {
@@ -104,7 +109,7 @@ export class ChangePasswordForm extends PureComponent {
 
     render() {
         const { showPopupPassword } = this.props;
-        const { password, confirmPassword, isShowMessage, isSuccess, message } = this.state;
+        const { password, confirmPassword, isShowMessage, isSuccess, message, isClickedSubmit } = this.state;
 
         const passwordValidation = this._validatePassword(password);
         const confirmPasswordValidation = this._validateConfirmPassword(password, confirmPassword);
@@ -123,8 +128,8 @@ export class ChangePasswordForm extends PureComponent {
                                 <FormGroup row className="mb-2">
                                     <Label for="Password" sm={4} className="required">{resource.Password}:</Label>
                                     <Col sm={8}>
-                                        <Input type="password" name="password" id="Password" autocomplete="false"
-                                            value={password} onChange={this.handleChange} invalid={!passwordValidation.isValid} />
+                                        <Input type="password" className="input-required" name="password" id="Password" autocomplete="false"
+                                            value={password} onChange={this.handleChange} invalid={isClickedSubmit && !passwordValidation.isValid} />
                                         {passwordValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: passwordValidation.message }} /></FormFeedback>}
                                     </Col>
@@ -133,15 +138,15 @@ export class ChangePasswordForm extends PureComponent {
                                 <FormGroup row className="mb-2">
                                     <Label for="ConfirmPassword" sm={4} className="required">{resource.ConfirmPassword}:</Label>
                                     <Col sm={8}>
-                                        <Input type="password" name="confirmPassword" id="ConfirmPassword" autocomplete="false"
-                                            value={confirmPassword} onChange={this.handleChange} invalid={!confirmPasswordValidation.isValid} />
+                                        <Input type="password" className="input-required" name="confirmPassword" id="ConfirmPassword" autocomplete="false"
+                                            value={confirmPassword} onChange={this.handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
                                         {confirmPasswordValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
                             </Form>
 
-                            <Button type="button" color="success" className="mr-3" disabled={!isValid} onClick={this.handleSubmit}>{resource.Submit}</Button>
+                            <Button type="button" color="success" className="mr-3" disabled={isClickedSubmit ? !isValid : false} onClick={() => this.handleSubmit(isValid)}>{resource.Submit}</Button>
                             <Button type="button" color="info" onClick={this.handleClosePopup}>{resource.Cancel}</Button>
                         </div>
                     </div>

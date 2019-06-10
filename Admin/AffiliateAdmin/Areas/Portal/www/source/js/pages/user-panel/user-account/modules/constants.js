@@ -32,6 +32,8 @@ export const playerMethod = 'Player';
 export const netellerMethod = 'Neteller';
 export const moneybookersMethod = 'Moneybookers';
 export const wireMethod = 'Wire';
+export const minimumPayment = 'Minimum payment amount is $100';
+export const nondeposited = 'Non-deposited account only';
 
 export const countriesList = {
     'Albania': 'Albania',

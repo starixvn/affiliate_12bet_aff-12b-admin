@@ -13,6 +13,7 @@ export class InsertUpdateNoteForm extends PureComponent {
         super(props);
 
         this.state = {
+            isClickedSubmit: false,
             noteContent: '',
             isShowMessage: false,
             isSuccess: true,
@@ -47,9 +48,13 @@ export class InsertUpdateNoteForm extends PureComponent {
         return result;
     }
 
-    handleSave = () => {
-        const newNoteInfo = Object.assign({}, this.props.noteInfo, { noteContent: this.state.noteContent });
-        this.Save(newNoteInfo);
+    handleSave = (isValid) => {
+        this.setState({ isClickedSubmit: true });
+
+        if (isValid) {
+            const newNoteInfo = Object.assign({}, this.props.noteInfo, { noteContent: this.state.noteContent });
+            this.Save(newNoteInfo);
+        }
     }
 
     async Save(noteInfo) {
@@ -90,19 +95,24 @@ export class InsertUpdateNoteForm extends PureComponent {
         });
     }
 
+    handleClosePopup = () => {
+        this.props.setShowPopup(false);
+        this.setState({ noteContent: '', isClickedSubmit: false });
+    }
+
     render() {
-        const { isShowMessage, isSuccess, message } = this.state;
+        const { isShowMessage, isSuccess, message, isClickedSubmit } = this.state;
         const { isShowPopup, noteInfo } = this.props;
 
         const isInsert = noteInfo.noteId === 0;
         const popupTitle = isInsert ? resource.AddNote : resource.UpdateNote;
         const buttonTitle = isInsert ? globalResource.Add : globalResource.Update;
 
-        const noteContentValidation = this._validateNoteContent();
+        const validationResult = this._validateNoteContent();
 
         return (
-            <Modal isOpen={isShowPopup} toggle={() => this.props.setShowPopup(false)} backdrop='static'>
-                <ModalHeader toggle={() => this.props.setShowPopup(false)}><span className="iconpopup"></span>{popupTitle}</ModalHeader>
+            <Modal isOpen={isShowPopup} toggle={this.handleClosePopup} backdrop='static'>
+                <ModalHeader toggle={this.handleClosePopup}><span className="iconpopup"></span>{popupTitle}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
                         <div className="note-form-container">
@@ -113,15 +123,15 @@ export class InsertUpdateNoteForm extends PureComponent {
                                 <FormGroup row className="mb-2">
                                     <Label for="noteContent" sm={3} className="d-flex justify-content-center align-items-center required">Content</Label>
                                     <Col sm={9}>
-                                        <Input type="textarea" name="noteContent" id="noteContent" rows="8"
-                                            value={this.state.noteContent} onChange={this.handleChange} invalid={!noteContentValidation.isValid} />
-                                        {noteContentValidation.message &&
-                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: noteContentValidation.message }} /></FormFeedback>}
+                                        <Input type="textarea" className="input-required" name="noteContent" id="noteContent" rows="8"
+                                            value={this.state.noteContent} onChange={this.handleChange} invalid={isClickedSubmit && !validationResult.isValid} />
+                                {validationResult.message &&
+                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: validationResult.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
                             </Form>
-                            <Button type="button" color="success" className="mr-3" disabled={!noteContentValidation.isValid} onClick={this.handleSave}>{buttonTitle}</Button>
-                            <Button type="button" color="info" onClick={() => this.props.setShowPopup(false)}>{globalResource.Cancel}</Button>
+                            <Button type="button" color="success" className="mr-3" disabled={isClickedSubmit ? !validationResult.isValid : false} onClick={() => this.handleSave(validationResult.isValid)}>{buttonTitle}</Button>
+                            <Button type="button" color="info" onClick={this.handleClosePopup}>{globalResource.Cancel}</Button>
                         </div>
                     </div>
                 </ModalBody>
