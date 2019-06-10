@@ -17,10 +17,15 @@ export class Personal extends PureComponent {
 
     handleChange = (event) => {
         const target = event.target;
-        const value = target.type === 'radio' ? (target.value === '1' ? true : false) : target.value;
         const name = capitalizeFirstChar(target.name);
 
-        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { [name]: value })
+        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { [name]: target.value })
+        this.props.setUserAccountInfo(newUserAccountInfo);
+    }
+
+    handleChangeGender = (isMale) => {
+        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { Gender: isMale });
+
         this.props.setUserAccountInfo(newUserAccountInfo);
     }
 
@@ -41,12 +46,12 @@ export class Personal extends PureComponent {
                 <Col sm={9} xl={10}>
                     <FormGroup check className="d-inline-block mr-3">
                         <Label check>
-                            <Input type="radio" name="gender" value="1" checked={isMale != null && isMale} onChange={this.handleChange} />{' '} Male
+                            <Input type="radio" checked={isMale != null && isMale} onChange={() => this.handleChangeGender(true)} />{' '} Male
                             </Label>
                     </FormGroup>
                     <FormGroup check className="d-inline-block">
                         <Label check>
-                            <Input type="radio" name="gender" value="0" checked={isMale != null && !isMale} onChange={this.handleChange} />{' '} Female
+                            <Input type="radio" checked={isMale != null && !isMale} onChange={() => this.handleChangeGender(false)} />{' '} Female
                             </Label>
                     </FormGroup>
                 </Col>

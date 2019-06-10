@@ -73,12 +73,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             {
                 var affInfo = _affiliateService.GetAffiliateBasicInfo(param.AffId);
 
-                SendEmailDisapprove(emailParam, affInfo);
+                SendDisapprovedEmail(emailParam, affInfo);
             }
 
             return result;
         }
-        private void SendEmailDisapprove(AffInformationEmail emailParam, AffiliateBasicInfo affInfo)
+        private void SendDisapprovedEmail(AffInformationEmail emailParam, AffiliateBasicInfo affInfo)
         {
             emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(affInfo.AffType);
             emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguage;

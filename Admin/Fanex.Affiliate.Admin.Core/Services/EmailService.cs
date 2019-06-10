@@ -139,11 +139,11 @@ namespace Fanex.Affiliate.Admin.Core.Services
         public void SendDisapprovedEmail(AffInformationEmail emailParam)
         {
             _languageService.SetCulture(emailParam.Language);
-            SendDisapprovedAffEmail(emailParam);
+            SendDisapprovedAffiliateEmail(emailParam);
             _languageService.SetCulture(LanguageSystem.DefaultLanguage);
         }
 
-        private void SendDisapprovedAffEmail(AffInformationEmail emailParam)
+        private void SendDisapprovedAffiliateEmail(AffInformationEmail emailParam)
         {
             const string TemplateName = "AffiliateDisapproved";
             var model = new AffInformationEmail

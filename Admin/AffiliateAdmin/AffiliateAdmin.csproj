@@ -267,8 +267,6 @@
     <Compile Include="Business\Services\LogoutService.cs" />
     <Compile Include="Business\Services\UpdateAccountService.cs" />
     <Compile Include="Business\Services\UpdateAffiliateDomainService.cs" />
-    <Compile Include="Business\Services\UpdateAffiliateService.cs" />
-    <Compile Include="Business\Services\UpdateAffiliateType.cs" />
     <Compile Include="Business\Services\Update12BetDomainService.cs" />
     <Compile Include="Business\Services\UpdateDepartmentService.cs" />
     <Compile Include="Business\Services\Message\UpdateMessageService.cs" />
@@ -285,27 +283,6 @@
     </Compile>
     <Compile Include="ChangePass.aspx.designer.cs">
       <DependentUpon>ChangePass.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Customer\AffDefault.aspx.cs">
-      <DependentUpon>AffDefault.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Customer\AffDefault.aspx.designer.cs">
-      <DependentUpon>AffDefault.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Customer\AffiliateInfo.aspx.cs">
-      <DependentUpon>AffiliateInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Customer\AffiliateInfo.aspx.designer.cs">
-      <DependentUpon>AffiliateInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Customer\Statistics.aspx.cs">
-      <DependentUpon>Statistics.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Customer\Statistics.aspx.designer.cs">
-      <DependentUpon>Statistics.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -712,13 +689,6 @@
     <Compile Include="UserControl\UpdateMultiAdmins.aspx.designer.cs">
       <DependentUpon>UpdateMultiAdmins.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserInfo\AffiliateUpd.aspx.cs">
-      <DependentUpon>AffiliateUpd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\AffiliateUpd.aspx.designer.cs">
-      <DependentUpon>AffiliateUpd.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UserInfo\MemberActiveList.aspx.cs">
       <DependentUpon>MemberActiveList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -869,8 +839,6 @@
     <Content Include="App_Templates\Casino\UploadExcel.htm" />
     <Content Include="App_Templates\ChangeAdminPass.htm" />
     <Content Include="App_Templates\ChangePass.htm" />
-    <Content Include="App_Templates\Customer\AffiliateInfo.htm" />
-    <Content Include="App_Templates\Customer\Statistics.htm" />
     <Content Include="App_Templates\DateRangeSelect.html" />
     <Content Include="App_Templates\Domain\12BetDomain.html" />
     <Content Include="App_Templates\Domain\Add12BetDomain.html" />
@@ -881,160 +849,6 @@
     <Content Include="App_Templates\Domain\DomainControlUpd.htm" />
     <Content Include="App_Templates\Domain\Edit12BetDomain.html" />
     <Content Include="App_Templates\Domain\EditAffiliateDomain.html" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-GB.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-US.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-US_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_es-ES.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_hi-IN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_id-ID.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ja-JP.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ko-KR.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_th-TH.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_vi-VN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-CN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-TW.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-TW_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en-GB.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en-US.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en-US_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_es-ES.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_hi-IN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_id-ID.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_ja-JP.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_ko-KR.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_th-TH.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_vi-VN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_zh-CN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_zh-TW.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_zh-TW_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-GB.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-US.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-US_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_es-ES.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_hi-IN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_id-ID.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ja-JP.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ko-KR.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_th-TH.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_vi-VN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-CN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-TW.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-TW_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en-GB.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_es-ES.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_hi-IN.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_id-ID.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ja-JP.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ko-KR.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_th-TH.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_vi-VN.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-CN.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-TW.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-TW_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-GB.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-US.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-US_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_es-ES.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_hi-IN.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_id-ID.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ja-JP.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ko-KR.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_th-TH.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_vi-VN.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-CN.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-TW.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-TW_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-GB.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-US.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-US_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_es-ES.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_hi-IN.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_id-ID.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ja-JP.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ko-KR.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_th-TH.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_vi-VN.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-CN.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-TW.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-TW_html.htm" />
     <Content Include="App_Templates\Exchange\AffEditRate.htm" />
     <Content Include="App_Templates\Exchange\ExchangeRate.htm" />
     <Content Include="App_Templates\GotoPage.html" />
@@ -1074,43 +888,14 @@
     <Content Include="App_Templates\UserControl\ListUserInDept.htm" />
     <Content Include="App_Templates\UserControl\PolicyContent.html" />
     <Content Include="App_Templates\UserControl\PolicyHeader.html" />
-    <Content Include="App_Templates\UserInfo\AffUpd.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_en-US.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_es-ES.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_id-ID.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_th-TH.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_vi-VN.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_zh-CN.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_zh-TW.htm" />
-    <Content Include="App_Templates\UserInfo\Approved.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_es-ES.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_id-ID.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_th-TH.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_vi-VN.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_zh-CN.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_zh-TW.htm" />
     <Content Include="App_Templates\UserInfo\BetList.htm" />
     <Content Include="App_Templates\UserInfo\BetListCashOutDetail.htm" />
     <Content Include="App_Templates\UserInfo\BetListParlayDetail.htm" />
     <Content Include="App_Templates\UserInfo\BetListResults.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_es-ES.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_id-ID.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_th-TH.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_vi-VN.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_zh-CN.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_zh-TW.htm" />
     <Content Include="App_Templates\UserInfo\MemActiveList.htm" />
     <Content Include="App_Templates\UserInfo\MemberList.htm" />
     <Content Include="App_Templates\UserInfo\MemList.htm" />
     <Content Include="App_Templates\UserInfo\MemListAll.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_es-ES.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_id-ID.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_th-TH.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_vi-VN.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_zh-CN.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_zh-TW.htm" />
     <Content Include="App_Themes\Aff12bet.ico" />
     <Content Include="App_Themes\Aff12bet.png" />
     <Content Include="App_Themes\DefaultV2\common.css" />
@@ -1611,10 +1396,6 @@
     <Content Include="Content\Fanex.Result\images\goal-icon.png" />
     <Content Include="Content\tipsy\custom-tipsy.css" />
     <Content Include="Content\tipsy\tipsy.css" />
-    <Content Include="Customer\AffDefault.aspx" />
-    <Content Include="Customer\AffiliateInfo.aspx" />
-    <Content Include="Customer\blank.html" />
-    <Content Include="Customer\Statistics.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Domain\12BetDomain.aspx" />
     <Content Include="Domain\Add12BetDomain.aspx" />
@@ -1664,7 +1445,6 @@
     <Content Include="UserControl\ListUser.aspx" />
     <Content Include="UserControl\ListUserInDept.aspx" />
     <Content Include="UserControl\UpdateMultiAdmins.aspx" />
-    <Content Include="UserInfo\AffiliateUpd.aspx" />
     <Content Include="UserInfo\MemberActiveList.aspx" />
     <Content Include="UserInfo\MemberList.aspx" />
     <Content Include="UserInfo\MemberListAll.aspx" />
@@ -2062,8 +1842,6 @@
     <Content Include="Handler\ListUser.ashx" />
     <Content Include="Handler\Logout.ashx" />
     <Content Include="Handler\Banner\UpBanner.ashx" />
-    <Content Include="Handler\UpdAffInfo.ashx" />
-    <Content Include="Handler\UpdAffType.ashx" />
     <Content Include="Handler\Update12BetDomain.ashx" />
     <Content Include="Handler\UpdateAffDomain.ashx" />
     <Content Include="Handler\UpdateDepartment.ashx" />

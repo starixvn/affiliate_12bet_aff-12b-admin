@@ -10,11 +10,8 @@ export class EmailFormat extends PureComponent {
         super(props);
     }
 
-    handleChange = (event) => {
-        const value = event.target.value === '1' ? true : false;
-
-        const { userAccountInfo } = this.props;
-        const newUserAccountInfo = Object.assign({}, userAccountInfo, { MailOption: value });
+    handleChange = (isTextFormat) => {
+        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { MailOption: isTextFormat });
 
         this.props.setUserAccountInfo(newUserAccountInfo);
     }
@@ -29,12 +26,12 @@ export class EmailFormat extends PureComponent {
                     <Col sm={5}>
                         <FormGroup check className="d-inline-block mr-3">
                             <Label check>
-                                <Input type="radio" value="1" checked={isTextFormat != null && isTextFormat} onChange={this.handleChange} />{' '} Plain Text Format
+                                <Input type="radio" checked={isTextFormat != null && isTextFormat} onChange={() => this.handleChange(true)} />{' '} Plain Text Format
                             </Label>
                         </FormGroup>
                         <FormGroup check className="d-inline-block">
                             <Label check>
-                                <Input type="radio" value="0" checked={isTextFormat != null && !isTextFormat} onChange={this.handleChange} />{' '} Html Format
+                                <Input type="radio" checked={isTextFormat != null && !isTextFormat} onChange={() => this.handleChange(false)} />{' '} Html Format
                             </Label>
                         </FormGroup>
                     </Col>
