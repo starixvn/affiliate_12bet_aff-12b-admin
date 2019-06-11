@@ -17,13 +17,13 @@ export class CommissionPanel extends PureComponent {
 
         this.state = {
             isChangingCommissionGroup: false,
-            isPrivateGroup: affiliateInfo.AffName.toLowerCase() === affiliateInfo.CommGroupName.toLowerCase()
+            isPrivateGroup: affiliateInfo.AffId === affiliateInfo.GroupId
         }
     }
 
     componentDidUpdate() {
         const { affiliateInfo } = this.props;
-        const isPrivateGroup = affiliateInfo.AffName.toLowerCase() === affiliateInfo.CommGroupName.toLowerCase();
+        const isPrivateGroup = affiliateInfo.AffId === affiliateInfo.GroupId;
         this.setState({ isPrivateGroup });
     }
 

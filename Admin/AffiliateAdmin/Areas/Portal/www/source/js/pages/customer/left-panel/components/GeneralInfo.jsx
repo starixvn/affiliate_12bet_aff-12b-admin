@@ -38,7 +38,7 @@ const GeneralInfo = (props) => {
             </Row>
             <Row>
                 <Col sm={5}>{resource.Gender}</Col>
-                <Col sm={7} className='text-right'>{affiliateInfo.Gender === null ? '' : (affiliateInfo.Gender === true ? resource.Male : resource.Female)}</Col>
+                <Col sm={7} className='text-right'>{affiliateInfo.Gender === null ? '' : (affiliateInfo.Gender ? resource.Male : resource.Female)}</Col>
             </Row>
             <Row>
                 <Col sm={5} className="pr-0">{resource.ContactNumber}</Col>

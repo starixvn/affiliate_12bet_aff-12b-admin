@@ -79,7 +79,7 @@ export default class CommissionGroupPopup extends PureComponent {
                         }
                     </ModalBody>
                 </Modal>
-            </div >
+            </div>
         );
     }
 }

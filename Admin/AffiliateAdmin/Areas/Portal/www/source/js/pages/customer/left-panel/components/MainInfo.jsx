@@ -9,7 +9,7 @@ const MainInfo = (props) => {
         <div>
             <GeneralInfo />
             <PanelList />
-        </div >
+        </div>
     );
 }
 

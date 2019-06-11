@@ -56,7 +56,7 @@ export class SearchBox extends PureComponent {
                         <p className="m-0">Invalid username</p>
                     )
                 }
-            </Form >
+            </Form>
         )
     }
 }

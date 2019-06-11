@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Row, Col, Button } from 'reactstrap';
 
 import ChangePasswordForm from '../../../../common/components/ChangePasswordForm';

@@ -1,10 +1,9 @@
 import React from 'react';
 import { isActiveMenu } from '../modules/service';
 import UserPanelMenuItem from './UserPanelMenuItem';
-import { Row, Col } from 'reactstrap';
 
 const UserPanelMenu = (props) => {
-    const { selectedUserPanel, onClickMenu, isPending, menuList } = props;
+    const { selectedUserPanel, onClickMenu, menuList } = props;
     const selectedMenuItem = menuList.find(p => p.key === selectedUserPanel);
 
     return (
