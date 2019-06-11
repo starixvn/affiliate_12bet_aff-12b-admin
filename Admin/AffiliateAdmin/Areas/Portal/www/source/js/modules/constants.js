@@ -25,3 +25,5 @@ export const maxWidth = customerStatisticWidth > maxRightPanelWidth ? customerSt
 const maxUserPanelHeight = window.innerHeight - 234;
 export const spinnerLoaderWidth = (maxRightPanelWidth / 2) - 32
 export const spinnerLoaderUserPanelHeight = (maxUserPanelHeight / 2) - 32
+
+export const minDate = new Date(2009, 11, 1);
