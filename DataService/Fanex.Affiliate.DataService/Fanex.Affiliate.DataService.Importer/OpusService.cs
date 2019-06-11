@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
+using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Opus;
@@ -19,6 +21,8 @@ namespace Fanex.Affiliate.DataService.Importer
         private const int TimeRangeByMinute = 15;
 
         private const string SuccessStatus = "00";
+
+        private const string TimeDataFormat = "yyyy-MM-dd HH:mm:ss";
 
         private readonly IAppSettings _appSetting;
 
@@ -77,7 +81,8 @@ namespace Fanex.Affiliate.DataService.Importer
                 foreach (var item in fakeDataList)
                 {
                     CheckResult(item);
-                    Import(item);
+                    var convertedData = ConvertTimeZoneForRawData(item);
+                    Import(convertedData);
                 }
             }
             else
@@ -102,7 +107,8 @@ namespace Fanex.Affiliate.DataService.Importer
 
                     var rawData = GetRawData(paramByBatch);
                     CheckResult(rawData);
-                    Import(rawData);
+                    var convertedData = ConvertTimeZoneForRawData(rawData);
+                    Import(convertedData);
                 }
             }
         }
@@ -167,6 +173,36 @@ namespace Fanex.Affiliate.DataService.Importer
             if (statusCode != SuccessStatus)
             {
                 throw new ThirdPartyProductException($"Error: OPUS - ProductId: {Products.OpusProductId}\nResult:{transactionDetail.ToString()}");
+            }
+        }
+
+        private string ConvertTimeZoneForRawData(string rawData)
+        {
+            var xDoc = XmlHelper.ParseToXDocument(rawData);
+            var root = xDoc.Root;
+
+            var betHistoryList = root.Element("bets").Elements("row");
+
+            if (betHistoryList != null && betHistoryList.Any())
+            {
+                foreach (var betHistory in betHistoryList)
+                {
+                    UpdateTimeZoneData("transaction_date_time", betHistory);
+                    UpdateTimeZoneData("stamp_date", betHistory);
+                }
+            }
+
+            return xDoc.ToString();
+        }
+
+        private static void UpdateTimeZoneData(string elementName, XContainer element)
+        {
+            var timeString = element.Element(elementName)?.Value;
+            if (!string.IsNullOrEmpty(timeString))
+            {
+                var time = DateTime.ParseExact(timeString, TimeDataFormat, CultureInfo.InvariantCulture);
+                var convertedTime = DateTimeConverter.ConvertTime(time, TimeZoneId.GmtPlus8, TimeZoneId.GmtMinus4);
+                element.Element(elementName).Value = convertedTime.ToString(TimeDataFormat);
             }
         }
 

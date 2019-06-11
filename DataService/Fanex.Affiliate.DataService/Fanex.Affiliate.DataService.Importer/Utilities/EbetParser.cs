@@ -21,7 +21,8 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
                     UserName = Convert.ToString(x["username"]),
                     Bet = Convert.ToDecimal(x["bet"]),
                     PayoutUnixTime = Convert.ToInt64(x["payoutTime"]),
-                    Payout = Convert.ToDecimal(x["payout"])
+                    Payout = Convert.ToDecimal(x["payout"]),
+                    CreateUnixTime = Convert.ToInt64(x["createTime"]),
                 }) : new List<EbetHistory>()
             };
         }

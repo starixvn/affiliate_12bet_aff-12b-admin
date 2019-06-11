@@ -17,6 +17,7 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public class EbetService : IEbetService
     {
+        private const int WaitingTimeInMillisecond = 90000;
         public readonly IAppSettings _appSetting;
 
         private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
@@ -56,30 +57,35 @@ namespace Fanex.Affiliate.DataService.Importer
                 var firstJsonData = GetRawData(convertedParam);
                 var resultInfo = EbetParser.GetEbetResultInfo(firstJsonData);
 
-                result.Add(new EbetApiResult { Param = convertedParam, JsonData = firstJsonData });
+                if (resultInfo.RemainingVisits <= 1)
+                {
+                    Thread.Sleep(WaitingTimeInMillisecond);
+                    var repulledJsonData = GetRawData(convertedParam);
+                    result.Add(new EbetApiResult { Param = convertedParam, JsonData = repulledJsonData });
+                }
+                else
+                {
+                    result.Add(new EbetApiResult { Param = convertedParam, JsonData = firstJsonData });
+                }
 
                 if (resultInfo.Count > convertedParam.PageSize)
                 {
-                    var allowedCallingCount = resultInfo.RemainingVisits;
                     var totalPage = (resultInfo.Count / convertedParam.PageSize) + (resultInfo.Count % convertedParam.PageSize == 0 ? 0 : 1);
                     for (var pageIndex = 2; pageIndex <= totalPage; pageIndex++)
                     {
                         var paramByBatch = BuildParamByPageNumber(convertedParam, pageIndex);
+                        var dataByBatch = GetRawData(paramByBatch);
+                        var resultInfoByBatch = EbetParser.GetEbetResultInfo(dataByBatch);
 
-                        if (allowedCallingCount <= 0)
+                        if (resultInfoByBatch.RemainingVisits <= 1)
                         {
-                            Thread.Sleep(90000);
-                            allowedCallingCount = resultInfo.RemainingVisits;
-                        }
-                        else
-                        {
-                            allowedCallingCount--;
+                            Thread.Sleep(WaitingTimeInMillisecond);
                         }
 
                         result.Add(new EbetApiResult
                         {
                             Param = paramByBatch,
-                            JsonData = GetRawData(paramByBatch)
+                            JsonData = dataByBatch
                         });
                     }
                 }
@@ -108,7 +114,8 @@ namespace Fanex.Affiliate.DataService.Importer
                     var ebetSummary = EbetParser.FromJson(dataItem.JsonData);
                     if (ebetSummary.ResultInfo.Status != 200)
                     {
-                        throw new ThirdPartyProductException($"Error: Ebet - ProductId: {Products.EbetProductId}\n{dataItem.JsonData}\nParam:{JsonConvert.SerializeObject(param)}");
+                        var message = BuildErrorMessage(param, ebetSummary, dataItem);
+                        throw new ThirdPartyProductException(message);
                     }
 
                     var xml = ConvertToXml(ebetSummary, dataItem.Param);
@@ -117,7 +124,7 @@ namespace Fanex.Affiliate.DataService.Importer
             }
             catch (Exception ex)
             {
-                throw new ThirdPartyProductException($"Error: Ebet - ProductId: {Products.EbetProductId}\nParam:{JsonConvert.SerializeObject(param)}", ex);
+                throw new ThirdPartyProductException(ex.Message, ex);
             }
         }
 
@@ -196,11 +203,23 @@ namespace Fanex.Affiliate.DataService.Importer
             foreach (var item in ebetSummary.BetHistories)
             {
                 var payoutTime = DateTimeConverter.ToGMT(DateTimeOffset.FromUnixTimeSeconds(item.PayoutUnixTime).DateTime, TimeZoneId.GmtPlus8);
-                builder.AppendLine($"<BETHISTORY ID=\"{item.BetHistoryId}\" USERNAME=\"{item.UserName}\" BET=\"{item.Bet}\" PAYOUT=\"{item.Payout}\" PAYOUTTIME=\"{payoutTime.ToString()}\" />");
+                var createTime = DateTimeConverter.ToGMT(DateTimeOffset.FromUnixTimeSeconds(item.CreateUnixTime).DateTime, TimeZoneId.GmtPlus8);
+                builder.AppendLine($"<BETHISTORY ID=\"{item.BetHistoryId}\" USERNAME=\"{item.UserName}\" BET=\"{item.Bet}\" PAYOUT=\"{item.Payout}\" PAYOUTTIME=\"{payoutTime.ToString()}\" CREATETIME=\"{createTime.ToString()}\" />");
             }
             builder.AppendLine("</BETHISTORYLIST>");
 
             builder.AppendLine("</RESPONSE>");
+
+            return builder.ToString();
+        }
+
+        private static string BuildErrorMessage(EbetParam param, EbetSummary ebetSummary, EbetApiResult dataItem)
+        {
+            var builder = new StringBuilder();
+            builder.AppendLine($"Error: Ebet - ProductId: {Products.EbetProductId}");
+            builder.AppendLine($"Param:{JsonConvert.SerializeObject(param)}");
+            builder.AppendLine($"Result: {JsonConvert.SerializeObject(ebetSummary.ResultInfo)}");
+            builder.AppendLine($"Data: {dataItem.JsonData}");
 
             return builder.ToString();
         }

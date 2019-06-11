@@ -23,7 +23,7 @@ export default class Content extends PureComponent {
                                 <CardHeader>Raw Data</CardHeader>
                                 <CardBody>
                                     <CardText>
-                                        <Input type="textarea" readOnly value={data.RawData} rows={55} />
+                                        <Input type="textarea" readOnly value={RawData} rows={55} />
                                     </CardText>
                                 </CardBody>
                             </Card>
