@@ -3,6 +3,7 @@ export const globalResource = {
     To: 'To',
     GetAll: 'Get All',
     Search: 'Search',
+    SearchBy: 'Search By',
     All: 'All',
     Product: 'Product',
     Add: 'Add',

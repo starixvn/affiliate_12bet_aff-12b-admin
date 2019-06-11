@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import AppLayout from '../../../layouts/AppLayout';
 import Loader from '../../../components/Loader';
+import Filter from './Filter';
+import Content from './Content';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -15,7 +17,8 @@ export class AppContainer extends PureComponent {
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
-                <h2>Email History</h2>
+                <Filter />
+                <Content />
             </AppLayout>
         );
     }

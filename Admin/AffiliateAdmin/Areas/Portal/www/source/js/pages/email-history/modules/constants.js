@@ -1,13 +1,32 @@
 ﻿import { minDate } from  '../../../modules/constants';
+import { globalResource } from '../../../modules/globalResource';
 
-export { minDate }
+export { minDate, globalResource }
 
-const all = -1;
+export const all = -1;
+const sender = 0;
+const email = 1;
+const affiliate = 2;
+const unknownAffiliate = -2
 
 export const searchByList = {
-    "All": -1,
-    "Sender": 0,
-    'Email': 1,
-    'Affiliate': 2,
+    [all]: 'All',
+    [sender]: 'Sender',
+    [email]: 'Email',
+    [affiliate]: 'Affiliate',
+    [unknownAffiliate]: 'Unknown Affiliate',
+}
 
+export const resource = {
+    Delete: 'Delete',
+    Select: 'Select:',
+}
+
+export const headerText = {
+    Index: '#',
+    Sender: 'Sender',
+    Affiliate: 'Affiliate',
+    Subject: 'Subject',
+    EmailAddress: 'Email Address',
+    SentDate: 'Sent Date',
 }

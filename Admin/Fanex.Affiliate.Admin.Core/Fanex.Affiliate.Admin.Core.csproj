@@ -197,6 +197,7 @@
     <Compile Include="DTO\Customer\CustomerStatistics.cs" />
     <Compile Include="DTO\Customer\OnlineList.cs" />
     <Compile Include="DTO\DepositAccountInfo.cs" />
+    <Compile Include="DTO\EmailHistory\EmailHistoryInfo.cs" />
     <Compile Include="DTO\Email\AffInformationEmail.cs" />
     <Compile Include="DTO\Email\EmailBase.cs" />
     <Compile Include="DTO\Email\PaymentRequestUpdateEmail.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="MetaModels\Customer\UpdateClosedStatusParam.cs" />
     <Compile Include="MetaModels\Customer\UpdateLanguageParam.cs" />
     <Compile Include="MetaModels\Customer\UpdateStatusParam.cs" />
+    <Compile Include="MetaModels\EmailHistory\EmailHistoryParam.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParam.cs" />
@@ -277,6 +279,8 @@
     <Compile Include="Repository\Customer\CustomerStatisticsRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerLeftPanelRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
+    <Compile Include="Repository\EmailHistory\EmailHistoryRepository.cs" />
+    <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
     <Compile Include="Repository\Payment\IPaymentRequestRepository.cs" />
     <Compile Include="Repository\Payment\PaymentRequestRepository.cs" />
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />
@@ -372,6 +376,8 @@
     <Compile Include="Services\Common\SessionService.cs" />
     <Compile Include="Services\Customer\CustomerLeftPanelService.cs" />
     <Compile Include="Services\Customer\ICustomerLeftPanelService.cs" />
+    <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
+    <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\IAffiliateService.cs" />
     <Compile Include="Services\ICommissionGroupService.cs" />
@@ -467,6 +473,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -123,7 +123,7 @@ export class Filter extends PureComponent {
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
-                        <Label className="mr-2">{resource.SearchBy}</Label>
+                        <Label className="mr-2">{globalResource.SearchBy}</Label>
                         <Input type="select" name="searchBy" value={searchBy} onChange={this.handleChange}>
                             {
                                 searchByList.map((value, index) => {
