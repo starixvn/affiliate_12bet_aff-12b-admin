@@ -1637,7 +1637,7 @@
     <value>Validasi</value>
   </data>
   <data name="ValidationCode" xml:space="preserve">
-    <value>Anda sudah memasukkan kode validasi yang tidak valid!</value>
+    <value>Anda memasukkan kode captcha yang salah</value>
   </data>
   <data name="Venezuela" xml:space="preserve">
     <value>Venezuela </value>
@@ -2112,5 +2112,50 @@
   </data>
   <data name="TableCardGames" xml:space="preserve">
     <value>Table/Card Games</value>
+  </data>
+  <data name="DearCustomer" xml:space="preserve">
+    <value>YTH Member 12BET,</value>
+  </data>
+  <data name="DueTo" xml:space="preserve">
+    <value>Dikarenakan banyaknya melakukan kesalahan login, silahkan verifikasi tambahan keamanan Akun Anda</value>
+  </data>
+  <data name="YourRegisterEmail" xml:space="preserve">
+    <value>Anda sudah mendaftarkan email Anda &lt;strong&gt;{0}&lt;/strong&gt;. Silahkan masukkan alamat lengkap email anda di kotak bawah ini dan lalu klik send code.</value>
+  </data>
+  <data name="EmailVerification" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="SendCode" xml:space="preserve">
+    <value>Send Code</value>
+  </data>
+  <data name="EmailIsRequired" xml:space="preserve">
+    <value>Email dibutuhkan </value>
+  </data>
+  <data name="AVerificationCode" xml:space="preserve">
+    <value>Verifikasi kode sudah dikirimkan ke alamat email anda. Silahkan masukkan username, password &amp; kode verifikasi di bawah ini untuk log in. </value>
+  </data>
+  <data name="UsernameVerification" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>Username diperlukan</value>
+  </data>
+  <data name="PasswordVerification" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordIsRequired" xml:space="preserve">
+    <value>Password dibutuhkan </value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>Kode verifikasi</value>
+  </data>
+  <data name="VerificationCodeIsRequired" xml:space="preserve">
+    <value>Kode verifikasi diperlukan </value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Captcha</value>
+  </data>
+  <data name="CaptchaIsRequired" xml:space="preserve">
+    <value>Captcha diperlukan</value>
   </data>
 </root>

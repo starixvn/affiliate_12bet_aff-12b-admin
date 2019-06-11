@@ -133,7 +133,7 @@
     <value>Rekening Anda sudah ditutup. Harap menghubungi administrator Anda!</value>
   </data>
   <data name="LoginWrongInfo" xml:space="preserve">
-    <value>Nama pengguna dan kata sandi salah.</value>
+    <value>Salah username atau password</value>
   </data>
   <data name="PaymentBalanceInvalid" xml:space="preserve">
     <value>Anda tidak bisa mengajukan Penarikan karena saldo tidak cukup :(</value>
@@ -149,5 +149,14 @@
   </data>
   <data name="RequireIMAccount" xml:space="preserve">
     <value>Setidaknya 1 akun IM diperlukan</value>
+  </data>
+  <data name="VerificationFailed" xml:space="preserve">
+    <value>Kode verifikasi tidak berlaku/expired, silahkan mencoba kembali / request yang baru kembali</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Email tidak berlaku</value>
+  </data>
+  <data name="Wait60Seconds" xml:space="preserve">
+    <value>Anda harus menunggu 60 detik sebelum kode baru akan dikirimkan</value>
   </data>
 </root>

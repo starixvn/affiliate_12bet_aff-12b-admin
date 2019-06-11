@@ -2257,4 +2257,49 @@
   <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
     <value>Please enter verification code.</value>
   </data>
+  <data name="DearCustomer" xml:space="preserve">
+    <value>Dear Customer,</value>
+  </data>
+  <data name="DueTo" xml:space="preserve">
+    <value>Due to many recent failed logins, please verify one more security step.</value>
+  </data>
+  <data name="YourRegisterEmail" xml:space="preserve">
+    <value>Your registered email is &lt;strong&gt;{0}&lt;/strong&gt;. Please input the full email address in the textfield below and click send code.</value>
+  </data>
+  <data name="EmailVerification" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="SendCode" xml:space="preserve">
+    <value>Send Code</value>
+  </data>
+  <data name="EmailIsRequired" xml:space="preserve">
+    <value>Email is required</value>
+  </data>
+  <data name="AVerificationCode" xml:space="preserve">
+    <value>A verification code has been sent to your email address. Please enter your username, password and the veritication code below to log in.</value>
+  </data>
+  <data name="UsernameVerification" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>Username is required</value>
+  </data>
+  <data name="PasswordVerification" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordIsRequired" xml:space="preserve">
+    <value>Password is required</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>Verification Code</value>
+  </data>
+  <data name="VerificationCodeIsRequired" xml:space="preserve">
+    <value>Verification Code is required</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Captcha</value>
+  </data>
+  <data name="CaptchaIsRequired" xml:space="preserve">
+    <value>Captcha is required</value>
+  </data>
 </root>

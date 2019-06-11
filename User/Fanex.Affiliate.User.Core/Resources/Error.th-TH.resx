@@ -133,7 +133,7 @@
     <value>บัญชีของคุณถูดปิด กรุณาติดต่อฝ่ายบริการลูกค้า!</value>
   </data>
   <data name="LoginWrongInfo" xml:space="preserve">
-    <value>ชื่อยูสเสอร์และพาสเวิดไม่ถูกต้อง.</value>
+    <value>ชื่อผู้ใช้เข้าสู่ระบบ หรือ รหัสผ่านที่กรอกไม่ถูกต้องค่ะ</value>
   </data>
   <data name="PaymentBalanceInvalid" xml:space="preserve">
     <value>คุณไม่สามารถขอถอนเงินเพราะว่าคุณมียอดเงินคงเหลือไม่เพียงพอ</value>
@@ -149,5 +149,14 @@
   </data>
   <data name="RequireIMAccount" xml:space="preserve">
     <value>อย่างน้อยคุณต้องระบุบัญชีแอพฯแชทออนไลน์หนึ่งบัญชีค่ะ</value>
+  </data>
+  <data name="VerificationFailed" xml:space="preserve">
+    <value>คุณกรอกรหัสยืนยันไม่ถูกต้อง/หรือกรอกรหัสช้าเกินกว่าที่ระบบกำหนด, โปรดลองอีกครั้งหรือทำการขอรหัสยืนยันความปลอดภัยส่งเข้าอีเมล์อีกครั้งค่ะ</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>อีเมล์ที่กรอกไม่ถูกต้อง</value>
+  </data>
+  <data name="Wait60Seconds" xml:space="preserve">
+    <value>คุณต้องรออีก 60 วินาทีก่อนที่จะส่งขอรหัสยืนยันอีกครั้ง</value>
   </data>
 </root>

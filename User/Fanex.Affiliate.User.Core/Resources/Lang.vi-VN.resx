@@ -1637,7 +1637,7 @@
     <value>Xác Thực</value>
   </data>
   <data name="ValidationCode" xml:space="preserve">
-    <value>Bạn đã nhập một mã xác thực không hợp lệ!</value>
+    <value>Mã xác thực không chính xác!</value>
   </data>
   <data name="Venezuela" xml:space="preserve">
     <value>Venezuela </value>
@@ -2109,5 +2109,50 @@
   </data>
   <data name="TableCardGames" xml:space="preserve">
     <value>Table/Card Games</value>
+  </data>
+  <data name="DearCustomer" xml:space="preserve">
+    <value>Kính Chào Quý Khách,</value>
+  </data>
+  <data name="DueTo" xml:space="preserve">
+    <value>Vì lý do có nhiều hoạt động cố gắng đăng nhập không thành công, vui lòng thực hiện bước xác minh sau đây để đảm bảo an toàn cho tài khoản của Quý Khách.</value>
+  </data>
+  <data name="YourRegisterEmail" xml:space="preserve">
+    <value>Địa chỉ email đăng ký của Quý Khách là &lt;strong&gt;{0}&lt;/strong&gt;. Vui lòng nhập địa chỉ email vào ô bên dưới và nhấp Gửi Mã xác nhận.</value>
+  </data>
+  <data name="EmailVerification" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="SendCode" xml:space="preserve">
+    <value>Gửi Mã Xác Nhận</value>
+  </data>
+  <data name="EmailIsRequired" xml:space="preserve">
+    <value>Email bắt buộc</value>
+  </data>
+  <data name="AVerificationCode" xml:space="preserve">
+    <value>Một mã xác nhận đã được gửi đến email của Quý Khách. Vui lòng điền tên đăng nhập, mật khẩu và mã xác nhận bên dưới để đăng nhập.</value>
+  </data>
+  <data name="UsernameVerification" xml:space="preserve">
+    <value>Tên đăng nhập</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>Tên đăng nhập bắt buộc</value>
+  </data>
+  <data name="PasswordVerification" xml:space="preserve">
+    <value>Mật khẩu</value>
+  </data>
+  <data name="PasswordIsRequired" xml:space="preserve">
+    <value>Mật khẩu bắt buộc</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>Mã xác nhận</value>
+  </data>
+  <data name="VerificationCodeIsRequired" xml:space="preserve">
+    <value>Mã xác nhận bắt buộc</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Mã xác thực</value>
+  </data>
+  <data name="CaptchaIsRequired" xml:space="preserve">
+    <value>Mã xác thực bắt buộc</value>
   </data>
 </root>

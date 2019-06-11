@@ -1646,7 +1646,7 @@
     <value>验证码</value>
   </data>
   <data name="ValidationCode" xml:space="preserve">
-    <value>验证码无效！</value>
+    <value>验证码错误！</value>
   </data>
   <data name="Venezuela" xml:space="preserve">
     <value>委内瑞拉</value>
@@ -2115,5 +2115,50 @@
   </data>
   <data name="TableCardGames" xml:space="preserve">
     <value>桌面/纸牌游戏</value>
+  </data>
+  <data name="DearCustomer" xml:space="preserve">
+    <value>敬爱的顾客，</value>
+  </data>
+  <data name="DueTo" xml:space="preserve">
+    <value>该账户出现登录失败次数过多，出于安全考虑，请协助核实步骤。</value>
+  </data>
+  <data name="YourRegisterEmail" xml:space="preserve">
+    <value>您注册的电子电邮是&lt;strong&gt;{0}&lt;/strong&gt;，请在下方输入完整的邮箱地址，然后点击发送验证码。</value>
+  </data>
+  <data name="EmailVerification" xml:space="preserve">
+    <value>电子邮箱</value>
+  </data>
+  <data name="SendCode" xml:space="preserve">
+    <value>发送邮箱验证码</value>
+  </data>
+  <data name="EmailIsRequired" xml:space="preserve">
+    <value>请输入电子邮箱</value>
+  </data>
+  <data name="AVerificationCode" xml:space="preserve">
+    <value>验证码已发送到电子邮箱地址。 请输入您的用户名、密码和邮箱验证码进行登录。</value>
+  </data>
+  <data name="UsernameVerification" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>请输入用户名</value>
+  </data>
+  <data name="PasswordVerification" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="PasswordIsRequired" xml:space="preserve">
+    <value>请输入密码</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>邮箱验证码</value>
+  </data>
+  <data name="VerificationCodeIsRequired" xml:space="preserve">
+    <value>请输入邮箱验证码</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>验证码</value>
+  </data>
+  <data name="CaptchaIsRequired" xml:space="preserve">
+    <value>请填写验证码</value>
   </data>
 </root>

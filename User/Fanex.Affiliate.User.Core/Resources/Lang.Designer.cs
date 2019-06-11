@@ -421,6 +421,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A verification code has been sent to your email address. Please enter your username, password and the veritication code below to log in..
+        /// </summary>
+        public static string AVerificationCode {
+            get {
+                return ResourceManager.GetString("AVerificationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Azerbaijan .
         /// </summary>
         public static string Azerbaijan {
@@ -876,6 +885,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CapeVerde {
             get {
                 return ResourceManager.GetString("CapeVerde", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Captcha.
+        /// </summary>
+        public static string Captcha {
+            get {
+                return ResourceManager.GetString("Captcha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Captcha is required.
+        /// </summary>
+        public static string CaptchaIsRequired {
+            get {
+                return ResourceManager.GetString("CaptchaIsRequired", resourceCulture);
             }
         }
         
@@ -1468,6 +1495,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dear Customer,.
+        /// </summary>
+        public static string DearCustomer {
+            get {
+                return ResourceManager.GetString("DearCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to December.
         /// </summary>
         public static string December {
@@ -1576,6 +1612,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Due to many recent failed logins, please verify one more security step..
+        /// </summary>
+        public static string DueTo {
+            get {
+                return ResourceManager.GetString("DueTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ecuador .
         /// </summary>
         public static string Ecuador {
@@ -1648,6 +1693,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email is required.
+        /// </summary>
+        public static string EmailIsRequired {
+            get {
+                return ResourceManager.GetString("EmailIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email Address.
         /// </summary>
         public static string EmailSignup {
@@ -1698,6 +1752,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string EmailTittleVerificationAccount {
             get {
                 return ResourceManager.GetString("EmailTittleVerificationAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string EmailVerification {
+            get {
+                return ResourceManager.GetString("EmailVerification", resourceCulture);
             }
         }
         
@@ -3977,6 +4040,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password is required.
+        /// </summary>
+        public static string PasswordIsRequired {
+            get {
+                return ResourceManager.GetString("PasswordIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string PasswordVerification {
+            get {
+                return ResourceManager.GetString("PasswordVerification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, amount is invalid..
         /// </summary>
         public static string PaymentErr1001 {
@@ -4882,6 +4963,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SelectOne {
             get {
                 return ResourceManager.GetString("SelectOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Code.
+        /// </summary>
+        public static string SendCode {
+            get {
+                return ResourceManager.GetString("SendCode", resourceCulture);
             }
         }
         
@@ -5814,11 +5904,29 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Username is required.
+        /// </summary>
+        public static string UsernameIsRequired {
+            get {
+                return ResourceManager.GetString("UsernameIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string UsernameSignUp {
             get {
                 return ResourceManager.GetString("UsernameSignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string UsernameVerification {
+            get {
+                return ResourceManager.GetString("UsernameVerification", resourceCulture);
             }
         }
         
@@ -5855,6 +5963,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Venezuela {
             get {
                 return ResourceManager.GetString("Venezuela", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verification Code.
+        /// </summary>
+        public static string VerificationCode {
+            get {
+                return ResourceManager.GetString("VerificationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verification Code is required.
+        /// </summary>
+        public static string VerificationCodeIsRequired {
+            get {
+                return ResourceManager.GetString("VerificationCodeIsRequired", resourceCulture);
             }
         }
         
@@ -6062,6 +6188,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Yourlogindetail {
             get {
                 return ResourceManager.GetString("Yourlogindetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your registered email is &lt;strong&gt;{0}&lt;/strong&gt;. Please input the full email address in the textfield below and click send code..
+        /// </summary>
+        public static string YourRegisterEmail {
+            get {
+                return ResourceManager.GetString("YourRegisterEmail", resourceCulture);
             }
         }
         

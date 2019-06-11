@@ -76,7 +76,7 @@ var VerificationAccount = (function () {
     function toggleMessageForEmail(isValid) {
         $('#emailGroup').toggleClass('has-error', !isValid);
         $('#emailValidationMessage').toggleClass('hide', isValid);
-        $('#emailValidationMessage').text("Invalid email.");
+        $('#emailValidationMessage').html(resource.invalidEmail);
     }
 
     var _me = {
@@ -146,10 +146,10 @@ var VerificationAccount = (function () {
                             _me.countDown(INTERVAL_SENDCODE_SECOND);
                             
                             if (!response.CanSendCode) {
-                                alert(resource.wait60Seconds);
+                                alert($("<div/>").html(resource.wait60Seconds).text());
                             }
                         } else {
-                            alert(resource.invalidEmail);
+                            alert($("<div/>").html(resource.invalidEmail).text());
                         }
 
                         $('#VerificationToken').val(response.VerificationToken);
@@ -220,11 +220,11 @@ var VerificationAccount = (function () {
                             Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
                         }
                         else if (response.IsExpired) {
-                            alert(resource.verificationFailed);
+                            alert($("<div/>").html(resource.verificationFailed).text());
                         }
                         else {
-                            var message = response.Message || resource.General;
-                            message && alert(message);
+                            var message = response.Message || resource.general;
+                            alert(message);
                             updateAction(response.Action);
                             _me.generateCaptcha();
                             registerRefreshCaptcha();

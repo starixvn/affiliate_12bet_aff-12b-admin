@@ -20,7 +20,7 @@
             <script type="text/javascript">
                 var resource = {
                     verificationFailed: '@Error.VerificationFailed',
-                    message: '@Error.General',
+                    general: '@Error.General',
                     invalidEmail: '@Error.InvalidEmail',
                     wait60Seconds: '@Error.Wait60Seconds',
                 }
@@ -30,52 +30,52 @@
         }
         <div class="content verification-account">
             <br />
-            <p>Dear Customer,</p>
-            <p>Due to many recent failed logins, please verify one more security step.</p>
-            <p>Your registered email is <strong>@email</strong>. Please input the full email address in the textfield below and click send code.</p>
+            <p>@Lang.DearCustomer</p>
+            <p>@Lang.DueTo</p>
+            <p>@Html.Raw(string.Format(Lang.YourRegisterEmail, email))</p>
             <form id="sendCodeForm">
                 <div class="form-group row" id="emailGroup">
-                    <label for="Email" class="col-sm-2 control-label require">Email</label>
+                    <label for="Email" class="col-sm-2 control-label require">@Lang.EmailVerification</label>
                     <div class="col-sm-4 col-lg-3">
-                        <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="Email is required" id="Email" name="Email" />
+                        <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.EmailIsRequired" id="Email" name="Email" />
                         <span class="help-block field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" id="emailValidationMessage"></span>
                     </div>
-                    <button type="button" class="btn btn-sendcode" id="btnSendCode">SEND CODE</button>
+                    <button type="button" class="btn btn-sendcode" id="btnSendCode">@Lang.SendCode</button>
                 </div>
             </form>
             <div class="hide" id="verificationAccountGroup">
-                <p>A verification code has been sent to your email address. Please enter your username, password and the veritication code below to log in.</p>
+                <p>@Lang.AVerificationCode</p>
                 <br />
                 <form id="verificationAccountForm">
                     @Html.AntiForgeryToken()
                     <div class="form-group row">
-                        <label for="Usename" class="col-sm-2 control-label require">Username</label>
+                        <label for="Usename" class="col-sm-2 control-label require">@Lang.UsernameVerification</label>
                         <div class="col-sm-4 col-lg-3">
-                            <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="Username is required" id="Usename" name="Usename" />
+                            <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.UsernameIsRequired" id="Usename" name="Usename" />
                             <span class="field-validation-valid help-block" data-valmsg-for="Usename" data-valmsg-replace="true"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="Password" class="col-sm-2 control-label require">Password</label>
+                        <label for="Password" class="col-sm-2 control-label require">@Lang.PasswordVerification</label>
                         <div class="col-sm-4 col-lg-3">
-                            <input type="password" class="form-control" data-val="true" data-val-required="Password is required" id="Password" name="Password" autocomplete="off" />
+                            <input type="password" class="form-control" data-val="true" data-val-required="@Lang.PasswordIsRequired" id="Password" name="Password" autocomplete="off" />
                             <span class="field-validation-valid help-block" data-valmsg-for="Password" data-valmsg-replace="true"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="Code" class="col-sm-2 control-label require">Verification Code</label>
+                        <label for="Code" class="col-sm-2 control-label require">@Lang.VerificationCode</label>
                         <div class="col-sm-4 col-lg-3">
-                            <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="Verification Code is required" id="Code" name="Code" />
+                            <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.VerificationCodeIsRequired" id="Code" name="Code" />
                             <span class="field-validation-valid help-block" data-valmsg-for="Code" data-valmsg-replace="true"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="Captcha" class="col-sm-2 control-label require">Captcha</label>
+                        <label for="Captcha" class="col-sm-2 control-label require">@Lang.Captcha</label>
                         <div class="col-sm-4 col-lg-3">
-                            <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="Captcha is required" id="Captcha" name="Captcha" />
+                            <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.CaptchaIsRequired" id="Captcha" name="Captcha" />
                             <span class="field-validation-valid help-block" data-valmsg-for="Captcha" data-valmsg-replace="true"></span>
                         </div>
                         <div class="validation-value">
