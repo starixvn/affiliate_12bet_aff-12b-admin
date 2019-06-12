@@ -1,1 +1,512 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[27],{350:function(e,t,n){var r;window,e.exports=(r=n(0),function(e){var t={};function n(r){if(t[r])return t[r].exports;var a=t[r]={i:r,l:!1,exports:{}};return e[r].call(a.exports,a,a.exports,n),a.l=!0,a.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var a in e)n.d(r,a,function(t){return e[t]}.bind(null,a));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/dist/",n(n.s=5)}([function(e,t){e.exports=r},function(e,t,n){e.exports=n(7)()},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.defaultMinYear=2e3,t.getCurrentDate=function(){return new Date}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a=l(n(0)),o=l(n(1)),c=n(2);function l(e){return e&&e.__esModule?e:{default:e}}var i=function(e){function t(e){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t);var n=function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.handleSelect=function(e){var t=e.target.value;n.props.onSelect(Number(t))},n}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,a.default.Component),r(t,[{key:"_getYearList",value:function(){var e=this.props,t=e.minYear,n=e.maxYear;if(t>(n=n||(0,c.getCurrentDate)().getFullYear())){var r=t;t=n,n=r}for(var a=[],o=n;o>=t;o--)a.push(o);return a}},{key:"render",value:function(){var e=this.props.selectedDropdownYear,t=this._getYearList(),n=e||t.length&&t[0];return a.default.createElement("div",{className:"mp-header"},a.default.createElement("select",{className:"mp-select-year",value:n,onChange:this.handleSelect},t.map(function(e){return a.default.createElement("option",{key:e,value:e},e)})))}}]),t}();i.propTypes={minYear:o.default.number,maxYear:o.default.number,selectedDropdownYear:o.default.number,onSelect:o.default.func},i.defaultProps={minYear:c.defaultMinYear,onSelect:function(){}},t.default=i},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a=l(n(0)),o=l(n(1)),c=n(2);function l(e){return e&&e.__esModule?e:{default:e}}var i=function(e){function t(e){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t);var n=function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n._renderMonth=function(){for(var e=n.props.monthNames,t=[],r=0;r<e.length;r++){var a=e[r];t.push(n._buildRow(a,r))}return t},n}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,a.default.Component),r(t,[{key:"_buildRow",value:function(e,t){var n=this,r=this.props,o=r.selectedDropdownYear,l=r.selectedYear,i=void 0===this.props.selectedMonth?(0,c.getCurrentDate)().getMonth():this.props.selectedMonth;return a.default.createElement("tr",{key:t,className:"mp-row"},e.map(function(r,c){var u=t*e.length+c,s=n.props.hasRange&&!n._isInRange(u),f=s?"mp-disabled":"",d=o===l&&i===u?"mp-active":"";return a.default.createElement("td",{key:r},a.default.createElement("button",{type:"button",className:"mp-btn-month "+f+" "+d,onClick:function(){return!s&&n.props.onSelect(u)}},r))}))}},{key:"_isInRange",value:function(e){var t=this.props,n=t.minMonth,r=t.minYear,a=t.maxMonth,o=t.maxYear,l=t.selectedDropdownYear,i=(0,c.getCurrentDate)();return o=o||i.getFullYear(),a=a?a-1:i.getMonth(),((l=l||i.getFullYear())>r||l===r&&e>=n-1)&&(l<o||l===o&&e<=a)}},{key:"render",value:function(){return a.default.createElement("table",{className:"mp-month-table"},a.default.createElement("tbody",null,this._renderMonth()))}}]),t}();i.propTypes={monthNames:o.default.arrayOf(o.default.arrayOf(o.default.string)),minMonth:o.default.number,minYear:o.default.number,maxMonth:o.default.number,maxYear:o.default.number,selectedDropdownYear:o.default.number,selectedYear:o.default.number,selectedMonth:o.default.number,hasRange:o.default.bool},i.defaultProps={hasRange:!0,monthNames:[["Jan","Feb","Mar"],["Apr","May","Jun"],["Jul","Aug","Sep"],["Oct","Nov","Dec"]],minMonth:1,minYear:c.defaultMinYear,onSelect:function(){}},t.default=i},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.YearSelector=t.MonthList=void 0;var r=c(n(6)),a=c(n(4)),o=c(n(3));function c(e){return e&&e.__esModule?e:{default:e}}t.MonthList=a.default,t.YearSelector=o.default,t.default=r.default},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a=u(n(0)),o=u(n(1)),c=n(2),l=u(n(3)),i=u(n(4));function u(e){return e&&e.__esModule?e:{default:e}}var s=function(e){function t(e){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t);var n=function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));f.call(n);var r=n.props,o=r.open,l=r.selectedDropdownYear,i=r.selectedMonth,u=r.selectedYear,s=(0,c.getCurrentDate)(),d=l||s.getFullYear();return n.state={open:o,selectedDropdownYear:d,selectedYear:u||d,selectedMonth:i?i-1:s.getMonth()},n.container=a.default.createRef(),n}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,a.default.Component),r(t,[{key:"componentDidMount",value:function(){document.addEventListener("click",this.handleClickOutSide,!0)}},{key:"componentWillUnmount",value:function(){document.removeEventListener("click",this.handleClickOutSide,!0)}},{key:"componentDidUpdate",value:function(e,t){var n=this.props,r=n.selectedDropdownYear,a=n.selectedMonth,o=n.selectedYear;a===e.selectedMonth&&o===e.selectedYear&&r===e.selectedDropdownYear||this.setState({selectedYear:r,selectedMonth:a-1,selectedDropdownYear:r})}},{key:"render",value:function(){var e=this.state,t=e.open,n=e.selectedDropdownYear,r=e.selectedYear,o=e.selectedMonth,c=this.props,u=c.monthNames,s=c.hasRange,f=c.minMonth,d=c.minYear,p=c.maxMonth,h=c.maxYear,m=c.isReadonly,b=c.onFormat,y=c.iconElement,v=c.enable,w=b(o+1,r),g=v?"mp-form-container":"mp-form-container disable";return a.default.createElement("div",{className:"rmp-main-container"},a.default.createElement("div",{className:g,onClick:this.toggle},a.default.createElement("input",{type:"text",className:"mp-form-input",value:w,readOnly:m}),y),a.default.createElement("div",{className:"mp-container",style:{display:t?"block":"none"},ref:this.container},a.default.createElement(l.default,{minYear:d,maxYear:h,selectedDropdownYear:n,onSelect:this.handleChangeYear}),a.default.createElement(i.default,{monthNames:u,hasRange:s,selectedDropdownYear:n,selectedMonth:o,selectedYear:r,minMonth:f,minYear:d,maxMonth:p,maxYear:h,onSelect:this.handleSelectMonth})))}}]),t}();s.propTypes={open:o.default.bool,minMonth:o.default.number,minYear:o.default.number,maxMonth:o.default.number,maxYear:o.default.number,monthNames:o.default.arrayOf(o.default.arrayOf(o.default.string)),hasRange:o.default.bool,selectedDropdownYear:o.default.number,selectedMonth:o.default.number,onSelect:o.default.func,onFormat:o.default.func,isReadonly:o.default.bool,iconElement:o.default.any,enable:o.default.bool},s.defaultProps={open:!1,onSelect:function(){},onFormat:function(e,t){return(e<10?"0"+e:e)+"/"+t},isReadonly:!0,enable:!0};var f=function(){var e=this;this.toggle=function(){e.props.enable&&e.setState(function(e){return{open:!e.open}})},this.handleChangeYear=function(t){e.setState({selectedDropdownYear:t})},this.handleSelectMonth=function(t){var n=e.state.selectedDropdownYear;e.setState({selectedMonth:t,selectedYear:n,open:!1},function(){return e.props.onSelect(t+1,n)})},this.handleClickOutSide=function(t){var n=e.container.current;n&&!n.contains(t.target)&&e.state.open&&e.setState({open:!1})}};t.default=s},function(e,t,n){"use strict";var r=n(8);function a(){}e.exports=function(){function e(e,t,n,a,o,c){if(c!==r){var l=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw l.name="Invariant Violation",l}}function t(){return e}e.isRequired=e;var n={array:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:t,element:e,instanceOf:t,node:e,objectOf:t,oneOf:t,oneOfType:t,shape:t,exact:t};return n.checkPropTypes=a,n.PropTypes=n,n}},function(e,t,n){"use strict";e.exports="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED"}]))},438:function(e,t,n){"use strict";n.d(t,"c",function(){return c}),n.d(t,"b",function(){return l}),n.d(t,"a",function(){return i});var r,a=n(2),o=n.n(a),c="PC/Laptop",l="Mobile",i=(r={},o()(r,c,0),o()(r,l,1),r)},646:function(e,t,n){"use strict";n.r(t);var r=n(17),a=n.n(r),o=n(0),c=n.n(o),l=n(38),i=n(219),u=n(108),s=n(37),f=n.n(s),d=n(20),p=n.n(d),h=n(29),m=n.n(h),b=n(10),y=n.n(b),v=n(11),w=n.n(v),g=n(12),M=n.n(g),_=n(13),O=n.n(_),Y=n(7),k=n.n(Y),j=n(14),S=n.n(j),D=n(2),E=n.n(D),T=n(26),C=n(350),P=n.n(C),R=n(1),x="Statistics",N="Up To Now",L="New Signups/FDM",F="Total Active Players",B="Total Qualified Active Players",I="Total Deposits",U="Turnover",A="Winlost",q="Tracking Rate (Unique/Total)",J="Tracking Rate for PC/Laptop (Unique/Total) New!!!!!",W="Tracking Rate for Mobile (Unique/Total) New!!!!!",H="N/A",G=n(233),Q=n(45),V=n(217),z=n(438),K=n(371),X=n(42),Z=function(e){return{type:K.a,data:e}},$=function(e){return{type:K.b,data:e}},ee=function(e){return m()(p.a.mark(function t(){var n;return p.a.wrap(function(t){for(;;)switch(t.prev=t.next){case 0:return"Portal/CustomerStatistics/GetCustomerStatistics",t.next=3,Object(X.a)("Portal/CustomerStatistics/GetCustomerStatistics",e);case 3:return n=t.sent,t.abrupt("return",n&&200===n.status?n.data:null);case 5:case"end":return t.stop()}},t)}))},te=function(e){function t(e){var n;return y()(this,t),n=M()(this,O()(t).call(this,e)),E()(k()(n),"fetchData",function(){var e=m()(p.a.mark(function e(t){var r,a,o;return p.a.wrap(function(e){for(;;)switch(e.prev=e.next){case 0:return n.props.setMonthDate(t),n.props.toggleLoaderCustomerStatistics(!0),r=n.props.affId,a={monthDate:t,affId:r},e.next=6,n.props.fetchData(a);case 6:o=e.sent,n.setState({data:o}),n.props.toggleLoaderCustomerStatistics(!1);case 9:case"end":return e.stop()}},e)}));return function(t){return e.apply(this,arguments)}}()),E()(k()(n),"handleSelectMonth",function(e,t){var r,a=f()(r="".concat(e,"/1/")).call(r,t);n.fetchData(a)}),E()(k()(n),"handleFormatMonthPicker",function(e,t){var n;return f()(n="".concat(G.g[e-1],"-")).call(n,t)}),n.state={data:null},n}return S()(t,e),w()(t,[{key:"componentDidMount",value:function(){this.fetchData(this.props.today)}},{key:"componentDidUpdate",value:function(e){var t=this.props,n=t.affId,r=t.today;e.affId!==n&&this.fetchData(r)}},{key:"_renderHeader",value:function(e){return c.a.createElement("thead",null,c.a.createElement("tr",null,c.a.createElement("th",null,x),c.a.createElement("th",{style:{overflow:"visible"}},c.a.createElement("div",{className:"position-relative"},c.a.createElement(P.a,{minMonth:G.c.month,minYear:G.c.year,selectedDropdownYear:e.getFullYear(),selectedMonth:e.getMonth()+1,onSelect:this.handleSelectMonth,onFormat:this.handleFormatMonthPicker,iconElement:c.a.createElement("span",{className:"oi oi-calendar icon-calendar ml-1"})}))),c.a.createElement("th",null,N)))}},{key:"_renderData",value:function(e,t){var n,r,a,o,l,i=this,u=Object(Q.c)(t.DepositByMonth),s=Object(Q.c)(t.DepositTotal),d=Object(Q.c)(t.TurnoverByMonth),p=Object(Q.c)(t.TurnoverTotal),h=Object(Q.c)(t.WinlostByMonth),m=Object(Q.c)(t.WinlostTotal),b=f()(n="".concat(e.getMonth()+1,"/1/")).call(n,e.getFullYear()),y=new Date(e.getFullYear(),e.getMonth()+1,0),v=f()(r=f()(a="".concat(y.getMonth()+1,"/")).call(a,y.getDate(),"/")).call(r,y.getFullYear());return c.a.createElement("tbody",null,this._buildRow(L,f()(o="".concat(Object(Q.a)(t.NewSignUpByMonth),"/")).call(o,Object(Q.a)(t.NewFdmByMonth)),f()(l="".concat(Object(Q.a)(t.NewSignUpTotal),"/")).call(l,Object(Q.a)(t.NewFdmTotal))),this._buildRow(F,t.ActivePlayerByMonth>0?c.a.createElement("a",{href:"javascript:;",onClick:function(){return i.props.redirectToPlayerDetail({productId:G.f,monthDate:b,isClickLink:!0})}},Object(Q.a)(t.ActivePlayerByMonth)):Object(Q.a)(t.ActivePlayerByMonth),H),this._buildRow(B,Object(Q.a)(t.QualifiedMemberByMonth),H),this._buildRow(I,u,s),this._buildRow(U,d,p),this._buildRow(A,h,m),this._buildRow(q,c.a.createElement("a",{href:"javascript:;",onClick:function(){return i.props.redirectToTrackingStatistics({isClickLink:!0})}},Object(Q.a)(t.UniqueClickByMonth),"/",Object(Q.a)(t.TotalClickByMonth)),H),this._buildRow(J,c.a.createElement("a",{href:"javascript:;",onClick:function(){return i.props.redirectToReferrers({fromDate:b,toDate:v,deviceType:z.a[z.c],isClickLink:!0})}},Object(Q.a)(t.UniqueClickPcLaptopByMonth),"/",Object(Q.a)(t.TotalClickPcLaptopByMonth)),H),this._buildRow(W,c.a.createElement("a",{href:"javascript:;",onClick:function(){return i.props.redirectToReferrers({fromDate:b,toDate:v,deviceType:z.a[z.b],isClickLink:!0})}},Object(Q.a)(t.UniqueClickMobileByMonth),"/",Object(Q.a)(t.TotalClickMobileByMonth)),H))}},{key:"_buildRow",value:function(e,t,n){return c.a.createElement("tr",{key:e},c.a.createElement("td",{className:"font-weight-bold"},e),c.a.createElement("td",{className:"text-right"},t),c.a.createElement("td",{className:"text-right"},n))}},{key:"render",value:function(){var e=this.state.data,t=new Date(this.props.monthDate);return e&&c.a.createElement("div",{className:"my-2"},c.a.createElement(R.Table,{id:"statistic-data-table"},this._renderHeader(t),this._renderData(t,e)))}}]),t}(o.PureComponent);var ne=Object(l.connect)(function(e){var t=e.affCommonInfo,n=e.today,r=e.customerStatistics,o=t.affId;return a()({},{monthDate:r.monthDate,today:n,affId:o})},function(e){return Object(T.bindActionCreators)({setMonthDate:Z,toggleLoaderCustomerStatistics:$,redirectToPlayerDetail:V.c,redirectToTrackingStatistics:V.e,redirectToReferrers:V.d,fetchData:ee},e)})(te);t.default=Object(l.connect)(function(e){var t=e.customerStatistics.isShowLoader;return a()({},{isShowLoader:t})})(c.a.memo(function(e){return c.a.createElement(u.a,null,c.a.createElement(i.a,{show:e.isShowLoader,style:{left:G.i}}),c.a.createElement(ne,null))}))}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["customer-statistics"],{
+
+/***/ "./Areas/Portal/www/source/js/modules/numberFormat.js":
+/*!************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/modules/numberFormat.js ***!
+  \************************************************************/
+/*! exports provided: formatDecimal, format, formatDecimalWithCurrencySymbol, round */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDecimal", function() { return formatDecimal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "format", function() { return format; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDecimalWithCurrencySymbol", function() { return formatDecimalWithCurrencySymbol; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "round", function() { return round; });
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
+
+function formatDecimal(value) {
+  return format(value, 2);
+}
+function format(value) {
+  var digits = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+  if (typeof value !== "number" || isNaN(value)) {
+    return "";
+  }
+
+  var roundedValue = round(value, digits);
+  return roundedValue.toFixed(digits).replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
+}
+function formatDecimalWithCurrencySymbol(value) {
+  var _context, _context2;
+
+  var currencySymbol = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "$";
+  return value < 0 ? _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = "-".concat(currencySymbol)).call(_context, formatDecimal(Math.abs(value))) : _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = "".concat(currencySymbol)).call(_context2, formatDecimal(value));
+}
+function round(value, digits) {
+  var sign = value < 0 ? -1 : 1;
+  var absoluteValue = Math.abs(value);
+  var rounded = Number(Math.round(absoluteValue + 'e' + digits) + 'e-' + digits);
+  return sign * rounded;
+}
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/customer/customer-statistics/actions/index.js":
+/*!****************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/customer/customer-statistics/actions/index.js ***!
+  \****************************************************************************************/
+/*! exports provided: setMonthDate, toggleLoaderCustomerStatistics, fetchData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setMonthDate", function() { return setMonthDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleLoaderCustomerStatistics", function() { return toggleLoaderCustomerStatistics; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchData", function() { return fetchData; });
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./types */ "./Areas/Portal/www/source/js/pages/customer/customer-statistics/actions/types.js");
+/* harmony import */ var _modules_ajaxRequest__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../modules/ajaxRequest */ "./Areas/Portal/www/source/js/modules/ajaxRequest.js");
+
+
+
+
+var setMonthDate = function setMonthDate(data) {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_2__["SET_MONTHDATE"],
+    data: data
+  };
+};
+var toggleLoaderCustomerStatistics = function toggleLoaderCustomerStatistics(data) {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_2__["TOGGLE_LOADER_CUSTOMER_STATISTICS"],
+    data: data
+  };
+};
+var fetchData = function fetchData(param) {
+  return (
+    /*#__PURE__*/
+    _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+    /*#__PURE__*/
+    _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var url, response;
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              url = 'Portal/CustomerStatistics/GetCustomerStatistics';
+              _context.next = 3;
+              return Object(_modules_ajaxRequest__WEBPACK_IMPORTED_MODULE_3__["post"])(url, param);
+
+            case 3:
+              response = _context.sent;
+              return _context.abrupt("return", response && response.status === 200 ? response.data : null);
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))
+  );
+};
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/customer/customer-statistics/components/AppContainer.jsx":
+/*!***************************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/customer/customer-statistics/components/AppContainer.jsx ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/Loader */ "./Areas/Portal/www/source/js/components/Loader.jsx");
+/* harmony import */ var _layouts_AppLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../layouts/AppLayout */ "./Areas/Portal/www/source/js/layouts/AppLayout.jsx");
+/* harmony import */ var _Content__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Content */ "./Areas/Portal/www/source/js/pages/customer/customer-statistics/components/Content.jsx");
+/* harmony import */ var _modules_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../modules/constants */ "./Areas/Portal/www/source/js/modules/constants.js");
+
+
+
+
+
+
+
+
+var AppContainer = function AppContainer(props) {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_layouts_AppLayout__WEBPACK_IMPORTED_MODULE_4__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Loader__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    show: props.isShowLoader,
+    style: {
+      left: _modules_constants__WEBPACK_IMPORTED_MODULE_6__["spinnerLoaderWidth"]
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Content__WEBPACK_IMPORTED_MODULE_5__["default"], null));
+};
+
+function mapStateToProps(_ref) {
+  var customerStatistics = _ref.customerStatistics;
+  var isShowLoader = customerStatistics.isShowLoader;
+  return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, {
+    isShowLoader: isShowLoader
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps)(react__WEBPACK_IMPORTED_MODULE_1___default.a.memo(AppContainer)));
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/customer/customer-statistics/components/Content.jsx":
+/*!**********************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/customer/customer-statistics/components/Content.jsx ***!
+  \**********************************************************************************************/
+/*! exports provided: Content, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Content", function() { return Content; });
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs3/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/getPrototypeOf */ "./node_modules/@babel/runtime-corejs3/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/assertThisInitialized */ "./node_modules/@babel/runtime-corejs3/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/inherits */ "./node_modules/@babel/runtime-corejs3/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _9softstudio_react_monthpicker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @9softstudio/react-monthpicker */ "./node_modules/@9softstudio/react-monthpicker/dist/index.js");
+/* harmony import */ var _9softstudio_react_monthpicker__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_monthpicker__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _modules_constants__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../modules/constants */ "./Areas/Portal/www/source/js/pages/customer/customer-statistics/modules/constants.js");
+/* harmony import */ var _modules_constants__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../../modules/constants */ "./Areas/Portal/www/source/js/modules/constants.js");
+/* harmony import */ var _modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../../../modules/numberFormat */ "./Areas/Portal/www/source/js/modules/numberFormat.js");
+/* harmony import */ var _user_panel_actions__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../user-panel/actions */ "./Areas/Portal/www/source/js/pages/customer/user-panel/actions/index.js");
+/* harmony import */ var _user_panel_modules_constants__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../user-panel/modules/constants */ "./Areas/Portal/www/source/js/pages/customer/user-panel/modules/constants.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../actions */ "./Areas/Portal/www/source/js/pages/customer/customer-statistics/actions/index.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Content =
+/*#__PURE__*/
+function (_PureComponent) {
+  _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_9___default()(Content, _PureComponent);
+
+  function Content(props) {
+    var _this;
+
+    _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default()(this, Content);
+
+    _this = _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default()(this, _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default()(Content).call(this, props));
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "fetchData",
+    /*#__PURE__*/
+    function () {
+      var _ref = _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3___default()(
+      /*#__PURE__*/
+      _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee(monthDate) {
+        var affId, param, data;
+        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this.props.setMonthDate(monthDate);
+
+                _this.props.toggleLoaderCustomerStatistics(true);
+
+                affId = _this.props.affId;
+                param = {
+                  monthDate: monthDate,
+                  affId: affId
+                };
+                _context.next = 6;
+                return _this.props.fetchData(param);
+
+              case 6:
+                data = _context.sent;
+
+                _this.setState({
+                  data: data
+                });
+
+                _this.props.toggleLoaderCustomerStatistics(false);
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "handleSelectMonth", function (month, year) {
+      var _context2;
+
+      var monthDate = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context2 = "".concat(month, "/1/")).call(_context2, year);
+
+      _this.fetchData(monthDate);
+    });
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "handleFormatMonthPicker", function (month, year) {
+      var _context3;
+
+      return _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context3 = "".concat(_modules_constants__WEBPACK_IMPORTED_MODULE_17__["shortedMonthNames"][month - 1], "-")).call(_context3, year);
+    });
+
+    _this.state = {
+      data: null
+    };
+    return _this;
+  }
+
+  _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(Content, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.fetchData(this.props.today);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var _this$props = this.props,
+          affId = _this$props.affId,
+          today = _this$props.today;
+
+      if (prevProps.affId !== affId) {
+        this.fetchData(today);
+      }
+    }
+  }, {
+    key: "_renderHeader",
+    value: function _renderHeader(monthDate) {
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("th", null, _modules_constants__WEBPACK_IMPORTED_MODULE_16__["rowTitle"].Statistics), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("th", {
+        style: {
+          overflow: 'visible'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "position-relative"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_monthpicker__WEBPACK_IMPORTED_MODULE_14___default.a, {
+        minMonth: _modules_constants__WEBPACK_IMPORTED_MODULE_17__["minMonthDate"].month,
+        minYear: _modules_constants__WEBPACK_IMPORTED_MODULE_17__["minMonthDate"].year,
+        selectedDropdownYear: monthDate.getFullYear(),
+        selectedMonth: monthDate.getMonth() + 1,
+        onSelect: this.handleSelectMonth,
+        onFormat: this.handleFormatMonthPicker,
+        iconElement: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("span", {
+          className: "oi oi-calendar icon-calendar ml-1"
+        })
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("th", null, _modules_constants__WEBPACK_IMPORTED_MODULE_16__["rowTitle"].UpToNow)));
+    }
+  }, {
+    key: "_renderData",
+    value: function _renderData(monthDate, data) {
+      var _context4,
+          _context5,
+          _context6,
+          _context7,
+          _context8,
+          _this2 = this;
+
+      var DepositByMonth = Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["formatDecimalWithCurrencySymbol"])(data.DepositByMonth);
+      var DepositTotal = Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["formatDecimalWithCurrencySymbol"])(data.DepositTotal);
+      var TurnoverByMonth = Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["formatDecimalWithCurrencySymbol"])(data.TurnoverByMonth);
+      var TurnoverTotal = Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["formatDecimalWithCurrencySymbol"])(data.TurnoverTotal);
+      var WinlostByMonth = Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["formatDecimalWithCurrencySymbol"])(data.WinlostByMonth);
+      var WinlostTotal = Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["formatDecimalWithCurrencySymbol"])(data.WinlostTotal);
+
+      var startMonthString = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context4 = "".concat(monthDate.getMonth() + 1, "/1/")).call(_context4, monthDate.getFullYear());
+
+      var endMonth = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0);
+
+      var endMonthString = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context5 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context6 = "".concat(endMonth.getMonth() + 1, "/")).call(_context6, endMonth.getDate(), "/")).call(_context5, endMonth.getFullYear());
+
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("tbody", null, this._buildRow(_modules_constants__WEBPACK_IMPORTED_MODULE_16__["rowTitle"].NewSignups, _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context7 = "".concat(Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.NewSignUpByMonth), "/")).call(_context7, Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.NewFdmByMonth)), _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context8 = "".concat(Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.NewSignUpTotal), "/")).call(_context8, Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.NewFdmTotal))), this._buildRow(_modules_constants__WEBPACK_IMPORTED_MODULE_16__["rowTitle"].TotalActive, data.ActivePlayerByMonth > 0 ? react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("a", {
+        href: "javascript:;",
+        onClick: function onClick() {
+          return _this2.props.redirectToPlayerDetail({
+            productId: _modules_constants__WEBPACK_IMPORTED_MODULE_17__["selectedAllProduct"],
+            monthDate: startMonthString,
+            isClickLink: true
+          });
+        }
+      }, Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.ActivePlayerByMonth)) : Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.ActivePlayerByMonth), _modules_constants__WEBPACK_IMPORTED_MODULE_16__["resource"].NA), this._buildRow(_modules_constants__WEBPACK_IMPORTED_MODULE_16__["rowTitle"].TotalQualified, Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.QualifiedMemberByMonth), _modules_constants__WEBPACK_IMPORTED_MODULE_16__["resource"].NA), this._buildRow(_modules_constants__WEBPACK_IMPORTED_MODULE_16__["rowTitle"].TotalDeposits, DepositByMonth, DepositTotal), this._buildRow(_modules_constants__WEBPACK_IMPORTED_MODULE_16__["rowTitle"].Turnover, TurnoverByMonth, TurnoverTotal), this._buildRow(_modules_constants__WEBPACK_IMPORTED_MODULE_16__["rowTitle"].Winlost, WinlostByMonth, WinlostTotal), this._buildRow(_modules_constants__WEBPACK_IMPORTED_MODULE_16__["rowTitle"].TrackingRate, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("a", {
+        href: "javascript:;",
+        onClick: function onClick() {
+          return _this2.props.redirectToTrackingStatistics({
+            isClickLink: true
+          });
+        }
+      }, Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.UniqueClickByMonth), "/", Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.TotalClickByMonth)), _modules_constants__WEBPACK_IMPORTED_MODULE_16__["resource"].NA), this._buildRow(_modules_constants__WEBPACK_IMPORTED_MODULE_16__["rowTitle"].TrackingRatePC, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("a", {
+        href: "javascript:;",
+        onClick: function onClick() {
+          return _this2.props.redirectToReferrers({
+            fromDate: startMonthString,
+            toDate: endMonthString,
+            deviceType: _user_panel_modules_constants__WEBPACK_IMPORTED_MODULE_20__["deviceTypes"][_user_panel_modules_constants__WEBPACK_IMPORTED_MODULE_20__["pcLaptop"]],
+            isClickLink: true
+          });
+        }
+      }, Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.UniqueClickPcLaptopByMonth), "/", Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.TotalClickPcLaptopByMonth)), _modules_constants__WEBPACK_IMPORTED_MODULE_16__["resource"].NA), this._buildRow(_modules_constants__WEBPACK_IMPORTED_MODULE_16__["rowTitle"].TrackingRateMobile, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("a", {
+        href: "javascript:;",
+        onClick: function onClick() {
+          return _this2.props.redirectToReferrers({
+            fromDate: startMonthString,
+            toDate: endMonthString,
+            deviceType: _user_panel_modules_constants__WEBPACK_IMPORTED_MODULE_20__["deviceTypes"][_user_panel_modules_constants__WEBPACK_IMPORTED_MODULE_20__["mobile"]],
+            isClickLink: true
+          });
+        }
+      }, Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.UniqueClickMobileByMonth), "/", Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_18__["format"])(data.TotalClickMobileByMonth)), _modules_constants__WEBPACK_IMPORTED_MODULE_16__["resource"].NA));
+    }
+  }, {
+    key: "_buildRow",
+    value: function _buildRow(title, dataByMonth, dataUpToNow) {
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("tr", {
+        key: title
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("td", {
+        className: "font-weight-bold"
+      }, title), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("td", {
+        className: "text-right"
+      }, dataByMonth), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("td", {
+        className: "text-right"
+      }, dataUpToNow));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var data = this.state.data;
+      var monthDate = new Date(this.props.monthDate);
+      return data && react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "my-2"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_15__["Table"], {
+        id: "statistic-data-table"
+      }, this._renderHeader(monthDate), this._renderData(monthDate, data)));
+    }
+  }]);
+
+  return Content;
+}(react__WEBPACK_IMPORTED_MODULE_11__["PureComponent"]);
+
+function mapStateToProps(_ref2) {
+  var affCommonInfo = _ref2.affCommonInfo,
+      today = _ref2.today,
+      customerStatistics = _ref2.customerStatistics;
+  var affId = affCommonInfo.affId;
+  return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, {
+    monthDate: customerStatistics.monthDate,
+    today: today,
+    affId: affId
+  });
+}
+
+function mapDispatchToProps(dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_13__["bindActionCreators"])({
+    setMonthDate: _actions__WEBPACK_IMPORTED_MODULE_21__["setMonthDate"],
+    toggleLoaderCustomerStatistics: _actions__WEBPACK_IMPORTED_MODULE_21__["toggleLoaderCustomerStatistics"],
+    redirectToPlayerDetail: _user_panel_actions__WEBPACK_IMPORTED_MODULE_19__["redirectToPlayerDetail"],
+    redirectToTrackingStatistics: _user_panel_actions__WEBPACK_IMPORTED_MODULE_19__["redirectToTrackingStatistics"],
+    redirectToReferrers: _user_panel_actions__WEBPACK_IMPORTED_MODULE_19__["redirectToReferrers"],
+    fetchData: _actions__WEBPACK_IMPORTED_MODULE_21__["fetchData"]
+  }, dispatch);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_12__["connect"])(mapStateToProps, mapDispatchToProps)(Content));
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/customer/customer-statistics/modules/constants.js":
+/*!********************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/customer/customer-statistics/modules/constants.js ***!
+  \********************************************************************************************/
+/*! exports provided: rowTitle, resource */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rowTitle", function() { return rowTitle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resource", function() { return resource; });
+var rowTitle = {
+  Statistics: "Statistics",
+  UpToNow: "Up To Now",
+  NewSignups: "New Signups/FDM",
+  TotalActive: "Total Active Players",
+  TotalQualified: "Total Qualified Active Players",
+  TotalDeposits: "Total Deposits",
+  Turnover: "Turnover",
+  Winlost: "Winlost",
+  TrackingRate: "Tracking Rate (Unique/Total)",
+  TrackingRatePC: "Tracking Rate for PC/Laptop (Unique/Total) New!!!!!",
+  TrackingRateMobile: "Tracking Rate for Mobile (Unique/Total) New!!!!!"
+};
+var resource = {
+  NA: "N/A"
+};
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/customer/user-panel/modules/constants.js":
+/*!***********************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/customer/user-panel/modules/constants.js ***!
+  \***********************************************************************************/
+/*! exports provided: pcLaptop, mobile, deviceTypes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pcLaptop", function() { return pcLaptop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mobile", function() { return mobile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deviceTypes", function() { return deviceTypes; });
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var _deviceTypes;
+
+var pcLaptop = 'PC/Laptop';
+var mobile = 'Mobile';
+var deviceTypes = (_deviceTypes = {}, _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_deviceTypes, pcLaptop, 0), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_deviceTypes, mobile, 1), _deviceTypes);
+
+/***/ })
+
+}]);
+//# sourceMappingURL=customer-statistics.chunk.js.map

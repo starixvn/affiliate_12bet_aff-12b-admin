@@ -16,16 +16,14 @@ const GeneralInfo = (props) => {
     return affiliateInfo && (
         <div className="general-info pt-2">
             <Row className="border-0 py-1">
-                <Col sm={5}>
-                    <span className='text_bold'>{resource.Affiliate}</span>
-                </Col>
+                <Col sm={5}>{resource.Affiliate}</Col>
                 <Col sm={7} className='text-right d-inline-block'>
                     {
                         isApproved && !affiliateInfo.IsClosed ?
-                            (<a href={affiliateInfo.AffLink} className='upper b' target='_blank'>{affiliateInfo.AffName}</a>) :
+                            (<a href={affiliateInfo.AffLink} target='_blank'>{affiliateInfo.AffName}</a>) :
                             (<span>{affiliateInfo.AffName}</span>)
                     }{' '}
-                    [<span id="affID">{affiliateInfo.AffId}</span>]
+                    [<span>{affiliateInfo.AffId}</span>]
                     </Col>
             </Row>
             <Row>

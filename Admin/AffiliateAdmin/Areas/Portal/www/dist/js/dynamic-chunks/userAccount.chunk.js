@@ -1,1 +1,1462 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[37],{240:function(e,a,n){"use strict";n.d(a,"b",function(){return m}),n.d(a,"a",function(){return d}),n.d(a,"c",function(){return f});var t=n(41),r=n.n(t),o=n(30),i=n.n(o),s=n(297),c=n.n(s),l=n(60),u=n.n(l),m=function(e,a){return u()(a).call(a,function(a,n){return n!==e})},d=function(e){return JSON.parse(c()(e))},f=function(e,a,n){return i()(e).call(e,function(e,t){return t!==a?e:r()({},e,n)})}},270:function(e,a,n){e.exports=n(314)},297:function(e,a,n){e.exports=n(319)},314:function(e,a,n){e.exports=n(315)},315:function(e,a,n){var t=n(316),r=Array.prototype;e.exports=function(e){var a=e.reduce;return e===r||e instanceof Array&&a===r.reduce?t:a}},316:function(e,a,n){n(317);var t=n(79);e.exports=t("Array").reduce},317:function(e,a,n){"use strict";var t=n(3),r=n(318);t({target:"Array",proto:!0,forced:n(224)("reduce")},{reduce:function(e){return r(this,e,arguments.length,arguments[1],!1)}})},318:function(e,a,n){var t=n(31),r=n(27),o=n(80),i=n(47);e.exports=function(e,a,n,s,c){t(a);var l=r(e),u=o(l),m=i(l.length),d=c?m-1:0,f=c?-1:1;if(n<2)for(;;){if(d in u){s=u[d],d+=f;break}if(d+=f,c?d<0:m<=d)throw TypeError("Reduce of empty array with no initial value")}for(;c?d>=0:m>d;d+=f)d in u&&(s=a(s,u[d],d,l));return s}},319:function(e,a,n){e.exports=n(320)},320:function(e,a,n){var t=n(8),r=t.JSON||(t.JSON={stringify:JSON.stringify});e.exports=function(e){return r.stringify.apply(r,arguments)}},328:function(e,a,n){e.exports=n(343)},343:function(e,a,n){e.exports=n(344)},344:function(e,a,n){var t=n(345),r=Array.prototype;e.exports=function(e){var a=e.splice;return e===r||e instanceof Array&&a===r.splice?t:a}},345:function(e,a,n){n(346);var t=n(79);e.exports=t("Array").splice},346:function(e,a,n){"use strict";var t=n(3),r=n(124),o=n(65),i=n(47),s=n(27),c=n(109),l=n(111),u=n(84),m=Math.max,d=Math.min;t({target:"Array",proto:!0,forced:!u("splice")},{splice:function(e,a){var n,t,u,f,p,h,y=s(this),g=i(y.length),A=r(e,g),C=arguments.length;if(0===C?n=t=0:1===C?(n=0,t=g-A):(n=C-2,t=d(m(o(a),0),g-A)),g+n-t>9007199254740991)throw TypeError("Maximum allowed length exceeded");for(u=c(y,t),f=0;f<t;f++)(p=A+f)in y&&l(u,f,y[p]);if(u.length=t,n<t){for(f=A;f<g-t;f++)h=f+n,(p=f+t)in y?y[h]=y[p]:delete y[h];for(f=g;f>g-t+n;f--)delete y[f-1]}else if(n>t)for(f=g-t;f>A;f--)h=f+n-1,(p=f+t-1)in y?y[h]=y[p]:delete y[h];for(f=0;f<n;f++)y[f+A]=arguments[f+2];return y.length=g-t+n,u}})},373:function(e,a,n){e.exports=n(385)},385:function(e,a,n){e.exports=n(386)},386:function(e,a,n){var t=n(387),r=Array.prototype;e.exports=function(e){var a=e.slice;return e===r||e instanceof Array&&a===r.slice?t:a}},387:function(e,a,n){n(388);var t=n(79);e.exports=t("Array").slice},388:function(e,a,n){"use strict";var t=n(3),r=n(19),o=n(62),i=n(124),s=n(47),c=n(28),l=n(111),u=n(84),m=n(5)("species"),d=[].slice,f=Math.max;t({target:"Array",proto:!0,forced:!u("slice")},{slice:function(e,a){var n,t,u,p=c(this),h=s(p.length),y=i(e,h),g=i(void 0===a?h:a,h);if(o(p)&&("function"!=typeof(n=p.constructor)||n!==Array&&!o(n.prototype)?r(n)&&null===(n=n[m])&&(n=void 0):n=void 0,n===Array||void 0===n))return d.call(p,y,g);for(t=new(void 0===n?Array:n)(f(g-y,0)),u=0;y<g;y++,u++)y in p&&l(t,u,p[y]);return t.length=u,t}})},638:function(e,a,n){"use strict";n.r(a);var t=n(0),r=n.n(t),o=n(108),i=n(20),s=n.n(i),c=n(17),l=n.n(c),u=n(222),m=n.n(u),d=n(29),f=n.n(d),p=n(373),h=n.n(p),y=n(295),g=n.n(y),A=n(270),C=n.n(A),v=n(10),b=n.n(v),E=n(11),S=n.n(E),k=n(12),N=n.n(k),I=n(13),U=n.n(I),P=n(7),w=n.n(P),M=n(14),B=n.n(M),x=n(2),L=n.n(x),F=n(38),G=n(26),R=n(1),T=n(42),O=n(217),q=n(337),_=n(369),j=function(e){return{type:_.b,data:e}},z=function(e){return{type:_.a,data:e}},D=function(e){return function(){var a=f()(s.a.mark(function a(n){var t,r,o,i;return s.a.wrap(function(a){for(;;)switch(a.prev=a.next){case 0:return n(Object(O.h)(!0)),"Portal/UserPanel/UserAccount/GetUserAccountInfo",a.next=4,Object(T.a)("Portal/UserPanel/UserAccount/GetUserAccountInfo",{affId:e});case 4:t=a.sent,r=t&&200===t.status?t.data:null,o=r&&r.MoreSiteUrls,i=o&&""!=o&&o.split(";"),n(z(i)),n(j(r)),n(Object(O.h)(!1));case 11:case"end":return a.stop()}},a)}));return function(e){return a.apply(this,arguments)}}()},V=function(e){return f()(s.a.mark(function a(){var n;return s.a.wrap(function(a){for(;;)switch(a.prev=a.next){case 0:return"Portal/UserPanel/UserAccount/updateUserAccount",a.next=3,Object(T.a)("Portal/UserPanel/UserAccount/updateUserAccount",e);case 3:return n=a.sent,a.abrupt("return",n&&200===n.status?n.data:null);case 5:case"end":return a.stop()}},a)}))},J=n(298),W=n.n(J),H=n(30),K=n.n(H),Z=n(83),Q={FirstName:"First Name is required",LastName:"Last Name is required",Gender:"Gender is empty, Please Check!",Email:"Email Address is invalid",Phone:"Contact Number is required",Address:"Address is required",City:"City is required",Postcode:"Postcode/Zip is required",Country:"Please select country",SiteUrl:"Website URL is required",PlayerUsername:"12BET User Name is required",NetellerAccountId:"Neteller Account ID is required",MoneybookersEmail:"Moneybookers Email is required",BankName:"Bank Name is required",BankAddress:"Bank Address is required",BankAccountName:"Bank Account Name is required",BankAccountNumber:"Bank Account Number is required"},Y=["FirstName","LastName","Phone","Address","City","Postcode","SiteUrl"],$=["BankName","BankAddress","BankAccountName","BankAccountNumber"],X={Albania:"Albania",Algeria:"Algeria",Angola:"Angola",Anguilla:"Anguilla",Argentina:"Argentina",Armenia:"Armenia",Aruba:"Aruba",Australia:"Australia",Austria:"Austria",Azerbaijan:"Azerbaijan",Bahamas:"Bahamas",Bahrain:"Bahrain",Bangladesh:"Bangladesh",Barbados:"Barbados",Belarus:"Belarus",Belgium:"Belgium",Belize:"Belize",Benin:"Benin",Bermuda:"Bermuda",Bhutan:"Bhutan",Bolivia:"Bolivia","Bosnia and Herzegovina":"Bosnia and Herzegovina",Botswana:"Botswana",Brazil:"Brazil",Brunei:"Brunei Darussalam",Bulgaria:"Bulgaria",Burkina:"Burkina Faso",Burundi:"Burundi",Cambodia:"Cambodia",Cameroon:"Cameroon",Canada:"Canada","Cape Verde":"Cape Verde","Cayman Islands":"Cayman Islands","Central African Rep":"Central African Rep",Chad:"Chad",Chile:"Chile","China (People's Rep)":"China (People's Rep)",Colombia:"Colombia","Congo(Rep)":"Congo(Rep)","Cook Islands":"Cook Islands","Costa Rica":"Costa Rica","Cote d'Ivoire (Rep)":"Cote d'Ivoire (Rep)",Croatia:"Croatia",Cyprus:"Cyprus","Czech (Rep)":"Czech (Rep)","Dem Rep of Congo":"Dem Rep of Congo",Denmark:"Denmark","Dominica (Commonwealth of)":"Dominica (Commonwealth of)","Dominican Rep.":"Dominican Rep.",Ecuador:"Ecuador",Egypt:"Egypt","El Salvador":"El Salvador",Eritrea:"Eritrea",Estonia:"Estonia",Ethiopia:"Ethiopia",Fiji:"Fiji",Finland:"Finland",France:"France","French Polynesia":"French Polynesia",Gabon:"Gabon",Georgia:"Georgia",Germany:"Germany",Ghana:"Ghana",Gibraltar:"Gibraltar",Greece:"Greece",Grenada:"Grenada",Guatemala:"Guatemala",Guinea:"Guinea",Guyana:"Guyana",Haiti:"Haiti",Honduras:"Honduras","Hong Kong":"Hong Kong",Hungary:"Hungary",Iceland:"Iceland",India:"India",Indonesia:"Indonesia",Iran:"Iran",Iraq:"Iraq",Ireland:"Ireland",Israel:"Israel",Italy:"Italy",Jamaica:"Jamaica",Japan:"Japan",Jordan:"Jordan",Kenya:"Kenya",Korea:"Korea (Rep)",Kuwait:"Kuwait","Lao People's Dem Rep":"Lao People's Dem Rep",Latvia:"Latvia",Lesotho:"Lesotho",Liechtenstein:"Liechtenstein",Lithuania:"Lithuania",Luxembourg:"Luxembourg",Macao:"Macao",Macedonia:"Macedonia",Madagascar:"Madagascar",Malawi:"Malawi",Malaysia:"Malaysia",Maldives:"Maldives",Mali:"Mali",Malta:"Malta",Mauritania:"Mauritania",Mauritius:"Mauritius",Mexico:"Mexico",Moldova:"Moldova",Mongolia:"Mongolia",Morocco:"Morocco",Myanmar:"Myanmar",Namibia:"Namibia",Nauru:"Nauru",Nepal:"Nepal",Netherlands:"Netherlands","New Caledonia":"New Caledonia","New Zealand":"New Zealand",Niger:"Niger",Nigeria:"Nigeria",Norway:"Norway",Oman:"Oman",Pakistan:"Pakistan",Panama:"Panama","Papua New Guinea":"Papua New Guinea",Paraguay:"Paraguay",Peru:"Peru",Philippines:"Philippines",Poland:"Poland",Portugal:"Portugal",Qatar:"Qatar",Romania:"Romania","Russian Federation":"Russian Federation",Rwanda:"Rwanda","Saint Christopher (St. Kitts) and Nevis":"Saint Christopher (St. Kitts) and Nevis","Saint Lucia":"Saint Lucia","Saint Vincent and the Grenadines":"Saint Vincent and the Grenadines","Sao Tome and Principe":"Sao Tome and Principe","Saudi Arabia":"Saudi Arabia",Senegal:"Senegal",Seychelles:"Seychelles","Sierra Leone":"Sierra Leone",Singapore:"Singapore",Slovakia:"Slovakia",Slovenia:"Slovenia","Solomon Islands":"Solomon Islands",Somalia:"Somalia","South Africa":"South Africa",Spain:"Spain","Sri Lanka":"Sri Lanka",Sudan:"Sudan",Suriname:"Suriname",Swaziland:"Swaziland",Sweden:"Sweden",Switzerland:"Switzerland",Taiwan:"Taiwan",Tanzania:"Tanzania",Thailand:"Thailand",Togo:"Togo","Trinidad and Tobago":"Trinidad and Tobago",Tunisia:"Tunisia",Turkey:"Turkey",Uganda:"Uganda",Ukraine:"Ukraine","United Arab Emirates":"United Arab Emirates","United Kingdom of Great Britain":"United Kingdom of Great Britain","United States of America":"United States of America",Uruguay:"Uruguay",Venezuela:"Venezuela","Viet Nam":"Viet Nam","Western Samoa":"Western Samoa",Yemen:"Yemen",Yugoslavia:"Yugoslavia",Zambia:"Zambia",Zimbabwe:"Zimbabwe"},ee=function(e,a){return""===a?Q[e]+"<br />":""},ae=function(e,a){var n="",t=new RegExp("^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$"),r=null!=e.Gender,o=t.test(e.Email),i=void 0===X[e.Country]?"":e.Country;n=r?n:n+Q.Gender+"<br />",n=o?n:n+Q.Email+"<br />",n+=ee("Country",i),n+=C()(Y).call(Y,function(a,n){return a+ee(n,e[n])},"");var s=r&&o&&""!==e.FirstName&&""!==e.LastName&&""!==e.Phone&&""!==e.Address&&""!==e.City&&""!==e.Postcode&&""!==e.Country&&""!==e.SiteUrl,c=a?function(e){var a=K()(e).call(e,function(e){return g()(e).call(e)}),n=W()(a).call(a,""),t=-1!==n;return{message:t?"Website URL ".concat(n+2," is required<br />"):"",isValid:!t}}(a):{message:"",isValid:!0},l=function(e){var a="",n=!0;switch(e.PreferredPayment){case"Player":a=ee("PlayerUsername",e.PlayerUsername),n=""!==e.PlayerUsername;break;case"Neteller":a=ee("NetellerAccountId",e.NetellerAccountId),n=""!==e.NetellerAccountId;break;case"Moneybookers":a=ee("MoneybookersEmail",e.MoneybookersEmail),n=""!==e.MoneybookersEmail;break;case"Wire":a=C()($).call($,function(a,n){return a+ee(n,e[n])},""),n=""!==e.BankName&&""!==e.BankAddress&&""!==e.BankAccountName&&""!==e.BankAccountNumber}return{message:a,isValid:n}}(e);return{message:n+c.message+l.message,isValid:s&&c.isValid&&l.isValid}},ne=n(331),te=n.n(ne),re=r.a.memo(function(e){var a=e.title,n=e.children,t=te()(e,["title","children"]);return r.a.createElement("fieldset",t,r.a.createElement("legend",null,r.a.createElement("h6",null,a)),n)}),oe=n(297),ie=n.n(oe),se=n(332),ce=n.n(se),le=function(e,a,n,t,o,i){return r.a.createElement(R.FormGroup,{row:!0},r.a.createElement(R.Label,{for:e,sm:3,xl:2,className:o?"required":""},a),r.a.createElement(R.Col,{sm:9,xl:10},t?r.a.createElement("p",{className:"form-control-plaintext"},n):r.a.createElement(R.Input,{type:"text",id:e,name:e,value:n,onChange:i})))},ue=function(e){return e.charAt(0).toUpperCase()+h()(e).call(e,1)},me=n(240),de=function(e){function a(e){var n;b()(this,a),n=N()(this,U()(a).call(this,e)),L()(w()(n),"handleChange",function(e){var a=e.target,t=ue(a.name),r=l()({},n.props.userAccountInfo,L()({},t,a.value));n.props.setUserAccountInfo(r)}),L()(w()(n),"handleChangeGender",function(e){var a=l()({},n.props.userAccountInfo,{Gender:e});n.props.setUserAccountInfo(a)}),L()(w()(n),"handleChangeContactApps",function(e){var a,t=e.target,r=t.name,o=t.value,i=ce()(a=n.arrayContactApps).call(a,function(e){return e.Name===r}),s=l()({},n.arrayContactApps[i],{Value:o});n.arrayContactApps=Object(me.c)(n.arrayContactApps,i,s);var c=l()({},n.props.userAccountInfo,{ContactApps:ie()(n.arrayContactApps)});n.props.setUserAccountInfo(c)});var t=n.props.userAccountInfo;return n.arrayContactApps=JSON.parse(t&&t.ContactApps),n}return B()(a,e),S()(a,[{key:"_renderGenderForm",value:function(e){var a=this;return r.a.createElement(R.FormGroup,{row:!0},r.a.createElement(R.Label,{for:name,sm:3,xl:2,className:"required"},"Gender"),r.a.createElement(R.Col,{sm:9,xl:10},r.a.createElement(R.FormGroup,{check:!0,className:"d-inline-block mr-3"},r.a.createElement(R.Label,{check:!0},r.a.createElement(R.Input,{type:"radio",checked:null!=e&&e,onChange:function(){return a.handleChangeGender(!0)}})," "," Male")),r.a.createElement(R.FormGroup,{check:!0,className:"d-inline-block"},r.a.createElement(R.Label,{check:!0},r.a.createElement(R.Input,{type:"radio",checked:null!=e&&!e,onChange:function(){return a.handleChangeGender(!1)}})," "," Female"))))}},{key:"render",value:function(){var e,a=this,n=this.props.userAccountInfo;return n&&r.a.createElement(R.Form,{tag:"div"},le("username","User Name",n.AffName,!0),le("firstName","First Name",n.FirstName,!1,!0,this.handleChange),le("lastName","Last Name",n.LastName,!1,!0,this.handleChange),this._renderGenderForm(n.Gender),le("email","Email Address",n.Email,!1,!0,this.handleChange),le("phone","Contact Number",n.Phone,!1,!0,this.handleChange),this.arrayContactApps&&K()(e=this.arrayContactApps).call(e,function(e){return le(e.Name,e.Name,e.Value,!1,!1,a.handleChangeContactApps)}))}}]),a}(t.PureComponent);var fe=Object(F.connect)(function(e){var a=e.edit.userAccountInfo;return l()({},{userAccountInfo:a})},function(e){return Object(G.bindActionCreators)({setUserAccountInfo:j},e)})(de),pe=function(e){function a(e){var n;return b()(this,a),n=N()(this,U()(a).call(this,e)),L()(w()(n),"handleChange",function(e){var a=e.target,t=ue(a.name),r=l()({},n.props.userAccountInfo,L()({},t,a.value));n.props.setUserAccountInfo(r)}),n}return B()(a,e),S()(a,[{key:"_renderCountry",value:function(e){var a;return r.a.createElement(R.FormGroup,{row:!0},r.a.createElement(R.Label,{for:"country",sm:3,xl:2,className:"required"},"Country"),r.a.createElement(R.Col,{sm:9,xl:10},r.a.createElement(R.Input,{type:"select",id:"country",name:"country",value:e,onChange:this.handleChange},r.a.createElement("option",{value:""},"Select One"),K()(a=m()(X)).call(a,function(e){return r.a.createElement("option",{key:"country-"+e,value:e},X[e])}))))}},{key:"render",value:function(){var e=this.props.userAccountInfo;return e&&r.a.createElement(R.Form,{tag:"div"},le("address","Address",e.Address,!1,!0,this.handleChange),le("city","City",e.City,!1,!0,this.handleChange),le("state","State",e.State,!1,!1,this.handleChange),le("postcode","Postcode/Zip",e.Postcode,!1,!0,this.handleChange),this._renderCountry(e.Country),le("question","Security Question",e.Question,!0),le("answer","Answer",e.Answer,!0))}}]),a}(t.PureComponent);var he=Object(F.connect)(function(e){var a=e.edit.userAccountInfo;return l()({},{userAccountInfo:a})},function(e){return Object(G.bindActionCreators)({setUserAccountInfo:j},e)})(pe),ye=function(e){function a(e){var n;return b()(this,a),n=N()(this,U()(a).call(this,e)),L()(w()(n),"handleChange",function(e){var a=l()({},n.props.userAccountInfo,{MailOption:e});n.props.setUserAccountInfo(a)}),n}return B()(a,e),S()(a,[{key:"render",value:function(){var e=this,a=this.props.userAccountInfo,n=a&&a.MailOption;return a&&r.a.createElement(R.Form,{tag:"div"},r.a.createElement(R.FormGroup,{row:!0},r.a.createElement(R.Col,{sm:5},r.a.createElement(R.FormGroup,{check:!0,className:"d-inline-block mr-3"},r.a.createElement(R.Label,{check:!0},r.a.createElement(R.Input,{type:"radio",checked:null!=n&&n,onChange:function(){return e.handleChange(!0)}})," "," Plain Text Format")),r.a.createElement(R.FormGroup,{check:!0,className:"d-inline-block"},r.a.createElement(R.Label,{check:!0},r.a.createElement(R.Input,{type:"radio",checked:null!=n&&!n,onChange:function(){return e.handleChange(!1)}})," "," Html Format")))))}}]),a}(t.PureComponent);var ge=Object(F.connect)(function(e){var a=e.edit.userAccountInfo;return l()({},{userAccountInfo:a})},function(e){return Object(G.bindActionCreators)({setUserAccountInfo:j},e)})(ye),Ae=n(328),Ce=n.n(Ae),ve=function(e){function a(e){var n;return b()(this,a),n=N()(this,U()(a).call(this,e)),L()(w()(n),"focusTextInput",function(){n.textInput.current.focus()}),n.textInput=r.a.createRef(),n}return B()(a,e),S()(a,[{key:"render",value:function(){var e=this.props,a=e.name,n=e.value,t=e.onChange;return r.a.createElement("input",{className:"form-control",name:a,value:n,onChange:t,ref:this.textInput})}}]),a}(t.PureComponent),be=function(e){function a(e){var n;b()(this,a),n=N()(this,U()(a).call(this,e)),L()(w()(n),"handleChange",function(e){var a=e.target,t=ue(a.name),r=l()({},n.props.userAccountInfo,L()({},t,a.value));n.props.setUserAccountInfo(r)}),L()(w()(n),"handleChangeMoreUrl",function(e){var a=n.props.moreSiteUrlsList,t=e.target;a[t.name]=t.value,n.props.setMoreSiteUrlsList(a)}),L()(w()(n),"handleAddUrl",function(){var e=n.props.moreSiteUrlsList,a=K()(e).call(e,function(e){return g()(e).call(e)}),t=W()(a).call(a,"");-1===t?(n.moreSiteUrlRefs.push(r.a.createRef()),e.push(""),n.props.setMoreSiteUrlsList(e)):(window.alert("Please input Website URL ".concat(t+2)),n.moreSiteUrlRefs[t].current.focusTextInput())}),L()(w()(n),"handleDeleteUrl",function(e){var a,t=n.props.moreSiteUrlsList;Ce()(t).call(t,e,1),Ce()(a=n.moreSiteUrlRefs).call(a,e,1),n.props.setMoreSiteUrlsList(t)}),n.moreSiteUrlRefs=[];for(var t=0;t<n.props.moreSiteUrlsList.length;t++)n.moreSiteUrlRefs.push(r.a.createRef());return n}return B()(a,e),S()(a,[{key:"_renderMoreSiteUrl",value:function(e){var a=this;return r.a.createElement(r.a.Fragment,null,K()(e).call(e,function(e,n){return r.a.createElement(R.FormGroup,{row:!0,key:"siteUrl".concat(n)},r.a.createElement(R.Label,{for:n,sm:3,xl:2,className:"required"},"Website URL ",n+2),r.a.createElement(R.Col,{sm:5,xl:6},r.a.createElement(ve,{name:n,value:e,onChange:a.handleChangeMoreUrl,ref:a.moreSiteUrlRefs[n]})),r.a.createElement(R.Button,{outline:!0,color:"secondary mb-2",onClick:function(){return a.handleDeleteUrl(n)}},r.a.createElement("span",{"aria-hidden":!0},"Del")))}))}},{key:"render",value:function(){var e=this.props,a=e.userAccountInfo,n=e.moreSiteUrlsList;return r.a.createElement(R.Form,{tag:"div"},r.a.createElement(R.FormGroup,{row:!0},r.a.createElement(R.Label,{for:"siteUrl",sm:3,xl:2,className:"required"},"Website URL"),r.a.createElement(R.Col,{sm:5,xl:6},r.a.createElement(R.Input,{type:"text",name:"siteUrl",value:a.SiteUrl,onChange:this.handleChange})),r.a.createElement(R.Button,{outline:!0,color:"secondary mb-2",onClick:this.handleAddUrl},"Add Url")),this._renderMoreSiteUrl(n),r.a.createElement(R.FormGroup,{row:!0},r.a.createElement(R.Label,{for:"noSiteDescription",sm:3,xl:2},"I do not have a website Please describe how you would like to promote 12Bet if you do not have the URL ."),r.a.createElement(R.Col,{sm:6,xl:7},r.a.createElement(R.Input,{type:"textarea",style:{height:70},id:"noSiteDescription",name:"noSiteDescription",value:a.NoSiteDescription,onChange:this.handleChange}))))}}]),a}(t.PureComponent);var Ee=Object(F.connect)(function(e){var a=e.edit,n=a.userAccountInfo,t=a.moreSiteUrlsList;return l()({},{userAccountInfo:n,moreSiteUrlsList:t})},function(e){return Object(G.bindActionCreators)({setUserAccountInfo:j,setMoreSiteUrlsList:z},e)})(be),Se=[{key:"Player",value:"12BET player account"},{key:"Neteller",value:"Neteller"},{key:"Moneybookers",value:"Moneybookers"},{key:"Wire",value:"Bank Transfer"}],ke=function(e){function a(e){var n;return b()(this,a),n=N()(this,U()(a).call(this,e)),L()(w()(n),"handleChangePaymentMethod",function(e){var a=l()({},n.props.userAccountInfo,{PreferredPayment:e.target.value});n.props.setUserAccountInfo(a)}),L()(w()(n),"handleChange",function(e){var a=e.target,t=ue(a.name),r=l()({},n.props.userAccountInfo,L()({},t,a.value));n.props.setUserAccountInfo(r)}),n}return B()(a,e),S()(a,[{key:"_renderFormByMethod",value:function(e){var a;return a={},L()(a,"Player",this._renderPaymentForm("playerUsername","12BET User Name",e.PlayerUsername,!0,this.handleChange)),L()(a,"Neteller",this._renderPaymentForm("netellerAccountId","Neteller Account ID",e.NetellerAccountId,!0,this.handleChange)),L()(a,"Moneybookers",this._renderPaymentForm("moneybookersEmail","Moneybookers Email",e.MoneybookersEmail,!0,this.handleChange)),L()(a,"Wire",this._renderWireForm(e)),a}},{key:"_renderPaymentForm",value:function(e,a,n,t,o){return r.a.createElement(R.FormGroup,{row:!0},r.a.createElement(R.Label,{for:e,sm:3,xl:2,className:t?"required":""},a),r.a.createElement(R.Col,{sm:5,xl:6},r.a.createElement(R.Input,{type:"text",id:e,name:e,value:n,onChange:o})))}},{key:"_renderWireForm",value:function(e){return r.a.createElement(r.a.Fragment,null,this._renderPaymentForm("bankName","Bank Name",e.BankName,!0,this.handleChange),this._renderPaymentForm("bankAddress","Bank Address",e.BankAddress,!0,this.handleChange),this._renderPaymentForm("bankCode","Bank ABA/Swift/Sort Code",e.BankCode,!1,this.handleChange),this._renderPaymentForm("bankAccountName","Bank Account Name",e.BankAccountName,!0,this.handleChange),this._renderPaymentForm("bankAccountNumber","Bank Account Number",e.BankAccountNumber,!0,this.handleChange))}},{key:"render",value:function(){var e=this.props.userAccountInfo,a=e&&this._renderFormByMethod(e);return e&&r.a.createElement(R.Form,{tag:"div"},r.a.createElement(R.FormGroup,{row:!0},r.a.createElement(R.Label,{for:"preferredPayment",sm:3,xl:2},"Preferred Payment Method"),r.a.createElement(R.Col,{sm:5,xl:6},r.a.createElement(R.Input,{type:"select",id:"preferredPayment",name:"preferredPayment",onChange:this.handleChangePaymentMethod,value:e.PreferredPayment},K()(Se).call(Se,function(e){return r.a.createElement("option",{key:e.key,value:e.key},e.value)}))),r.a.createElement("p",null,"Minimum payment amount is $100")),a[e.PreferredPayment],"Player"===e.PreferredPayment&&r.a.createElement("p",{className:"text-danger offset-sm-3 offset-xl-2 pl-1"},"Non-deposited account only"))}}]),a}(t.PureComponent);var Ne=Object(F.connect)(function(e){var a=e.edit.userAccountInfo;return l()({},{userAccountInfo:a})},function(e){return Object(G.bindActionCreators)({setUserAccountInfo:j},e)})(ke),Ie=function(e){function a(e){var n;return b()(this,a),n=N()(this,U()(a).call(this,e)),L()(w()(n),"handleGetMoreSiteUrls",function(e){var a=e&&C()(e).call(e,function(e,a){return e+g()(a).call(a)+";"},"");return h()(a).call(a,0,-1)}),L()(w()(n),"handleSubmit",f()(s.a.mark(function e(){var a,t,r,o,i,c,u,d,f,p;return s.a.wrap(function(e){for(;;)switch(e.prev=e.next){case 0:if(t=n.props,r=t.affName,o=t.userAccountInfo,i=t.moreSiteUrlsList,c=C()(a=m()(o)).call(a,function(e,a){var n=o[a];return"string"==typeof n&&(n=g()(n).call(n)),e[a]=n,e},{}),u=ae(c,i),window.scrollTo({top:0,behavior:"smooth"}),!u.isValid){e.next=13;break}return d=n.handleGetMoreSiteUrls(i),f=l()({},c,{MoreSiteUrls:d}),e.next=9,n.props.updateUserAccount(f);case 9:(p=e.sent)?(n.setState({isShowMessage:!0,isSuccess:p.IsSuccessful,message:p.IsSuccessful?"".concat(o.AffName," has been updated successfully!"):p.Message},function(){return window.setTimeout(n.hideMessage,3e3)}),p.IsSuccessful&&window.setTimeout(function(){return n.props.getAffiliateInfo(r,Z.a.edit)},3e3)):n.setState({isSuccess:!1,isShowMessage:!0,message:"Update is failed!"},function(){return window.setTimeout(n.hideMessage,3e3)}),e.next=14;break;case 13:n.setState({isSuccess:!1,isShowMessage:!u.isValid,message:u.message},function(){return window.setTimeout(n.hideMessage,3e3)});case 14:case"end":return e.stop()}},e)}))),L()(w()(n),"hideMessage",function(){n.setState({isShowMessage:!1})}),n.state={isSuccess:!0,isShowMessage:!1,message:""},n}return B()(a,e),S()(a,[{key:"componentDidMount",value:function(){var e=this.props.affId;e&&this.props.getUserAccountInfo(e)}},{key:"render",value:function(){var e=this.state,a=e.isSuccess,n=e.isShowMessage,t=e.message;return this.props.userAccountInfo&&r.a.createElement(R.Container,{fluid:!0,className:"user-account-container"},r.a.createElement(R.Alert,{color:a?"success":"danger",isOpen:n},r.a.createElement("div",{dangerouslySetInnerHTML:{__html:t}})),r.a.createElement(R.Row,null,r.a.createElement(R.Col,{xs:"6",className:"pl-0"},r.a.createElement(re,{title:"Personal Information"},r.a.createElement(fe,null))),r.a.createElement(R.Col,{xs:"6",className:"pr-0"},r.a.createElement(re,{title:"Additional Information"},r.a.createElement(he,null)))),r.a.createElement(R.Row,null,r.a.createElement(R.Col,{xs:"12",className:"px-0"},r.a.createElement(re,{title:"Email Format Preference"},r.a.createElement(ge,null)))),r.a.createElement(R.Row,null,r.a.createElement(R.Col,{xs:"12",className:"px-0"},r.a.createElement(re,{title:"Website Information"},this.props.moreSiteUrlsList&&r.a.createElement(Ee,null)))),r.a.createElement(R.Row,null,r.a.createElement(R.Col,{xs:"12",className:"px-0"},r.a.createElement(re,{title:"Payment Information"},r.a.createElement(Ne,null)))),r.a.createElement(R.Row,null,r.a.createElement(R.Button,{className:"mb-3",color:"success",onClick:this.handleSubmit},"Submit")))}}]),a}(t.PureComponent);var Ue=Object(F.connect)(function(e){var a=e.affCommonInfo,n=e.edit,t=a.affId,r=a.affName,o=n.userAccountInfo,i=n.moreSiteUrlsList;return l()({},{affId:t,affName:r,userAccountInfo:o,moreSiteUrlsList:i})},function(e){return Object(G.bindActionCreators)({getUserAccountInfo:D,updateUserAccount:V,getAffiliateInfo:q.a},e)})(Ie);a.default=r.a.memo(function(e){return r.a.createElement(o.a,null,r.a.createElement(Ue,null))})}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["userAccount"],{
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/actions/index.js":
+/*!***********************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/actions/index.js ***!
+  \***********************************************************************************/
+/*! exports provided: getAffiliateInfo, setUserAccountInfo, setMoreSiteUrlsList, getUserAccountInfo, updateUserAccount */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserAccountInfo", function() { return setUserAccountInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setMoreSiteUrlsList", function() { return setMoreSiteUrlsList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserAccountInfo", function() { return getUserAccountInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserAccount", function() { return updateUserAccount; });
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modules_ajaxRequest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../modules/ajaxRequest */ "./Areas/Portal/www/source/js/modules/ajaxRequest.js");
+/* harmony import */ var _customer_user_panel_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../customer/user-panel/actions */ "./Areas/Portal/www/source/js/pages/customer/user-panel/actions/index.js");
+/* harmony import */ var _customer_mainpage_actions_loadingDataAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../customer/mainpage/actions/loadingDataAction */ "./Areas/Portal/www/source/js/pages/customer/mainpage/actions/loadingDataAction.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getAffiliateInfo", function() { return _customer_mainpage_actions_loadingDataAction__WEBPACK_IMPORTED_MODULE_4__["getAffiliateInfo"]; });
+
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./types */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/actions/types.js");
+
+
+
+
+
+
+
+var setUserAccountInfo = function setUserAccountInfo(data) {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_5__["SET_USER_ACCOUNT_INFO"],
+    data: data
+  };
+};
+var setMoreSiteUrlsList = function setMoreSiteUrlsList(data) {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_5__["SET_MORE_SITE_URLS_LIST"],
+    data: data
+  };
+};
+var getUserAccountInfo = function getUserAccountInfo(affId) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref = _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+      /*#__PURE__*/
+      _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(dispatch) {
+        var url, response, data, moreSiteUrls, moreSiteUrlsList;
+        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                dispatch(Object(_customer_user_panel_actions__WEBPACK_IMPORTED_MODULE_3__["toggleLoaderUserPanel"])(true));
+                url = 'Portal/UserPanel/UserAccount/GetUserAccountInfo';
+                _context.next = 4;
+                return Object(_modules_ajaxRequest__WEBPACK_IMPORTED_MODULE_2__["post"])(url, {
+                  affId: affId
+                });
+
+              case 4:
+                response = _context.sent;
+                data = response && response.status === 200 ? response.data : null;
+                moreSiteUrls = data && data.MoreSiteUrls;
+                moreSiteUrlsList = moreSiteUrls && moreSiteUrls != '' && moreSiteUrls.split(';');
+                dispatch(setMoreSiteUrlsList(moreSiteUrlsList));
+                dispatch(setUserAccountInfo(data));
+                dispatch(Object(_customer_user_panel_actions__WEBPACK_IMPORTED_MODULE_3__["toggleLoaderUserPanel"])(false));
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }()
+  );
+};
+var updateUserAccount = function updateUserAccount(param) {
+  return (
+    /*#__PURE__*/
+    _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+    /*#__PURE__*/
+    _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var url, response;
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              url = 'Portal/UserPanel/UserAccount/updateUserAccount';
+              _context2.next = 3;
+              return Object(_modules_ajaxRequest__WEBPACK_IMPORTED_MODULE_2__["post"])(url, param);
+
+            case 3:
+              response = _context2.sent;
+              return _context2.abrupt("return", response && response.status === 200 ? response.data : null);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))
+  );
+};
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/AppContainer.jsx":
+/*!**********************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/components/AppContainer.jsx ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../layouts/AppLayout */ "./Areas/Portal/www/source/js/layouts/AppLayout.jsx");
+/* harmony import */ var _Content__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Content */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/Content.jsx");
+
+
+
+
+var AppContainer = function AppContainer(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Content__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(AppContainer));
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/Content.jsx":
+/*!*****************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/components/Content.jsx ***!
+  \*****************************************************************************************/
+/*! exports provided: Content, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Content", function() { return Content; });
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/slice */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/slice.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/trim */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/trim.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_reduce__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/reduce */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/reduce.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_reduce__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_reduce__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs3/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/getPrototypeOf */ "./node_modules/@babel/runtime-corejs3/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/assertThisInitialized */ "./node_modules/@babel/runtime-corejs3/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/inherits */ "./node_modules/@babel/runtime-corejs3/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../actions */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/actions/index.js");
+/* harmony import */ var _modules_validation__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../modules/validation */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/validation.js");
+/* harmony import */ var _modules_constants__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../modules/constants */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/constants.js");
+/* harmony import */ var _Section__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./Section */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/Section.jsx");
+/* harmony import */ var _sections_Personal__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./sections/Personal */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/Personal.jsx");
+/* harmony import */ var _sections_Additional__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./sections/Additional */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/Additional.jsx");
+/* harmony import */ var _sections_EmailFormat__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./sections/EmailFormat */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/EmailFormat.jsx");
+/* harmony import */ var _sections_WebSite__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./sections/WebSite */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/WebSite.jsx");
+/* harmony import */ var _sections_Payment__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./sections/Payment */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/Payment.jsx");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Content =
+/*#__PURE__*/
+function (_PureComponent) {
+  _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_12___default()(Content, _PureComponent);
+
+  function Content(props) {
+    var _this;
+
+    _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7___default()(this, Content);
+
+    _this = _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_9___default()(this, _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_10___default()(Content).call(this, props));
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_13___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_11___default()(_this), "handleGetMoreSiteUrls", function (moreSiteUrlsList) {
+      var moreSiteUrls = moreSiteUrlsList && _babel_runtime_corejs3_core_js_stable_instance_reduce__WEBPACK_IMPORTED_MODULE_6___default()(moreSiteUrlsList).call(moreSiteUrlsList, function (accumulator, siteUrl) {
+        return accumulator + _babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_5___default()(siteUrl).call(siteUrl) + ";";
+      }, '');
+
+      return _babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_4___default()(moreSiteUrls).call(moreSiteUrls, 0, -1);
+    });
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_13___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_11___default()(_this), "handleSubmit",
+    /*#__PURE__*/
+    _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3___default()(
+    /*#__PURE__*/
+    _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var _context;
+
+      var _this$props, affName, userAccountInfo, moreSiteUrlsList, userAccountInfoAfterTrim, resultValidateUserAccount, moreSiteUrls, newUserAccountInfo, result;
+
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _this$props = _this.props, affName = _this$props.affName, userAccountInfo = _this$props.userAccountInfo, moreSiteUrlsList = _this$props.moreSiteUrlsList;
+              userAccountInfoAfterTrim = _babel_runtime_corejs3_core_js_stable_instance_reduce__WEBPACK_IMPORTED_MODULE_6___default()(_context = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(userAccountInfo)).call(_context, function (accumulator, key) {
+                var item = userAccountInfo[key];
+
+                if (typeof item === 'string') {
+                  item = _babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_5___default()(item).call(item);
+                }
+
+                accumulator[key] = item;
+                return accumulator;
+              }, {});
+              resultValidateUserAccount = Object(_modules_validation__WEBPACK_IMPORTED_MODULE_19__["validateUserAccount"])(userAccountInfoAfterTrim, moreSiteUrlsList);
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+              });
+
+              if (!resultValidateUserAccount.isValid) {
+                _context2.next = 13;
+                break;
+              }
+
+              moreSiteUrls = _this.handleGetMoreSiteUrls(moreSiteUrlsList);
+              newUserAccountInfo = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default()({}, userAccountInfoAfterTrim, {
+                MoreSiteUrls: moreSiteUrls
+              });
+              _context2.next = 9;
+              return _this.props.updateUserAccount(newUserAccountInfo);
+
+            case 9:
+              result = _context2.sent;
+
+              if (result) {
+                _this.setState({
+                  isShowMessage: true,
+                  isSuccess: result.IsSuccessful,
+                  message: result.IsSuccessful ? "".concat(userAccountInfo.AffName, " has been updated successfully!") : result.Message
+                }, function () {
+                  return window.setTimeout(_this.hideMessage, 3000);
+                });
+
+                if (result.IsSuccessful) {
+                  window.setTimeout(function () {
+                    return _this.props.getAffiliateInfo(affName, _modules_constants__WEBPACK_IMPORTED_MODULE_20__["userPanelMenuKey"].edit);
+                  }, 3000);
+                }
+              } else {
+                _this.setState({
+                  isSuccess: false,
+                  isShowMessage: true,
+                  message: 'Update is failed!'
+                }, function () {
+                  return window.setTimeout(_this.hideMessage, 3000);
+                });
+              }
+
+              _context2.next = 14;
+              break;
+
+            case 13:
+              _this.setState({
+                isSuccess: false,
+                isShowMessage: !resultValidateUserAccount.isValid,
+                message: resultValidateUserAccount.message
+              }, function () {
+                return window.setTimeout(_this.hideMessage, 3000);
+              });
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee);
+    })));
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_13___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_11___default()(_this), "hideMessage", function () {
+      _this.setState({
+        isShowMessage: false
+      });
+    });
+
+    _this.state = {
+      isSuccess: true,
+      isShowMessage: false,
+      message: ''
+    };
+    return _this;
+  }
+
+  _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_8___default()(Content, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var affId = this.props.affId;
+      affId && this.props.getUserAccountInfo(affId);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$state = this.state,
+          isSuccess = _this$state.isSuccess,
+          isShowMessage = _this$state.isShowMessage,
+          message = _this$state.message;
+      return this.props.userAccountInfo && react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Container"], {
+        fluid: true,
+        className: "user-account-container"
+      }, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Alert"], {
+        color: isSuccess ? 'success' : 'danger',
+        isOpen: isShowMessage
+      }, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement("div", {
+        dangerouslySetInnerHTML: {
+          __html: message
+        }
+      })), react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Row"], null, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Col"], {
+        xs: "6",
+        className: "pl-0"
+      }, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(_Section__WEBPACK_IMPORTED_MODULE_21__["default"], {
+        title: "Personal Information"
+      }, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(_sections_Personal__WEBPACK_IMPORTED_MODULE_22__["default"], null))), react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Col"], {
+        xs: "6",
+        className: "pr-0"
+      }, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(_Section__WEBPACK_IMPORTED_MODULE_21__["default"], {
+        title: "Additional Information"
+      }, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(_sections_Additional__WEBPACK_IMPORTED_MODULE_23__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Row"], null, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Col"], {
+        xs: "12",
+        className: "px-0"
+      }, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(_Section__WEBPACK_IMPORTED_MODULE_21__["default"], {
+        title: "Email Format Preference"
+      }, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(_sections_EmailFormat__WEBPACK_IMPORTED_MODULE_24__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Row"], null, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Col"], {
+        xs: "12",
+        className: "px-0"
+      }, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(_Section__WEBPACK_IMPORTED_MODULE_21__["default"], {
+        title: "Website Information"
+      }, this.props.moreSiteUrlsList && react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(_sections_WebSite__WEBPACK_IMPORTED_MODULE_25__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Row"], null, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Col"], {
+        xs: "12",
+        className: "px-0"
+      }, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(_Section__WEBPACK_IMPORTED_MODULE_21__["default"], {
+        title: "Payment Information"
+      }, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(_sections_Payment__WEBPACK_IMPORTED_MODULE_26__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Row"], null, react__WEBPACK_IMPORTED_MODULE_14___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_17__["Button"], {
+        className: "mb-3",
+        color: "success",
+        onClick: this.handleSubmit
+      }, "Submit")));
+    }
+  }]);
+
+  return Content;
+}(react__WEBPACK_IMPORTED_MODULE_14__["PureComponent"]);
+
+function mapStateToProps(_ref2) {
+  var affCommonInfo = _ref2.affCommonInfo,
+      edit = _ref2.edit;
+  var affId = affCommonInfo.affId,
+      affName = affCommonInfo.affName;
+  var userAccountInfo = edit.userAccountInfo,
+      moreSiteUrlsList = edit.moreSiteUrlsList;
+  return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default()({}, {
+    affId: affId,
+    affName: affName,
+    userAccountInfo: userAccountInfo,
+    moreSiteUrlsList: moreSiteUrlsList
+  });
+}
+
+function mapDispatchToProps(dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_16__["bindActionCreators"])({
+    getUserAccountInfo: _actions__WEBPACK_IMPORTED_MODULE_18__["getUserAccountInfo"],
+    updateUserAccount: _actions__WEBPACK_IMPORTED_MODULE_18__["updateUserAccount"],
+    getAffiliateInfo: _actions__WEBPACK_IMPORTED_MODULE_18__["getAffiliateInfo"]
+  }, dispatch);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_15__["connect"])(mapStateToProps, mapDispatchToProps)(Content));
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/Section.jsx":
+/*!*****************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/components/Section.jsx ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime-corejs3/helpers/objectWithoutProperties.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var Section = function Section(props) {
+  var title = props.title,
+      children = props.children,
+      rest = _babel_runtime_corejs3_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0___default()(props, ["title", "children"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("fieldset", rest, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("legend", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", null, title)), children);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_1___default.a.memo(Section));
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/Additional.jsx":
+/*!*****************************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/Additional.jsx ***!
+  \*****************************************************************************************************/
+/*! exports provided: Additional, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Additional", function() { return Additional; });
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs3/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/getPrototypeOf */ "./node_modules/@babel/runtime-corejs3/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/assertThisInitialized */ "./node_modules/@babel/runtime-corejs3/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/inherits */ "./node_modules/@babel/runtime-corejs3/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _modules_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../modules/service */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/service.js");
+/* harmony import */ var _modules_constants__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../modules/constants */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/constants.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../actions */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/actions/index.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Additional =
+/*#__PURE__*/
+function (_PureComponent) {
+  _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(Additional, _PureComponent);
+
+  function Additional(props) {
+    var _this;
+
+    _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, Additional);
+
+    _this = _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default()(this, _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default()(Additional).call(this, props));
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "handleChange", function (event) {
+      var target = event.target;
+      var name = Object(_modules_service__WEBPACK_IMPORTED_MODULE_14__["capitalizeFirstChar"])(target.name);
+
+      var newUserAccountInfo = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2___default()({}, _this.props.userAccountInfo, _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()({}, name, target.value));
+
+      _this.props.setUserAccountInfo(newUserAccountInfo);
+    });
+
+    return _this;
+  }
+
+  _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(Additional, [{
+    key: "_renderCountry",
+    value: function _renderCountry(country) {
+      var _context;
+
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        for: "country",
+        sm: 3,
+        xl: 2,
+        className: "required"
+      }, "Country"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Col"], {
+        sm: 9,
+        xl: 10
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Input"], {
+        type: "select",
+        id: "country",
+        name: "country",
+        value: country,
+        onChange: this.handleChange
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("option", {
+        value: ""
+      }, "Select One"), _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default()(_context = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_0___default()(_modules_constants__WEBPACK_IMPORTED_MODULE_15__["countriesList"])).call(_context, function (key) {
+        return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("option", {
+          key: 'country-' + key,
+          value: key
+        }, _modules_constants__WEBPACK_IMPORTED_MODULE_15__["countriesList"][key]);
+      }))));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var userAccountInfo = this.props.userAccountInfo;
+      return userAccountInfo && react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Form"], {
+        tag: "div"
+      }, Object(_modules_service__WEBPACK_IMPORTED_MODULE_14__["renderInputForm"])('address', 'Address', userAccountInfo.Address, false, true, this.handleChange), Object(_modules_service__WEBPACK_IMPORTED_MODULE_14__["renderInputForm"])('city', 'City', userAccountInfo.City, false, true, this.handleChange), Object(_modules_service__WEBPACK_IMPORTED_MODULE_14__["renderInputForm"])('state', 'State', userAccountInfo.State, false, false, this.handleChange), Object(_modules_service__WEBPACK_IMPORTED_MODULE_14__["renderInputForm"])('postcode', 'Postcode/Zip', userAccountInfo.Postcode, false, true, this.handleChange), this._renderCountry(userAccountInfo.Country), Object(_modules_service__WEBPACK_IMPORTED_MODULE_14__["renderInputForm"])('question', 'Security Question', userAccountInfo.Question, true), Object(_modules_service__WEBPACK_IMPORTED_MODULE_14__["renderInputForm"])('answer', 'Answer', userAccountInfo.Answer, true));
+    }
+  }]);
+
+  return Additional;
+}(react__WEBPACK_IMPORTED_MODULE_10__["PureComponent"]);
+
+function mapStateToProps(_ref) {
+  var edit = _ref.edit;
+  var userAccountInfo = edit.userAccountInfo;
+  return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2___default()({}, {
+    userAccountInfo: userAccountInfo
+  });
+}
+
+function mapDispatchToProps(dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_12__["bindActionCreators"])({
+    setUserAccountInfo: _actions__WEBPACK_IMPORTED_MODULE_16__["setUserAccountInfo"]
+  }, dispatch);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_11__["connect"])(mapStateToProps, mapDispatchToProps)(Additional));
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/EmailFormat.jsx":
+/*!******************************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/EmailFormat.jsx ***!
+  \******************************************************************************************************/
+/*! exports provided: EmailFormat, default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\hubert.duong\\Desktop\\affiliate-12bet\\Admin\\AffiliateAdmin\\Areas\\Portal\\www\\source\\js\\pages\\user-panel\\user-account\\components\\sections\\EmailFormat.jsx'");
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/Payment.jsx":
+/*!**************************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/Payment.jsx ***!
+  \**************************************************************************************************/
+/*! exports provided: Payment, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Payment", function() { return Payment; });
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs3/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/getPrototypeOf */ "./node_modules/@babel/runtime-corejs3/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/assertThisInitialized */ "./node_modules/@babel/runtime-corejs3/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/inherits */ "./node_modules/@babel/runtime-corejs3/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _modules_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../modules/service */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/service.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../actions */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/actions/index.js");
+/* harmony import */ var _modules_constants__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../modules/constants */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/constants.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var paymentMethodList = [{
+  key: _modules_constants__WEBPACK_IMPORTED_MODULE_15__["playerMethod"],
+  value: '12BET player account'
+}, {
+  key: _modules_constants__WEBPACK_IMPORTED_MODULE_15__["netellerMethod"],
+  value: 'Neteller'
+}, {
+  key: _modules_constants__WEBPACK_IMPORTED_MODULE_15__["moneybookersMethod"],
+  value: 'Moneybookers'
+}, {
+  key: _modules_constants__WEBPACK_IMPORTED_MODULE_15__["wireMethod"],
+  value: 'Bank Transfer'
+}];
+var Payment =
+/*#__PURE__*/
+function (_PureComponent) {
+  _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default()(Payment, _PureComponent);
+
+  function Payment(props) {
+    var _this;
+
+    _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Payment);
+
+    _this = _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Payment).call(this, props));
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "handleChangePaymentMethod", function (event) {
+      var newUserAccountInfo = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.props.userAccountInfo, {
+        PreferredPayment: event.target.value
+      });
+
+      _this.props.setUserAccountInfo(newUserAccountInfo);
+    });
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "handleChange", function (event) {
+      var target = event.target;
+      var name = Object(_modules_service__WEBPACK_IMPORTED_MODULE_13__["capitalizeFirstChar"])(target.name);
+
+      var newUserAccountInfo = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.props.userAccountInfo, _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()({}, name, target.value));
+
+      _this.props.setUserAccountInfo(newUserAccountInfo);
+    });
+
+    return _this;
+  }
+
+  _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(Payment, [{
+    key: "_renderFormByMethod",
+    value: function _renderFormByMethod(userAccountInfo) {
+      var _ref;
+
+      return _ref = {}, _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_ref, _modules_constants__WEBPACK_IMPORTED_MODULE_15__["playerMethod"], this._renderPaymentForm('playerUsername', '12BET User Name', userAccountInfo.PlayerUsername, true, this.handleChange)), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_ref, _modules_constants__WEBPACK_IMPORTED_MODULE_15__["netellerMethod"], this._renderPaymentForm('netellerAccountId', 'Neteller Account ID', userAccountInfo.NetellerAccountId, true, this.handleChange)), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_ref, _modules_constants__WEBPACK_IMPORTED_MODULE_15__["moneybookersMethod"], this._renderPaymentForm('moneybookersEmail', 'Moneybookers Email', userAccountInfo.MoneybookersEmail, true, this.handleChange)), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_ref, _modules_constants__WEBPACK_IMPORTED_MODULE_15__["wireMethod"], this._renderWireForm(userAccountInfo)), _ref;
+    }
+  }, {
+    key: "_renderPaymentForm",
+    value: function _renderPaymentForm(name, label, inputValue, isRequired, changeHandler) {
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["FormGroup"], {
+        row: true
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Label"], {
+        for: name,
+        sm: 3,
+        xl: 2,
+        className: isRequired ? "required" : ""
+      }, label), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Col"], {
+        sm: 5,
+        xl: 6
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Input"], {
+        type: "text",
+        id: name,
+        name: name,
+        value: inputValue,
+        onChange: changeHandler
+      })));
+    }
+  }, {
+    key: "_renderWireForm",
+    value: function _renderWireForm(userAccountInfo) {
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_9___default.a.Fragment, null, this._renderPaymentForm('bankName', 'Bank Name', userAccountInfo.BankName, true, this.handleChange), this._renderPaymentForm('bankAddress', 'Bank Address', userAccountInfo.BankAddress, true, this.handleChange), this._renderPaymentForm('bankCode', 'Bank ABA/Swift/Sort Code', userAccountInfo.BankCode, false, this.handleChange), this._renderPaymentForm('bankAccountName', 'Bank Account Name', userAccountInfo.BankAccountName, true, this.handleChange), this._renderPaymentForm('bankAccountNumber', 'Bank Account Number', userAccountInfo.BankAccountNumber, true, this.handleChange));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var userAccountInfo = this.props.userAccountInfo;
+
+      var renderFormByMethod = userAccountInfo && this._renderFormByMethod(userAccountInfo);
+
+      return userAccountInfo && react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Form"], {
+        tag: "div"
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["FormGroup"], {
+        row: true
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Label"], {
+        for: "preferredPayment",
+        sm: 3,
+        xl: 2
+      }, "Preferred Payment Method"), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Col"], {
+        sm: 5,
+        xl: 6
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Input"], {
+        type: "select",
+        id: "preferredPayment",
+        name: "preferredPayment",
+        onChange: this.handleChangePaymentMethod,
+        value: userAccountInfo.PreferredPayment
+      }, _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_0___default()(paymentMethodList).call(paymentMethodList, function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("option", {
+          key: item.key,
+          value: item.key
+        }, item.value);
+      }))), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("p", null, _modules_constants__WEBPACK_IMPORTED_MODULE_15__["minimumPayment"])), renderFormByMethod[userAccountInfo.PreferredPayment], userAccountInfo.PreferredPayment === _modules_constants__WEBPACK_IMPORTED_MODULE_15__["playerMethod"] && react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("p", {
+        className: "text-danger offset-sm-3 offset-xl-2 pl-1"
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_15__["nondeposited"]));
+    }
+  }]);
+
+  return Payment;
+}(react__WEBPACK_IMPORTED_MODULE_9__["PureComponent"]);
+
+function mapStateToProps(_ref2) {
+  var edit = _ref2.edit;
+  var userAccountInfo = edit.userAccountInfo;
+  return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default()({}, {
+    userAccountInfo: userAccountInfo
+  });
+}
+
+function mapDispatchToProps(dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_11__["bindActionCreators"])({
+    setUserAccountInfo: _actions__WEBPACK_IMPORTED_MODULE_14__["setUserAccountInfo"]
+  }, dispatch);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_10__["connect"])(mapStateToProps, mapDispatchToProps)(Payment));
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/Personal.jsx":
+/*!***************************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/Personal.jsx ***!
+  \***************************************************************************************************/
+/*! exports provided: Personal, default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\hubert.duong\\Desktop\\affiliate-12bet\\Admin\\AffiliateAdmin\\Areas\\Portal\\www\\source\\js\\pages\\user-panel\\user-account\\components\\sections\\Personal.jsx'");
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/WebSite.jsx":
+/*!**************************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/components/sections/WebSite.jsx ***!
+  \**************************************************************************************************/
+/*! exports provided: WebSite, default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\hubert.duong\\Desktop\\affiliate-12bet\\Admin\\AffiliateAdmin\\Areas\\Portal\\www\\source\\js\\pages\\user-panel\\user-account\\components\\sections\\WebSite.jsx'");
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/constants.js":
+/*!***************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/constants.js ***!
+  \***************************************************************************************/
+/*! exports provided: userPanelMenuKey, regexEmail, messageList, requiredFieldList, requiredBankTranferList, playerMethod, netellerMethod, moneybookersMethod, wireMethod, minimumPayment, nondeposited, countriesList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "regexEmail", function() { return regexEmail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "messageList", function() { return messageList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requiredFieldList", function() { return requiredFieldList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requiredBankTranferList", function() { return requiredBankTranferList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "playerMethod", function() { return playerMethod; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "netellerMethod", function() { return netellerMethod; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "moneybookersMethod", function() { return moneybookersMethod; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "wireMethod", function() { return wireMethod; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "minimumPayment", function() { return minimumPayment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nondeposited", function() { return nondeposited; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countriesList", function() { return countriesList; });
+/* harmony import */ var _customer_common_modules_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../customer/common/modules/constants */ "./Areas/Portal/www/source/js/pages/customer/common/modules/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "userPanelMenuKey", function() { return _customer_common_modules_constants__WEBPACK_IMPORTED_MODULE_0__["userPanelMenuKey"]; });
+
+
+
+var regexEmail = '^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$';
+var messageList = {
+  FirstName: 'First Name is required',
+  LastName: 'Last Name is required',
+  Gender: 'Gender is empty, Please Check!',
+  Email: 'Email Address is invalid',
+  Phone: 'Contact Number is required',
+  Address: 'Address is required',
+  City: 'City is required',
+  Postcode: 'Postcode/Zip is required',
+  Country: 'Please select country',
+  SiteUrl: 'Website URL is required',
+  PlayerUsername: '12BET User Name is required',
+  NetellerAccountId: 'Neteller Account ID is required',
+  MoneybookersEmail: 'Moneybookers Email is required',
+  BankName: 'Bank Name is required',
+  BankAddress: 'Bank Address is required',
+  BankAccountName: 'Bank Account Name is required',
+  BankAccountNumber: 'Bank Account Number is required'
+};
+var requiredFieldList = ['FirstName', 'LastName', 'Phone', 'Address', 'City', 'Postcode', 'SiteUrl'];
+var requiredBankTranferList = ['BankName', 'BankAddress', 'BankAccountName', 'BankAccountNumber'];
+var playerMethod = 'Player';
+var netellerMethod = 'Neteller';
+var moneybookersMethod = 'Moneybookers';
+var wireMethod = 'Wire';
+var minimumPayment = 'Minimum payment amount is $100';
+var nondeposited = 'Non-deposited account only';
+var countriesList = {
+  'Albania': 'Albania',
+  'Algeria': 'Algeria',
+  'Angola': 'Angola',
+  'Anguilla': 'Anguilla',
+  'Argentina': 'Argentina',
+  'Armenia': 'Armenia',
+  'Aruba': 'Aruba',
+  'Australia': 'Australia',
+  'Austria': 'Austria',
+  'Azerbaijan': 'Azerbaijan',
+  'Bahamas': 'Bahamas',
+  'Bahrain': 'Bahrain',
+  'Bangladesh': 'Bangladesh',
+  'Barbados': 'Barbados',
+  'Belarus': 'Belarus',
+  'Belgium': 'Belgium',
+  'Belize': 'Belize',
+  'Benin': 'Benin',
+  'Bermuda': 'Bermuda',
+  'Bhutan': 'Bhutan',
+  'Bolivia': 'Bolivia',
+  'Bosnia and Herzegovina': 'Bosnia and Herzegovina',
+  'Botswana': 'Botswana',
+  'Brazil': 'Brazil',
+  'Brunei': 'Brunei Darussalam',
+  'Bulgaria': 'Bulgaria',
+  'Burkina': 'Burkina Faso',
+  'Burundi': 'Burundi',
+  'Cambodia': 'Cambodia',
+  'Cameroon': 'Cameroon',
+  'Canada': 'Canada',
+  'Cape Verde': 'Cape Verde',
+  'Cayman Islands': 'Cayman Islands',
+  'Central African Rep': 'Central African Rep',
+  'Chad': 'Chad',
+  'Chile': 'Chile',
+  "China (People's Rep)": "China (People's Rep)",
+  'Colombia': 'Colombia',
+  'Congo(Rep)': 'Congo(Rep)',
+  'Cook Islands': 'Cook Islands',
+  'Costa Rica': 'Costa Rica',
+  "Cote d'Ivoire (Rep)": "Cote d'Ivoire (Rep)",
+  'Croatia': 'Croatia',
+  'Cyprus': 'Cyprus',
+  'Czech (Rep)': 'Czech (Rep)',
+  'Dem Rep of Congo': 'Dem Rep of Congo',
+  'Denmark': 'Denmark',
+  'Dominica (Commonwealth of)': 'Dominica (Commonwealth of)',
+  'Dominican Rep.': 'Dominican Rep.',
+  'Ecuador': 'Ecuador',
+  'Egypt': 'Egypt',
+  'El Salvador': 'El Salvador',
+  'Eritrea': 'Eritrea',
+  'Estonia': 'Estonia',
+  'Ethiopia': 'Ethiopia',
+  'Fiji': 'Fiji',
+  'Finland': 'Finland',
+  'France': 'France',
+  'French Polynesia': 'French Polynesia',
+  'Gabon': 'Gabon',
+  'Georgia': 'Georgia',
+  'Germany': 'Germany',
+  'Ghana': 'Ghana',
+  'Gibraltar': 'Gibraltar',
+  'Greece': 'Greece',
+  'Grenada': 'Grenada',
+  'Guatemala': 'Guatemala',
+  'Guinea': 'Guinea',
+  'Guyana': 'Guyana',
+  'Haiti': 'Haiti',
+  'Honduras': 'Honduras',
+  'Hong Kong': 'Hong Kong',
+  'Hungary': 'Hungary',
+  'Iceland': 'Iceland',
+  'India': 'India',
+  'Indonesia': 'Indonesia',
+  'Iran': 'Iran',
+  'Iraq': 'Iraq',
+  'Ireland': 'Ireland',
+  'Israel': 'Israel',
+  'Italy': 'Italy',
+  'Jamaica': 'Jamaica',
+  'Japan': 'Japan',
+  'Jordan': 'Jordan',
+  'Kenya': 'Kenya',
+  'Korea': 'Korea (Rep)',
+  'Kuwait': 'Kuwait',
+  "Lao People's Dem Rep": "Lao People's Dem Rep",
+  'Latvia': 'Latvia',
+  'Lesotho': 'Lesotho',
+  'Liechtenstein': 'Liechtenstein',
+  'Lithuania': 'Lithuania',
+  'Luxembourg': 'Luxembourg',
+  'Macao': 'Macao',
+  'Macedonia': 'Macedonia',
+  'Madagascar': 'Madagascar',
+  'Malawi': 'Malawi',
+  'Malaysia': 'Malaysia',
+  'Maldives': 'Maldives',
+  'Mali': 'Mali',
+  'Malta': 'Malta',
+  'Mauritania': 'Mauritania',
+  'Mauritius': 'Mauritius',
+  'Mexico': 'Mexico',
+  'Moldova': 'Moldova',
+  'Mongolia': 'Mongolia',
+  'Morocco': 'Morocco',
+  'Myanmar': 'Myanmar',
+  'Namibia': 'Namibia',
+  'Nauru': 'Nauru',
+  'Nepal': 'Nepal',
+  'Netherlands': 'Netherlands',
+  'New Caledonia': 'New Caledonia',
+  'New Zealand': 'New Zealand',
+  'Niger': 'Niger',
+  'Nigeria': 'Nigeria',
+  'Norway': 'Norway',
+  'Oman': 'Oman',
+  'Pakistan': 'Pakistan',
+  'Panama': 'Panama',
+  'Papua New Guinea': 'Papua New Guinea',
+  'Paraguay': 'Paraguay',
+  'Peru': 'Peru',
+  'Philippines': 'Philippines',
+  'Poland': 'Poland',
+  'Portugal': 'Portugal',
+  'Qatar': 'Qatar',
+  'Romania': 'Romania',
+  'Russian Federation': 'Russian Federation',
+  'Rwanda': 'Rwanda',
+  'Saint Christopher (St. Kitts) and Nevis': 'Saint Christopher (St. Kitts) and Nevis',
+  'Saint Lucia': 'Saint Lucia',
+  'Saint Vincent and the Grenadines': 'Saint Vincent and the Grenadines',
+  'Sao Tome and Principe': 'Sao Tome and Principe',
+  'Saudi Arabia': 'Saudi Arabia',
+  'Senegal': 'Senegal',
+  'Seychelles': 'Seychelles',
+  'Sierra Leone': 'Sierra Leone',
+  'Singapore': 'Singapore',
+  'Slovakia': 'Slovakia',
+  'Slovenia': 'Slovenia',
+  'Solomon Islands': 'Solomon Islands',
+  'Somalia': 'Somalia',
+  'South Africa': 'South Africa',
+  'Spain': 'Spain',
+  'Sri Lanka': 'Sri Lanka',
+  'Sudan': 'Sudan',
+  'Suriname': 'Suriname',
+  'Swaziland': 'Swaziland',
+  'Sweden': 'Sweden',
+  'Switzerland': 'Switzerland',
+  'Taiwan': 'Taiwan',
+  'Tanzania': 'Tanzania',
+  'Thailand': 'Thailand',
+  'Togo': 'Togo',
+  'Trinidad and Tobago': 'Trinidad and Tobago',
+  'Tunisia': 'Tunisia',
+  'Turkey': 'Turkey',
+  'Uganda': 'Uganda',
+  'Ukraine': 'Ukraine',
+  'United Arab Emirates': 'United Arab Emirates',
+  'United Kingdom of Great Britain': 'United Kingdom of Great Britain',
+  'United States of America': 'United States of America',
+  'Uruguay': 'Uruguay',
+  'Venezuela': 'Venezuela',
+  'Viet Nam': 'Viet Nam',
+  'Western Samoa': 'Western Samoa',
+  'Yemen': 'Yemen',
+  'Yugoslavia': 'Yugoslavia',
+  'Zambia': 'Zambia',
+  'Zimbabwe': 'Zimbabwe'
+};
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/service.js":
+/*!*************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/service.js ***!
+  \*************************************************************************************/
+/*! exports provided: renderInputForm, capitalizeFirstChar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderInputForm", function() { return renderInputForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "capitalizeFirstChar", function() { return capitalizeFirstChar; });
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/slice */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/slice.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+
+
+
+var renderInputForm = function renderInputForm(name, label, inputValue, isStatic, isRequired, changeHandler) {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["FormGroup"], {
+    row: true
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Label"], {
+    for: name,
+    sm: 3,
+    xl: 2,
+    className: isRequired ? "required" : ""
+  }, label), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
+    sm: 9,
+    xl: 10
+  }, isStatic ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+    className: "form-control-plaintext"
+  }, inputValue) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Input"], {
+    type: "text",
+    id: name,
+    name: name,
+    value: inputValue,
+    onChange: changeHandler
+  })));
+};
+var capitalizeFirstChar = function capitalizeFirstChar(string) {
+  return string.charAt(0).toUpperCase() + _babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_0___default()(string).call(string, 1);
+};
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/validation.js":
+/*!****************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/validation.js ***!
+  \****************************************************************************************/
+/*! exports provided: validateUserAccount */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateUserAccount", function() { return validateUserAccount; });
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_reduce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/reduce */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/reduce.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_reduce__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_reduce__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/index-of */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/index-of.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/trim */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/trim.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/constants.js");
+
+
+
+
+
+
+var getMessage = function getMessage(fieldName, value) {
+  return value === '' ? _constants__WEBPACK_IMPORTED_MODULE_4__["messageList"][fieldName] + "<br />" : '';
+};
+
+var validateMoreSiteUrls = function validateMoreSiteUrls(moreSiteUrlsList) {
+  var moreSiteUrls = _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3___default()(moreSiteUrlsList).call(moreSiteUrlsList, function (siteUrl) {
+    return _babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_2___default()(siteUrl).call(siteUrl);
+  });
+
+  var emptySiteUrlIndex = _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1___default()(moreSiteUrls).call(moreSiteUrls, '');
+
+  var hasEmptySiteUrl = emptySiteUrlIndex !== -1;
+  var message = hasEmptySiteUrl ? "Website URL ".concat(emptySiteUrlIndex + 2, " is required<br />") : '';
+  return {
+    message: message,
+    isValid: !hasEmptySiteUrl
+  };
+};
+
+var validatePaymentMethod = function validatePaymentMethod(userAccountInfo) {
+  var message = '';
+  var isValid = true;
+
+  switch (userAccountInfo.PreferredPayment) {
+    case _constants__WEBPACK_IMPORTED_MODULE_4__["playerMethod"]:
+      message = getMessage('PlayerUsername', userAccountInfo.PlayerUsername);
+      isValid = userAccountInfo.PlayerUsername !== '';
+      break;
+
+    case _constants__WEBPACK_IMPORTED_MODULE_4__["netellerMethod"]:
+      message = getMessage('NetellerAccountId', userAccountInfo.NetellerAccountId);
+      isValid = userAccountInfo.NetellerAccountId !== '';
+      break;
+
+    case _constants__WEBPACK_IMPORTED_MODULE_4__["moneybookersMethod"]:
+      message = getMessage('MoneybookersEmail', userAccountInfo.MoneybookersEmail);
+      isValid = userAccountInfo.MoneybookersEmail !== '';
+      break;
+
+    case _constants__WEBPACK_IMPORTED_MODULE_4__["wireMethod"]:
+      message = _babel_runtime_corejs3_core_js_stable_instance_reduce__WEBPACK_IMPORTED_MODULE_0___default()(_constants__WEBPACK_IMPORTED_MODULE_4__["requiredBankTranferList"]).call(_constants__WEBPACK_IMPORTED_MODULE_4__["requiredBankTranferList"], function (accumulator, field) {
+        return accumulator + getMessage(field, userAccountInfo[field]);
+      }, '');
+      isValid = userAccountInfo.BankName !== '' && userAccountInfo.BankAddress !== '' && userAccountInfo.BankAccountName !== '' && userAccountInfo.BankAccountNumber !== '';
+      break;
+  }
+
+  return {
+    message: message,
+    isValid: isValid
+  };
+};
+
+var validateUserAccount = function validateUserAccount(userAccountInfo, moreSiteUrlsList) {
+  var message = '';
+  var checkEmail = new RegExp(_constants__WEBPACK_IMPORTED_MODULE_4__["regexEmail"]);
+  var isValidGender = userAccountInfo.Gender != null;
+  var isValidEmail = checkEmail.test(userAccountInfo.Email);
+  var country = _constants__WEBPACK_IMPORTED_MODULE_4__["countriesList"][userAccountInfo.Country] === undefined ? "" : userAccountInfo.Country;
+  message = isValidGender ? message : message + _constants__WEBPACK_IMPORTED_MODULE_4__["messageList"].Gender + "<br />";
+  message = isValidEmail ? message : message + _constants__WEBPACK_IMPORTED_MODULE_4__["messageList"].Email + "<br />";
+  message += getMessage('Country', country);
+  message += _babel_runtime_corejs3_core_js_stable_instance_reduce__WEBPACK_IMPORTED_MODULE_0___default()(_constants__WEBPACK_IMPORTED_MODULE_4__["requiredFieldList"]).call(_constants__WEBPACK_IMPORTED_MODULE_4__["requiredFieldList"], function (accumulator, field) {
+    return accumulator + getMessage(field, userAccountInfo[field]);
+  }, '');
+  var isValid = isValidGender && isValidEmail && userAccountInfo.FirstName !== '' && userAccountInfo.LastName !== '' && userAccountInfo.Phone !== '' && userAccountInfo.Address !== '' && userAccountInfo.City !== '' && userAccountInfo.Postcode !== '' && userAccountInfo.Country !== '' && userAccountInfo.SiteUrl !== '';
+  var resultValidateMoreSiteUrls = moreSiteUrlsList ? validateMoreSiteUrls(moreSiteUrlsList) : {
+    message: '',
+    isValid: true
+  };
+  var resultValidatePaymentMethod = validatePaymentMethod(userAccountInfo);
+  return {
+    message: message + resultValidateMoreSiteUrls.message + resultValidatePaymentMethod.message,
+    isValid: isValid && resultValidateMoreSiteUrls.isValid && resultValidatePaymentMethod.isValid
+  };
+};
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/reduce.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/instance/reduce.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js-pure/stable/instance/reduce */ "./node_modules/core-js-pure/stable/instance/reduce.js");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/slice.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/instance/slice.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js-pure/stable/instance/slice */ "./node_modules/core-js-pure/stable/instance/slice.js");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js-pure/stable/object/keys */ "./node_modules/core-js-pure/stable/object/keys.js");
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/es/array/virtual/reduce.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/core-js-pure/es/array/virtual/reduce.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../../modules/es.array.reduce */ "./node_modules/core-js-pure/modules/es.array.reduce.js");
+var entryVirtual = __webpack_require__(/*! ../../../internals/entry-virtual */ "./node_modules/core-js-pure/internals/entry-virtual.js");
+
+module.exports = entryVirtual('Array').reduce;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/es/array/virtual/slice.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js-pure/es/array/virtual/slice.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../../modules/es.array.slice */ "./node_modules/core-js-pure/modules/es.array.slice.js");
+var entryVirtual = __webpack_require__(/*! ../../../internals/entry-virtual */ "./node_modules/core-js-pure/internals/entry-virtual.js");
+
+module.exports = entryVirtual('Array').slice;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/es/instance/reduce.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js-pure/es/instance/reduce.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var reduce = __webpack_require__(/*! ../array/virtual/reduce */ "./node_modules/core-js-pure/es/array/virtual/reduce.js");
+
+var ArrayPrototype = Array.prototype;
+
+module.exports = function (it) {
+  var own = it.reduce;
+  return it === ArrayPrototype || (it instanceof Array && own === ArrayPrototype.reduce) ? reduce : own;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/es/instance/slice.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js-pure/es/instance/slice.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var slice = __webpack_require__(/*! ../array/virtual/slice */ "./node_modules/core-js-pure/es/array/virtual/slice.js");
+
+var ArrayPrototype = Array.prototype;
+
+module.exports = function (it) {
+  var own = it.slice;
+  return it === ArrayPrototype || (it instanceof Array && own === ArrayPrototype.slice) ? slice : own;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/array-reduce.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/array-reduce.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var aFunction = __webpack_require__(/*! ../internals/a-function */ "./node_modules/core-js-pure/internals/a-function.js");
+var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js-pure/internals/to-object.js");
+var IndexedObject = __webpack_require__(/*! ../internals/indexed-object */ "./node_modules/core-js-pure/internals/indexed-object.js");
+var toLength = __webpack_require__(/*! ../internals/to-length */ "./node_modules/core-js-pure/internals/to-length.js");
+
+// `Array.prototype.{ reduce, reduceRight }` methods implementation
+// https://tc39.github.io/ecma262/#sec-array.prototype.reduce
+// https://tc39.github.io/ecma262/#sec-array.prototype.reduceright
+module.exports = function (that, callbackfn, argumentsLength, memo, isRight) {
+  aFunction(callbackfn);
+  var O = toObject(that);
+  var self = IndexedObject(O);
+  var length = toLength(O.length);
+  var index = isRight ? length - 1 : 0;
+  var i = isRight ? -1 : 1;
+  if (argumentsLength < 2) while (true) {
+    if (index in self) {
+      memo = self[index];
+      index += i;
+      break;
+    }
+    index += i;
+    if (isRight ? index < 0 : length <= index) {
+      throw TypeError('Reduce of empty array with no initial value');
+    }
+  }
+  for (;isRight ? index >= 0 : length > index; index += i) if (index in self) {
+    memo = callbackfn(memo, self[index], index, O);
+  }
+  return memo;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/modules/es.array.reduce.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/core-js-pure/modules/es.array.reduce.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js-pure/internals/export.js");
+var internalReduce = __webpack_require__(/*! ../internals/array-reduce */ "./node_modules/core-js-pure/internals/array-reduce.js");
+var sloppyArrayMethod = __webpack_require__(/*! ../internals/sloppy-array-method */ "./node_modules/core-js-pure/internals/sloppy-array-method.js");
+
+var SLOPPY_METHOD = sloppyArrayMethod('reduce');
+
+// `Array.prototype.reduce` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.reduce
+$({ target: 'Array', proto: true, forced: SLOPPY_METHOD }, {
+  reduce: function reduce(callbackfn /* , initialValue */) {
+    return internalReduce(this, callbackfn, arguments.length, arguments[1], false);
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/modules/es.array.slice.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js-pure/modules/es.array.slice.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js-pure/internals/export.js");
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js-pure/internals/is-object.js");
+var isArray = __webpack_require__(/*! ../internals/is-array */ "./node_modules/core-js-pure/internals/is-array.js");
+var toAbsoluteIndex = __webpack_require__(/*! ../internals/to-absolute-index */ "./node_modules/core-js-pure/internals/to-absolute-index.js");
+var toLength = __webpack_require__(/*! ../internals/to-length */ "./node_modules/core-js-pure/internals/to-length.js");
+var toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ "./node_modules/core-js-pure/internals/to-indexed-object.js");
+var createProperty = __webpack_require__(/*! ../internals/create-property */ "./node_modules/core-js-pure/internals/create-property.js");
+var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js-pure/internals/array-method-has-species-support.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js-pure/internals/well-known-symbol.js");
+
+var SPECIES = wellKnownSymbol('species');
+var nativeSlice = [].slice;
+var max = Math.max;
+
+var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('slice');
+
+// `Array.prototype.slice` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.slice
+// fallback for not array-like ES3 strings and DOM objects
+$({ target: 'Array', proto: true, forced: !SPECIES_SUPPORT }, {
+  slice: function slice(start, end) {
+    var O = toIndexedObject(this);
+    var length = toLength(O.length);
+    var k = toAbsoluteIndex(start, length);
+    var fin = toAbsoluteIndex(end === undefined ? length : end, length);
+    // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
+    var Constructor, result, n;
+    if (isArray(O)) {
+      Constructor = O.constructor;
+      // cross-realm fallback
+      if (typeof Constructor == 'function' && (Constructor === Array || isArray(Constructor.prototype))) {
+        Constructor = undefined;
+      } else if (isObject(Constructor)) {
+        Constructor = Constructor[SPECIES];
+        if (Constructor === null) Constructor = undefined;
+      }
+      if (Constructor === Array || Constructor === undefined) {
+        return nativeSlice.call(O, k, fin);
+      }
+    }
+    result = new (Constructor === undefined ? Array : Constructor)(max(fin - k, 0));
+    for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
+    result.length = n;
+    return result;
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/stable/instance/reduce.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js-pure/stable/instance/reduce.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ../../es/instance/reduce */ "./node_modules/core-js-pure/es/instance/reduce.js");
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/stable/instance/slice.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js-pure/stable/instance/slice.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ../../es/instance/slice */ "./node_modules/core-js-pure/es/instance/slice.js");
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/stable/object/keys.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js-pure/stable/object/keys.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ../../es/object/keys */ "./node_modules/core-js-pure/es/object/keys.js");
+
+
+/***/ })
+
+}]);
+//# sourceMappingURL=userAccount.chunk.js.map
