@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { searchByList, globalResource, minDate, all } from '../modules/constants';
+import { searchByList, globalResource, minDate, all, sender, email, affiliate, unknownAffiliate } from '../modules/constants';
 import { getDateArrange } from '../../../modules/utils';
 import { setParam } from '../actions';
 
@@ -34,13 +34,18 @@ export class Filter extends PureComponent {
 
     handleSetParam() {
         const { searchBy, searchText, fromDate, toDate, hasGetByDate } = this.state;
+        const { pagingOption } = this.props;
 
         const param = Object.assign({}, {
-            SearchBy: searchBy,
-            SearchText: searchText,
+            EmailId: searchBy == unknownAffiliate ? all : null,
+            SenderName: searchBy == sender ? searchText : '',
+            Email: searchBy == email ? searchText : '',
+            AffName: searchBy == affiliate ? searchText : '',
             HasGetByDate: hasGetByDate,
             FromDate: fromDate,
-            ToDate: toDate
+            ToDate: toDate,
+            PageIndex: 1,
+            PageSize: pagingOption.PageSize
         });
 
         this.props.setParam(param);
@@ -48,7 +53,7 @@ export class Filter extends PureComponent {
 
     handleChange = (event) => {
         const target = event.target;
-        const value = target.type === 'checkbox' ? !target.checked : target.value;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
 
         this.setState({ [target.name]: value });
         target.name === "searchBy" && this.setState({ searchText: '' });
@@ -103,13 +108,13 @@ export class Filter extends PureComponent {
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
-                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!hasGetByDate}
+                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={hasGetByDate}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                         <Label className="mr-sm-2">{globalResource.To}</Label>
-                        <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!hasGetByDate}
+                        <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={hasGetByDate}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeToDate} />
                     </FormGroup>
@@ -122,8 +127,8 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ today, param }) {
-    return Object.assign({}, { today, param });
+function mapStateToProps({ today, param, pagingOption }) {
+    return Object.assign({}, { today, param, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {

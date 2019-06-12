@@ -1807,6 +1807,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\EmailDetailForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\email-history.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\SelecteAll.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\DeleteEmail.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

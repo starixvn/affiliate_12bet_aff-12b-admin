@@ -4,25 +4,41 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { resource, headerText, globalResource } from '../modules/constants';
-import { setShowPopup, setPagingOption, fetchData, toggleLoader } from '../actions';
+import { headerText, globalResource } from '../modules/constants';
+import { setSelectedEmailId, setPagingOption, fetchData, toggleLoader, setCheckedEmails, setShouldResetScrollPosition, setParam } from '../actions';
+import DeleteEmail from './DeleteEmail';
+import SelecteAll from './SelecteAll';
 
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
+    }
 
-        this.state = {
-            gridData: null,
-            shouldResetScrollPosition: true
+    componentDidUpdate(prevProps) {
+        const { param } = this.props;
+
+        if (param !== prevProps.param) {
+            this.props.fetchData(param);
         }
     }
 
-    componentDidMount() {
-        const { pagingOption, param } = this.props;
-        const newParam = Object.assign({}, param, { pageIndex: 1, pageSize: pagingOption.PageSize });
+    onCheckItem = (isChecked, emailId) => {
+        const newCheckedEmails = Object.assign({}, this.props.checkedEmails, { [emailId]: isChecked });
 
-        this.props.fetchData(newParam);
+        this.props.setShouldResetScrollPosition(false);
+        this.props.setCheckedEmails(newCheckedEmails);
     }
+
+    handlePaging = (pageIndex, pageSize) => {
+        const newPaging = {
+            PageIndex: pageIndex,
+            PageSize: pageSize
+        };
+        const newParam = Object.assign({}, this.props.param, newPaging);
+
+        this.props.setPagingOption(newPaging);
+        this.props.setParam(newParam);
+    };
 
     _renderHeader() {
         return (
@@ -60,71 +76,36 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
+        const href = `mailto:${dataItem.Email}`;
         return (
             <Row key={`dataRow-${index}`}>
+                <Cell className="text-center">
+                    <input type="checkbox" checked={this.props.checkedEmails[dataItem.EmailId]}
+                        onChange={(e) => this.onCheckItem(e.target.checked, dataItem.EmailId)} />
+                </Cell>
                 <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={dataItem.NoteContent}>{dataItem.NoteContent}</Cell>
-                <Cell title={dataItem.CreatedBy}>{dataItem.CreatedBy}</Cell>
-                <Cell title={dataItem.LastModifyText} className="text-center">{dataItem.LastModifyText}</Cell>
-                <Cell title="Edit Note" className="text-center">
-                    <Button className="p-0" color="link" onClick={() => this.handleShowPopup(dataItem.NoteId)}>
-                        <span className="oi oi-pencil text-secondary"></span>
+                <Cell title={dataItem.Sender}>{dataItem.Sender}</Cell>
+                <Cell title={dataItem.AffName}>{dataItem.AffName}</Cell>
+                <Cell title={dataItem.Subject}>
+                    <Button color="link p-0" onClick={() => this.props.setSelectedEmailId(dataItem.EmailId)}>
+                        {dataItem.Subject}
                     </Button>
                 </Cell>
+                <Cell title={dataItem.Email}>
+                    <a target="_top" href={href}>{dataItem.Email}</a>
+                </Cell>
+                <Cell title={dataItem.SentDate} className="text-center">{dataItem.SentDateText}</Cell>
             </Row>
         )
-}
-
-    handleShowPopup = (noteId) => {
-        if (noteId === 0) {
-            this.props.setNoteInfo({ noteId, noteContent: '' });
-}
-else {
-            this.getNoteContentById(noteId);
-}
-
-        this.props.setShowPopup(true);
-}
-
-    async fetchData(param) {
-        this.props.toggleLoader(true);
-
-        const data = await this.props.fetchData(param);
-
-        this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
-        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
-
-        this.props.toggleLoader(false);
-}
-
-    handlePaging = (pageIndex, pageSize) => {
-        const newPaging = {
-    PageIndex: pageIndex,
-    PageSize: pageSize
-};
-        const newParam = Object.assign({}, this.props.param, newPaging);
-
-        this.props.setPagingOption(newPaging);
-        this.fetchData(newParam);
-};
+    }
 
     render() {
-        const { gridData, shouldResetScrollPosition } = this.state;
+        const { gridData } = this.props;
 
         return (
             <div className="data-content">
-                <div className="my-2">
-                    <Button outline type="button" color="danger" className="mr-2">{resource.Delete}<span className="oi oi-x ml-2"></span></Button>
-                </div>
-                <div className="selection">
-                    <span>{resource.Select}</span>
-                    <Button type="button" color="link" className="text-dark font-weight-bold">
-                        <u>All</u>
-                    </Button>
-                    <Button type="button" color="link" className="text-dark font-weight-bold">
-                        <u>None</u>
-                    </Button>
-                </div>
+                <DeleteEmail />
+                <SelecteAll />
                 <div className="table-responsive table-striped">
                     <Table
                         minWidth={1000}
@@ -136,21 +117,21 @@ else {
                         isPaging={true}
                         pageOption={this.props.pagingOption}
                         onPaging={this.handlePaging}
-                        shouldResetScrollPosition={shouldResetScrollPosition}
+                        shouldResetScrollPosition={this.props.shouldResetScrollPosition}
                     />
                 </div>
             </div>
         );
-}
+    }
 }
 
 
-function mapStateToProps({ pagingOption, param,  }) {
-    return Object.assign({}, { pagingOption, param });
+function mapStateToProps({ pagingOption, param, checkedEmails, shouldResetScrollPosition, gridData }) {
+    return Object.assign({}, { pagingOption, param, checkedEmails, shouldResetScrollPosition, gridData });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopup, toggleLoader, fetchData, setPagingOption }, dispatch);
+    return bindActionCreators({ setSelectedEmailId, toggleLoader, fetchData, setPagingOption, setCheckedEmails, setShouldResetScrollPosition, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

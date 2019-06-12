@@ -16,31 +16,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.EmailHistory
             _emailHistoryRepository = emailHistoryRepository;
         }
 
+        public ResultInfo DeleteEmailHistory(DeleteEmailHistoryParam param)
+        {
+            return _emailHistoryRepository.DeleteEmailHistory(param);
+        }
+
+        public EmailHistoryInfo GetEmailHistoryDetail(int selectedEmailId)
+        {
+            return _emailHistoryRepository.GetEmailHistoryDetail(selectedEmailId);
+        }
+
         public EntityResult<EmailHistoryInfo> GetEmailHistoryList(EmailHistoryParam param)
         {
-            switch (param.SearchBy)
-            {
-                case 0:
-                    param.SenderName = param.SearchText;
-                    break;
-
-                case 1:
-                    param.Email = param.SearchText;
-                    break;
-
-                case 2:
-                    param.AffName = param.SearchText;
-                    break;
-
-                case -2:
-                    param.Mid = -1;
-                    break;
-
-                default:
-                    param.Mid = null;
-                    break;
-            }
-
             return _emailHistoryRepository.GetEmailHistoryList(param);
         }
     }

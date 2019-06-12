@@ -4,11 +4,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.EmailHistory
 {
     public class EmailHistoryParam
     {
-        public int? Mid { get; set; }
-
-        public int SearchBy { get; set; }
-
-        public string SearchText { get; set; }
+        public int? EmailId { get; set; }
 
         public bool HasGetByDate { get; set; }
 
