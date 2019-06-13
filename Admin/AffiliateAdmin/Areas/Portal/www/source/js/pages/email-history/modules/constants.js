@@ -25,6 +25,8 @@ export const resource = {
     SentDate: 'Sent Date:',
     From: 'From:',
     Content: 'Content:',
+    All: 'All',
+    None: 'None',
 }
 
 export const headerText = {

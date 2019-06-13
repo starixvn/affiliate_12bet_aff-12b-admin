@@ -7,7 +7,6 @@ import { Row, Col, Button } from 'reactstrap';
 
 import { affType, resource, status } from '../../modules/constants';
 import { updateAffType, updateClosedStatus, updateStatus, getAffiliateInfo } from '../../actions';
-import CustomSelectInput from '../../../../common/components/CustomSelectInput';
 import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
 
 export class SettingPanel extends PureComponent {
@@ -98,14 +97,14 @@ export class SettingPanel extends PureComponent {
                 <Row>
                     <Col>{resource.AffiliateType}</Col>
                     <Col className="text-right text-primary">
-                        <CustomSelectInput style={{ display: isChangingAffType ? 'inline-block' : 'none' }} value={affiliateInfo.AffType}
+                        <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} value={affiliateInfo.AffType}
                             onChange={this.handleChangeAffType} onBlur={this.toggleChangingAffType.bind(this, false)} ref={this.affTypeDropdown}>
                             {
                                 Object.keys(affType).map((key, index) => {
                                     return (<option value={key} key={`affinfo-type-${index}`}>{affType[key]}</option>)
                                 })
                             }
-                        </CustomSelectInput>
+                        </select>
                         <Button color="link p-0 left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={this.toggleChangingAffType.bind(this, true)}>
                             {affType[affiliateInfo.AffType]}
                         </Button>
@@ -119,15 +118,15 @@ export class SettingPanel extends PureComponent {
                                 affiliateInfo.Status :
                                 (
                                     <div className="text-primary">
-                                        <CustomSelectInput style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} value={affiliateInfo.Status}
-                                            onChange={this.handleChangeStatus} 
-                                            onBlur={() => this.toggleChangingAffStatus(false)} 
+                                        <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} value={affiliateInfo.Status}
+                                            onChange={this.handleChangeStatus}
+                                            onBlur={() => this.toggleChangingAffStatus(false)}
                                             ref={this.affStatusDropdown}>
                                             <option value="Approved">Approved</option>
                                             <option value="Disapproved">Disapproved</option>
                                             <option value="Pending">Pending</option>
-                                        </CustomSelectInput>
-                                        <Button color="link p-0" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }} 
+                                        </select>
+                                        <Button color="link p-0" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }}
                                             onClick={() => this.toggleChangingAffStatus(true)}>
                                             {affiliateInfo.Status}
                                         </Button>

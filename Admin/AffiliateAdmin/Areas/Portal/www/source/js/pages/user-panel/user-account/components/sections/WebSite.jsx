@@ -5,7 +5,6 @@ import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 import { capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo, setMoreSiteUrlsList } from '../../actions';
-import CustomTextInput from '../../../../common/components/CustomTextInput';
 
 export class WebSite extends PureComponent {
     constructor(props) {
@@ -66,7 +65,7 @@ export class WebSite extends PureComponent {
                             <FormGroup row key={`siteUrl${index}`}>
                                 <Label for={index} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
                                 <Col sm={5} xl={6}>
-                                    <CustomTextInput name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
+                                    <input className="form-control" name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
                                 </Col>
                                 <Button outline color="secondary mb-2" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
                             </FormGroup>

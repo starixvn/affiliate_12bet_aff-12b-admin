@@ -3,6 +3,7 @@ import { post } from '../../../../modules/ajaxRequest';
 import { Col, FormGroup, Label, Button, Input, Alert } from 'reactstrap';
 import { messages } from '../../modules/constant';
 import Loader from '../../../../components/Loader';
+import { popupEventNames } from '../../../common/modules/constants/commissionGroup';
 
 export default class AssignGroup extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ export default class AssignGroup extends Component {
     handleSave = async () => {
         const { isPrivateGroup, affInfo, selectedGroup } = this.state;
         if (isPrivateGroup) {
-            parent.postMessage('usingPrivateGroup', window.location.origin);
+            parent.postMessage(popupEventNames.changeAssignToPrivateGroup, window.location.origin);
         }
         else {
             if (affInfo.GroupId > 0 && affInfo.GroupId === selectedGroup) {
@@ -60,23 +61,14 @@ export default class AssignGroup extends Component {
                 if (response && response.status === 200) {
                     const result = response.data;
 
-                    if (result.IsSuccessful) {
-                        this.setState({
-                            isShowMessage: true,
-                            isSuccess: result.IsSuccessful,
-                            message: messages.assignGroupSuccessfully
-                        }, () => window.setTimeout(this.hideMessage, 3000));
-                        window.setTimeout(() => {
-                            parent.postMessage('closeCommissionGroupPopup', window.location.origin);
-                        }, 3100);
-                    }
-                    else {
-                        this.setState({
-                            isShowMessage: true,
-                            isSuccess: false,
-                            message: result.Message
-                        }, () => window.setTimeout(this.hideMessage, 3000));
-                    }
+                    this.setState({
+                        isShowMessage: true,
+                        isSuccess: result.IsSuccessful,
+                        message: result.IsSuccessful ? messages.assignGroupSuccessfully : result.Message
+                    }, () => window.setTimeout(() => {
+                        this.hideMessage();
+                        result.IsSuccessful && parent.postMessage(popupEventNames.assignGroupSuccessfully, window.location.origin);
+                    }, 3000));
                 }
 
                 this.setState({ isShowLoader: false });

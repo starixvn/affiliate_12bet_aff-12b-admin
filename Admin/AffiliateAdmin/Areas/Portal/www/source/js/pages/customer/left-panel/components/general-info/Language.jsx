@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 
 import { updateLanguage, getAffiliateInfo } from '../../actions';
-import CustomSelectInput from '../../../../common/components/CustomSelectInput';
 
 export class Language extends PureComponent {
     constructor(props) {
@@ -42,14 +41,14 @@ export class Language extends PureComponent {
         const { affiliateInfo, languageList } = this.props;
 
         return (
-            <CustomSelectInput value={affiliateInfo.PreferredLanguage}
+             <select value={affiliateInfo.PreferredLanguage}
                 onChange={this.handleChangeLanguage} onBlur={() => this.toggleChangingLanguage(false)} ref={this.languageDropdown}>
                 {
                     languageList.map(language => {
                         return (<option value={language.LanguageCode} key={`affinfo-lang-${language.LanguageCode}`}>{language.LanguageName}</option>)
                     })
                 }
-            </CustomSelectInput>
+            </select>
         )
     }
 

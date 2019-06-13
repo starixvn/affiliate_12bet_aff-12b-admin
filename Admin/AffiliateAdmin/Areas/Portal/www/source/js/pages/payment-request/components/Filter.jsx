@@ -30,26 +30,7 @@ export class Filter extends PureComponent {
             isGetAll: false
         }
     }
-
-    componentDidMount() {
-        this.handleSetParam();
-    }
-
-    handleSetParam() {
-        const { searchBy, userName, status, fromDate, toDate, isGetAll } = this.state;
-        const isSearchByUserName = searchBy == 0;
-
-        const newParam = Object.assign({}, this.props.param, {
-            Username: isSearchByUserName ? userName : null,
-            IsGetAll: isSearchByUserName ? true : isGetAll,
-            Status: isSearchByUserName ? null : status,
-            FromDate: isSearchByUserName ? null : fromDate,
-            ToDate: isSearchByUserName ? null : toDate
-        });
-
-        this.props.setParam(newParam);
-    }
-
+    
     handleChange = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -73,7 +54,18 @@ export class Filter extends PureComponent {
     }
 
     handleSearch = () => {
-        this.handleSetParam();
+        const { searchBy, userName, status, fromDate, toDate, isGetAll } = this.state;
+        const isSearchByUserName = searchBy == 0;
+
+        const newParam = Object.assign({}, this.props.param, {
+            Username: isSearchByUserName ? userName : null,
+            IsGetAll: isSearchByUserName ? true : isGetAll,
+            Status: isSearchByUserName ? null : status,
+            FromDate: isSearchByUserName ? null : fromDate,
+            ToDate: isSearchByUserName ? null : toDate
+        });
+
+        this.props.setParam(newParam);
     }
 
     _renderSearchByOthers() {

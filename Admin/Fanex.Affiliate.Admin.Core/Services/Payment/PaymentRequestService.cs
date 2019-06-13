@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
         {
             if(param.ToDate != null)
             {
-                param.ToDate = param.ToDate.Value.AddDays(1).AddMilliseconds(-1);
+                param.ToDate = param.ToDate.Value.AddDays(1).AddMilliseconds(-3);
             }
 
             return _paymentRequestRepository.GetPaymentRequestList(param);

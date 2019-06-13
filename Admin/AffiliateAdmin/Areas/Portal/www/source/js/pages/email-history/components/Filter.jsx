@@ -16,39 +16,14 @@ export class Filter extends PureComponent {
         const now = new Date(today);
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
-        const yesterday = new Date(today);
-        yesterday.setDate(yesterday.getDate() - 1);
 
         this.state = {
             searchBy: all,
             searchText: '',
             hasGetByDate: false,
-            fromDate: `${yesterday.getMonth() + 1}/${yesterday.getDate()}/${yesterday.getFullYear()}`,
+            fromDate: this.nowString,
             toDate: this.nowString,
         }
-    }
-
-    componentDidMount() {
-        this.handleSetParam();
-    }
-
-    handleSetParam() {
-        const { searchBy, searchText, fromDate, toDate, hasGetByDate } = this.state;
-        const { pagingOption } = this.props;
-
-        const param = Object.assign({}, {
-            EmailId: searchBy == unknownAffiliate ? all : null,
-            SenderName: searchBy == sender ? searchText : '',
-            Email: searchBy == email ? searchText : '',
-            AffName: searchBy == affiliate ? searchText : '',
-            HasGetByDate: hasGetByDate,
-            FromDate: fromDate,
-            ToDate: toDate,
-            PageIndex: 1,
-            PageSize: pagingOption.PageSize
-        });
-
-        this.props.setParam(param);
     }
 
     handleChange = (event) => {
@@ -75,7 +50,22 @@ export class Filter extends PureComponent {
     }
 
     handleSearch = () => {
-        this.handleSetParam();
+        const { searchBy, searchText, fromDate, toDate, hasGetByDate } = this.state;
+        const { pagingOption } = this.props;
+
+        const param = Object.assign({}, {
+            EmailId: searchBy == unknownAffiliate ? all : null,
+            SenderName: searchBy == sender ? searchText : '',
+            Email: searchBy == email ? searchText : '',
+            AffName: searchBy == affiliate ? searchText : '',
+            HasGetByDate: hasGetByDate,
+            FromDate: fromDate,
+            ToDate: toDate,
+            PageIndex: 1,
+            PageSize: pagingOption.PageSize
+        });
+
+        this.props.setParam(param);
     }
 
     render() {

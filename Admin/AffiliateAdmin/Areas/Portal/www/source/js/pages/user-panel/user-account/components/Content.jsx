@@ -31,16 +31,12 @@ export class Content extends PureComponent {
     }
 
     handleGetMoreSiteUrls = (moreSiteUrlsList) => {
-        let moreSiteUrls = moreSiteUrlsList && moreSiteUrlsList.reduce((accumulator, siteUrl) => accumulator + siteUrl.trim() + ";", '');
-
-        return moreSiteUrls.slice(0, -1);
+        return moreSiteUrlsList && moreSiteUrlsList.map(siteUrl => siteUrl.trim()).join(';');
     }
 
-    handleSubmit = async () => {
-        const { affName, userAccountInfo, moreSiteUrlsList } = this.props;
-
-        const userAccountInfoAfterTrim = Object.keys(userAccountInfo).reduce((accumulator, key) => {
-            let item = userAccountInfo[key];
+    handleTrimObject = (objectOriginal) => {
+        return Object.keys(objectOriginal).reduce((accumulator, key) => {
+            let item = objectOriginal[key];
             if (typeof item === 'string') {
                 item = item.trim();
             }
@@ -48,7 +44,11 @@ export class Content extends PureComponent {
 
             return accumulator;
         }, {});
+    }
 
+    handleSubmit = async () => {
+        const { affName, userAccountInfo, moreSiteUrlsList } = this.props;
+        const userAccountInfoAfterTrim = this.handleTrimObject(userAccountInfo);
         const resultValidateUserAccount = validateUserAccount(userAccountInfoAfterTrim, moreSiteUrlsList);
 
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -64,11 +64,10 @@ export class Content extends PureComponent {
                     isShowMessage: true,
                     isSuccess: result.IsSuccessful,
                     message: result.IsSuccessful ? `${userAccountInfo.AffName} has been updated successfully!` : result.Message,
-                }, () => window.setTimeout(this.hideMessage, 3000));
-
-                if (result.IsSuccessful) {
-                    window.setTimeout(() => this.props.getAffiliateInfo(affName, userPanelMenuKey.edit), 3000);
-                }
+                }, () => window.setTimeout(() => {
+                    this.hideMessage();
+                    result.IsSuccessful && this.props.getAffiliateInfo(affName, userPanelMenuKey.edit)
+                }, 3000));
             }
             else {
                 this.setState({
@@ -80,7 +79,7 @@ export class Content extends PureComponent {
         } else {
             this.setState({
                 isSuccess: false,
-                isShowMessage: !resultValidateUserAccount.isValid,
+                isShowMessage: true,
                 message: resultValidateUserAccount.message,
             }, () => window.setTimeout(this.hideMessage, 3000));
         }

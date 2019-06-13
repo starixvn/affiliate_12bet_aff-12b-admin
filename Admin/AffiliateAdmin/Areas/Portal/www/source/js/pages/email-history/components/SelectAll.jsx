@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 import { resource } from '../modules/constants';
 import { setCheckedEmails, setShouldResetScrollPosition } from '../actions';
 
-export class SelecteAll extends PureComponent {
+export class SelectAll extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -28,10 +28,10 @@ export class SelecteAll extends PureComponent {
             <div className="selection">
                 <span>{resource.Select}</span>
                 <Button type="button" color="link" className="text-dark font-weight-bold" onClick={() => this.onCheckAll(true)}>
-                    <u>All</u>
+                    <u>{resource.All}</u>
                 </Button>
                 <Button type="button" color="link" className="text-dark font-weight-bold" onClick={() => this.onCheckAll(false)}>
-                    <u>None</u>
+                    <u>{resource.None}</u>
                 </Button>
             </div>
         );
@@ -47,4 +47,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setCheckedEmails, setShouldResetScrollPosition }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SelecteAll);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectAll);

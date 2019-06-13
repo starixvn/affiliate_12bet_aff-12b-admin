@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 
-import { resource } from '../modules/constants';
+import { resource, messages } from '../modules/constants';
 import { fetchData, deleteEmailHistory, toggleLoader } from '../actions';
 
 export class DeleteEmail extends PureComponent {
@@ -25,18 +25,18 @@ export class DeleteEmail extends PureComponent {
 
             const param = {
                 EmailIdList: emailIdList.join(',')
-            }
+            };
 
-            const data = await this.props.deleteEmailHistory(param);
+            const result = await this.props.deleteEmailHistory(param);
 
-            if (data) {
-                if (data.IsSuccessful) {
+            if (result) {
+                if (result.IsSuccessful) {
                     alert(messages.DeleteEmails);
 
                     this.props.fetchData(this.props.param);
                 }
                 else {
-                    alert(response.data.Message);
+                    alert(result.Message);
                 }
             }
 

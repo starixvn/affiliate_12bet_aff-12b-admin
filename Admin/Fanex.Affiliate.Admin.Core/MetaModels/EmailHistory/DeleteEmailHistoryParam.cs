@@ -4,7 +4,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.EmailHistory
 {
     public class DeleteEmailHistoryParam
     {
-        [Required(ErrorMessage = "Please select email to delete")]
+        [Required(ErrorMessage = "Please select emails to delete")]
         public string EmailIdList { get; set; }
 
         public int UserId { get; set; }

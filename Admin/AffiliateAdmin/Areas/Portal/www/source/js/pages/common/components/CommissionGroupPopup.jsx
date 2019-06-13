@@ -1,12 +1,19 @@
 ﻿import React, { PureComponent } from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { resolveClientUrl } from '../../../modules/utils';
+import { popupEventNames } from '../modules/constants/commissionGroup';
 
 export default class CommissionGroupPopup extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
             isUsingPrivateGroup: false
+        }
+
+        this.functionHandleEventList = {
+            [popupEventNames.updatePrivateGroupSuccessfully]: this.handleUpdatePrivateGroupSuccessfully,
+            [popupEventNames.assignGroupSuccessfully]: this.handleAssignGroupSuccessfully,
+            [popupEventNames.changeAssignToPrivateGroup]: this.handleChangeAssignToPrivateGroup,
         }
     }
 
@@ -19,23 +26,23 @@ export default class CommissionGroupPopup extends PureComponent {
     }
 
     handleClosePopupEvent = (event) => {
-        switch (event.data) {
-            case 'closePrivateCommissionGroupPopup': {
-                this.handleClosePopup();
-                if (this.state.isUsingPrivateGroup) {
-                    this.props.getAffiliateInfo(this.props.affName);
-                }
-                break;
-            }
-            case 'closeCommissionGroupPopup': {
-                this.props.getAffiliateInfo(this.props.affName);
-                this.props.setShowPopupCommGroup(false);
-                break;
-            }
-            case 'usingPrivateGroup':
-                this.setState({ isUsingPrivateGroup: true });
-                break;
+        this.functionHandleEventList[event.data]();
+    }
+
+    handleUpdatePrivateGroupSuccessfully = () => {
+        this.handleClosePopup();
+        if (this.state.isUsingPrivateGroup) {
+            this.props.getAffiliateInfo(this.props.affName);
         }
+    }
+
+    handleAssignGroupSuccessfully = () => {
+        this.props.getAffiliateInfo(this.props.affName);
+        this.props.setShowPopupCommGroup(false);
+    }
+
+    handleChangeAssignToPrivateGroup = () => {
+        this.setState({ isUsingPrivateGroup: true });
     }
 
     handleClosePopup = () => {

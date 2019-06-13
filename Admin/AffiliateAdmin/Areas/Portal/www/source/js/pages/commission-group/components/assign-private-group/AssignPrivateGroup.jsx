@@ -12,6 +12,7 @@ import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
 import Loader from '../../../../components/Loader';
 import { post } from '../../../../modules/ajaxRequest';
+import { popupEventNames } from '../../../common/modules/constants/commissionGroup';
 
 export class AssignPrivateGroup extends React.Component {
     constructor(props) {
@@ -71,25 +72,16 @@ export class AssignPrivateGroup extends React.Component {
                     result.Message;
 
                 window.scrollTo({ top: 0, behavior: "smooth" });
+
                 this.setState({
                     isShowMessage: true,
                     isSuccess: result.IsSuccessful,
                     message: [resultMessage],
                     isShowLoader: false
-                }, () => window.setTimeout(this.hideMessage, 3000));
-
-                if (result.IsSuccessful) {
-                    const mainFrame = top.frames["mainFrame"];
-                    const infoFrame = mainFrame && mainFrame.frames["fInfo"];
-                    window.setTimeout(() => {
-                        if (infoFrame) {
-                            mainFrame.location.reload();
-                        }
-                        else {
-                            parent.postMessage('closePrivateCommissionGroupPopup', window.location.origin);
-                        }
-                    }, 3100)
-                }
+                }, () => window.setTimeout(() => {
+                    this.hideMessage();
+                    result.IsSuccessful && parent.postMessage(popupEventNames.updatePrivateGroupSuccessfully, window.location.origin);
+                }, 3000));
             }
         }
     }

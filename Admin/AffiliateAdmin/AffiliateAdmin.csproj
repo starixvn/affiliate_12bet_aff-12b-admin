@@ -243,7 +243,6 @@
     <Compile Include="Business\Services\AddUserService.cs" />
     <Compile Include="Business\Services\ChangeAdminPassService.cs" />
     <Compile Include="Business\Services\ChangePassService.cs" />
-    <Compile Include="Business\Services\DeleteMailListService.cs" />
     <Compile Include="Business\Services\Message\DeleteMessageListService.cs" />
     <Compile Include="Business\Services\Text\DeleteTextService.cs" />
     <Compile Include="Business\Services\DomainControlService.cs" />
@@ -254,8 +253,6 @@
     <Compile Include="Business\Services\GetDataTextService.cs" />
     <Compile Include="Business\Services\GetEditedBannerService.cs" />
     <Compile Include="Business\Services\GetEditedTextService.cs" />
-    <Compile Include="Business\Services\GetEmailContentService.cs" />
-    <Compile Include="Business\Services\GetEmailHistoryService.cs" />
     <Compile Include="Business\Services\GetMessageListService.cs" />
     <Compile Include="Business\Services\GetMessageService.cs" />
     <Compile Include="Business\Services\GetOnlineListService.cs" />
@@ -362,7 +359,6 @@
     <Compile Include="Business\DataHandler\Banner.cs" />
     <Compile Include="Business\DataHandler\Casino.cs" />
     <Compile Include="Business\DataHandler\Domain.cs" />
-    <Compile Include="Business\DataHandler\EmailHistory.cs" />
     <Compile Include="Business\DataHandler\ExchangeRate.cs" />
     <Compile Include="Business\DataHandler\Home.cs" />
     <Compile Include="Business\DataHandler\HotNews.cs" />
@@ -375,7 +371,6 @@
     <Compile Include="Business\DepositCustomerInfo.cs" />
     <Compile Include="Business\GenerateHTML\Banner.cs" />
     <Compile Include="Business\GenerateHTML\Domain.cs" />
-    <Compile Include="Business\GenerateHTML\EmailHistory.cs" />
     <Compile Include="Business\GenerateHTML\HotNews.cs" />
     <Compile Include="Business\GenerateHTML\OnlineList.cs" />
     <Compile Include="Business\GenerateHTML\Text.cs" />
@@ -512,26 +507,12 @@
       <DependentUpon>ListText.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Others\EmailHistory.aspx.cs">
-      <DependentUpon>EmailHistory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Others\EmailHistory.aspx.designer.cs">
-      <DependentUpon>EmailHistory.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Others\Message.aspx.cs">
       <DependentUpon>Message.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Others\Message.aspx.designer.cs">
       <DependentUpon>Message.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Others\ViewEmailDetails.aspx.cs">
-      <DependentUpon>ViewEmailDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Others\ViewEmailDetails.aspx.designer.cs">
-      <DependentUpon>ViewEmailDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Others\ViewMessDetails.aspx.cs">
       <DependentUpon>ViewMessDetails.aspx</DependentUpon>
@@ -865,9 +846,7 @@
     <Content Include="App_Templates\OnlyOption.htm" />
     <Content Include="App_Templates\Option.htm" />
     <Content Include="App_Templates\Option1.htm" />
-    <Content Include="App_Templates\Others\EmailHistory.htm" />
     <Content Include="App_Templates\Others\Message.htm" />
-    <Content Include="App_Templates\Others\ViewEmail.htm" />
     <Content Include="App_Templates\Others\ViewMess.htm" />
     <Content Include="App_Templates\PageIndex.html" />
     <Content Include="App_Templates\Paging.htm" />
@@ -1223,6 +1202,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\paymentRequestUpdate.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\changePassword.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\commissionGroup.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\paymentRequestUpdate.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
@@ -1421,9 +1401,7 @@
     <Content Include="Media\EditBanner.aspx" />
     <Content Include="Media\ListBannerNew.aspx" />
     <Content Include="Media\ListText.aspx" />
-    <Content Include="Others\EmailHistory.aspx" />
     <Content Include="Others\Message.aspx" />
-    <Content Include="Others\ViewEmailDetails.aspx" />
     <Content Include="Others\ViewMessDetails.aspx" />
     <Content Include="Release Note.txt" />
     <Content Include="Report\AffiliateReport.aspx" />
@@ -1785,8 +1763,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\SettingPanel.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\OnlineInfoPanel.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\rightpanel.scss" />
-    <Content Include="Areas\Portal\www\source\js\pages\common\components\CustomTextInput.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\common\components\CustomSelectInput.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\CommissionGroupPopup.jsx" />
     <Content Include="Handler\UpdateAcc.ashx" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.en-GB.cshtml" />
@@ -1807,8 +1783,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\EmailDetailForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\email-history.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\SelecteAll.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\DeleteEmail.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\SelectAll.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1831,7 +1807,6 @@
     <Content Include="Handler\ChangeAdminPass.ashx" />
     <Content Include="Handler\ChangePass.ashx" />
     <Content Include="Handler\Banner\DelBanner.ashx" />
-    <Content Include="Handler\DeleteMailList.ashx" />
     <Content Include="Handler\DeleteMember.ashx" />
     <Content Include="Handler\DeleteMessageList.ashx" />
     <Content Include="Handler\DelText.ashx" />
@@ -1843,8 +1818,6 @@
     <Content Include="Handler\GetDataText.ashx" />
     <Content Include="Handler\GetEditedBanner.ashx" />
     <Content Include="Handler\GetEditedText.ashx" />
-    <Content Include="Handler\GetEmailContent.ashx" />
-    <Content Include="Handler\GetEmailHistoryList.ashx" />
     <Content Include="Handler\GetMessage.ashx" />
     <Content Include="Handler\GetMessageList.ashx" />
     <Content Include="Handler\GetOnlineList.ashx" />

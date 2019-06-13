@@ -32,10 +32,8 @@ class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps() {}
-
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setSelectedUserPanel }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(null, mapDispatchToProps)(AppContainer);

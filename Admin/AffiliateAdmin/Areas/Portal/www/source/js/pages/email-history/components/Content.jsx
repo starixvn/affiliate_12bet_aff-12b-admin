@@ -5,9 +5,9 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { headerText, globalResource } from '../modules/constants';
-import { setSelectedEmailId, setPagingOption, fetchData, toggleLoader, setCheckedEmails, setShouldResetScrollPosition, setParam } from '../actions';
+import { setSelectedEmailId, setPagingOption, fetchData, setCheckedEmails, setShouldResetScrollPosition, setParam } from '../actions';
 import DeleteEmail from './DeleteEmail';
-import SelecteAll from './SelecteAll';
+import SelectAll from './SelectAll';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -102,10 +102,10 @@ export class Content extends PureComponent {
     render() {
         const { gridData } = this.props;
 
-        return (
+        return gridData && (
             <div className="data-content">
                 <DeleteEmail />
-                <SelecteAll />
+                <SelectAll />
                 <div className="table-responsive table-striped">
                     <Table
                         minWidth={1000}
@@ -131,7 +131,7 @@ function mapStateToProps({ pagingOption, param, checkedEmails, shouldResetScroll
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedEmailId, toggleLoader, fetchData, setPagingOption, setCheckedEmails, setShouldResetScrollPosition, setParam }, dispatch);
+    return bindActionCreators({ setSelectedEmailId, fetchData, setPagingOption, setCheckedEmails, setShouldResetScrollPosition, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
