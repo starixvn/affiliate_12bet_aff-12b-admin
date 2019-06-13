@@ -5,9 +5,11 @@ exports[`affiliate info - components - AppContainer render correctly 1`] = `
   <Loader
     show={true}
   />
-  <Connect(Filter) />
-  <Connect(Content) />
-  <Connect(EditCommissionGroup) />
-  <Connect(ChangePasswordForm) />
+  <Memo(ConnectFunction) />
+  <Memo(ConnectFunction) />
+  <CommissionGroupPopup
+    isPrivateGroup={true}
+  />
+  <Memo(ConnectFunction) />
 </AppLayout>
 `;

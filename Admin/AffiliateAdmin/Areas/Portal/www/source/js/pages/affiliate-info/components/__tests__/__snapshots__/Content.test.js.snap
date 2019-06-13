@@ -23,7 +23,7 @@ exports[`affiliate info - Content  should render correctly 1`] = `
       </div>
     }
   />
-  <Connect(GridData) />
+  <Memo(ConnectFunction) />
 </div>
 `;
 

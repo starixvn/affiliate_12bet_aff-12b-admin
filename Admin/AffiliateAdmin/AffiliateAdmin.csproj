@@ -1198,6 +1198,14 @@
     <Content Include="Areas\Portal\www\source\js\actions\actionTypes.js" />
     <Content Include="Areas\Portal\www\source\js\actions\loaderAction.js" />
     <Content Include="Areas\Portal\www\source\js\actions\pagingAction.js" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelect.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelectLabel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelectOptionList.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\Option.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\OptionAll.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\__tests__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\utils.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\reducers\__tests__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\changePassword.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\paymentRequestUpdate.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\types.js" />
@@ -1218,8 +1226,6 @@
     <Content Include="Areas\Portal\www\source\js\pagelayout\pagelayout.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Content.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\__snapshots__\AppContainer.test.js.snap" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\__snapshots__\Content.test.js.snap" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\constants.js" />
