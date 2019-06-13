@@ -1,7 +1,10 @@
-import React from 'react'
-import renderer from 'react-test-renderer'
+import React from 'react';
+import renderer from 'react-test-renderer';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
-import OptionAll from '../OptionAll'
+import OptionAll from '../OptionAll';
+import Option from '../Option';
 
 const LABEL = "All";
 const DEFAULT_CHECKED = false;
@@ -13,6 +16,8 @@ const defaultProps = {
     checked: DEFAULT_CHECKED
 }
 
+Enzyme.configure({ adapter: new Adapter() });
+
 describe('OptionAll ', () => {
     afterAll(() => {
         jest.resetAllMocks();
@@ -22,33 +27,24 @@ describe('OptionAll ', () => {
         const onChange = jest.fn();
         const props = Object.assign({}, defaultProps, { onChange });
 
-        const optionAll = new OptionAll(props);
         const checkedItem = {
             key: "key",
             value: "value",
             checked: false
         };
 
-        optionAll.changeHandler(checkedItem);
+        const wrapper = shallow(<OptionAll {...props} />);
+
+        wrapper.find(Option).simulate('change', checkedItem);
 
         expect(props.onChange).toHaveBeenCalledWith(checkedItem.checked);
     })
 
-    it('render - Option component should has correct props', () => {
-        const optionAll = new OptionAll(defaultProps);
-        const renderedOptionAll = optionAll.render();
-        const optionComponent = renderedOptionAll.props.children;
+    it('render - content match with snapshot', () => {
+        const option = renderer.create(<OptionAll {...defaultProps} />);
 
-        const expectedId = "optionAll-optionItemAll";
-        const expectedItemData = {
-            key: 'All',
-            value: 'All',
-            checked: false
-        }
+        const result = option.toJSON();
 
-        const result = optionComponent.props;
-
-        expect(result.id).toBe(expectedId);
-        expect(result.itemData).toEqual(expectedItemData);
+        expect(result).toMatchSnapshot();
     })
 })

@@ -1198,11 +1198,15 @@
     <Content Include="Areas\Portal\www\source\js\actions\actionTypes.js" />
     <Content Include="Areas\Portal\www\source\js\actions\loaderAction.js" />
     <Content Include="Areas\Portal\www\source\js\actions\pagingAction.js" />
+    <Content Include="Areas\Portal\www\source\js\actions\__test__\loaderAction.test.js" />
+    <Content Include="Areas\Portal\www\source\js\actions\__test__\pagingAction.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelect.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelectLabel.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelectOptionList.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\Option.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\OptionAll.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\__test__\Loader.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\__test__\ReportTitle.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\__tests__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\reducers\__tests__\index.test.js" />
@@ -1247,6 +1251,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\common\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\types.js" />
@@ -1328,6 +1333,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\loaderReducer.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\pagingReducer.js" />
+    <Content Include="Areas\Portal\www\source\js\reducers\__test__\loaderReducer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\reducers\__test__\pagingReducer.test.js" />
     <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />

@@ -13,8 +13,8 @@
         "build:page:dev": "node node_modules/webpack/bin/webpack.js --config Areas/Portal/www/webpack.config.dev.js --watch",
         "start": "node_modules/.bin/webpack-dev-server --config Areas/Portal/www/webpack.config.dev.js --hot --inline --progress --watch-content-base",
         "test": "jest",
-        "test:watch": "npm test --watch",
-        "test:coverage": "npm test --coverage"
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage"
     },
     "author": "",
     "dependencies": {

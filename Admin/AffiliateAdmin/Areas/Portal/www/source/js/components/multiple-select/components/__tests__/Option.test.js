@@ -1,5 +1,7 @@
-import React from 'react'
-import renderer from 'react-test-renderer'
+import React from 'react';
+import renderer from 'react-test-renderer';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import Option from '../Option'
 
@@ -13,6 +15,8 @@ const defaultProps = {
     onChange: jest.fn()
 }
 
+Enzyme.configure({ adapter: new Adapter() });
+
 describe('Option ', () => {
     afterAll(() => {
         jest.resetAllMocks();
@@ -24,9 +28,9 @@ describe('Option ', () => {
         }
 
         it('event.stopPropagation should be called', () => {
-            const option = new Option(defaultProps);
+            const wrapper = shallow(<Option {...defaultProps} />);
 
-            option.onChange(event);
+            wrapper.find('input[type="checkbox"]').simulate('change', event);
 
             expect(event.stopPropagation).toHaveBeenCalled();
         })
@@ -35,9 +39,9 @@ describe('Option ', () => {
             const { key, value, checked } = defaultProps.itemData;
             const expectedItemData = { key, value, checked: !checked }
 
-            const option = new Option(defaultProps);
+            const wrapper = shallow(<Option {...defaultProps} />);
 
-            option.onChange(event);
+            wrapper.find('input[type="checkbox"]').simulate('change', event);
 
             expect(defaultProps.onChange).toHaveBeenCalledWith(expectedItemData);
         })
@@ -46,8 +50,6 @@ describe('Option ', () => {
     it('render - content match with snapshot', () => {
         const option = renderer.create(<Option {...defaultProps} />);
 
-        const result = option.toJSON();
-
-        expect(result).toMatchSnapshot();
+        expect(option).toMatchSnapshot();
     })
 })
