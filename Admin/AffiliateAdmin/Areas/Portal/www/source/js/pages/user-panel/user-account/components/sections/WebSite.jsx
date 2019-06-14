@@ -44,7 +44,7 @@ export class WebSite extends PureComponent {
             this.props.setMoreSiteUrlsList(moreSiteUrlsList);
         } else {
             window.alert(`Please input Website URL ${findIndex + 2}`);
-            this.moreSiteUrlRefs[findIndex].current.focusTextInput();
+            this.moreSiteUrlRefs[findIndex].current.focus();
         }
     }
 

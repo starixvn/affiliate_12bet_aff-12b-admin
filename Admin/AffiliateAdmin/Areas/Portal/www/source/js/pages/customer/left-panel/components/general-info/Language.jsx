@@ -34,7 +34,7 @@ export class Language extends PureComponent {
     }
 
     toggleChangingLanguage = (isChanging) => {
-        this.setState({ isChangingLanguage: isChanging }, () => isChanging && this.languageDropdown.current.focusSelectInput());
+        this.setState({ isChangingLanguage: isChanging }, () => isChanging && this.languageDropdown.current.focus());
     }
 
     _renderLanguageList() {

@@ -24,11 +24,11 @@ export class SettingPanel extends PureComponent {
     }
 
     toggleChangingAffType(isChanging) {
-        this.setState({ isChangingAffType: isChanging }, () => isChanging && this.affTypeDropdown.current.focusSelectInput());
+        this.setState({ isChangingAffType: isChanging }, () => isChanging && this.affTypeDropdown.current.focus());
     }
 
     toggleChangingAffStatus(isChanging) {
-        this.setState({ isChangingAffStatus: isChanging }, () => isChanging && this.affStatusDropdown.current.focusSelectInput());
+        this.setState({ isChangingAffStatus: isChanging }, () => isChanging && this.affStatusDropdown.current.focus());
     }
 
     toggleAssignCommissionPopup = (isChanging) => {
@@ -126,7 +126,7 @@ export class SettingPanel extends PureComponent {
                                             <option value="Disapproved">Disapproved</option>
                                             <option value="Pending">Pending</option>
                                         </select>
-                                        <Button color="link p-0" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }}
+                                        <Button color="link p-0 left-panel-btn-link" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }}
                                             onClick={() => this.toggleChangingAffStatus(true)}>
                                             {affiliateInfo.Status}
                                         </Button>
