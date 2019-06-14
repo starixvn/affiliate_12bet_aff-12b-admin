@@ -1,11 +1,9 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { shallow, mount, configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import { mount } from 'enzyme'
 
 import MultipleSelect from '../MultipleSelect'
 
-configure({ adapter: new Adapter() });
 
 const defaultProps = {
     dataSource: [],
@@ -57,7 +55,7 @@ describe('MultipleSelect ', () => {
 
         it('dataSource prop should convert correctly', () => {
             const expectedResult = [
-                { key: defaultOption.code, value: defaultOption.name, checked: defaultOption.status }
+                { code: defaultOption.code, name: defaultOption.name, status: defaultOption.status }
             ]
 
             const newProp = {
@@ -70,22 +68,7 @@ describe('MultipleSelect ', () => {
             const props = Object.assign({}, defaultProps, newProp);
             const multipleSelect = new MultipleSelect(props);
 
-            const result = multipleSelect.state.dataSource;
-
-            expect(result).toEqual(expectedResult);
-        })
-    })
-
-    describe('selectedItems', () => {
-        it('selectedItems should return correct data', () => {
-            const sportsbookOption = { key: "SB", value: "Sportsbook", checked: true };
-            const expectedResult = [sportsbookOption];
-            const dataSource = [sportsbookOption, { key: "BA", value: "BA", checked: false }];
-
-            const props = Object.assign({}, defaultProps, { dataSource });
-            const multipleSelect = new MultipleSelect(props);
-
-            const result = multipleSelect.selectedItems;
+            const result = multipleSelect.props.dataSource;
 
             expect(result).toEqual(expectedResult);
         })
@@ -112,12 +95,6 @@ describe('MultipleSelect ', () => {
 
         it('_callBackToParent should be called with correct parameter', () => {
             expect(multipleSelect._callBackToParent).toHaveBeenCalledWith(changedItem, newDataSource);
-        })
-
-        it('setState should be called with correct parameter', () => {
-            const newState = { dataSource: newDataSource };
-
-            expect(multipleSelect.setState).toHaveBeenCalledWith(newState);
         })
     })
 
@@ -167,34 +144,6 @@ describe('MultipleSelect ', () => {
             testCheckAll(checked);
 
             expect(multipleSelect._callBackToParent).toHaveBeenCalledWith(null, newDataSource);
-        })
-
-        it('uncheck All - setState should be called with correct parameter', () => {
-            const checked = false;
-            const newDataSource = [
-                Object.assign({}, sportsbookOption, { checked }),
-                Object.assign({}, baOption, { checked })
-            ];
-
-            const newState = { dataSource: newDataSource };
-
-            testCheckAll(checked);
-
-            expect(multipleSelect.setState).toHaveBeenCalledWith(newState);
-        })
-
-        it('check All - setState should be called with correct parameter', () => {
-            const checked = true;
-            const newDataSource = [
-                Object.assign({}, sportsbookOption, { checked }),
-                Object.assign({}, baOption, { checked })
-            ];
-
-            const newState = { dataSource: newDataSource };
-
-            testCheckAll(checked);
-
-            expect(multipleSelect.setState).toHaveBeenCalledWith(newState);
         })
     })
 
@@ -281,32 +230,6 @@ describe('MultipleSelect ', () => {
         })
     })
 
-    describe('_renderOptionAll', () => {
-        it('hassAllOption in props is false - return null', () => {
-            const newProps = Object.assign({}, defaultProps, { hasAllOption: false });
-            const componentInstance = new MultipleSelect(newProps);
-
-            const result = componentInstance._renderOptionAll();
-
-            expect(result).toBe(null);
-        })
-
-        it('hasAllOption in props is true - render OptionAll component with correct props', () => {
-            const dataSource = [
-                { key: "SB", value: "Value SB", checked: true },
-                { key: "BA", value: "Value BA", checked: true },
-                { key: "RC", value: "Value RC", checked: true }
-            ];
-            const newProps = Object.assign({}, defaultProps, { dataSource });
-            const componentInstance = new MultipleSelect(newProps);
-            const optionAllComponent = componentInstance._renderOptionAll();
-
-            const { checked } = optionAllComponent.props;
-
-            expect(checked).toBe(true);
-        })
-    })
-
     describe('render', () => {
         it('showOptionList = false - render component with "display: none" for dropdown list', () => {
             const component = renderer.create(<MultipleSelect {...defaultProps} />);
@@ -317,7 +240,15 @@ describe('MultipleSelect ', () => {
         })
 
         it('showOptionList = true - render component with "display: block" for dropdown list', () => {
-            const component = renderer.create(<MultipleSelect {...defaultProps} />);
+            const dataSource = [
+                { key: "SB", value: "Value SB", checked: true },
+                { key: "BA", value: "Value BA", checked: true },
+                { key: "RC", value: "Value RC", checked: true }
+            ];
+
+            const props = Object.assign({}, defaultProps, {dataSource});
+
+            const component = renderer.create(<MultipleSelect {...props} />);
             const instance = component.getInstance();
             instance.setState({ showOptionList: true });
 
@@ -338,48 +269,6 @@ describe('MultipleSelect ', () => {
             expect(document.removeEventListener.mock.calls[0][0]).toBe('click');
 
             document.removeEventListener = originalRemoveEventListenerFunction;
-        })
-    })
-
-    describe('componentWillReceiveProps', () => {
-        it('dataSource is the same - do nothing', () => {
-            const nextProps = Object.assign({}, defaultProps);
-            const multipleSelect = new MultipleSelect(defaultProps);
-            multipleSelect.setState = jest.fn();
-
-            multipleSelect.componentWillReceiveProps(nextProps);
-
-            expect(multipleSelect.setState).not.toHaveBeenCalled();
-        })
-
-        it('dataSource is updated - setState should be called with correct parameter', () => {
-            const props = Object.assign({}, defaultProps, { dataSource: defaultDataSource });
-            const nextProps = Object.assign({}, props);
-            const multipleSelect = new MultipleSelect(defaultProps);
-            multipleSelect.setState = jest.fn();
-            multipleSelect._convertDataSourceToState = jest.fn(() => defaultDataSource);
-            multipleSelect._callBackToParent = jest.fn();
-
-            const expectedState = {
-                dataSource: defaultDataSource
-            }
-
-            multipleSelect.componentWillReceiveProps(nextProps);
-
-            expect(multipleSelect.setState).toHaveBeenCalledWith(expectedState);
-        })
-
-        it('dataSource is updated - _callBackToParent should be called with correct parameter', () => {
-            const props = Object.assign({}, defaultProps, { dataSource: defaultDataSource });
-            const nextProps = Object.assign({}, props);
-            const multipleSelect = new MultipleSelect(defaultProps);
-            multipleSelect.setState = jest.fn();
-            multipleSelect._convertDataSourceToState = jest.fn(() => defaultDataSource);
-            multipleSelect._callBackToParent = jest.fn();
-
-            multipleSelect.componentWillReceiveProps(nextProps);
-
-            expect(multipleSelect._callBackToParent).toHaveBeenCalledWith(null, defaultDataSource);
         })
     })
 })

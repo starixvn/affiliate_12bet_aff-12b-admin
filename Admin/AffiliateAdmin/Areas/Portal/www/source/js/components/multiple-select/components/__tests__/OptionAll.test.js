@@ -1,7 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 
 import OptionAll from '../OptionAll';
 import Option from '../Option';
@@ -10,41 +9,39 @@ const LABEL = "All";
 const DEFAULT_CHECKED = false;
 
 const defaultProps = {
-    onChange: undefined,
-    id: "optionAll",
-    label: LABEL,
-    checked: DEFAULT_CHECKED
+   onChange: undefined,
+   id: "optionAll",
+   label: LABEL,
+   checked: DEFAULT_CHECKED
 }
 
-Enzyme.configure({ adapter: new Adapter() });
-
 describe('OptionAll ', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    })
+   afterAll(() => {
+       jest.resetAllMocks();
+   })
 
-    it('changeHandler - props.onChange function should be called with correct parameter', () => {
-        const onChange = jest.fn();
-        const props = Object.assign({}, defaultProps, { onChange });
+   it('changeHandler - props.onChange function should be called with correct parameter', () => {
+       const onChange = jest.fn();
+       const props = Object.assign({}, defaultProps, { onChange });
 
-        const checkedItem = {
-            key: "key",
-            value: "value",
-            checked: false
-        };
+       const checkedItem = {
+           key: "key",
+           value: "value",
+           checked: false
+       };
 
-        const wrapper = shallow(<OptionAll {...props} />);
+       const wrapper = shallow(<OptionAll {...props} />);
 
-        wrapper.find(Option).simulate('change', checkedItem);
+       wrapper.find(Option).simulate('change', checkedItem);
 
-        expect(props.onChange).toHaveBeenCalledWith(checkedItem.checked);
-    })
+       expect(props.onChange).toHaveBeenCalledWith(checkedItem.checked);
+   })
 
-    it('render - content match with snapshot', () => {
-        const option = renderer.create(<OptionAll {...defaultProps} />);
+   it('render - content match with snapshot', () => {
+       const option = renderer.create(<OptionAll {...defaultProps} />);
 
-        const result = option.toJSON();
+       const result = option.toJSON();
 
-        expect(result).toMatchSnapshot();
-    })
+       expect(result).toMatchSnapshot();
+   })
 })

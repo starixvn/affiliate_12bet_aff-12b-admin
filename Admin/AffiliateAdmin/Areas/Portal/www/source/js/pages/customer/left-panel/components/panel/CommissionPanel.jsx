@@ -32,8 +32,8 @@ export class CommissionPanel extends PureComponent {
     }
 
     _renderCommGroup(affiliateInfo) {
-        return affiliateInfo.IsClosed ? (<span>{affiliateInfo.CommGroupName}</span>) :
-            (<Button color="link p-0 text-truncate left-panel-btn-link" style={{width: 94}} onClick={() => this.toggleEditingCommissionPopup(true)}>
+        return affiliateInfo.IsClosed ? (<span className="text-break">{affiliateInfo.CommGroupName}</span>) :
+            (<Button color="link p-0 text-right text-truncate left-panel-btn-link" title={affiliateInfo.CommGroupName} style={{width: 90}} onClick={() => this.toggleEditingCommissionPopup(true)}>
                 {affiliateInfo.CommGroupName}
             </Button>)
     }
@@ -46,7 +46,7 @@ export class CommissionPanel extends PureComponent {
             <Panel heading={resource.Commission}>
                 <Row>
                     <Col sm={7}>{resource.CommGroup}</Col>
-                    <Col sm={5} className='text-right text-truncate pl-0'>
+                    <Col sm={5} className='text-right pl-0'>
                         {this._renderCommGroup(affiliateInfo)}
                         <CommissionGroupPopup
                             showPopupCommGroup={isChangingCommissionGroup}

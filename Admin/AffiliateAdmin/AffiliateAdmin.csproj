@@ -1208,6 +1208,7 @@
     <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\OptionAll.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\__test__\Loader.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\__test__\ReportTitle.test.js" />
+    <Content Include="Areas\Portal\www\source\js\layouts\__test__\AppLayout.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\__tests__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\reducers\__tests__\index.test.js" />
@@ -1336,6 +1337,7 @@
     <Content Include="Areas\Portal\www\source\js\reducers\pagingReducer.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\__test__\loaderReducer.test.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\__test__\pagingReducer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\setupTests.js" />
     <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />

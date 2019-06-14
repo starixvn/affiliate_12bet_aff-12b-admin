@@ -1,55 +1,52 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 
 import Option from '../Option'
 
 const defaultProps = {
-    itemData: {
-        key: "key",
-        value: "value",
-        checked: true
-    },
-    id: "itemId",
-    onChange: jest.fn()
+   itemData: {
+       key: "key",
+       value: "value",
+       checked: true
+   },
+   id: "itemId",
+   onChange: jest.fn()
 }
 
-Enzyme.configure({ adapter: new Adapter() });
-
 describe('Option ', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    })
+   afterAll(() => {
+       jest.resetAllMocks();
+   })
 
-    describe('onChange', () => {
-        const event = {
-            stopPropagation: jest.fn()
-        }
+   describe('onChange', () => {
+       const event = {
+           stopPropagation: jest.fn()
+       }
 
-        it('event.stopPropagation should be called', () => {
-            const wrapper = shallow(<Option {...defaultProps} />);
+       it('event.stopPropagation should be called', () => {
+           const wrapper = shallow(<Option {...defaultProps} />);
 
-            wrapper.find('input[type="checkbox"]').simulate('change', event);
+           wrapper.find('input[type="checkbox"]').simulate('change', event);
 
-            expect(event.stopPropagation).toHaveBeenCalled();
-        })
+           expect(event.stopPropagation).toHaveBeenCalled();
+       })
 
-        it('props.onChange should be called with corect parameter', () => {
-            const { key, value, checked } = defaultProps.itemData;
-            const expectedItemData = { key, value, checked: !checked }
+       it('props.onChange should be called with corect parameter', () => {
+           const { key, value, checked } = defaultProps.itemData;
+           const expectedItemData = { key, value, checked: !checked }
 
-            const wrapper = shallow(<Option {...defaultProps} />);
+           const wrapper = shallow(<Option {...defaultProps} />);
 
-            wrapper.find('input[type="checkbox"]').simulate('change', event);
+           wrapper.find('input[type="checkbox"]').simulate('change', event);
 
-            expect(defaultProps.onChange).toHaveBeenCalledWith(expectedItemData);
-        })
-    })
+           expect(defaultProps.onChange).toHaveBeenCalledWith(expectedItemData);
+       })
+   })
 
-    it('render - content match with snapshot', () => {
-        const option = renderer.create(<Option {...defaultProps} />);
+   it('render - content match with snapshot', () => {
+       const option = shallow(<Option {...defaultProps} />);
 
-        expect(option).toMatchSnapshot();
-    })
+       expect(option).toMatchSnapshot();
+   })
 })
+
