@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { getDateArrange } from '../../../../modules/utils';
+import { getDateRange } from '../../../../modules/utils';
 import { headerTitle, deviceTypes, globalResource } from '../modules/constants';
 import { setSelectedPage, setParam, setShortCodeLanguageList, getPageList } from '../actions';
 
@@ -67,7 +67,7 @@ export class Filter extends React.Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        this.setState(getDateArrange(momentDate, this.state.toDate));
+        this.setState(getDateRange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {

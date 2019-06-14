@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { searchByList, globalResource, minDate, all, sender, email, affiliate, unknownAffiliate } from '../modules/constants';
-import { getDateArrange } from '../../../modules/utils';
+import { searchByList, globalResource, resource, minDate, all, sender, email, affiliate, unknownAffiliate } from '../modules/constants';
+import { getDateRange } from '../../../modules/utils';
 import { setParam } from '../actions';
 
 export class Filter extends PureComponent {
@@ -20,7 +20,7 @@ export class Filter extends PureComponent {
         this.state = {
             searchBy: all,
             searchText: '',
-            hasGetByDate: false,
+            isAllDate: true,
             fromDate: this.nowString,
             toDate: this.nowString,
         }
@@ -35,7 +35,7 @@ export class Filter extends PureComponent {
     }
 
     handleChangeFromDate = (momentDate) => {
-        this.setState(getDateArrange(momentDate, this.state.toDate));
+        this.setState(getDateRange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {
@@ -50,7 +50,7 @@ export class Filter extends PureComponent {
     }
 
     handleSearch = () => {
-        const { searchBy, searchText, fromDate, toDate, hasGetByDate } = this.state;
+        const { searchBy, searchText, fromDate, toDate, isAllDate } = this.state;
         const { pagingOption } = this.props;
 
         const param = Object.assign({}, {
@@ -58,7 +58,7 @@ export class Filter extends PureComponent {
             SenderName: searchBy == sender ? searchText : '',
             Email: searchBy == email ? searchText : '',
             AffName: searchBy == affiliate ? searchText : '',
-            HasGetByDate: hasGetByDate,
+            IsAllDate: isAllDate,
             FromDate: fromDate,
             ToDate: toDate,
             PageIndex: 1,
@@ -69,12 +69,12 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        const { searchBy, fromDate, toDate, hasGetByDate, searchText } = this.state;
+        const { searchBy, fromDate, toDate, isAllDate, searchText } = this.state;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-3 mb-sm-0 pr-4">
+                    <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                         <Label className="mr-2">{globalResource.SearchBy}</Label>
                         <Input type="select" name="searchBy" value={searchBy} onChange={this.handleChange}>
                             {
@@ -86,25 +86,27 @@ export class Filter extends PureComponent {
                     </FormGroup>
                     {searchBy >= 0 && (
                         <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
+                            <Label className="mr-sm-2">{resource.SearchText}</Label>
                             <Input type="text" name="searchText" value={searchText} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />
                         </FormGroup>
                     )}
-                    <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
+                    <FormGroup className="mb-2 mx-sm-3 mb-sm-0">
                         <FormGroup check>
                             <Label check>
-                                <Input name="hasGetByDate" className="ml-1 mr-2" type="checkbox" checked={hasGetByDate} onChange={this.handleChange} />
+                                {resource.AllDate}
+                                <Input name="isAllDate" className="ml-1" type="checkbox" checked={isAllDate} onChange={this.handleChange} />
                             </Label>
                         </FormGroup>
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
-                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={hasGetByDate}
+                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!isAllDate}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                         <Label className="mr-sm-2">{globalResource.To}</Label>
-                        <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={hasGetByDate}
+                        <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!isAllDate}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeToDate} />
                     </FormGroup>

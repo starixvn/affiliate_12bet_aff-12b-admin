@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { setSelectedSiteUrl, setParam } from '../actions';
-import { getDateArrange } from '../../../../modules/utils';
+import { getDateRange } from '../../../../modules/utils';
 import { headerText, globalResource, deviceTypes, pcLaptop } from '../modules/constants';
 
 const minDate = new Date(2009, 11, 1);
@@ -54,7 +54,7 @@ export class Filter extends PureComponent {
     }
 
     handleChangeFromDate = (momentDate) => {
-        this.setState(getDateArrange(momentDate, this.state.toDate));
+        this.setState(getDateRange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {

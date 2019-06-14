@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.EmailHistory
     {
         public int? EmailId { get; set; }
 
-        public bool HasGetByDate { get; set; }
+        public bool IsAllDate { get; set; }
 
         public string SenderName { get; set; }
 

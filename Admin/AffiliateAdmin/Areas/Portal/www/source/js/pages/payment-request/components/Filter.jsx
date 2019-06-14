@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { resource, searchByList, statusList, globalResource } from '../modules/constants';
-import { getDateArrange } from '../../../modules/utils';
+import { getDateRange } from '../../../modules/utils';
 import { setParam } from '../actions';
 
 const minDate = new Date(2009, 11, 1);
@@ -39,7 +39,7 @@ export class Filter extends PureComponent {
     }
 
     handleChangeFromDate = (momentDate) => {
-        this.setState(getDateArrange(momentDate, this.state.toDate));
+        this.setState(getDateRange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {
@@ -100,7 +100,7 @@ export class Filter extends PureComponent {
                     <FormGroup check>
                         <Label check>
                             {globalResource.GetAll}
-                            <Input name="isGetAll" className="ml-1 mr-2" type="checkbox" checked={isGetAll} onChange={this.handleChange} />
+                            <Input name="isGetAll" className="ml-1" type="checkbox" checked={isGetAll} onChange={this.handleChange} />
                         </Label>
                     </FormGroup>
                 </FormGroup>

@@ -6,7 +6,7 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { logTypes, headerText, globalResource } from '../modules/constants';
 import { setParam, setShowIdList } from '../actions';
-import { getDateArrange } from '../../../../modules/utils';
+import { getDateRange } from '../../../../modules/utils';
 
 const minDate = new Date(2009, 11, 1);
 
@@ -34,7 +34,7 @@ export class Filter extends React.Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        this.setState(getDateArrange(momentDate, this.state.toDate));
+        this.setState(getDateRange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {

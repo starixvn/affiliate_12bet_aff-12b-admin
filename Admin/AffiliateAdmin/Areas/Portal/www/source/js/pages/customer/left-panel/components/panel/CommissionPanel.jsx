@@ -33,7 +33,7 @@ export class CommissionPanel extends PureComponent {
 
     _renderCommGroup(affiliateInfo) {
         return affiliateInfo.IsClosed ? (<span>{affiliateInfo.CommGroupName}</span>) :
-            (<Button color="link p-0 left-panel-btn-link" onClick={() => this.toggleEditingCommissionPopup(true)}>
+            (<Button color="link p-0 text-truncate left-panel-btn-link" style={{width: 94}} onClick={() => this.toggleEditingCommissionPopup(true)}>
                 {affiliateInfo.CommGroupName}
             </Button>)
     }

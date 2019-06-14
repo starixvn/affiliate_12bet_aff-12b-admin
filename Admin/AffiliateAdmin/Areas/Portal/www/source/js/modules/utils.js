@@ -59,7 +59,7 @@ export const parseDateTime = (value) => {
     return value;
 }
 
-export function getDateArrange(selectedFromDate, toDateString) {
+export function getDateRange(selectedFromDate, toDateString) {
     const selectedFromDateString = selectedFromDate.format("MM/DD/YYYY");
     const fromDate = new Date(selectedFromDateString);
     const toDate = new Date(toDateString);

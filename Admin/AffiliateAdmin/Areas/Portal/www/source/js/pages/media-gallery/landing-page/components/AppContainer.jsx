@@ -156,11 +156,7 @@ export default class AppContainer extends Component {
 
     onToggleAll = (isCheckAll) => {
         const { selectedPages } = this.state;
-        const newSelectedPages = Object.keys(selectedPages).reduce((accumulator, currentValue) => {
-            accumulator[currentValue] = isCheckAll;
-
-            return accumulator;
-        }, {});
+        const newSelectedPages = Object.keys(selectedPages).filter(key => selectedPages[key]);
 
         this.setState({ selectedPages: newSelectedPages, shouldResetTableScrollPosition: false });
     }

@@ -27,6 +27,8 @@ export const resource = {
     Content: 'Content:',
     All: 'All',
     None: 'None',
+    SearchText: 'Search Text',
+    AllDate: 'All Date',
 }
 
 export const headerText = {

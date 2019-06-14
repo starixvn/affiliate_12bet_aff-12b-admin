@@ -103,7 +103,7 @@ export class EmailDetailForm extends PureComponent {
                                     </Col>
                                 </FormGroup>
                             </Form>
-                            <Button type="button" color="secondary" className="mr-3" onClick={() => this.handleDelete(selectedEmailId)}>{resource.Delete}</Button>
+                            <Button outline type="button" color="danger" className="mr-3" onClick={() => this.handleDelete(selectedEmailId)}>{resource.Delete}</Button>
                             <Button type="button" color="info" onClick={this.handleClosePopup}>{globalResource.Cancel}</Button>
                         </div>
                     </div>

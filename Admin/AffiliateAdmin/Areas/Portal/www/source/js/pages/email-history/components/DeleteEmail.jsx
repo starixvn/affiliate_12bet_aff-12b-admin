@@ -47,13 +47,7 @@ export class DeleteEmail extends PureComponent {
     _getCheckedEmailIdList() {
         const { checkedEmails } = this.props;
 
-        return Object.keys(checkedEmails).reduce((accumulator, currentValue) => {
-            if (checkedEmails[currentValue]) {
-                accumulator.push(currentValue);
-            }
-
-            return accumulator;
-        }, []);
+        return Object.keys(checkedEmails).filter(key => checkedEmails[key]);
     }
 
     render() {

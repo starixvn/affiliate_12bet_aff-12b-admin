@@ -41,16 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
                 {
                     if (reader.Read())
                     {
-                        result = new EmailHistoryInfo
-                        {
-                            EmailId = Convert.ToInt32(reader["MID"]),
-                            Content = Convert.ToString(reader["Content"]),
-                            Sender = Convert.ToString(reader["Sender"]),
-                            Email = Convert.ToString(reader["Email"]),
-                            Subject = Convert.ToString(reader["Subject"]),
-                            AffName = Convert.ToString(reader["affname"]),
-                            SentDate = Convert.ToDateTime(reader["CreateDate"]),
-                        };
+                        result = BuildDataItem(reader);
                     }
                 }
             }
@@ -66,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                if (param.HasGetByDate)
+                if (!param.IsAllDate)
                 {
                     objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
                     objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
@@ -84,16 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(new EmailHistoryInfo
-                        {
-                            EmailId = Convert.ToInt32(reader["MID"]),
-                            Content = Convert.ToString(reader["Content"]),
-                            Sender = Convert.ToString(reader["Sender"]),
-                            Email = Convert.ToString(reader["Email"]),
-                            Subject = Convert.ToString(reader["Subject"]),
-                            AffName = Convert.ToString(reader["affname"]),
-                            SentDate = Convert.ToDateTime(reader["CreateDate"]),
-                        });
+                        dataList.Add(BuildDataItem(reader));
                     }
                 }
 
@@ -103,6 +85,20 @@ namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
             }
 
             return result;
+        }
+
+        private static EmailHistoryInfo BuildDataItem(IDataReader reader)
+        {
+            return new EmailHistoryInfo
+            {
+                EmailId = Convert.ToInt32(reader["MID"]),
+                Content = Convert.ToString(reader["Content"]),
+                Sender = Convert.ToString(reader["Sender"]),
+                Email = Convert.ToString(reader["Email"]),
+                Subject = Convert.ToString(reader["Subject"]),
+                AffName = Convert.ToString(reader["affname"]),
+                SentDate = Convert.ToDateTime(reader["CreateDate"]),
+            };
         }
     }
 }
