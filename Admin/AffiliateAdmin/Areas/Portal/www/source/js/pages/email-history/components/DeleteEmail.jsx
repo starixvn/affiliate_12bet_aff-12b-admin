@@ -53,7 +53,7 @@ export class DeleteEmail extends PureComponent {
     render() {
         return (
             <div className="my-2">
-                <Button outline type="button" color="danger" className="mr-2" onClick={this.handleDelete}>{resource.Delete}<span className="oi oi-x ml-2"></span></Button>
+                <Button outline type="button" color="danger" onClick={this.handleDelete}>{resource.Delete}<span className="oi oi-x ml-2"></span></Button>
             </div>
         );
     }

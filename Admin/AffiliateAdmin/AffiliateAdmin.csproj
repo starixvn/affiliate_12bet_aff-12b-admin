@@ -1185,6 +1185,7 @@
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\customer.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\email-history.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\landing-page.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\payment\payment-request.css" />
     <Content Include="Areas\Portal\www\dist\style\portalmain.css" />

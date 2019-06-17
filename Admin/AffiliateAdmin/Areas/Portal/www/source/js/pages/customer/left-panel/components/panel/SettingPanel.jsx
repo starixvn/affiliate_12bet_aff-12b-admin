@@ -149,7 +149,7 @@ export class SettingPanel extends PureComponent {
                         <Row>
                             <Col>{resource.Closed}</Col>
                             <Col className="text-right text-primary">
-                                <Button color="link" className="border border-secondary left-panel-btn-link btn-closed" onClick={this.handleChangeClosedStatus}>
+                                <Button color="link" className="left-panel-btn-link btn-closed" onClick={this.handleChangeClosedStatus}>
                                     {affiliateInfo.IsClosed ? resource.Yes : resource.No}
                                 </Button>
                             </Col>

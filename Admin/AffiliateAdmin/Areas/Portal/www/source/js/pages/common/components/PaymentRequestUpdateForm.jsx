@@ -184,8 +184,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
         );
     }
 
-    _renderNote(isPending) {
-        const { adminDesc, affDesc } = this.state;
+    _renderNote(paymentRequestInfo, isPending) {
+        const { AdminDesc, AffDesc } = paymentRequestInfo;
 
         return (
             <Row>
@@ -196,7 +196,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
                         </legend>
                         <FormGroup>
                             <Label for="AdminDesc">{resource.VisibleAdmin}</Label>
-                            <Input type="textarea" name="AdminDesc" rows="6" disabled={!isPending} value={adminDesc} onChange={this.handleChange} />
+                            <Input type="textarea" name="AdminDesc" rows="6" disabled={!isPending} value={AdminDesc} onChange={this.handleChange} />
                         </FormGroup>
                     </fieldset>
                 </Col>
@@ -207,7 +207,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
                         </legend>
                         <FormGroup>
                             <Label for="AffDesc">{resource.VisibleAffiliate}</Label>
-                            <Input type="textarea" name="AffDesc" rows="6" disabled={!isPending} value={affDesc} onChange={this.handleChange} />
+                            <Input type="textarea" name="AffDesc" rows="6" disabled={!isPending} value={AffDesc} onChange={this.handleChange} />
                         </FormGroup>
                     </fieldset>
                 </Col>

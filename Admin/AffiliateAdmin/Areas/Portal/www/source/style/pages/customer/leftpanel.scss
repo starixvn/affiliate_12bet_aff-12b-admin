@@ -91,10 +91,11 @@
                 .btn-closed {
                     padding: 2px;
                     margin-bottom: 2px;
-                    background-color: gainsboro;
+                    background-color: #ddf0ff;
+                    border: 1px solid #6c757d!important;
 
                     &:hover {
-                        background-color: cornflowerblue;
+                        background-color: lightcyan;
                     }
                 }
             }
