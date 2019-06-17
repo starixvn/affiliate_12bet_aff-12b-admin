@@ -1,18 +1,50 @@
 import React from 'react';
 import { Content } from '../Content';
-import renderer from 'react-test-renderer';
-import ShallowRenderer from 'react-test-renderer/shallow';
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 
 import * as ajaxRequest from '../../../../modules/ajaxRequest';
 import ReportExcel from '../../modules/reportExcel';
 jest.mock('../../modules/reportExcel');
 
-Enzyme.configure({ adapter: new Adapter() });
-
 describe('affiliate info - Content ', () => {
+    const mockColumnList = [
+        { columnKey: "Index", columnName: "#", checked: true },
+        { columnKey: "Status", columnName: "Status", checked: true },
+        { columnKey: "FirstName", columnName: "First Name", checked: true },
+        { columnKey: "LastName", columnName: "Last Name", checked: true },
+        { columnKey: "Language", columnName: "Language", checked: true },
+        { columnKey: "Phone", columnName: "Mobile Phone", checked: true },
+        { columnKey: "Email", columnName: "Email", checked: true },
+        { columnKey: "RegistrationDateText", columnName: "Registration Date", checked: true },
+        { columnKey: "ApprovalDateText", columnName: "Approval Date", checked: true },
+        { columnKey: "CasinoDateText", columnName: "Casino Date", checked: true },
+        { columnKey: "CommissionGroup", columnName: "Commission Group", checked: true },
+        { columnKey: "BalanceBf", columnName: "Balance B/F", checked: true },
+        { columnKey: "Currency", columnName: "Aff. Currency", checked: true },
+        { columnKey: "PlayerUserName", columnName: "Aff. Player", checked: true },
+        { columnKey: "PlayerCurrency", columnName: "Aff. Player Currency", checked: true },
+        { columnKey: "Member", columnName: "Member", checked: true }
+    ];
+    const selectedColumnList = {
+        Index: true,
+        Status: true,
+        FirstName: true,
+        LastName: true,
+        Language: true,
+        Phone: true,
+        Email: true,
+        RegistrationDateText: true,
+        ApprovalDateText: true,
+        CasinoDateText: true,
+        CommissionGroup: true,
+        BalanceBf: true,
+        Currency: true,
+        PlayerUserName: true,
+        PlayerCurrency: true,
+        Member: true
+    };
     const defaultProps = {
+        columnList: mockColumnList,
         reportTitle: '',
         param: {},
         languageList: {}
@@ -30,7 +62,7 @@ describe('affiliate info - Content ', () => {
         const componentInstance = new Content(defaultProps);
         const title = componentInstance._buildReportTitle('Report Title');
 
-        const result = renderer.create((<div>{title}</div>));
+        const result = shallow((<div>{title}</div>));
 
         expect(result).toMatchSnapshot();
     });
@@ -53,26 +85,17 @@ describe('affiliate info - Content ', () => {
             ReportExcel.mockClear();
         });
 
-        it('should pass request param correctly when exporting excel', () => {
-            ajaxRequest.post = jest.fn();
-            const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), param: { userName: 'AFF001' } });
-            const componentInstance = new Content(props);
-            const expectedParam = {
-                userName: 'AFF001',
-                IsExportExcel: true
-            }
+        it('should call toggleLoader, post and ReportExcel when exporting excel', async () => {
+            const expectedResponse = { data: ['data 1', 'data 2'], status: 200 };
+            ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
             const expectedUrl = 'Portal/AffiliateInfo/GetAffiliateList';
-
-            componentInstance.handleExportExcel();
-
-            expect(ajaxRequest.post).toHaveBeenCalledWith(expectedUrl, expectedParam);
-        });
-
-        it('should call toggleLoader twice with correct parameters', async () => {
-            ajaxRequest.post = jest.fn();
-            const mockToggleLoader = jest.fn();
-            const props = Object.assign({}, defaultProps, { toggleLoader: mockToggleLoader, param: { userName: 'AFF001' } });
+            const expectedParam = {
+                AffId: 927841,
+                IsExportExcel: true
+            }
+            const reportTitle = '', languageList = {};
+            const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), param: { AffId: 927841 } });
             const componentInstance = new Content(props);
 
             await componentInstance.handleExportExcel();
@@ -80,27 +103,59 @@ describe('affiliate info - Content ', () => {
             expect(props.toggleLoader).toHaveBeenCalledTimes(2);
             expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
             expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
+
+            expect(ajaxRequest.post).toHaveBeenCalledWith(expectedUrl, expectedParam);
+            expect(ReportExcel).toHaveBeenCalledWith(expectedResponse.data, reportTitle, languageList, selectedColumnList);
         });
 
-        it('should create new instance of ReportExcel with correct parameter', async () => {
-            const expectedResponse = { data: ['data 1', 'data 2'], status: 200 };
+        it('should call toggleLoader twice, post but not call ReportExcel when exporting excel with response incorrect', async () => {
+            const expectedResponse = { data: ['data 1', 'data 2'], status: 500 };
             ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
-            const reportTitle = 'report title', languageList = { 'en-US': 'English' };
-            const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), reportTitle: reportTitle, languageList });
+            const expectedUrl = 'Portal/AffiliateInfo/GetAffiliateList';
+            const expectedParam = {
+                AffId: 927841,
+                IsExportExcel: true
+            }
+            const reportTitle = '', languageList = {};
+            const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), param: { AffId: 927841 } });
             const componentInstance = new Content(props);
 
             await componentInstance.handleExportExcel();
 
-            expect(ReportExcel).toHaveBeenCalledWith(expectedResponse.data, reportTitle, languageList);
+            expect(props.toggleLoader).toHaveBeenCalledTimes(2);
+            expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
+            expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
+
+            expect(ajaxRequest.post).toHaveBeenCalledWith(expectedUrl, expectedParam);
+            expect(ReportExcel).not.toHaveBeenCalledWith(expectedResponse.data, reportTitle, languageList, selectedColumnList);
+        });
+
+        it('should call toggleLoader twice, ReportExcel but not call post when exporting excel with affId incorrect', async () => {
+            const expectData = { MainData: {}, TotalItem: 0 };
+            const expectedUrl = 'Portal/AffiliateInfo/GetAffiliateList';
+            const expectedParam = {
+                AffId: "AFF001",
+                IsExportExcel: true
+            }
+            const reportTitle = '', languageList = {};
+            const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), param: { AffId: "AFF001" } });
+            const componentInstance = new Content(props);
+
+            await componentInstance.handleExportExcel();
+
+            expect(props.toggleLoader).toHaveBeenCalledTimes(2);
+            expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
+            expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
+
+            expect(ajaxRequest.post).not.toHaveBeenCalledWith(expectedUrl, expectedParam);
+            expect(ReportExcel).toHaveBeenCalledWith(expectData, reportTitle, languageList, selectedColumnList);
         });
     });
 
     it('should render correctly', () => {
-        const renderer = new ShallowRenderer();
-
         const props = Object.assign({}, defaultProps, { reportTitle: 'Report Title' });
-        const result = renderer.render(<Content {...props} />);
+        const result = shallow(<Content {...props} />);
 
         expect(result).toMatchSnapshot();
     });

@@ -8,7 +8,7 @@ const Panel = (props) => {
         <div className="left-submenu" {...attributes}>
             <ul>
                 <li>
-                    <Button color="link left-panel-btn-link hide-link">
+                    <Button color="link" className="left-panel-btn-link hide-link">
                         {heading}
                     </Button>
                 </li>

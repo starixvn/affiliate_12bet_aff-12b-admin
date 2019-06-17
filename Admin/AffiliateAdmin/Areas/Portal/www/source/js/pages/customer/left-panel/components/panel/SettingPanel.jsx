@@ -105,7 +105,7 @@ export class SettingPanel extends PureComponent {
                                 })
                             }
                         </select>
-                        <Button color="link p-0 left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={this.toggleChangingAffType.bind(this, true)}>
+                        <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={this.toggleChangingAffType.bind(this, true)}>
                             {affType[affiliateInfo.AffType]}
                         </Button>
                     </Col>
@@ -126,7 +126,7 @@ export class SettingPanel extends PureComponent {
                                             <option value="Disapproved">Disapproved</option>
                                             <option value="Pending">Pending</option>
                                         </select>
-                                        <Button color="link p-0 left-panel-btn-link" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }}
+                                        <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }}
                                             onClick={() => this.toggleChangingAffStatus(true)}>
                                             {affiliateInfo.Status}
                                         </Button>

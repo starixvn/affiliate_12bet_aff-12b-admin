@@ -67,7 +67,7 @@ export class WebSite extends PureComponent {
                                 <Col sm={5} xl={6}>
                                     <input className="form-control" name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
                                 </Col>
-                                <Button outline color="danger mb-2" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
+                                <Button outline color="danger" className="mb-2" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
                             </FormGroup>
                         )
                     })
@@ -86,7 +86,7 @@ export class WebSite extends PureComponent {
                     <Col sm={5} xl={6}>
                         <Input type="text" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
                     </Col>
-                    <Button outline color="secondary mb-2" onClick={this.handleAddUrl}>Add Url</Button>
+                    <Button outline color="secondary" className="mb-2" onClick={this.handleAddUrl}>Add Url</Button>
                 </FormGroup>
                 {
                     this._renderMoreSiteUrl(moreSiteUrlsList)

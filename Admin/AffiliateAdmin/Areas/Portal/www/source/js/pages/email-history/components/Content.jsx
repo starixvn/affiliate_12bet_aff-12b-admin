@@ -87,7 +87,7 @@ export class Content extends PureComponent {
                 <Cell title={dataItem.Sender}>{dataItem.Sender}</Cell>
                 <Cell title={dataItem.AffName}>{dataItem.AffName}</Cell>
                 <Cell title={dataItem.Subject}>
-                    <Button color="link p-0" onClick={() => this.props.setSelectedEmailId(dataItem.EmailId)}>
+                    <Button color="link" className="p-0" onClick={() => this.props.setSelectedEmailId(dataItem.EmailId)}>
                         {dataItem.Subject}
                     </Button>
                 </Cell>

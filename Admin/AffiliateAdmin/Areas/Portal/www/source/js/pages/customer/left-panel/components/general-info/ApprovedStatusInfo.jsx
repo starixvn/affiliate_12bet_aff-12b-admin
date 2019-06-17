@@ -20,7 +20,7 @@ const ApprovedStatusInfo = (props) => {
             <Row>
                 <Col sm={5}>{resource.Password}</Col>
                 <Col sm={7} className='text-right text-primary'>
-                    <Button color="link p-0 left-panel-btn-link" onClick={() => toggleChangingPassword(true)}>
+                    <Button color="link left-panel-btn-link" onClick={() => toggleChangingPassword(true)}>
                         [{resource.Change}]
                     </Button>
                     {affiliateInfo && <ChangePasswordForm

@@ -41,7 +41,7 @@ export class Language extends PureComponent {
         const { affiliateInfo, languageList } = this.props;
 
         return (
-             <select value={affiliateInfo.PreferredLanguage}
+            <select value={affiliateInfo.PreferredLanguage}
                 onChange={this.handleChangeLanguage} onBlur={() => this.toggleChangingLanguage(false)} ref={this.languageDropdown}>
                 {
                     languageList.map(language => {
@@ -57,7 +57,7 @@ export class Language extends PureComponent {
         const languageItem = languageList.find(l => l.LanguageCode === affiliateInfo.PreferredLanguage);
 
         return (
-            <Button color="link p-0 left-panel-btn-link" onClick={() => this.toggleChangingLanguage(true)}>
+            <Button color="link" className="left-panel-btn-link" onClick={() => this.toggleChangingLanguage(true)}>
                 {languageItem && languageItem.LanguageName}
             </Button>
         )

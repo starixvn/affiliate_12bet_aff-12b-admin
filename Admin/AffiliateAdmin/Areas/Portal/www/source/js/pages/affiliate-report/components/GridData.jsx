@@ -140,7 +140,7 @@ export class GridData extends Component {
                     isMainView && (
                         <Cell className="text-center">
                             {dataItem.AffId > 0 ? (
-                                <Button style={{ padding: 0 }} color="link"
+                                <Button color="link" className="p-0"
                                     onClick={() => this.handleViewMonthOnMonth(dataItem.UserName)}>View</Button>) : ''}
                         </Cell>)
                 }

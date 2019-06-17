@@ -11,7 +11,7 @@ import { setReportTitle, setParam } from '../actions';
 import { formatUnit, resolveClientUrl } from '../../../modules/utils';
 import { minMonthDate } from '../../../modules/constants';
 
-class Filter extends Component {
+export class Filter extends Component {
     constructor(props) {
         super(props);
 
