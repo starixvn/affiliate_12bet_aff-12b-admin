@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
     {
         public UserAccount GetUserAccountInfo(int affId)
         {
-            const string SpKey = "Aff_AffiliateSelEditInfo";
+            const string SpKey = "Aff_Admin_AffiliateInfo_Sel";
             UserAccount result = null;
 
             using (var objectDb = GetObjectDb(SpKey))
@@ -39,15 +39,15 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             MoreSiteUrls = Convert.ToString(reader["MoreSiteUrls"]),
                             SiteUrl = Convert.ToString(reader["SiteUrl"]),
                             PreferredPayment = Convert.ToString(reader["PreferredPayment"]),
-                            PlayerUsername = Convert.ToString(reader["Player_Username"]),
+                            PlayerUsername = Convert.ToString(reader["PlayerUsername"]),
                             NoSiteDescription = Convert.ToString(reader["NoSiteDesc"]),
-                            NetellerAccountId = Convert.ToString(reader["Neteller_AccountID"]),
-                            MoneybookersEmail = Convert.ToString(reader["Moneybookers_Email"]),
-                            BankName = Convert.ToString(reader["Wire_BankName"]),
-                            BankAddress = Convert.ToString(reader["Wire_BankAddress"]),
-                            BankCode = Convert.ToString(reader["Wire_SwiftCode"]),
-                            BankAccountName = Convert.ToString(reader["Wire_AccountName"]),
-                            BankAccountNumber = Convert.ToString(reader["Wire_AccountNo"]),
+                            NetellerAccountId = Convert.ToString(reader["NetellerAccountID"]),
+                            MoneybookersEmail = Convert.ToString(reader["MoneybookersEmail"]),
+                            BankName = Convert.ToString(reader["BankName"]),
+                            BankAddress = Convert.ToString(reader["BankAddress"]),
+                            BankCode = Convert.ToString(reader["BankSwiftCode"]),
+                            BankAccountName = Convert.ToString(reader["BankAccountName"]),
+                            BankAccountNumber = Convert.ToString(reader["BankAccountNo"]),
                             Question = Convert.ToString(reader["Question"]),
                             Answer = Convert.ToString(reader["Answer"]),
                             MailOption = reader["MailOption"] == DBNull.Value ? (bool?)null : Convert.ToBoolean(reader["MailOption"])
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
         public ResultInfo UpdateUserAccount(UserAccountParam param)
         {
-            const string SpKey = "Aff_AffiliateUpdInfo";
+            const string SpKey = "Aff_Admin_AffiliateInfo_Upd";
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
@@ -79,21 +79,21 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 objectDb.AddInParameter("Postal", DbType.String, param.Postcode);
                 objectDb.AddInParameter("Country", DbType.String, param.Country);
 
-                objectDb.AddInParameter("EmailFormat", DbType.Boolean, param.MailOption);
+                objectDb.AddInParameter("MailOption", DbType.Boolean, param.MailOption);
 
                 objectDb.AddInParameter("SiteURL", DbType.String, param.SiteUrl);
                 objectDb.AddInParameter("MoreSiteURLs", DbType.String, param.MoreSiteUrls);
                 objectDb.AddInParameter("NoSiteDesc", DbType.String, param.NoSiteDescription);
 
                 objectDb.AddInParameter("PreferredPayment", DbType.String, param.PreferredPayment);
-                objectDb.AddInParameter("Player_Username", DbType.String, param.PlayerUsername);
-                objectDb.AddInParameter("Neteller_AccountId", DbType.String, param.NetellerAccountId);
-                objectDb.AddInParameter("Moneybookers_Email", DbType.String, param.MoneybookersEmail);
-                objectDb.AddInParameter("Wire_BankName", DbType.String, param.BankName);
-                objectDb.AddInParameter("Wire_BankAddress", DbType.String, param.BankAddress);
-                objectDb.AddInParameter("Wire_SwiftCode", DbType.String, param.BankCode);
-                objectDb.AddInParameter("Wire_AccountName", DbType.String, param.BankAccountName);
-                objectDb.AddInParameter("Wire_AccountNo", DbType.String, param.BankAccountNumber);
+                objectDb.AddInParameter("PlayerUsername", DbType.String, param.PlayerUsername);
+                objectDb.AddInParameter("NetellerAccountId", DbType.String, param.NetellerAccountId);
+                objectDb.AddInParameter("MoneybookersEmail", DbType.String, param.MoneybookersEmail);
+                objectDb.AddInParameter("BankName", DbType.String, param.BankName);
+                objectDb.AddInParameter("BankAddress", DbType.String, param.BankAddress);
+                objectDb.AddInParameter("BankSwiftCode", DbType.String, param.BankCode);
+                objectDb.AddInParameter("BankAccountName", DbType.String, param.BankAccountName);
+                objectDb.AddInParameter("BankAccountNo", DbType.String, param.BankAccountNumber);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
                 AssignResultOutputParam(objectDb);

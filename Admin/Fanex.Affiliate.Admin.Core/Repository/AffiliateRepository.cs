@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 {
     public class AffiliateRepository : BaseRepository, IAffiliateRepository
     {
-        public AffiliateBasicInfo GetAffiliateBasicInfo(int affId)
+        public AffiliateBasicInfo GetAffiliateBasicInfo(int? affId, string affName = null)
         {
             const string SpKey = "Aff_Admin_AffiliateInfo_Sel";
             AffiliateBasicInfo result = null;
@@ -16,26 +16,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("AffId", DbType.Int32, affId);
-
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        result = BuildAffiliateBasicInfo(reader);
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        public AffiliateBasicInfo GetAffiliateBasicInfoByAffName(string affName)
-        {
-            const string SpKey = "Aff_Admin_AffiliateInfo_Sel";
-            AffiliateBasicInfo result = null;
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
                 objectDb.AddInParameter("Username", DbType.String, affName);
 
                 using (var reader = objectDb.ExecuteReader())

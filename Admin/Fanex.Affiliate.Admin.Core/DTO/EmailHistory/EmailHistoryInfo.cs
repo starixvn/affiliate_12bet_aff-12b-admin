@@ -6,8 +6,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.EmailHistory
     {
         public int EmailId { get; set; }
 
-        public string Content { get; set; }
-
         public string Sender { get; set; }
 
         public string AffName { get; set; }

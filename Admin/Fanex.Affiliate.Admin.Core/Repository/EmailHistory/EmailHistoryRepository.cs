@@ -11,11 +11,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
     {
         public ResultInfo DeleteEmailHistory(DeleteEmailHistoryParam param)
         {
-            const string SpKey = "Aff_EmailHistoryDel";
+            const string SpKey = "Aff_Admin_EmailHistory_Del";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("listmid", DbType.String, param.EmailIdList);
+                objectDb.AddInParameter("MIDs", DbType.String, param.EmailIdList);
                 objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("ip", DbType.String, param.Ip);
 
@@ -27,11 +27,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
             }
         }
 
-        public EmailHistoryInfo GetEmailHistoryDetail(int selectedEmailId)
+        public EmailHistoryDetailInfo GetEmailHistoryDetail(int selectedEmailId)
         {
-            const string SpKey = "Aff_EmailHistorySel";
+            const string SpKey = "Aff_Admin_EmailHistory_Detail_Sel";
 
-            EmailHistoryInfo result = null;
+            EmailHistoryDetailInfo result = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -42,6 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
                     if (reader.Read())
                     {
                         result = BuildDataItem(reader);
+                        result.Content = Convert.ToString(reader["Content"]);
                     }
                 }
             }
@@ -51,21 +52,18 @@ namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
 
         public EntityResult<EmailHistoryInfo> GetEmailHistoryList(EmailHistoryParam param)
         {
-            const string SpKey = "Aff_EmailHistorySel";
+            const string SpKey = "Aff_Admin_EmailHistory_Sel";
             var result = new EntityResult<EmailHistoryInfo>();
             var dataList = new List<EmailHistoryInfo>();
+            EmailHistoryInfo dataItem = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                if (!param.IsAllDate)
-                {
-                    objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
-                    objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
-                }
-                objectDb.AddInParameter("MID", DbType.Int32, param.EmailId);
-                objectDb.AddInParameter("SenderName", DbType.String, param.SenderName);
-                objectDb.AddInParameter("Email", DbType.String, param.Email);
-                objectDb.AddInParameter("AffiliateUserName", DbType.String, param.AffName);
+                objectDb.AddInParameter("SearchById", DbType.Int32, param.SearchById);
+                objectDb.AddInParameter("IsGetAll", DbType.Boolean, param.IsGetAll);
+                objectDb.AddInParameter("SearchText", DbType.String, param.SearchText);
+                objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
+                objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
 
@@ -75,7 +73,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildDataItem(reader));
+                        dataItem = BuildDataItem(reader);
+                        dataItem.AffName = Convert.ToString(reader["Affname"]);
+
+                        dataList.Add(dataItem);
                     }
                 }
 
@@ -87,17 +88,15 @@ namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
             return result;
         }
 
-        private static EmailHistoryInfo BuildDataItem(IDataReader reader)
+        private static EmailHistoryDetailInfo BuildDataItem(IDataReader reader)
         {
-            return new EmailHistoryInfo
+            return new EmailHistoryDetailInfo
             {
                 EmailId = Convert.ToInt32(reader["MID"]),
-                Content = Convert.ToString(reader["Content"]),
                 Sender = Convert.ToString(reader["Sender"]),
                 Email = Convert.ToString(reader["Email"]),
                 Subject = Convert.ToString(reader["Subject"]),
-                AffName = Convert.ToString(reader["affname"]),
-                SentDate = Convert.ToDateTime(reader["CreateDate"]),
+                SentDate = Convert.ToDateTime(reader["CreatedDate"]),
             };
         }
     }

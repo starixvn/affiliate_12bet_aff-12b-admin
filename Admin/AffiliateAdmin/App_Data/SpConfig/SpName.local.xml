@@ -5,10 +5,10 @@
   </Function>
   <Function Name="AffiliateInformation">
     <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="affiliate_12bet" />  
+    <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel_xpre" DbName="affiliate_12bet" />  
     <Setting Key="Aff_AffiliateUsername_SearchEx" SpName="Aff_AffiliateUsername_SearchEx" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_LeftPanelOnlineList_Sel" SpName="Aff_Admin_LeftPanelOnlineList_Sel_xpre" DbName="affiliate_12bet" />  
+    <Setting Key="Aff_Admin_AffiliateOnlineList_Sel" SpName="Aff_Admin_AffiliateOnlineList_Sel_xpre" DbName="affiliate_12bet" />  
   </Function>
   <Function Name="Commission">
     <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet" />
@@ -18,7 +18,7 @@
     <Setting Key="Aff_Admin_CommGroup_Upd" SpName="Aff_Admin_CommGroup_Upd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_CommGroup_Del" SpName="Aff_Admin_CommGroup_Del" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_CommGroupNormal_Sel" SpName="Aff_Admin_CommGroupNormal_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_CommGroup_Assign" SpName="Aff_Admin_CommGroup_Assign" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_CommGroup_Assign" SpName="Aff_Admin_CommGroup_Assign_xpre" DbName="affiliate_12bet" />
   </Function>
   <Function Name="DepositInformation">
     <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="deposit" />
@@ -34,41 +34,39 @@
   <Function Name="Info">
     <Setting Key="Aff_Admin_Affiliate_Sel" SpName="Aff_Admin_Affiliate_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Affiliate_Favorite_Upd" SpName="Aff_Admin_Affiliate_Favorite_Upd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_Affiliate_Password_Upd" SpName="Aff_Admin_Affiliate_Password_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Affiliate_Password_Upd" SpName="Aff_Admin_Affiliate_Password_Upd_xpre" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Payment">
-    <Setting Key="Aff_PaymentRequestSelList" SpName="Aff_PaymentRequestSelList" DbName="affiliate_12bet" />
-    <Setting Key="Aff_PaymentRequestSelDetail" SpName="Aff_PaymentRequestSelDetail" DbName="affiliate_12bet" />
-    <Setting Key="Aff_PaymentRequestSelDetail" SpName="Aff_PaymentRequestSelDetail" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Sel_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Detail_Sel_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Upd" SpName="Aff_Admin_AffiliatePaymentRequest_Upd_xpre" DbName="affiliate_12bet" />
   </Function>
   <Function Name="StatementHistory">
     <Setting Key="Aff_Admin_StatementHistory_Sel" SpName="Aff_Admin_StatementHistory_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_PaymentRequestApprove" SpName="Aff_PaymentRequestApprove" DbName="main" />
-    <Setting Key="Aff_PaymentRequestUpd" SpName="Aff_PaymentRequestUpd" DbName="affiliate_12bet" />
   </Function>
   <Function Name="UserPanel">
     <Setting Key="Aff_Admin_PlayersDetail_Sel" SpName="Aff_Admin_PlayersDetail_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Member_Sel" SpName="Aff_Admin_Member_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AdminNoteSel" SpName="Aff_AdminNoteSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AdminNoteIns" SpName="Aff_AdminNoteIns" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AdminNoteUpd" SpName="Aff_AdminNoteUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateNote_Sel" SpName="Aff_Admin_AffiliateNote_Sel_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateNote_Detail_Sel" SpName="Aff_Admin_AffiliateNote_Detail_Sel_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateNote_Ins" SpName="Aff_Admin_AffiliateNote_Ins_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateNote_Upd" SpName="Aff_Admin_AffiliateNote_Upd_xpre" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateSelTrackingCode" SpName="Aff_AffiliateSelTrackingCode" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateSelClickStatisticsAllMonths" SpName="Aff_AffiliateSelClickStatisticsAllMonths" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateSelClickStatisticsMonthDetail" SpName="Aff_AffiliateSelClickStatisticsMonthDetail" DbName="affiliate_12bet" />
     <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="affiliate_12bet" />
     <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="affiliate_12bet" />
     <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateSelLog" SpName="Aff_AffiliateSelLog" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateLog_Sel" SpName="Aff_Admin_AffiliateLog_Sel_xpre" DbName="affiliate_12bet" />
     <Setting Key="Aff_CustomerSelBalBF" SpName="Aff_CustomerSelBalBF" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AdjustmentIns" SpName="Aff_AdjustmentIns" DbName="affiliate_12bet" />
-    <Setting Key="Aff_PreferLangUpd" SpName="Aff_PreferLangUpd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateUpdStatus" SpName="Aff_AffiliateUpdStatus" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateUpdClosedStatus" SpName="Aff_AffiliateUpdClosedStatus" DbName="affiliate_12bet" />
-    <Setting Key="Aff_UpdAffType" SpName="Aff_UpdAffType" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateSelEditInfo" SpName="Aff_AffiliateSelEditInfo_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateUpdInfo" SpName="Aff_AffiliateUpdInfo" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateAdjustment_Ins" SpName="Aff_Admin_AffiliateAdjustment_Ins_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliatePreferredLanguage_Upd" SpName="Aff_Admin_AffiliatePreferredLanguage_Upd_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateStatus_Upd" SpName="Aff_Admin_AffiliateStatus_Upd_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateClosed_Upd" SpName="Aff_Admin_AffiliateClosed_Upd_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateAffType_Upd" SpName="Aff_Admin_AffiliateAffType_Upd_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateInfo_Upd" SpName="Aff_Admin_AffiliateInfo_Upd_xpre" DbName="affiliate_12bet" />
   </Function>
   <Function Name="MediaGallery">
     <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel" DbName="affiliate_12bet" />
@@ -82,7 +80,8 @@
     <Setting Key="Aff_3rdProduct_TimeTrackerSel" SpName="Aff_3rdProduct_TimeTrackerSel" DbName="affiliate_12bet" />
   </Function>
   <Function Name="EmailHistory">
-    <Setting Key="Aff_EmailHistorySel" SpName="Aff_EmailHistorySel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_EmailHistoryDel" SpName="Aff_EmailHistoryDel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_EmailHistory_Sel" SpName="Aff_Admin_EmailHistory_Sel_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_EmailHistory_Detail_Sel" SpName="Aff_Admin_EmailHistory_Detail_Sel_xpre" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_EmailHistory_Del" SpName="Aff_Admin_EmailHistory_Del_xpre" DbName="affiliate_12bet" />
   </Function>
 </Functions>

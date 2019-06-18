@@ -14,9 +14,9 @@ namespace Fanex.Affiliate.Admin.Core.Services
             _affRepository = affRepository;
         }
 
-        public AffiliateBasicInfo GetAffiliateBasicInfo(int affId)
+        public AffiliateBasicInfo GetAffiliateBasicInfo(int? affId, string affName = null)
         {
-            return _affRepository.GetAffiliateBasicInfo(affId);
+            return _affRepository.GetAffiliateBasicInfo(affId, affName);
         }
 
         public ResultInfo ApproveAffiliate(ApproveAffiliateParam param)
@@ -24,11 +24,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
             param.Status = "Approved";
 
             return _affRepository.ApproveAffiliate(param);
-        }
-
-        public AffiliateBasicInfo GetAffiliateBasicInfoByAffName(string affName)
-        {
-            return _affRepository.GetAffiliateBasicInfoByAffName(affName);
         }
     }
 }

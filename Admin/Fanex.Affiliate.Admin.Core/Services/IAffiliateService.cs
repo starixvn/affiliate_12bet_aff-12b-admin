@@ -6,10 +6,8 @@ namespace Fanex.Affiliate.Admin.Core.Services
 {
     public interface IAffiliateService
     {
-        AffiliateBasicInfo GetAffiliateBasicInfo(int affId);
+        AffiliateBasicInfo GetAffiliateBasicInfo(int? affId, string affName = null);
 
         ResultInfo ApproveAffiliate(ApproveAffiliateParam param);
-
-        AffiliateBasicInfo GetAffiliateBasicInfoByAffName(string affName);
     }
 }

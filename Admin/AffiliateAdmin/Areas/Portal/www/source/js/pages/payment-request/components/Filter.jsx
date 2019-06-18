@@ -22,7 +22,7 @@ export class Filter extends PureComponent {
         yesterday.setDate(yesterday.getDate() - 1);
 
         this.state = {
-            searchBy: param.SearchBy,
+            searchBy: param.SearchBy ? param.SearchBy : 1,
             userName: null,
             status: param.Status,
             fromDate: param.FromDate ? param.FromDate : `${yesterday.getMonth() + 1}/${yesterday.getDate()}/${yesterday.getFullYear()}`,
@@ -30,7 +30,7 @@ export class Filter extends PureComponent {
             isGetAll: false
         }
     }
-    
+
     handleChange = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -55,14 +55,14 @@ export class Filter extends PureComponent {
 
     handleSearch = () => {
         const { searchBy, userName, status, fromDate, toDate, isGetAll } = this.state;
-        const isSearchByUserName = searchBy == 0;
 
         const newParam = Object.assign({}, this.props.param, {
-            Username: isSearchByUserName ? userName : null,
-            IsGetAll: isSearchByUserName ? true : isGetAll,
-            Status: isSearchByUserName ? null : status,
-            FromDate: isSearchByUserName ? null : fromDate,
-            ToDate: isSearchByUserName ? null : toDate
+            SearchBy: searchBy,
+            Username: userName,
+            IsGetAll: isGetAll,
+            Status: status,
+            FromDate: fromDate,
+            ToDate: toDate
         });
 
         this.props.setParam(newParam);
@@ -119,12 +119,12 @@ export class Filter extends PureComponent {
                         <Input type="select" name="searchBy" value={searchBy} onChange={this.handleChange}>
                             {
                                 searchByList.map((value, index) => {
-                                    return (<option key={'searchBy-' + index} value={index}>{value}</option>)
+                                    return (<option key={'searchBy-' + index} value={index + 1}>{value}</option>)
                                 })
                             }
                         </Input>
                     </FormGroup>
-                    {searchBy == 0 ? (
+                    {searchBy == 1 ? (
                         <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                             <Label className="mr-2">{resource.UserName}</Label>
                             <Input type="text" name="userName" value={userName} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />

@@ -68,7 +68,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         public ActionResult UpdateAffType(UpdateAffTypeParam param)
         {
             AssignParam(param);
-            param.Language = LanguageSystem.DefaultLanguage;
 
             var test = _customerLeftPanelService.UpdateAffType(param);
             return new JsonNetResult

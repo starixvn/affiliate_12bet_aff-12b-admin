@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import Panel from '../Panel';
 import { Row, Col, Button } from 'reactstrap';
 
-import { affType, resource, status } from '../../modules/constants';
+import { affType, resource, status, messages } from '../../modules/constants';
 import { updateAffType, updateClosedStatus, updateStatus, getAffiliateInfo } from '../../actions';
 import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
 
@@ -36,7 +36,7 @@ export class SettingPanel extends PureComponent {
     }
 
     handleChangeStatus = async (event) => {
-        const isConfirmed = window.confirm("Are you sure you want to change status for this affiliate?");
+        const isConfirmed = window.confirm(messages.areYouChangeStatus);
         if (isConfirmed) {
             const selectedStatus = event.target.value;
             if (selectedStatus.toLowerCase() === status.Approved) {
@@ -46,7 +46,7 @@ export class SettingPanel extends PureComponent {
                 const result = await this.props.updateStatus(param);
 
                 if (result.IsSuccessful) {
-                    window.alert("The status has been updated successfully!");
+                    window.alert(messages.statusUpdatedSuccess);
                     this.props.getAffiliateInfo(this.props.affName);
                 }
                 else {
@@ -65,7 +65,7 @@ export class SettingPanel extends PureComponent {
             const result = await this.props.updateClosedStatus(param);
 
             if (result.IsSuccessful) {
-                window.alert("The status has been updated successfully!");
+                window.alert(messages.statusUpdatedSuccess);
                 this.props.getAffiliateInfo(this.props.affName);
             }
             else {
@@ -84,7 +84,7 @@ export class SettingPanel extends PureComponent {
             this.toggleChangingAffType(false);
         }
         else {
-            window.alert("Occur an error when updating affiliate type!");
+            window.alert(messages.affTypeUpdatedFail);
         }
     }
 

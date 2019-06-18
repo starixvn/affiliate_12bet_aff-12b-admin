@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.EmailHistory
     {
         EntityResult<EmailHistoryInfo> GetEmailHistoryList(EmailHistoryParam param);
 
-        EmailHistoryInfo GetEmailHistoryDetail(int selectedEmailId);
+        EmailHistoryDetailInfo GetEmailHistoryDetail(int selectedEmailId);
 
         ResultInfo DeleteEmailHistory(DeleteEmailHistoryParam param);
     }

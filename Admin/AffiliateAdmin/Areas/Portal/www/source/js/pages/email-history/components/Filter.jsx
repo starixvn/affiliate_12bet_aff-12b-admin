@@ -20,7 +20,7 @@ export class Filter extends PureComponent {
         this.state = {
             searchBy: all,
             searchText: '',
-            isAllDate: true,
+            isGetAll: true,
             fromDate: this.nowString,
             toDate: this.nowString,
         }
@@ -50,15 +50,13 @@ export class Filter extends PureComponent {
     }
 
     handleSearch = () => {
-        const { searchBy, searchText, fromDate, toDate, isAllDate } = this.state;
+        const { searchBy, searchText, fromDate, toDate, isGetAll } = this.state;
         const { pagingOption } = this.props;
 
         const param = Object.assign({}, {
-            EmailId: searchBy == unknownAffiliate ? all : null,
-            SenderName: searchBy == sender ? searchText : '',
-            Email: searchBy == email ? searchText : '',
-            AffName: searchBy == affiliate ? searchText : '',
-            IsAllDate: isAllDate,
+            SearchById: searchBy,
+            SearchText: searchText,
+            IsGetAll: isGetAll,
             FromDate: fromDate,
             ToDate: toDate,
             PageIndex: 1,
@@ -69,7 +67,7 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        const { searchBy, fromDate, toDate, isAllDate, searchText } = this.state;
+        const { searchBy, fromDate, toDate, isGetAll, searchText } = this.state;
 
         return (
             <div className="filter-container">
@@ -84,7 +82,7 @@ export class Filter extends PureComponent {
                             }
                         </Input>
                     </FormGroup>
-                    {searchBy >= 0 && (
+                    {searchBy > all && searchBy < unknownAffiliate && (
                         <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                             <Label className="mr-sm-2">{resource.SearchText}</Label>
                             <Input type="text" name="searchText" value={searchText} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />
@@ -94,19 +92,19 @@ export class Filter extends PureComponent {
                         <FormGroup check>
                             <Label check>
                                 {resource.AllDate}
-                                <Input name="isAllDate" className="ml-1" type="checkbox" checked={isAllDate} onChange={this.handleChange} />
+                                <Input name="isGetAll" className="ml-1" type="checkbox" checked={isGetAll} onChange={this.handleChange} />
                             </Label>
                         </FormGroup>
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
-                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!isAllDate}
+                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                         <Label className="mr-sm-2">{globalResource.To}</Label>
-                        <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!isAllDate}
+                        <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeToDate} />
                     </FormGroup>

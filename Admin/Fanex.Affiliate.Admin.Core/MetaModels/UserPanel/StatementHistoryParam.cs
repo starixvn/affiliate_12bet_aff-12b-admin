@@ -10,13 +10,9 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
     {
         public int AffId { get; set; }
 
-        public int TransType { get; set; } = -1;
-
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
-
-        public bool IsGetAll { get; set; }
         
         public int PageSize { get; set; }
 

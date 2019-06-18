@@ -27,11 +27,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
         public ResultInfo InsertAdjustment(AdjustmentParam param)
         {
-            const string SpKey = "Aff_AdjustmentIns";
+            const string SpKey = "Aff_Admin_AffiliateAdjustment_Ins";
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("AdminID", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("Amount", DbType.Decimal, param.Amount);
                 objectDb.AddInParameter("transdesc", DbType.String, param.Description);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);

@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
                 param.Amount = paymentRequestDetail.Amount;
                 param.TransDate = paymentRequestDetail.TransDate;
 
-                var result = emailParam.IsApproved ? _paymentRequestRepository.ApprovePaymentRequest(param) : _paymentRequestRepository.RejectPaymentRequest(param);
+                var result = _paymentRequestRepository.UpdatePaymentRequest(param);
                 if (result != null)
                 {
                     if (result.IsSuccessful)

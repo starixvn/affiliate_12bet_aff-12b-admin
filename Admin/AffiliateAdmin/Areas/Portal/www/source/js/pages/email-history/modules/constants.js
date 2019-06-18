@@ -3,11 +3,11 @@ import { globalResource } from '../../../modules/globalResource';
 
 export { minDate, globalResource }
 
-export const all = -1;
-export const sender = 0;
-export const email = 1;
-export const affiliate = 2;
-export const unknownAffiliate = -2
+export const all = 0;
+export const sender = 1;
+export const email = 2;
+export const affiliate = 3;
+export const unknownAffiliate = 4
 
 export const searchByList = {
     [all]: 'All',

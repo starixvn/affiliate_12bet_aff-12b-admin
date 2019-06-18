@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.EmailHistory
             return _emailHistoryRepository.DeleteEmailHistory(param);
         }
 
-        public EmailHistoryInfo GetEmailHistoryDetail(int selectedEmailId)
+        public EmailHistoryDetailInfo GetEmailHistoryDetail(int selectedEmailId)
         {
             return _emailHistoryRepository.GetEmailHistoryDetail(selectedEmailId);
         }

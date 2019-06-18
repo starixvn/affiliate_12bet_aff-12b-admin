@@ -4,6 +4,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
 {
     public class PaymentRequestParam
     {
+        public int SearchBy { get; set; }
+
         public string Username { get; set; }
 
         public string Status { get; set; }

@@ -19,7 +19,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("TransType", DbType.Int32, param.TransType);
                 objectDb.AddInParameter("FDate", DbType.DateTime, param.FromDate);
                 objectDb.AddInParameter("TDate", DbType.DateTime, param.ToDate);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);

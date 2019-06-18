@@ -40,9 +40,11 @@ export const affType = {
     4: 'European'
 }
 
-const message = {
+export const messages = {
+    areYouChangeStatus: 'Are you sure you want to change status for this affiliate?',
     statusUpdatedSuccess: 'The status has been updated successfully!',
+    areYouChangeLanguage: 'Are you sure you want to change language for this affiliate?',
     languageUpdatedSuccess: 'The Language has been updated successfully!',
-    affTypeUpdatedSuccess: 'The Affiliate Type has been updated successfully!',
-    affTypeUpdatedFail: 'Occur an error when updating affiliate type!'
+    affTypeUpdatedFail: 'Occur an error when updating affiliate type!',
+    userNotOnline: 'This user is not online',
 }

@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
         public IEnumerable<OnlineList> GetOnlineList(string affUserName)
         {
-            const string SpKey = "Aff_Admin_LeftPanelOnlineList_Sel";
+            const string SpKey = "Aff_Admin_AffiliateOnlineList_Sel";
             var result = new List<OnlineList>();
 
             using (var objectDb = GetObjectDb(SpKey))
@@ -79,7 +79,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
         public ResultInfo UpdateAffType(UpdateAffTypeParam param)
         {
-            const string SpKey = "Aff_UpdAffType";
+            const string SpKey = "Aff_Admin_AffiliateAffType_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -87,7 +87,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                 objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("AffType", DbType.Byte, param.AffType);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
-                objectDb.AddInParameter("Language", DbType.String, param.Language);
 
                 objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
 
@@ -104,13 +103,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
         public ResultInfo UpdateClosedStatus(UpdateClosedStatusParam param)
         {
-            const string SpKey = "Aff_AffiliateUpdClosedStatus";
+            const string SpKey = "Aff_Admin_AffiliateClosed_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
                 objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("Closed", DbType.Boolean, param.IsClosed);
+                objectDb.AddInParameter("IsClosed", DbType.Boolean, param.IsClosed);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
                 AssignResultOutputParam(objectDb);
@@ -123,7 +122,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
         public ResultInfo UpdateLanguage(UpdateLanguageParam param)
         {
-            const string SpKey = "Aff_PreferLangUpd";
+            const string SpKey = "Aff_Admin_AffiliatePreferredLanguage_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -142,7 +141,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
         public ResultInfo UpdateStatus(UpdateStatusParam param)
         {
-            const string SpKey = "Aff_AffiliateUpdStatus";
+            const string SpKey = "Aff_Admin_AffiliateStatus_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {

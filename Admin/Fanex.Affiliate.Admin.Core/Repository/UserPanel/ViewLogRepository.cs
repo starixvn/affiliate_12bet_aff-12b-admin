@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
     {
         public EntityResult<ViewLog> GetViewLogList(ViewLogParam param)
         {
-            const string SpKey = "Aff_AffiliateSelLog";
+            const string SpKey = "Aff_Admin_AffiliateLog_Sel";
             var result = new EntityResult<ViewLog>();
             var dataList = new List<ViewLog>();
 
@@ -19,12 +19,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             {
                 objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
                 objectDb.AddInParameter("LogType", DbType.Int32, param.LogType);
-                objectDb.AddInParameter("DateFrom", DbType.DateTime, param.FromDate);
-                objectDb.AddInParameter("DateTo", DbType.DateTime, param.ToDate);
+                objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
+                objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
 
-                objectDb.AddOutParameter("RowCount", DbType.Int32, 4);
+                objectDb.AddOutParameter("NRows", DbType.Int32, 4);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 }
 
                 result.MainData = dataList;
-                var totalRow = objectDb.GetParameterValue("RowCount");
+                var totalRow = objectDb.GetParameterValue("NRows");
                 result.TotalItem = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
             }
 

@@ -12,17 +12,18 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
     {
         public EntityResult<PaymentRequest> GetPaymentRequestList(PaymentRequestParam param)
         {
-            const string SpKey = "Aff_PaymentRequestSelList";
+            const string SpKey = "Aff_Admin_AffiliatePaymentRequest_Sel";
             var result = new EntityResult<PaymentRequest>();
             var dataList = new List<PaymentRequest>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
+                objectDb.AddInParameter("SearchById", DbType.Int32, param.SearchBy);
                 objectDb.AddInParameter("Username", DbType.String, param.Username);
                 objectDb.AddInParameter("Status", DbType.String, param.Status);
                 objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
                 objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
-                objectDb.AddInParameter("GetAll", DbType.Boolean, param.IsGetAll);
+                objectDb.AddInParameter("IsGetAll", DbType.Boolean, param.IsGetAll);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
 
@@ -38,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
                             TransDate = Convert.ToDateTime(reader["Transdate"]),
                             Status = Convert.ToString(reader["Status"]),
                             AffName = Convert.ToString(reader["Username"]),
-                            Amount = Convert.ToDecimal(reader["amt"]),
+                            Amount = Convert.ToDecimal(reader["Amount"]),
                             CompletedDate = Convert.ToDateTime(reader["Completeddate"]),
                             Creator = Convert.ToString(reader["Creator"])
                         });
@@ -55,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
 
         public PaymentRequestDetail GetPaymentRequestDetail(long transId)
         {
-            const string SpKey = "Aff_PaymentRequestSelDetail";
+            const string SpKey = "Aff_Admin_AffiliatePaymentRequest_Detail_Sel";
             PaymentRequestDetail result = null;
 
             using (var objectDb = GetObjectDb(SpKey))
@@ -76,7 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
                             FirstName = Convert.ToString(reader["firstname"]),
                             LastName = Convert.ToString(reader["lastname"]),
                             PaymentMethod = Convert.ToString(reader["PreferredPayment"]),
-                            Amount = Convert.ToDecimal(reader["amt"]),
+                            Amount = Convert.ToDecimal(reader["Amount"]),
                             Status = Convert.ToString(reader["Status"]),
                             PlayerUsername = Convert.ToString(reader["Username2"]),
                             CompletedDate = Convert.ToDateTime(reader["Completeddate"]),
@@ -91,44 +92,24 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
             return result;
         }
 
-        public ResultInfo ApprovePaymentRequest(PaymentRequestUpdateParam param)
+        public ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param)
         {
-            const string SpKey = "Aff_PaymentRequestApprove";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                AssignCommonParam(objectDb, param);
-                AssignResultOutputParam(objectDb);
-
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
-        }
-
-        public ResultInfo RejectPaymentRequest(PaymentRequestUpdateParam param)
-        {
-            const string SpKey = "Aff_PaymentRequestUpd";
+            const string SpKey = "Aff_Admin_AffiliatePaymentRequest_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("Status", DbType.String, param.Status);
-                AssignCommonParam(objectDb, param);
+                objectDb.AddInParameter("TransID", DbType.Int64, param.TransId);
+                objectDb.AddInParameter("AdminDesc", DbType.String, param.AdminDesc);
+                objectDb.AddInParameter("AffDesc", DbType.String, param.AffDesc);
+                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("IP", DbType.String, param.Ip);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
 
                 return GetResultInfo(objectDb);
             }
-        }
-
-        private static void AssignCommonParam(IObjectDb objectDb, PaymentRequestUpdateParam param)
-        {
-            objectDb.AddInParameter("TransID", DbType.Int64, param.TransId);
-            objectDb.AddInParameter("AdminDesc", DbType.String, param.AdminDesc);
-            objectDb.AddInParameter("AffDesc", DbType.String, param.AffDesc);
-            objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-            objectDb.AddInParameter("IP", DbType.String, param.Ip);
         }
     }
 }

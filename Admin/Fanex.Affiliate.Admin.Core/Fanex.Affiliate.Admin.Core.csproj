@@ -197,6 +197,7 @@
     <Compile Include="DTO\Customer\CustomerStatistics.cs" />
     <Compile Include="DTO\Customer\OnlineList.cs" />
     <Compile Include="DTO\DepositAccountInfo.cs" />
+    <Compile Include="DTO\EmailHistory\EmailHistoryDetailInfo.cs" />
     <Compile Include="DTO\EmailHistory\EmailHistoryInfo.cs" />
     <Compile Include="DTO\Email\AffInformationEmail.cs" />
     <Compile Include="DTO\Email\EmailBase.cs" />

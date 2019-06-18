@@ -6,12 +6,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 {
     public interface IAffiliateRepository
     {
-        AffiliateBasicInfo GetAffiliateBasicInfo(int affId);
+        AffiliateBasicInfo GetAffiliateBasicInfo(int? affId, string affName = null);
 
         ResultInfo ApproveAffiliate(ApproveAffiliateParam param);
 
         DepositAccountInfo GetDepositPlayerAccount(string playerUserName);
-
-        AffiliateBasicInfo GetAffiliateBasicInfoByAffName(string affName);
     }
 }

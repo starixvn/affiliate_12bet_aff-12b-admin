@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 
 import { updateLanguage, getAffiliateInfo } from '../../actions';
+import { messages } from '../../modules/constants';
 
 export class Language extends PureComponent {
     constructor(props) {
@@ -17,14 +18,14 @@ export class Language extends PureComponent {
     }
 
     handleChangeLanguage = async (event) => {
-        const isConfirmed = window.confirm("Are you sure you want to change language for this affiliate?");
+        const isConfirmed = window.confirm(messages.areYouChangeLanguage);
         if (isConfirmed) {
             const preferredLanguage = event.target.value;
             const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, PreferredLanguage: preferredLanguage });
             const result = await this.props.updateLanguage(param);
 
             if (result.IsSuccessful) {
-                window.alert("The language has been updated successfully!");
+                window.alert(messages.languageUpdatedSuccess);
                 this.props.getAffiliateInfo(this.props.affName);
             }
             else {

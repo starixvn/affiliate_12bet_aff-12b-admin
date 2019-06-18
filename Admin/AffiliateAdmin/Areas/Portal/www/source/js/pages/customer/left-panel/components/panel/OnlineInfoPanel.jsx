@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import Panel from '../Panel';
 import { Row, Col } from 'reactstrap';
 
-import { resource } from '../../modules/constants';
+import { resource, messages } from '../../modules/constants';
 import { toggleLoaderLeftPanel, getOnLineList } from '../../actions';
 
 export class OnlineInfoPanel extends PureComponent {
@@ -51,7 +51,7 @@ export class OnlineInfoPanel extends PureComponent {
                 </Row>
 
                 {
-                    onlineInfoList && onlineInfoList.map((item, index) => {
+                    (onlineInfoList && onlineInfoList.lenght) ? onlineInfoList.map((item, index) => {
                         return (
                             <Row className="mr-0" key={`onl-info-${index}`}>
                                 <Col sm={2} className="text-center pr-0">{index + 1}</Col>
@@ -63,7 +63,11 @@ export class OnlineInfoPanel extends PureComponent {
                                 <Col sm={5} className="text-center px-0">{item.ReloadTimeText}</Col>
                             </Row>
                         )
-                    })
+                    }) : (
+                            <Row className="mr-0">
+                                <Col sm={12} className="text-center">{messages.userNotOnline}</Col>
+                            </Row>
+                        )
                 }
             </Panel>
         );
