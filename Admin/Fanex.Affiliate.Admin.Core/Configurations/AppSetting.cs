@@ -33,5 +33,9 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         public bool IsLocal => Environment.Equals("LOCAL", StringComparison.OrdinalIgnoreCase);
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
+
+        public string SentryDsn => GetValue("SentryDsn");
+
+        public string LoggingCategory => GetValue("LoggingCategory");
     }
 }

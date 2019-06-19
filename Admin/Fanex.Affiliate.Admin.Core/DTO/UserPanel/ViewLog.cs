@@ -13,11 +13,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string UpdatedBy { get; set; }
 
-        public string SpName { get; set; }
-
         public string Description { get; set; }
 
-        public string Details { get; set; }
+        public string Action { get; set; }
 
         public string Ip { get; set; }
 

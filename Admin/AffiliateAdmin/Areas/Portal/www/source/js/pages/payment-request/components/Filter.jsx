@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { resource, searchByList, statusList, globalResource } from '../modules/constants';
+import { resource, searchByList, statusList, globalResource, searchByUserName } from '../modules/constants';
 import { getDateRange } from '../../../modules/utils';
 import { setParam } from '../actions';
 
@@ -22,7 +22,7 @@ export class Filter extends PureComponent {
         yesterday.setDate(yesterday.getDate() - 1);
 
         this.state = {
-            searchBy: param.SearchBy ? param.SearchBy : 1,
+            searchBy: param.SearchBy ? param.SearchBy : searchByUserName,
             userName: null,
             status: param.Status,
             fromDate: param.FromDate ? param.FromDate : `${yesterday.getMonth() + 1}/${yesterday.getDate()}/${yesterday.getFullYear()}`,
@@ -124,7 +124,7 @@ export class Filter extends PureComponent {
                             }
                         </Input>
                     </FormGroup>
-                    {searchBy == 1 ? (
+                    {searchBy == searchByUserName ? (
                         <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                             <Label className="mr-2">{resource.UserName}</Label>
                             <Input type="text" name="userName" value={userName} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />

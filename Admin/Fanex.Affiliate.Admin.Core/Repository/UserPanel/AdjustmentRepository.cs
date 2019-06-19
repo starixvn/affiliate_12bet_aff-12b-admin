@@ -36,7 +36,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 objectDb.AddInParameter("transdesc", DbType.String, param.Description);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
-                objectDb.AddOutParameter("transid", DbType.Int64, 8);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();

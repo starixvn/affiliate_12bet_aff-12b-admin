@@ -32,11 +32,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                     {
                         dataList.Add( new ViewLog
                         {
-                            Id = Convert.ToInt32(reader["RefNo"]),
-                            Date = Convert.ToDateTime(reader["LoggedDate"]),
-                            UpdatedBy = Convert.ToString(reader["UserName"]),
-                            SpName = Convert.ToString(reader["SPName"]),
-                            Details = Convert.ToString(reader["Details"]),
+                            Id = Convert.ToInt32(reader["LogId"]),
+                            Date = Convert.ToDateTime(reader["Date"]),
+                            UpdatedBy = Convert.ToString(reader["UpdatedName"]),
+                            Action = Convert.ToString(reader["Action"]),
                             Description = Convert.ToString(reader["Description"]),
                             Ip = Convert.ToString(reader["IP"]),
                         });

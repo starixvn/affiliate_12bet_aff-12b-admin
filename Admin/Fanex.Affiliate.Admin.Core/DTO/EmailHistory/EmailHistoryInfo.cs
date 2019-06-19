@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.EmailHistory
 {
+    [Serializable]
     public class EmailHistoryInfo
     {
         public int EmailId { get; set; }
@@ -14,6 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.EmailHistory
 
         public string Email { get; set; }
 
+        [JsonIgnore]
         public DateTime SentDate { get; set; }
 
         public string SentDateText => SentDate.ToString("MM/dd/yyyy HH:mm:ss");

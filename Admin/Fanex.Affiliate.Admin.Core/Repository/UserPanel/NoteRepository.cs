@@ -10,11 +10,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
     public class NoteRepository : BaseRepository, INoteRepository
     {
-        public EntityResult<Note> GetNoteList(NoteParam param)
+        public EntityResult<NoteDetail> GetNoteList(NoteParam param)
         {
             const string SpKey = "Aff_Admin_AffiliateNote_Sel";
-            var result = new EntityResult<Note>();
-            var dataList = new List<Note>();
+            var result = new EntityResult<NoteDetail>();
+            var dataList = new List<NoteDetail>();
+            NoteDetail dataItem = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -27,7 +28,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildNoteItem(reader));
+                        dataItem = BuildNoteItem(reader);
+                        dataItem.CreatedBy = Convert.ToString(reader["UpdatedName"]);
+                        dataItem.LastModify = reader["UpdatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["UpdatedDate"]);
+
+                        dataList.Add(dataItem);
                     }
                 }
                 result.MainData = dataList;
@@ -97,14 +102,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             objectDb.AddInParameter("IP", DbType.String, param.Ip);
         }
 
-        private static Note BuildNoteItem(IDataReader reader)
+        private static NoteDetail BuildNoteItem(IDataReader reader)
         {
-            return new Note
+            return new NoteDetail
             {
                 NoteId = Convert.ToInt32(reader["NoteId"]),
-                NoteContent = Convert.ToString(reader["Note"]),
-                CreatedBy = Convert.ToString(reader["UpdateName"]),
-                LastModify = reader["UpdatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["UpdatedDate"])
+                NoteContent = Convert.ToString(reader["Note"])
             };
         }
     }

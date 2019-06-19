@@ -31,5 +31,9 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         string MailContact { get; }
 
         string JsVersion { get; }
+
+        string SentryDsn { get; }
+
+        string LoggingCategory { get; }
     }
 }

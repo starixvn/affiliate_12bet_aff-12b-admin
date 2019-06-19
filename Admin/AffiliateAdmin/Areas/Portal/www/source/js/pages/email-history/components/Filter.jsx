@@ -82,7 +82,7 @@ export class Filter extends PureComponent {
                             }
                         </Input>
                     </FormGroup>
-                    {searchBy > all && searchBy < unknownAffiliate && (
+                    {searchBy != all && searchBy != unknownAffiliate && (
                         <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                             <Label className="mr-sm-2">{resource.SearchText}</Label>
                             <Input type="text" name="searchText" value={searchText} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />

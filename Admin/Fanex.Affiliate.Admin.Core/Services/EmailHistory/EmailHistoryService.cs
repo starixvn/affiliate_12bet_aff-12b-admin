@@ -26,8 +26,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.EmailHistory
 
         public EntityResult<EmailHistoryInfo> GetEmailHistoryList(EmailHistoryParam param)
         {
-            param.ToDate = param.ToDate.AddDays(1).AddMilliseconds(-3);
-
             return _emailHistoryRepository.GetEmailHistoryList(param);
         }
     }

@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
     public interface INoteRepository
     {
-        EntityResult<Note> GetNoteList(NoteParam param);
+        EntityResult<NoteDetail> GetNoteList(NoteParam param);
 
         Note GetNoteContentById(int affId, int noteId);
 

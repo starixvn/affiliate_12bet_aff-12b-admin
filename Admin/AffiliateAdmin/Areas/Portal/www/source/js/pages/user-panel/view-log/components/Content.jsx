@@ -51,9 +51,9 @@ export class Content extends PureComponent {
             <Row key="thead">
                 <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={70} title={headerText.Id}>{headerText.Id}</Cell>
-                <Cell header={true} colWidth={95} title={headerText.Date}>{headerText.Date}</Cell>
+                <Cell header={true} colWidth={125} title={headerText.Date}>{headerText.Date}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.UpdatedBy}>{headerText.UpdatedBy}</Cell>
-                <Cell header={true} colWidth={160} title={headerText.Action}>{headerText.Action}</Cell>
+                <Cell header={true} colWidth={130} title={headerText.Action}>{headerText.Action}</Cell>
                 <Cell header={true} colWidth={440} title={headerText.Description}>{headerText.Description}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Ip}>{headerText.Ip}</Cell>
             </Row>
@@ -110,10 +110,10 @@ export class Content extends PureComponent {
                         {id}
                     </Button> : id}
                 </Cell>
-                <Cell title={dataItem.DateText}>{dataItem.DateText}</Cell>
+                <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
                 <Cell title={dataItem.UpdatedBy} className="text-center">{dataItem.UpdatedBy}</Cell>
-                <Cell title={dataItem.Description}>{dataItem.Description} <br /> ({dataItem.SpName})</Cell>
-                <Cell title={dataItem.Details}>{dataItem.Details}</Cell>
+                <Cell title={dataItem.Action} className="text-center">{dataItem.Action}</Cell>
+                <Cell title={dataItem.Description} className="text-break">{dataItem.Description}</Cell>
                 <Cell title={ipAddress} className="text-center">
                     <a target="_blank" href={url}>{ipAddress}</a>
                 </Cell>

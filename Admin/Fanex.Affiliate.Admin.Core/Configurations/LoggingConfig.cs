@@ -1,0 +1,34 @@
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using Fanex.Logging;
+using Fanex.Logging.Sentry.RavenClient;
+using SharpRaven;
+using Fanex.Affiliate.Admin.Core.Configurations;
+
+namespace Fanex.Affiliate.User.Site
+{
+    public static class LoggingConfig
+    {
+        public static void RegisterSentry()
+        {
+            var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+            var env = appSetting.GetValue("Environment");
+            var dsn = appSetting.GetValue("SentryDsn");
+            var category = appSetting.GetValue("LoggingCategory");
+
+            if (!string.IsNullOrEmpty(dsn))
+            {
+                LogManager.SetDefaultLogCategory(category)
+                    .Use(new List<ILogEngine>
+                    {
+                        new SentryLogging(new SentryEngineOptions
+                        {
+                            Dsn = new Dsn(dsn),
+                            FrontEndDsn = new Dsn(dsn),
+                            Environment = env
+                        })
+                    });
+            }
+        }
+    }
+}

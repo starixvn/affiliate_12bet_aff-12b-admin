@@ -44,7 +44,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         public EntityResult<StatementHistory> GetStatementHistoryList(StatementHistoryParam param)
         {
-            param.ToDate = param.ToDate.AddDays(1).AddMilliseconds(-3);
             return _statementHistoryRepository.GetStatementHistoryList(param);
         }
     }

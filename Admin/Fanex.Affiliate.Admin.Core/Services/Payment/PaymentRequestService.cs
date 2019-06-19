@@ -28,11 +28,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
 
         public EntityResult<PaymentRequest> GetPaymentRequestList(PaymentRequestParam param)
         {
-            if(param.ToDate != null)
-            {
-                param.ToDate = param.ToDate.Value.AddDays(1).AddMilliseconds(-3);
-            }
-
             return _paymentRequestRepository.GetPaymentRequestList(param);
         }
 

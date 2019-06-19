@@ -8,4 +8,6 @@ export const headerText = {
     Creator: 'Creator'
 }
 
+export const searchByUserName = 1;
+
 export const searchByList = ['User Name', 'Others']

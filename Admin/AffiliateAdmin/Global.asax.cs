@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.User.Site;
 
 namespace AffiliateAdmin
 {
@@ -19,6 +20,7 @@ namespace AffiliateAdmin
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
 
             AreaRegistration.RegisterAllAreas();
+            LoggingConfig.RegisterSentry();
         }
 
         void Application_End(object sender, EventArgs e)

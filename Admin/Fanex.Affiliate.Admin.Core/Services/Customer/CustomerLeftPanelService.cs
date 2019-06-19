@@ -21,18 +21,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
     {
         private readonly IEmailService _emailService;
         private readonly IAffiliateService _affiliateService;
-        private readonly IUserAccountService _userAccountService;
         private readonly ICustomerLeftPanelRepository _customerLeftPanelRepository;
 
         public CustomerLeftPanelService(
             IEmailService emailService,
             IAffiliateService affiliateService,
-            IUserAccountService userAccountService,
             ICustomerLeftPanelRepository customerLeftPanelRepository)
         {
             _emailService = emailService;
             _affiliateService = affiliateService;
-            _userAccountService = userAccountService;
             _customerLeftPanelRepository = customerLeftPanelRepository;
         }
         public AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName, string accId, string accOnId, string sessionId)
