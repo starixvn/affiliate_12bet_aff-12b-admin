@@ -8,20 +8,24 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Affiliate.Admin.Core.DTO;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
+
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class CustomerLeftPanelController : BaseController
+    public class CustomerLeftPanelController: Controller
     {
         private readonly ICustomerLeftPanelService _customerLeftPanelService;
+        private readonly ISessionService _sessionService;
 
         public CustomerLeftPanelController(
             ISessionService sessionService,
             ICustomerLeftPanelService customerLeftPanelService
-            ) : base(sessionService)
+            )
         {
             _customerLeftPanelService = customerLeftPanelService;
+            _sessionService = sessionService;
         }
 
         [ValidateAntiForgeryHeader]
@@ -29,10 +33,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [Compress]
         public ActionResult GetAffiliateInfo(string affUsername)
         {
-            var accId = SessionService.UserId.ToString();
-            var accOnId = SessionService.OnUserId.ToString();
+            if (string.IsNullOrEmpty(affUsername))
+            {
+                return new JsonResult();
+            }
+
+            var accId = _sessionService.UserId.ToString();
+            var accOnId = _sessionService.OnUserId.ToString();
             var sessionId = Session.SessionID;
             var affiliateInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, accId, accOnId, sessionId);
+            _sessionService.AffName = affUsername;
 
             return new JsonNetResult
             {
@@ -45,6 +55,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [Compress]
         public ActionResult GetOnlineList(string affUsername)
         {
+            if(string.IsNullOrEmpty(affUsername))
+            {
+                return new JsonResult();
+            }
+
             return new JsonNetResult
             {
                 Data = _customerLeftPanelService.GetOnlineList(affUsername)
@@ -55,11 +70,22 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpPost]
         public ActionResult UpdateLanguage(UpdateLanguageParam param)
         {
-            AssignParam(param);
-            var test = _customerLeftPanelService.UpdateLanguage(param);
-            return new JsonNetResult
+            if(ModelState.IsValid)
             {
-                Data = test
+                AssignParam(param);
+                var test = _customerLeftPanelService.UpdateLanguage(param);
+                return new JsonNetResult
+                {
+                    Data = test
+                };
+            }
+            return new JsonResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Update Language is failed!"
+                }
             };
         }
 
@@ -67,12 +93,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpPost]
         public ActionResult UpdateAffType(UpdateAffTypeParam param)
         {
-            AssignParam(param);
-
-            var test = _customerLeftPanelService.UpdateAffType(param);
-            return new JsonNetResult
+            if (ModelState.IsValid)
             {
-                Data = test
+                AssignParam(param);
+
+                var test = _customerLeftPanelService.UpdateAffType(param);
+                return new JsonNetResult
+                {
+                    Data = test
+                };
+            }
+            return new JsonResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Update Affiliate Type is failed!"
+                }
             };
         }
 
@@ -80,15 +117,26 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpPost]
         public ActionResult UpdateStatus(UpdateStatusParam param)
         {
-            AssignParam(param);
-            var emailParam = new AffInformationEmail
+            if (ModelState.IsValid)
             {
-                RootUrl = SiteDomainHelper.GetRootUrl(this)
-            };
+                AssignParam(param);
+                var emailParam = new AffInformationEmail
+                {
+                    RootUrl = SiteDomainHelper.GetRootUrl(this)
+                };
 
-            return new JsonNetResult
+                return new JsonNetResult
+                {
+                    Data = _customerLeftPanelService.UpdateStatus(param, emailParam)
+                };
+            }
+            return new JsonResult
             {
-                Data = _customerLeftPanelService.UpdateStatus(param, emailParam)
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Update Status is failed!"
+                }
             };
         }
 
@@ -96,17 +144,27 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpPost]
         public ActionResult UpdateClosedStatus(UpdateClosedStatusParam param)
         {
-            AssignParam(param);
-            return new JsonNetResult
+            if (ModelState.IsValid)
             {
-                Data = _customerLeftPanelService.UpdateClosedStatus(param)
+                AssignParam(param);
+                return new JsonNetResult
+                {
+                    Data = _customerLeftPanelService.UpdateClosedStatus(param)
+                };
+            }
+            return new JsonResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Update Closed Status is failed!"
+                }
             };
         }
 
         private void AssignParam(AffiliateBasicInfoParam param)
         {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-            param.UserId = SessionService.UserId;
+            param.UserId = _sessionService.UserId;
             param.Ip = Request.UserHostAddress;
         }
     }

@@ -10,15 +10,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class CustomerController : BaseController
     {
-        private readonly IAffiliateService _affiliateService;
         private readonly ILanguageService _languageService;
 
         public CustomerController(
             ISessionService sessionService,
-            IAffiliateService affiliateService,
             ILanguageService languageService) : base(sessionService)
         {
-            _affiliateService = affiliateService;
             _languageService = languageService;
         }
 
@@ -35,10 +32,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 LanguageList = _languageService.GetLanguageList()
             };
 
-            if (string.IsNullOrEmpty(user) && SessionService.AffId != 0)
+            if (string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(SessionService.AffName))
             {
-                var affInfo = _affiliateService.GetAffiliateBasicInfo(SessionService.AffId);
-                viewModel.AffName = affInfo.UserName;
+                viewModel.AffName = SessionService.AffName;
             }
 
             return View("~/Areas/Portal/Views/Customer/Main.cshtml", viewModel);

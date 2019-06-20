@@ -39,9 +39,35 @@ export class OnlineInfoPanel extends PureComponent {
         this.props.toggleLoaderLeftPanel(false);
     }
 
-    render() {
+    _renderOnlineList = () => {
         const { onlineInfoList } = this.state;
 
+        if (onlineInfoList && onlineInfoList.length) {
+            return (
+                onlineInfoList.map((item, index) => {
+                    return (
+                        <Row className="mr-0" key={`onl-info-${index}`}>
+                            <Col sm={2} className="text-center pr-0">{index + 1}</Col>
+                            <Col sm={5} className="text-center px-0">
+                                <a target="_blank" href={`http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${item.Ip}&j=1`}>
+                                    {item.Ip}
+                                </a>
+                            </Col>
+                            <Col sm={5} className="text-center px-0">{item.ReloadTimeText}</Col>
+                        </Row>
+                    );
+                })
+            );
+        } else {
+            return (
+                <Row className="mr-0">
+                    <Col sm={12} className="text-center">{messages.userNotOnline}</Col>
+                </Row>
+            )
+        }
+    }
+
+    render() {
         return (
             <Panel heading={resource.CurrentOnlineList} style={{ overflow: 'auto', maxHeight: 125 }}>
                 <Row className="mr-0">
@@ -51,23 +77,7 @@ export class OnlineInfoPanel extends PureComponent {
                 </Row>
 
                 {
-                    (onlineInfoList && onlineInfoList.lenght) ? onlineInfoList.map((item, index) => {
-                        return (
-                            <Row className="mr-0" key={`onl-info-${index}`}>
-                                <Col sm={2} className="text-center pr-0">{index + 1}</Col>
-                                <Col sm={5} className="text-center px-0">
-                                    <a target="_blank" href={`http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${item.Ip}&j=1`}>
-                                        {item.Ip}
-                                    </a>
-                                </Col>
-                                <Col sm={5} className="text-center px-0">{item.ReloadTimeText}</Col>
-                            </Row>
-                        )
-                    }) : (
-                            <Row className="mr-0">
-                                <Col sm={12} className="text-center">{messages.userNotOnline}</Col>
-                            </Row>
-                        )
+                    this._renderOnlineList()
                 }
             </Panel>
         );

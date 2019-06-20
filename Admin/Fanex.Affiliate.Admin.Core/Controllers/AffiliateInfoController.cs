@@ -82,26 +82,26 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult ToggleFavorite(FavoriteParam param)
         {
-            if (param.AffId == 0)
+            if (ModelState.IsValid)
             {
-                return Json(new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Update Favorite failed!"
-                });
+                param.UserId = SessionService.UserId;
+                param.Ip = Request.UserHostAddress;
+
+                return Json(_affiliateInfoRepository.ToggleFavorite(param));
             }
 
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.UserHostAddress;
-
-            return Json(_affiliateInfoRepository.ToggleFavorite(param));
+            return Json(new ResultInfo
+            {
+                Code = Code.GeneralErrorCode,
+                Message = "Update Favorite failed!"
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult ChangePassword(PasswordParam param)
         {
-            if (param.AffId != 0 && ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 param.Password = CryptographyHelper.Encrypt(param.Password);
                 param.UserId = SessionService.UserId;
@@ -112,7 +112,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return Json(new ResultInfo
             {
                 Code = Code.GeneralErrorCode,
-                Message = "Change Password failed!"
+                Message = "Change Password is failed!"
             });
         }
     }

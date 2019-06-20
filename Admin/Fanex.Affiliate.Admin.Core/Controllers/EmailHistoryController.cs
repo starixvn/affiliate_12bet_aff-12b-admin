@@ -64,14 +64,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
-            return new JsonNetResult
+            return Json(new ResultInfo
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
-            };
+                Code = Code.GeneralErrorCode,
+                Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+            });
         }
     }
 }

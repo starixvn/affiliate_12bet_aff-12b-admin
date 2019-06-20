@@ -57,14 +57,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                 };
             }
 
-            return new JsonNetResult
+            return Json(new ResultInfo
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.UpdateIsFailed
-                }
-            };
+                Code = Code.GeneralErrorCode,
+                Message = Lang.UpdateIsFailed
+            });
         }
     }
 }

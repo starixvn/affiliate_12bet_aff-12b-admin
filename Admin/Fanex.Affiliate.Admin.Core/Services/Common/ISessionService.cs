@@ -11,6 +11,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         int AffId { get; set; }
 
+        string AffName { get; set; }
+
         IList<UserPermission> UserPermissionList { get; set; }
     }
 }
