@@ -70,7 +70,5 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public string BankAccountNumber { get; set; }
 
         public bool MailOption { get; set; }
-
-        public string Language { get; set; }
     }
 }

@@ -1602,8 +1602,6 @@
     <Content Include="Areas\Portal\www\source\style\components\monthpicker.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-report.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_spinner.scss" />
-    <Content Include="Areas\Portal\Views\UserPanel\StatementHistory\DailyEarning.cshtml" />
-    <Content Include="Areas\Portal\Views\UserPanel\StatementHistory\DailyEarningDetail.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\index.jsx" />
     <Content Include="Areas\Portal\Views\Shared\_UserPanelLayout.cshtml" />
     <Content Include="Areas\Portal\www\source\style\layout\user-panel-layout.scss" />
@@ -1620,7 +1618,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\Filter.jsx" />
-    <Content Include="Areas\Portal\Views\UserPanel\PlayerDetail\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\player-detail.scss" />
     <Content Include="Areas\Portal\Views\LandingPage\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\index.jsx" />
@@ -1628,10 +1625,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\landing-page.scss" />
-    <Content Include="Areas\Portal\Views\CustomerStatistics\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\customer-statistics.scss" />
-    <Content Include="Areas\Portal\Views\UserPanel\CustomerMember\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\components\_datepicker.scss" />
     <Content Include="Areas\Portal\www\dist\vendors\moment-manifest.json" />
     <Content Include="Areas\Portal\www\source\js\components\Loader.jsx" />
@@ -1695,12 +1690,7 @@
     <Content Include="App_Data\IsoftbetData\isoftbet_23.json" />
     <Content Include="App_Data\IsoftbetData\isoftbet_24.json" />
     <Content Include="App_Data\IsoftbetData\isoftbet_25.json" />
-    <Content Include="Areas\Portal\Views\UserPanel\LandingPageStatistics\Index.cshtml" />
-    <Content Include="Areas\Portal\Views\UserPanel\Note\Index.cshtml" />
-    <Content Include="Areas\Portal\Views\UserPanel\Referrers\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\ExchangeSummaryTransaction\Index.cshtml" />
-    <Content Include="Areas\Portal\Views\UserPanel\TrackingStatistics\Index.cshtml" />
-    <Content Include="Areas\Portal\Views\UserPanel\ViewLog\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Detail.jsx" />
@@ -1727,13 +1717,11 @@
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\view-log.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\landing-page-statistics.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\referrers.scss" />
-    <Content Include="Areas\Portal\Views\UserPanel\Adjustment\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\note.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\adjustment.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\Appcontainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\Content.jsx" />
-    <Content Include="Areas\Portal\Views\UserPanel\StatementHistory\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Filter.jsx" />
@@ -1778,7 +1766,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\components\PaymentRequestUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\leftpanel.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-modal.scss" />
-    <Content Include="Areas\Portal\Views\UserPanel\UserAccount\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\user-account.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Content.jsx" />

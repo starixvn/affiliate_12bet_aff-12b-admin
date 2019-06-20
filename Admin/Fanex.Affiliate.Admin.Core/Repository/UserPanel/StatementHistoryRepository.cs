@@ -5,12 +5,13 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
     public class StatementHistoryRepository : BaseRepository, IStatementHistoryRepository
     {
-        public EntityResult<StatementHistory> GetStatementHistoryList(StatementHistoryParam param)
+        public EntityResult<StatementHistory> GetStatementHistoryList(AffiliatePagingByDateParam param)
         {
             const string SpKey = "Aff_Admin_StatementHistory_Sel";
             var result = new EntityResult<StatementHistory>();

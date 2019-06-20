@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
     public class TrackingStatisticsDetailParam : TrackingStatisticsParam
     {
-        public DateTime SelectedMonth { get; set; }
+        [Required]
+        public DateTime? SelectedMonth { get; set; }
     }
 }

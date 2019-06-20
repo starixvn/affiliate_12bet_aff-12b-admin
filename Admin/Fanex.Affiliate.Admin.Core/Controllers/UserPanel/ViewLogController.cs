@@ -19,27 +19,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             _viewLogRepository = viewLogRepository;
         }
 
-        [HttpGet]
-        public ActionResult Index(AffiliateLinkParam param)
-        {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-
-            return View("~/Areas/Portal/Views/UserPanel/ViewLog/Index.cshtml", param);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
         public ActionResult GetViewLogList(ViewLogParam param)
         {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-
-            var model = _viewLogRepository.GetViewLogList(param);
-
-            return new JsonNetResult
+            if (ModelState.IsValid)
             {
-                Data = model
-            };
+                return new JsonNetResult
+                {
+                    Data = _viewLogRepository.GetViewLogList(param)
+                };
+            }
+
+            return new JsonNetResult();
         }
     }
 }

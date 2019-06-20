@@ -32,20 +32,30 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [Compress]
         public ActionResult GetEmailHistoryList(EmailHistoryParam param)
         {
-            return new JsonNetResult
+            if (ModelState.IsValid)
             {
-                Data = _emailHistoryService.GetEmailHistoryList(param)
-            };
+                return new JsonNetResult
+                {
+                    Data = _emailHistoryService.GetEmailHistoryList(param)
+                };
+            }
+
+            return new JsonNetResult();
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetEmailHistoryDetail(int selectedEmailId)
         {
-            return new JsonNetResult
+            if (selectedEmailId >= Validation.MaxId)
             {
-                Data = _emailHistoryService.GetEmailHistoryDetail(selectedEmailId)
-            };
+                return new JsonNetResult
+                {
+                    Data = _emailHistoryService.GetEmailHistoryDetail(selectedEmailId)
+                };
+            }
+
+            return new JsonNetResult();
         }
 
         [HttpPost]

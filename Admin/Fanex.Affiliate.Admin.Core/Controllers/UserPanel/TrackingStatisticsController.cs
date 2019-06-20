@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
-using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
@@ -21,35 +20,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             _trackingStatisticsRepository = trackingStatisticsRepository;
         }
 
-        [HttpGet]
-        public ActionResult Index(AffiliateLinkParam param)
-        {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-
-            var trackingCodeList = _trackingStatisticsRepository.GetTrackingCodeList(param.AffId);
-
-            var viewModel = new TrackingStatisticsViewModel
-            {
-                TrackingCodeList = trackingCodeList,
-                AffiliateLinkParam = param
-            };
-
-            return View("~/Areas/Portal/Views/UserPanel/TrackingStatistics/Index.cshtml", viewModel);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
         public ActionResult GetTrackingStatisticsList(TrackingStatisticsParam param)
         {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-
-            var model = _trackingStatisticsRepository.GetTrackingStatisticsList(param);
-
-            return new JsonNetResult
+            if (ModelState.IsValid)
             {
-                Data = model
-            };
+                return new JsonNetResult
+                {
+                    Data = _trackingStatisticsRepository.GetTrackingStatisticsList(param)
+                };
+            }
+
+            return new JsonNetResult();
         }
 
         [HttpPost]
@@ -57,14 +41,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [Compress]
         public ActionResult GetTrackingStatisticsDetailList(TrackingStatisticsDetailParam param)
         {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-
-            var model = _trackingStatisticsRepository.GetTrackingStatisticsDetailList(param);
-
-            return new JsonNetResult
+            if (ModelState.IsValid)
             {
-                Data = model
-            };
+                return new JsonNetResult
+                {
+                    Data = _trackingStatisticsRepository.GetTrackingStatisticsDetailList(param)
+                };
+            }
+
+            return new JsonNetResult();
         }
     }
 }

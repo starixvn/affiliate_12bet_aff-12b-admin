@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
@@ -7,8 +9,10 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string SelectedSiteUrl { get; set; }
 
+        [Range(Validation.MinPageIndex, Validation.MaxPageIndex)]
         public int PageIndex { get; set; }
 
+        [Range(Validation.MinPageSize, Validation.MaxPageSize)]
         public int PageSize { get; set; }
     }
 }

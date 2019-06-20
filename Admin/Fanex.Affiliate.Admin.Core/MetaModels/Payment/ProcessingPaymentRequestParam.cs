@@ -1,4 +1,7 @@
-﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using System.ComponentModel.DataAnnotations;
+
+namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
 {
     public class ProcessingPaymentRequestParam
     {

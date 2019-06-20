@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels
 {
     public class AffiliateBasicInfoParam
     {
-        [Range(1, int.MaxValue)]
+        [Range(Validation.MinId, Validation.MaxId)]
         public int AffId { get; set; }
 
         public int UserId { get; set; }

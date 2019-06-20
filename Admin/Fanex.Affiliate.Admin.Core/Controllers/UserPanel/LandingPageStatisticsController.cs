@@ -1,15 +1,9 @@
-﻿using System.Collections.Generic;
-using Fanex.Affiliate.Admin.Core.Services.Common;
+﻿using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services;
-using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
@@ -17,42 +11,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class LandingPageStatisticsController : BaseController
     {
-        private readonly ILanguageService _languageService;
         private readonly ILandingPageStatisticsRepository _landingPageStatisticsRepository;
-        private readonly ILandingPageRepository _landingPageRepository;
 
         public LandingPageStatisticsController(
             ISessionService sessionService,
-            ILanguageService languageService,
-            ILandingPageStatisticsRepository landingPageStatisticsRepository,
-            ILandingPageRepository landingPageRepository) : base(sessionService)
+            ILandingPageStatisticsRepository landingPageStatisticsRepository) : base(sessionService)
         {
-            _languageService = languageService;
             _landingPageStatisticsRepository = landingPageStatisticsRepository;
-            _landingPageRepository = landingPageRepository;
-        }
-
-        [HttpGet]
-        public ActionResult Index(AffiliateLinkParam param)
-        {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.Referrers, Url = Url.Content($"~/Portal/UserPanel/Referrers/Index?affId={param.AffId}&affName={param.AffName}") },
-                new SubMenu { Name = Lang.LandingPages, Url = Url.Content($"~/Portal/UserPanel/LandingPageStatistics/Index?affId={param.AffId}&affName={param.AffName}") }
-            };
-
-            subMenu[1].IsActive = true;
-
-            var viewModel = new LandingPageStatisticsViewModel
-            {
-                SubMenuList = subMenu,
-                LanguageList = _languageService.GetLanguageList(),
-                AffiliateLinkParam = param,
-                PageList = _landingPageRepository.GetLandingPageList()
-            };
-
-            return View("~/Areas/Portal/Views/UserPanel/LandingPageStatistics/Index.cshtml", viewModel);
         }
 
         [HttpPost]
@@ -60,14 +25,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [Compress]
         public ActionResult GetLandingPageStatisticsList(LandingPageStatisticsParam param)
         {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-
-            var model = _landingPageStatisticsRepository.GetLandingPageStatisticsList(param);
-
-            return new JsonNetResult
+            if(ModelState.IsValid)
             {
-                Data = model
-            };
+                return new JsonNetResult
+                {
+                    Data = _landingPageStatisticsRepository.GetLandingPageStatisticsList(param)
+                };
+            }
+
+            return new JsonNetResult();
         }
 
         [HttpPost]
@@ -75,14 +41,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [Compress]
         public ActionResult GetLandingPageStatisticsDetailList(LandingPageStatisticsDetailParam param)
         {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-
-            var model = _landingPageStatisticsRepository.GetLandingPageStatisticsDetailList(param);
-
-            return new JsonNetResult
+            if (ModelState.IsValid)
             {
-                Data = model
-            };
+                return new JsonNetResult
+                {
+                    Data = _landingPageStatisticsRepository.GetLandingPageStatisticsDetailList(param)
+                };
+            }
+
+            return new JsonNetResult();
         }
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -15,41 +13,26 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     {
         private readonly IPlayerDetailRepository _playerDetailRepository;
 
-        private readonly IProductRepository _productRepository;
-
         public PlayerDetailController(
             ISessionService sessionService,
-            IPlayerDetailRepository playerDetailRepository,
-            IProductRepository productRepository) : base(sessionService)
+            IPlayerDetailRepository playerDetailRepository) : base(sessionService)
         {
             _playerDetailRepository = playerDetailRepository;
-            _productRepository = productRepository;
-        }
-
-        [HttpGet]
-        public ActionResult Index(PlayerDetailParam param)
-        {
-            if (!param.MonthDate.HasValue)
-            {
-                param.MonthDate = DateTime.Now;
-            }
-
-            var viewModel = new PlayerDetailViewModel
-            {
-                ProductList = _productRepository.GetProductList(),
-                Param = param
-            };
-
-            return View("~/Areas/Portal/Views/UserPanel/PlayerDetail/Index.cshtml", viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetPlayerDetailList(PlayerDetailParam param)
         {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
+            if (ModelState.IsValid)
+            {
+                return new JsonNetResult
+                {
+                    Data = _playerDetailRepository.GetPlayerDetailList(param)
+                };
+            }
 
-            return Json(_playerDetailRepository.GetPlayerDetailList(param));
+            return new JsonNetResult();
         }
     }
 }

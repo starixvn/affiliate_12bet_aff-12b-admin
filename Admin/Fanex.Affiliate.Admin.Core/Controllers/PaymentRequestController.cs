@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
@@ -33,10 +34,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [Compress]
         public ActionResult GetPaymentRequestList(PaymentRequestParam param)
         {
-            return new JsonNetResult
+            if (ModelState.IsValid)
             {
-                Data = _paymentRequestService.GetPaymentRequestList(param)
-            };
+                return new JsonNetResult
+                {
+                    Data = _paymentRequestService.GetPaymentRequestList(param)
+                };
+            }
+
+            return new JsonNetResult();
         }
 
         [HttpPost]
@@ -44,10 +50,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [Compress]
         public ActionResult GetPaymentRequestDetail(long transId)
         {
-            return new JsonNetResult
+            if (transId >= Validation.MinId)
             {
-                Data = _paymentRequestService.GetPaymentRequestDetail(transId)
-            };
+                return new JsonNetResult
+                {
+                    Data = _paymentRequestService.GetPaymentRequestDetail(transId)
+                };
+            }
+
+            return new JsonNetResult();
         }
 
         [FunctionAuthorize(FunctionName = Function.Payment, IsHost = true)]
@@ -55,17 +66,29 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult UpdatePaymentRequest(PaymentRequestUpdateParam param)
         {
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.UserHostAddress;
-
-            var emailParam = new PaymentRequestUpdateEmail
+            if (ModelState.IsValid)
             {
-                RootUrl = SiteDomainHelper.GetRootUrl(this),
-            };
+                param.UserId = SessionService.UserId;
+                param.Ip = Request.UserHostAddress;
+
+                var emailParam = new PaymentRequestUpdateEmail
+                {
+                    RootUrl = SiteDomainHelper.GetRootUrl(this),
+                };
+
+                return new JsonNetResult
+                {
+                    Data = _paymentRequestService.UpdatePaymentRequest(param, emailParam)
+                };
+            }
 
             return new JsonNetResult
             {
-                Data = _paymentRequestService.UpdatePaymentRequest(param, emailParam)
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Transaction not exists!"
+                }
             };
         }
     }

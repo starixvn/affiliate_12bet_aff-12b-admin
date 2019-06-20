@@ -166,6 +166,7 @@
     <Compile Include="Constants\PaymentMethod.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Constants\UserPanelConstant.cs" />
+    <Compile Include="Constants\Validation.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\AffiliateController.cs" />
     <Compile Include="Controllers\AffiliateInfoController.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="Extensions\JsonNetResult.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="MetaModels\AffiliateBasicInfoParam.cs" />
+    <Compile Include="MetaModels\AffiliatePagingParam.cs" />
     <Compile Include="MetaModels\Affiliate\AffiliateInfoParam.cs" />
     <Compile Include="MetaModels\Affiliate\ApproveAffiliateParam.cs" />
     <Compile Include="MetaModels\Affiliate\FavoriteParam.cs" />
@@ -269,17 +271,15 @@
     <Compile Include="MetaModels\Payment\ProcessingPaymentRequestParam.cs" />
     <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
     <Compile Include="MetaModels\UserPanel\AdjustmentParam.cs" />
-    <Compile Include="MetaModels\UserPanel\AffiliateLinkParam.cs" />
+    <Compile Include="MetaModels\AffiliatePagingByDateParam.cs" />
     <Compile Include="MetaModels\UserPanel\CustomerMemberParam.cs" />
     <Compile Include="MetaModels\UserPanel\DailyEarningParam.cs" />
     <Compile Include="MetaModels\UserPanel\InsertUpdateNoteParam.cs" />
     <Compile Include="MetaModels\UserPanel\LandingPageStatisticsDetailParam.cs" />
     <Compile Include="MetaModels\UserPanel\LandingPageStatisticsParam.cs" />
-    <Compile Include="MetaModels\UserPanel\NoteParam.cs" />
     <Compile Include="MetaModels\UserPanel\PlayerDetailParam.cs" />
     <Compile Include="MetaModels\UserPanel\ReferrersDetailParam.cs" />
     <Compile Include="MetaModels\UserPanel\ReferrersParam.cs" />
-    <Compile Include="MetaModels\UserPanel\StatementHistoryParam.cs" />
     <Compile Include="MetaModels\UserPanel\TrackingStatisticsDetailParam.cs" />
     <Compile Include="MetaModels\UserPanel\TrackingStatisticsParam.cs" />
     <Compile Include="MetaModels\UserPanel\UserAccountParam.cs" />
@@ -426,13 +426,6 @@
     <Compile Include="ViewModels\Customer\CustomerViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\CustomerMemberViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\LandingPageStatisticsViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\PlayerDetailViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\ReferrersViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\TrackingStatisticsViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\UserPanelMenuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

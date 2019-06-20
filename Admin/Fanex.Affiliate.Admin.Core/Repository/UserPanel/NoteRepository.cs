@@ -5,12 +5,13 @@ using Fanex.Data;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
     public class NoteRepository : BaseRepository, INoteRepository
     {
-        public EntityResult<NoteDetail> GetNoteList(NoteParam param)
+        public EntityResult<NoteDetail> GetNoteList(AffiliatePagingParam param)
         {
             const string SpKey = "Aff_Admin_AffiliateNote_Sel";
             var result = new EntityResult<NoteDetail>();

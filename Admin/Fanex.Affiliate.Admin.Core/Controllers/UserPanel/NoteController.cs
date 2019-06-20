@@ -5,6 +5,8 @@ using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -19,27 +21,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             _noteRepository = noteRepository;
         }
 
-        [HttpGet]
-        public ActionResult Index(AffiliateLinkParam param)
-        {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-            
-            return View("~/Areas/Portal/Views/UserPanel/Note/Index.cshtml", param);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetNoteList(NoteParam param)
+        public ActionResult GetNoteList(AffiliatePagingParam param)
         {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-
-            var model = _noteRepository.GetNoteList(param);
-
-            return new JsonNetResult
+            if (ModelState.IsValid)
             {
-                Data = model
-            };
+                return new JsonNetResult
+                {
+                    Data = _noteRepository.GetNoteList(param)
+                };
+            }
+
+            return new JsonNetResult();
         }
 
         [HttpPost]
@@ -47,10 +42,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [Compress]
         public ActionResult GetNoteContentById(int affId, int noteId)
         {
-            return new JsonNetResult
+            if (affId >= Validation.MinId && noteId >= Validation.MinId)
             {
-                Data = _noteRepository.GetNoteContentById(affId == 0 ? SessionService.AffId : affId, noteId)
-            };
+                return new JsonNetResult
+                {
+                    Data = _noteRepository.GetNoteContentById(affId, noteId)
+                };
+            }
+
+            return new JsonNetResult();
         }
 
         [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
@@ -59,13 +59,25 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [Compress]
         public ActionResult InsertNote(InsertUpdateNoteParam param)
         {
-            AssignCommonParam(param);
+            if (ModelState.IsValid)
+            {
+                AssignCommonParam(param);
 
-            var model = _noteRepository.InsertNote(param);
+                var model = _noteRepository.InsertNote(param);
+
+                return new JsonNetResult
+                {
+                    Data = model
+                };
+            }
 
             return new JsonNetResult
             {
-                Data = model
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Insert Note is failed!"
+                }
             };
         }
 
@@ -75,19 +87,30 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [Compress]
         public ActionResult UpdateNote(InsertUpdateNoteParam param)
         {
-            AssignCommonParam(param);
+            if (ModelState.IsValid)
+            {
+                AssignCommonParam(param);
 
-            var model = _noteRepository.UpdateNote(param);
+                var model = _noteRepository.UpdateNote(param);
+
+                return new JsonNetResult
+                {
+                    Data = model
+                };
+            }
 
             return new JsonNetResult
             {
-                Data = model
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Update Note is failed!"
+                }
             };
         }
 
         private void AssignCommonParam(InsertUpdateNoteParam param)
         {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
             param.UserId = SessionService.UserId;
             param.Ip = Request.UserHostAddress;
         }

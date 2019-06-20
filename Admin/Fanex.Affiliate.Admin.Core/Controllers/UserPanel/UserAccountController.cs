@@ -22,22 +22,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             _userAccountService = userAccountService;
         }
 
-        [HttpGet]
-        public ActionResult Index(AffiliateLinkParam param)
-        {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-
-            return View("~/Areas/Portal/Views/UserPanel/UserAccount/Index.cshtml", param);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public JsonResult GetUserAccountInfo (int affId)
+        public ActionResult GetUserAccountInfo (int affId)
         {
-            return new JsonResult
+            if (affId >= Validation.MinId)
             {
-                Data = _userAccountService.GetUserAccountInfo(affId == 0 ? SessionService.AffId : affId)
-            };
+                return new JsonNetResult
+                {
+                    Data = _userAccountService.GetUserAccountInfo(affId)
+                };
+            }
+
+            return new JsonNetResult();
         }
 
         [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
@@ -47,21 +44,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if(ModelState.IsValid)
             {
-                param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
                 param.UserId = SessionService.UserId;
                 param.Ip = Request.UserHostAddress;
 
-                return new JsonResult
+                return new JsonNetResult
                 {
                     Data = _userAccountService.UpdateUserAccount(param)
                 };
             }
 
-            return Json(new ResultInfo
+            return new JsonNetResult
             {
-                Code = Code.GeneralErrorCode,
-                Message = Lang.UpdateIsFailed
-            });
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = Lang.UpdateIsFailed
+                }
+            };
         }
     }
 }
