@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.DataService.Importer
             }
             else
             {
-                ImportDataByBatch(param);
+                ImportDataByBatch(paramByTimeZone);
             }
         }
 

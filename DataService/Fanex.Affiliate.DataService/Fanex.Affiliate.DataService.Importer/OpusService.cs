@@ -55,11 +55,6 @@ namespace Fanex.Affiliate.DataService.Importer
 
                 var paramByBatch = BuildParam(timeRangeParam);
 
-                if (DateTime.Compare(start, entryParam.StartTime) > 0)
-                {
-                    Thread.Sleep(DelayTimeMillisecond);
-                }
-
                 var rawData = GetRawData(paramByBatch);
 
                 result.Add(rawData);
@@ -99,12 +94,6 @@ namespace Fanex.Affiliate.DataService.Importer
                     };
 
                     var paramByBatch = BuildParam(timeRangeParam);
-
-                    if (DateTime.Compare(start, entryParam.StartTime) > 0)
-                    {
-                        Thread.Sleep(DelayTimeMillisecond);
-                    }
-
                     var rawData = GetRawData(paramByBatch);
                     CheckResult(rawData);
                     var convertedData = ConvertTimeZoneForRawData(rawData);
@@ -144,6 +133,7 @@ namespace Fanex.Affiliate.DataService.Importer
             var apiUrl = _appSetting.GetValue("OpusApiUrl");
             var queryString = BuildQueryString(param);
             var url = $"{apiUrl}?{queryString}";
+            Thread.Sleep(DelayTimeMillisecond);
 
             using (var client = new WebClient())
             {

@@ -14,7 +14,6 @@ namespace Fanex.Affiliate.DataService.Importer
     public class CrystalGpiService : ICrystalGpiService
     {
         private const int DelayTimeMillisecond = 16000;
-        private const string TimeDataFormat = "dd-MM-yyyy H:mm:ss";
 
         private readonly IAppSettings _appSetting;
         private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
