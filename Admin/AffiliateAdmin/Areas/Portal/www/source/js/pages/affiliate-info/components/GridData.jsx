@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { headerText, resource, regExp } from '../modules/constants';
+import { headerText, resource, regExp, defaultSelectedColumnNumber, globalResource } from '../modules/constants';
 import { setPagingOption, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
@@ -86,13 +86,22 @@ export class GridData extends Component {
 
     _renderDataSection(dataList, selectedColumnList) {
         const dataRows = [];
-        const { pagingOption } = this.props;
-        const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
+        console.log(selectedColumnList);
+        if (dataList && dataList.length) {
+            const { pagingOption } = this.props;
+            const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
-        for (let i = 0; i < dataList.length; i++) {
-            const dataItem = dataList[i];
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
 
-            dataRows.push(this._buildDataRow(dataItem, i + startIndex, selectedColumnList));
+                dataRows.push(this._buildDataRow(dataItem, i + startIndex, selectedColumnList));
+            }
+        }
+        else {
+            const selectedColumnNumber = Object.keys(selectedColumnList).filter(key => !!selectedColumnList[key]).length
+            dataRows.push(<Row>
+                <Cell className="text-center" colSpan={defaultSelectedColumnNumber + selectedColumnNumber}>{globalResource.NoInfo}</Cell>
+            </Row>);
         }
 
         return dataRows;
@@ -216,7 +225,7 @@ export class GridData extends Component {
             return null;
         }
 
-        const { columnList } = this.props;       
+        const { columnList } = this.props;
         const selectedColumnList = convertSelectedColumnList(columnList);
 
         return (

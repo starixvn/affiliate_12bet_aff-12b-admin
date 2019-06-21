@@ -50,6 +50,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
             (selectedStatus.toLowerCase() === approvedStatus || selectedStatus.toLowerCase() === rejectedStatus)) {
 
             const paymentInfo = Object.assign({}, {
+                AffId: paymentRequestInfo.AffId,
                 TransId: paymentRequestInfo.TransId,
                 Status: selectedStatus,
                 AdminDesc: paymentRequestInfo.AdminDesc,
@@ -247,10 +248,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 }
 
-function mapStateToProps() {}
-
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ getPaymentRequestDetail, updatePaymentRequest }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestUpdateForm);
+export default connect(null, mapDispatchToProps)(PaymentRequestUpdateForm);

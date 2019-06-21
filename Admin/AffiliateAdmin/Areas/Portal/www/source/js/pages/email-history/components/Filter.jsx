@@ -45,7 +45,7 @@ export class Filter extends PureComponent {
     handlePressEnter = (event) => {
         if (event.charCode === 13) {
             event.preventDefault()
-            this.handleSetParam();
+            this.handleSearch();
         }
     }
 

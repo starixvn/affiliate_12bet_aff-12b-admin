@@ -73,11 +73,18 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public ResultInfo UpdateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
-            var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
-            param.TierList = BuildTierSettingXml(param.TierSettingList);
-            param.DeductionList = BuildDeductionSettingXml(deductionSettingList, false);
+            var result = Validate(param);
 
-            return _commGroupRepository.UpdateCommissionGroup(param);
+            if (result.IsSuccessful)
+            {
+                var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
+                param.TierList = BuildTierSettingXml(param.TierSettingList);
+                param.DeductionList = BuildDeductionSettingXml(deductionSettingList, false);
+
+                return _commGroupRepository.UpdateCommissionGroup(param);
+            }
+
+            return result;
         }
 
         public ResultInfo DeleteCommissionGroup(DeleteCommissionGroupParam param)
@@ -102,24 +109,31 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public ResultInfo AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
         {
-            var isCreateNewPrivateGroup = affInfo.GroupId == 0 || param.GroupId != affInfo.GroupId;
+            var result = Validate(param);
 
-            var commGroupResult = isCreateNewPrivateGroup ? CreateCommissionGroup(param) : UpdateCommissionGroup(param);
-
-            if (commGroupResult.IsSuccessful)
+            if (result.IsSuccessful)
             {
-                var assignparam = new AssignGroupParam
-                {
-                    UserId = param.UserId,
-                    AffId = affInfo.AffId,
-                    GroupId = param.GroupId,
-                    Ip = param.Ip
-                };
+                var isCreateNewPrivateGroup = affInfo.GroupId == 0 || param.GroupId != affInfo.GroupId;
 
-                return ProcessAssignGroup(assignparam, affInfo, emailParam);
+                var commGroupResult = isCreateNewPrivateGroup ? CreateCommissionGroup(param) : UpdateCommissionGroup(param);
+
+                if (commGroupResult.IsSuccessful)
+                {
+                    var assignparam = new AssignGroupParam
+                    {
+                        UserId = param.UserId,
+                        AffId = affInfo.AffId,
+                        GroupId = param.GroupId,
+                        Ip = param.Ip
+                    };
+
+                    return ProcessAssignGroup(assignparam, affInfo, emailParam);
+                }
+
+                return commGroupResult;
             }
 
-            return commGroupResult;
+            return result;
         }
 
         private ResultInfo ProcessAssignGroup(AssignGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
@@ -209,6 +223,58 @@ namespace Fanex.Affiliate.Admin.Core.Services
             result.Append("</root>");
 
             return result.ToString();
+        }
+
+        private static ResultInfo Validate(CreateUpdateCommissionGroupParam param)
+        {
+            var result = new ResultInfo();
+
+            ValidateTierSettingList(param.TierSettingList, result);
+            ValidatePlatformFeeList(param.PlatformFeeList, result);
+
+            return result;
+        }
+
+        private static void ValidateTierSettingList(IEnumerable<TierSetting> tierSettingList, ResultInfo result)
+        {
+            if (tierSettingList == null || !tierSettingList.Any())
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message + "\n","Tier Setting must have at least 1 tier");
+            }
+
+            if (tierSettingList?.Count(item => item.MaxAmount == Validation.Infinity_Amount && item.MaxQm == Validation.Infinity_Qualified_Member) == 0)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message + "\n", "Last Tier Setting must have maximum value=∞");
+            }
+
+            if (tierSettingList?.Count(item => item.MinAmount > item.MaxAmount) > 0)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message + "\n", "Max Amount must be greater than or equal to Min Amount");
+            }
+
+            if (tierSettingList?.Count(item => item.MinQm > item.MaxQm) > 0)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message + "\n", "Max QM must be greater than or equal to Min QM");
+            }
+        }
+
+        private static void ValidatePlatformFeeList(IEnumerable<DeductionSetting> platformFeeList, ResultInfo result)
+        {
+            if (platformFeeList == null || !platformFeeList.Any())
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message + "\n", "Platform Fee must have at least 1 platform");
+            }
+
+            if (platformFeeList?.Count(item => string.IsNullOrEmpty(item.ProductIds)) > 0)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message + "\n", "At least 1 product must be selected per group");
+            }
         }
     }
 }

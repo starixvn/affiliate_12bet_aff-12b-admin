@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult GetEmailHistoryDetail(int selectedEmailId)
         {
-            if (selectedEmailId >= Validation.MaxId)
+            if (selectedEmailId >= Validation.MinId)
             {
                 return new JsonNetResult
                 {

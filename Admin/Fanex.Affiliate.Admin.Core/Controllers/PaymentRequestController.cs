@@ -7,7 +7,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Payment;
 using Fanex.Affiliate.Admin.Core.Utilities;
-using System;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers

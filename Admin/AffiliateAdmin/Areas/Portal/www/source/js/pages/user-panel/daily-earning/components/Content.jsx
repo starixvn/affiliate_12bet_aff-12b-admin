@@ -6,7 +6,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { toggleLoaderUserPanel, fetchData, redirectToDailyEarningDetail } from '../actions';
-import { resource, selectedAllProduct, maxWidth } from '../modules/constants';
+import { resource, selectedAllProduct, maxWidth, globalResource } from '../modules/constants';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -54,15 +54,23 @@ export class Content extends PureComponent {
 
     _renderDataSection(dataList, productColumnClassName) {
         const dataRows = [];
-        const isTotalRow = dataList.length === 1 && !dataList[0].Date;
 
-        if (isTotalRow) {
-            dataList[0].Date = resource.Total;
+        if (dataList && dataList.length) {
+            const isTotalRow = dataList.length === 1 && !dataList[0].Date;
+
+            if (isTotalRow) {
+                dataList[0].Date = resource.Total;
+            }
+
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
+                dataRows.push(this._buildDataRow(dataItem, isTotalRow ? null : i + 1, productColumnClassName));
+            }
         }
-
-        for (let i = 0; i < dataList.length; i++) {
-            const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, isTotalRow ? null : i + 1, productColumnClassName));
+        else {
+            dataRows.push(<Row>
+                <Cell className="text-center" colSpan="7">{globalResource.NoInfo}</Cell>
+            </Row>);
         }
 
         return dataRows;
@@ -104,8 +112,9 @@ export class Content extends PureComponent {
     render() {
         const { gridData, total, isSelectedAllProducts } = this.state;
         const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
+        const hasFooter = gridData && gridData.length && total;
 
-        return gridData && total && (
+        return (
             <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1000}
@@ -113,7 +122,7 @@ export class Content extends PureComponent {
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData, productColumnClassName)}
-                    footer={this._renderDataSection([total], productColumnClassName)}
+                    footer={hasFooter ? this._renderDataSection([total], productColumnClassName) : null}
                     containerPadding={10}
                 />
             </div>

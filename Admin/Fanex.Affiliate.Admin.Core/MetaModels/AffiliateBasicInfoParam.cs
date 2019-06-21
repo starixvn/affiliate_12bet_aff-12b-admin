@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels
 {
     public class AffiliateBasicInfoParam
     {
-        [Range(Validation.MinId, Validation.MaxId)]
+        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "AffId not exists!")]
         public int AffId { get; set; }
 
         public int UserId { get; set; }

@@ -1,5 +1,7 @@
 ﻿import { globalResource } from '../../../modules/globalResource';
 
+export { globalResource };
+
 export const statusList = {
     Favorite: "Favorite",
     Pending: "Pending",
@@ -9,6 +11,8 @@ export const statusList = {
 }
 
 export const defaultSortBy = 1;
+
+export const defaultSelectedColumnNumber = 2;
 
 export const sortByList = {
     'Username': 1,

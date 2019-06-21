@@ -156,10 +156,8 @@ export class ChangePasswordForm extends PureComponent {
     }
 }
 
-function mapStateToProps() {}
-
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ updateChangePasswword }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChangePasswordForm);
+export default connect(null, mapDispatchToProps)(ChangePasswordForm);

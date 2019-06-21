@@ -1,4 +1,7 @@
-﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using System.ComponentModel.DataAnnotations;
+
+namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
 {
     public class GetCommissionGroupParam
     {
@@ -6,9 +9,11 @@
 
         public string GroupName { get; set; }
 
-        public int PageIndex { get; set; } = 1;
+        [Range(Validation.MinPageIndex, Validation.MaxPageIndex)]
+        public int PageIndex { get; set; }
 
-        public int PageSize { get; set; } = 20;
+        [Range(Validation.MinPageSize, Validation.MaxPageSize)]
+        public int PageSize { get; set; }
 
         public int Nrows { get; set; }
     }

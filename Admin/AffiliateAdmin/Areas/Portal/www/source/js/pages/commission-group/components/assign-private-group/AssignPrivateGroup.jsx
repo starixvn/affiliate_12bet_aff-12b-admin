@@ -32,7 +32,7 @@ export class AssignPrivateGroup extends React.Component {
         const { GroupId } = affInfo;
 
         if (GroupId === 0 || GroupId !== affInfo.AffId) {
-            const commGroup = buildDefaultCommGroup(deductionList, productList);
+            const commGroup = productList && deductionList && buildDefaultCommGroup(deductionList, productList);
             this.props.setSelectedGroup(commGroup);
         }
         else {
@@ -108,8 +108,9 @@ export class AssignPrivateGroup extends React.Component {
 
     render() {
         const { isShowMessage, isSuccess, message, isShowLoader } = this.state;
+        const { affInfo, selectedGroup } = this.props;
 
-        return this.props.selectedGroup && (
+        return affInfo && selectedGroup && (
             <div className="comm-popup-container" style={{ padding: 10 }}>
                 <Loader show={isShowLoader} />
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>

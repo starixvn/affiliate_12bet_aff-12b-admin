@@ -9,10 +9,12 @@ using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.DTO;
+using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-
+    [CustomAuthorize]
+    [CheckUMFilter]
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class CustomerLeftPanelController: Controller
     {

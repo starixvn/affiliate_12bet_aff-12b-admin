@@ -55,7 +55,9 @@ export class Content extends Component {
         const { Popup, popupTitle } = this.state;
         const showPopup = Popup !== null;
 
-        return (
+        console.log(this.props.gridData);
+
+        return this.props.gridData && (
             <div className="data-content">
                 <div className="my-2">
                     <Button outline type="button" onClick={this.handleAddNewGroup}>Add New Group</Button>
@@ -77,8 +79,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, searchedGroupName }) {
-    return Object.assign({}, { pagingOption, searchedGroupName });
+function mapStateToProps({ pagingOption, searchedGroupName, gridData }) {
+    return Object.assign({}, { pagingOption, searchedGroupName, gridData });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -5,7 +5,7 @@ import createReducer from '../../../modules/createReducer';
 import { defaultPagingOption } from '../modules/constant';
 import { isShowLoader } from '../../../reducers/loaderReducer';
 
-const gridData = createReducer([], {
+const gridData = createReducer(null, {
     [SET_GRIDDATA](prevState, action) {
         return action.data;
     }

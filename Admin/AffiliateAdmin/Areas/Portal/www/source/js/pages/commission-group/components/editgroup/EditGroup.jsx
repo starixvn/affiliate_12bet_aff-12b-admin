@@ -35,7 +35,7 @@ export class EditGroup extends React.Component {
     handleSave = async () => {
         const { selectedGroup } = this.props;
         const validationResult = validate(selectedGroup);
-
+        console.log(selectedGroup);
         if (!validationResult.isValid) {
             this.setState({
                 isShowMessage: !validationResult.isValid,
@@ -48,6 +48,8 @@ export class EditGroup extends React.Component {
             const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
 
             const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
+            console.log(selectedGroup);
+            console.log(param);
             const response = await this.props.updateCommissionGroup(param);
             if (response && response.status === 200) {
                 const result = response.data;

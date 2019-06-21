@@ -11,7 +11,7 @@ export default class AssignGroup extends Component {
 
         let { commGroupList, selectedGroup, affInfo } = window.initialState;
         if (selectedGroup === 0) {
-            selectedGroup = commGroupList.length ? Number(commGroupList[0].Id) : 0
+            selectedGroup = CommGroupList && commGroupList.length ? Number(commGroupList[0].Id) : 0
         }
 
         this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, {
@@ -53,7 +53,8 @@ export default class AssignGroup extends Component {
                 const url = 'Portal/CommissionGroup/AssignGroup';
                 const params = {
                     assignParam: {
-                        groupId: selectedGroup
+                        groupId: selectedGroup,
+                        affId: affInfo.AffId
                     },
                     affInfo
                 }
@@ -84,7 +85,7 @@ export default class AssignGroup extends Component {
 
     render() {
         const { commGroupList, selectedGroup, affInfo, isPrivateGroup, isShowLoader, isShowMessage, isSuccess, message } = this.state;
-        return (
+        return affInfo && (
             <div className="assign-normal-group" style={{ padding: 10 }}>
                 <Loader show={isShowLoader} />
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
