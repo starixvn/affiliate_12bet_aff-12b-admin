@@ -51,16 +51,10 @@
 }
 
 .banner-side {
+    background: #010187;
+
     > img {
         margin: 0;
-    }
-
-    &.banner-left {
-        background: #781111;
-    }
-
-    &.banner-right {
-        background: #00008e;
     }
 }
 

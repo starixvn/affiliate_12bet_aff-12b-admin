@@ -728,14 +728,10 @@ input[type="checkbox"], input[type="radio"] {
     .carousel.slide .carousel-inner {
       height: 250px; } }
 
-.banner-side > img {
-  margin: 0; }
-
-.banner-side.banner-left {
-  background: #781111; }
-
-.banner-side.banner-right {
-  background: #00008e; }
+.banner-side {
+  background: #010187; }
+  .banner-side > img {
+    margin: 0; }
 
 .get-banner, .banner-signup {
   font-family: "Myriad Pro", sans-serif;
