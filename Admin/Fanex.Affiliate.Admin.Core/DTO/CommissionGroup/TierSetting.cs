@@ -11,16 +11,16 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
         [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "TierId not exists!")]
         public int TierId { get; set; }
 
-        [Range(0, (double)Validation.Infinity_Amount, ErrorMessage = "MinAmount not valid!")]
+        [Range(0, (double)Validation.InfinityAmount, ErrorMessage = "MinAmount not valid!")]
         public decimal MinAmount { get; set; }
 
-        [Range(0, (double)Validation.Infinity_Amount, ErrorMessage = "MaxAmount not valid!")]
+        [Range(0, (double)Validation.InfinityAmount, ErrorMessage = "MaxAmount not valid!")]
         public decimal MaxAmount { get; set; }
 
-        [Range(0, Validation.Infinity_Qualified_Member, ErrorMessage = "MinQm not valid!")]
+        [Range(0, Validation.InfinityQualifiedMember, ErrorMessage = "MinQm not valid!")]
         public int MinQm { get; set; }
 
-        [Range(0, Validation.Infinity_Qualified_Member, ErrorMessage = "MaxQm not valid!")]
+        [Range(0, Validation.InfinityQualifiedMember, ErrorMessage = "MaxQm not valid!")]
         public int MaxQm { get; set; }
 
         public decimal Commission { get; set; }

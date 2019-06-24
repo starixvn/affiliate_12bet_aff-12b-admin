@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`commission group - AssignGroup Should render correctly 1`] = `
+AssignGroup {
+  "context": undefined,
+  "handleChange": [Function],
+  "handleCheck": [Function],
+  "handleSave": [Function],
+  "hideMessage": [Function],
+  "props": undefined,
+  "refs": Object {},
+  "state": Object {
+    "affInfo": Object {
+      "AffId": 927841,
+      "AffType": 4,
+      "Email": "walter.tran1@starixsoft.com",
+      "FirstName": "媒体册 获取以更新吧！",
+      "GroupId": 102,
+      "MailOption": false,
+      "PlayerUsername": "qatest01",
+      "PreferredLanguage": "hi-IN",
+      "UserName": "12BETAFF001",
+    },
+    "commGroupList": Array [
+      Object {
+        "Id": "133",
+        "Name": "NewGroup",
+      },
+      Object {
+        "Id": "152",
+        "Name": "CG22124",
+      },
+    ],
+    "isPrivateGroup": false,
+    "isShowLoader": false,
+    "isShowMessage": false,
+    "isSuccess": true,
+    "message": "",
+    "selectedGroup": 102,
+  },
+  "updater": Object {
+    "enqueueForceUpdate": [Function],
+    "enqueueReplaceState": [Function],
+    "enqueueSetState": [Function],
+    "isMounted": [Function],
+  },
+}
+`;

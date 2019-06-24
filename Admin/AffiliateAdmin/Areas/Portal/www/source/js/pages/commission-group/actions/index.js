@@ -3,13 +3,13 @@ import { toggleLoader } from '../../../actions/loaderAction';
 
 import { SET_GRIDDATA, SET_PAGING_OPTION, SET_SELECTED_GROUP, SET_SEARCHED_GROUPNAME } from './types';
 
-const fetchGroupSettingData = (param) => {
+export const fetchGroupSettingData = (param) => {
     const url = 'Portal/CommissionGroup/GetCommissionGroupList';
 
     return post(url, param);
 }
 
-const setGridData = (data) => {
+export const setGridData = (data) => {
     return {
         type: SET_GRIDDATA,
         data

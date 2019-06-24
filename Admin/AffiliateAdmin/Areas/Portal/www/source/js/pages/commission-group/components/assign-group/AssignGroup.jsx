@@ -11,7 +11,7 @@ export default class AssignGroup extends Component {
 
         let { commGroupList, selectedGroup, affInfo } = window.initialState;
         if (selectedGroup === 0) {
-            selectedGroup = CommGroupList && commGroupList.length ? Number(commGroupList[0].Id) : 0
+            selectedGroup = commGroupList && commGroupList.length ? Number(commGroupList[0].Id) : 0
         }
 
         this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, {

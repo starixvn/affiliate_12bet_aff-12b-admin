@@ -6,7 +6,7 @@ import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
 import { getGroupSettingList, setSearchedGroupName } from '../actions';
 
-class Filter extends Component {
+export class Filter extends Component {
     constructor(props) {
         super(props);
     }

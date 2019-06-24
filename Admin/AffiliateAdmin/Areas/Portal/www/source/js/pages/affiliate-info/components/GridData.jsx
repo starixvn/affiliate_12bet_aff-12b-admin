@@ -86,7 +86,7 @@ export class GridData extends Component {
 
     _renderDataSection(dataList, selectedColumnList) {
         const dataRows = [];
-        console.log(selectedColumnList);
+
         if (dataList && dataList.length) {
             const { pagingOption } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;

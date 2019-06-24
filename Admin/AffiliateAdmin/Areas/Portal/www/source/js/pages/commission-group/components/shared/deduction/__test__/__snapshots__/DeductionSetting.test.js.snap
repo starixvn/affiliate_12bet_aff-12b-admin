@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`commission group - DeductionSetting Should render correctly 1`] = `
+<fieldset>
+  <legend>
+    <h6
+      className="font-weight-bold"
+    >
+      Deductions
+    </h6>
+  </legend>
+  <Connect(PlatformFeeSetting) />
+  <FeeSettingItem
+    basedValueName="| Gross Win Loss |"
+    data={
+      Object {
+        "DeductedPercentage": 0.07,
+        "DeductionId": 11,
+        "ProductIds": 0,
+      }
+    }
+    isCreating={true}
+    label="Operational Fee%"
+    onChangeCommission={[Function]}
+  />
+  <FeeSettingItem
+    basedValueName="(Deposit + Withdrawal)"
+    data={
+      Object {
+        "DeductedPercentage": 0.02,
+        "DeductionId": 12,
+        "ProductIds": 0,
+      }
+    }
+    isCreating={true}
+    label="Banking Fee%"
+    onChangeCommission={[Function]}
+  />
+</fieldset>
+`;

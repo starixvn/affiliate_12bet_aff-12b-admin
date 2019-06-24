@@ -243,7 +243,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
                 result.Message = string.Join(result.Message + "\n","Tier Setting must have at least 1 tier");
             }
 
-            if (tierSettingList?.Count(item => item.MaxAmount == Validation.Infinity_Amount && item.MaxQm == Validation.Infinity_Qualified_Member) == 0)
+            if (tierSettingList?.Count(item => item.MaxAmount == Validation.InfinityAmount && item.MaxQm == Validation.InfinityQualifiedMember) == 0)
             {
                 result.Code = Code.GeneralErrorCode;
                 result.Message = string.Join(result.Message + "\n", "Last Tier Setting must have maximum value=∞");

@@ -55,8 +55,6 @@ export class Content extends Component {
         const { Popup, popupTitle } = this.state;
         const showPopup = Popup !== null;
 
-        console.log(this.props.gridData);
-
         return this.props.gridData && (
             <div className="data-content">
                 <div className="my-2">

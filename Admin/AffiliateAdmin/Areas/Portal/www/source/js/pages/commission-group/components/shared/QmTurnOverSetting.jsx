@@ -21,7 +21,6 @@ export class QmTurnOverSetting extends React.Component {
         const isValid = isValidNumber(numberValue);
 
         if (isValid && numberValue <= money.MaxValue) {
-            console.log(true)
             this.props.setSelectedGroup({ [name]: numberValue });
         }
     }

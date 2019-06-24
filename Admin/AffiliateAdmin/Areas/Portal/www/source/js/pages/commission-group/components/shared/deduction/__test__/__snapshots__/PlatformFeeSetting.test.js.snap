@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`commission group - assign private group should render correctly 1`] = `
+<div
+  className="platformfee-group"
+>
+  <p
+    className="font-weight-bold"
+  >
+    Platform Fee %
+  </p>
+  <PlatformFeeItem
+    btnText="+"
+    data={
+      Object {
+        "commission": 0.17,
+        "nextCommission": undefined,
+        "productList": Array [
+          Object {
+            "Checked": true,
+            "ProductId": 1,
+            "ProductName": "Sportsbook",
+          },
+          Object {
+            "Checked": true,
+            "ProductId": 3,
+            "ProductName": "Playtech Casino",
+          },
+          Object {
+            "Checked": true,
+            "ProductId": 4,
+            "ProductName": "Number Game",
+          },
+          Object {
+            "Checked": true,
+            "ProductId": 5,
+            "ProductName": "Virtual Sports",
+          },
+          Object {
+            "Checked": true,
+            "ProductId": 6,
+            "ProductName": "Keno",
+          },
+        ],
+      }
+    }
+    handleClick={[Function]}
+    isInserting={true}
+    key="platformfee-0"
+    onChangeCommission={[Function]}
+    onSelectProduct={[Function]}
+  />
+  <PlatformFeeItem
+    btnText="-"
+    data={
+      Object {
+        "commission": 0.12,
+        "nextCommission": undefined,
+        "productList": Array [
+          Object {
+            "Checked": true,
+            "ProductId": 1,
+            "ProductName": "Sportsbook",
+          },
+          Object {
+            "Checked": true,
+            "ProductId": 3,
+            "ProductName": "Playtech Casino",
+          },
+          Object {
+            "Checked": true,
+            "ProductId": 4,
+            "ProductName": "Number Game",
+          },
+          Object {
+            "Checked": true,
+            "ProductId": 5,
+            "ProductName": "Virtual Sports",
+          },
+          Object {
+            "Checked": true,
+            "ProductId": 6,
+            "ProductName": "Keno",
+          },
+        ],
+      }
+    }
+    handleClick={[Function]}
+    isInserting={true}
+    key="platformfee-1"
+    onChangeCommission={[Function]}
+    onSelectProduct={[Function]}
+  />
+</div>
+`;
