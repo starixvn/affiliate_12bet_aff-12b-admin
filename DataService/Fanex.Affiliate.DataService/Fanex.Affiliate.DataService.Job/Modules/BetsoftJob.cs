@@ -47,20 +47,28 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                     if (DateTime.Compare(lastQueryTime, nowByHour) < 0)
                     {
-                        var betSoftParam = new BetsoftParam
-                        {
-                            StartDate = lastQueryTime,
-                            EndDate = nowByHour
-                        };
+                        var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
+                        var endTime = new DateTime(nowByHour.Year, nowByHour.Month, nowByHour.Day, nowByHour.Hour, nowByHour.Minute, nowByHour.Second);
 
-                        _betSoftService.Import(betSoftParam);
-
-                        var saveTimeTrackerParam = new InsertTimeTrackerParam
+                        for (var start = startTime; DateTime.Compare(start, endTime) < 0; start = start.AddHours(1))
                         {
-                            ProductId = Products.BetsoftProductId,
-                            CallTime = nowByHour
-                        };
-                        _timeTracker.SaveTime(saveTimeTrackerParam);
+                            var endTimeByBatch = start.AddHours(1);
+                            var betSoftParam = new BetsoftParam
+                            {
+                                StartDate = start,
+                                EndDate = DateTime.Compare(endTimeByBatch, endTime) > 0 ? endTime : endTimeByBatch
+                            };
+                            var nextStartTime = betSoftParam.EndDate;
+
+                            _betSoftService.Import(betSoftParam);
+
+                            var saveTimeTrackerParam = new InsertTimeTrackerParam
+                            {
+                                ProductId = Products.BetsoftProductId,
+                                CallTime = nextStartTime
+                            };
+                            _timeTracker.SaveTime(saveTimeTrackerParam);
+                        }
                     }
                 }
             }

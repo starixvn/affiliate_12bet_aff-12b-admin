@@ -47,21 +47,29 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                     if (DateTime.Compare(lastQueryTime, nowByMinute) < 0)
                     {
-                        var isoftbetParam = new ISoftbetEntryParam
-                        {
-                            StartTime = lastQueryTime,
-                            EndTime = nowByMinute,
-                            PageNumber = 1
-                        };
+                        var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
+                        var endTime = new DateTime(nowByMinute.Year, nowByMinute.Month, nowByMinute.Day, nowByMinute.Hour, nowByMinute.Minute, nowByMinute.Second);
 
-                        _isoftbetService.Import(isoftbetParam);
-
-                        var saveTimeParam = new InsertTimeTrackerParam
+                        for (var start = startTime; DateTime.Compare(start, endTime) < 0; start = start.AddHours(1))
                         {
-                            ProductId = Products.ISoftbetProductId,
-                            CallTime = nowByMinute
-                        };
-                        _timeTracker.SaveTime(saveTimeParam);
+                            var endTimeByBatch = start.AddHours(1);
+                            var isoftbetParam = new ISoftbetEntryParam
+                            {
+                                StartTime = start,
+                                EndTime = DateTime.Compare(endTimeByBatch, endTime) > 0 ? endTime : endTimeByBatch,
+                                PageNumber = 1
+                            };
+                            var nextStartTime = isoftbetParam.EndTime;
+
+                            _isoftbetService.Import(isoftbetParam);
+
+                            var saveTimeParam = new InsertTimeTrackerParam
+                            {
+                                ProductId = Products.ISoftbetProductId,
+                                CallTime = nextStartTime
+                            };
+                            _timeTracker.SaveTime(saveTimeParam);
+                        }
                     }
                 }
             }

@@ -47,20 +47,27 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                     if (DateTime.Compare(lastQueryTime, nowByMinute) < 0)
                     {
-                        var opusParam = new OpusParam
+                        var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
+                        var endTime = new DateTime(nowByMinute.Year, nowByMinute.Month, nowByMinute.Day, nowByMinute.Hour, nowByMinute.Minute, nowByMinute.Second);
+                        for (var start = startTime; DateTime.Compare(start, endTime) < 0; start = start.AddHours(1))
                         {
-                            StartTime = lastQueryTime,
-                            EndTime = nowByMinute
-                        };
+                            var endTimeByBatch = start.AddHours(1);
+                            var opusParam = new OpusParam
+                            {
+                                StartTime = start,
+                                EndTime = DateTime.Compare(endTimeByBatch, endTime) > 0 ? endTime : endTimeByBatch
+                            };
+                            var nextStartTime = opusParam.EndTime;
 
-                        _opusService.Import(opusParam);
+                            _opusService.Import(opusParam);
 
-                        var saveTimeParam = new InsertTimeTrackerParam
-                        {
-                            ProductId = Products.OpusProductId,
-                            CallTime = nowByMinute
-                        };
-                        _timeTracker.SaveTime(saveTimeParam);
+                            var saveTimeParam = new InsertTimeTrackerParam
+                            {
+                                ProductId = Products.OpusProductId,
+                                CallTime = nextStartTime
+                            };
+                            _timeTracker.SaveTime(saveTimeParam);
+                        }
                     }
                 }
             }
