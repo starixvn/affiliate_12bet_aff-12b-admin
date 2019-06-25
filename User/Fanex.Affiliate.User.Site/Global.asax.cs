@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Fanex.Data;
 using Fanex.Data.OldConnectionStringProvider;
+using Fanex.Affiliate.User.Site.App_Start;
 
 namespace Fanex.Affiliate.User.Site
 {
@@ -34,6 +35,7 @@ namespace Fanex.Affiliate.User.Site
                 resourcePath: @"~\App_Data\SpConfig\SpName.xml",
                 enableWatching: true)
               .Run();
+            LoggingConfig.RegisterSentry();
         }
 
         [SuppressMessage("Sonar Code Smell", "S2325:Methods and properties should be static", Justification = "Reviewed.")]

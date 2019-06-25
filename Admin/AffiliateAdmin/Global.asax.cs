@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.User.Site;
 
 namespace AffiliateAdmin
 {

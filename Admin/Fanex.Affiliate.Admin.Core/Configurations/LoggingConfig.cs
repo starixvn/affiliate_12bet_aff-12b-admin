@@ -3,9 +3,8 @@ using System.Web.Mvc;
 using Fanex.Logging;
 using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
-using Fanex.Affiliate.Admin.Core.Configurations;
 
-namespace Fanex.Affiliate.User.Site
+namespace Fanex.Affiliate.Admin.Core.Configurations
 {
     public static class LoggingConfig
     {
