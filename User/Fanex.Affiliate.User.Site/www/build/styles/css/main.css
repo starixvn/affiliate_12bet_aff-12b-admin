@@ -728,14 +728,10 @@ input[type="checkbox"], input[type="radio"] {
     .carousel.slide .carousel-inner {
       height: 250px; } }
 
-.banner-side > img {
-  margin: 0; }
-
-.banner-side.banner-left {
-  background: #781111; }
-
-.banner-side.banner-right {
-  background: #00008e; }
+.banner-side {
+  background: #010187; }
+  .banner-side > img {
+    margin: 0; }
 
 .get-banner, .banner-signup {
   font-family: "Myriad Pro", sans-serif;
@@ -1021,16 +1017,16 @@ input[type="checkbox"], input[type="radio"] {
         font-size: 30px; } }
 
 .no-webp .banner-product-sport {
-  background-image: url("../Images/products/bg-sports_affiliate.jpg"); }
+  background-image: url("../Images/products/bg-sports_affiliate.jpg?v=000001"); }
 
 .webp .banner-product-sport {
-  background-image: url("../Images/products/bg-sports_affiliate.webp"); }
+  background-image: url("../Images/products/bg-sports_affiliate.webp?v=000001"); }
 
 .no-webp .banner-product-casino {
-  background-image: url("../Images/products/bg-casino_affiliate.jpg"); }
+  background-image: url("../Images/products/bg-casino_affiliate.jpg?v=000001"); }
 
 .webp .banner-product-casino {
-  background-image: url("../Images/products/bg-casino_affiliate.webp"); }
+  background-image: url("../Images/products/bg-casino_affiliate.webp?v=000001"); }
 
 .banner-product {
   display: flex;

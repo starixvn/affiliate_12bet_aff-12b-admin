@@ -628,6 +628,7 @@
     <Content Include="www\build\styles\Images\notify\note_icon.gif" />
     <Content Include="www\build\styles\Images\notify\sry.png" />
     <Content Include="www\build\styles\Images\notify\srynf.png" />
+    <Content Include="www\build\styles\Images\products\bg-sports_affiliate.jpg" />
     <Content Include="www\source\js\components\authhelper.js" />
     <Content Include="www\source\js\components\jquery.extension.js" />
     <Content Include="www\source\js\components\pagetracking.js" />
@@ -841,8 +842,6 @@
     <Content Include="www\source\styles\Images\bg-Commission-Structure_Banner.png" />
     <Content Include="www\source\styles\Images\bg-FAQ_banner.png" />
     <Content Include="www\source\styles\Images\bg-get-banner.png" />
-    <Content Include="www\build\styles\Images\products\bg-sports_affiliate.jpg" />
-    <Content Include="www\source\styles\Images\products\bg-sports_affiliate.jpg" />
     <Content Include="www\source\styles\Images\bg-Sports_products.png" />
     <Content Include="www\source\styles\Images\bg-Terms_&amp;_conditions_banner.png" />
     <Content Include="www\source\styles\Images\bgLeft.jpg" />
@@ -899,6 +898,7 @@
     <Content Include="www\source\styles\Images\notify\srynf.png" />
     <Content Include="www\source\styles\Images\offers.png" />
     <Content Include="www\source\styles\Images\products\ad-banner.jpg" />
+    <Content Include="www\source\styles\Images\products\bg-sports_affiliate.jpg" />
     <Content Include="www\source\styles\Images\products\game.zh-TW.jpg" />
     <Content Include="www\source\styles\Images\products\game.zh-CN.jpg" />
     <Content Include="www\source\styles\Images\products\game.en-US.jpg" />
@@ -1115,17 +1115,13 @@
     <Content Include="www\build\styles\Images\apply12bet\3step.ja-JP.webp" />
     <Content Include="www\build\styles\Images\apply12bet\3step.hi-IN.webp" />
     <Content Include="Views\UnderMaintenance\Index.cshtml" />
-    <Content Include="www\source\styles\Images\banner-main-left.webp" />
     <Content Include="www\source\styles\Images\banner-main-right.webp" />
-    <Content Include="www\build\styles\Images\banner-main-left.webp" />
     <Content Include="www\build\styles\Images\banner-main-right.webp" />
     <Content Include="www\source\styles\scss\components\_popup.scss" />
     <Content Include="Views\UserPanel\Popup\Index.cshtml" />
     <Content Include="www\source\styles\pages\user-panel.scss" />
     <Content Include="packages.config" />
     <Content Include="www\build\styles\Images\products\bg-casino_affiliate.webp" />
-    <Content Include="www\build\styles\Images\products\bg-sports_affiliate.webp" />
-    <Content Include="www\source\styles\Images\products\bg-sports_affiliate.webp" />
     <Content Include="www\source\styles\Images\products\bg-casino_affiliate.webp" />
     <Content Include="Views\VerificationAccount\Index.cshtml" />
     <Content Include="www\source\styles\pages\verification-account.scss" />
@@ -1141,6 +1137,10 @@
     <Content Include="Views\Shared\Email\VerificationAccount\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.zh-TW.cshtml" />
     <Content Include="Views\Signup\_SecurityQuestion.cshtml" />
+    <Content Include="www\source\styles\Images\banner-main-left.webp" />
+    <Content Include="www\source\styles\Images\products\bg-sports_affiliate.webp" />
+    <Content Include="www\build\styles\Images\banner-main-left.webp" />
+    <Content Include="www\build\styles\Images\products\bg-sports_affiliate.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
