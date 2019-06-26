@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Logging;
-using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
 
@@ -15,15 +14,13 @@ namespace Fanex.Affiliate.User.Site.App_Start
             var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
             var env = appSetting.GetValue("Environment");
             var dsn = appSetting.GetValue("SentryDsn");
-            var rabbitMqConfig = appSetting.GetValue("RabbitMQConnectionString");
             var category = appSetting.GetValue("LoggingCategory");
 
-            if (!string.IsNullOrEmpty(dsn) && !string.IsNullOrEmpty(rabbitMqConfig))
+            if (!string.IsNullOrEmpty(dsn))
             {
                 LogManager.SetDefaultLogCategory(category)
                     .Use(new List<ILogEngine>
                     {
-                        new RabbitMQLogging(rabbitMqConfig),
                         new SentryLogging(new SentryEngineOptions
                         {
                             Dsn = new Dsn(dsn),
