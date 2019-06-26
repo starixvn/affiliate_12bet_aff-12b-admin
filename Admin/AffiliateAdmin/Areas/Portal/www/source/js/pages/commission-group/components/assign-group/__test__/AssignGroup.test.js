@@ -68,41 +68,45 @@ describe('commission group - AssignGroup', () => {
 
     it('handleSave - should call setState and hideMessage when GroupId same selectedGroup', () => {
         const wrapper = shallow(<AssignGroup />);
-        wrapper.setState = jest.fn();
-        wrapper.hideMessage = jest.fn();
+        wrapper.setState = jest.fn((obj, fn) => fn && fn());
+        window.setTimeout = jest.fn((fn, time) => fn());
         wrapper.find('Button').simulate('click');
 
-        expect(wrapper.setState).toHaveBeenCalledWith({
+        expect(wrapper.setState).toHaveBeenCalledTimes(2);
+        expect(wrapper.setState.mock.calls[0][0]).toEqual({
             isShowMessage: true,
             isSuccess: false,
             message: "Please choose another group (not old group)!"
-        }, () => window.setTimeout(wrapper.hideMessage, 3000) );
+        });
+        expect(wrapper.setState.mock.calls[0][1]).toEqual(expect.any(Function));
 
-        expect(wrapper.hideMessage).toHaveBeenCalled();
+        expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: false });
     });
 
-    it('handleSave - should call setState, hideMessage and parent.postMessage', async () => {
+    it('handleSave - should call setState, hideMessage and parent.postMessage with IsSuccessful is true', async () => {
         const expectedResponse = { data: { IsSuccessful: true, Message: "OK" }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         window.initialState = Object.assign({}, window.initialState, { selectedGroup: 133 });
         const wrapper = shallow(<AssignGroup />);
-        wrapper.setState = jest.fn();
-        wrapper.hideMessage = jest.fn();
+        wrapper.setState = jest.fn((obj, fn) => fn && fn());
         parent.postMessage = jest.fn();
+        window.setTimeout = jest.fn((fn, time) => fn());
+        global.confirm = jest.fn(() => true);
 
         await wrapper.find('Button').simulate('click');
 
-        expect(wrapper.setState).toHaveBeenCalledTimes(3);
+        expect(wrapper.setState).toHaveBeenCalledTimes(4);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({ isShowLoader: true });
         expect(wrapper.setState.mock.calls[1][0]).toEqual({
             isShowMessage: true,
             isSuccess: true,
             message: 'Assign affiliate to commission group successfully'
         });
-        expect(wrapper.setState.mock.calls[2][0]).toEqual({ isShowLoader: false });
-        expect(wrapper.hideMessage).toHaveBeenCalled();
-        expect(parent.postMessage).toHaveBeenCalled();
+        expect(wrapper.setState.mock.calls[2][0]).toEqual({ isShowMessage: false });
+        expect(wrapper.setState.mock.calls[3][0]).toEqual({ isShowLoader: false });
+        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
+        expect(parent.postMessage).toHaveBeenCalledWith("assignGroupSuccessfully", "http://localhost");
     });
 
     it('handleSave - should call setState, hideMessage and not call parent.postMessage with IsSuccessful is false', async () => {
@@ -111,17 +115,20 @@ describe('commission group - AssignGroup', () => {
 
         window.initialState = Object.assign({}, window.initialState, { selectedGroup: 133 });
         const wrapper = shallow(<AssignGroup />);
-        wrapper.setState = jest.fn();
-        window.alert = jest.fn();
+        wrapper.setState = jest.fn((obj, fn) => fn && fn());
+        parent.postMessage = jest.fn();
+        window.setTimeout = jest.fn((fn, time) => fn());
         global.confirm = jest.fn(() => true);
 
         await wrapper.find('Button').simulate('click');
 
-        expect(wrapper.setState).toHaveBeenCalledTimes(3);
+        expect(wrapper.setState).toHaveBeenCalledTimes(4);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({ isShowLoader: true });
         expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: true, isSuccess: false, message: "failed!" });
-        expect(wrapper.setState.mock.calls[2][0]).toEqual({ isShowLoader: false });
-        expect(window.alert).toHaveBeenCalledWith('failed!');
+        expect(wrapper.setState.mock.calls[2][0]).toEqual({ isShowMessage: false });
+        expect(wrapper.setState.mock.calls[3][0]).toEqual({ isShowLoader: false });
+        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
+        expect(parent.postMessage).toHaveBeenCalledTimes(0);
     });
 
     it('handleSave - should call setState but not call window.alert with reponse incorrect', async () => {
@@ -159,6 +166,14 @@ describe('commission group - AssignGroup', () => {
 
     it('Should render correctly', () => {
         const wrapper = new AssignGroup();
+
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it('Should render correctly with isSuccess state is false', () => {
+        const wrapper = shallow(<AssignGroup />);
+
+        wrapper.instance().setState({ isSuccess: false });
 
         expect(wrapper).toMatchSnapshot();
     });

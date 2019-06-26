@@ -94,42 +94,45 @@ describe('commission group - assign private group', () => {
         expect(props.setSelectedGroup).toHaveBeenCalledWith(null);
     })
 
-    it('handleSave - should call setSate with not isValid', async () => {
+    it('handleSave - should call setSate with isValid is false', async () => {
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup });
         const wrapper = shallow(<AssignPrivateGroup {...props}/>);
-        wrapper.setState = jest.fn();
+        wrapper.setState = jest.fn((obj, fn) => fn && fn());
+        window.setTimeout = jest.fn((fn, time) => fn());
         wrapper.instance()._validate = jest.fn(() => ({ isValid: false, messageList: 'failed!' }));
 
         await wrapper.find('button').simulate('click');
         
-        expect(wrapper.setState).toHaveBeenCalledWith({ isShowMessage: true, isSuccess: false, message: 'failed!' });
+        expect(wrapper.setState).toHaveBeenCalledTimes(2);
+        expect(wrapper.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'failed!' });
+        expect(wrapper.setState.mock.calls[0][1]).toEqual(expect.any(Function));
+
+        expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: false });
     })
 
-    it('handleSave - should call setSate,  window.scrollTo, window.setTimeout, mainFrame.location.reload with isValid', async () => {
+    it('handleSave - should call setSate,  window.scrollTo, window.setTimeout, parent.postMessage with isValid and IsSuccessful are true', async () => {
         const expectedResponse = { data: { IsSuccessful: true, Message: "OK" }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selectedGroup });
         const wrapper = shallow(<AssignPrivateGroup {...props}/>);
-        wrapper.setState = jest.fn();
+        wrapper.setState = jest.fn((obj, fn) => fn && fn());
+        window.setTimeout = jest.fn((fn, time) => fn());
         window.scrollTo = jest.fn();
-        window.setTimeout = jest.fn();
-
-        global.top.frames["mainFrame"] = jest.fn();
-        mainFrame.location = jest.fn();
-        mainFrame.location.reload = jest.fn();
-        global.confirm = jest.fn(() => true);
+        parent.postMessage = jest.fn();
 
         wrapper.instance()._validate = jest.fn(() => ({ isValid: true, messageList: 'OK' }));
 
         await wrapper.find('button').simulate('click');
         
-        expect(wrapper.setState).toHaveBeenCalledTimes(2);
+        expect(wrapper.setState).toHaveBeenCalledTimes(3);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({ isShowLoader: true });
         expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: true, isSuccess: true, message: ["Update Commission Group Successfully"], isShowLoader: false });
-        expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" })
+        expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
+        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
+        expect(parent.postMessage).toHaveBeenCalledWith("updatePrivateGroupSuccessfully", "http://localhost");
     })
 
     it('handleSave - should call setSate,  window.scrollTo with isValid, GroupId is zero', async () => {
@@ -153,24 +156,28 @@ describe('commission group - assign private group', () => {
         expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" })
     })
 
-    it('handleSave - should call setSate,  window.scrollTo with isValid and IsSuccessful is false', async () => {
+    it('handleSave - should call setSate,  window.scrollTo, window.setTimeout and not call parent.postMessage with isValid is true and IsSuccessful is false', async () => {
         const expectedResponse = { data: { IsSuccessful: false, Message: "failed!" }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selectedGroup });
         const wrapper = shallow(<AssignPrivateGroup {...props}/>);
-        wrapper.setState = jest.fn();
+        wrapper.setState = jest.fn((obj, fn) => fn && fn());
+        window.setTimeout = jest.fn((fn, time) => fn());
         window.scrollTo = jest.fn();
+        parent.postMessage = jest.fn();
 
         wrapper.instance()._validate = jest.fn(() => ({ isValid: true, messageList: 'OK' }));
 
         await wrapper.find('button').simulate('click');
         
-        expect(wrapper.setState).toHaveBeenCalledTimes(2);
+        expect(wrapper.setState).toHaveBeenCalledTimes(3);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({ isShowLoader: true });
         expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: true, isSuccess: false, message: ["failed!"], isShowLoader: false });
-        expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" })
+        expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
+        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
+        expect(parent.postMessage).toHaveBeenCalledTimes(0);
     })
 
     it('handleSave - should call setSate with respone erro', async () => {

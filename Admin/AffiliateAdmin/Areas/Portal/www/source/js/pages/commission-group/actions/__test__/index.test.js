@@ -48,5 +48,4 @@ describe('commission group actions', () => {
     actionListReturnPost.forEach(item => {
         runTestActionReturnPost(item);
     });
-
 });

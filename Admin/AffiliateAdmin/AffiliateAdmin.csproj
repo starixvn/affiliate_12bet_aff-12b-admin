@@ -1261,6 +1261,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\paymentRequestUpdate.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\changePassword.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\paymentRequestUpdate.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\changePassword.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\commissionGroup.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\paymentRequestUpdate.js" />
@@ -1326,6 +1327,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
