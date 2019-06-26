@@ -5,7 +5,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 {
     public class TierSetting
     {
-        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "GroupId not exists!")]
         public int GroupId { get; set; }
 
         [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "TierId not exists!")]

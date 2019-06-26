@@ -6,21 +6,19 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 {
     public class CommGroup
     {
-        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "RowIdx not exists!")]
         public int RowIdx { get; set; }
 
-        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "GroupId not exists!")]
         public int GroupId { get; set; }
 
         [Required(ErrorMessage = "Group Name cannot be empty. Please check!")]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "GroupName should shorter than 100 characters!")]
         public string GroupName { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
         public string Creator { get; set; }
 
-        [MaxLength(100, ErrorMessage = "Description should short 100 characters!")]
+        [MaxLength(100, ErrorMessage = "Description should shorter than 100 characters!")]
         public string Description { get; set; }
 
         [Range(0, (double)Money.MaxValue, ErrorMessage = "QmTurnover not valid!")]
@@ -29,6 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
         [Range(0, (double)Money.MaxValue, ErrorMessage = "NextQmTurnover not valid!")]
         public decimal NextQmTurnover { get; set; }
 
+        [Range(0, Validation.MaxId, ErrorMessage = "NextQmTurnover not valid!")]
         public int NoAffs { get; set; }
 
         public string CreatedDateText => CreatedDate.ToString("MM/dd/yyyy HH:mm:ss");

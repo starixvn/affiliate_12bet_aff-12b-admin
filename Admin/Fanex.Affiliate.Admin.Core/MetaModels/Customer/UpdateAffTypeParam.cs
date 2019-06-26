@@ -5,6 +5,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Customer
 {
     public class UpdateAffTypeParam : AffiliateBasicInfoParam
     {
-        public byte AffType { get; set; }
+        [Range(Validation.MinAffType, Validation.MaxAffType, ErrorMessage = "AffType is incorrect!")]
+        public int AffType { get; set; }
     }
 }

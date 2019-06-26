@@ -5,13 +5,11 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 {
     public class DeductionSetting
     {
-        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "GroupId not exists!")]
         public int GroupId { get; set; }
 
         [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "DeductionId not exists!")]
         public int DeductionId { get; set; }
 
-        [Required(ErrorMessage = "Deduction Name is required!")]
         public string DeductionName { get; set; }
 
         [Required(ErrorMessage = "ProductIds is required!")]
