@@ -1,7 +1,10 @@
 import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
+import { setPagingOption } from '../../../actions/pagingAction';
 
 import { SET_GRIDDATA, SET_PAGING_OPTION, SET_SELECTED_GROUP, SET_SEARCHED_GROUPNAME } from './types';
+
+export { toggleLoader, setPagingOption };
 
 export const fetchGroupSettingData = (param) => {
     const url = 'Portal/CommissionGroup/GetCommissionGroupList';
@@ -38,13 +41,6 @@ export const getGroupSettingList = (param) => async (dispatch) => {
         dispatch(setPagingOption(pagingOption));
     }
     dispatch(toggleLoader(false));
-}
-
-export const setPagingOption = (data) => {
-    return {
-        type: SET_PAGING_OPTION,
-        data
-    }
 }
 
 export const setSelectedGroup = (data) => {

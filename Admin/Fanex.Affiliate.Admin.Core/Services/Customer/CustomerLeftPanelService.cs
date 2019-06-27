@@ -90,13 +90,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
         {
             var rndStr = Encryption.RandomString(6);
             var accKey = GenerateSHA512String(sessionId + rndStr);
-            var _url = affType == AffType.European ? ConfigurationManager.AppSettings["internalEuropeanAffiliateURL"] : ConfigurationManager.AppSettings["internalAsianAffiliateURL"];
-            _url += "?chalengeStr=" + rndStr;
-            _url += "&accKey=" + accKey;
-            _url += "&custName=" + custName;
-            _url += "&accId=" + accId;
-            _url += "&accOnId=" + accOnId;
-            return _url;
+            var url = affType == AffType.European ? ConfigurationManager.AppSettings["internalEuropeanAffiliateURL"] : ConfigurationManager.AppSettings["internalAsianAffiliateURL"];
+            url += "?chalengeStr=" + rndStr;
+            url += "&accKey=" + accKey;
+            url += "&custName=" + custName;
+            url += "&accId=" + accId;
+            url += "&accOnId=" + accOnId;
+            return url;
         }
 
         private static string GenerateSHA512String(string inputString)

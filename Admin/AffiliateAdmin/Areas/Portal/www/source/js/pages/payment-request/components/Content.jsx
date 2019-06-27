@@ -95,7 +95,7 @@ export class Content extends PureComponent {
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.TransId} className="text-center">
-                    <Button color="link" className="p-0" onClick={() => this.props.setTransactionId(dataItem.TransId)}>
+                    <Button color="link" className="p-0" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
                         {dataItem.TransId}
                     </Button>
                 </Cell>

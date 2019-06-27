@@ -33,7 +33,8 @@ describe('payment request actions', () => {
                 }],
                 Total: null,
                 TotalItem: 1
-            }
+            },
+            status: 200
         };
 
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));

@@ -1233,6 +1233,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\__test__\utils.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\reducers\__tests__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\Content.test.js" />
@@ -1240,10 +1241,13 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\GridData.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\__test__\AddGroup.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\__test__\AssignGroup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\__test__\AssignPrivateGroup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\__test__\EditGroup.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\__test__\GridData.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\DeductionSetting.test.js" />
@@ -1257,6 +1261,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\changePassword.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\paymentRequestUpdate.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\types.js" />
@@ -1328,8 +1334,13 @@
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\modules\constants.js" />
