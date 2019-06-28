@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`commission group - App Should render correctly 1`] = `
+exports[`payment request - App Should render correctly 1`] = `
 <Provider
   store={
     Object {

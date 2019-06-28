@@ -21,7 +21,7 @@ export const selectedUserPanel = createReducer(null, {
     }
 });
 
-export const isShowLoaderUserPanel = createReducer(null, {
+export const isShowLoaderUserPanel = createReducer(false, {
     [TOGGLE_LOADER_USER_PANEL](prevState, action) {
         return action.data;
     }

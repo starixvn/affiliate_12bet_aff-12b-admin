@@ -32,7 +32,20 @@ exports[`payment request - components - Content  render correctly with SearchBy 
         onChange={[Function]}
         type="select"
         value={2}
-      />
+      >
+        <option
+          key="searchBy-0"
+          value={1}
+        >
+          User Name
+        </option>
+        <option
+          key="searchBy-1"
+          value={2}
+        >
+          Others
+        </option>
+      </Input>
     </FormGroup>
     <FormGroup
       className="mb-2 mr-sm-3 mb-sm-0"
@@ -239,7 +252,20 @@ exports[`payment request - components - Content  render correctly with SearchBy 
         onChange={[Function]}
         type="select"
         value={1}
-      />
+      >
+        <option
+          key="searchBy-0"
+          value={1}
+        >
+          User Name
+        </option>
+        <option
+          key="searchBy-1"
+          value={2}
+        >
+          Others
+        </option>
+      </Input>
     </FormGroup>
     <FormGroup
       className="mb-2 mr-sm-3 mb-sm-0"

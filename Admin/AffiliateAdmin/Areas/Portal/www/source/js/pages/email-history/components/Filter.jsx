@@ -117,8 +117,8 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ today, param, pagingOption }) {
-    return Object.assign({}, { today, param, pagingOption });
+function mapStateToProps({ today, pagingOption }) {
+    return Object.assign({}, { today, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {

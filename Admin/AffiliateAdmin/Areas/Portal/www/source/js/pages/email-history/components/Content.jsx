@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
-import { Button } from 'reactstrap';
+import { Button, Input } from 'reactstrap';
 
 import { headerText, globalResource } from '../modules/constants';
 import { setSelectedEmailId, setPagingOption, fetchData, setCheckedEmails, setShouldResetScrollPosition, setParam } from '../actions';
@@ -80,7 +80,7 @@ export class Content extends PureComponent {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={this.props.checkedEmails[dataItem.EmailId]}
+                    <Input type="checkbox" checked={this.props.checkedEmails[dataItem.EmailId]}
                         onChange={(e) => this.onCheckItem(e.target.checked, dataItem.EmailId)} />
                 </Cell>
                 <Cell title={index} className="text-center">{index}</Cell>

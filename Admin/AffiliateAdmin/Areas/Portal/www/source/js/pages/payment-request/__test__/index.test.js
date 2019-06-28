@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 
 jest.mock('react-dom', ()=> ({render: jest.fn()}))
 
-describe('commission group - App', () => {
+describe('payment request - App', () => {
     beforeEach(() => {
         window.initialState = {
             commGroupList: [

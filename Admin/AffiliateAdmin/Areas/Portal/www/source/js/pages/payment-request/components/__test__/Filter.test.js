@@ -2,7 +2,7 @@
 import { Filter } from '../Filter';
 import { shallow } from 'enzyme';
 import * as ajaxRequest from '../../../../modules/ajaxRequest';
-import DatePicker from '@9softstudio/react-datepicker';
+import { DatePicker } from '@9softstudio/react-datepicker';
 
 describe('payment request - components - Content ', () => {
     const defaultProps = {
@@ -20,27 +20,6 @@ describe('payment request - components - Content ', () => {
         ToDate: "6/26/2019",
         Username: null
     }
-
-    const gridData = [
-        {
-            AffName: "12BETAFF226",
-            Amount: 125,
-            CompletedDateText: "06/20/2019 22:45:23",
-            Creator: "AAwalter",
-            Status: "Approved",
-            TransDateText: "06/20/2019 22:25:07",
-            TransId: 1262276211
-        },
-        {
-            AffName: "12BETAFF226",
-            Amount: 105,
-            CompletedDateText: "06/19/2019 00:20:18",
-            Creator: "AAwalter",
-            Status: "Pending",
-            TransDateText: "06/18/2019 22:14:31",
-            TransId: 1262276209
-        }
-    ]
 
     it('render correctly with SearchBy Username', () => {
         const result = shallow(<Filter {...defaultProps} />);
@@ -74,8 +53,8 @@ describe('payment request - components - Content ', () => {
         expect(wrapper.state('searchBy')).toBe(1);
     });
 
-    it('handlePressEnter - should be called when press Enter', () => {
-        const mockedEvent = { charCode: 13 };
+    it('handlePressEnter - should call hanldeSearch when press Enter', () => {
+        const mockedEvent = { charCode: 13, preventDefault: jest.fn() };
 
         const wrapper = shallow(<Filter {...defaultProps} />);
         const instance = wrapper.instance();
@@ -84,6 +63,18 @@ describe('payment request - components - Content ', () => {
         wrapper.find('Input[type="text"][name="userName"]').simulate('keyPress', mockedEvent);
 
         expect(instance.handleSearch).toHaveBeenCalled();
+    });
+
+    it('handlePressEnter - should not call hanldeSearch when press other keyboards', () => {
+        const mockedEvent = { charCode: 123 };
+
+        const wrapper = shallow(<Filter {...defaultProps} />);
+        const instance = wrapper.instance();
+        instance.handleSearch = jest.fn();
+
+        wrapper.find('Input[type="text"][name="userName"]').simulate('keyPress', mockedEvent);
+
+        expect(instance.handleSearch).not.toHaveBeenCalled();
     });
 
     it("should call handleChange when change Status's value", () => {
@@ -97,37 +88,37 @@ describe('payment request - components - Content ', () => {
     });
 
     it('should call handleChange when click checkbox Get All', () => {
+        const event = { target: { type: 'checkbox', name: 'isGetAll', checked: true }}
         const props = Object.assign({}, defaultProps, { param })
         const wrapper = shallow(<Filter {...props} />);
+        wrapper.setState = jest.fn();
 
-        wrapper.find('Input[type="checkbox"]').simulate('change');
+        wrapper.find('Input[type="checkbox"]').simulate('change', event);
 
-        expect(wrapper.state('checkbox')).toEqual(true);
+        expect(wrapper.setState).toHaveBeenCalledWith({ isGetAll: true });
     });
 
     it('should call handleChangeFromDate when From change', () => {
-        const monthDate = "6/25/2019";
+        const monthDate = { format: jest.fn(() => "6/25/2019")};
         const props = Object.assign({}, defaultProps, { param })
         const wrapper = shallow(<Filter {...props} />);
-        const instance = wrapper.instance();
 
-        instance.setState = jest.fn();
+        wrapper.setState = jest.fn();
         
         wrapper.find(DatePicker).at(0).simulate('change', monthDate);
 
-        expect(instance.setState).toHaveBeenCalled();
+        expect(wrapper.setState).toHaveBeenCalledWith({ fromDate: "6/25/2019", toDate: "6/27/2019" });
     });
 
     it('should call handleChangeToDate when To change', () => {
-        const monthDate = "6/26/2019";
+        const monthDate = { format: jest.fn(() => "6/26/2019")};
         const props = Object.assign({}, defaultProps, { param })
         const wrapper = shallow(<Filter {...props} />);
-        const instance = wrapper.instance();
 
-        instance.setState = jest.fn();
+        wrapper.setState = jest.fn();
         
-        wrapper.find(DatePicker).at(1).simulate('select', monthDate);
+        wrapper.find(DatePicker).at(1).simulate('change', monthDate);
 
-        expect(instance.setState).toHaveBeenCalled();
+        expect(wrapper.setState).toHaveBeenCalledWith({ toDate: "6/26/2019" });
     });
 })

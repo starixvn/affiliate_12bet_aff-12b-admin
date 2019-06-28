@@ -3,7 +3,7 @@ import { SET_MONTHDATE, TOGGLE_LOADER_CUSTOMER_STATISTICS } from '../actions/typ
 
 import createReducer from '../../../../modules/createReducer';
 
-const monthDate = createReducer(null, {
+export const monthDate = createReducer(null, {
     [SET_MONTHDATE](prevState, action) {
         return action.data;
     }

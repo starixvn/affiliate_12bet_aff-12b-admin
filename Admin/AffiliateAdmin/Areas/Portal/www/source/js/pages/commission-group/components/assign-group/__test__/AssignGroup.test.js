@@ -128,7 +128,7 @@ describe('commission group - AssignGroup', () => {
         expect(wrapper.setState.mock.calls[2][0]).toEqual({ isShowMessage: false });
         expect(wrapper.setState.mock.calls[3][0]).toEqual({ isShowLoader: false });
         expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
-        expect(parent.postMessage).toHaveBeenCalledTimes(0);
+        expect(parent.postMessage).not.toHaveBeenCalled();
     });
 
     it('handleSave - should call setState but not call window.alert with reponse incorrect', async () => {

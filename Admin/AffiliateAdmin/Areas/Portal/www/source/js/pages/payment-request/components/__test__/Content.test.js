@@ -117,13 +117,25 @@ describe('payment request - components - Content ', () => {
 
     it('handleSetTransactionId - should be called when click transId Button', () => {
         const wrapper = shallow(<Content {...defaultProps} />);
+
         wrapper.instance().handleSetTransactionId = jest.fn();
 
         const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData)}</div>);
 
         dataRow.find('Button').at(0).simulate('click');
 
-        expect(wrapper.instance().handleSetTransactionId ).toHaveBeenCalledWith(1262276211);
+        expect(wrapper.instance().handleSetTransactionId).toHaveBeenCalledWith(1262276211);
+    });
+
+    it('handleSetTransactionId - should call setState and setTransactionId', () => {
+        const props = Object.assign({}, defaultProps, { setTransactionId: jest.fn() });
+        const wrapper = shallow(<Content {...props} />);
+        wrapper.setState = jest.fn();
+
+        wrapper.instance().handleSetTransactionId(1262276211);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ shouldResetScrollPosition: false });
+        expect(props.setTransactionId).toHaveBeenCalledWith(1262276211);
     });
 
     it('handlePaging - should call setPagingOption and fetchData with correct parameters', () => {

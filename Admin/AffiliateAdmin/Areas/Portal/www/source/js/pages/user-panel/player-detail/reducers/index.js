@@ -4,13 +4,13 @@ import createReducer from '../../../../modules/createReducer';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
 
-const productList = createReducer([], {
+export const productList = createReducer([], {
     [SET_PRODUCT_LIST]: (preState, action) => {
         return [...action.data]
     }
 })
 
-const param = createReducer({}, {
+export const param = createReducer({}, {
     [SET_PARAM]: (prevState, action) => {
         return { ...action.data };
     }

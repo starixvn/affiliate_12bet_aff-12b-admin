@@ -7,7 +7,7 @@ import Filter from './Filter';
 import Content from './Content';
 import EmailDetailForm from './EmailDetailForm';
 
-const AppContainer = (props) => {
+export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />

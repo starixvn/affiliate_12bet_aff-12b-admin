@@ -3,7 +3,7 @@ import { SET_PARAM } from '../actions/types';
 
 import createReducer from '../../../../modules/createReducer';
 
-const param = createReducer(null, {
+export const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
         return {...action.data };
     }

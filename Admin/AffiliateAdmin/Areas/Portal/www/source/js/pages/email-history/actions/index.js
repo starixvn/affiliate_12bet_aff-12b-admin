@@ -33,7 +33,7 @@ export const setShouldResetScrollPosition = (data) => {
     }
 }
 
-const setGridData = (data) => {
+export const setGridData = (data) => {
     return {
         type: SET_GRID_DATA,
         data

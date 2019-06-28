@@ -5,7 +5,7 @@ import createReducer from '../../../../modules/createReducer';
 
 const canViewMemberEmail = createReducer(false, {});
 
-const param = createReducer(null, {
+export const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
         return { ...action.data };
     }

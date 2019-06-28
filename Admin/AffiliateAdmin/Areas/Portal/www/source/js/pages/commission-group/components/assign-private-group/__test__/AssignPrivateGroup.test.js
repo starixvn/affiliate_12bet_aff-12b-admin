@@ -177,7 +177,7 @@ describe('commission group - assign private group', () => {
         expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: true, isSuccess: false, message: ["failed!"], isShowLoader: false });
         expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
         expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
-        expect(parent.postMessage).toHaveBeenCalledTimes(0);
+        expect(parent.postMessage).not.toHaveBeenCalled();
     })
 
     it('handleSave - should call setSate with respone erro', async () => {
