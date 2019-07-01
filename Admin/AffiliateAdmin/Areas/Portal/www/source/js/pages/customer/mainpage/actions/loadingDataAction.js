@@ -6,7 +6,7 @@ import { setSelectedUserPanel } from '../../user-panel/actions';
 import { userPanelMenuKey } from '../../common/modules/constants';
 import { setIsValidUserName } from '../../left-panel/actions';
 
-const receiveLeftMenuInfo = (data) => {
+export const receiveLeftMenuInfo = (data) => {
     return {
         type: LEFTPANEL_RECEIVE_AFFINFO,
         data

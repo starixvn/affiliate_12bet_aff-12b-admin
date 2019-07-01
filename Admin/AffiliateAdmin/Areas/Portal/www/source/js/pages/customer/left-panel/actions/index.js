@@ -60,9 +60,3 @@ export const updateClosedStatus = (param) => async () => {
 
     return response && response.status === 200 ? response.data : null;
 }
-
-export const changePassword = (param) => async () => {
-    const url = 'Portal/CustomerLeftPanel/ChangePassword';
-
-    return await post(url, param);
-}

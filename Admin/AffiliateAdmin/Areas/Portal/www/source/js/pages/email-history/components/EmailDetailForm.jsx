@@ -65,6 +65,10 @@ export class EmailDetailForm extends PureComponent {
         }
     }
 
+    hideMessage = () => {
+        this.setState({ isShowMessage: false });
+    }
+
     handleClosePopup = () => {
         this.props.setSelectedEmailId(null);
     }
@@ -75,7 +79,7 @@ export class EmailDetailForm extends PureComponent {
         const href = dataItem && `mailto:${dataItem.Email}`;
 
         return dataItem && (
-            <Modal isOpen={selectedEmailId} toggle={this.handleClosePopup} backdrop='static'>
+            <Modal isOpen={!!selectedEmailId} toggle={this.handleClosePopup} backdrop='static'>
                 <ModalHeader toggle={this.handleClosePopup}><span className="iconpopup"></span>{resource.EmailDetail}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">

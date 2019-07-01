@@ -8,18 +8,18 @@ import { configureStore } from '../../modules/store';
 
 const store = configureStore(window.initialState, reducer);
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export default class App extends PureComponent {
+    constructor(props) {
+        super(props);
+    }
 
-  render() {
-    return (
-      <Provider store={store}>
-        <AppContainer />
-      </Provider>
-    );
-  }
+    render() {
+        return (
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        );
+    }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'))

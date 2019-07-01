@@ -5,7 +5,7 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Content from './Content';
 import { spinnerLoaderWidth } from '../../../../modules/constants';
 
-const AppContainer = (props) => {
+export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} style={{ left: spinnerLoaderWidth }} />

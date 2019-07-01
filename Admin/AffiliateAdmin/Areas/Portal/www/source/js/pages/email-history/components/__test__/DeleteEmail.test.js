@@ -91,7 +91,7 @@ describe('payment request - components - Content ', () => {
         const props = Object.assign({}, defaultProps, { toggleLoader, deleteEmailHistory, fetchData, checkedEmails: { 2205: false, 2255: true } });
         const wrapper = shallow(<DeleteEmail {...props} />);
 
-    await wrapper.find('Button').simulate('click');
+        await wrapper.find('Button').simulate('click');
 
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(window.confirm).toHaveBeenCalledWith('Are you sure to delete the selected emails?');
