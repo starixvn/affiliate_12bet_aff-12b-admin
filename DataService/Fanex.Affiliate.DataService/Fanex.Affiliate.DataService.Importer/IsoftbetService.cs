@@ -18,6 +18,7 @@ namespace Fanex.Affiliate.DataService.Importer
     public class ISoftbetService : IISoftbetService
     {
         private const string SuccessStatus = "success";
+        private const int DelayTimeInMinute = 5;
 
         private readonly IAppSettings _appSetting;
 
@@ -31,8 +32,8 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public IEnumerable<ISoftbetApiParamResultPair> GetRawDataList(ISoftbetEntryParam param)
         {
-            var startTime = new DateTime(param.StartTime.Year, param.StartTime.Month, param.StartTime.Day, param.StartTime.Hour, param.StartTime.Minute, 0);
-            var endTime = new DateTime(param.EndTime.Year, param.EndTime.Month, param.EndTime.Day, param.EndTime.Hour, param.EndTime.Minute, 0);
+            var startTime = CreateTimeByMinute(param.StartTime);
+            var endTime = CreateTimeByMinute(param.EndTime);
 
             var paramByTimeZone = new ISoftbetEntryParam
             {
@@ -66,8 +67,8 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public void Import(ISoftbetEntryParam param)
         {
-            var startTime = new DateTime(param.StartTime.Year, param.StartTime.Month, param.StartTime.Day, param.StartTime.Hour, param.StartTime.Minute, 0);
-            var endTime = new DateTime(param.EndTime.Year, param.EndTime.Month, param.EndTime.Day, param.EndTime.Hour, param.EndTime.Minute, 0);
+            var startTime = CreateTimeByMinute(param.StartTime);
+            var endTime = CreateTimeByMinute(param.EndTime);
 
             var paramByTimeZone = new ISoftbetEntryParam
             {
@@ -267,6 +268,11 @@ namespace Fanex.Affiliate.DataService.Importer
             }
 
             return builder.ToString();
+        }
+
+        private DateTime CreateTimeByMinute(DateTime value)
+        {
+            return new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, 0).AddMinutes(-DelayTimeInMinute);
         }
 
         private IEnumerable<string> GetFakeData()
