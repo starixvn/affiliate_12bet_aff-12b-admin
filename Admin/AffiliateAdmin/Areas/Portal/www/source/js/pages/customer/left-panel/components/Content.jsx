@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import SearchBox from './SearchBox';
 import MainInfo from './MainInfo';
 
-const Content = (props) => {
+export const Content = (props) => {
     return (
         <div className="left-panel-container">
             <SearchBox />

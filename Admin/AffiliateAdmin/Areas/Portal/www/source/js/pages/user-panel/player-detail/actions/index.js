@@ -24,14 +24,14 @@ export const getProductList = () => productList;
 
 export const fetchData = (param) => async () => {
     const url = 'Portal/UserPanel/PlayerDetail/GetPlayerDetailList';
-    const response = await post(url, param);
+    const response = await post(url, { ...param, pageIndex: 1, pageSize: 20 });
 
     return response && response.status === 200 ? response.data : null;
 }
 
 export const exportExcel = (param) => async () => {
     const url = 'Portal/UserPanel/PlayerDetail/GetPlayerDetailList';
-    const response = await post(url, param);
+    const response = await post(url, { ...param, pageIndex: 1, pageSize: 20 });
 
     return response && response.status === 200 ? response.data : null;
 }

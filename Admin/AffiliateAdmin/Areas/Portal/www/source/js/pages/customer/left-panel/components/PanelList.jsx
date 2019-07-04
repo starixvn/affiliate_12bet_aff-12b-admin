@@ -6,7 +6,7 @@ import SettingPanel from './panel/SettingPanel';
 import OnlineInfoPanel from './panel/OnlineInfoPanel';
 import { status } from '../modules/constants';
 
-const PanelList = (props) => {
+export const PanelList = (props) => {
     const { affiliateInfo } = props;
     const isApproved = affiliateInfo && affiliateInfo.Status.toLowerCase() === status.Approved;
 

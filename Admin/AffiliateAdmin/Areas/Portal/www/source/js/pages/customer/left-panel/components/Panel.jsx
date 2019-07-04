@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
-const Panel = (props) => {
+export const Panel = (props) => {
     const { heading, children, style, ...attributes } = props;
 
     return (

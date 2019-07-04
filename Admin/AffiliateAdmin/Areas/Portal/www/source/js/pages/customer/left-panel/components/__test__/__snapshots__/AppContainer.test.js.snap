@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`email history - components - AppContainer render correctly 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <Connect(Component) />
+</AppLayout>
+`;
+
+exports[`left panel - components - AppContainer render correctly 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <Connect(Component) />
+</AppLayout>
+`;

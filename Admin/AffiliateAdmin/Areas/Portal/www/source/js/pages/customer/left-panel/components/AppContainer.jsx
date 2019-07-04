@@ -4,7 +4,7 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Content from './Content';
 import Loader from '../../../../components/Loader';
 
-const AppContainer = (props) => {
+export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />

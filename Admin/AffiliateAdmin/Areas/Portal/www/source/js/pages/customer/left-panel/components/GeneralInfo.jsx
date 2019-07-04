@@ -8,10 +8,10 @@ import Language from './general-info/Language';
 import ContactApp from './general-info/ContactApp';
 import ApprovedStatusInfo from './general-info/ApprovedStatusInfo';
 
-const GeneralInfo = (props) => {
+export const GeneralInfo = (props) => {
     const { affiliateInfo } = props;
     const isApproved = affiliateInfo && affiliateInfo.Status.toLowerCase() === status.Approved;
-    const siteUrl = affiliateInfo && affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl;
+    const siteUrl = affiliateInfo && (affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl);
 
     return affiliateInfo && (
         <div className="general-info pt-2">

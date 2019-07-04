@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import GeneralInfo from './GeneralInfo';
 import PanelList from './PanelList';
 
-const MainInfo = (props) => {
+export const MainInfo = (props) => {
     return props.affiliateInfo && (
         <div>
             <GeneralInfo />
