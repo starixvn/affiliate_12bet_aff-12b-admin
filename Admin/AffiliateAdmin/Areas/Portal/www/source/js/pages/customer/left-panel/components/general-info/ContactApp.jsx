@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 
-const ContactApp = (props) => {
+export const ContactApp = (props) => {
     const { affiliateInfo } = props;
-    const contactAppList = JSON.parse(affiliateInfo && affiliateInfo.ContactApps);
+    const contactAppList = affiliateInfo && JSON.parse(affiliateInfo.ContactApps);
 
     return contactAppList && (
         <React.Fragment>

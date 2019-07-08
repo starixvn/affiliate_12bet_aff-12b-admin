@@ -7,7 +7,7 @@ import { resource } from '../../modules/constants';
 import { resolveClientUrl } from '../../../../../modules/utils';
 
 
-const ApprovedStatusInfo = (props) => {
+export const ApprovedStatusInfo = (props) => {
     const [isChangingPassword, setChangingPassword] = useState(false);
     const { affiliateInfo, affName } = props;
 

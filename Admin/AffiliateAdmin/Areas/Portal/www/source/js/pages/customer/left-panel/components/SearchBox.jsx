@@ -62,8 +62,8 @@ export class SearchBox extends PureComponent {
 }
 
 function mapStateToProps({ leftPanel }) {
-    const { affiliateInfo, affName, isValidUserName } = leftPanel;
-    return Object.assign({}, { affiliateInfo, affName, isValidUserName });
+    const { affName, isValidUserName } = leftPanel;
+    return Object.assign({}, { affName, isValidUserName });
 };
 
 function mapDispatchToProps(dispatch) {
