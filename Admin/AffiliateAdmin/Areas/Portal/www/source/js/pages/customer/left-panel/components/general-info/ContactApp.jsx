@@ -11,7 +11,7 @@ export const ContactApp = (props) => {
             {
                 contactAppList.map(contactApp => {
                     return (
-                        <Row>
+                        <Row key={`contactApp-${contactApp.Name}`}>
                             <Col sm={5}>{contactApp.Name}</Col>
                             <Col sm={7} className='text-right'>{contactApp.Value}</Col>
                         </Row>

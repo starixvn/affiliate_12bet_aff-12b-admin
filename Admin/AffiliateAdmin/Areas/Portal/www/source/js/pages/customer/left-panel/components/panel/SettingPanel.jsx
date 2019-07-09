@@ -23,11 +23,11 @@ export class SettingPanel extends PureComponent {
         }
     }
 
-    toggleChangingAffType(isChanging) {
+    toggleChangingAffType = (isChanging) => {
         this.setState({ isChangingAffType: isChanging }, () => isChanging && this.affTypeDropdown.current.focus());
     }
 
-    toggleChangingAffStatus(isChanging) {
+    toggleChangingAffStatus = (isChanging) => {
         this.setState({ isChangingAffStatus: isChanging }, () => isChanging && this.affStatusDropdown.current.focus());
     }
 
@@ -98,14 +98,14 @@ export class SettingPanel extends PureComponent {
                     <Col>{resource.AffiliateType}</Col>
                     <Col className="text-right text-primary">
                         <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} value={affiliateInfo.AffType}
-                            onChange={this.handleChangeAffType} onBlur={this.toggleChangingAffType.bind(this, false)} ref={this.affTypeDropdown}>
+                            onChange={this.handleChangeAffType} onBlur={() => this.toggleChangingAffType(false)} ref={this.affTypeDropdown}>
                             {
                                 Object.keys(affType).map((key, index) => {
                                     return (<option value={key} key={`affinfo-type-${index}`}>{affType[key]}</option>)
                                 })
                             }
                         </select>
-                        <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={this.toggleChangingAffType.bind(this, true)}>
+                        <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={() => this.toggleChangingAffType(true)}>
                             {affType[affiliateInfo.AffType]}
                         </Button>
                     </Col>

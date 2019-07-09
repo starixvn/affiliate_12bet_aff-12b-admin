@@ -1319,6 +1319,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ApprovedStatusInfo.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ContactApp.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\Language.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\CommissionPanel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\OnlineInfoPanel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\SettingPanel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\GeneralInfo.test.js" />
