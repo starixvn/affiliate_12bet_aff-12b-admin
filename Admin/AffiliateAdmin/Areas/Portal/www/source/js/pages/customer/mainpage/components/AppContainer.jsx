@@ -8,10 +8,10 @@ import LeftPanel from '../../left-panel/components/AppContainer';
 import UserPanel from '../../user-panel/components/UserPanel';
 import { setSelectedUserPanel } from '../../user-panel/actions';
 
-const CustomerStatistics = React.lazy(() =>
+export const CustomerStatistics = React.lazy(() =>
     import(/* webpackChunkName: "customer-statistics" */ '../../customer-statistics/components/AppContainer'));
 
-const AppContainer = (props) => {
+export const AppContainer = (props) => {
     const { affId, selectedUserPanel, status } = props;
     const isPending = status && (status.toLowerCase() === 'pending' || status.toLowerCase() === 'disapproved');
 

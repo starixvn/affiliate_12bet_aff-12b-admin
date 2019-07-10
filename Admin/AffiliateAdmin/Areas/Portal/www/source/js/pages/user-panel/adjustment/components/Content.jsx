@@ -47,7 +47,7 @@ export class Content extends PureComponent {
         const amount = value.replace(/,/g, '');
 
         if (regexCheckAmount.test(amount)) {
-            if (regexShouldFormatAmount.test(amount) && Number(amount) !== 0 && Number(amount) > Number.MIN_SAFE_INTEGER && Number(amount) < Number.MAX_SAFE_INTEGER) {
+            if (regexShouldFormatAmount.test(amount) && Number(amount) !== 0 && Number(amount) > money.MinValue && Number(amount) < money.MaxValue) {
                 this.setState({ [event.target.name]: format(Number(amount)) })
             } else {
                 this.setState({ [event.target.name]: value });

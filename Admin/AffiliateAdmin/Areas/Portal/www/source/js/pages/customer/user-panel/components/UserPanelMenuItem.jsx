@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserPanelMenuItem = (props) => {
+export const UserPanelMenuItem = (props) => {
     const { item, isActive, onClickMenu } = props;
 
     return (

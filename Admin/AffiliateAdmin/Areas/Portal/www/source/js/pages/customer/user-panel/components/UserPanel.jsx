@@ -7,7 +7,7 @@ import { userPanelMenuList, userPanelPendingMenuList } from '../modules/menu';
 import { userPanelMenuKey } from '../../common/modules/constants';
 import { spinnerLoaderWidth, spinnerLoaderUserPanelHeight } from '../../../../modules/constants';
 
-const UserPanel = (props) => {
+export const UserPanel = (props) => {
     const { selectedUserPanel, onClickMenu, isPending, isShowLoader } = props;
 
     useEffect(() => {

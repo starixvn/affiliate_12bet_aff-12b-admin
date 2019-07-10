@@ -2,7 +2,7 @@ import React from 'react';
 import { isActiveMenu } from '../modules/service';
 import UserPanelMenuItem from './UserPanelMenuItem';
 
-const UserPanelMenu = (props) => {
+export const UserPanelMenu = (props) => {
     const { selectedUserPanel, onClickMenu, menuList } = props;
     const selectedMenuItem = menuList.find(p => p.key === selectedUserPanel);
 
