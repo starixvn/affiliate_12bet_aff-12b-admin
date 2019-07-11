@@ -2,7 +2,6 @@
 import { Content } from '../Content';
 import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../modules/constants';
-import * as ajaxRequest from '../../../../../modules/ajaxRequest';
 
 describe('customer member - components - Content', () => {
     const defaultProps = {

@@ -112,7 +112,7 @@ export class Content extends PureComponent {
                         </Button>) :
                         amount}
                 </Cell>
-                <Cell title={dataItem.Status} className="text-center">{dataItem.Status === 'pending' ?
+                <Cell title={dataItem.Status} className="text-center">{dataItem.Status.toLowerCase() === 'pending' ?
                     <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
                         Processing
                         </Button> : dataItem.Status}</Cell>
@@ -164,11 +164,11 @@ export class Content extends PureComponent {
 }
 
 
-function mapStateToProps({ today, affCommonInfo, statementHistory }) {
+function mapStateToProps({ affCommonInfo, statementHistory }) {
     const { pagingOption, param } = statementHistory;
     const { affId } = affCommonInfo;
 
-    return Object.assign({}, { today, affId, pagingOption, param });
+    return Object.assign({}, { affId, pagingOption, param });
 }
 
 function mapDispatchToProps(dispatch) {

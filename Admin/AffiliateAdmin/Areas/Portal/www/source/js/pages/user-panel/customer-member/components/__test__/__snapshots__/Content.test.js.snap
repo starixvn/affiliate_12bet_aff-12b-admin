@@ -626,7 +626,3 @@ exports[`customer member - components - Content render correctly with have data 
   />
 </div>
 `;
-
-exports[`customer member - components - Content render correctly with have gridData 1`] = `""`;
-
-exports[`customer member - components - Content render correctly with have gridData is empty 1`] = `""`;
