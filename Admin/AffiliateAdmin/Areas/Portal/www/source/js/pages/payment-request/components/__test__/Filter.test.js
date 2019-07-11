@@ -44,7 +44,7 @@ describe('payment request - components - Content ', () => {
         expect(props.setParam).toHaveBeenCalledWith({ FromDate: "6/26/2019", IsGetAll: false, SearchBy: 1, Status: undefined, ToDate: "6/27/2019", Username: null });
     });
 
-    it("should call handleChange when change Search By's value", () => {
+    it("handleChange - should be called when change Search By's value", () => {
         const mockedEvent = { target: { name: 'searchBy', value: 1 } }
         const wrapper = shallow(<Filter {...defaultProps} />);
 
@@ -77,7 +77,7 @@ describe('payment request - components - Content ', () => {
         expect(instance.handleSearch).not.toHaveBeenCalled();
     });
 
-    it("should call handleChange when change Status's value", () => {
+    it("handleChange - should be called when change Status's value", () => {
         const mockedEvent = { target: { name: 'status', value: 1 } }
         const props = Object.assign({}, defaultProps, { param })
         const wrapper = shallow(<Filter {...props} />);
@@ -87,7 +87,7 @@ describe('payment request - components - Content ', () => {
         expect(wrapper.state('status')).toBe(1);
     });
 
-    it('should call handleChange when click checkbox Get All', () => {
+    it('handleChange - should be called when click checkbox Get All', () => {
         const event = { target: { type: 'checkbox', name: 'isGetAll', checked: true }}
         const props = Object.assign({}, defaultProps, { param })
         const wrapper = shallow(<Filter {...props} />);
@@ -98,7 +98,7 @@ describe('payment request - components - Content ', () => {
         expect(wrapper.setState).toHaveBeenCalledWith({ isGetAll: true });
     });
 
-    it('should call handleChangeFromDate when From change', () => {
+    it('handleChangeFromDate - should be called when From change', () => {
         const monthDate = { format: jest.fn(() => "6/25/2019")};
         const props = Object.assign({}, defaultProps, { param })
         const wrapper = shallow(<Filter {...props} />);
@@ -110,7 +110,7 @@ describe('payment request - components - Content ', () => {
         expect(wrapper.setState).toHaveBeenCalledWith({ fromDate: "6/25/2019", toDate: "6/27/2019" });
     });
 
-    it('should call handleChangeToDate when To change', () => {
+    it('handleChangeToDate - should be called when To change', () => {
         const monthDate = { format: jest.fn(() => "6/26/2019")};
         const props = Object.assign({}, defaultProps, { param })
         const wrapper = shallow(<Filter {...props} />);

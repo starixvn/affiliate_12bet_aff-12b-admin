@@ -73,12 +73,11 @@ describe('payment request - components - Content ', () => {
     });
 
     it('fetchData - should call toggleLoader, setState and setPagingOption with correct parameter', async () => {
-        const expectedResponse = { data: { MainData: [{ Id: 123 }], TotalItem: 1 }, status: 200 };
-        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
+        const data = { MainData: [{ Id: 123 }], TotalItem: 1 };
 
         const toggleLoader = jest.fn();
         const setPagingOption = jest.fn();
-        const fetchData = jest.fn(() => Promise.resolve(expectedResponse.data));
+        const fetchData = jest.fn(() => data);
 
         const props = Object.assign({}, defaultProps, { toggleLoader, setPagingOption, fetchData });
         const componentInstance = new Content(props);

@@ -1388,6 +1388,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\reducers\__test__\index.test.js" />
