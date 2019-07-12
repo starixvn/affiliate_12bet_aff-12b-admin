@@ -27,14 +27,13 @@ export class Content extends PureComponent {
 
     async fetchData(param) {
         this.props.toggleLoaderUserPanel(true);
-        const { affId } = this.props;
-        const postData = { ...param, affId };
-        const data = await this.props.fetchData(postData);
+
+        const data = await this.props.fetchData(param);
 
         this.setState({
             gridData: data ? data.MainData : null,
             total: data ? data.Total : 0,
-            isSelectedAllProducts: param.ProductId === selectedAllProduct
+            isSelectedAllProducts: param.productId === selectedAllProduct
         });
 
         this.props.toggleLoaderUserPanel(false);
@@ -121,11 +120,10 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, dailyEarningDetail }) {
+function mapStateToProps({ dailyEarningDetail }) {
     const { param } = dailyEarningDetail;
-    const { affId } = affCommonInfo;
 
-    return Object.assign({}, { affId, param });
+    return Object.assign({}, { param });
 }
 
 function mapDispatchToProps(dispatch) {

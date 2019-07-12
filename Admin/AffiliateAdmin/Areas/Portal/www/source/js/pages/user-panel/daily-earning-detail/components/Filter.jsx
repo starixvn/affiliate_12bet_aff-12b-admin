@@ -20,7 +20,7 @@ export class Filter extends PureComponent {
 
     componentDidMount() {
         this._fetchProductList();
-        this.props.setParam({...this.props.param, productId: this.state.selectedProduct});
+        this.handleSetParam(this.state.selectedProduct);
     }
 
     async _fetchProductList() {
@@ -30,10 +30,14 @@ export class Filter extends PureComponent {
 
     handleChangeProduct = (event) => {
         const selectedProduct = Number(event.target.value);
-        const param = { ...this.props.param, productId: selectedProduct };
 
-        this.props.setParam(param);
         this.setState({ selectedProduct });
+        this.handleSetParam(selectedProduct);
+    }
+
+    handleSetParam(selectedProduct) {
+        const param = Object.assign(this.props.param, { productId: selectedProduct });
+        this.props.setParam(param);
     }
 
     render() {
@@ -48,7 +52,7 @@ export class Filter extends PureComponent {
                             <option value="0">{globalResource.All}</option>
                             {
                                 productList.map(p => {
-                                    return (<option value={p.ProductId}>{p.ProductName}</option>)
+                                    return (<option key={`product-${p.ProductId}`} value={p.ProductId}>{p.ProductName}</option>)
                                 })
                             }
                         </Input>

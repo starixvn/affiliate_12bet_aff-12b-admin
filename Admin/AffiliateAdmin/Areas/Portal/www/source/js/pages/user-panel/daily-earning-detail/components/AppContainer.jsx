@@ -14,19 +14,14 @@ export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { param, affId } = this.props;
-        this.affId = affId;
+        const { param } = this.props;
         this.monthDate = param && param.monthDate;
         this.date = new Date(this.monthDate);
     }
 
     render() {
         const { param } = this.props;
-        const dailyEarningParam = {
-            affId: this.affId,
-            monthDate: this.monthDate,
-            productId: param.productId
-        }
+        const dailyEarningParam = Object.assign({}, param, { monthDate: this.monthDate });
 
         const breadcrumbList = [
             { handleClick: () => this.props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History' },
@@ -44,10 +39,9 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, dailyEarningDetail }) {
+function mapStateToProps({ dailyEarningDetail }) {
     const { param } = dailyEarningDetail;
-    const { affId } = affCommonInfo;
-    return Object.assign({}, { param, affId });
+    return Object.assign({}, { param });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -200,4 +200,59 @@ describe('commission group - GridData ', () => {
 
         expect(wrapper).toMatchSnapshot();
     });
+
+    it('Should render correctly with is private group', () => {
+        const dataPrivateGroupItem = {
+            BankingFee: {
+                DeductedPercentage: 0.02,
+                DeductionId: 12,
+                DeductionName: "Banking Fee",
+                GroupId: 1271808,
+                NextDeductedPercentage: 0.02,
+                ProductIds: "0"
+            },
+            CreatedDate: "/Date(1534273172607)/",
+            CreatedDateText: "08/15/2018 01:59:32",
+            Creator: "AAnina",
+            Description: "",
+            GroupId: 1271808,
+            GroupName: "12BETAFF226",
+            NextQmTurnover: 100,
+            NoAffs: 2,
+            OperationalFee: {
+                DeductedPercentage: 0.15,
+                DeductionId: 11,
+                DeductionName: "Operational Fee",
+                GroupId: 1271808,
+                NextDeductedPercentage: 0.15,
+                ProductIds: "0"
+            },
+            PlatformFeeList: [
+                {
+                    DeductedPercentage: 0.17,
+                    DeductionId: 10,
+                    DeductionName: "Platform Fee",
+                    GroupId: 1271808,
+                    NextDeductedPercentage: 0.17,
+                    ProductIds: "1,3,4,5,6,7,8,13,14,15,16,17,18"
+                }
+            ],
+            QmTurnover: 100,
+            RowIdx: 6,
+            TierSettingList: [
+                tierSettingItem
+            ]
+        };
+        const props = Object.assign({}, defaultProps, { gridData: [dataPrivateGroupItem] });
+        const wrapper = shallow(<GridData {...props}/>);
+
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it('Should render correctly with data is null', () => {
+        const props = Object.assign({}, defaultProps, { gridData: [] });
+        const wrapper = shallow(<GridData {...props}/>);
+
+        expect(wrapper).toMatchSnapshot();
+    });
 });

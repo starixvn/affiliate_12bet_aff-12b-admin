@@ -210,15 +210,17 @@ describe('affiliate info - GridData ', () => {
             IsFavorite: true
         }
 
-        const expectedResponse = { data: { Code: 0, Message: "", IsSuccessful: false } };
+        const expectedResponse = { data: { Code: 0, Message: "Toggle favorite is failed!", IsSuccessful: false } };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const componentInstance = new GridData(defaultProps);
-
+        window.alert = jest.fn();
         componentInstance.setState = jest.fn();
+
         await componentInstance.saveToggleFavorite(param);
 
         expect(componentInstance.setState).not.toHaveBeenCalled();
+        expect(alert).toHaveBeenCalledWith("Toggle favorite is failed!");
     });
 
     it('saveToggleFavorite - not call setState with incorrect parameter', async () => {

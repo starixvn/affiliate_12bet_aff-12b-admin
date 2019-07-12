@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Form, FormGroup, Input, Label } from 'reactstrap';
 
 import { setParam, getProductList } from '../actions';
-import { selectedAllProduct } from '../../../../modules/constants';
+import { selectedAllProduct, globalResource } from '../modules/constants';
 
 
 export class Filter extends PureComponent {
@@ -21,22 +20,23 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
-        const callback = () => this._submit(this.state.selectedProduct);
-        this._fetchProductList(callback);
+        this._fetchProductList();
+        this.handleSetParam(this.state.selectedProduct);
     }
 
-    async _fetchProductList(callback) {
+    async _fetchProductList() {
         const productList = await this.props.getProductList();
-        this.setState({ productList }, callback);
+        this.setState({ productList });
     }
 
     handleChangeProduct = (event) => {
         const selectedProduct = Number(event.target.value);
+
         this.setState({ selectedProduct });
-        this._submit(selectedProduct);
+        this.handleSetParam(selectedProduct);
     }
 
-    _submit(selectedProduct) {
+    handleSetParam(selectedProduct) {
         const param = Object.assign(this.props.param, { productId: selectedProduct });
         this.props.setParam(param);
     }
@@ -50,7 +50,7 @@ export class Filter extends PureComponent {
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-2">Search By</Label>
                         <Input type="select" name="Product" id="Product" value={selectedProduct} onChange={this.handleChangeProduct}>
-                            <option value="0">All</option>
+                            <option value="0">{globalResource.All}</option>
                             {
                                 productList.map(p => {
                                     return (<option key={`product-${p.ProductId}`} value={p.ProductId}>{p.ProductName}</option>)

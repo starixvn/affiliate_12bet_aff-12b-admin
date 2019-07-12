@@ -57,7 +57,7 @@ export class GridData extends Component {
 
     _renderHeader() {
         return [
-            <Row>
+            <Row key="theard">
                 <Cell header={true} colWidth={40} rowSpan="2"></Cell>
                 <Cell header={true} colWidth={160} rowSpan="2">Name</Cell>
                 <Cell header={true} colWidth={50} rowSpan="2">No.Aff</Cell>
@@ -66,7 +66,7 @@ export class GridData extends Component {
                 <Cell header={true} colSpan="10">Policy</Cell>
                 <Cell header={true} colWidth={70} rowSpan="2">Action</Cell>
             </Row>,
-            <Row>
+            <Row key="sub-theard">
                 <Cell header={true} colWidth={80}></Cell>
                 <Cell header={true} colWidth={80}>Tier</Cell>
                 <Cell header={true} colWidth={80} title="Minimum all members' winlost amount">Min AM($)</Cell>

@@ -497,7 +497,9 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
 
 exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
 <div>
-  <t>
+  <t
+    key="theard"
+  >
     <t
       asc={true}
       colWidth={40}
@@ -573,7 +575,9 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       Action
     </t>
   </t>
-  <t>
+  <t
+    key="sub-theard"
+  >
     <t
       asc={true}
       colWidth={80}
@@ -733,6 +737,674 @@ exports[`commission group - GridData  Should render correctly 1`] = `
           >
             <a
               href="/Portal/Affiliate?groupId=153"
+              target="_top"
+            >
+              2
+            </a>
+          </t>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            rowSpan={2}
+            sortable={false}
+            sorting={false}
+          >
+            <p
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "",
+                }
+              }
+            />
+          </t>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            rowSpan={2}
+            sortable={false}
+            sorting={false}
+          >
+            <p>
+              AAnina
+            </p>
+            <p>
+              08/15/2018 01:59:32
+            </p>
+          </t>
+          <t
+            asc={true}
+            className="text-center font-weight-bold cell-tier"
+            header={false}
+            onClick={[Function]}
+            rowSpan={1}
+            sortable={false}
+            sorting={false}
+          >
+            Tier Setting
+          </t>
+          <t
+            asc={true}
+            className="text-center cell-tier"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            1
+          </t>
+          <t
+            asc={true}
+            className="text-right cell-tier"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            0
+          </t>
+          <t
+            asc={true}
+            className="text-right cell-tier"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            ∞
+          </t>
+          <t
+            asc={true}
+            className="text-right cell-tier"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            0
+          </t>
+          <t
+            asc={true}
+            className="text-right cell-tier"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            ∞
+          </t>
+          <t
+            asc={true}
+            className="text-right cell-tier"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            0.02
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            rowSpan={2}
+            sortable={false}
+            sorting={false}
+          >
+            0.15
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            rowSpan={2}
+            sortable={false}
+            sorting={false}
+          >
+            0.02
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            rowSpan={2}
+            sortable={false}
+            sorting={false}
+          >
+            100.00
+          </t>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            rowSpan={2}
+            sortable={false}
+            sorting={false}
+          >
+            <button
+              className="btn btn-link"
+              onClick={[Function]}
+            >
+              <span
+                className="oi oi-pencil text-secondary"
+              />
+            </button>
+          </t>
+        </t>,
+        <t>
+          <t
+            asc={true}
+            className="text-center font-weight-bold cell-platform"
+            header={false}
+            onClick={[Function]}
+            rowSpan={1}
+            sortable={false}
+            sorting={false}
+          >
+            Platform Fee
+          </t>
+          <t
+            asc={true}
+            className="cell-platform"
+            colSpan="5"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Sportsbook,Playtech Casino,Number Game,Virtual Sports,Keno
+          </t>
+          <t
+            asc={true}
+            className="text-right cell-platform"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            0.17
+          </t>
+        </t>,
+      ]
+    }
+    bodyHeight={300}
+    containerPadding={20}
+    header={
+      Array [
+        <t>
+          <t
+            asc={true}
+            colWidth={40}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          />
+          <t
+            asc={true}
+            colWidth={160}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          >
+            Name
+          </t>
+          <t
+            asc={true}
+            colWidth={50}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          >
+            No.Aff
+          </t>
+          <t
+            asc={true}
+            colWidth={200}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          >
+            Description
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          >
+            Creation
+          </t>
+          <t
+            asc={true}
+            colSpan="10"
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Policy
+          </t>
+          <t
+            asc={true}
+            colWidth={70}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          >
+            Action
+          </t>
+        </t>,
+        <t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          />
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Tier
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Minimum all members' winlost amount"
+          >
+            Min AM($)
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Maximum all members' winlost amount"
+          >
+            Max AM($)
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Minimum number of qualified members"
+          >
+            Min QM
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Maximum number of qualified members"
+          >
+            Max QM
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Comm Rate
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Operational Fee
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Banking Fee
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            QM Turnover
+          </t>
+        </t>,
+      ]
+    }
+    isPaging={false}
+    maxWidth={0}
+    minWidth={1000}
+    shouldResetScrollPosition={true}
+    width={0}
+  />
+</div>
+`;
+
+exports[`commission group - GridData  Should render correctly with data is null 1`] = `
+<div
+  className="table-responsive table-group-setting"
+>
+  <t
+    adjustedHeight={0}
+    autoHeight={true}
+    autoWidth={true}
+    body={
+      Array [
+        <t>
+          <t
+            asc={true}
+            className="text-center"
+            colSpan="16"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            There is no information available
+          </t>
+        </t>,
+      ]
+    }
+    bodyHeight={300}
+    containerPadding={20}
+    header={
+      Array [
+        <t>
+          <t
+            asc={true}
+            colWidth={40}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          />
+          <t
+            asc={true}
+            colWidth={160}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          >
+            Name
+          </t>
+          <t
+            asc={true}
+            colWidth={50}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          >
+            No.Aff
+          </t>
+          <t
+            asc={true}
+            colWidth={200}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          >
+            Description
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          >
+            Creation
+          </t>
+          <t
+            asc={true}
+            colSpan="10"
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Policy
+          </t>
+          <t
+            asc={true}
+            colWidth={70}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+          >
+            Action
+          </t>
+        </t>,
+        <t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          />
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Tier
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Minimum all members' winlost amount"
+          >
+            Min AM($)
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Maximum all members' winlost amount"
+          >
+            Max AM($)
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Minimum number of qualified members"
+          >
+            Min QM
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Maximum number of qualified members"
+          >
+            Max QM
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Comm Rate
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Operational Fee
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Banking Fee
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            QM Turnover
+          </t>
+        </t>,
+      ]
+    }
+    isPaging={false}
+    maxWidth={0}
+    minWidth={1000}
+    shouldResetScrollPosition={true}
+    width={0}
+  />
+</div>
+`;
+
+exports[`commission group - GridData  Should render correctly with is private group 1`] = `
+<div
+  className="table-responsive table-group-setting"
+>
+  <t
+    adjustedHeight={0}
+    autoHeight={true}
+    autoWidth={true}
+    body={
+      Array [
+        <t
+          className="private"
+        >
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            rowSpan={2}
+            sortable={false}
+            sorting={false}
+          >
+            6
+          </t>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            rowSpan={2}
+            sortable={false}
+            sorting={false}
+            title="Private Group"
+          >
+            <span
+              className="oi oi-person"
+            />
+            <p
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "12BETAFF226",
+                }
+              }
+            />
+          </t>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            rowSpan={2}
+            sortable={false}
+            sorting={false}
+          >
+            <a
+              href="/Portal/Affiliate?groupId=1271808"
               target="_top"
             >
               2

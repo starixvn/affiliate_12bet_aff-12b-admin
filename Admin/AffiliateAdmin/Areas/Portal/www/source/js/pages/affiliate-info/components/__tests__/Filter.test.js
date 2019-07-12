@@ -8,7 +8,8 @@ describe('affiliate info - Filter ', () => {
         languageList: {},
         commGroupList: {},
         param: {},
-        groupId: 0
+        groupId: 0,
+        columnList:[]
     };
 
     it('componentDidMount - should call handleClickSearch if initial group Id different 0', () => {
