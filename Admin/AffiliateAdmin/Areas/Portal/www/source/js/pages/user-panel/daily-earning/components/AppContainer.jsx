@@ -10,7 +10,7 @@ import Content from './Content';
 import { monthNames, userPanelMenuKey } from '../modules/constants';
 import { setSelectedUserPanel } from '../actions';
 
-class AppContainer extends PureComponent {
+export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
         

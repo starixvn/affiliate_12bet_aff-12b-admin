@@ -100,7 +100,7 @@ describe('customer member - components - Content', () => {
         expect(props.setPagingOption).toHaveBeenCalledWith({ TotalItem: 1, PageIndex: 1, PageSize: 20 });
     });
 
-    it('fetchData - should call toggleLoader, setState and setPagingOption with incorrect parameter', async () => {
+    it('fetchData - should call toggleLoaderUserPanel, setState and setPagingOption with incorrect parameter', async () => {
         const toggleLoaderUserPanel = jest.fn();
         const setPagingOption = jest.fn();
         const fetchData = jest.fn();

@@ -29,11 +29,9 @@ export class Content extends PureComponent {
     async fetchData(param) {
         this.props.toggleLoaderUserPanel(true);
 
-        const { affId } = this.props;
-        const postParam = { ...param, affId };
-        const data = await this.props.fetchData(postParam);
+        const data = await this.props.fetchData(param);
 
-        this.setState({ gridData: data ? data.MainData : null, total: data ? data.Total : 0, isSelectedAllProducts: param.ProductId === selectedAllProduct });
+        this.setState({ gridData: data ? data.MainData : null, total: data ? data.Total : 0, isSelectedAllProducts: param.productId === selectedAllProduct });
 
         this.props.toggleLoaderUserPanel(false);
     }
@@ -83,15 +81,10 @@ export class Content extends PureComponent {
         const bonus = formatDecimal(dataItem.Bonus);
         const bankingFee = formatDecimal(dataItem.BankingFee);
 
-        const { param, affId } = this.props;
-        const dailyEarningDetailParam = {
-            affId,
-            monthDate: dataItem.Date,
-            productId: param.productId
-        }
+        const dailyEarningDetailParam = Object.assign({}, this.props.param, { monthDate: dataItem.Date });
 
         return (
-            <Row>
+            <Row key={`date-${dataItem.Date}`}>
                 {rowNumber && <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>}
                 <Cell className="text-center" title={dataItem.Date} colSpan={!rowNumber && 2}>
                     {rowNumber ?
@@ -130,11 +123,10 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, dailyEarning }) {
+function mapStateToProps({ dailyEarning }) {
     const { param } = dailyEarning;
-    const { affId } = affCommonInfo;
 
-    return Object.assign({}, { affId, param });
+    return Object.assign({}, { param });
 }
 
 function mapDispatchToProps(dispatch) {

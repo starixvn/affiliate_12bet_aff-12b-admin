@@ -53,7 +53,7 @@ export class Filter extends PureComponent {
                             <option value="0">All</option>
                             {
                                 productList.map(p => {
-                                    return (<option value={p.ProductId}>{p.ProductName}</option>)
+                                    return (<option key={`product-${p.ProductId}`} value={p.ProductId}>{p.ProductName}</option>)
                                 })
                             }
                         </Input>
