@@ -59,6 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [Compress]
         public ActionResult InsertNote(InsertUpdateNoteParam param)
         {
+            ModelState.Remove("NoteId");
             if (ModelState.IsValid)
             {
                 AssignCommonParam(param);

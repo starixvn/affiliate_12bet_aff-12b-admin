@@ -100,9 +100,9 @@ export class Content extends PureComponent {
     };
 
     render() {
-        const { noteList, pagingOption } = this.props;
+        const { noteList } = this.props;
 
-        return noteList && pagingOption && (
+        return noteList && (
             <div className="data-content">
                 <div className="my-2">
                     <Button outline type="button" onClick={() => this.handleShowPopup(0)}>{globalResource.Add}</Button>
