@@ -1415,6 +1415,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\Detail.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\reducers\__test__\index.test.js" />

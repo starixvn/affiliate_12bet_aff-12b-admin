@@ -3,7 +3,7 @@ import { AppContainer } from '../AppContainer';
 import { shallow } from 'enzyme';
 import UserPanelBreadcrumb from '../../../../common/components/UserPanelBreadcrumb';
 
-describe('daily earning - components - AppContainer', () => {
+describe('daily earning detail - components - AppContainer', () => {
     const defaultProps = {
         param: {
             affId: 1271808,

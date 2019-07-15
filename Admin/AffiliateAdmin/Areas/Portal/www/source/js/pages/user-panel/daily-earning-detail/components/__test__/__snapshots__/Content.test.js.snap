@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`customer member - components - Content render correctly 1`] = `
+exports[`daily earning detail - components - Content render correctly 1`] = `
 <div
   className="table-responsive table-striped my-2"
 >
@@ -128,7 +128,7 @@ exports[`customer member - components - Content render correctly 1`] = `
 </div>
 `;
 
-exports[`customer member - components - Content render correctly with have data 1`] = `
+exports[`daily earning detail - components - Content render correctly with have data 1`] = `
 <div
   className="table-responsive table-striped my-2"
 >

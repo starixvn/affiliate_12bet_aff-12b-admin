@@ -3,7 +3,7 @@ import { Content } from '../Content';
 import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
-describe('customer member - components - Content', () => {
+describe('daily earning detail - components - Content', () => {
     const param ={
         affId: 1271808,
         monthDate: "06 January 2019",

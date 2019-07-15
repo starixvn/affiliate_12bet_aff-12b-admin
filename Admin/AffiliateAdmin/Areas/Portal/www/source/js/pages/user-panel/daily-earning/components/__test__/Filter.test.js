@@ -12,7 +12,9 @@ describe('daily earning - components - Filter', () => {
             affId: 1271808,
             monthDate: "Jan-2019",
             productId: 0
-        }
+        },
+        setParam: jest.fn(),
+        getProductList: jest.fn(() => productList)
     }
 
     const productList = [
@@ -31,22 +33,19 @@ describe('daily earning - components - Filter', () => {
     ]
 
     it('render correctly', () => {
-        const props = Object.assign({}, defaultProps, { setParam: jest.fn(), getProductList: jest.fn(() => []) });
-        const wrapper = shallow(<Filter {...props} />);
+        const wrapper = shallow(<Filter {...defaultProps} />);
 
         expect(wrapper).toMatchSnapshot();
     });
 
     it('render correctly with has productList', async () => {
-        const props = Object.assign({}, defaultProps, { setParam: jest.fn(), getProductList: jest.fn(() => productList) });
-        const wrapper = await shallow(<Filter {...props} />);
+        const wrapper = await shallow(<Filter {...defaultProps} />);
 
         expect(wrapper).toMatchSnapshot();
     });
 
     it('componentDidMount - should call handleSetParam and _fetchProductList', () => {
-        const props = Object.assign({}, defaultProps, { setParam: jest.fn(), getProductList: jest.fn(() => productList) });
-        const wrapper = shallow(<Filter {...props} />);
+        const wrapper = shallow(<Filter {...defaultProps} />);
         const instance = wrapper.instance();
         instance.handleSetParam = jest.fn();
         instance._fetchProductList = jest.fn();
@@ -63,8 +62,7 @@ describe('daily earning - components - Filter', () => {
                 value: 1
             }
         }
-        const props = Object.assign({}, defaultProps, { setParam: jest.fn(), getProductList: jest.fn(() => productList) });
-        const wrapper = shallow(<Filter {...props} />);
+        const wrapper = shallow(<Filter {...defaultProps} />);
         wrapper.setState = jest.fn();
         wrapper.instance().handleSetParam = jest.fn();
 
@@ -75,12 +73,11 @@ describe('daily earning - components - Filter', () => {
     });
 
     it('handleSetParam - should be called when From change', () => {
-        const props = Object.assign({}, defaultProps, { setParam: jest.fn(), getProductList: jest.fn(() => productList) });
-        const wrapper = shallow(<Filter {...props} />);
+        const wrapper = shallow(<Filter {...defaultProps} />);
         
         wrapper.instance().handleSetParam(1);
 
-        expect(props.getProductList).toHaveBeenCalled();
-        expect(props.setParam).toHaveBeenCalledWith({ affId: 1271808, monthDate: "Jan-2019", productId: 1 });
+        expect(defaultProps.getProductList).toHaveBeenCalled();
+        expect(defaultProps.setParam).toHaveBeenCalledWith({ affId: 1271808, monthDate: "Jan-2019", productId: 1 });
     });
 });

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`daily earning - components - AppContainer render correctly 1`] = `
+exports[`daily earning detail - components - AppContainer render correctly 1`] = `
 <AppLayout>
   <Memo(UserPanelBreadcrumb)
     breadcrumbList={
@@ -24,7 +24,7 @@ exports[`daily earning - components - AppContainer render correctly 1`] = `
 </AppLayout>
 `;
 
-exports[`daily earning - components - AppContainer render correctly with monthDate is null 1`] = `
+exports[`daily earning detail - components - AppContainer render correctly with monthDate is null 1`] = `
 <AppLayout>
   <Memo(UserPanelBreadcrumb)
     breadcrumbList={

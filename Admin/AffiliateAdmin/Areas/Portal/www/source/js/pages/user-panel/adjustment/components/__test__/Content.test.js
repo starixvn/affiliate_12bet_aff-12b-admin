@@ -3,47 +3,39 @@ import { Content } from '../Content';
 import { shallow } from 'enzyme';
 
 describe('Adjustment - components - Content', () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
     afterAll(() => {
         jest.resetAllMocks();
     });
-
     const affInfo = {
         AffId: 1271808,
         AffName: "12BETAFF226"
     };
-
+    const data = 980228054;
     const defaultProps = {
-        affInfo
+        affInfo,
+        toggleLoaderUserPanel: jest.fn(),
+        getBalanceBroughtForward: jest.fn(() => data)
     }
 
     it('render correctly with isValidAmount is true', () => {
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const result = shallow(<Content {...props} />);
+        const result = shallow(<Content {...defaultProps} />);
         result.setState({ amount: '123456'});
 
         expect(result).toMatchSnapshot();
     });
 
     it('render correctly with isValidAmount is false', () => {
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const result = shallow(<Content {...props} />);
+        const result = shallow(<Content {...defaultProps} />);
         result.setState({ amount: '123abc', isSuccess: false });
 
         expect(result).toMatchSnapshot();
     });
 
     it('componentDidMount - should call getBalanceBroughtForward', () => {
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const wrapper = shallow(<Content {...props} />);
+        const wrapper = shallow(<Content {...defaultProps} />);
         const instance = wrapper.instance();
         instance.getBalanceBroughtForward = jest.fn();
 
@@ -53,21 +45,17 @@ describe('Adjustment - components - Content', () => {
     });
 
     it('getBalanceBroughtForward - should call toggleLoaderUserPanel, getBalanceBroughtForward and setState', async () => {
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const wrapper = shallow(<Content {...props} />);
+        const wrapper = shallow(<Content {...defaultProps} />);
         wrapper.setState = jest.fn();
 
         await wrapper.instance().getBalanceBroughtForward();
 
-        expect(props.toggleLoaderUserPanel).toHaveBeenCalledTimes(4);
-        expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(true);
-        expect(props.toggleLoaderUserPanel.mock.calls[2][0]).toBe(false);
-        expect(props.toggleLoaderUserPanel.mock.calls[3][0]).toBe(false);
-        expect(props.getBalanceBroughtForward).toHaveBeenCalledWith(affInfo);
+        expect(defaultProps.toggleLoaderUserPanel).toHaveBeenCalledTimes(4);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[1][0]).toBe(true);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[2][0]).toBe(false);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[3][0]).toBe(false);
+        expect(defaultProps.getBalanceBroughtForward).toHaveBeenCalledWith(affInfo);
         expect(wrapper.setState).toHaveBeenCalledWith({ balanceBf: data });
     });
 
@@ -78,11 +66,7 @@ describe('Adjustment - components - Content', () => {
                 value: '123456'
             }
         }
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const wrapper = shallow(<Content {...props} />);
+        const wrapper = shallow(<Content {...defaultProps} />);
         wrapper.setState = jest.fn();
 
         wrapper.find('Input[type="text"][name="amount"][id="amount"]').simulate('change', event);
@@ -97,11 +81,7 @@ describe('Adjustment - components - Content', () => {
                 value: 'abc'
             }
         }
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const wrapper = shallow(<Content {...props} />);
+        const wrapper = shallow(<Content {...defaultProps} />);
         wrapper.setState = jest.fn();
 
         wrapper.find('Input[type="text"][name="amount"][id="amount"]').simulate('change', event);
@@ -116,11 +96,7 @@ describe('Adjustment - components - Content', () => {
                 value: '922337203685479'
             }
         }
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const wrapper = shallow(<Content {...props} />);
+        const wrapper = shallow(<Content {...defaultProps} />);
         wrapper.setState = jest.fn();
 
         wrapper.find('Input[type="text"][name="amount"][id="amount"]').simulate('change', event);
@@ -135,11 +111,7 @@ describe('Adjustment - components - Content', () => {
                 value: '-922337203685479'
             }
         }
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const wrapper = shallow(<Content {...props} />);
+        const wrapper = shallow(<Content {...defaultProps} />);
         wrapper.setState = jest.fn();
 
         wrapper.find('Input[type="text"][name="amount"][id="amount"]').simulate('change', event);
@@ -154,11 +126,7 @@ describe('Adjustment - components - Content', () => {
                 value: 'abc'
             }
         }
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const wrapper = shallow(<Content {...props} />);
+        const wrapper = shallow(<Content {...defaultProps} />);
         wrapper.setState = jest.fn();
 
         wrapper.find('Input[type="textarea"][name="description"][id="description"]').simulate('change', event);
@@ -168,11 +136,7 @@ describe('Adjustment - components - Content', () => {
 
     it('handlePressEnter - should call handleSubmit when press Enter', () => {
         const event = { charCode: 13, preventDefault: jest.fn() };
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const wrapper = shallow(<Content {...props} />);
+        const wrapper = shallow(<Content {...defaultProps} />);
         const instance = wrapper.instance();
         instance.handleSubmit = jest.fn();
 
@@ -183,11 +147,7 @@ describe('Adjustment - components - Content', () => {
 
     it('handlePressEnter - should not call handleSubmit when press other keyboards', () => {
         const event = { charCode: 123 };
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const wrapper = shallow(<Content {...props} />);
+        const wrapper = shallow(<Content {...defaultProps} />);
         const instance = wrapper.instance();
         instance.handleSubmit = jest.fn();
 
@@ -197,21 +157,17 @@ describe('Adjustment - components - Content', () => {
     });
 
     it('handleSubmit - should call toggleLoaderUserPanel and setState with amount is required', async () => {
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const wrapper = shallow(<Content {...props} />);
+        const wrapper = shallow(<Content {...defaultProps} />);
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
         window.setTimeout = jest.fn((fn, val) => fn & fn());
 
         await wrapper.find('Button').simulate('click');
 
-        expect(props.toggleLoaderUserPanel).toHaveBeenCalledTimes(4);
-        expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(true);
-        expect(props.toggleLoaderUserPanel.mock.calls[2][0]).toBe(false);
-        expect(props.toggleLoaderUserPanel.mock.calls[3][0]).toBe(false);
+        expect(defaultProps.toggleLoaderUserPanel).toHaveBeenCalledTimes(4);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[1][0]).toBe(true);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[2][0]).toBe(false);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[3][0]).toBe(false);
 
         expect(wrapper.setState.mock.calls[0]).toEqual([{ isShowMessage: true, isSuccess: false, message: "The amount is required" }, expect.any(Function)]);
         expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
@@ -219,22 +175,18 @@ describe('Adjustment - components - Content', () => {
     });
 
     it('handleSubmit - should call toggleLoaderUserPanel and setState with amount is invalid', async () => {
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward });
-        const wrapper = shallow(<Content {...props} />);
+        const wrapper = shallow(<Content {...defaultProps} />);
         wrapper.setState({ amount: '0' });
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
         window.setTimeout = jest.fn((fn, val) => fn & fn());
 
         await wrapper.find('Button').simulate('click');
 
-        expect(props.toggleLoaderUserPanel).toHaveBeenCalledTimes(4);
-        expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(true);
-        expect(props.toggleLoaderUserPanel.mock.calls[2][0]).toBe(false);
-        expect(props.toggleLoaderUserPanel.mock.calls[3][0]).toBe(false);
+        expect(defaultProps.toggleLoaderUserPanel).toHaveBeenCalledTimes(4);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[1][0]).toBe(true);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[2][0]).toBe(false);
+        expect(defaultProps.toggleLoaderUserPanel.mock.calls[3][0]).toBe(false);
 
         expect(wrapper.setState.mock.calls[0]).toEqual([{ isShowMessage: true, isSuccess: false, message: "The amount is invalid" }, expect.any(Function)]);
         expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
@@ -244,10 +196,7 @@ describe('Adjustment - components - Content', () => {
     it('handleSubmit - should call toggleLoaderUserPanel and _validateAmount and handleSubmit with correct amount', async () => {
         const result = { IsSuccessful: false, Message: 'Adjustment is failed!' }
         const handleSubmit = jest.fn(() => result);
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward, handleSubmit });
+        const props = Object.assign({}, defaultProps, { handleSubmit });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ amount: '100' });
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
@@ -271,10 +220,7 @@ describe('Adjustment - components - Content', () => {
         const result = { IsSuccessful: true, Message: '' }
         const handleSubmit = jest.fn(() => result);
         const getAffiliateInfo = jest.fn();
-        const data = 980228054;
-        const toggleLoaderUserPanel = jest.fn();
-        const getBalanceBroughtForward = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, getBalanceBroughtForward, handleSubmit, getAffiliateInfo });
+        const props = Object.assign({}, defaultProps, { handleSubmit, getAffiliateInfo });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ amount: '100' });
         wrapper.setState = jest.fn((obj, fn) => fn && fn());

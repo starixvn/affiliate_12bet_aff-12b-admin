@@ -10,7 +10,7 @@ import UserPanelSubMenu from '../../../common/components/UserPanelSubMenu';
 
 import { setSelectedUserPanel } from '../actions';
 
-class AppContainer extends PureComponent {
+export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
 
