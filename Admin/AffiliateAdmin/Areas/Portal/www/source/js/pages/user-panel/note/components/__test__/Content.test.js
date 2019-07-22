@@ -3,7 +3,7 @@ import { Content } from '../Content';
 import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
-describe('statement history - components - Content', () => {
+describe('note - components - Content', () => {
         const noteList = [
         {
             CreatedBy: "AAHubert",
@@ -52,13 +52,6 @@ describe('statement history - components - Content', () => {
         const result = shallow(<Content {...props} />);
 
         expect(result).toMatchSnapshot();
-    });
-
-    it('componentDidMount - should call getNoteList', () => {
-        const componentInstance = new Content(defaultProps);
-        componentInstance.componentDidMount();
-
-        expect(defaultProps.getNoteList).toHaveBeenCalledWith(param);
     });
 
     it('getNoteContentById - should call toggleLoaderUserPanel, getNoteContentById and setNoteInfo with correct parameter', async () => {

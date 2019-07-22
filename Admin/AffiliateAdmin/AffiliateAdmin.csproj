@@ -1442,6 +1442,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\Detail.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\reducers\__test__\index.test.js" />

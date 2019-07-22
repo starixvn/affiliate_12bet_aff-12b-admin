@@ -14,7 +14,7 @@
         "start": "node_modules/.bin/webpack-dev-server --config Areas/Portal/www/webpack.config.dev.js --hot --inline --progress --watch-content-base",
         "test": "jest --colors",
         "test:watch": "jest --watch --colors",
-        "test:coverage": "jest --coverage --colors --collectCoverageFrom=Areas/Portal/www/source/**/*.{js,jsx}"
+        "test:coverage": "jest --coverage --colors --collectCoverageFrom:[Areas/Portal/www/source/**/*.{js,jsx}, Areas/Portal/www/source/js/pages/**/!index.{js,jsx}]"
     },
     "author": "",
     "dependencies": {
@@ -75,6 +75,11 @@
         ],
         "setupFiles": [
             "./Areas/Portal/www/source/js/setupTests.js"
+        ],
+        "coveragePathIgnorePatterns": [
+            "pagelayout",
+            "thirdparty-product",
+            "node_modules"
         ]
     }
 }

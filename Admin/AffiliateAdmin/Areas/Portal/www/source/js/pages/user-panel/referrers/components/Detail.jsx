@@ -19,7 +19,7 @@ export class Detail extends Component {
         const { pagingOption, selectedSiteUrl, param } = this.props;
 
         if (selectedSiteUrl && selectedSiteUrl !== prevProps.selectedSiteUrl) {
-            const postParam = { ...param, selectedSiteUrl, PageIndex: 1, PageSize: pagingOption.PageSize };
+            const postParam = { ...param, selectedSiteUrl, pageIndex: 1, pageSize: pagingOption.PageSize };
             this.fetchData(postParam);
         }
     }
@@ -32,7 +32,7 @@ export class Detail extends Component {
         const data = await this.props.fetchDetailData(postData);
 
         this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
-        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.PageSize });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
 
         this.props.toggleLoaderUserPanel(false);
     }

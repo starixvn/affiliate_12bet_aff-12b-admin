@@ -299,7 +299,7 @@ exports[`note - components - InsertUpdateNoteForm  render correctly with update 
               <Input
                 className="input-required"
                 id="noteContent"
-                invalid={false}
+                invalid={true}
                 name="noteContent"
                 onChange={[Function]}
                 rows="8"
@@ -323,7 +323,7 @@ exports[`note - components - InsertUpdateNoteForm  render correctly with update 
         <Button
           className="mr-3"
           color="success"
-          disabled={false}
+          disabled={true}
           onClick={[Function]}
           tag="button"
           type="button"

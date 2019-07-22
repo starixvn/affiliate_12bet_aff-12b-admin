@@ -10,10 +10,8 @@ import { setShowPopup, setNoteInfo, getNoteList, getNoteContentById, toggleLoade
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
-    }
 
-    componentDidMount() {
-        const { pagingOption, affId } = this.props;
+        const { pagingOption, affId } = props;
         const param = Object.assign({}, { affId, pageIndex: 1, pageSize: pagingOption.PageSize });
 
         this.props.getNoteList(param);
