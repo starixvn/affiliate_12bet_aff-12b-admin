@@ -2024,39 +2024,6 @@
   <data name="MobileDevice" xml:space="preserve">
     <value>มือถือ</value>
   </data>
-  <data name="PopupClickHere" xml:space="preserve">
-    <value>คลิกที่นี่</value>
-  </data>
-  <data name="PopupDear" xml:space="preserve">
-    <value>เรียนสมาชิกพันธมิตร</value>
-  </data>
-  <data name="PopupDuringThisIntegrationPeriod" xml:space="preserve">
-    <value>ในระหว่างการอัพเกรดระบบนี้, ข้อมูลรายได้พันธมิตรของคุณจะแสดงผลไม่สมบูรณ์และมีความคลาดเคลื่อน เราจึงแจ้งให้คุณทราบล่วงหน้าว่าไม่ต้องอ้างอิงข้อมูลตัวเลขใดๆ ในระบบระหว่างนี้เพราะสิ้นเดือนเราจะคำนวณให้คุณแบบแมนวลอีกครั้งซึ่งตัวเลขรายได้จะเพิ่มมากกว่านี้</value>
-  </data>
-  <data name="PopupExcitingNews" xml:space="preserve">
-    <value>อัพเดทการติดต่อกับทีมงานมีโอกาสเพิ่มค่าคอมมิชชั่นสูงขึ้น!</value>
-  </data>
-  <data name="PopupHappyEarning" xml:space="preserve">
-    <value>โปรโมทให้มากเพื่อค่าคอมมิชชั่นที่สูงขึ้นสิคะ!</value>
-  </data>
-  <data name="PopupIfYouShould" xml:space="preserve">
-    <value>หากคุณมีคำถามหรือข้อสงสัยใดๆ โปรดอย่าลังเลที่จะติดต่อทีมงานพันธมิตรโดยกรอกข้อความในแบบฟอร์มโดย</value>
-  </data>
-  <data name="PopupPleaseBeAdvised" xml:space="preserve">
-    <value>โปรดทำการอัพเดทเบอร์โทรศัพท์ติดต่อของคุณในบัญชีพันธมิตรเพื่อที่ทีมงานจะได้ติดต่อคุณทันทีที่ทราบยอดสรุป ซึ่งเราจะติดต่อคุณระหว่างวันที่ 8 - 15 ของแต่ละเดือนเพื่อแจ้งให้ทราบว่าค่าคอมมิชชั่นจริงๆที่คำนวณแล้วได้เท่าไหร่ หากคุณไม่ได้อัพเดทเบอร์ติดต่อปัจจุบันในระบบคุณอาจจะได้ค่าคอมมิชชั่นล่าช้าหรืออาจจะไม่ได้เลยถ้าทีมงานไม่สามารถติดต่อคุณได้</value>
-  </data>
-  <data name="PopupThankYou" xml:space="preserve">
-    <value>ด้วยความเคารพ</value>
-  </data>
-  <data name="PopupWeAreCurrently" xml:space="preserve">
-    <value>ขณะนี้ทางเว็บไซต์ได้ทำการอัพเกรดระบบพันธมิตรให้สามารถนับรายได้ในโปรดักซ์เดิมพันอื่นๆ เพิ่มเติมขึ้น ทั้งนี้เพื่อให้คุณได้รับค่าคอมมิชชั่นเพิ่มมากกว่าเดิมในแต่ละเดือน!</value>
-  </data>
-  <data name="PopupWeHaveGoodNews" xml:space="preserve">
-    <value>เรามีข่าวดีแจ้งให้ท่านทราบค่ะ</value>
-  </data>
-  <data name="PopupYourAffiliateManager" xml:space="preserve">
-    <value>จากผู้จัดการพันธมิตร</value>
-  </data>
   <data name="NonDeposited" xml:space="preserve">
     <value>ใช้ยูสเซอร์ที่ไม่เคยฝากเงินเท่านั้น</value>
   </data>

@@ -2023,39 +2023,6 @@
   <data name="MobileDevice" xml:space="preserve">
     <value>Mobile</value>
   </data>
-  <data name="PopupClickHere" xml:space="preserve">
-    <value>klik di sini.</value>
-  </data>
-  <data name="PopupDear" xml:space="preserve">
-    <value>Yth. Afiliasi 12BET,</value>
-  </data>
-  <data name="PopupDuringThisIntegrationPeriod" xml:space="preserve">
-    <value>Selama periode integrasi ini, mohon abaikan semua data yang ada di Statement/Laporan Afiliasi Anda. Kami akan melakukan perhitungan manual untuk hasil komisi Anda yang lebih akurat.</value>
-  </data>
-  <data name="PopupExcitingNews" xml:space="preserve">
-    <value>BARU! KOMISI LEBIH BESAR!</value>
-  </data>
-  <data name="PopupHappyEarning" xml:space="preserve">
-    <value>Happy earning! </value>
-  </data>
-  <data name="PopupIfYouShould" xml:space="preserve">
-    <value>Apabila ada pertanyaan atau hal lainnya yang ingin Anda tanyakan, silakan </value>
-  </data>
-  <data name="PopupPleaseBeAdvised" xml:space="preserve">
-    <value>Pastikan no ponsel Anda bisa dihubungi atau Anda bisa hubungi kami via Skype: live:aff.12betindo setiap hari Senin - Jumat pukul 08.00-17.00 WIB.</value>
-  </data>
-  <data name="PopupThankYou" xml:space="preserve">
-    <value>Hormat kami,</value>
-  </data>
-  <data name="PopupWeAreCurrently" xml:space="preserve">
-    <value>Saat ini kami sedang memproses integrasi permainan 12BET lebih banyak lagi ke sistem perhitungan komisi Afiliasi. Artinya, Anda akan mendapatkan Komisi lebih banyak lagi :)</value>
-  </data>
-  <data name="PopupWeHaveGoodNews" xml:space="preserve">
-    <value>Kabar gembira untuk Afiliasi 12BET!</value>
-  </data>
-  <data name="PopupYourAffiliateManager" xml:space="preserve">
-    <value>12BET Affiliate Manager</value>
-  </data>
   <data name="NonDeposited" xml:space="preserve">
     <value>akun non-deposit - jika sudah pernah Deposit, silakan buat baru khusus Afiliasi</value>
   </data>

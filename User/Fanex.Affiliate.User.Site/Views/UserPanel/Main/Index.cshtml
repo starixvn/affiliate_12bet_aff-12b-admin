@@ -1,13 +1,9 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
 }
-@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.UserPanelMainViewModel
 
 @section scripts{
     <script src="@Url.RenderLink("~/www/build/js/user-panel.js")"></script>
 }
-@Html.InlineStyles("~/www/build/styles/css/user-panel.min.css")
+
 <div id="mainPanel"></div>
-@{ Html.RenderPartial("~/Views/UserPanel/Popup/Index.cshtml"); }
-<input type="hidden" id="IsVisitedAccountOverviewPage" value="@Model.IsVisitedAccountOverviewPage.ToString()" />
-<input type="hidden" id="IsVisitedCommissionReportPage" value="@Model.IsVisitedCommissionReportPage.ToString()" />

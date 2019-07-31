@@ -1117,9 +1117,6 @@
     <Content Include="Views\UnderMaintenance\Index.cshtml" />
     <Content Include="www\source\styles\Images\banner-main-right.webp" />
     <Content Include="www\build\styles\Images\banner-main-right.webp" />
-    <Content Include="www\source\styles\scss\components\_popup.scss" />
-    <Content Include="Views\UserPanel\Popup\Index.cshtml" />
-    <Content Include="www\source\styles\pages\user-panel.scss" />
     <Content Include="packages.config" />
     <Content Include="www\build\styles\Images\products\bg-casino_affiliate.webp" />
     <Content Include="www\source\styles\Images\products\bg-casino_affiliate.webp" />

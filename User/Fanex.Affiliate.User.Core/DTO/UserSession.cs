@@ -16,9 +16,5 @@ namespace Fanex.Affiliate.User.Core.DTO.Auth
         public string AffType { get; set; }
 
         public string GroupName { get; set; }
-
-        public bool IsVisitedAccountOverViewPage { get; set; }
-
-        public bool IsVisitedCommissionReportPage { get; set; }
     }
 }

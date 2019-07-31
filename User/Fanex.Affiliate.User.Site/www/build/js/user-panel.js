@@ -9,7 +9,6 @@ var UserPanel = (function ($) {
     var _me = {
         datepicker: [],
         initialize: function initialize() {
-            _me.initializeCommissionNewsPopup();
             _me.renderView();
             UserPanel.initEvent();
         },
@@ -18,13 +17,6 @@ var UserPanel = (function ($) {
             $(window).on('hashchange', function (event) {
                 event.stopPropagation();
                 _me.renderView();
-                if (_me.canShowCommissionNewsPopup()) {
-                    $('#commissionNewsPopup').modal('show');
-                }
-            });
-
-            $('#commissionNewsPopup').on('hidden.bs.modal', function (e) {
-                _me.updateVisitedPage();
             });
         },
 
@@ -93,32 +85,6 @@ var UserPanel = (function ($) {
             var queryString = !onlyAction && urlPartList[1] ? '?' + urlPartList[1] : '';
 
             return actionName + queryString;
-        },
-
-        canShowCommissionNewsPopup: function canShowCommissionNewsPopup() {
-            var action = _me.getActionUrl(true);
-
-            return action === DEFAULT_ACTION && $('#IsVisitedAccountOverviewPage').val() === 'False' || action === 'CommissionReport' && $('#IsVisitedCommissionReportPage').val() === 'False';
-        },
-
-        updateVisitedPage: function updateVisitedPage() {
-            var action = _me.getActionUrl(true);
-            if (action === DEFAULT_ACTION) {
-                $('#IsVisitedAccountOverviewPage').val('True');
-            } else {
-                $('#IsVisitedCommissionReportPage').val('True');
-            }
-        },
-
-        initializeCommissionNewsPopup: function initializeCommissionNewsPopup() {
-            $('#commissionNewsPopup').modal({
-                backdrop: 'static',
-                show: false
-            });
-
-            if (_me.canShowCommissionNewsPopup()) {
-                $('#commissionNewsPopup').modal('show');
-            }
         }
     };
 
