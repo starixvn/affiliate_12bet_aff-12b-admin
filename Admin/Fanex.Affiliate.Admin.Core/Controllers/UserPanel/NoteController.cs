@@ -59,7 +59,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [Compress]
         public ActionResult InsertNote(InsertUpdateNoteParam param)
         {
-            ModelState.Remove("NoteId");
             if (ModelState.IsValid)
             {
                 AssignCommonParam(param);
@@ -88,7 +87,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [Compress]
         public ActionResult UpdateNote(InsertUpdateNoteParam param)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && param.NoteId >= Validation.MinId)
             {
                 AssignCommonParam(param);
 

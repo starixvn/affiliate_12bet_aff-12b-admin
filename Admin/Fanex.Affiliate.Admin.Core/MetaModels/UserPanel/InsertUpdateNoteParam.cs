@@ -5,7 +5,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
     public class InsertUpdateNoteParam : AffiliateBasicInfoParam
     {
-        [Range(Validation.MinId, Validation.MaxId)]
         public int NoteId { get; set; }
 
         [Required]

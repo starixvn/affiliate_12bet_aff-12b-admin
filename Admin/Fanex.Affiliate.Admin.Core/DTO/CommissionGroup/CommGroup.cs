@@ -10,8 +10,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 
         public int GroupId { get; set; }
 
-        [Required(ErrorMessage = "Group Name cannot be empty. Please check!")]
-        [MaxLength(100, ErrorMessage = "GroupName should shorter than 100 characters!")]
         public string GroupName { get; set; }
 
         public DateTime CreatedDate { get; set; }

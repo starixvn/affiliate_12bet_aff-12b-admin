@@ -5,16 +5,13 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
 {
     public class GetCommissionGroupParam
     {
-        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "GroupId not exists!")]
         public int GroupId { get; set; }
 
         public string GroupName { get; set; }
 
-        [Range(Validation.MinPageIndex, Validation.MaxPageIndex)]
-        public int PageIndex { get; set; }
+        public int PageIndex { get; set; } = 1;
 
-        [Range(Validation.MinPageSize, Validation.MaxPageSize)]
-        public int PageSize { get; set; }
+        public int PageSize { get; set; } = 20;
 
         public int Nrows { get; set; }
     }

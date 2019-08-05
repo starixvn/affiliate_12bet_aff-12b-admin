@@ -54,31 +54,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult GetCommissionGroupList(GetCommissionGroupParam param)
         {
-            ModelState.Remove("GroupId");
-            if (ModelState.IsValid)
+            var viewModel = new GetCommissionGroupViewModel
             {
-                var viewModel = new GetCommissionGroupViewModel
-                {
-                    CommissionSettingList = _commissionGroupService.GetCommissionGroupList(param),
-                    TotalRows = param.Nrows
-                };
+                CommissionSettingList = _commissionGroupService.GetCommissionGroupList(param),
+                TotalRows = param.Nrows
+            };
 
-                return new JsonNetResult
-                {
-                    Data = viewModel
-                };
-            }
-
-            return new JsonNetResult();
+            return new JsonNetResult
+            {
+                Data = viewModel
+            };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetCommissionGroup(GetCommissionGroupParam param)
         {
-            ModelState.Remove("PageIndex");
-            ModelState.Remove("PageSize");
-            if (ModelState.IsValid)
+            if (param.GroupId >= Validation.MinId)
             {
                 return new JsonNetResult
                 {
@@ -86,7 +78,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
-            return new JsonNetResult();
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "GroupId is required!"
+                }
+            };
         }
 
         [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
@@ -94,7 +93,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult CreateCommissionGroup(CommissionGroupSetting commGroup)
         {
-            if (ModelState.IsValid)
+            var result = ValidateGroupName(commGroup.GroupName);
+            if (ModelState.IsValid && result.IsSuccessful)
             {
                 var createParam = new CreateUpdateCommissionGroupParam
                 {
@@ -115,13 +115,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
+            result.Code = Code.GeneralErrorCode;
+            result.Message = result.Message + string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
+
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = result
             };
         }
 
@@ -166,12 +165,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         public static ResultInfo ValidateUpdateCommGroupParam(CommissionGroupSetting param, int noAffs)
         {
-            var result = new ResultInfo();
+            var result = ValidateGroupName(param.GroupName);
 
             if(param.GroupId < Validation.MinId)
             {
                 result.Code = Code.GeneralErrorCode;
-                result.Message = "GroupId not exists!";
+                result.Message = result.Message + "<br /> GroupId not exists!";
             }
             if (param.RowIdx < Validation.MinId)
             {
@@ -183,6 +182,24 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 result.Code = Code.GeneralErrorCode;
                 result.Message = result.Message + "<br /> Affiliate number in the group is incorrect!";
+            }
+
+            return result;
+        }
+
+        public static ResultInfo ValidateGroupName(string groupName)
+        {
+            var result = new ResultInfo();
+
+            if (string.IsNullOrEmpty(groupName))
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = "GroupName cannot be empty. Please check!";
+            }
+            if (groupName.Length > 100)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = "GroupName should shorter than 100 characters!";
             }
 
             return result;
@@ -290,7 +307,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult AssignPrivateGroup(CommissionGroupSetting commGroup, AffiliateBasicInfo affInfo)
         {
-            ModelState.Remove("commGroup.GroupName");
             if (ModelState.IsValid)
             {
                 var assignParam = new CreateUpdateCommissionGroupParam
