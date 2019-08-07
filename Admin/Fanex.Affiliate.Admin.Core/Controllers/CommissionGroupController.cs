@@ -187,6 +187,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return result;
         }
 
+        public static ResultInfo ValidateGroupId(ResultInfo result, int groupId)
+        {
+            if (groupId < Validation.MinId)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = result.Message + "<br /> GroupId not exists!";
+            }
+
+            return result;
+        }
+
         public static ResultInfo ValidateGroupName(string groupName)
         {
             var result = new ResultInfo();
@@ -257,7 +268,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult AssignGroup(AssignGroupParam assignParam, AffiliateBasicInfo affInfo)
         {
-            if (ModelState.IsValid)
+            var result = ValidateGroupId(new ResultInfo(), assignParam.GroupId);
+            if (ModelState.IsValid && result.IsSuccessful)
             {
                 assignParam.UserId = SessionService.UserId;
                 assignParam.Ip = Request.UserHostAddress;
@@ -274,13 +286,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
+            result.Code = Code.GeneralErrorCode;
+            result.Message = result.Message + string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
+
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = result
             };
         }
 

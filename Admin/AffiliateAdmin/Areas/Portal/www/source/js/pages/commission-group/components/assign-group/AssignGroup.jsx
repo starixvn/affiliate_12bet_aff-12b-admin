@@ -48,32 +48,30 @@ export default class AssignGroup extends Component {
                 return;
             }
 
-            if (confirm(messages.confirmChangeGroup.replace('{0}', affInfo.UserName))) {
-                this.setState({ isShowLoader: true });
-                const url = 'Portal/CommissionGroup/AssignGroup';
-                const params = {
-                    assignParam: {
-                        groupId: selectedGroup,
-                        affId: affInfo.AffId
-                    },
-                    affInfo
-                }
-                const response = await post(url, params);
-                if (response && response.status === 200) {
-                    const result = response.data;
-
-                    this.setState({
-                        isShowMessage: true,
-                        isSuccess: result.IsSuccessful,
-                        message: result.IsSuccessful ? messages.assignGroupSuccessfully : result.Message
-                    }, () => window.setTimeout(() => {
-                        this.hideMessage();
-                        result.IsSuccessful && parent.postMessage(popupEventNames.assignGroupSuccessfully, window.location.origin);
-                    }, 3000));
-                }
-
-                this.setState({ isShowLoader: false });
+            this.setState({ isShowLoader: true });
+            const url = 'Portal/CommissionGroup/AssignGroup';
+            const params = {
+                assignParam: {
+                    groupId: selectedGroup,
+                    affId: affInfo.AffId
+                },
+                affInfo
             }
+            const response = await post(url, params);
+            if (response && response.status === 200) {
+                const result = response.data;
+
+                this.setState({
+                    isShowMessage: true,
+                    isSuccess: result.IsSuccessful,
+                    message: result.IsSuccessful ? messages.assignGroupSuccessfully : result.Message
+                }, () => window.setTimeout(() => {
+                    this.hideMessage();
+                    result.IsSuccessful && parent.postMessage(popupEventNames.assignGroupSuccessfully, window.location.origin);
+                }, 3000));
+            }
+
+            this.setState({ isShowLoader: false });
         }
     }
 
