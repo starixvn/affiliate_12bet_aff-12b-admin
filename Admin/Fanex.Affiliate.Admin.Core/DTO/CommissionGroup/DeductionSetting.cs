@@ -15,10 +15,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
         [Required(ErrorMessage = "ProductIds is required!")]
         public string ProductIds { get; set; }
 
-        [Range(0, 1, ErrorMessage = "Deducted Percentage not exists!")]
+        [Range(0, 1, ErrorMessage = "Deducted Percentage is incorrect!")]
         public decimal DeductedPercentage { get; set; }
 
-        [Range(0, 1, ErrorMessage = "Next Deducted Percentage not exists!")]
+        [Range(0, 1, ErrorMessage = "Next Deducted Percentage is incorrect!")]
         public decimal NextDeductedPercentage { get; set; }
     }
 }

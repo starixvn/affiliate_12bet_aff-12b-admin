@@ -8,6 +8,7 @@ import { buildDefaultCommGroup, validateQmTurnover, validateTierSettingList, val
 import { messages } from '../../modules/constant';
 
 import DeductionSetting from '../shared/deduction';
+import ExchangeRevenueShareSetting from '../shared/exchange';
 import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
 import Loader from '../../../../components/Loader';
@@ -116,6 +117,7 @@ export class AssignPrivateGroup extends React.Component {
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>
+                <ExchangeRevenueShareSetting />
                 <DeductionSetting />
                 <QmTurnOverSetting />
                 <TierSetting />

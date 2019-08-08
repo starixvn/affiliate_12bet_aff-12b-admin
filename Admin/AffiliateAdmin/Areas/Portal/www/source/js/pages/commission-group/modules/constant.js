@@ -49,6 +49,8 @@ export const messages = _validationMessage;
 const _deductionNameList = {
     platformFee: 'Platform Fee',
     operationalFee: 'Operational Fee',
-    bankingFee: 'Banking Fee'
+    bankingFee: 'Banking Fee',
+    exchangeWinLossShare: 'Exchange Win Loss Share',
+    exchangeCommissionShare: 'Exchange Commission Share'
 }
 export const deductionNameList = _deductionNameList;

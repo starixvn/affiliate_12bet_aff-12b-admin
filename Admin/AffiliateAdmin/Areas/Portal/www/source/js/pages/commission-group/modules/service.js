@@ -8,7 +8,9 @@ const emptyCommGroup = {
     TierSettingList: [],
     PlatformFeeList: [],
     OperationalFee: {},
-    BankingFee: {}
+    BankingFee: {},
+    ExchangeWinLossShare: {},
+    ExchangeCommissionShare: {}
 }
 
 export const buildDefaultCommGroup = (deductionList, productList) => {
@@ -19,11 +21,15 @@ export const buildDefaultCommGroup = (deductionList, productList) => {
 
     const operationalFee = createDefaultOperationalSetting(deductionSetting.operationalFeeSetting);
     const bankingFee = createDefaultBankingSetting(deductionSetting.bankingFeeSetting);
+    const exchangeWinLossShare = createDefaultWinLossShareSetting(deductionSetting.exchangeWinLossShareSetting);
+    const exchangeCommissionShare = createDefaultCommissionShareSetting(deductionSetting.exchangeCommissionShareSetting);
 
     return Object.assign({}, emptyCommGroup, {
         PlatformFeeList: platformFeeList,
         OperationalFee: operationalFee,
-        BankingFee: bankingFee
+        BankingFee: bankingFee,
+        ExchangeWinLossShare: exchangeWinLossShare,
+        ExchangeCommissionShare: exchangeCommissionShare
     });
 }
 
@@ -32,11 +38,15 @@ export const getDeductionSetting = (deductionList) => {
     const platformFeeSetting = deductionObj[deductionNameList.platformFee];
     const operationalFeeSetting = deductionObj[deductionNameList.operationalFee];
     const bankingFeeSetting = deductionObj[deductionNameList.bankingFee];
+    const exchangeWinLossShareSetting = deductionObj[deductionNameList.exchangeWinLossShare];
+    const exchangeCommissionShareSetting = deductionObj[deductionNameList.exchangeCommissionShare];
 
     return {
         platformFeeSetting,
         operationalFeeSetting,
-        bankingFeeSetting
+        bankingFeeSetting,
+        exchangeWinLossShareSetting,
+        exchangeCommissionShareSetting
     }
 }
 
@@ -55,6 +65,23 @@ export const createDefaultBankingSetting = (bankingFeeSetting) => {
         DeductedPercentage: bankingFeeSetting.DeductedPercentage
     }
 }
+
+export const createDefaultWinLossShareSetting = (exchangeWinLossShareSetting) => {
+    return {
+        DeductionId: exchangeWinLossShareSetting.DeductionId,
+        ProductIds: 0,
+        DeductedPercentage: exchangeWinLossShareSetting.DeductedPercentage
+    }
+}
+
+export const createDefaultCommissionShareSetting = (exchangeCommissionShareSetting) => {
+    return {
+        DeductionId: exchangeCommissionShareSetting.DeductionId,
+        ProductIds: 0,
+        DeductedPercentage: exchangeCommissionShareSetting.DeductedPercentage
+    }
+}
+
 
 export const buildPlatformFeeList = ({ productList, deductionSetting, productIds, platformFeeList = [] }) => {
     const { platformFeeSetting } = deductionSetting;
