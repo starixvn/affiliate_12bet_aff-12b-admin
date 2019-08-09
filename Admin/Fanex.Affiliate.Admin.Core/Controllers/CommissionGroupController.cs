@@ -110,7 +110,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     TierSettingList = commGroup.TierSettingList,
                     PlatformFeeList = commGroup.PlatformFeeList,
                     OperationalFee = commGroup.OperationalFee,
-                    BankingFee = commGroup.BankingFee
+                    BankingFee = commGroup.BankingFee,
+                    ExchangeWinLossShare = commGroup.ExchangeWinLossShare,
+                    ExchangeCommissionShare = commGroup.ExchangeCommissionShare
                 };
 
                 return new JsonNetResult
@@ -155,7 +157,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     TierSettingList = commGroup.TierSettingList,
                     PlatformFeeList = commGroup.PlatformFeeList,
                     OperationalFee = commGroup.OperationalFee,
-                    BankingFee = commGroup.BankingFee
+                    BankingFee = commGroup.BankingFee,
+                    ExchangeWinLossShare = commGroup.ExchangeWinLossShare,
+                    ExchangeCommissionShare = commGroup.ExchangeCommissionShare
                 };
 
                 return new JsonNetResult
@@ -212,6 +216,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 result.Code = Code.GeneralErrorCode;
                 result.Message = CommGroupErrorMessage.InvalidGroupName;
+                    ExchangeWinLossShare = commGroup.ExchangeWinLossShare,
+                    ExchangeCommissionShare = commGroup.ExchangeCommissionShare,
             }
 
             return result;

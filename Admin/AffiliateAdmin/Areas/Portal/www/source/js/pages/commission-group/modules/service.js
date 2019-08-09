@@ -69,7 +69,7 @@ export const createDefaultBankingSetting = (bankingFeeSetting) => {
 export const createDefaultWinLossShareSetting = (exchangeWinLossShareSetting) => {
     return {
         DeductionId: exchangeWinLossShareSetting.DeductionId,
-        ProductIds: 0,
+        ProductIds: 19,
         DeductedPercentage: exchangeWinLossShareSetting.DeductedPercentage
     }
 }
@@ -77,7 +77,7 @@ export const createDefaultWinLossShareSetting = (exchangeWinLossShareSetting) =>
 export const createDefaultCommissionShareSetting = (exchangeCommissionShareSetting) => {
     return {
         DeductionId: exchangeCommissionShareSetting.DeductionId,
-        ProductIds: 0,
+        ProductIds: 19,
         DeductedPercentage: exchangeCommissionShareSetting.DeductedPercentage
     }
 }

@@ -46,7 +46,9 @@ namespace Fanex.Affiliate.Admin.Core.Services
                              TierSettingList = groupTierSetting,
                              PlatformFeeList = groupDeduction.Where(p => IsPlatformFee(p.ProductIds)),
                              OperationalFee = groupDeduction.FirstOrDefault(p => p.DeductionName == DeductionName.OperationalFee),
-                             BankingFee = groupDeduction.FirstOrDefault(p => p.DeductionName == DeductionName.BankingFee)
+                             BankingFee = groupDeduction.FirstOrDefault(p => p.DeductionName == DeductionName.BankingFee),
+                             ExchangeWinLossShare = groupDeduction.FirstOrDefault(p => p.DeductionName == DeductionName.ExchangeWinLossShare),
+                             ExchangeCommissionShare = groupDeduction.FirstOrDefault(p => p.DeductionName == DeductionName.ExchangeCommissionShare)
                          };
 
             return result;
@@ -69,7 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         private static bool IsPlatformFee(string productIdList)
         {
-            return productIdList != "0";
+            return productIdList != "0" && productIdList != "19";
         }
     }
 }
