@@ -100,8 +100,12 @@ export class Content extends PureComponent {
         const transType = dataItem.TransType;
         const clickHandler = this.transTypeClickHandler[transType];
 
+        const isPending = dataItem.Status.toLowerCase() === 'pending';
+
+        const status = isPending ? "Processing" : dataItem.Status;
+
         return (
-            <Row key={`dataRow-${index}`}>
+            <Row key={`dataRow-${index}`} className={status.toLowerCase()}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
                 <Cell title={transType} className="text-center">{transTypeList[transType] || transaction}</Cell>
@@ -112,10 +116,10 @@ export class Content extends PureComponent {
                         </Button>) :
                         amount}
                 </Cell>
-                <Cell title={dataItem.Status} className="text-center">{dataItem.Status.toLowerCase() === 'pending' ?
+                <Cell title={dataItem.Status} className="text-center">{isPending ?
                     <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
-                        Processing
-                        </Button> : dataItem.Status}</Cell>
+                        {status}
+                        </Button> : status}</Cell>
                 <Cell title={dataItem.Creator} className="text-center">{dataItem.Creator}</Cell>
                 <Cell title={dataItem.Description}>{dataItem.Description}</Cell>
             </Row>
@@ -143,7 +147,7 @@ export class Content extends PureComponent {
         const { gridData, shouldResetScrollPosition } = this.state;
 
         return gridData && (
-            <div className="data-content">
+            <div className="data-content payment-request">
                 <div className="table-responsive table-striped my-2">
                     <Table
                         minWidth={1000}

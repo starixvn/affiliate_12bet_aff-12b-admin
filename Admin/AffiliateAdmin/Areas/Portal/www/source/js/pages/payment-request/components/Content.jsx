@@ -92,7 +92,7 @@ export class Content extends PureComponent {
         const creator = isPending ? '--' : dataItem.Creator;
 
         return (
-            <Row key={`dataRow-${index}`}>
+            <Row key={`dataRow-${index}`} className={status.toLowerCase()}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.TransId} className="text-center">
                     <Button color="link" className="p-0" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
@@ -124,7 +124,7 @@ export class Content extends PureComponent {
         const { gridData, shouldResetScrollPosition } = this.state;
 
         return gridData && (
-            <div className="data-content">
+            <div className="data-content payment-request">
                 <div className="table-responsive table-striped my-2">
                     <Table
                         minWidth={1000}
