@@ -32,7 +32,9 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         string JsVersion { get; }
 
-        string SentryDsn { get; }
+        string Dsn { get; }
+
+        string FrontEndDsn { get; }
 
         string LoggingCategory { get; }
     }

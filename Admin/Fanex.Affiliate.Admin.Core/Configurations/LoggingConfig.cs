@@ -12,7 +12,8 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         {
             var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
             var env = appSetting.GetValue("Environment");
-            var dsn = appSetting.GetValue("SentryDsn");
+            var dsn = appSetting.GetValue("Dsn");
+            var frontEndDsn = appSetting.GetValue("FrontEndDsn");
             var category = appSetting.GetValue("LoggingCategory");
 
             if (!string.IsNullOrEmpty(dsn))
@@ -23,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
                         new SentryLogging(new SentryEngineOptions
                         {
                             Dsn = new Dsn(dsn),
-                            FrontEndDsn = new Dsn(dsn),
+                            FrontEndDsn = new Dsn(frontEndDsn),
                             Environment = env
                         })
                     });

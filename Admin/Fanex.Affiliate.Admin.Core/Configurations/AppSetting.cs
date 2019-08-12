@@ -34,7 +34,9 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
 
-        public string SentryDsn => GetValue("SentryDsn");
+        public string Dsn => GetValue("Dsn");
+
+        public string FrontEndDsn => GetValue("FrontEndDsn");
 
         public string LoggingCategory => GetValue("LoggingCategory");
     }
