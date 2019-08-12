@@ -171,6 +171,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return new JsonNetResult
             {
                 Data = new ResultInfo
+            var validateGroupName = ValidateGroupName(param.GroupName);
+            var result = new ResultInfo();
+
                 {
                     Code = Code.GeneralErrorCode,
                     Message = groupNameValidation.Message + platformFeeValidation.Message
