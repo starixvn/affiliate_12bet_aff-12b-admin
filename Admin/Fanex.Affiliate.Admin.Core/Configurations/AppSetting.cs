@@ -34,10 +34,10 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
 
-        public string Dsn => GetValue("Dsn");
-
-        public string FrontEndDsn => GetValue("FrontEndDsn");
+        public string SentryDsn => GetValue("Dsn");
 
         public string LoggingCategory => GetValue("LoggingCategory");
+
+        public string RabbitMQConnectionString => GetValue("RabbitMQConnectionString");
     }
 }

@@ -32,10 +32,10 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         string JsVersion { get; }
 
-        string Dsn { get; }
-
-        string FrontEndDsn { get; }
+        string SentryDsn { get; }
 
         string LoggingCategory { get; }
+
+        string RabbitMQConnectionString { get; }
     }
 }
