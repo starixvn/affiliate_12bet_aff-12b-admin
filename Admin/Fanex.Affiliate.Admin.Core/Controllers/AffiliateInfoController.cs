@@ -13,6 +13,7 @@ using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.Affiliate;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -37,14 +38,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(int groupId = 0)
+        public ActionResult Index(ParamFromHome param, int groupId = 0)
         {
-            var param = new GetGroupListParam { AffId = -1 };
+            var groupListParam = new GetGroupListParam { AffId = -1 };
             var viewModel = new AffiliateInfoViewModel
             {
-                CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(param),
+                CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
                 LanguageList = _languageService.GetLanguageList(),
-                SelectedGroupId = groupId
+                SelectedGroupId = groupId,
+                Param = param
             };
 
             return View("~/Areas/Portal/Views/AffiliateInfo/Index.cshtml", viewModel);

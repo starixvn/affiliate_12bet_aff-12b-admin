@@ -16,7 +16,7 @@ export class Filter extends Component {
         this.state = {
             selectedCommGroup: this.initialGroupId,
             selectedLanguage: '',
-            selectedStatus: '',
+            selectedStatus: props.param.Status || '',
             userName: '',
             email: '',
             affId: '',
@@ -26,7 +26,7 @@ export class Filter extends Component {
     }
 
     componentDidMount() {
-        if (this.initialGroupId !== 0) {
+        if (this.initialGroupId !== 0 || this.props.param.IsFromHome) {
             this.handleClickSearch();
         }
     }

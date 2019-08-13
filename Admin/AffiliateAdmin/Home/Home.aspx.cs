@@ -45,12 +45,12 @@ public partial class Home : IBCPage
         // links
         var rootRelativeUrl = ResolveUrl("~/");
         var affLink = rootRelativeUrl + "Portal/Affiliate";
-        TemplateHandler.Assign(ref content, "affpendinglink", affLink);
-        TemplateHandler.Assign(ref content, "paymentlink", rootRelativeUrl + "Portal/Affiliate?current=1&SearchBy=1&Status=Pending&FromDate=12/01/2009");
+        TemplateHandler.Assign(ref content, "affpendinglink", affLink + "?Status=Pending&IsFromHome=true");
+        TemplateHandler.Assign(ref content, "paymentlink", rootRelativeUrl + "Portal/Affiliate?current=1&SearchBy=2&Status=Pending&FromDate=12/01/2009&IsFromHome=true");
 
-        TemplateHandler.Assign(ref content, "affapprovedlink", affLink);
-        TemplateHandler.Assign(ref content, "affdisapprovedlink", affLink);
-        TemplateHandler.Assign(ref content, "affclosedlink", affLink);
+        TemplateHandler.Assign(ref content, "affapprovedlink", affLink + "?Status=Approved&IsFromHome=true");
+        TemplateHandler.Assign(ref content, "affdisapprovedlink", affLink + "?Status=Disapproved&IsFromHome=true");
+        TemplateHandler.Assign(ref content, "affclosedlink", affLink + "?Status=Closed&IsFromHome=true");
 
         var bannerLink = rootRelativeUrl + "Portal/MediaGallery";
         TemplateHandler.Assign(ref content, "bannerlink", bannerLink);

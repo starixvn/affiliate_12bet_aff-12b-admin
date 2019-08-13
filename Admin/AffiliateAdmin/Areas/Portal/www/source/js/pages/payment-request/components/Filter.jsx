@@ -22,12 +22,18 @@ export class Filter extends PureComponent {
         yesterday.setDate(yesterday.getDate() - 1);
 
         this.state = {
-            searchBy: param.SearchBy ? param.SearchBy : searchByUserName,
+            searchBy: param.SearchBy || searchByUserName,
             userName: null,
             status: param.Status,
-            fromDate: param.FromDate ? param.FromDate : `${yesterday.getMonth() + 1}/${yesterday.getDate()}/${yesterday.getFullYear()}`,
+            fromDate: param.FromDate || `${yesterday.getMonth() + 1}/${yesterday.getDate()}/${yesterday.getFullYear()}`,
             toDate: this.nowString,
             isGetAll: false
+        }
+    }
+
+    componentDidMount() {
+        if(this.props.param.IsFromHome) {
+            this.handleSearch();
         }
     }
 
