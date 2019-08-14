@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 
 import { status, resource } from '../modules/constants';
-
+import { htmlDecode } from '../../../../modules/htmlDecode';
 import Language from './general-info/Language';
 import ContactApp from './general-info/ContactApp';
 import ApprovedStatusInfo from './general-info/ApprovedStatusInfo';
@@ -28,11 +28,11 @@ export const GeneralInfo = (props) => {
             </Row>
             <Row>
                 <Col sm={5}>{resource.FirstName}</Col>
-                <Col sm={7} className='text-right'>{affiliateInfo.FirstName}</Col>
+                <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.FirstName)}</Col>
             </Row>
             <Row>
                 <Col sm={5}>{resource.LastName}</Col>
-                <Col sm={7} className='text-right'>{affiliateInfo.LastName}</Col>
+                <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.LastName)}</Col>
             </Row>
             <Row>
                 <Col sm={5}>{resource.Gender}</Col>

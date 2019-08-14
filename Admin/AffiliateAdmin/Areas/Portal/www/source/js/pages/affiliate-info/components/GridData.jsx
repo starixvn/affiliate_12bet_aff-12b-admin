@@ -13,6 +13,7 @@ import { format, formatDecimal } from '../../../modules/numberFormat';
 import { updateObjectInArray } from '../../../modules/dataHandler';
 import { resolveClientUrl } from '../../../modules/utils';
 import { convertSelectedColumnList } from '../modules/utils';
+import { htmlDecode } from '../../../modules/htmlDecode';
 
 export class GridData extends Component {
     constructor(props) {
@@ -143,8 +144,8 @@ export class GridData extends Component {
                 </Cell>
 
                 {selectedColumnList['Status'] && <Cell title={dataItem.Status}>{dataItem.Status}</Cell>}
-                {selectedColumnList['FirstName'] && <Cell title={dataItem.FirstName}>{dataItem.FirstName}</Cell>}
-                {selectedColumnList['LastName'] && <Cell title={dataItem.LastName}>{dataItem.LastName}</Cell>}
+                {selectedColumnList['FirstName'] && <Cell title={htmlDecode(dataItem.FirstName)}>{htmlDecode(dataItem.FirstName)}</Cell>}
+                {selectedColumnList['LastName'] && <Cell title={htmlDecode(dataItem.LastName)}>{htmlDecode(dataItem.LastName)}</Cell>}
                 {selectedColumnList['Language'] && <Cell title={language}>{language}</Cell>}
                 {selectedColumnList['Phone'] && <Cell title={dataItem.Phone}>{dataItem.Phone}</Cell>}
                 {selectedColumnList['Email'] && <Cell title={dataItem.Email}>{dataItem.Email}</Cell>}
@@ -154,7 +155,7 @@ export class GridData extends Component {
                 {selectedColumnList['CommissionGroup'] && <Cell title={typeof commissionGroup === 'string' ? commissionGroup : dataItem.CommissionGroup}>{commissionGroup}</Cell>}
                 {selectedColumnList['BalanceBf'] && <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>}
                 {selectedColumnList['Currency'] && <Cell title={dataItem.Currency}>{dataItem.Currency}</Cell>}
-                {selectedColumnList['PlayerUserName'] && <Cell title={dataItem.PlayerUserName}>{dataItem.PlayerUserName}</Cell>}
+                {selectedColumnList['PlayerUserName'] && <Cell title={htmlDecode(dataItem.PlayerUserName)}>{htmlDecode(dataItem.PlayerUserName)}</Cell>}
                 {selectedColumnList['PlayerCurrency'] && <Cell title={dataItem.PlayerCurrency}>{dataItem.PlayerCurrency}</Cell>}
                 {selectedColumnList['Member'] && <Cell className="text-right" title={formattedMemberValue}>{member}</Cell>}
                 <Cell className="text-center" title="Change Password">

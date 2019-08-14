@@ -5,6 +5,7 @@ import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 import { capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo, setMoreSiteUrlsList } from '../../actions';
+import { htmlDecode } from '../../../../../modules/htmlDecode';
 
 export class WebSite extends PureComponent {
     constructor(props) {
@@ -94,7 +95,7 @@ export class WebSite extends PureComponent {
                 <FormGroup row>
                     <Label for="noSiteDescription" sm={3} xl={2}>I do not have a website Please describe how you would like to promote 12Bet if you do not have the URL .</Label>
                     <Col sm={6} xl={7}>
-                        <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={userAccountInfo.NoSiteDescription} onChange={this.handleChange} />
+                        <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={htmlDecode(userAccountInfo.NoSiteDescription)} onChange={this.handleChange} />
                     </Col>
                 </FormGroup>
             </Form>
