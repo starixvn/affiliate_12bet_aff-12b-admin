@@ -1244,6 +1244,7 @@
     <Content Include="Areas\Portal\www\source\js\components\__test__\Loader.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\__test__\ReportTitle.test.js" />
     <Content Include="Areas\Portal\www\source\js\layouts\__test__\AppLayout.test.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\htmlHelper.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\__tests__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\GridData.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\utils.js" />

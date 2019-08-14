@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
-import { htmlDecode } from '../../../../modules/htmlDecode';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export const renderInputForm = (name, label, inputValue, isStatic, isRequired, changeHandler) => {
     return(

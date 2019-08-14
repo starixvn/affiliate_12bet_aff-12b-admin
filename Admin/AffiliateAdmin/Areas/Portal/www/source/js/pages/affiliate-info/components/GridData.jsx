@@ -13,7 +13,7 @@ import { format, formatDecimal } from '../../../modules/numberFormat';
 import { updateObjectInArray } from '../../../modules/dataHandler';
 import { resolveClientUrl } from '../../../modules/utils';
 import { convertSelectedColumnList } from '../modules/utils';
-import { htmlDecode } from '../../../modules/htmlDecode';
+import { htmlDecode } from '../../../modules/htmlHelper';
 
 export class GridData extends Component {
     constructor(props) {

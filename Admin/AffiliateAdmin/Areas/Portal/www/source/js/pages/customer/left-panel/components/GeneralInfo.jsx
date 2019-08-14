@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 
 import { status, resource } from '../modules/constants';
-import { htmlDecode } from '../../../../modules/htmlDecode';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 import Language from './general-info/Language';
 import ContactApp from './general-info/ContactApp';
 import ApprovedStatusInfo from './general-info/ApprovedStatusInfo';

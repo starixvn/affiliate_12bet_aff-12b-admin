@@ -5,7 +5,7 @@ import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 import { capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo, setMoreSiteUrlsList } from '../../actions';
-import { htmlDecode } from '../../../../../modules/htmlDecode';
+import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 export class WebSite extends PureComponent {
     constructor(props) {

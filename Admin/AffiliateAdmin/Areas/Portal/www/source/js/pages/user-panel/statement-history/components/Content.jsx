@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { setPagingOption, toggleLoaderUserPanel, fetchData, setTransactionId, redirectToDailyEarning } from '../actions';
-import { headerText, globalResource, transTypeList, transaction, MONTHLY_WINLOST, PAYMENT_REQUEST, selectedAllProduct, maxWidth } from '../modules/constants';
+import { headerText, globalResource, transTypeList, monthlyWinlost, MONTHLY_WINLOST, PAYMENT_REQUEST, TRANSACTION, selectedAllProduct, maxWidth } from '../modules/constants';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -77,21 +77,24 @@ export class Content extends PureComponent {
         return dataRows;
     }
 
+    _handleRedirectToDailyEarning = (dataItem) => {
+        const { affId } = this.props;
+        const dailyEarningParam = {
+            affId,
+            monthDate: dataItem.DateText,
+            productId: selectedAllProduct
+        }
+
+        return this.props.redirectToDailyEarning(dailyEarningParam);
+    }
+
     _getClickHandlerByTransType() {
         return {
             [PAYMENT_REQUEST]: (dataItem) => () => {
                 return this.handleSetTransactionId(dataItem.TransId);
             },
-            [MONTHLY_WINLOST]: (dataItem) => () => {
-                const { affId } = this.props;
-                const dailyEarningParam = {
-                    affId,
-                    monthDate: dataItem.DateText,
-                    productId: selectedAllProduct
-                }
-
-                return this.props.redirectToDailyEarning(dailyEarningParam);
-            }
+            [MONTHLY_WINLOST]: (dataItem) => () => this._handleRedirectToDailyEarning(dataItem),
+            [TRANSACTION]: (dataItem) => () => this._handleRedirectToDailyEarning(dataItem)
         }
     }
 
@@ -108,7 +111,7 @@ export class Content extends PureComponent {
             <Row key={`dataRow-${index}`} className={status.toLowerCase()}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
-                <Cell title={transType} className="text-center">{transTypeList[transType] || transaction}</Cell>
+                <Cell title={transType} className="text-center">{transTypeList[transType] || monthlyWinlost}</Cell>
                 <Cell title={amount} className="text-right">
                     {clickHandler ?
                         (<Button className="p-0" color="link" onClick={clickHandler(dataItem)}>
