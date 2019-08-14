@@ -9,6 +9,7 @@ import { resource } from '../../modules/constants';
 import { formatDecimalWithCurrencySymbol } from '../../../../../modules/numberFormat';
 import { getAffiliateInfo } from '../../actions';
 import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
+import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 export class CommissionPanel extends PureComponent {
     constructor(props) {
@@ -32,9 +33,9 @@ export class CommissionPanel extends PureComponent {
     }
 
     _renderCommGroup(affiliateInfo) {
-        return affiliateInfo.IsClosed ? (<span className="">{affiliateInfo.CommGroupName}</span>) :
+        return affiliateInfo.IsClosed ? (<span className="">{htmlDecode(affiliateInfo.CommGroupName)}</span>) :
             (<Button color="link" className="left-panel-btn-link align-baseline" onClick={() => this.toggleEditingCommissionPopup(true)}>
-                {affiliateInfo.CommGroupName}
+                {htmlDecode(affiliateInfo.CommGroupName)}
             </Button>)
     }
 

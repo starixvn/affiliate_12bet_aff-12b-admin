@@ -4,6 +4,7 @@ using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Logging;
 using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
+using Fanex.Logging.RabbitMQ;
 
 namespace Fanex.Affiliate.User.Site.App_Start
 {
@@ -13,21 +14,30 @@ namespace Fanex.Affiliate.User.Site.App_Start
         {
             var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
             var env = appSetting.GetValue("Environment");
-            var dsn = appSetting.GetValue("SentryDsn");
+            var backEndDsn = appSetting.GetValue("SentryBackEndDsn");
+            var frontEndDsn = appSetting.GetValue("SentryFrontEndDsn");
             var category = appSetting.GetValue("LoggingCategory");
+            var rabbitMQConnectionString = appSetting.GetValue("RabbitMQConnectionString");
+            var isRegisterSentry = string.Equals(appSetting.GetValue("IsRegisterSentry"), "true", System.StringComparison.CurrentCultureIgnoreCase);
 
-            if (!string.IsNullOrEmpty(dsn))
+            if (!string.IsNullOrEmpty(backEndDsn) && !string.IsNullOrEmpty(frontEndDsn) && !string.IsNullOrEmpty(rabbitMQConnectionString))
             {
                 LogManager.SetDefaultLogCategory(category)
-                    .Use(new List<ILogEngine>
-                    {
-                        new SentryLogging(new SentryEngineOptions
+                    .Use(
+                        isRegisterSentry ? new List <ILogEngine>
                         {
-                            Dsn = new Dsn(dsn),
-                            FrontEndDsn = new Dsn(dsn),
-                            Environment = env
-                        })
-                    });
+                            new RabbitMQLogging(rabbitMQConnectionString),
+                            new SentryLogging(new SentryEngineOptions
+                            {
+                                Dsn = new Dsn(backEndDsn),
+                                FrontEndDsn = new Dsn(frontEndDsn),
+                                Environment = env
+                            })
+                        } : new List<ILogEngine>
+                        {
+                            new RabbitMQLogging(rabbitMQConnectionString)
+                        }
+                    );
             }
         }
     }

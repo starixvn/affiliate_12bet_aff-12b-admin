@@ -7,6 +7,7 @@ import MonthPicker from '@9softstudio/react-monthpicker';
 import { resource, selectedAllProduct, shortedMonthNames, minMonthDate } from '../modules/constants';
 import { setParam, getProductList, exportExcel } from '../actions';
 import ReportExcel from '../modules/reportExcel';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class Filter extends PureComponent {
     constructor(props) {
@@ -122,7 +123,7 @@ export class Filter extends PureComponent {
                             <option value="0">{resource.All}</option>
                             {
                                 productList.map(p => {
-                                    return (<option value={p.ProductId}>{p.ProductName}</option>)
+                                    return (<option value={p.ProductId}>{htmlDecode(p.ProductName)}</option>)
                                 })
                             }
                         </Input>

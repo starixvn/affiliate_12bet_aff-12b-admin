@@ -6,6 +6,7 @@ import { Modal, ModalHeader, ModalBody, Alert, Button, Form, Row, Col, FormGroup
 import { resource, globalResource, statusList, errorList, pending } from '../modules/constants/paymentRequestUpdate';
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
 import { getPaymentRequestDetail, updatePaymentRequest } from '../actions/paymentRequestUpdate';
+import { htmlDecode } from '../../../modules/htmlHelper';
 
 const pendingStatus = pending.toLowerCase();
 const approvedStatus = statusList.Approved.toLowerCase();
@@ -108,15 +109,15 @@ export class PaymentRequestUpdateForm extends PureComponent {
                 </FormGroup>
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.EmailAddress}</Label>
-                    <Label sm={6}>{paymentRequestInfo.Email}</Label>
+                    <Label sm={6}>{htmlDecode(paymentRequestInfo.Email)}</Label>
                 </FormGroup>
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.FirstName}</Label>
-                    <Label sm={6}>{paymentRequestInfo.FirstName}</Label>
+                    <Label sm={6}>{htmlDecode(paymentRequestInfo.FirstName)}</Label>
                 </FormGroup>
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.LastName}</Label>
-                    <Label sm={6}>{paymentRequestInfo.LastName}</Label>
+                    <Label sm={6}>{htmlDecode(paymentRequestInfo.LastName)}</Label>
                 </FormGroup>
             </fieldset>
         );
@@ -131,7 +132,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
                 </FormGroup>
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.UpdatedBy}</Label>
-                    <Label sm={6}>{paymentRequestInfo.Creator}</Label>
+                    <Label sm={6}>{htmlDecode(paymentRequestInfo.Creator)}</Label>
                 </FormGroup>
             </React.Fragment>
         );
@@ -176,7 +177,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
                 </FormGroup>
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.UserName12Bet}</Label>
-                    <Label sm={6}><strong>{paymentRequestInfo.PlayerUsername}</strong></Label>
+                    <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PlayerUsername)}</strong></Label>
                 </FormGroup>
                 {
                     isPending ? this._renderOptionalStatus() : this._renderPaymentCompletionInfo(paymentRequestInfo)
@@ -197,7 +198,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
                         </legend>
                         <FormGroup>
                             <Label for="AdminDesc">{resource.VisibleAdmin}</Label>
-                            <Input type="textarea" name="AdminDesc" rows="6" disabled={!isPending} value={AdminDesc} onChange={this.handleChange} />
+                            <Input type="textarea" name="AdminDesc" rows="6" disabled={!isPending} value={htmlDecode(AdminDesc)} onChange={this.handleChange} />
                         </FormGroup>
                     </fieldset>
                 </Col>
@@ -208,7 +209,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
                         </legend>
                         <FormGroup>
                             <Label for="AffDesc">{resource.VisibleAffiliate}</Label>
-                            <Input type="textarea" name="AffDesc" rows="6" disabled={!isPending} value={AffDesc} onChange={this.handleChange} />
+                            <Input type="textarea" name="AffDesc" rows="6" disabled={!isPending} value={htmlDecode(AffDesc)} onChange={this.handleChange} />
                         </FormGroup>
                     </fieldset>
                 </Col>

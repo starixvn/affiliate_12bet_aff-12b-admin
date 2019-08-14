@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Alert, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { setShowPopup, getNoteList, insertNote, updateNote } from '../actions';
 
+import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resource, maxLength } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
@@ -124,7 +125,7 @@ export class InsertUpdateNoteForm extends PureComponent {
                                     <Label for="noteContent" sm={3} className="d-flex justify-content-center align-items-center required">Content</Label>
                                     <Col sm={9}>
                                         <Input type="textarea" className="input-required" name="noteContent" id="noteContent" rows="8"
-                                            value={this.state.noteContent} onChange={this.handleChange} invalid={isClickedSubmit && !validationResult.isValid} />
+                                            value={htmlDecode(this.state.noteContent)} onChange={this.handleChange} invalid={isClickedSubmit && !validationResult.isValid} />
                                 {validationResult.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: validationResult.message }} /></FormFeedback>}
                                     </Col>

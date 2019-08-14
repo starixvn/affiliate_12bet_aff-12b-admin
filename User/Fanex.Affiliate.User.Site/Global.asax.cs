@@ -19,6 +19,8 @@ namespace Fanex.Affiliate.User.Site
             var env = ConfigurationManager.AppSettings["Environment"];
             IoCConfig.Register();
             AreaRegistration.RegisterAllAreas();
+            LoggingConfig.RegisterSentry();
+
             if (env != "LOCAL")
             {
                 FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -35,7 +37,6 @@ namespace Fanex.Affiliate.User.Site
                 resourcePath: @"~\App_Data\SpConfig\SpName.xml",
                 enableWatching: true)
               .Run();
-            LoggingConfig.RegisterSentry();
         }
 
         [SuppressMessage("Sonar Code Smell", "S2325:Methods and properties should be static", Justification = "Reviewed.")]

@@ -50,7 +50,7 @@ export const GeneralInfo = (props) => {
             <Row>
                 <Col sm={5}>{resource.WebsiteUrl}</Col>
                 <Col sm={7} className='text-right text-truncate'>
-                    <a target='_blank' title={siteUrl} href={`http://anonym.to/?${siteUrl}`}>
+                    <a target='_blank' title={htmlDecode(siteUrl)} href={`http://anonym.to/?${htmlDecode(siteUrl)}`}>
                         {affiliateInfo.SiteUrl.replace('http://', '').replace('www.', '')}
                     </a>
                 </Col>

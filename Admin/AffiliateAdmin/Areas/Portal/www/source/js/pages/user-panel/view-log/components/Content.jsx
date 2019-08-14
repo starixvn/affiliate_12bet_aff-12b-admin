@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
+import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource, maxWidth } from '../modules/constants';
 import { setPagingOption, toggleLoaderUserPanel, setShowIdList, fetchData } from '../actions';
 
@@ -111,9 +112,9 @@ export class Content extends PureComponent {
                     </Button> : id}
                 </Cell>
                 <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
-                <Cell title={dataItem.UpdatedBy} className="text-center">{dataItem.UpdatedBy}</Cell>
-                <Cell title={dataItem.Action} className="text-center">{dataItem.Action}</Cell>
-                <Cell title={dataItem.Description} className="text-break">{dataItem.Description}</Cell>
+                <Cell title={dataItem.UpdatedBy} className="text-center">{htmlDecode(dataItem.UpdatedBy)}</Cell>
+                <Cell title={dataItem.Action} className="text-center">{htmlDecode(dataItem.Action)}</Cell>
+                <Cell title={htmlDecode(dataItem.Description)} className="text-break">{htmlDecode(dataItem.Description)}</Cell>
                 <Cell title={ipAddress} className="text-center">
                     <a target="_blank" href={url}>{ipAddress}</a>
                 </Cell>

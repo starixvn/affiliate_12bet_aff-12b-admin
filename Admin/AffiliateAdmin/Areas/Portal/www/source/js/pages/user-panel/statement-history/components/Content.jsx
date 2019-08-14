@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
+import { htmlDecode } from '../../../../modules/htmlHelper';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { setPagingOption, toggleLoaderUserPanel, fetchData, setTransactionId, redirectToDailyEarning } from '../actions';
 import { headerText, globalResource, transTypeList, monthlyWinlost, MONTHLY_WINLOST, PAYMENT_REQUEST, TRANSACTION, selectedAllProduct, maxWidth } from '../modules/constants';
@@ -123,8 +124,8 @@ export class Content extends PureComponent {
                     <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
                         {status}
                         </Button> : status}</Cell>
-                <Cell title={dataItem.Creator} className="text-center">{dataItem.Creator}</Cell>
-                <Cell title={dataItem.Description}>{dataItem.Description}</Cell>
+                <Cell title={htmlDecode(dataItem.Creator)} className="text-center">{htmlDecode(dataItem.Creator)}</Cell>
+                <Cell title={htmlDecode(dataItem.Description)}>{htmlDecode(dataItem.Description)}</Cell>
             </Row>
         )
     }

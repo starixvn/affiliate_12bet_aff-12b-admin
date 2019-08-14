@@ -5,6 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerTitle, maxWidth, globalResource } from '../modules/constants';
 import { toggleLoaderUserPanel, setPagingOption, fetchDetailData } from '../actions';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class Detail extends Component {
     constructor(props) {
@@ -71,7 +72,7 @@ export class Detail extends Component {
     _buildDataRow(dataItem, index) {
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell title={dataItem.WebsiteUrl}>{dataItem.WebsiteUrl}</Cell>
+                <Cell title={htmlDecode(dataItem.WebsiteUrl)}>{htmlDecode(dataItem.WebsiteUrl)}</Cell>
                 <Cell title={dataItem.TotalClick} className="text-right">{dataItem.TotalClick}</Cell>
                 <Cell title={dataItem.UniqueClick} className="text-right">{dataItem.UniqueClick}</Cell>
                 <Cell title={dataItem.Signups} className="text-right">{dataItem.Signups}</Cell>

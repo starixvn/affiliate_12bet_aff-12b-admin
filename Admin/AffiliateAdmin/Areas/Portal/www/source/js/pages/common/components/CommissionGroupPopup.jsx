@@ -9,12 +9,6 @@ export default class CommissionGroupPopup extends PureComponent {
         this.state = {
             isUsingPrivateGroup: false
         }
-
-        this.functionHandleEventList = {
-            [popupEventNames.updatePrivateGroupSuccessfully]: this.handleUpdatePrivateGroupSuccessfully,
-            [popupEventNames.assignGroupSuccessfully]: this.handleAssignGroupSuccessfully,
-            [popupEventNames.changeAssignToPrivateGroup]: this.handleChangeAssignToPrivateGroup,
-        }
     }
 
     componentDidMount() {
@@ -26,7 +20,17 @@ export default class CommissionGroupPopup extends PureComponent {
     }
 
     handleClosePopupEvent = (event) => {
-        this.functionHandleEventList[event.data]();
+        if(event.data === popupEventNames.updatePrivateGroupSuccessfully) {
+            this.handleUpdatePrivateGroupSuccessfully();
+        }
+
+        if(event.data === popupEventNames.assignGroupSuccessfully) {
+            this.handleAssignGroupSuccessfully();
+        }
+
+        if(event.data === popupEventNames.changeAssignToPrivateGroup) {
+            this.handleChangeAssignToPrivateGroup();
+        }
     }
 
     handleUpdatePrivateGroupSuccessfully = () => {

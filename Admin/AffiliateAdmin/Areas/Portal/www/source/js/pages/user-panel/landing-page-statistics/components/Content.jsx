@@ -6,6 +6,7 @@ import { Button } from 'reactstrap';
 
 import { headerTitle, globalResource, maxWidth } from '../modules/constants';
 import { setSelectedPage, toggleLoaderUserPanel, fetchData } from '../actions';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class Content extends Component {
     constructor(props) {
@@ -75,13 +76,13 @@ export class Content extends Component {
 
     _buildDataRow(dataItem, index) {
         const language = this.props.shortCodeLanguageList[dataItem.LanguageCode] || dataItem.LanguageCode;
-
+        const page = htmlDecode(dataItem.Page);
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell title={dataItem.SiteUrl}>
-                    {(dataItem.Page.toLowerCase() === "old url" || dataItem.Page.toLowerCase() === "none") ? dataItem.Page :
+                <Cell title={page}>
+                    {(page.toLowerCase() === "old url" || page.toLowerCase() === "none") ? page :
                         (<Button color="link" className="p-0" onClick={() => this.handleSelectedPage(dataItem.Page, dataItem.LanguageCode)}>
-                            {dataItem.Page}
+                            {page}
                         </Button>)}
                 </Cell>
                 <Cell title={language} className="text-right">{language}</Cell>

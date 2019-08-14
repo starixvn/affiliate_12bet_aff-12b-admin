@@ -6,6 +6,7 @@ import { Button } from 'reactstrap';
 
 import { headerText, globalResource, maxWidth } from '../modules/constants';
 import { setSelectedSiteUrl, toggleLoaderUserPanel, fetchData } from '../actions';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class Content extends Component {
     constructor(props) {
@@ -68,11 +69,12 @@ export class Content extends Component {
     }
 
     _buildDataRow(dataItem, index) {
+        const siteUrl = htmlDecode(dataItem.SiteUrl);
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell title={dataItem.SiteUrl}>
-                    {(dataItem.SiteUrl == "Old URL" || dataItem.SiteUrl == "none") ? dataItem.SiteUrl : (<Button color="link" className="p-0" onClick={() => this.props.setSelectedSiteUrl(dataItem.SiteUrl)}>
-                        {dataItem.SiteUrl}
+                <Cell title={siteUrl}>
+                    {(siteUrl == "Old URL" || siteUrl == "none") ? siteUrl : (<Button color="link" className="p-0" onClick={() => this.props.setSelectedSiteUrl(dataItem.SiteUrl)}>
+                        {siteUrl}
                     </Button>)}
                 </Cell>
                 <Cell title={dataItem.TotalClick} className="text-right">{dataItem.TotalClick}</Cell>

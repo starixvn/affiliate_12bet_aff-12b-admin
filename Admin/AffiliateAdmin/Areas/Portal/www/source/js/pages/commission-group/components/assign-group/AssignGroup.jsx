@@ -4,6 +4,7 @@ import { Col, FormGroup, Label, Button, Input, Alert } from 'reactstrap';
 import { messages } from '../../modules/constant';
 import Loader from '../../../../components/Loader';
 import { popupEventNames } from '../../../common/modules/constants/commissionGroup';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export default class AssignGroup extends Component {
     constructor(props) {
@@ -102,7 +103,7 @@ export default class AssignGroup extends Component {
                             <select name="SelectedGroup" className="form-control" onChange={this.handleChange} value={selectedGroup.toString()}>
                                 {
                                     commGroupList && commGroupList.map((item, index) => {
-                                        return (<option key={`commgroup-${index}`} value={item.Id}>{item.Name}</option>)
+                                        return (<option key={`commgroup-${index}`} value={item.Id}>{htmlDecode(item.Name)}</option>)
                                     })
                                 }
                             </select>

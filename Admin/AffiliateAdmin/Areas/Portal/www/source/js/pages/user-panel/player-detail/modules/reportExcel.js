@@ -1,4 +1,5 @@
 ﻿import Excel from '../../../../modules/excel';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 import {
     headerCellStyle,
     bodyCellStyle
@@ -87,7 +88,7 @@ export default class ReportExcel {
 
         return {
             t: Excel.getCellType(value),
-            v: value,
+            v: htmlDecode(value),
             s: columnConfig[sectionStyleName]
         }
     }

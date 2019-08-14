@@ -6,6 +6,7 @@ import MultipleSelect from '../../../components/multiple-select';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { statusList, sortByList, defaultSortBy, resource } from '../modules/constants';
 import { setReportTitle, setParam, setSelectedColumn } from '../actions';
+import { htmlDecode } from '../../../modules/htmlHelper';
 
 export class Filter extends Component {
     constructor(props) {
@@ -109,7 +110,7 @@ export class Filter extends Component {
                             <option key="commGroup-all" value={0}>{resource.AllCommGroups}</option>
                             {
                                 Object.keys(commGroupList).map(commGroup => {
-                                    return (<option key={'commGroup-' + commGroup} value={commGroup}>{commGroupList[commGroup]}</option>)
+                                    return (<option key={'commGroup-' + commGroup} value={commGroup}>{htmlDecode(commGroupList[commGroup])}</option>)
                                 })
                             }
                         </Input>
@@ -121,7 +122,7 @@ export class Filter extends Component {
                                 <option key="lang-all" value="">{resource.AllLanguages}</option>
                                 {
                                     Object.keys(languageList).map(lang => {
-                                        return (<option key={'lang-' + lang} value={lang}>{languageList[lang]}</option>)
+                                        return (<option key={'lang-' + lang} value={lang}>{htmlDecode(languageList[lang])}</option>)
                                     })
                                 }
                             </Input>

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button, Input } from 'reactstrap';
 
+import { htmlDecode } from '../../../modules/htmlHelper';
 import { headerText, globalResource } from '../modules/constants';
 import { setSelectedEmailId, setPagingOption, fetchData, setCheckedEmails, setShouldResetScrollPosition, setParam } from '../actions';
 import DeleteEmail from './DeleteEmail';
@@ -80,19 +81,19 @@ export class Content extends PureComponent {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <Input type="checkbox" checked={this.props.checkedEmails[dataItem.EmailId]}
+                    <input type="checkbox" checked={this.props.checkedEmails[dataItem.EmailId]}
                         onChange={(e) => this.onCheckItem(e.target.checked, dataItem.EmailId)} />
                 </Cell>
                 <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={dataItem.Sender}>{dataItem.Sender}</Cell>
-                <Cell title={dataItem.AffName}>{dataItem.AffName}</Cell>
-                <Cell title={dataItem.Subject}>
+                <Cell title={htmlDecode(dataItem.Sender)}>{htmlDecode(dataItem.Sender)}</Cell>
+                <Cell title={htmlDecode(dataItem.AffName)}>{htmlDecode(dataItem.AffName)}</Cell>
+                <Cell title={htmlDecode(dataItem.Subject)}>
                     <Button color="link" className="p-0" onClick={() => this.props.setSelectedEmailId(dataItem.EmailId)}>
-                        {dataItem.Subject}
+                        {htmlDecode(dataItem.Subject)}
                     </Button>
                 </Cell>
-                <Cell title={dataItem.Email}>
-                    <a target="_top" href={href}>{dataItem.Email}</a>
+                <Cell title={htmlDecode(dataItem.Email)}>
+                    <a target="_top" href={href}>{htmlDecode(dataItem.Email)}</a>
                 </Cell>
                 <Cell title={dataItem.SentDate} className="text-center">{dataItem.SentDateText}</Cell>
             </Row>

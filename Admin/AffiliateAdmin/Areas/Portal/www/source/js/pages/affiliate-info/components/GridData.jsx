@@ -146,9 +146,9 @@ export class GridData extends Component {
                 {selectedColumnList['Status'] && <Cell title={dataItem.Status}>{dataItem.Status}</Cell>}
                 {selectedColumnList['FirstName'] && <Cell title={htmlDecode(dataItem.FirstName)}>{htmlDecode(dataItem.FirstName)}</Cell>}
                 {selectedColumnList['LastName'] && <Cell title={htmlDecode(dataItem.LastName)}>{htmlDecode(dataItem.LastName)}</Cell>}
-                {selectedColumnList['Language'] && <Cell title={language}>{language}</Cell>}
-                {selectedColumnList['Phone'] && <Cell title={dataItem.Phone}>{dataItem.Phone}</Cell>}
-                {selectedColumnList['Email'] && <Cell title={dataItem.Email}>{dataItem.Email}</Cell>}
+                {selectedColumnList['Language'] && <Cell title={htmlDecode(language)}>{htmlDecode(language)}</Cell>}
+                {selectedColumnList['Phone'] && <Cell title={htmlDecode(dataItem.Phone)}>{htmlDecode(dataItem.Phone)}</Cell>}
+                {selectedColumnList['Email'] && <Cell title={htmlDecode(dataItem.Email)}>{htmlDecode(dataItem.Email)}</Cell>}
                 {selectedColumnList['RegistrationDateText'] && <Cell title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>}
                 {selectedColumnList['ApprovalDateText'] && <Cell title={dataItem.ApprovalDateText}>{dataItem.ApprovalDateText}</Cell>}
                 {selectedColumnList['CasinoDateText'] && <Cell title={dataItem.CasinoDateText}>{dataItem.CasinoDateText}</Cell>}

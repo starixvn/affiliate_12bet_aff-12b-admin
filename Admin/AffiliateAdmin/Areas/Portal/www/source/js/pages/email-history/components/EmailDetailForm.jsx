@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Alert, Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { fetchData, setSelectedEmailId, getEmailHistoryDetail, toggleLoader, deleteEmailHistory } from '../actions';
 
+import { htmlDecode } from '../../../modules/htmlHelper';
 import { resource, globalResource, messages } from '../modules/constants';
 
 export class EmailDetailForm extends PureComponent {
@@ -90,11 +91,11 @@ export class EmailDetailForm extends PureComponent {
                             <Form tag="form" className="mb-3" autocomplete="off">
                                 <FormGroup row>
                                     <Label className="py-1" sm={3}>{resource.Subject}</Label>
-                                    <Label className="py-1" sm={9}>{dataItem.Subject}</Label>
+                                    <Label className="py-1" sm={9}>{htmlDecode(dataItem.Subject)}</Label>
                                 </FormGroup>
                                 <FormGroup row>
                                     <Label className="py-1" sm={3}>{resource.From}</Label>
-                                    <Label className="py-1" sm={9}>{dataItem.Sender}<a target="_top" href={href}> ({dataItem.Email})</a></Label>
+                                    <Label className="py-1" sm={9}>{htmlDecode(dataItem.Sender)}<a target="_top" href={href}> ({dataItem.Email})</a></Label>
                                 </FormGroup>
                                 <FormGroup row>
                                     <Label className="py-1" sm={3}>{resource.SentDate}</Label>
@@ -103,7 +104,7 @@ export class EmailDetailForm extends PureComponent {
                                 <FormGroup row>
                                     <Label className="py-1" sm={3} className="d-flex align-items-center">{resource.Content}</Label>
                                     <Col sm={9}>
-                                        <Input type="textarea" rows="8" value={dataItem.Content} readonly="readonly" />
+                                        <Input type="textarea" rows="8" value={htmlDecode(dataItem.Content)} readonly="readonly" />
                                     </Col>
                                 </FormGroup>
                             </Form>

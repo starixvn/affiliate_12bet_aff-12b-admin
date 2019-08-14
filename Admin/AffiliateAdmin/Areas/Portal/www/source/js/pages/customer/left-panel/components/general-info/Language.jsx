@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 
 import { updateLanguage, getAffiliateInfo } from '../../actions';
 import { messages } from '../../modules/constants';
+import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 export class Language extends PureComponent {
     constructor(props) {
@@ -46,7 +47,7 @@ export class Language extends PureComponent {
                 onChange={this.handleChangeLanguage} onBlur={() => this.toggleChangingLanguage(false)} ref={this.languageDropdown}>
                 {
                     languageList.map(language => {
-                        return (<option value={language.LanguageCode} key={`affinfo-lang-${language.LanguageCode}`}>{language.LanguageName}</option>)
+                        return (<option value={language.LanguageCode} key={`affinfo-lang-${language.LanguageCode}`}>{htmlDecode(language.LanguageName)}</option>)
                     })
                 }
             </select>
@@ -59,7 +60,7 @@ export class Language extends PureComponent {
 
         return (
             <Button color="link" className="left-panel-btn-link" onClick={() => this.toggleChangingLanguage(true)}>
-                {languageItem && languageItem.LanguageName}
+                {languageItem && htmlDecode(languageItem.LanguageName)}
             </Button>
         )
     }

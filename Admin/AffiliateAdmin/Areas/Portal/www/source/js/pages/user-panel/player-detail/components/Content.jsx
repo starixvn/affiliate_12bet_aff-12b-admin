@@ -6,6 +6,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { headerText, globalResource, selectedAllProduct, maxWidth } from '../modules/constants';
 import { setPagingOption, toggleLoaderUserPanel, fetchData } from '../actions';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -87,8 +88,8 @@ export class Content extends PureComponent {
         return (
             <Row>
                 <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>
-                <Cell title={dataItem.UserName}>{dataItem.UserName}</Cell>
-                <Cell title={dataItem.IbcUserName}>{dataItem.IbcUserName}</Cell>
+                <Cell title={htmlDecode(dataItem.UserName)}>{htmlDecode(dataItem.UserName)}</Cell>
+                <Cell title={htmlDecode(dataItem.IbcUserName)}>{htmlDecode(dataItem.IbcUserName)}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateText}>{dataItem.RegisteredDateText}</Cell>
                 <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>
                 <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
+import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, maxWidth, globalResource } from '../modules/constants';
 import { setShowPopup, setNoteInfo, getNoteList, getNoteContentById, toggleLoaderUserPanel } from '../actions';
 
@@ -54,8 +55,8 @@ export class Content extends PureComponent {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={dataItem.NoteContent}>{dataItem.NoteContent}</Cell>
-                <Cell title={dataItem.CreatedBy}>{dataItem.CreatedBy}</Cell>
+                <Cell title={htmlDecode(dataItem.NoteContent)}>{htmlDecode(dataItem.NoteContent)}</Cell>
+                <Cell title={htmlDecode(dataItem.CreatedBy)}>{htmlDecode(dataItem.CreatedBy)}</Cell>
                 <Cell title={dataItem.LastModifyText} className="text-center">{dataItem.LastModifyText}</Cell>
                 <Cell title="Edit Note" className="text-center">
                     <Button className="p-0" color="link" onClick={() => this.handleShowPopup(dataItem.NoteId)}>

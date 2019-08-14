@@ -5,6 +5,7 @@ import { Form, FormGroup, Input, Label } from 'reactstrap';
 
 import { selectedAllProduct, globalResource } from '../modules/constants';
 import { setParam, getProductList } from '../actions';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class Filter extends PureComponent {
     constructor(props) {
@@ -52,7 +53,7 @@ export class Filter extends PureComponent {
                             <option value="0">{globalResource.All}</option>
                             {
                                 productList.map(p => {
-                                    return (<option key={`product-${p.ProductId}`} value={p.ProductId}>{p.ProductName}</option>)
+                                    return (<option key={`product-${p.ProductId}`} value={p.ProductId}>{htmlDecode(p.ProductName)}</option>)
                                 })
                             }
                         </Input>

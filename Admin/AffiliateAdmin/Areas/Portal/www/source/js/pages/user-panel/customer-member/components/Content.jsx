@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
+import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resource, maxWidth } from '../modules/constants';
 import { toggleLoaderUserPanel, setPagingOption, fetchData } from '../actions';
 
@@ -86,10 +87,10 @@ export class Content extends PureComponent {
         return (
             <Row>
                 <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>
-                <Cell title={dataItem.UserName}>{dataItem.UserName}</Cell>
-                <Cell title={dataItem.FirstName}>{dataItem.FirstName}</Cell>
-                <Cell title={dataItem.LastName}>{dataItem.LastName}</Cell>
-                {this.props.canViewMemberEmail && (<Cell title={dataItem.Email}>{dataItem.Email}</Cell>)}
+                <Cell title={htmlDecode(dataItem.UserName)}>{htmlDecode(dataItem.UserName)}</Cell>
+                <Cell title={htmlDecode(dataItem.FirstName)}>{htmlDecode(dataItem.FirstName)}</Cell>
+                <Cell title={htmlDecode(dataItem.LastName)}>{htmlDecode(dataItem.LastName)}</Cell>
+                {this.props.canViewMemberEmail && (<Cell title={htmlDecode(dataItem.Email)}>{htmlDecode(dataItem.Email)}</Cell>)}
                 <Cell className="text-center" title={dataItem.CurrencyName}>{dataItem.CurrencyName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateString}>{dataItem.RegisteredDateString}</Cell>
             </Row>
