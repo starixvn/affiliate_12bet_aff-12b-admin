@@ -24,6 +24,15 @@
                 > th {
                     padding: 1px 5px;
                 }
+                .month-picker {
+                    overflow: visible;
+                    text-align: unset;
+
+                    .position-relative.d-inline-block{
+                        margin-left: calc(50% - 77px);
+                        margin-right: 8px;
+                    }
+                }
                 .width-30 {
                     width: 30%;
                 }

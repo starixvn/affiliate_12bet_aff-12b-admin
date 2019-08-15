@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import MonthPicker from '@9softstudio/react-monthpicker';
-import { Table } from 'reactstrap';
+import { Table, Spinner } from 'reactstrap';
 import { rowTitle, resource } from '../modules/constants';
 import { shortedMonthNames, minMonthDate, selectedAllProduct } from '../../../../modules/constants';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
@@ -17,7 +17,8 @@ export class Content extends PureComponent {
         super(props);
 
         this.state = {
-            data: null
+            data: null,
+            isLoading: false
         }
     }
 
@@ -34,6 +35,7 @@ export class Content extends PureComponent {
     }
 
     fetchData = async (monthDate) => {
+        this.setState({ isLoading: true });
         this.props.setMonthDate(monthDate);
         const { affId } = this.props;
 
@@ -43,7 +45,7 @@ export class Content extends PureComponent {
         }
         const data = await this.props.fetchData(param);
 
-        this.setState({ data });
+        this.setState({ data, isLoading: false });
     }
 
     handleSelectMonth = (month, year) => {
@@ -60,8 +62,8 @@ export class Content extends PureComponent {
             <thead>
                 <tr>
                     <th>{rowTitle.Statistics}</th>
-                    <th className="width-30" style={{ overflow: 'visible' }}>
-                        <div className="position-relative">
+                    <th className="width-30 month-picker">
+                        <div className="position-relative d-inline-block">
                             <MonthPicker minMonth={minMonthDate.month} minYear={minMonthDate.year}
                                 selectedDropdownYear={monthDate.getFullYear()}
                                 selectedMonth={monthDate.getMonth() + 1}
@@ -69,6 +71,7 @@ export class Content extends PureComponent {
                                 onFormat={this.handleFormatMonthPicker}
                                 iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                         </div>
+                        <Spinner className={this.state.isLoading || 'd-none'} size="sm" color="secondary" />
                     </th>
                     <th className="width-30">{rowTitle.UpToNow}</th>
                 </tr>

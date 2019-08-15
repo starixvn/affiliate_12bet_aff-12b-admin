@@ -75,10 +75,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             if(ModelState.IsValid)
             {
                 AssignParam(param);
-                var test = _customerLeftPanelService.UpdateLanguage(param);
                 return new JsonNetResult
                 {
-                    Data = test
+                    Data = _customerLeftPanelService.UpdateLanguage(param)
                 };
             }
             return new JsonResult
@@ -98,11 +97,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             if (ModelState.IsValid)
             {
                 AssignParam(param);
-
-                var test = _customerLeftPanelService.UpdateAffType(param);
                 return new JsonNetResult
                 {
-                    Data = test
+                    Data = _customerLeftPanelService.UpdateAffType(param)
                 };
             }
             return new JsonResult
