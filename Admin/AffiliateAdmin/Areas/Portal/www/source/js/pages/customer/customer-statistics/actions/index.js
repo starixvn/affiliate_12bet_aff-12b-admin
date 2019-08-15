@@ -1,16 +1,9 @@
-﻿import { SET_MONTHDATE, TOGGLE_LOADER_CUSTOMER_STATISTICS } from './types';
+﻿import { SET_MONTHDATE } from './types';
 import { post } from '../../../../modules/ajaxRequest';
 
 export const setMonthDate = (data) => {
     return {
         type: SET_MONTHDATE,
-        data
-    }
-}
-
-export const toggleLoaderCustomerStatistics = (data) => {
-    return {
-        type: TOGGLE_LOADER_CUSTOMER_STATISTICS,
         data
     }
 }

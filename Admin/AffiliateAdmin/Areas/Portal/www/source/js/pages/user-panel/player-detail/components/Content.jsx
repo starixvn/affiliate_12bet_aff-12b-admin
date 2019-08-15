@@ -120,7 +120,6 @@ export class Content extends PureComponent {
         return data && data.gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1000}
                     maxWidth={maxWidth}
                     bodyHeight={300}
                     header={this._renderHeader()}

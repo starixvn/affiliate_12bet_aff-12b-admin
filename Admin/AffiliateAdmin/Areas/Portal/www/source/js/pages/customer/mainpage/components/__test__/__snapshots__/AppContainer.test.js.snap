@@ -20,15 +20,7 @@ exports[`customer - mainpage - components - AppContainer Should render correctly
           className="customer-statistics"
         >
           <Suspense
-            fallback={
-              <Spinner
-                color="secondary"
-                tag="div"
-                type="border"
-              >
-                Loading...
-              </Spinner>
-            }
+            fallback={null}
           >
             <lazy />
           </Suspense>

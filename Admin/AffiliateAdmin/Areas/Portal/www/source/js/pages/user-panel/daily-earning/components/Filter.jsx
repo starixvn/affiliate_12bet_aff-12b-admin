@@ -47,7 +47,7 @@ export class Filter extends PureComponent {
         return (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <Label className="mr-2">Search By</Label>
                         <Input type="select" name="Product" id="Product" value={selectedProduct} onChange={this.handleChangeProduct}>
                             <option value="0">{globalResource.All}</option>

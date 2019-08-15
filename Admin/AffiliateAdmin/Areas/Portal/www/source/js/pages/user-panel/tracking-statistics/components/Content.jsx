@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText } from '../modules/constants';
+import { headerText, maxWidth } from '../modules/constants';
 import { setSelectedMonth, fetchData, toggleLoaderUserPanel } from '../actions';
 
 export class Content extends PureComponent {
@@ -78,8 +78,7 @@ export class Content extends PureComponent {
         return gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    width={1020}
-                    autoWidth={false}
+                    maxWidth={maxWidth}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}

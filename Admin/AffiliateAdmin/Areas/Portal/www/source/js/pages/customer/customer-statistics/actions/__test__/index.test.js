@@ -11,8 +11,7 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setMonthDate', type: types.SET_MONTHDATE, data: '07/01/2019' },
-    { name: 'toggleLoaderCustomerStatistics', type: types.TOGGLE_LOADER_CUSTOMER_STATISTICS, data: true },
+    { name: 'setMonthDate', type: types.SET_MONTHDATE, data: '07/01/2019' }
 ]
 
 describe('customer statistics actions', () => {

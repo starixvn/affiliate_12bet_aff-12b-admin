@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { headerText, globalResource } from '../modules/constants';
+import { headerText, globalResource, maxWidth } from '../modules/constants';
 import { fetchDetailData, toggleLoaderUserPanel } from '../actions';
 
 export class Detail extends PureComponent {
@@ -84,9 +84,7 @@ export class Detail extends PureComponent {
         return this.props.selectedMonth && (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    width={1020}
-                    autoWidth={false}
-                    autoHeight={false}
+                    maxWidth={maxWidth}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}

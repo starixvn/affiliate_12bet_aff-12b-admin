@@ -1,6 +1,7 @@
 ﻿import { globalResource } from '../../../../modules/globalResource';
+import { maxWidth } from '../../../../modules/constants';
 
-export { globalResource }
+export { globalResource, maxWidth }
 
 export const headerText = {
     Index: '#',

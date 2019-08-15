@@ -9,13 +9,6 @@ export const monthDate = createReducer(null, {
     }
 })
 
-export const isShowLoader = createReducer(false, {
-    [TOGGLE_LOADER_CUSTOMER_STATISTICS](prevState, action) {
-        return action.data;
-    }
-})
-
 export default combineReducers({
-    monthDate,
-    isShowLoader
+    monthDate
 });

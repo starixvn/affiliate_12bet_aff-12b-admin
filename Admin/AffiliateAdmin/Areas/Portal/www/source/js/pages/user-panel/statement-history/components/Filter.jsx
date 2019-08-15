@@ -61,19 +61,19 @@ export class Filter extends PureComponent {
         return (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
                         <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <Label className="mr-sm-2">{globalResource.To}</Label>
                         <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeToDate} />
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <FormGroup check>
                             <Label check>
                                 {globalResource.GetAll}

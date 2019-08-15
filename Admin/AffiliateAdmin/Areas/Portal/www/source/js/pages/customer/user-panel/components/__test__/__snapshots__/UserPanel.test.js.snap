@@ -8,7 +8,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
     show={true}
     style={
       Object {
-        "left": 339,
+        "left": undefined,
         "top": 235,
       }
     }
@@ -170,15 +170,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
     class="user-panel-content-container"
   >
     <Suspense
-      fallback={
-        <Spinner
-          color="secondary"
-          tag="div"
-          type="border"
-        >
-          Loading...
-        </Spinner>
-      }
+      fallback={null}
     >
       <Connect(UserPanelItem) />
     </Suspense>
@@ -194,7 +186,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
     show={true}
     style={
       Object {
-        "left": 339,
+        "left": undefined,
         "top": 235,
       }
     }

@@ -109,8 +109,7 @@ exports[`customer member - components - Content render correctly 1`] = `
       </t>
     }
     isPaging={false}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     shouldResetScrollPosition={true}
     width={0}
   />
@@ -459,8 +458,7 @@ exports[`customer member - components - Content render correctly with have data 
       </t>
     }
     isPaging={false}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     shouldResetScrollPosition={true}
     width={0}
   />

@@ -10,7 +10,7 @@ import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/num
 
 import { redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers } from '../../user-panel/actions';
 import { deviceTypes, pcLaptop, mobile } from '../../user-panel/modules/constants';
-import { setMonthDate, fetchData, toggleLoaderCustomerStatistics } from '../actions';
+import { setMonthDate, fetchData } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -35,7 +35,6 @@ export class Content extends PureComponent {
 
     fetchData = async (monthDate) => {
         this.props.setMonthDate(monthDate);
-        this.props.toggleLoaderCustomerStatistics(true);
         const { affId } = this.props;
 
         const param = {
@@ -45,7 +44,6 @@ export class Content extends PureComponent {
         const data = await this.props.fetchData(param);
 
         this.setState({ data });
-        this.props.toggleLoaderCustomerStatistics(false);
     }
 
     handleSelectMonth = (month, year) => {
@@ -62,7 +60,7 @@ export class Content extends PureComponent {
             <thead>
                 <tr>
                     <th>{rowTitle.Statistics}</th>
-                    <th style={{ overflow: 'visible' }}>
+                    <th className="width-30" style={{ overflow: 'visible' }}>
                         <div className="position-relative">
                             <MonthPicker minMonth={minMonthDate.month} minYear={minMonthDate.year}
                                 selectedDropdownYear={monthDate.getFullYear()}
@@ -72,13 +70,14 @@ export class Content extends PureComponent {
                                 iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                         </div>
                     </th>
-                    <th>{rowTitle.UpToNow}</th>
+                    <th className="width-30">{rowTitle.UpToNow}</th>
                 </tr>
             </thead>
         )
-    }
+                                }
 
     _renderData(monthDate, data) {
+        data = data || {};
         const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
         const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
         const TurnoverByMonth = formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
@@ -151,8 +150,8 @@ export class Content extends PureComponent {
         const { data } = this.state;
         const monthDate = new Date(this.props.monthDate);
 
-        return data && (
-            <div className="my-2">
+        return (
+            <div className="my-2 table-responsive">
                 <Table id="statistic-data-table">
                     {this._renderHeader(monthDate)}
                     {this._renderData(monthDate, data)}
@@ -168,7 +167,7 @@ function mapStateToProps({ affCommonInfo, today, customerStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setMonthDate, toggleLoaderCustomerStatistics, redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers, fetchData }, dispatch);
+    return bindActionCreators({ setMonthDate, redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

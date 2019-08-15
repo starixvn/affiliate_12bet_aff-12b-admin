@@ -141,7 +141,6 @@ export class Content extends PureComponent {
             <div className="data-content">
                 <div className="table-responsive table-striped my-2">
                     <Table
-                        minWidth={1000}
                         maxWidth={maxWidth}
                         bodyHeight={300}
                         header={this._renderHeader()}

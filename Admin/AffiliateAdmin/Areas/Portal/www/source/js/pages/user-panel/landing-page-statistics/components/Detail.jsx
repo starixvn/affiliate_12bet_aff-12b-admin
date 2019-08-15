@@ -99,7 +99,6 @@ export class Detail extends Component {
         return this.props.selectedPage && gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1000}
                     maxWidth={maxWidth}
                     autoHeight={false}
                     bodyHeight={300}

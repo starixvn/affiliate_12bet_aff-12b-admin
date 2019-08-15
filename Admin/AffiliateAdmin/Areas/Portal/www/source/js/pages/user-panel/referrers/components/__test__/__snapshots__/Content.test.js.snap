@@ -251,8 +251,7 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
       </t>
     }
     isPaging={false}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     shouldResetScrollPosition={true}
     width={0}
   />
@@ -346,8 +345,7 @@ exports[`referrers - components - Content render correctly with have data is emp
       </t>
     }
     isPaging={false}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     shouldResetScrollPosition={true}
     width={0}
   />

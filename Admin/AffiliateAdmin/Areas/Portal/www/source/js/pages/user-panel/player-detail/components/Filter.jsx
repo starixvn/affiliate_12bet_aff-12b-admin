@@ -117,7 +117,7 @@ export class Filter extends PureComponent {
         return productList && (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <Label className="mr-2">{resource.Product}</Label>
                         <Input type="select" name="Product" id="Product" value={selectedProduct} onChange={this.handleChangeProduct}>
                             <option value="0">{resource.All}</option>
@@ -129,7 +129,7 @@ export class Filter extends PureComponent {
                         </Input>
                     </FormGroup>
 
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <Label className="mr-sm-2">{resource.Month}</Label>
                         <MonthPicker minMonth={minMonthDate.month} minYear={minMonthDate.year}
                             selectedDropdownYear={monthDate.getFullYear()}

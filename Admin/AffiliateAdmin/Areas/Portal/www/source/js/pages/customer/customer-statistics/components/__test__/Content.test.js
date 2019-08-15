@@ -54,9 +54,8 @@ describe('customer statistics - components - Content', () => {
 
     it('Should render correctly', () => {
         const setMonthDate = jest.fn();
-        const toggleLoaderCustomerStatistics = jest.fn();
         const fetchData = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { setMonthDate, toggleLoaderCustomerStatistics, fetchData });
+        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData });
         const wrapper = shallow(<Content {...props} />);
 
         expect(wrapper).toMatchSnapshot();
@@ -64,9 +63,8 @@ describe('customer statistics - components - Content', () => {
 
     it('Should render correctly with have data', () => {
         const setMonthDate = jest.fn();
-        const toggleLoaderCustomerStatistics = jest.fn();
         const fetchData = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { setMonthDate, toggleLoaderCustomerStatistics, fetchData });
+        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data });
 
@@ -75,9 +73,8 @@ describe('customer statistics - components - Content', () => {
 
     it('Should render correctly with have data has player active', () => {
         const setMonthDate = jest.fn();
-        const toggleLoaderCustomerStatistics = jest.fn();
         const fetchData = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { setMonthDate, toggleLoaderCustomerStatistics, fetchData });
+        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
@@ -86,9 +83,8 @@ describe('customer statistics - components - Content', () => {
 
     it('componentDidUpdate - should call fetchData if affId change', () => {
         const setMonthDate = jest.fn();
-        const toggleLoaderCustomerStatistics = jest.fn();
         const fetchData = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { setMonthDate, toggleLoaderCustomerStatistics, fetchData });
+        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData });
         const componentInstance = new Content(props);
         componentInstance.fetchData = jest.fn();
         componentInstance.componentDidUpdate({ affId: 123456 });
@@ -98,9 +94,8 @@ describe('customer statistics - components - Content', () => {
 
     it('handleSelectMonth - should call fetchData', async () => {
         const setMonthDate = jest.fn();
-        const toggleLoaderCustomerStatistics = jest.fn();
         const fetchData = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { setMonthDate, toggleLoaderCustomerStatistics, fetchData });
+        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data });
         await wrapper.find(MonthPicker).simulate('select', 6, 2019);
@@ -110,9 +105,8 @@ describe('customer statistics - components - Content', () => {
 
     it('handleFormatMonthPicker - should return correct', () => {
         const setMonthDate = jest.fn();
-        const toggleLoaderCustomerStatistics = jest.fn();
         const fetchData = jest.fn(() => data);
-        const props = Object.assign({}, defaultProps, { setMonthDate, toggleLoaderCustomerStatistics, fetchData });
+        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data });
         const result = wrapper.find(MonthPicker).props().onFormat(6, 2019);
@@ -120,12 +114,11 @@ describe('customer statistics - components - Content', () => {
         expect(result).toEqual('Jun-2019');
     });
 
-    it('fetchData - should call setMonthDate, toggleLoaderCustomerStatistics, fetchData and setState', async() => {
+    it('fetchData - should call setMonthDate, fetchData and setState', async() => {
         const setMonthDate = jest.fn();
-        const toggleLoaderCustomerStatistics = jest.fn();
         const fetchData = jest.fn(() => data);
 
-        const props = Object.assign({}, defaultProps, { setMonthDate, toggleLoaderCustomerStatistics, fetchData });
+        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState = jest.fn();
 
@@ -134,19 +127,13 @@ describe('customer statistics - components - Content', () => {
         expect(props.setMonthDate).toHaveBeenCalledWith("7/1/2019");
         expect(props.fetchData).toHaveBeenCalledWith({ monthDate: "7/1/2019", affId: 1271808 });
         expect(wrapper.setState).toHaveBeenCalledWith({ data });
-        expect(props.toggleLoaderCustomerStatistics).toHaveBeenCalledTimes(4);
-        expect(props.toggleLoaderCustomerStatistics.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoaderCustomerStatistics.mock.calls[1][0]).toBe(true);
-        expect(props.toggleLoaderCustomerStatistics.mock.calls[2][0]).toBe(false);
-        expect(props.toggleLoaderCustomerStatistics.mock.calls[3][0]).toBe(false);
     });
 
     it('redirectToPlayerDetail - should be called when click at player active link', () => {
         const setMonthDate = jest.fn();
-        const toggleLoaderCustomerStatistics = jest.fn();
         const fetchData = jest.fn(() => data);
         const redirectToPlayerDetail = jest.fn()
-        const props = Object.assign({}, defaultProps, { setMonthDate, toggleLoaderCustomerStatistics, fetchData, redirectToPlayerDetail });
+        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData, redirectToPlayerDetail });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
@@ -156,10 +143,9 @@ describe('customer statistics - components - Content', () => {
 
     it('redirectToTrackingStatistics - should be called when click at tracking statistics link', () => {
         const setMonthDate = jest.fn();
-        const toggleLoaderCustomerStatistics = jest.fn();
         const fetchData = jest.fn(() => data);
         const redirectToTrackingStatistics = jest.fn()
-        const props = Object.assign({}, defaultProps, { setMonthDate, toggleLoaderCustomerStatistics, fetchData, redirectToTrackingStatistics });
+        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData, redirectToTrackingStatistics });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
@@ -169,10 +155,9 @@ describe('customer statistics - components - Content', () => {
 
     it('redirectToReferrers - should be called when click at referrers laptop link', () => {
         const setMonthDate = jest.fn();
-        const toggleLoaderCustomerStatistics = jest.fn();
         const fetchData = jest.fn(() => data);
         const redirectToReferrers = jest.fn()
-        const props = Object.assign({}, defaultProps, { setMonthDate, toggleLoaderCustomerStatistics, fetchData, redirectToReferrers });
+        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData, redirectToReferrers });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
@@ -182,10 +167,9 @@ describe('customer statistics - components - Content', () => {
 
     it('redirectToReferrers - should be called when click at referrers mobile link', () => {
         const setMonthDate = jest.fn();
-        const toggleLoaderCustomerStatistics = jest.fn();
         const fetchData = jest.fn(() => data);
         const redirectToReferrers = jest.fn()
-        const props = Object.assign({}, defaultProps, { setMonthDate, toggleLoaderCustomerStatistics, fetchData, redirectToReferrers });
+        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData, redirectToReferrers });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 

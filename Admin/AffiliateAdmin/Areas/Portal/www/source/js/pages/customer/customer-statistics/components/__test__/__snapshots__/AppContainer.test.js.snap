@@ -2,14 +2,6 @@
 
 exports[`customer statistics - components - AppContainer Should render correctly 1`] = `
 <AppLayout>
-  <Loader
-    show={true}
-    style={
-      Object {
-        "left": 339,
-      }
-    }
-  />
   <Connect(Content) />
 </AppLayout>
 `;

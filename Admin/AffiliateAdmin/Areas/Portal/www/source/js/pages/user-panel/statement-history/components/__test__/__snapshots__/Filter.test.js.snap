@@ -9,7 +9,7 @@ exports[`customer member - components - Filter render correctly 1`] = `
     tag="div"
   >
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="mr-sm-2"
       tag="div"
     >
       <Label
@@ -42,7 +42,7 @@ exports[`customer member - components - Filter render correctly 1`] = `
       />
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="mr-sm-2"
       tag="div"
     >
       <Label
@@ -75,7 +75,7 @@ exports[`customer member - components - Filter render correctly 1`] = `
       />
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="mr-sm-2"
       tag="div"
     >
       <FormGroup

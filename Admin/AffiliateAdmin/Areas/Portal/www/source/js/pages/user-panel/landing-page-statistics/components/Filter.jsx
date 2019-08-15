@@ -86,9 +86,9 @@ export class Filter extends React.Component {
         const { selectedPage, languageCode, deviceType, fromDate, toDate, pageList } = this.state;
 
         return pageList && (
-            <div className="filter-container">
+            <div className="filter-container py-0">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2 my-2">
                         <Label for="selectedPage" className="mr-sm-2">{headerTitle.Page}</Label>
                         <Input type="select" name="selectedPage" id="selectedPage" value={selectedPage} onChange={this.handleChange}>
                             <option value="">{globalResource.All}</option>
@@ -99,7 +99,7 @@ export class Filter extends React.Component {
                             }
                         </Input>
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2 my-2">
                         <Label for="languageCode" className="mr-sm-2">{headerTitle.Language}</Label>
                         <Input type="select" name="languageCode" id="languageCode" value={languageCode} onChange={this.handleChange}>
                             <option value="">{globalResource.All}</option>
@@ -110,19 +110,19 @@ export class Filter extends React.Component {
                             }
                         </Input>
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2 my-2">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
                         <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2 my-2">
                         <Label className="mr-sm-2">{globalResource.To}</Label>
                         <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeToDate} />
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2 my-2">
                         <Label for="deviceType" className="mr-sm-2">{headerTitle.Device}</Label>
                         <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this.handleChange}>
                             {
@@ -132,7 +132,7 @@ export class Filter extends React.Component {
                             }
                         </Input>
                     </FormGroup>
-                    <Button outline color="primary" type="button" onClick={this.handleSearch}>
+                    <Button outline className="my-2" color="primary" type="button" onClick={this.handleSearch}>
                         <span className="oi oi-magnifying-glass"></span> {globalResource.Search}
                     </Button>
                 </Form>

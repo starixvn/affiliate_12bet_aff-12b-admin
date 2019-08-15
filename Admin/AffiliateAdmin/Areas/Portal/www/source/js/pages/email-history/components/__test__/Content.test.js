@@ -104,7 +104,7 @@ describe('email history - components - Content ', () => {
 
         const dataRow = shallow(<div>{instance._renderDataSection(gridData)}</div>);
 
-        dataRow.find('Input[type="checkbox"]').at(0).simulate('change', event);
+        dataRow.find('input[type="checkbox"]').at(0).simulate('change', event);
 
         expect(instance.onCheckItem).toHaveBeenCalledWith(true, 2255);
     });

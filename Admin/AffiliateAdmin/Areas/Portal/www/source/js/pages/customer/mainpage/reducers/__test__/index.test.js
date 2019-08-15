@@ -24,7 +24,6 @@ describe('customer - mainpage reducer', () => {
             selectedSiteUrl: null,
         },
         customerStatistics: {
-            isShowLoader: false,
             monthDate: null,
         },
         dailyEarning: {

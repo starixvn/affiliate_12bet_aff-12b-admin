@@ -72,7 +72,7 @@ export class Filter extends PureComponent {
         return (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
+                    <FormGroup className="mr-sm-3">
                         <Label className="mr-2">{globalResource.SearchBy}</Label>
                         <Input type="select" name="searchBy" value={searchBy} onChange={this.handleChange}>
                             {
@@ -83,12 +83,12 @@ export class Filter extends PureComponent {
                         </Input>
                     </FormGroup>
                     {searchBy != all && searchBy != unknownAffiliate && (
-                        <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
+                        <FormGroup className="mr-sm-3">
                             <Label className="mr-sm-2">{resource.SearchText}</Label>
                             <Input type="text" name="searchText" value={searchText} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />
                         </FormGroup>
                     )}
-                    <FormGroup className="mb-2 mx-sm-3 mb-sm-0">
+                    <FormGroup className="mx-sm-3">
                         <FormGroup check>
                             <Label check>
                                 {resource.AllDate}
@@ -96,13 +96,13 @@ export class Filter extends PureComponent {
                             </Label>
                         </FormGroup>
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
+                    <FormGroup className="mr-sm-3">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
                         <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
+                    <FormGroup className="mr-sm-3">
                         <Label className="mr-sm-2">{globalResource.To}</Label>
                         <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}

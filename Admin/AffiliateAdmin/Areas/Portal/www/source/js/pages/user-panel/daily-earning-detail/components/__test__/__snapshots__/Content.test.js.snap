@@ -120,8 +120,7 @@ exports[`daily earning detail - components - Content render correctly 1`] = `
       </t>
     }
     isPaging={false}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     shouldResetScrollPosition={true}
     width={0}
   />
@@ -489,8 +488,7 @@ exports[`daily earning detail - components - Content render correctly with have 
       </t>
     }
     isPaging={false}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     shouldResetScrollPosition={true}
     width={0}
   />

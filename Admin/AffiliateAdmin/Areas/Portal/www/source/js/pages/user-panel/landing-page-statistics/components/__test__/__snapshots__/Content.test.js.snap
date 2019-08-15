@@ -19,6 +19,7 @@ exports[`landing page statistics - components - Content render correctly with ha
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="casino"
           >
             <Button
               className="p-0"
@@ -92,6 +93,7 @@ exports[`landing page statistics - components - Content render correctly with ha
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="casino"
           >
             <Button
               className="p-0"
@@ -165,6 +167,7 @@ exports[`landing page statistics - components - Content render correctly with ha
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="sportsbook"
           >
             <Button
               className="p-0"
@@ -238,6 +241,7 @@ exports[`landing page statistics - components - Content render correctly with ha
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="Old URL"
           >
             Old URL
           </t>
@@ -372,8 +376,7 @@ exports[`landing page statistics - components - Content render correctly with ha
       </t>
     }
     isPaging={false}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     shouldResetScrollPosition={true}
     width={0}
   />
@@ -478,8 +481,7 @@ exports[`landing page statistics - components - Content render correctly with ha
       </t>
     }
     isPaging={false}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     shouldResetScrollPosition={true}
     width={0}
   />

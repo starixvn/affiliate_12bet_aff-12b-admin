@@ -1,13 +1,4 @@
 ﻿.customer-statistics {
-    .loader {
-        .backdrop {
-            height: 216px;
-        }
-
-        .spinner {
-            top: 76px;
-        }
-    }
     .rmp-main-container {
         .mp-form-input {
             height: calc(1.1rem + 2px);
@@ -17,7 +8,7 @@
     }
 
     #statistic-data-table {
-        width: 1000px;
+        max-width: 1000px;
         line-height: 1;
 
         > tbody {
@@ -32,6 +23,9 @@
             > tr {
                 > th {
                     padding: 1px 5px;
+                }
+                .width-30 {
+                    width: 30%;
                 }
             }
         }

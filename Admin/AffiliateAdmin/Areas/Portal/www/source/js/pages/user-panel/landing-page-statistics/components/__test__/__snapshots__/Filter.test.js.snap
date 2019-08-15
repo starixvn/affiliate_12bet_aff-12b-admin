@@ -2,14 +2,14 @@
 
 exports[`landing page statistics - components - Filter render correctly 1`] = `
 <div
-  className="filter-container"
+  className="filter-container py-0"
 >
   <Form
     inline={true}
     tag="div"
   >
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="mr-sm-2 my-2"
       tag="div"
     >
       <Label
@@ -61,7 +61,7 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
       </Input>
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="mr-sm-2 my-2"
       tag="div"
     >
       <Label
@@ -119,7 +119,7 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
       </Input>
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="mr-sm-2 my-2"
       tag="div"
     >
       <Label
@@ -152,7 +152,7 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
       />
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="mr-sm-2 my-2"
       tag="div"
     >
       <Label
@@ -185,7 +185,7 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
       />
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="mr-sm-2 my-2"
       tag="div"
     >
       <Label
@@ -226,6 +226,7 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
       </Input>
     </FormGroup>
     <Button
+      className="my-2"
       color="primary"
       onClick={[Function]}
       outline={true}

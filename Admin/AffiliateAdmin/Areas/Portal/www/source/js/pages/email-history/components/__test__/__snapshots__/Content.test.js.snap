@@ -26,7 +26,7 @@ exports[`email history - components - Content  render correctly with have gridDa
               sortable={false}
               sorting={false}
             >
-              <Input
+              <input
                 onChange={[Function]}
                 type="checkbox"
               />
@@ -114,7 +114,7 @@ exports[`email history - components - Content  render correctly with have gridDa
               sortable={false}
               sorting={false}
             >
-              <Input
+              <input
                 onChange={[Function]}
                 type="checkbox"
               />

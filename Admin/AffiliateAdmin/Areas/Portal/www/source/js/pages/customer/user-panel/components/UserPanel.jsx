@@ -28,7 +28,7 @@ export const UserPanel = (props) => {
             <div class="user-panel-content-container">
                 {
                     componentIndex !== -1 &&
-                    <Suspense fallback={<Spinner color="secondary" />}>
+                    <Suspense fallback={null}>
                         <UserPanelComponent />
                     </Suspense>
                 }

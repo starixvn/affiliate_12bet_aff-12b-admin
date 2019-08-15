@@ -1,10 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`statement history - components - Content render correctly 1`] = `""`;
-
-exports[`statement history - components - Content render correctly with have data 1`] = `
+exports[`statement history - components - Content render correctly 1`] = `
 <div
-  className="data-content"
+  className="data-content payment-request"
 >
   <div
     className="table-responsive table-striped my-2"
@@ -16,6 +14,143 @@ exports[`statement history - components - Content render correctly with have dat
       body={
         Array [
           <t>
+            <t
+              asc={true}
+              className="text-center"
+              colSpan="7"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              There is no information available
+            </t>
+          </t>,
+        ]
+      }
+      bodyHeight={300}
+      containerPadding={10}
+      header={
+        <t>
+          <t
+            asc={true}
+            colWidth={35}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="#"
+          >
+            #
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Date"
+          >
+            Date
+          </t>
+          <t
+            asc={true}
+            colWidth={110}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Type"
+          >
+            Type
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Amount"
+          >
+            Amount
+          </t>
+          <t
+            asc={true}
+            colWidth={95}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Status"
+          >
+            Status
+          </t>
+          <t
+            asc={true}
+            colWidth={110}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Creator"
+          >
+            Creator
+          </t>
+          <t
+            asc={true}
+            colWidth={450}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Description"
+          >
+            Description
+          </t>
+        </t>
+      }
+      isPaging={true}
+      maxWidth={742}
+      onPaging={[Function]}
+      pageOption={
+        Object {
+          "PageIndex": 1,
+          "PageList": Array [
+            10,
+            20,
+            50,
+            100,
+            500,
+          ],
+          "PageSize": 20,
+          "TotalItem": 0,
+        }
+      }
+      shouldResetScrollPosition={true}
+      width={0}
+    />
+  </div>
+</div>
+`;
+
+exports[`statement history - components - Content render correctly with have data 1`] = `
+<div
+  className="data-content payment-request"
+>
+  <div
+    className="table-responsive table-striped my-2"
+  >
+    <t
+      adjustedHeight={0}
+      autoHeight={true}
+      autoWidth={true}
+      body={
+        Array [
+          <t
+            className="b/f"
+          >
             <t
               asc={true}
               className="text-center"
@@ -100,7 +235,9 @@ exports[`statement history - components - Content render correctly with have dat
               Monthly Earning
             </t>
           </t>,
-          <t>
+          <t
+            className="processing"
+          >
             <t
               asc={true}
               className="text-center"
@@ -192,7 +329,9 @@ exports[`statement history - components - Content render correctly with have dat
               Admin Note
             </t>
           </t>,
-          <t>
+          <t
+            className="b/f"
+          >
             <t
               asc={true}
               className="text-center"
@@ -270,7 +409,9 @@ exports[`statement history - components - Content render correctly with have dat
               
             </t>
           </t>,
-          <t>
+          <t
+            className="approved"
+          >
             <t
               asc={true}
               className="text-center"
@@ -302,7 +443,7 @@ exports[`statement history - components - Content render correctly with have dat
               sorting={false}
               title={200}
             >
-              Transaction
+              Monthly Winlost
             </t>
             <t
               asc={true}
@@ -400,7 +541,7 @@ exports[`statement history - components - Content render correctly with have dat
           </t>
           <t
             asc={true}
-            colWidth={80}
+            colWidth={95}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -422,7 +563,7 @@ exports[`statement history - components - Content render correctly with have dat
           </t>
           <t
             asc={true}
-            colWidth={465}
+            colWidth={450}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -434,8 +575,7 @@ exports[`statement history - components - Content render correctly with have dat
         </t>
       }
       isPaging={true}
-      maxWidth={1010}
-      minWidth={1000}
+      maxWidth={742}
       onPaging={[Function]}
       pageOption={
         Object {
@@ -460,7 +600,7 @@ exports[`statement history - components - Content render correctly with have dat
 
 exports[`statement history - components - Content render correctly with have data is empty 1`] = `
 <div
-  className="data-content"
+  className="data-content payment-request"
 >
   <div
     className="table-responsive table-striped my-2"
@@ -536,7 +676,7 @@ exports[`statement history - components - Content render correctly with have dat
           </t>
           <t
             asc={true}
-            colWidth={80}
+            colWidth={95}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -558,7 +698,7 @@ exports[`statement history - components - Content render correctly with have dat
           </t>
           <t
             asc={true}
-            colWidth={465}
+            colWidth={450}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -570,8 +710,7 @@ exports[`statement history - components - Content render correctly with have dat
         </t>
       }
       isPaging={true}
-      maxWidth={1010}
-      minWidth={1000}
+      maxWidth={742}
       onPaging={[Function]}
       pageOption={
         Object {

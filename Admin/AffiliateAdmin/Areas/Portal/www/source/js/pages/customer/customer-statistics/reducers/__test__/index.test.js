@@ -9,8 +9,7 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 }
 
 const testCaseList = [
-    { name: 'monthDate', value: null, action: { type: types.SET_MONTHDATE, data: '6/2019' }, expectedResult: '6/2019' },
-    { name: 'isShowLoader', value: false, action: { type: types.TOGGLE_LOADER_CUSTOMER_STATISTICS, data: true }, expectedResult: true }
+    { name: 'monthDate', value: null, action: { type: types.SET_MONTHDATE, data: '6/2019' }, expectedResult: '6/2019' }
 ]
 
 describe('customer statistics reducers', () => {

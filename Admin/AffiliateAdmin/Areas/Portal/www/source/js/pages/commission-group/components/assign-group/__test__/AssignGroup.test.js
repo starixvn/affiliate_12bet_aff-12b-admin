@@ -139,7 +139,6 @@ describe('commission group - AssignGroup', () => {
         const wrapper = shallow(<AssignGroup />);
         wrapper.setState = jest.fn();
         window.alert = jest.fn();
-        global.confirm = jest.fn(() => true);
 
         await wrapper.find('Button').simulate('click');
 
@@ -147,21 +146,6 @@ describe('commission group - AssignGroup', () => {
         expect(wrapper.setState.mock.calls[0][0]).toEqual({ isShowLoader: true });
         expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowLoader: false });
         expect(window.alert).not.toHaveBeenCalled();
-    });
-
-    it('handleSave - not call setState when confirm cancel', async () => {
-        const expectedResponse = { data: { IsSuccessful: false, Message: "failed!" }, status: 500 };
-        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
-
-        window.initialState = Object.assign({}, window.initialState, { selectedGroup: 133 });
-        const wrapper = shallow(<AssignGroup />);
-        wrapper.setState = jest.fn();
-        window.alert = jest.fn();
-        global.confirm = jest.fn(() => false);
-
-        await wrapper.find('Button').simulate('click');
-
-        expect(wrapper.setState).not.toHaveBeenCalled();
     });
 
     it('Should render correctly', () => {

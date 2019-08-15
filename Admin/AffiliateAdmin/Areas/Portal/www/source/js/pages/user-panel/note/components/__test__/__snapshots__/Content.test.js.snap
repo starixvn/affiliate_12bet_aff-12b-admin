@@ -220,8 +220,7 @@ exports[`note - components - Content render correctly with have data 1`] = `
         </t>
       }
       isPaging={true}
-      maxWidth={1010}
-      minWidth={1000}
+      maxWidth={742}
       onPaging={[Function]}
       pageOption={
         Object {
@@ -347,8 +346,7 @@ exports[`note - components - Content render correctly with have data is empty 1`
         </t>
       }
       isPaging={true}
-      maxWidth={1010}
-      minWidth={1000}
+      maxWidth={742}
       onPaging={[Function]}
       pageOption={
         Object {

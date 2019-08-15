@@ -198,7 +198,7 @@ describe('affiliate info - Report Excel ', () => {
         const result = instance._buildDataRow(item, MAIN_SECTION_STYLE, columnConfig, 0);
 
         expect(Excel.getCellType).toHaveBeenCalledTimes(1);
-        expect(result).toEqual({ s: { alignment: { horizontal: "right", vertical: "center" }}, t: undefined, v: 1 });
+        expect(result).toEqual({ s: { alignment: { horizontal: "right", vertical: "center" }}, t: undefined, v: '1' });
     });
 
     it('_buildDataRow - should call Excel.getCellType with field BalanceBF', () => {

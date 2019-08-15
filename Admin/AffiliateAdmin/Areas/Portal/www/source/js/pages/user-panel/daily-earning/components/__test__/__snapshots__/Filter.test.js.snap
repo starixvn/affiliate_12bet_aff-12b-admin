@@ -9,7 +9,7 @@ exports[`daily earning - components - Filter render correctly 1`] = `
     tag="div"
   >
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="mr-sm-2"
       tag="div"
     >
       <Label
@@ -54,7 +54,7 @@ exports[`daily earning - components - Filter render correctly with has productLi
     tag="div"
   >
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="mr-sm-2"
       tag="div"
     >
       <Label

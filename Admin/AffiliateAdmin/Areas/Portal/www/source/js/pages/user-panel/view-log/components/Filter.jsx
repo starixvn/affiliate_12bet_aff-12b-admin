@@ -52,7 +52,7 @@ export class Filter extends React.Component {
         return (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <Label for="logType" className="mr-sm-2">{headerText.Type}</Label>
                         <Input type="select" name="logType" id="logType" value={logType} onChange={this.handleChange}>
                             <option value="0">{globalResource.All}</option>
@@ -63,13 +63,13 @@ export class Filter extends React.Component {
                             }
                         </Input>
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
                         <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <Label className="mr-sm-2">{globalResource.To}</Label>
                         <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}

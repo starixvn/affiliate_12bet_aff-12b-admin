@@ -28,7 +28,7 @@ export const AppContainer = (props) => {
                                 <div className="customer-statistics">
                                     {
                                         !isPending &&
-                                        <Suspense fallback={<Spinner color="secondary" />}>
+                                        <Suspense fallback={null}>
                                             <CustomerStatistics />
                                         </Suspense>
                                     }

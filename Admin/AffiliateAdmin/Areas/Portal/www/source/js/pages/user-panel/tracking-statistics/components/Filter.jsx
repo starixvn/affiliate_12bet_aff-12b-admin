@@ -57,7 +57,7 @@ export class Filter extends PureComponent {
         return trackingCodeList && (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <Label className="mr-2">{resource.TrackingCode}</Label>
                         <Input type="select" name="selectedTrackingCode" value={selectedTrackingCode} onChange={this.handleChange}>
                             <option value="">{resource.All}</option>

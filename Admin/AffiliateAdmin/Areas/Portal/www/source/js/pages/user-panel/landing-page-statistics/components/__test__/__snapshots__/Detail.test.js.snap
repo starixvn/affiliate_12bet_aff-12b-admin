@@ -188,8 +188,7 @@ exports[`landing page statistics - components - Detail render correctly with hav
       </t>
     }
     isPaging={true}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     onPaging={[Function]}
     pageOption={
       Object {
@@ -298,8 +297,7 @@ exports[`landing page statistics - components - Detail render correctly with hav
       </t>
     }
     isPaging={true}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     onPaging={[Function]}
     pageOption={
       Object {

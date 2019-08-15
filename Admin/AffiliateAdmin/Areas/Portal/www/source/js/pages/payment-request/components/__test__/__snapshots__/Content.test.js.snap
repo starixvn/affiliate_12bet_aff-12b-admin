@@ -4,7 +4,7 @@ exports[`payment request - components - Content  render correctly 1`] = `""`;
 
 exports[`payment request - components - Content  render correctly with have gridData 1`] = `
 <div
-  className="data-content"
+  className="data-content payment-request"
 >
   <div
     className="table-responsive table-striped my-2"
@@ -15,7 +15,9 @@ exports[`payment request - components - Content  render correctly with have grid
       autoWidth={true}
       body={
         Array [
-          <t>
+          <t
+            className="approved"
+          >
             <t
               asc={true}
               className="text-center"
@@ -112,7 +114,9 @@ exports[`payment request - components - Content  render correctly with have grid
               AAwalter
             </t>
           </t>,
-          <t>
+          <t
+            className="processing"
+          >
             <t
               asc={true}
               className="text-center"
@@ -332,7 +336,7 @@ exports[`payment request - components - Content  render correctly with have grid
 
 exports[`payment request - components - Content  render correctly with have gridData is empty 1`] = `
 <div
-  className="data-content"
+  className="data-content payment-request"
 >
   <div
     className="table-responsive table-striped my-2"

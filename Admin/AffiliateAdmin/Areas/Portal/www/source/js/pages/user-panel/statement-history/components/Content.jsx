@@ -49,9 +49,9 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={100} title={headerText.Date}>{headerText.Date}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Type}>{headerText.Type}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Amount}>{headerText.Amount}</Cell>
-                <Cell header={true} colWidth={80} title={headerText.Status}>{headerText.Status}</Cell>
+                <Cell header={true} colWidth={95} title={headerText.Status}>{headerText.Status}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Creator}>{headerText.Creator}</Cell>
-                <Cell header={true} colWidth={465} title={headerText.Description}>{headerText.Description}</Cell>
+                <Cell header={true} colWidth={450} title={headerText.Description}>{headerText.Description}</Cell>
             </Row>
         );
     }
@@ -150,11 +150,10 @@ export class Content extends PureComponent {
     render() {
         const { gridData, shouldResetScrollPosition } = this.state;
 
-        return gridData && (
+        return (
             <div className="data-content payment-request">
                 <div className="table-responsive table-striped my-2">
                     <Table
-                        minWidth={1000}
                         maxWidth={maxWidth}
                         bodyHeight={300}
                         header={this._renderHeader()}

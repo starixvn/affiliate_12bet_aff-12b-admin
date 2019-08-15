@@ -216,8 +216,7 @@ exports[`customer member - components - Content render correctly with have data 
       </t>
     }
     isPaging={true}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     onPaging={[Function]}
     pageOption={
       Object {
@@ -484,8 +483,7 @@ exports[`customer member - components - Content render correctly with have data 
       </t>
     }
     isPaging={true}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     onPaging={[Function]}
     pageOption={
       Object {
@@ -604,8 +602,7 @@ exports[`customer member - components - Content render correctly with have data 
       </t>
     }
     isPaging={true}
-    maxWidth={1010}
-    minWidth={1000}
+    maxWidth={742}
     onPaging={[Function]}
     pageOption={
       Object {

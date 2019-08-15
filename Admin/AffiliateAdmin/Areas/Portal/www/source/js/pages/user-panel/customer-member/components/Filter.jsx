@@ -50,9 +50,9 @@ export class Filter extends React.Component {
         const { memberType, fromDate, toDate, isGetAll } = this.state;
 
         return (
-            <div className="filter-container">
+            <div className="filter-container py-0">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <Label for="memberType" className="mr-sm-2">{resource.Member}</Label>
                         <Input type="select" name="memberType" id="memberType" value={memberType} onChange={this.handleChangeInput}>
                             <option key="memberType-0" value="0">Select</option>
@@ -63,19 +63,19 @@ export class Filter extends React.Component {
                             }
                         </Input>
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <Label className="mr-sm-2">{resource.From}</Label>
                         <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <Label className="mr-sm-2">{resource.To}</Label>
                         <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeToDate} />
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <FormGroup check>
                             <Label check>
                                 {resource.GetAll}
@@ -83,7 +83,7 @@ export class Filter extends React.Component {
                             </Label>
                         </FormGroup>
                     </FormGroup>
-                    <Button outline color="primary" type="button" onClick={this.handleSearch}>
+                    <Button outline color="primary" type="button" className="my-2" onClick={this.handleSearch}>
                         <span className="oi oi-magnifying-glass"></span> {resource.Search}
                     </Button>
                 </Form>

@@ -9,7 +9,7 @@ exports[`payment request - components - Content  render correctly with SearchBy 
     tag="div"
   >
     <FormGroup
-      className="mb-2 mr-sm-3 mb-sm-0"
+      className="mr-sm-3"
       tag="div"
     >
       <Label
@@ -48,7 +48,7 @@ exports[`payment request - components - Content  render correctly with SearchBy 
       </Input>
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-3 mb-sm-0"
+      className="mr-sm-3"
       tag="div"
     >
       <Label
@@ -106,7 +106,7 @@ exports[`payment request - components - Content  render correctly with SearchBy 
       </Input>
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-3 mb-sm-0"
+      className="mr-sm-3"
       tag="div"
     >
       <Label
@@ -139,7 +139,7 @@ exports[`payment request - components - Content  render correctly with SearchBy 
       />
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-3 mb-sm-0"
+      className="mr-sm-3"
       tag="div"
     >
       <Label
@@ -172,7 +172,7 @@ exports[`payment request - components - Content  render correctly with SearchBy 
       />
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-3 mb-sm-0"
+      className="mr-sm-3"
       tag="div"
     >
       <FormGroup
@@ -229,7 +229,7 @@ exports[`payment request - components - Content  render correctly with SearchBy 
     tag="div"
   >
     <FormGroup
-      className="mb-2 mr-sm-3 mb-sm-0"
+      className="mr-sm-3"
       tag="div"
     >
       <Label
@@ -268,7 +268,7 @@ exports[`payment request - components - Content  render correctly with SearchBy 
       </Input>
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-3 mb-sm-0"
+      className="mr-sm-3"
       tag="div"
     >
       <Label

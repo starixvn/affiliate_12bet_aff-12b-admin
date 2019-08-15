@@ -17,13 +17,9 @@ export const money = {
 
 export const selectedAllProduct = 0;
 
-const maxRightPanelWidth = window.innerWidth - 282;
-const customerStatisticWidth = 1010;
-
-export const maxWidth = customerStatisticWidth > maxRightPanelWidth ? customerStatisticWidth : maxRightPanelWidth;
+export const maxWidth = window.innerWidth - 282;
 
 const maxUserPanelHeight = window.innerHeight - 234;
-export const spinnerLoaderWidth = (maxRightPanelWidth / 2) - 32
 export const spinnerLoaderUserPanelHeight = (maxUserPanelHeight / 2) - 32
 
 export const minDate = new Date(2009, 11, 1);

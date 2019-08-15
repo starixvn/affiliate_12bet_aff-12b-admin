@@ -247,7 +247,7 @@ exports[`payment request - components - Content  render correctly with have data
                 readonly="readonly"
                 rows="8"
                 type="textarea"
-                value={null}
+                value=""
               />
             </Col>
           </FormGroup>
@@ -520,7 +520,7 @@ exports[`payment request - components - Content  render correctly with have data
                 readonly="readonly"
                 rows="8"
                 type="textarea"
-                value={null}
+                value=""
               />
             </Col>
           </FormGroup>
