@@ -104,12 +104,12 @@ export class Content extends PureComponent {
         const transType = dataItem.TransType;
         const clickHandler = this.transTypeClickHandler[transType];
 
-        const isPending = dataItem.Status.toLowerCase() === 'pending';
+        const isPending = dataItem.Status && dataItem.Status.toLowerCase() === 'pending';
 
         const status = isPending ? "Processing" : dataItem.Status;
 
         return (
-            <Row key={`dataRow-${index}`} className={status.toLowerCase()}>
+            <Row key={`dataRow-${index}`} className={status && htmlDecode(status).toLowerCase()}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
                 <Cell title={transType} className="text-center">{transTypeList[transType] || monthlyWinlost}</Cell>
@@ -120,10 +120,10 @@ export class Content extends PureComponent {
                         </Button>) :
                         amount}
                 </Cell>
-                <Cell title={dataItem.Status} className="text-center">{isPending ?
+                <Cell title={htmlDecode(dataItem.Status)} className="text-center">{isPending ?
                     <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
-                        {status}
-                        </Button> : status}</Cell>
+                        {htmlDecode(status)}
+                        </Button> : htmlDecode(status)}</Cell>
                 <Cell title={htmlDecode(dataItem.Creator)} className="text-center">{htmlDecode(dataItem.Creator)}</Cell>
                 <Cell title={htmlDecode(dataItem.Description)}>{htmlDecode(dataItem.Description)}</Cell>
             </Row>

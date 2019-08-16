@@ -91,7 +91,7 @@ export class Content extends PureComponent {
                 <Cell title={htmlDecode(dataItem.FirstName)}>{htmlDecode(dataItem.FirstName)}</Cell>
                 <Cell title={htmlDecode(dataItem.LastName)}>{htmlDecode(dataItem.LastName)}</Cell>
                 {this.props.canViewMemberEmail && (<Cell title={htmlDecode(dataItem.Email)}>{htmlDecode(dataItem.Email)}</Cell>)}
-                <Cell className="text-center" title={dataItem.CurrencyName}>{dataItem.CurrencyName}</Cell>
+                <Cell className="text-center" title={htmlDecode(dataItem.CurrencyName)}>{htmlDecode(dataItem.CurrencyName)}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateString}>{dataItem.RegisteredDateString}</Cell>
             </Row>
         )

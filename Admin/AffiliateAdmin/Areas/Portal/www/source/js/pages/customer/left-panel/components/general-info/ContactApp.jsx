@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
+import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 export const ContactApp = (props) => {
     const { affiliateInfo } = props;
-    const contactAppList = affiliateInfo && JSON.parse(affiliateInfo.ContactApps);
+    const contactAppList = affiliateInfo && JSON.parse(htmlDecode(affiliateInfo.ContactApps));
 
     return contactAppList && (
         <React.Fragment>

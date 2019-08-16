@@ -71,7 +71,7 @@ export class Content extends PureComponent {
                                 onFormat={this.handleFormatMonthPicker}
                                 iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                         </div>
-                        <Spinner className={this.state.isLoading || 'd-none'} size="sm" color="secondary" />
+                        <Spinner className={this.state.isLoading ? "" : "d-none"} size="sm" color="secondary" />
                     </th>
                     <th className="width-30">{rowTitle.UpToNow}</th>
                 </tr>

@@ -74,10 +74,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if(ModelState.IsValid)
             {
-                AssignParam(param);
+                var updateLanguageParam = new UpdateLanguageParam
+                {
+                    AffId = param.AffId,
+                    UserId = _sessionService.UserId,
+                    Ip = Request.UserHostAddress,
+                    PreferredLanguage = Server.HtmlEncode(param.PreferredLanguage)
+                };
+
                 return new JsonNetResult
                 {
-                    Data = _customerLeftPanelService.UpdateLanguage(param)
+                    Data = _customerLeftPanelService.UpdateLanguage(updateLanguageParam)
                 };
             }
             return new JsonResult
@@ -118,7 +125,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                AssignParam(param);
+                var updateStatusParam = new UpdateStatusParam
+                {
+                    AffId = param.AffId,
+                    UserId = _sessionService.UserId,
+                    Ip = Request.UserHostAddress,
+                    Status = Server.HtmlEncode(param.Status)
+                };
+
                 var emailParam = new AffInformationEmail
                 {
                     RootUrl = SiteDomainHelper.GetRootUrl(this)
@@ -126,7 +140,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
                 return new JsonNetResult
                 {
-                    Data = _customerLeftPanelService.UpdateStatus(param, emailParam)
+                    Data = _customerLeftPanelService.UpdateStatus(updateStatusParam, emailParam)
                 };
             }
             return new JsonResult

@@ -39,7 +39,7 @@ export class SettingPanel extends PureComponent {
         const isConfirmed = window.confirm(messages.areYouChangeStatus);
         if (isConfirmed) {
             const selectedStatus = event.target.value;
-            if (selectedStatus.toLowerCase() === status.Approved) {
+            if (selectedStatus && selectedStatus.toLowerCase() === status.Approved) {
                 this.setState({ isAssignCommissionGroup: true });
             } else {
                 const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: selectedStatus });

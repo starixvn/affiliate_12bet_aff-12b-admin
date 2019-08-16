@@ -7,6 +7,9 @@ using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Newtonsoft.Json;
+using System.Linq;
+using Fanex.Affiliate.Admin.Core.DTO.Customer;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -14,12 +17,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     public class UserAccountController : BaseController
     {
         private readonly IUserAccountService _userAccountService;
+        private readonly ISessionService _sessionService;
 
         public UserAccountController(
             ISessionService sessionService,
             IUserAccountService userAccountService) : base(sessionService)
         {
             _userAccountService = userAccountService;
+            _sessionService = sessionService;
         }
 
         [HttpPost]
@@ -44,12 +49,45 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if(ModelState.IsValid)
             {
-                param.UserId = SessionService.UserId;
-                param.Ip = Request.UserHostAddress;
+                var userAccountParam = new UserAccountParam
+                {
+                    AffId = param.AffId,
+                    UserId = _sessionService.UserId,
+                    Ip = Request.UserHostAddress,
+                    FirstName = Server.HtmlEncode(param.FirstName),
+                    LastName = Server.HtmlEncode(param.LastName),
+                    Gender = param.Gender,
+                    Email = Server.HtmlEncode(param.Email),
+                    Phone = Server.HtmlEncode(param.Phone),
+                    ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
+                    {
+                        Name = Server.HtmlEncode(p.Name),
+                        Value = Server.HtmlEncode(p.Value),
+                        Order = p.Order
+                    })),
+                    Address = Server.HtmlEncode(param.Address),
+                    City = Server.HtmlEncode(param.City),
+                    State = Server.HtmlEncode(param.State),
+                    Postcode = Server.HtmlEncode(param.Postcode),
+                    Country = Server.HtmlEncode(param.Country),
+                    SiteUrl = Server.HtmlEncode(param.SiteUrl),
+                    MoreSiteUrls = Server.HtmlEncode(param.MoreSiteUrls),
+                    NoSiteDescription = Server.HtmlEncode(param.NoSiteDescription),
+                    PreferredPayment = Server.HtmlEncode(param.PreferredPayment),
+                    PlayerUsername = Server.HtmlEncode(param.PlayerUsername),
+                    NetellerAccountId = Server.HtmlEncode(param.NetellerAccountId),
+                    MoneybookersEmail = Server.HtmlEncode(param.MoneybookersEmail),
+                    BankName = Server.HtmlEncode(param.BankName),
+                    BankAddress = Server.HtmlEncode(param.BankAddress),
+                    BankCode = Server.HtmlEncode(param.BankCode),
+                    BankAccountName = Server.HtmlEncode(param.BankAccountName),
+                    BankAccountNumber = Server.HtmlEncode(param.BankAccountNumber),
+                    MailOption = param.MailOption
+                };
 
                 return new JsonNetResult
                 {
-                    Data = _userAccountService.UpdateUserAccount(param)
+                    Data = _userAccountService.UpdateUserAccount(userAccountParam)
                 };
             }
 

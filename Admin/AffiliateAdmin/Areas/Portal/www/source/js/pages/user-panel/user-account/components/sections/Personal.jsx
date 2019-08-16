@@ -6,13 +6,15 @@ import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import { renderInputForm, capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo } from '../../actions';
 import { updateObjectInArray } from '../../../../../modules/dataHandler';
+import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 export class Personal extends PureComponent {
     constructor(props) {
         super(props);
 
         const { userAccountInfo } = this.props;
-        this.arrayContactApps = JSON.parse(userAccountInfo && userAccountInfo.ContactApps);
+
+        this.arrayContactApps = userAccountInfo && userAccountInfo.ContactAppList;
     }
 
     handleChange = (event) => {
@@ -35,7 +37,7 @@ export class Personal extends PureComponent {
         const updateItem = Object.assign({}, this.arrayContactApps[indexItem], { Value: value });
         this.arrayContactApps = updateObjectInArray(this.arrayContactApps, indexItem, updateItem)
 
-        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { ContactApps: JSON.stringify(this.arrayContactApps) })
+        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { ContactAppList: this.arrayContactApps })
         this.props.setUserAccountInfo(newUserAccountInfo);
     }
 

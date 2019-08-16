@@ -40,15 +40,15 @@ export class PaymentRequestUpdateForm extends PureComponent {
     handleGetPaymentRequestInfo = async (transId) => {
         const data = await this.props.getPaymentRequestDetail({ transId });
 
-        data && this.setState({ paymentRequestInfo: data, originalStatus: data.Status });
+        data && this.setState({ paymentRequestInfo: data, originalStatus: htmlDecode(data.Status) });
     }
 
     handleSave = async () => {
         const { paymentRequestInfo, originalStatus } = this.state;
         const selectedStatus = paymentRequestInfo.Status;
 
-        if (originalStatus.toLowerCase() === pendingStatus &&
-            (selectedStatus.toLowerCase() === approvedStatus || selectedStatus.toLowerCase() === rejectedStatus)) {
+        if (originalStatus && originalStatus.toLowerCase() === pendingStatus &&
+            selectedStatus && (selectedStatus.toLowerCase() === approvedStatus || selectedStatus.toLowerCase() === rejectedStatus)) {
 
             const paymentInfo = Object.assign({}, {
                 AffId: paymentRequestInfo.AffId,
@@ -165,7 +165,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
                 </legend>
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.PaymentMethod}</Label>
-                    <Label sm={6}><strong>{paymentRequestInfo.PaymentMethod}</strong></Label>
+                    <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PaymentMethod)}</strong></Label>
                 </FormGroup>
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.Amount}</Label>
@@ -173,7 +173,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
                 </FormGroup>
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.Status}</Label>
-                    <Label sm={6}><strong>{paymentRequestInfo.Status}</strong></Label>
+                    <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.Status)}</strong></Label>
                 </FormGroup>
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.UserName12Bet}</Label>
@@ -225,7 +225,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
     render() {
         const { transactionId } = this.props;
         const { paymentRequestInfo, originalStatus, isSuccess, isShowMessage, message } = this.state;
-        const isPending = originalStatus.toLowerCase() === pendingStatus;
+        const isPending = originalStatus && originalStatus.toLowerCase() === pendingStatus;
 
         return paymentRequestInfo && (
             <Modal isOpen={transactionId} toggle={this.handleClosePopup} backdrop='static'>

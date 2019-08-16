@@ -1,7 +1,8 @@
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
-import { SET_USER_ACCOUNT_INFO, SET_MORE_SITE_URLS_LIST } from './types'
+import { SET_USER_ACCOUNT_INFO, SET_MORE_SITE_URLS_LIST } from './types';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export { getAffiliateInfo }
 
@@ -26,6 +27,10 @@ export const getUserAccountInfo = (affId) => async (dispatch) => {
     const response = await post(url, { affId });
 
     const data = response && response.status === 200 ? response.data : null;
+
+    if(data) {
+        data.ContactAppList = JSON.parse(htmlDecode(data.ContactApps));
+    }
 
     const moreSiteUrls = data && data.MoreSiteUrls;
     const moreSiteUrlsList = moreSiteUrls && moreSiteUrls != '' && moreSiteUrls.split(';');

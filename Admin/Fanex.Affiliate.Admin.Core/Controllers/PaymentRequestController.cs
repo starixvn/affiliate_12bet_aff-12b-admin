@@ -15,12 +15,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     public class PaymentRequestController : BaseController
     {
         private readonly IPaymentRequestService _paymentRequestService;
+        private readonly ISessionService _sessionService;
 
         public PaymentRequestController(
             ISessionService sessionService,
             IPaymentRequestService paymentRequestService) : base(sessionService)
         {
             _paymentRequestService = paymentRequestService;
+            _sessionService = sessionService;
         }
 
         public ActionResult Index(PaymentRequestParamFromHome param)
@@ -67,8 +69,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                param.UserId = SessionService.UserId;
-                param.Ip = Request.UserHostAddress;
+                var paymentRequestUpdateParam = new PaymentRequestUpdateParam
+                {
+                    UserId = _sessionService.UserId,
+                    Ip = Request.UserHostAddress,
+                    TransId = param.TransId,
+                    Status = Server.HtmlEncode(param.Status),
+                    AdminDesc = Server.HtmlEncode(param.AdminDesc),
+                    AffDesc = Server.HtmlEncode(param.AffDesc)
+                };
 
                 var emailParam = new PaymentRequestUpdateEmail
                 {
@@ -77,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
                 return new JsonNetResult
                 {
-                    Data = _paymentRequestService.UpdatePaymentRequest(param, emailParam)
+                    Data = _paymentRequestService.UpdatePaymentRequest(paymentRequestUpdateParam, emailParam)
                 };
             }
 

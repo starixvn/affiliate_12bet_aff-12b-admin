@@ -8,7 +8,7 @@ import { status } from '../modules/constants';
 
 export const PanelList = (props) => {
     const { affiliateInfo } = props;
-    const isApproved = affiliateInfo && affiliateInfo.Status.toLowerCase() === status.Approved;
+    const isApproved = affiliateInfo && affiliateInfo.Status && affiliateInfo.Status.toLowerCase() === status.Approved;
 
     return affiliateInfo && (
         <React.Fragment>

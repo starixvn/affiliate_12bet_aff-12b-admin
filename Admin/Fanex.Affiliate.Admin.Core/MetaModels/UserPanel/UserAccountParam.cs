@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.DTO.Customer;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
@@ -70,5 +72,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public string BankAccountNumber { get; set; }
 
         public bool MailOption { get; set; }
+
+        public IEnumerable<ContactApp> ContactAppList { get; set; }
     }
 }

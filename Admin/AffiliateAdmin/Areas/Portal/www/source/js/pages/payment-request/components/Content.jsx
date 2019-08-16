@@ -7,6 +7,7 @@ import { Button } from 'reactstrap';
 import { headerText, globalResource, resource, statusList, pending } from '../modules/constants';
 import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
+import { htmlDecode } from '../../../modules/htmlHelper';
 
 const pendingStatus = pending.toLowerCase();
 
@@ -85,14 +86,14 @@ export class Content extends PureComponent {
 
     _buildDataRow(dataItem, index) {
         const amount = formatDecimalWithCurrencySymbol(dataItem.Amount);
-        const isPending = dataItem.Status.toLowerCase() === pendingStatus;
+        const isPending = dataItem.Status && htmlDecode(dataItem.Status).toLowerCase() === pendingStatus;
 
         const status = isPending ? statusList.Pending : dataItem.Status;
         const completedDate = isPending ? '--' : dataItem.CompletedDateText;
         const creator = isPending ? '--' : dataItem.Creator;
 
         return (
-            <Row key={`dataRow-${index}`} className={status.toLowerCase()}>
+            <Row key={`dataRow-${index}`} className={status && htmlDecode(status).toLowerCase()}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.TransId} className="text-center">
                     <Button color="link" className="p-0" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
@@ -102,9 +103,9 @@ export class Content extends PureComponent {
                 <Cell title={dataItem.TransDateText} className="text-center">{dataItem.TransDateText}</Cell>
                 <Cell title={dataItem.AffName} className="text-center">{dataItem.AffName}</Cell>
                 <Cell title={amount} className="text-right">{amount}</Cell>
-                <Cell title={status} className="text-center text-capitalize">{status}</Cell>
+                <Cell title={htmlDecode(status)} className="text-center text-capitalize">{htmlDecode(status)}</Cell>
                 <Cell title={completedDate} className="text-center">{completedDate}</Cell>
-                <Cell title={creator} className="text-center">{creator}</Cell>
+                <Cell title={htmlDecode(creator)} className="text-center">{htmlDecode(creator)}</Cell>
             </Row>
         )
     }

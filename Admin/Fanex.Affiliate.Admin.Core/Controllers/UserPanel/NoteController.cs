@@ -14,11 +14,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     public class NoteController : BaseController
     {
         private readonly INoteRepository _noteRepository;
+        private readonly ISessionService _sessionService;
+
         public NoteController(
             ISessionService sessionService,
             INoteRepository noteRepository) : base(sessionService)
         {
             _noteRepository = noteRepository;
+            _sessionService = sessionService;
         }
 
         [HttpPost]
@@ -61,13 +64,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (ModelState.IsValid)
             {
-                AssignCommonParam(param);
-
-                var model = _noteRepository.InsertNote(param);
+                var insertNoteParam = AssignCommonParam(param);
 
                 return new JsonNetResult
                 {
-                    Data = model
+                    Data = _noteRepository.InsertNote(insertNoteParam)
                 };
             }
 
@@ -89,13 +90,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (ModelState.IsValid && param.NoteId >= Validation.MinId)
             {
-                AssignCommonParam(param);
-
-                var model = _noteRepository.UpdateNote(param);
+                var updateNoteParam = AssignCommonParam(param);
 
                 return new JsonNetResult
                 {
-                    Data = model
+                    Data = _noteRepository.UpdateNote(updateNoteParam)
                 };
             }
 
@@ -109,10 +108,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             };
         }
 
-        private void AssignCommonParam(InsertUpdateNoteParam param)
+        private InsertUpdateNoteParam AssignCommonParam(InsertUpdateNoteParam param)
         {
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.UserHostAddress;
+            return new InsertUpdateNoteParam
+            {
+                AffId = param.AffId,
+                UserId = _sessionService.UserId,
+                Ip = Request.UserHostAddress,
+                NoteId = param.NoteId,
+                NoteContent = Server.HtmlEncode(param.NoteContent)
+            };
         }
     }
 }

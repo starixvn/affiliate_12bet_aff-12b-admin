@@ -7,6 +7,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { getDateRange } from '../../../../modules/utils';
 import { headerTitle, deviceTypes, globalResource } from '../modules/constants';
 import { setSelectedPage, setParam, setShortCodeLanguageList, getPageList } from '../actions';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 const shortCodeLanguageList = {};
 const shortCodeList = {
@@ -94,7 +95,7 @@ export class Filter extends React.Component {
                             <option value="">{globalResource.All}</option>
                             {
                                 pageList.map(page => {
-                                    return (<option key={`page-${page.PageCode}`} value={page.PageCode}>{page.PageName}</option>)
+                                    return (<option key={`page-${page.PageCode}`} value={page.PageCode}>{htmlDecode(page.PageName)}</option>)
                                 })
                             }
                         </Input>
@@ -105,7 +106,7 @@ export class Filter extends React.Component {
                             <option value="">{globalResource.All}</option>
                             {
                                 Object.keys(shortCodeLanguageList).map(key => {
-                                    return (<option key={`language-${key}`} value={key}>{shortCodeLanguageList[key]}</option>)
+                                    return (<option key={`language-${key}`} value={key}>{htmlDecode(shortCodeLanguageList[key])}</option>)
                                 })
                             }
                         </Input>

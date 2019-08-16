@@ -80,7 +80,7 @@ export class Content extends Component {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={page}>
-                    {(page.toLowerCase() === "old url" || page.toLowerCase() === "none") ? page :
+                    {page && (page.toLowerCase() === "old url" || page.toLowerCase() === "none") ? page :
                         (<Button color="link" className="p-0" onClick={() => this.handleSelectedPage(dataItem.Page, dataItem.LanguageCode)}>
                             {page}
                         </Button>)}
