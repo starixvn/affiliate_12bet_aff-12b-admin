@@ -26,11 +26,6 @@
         [AjaxOnly]
         public ActionResult Index()
         {
-            if (SessionService.UserSession != null && !SessionService.UserSession.IsVisitedCommissionReportPage)
-            {
-                SessionService.UserSession.IsVisitedCommissionReportPage = true;
-            }
-
             return View("~/Views/UserPanel/CommissionReport/Index.cshtml");
         }
 

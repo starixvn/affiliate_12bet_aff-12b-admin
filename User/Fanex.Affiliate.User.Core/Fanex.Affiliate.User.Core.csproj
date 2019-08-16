@@ -543,7 +543,6 @@
     <Compile Include="ViewModels\UserPanel\Statistics\LandingPageStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\ReferrerStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\TrackingStatisticsViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\UserPanelMainViewModel.cs" />
     <Compile Include="ViewModels\VerificationAccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,6 @@
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Filters;
-    using ViewModels.UserPanel;
 
     [CustomAuthorize]
     public class MainController : BaseController
@@ -18,19 +17,7 @@
         [HttpGet]
         public ActionResult Index()
         {
-            var viewModel = new UserPanelMainViewModel
-            {
-                IsVisitedAccountOverviewPage = SessionService.UserSession != null && SessionService.UserSession.IsVisitedAccountOverViewPage,
-                IsVisitedCommissionReportPage = SessionService.UserSession != null && SessionService.UserSession.IsVisitedCommissionReportPage
-            };
-
-            return View("~/Views/UserPanel/Main/index.cshtml", viewModel);
-        }
-
-        [HttpGet]
-        public ActionResult CommissionNewsPopup()
-        {
-            return View("~/Views/UserPanel/Popup/Index.cshtml");
+            return View("~/Views/UserPanel/Main/index.cshtml");
         }
     }
 }

@@ -148,10 +148,6 @@
     "inputFile": "www/source/js/changepassword.js"
   },
   {
-    "outputFile": "www/build/styles/css/user-panel.css",
-    "inputFile": "www/source/styles/pages/user-panel.scss"
-  },
-  {
     "outputFile": "www/build/styles/css/verification-account.css",
     "inputFile": "www/source/styles/pages/verification-account.scss"
   }
