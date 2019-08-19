@@ -2,9 +2,9 @@
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Logging;
+using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
-using Fanex.Logging.RabbitMQ;
 
 namespace Fanex.Affiliate.User.Site.App_Start
 {
@@ -20,25 +20,24 @@ namespace Fanex.Affiliate.User.Site.App_Start
             var rabbitMQConnectionString = appSetting.GetValue("RabbitMQConnectionString");
             var isRegisterSentry = string.Equals(appSetting.GetValue("IsRegisterSentry"), "true", System.StringComparison.CurrentCultureIgnoreCase);
 
-            if (!string.IsNullOrEmpty(backEndDsn) && !string.IsNullOrEmpty(frontEndDsn) && !string.IsNullOrEmpty(rabbitMQConnectionString))
+            var logEngineList = new List<ILogEngine>();
+            if (!string.IsNullOrEmpty(rabbitMQConnectionString))
             {
-                LogManager.SetDefaultLogCategory(category)
-                    .Use(
-                        isRegisterSentry ? new List <ILogEngine>
-                        {
-                            new RabbitMQLogging(rabbitMQConnectionString),
-                            new SentryLogging(new SentryEngineOptions
-                            {
-                                Dsn = new Dsn(backEndDsn),
-                                FrontEndDsn = new Dsn(frontEndDsn),
-                                Environment = env
-                            })
-                        } : new List<ILogEngine>
-                        {
-                            new RabbitMQLogging(rabbitMQConnectionString)
-                        }
-                    );
+                logEngineList.Add(new RabbitMQLogging(rabbitMQConnectionString));
             }
+
+            if (isRegisterSentry)
+            {
+                logEngineList.Add(
+                    new SentryLogging(new SentryEngineOptions
+                    {
+                        Dsn = new Dsn(backEndDsn),
+                        FrontEndDsn = new Dsn(frontEndDsn),
+                        Environment = env
+                    }));
+            }
+
+            LogManager.SetDefaultLogCategory(category).Use(logEngineList);
         }
     }
 }
