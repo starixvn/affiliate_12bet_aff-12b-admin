@@ -380,11 +380,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
 
             var productIdOfDB = _productRepository.GetProductList().Select(product => product.ProductId.ToString()).ToArray();
-            var productIdOfPlatform = platformFeeList.Select(platformFee => platformFee.ProductIds).First().Split(',');
+            var productIdOfPlatform = string.Join(",", platformFeeList.Select(platformFee => platformFee.ProductIds.Replace(" ","")).ToArray())
+                                        .Split(new[] { "," }, System.StringSplitOptions.RemoveEmptyEntries);
 
             var validateProductIds = ValidateProductIds(productIdOfDB, productIdOfPlatform);
 
-            if(!validateProductIds.IsSuccessful)
+            if (!validateProductIds.IsSuccessful)
             {
                 result.Code = Code.GeneralErrorCode;
                 result.Message = string.Join(result.Message, validateProductIds.Message);
@@ -396,6 +397,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         private static ResultInfo ValidateProductIds(string[] productIdOfDB, string[] productIdOfPlatform)
         {
             var result = new ResultInfo();
+
+            if (productIdOfDB.Length != productIdOfPlatform.Length)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message + "<br />", "You must select all products!");
+                return result;
+            }
+
             var distinctProductIdOfPlatform = productIdOfPlatform.Distinct().ToArray();
 
             if (productIdOfPlatform.Length != distinctProductIdOfPlatform.Length)
@@ -403,7 +412,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 result.Code = Code.GeneralErrorCode;
                 result.Message = string.Join(result.Message + "<br />", "The Products selected in a group, which must not exist in others!");
             }
-            if (distinctProductIdOfPlatform.All(item => !productIdOfDB.Contains(item)))
+
+            if (distinctProductIdOfPlatform.Any(item => !productIdOfDB.Contains(item)))
             {
                 result.Code = Code.GeneralErrorCode;
                 result.Message = string.Join(result.Message + "<br />", "The Product selected in a group is incorrect!");
