@@ -52,11 +52,14 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
+        const noteContent = htmlDecode(dataItem.NoteContent);
+        const createdBy = htmlDecode(dataItem.CreatedBy);
+
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={htmlDecode(dataItem.NoteContent)}>{htmlDecode(dataItem.NoteContent)}</Cell>
-                <Cell title={htmlDecode(dataItem.CreatedBy)}>{htmlDecode(dataItem.CreatedBy)}</Cell>
+                <Cell title={noteContent}>{noteContent}</Cell>
+                <Cell title={createdBy}>{createdBy}</Cell>
                 <Cell title={dataItem.LastModifyText} className="text-center">{dataItem.LastModifyText}</Cell>
                 <Cell title="Edit Note" className="text-center">
                     <Button className="p-0" color="link" onClick={() => this.handleShowPopup(dataItem.NoteId)}>

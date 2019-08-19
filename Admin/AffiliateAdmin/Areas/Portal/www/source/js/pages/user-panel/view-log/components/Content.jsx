@@ -103,6 +103,10 @@ export class Content extends PureComponent {
             return null;
         }
 
+        const updatedBy = htmlDecode(dataItem.UpdatedBy);
+        const action = htmlDecode(dataItem.Action);
+        const description = htmlDecode(dataItem.Description);
+
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
@@ -112,9 +116,9 @@ export class Content extends PureComponent {
                     </Button> : id}
                 </Cell>
                 <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
-                <Cell title={dataItem.UpdatedBy} className="text-center">{htmlDecode(dataItem.UpdatedBy)}</Cell>
-                <Cell title={dataItem.Action} className="text-center">{htmlDecode(dataItem.Action)}</Cell>
-                <Cell title={htmlDecode(dataItem.Description)} className="text-break">{htmlDecode(dataItem.Description)}</Cell>
+                <Cell title={updatedBy} className="text-center">{updatedBy}</Cell>
+                <Cell title={action} className="text-center">{action}</Cell>
+                <Cell title={description} className="text-break">{description}</Cell>
                 <Cell title={ipAddress} className="text-center">
                     <a target="_blank" href={url}>{ipAddress}</a>
                 </Cell>

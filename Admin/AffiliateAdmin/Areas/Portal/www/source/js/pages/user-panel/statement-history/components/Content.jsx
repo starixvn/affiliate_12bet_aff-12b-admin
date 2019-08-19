@@ -107,9 +107,11 @@ export class Content extends PureComponent {
         const isPending = dataItem.Status && dataItem.Status.toLowerCase() === 'pending';
 
         const status = isPending ? "Processing" : dataItem.Status;
+        const creator = htmlDecode(dataItem.Creator);
+        const description = htmlDecode(dataItem.Description);
 
         return (
-            <Row key={`dataRow-${index}`} className={status && htmlDecode(status).toLowerCase()}>
+            <Row key={`dataRow-${index}`} className={status && status.toLowerCase()}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
                 <Cell title={transType} className="text-center">{transTypeList[transType] || monthlyWinlost}</Cell>
@@ -120,12 +122,12 @@ export class Content extends PureComponent {
                         </Button>) :
                         amount}
                 </Cell>
-                <Cell title={htmlDecode(dataItem.Status)} className="text-center">{isPending ?
+                <Cell title={status} className="text-center">{isPending ?
                     <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
-                        {htmlDecode(status)}
-                        </Button> : htmlDecode(status)}</Cell>
-                <Cell title={htmlDecode(dataItem.Creator)} className="text-center">{htmlDecode(dataItem.Creator)}</Cell>
-                <Cell title={htmlDecode(dataItem.Description)}>{htmlDecode(dataItem.Description)}</Cell>
+                        {status}
+                        </Button> : status}</Cell>
+                <Cell title={creator} className="text-center">{creator}</Cell>
+                <Cell title={description}>{description}</Cell>
             </Row>
         )
     }

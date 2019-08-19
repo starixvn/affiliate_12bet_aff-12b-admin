@@ -5,7 +5,6 @@ import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 import { capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo, setMoreSiteUrlsList } from '../../actions';
-import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 export class WebSite extends PureComponent {
     constructor(props) {
@@ -66,7 +65,7 @@ export class WebSite extends PureComponent {
                             <FormGroup row key={`siteUrl${index}`}>
                                 <Label for={index} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
                                 <Col sm={5} xl={6}>
-                                    <input className="form-control" name={index} value={htmlDecode(value)} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
+                                    <input className="form-control" name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
                                 </Col>
                                 <Button outline color="danger" className="mb-2" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
                             </FormGroup>
@@ -85,7 +84,7 @@ export class WebSite extends PureComponent {
                 <FormGroup row>
                     <Label for="siteUrl" sm={3} xl={2} className="required">Website URL</Label>
                     <Col sm={5} xl={6}>
-                        <Input type="text" name="siteUrl" value={htmlDecode(userAccountInfo.SiteUrl)} onChange={this.handleChange} />
+                        <Input type="text" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
                     </Col>
                     <Button outline color="secondary" className="mb-2" onClick={this.handleAddUrl}>Add Url</Button>
                 </FormGroup>
@@ -95,7 +94,7 @@ export class WebSite extends PureComponent {
                 <FormGroup row>
                     <Label for="noSiteDescription" sm={3} xl={2}>I do not have a website Please describe how you would like to promote 12Bet if you do not have the URL .</Label>
                     <Col sm={6} xl={7}>
-                        <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={htmlDecode(userAccountInfo.NoSiteDescription)} onChange={this.handleChange} />
+                        <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={userAccountInfo.NoSiteDescription} onChange={this.handleChange} />
                     </Col>
                 </FormGroup>
             </Form>

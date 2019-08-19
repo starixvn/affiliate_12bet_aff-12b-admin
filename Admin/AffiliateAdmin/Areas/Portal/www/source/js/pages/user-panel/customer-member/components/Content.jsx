@@ -84,14 +84,18 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, rowNumber) {
+        const userName = htmlDecode(dataItem.UserName);
+        const firstName = htmlDecode(dataItem.FirstName);
+        const lastName = htmlDecode(dataItem.LastName);
+        const email = htmlDecode(dataItem.Email);
         return (
             <Row>
                 <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>
-                <Cell title={htmlDecode(dataItem.UserName)}>{htmlDecode(dataItem.UserName)}</Cell>
-                <Cell title={htmlDecode(dataItem.FirstName)}>{htmlDecode(dataItem.FirstName)}</Cell>
-                <Cell title={htmlDecode(dataItem.LastName)}>{htmlDecode(dataItem.LastName)}</Cell>
-                {this.props.canViewMemberEmail && (<Cell title={htmlDecode(dataItem.Email)}>{htmlDecode(dataItem.Email)}</Cell>)}
-                <Cell className="text-center" title={htmlDecode(dataItem.CurrencyName)}>{htmlDecode(dataItem.CurrencyName)}</Cell>
+                <Cell title={userName}>{userName}</Cell>
+                <Cell title={firstName}>{firstName}</Cell>
+                <Cell title={lastName}>{lastName}</Cell>
+                {this.props.canViewMemberEmail && (<Cell title={email}>{email}</Cell>)}
+                <Cell className="text-center" title={dataItem.CurrencyName}>{dataItem.CurrencyName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateString}>{dataItem.RegisteredDateString}</Cell>
             </Row>
         )

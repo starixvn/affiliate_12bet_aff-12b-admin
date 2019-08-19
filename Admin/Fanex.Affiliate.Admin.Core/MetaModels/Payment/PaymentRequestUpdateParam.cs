@@ -18,5 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
         public string AdminDesc { get; set; }
 
         public string AffDesc { get; set; }
+
+        public bool IsApproved { get; set; }
     }
 }

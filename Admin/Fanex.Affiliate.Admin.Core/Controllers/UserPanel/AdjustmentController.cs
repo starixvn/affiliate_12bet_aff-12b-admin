@@ -15,7 +15,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     public class AdjustmentController : BaseController
     {
         private readonly IAdjustmentRepository _adjustmentRepository;
-        private readonly ISessionService _sessionService;
         private const int DefaultBalanceBfValue = 0;
 
         public AdjustmentController(
@@ -23,7 +22,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             IAdjustmentRepository adjustmentRepository) : base(sessionService)
         {
             _adjustmentRepository = adjustmentRepository;
-            _sessionService = sessionService;
         }
 
         [HttpPost]
@@ -59,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     var adjustmentParam = new AdjustmentParam
                     {
                         AffId = param.AffId,
-                        UserId = _sessionService.UserId,
+                        UserId = SessionService.UserId,
                         Ip = Request.UserHostAddress,
                         Amount = param.Amount,
                         Description = Server.HtmlEncode(param.Description)

@@ -15,14 +15,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     public class PaymentRequestController : BaseController
     {
         private readonly IPaymentRequestService _paymentRequestService;
-        private readonly ISessionService _sessionService;
 
         public PaymentRequestController(
             ISessionService sessionService,
             IPaymentRequestService paymentRequestService) : base(sessionService)
         {
             _paymentRequestService = paymentRequestService;
-            _sessionService = sessionService;
         }
 
         public ActionResult Index(PaymentRequestParamFromHome param)
@@ -71,10 +69,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 var paymentRequestUpdateParam = new PaymentRequestUpdateParam
                 {
-                    UserId = _sessionService.UserId,
+                    UserId = SessionService.UserId,
                     Ip = Request.UserHostAddress,
                     TransId = param.TransId,
-                    Status = Server.HtmlEncode(param.Status),
+                    IsApproved = param.IsApproved,
                     AdminDesc = Server.HtmlEncode(param.AdminDesc),
                     AffDesc = Server.HtmlEncode(param.AffDesc)
                 };

@@ -38,16 +38,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
 
         public ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param, PaymentRequestUpdateEmail emailParam)
         {
-            var isApproved = string.Equals(AffStatus.Approved, param.Status, StringComparison.InvariantCultureIgnoreCase);
-            var isRejected = string.Equals(AffStatus.Rejected, param.Status, StringComparison.InvariantCultureIgnoreCase);
             var paymentRequestDetail = GetPaymentRequestDetail(param.TransId);
 
-            if ((isApproved || isRejected) && paymentRequestDetail != null &&
+            if (paymentRequestDetail != null &&
                 string.Equals(AffStatus.Pending, paymentRequestDetail.Status, StringComparison.InvariantCultureIgnoreCase))
             {
                 param.AffId = paymentRequestDetail.AffId;
                 param.Amount = paymentRequestDetail.Amount;
                 param.TransDate = paymentRequestDetail.TransDate;
+                param.Status = param.IsApproved ? AffStatus.Approved : AffStatus.Rejected;
 
                 var result = _paymentRequestRepository.UpdatePaymentRequest(param);
                 if (result != null)
@@ -62,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
                         emailParam.IsHtml = !affInfo.MailOption;
                         emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguage;
 
-                        emailParam.IsApproved = isApproved;
+                        emailParam.IsApproved = param.IsApproved;
                         emailParam.TransId = param.TransId;
                         emailParam.TransDate = paymentRequestDetail.TransDate.ToString("MM/dd/yyyy");
                         emailParam.Amount = paymentRequestDetail.Amount;

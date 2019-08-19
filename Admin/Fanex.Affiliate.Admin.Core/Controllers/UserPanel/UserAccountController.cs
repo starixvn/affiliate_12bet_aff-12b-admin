@@ -10,6 +10,7 @@ using Fanex.Affiliate.Admin.Core.Resources;
 using Newtonsoft.Json;
 using System.Linq;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
+using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -17,14 +18,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     public class UserAccountController : BaseController
     {
         private readonly IUserAccountService _userAccountService;
-        private readonly ISessionService _sessionService;
 
         public UserAccountController(
             ISessionService sessionService,
             IUserAccountService userAccountService) : base(sessionService)
         {
             _userAccountService = userAccountService;
-            _sessionService = sessionService;
         }
 
         [HttpPost]
@@ -33,9 +32,41 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (affId >= Validation.MinId)
             {
+                var userAccountInfo = _userAccountService.GetUserAccountInfo(affId);
                 return new JsonNetResult
                 {
-                    Data = _userAccountService.GetUserAccountInfo(affId)
+                    Data = userAccountInfo != null ? new UserAccount
+                    {
+                        AffId = userAccountInfo.AffId,
+                        AffName = userAccountInfo.AffName,
+                        FirstName = Server.HtmlDecode(userAccountInfo.FirstName),
+                        LastName = Server.HtmlDecode(userAccountInfo.LastName),
+                        Gender = userAccountInfo.Gender,
+                        Email = Server.HtmlDecode(userAccountInfo.Email),
+                        Phone = Server.HtmlDecode(userAccountInfo.Phone),
+                        ContactApps = Server.HtmlDecode(userAccountInfo.ContactApps),
+                        Address = Server.HtmlDecode(userAccountInfo.Address),
+                        City = Server.HtmlDecode(userAccountInfo.City),
+                        State = Server.HtmlDecode(userAccountInfo.State),
+                        Postcode = Server.HtmlDecode(userAccountInfo.Postcode),
+                        Country = Server.HtmlDecode(userAccountInfo.Country),
+                        SiteUrl = Server.HtmlDecode(userAccountInfo.SiteUrl),
+                        MoreSiteUrls = Server.HtmlDecode(userAccountInfo.MoreSiteUrls),
+                        NoSiteDescription = Server.HtmlDecode(userAccountInfo.NoSiteDescription),
+                        PreferredPayment = Server.HtmlDecode(userAccountInfo.PreferredPayment),
+                        PlayerUsername = Server.HtmlDecode(userAccountInfo.PlayerUsername),
+                        NetellerAccountId = Server.HtmlDecode(userAccountInfo.NetellerAccountId),
+                        MoneybookersEmail = Server.HtmlDecode(userAccountInfo.MoneybookersEmail),
+                        BankName = Server.HtmlDecode(userAccountInfo.BankName),
+                        BankAddress = Server.HtmlDecode(userAccountInfo.BankAddress),
+                        BankCode = Server.HtmlDecode(userAccountInfo.BankCode),
+                        BankAccountName = Server.HtmlDecode(userAccountInfo.BankAccountName),
+                        BankAccountNumber = Server.HtmlDecode(userAccountInfo.BankAccountNumber),
+                        Question = Server.HtmlDecode(userAccountInfo.Question),
+                        Answer = Server.HtmlDecode(userAccountInfo.Answer),
+                        MailOption = userAccountInfo.MailOption,
+                        
+                    } : null
                 };
             }
 
@@ -52,19 +83,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                 var userAccountParam = new UserAccountParam
                 {
                     AffId = param.AffId,
-                    UserId = _sessionService.UserId,
+                    UserId = SessionService.UserId,
                     Ip = Request.UserHostAddress,
                     FirstName = Server.HtmlEncode(param.FirstName),
                     LastName = Server.HtmlEncode(param.LastName),
                     Gender = param.Gender,
                     Email = Server.HtmlEncode(param.Email),
                     Phone = Server.HtmlEncode(param.Phone),
-                    ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
-                    {
-                        Name = Server.HtmlEncode(p.Name),
-                        Value = Server.HtmlEncode(p.Value),
-                        Order = p.Order
-                    })),
+                    ContactApps = Server.HtmlEncode(param.ContactApps),
                     Address = Server.HtmlEncode(param.Address),
                     City = Server.HtmlEncode(param.City),
                     State = Server.HtmlEncode(param.State),

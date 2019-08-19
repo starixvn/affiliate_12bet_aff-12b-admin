@@ -112,6 +112,12 @@ export class GridData extends Component {
         const { languageList } = this.props;
         const status = dataItem.Status && htmlDecode(dataItem.Status).toLowerCase();
         const isApproved = status == "approved";
+        const commissionGroupName = htmlDecode(dataItem.CommissionGroup);
+        const firstName = htmlDecode(dataItem.FirstName);
+        const lastName = htmlDecode(dataItem.LastName);
+        const phone = htmlDecode(dataItem.Phone);
+        const email = htmlDecode(dataItem.Email);
+        const playerUserName = htmlDecode(dataItem.PlayerUserName);
 
         const balanceBf = dataItem.BalanceBf === null ? resource.NA : formatDecimal(dataItem.BalanceBf);
         const formattedMemberValue = dataItem.Member === null ? resource.NA : format(dataItem.Member);
@@ -122,11 +128,11 @@ export class GridData extends Component {
 
         const language = languageList[dataItem.Language];
         const commissionGroup = dataItem.CommissionGroup ? (
-            htmlDecode(dataItem.CommissionGroup) === dataItem.UserName ? (
+            commissionGroupName === dataItem.UserName ? (
                 <Button color="link"
                     onClick={() => this.handleEditCommGroup(dataItem.AffId, dataItem.CommissionGroup)}>
-                    {htmlDecode(dataItem.CommissionGroup)}
-                </Button>) : htmlDecode(dataItem.CommissionGroup)
+                    {commissionGroupName}
+                </Button>) : commissionGroupName
         ) : resource.NA;
 
         const isFavorite = dataItem.IsFavorite
@@ -143,20 +149,20 @@ export class GridData extends Component {
                     <span className={classNameFavorite} onClick={() => this.handleToggleFavorite(dataItem.AffId, isFavorite)}></span>
                 </Cell>
 
-                {selectedColumnList['Status'] && <Cell title={htmlDecode(dataItem.Status)}>{htmlDecode(dataItem.Status)}</Cell>}
-                {selectedColumnList['FirstName'] && <Cell title={htmlDecode(dataItem.FirstName)}>{htmlDecode(dataItem.FirstName)}</Cell>}
-                {selectedColumnList['LastName'] && <Cell title={htmlDecode(dataItem.LastName)}>{htmlDecode(dataItem.LastName)}</Cell>}
-                {selectedColumnList['Language'] && <Cell title={htmlDecode(language)}>{htmlDecode(language)}</Cell>}
-                {selectedColumnList['Phone'] && <Cell title={htmlDecode(dataItem.Phone)}>{htmlDecode(dataItem.Phone)}</Cell>}
-                {selectedColumnList['Email'] && <Cell title={htmlDecode(dataItem.Email)}>{htmlDecode(dataItem.Email)}</Cell>}
+                {selectedColumnList['Status'] && <Cell title={dataItem.Status}>{dataItem.Status}</Cell>}
+                {selectedColumnList['FirstName'] && <Cell title={firstName}>{firstName}</Cell>}
+                {selectedColumnList['LastName'] && <Cell title={lastName}>{lastName}</Cell>}
+                {selectedColumnList['Language'] && <Cell title={language}>{language}</Cell>}
+                {selectedColumnList['Phone'] && <Cell title={phone}>{phone}</Cell>}
+                {selectedColumnList['Email'] && <Cell title={email}>{email}</Cell>}
                 {selectedColumnList['RegistrationDateText'] && <Cell title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>}
                 {selectedColumnList['ApprovalDateText'] && <Cell title={dataItem.ApprovalDateText}>{dataItem.ApprovalDateText}</Cell>}
                 {selectedColumnList['CasinoDateText'] && <Cell title={dataItem.CasinoDateText}>{dataItem.CasinoDateText}</Cell>}
-                {selectedColumnList['CommissionGroup'] && <Cell title={typeof commissionGroup === 'string' ? commissionGroup : htmlDecode(dataItem.CommissionGroup)}>{commissionGroup}</Cell>}
+                {selectedColumnList['CommissionGroup'] && <Cell title={typeof commissionGroup === 'string' ? commissionGroup : commissionGroupName}>{commissionGroup}</Cell>}
                 {selectedColumnList['BalanceBf'] && <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>}
-                {selectedColumnList['Currency'] && <Cell title={htmlDecode(dataItem.Currency)}>{htmlDecode(dataItem.Currency)}</Cell>}
-                {selectedColumnList['PlayerUserName'] && <Cell title={htmlDecode(dataItem.PlayerUserName)}>{htmlDecode(dataItem.PlayerUserName)}</Cell>}
-                {selectedColumnList['PlayerCurrency'] && <Cell title={htmlDecode(dataItem.PlayerCurrency)}>{htmlDecode(dataItem.PlayerCurrency)}</Cell>}
+                {selectedColumnList['Currency'] && <Cell title={dataItem.Currency}>{dataItem.Currency}</Cell>}
+                {selectedColumnList['PlayerUserName'] && <Cell title={playerUserName}>{playerUserName}</Cell>}
+                {selectedColumnList['PlayerCurrency'] && <Cell title={dataItem.PlayerCurrency}>{dataItem.PlayerCurrency}</Cell>}
                 {selectedColumnList['Member'] && <Cell className="text-right" title={formattedMemberValue}>{member}</Cell>}
                 <Cell className="text-center" title="Change Password">
                     {

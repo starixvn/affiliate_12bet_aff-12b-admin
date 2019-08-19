@@ -7,6 +7,7 @@ using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -14,14 +15,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     public class NoteController : BaseController
     {
         private readonly INoteRepository _noteRepository;
-        private readonly ISessionService _sessionService;
 
         public NoteController(
             ISessionService sessionService,
             INoteRepository noteRepository) : base(sessionService)
         {
             _noteRepository = noteRepository;
-            _sessionService = sessionService;
         }
 
         [HttpPost]
@@ -47,9 +46,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (affId >= Validation.MinId && noteId >= Validation.MinId)
             {
+                var noteInfo = _noteRepository.GetNoteContentById(affId, noteId);
                 return new JsonNetResult
                 {
-                    Data = _noteRepository.GetNoteContentById(affId, noteId)
+                    Data = noteInfo != null ? new Note
+                    {
+                        NoteId = noteInfo.NoteId,
+                        NoteContent = Server.HtmlDecode(noteInfo.NoteContent)
+                    } : null
                 };
             }
 
@@ -113,7 +117,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             return new InsertUpdateNoteParam
             {
                 AffId = param.AffId,
-                UserId = _sessionService.UserId,
+                UserId = SessionService.UserId,
                 Ip = Request.UserHostAddress,
                 NoteId = param.NoteId,
                 NoteContent = Server.HtmlEncode(param.NoteContent)

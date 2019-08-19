@@ -122,7 +122,7 @@ export class Filter extends Component {
                                 <option key="lang-all" value="">{resource.AllLanguages}</option>
                                 {
                                     Object.keys(languageList).map(lang => {
-                                        return (<option key={'lang-' + lang} value={lang}>{htmlDecode(languageList[lang])}</option>)
+                                        return (<option key={'lang-' + lang} value={lang}>{languageList[lang]}</option>)
                                     })
                                 }
                             </Input>

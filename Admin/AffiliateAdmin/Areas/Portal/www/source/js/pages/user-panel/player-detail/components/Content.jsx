@@ -84,12 +84,13 @@ export class Content extends PureComponent {
         const deposit = formatDecimal(dataItem.Deposit);
         const bonus = formatDecimal(dataItem.Bonus);
         const bankingFee = formatDecimal(dataItem.BankingFee);
+        const userName = htmlDecode(dataItem.UserName);
 
         return (
             <Row>
                 <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>
-                <Cell title={htmlDecode(dataItem.UserName)}>{htmlDecode(dataItem.UserName)}</Cell>
-                <Cell title={htmlDecode(dataItem.IbcUserName)}>{htmlDecode(dataItem.IbcUserName)}</Cell>
+                <Cell title={userName}>{userName}</Cell>
+                <Cell title={dataItem.IbcUserName}>{dataItem.IbcUserName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateText}>{dataItem.RegisteredDateText}</Cell>
                 <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>
                 <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>

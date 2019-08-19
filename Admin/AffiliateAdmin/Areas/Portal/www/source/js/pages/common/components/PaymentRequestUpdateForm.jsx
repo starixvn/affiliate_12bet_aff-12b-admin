@@ -53,7 +53,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
             const paymentInfo = Object.assign({}, {
                 AffId: paymentRequestInfo.AffId,
                 TransId: paymentRequestInfo.TransId,
-                Status: selectedStatus,
+                IsApproved: selectedStatus.toLowerCase() === approvedStatus,
                 AdminDesc: paymentRequestInfo.AdminDesc,
                 AffDesc: paymentRequestInfo.AffDesc
             });

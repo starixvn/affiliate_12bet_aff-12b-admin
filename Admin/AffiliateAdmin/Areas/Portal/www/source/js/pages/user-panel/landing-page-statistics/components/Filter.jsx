@@ -106,7 +106,7 @@ export class Filter extends React.Component {
                             <option value="">{globalResource.All}</option>
                             {
                                 Object.keys(shortCodeLanguageList).map(key => {
-                                    return (<option key={`language-${key}`} value={key}>{htmlDecode(shortCodeLanguageList[key])}</option>)
+                                    return (<option key={`language-${key}`} value={key}>{shortCodeLanguageList[key]}</option>)
                                 })
                             }
                         </Input>

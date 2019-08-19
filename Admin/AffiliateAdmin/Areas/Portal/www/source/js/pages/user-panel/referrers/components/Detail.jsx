@@ -71,9 +71,11 @@ export class Detail extends Component {
     }
 
     _buildDataRow(dataItem, index) {
+        const websiteUrl = htmlDecode(dataItem.WebsiteUrl);
+
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell title={htmlDecode(dataItem.WebsiteUrl)}>{htmlDecode(dataItem.WebsiteUrl)}</Cell>
+                <Cell title={websiteUrl}>{websiteUrl}</Cell>
                 <Cell title={dataItem.TotalClick} className="text-right">{dataItem.TotalClick}</Cell>
                 <Cell title={dataItem.UniqueClick} className="text-right">{dataItem.UniqueClick}</Cell>
                 <Cell title={dataItem.Signups} className="text-right">{dataItem.Signups}</Cell>

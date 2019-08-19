@@ -77,7 +77,11 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
-        const href = `mailto:${dataItem.Email}`;
+        const email = htmlDecode(dataItem.Email);
+        const href = `mailto:${email}`;
+        const sender = htmlDecode(dataItem.Sender);
+        const affName = htmlDecode(dataItem.AffName);
+        const subject = htmlDecode(dataItem.Subject);
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
@@ -85,15 +89,15 @@ export class Content extends PureComponent {
                         onChange={(e) => this.onCheckItem(e.target.checked, dataItem.EmailId)} />
                 </Cell>
                 <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={htmlDecode(dataItem.Sender)}>{htmlDecode(dataItem.Sender)}</Cell>
-                <Cell title={htmlDecode(dataItem.AffName)}>{htmlDecode(dataItem.AffName)}</Cell>
-                <Cell title={htmlDecode(dataItem.Subject)}>
+                <Cell title={sender}>{sender}</Cell>
+                <Cell title={affName}>{affName}</Cell>
+                <Cell title={subject}>
                     <Button color="link" className="p-0" onClick={() => this.props.setSelectedEmailId(dataItem.EmailId)}>
-                        {htmlDecode(dataItem.Subject)}
+                        {subject}
                     </Button>
                 </Cell>
-                <Cell title={htmlDecode(dataItem.Email)}>
-                    <a target="_top" href={href}>{htmlDecode(dataItem.Email)}</a>
+                <Cell title={email}>
+                    <a target="_top" href={href}>{email}</a>
                 </Cell>
                 <Cell title={dataItem.SentDate} className="text-center">{dataItem.SentDateText}</Cell>
             </Row>
