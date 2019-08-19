@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public ResultInfo CreateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
-            var result = Validate(param);
+            var result = ValidateTierSettingList(param.TierSettingList);
 
             if (result.IsSuccessful)
             {
@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public ResultInfo UpdateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
-            var result = Validate(param);
+            var result = ValidateTierSettingList(param.TierSettingList);
 
             if (result.IsSuccessful)
             {
@@ -116,7 +116,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public ResultInfo AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
         {
-            var result = Validate(param);
+            var result = ValidateTierSettingList(param.TierSettingList);
 
             if (result.IsSuccessful)
             {
@@ -232,82 +232,38 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return result.ToString();
         }
 
-        private static ResultInfo Validate(CreateUpdateCommissionGroupParam param)
+        private static ResultInfo ValidateTierSettingList(IEnumerable<TierSetting> tierSettingList)
         {
             var result = new ResultInfo();
 
-            ValidateTierSettingList(param.TierSettingList, result);
-            ValidatePlatformFeeList(param.PlatformFeeList, result);
-
-            return result;
-        }
-
-        private static void ValidateTierSettingList(IEnumerable<TierSetting> tierSettingList, ResultInfo result)
-        {
             if (tierSettingList == null || !tierSettingList.Any())
             {
                 result.Code = Code.GeneralErrorCode;
                 result.Message = string.Join(result.Message + "<br />", "Tier Setting must have at least 1 tier!");
+                return result;
             }
 
-            if (tierSettingList?.Count(item => item.MaxAmount == Validation.InfinityAmount && item.MaxQm == Validation.InfinityQualifiedMember) == 0)
+            if (!tierSettingList.Any(item => (item.MaxAmount == Validation.InfinityAmount && item.MaxQm == Validation.InfinityQualifiedMember)))
             {
                 result.Code = Code.GeneralErrorCode;
                 result.Message = string.Join(result.Message + "<br />", "Last Tier Setting must have maximum value=∞!");
+                return result;
             }
 
-            if (tierSettingList?.Count(item => item.MinAmount > item.MaxAmount) > 0)
+            if (tierSettingList.Any(item => item.MinAmount > item.MaxAmount))
             {
                 result.Code = Code.GeneralErrorCode;
                 result.Message = string.Join(result.Message + "<br />", "Max Amount must be greater than or equal to Min Amount!");
+                return result;
             }
 
-            if (tierSettingList?.Count(item => item.MinQm > item.MaxQm) > 0)
+            if (tierSettingList.Any(item => item.MinQm > item.MaxQm))
             {
                 result.Code = Code.GeneralErrorCode;
                 result.Message = string.Join(result.Message + "<br />", "Max QM must be greater than or equal to Min QM!");
             }
-        }
 
-        private static void ValidatePlatformFeeList(IEnumerable<DeductionSetting> platformFeeList, ResultInfo result)
-        {
-            if (platformFeeList == null || !platformFeeList.Any())
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "Platform Fee must have at least 1 platform!");
-            }
-
-            if (platformFeeList?.Count(item => string.IsNullOrEmpty(item.ProductIds)) > 0)
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "At least 1 product must be selected per group!");
-            }
-
-            if (ValidateProductIds(platformFeeList))
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "The Products selected in a group, which must not exist in others!");
-            }
-
-        }
-
-        private static bool ValidateProductIds(IEnumerable<DeductionSetting> platformFeeList)
-        {
-            var platformFeeArray = platformFeeList.ToArray();
-            for (int i = 0; i < platformFeeArray.Length - 1; i++)
-            {
-                var platformFee = platformFeeArray[i];
-                var nextPlatformFee = platformFeeArray[i + 1];
-                var productIdsOfPlatformFee = platformFee.ProductIds.Split(',');
-                var productIdsOfNextPlatformFee = nextPlatformFee.ProductIds.Split(',');
-
-                if (productIdsOfPlatformFee?.Count(productId => productIdsOfNextPlatformFee.Contains(productId)) > 0)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return result;
         }
     }
 }

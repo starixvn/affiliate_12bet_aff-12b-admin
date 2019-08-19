@@ -13,6 +13,7 @@ using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.DTO;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -94,7 +95,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         public ActionResult CreateCommissionGroup(CommissionGroupSetting commGroup)
         {
             var result = ValidateGroupName(commGroup.GroupName);
-            if (ModelState.IsValid && result.IsSuccessful)
+            var validatePlatformFeeList = ValidatePlatformFeeList(commGroup.PlatformFeeList);
+
+            if (ModelState.IsValid && result.IsSuccessful && validatePlatformFeeList.IsSuccessful)
             {
                 var createParam = new CreateUpdateCommissionGroupParam
                 {
@@ -116,7 +119,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
 
             result.Code = Code.GeneralErrorCode;
-            result.Message = result.Message + string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
+            result.Message = result.Message + validatePlatformFeeList.Message + string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
 
             return new JsonNetResult
             {
@@ -131,8 +134,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             var commGroupInfo = _commissionGroupService.GetCommissionGroupList(new GetCommissionGroupParam { GroupId = commGroup.GroupId }).FirstOrDefault();
             var result = ValidateUpdateCommGroupParam(commGroup, commGroupInfo.NoAffs);
+            var validatePlatformFeeList = ValidatePlatformFeeList(commGroup.PlatformFeeList);
 
-            if (ModelState.IsValid && result.IsSuccessful)
+            if (ModelState.IsValid && result.IsSuccessful && validatePlatformFeeList.IsSuccessful)
             {
                 var updateParam = new CreateUpdateCommissionGroupParam
                 {
@@ -155,65 +159,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
 
             result.Code = Code.GeneralErrorCode;
-            result.Message = result.Message + string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
+            result.Message = result.Message + validatePlatformFeeList.Message + string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
 
             return new JsonNetResult
             {
                 Data = result
             };
-        }
-
-        public static ResultInfo ValidateUpdateCommGroupParam(CommissionGroupSetting param, int noAffs)
-        {
-            var result = ValidateGroupName(param.GroupName);
-
-            if(param.GroupId < Validation.MinId)
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = result.Message + "<br /> GroupId not exists!";
-            }
-            if (param.RowIdx < Validation.MinId)
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = result.Message + "<br /> RowIdx not exists!";
-            }
-
-            if (param.NoAffs != noAffs)
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = result.Message + "<br /> Affiliate number in the group is incorrect!";
-            }
-
-            return result;
-        }
-
-        public static ResultInfo ValidateGroupId(ResultInfo result, int groupId)
-        {
-            if (groupId < Validation.MinId)
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = result.Message + "<br /> GroupId not exists!";
-            }
-
-            return result;
-        }
-
-        public static ResultInfo ValidateGroupName(string groupName)
-        {
-            var result = new ResultInfo();
-
-            if (string.IsNullOrEmpty(groupName))
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = "GroupName cannot be empty. Please check!";
-            }
-            if (groupName.Length > 100)
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = "GroupName should shorter than 100 characters!";
-            }
-
-            return result;
         }
 
         [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
@@ -268,7 +219,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult AssignGroup(AssignGroupParam assignParam, AffiliateBasicInfo affInfo)
         {
-            var result = ValidateGroupId(new ResultInfo(), assignParam.GroupId);
+            var result = ValidateGroupId(assignParam.GroupId);
             if (ModelState.IsValid && result.IsSuccessful)
             {
                 assignParam.UserId = SessionService.UserId;
@@ -318,7 +269,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult AssignPrivateGroup(CommissionGroupSetting commGroup, AffiliateBasicInfo affInfo)
         {
-            if (ModelState.IsValid)
+            var result = ValidatePlatformFeeList(commGroup.PlatformFeeList);
+            if (ModelState.IsValid && result.IsSuccessful)
             {
                 var assignParam = new CreateUpdateCommissionGroupParam
                 {
@@ -345,14 +297,118 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
+            result.Code = Code.GeneralErrorCode;
+            result.Message = result.Message + string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
+
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = result
             };
+        }
+
+        public static ResultInfo ValidateUpdateCommGroupParam(CommissionGroupSetting param, int noAffs)
+        {
+            var result = ValidateGroupId(param.GroupId);
+            var validateGroupName = ValidateGroupName(param.GroupName);
+
+            if (!validateGroupName.IsSuccessful)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = result.Message + validateGroupName.Message;
+            }
+            if (param.RowIdx < Validation.MinId)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = result.Message + "<br /> RowIdx not exists!";
+            }
+
+            if (param.NoAffs != noAffs)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = result.Message + "<br /> Affiliate number in the group is incorrect!";
+            }
+
+            return result;
+        }
+
+        public static ResultInfo ValidateGroupId(int groupId)
+        {
+            var result = new ResultInfo();
+            if (groupId < Validation.MinId)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = result.Message + "<br /> GroupId not exists!";
+            }
+
+            return result;
+        }
+
+        public static ResultInfo ValidateGroupName(string groupName)
+        {
+            var result = new ResultInfo();
+
+            if (string.IsNullOrEmpty(groupName))
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = "GroupName cannot be empty. Please check!";
+            }
+            if (groupName.Length > 100)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = "GroupName should shorter than 100 characters!";
+            }
+
+            return result;
+        }
+
+        private ResultInfo ValidatePlatformFeeList(IEnumerable<DeductionSetting> platformFeeList)
+        {
+            var result = new ResultInfo();
+
+            if (platformFeeList == null || !platformFeeList.Any())
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message + "<br />", "Platform Fee must have at least 1 platform!");
+                return result;
+            }
+
+            if (platformFeeList.Any(item => string.IsNullOrEmpty(item.ProductIds)))
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message + "<br />", "At least 1 product must be selected per group!");
+                return result;
+            }
+
+            var productIdOfDB = _productRepository.GetProductList().Select(product => product.ProductId.ToString()).ToArray();
+            var productIdOfPlatform = platformFeeList.Select(platformFee => platformFee.ProductIds).First().Split(',');
+
+            var validateProductIds = ValidateProductIds(productIdOfDB, productIdOfPlatform);
+
+            if(!validateProductIds.IsSuccessful)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message, validateProductIds.Message);
+            }
+
+            return result;
+        }
+
+        private static ResultInfo ValidateProductIds(string[] productIdOfDB, string[] productIdOfPlatform)
+        {
+            var result = new ResultInfo();
+            var distinctProductIdOfPlatform = productIdOfPlatform.Distinct().ToArray();
+
+            if (productIdOfPlatform.Length != distinctProductIdOfPlatform.Length)
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message + "<br />", "The Products selected in a group, which must not exist in others!");
+            }
+            if (distinctProductIdOfPlatform.All(item => !productIdOfDB.Contains(item)))
+            {
+                result.Code = Code.GeneralErrorCode;
+                result.Message = string.Join(result.Message + "<br />", "The Product selected in a group is incorrect!");
+            }
+            return result;
         }
     }
 }

@@ -226,7 +226,6 @@
     <Compile Include="DTO\CommissionGroup\DeductionSetting.cs" />
     <Compile Include="DTO\CommissionGroup\TierSetting.cs" />
     <Compile Include="DTO\Customer\AffiliateInfoOnLeftPanel.cs" />
-    <Compile Include="DTO\Customer\ContactApp.cs" />
     <Compile Include="DTO\Customer\CustomerStatistics.cs" />
     <Compile Include="DTO\Customer\OnlineList.cs" />
     <Compile Include="DTO\DepositAccountInfo.cs" />

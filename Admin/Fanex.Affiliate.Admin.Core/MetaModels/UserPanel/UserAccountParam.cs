@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
-using Fanex.Affiliate.Admin.Core.DTO.Customer;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
