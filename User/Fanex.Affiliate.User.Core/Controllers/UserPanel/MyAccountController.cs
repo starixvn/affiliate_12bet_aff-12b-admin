@@ -33,17 +33,39 @@
         public ActionResult Index()
         {
             var model = _accountRepository.GetAccountInfo(_sessionService.UserSession.AffId);
-            model.IsRenderState = _sessionService.CurrentLanguage == SimplifiedChineseCode || _sessionService.CurrentLanguage == TraditionalChineseCode;
-            if (!string.IsNullOrEmpty(model.ContactApps))
+            var accountInformation = new AccountInformation
             {
-                model.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<ContactApp>>(model.ContactApps).OrderBy(p => p.Order);
+                AffId = model.AffId,
+                UserName = model.UserName,
+                Gender = model.Gender,
+                Email = Server.HtmlDecode(model.Email),
+                Phone = Server.HtmlDecode(model.Phone),
+                ContactApps = Server.HtmlDecode(model.ContactApps),
+                Address = Server.HtmlDecode(model.Address),
+                City = Server.HtmlDecode(model.City),
+                State = Server.HtmlDecode(model.State),
+                Country = Server.HtmlDecode(model.Country),
+                SiteUrl = Server.HtmlDecode(model.SiteUrl),
+                MoreSiteUrls = Server.HtmlDecode(model.MoreSiteUrls),
+                PreferredPayment = Server.HtmlDecode(model.PreferredPayment),
+                PlayerUsername = Server.HtmlDecode(model.PlayerUsername),
+                Postal = Server.HtmlDecode(model.Postal),
+                PreferredLanguage = model.PreferredLanguage,
+                NoSiteDesc = Server.HtmlDecode(model.NoSiteDesc),
+                IsRenderState = _sessionService.CurrentLanguage == SimplifiedChineseCode || _sessionService.CurrentLanguage == TraditionalChineseCode,
+                HasWebSite = model.HasWebSite
+            };
+
+            if (!string.IsNullOrEmpty(accountInformation.ContactApps))
+            {
+                accountInformation.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<ContactApp>>(accountInformation.ContactApps).OrderBy(p => p.Order);
             }
 
-            var preferredLanguage = model.PreferredLanguage;
+            var preferredLanguage = accountInformation.PreferredLanguage;
             var languageName = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.Equals(preferredLanguage))?.EnglishName ?? preferredLanguage;
-            model.LanguageName = SystemLanguage.GetLanguageText(languageName);
+            accountInformation.LanguageName = SystemLanguage.GetLanguageText(languageName);
 
-            return View("~/Views/UserPanel/MyAccount/index.cshtml", model);
+            return View("~/Views/UserPanel/MyAccount/index.cshtml", accountInformation);
         }
 
         [HttpPost]
