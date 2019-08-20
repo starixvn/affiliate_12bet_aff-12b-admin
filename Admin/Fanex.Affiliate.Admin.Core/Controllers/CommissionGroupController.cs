@@ -1,19 +1,19 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels;
-using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.DTO;
-using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "GroupId is required!"
+                    Message = CommGroupErrorMessage.InvalidGroupId
                 }
             };
         }
@@ -94,10 +94,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult CreateCommissionGroup(CommissionGroupSetting commGroup)
         {
-            var result = ValidateGroupName(commGroup.GroupName);
-            var validatePlatformFeeList = ValidatePlatformFeeList(commGroup.PlatformFeeList);
+            if (!ModelState.IsValid)
+            {
+                return CreateErrorResult();
+            }
 
-            if (ModelState.IsValid && result.IsSuccessful && validatePlatformFeeList.IsSuccessful)
+            var groupNameValidation = ValidateGroupName(commGroup.GroupName);
+            var platformFeeValidation = ValidatePlatformFeeList(commGroup.PlatformFeeList);
+
+            if (groupNameValidation.IsSuccessful && platformFeeValidation.IsSuccessful)
             {
                 var createParam = new CreateUpdateCommissionGroupParam
                 {
@@ -118,12 +123,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
-            result.Code = Code.GeneralErrorCode;
-            result.Message = result.Message + validatePlatformFeeList.Message + string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
-
             return new JsonNetResult
             {
-                Data = result
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = groupNameValidation.Message + platformFeeValidation.Message
+                }
             };
         }
 
@@ -132,11 +138,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult UpdateCommissionGroup(CommissionGroupSetting commGroup)
         {
-            var commGroupInfo = _commissionGroupService.GetCommissionGroupList(new GetCommissionGroupParam { GroupId = commGroup.GroupId }).FirstOrDefault();
-            var result = ValidateUpdateCommGroupParam(commGroup, commGroupInfo.NoAffs);
-            var validatePlatformFeeList = ValidatePlatformFeeList(commGroup.PlatformFeeList);
+            if (!ModelState.IsValid)
+            {
+                return CreateErrorResult();
+            }
 
-            if (ModelState.IsValid && result.IsSuccessful && validatePlatformFeeList.IsSuccessful)
+            var commGroupValidation = ValidateUpdateCommGroupParam(commGroup);
+            var platformFeeValidation = ValidatePlatformFeeList(commGroup.PlatformFeeList);
+
+            if (commGroupValidation.IsSuccessful && platformFeeValidation.IsSuccessful)
             {
                 var updateParam = new CreateUpdateCommissionGroupParam
                 {
@@ -158,12 +168,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
-            result.Code = Code.GeneralErrorCode;
-            result.Message = result.Message + validatePlatformFeeList.Message + string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
-
             return new JsonNetResult
             {
-                Data = result
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = commGroupValidation.Message + platformFeeValidation.Message
+                }
             };
         }
 
@@ -172,24 +183,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult DeleteCommissionGroup(DeleteCommissionGroupParam param)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                param.UserId = SessionService.UserId;
-                param.Ip = Request.UserHostAddress;
-
-                return new JsonNetResult
-                {
-                    Data = _commissionGroupService.DeleteCommissionGroup(param)
-                };
+                return CreateErrorResult();
             }
+
+            param.UserId = SessionService.UserId;
+            param.Ip = Request.UserHostAddress;
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = _commissionGroupService.DeleteCommissionGroup(param)
             };
         }
 
@@ -219,8 +223,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult AssignGroup(AssignGroupParam assignParam, AffiliateBasicInfo affInfo)
         {
-            var result = ValidateGroupId(assignParam.GroupId);
-            if (ModelState.IsValid && result.IsSuccessful)
+            if (!ModelState.IsValid)
+            {
+                return CreateErrorResult();
+            }
+
+            var validationResult = ValidateGroupId(assignParam.GroupId);
+            if (validationResult.IsSuccessful)
             {
                 assignParam.UserId = SessionService.UserId;
                 assignParam.Ip = Request.UserHostAddress;
@@ -237,29 +246,27 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
-            result.Code = Code.GeneralErrorCode;
-            result.Message = result.Message + string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
-
             return new JsonNetResult
             {
-                Data = result
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = validationResult.Message
+                }
             };
         }
 
         [HttpGet]
         public ActionResult AssignPrivateGroup(int affId)
         {
-            var viewModel = new AssignPrivateGroupViewModel();
-
-            if (affId >= Validation.MinId)
-            {
-                viewModel = new AssignPrivateGroupViewModel
+            var viewModel = affId >= Validation.MinId ?
+                new AssignPrivateGroupViewModel
                 {
                     ProductList = _productRepository.GetProductList(),
                     DeductionList = _commissionGroupService.GetDeductionList(),
                     AffInfo = _affiliateService.GetAffiliateBasicInfo(affId)
-                };
-            }
+                } :
+                new AssignPrivateGroupViewModel();
 
             return View("~/Areas/Portal/Views/CommissionGroup/AssignPrivateGroup.cshtml", viewModel);
         }
@@ -269,8 +276,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult AssignPrivateGroup(CommissionGroupSetting commGroup, AffiliateBasicInfo affInfo)
         {
-            var result = ValidatePlatformFeeList(commGroup.PlatformFeeList);
-            if (ModelState.IsValid && result.IsSuccessful)
+            if (!ModelState.IsValid)
+            {
+                return CreateErrorResult();
+            }
+
+            var platformFeeValidation = ValidatePlatformFeeList(commGroup.PlatformFeeList);
+            if (platformFeeValidation.IsSuccessful)
             {
                 var assignParam = new CreateUpdateCommissionGroupParam
                 {
@@ -297,65 +309,54 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
-            result.Code = Code.GeneralErrorCode;
-            result.Message = result.Message + string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
-
             return new JsonNetResult
             {
-                Data = result
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = platformFeeValidation.Message
+                }
             };
         }
 
-        public static ResultInfo ValidateUpdateCommGroupParam(CommissionGroupSetting param, int noAffs)
+        private ActionResult CreateErrorResult()
         {
-            var result = ValidateGroupId(param.GroupId);
-            var validateGroupName = ValidateGroupName(param.GroupName);
-
-            if (!validateGroupName.IsSuccessful)
+            return new JsonNetResult
             {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = result.Message + validateGroupName.Message;
-            }
-            if (param.RowIdx < Validation.MinId)
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = result.Message + "<br /> RowIdx not exists!";
-            }
-
-            if (param.NoAffs != noAffs)
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = result.Message + "<br /> Affiliate number in the group is incorrect!";
-            }
-
-            return result;
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                }
+            };
         }
 
-        public static ResultInfo ValidateGroupId(int groupId)
+        private static ResultInfo ValidateUpdateCommGroupParam(CommissionGroupSetting param)
+        {
+            var result = ValidateGroupId(param.GroupId);
+
+            return result.IsSuccessful ? ValidateGroupName(param.GroupName) : result;
+        }
+
+        private static ResultInfo ValidateGroupId(int groupId)
         {
             var result = new ResultInfo();
             if (groupId < Validation.MinId)
             {
                 result.Code = Code.GeneralErrorCode;
-                result.Message = result.Message + "<br /> GroupId not exists!";
+                result.Message = CommGroupErrorMessage.InvalidGroupId;
             }
 
             return result;
         }
 
-        public static ResultInfo ValidateGroupName(string groupName)
+        private static ResultInfo ValidateGroupName(string groupName)
         {
             var result = new ResultInfo();
-
-            if (string.IsNullOrEmpty(groupName))
+            if (string.IsNullOrEmpty(groupName) || groupName.Length > 100)
             {
                 result.Code = Code.GeneralErrorCode;
-                result.Message = "GroupName cannot be empty. Please check!";
-            }
-            if (groupName.Length > 100)
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = "GroupName should shorter than 100 characters!";
+                result.Message = CommGroupErrorMessage.InvalidGroupName;
             }
 
             return result;
@@ -363,62 +364,48 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         private ResultInfo ValidatePlatformFeeList(IEnumerable<DeductionSetting> platformFeeList)
         {
-            var result = new ResultInfo();
-
-            if (platformFeeList == null || !platformFeeList.Any())
+            var result = new ResultInfo
             {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "Platform Fee must have at least 1 platform!");
+                Code = Code.GeneralErrorCode,
+                Message = CommGroupErrorMessage.InvalidPlatformFee
+            };
+
+            if (platformFeeList == null || !platformFeeList.Any() || platformFeeList.Any(item => string.IsNullOrEmpty(item.ProductIds)))
+            {
                 return result;
             }
 
-            if (platformFeeList.Any(item => string.IsNullOrEmpty(item.ProductIds)))
+            var productIdOfDB = _productRepository.GetProductList().Select(p => p.ProductId.ToString());
+            var productIdOfPlatform = string.Join(",", platformFeeList.Select(p => p.ProductIds.Replace(" ", "")))
+                                        .Split(new[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
+
+            var productIdValidation = ValidateProductIds(productIdOfDB, productIdOfPlatform);
+            if (!productIdValidation.IsSuccessful)
             {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "At least 1 product must be selected per group!");
                 return result;
             }
 
-            var productIdOfDB = _productRepository.GetProductList().Select(product => product.ProductId.ToString()).ToArray();
-            var productIdOfPlatform = string.Join(",", platformFeeList.Select(platformFee => platformFee.ProductIds.Replace(" ","")).ToArray())
-                                        .Split(new[] { "," }, System.StringSplitOptions.RemoveEmptyEntries);
-
-            var validateProductIds = ValidateProductIds(productIdOfDB, productIdOfPlatform);
-
-            if (!validateProductIds.IsSuccessful)
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message, validateProductIds.Message);
-            }
-
-            return result;
+            return new ResultInfo();
         }
 
-        private static ResultInfo ValidateProductIds(string[] productIdOfDB, string[] productIdOfPlatform)
+        private static ResultInfo ValidateProductIds(IEnumerable<string> productIdOfDB, IEnumerable<string> productIdOfPlatform)
         {
-            var result = new ResultInfo();
+            var result = new ResultInfo { Code = Code.GeneralErrorCode };
 
-            if (productIdOfDB.Length != productIdOfPlatform.Length)
+            var inputProductIdListCount = productIdOfPlatform.Count();
+            if (productIdOfDB.Count() != inputProductIdListCount)
             {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "You must select all products!");
                 return result;
             }
 
-            var distinctProductIdOfPlatform = productIdOfPlatform.Distinct().ToArray();
-
-            if (productIdOfPlatform.Length != distinctProductIdOfPlatform.Length)
+            var distinctProductIdOfPlatform = productIdOfPlatform.Distinct();
+            if (inputProductIdListCount != distinctProductIdOfPlatform.Count() ||
+                distinctProductIdOfPlatform.Any(item => !productIdOfDB.Contains(item)))
             {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "The Products selected in a group, which must not exist in others!");
+                return result;
             }
 
-            if (distinctProductIdOfPlatform.Any(item => !productIdOfDB.Contains(item)))
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "The Product selected in a group is incorrect!");
-            }
-            return result;
+            return new ResultInfo();
         }
     }
 }
