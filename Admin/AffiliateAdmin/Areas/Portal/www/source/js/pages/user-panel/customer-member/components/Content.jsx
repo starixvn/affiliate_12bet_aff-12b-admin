@@ -37,13 +37,8 @@ export class Content extends PureComponent {
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const newPaging = {
-            PageIndex: pageIndex,
-            PageSize: pageSize
-        };
         const newParam = { ...this.props.param, pageIndex, pageSize };
 
-        this.props.setPagingOption(newPaging);
         this.fetchData(newParam);
     }
 

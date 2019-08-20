@@ -82,14 +82,7 @@ export class Detail extends Component {
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const newPaging = {
-            PageIndex: pageIndex,
-            PageSize: pageSize
-        };
-
-        this.props.setPagingOption(newPaging);
-
-        const newParam = Object.assign({}, this.props.param, { ...this.props.selectedPage, ...newPaging });
+        const newParam = Object.assign({}, this.props.param, { ...this.props.selectedPage, pageIndex, pageSize });
         this.fetchData(newParam);
     }
 

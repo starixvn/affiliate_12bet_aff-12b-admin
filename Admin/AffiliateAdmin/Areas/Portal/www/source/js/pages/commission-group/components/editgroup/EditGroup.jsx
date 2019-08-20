@@ -55,7 +55,7 @@ export class EditGroup extends React.Component {
 
                 if (result.IsSuccessful) {
                     window.setTimeout(this.props.onClose, 3000);
-                    const gettingParam = Object.assign({}, defaultPagingOption);
+                    const gettingParam = Object.assign({}, defaultPagingOption, { GroupName: this.props.searchedGroupName });
                     this.props.getGroupSettingList(gettingParam);
                 }
 
@@ -89,8 +89,8 @@ export class EditGroup extends React.Component {
     }
 }
 
-function mapStateToProp({ selectedGroup }) {
-    return { selectedGroup };
+function mapStateToProp({ selectedGroup, searchedGroupName }) {
+    return { selectedGroup, searchedGroupName };
 }
 
 function mapDispatchToProps(dispatch) {

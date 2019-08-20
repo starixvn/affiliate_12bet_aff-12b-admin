@@ -117,7 +117,6 @@ export class Content extends PureComponent {
         };
         const newParam = Object.assign({}, this.props.param, newPaging);
 
-        this.props.setPagingOption(newPaging);
         this.fetchData(newParam);
     };
 

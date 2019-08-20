@@ -43,7 +43,7 @@ export class GridData extends Component {
                 const result = response.data;
 
                 if (result.IsSuccessful) {
-                    const gettingParam = Object.assign({}, defaultPagingOption);
+                    const gettingParam = Object.assign({}, defaultPagingOption, { GroupName: this.props.searchedGroupName });
                     this.props.getGroupSettingList(gettingParam);
 
                     window.alert("Delete Commission Group Successfully");
@@ -187,8 +187,8 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ gridData, productList }) {
-    return Object.assign({}, { gridData, productList });
+function mapStateToProps({ gridData, productList, searchedGroupName }) {
+    return Object.assign({}, { gridData, productList, searchedGroupName });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -56,7 +56,7 @@ export class AddGroup extends React.Component {
                 const result = response.data;
                 if (result.IsSuccessful) {
                     window.setTimeout(this.props.onClose, 3000);
-                    const gettingParam = Object.assign({}, defaultPagingOption);
+                    const gettingParam = Object.assign({}, defaultPagingOption, { GroupName: this.props.searchedGroupName });
                     this.props.getGroupSettingList(gettingParam);
                 }
 
@@ -90,8 +90,8 @@ export class AddGroup extends React.Component {
     }
 }
 
-function mapStateToProp({ deductionList, productList, selectedGroup }) {
-    return { deductionList, productList, selectedGroup };
+function mapStateToProp({ deductionList, productList, selectedGroup, searchedGroupName }) {
+    return { deductionList, productList, selectedGroup, searchedGroupName };
 }
 
 function mapDispatchToProps(dispatch) {
