@@ -50,7 +50,7 @@ export default class AssignGroup extends Component {
             }
 
             this.setState({ isShowLoader: true });
-            const url = 'Portal/CommissionGroup/AssignGroup';
+            const url = 'Portal/CommGroupAssignment/AssignGroup';
             const params = {
                 assignParam: {
                     groupId: selectedGroup,

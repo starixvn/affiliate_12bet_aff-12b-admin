@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommissionGroupController.cs" />
+    <Compile Include="Controllers\Commission\CommGroupAssignmentController.cs" />
     <Compile Include="Controllers\CommonSettingController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\CustomerLeftPanelController.cs" />
@@ -407,6 +408,10 @@
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\AffiliateService.cs" />
+    <Compile Include="Services\CommGroup\CommGroupAssignmentService.cs" />
+    <Compile Include="Services\CommGroup\CommGroupCommonService.cs" />
+    <Compile Include="Services\CommGroup\ICommGroupAssignmentService.cs" />
+    <Compile Include="Services\CommGroup\ICommGroupCommonService.cs" />
     <Compile Include="Services\CommissionGroupService.cs" />
     <Compile Include="Services\Common\ISessionService.cs" />
     <Compile Include="DTO\Common\UserPermission.cs" />
@@ -433,6 +438,7 @@
     <Compile Include="Services\UserPanel\IUserAccountService.cs" />
     <Compile Include="Services\UserPanel\StatementHistoryService.cs" />
     <Compile Include="Services\UserPanel\UserAccountService.cs" />
+    <Compile Include="Utilities\CommGroup\CommGroupValidationHelper.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />

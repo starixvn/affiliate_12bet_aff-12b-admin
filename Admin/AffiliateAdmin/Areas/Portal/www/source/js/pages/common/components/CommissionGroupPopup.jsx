@@ -68,7 +68,7 @@ export default class CommissionGroupPopup extends PureComponent {
         const assignTitle = isNewAffiliate ? 'Assign Commission Group For New Affiliate' : `Change Commission Group for ${affName}`;
         const title = isPrivateGroup ? `Edit Commission Group for ${affName}` : assignTitle;
 
-        const url = isPrivate ? resolveClientUrl(`Portal/CommissionGroup/AssignPrivateGroup?affId=${affId}`) : resolveClientUrl(`Portal/CommissionGroup/AssignGroup?affId=${affId}`);
+        const url = isPrivate ? resolveClientUrl(`Portal/CommGroupAssignment/AssignPrivateGroup?affId=${affId}`) : resolveClientUrl(`Portal/CommGroupAssignment/AssignGroup?affId=${affId}`);
         const size = isPrivate ? 'lg' : '';
         const maxWidth = isPrivate ? '' : 570;
 

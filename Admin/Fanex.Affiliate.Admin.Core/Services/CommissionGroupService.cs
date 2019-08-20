@@ -1,15 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.DTO.Email;
-using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 
 namespace Fanex.Affiliate.Admin.Core.Services
 {
@@ -17,18 +13,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
     {
         private readonly ICommissionGroupRepository _commGroupRepository;
 
-        private readonly IAffiliateService _affiliateService;
+        private readonly ICommGroupCommonService _commGroupCommonService;
 
-        private readonly IEmailService _emailService;
-
-        public CommissionGroupService(
-            ICommissionGroupRepository commGroupRepository,
-            IAffiliateService affiliateService,
-            IEmailService emailService)
+        public CommissionGroupService(ICommissionGroupRepository commGroupRepository, ICommGroupCommonService commGroupCommonService)
         {
             _commGroupRepository = commGroupRepository;
-            _affiliateService = affiliateService;
-            _emailService = emailService;
+            _commGroupCommonService = commGroupCommonService;
         }
 
         public IEnumerable<CommissionGroupSetting> GetCommissionGroupList(GetCommissionGroupParam param)
@@ -64,34 +54,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public ResultInfo CreateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
-            var result = ValidateTierSettingList(param.TierSettingList);
-
-            if (result.IsSuccessful)
-            {
-                var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
-                param.TierList = BuildTierSettingXml(param.TierSettingList);
-                param.DeductionList = BuildDeductionSettingXml(deductionSettingList, true);
-
-                return _commGroupRepository.CreateCommissionGroup(param);
-            }
-
-            return result;
+            return _commGroupCommonService.CreateCommissionGroup(param);
         }
 
         public ResultInfo UpdateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
-            var result = ValidateTierSettingList(param.TierSettingList);
-
-            if (result.IsSuccessful)
-            {
-                var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
-                param.TierList = BuildTierSettingXml(param.TierSettingList);
-                param.DeductionList = BuildDeductionSettingXml(deductionSettingList, false);
-
-                return _commGroupRepository.UpdateCommissionGroup(param);
-            }
-
-            return result;
+            return _commGroupCommonService.UpdateCommissionGroup(param);
         }
 
         public ResultInfo DeleteCommissionGroup(DeleteCommissionGroupParam param)
@@ -99,171 +67,9 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return _commGroupRepository.DeleteCommissionGroup(param);
         }
 
-        public IEnumerable<Deduction> GetDeductionList()
-        {
-            return _commGroupRepository.GetDeductionList();
-        }
-
-        public IEnumerable<SelectItem> GetNormalCommGroupList(GetGroupListParam param)
-        {
-            return _commGroupRepository.GetNormalCommGroupList(param);
-        }
-
-        public ResultInfo AssignGroup(AssignGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
-        {
-            return ProcessAssignGroup(param, affInfo, emailParam);
-        }
-
-        public ResultInfo AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
-        {
-            var result = ValidateTierSettingList(param.TierSettingList);
-
-            if (result.IsSuccessful)
-            {
-                var isCreateNewPrivateGroup = affInfo.GroupId == 0 || param.GroupId != affInfo.GroupId;
-
-                var commGroupResult = isCreateNewPrivateGroup ? CreateCommissionGroup(param) : UpdateCommissionGroup(param);
-
-                if (commGroupResult.IsSuccessful)
-                {
-                    var assignparam = new AssignGroupParam
-                    {
-                        UserId = param.UserId,
-                        AffId = affInfo.AffId,
-                        GroupId = param.GroupId,
-                        Ip = param.Ip
-                    };
-
-                    return ProcessAssignGroup(assignparam, affInfo, emailParam);
-                }
-
-                return commGroupResult;
-            }
-
-            return result;
-        }
-
-        private ResultInfo ProcessAssignGroup(AssignGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
-        {
-            var assignResult = _commGroupRepository.AssignGroup(param);
-            var isApproved = affInfo.GroupId != 0;
-            if (!isApproved && assignResult.IsSuccessful)
-            {
-                return ProcessApproveAffiliate(param, affInfo, emailParam);
-            }
-
-            return assignResult;
-        }
-
-        private ResultInfo ProcessApproveAffiliate(AssignGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
-        {
-            var password = Generator.GetRandomString(10);
-            var approvedResult = ApproveAffiliate(param.UserId, param.AffId, param.Ip, password);
-
-            if (approvedResult.IsSuccessful)
-            {
-                SendEmailApprove(emailParam, affInfo, password);
-            }
-
-            return approvedResult;
-        }
-
-        private ResultInfo ApproveAffiliate(int userId, int affId, string ip, string password)
-        {
-            var approveParam = new ApproveAffiliateParam
-            {
-                UserId = userId,
-                AffId = affId,
-                Password = CryptographyHelper.Encrypt(password),
-                Ip = ip
-            };
-
-            return _affiliateService.ApproveAffiliate(approveParam);
-        }
-
-        private void SendEmailApprove(AffInformationEmail emailParam, AffiliateBasicInfo affInfo, string password)
-        {
-            emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(affInfo.AffType);
-            emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguage;
-            emailParam.FirstName = affInfo.FirstName;
-            emailParam.UserName = affInfo.UserName;
-            emailParam.MailTo = affInfo.Email;
-            emailParam.IsHtml = !affInfo.MailOption;
-            emailParam.Password = password;
-
-            _emailService.SendApprovedEmail(emailParam);
-        }
-
         private static bool IsPlatformFee(string productIdList)
         {
             return productIdList != "0";
-        }
-
-        private static string BuildTierSettingXml(IEnumerable<TierSetting> tierSettingList)
-        {
-            var result = new StringBuilder();
-            result.Append("<root>");
-
-            foreach (var item in tierSettingList)
-            {
-                var row = $"<row id=\"{item.TierId}\" minamount=\"{item.MinAmount}\" maxamount=\"{item.MaxAmount}\" minqm=\"{item.MinQm}\" maxqm=\"{item.MaxQm}\" commission=\"{item.Commission}\" />";
-                result.Append(row);
-            }
-
-            result.Append("</root>");
-
-            return result.ToString();
-        }
-
-        private static string BuildDeductionSettingXml(IEnumerable<DeductionSetting> deductionSettingList, bool isInsert)
-        {
-            var result = new StringBuilder();
-            result.Append("<root>");
-
-            foreach (var item in deductionSettingList)
-            {
-                var percent = isInsert ? item.DeductedPercentage : item.NextDeductedPercentage;
-                var row = $"<row id=\"{item.DeductionId}\" productids=\"{item.ProductIds}\" percent=\"{percent}\" />";
-                result.Append(row);
-            }
-
-            result.Append("</root>");
-
-            return result.ToString();
-        }
-
-        private static ResultInfo ValidateTierSettingList(IEnumerable<TierSetting> tierSettingList)
-        {
-            var result = new ResultInfo();
-
-            if (tierSettingList == null || !tierSettingList.Any())
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "Tier Setting must have at least 1 tier!");
-                return result;
-            }
-
-            if (!tierSettingList.Any(item => (item.MaxAmount == Validation.InfinityAmount && item.MaxQm == Validation.InfinityQualifiedMember)))
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "Last Tier Setting must have maximum value=∞!");
-                return result;
-            }
-
-            if (tierSettingList.Any(item => item.MinAmount > item.MaxAmount))
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "Max Amount must be greater than or equal to Min Amount!");
-                return result;
-            }
-
-            if (tierSettingList.Any(item => item.MinQm > item.MaxQm))
-            {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "Max QM must be greater than or equal to Min QM!");
-            }
-
-            return result;
         }
     }
 }
