@@ -1,7 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
+    [Serializable]
     public class UserAccount
     {
         public int AffId { get; set; }
@@ -18,6 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Phone { get; set; }
 
+        [JsonIgnore]
         public string ContactApps { get; set; }
 
         public string Address { get; set; }
@@ -61,5 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         public string Answer { get; set; }
 
         public bool? MailOption { get; set; }
+
+        public IEnumerable<ContactApp> ContactAppList { get; set; }
     }
 }

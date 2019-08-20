@@ -246,6 +246,7 @@
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="DTO\SelectItem.cs" />
     <Compile Include="DTO\SubMenu.cs" />
+    <Compile Include="DTO\UserPanel\ContactApp.cs" />
     <Compile Include="DTO\UserPanel\CustomerMember.cs" />
     <Compile Include="DTO\UserPanel\DailyEarning.cs" />
     <Compile Include="DTO\UserPanel\DailyEarningDetail.cs" />

@@ -13,7 +13,7 @@ export class Personal extends PureComponent {
 
         const { userAccountInfo } = this.props;
 
-        this.arrayContactApps = JSON.parse(userAccountInfo && userAccountInfo.ContactApps);
+        this.arrayContactApps = userAccountInfo && userAccountInfo.ContactAppList;
     }
 
     handleChange = (event) => {
@@ -36,7 +36,7 @@ export class Personal extends PureComponent {
         const updateItem = Object.assign({}, this.arrayContactApps[indexItem], { Value: value });
         this.arrayContactApps = updateObjectInArray(this.arrayContactApps, indexItem, updateItem)
 
-        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { ContactApps: JSON.stringify(this.arrayContactApps) })
+        const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { ContactAppList: this.arrayContactApps })
         this.props.setUserAccountInfo(newUserAccountInfo);
     }
 

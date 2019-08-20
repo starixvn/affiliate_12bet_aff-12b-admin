@@ -9,8 +9,8 @@ using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Newtonsoft.Json;
 using System.Linq;
-using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -33,9 +33,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             if (affId >= Validation.MinId)
             {
                 var userAccountInfo = _userAccountService.GetUserAccountInfo(affId);
-                return new JsonNetResult
+
+                if (userAccountInfo != null)
                 {
-                    Data = userAccountInfo != null ? new UserAccount
+                    var newUserAccountInfo = new UserAccount
                     {
                         AffId = userAccountInfo.AffId,
                         AffName = userAccountInfo.AffName,
@@ -64,10 +65,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                         BankAccountNumber = Server.HtmlDecode(userAccountInfo.BankAccountNumber),
                         Question = Server.HtmlDecode(userAccountInfo.Question),
                         Answer = Server.HtmlDecode(userAccountInfo.Answer),
-                        MailOption = userAccountInfo.MailOption,
-                        
-                    } : null
-                };
+                        MailOption = userAccountInfo.MailOption
+                    };
+
+                    if (!string.IsNullOrEmpty(newUserAccountInfo.ContactApps))
+                    {
+                        newUserAccountInfo.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<ContactApp>>(newUserAccountInfo.ContactApps).OrderBy(p => p.Order);
+                    }
+
+                    return new JsonNetResult
+                    {
+                        Data = newUserAccountInfo
+                    };
+                }
             }
 
             return new JsonNetResult();
@@ -90,7 +100,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     Gender = param.Gender,
                     Email = Server.HtmlEncode(param.Email),
                     Phone = Server.HtmlEncode(param.Phone),
-                    ContactApps = Server.HtmlEncode(param.ContactApps),
                     Address = Server.HtmlEncode(param.Address),
                     City = Server.HtmlEncode(param.City),
                     State = Server.HtmlEncode(param.State),
@@ -110,6 +119,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     BankAccountNumber = Server.HtmlEncode(param.BankAccountNumber),
                     MailOption = param.MailOption
                 };
+
+                if (param.ContactAppList != null)
+                {
+                    userAccountParam.ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
+                    {
+                        Name = Server.HtmlEncode(p.Name),
+                        Value = Server.HtmlEncode(p.Value),
+                        Order = p.Order
+                    }));
+                }
 
                 return new JsonNetResult
                 {
