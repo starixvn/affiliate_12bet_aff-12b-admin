@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Loader from '../../../../components/Loader';
-import { Spinner } from 'reactstrap';
 import UserPanelMenu from './UserPanelMenu';
 import { userPanelMenuList, userPanelPendingMenuList } from '../modules/menu';
 import { userPanelMenuKey } from '../../common/modules/constants';
@@ -22,7 +21,7 @@ export const UserPanel = (props) => {
 
     return (
         <div className="user-panel-container">
-            <Loader show={isShowLoader} style={{ top: spinnerLoaderUserPanelHeight, left: spinnerLoaderWidth }} />
+            <Loader show={isShowLoader} style={{ top: spinnerLoaderUserPanelHeight, left: spinnerLoaderWidth }}/>
             <UserPanelMenu selectedUserPanel={selectedUserPanel} onClickMenu={onClickMenu} isPending={isPending} menuList={menuList} />
 
             <div class="user-panel-content-container">

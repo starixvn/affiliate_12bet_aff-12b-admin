@@ -20,6 +20,8 @@ export const selectedAllProduct = 0;
 export const maxWidth = window.innerWidth - 282;
 
 const maxUserPanelHeight = window.innerHeight - 234;
+
+export const spinnerLoaderWidth = (maxWidth / 2) - 32
 export const spinnerLoaderUserPanelHeight = (maxUserPanelHeight / 2) - 32
 
 export const minDate = new Date(2009, 11, 1);
