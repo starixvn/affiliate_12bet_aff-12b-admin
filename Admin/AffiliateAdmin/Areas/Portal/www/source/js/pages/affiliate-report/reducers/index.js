@@ -13,19 +13,19 @@ const languageList = createReducer({}, {});
 
 const today = createReducer('', {});
 
-const reportTitle = createReducer('', {
+export const reportTitle = createReducer('', {
     [SET_REPORT_TITLE](prevState, action) {
         return action.data;
     }
 })
 
-const param = createReducer(null, {
+export const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
         return Object.assign({}, prevState, action.data);
     }
 })
 
-const currentViewLevel = createReducer(viewLevel.main, {
+export const currentViewLevel = createReducer(viewLevel.main, {
     [SET_VIEW_LEVEL](prevState, action) {
         return action.data;
     }

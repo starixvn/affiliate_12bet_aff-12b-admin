@@ -1,69 +1,51 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
+import UserPanelBreadcrumb from '../../../common/components/UserPanelBreadcrumb';
 import Filter from './Filter';
 import Content from './Content';
-import Loader from '../../../../components/Loader';
-import { post } from '../../../../modules/ajaxRequest';
 
-const allProduct = 0;
+import { setSelectedUserPanel, redirectToDailyEarning } from '../actions';
+import { monthNames, userPanelMenuKey } from '../modules/constants';
 
-export default class AppContainer extends Component {
+export class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { productList, param } = window.initialState;
-
-        this.productList = productList;
-        this.param = param;
-
-        this.state = {
-            isShowLoader: false,
-            selectedProduct: allProduct,
-            data: { gridData: null, total: null }
-        }
-    }
-
-    componentDidMount() {
-        this.fetchData(this.param);
-    }
-
-    async fetchData(param) {
-        this.setState({ isShowLoader: true });
-        const url = 'Portal/UserPanel/StatementHistory/GetDailyEarningDetail';
-        const response = await post(url, param);
-        if (response && response.status === 200) {
-            const { MainData, Total } = response.data;
-
-            this.setState({
-                isShowLoader: false,
-                selectedProduct: param.ProductId,
-                data: { gridData: MainData, total: Total }
-            });
-        }
-        else {
-            this.setState({
-                isShowLoader: false,
-                selectedProduct: param.ProductId
-            });
-        }
-    }
-
-    handleChangeProduct = (selectedProduct) => {
-        const param = Object.assign(this.param, { ProductId: selectedProduct });
-        this.fetchData(param);
+        const { param } = this.props;
+        this.monthDate = param && param.monthDate;
+        this.date = new Date(this.monthDate);
     }
 
     render() {
-        const { selectedProduct, data, isShowLoader } = this.state;
-        const productColumnClassName = selectedProduct === allProduct ? 'text-right' : 'text-right highlight';
+        const { param } = this.props;
+        const dailyEarningParam = Object.assign({}, param, { monthDate: this.monthDate });
 
-        return (
+        const breadcrumbList = [
+            { handleClick: () => this.props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History' },
+            { handleClick: () => this.props.redirectToDailyEarning(dailyEarningParam), title: `${monthNames[this.date.getMonth()]} ${this.date.getFullYear()}` },
+            { title: this.monthDate }
+        ];
+
+        return this.monthDate && (
             <AppLayout>
-                <Loader show={isShowLoader} />
-                <Filter onChangeProduct={this.handleChangeProduct} productList={this.productList} selectedProduct={selectedProduct} />
-                <Content data={data} productColumnClassName={productColumnClassName} />
+                <UserPanelBreadcrumb breadcrumbList={breadcrumbList} />
+                <Filter />
+                <Content />
             </AppLayout>
         );
     }
 }
+
+function mapStateToProps({ dailyEarningDetail }) {
+    const { param } = dailyEarningDetail;
+    return Object.assign({}, { param });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setSelectedUserPanel, redirectToDailyEarning }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

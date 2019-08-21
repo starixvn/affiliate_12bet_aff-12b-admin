@@ -5,14 +5,15 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { headerText, resource, regExp } from '../modules/constants';
-import { setPagingOption, setParam, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup } from '../actions';
+import { headerText, resource, regExp, defaultSelectedColumnNumber, globalResource } from '../modules/constants';
+import { setPagingOption, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
 import { format, formatDecimal } from '../../../modules/numberFormat';
 import { updateObjectInArray } from '../../../modules/dataHandler';
 import { resolveClientUrl } from '../../../modules/utils';
 import { convertSelectedColumnList } from '../modules/utils';
+import { htmlDecode } from '../../../modules/htmlHelper';
 
 export class GridData extends Component {
     constructor(props) {
@@ -86,13 +87,22 @@ export class GridData extends Component {
 
     _renderDataSection(dataList, selectedColumnList) {
         const dataRows = [];
-        const { pagingOption } = this.props;
-        const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
-        for (let i = 0; i < dataList.length; i++) {
-            const dataItem = dataList[i];
+        if (dataList && dataList.length) {
+            const { pagingOption } = this.props;
+            const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
-            dataRows.push(this._buildDataRow(dataItem, i + startIndex, selectedColumnList));
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
+
+                dataRows.push(this._buildDataRow(dataItem, i + startIndex, selectedColumnList));
+            }
+        }
+        else {
+            const selectedColumnNumber = Object.keys(selectedColumnList).filter(key => !!selectedColumnList[key]).length
+            dataRows.push(<Row>
+                <Cell className="text-center" colSpan={defaultSelectedColumnNumber + selectedColumnNumber}>{globalResource.NoInfo}</Cell>
+            </Row>);
         }
 
         return dataRows;
@@ -100,8 +110,14 @@ export class GridData extends Component {
 
     _buildDataRow(dataItem, index, selectedColumnList) {
         const { languageList } = this.props;
-        const status = dataItem.Status.toLowerCase();
+        const status = dataItem.Status && htmlDecode(dataItem.Status).toLowerCase();
         const isApproved = status == "approved";
+        const commissionGroupName = htmlDecode(dataItem.CommissionGroup);
+        const firstName = htmlDecode(dataItem.FirstName);
+        const lastName = htmlDecode(dataItem.LastName);
+        const phone = htmlDecode(dataItem.Phone);
+        const email = htmlDecode(dataItem.Email);
+        const playerUserName = htmlDecode(dataItem.PlayerUserName);
 
         const balanceBf = dataItem.BalanceBf === null ? resource.NA : formatDecimal(dataItem.BalanceBf);
         const formattedMemberValue = dataItem.Member === null ? resource.NA : format(dataItem.Member);
@@ -112,11 +128,11 @@ export class GridData extends Component {
 
         const language = languageList[dataItem.Language];
         const commissionGroup = dataItem.CommissionGroup ? (
-            dataItem.CommissionGroup === dataItem.UserName ? (
+            commissionGroupName === dataItem.UserName ? (
                 <Button color="link"
                     onClick={() => this.handleEditCommGroup(dataItem.AffId, dataItem.CommissionGroup)}>
-                    {dataItem.CommissionGroup}
-                </Button>) : dataItem.CommissionGroup
+                    {commissionGroupName}
+                </Button>) : commissionGroupName
         ) : resource.NA;
 
         const isFavorite = dataItem.IsFavorite
@@ -134,18 +150,18 @@ export class GridData extends Component {
                 </Cell>
 
                 {selectedColumnList['Status'] && <Cell title={dataItem.Status}>{dataItem.Status}</Cell>}
-                {selectedColumnList['FirstName'] && <Cell title={dataItem.FirstName}>{dataItem.FirstName}</Cell>}
-                {selectedColumnList['LastName'] && <Cell title={dataItem.LastName}>{dataItem.LastName}</Cell>}
+                {selectedColumnList['FirstName'] && <Cell title={firstName}>{firstName}</Cell>}
+                {selectedColumnList['LastName'] && <Cell title={lastName}>{lastName}</Cell>}
                 {selectedColumnList['Language'] && <Cell title={language}>{language}</Cell>}
-                {selectedColumnList['Phone'] && <Cell title={dataItem.Phone}>{dataItem.Phone}</Cell>}
-                {selectedColumnList['Email'] && <Cell title={dataItem.Email}>{dataItem.Email}</Cell>}
+                {selectedColumnList['Phone'] && <Cell title={phone}>{phone}</Cell>}
+                {selectedColumnList['Email'] && <Cell title={email}>{email}</Cell>}
                 {selectedColumnList['RegistrationDateText'] && <Cell title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>}
                 {selectedColumnList['ApprovalDateText'] && <Cell title={dataItem.ApprovalDateText}>{dataItem.ApprovalDateText}</Cell>}
                 {selectedColumnList['CasinoDateText'] && <Cell title={dataItem.CasinoDateText}>{dataItem.CasinoDateText}</Cell>}
-                {selectedColumnList['CommissionGroup'] && <Cell title={typeof commissionGroup === 'string' ? commissionGroup : dataItem.CommissionGroup}>{commissionGroup}</Cell>}
+                {selectedColumnList['CommissionGroup'] && <Cell title={typeof commissionGroup === 'string' ? commissionGroup : commissionGroupName}>{commissionGroup}</Cell>}
                 {selectedColumnList['BalanceBf'] && <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>}
                 {selectedColumnList['Currency'] && <Cell title={dataItem.Currency}>{dataItem.Currency}</Cell>}
-                {selectedColumnList['PlayerUserName'] && <Cell title={dataItem.PlayerUserName}>{dataItem.PlayerUserName}</Cell>}
+                {selectedColumnList['PlayerUserName'] && <Cell title={playerUserName}>{playerUserName}</Cell>}
                 {selectedColumnList['PlayerCurrency'] && <Cell title={dataItem.PlayerCurrency}>{dataItem.PlayerCurrency}</Cell>}
                 {selectedColumnList['Member'] && <Cell className="text-right" title={formattedMemberValue}>{member}</Cell>}
                 <Cell className="text-center" title="Change Password">
@@ -216,7 +232,7 @@ export class GridData extends Component {
             return null;
         }
 
-        const { columnList } = this.props;       
+        const { columnList } = this.props;
         const selectedColumnList = convertSelectedColumnList(columnList);
 
         return (

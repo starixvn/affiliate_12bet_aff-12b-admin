@@ -14,52 +14,52 @@ describe('MultipleSelectOptionList ', () => {
     })
 
     describe('_renderOptionList', () => {
-        it('Option component count should be correct', () => {
-            const expectedResult = 2;
-            const dataSource = [{
-                key: "key1",
-                value: "Value 1",
-                checked: true
-            },
-            {
-                key: "key2",
-                value: "Value 2",
-                checked: false
-            }
-            ];
+        // it('Option component count should be correct', () => {
+        //     const expectedResult = 2;
+        //     const dataSource = [{
+        //         key: "key1",
+        //         value: "Value 1",
+        //         checked: true
+        //     },
+        //     {
+        //         key: "key2",
+        //         value: "Value 2",
+        //         checked: false
+        //     }
+        //     ];
 
-            const props = Object.assign({}, defaultProps, { dataSource });
-            const optionList = new MultipleSelectOptionList(props);
+        //     const props = Object.assign({}, defaultProps, { dataSource });
+        //     const optionList = new MultipleSelectOptionList(props);
 
-            const result = optionList._renderOptionList();
+        //     const result = optionList._renderOptionList();
 
-            expect(result.length).toBe(expectedResult);
-        })
+        //     expect(result.length).toBe(expectedResult);
+        // })
 
-        it('props of Option component should be correct', () => {
-            const option = {
-                key: "key1",
-                value: "Value 1",
-                checked: true
-            };
-            const onChangeFunc = jest.fn();
+        // it('props of Option component should be correct', () => {
+        //     const option = {
+        //         key: "key1",
+        //         value: "Value 1",
+        //         checked: true
+        //     };
+        //     const onChangeFunc = jest.fn();
 
-            const expectedResult = {
-                id: "1-optionItem-0",
-                itemData: option,
-                onChange: onChangeFunc
-            };
+        //     const expectedResult = {
+        //         id: "1-optionItem-0",
+        //         itemData: option,
+        //         onChange: onChangeFunc
+        //     };
 
-            const dataSource = [option];
+        //     const dataSource = [option];
 
-            const props = Object.assign({}, defaultProps, { dataSource, onChange: onChangeFunc });
-            const optionList = new MultipleSelectOptionList(props);
+        //     const props = Object.assign({}, defaultProps, { dataSource, onChange: onChangeFunc });
+        //     const optionList = new MultipleSelectOptionList(props);
 
-            const renderedOptionList = optionList._renderOptionList();
-            const result = renderedOptionList[0].props;
+        //     const renderedOptionList = optionList._renderOptionList();
+        //     const result = renderedOptionList[0].props;
 
-            expect(result).toEqual(expectedResult);
-        })
+        //     expect(result).toEqual(expectedResult);
+        // })
     })
 
     it('rendered content should match with snapshot', () => {

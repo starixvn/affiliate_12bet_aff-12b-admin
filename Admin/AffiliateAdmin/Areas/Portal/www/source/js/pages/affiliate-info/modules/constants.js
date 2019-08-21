@@ -1,5 +1,7 @@
 ﻿import { globalResource } from '../../../modules/globalResource';
 
+export { globalResource };
+
 export const statusList = {
     Favorite: "Favorite",
     Pending: "Pending",
@@ -9,6 +11,8 @@ export const statusList = {
 }
 
 export const defaultSortBy = 1;
+
+export const defaultSelectedColumnNumber = 2;
 
 export const sortByList = {
     'Username': 1,
@@ -54,20 +58,9 @@ export const resource = {
     AZ: 'A-Z',
     Apostrophe: "'",
     NA: 'N/A',
-    ChangePassword: 'Change Password',
-    Password: 'Password',
-    ConfirmPassword: 'Confirm Password',
-    Submit: "Submit",
-    Cancel: "Cancel",
-    RequiredPassword: "New Password is required!",
-    RequiredConfirmPassword: "Confirm Password is required!",
-    ChangePasswordSuccess: "Change password successfully!",
-    PasswordErrorMessage: 'Password must have at least 6 characters, including at least 2 letters and at least 2 digits.',
-    ConfirmPasswordErrorMessage: 'Confirm Password is not correct!',
     DisplayedColumns: 'Displayed Columns'
 }
 
 export const regExp = {
-    CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$",
     CheckAffId: "(^[1-9])(\\d*)$"
 }

@@ -54,10 +54,18 @@
     <Prefer32Bit>false</Prefer32Bit>
     <CodeAnalysisRuleSet>AffiliateAdmin.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <!-- Exclude the project from analysis -->
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DNAide, Version=2.1.404.20, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_Dependencies\DNAide.dll</HintPath>
+    </Reference>
+    <Reference Include="EasyNetQ, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EasyNetQ.2.3.3\lib\net451\EasyNetQ.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -68,8 +76,16 @@
       <HintPath>..\..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
+    <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging.RabbitMQ, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.RabbitMQ.1.0.1\lib\net461\Fanex.Logging.RabbitMQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging.Sentry.RavenClient, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Sentry.RavenClient.1.0.1\lib\net461\Fanex.Logging.Sentry.RavenClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
@@ -81,6 +97,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
       <Private>True</Private>
@@ -109,6 +129,10 @@
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Nini">
       <HintPath>_Dependencies\Nini.dll</HintPath>
     </Reference>
@@ -119,8 +143,16 @@
     <Reference Include="ONEbook.UM, Version=2.0.2.9, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ONEbook.UM.2.0.2.9\lib\net40\ONEbook.UM.dll</HintPath>
     </Reference>
+    <Reference Include="RabbitMQ.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RabbitMQ.Client.5.1.0\lib\net451\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpRaven, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SharpRaven.2.4.0\lib\net45\SharpRaven.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Configurations, Version=1.0.4276.26261, Culture=neutral, processorArchitecture=MSIL">
@@ -143,6 +175,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
@@ -233,44 +271,33 @@
     <Compile Include="Business\Services\Banner\AddBannerService.cs" />
     <Compile Include="Business\Services\Banner\DeleteBannerService.cs" />
     <Compile Include="Business\Services\Banner\UploadBannerService.cs" />
+    <Compile Include="Business\Services\DeleteMemberService.cs" />
     <Compile Include="Business\Services\Message\AddMessageService.cs" />
     <Compile Include="Business\Services\Text\AddTextService.cs" />
     <Compile Include="Business\Services\AddUserService.cs" />
-    <Compile Include="Business\Services\AdjustmentService.cs" />
     <Compile Include="Business\Services\ChangeAdminPassService.cs" />
     <Compile Include="Business\Services\ChangePassService.cs" />
-    <Compile Include="Business\Services\DeleteMailListService.cs" />
-    <Compile Include="Business\Services\DeleteMemberService.cs" />
     <Compile Include="Business\Services\Message\DeleteMessageListService.cs" />
     <Compile Include="Business\Services\Text\DeleteTextService.cs" />
     <Compile Include="Business\Services\DomainControlService.cs" />
     <Compile Include="Business\Services\EditRateService.cs" />
     <Compile Include="Business\Services\GetAffiliateListService.cs" />
-    <Compile Include="Business\Services\GetClickStatisticsListService.cs" />
     <Compile Include="Business\Services\GetCommGroupService.cs" />
     <Compile Include="Business\Services\GetDataBannerService.cs" />
     <Compile Include="Business\Services\GetDataTextService.cs" />
     <Compile Include="Business\Services\GetEditedBannerService.cs" />
     <Compile Include="Business\Services\GetEditedTextService.cs" />
-    <Compile Include="Business\Services\GetEmailContentService.cs" />
-    <Compile Include="Business\Services\GetEmailHistoryService.cs" />
     <Compile Include="Business\Services\GetMessageListService.cs" />
     <Compile Include="Business\Services\GetMessageService.cs" />
     <Compile Include="Business\Services\GetOnlineListService.cs" />
-    <Compile Include="Business\Services\GetStatisticsDetailNewService.cs" />
-    <Compile Include="Business\Services\GetStatisticsListDetailService.cs" />
     <Compile Include="Business\Services\GetSubCategoryService.cs" />
     <Compile Include="Business\Services\GetViewedBannerService.cs" />
     <Compile Include="Business\Services\GetViewedTextService.cs" />
     <Compile Include="Business\Services\GroupPolicyService.cs" />
     <Compile Include="Business\Services\ListUserService.cs" />
     <Compile Include="Business\Services\LogoutService.cs" />
-    <Compile Include="Business\Services\NoteService.cs" />
-    <Compile Include="Business\Services\PaymentUpdateService.cs" />
     <Compile Include="Business\Services\UpdateAccountService.cs" />
     <Compile Include="Business\Services\UpdateAffiliateDomainService.cs" />
-    <Compile Include="Business\Services\UpdateAffiliateService.cs" />
-    <Compile Include="Business\Services\UpdateAffiliateType.cs" />
     <Compile Include="Business\Services\Update12BetDomainService.cs" />
     <Compile Include="Business\Services\UpdateDepartmentService.cs" />
     <Compile Include="Business\Services\Message\UpdateMessageService.cs" />
@@ -287,15 +314,6 @@
     </Compile>
     <Compile Include="ChangePass.aspx.designer.cs">
       <DependentUpon>ChangePass.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Customer\AffDefault.aspx.designer.cs">
-      <DependentUpon>AffDefault.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Customer\AffiliateInfo.aspx.designer.cs">
-      <DependentUpon>AffiliateInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Customer\Statistics.aspx.designer.cs">
-      <DependentUpon>Statistics.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -375,30 +393,21 @@
     <Compile Include="Business\DataHandler\Banner.cs" />
     <Compile Include="Business\DataHandler\Casino.cs" />
     <Compile Include="Business\DataHandler\Domain.cs" />
-    <Compile Include="Business\DataHandler\EmailHistory.cs" />
     <Compile Include="Business\DataHandler\ExchangeRate.cs" />
     <Compile Include="Business\DataHandler\Home.cs" />
     <Compile Include="Business\DataHandler\HotNews.cs" />
     <Compile Include="Business\DataHandler\Login.cs" />
     <Compile Include="Business\DataHandler\Member.cs" />
-    <Compile Include="Business\DataHandler\PaymentRequest.cs" />
     <Compile Include="Business\DataHandler\ServerDateTime.cs" />
-    <Compile Include="Business\DataHandler\Statement.cs" />
     <Compile Include="Business\DataHandler\Text.cs" />
-    <Compile Include="Business\DataHandler\TrackingSystem.cs" />
     <Compile Include="Business\DataHandler\UserControl.cs" />
-    <Compile Include="Business\DataHandler\UserLog.cs" />
     <Compile Include="Business\DBType.cs" />
     <Compile Include="Business\DepositCustomerInfo.cs" />
     <Compile Include="Business\GenerateHTML\Banner.cs" />
     <Compile Include="Business\GenerateHTML\Domain.cs" />
-    <Compile Include="Business\GenerateHTML\EmailHistory.cs" />
     <Compile Include="Business\GenerateHTML\HotNews.cs" />
-    <Compile Include="Business\GenerateHTML\Note.cs" />
     <Compile Include="Business\GenerateHTML\OnlineList.cs" />
     <Compile Include="Business\GenerateHTML\Text.cs" />
-    <Compile Include="Business\GenerateHTML\TrackingSystem.cs" />
-    <Compile Include="Business\GenerateHTML\UserLog.cs" />
     <Compile Include="Business\IBCHandler.cs" />
     <Compile Include="Business\IBCPage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -458,18 +467,6 @@
     </Compile>
     <Compile Include="ChangePass.aspx.cs">
       <DependentUpon>ChangePass.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Customer\AffDefault.aspx.cs">
-      <DependentUpon>AffDefault.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Customer\AffiliateInfo.aspx.cs">
-      <DependentUpon>AffiliateInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Customer\Statistics.aspx.cs">
-      <DependentUpon>Statistics.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.cs">
@@ -544,13 +541,6 @@
       <DependentUpon>ListText.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Others\EmailHistory.aspx.cs">
-      <DependentUpon>EmailHistory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Others\EmailHistory.aspx.designer.cs">
-      <DependentUpon>EmailHistory.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Others\Message.aspx.cs">
       <DependentUpon>Message.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -558,33 +548,12 @@
     <Compile Include="Others\Message.aspx.designer.cs">
       <DependentUpon>Message.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Others\ViewEmailDetails.aspx.cs">
-      <DependentUpon>ViewEmailDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Others\ViewEmailDetails.aspx.designer.cs">
-      <DependentUpon>ViewEmailDetails.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Others\ViewMessDetails.aspx.cs">
       <DependentUpon>ViewMessDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Others\ViewMessDetails.aspx.designer.cs">
       <DependentUpon>ViewMessDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\PaymentRequest.aspx.cs">
-      <DependentUpon>PaymentRequest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Payment\PaymentRequest.aspx.designer.cs">
-      <DependentUpon>PaymentRequest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\PaymentUpdate.aspx.cs">
-      <DependentUpon>PaymentUpdate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Payment\PaymentUpdate.aspx.designer.cs">
-      <DependentUpon>PaymentUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Portal\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -735,69 +704,6 @@
     <Compile Include="UserControl\UpdateMultiAdmins.aspx.designer.cs">
       <DependentUpon>UpdateMultiAdmins.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserInfo\AddNote.aspx.cs">
-      <DependentUpon>AddNote.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\AddNote.aspx.designer.cs">
-      <DependentUpon>AddNote.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\Adjustment.aspx.cs">
-      <DependentUpon>Adjustment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\Adjustment.aspx.designer.cs">
-      <DependentUpon>Adjustment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\AffiliateUpd.aspx.cs">
-      <DependentUpon>AffiliateUpd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\AffiliateUpd.aspx.designer.cs">
-      <DependentUpon>AffiliateUpd.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\DailyEarning.aspx.cs">
-      <DependentUpon>DailyEarning.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\DailyEarning.aspx.designer.cs">
-      <DependentUpon>DailyEarning.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\DailyEarningDetail.aspx.cs">
-      <DependentUpon>DailyEarningDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\DailyEarningDetail.aspx.designer.cs">
-      <DependentUpon>DailyEarningDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\EarningsHistory.aspx.cs">
-      <DependentUpon>EarningsHistory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\EarningsHistory.aspx.designer.cs">
-      <DependentUpon>EarningsHistory.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\MediaStatistics.aspx.cs">
-      <DependentUpon>MediaStatistics.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\MediaStatistics.aspx.designer.cs">
-      <DependentUpon>MediaStatistics.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\MediaStatistics_LandingPage.aspx.cs">
-      <DependentUpon>MediaStatistics_LandingPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\MediaStatistics_LandingPage.aspx.designer.cs">
-      <DependentUpon>MediaStatistics_LandingPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\MediaStatistics_New.aspx.cs">
-      <DependentUpon>MediaStatistics_New.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\MediaStatistics_New.aspx.designer.cs">
-      <DependentUpon>MediaStatistics_New.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UserInfo\MemberActiveList.aspx.cs">
       <DependentUpon>MemberActiveList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -818,20 +724,6 @@
     </Compile>
     <Compile Include="UserInfo\MemberListAll.aspx.designer.cs">
       <DependentUpon>MemberListAll.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\Note.aspx.cs">
-      <DependentUpon>Note.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\Note.aspx.designer.cs">
-      <DependentUpon>Note.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\UserLog.aspx.cs">
-      <DependentUpon>UserLog.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\UserLog.aspx.designer.cs">
-      <DependentUpon>UserLog.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\AffBetlistService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -962,8 +854,6 @@
     <Content Include="App_Templates\Casino\UploadExcel.htm" />
     <Content Include="App_Templates\ChangeAdminPass.htm" />
     <Content Include="App_Templates\ChangePass.htm" />
-    <Content Include="App_Templates\Customer\AffiliateInfo.htm" />
-    <Content Include="App_Templates\Customer\Statistics.htm" />
     <Content Include="App_Templates\DateRangeSelect.html" />
     <Content Include="App_Templates\Domain\12BetDomain.html" />
     <Content Include="App_Templates\Domain\Add12BetDomain.html" />
@@ -974,160 +864,6 @@
     <Content Include="App_Templates\Domain\DomainControlUpd.htm" />
     <Content Include="App_Templates\Domain\Edit12BetDomain.html" />
     <Content Include="App_Templates\Domain\EditAffiliateDomain.html" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-GB.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-US.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-US_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_es-ES.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_hi-IN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_id-ID.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ja-JP.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ko-KR.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_th-TH.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_vi-VN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-CN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-TW.htm" />
-    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-TW_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en-GB.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en-US.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en-US_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_en_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_es-ES.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_hi-IN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_id-ID.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_ja-JP.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_ko-KR.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_th-TH.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_vi-VN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_zh-CN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_zh-TW.htm" />
-    <Content Include="App_Templates\Email\AffApprove\Approved_zh-TW_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-GB.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-US.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-US_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_es-ES.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_hi-IN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_id-ID.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ja-JP.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ko-KR.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_th-TH.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_vi-VN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-CN.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-TW.htm" />
-    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-TW_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en-GB.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_es-ES.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_hi-IN.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_id-ID.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ja-JP.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ko-KR.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_th-TH.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_vi-VN.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-CN.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-TW.htm" />
-    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-TW_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-GB.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-US.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-US_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_es-ES.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_hi-IN.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_id-ID.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ja-JP.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ko-KR.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_th-TH.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_vi-VN.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-CN.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-TW.htm" />
-    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-TW_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-GB.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-GB_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-US.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-US_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_es-ES.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_es-ES_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_hi-IN.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_hi-IN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_id-ID.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_id-ID_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ja-JP.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ja-JP_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ko-KR.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ko-KR_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_th-TH.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_th-TH_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_vi-VN.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_vi-VN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-CN.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-CN_html.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-TW.htm" />
-    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-TW_html.htm" />
     <Content Include="App_Templates\Exchange\AffEditRate.htm" />
     <Content Include="App_Templates\Exchange\ExchangeRate.htm" />
     <Content Include="App_Templates\GotoPage.html" />
@@ -1144,29 +880,11 @@
     <Content Include="App_Templates\OnlyOption.htm" />
     <Content Include="App_Templates\Option.htm" />
     <Content Include="App_Templates\Option1.htm" />
-    <Content Include="App_Templates\Others\EmailHistory.htm" />
     <Content Include="App_Templates\Others\Message.htm" />
-    <Content Include="App_Templates\Others\ViewEmail.htm" />
     <Content Include="App_Templates\Others\ViewMess.htm" />
     <Content Include="App_Templates\PageIndex.html" />
     <Content Include="App_Templates\Paging.htm" />
     <Content Include="App_Templates\Paging.html" />
-    <Content Include="App_Templates\Payment\PaymentAppEmail_en-US.htm" />
-    <Content Include="App_Templates\Payment\PaymentAppEmail_es-ES.htm" />
-    <Content Include="App_Templates\Payment\PaymentAppEmail_id-ID.htm" />
-    <Content Include="App_Templates\Payment\PaymentAppEmail_th-TH.htm" />
-    <Content Include="App_Templates\Payment\PaymentAppEmail_vi-VN.htm" />
-    <Content Include="App_Templates\Payment\PaymentAppEmail_zh-CN.htm" />
-    <Content Include="App_Templates\Payment\PaymentAppEmail_zh-TW.htm" />
-    <Content Include="App_Templates\Payment\PaymentCanEmail_en-US.htm" />
-    <Content Include="App_Templates\Payment\PaymentCanEmail_es-ES.htm" />
-    <Content Include="App_Templates\Payment\PaymentCanEmail_id-ID.htm" />
-    <Content Include="App_Templates\Payment\PaymentCanEmail_th-TH.htm" />
-    <Content Include="App_Templates\Payment\PaymentCanEmail_vi-VN.htm" />
-    <Content Include="App_Templates\Payment\PaymentCanEmail_zh-CN.htm" />
-    <Content Include="App_Templates\Payment\PaymentCanEmail_zh-TW.htm" />
-    <Content Include="App_Templates\Payment\PaymentRequest.htm" />
-    <Content Include="App_Templates\Payment\PaymentUpdate.htm" />
     <Content Include="App_Templates\Report\AffiliateReport.htm" />
     <Content Include="App_Templates\Report\AffiliateReportDetail.htm" />
     <Content Include="App_Templates\Report\MemberReport.htm" />
@@ -1183,53 +901,14 @@
     <Content Include="App_Templates\UserControl\ListUserInDept.htm" />
     <Content Include="App_Templates\UserControl\PolicyContent.html" />
     <Content Include="App_Templates\UserControl\PolicyHeader.html" />
-    <Content Include="App_Templates\UserInfo\AddNote.htm" />
-    <Content Include="App_Templates\UserInfo\Adjustment.htm" />
-    <Content Include="App_Templates\UserInfo\AffUpd.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_en-US.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_es-ES.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_id-ID.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_th-TH.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_vi-VN.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_zh-CN.htm" />
-    <Content Include="App_Templates\UserInfo\ApprovalEmail_zh-TW.htm" />
-    <Content Include="App_Templates\UserInfo\Approved.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_es-ES.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_id-ID.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_th-TH.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_vi-VN.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_zh-CN.htm" />
-    <Content Include="App_Templates\UserInfo\Approved_zh-TW.htm" />
     <Content Include="App_Templates\UserInfo\BetList.htm" />
     <Content Include="App_Templates\UserInfo\BetListCashOutDetail.htm" />
     <Content Include="App_Templates\UserInfo\BetListParlayDetail.htm" />
     <Content Include="App_Templates\UserInfo\BetListResults.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_es-ES.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_id-ID.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_th-TH.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_vi-VN.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_zh-CN.htm" />
-    <Content Include="App_Templates\UserInfo\Disapproved_zh-TW.htm" />
-    <Content Include="App_Templates\UserInfo\EarningsHistory.htm" />
-    <Content Include="App_Templates\UserInfo\MediaStatistics.htm" />
-    <Content Include="App_Templates\UserInfo\MediaStatistics_LandingPage.htm" />
-    <Content Include="App_Templates\UserInfo\MediaStatistics_New.htm" />
     <Content Include="App_Templates\UserInfo\MemActiveList.htm" />
     <Content Include="App_Templates\UserInfo\MemberList.htm" />
     <Content Include="App_Templates\UserInfo\MemList.htm" />
     <Content Include="App_Templates\UserInfo\MemListAll.htm" />
-    <Content Include="App_Templates\UserInfo\NoteList.htm" />
-    <Content Include="App_Templates\UserInfo\UserLog.htm" />
-    <Content Include="App_Templates\UserInfo\ViewDaily.htm" />
-    <Content Include="App_Templates\UserInfo\ViewDailyDetail.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_es-ES.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_id-ID.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_th-TH.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_vi-VN.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_zh-CN.htm" />
-    <Content Include="App_Templates\UserInfo\WithdrawalEmail_zh-TW.htm" />
     <Content Include="App_Themes\Aff12bet.ico" />
     <Content Include="App_Themes\Aff12bet.png" />
     <Content Include="App_Themes\DefaultV2\common.css" />
@@ -1497,15 +1176,32 @@
     <Content Include="Areas\Portal\www\dist\imgs\i_member.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_report.png" />
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adjustment.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\customer-statistics.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarning.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarningDetail.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\landingPageStatistics.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\member.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\note.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\playerDetail.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\referrerStatistics.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\statementHistory.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\trackingStatistics.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\userAccount.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~landingPageStatistics~member~referrerStatistics~statementHistory~viewLog.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~playerDetail.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\viewLog.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\xlsx-style.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\affiliate\affiliate-info.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\affiliate\email-history.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\customer\customer-statistics.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\customer\customer.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\landing-page.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\payment\payment-request.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\report\affiliate-report.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\betsoft.js" />
@@ -1516,21 +1212,16 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\isoftbet.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\timetracker.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\userpanel\customer-member.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning-detail.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\userpanel\player-detail.js" />
     <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
-    <Content Include="Areas\Portal\www\dist\style\assets\i_customer.png" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-info.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\customer-statistics.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\customer.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\email-history.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\landing-page.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\user-panel\customer-member.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\user-panel\player-detail.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\payment\payment-request.css" />
     <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
     <Content Include="Areas\Portal\www\dist\style\user-panel-layout.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.css" />
@@ -1543,6 +1234,60 @@
     <Content Include="Areas\Portal\www\source\js\actions\actionTypes.js" />
     <Content Include="Areas\Portal\www\source\js\actions\loaderAction.js" />
     <Content Include="Areas\Portal\www\source\js\actions\pagingAction.js" />
+    <Content Include="Areas\Portal\www\source\js\actions\__test__\loaderAction.test.js" />
+    <Content Include="Areas\Portal\www\source\js\actions\__test__\pagingAction.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelect.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelectLabel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelectOptionList.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\Option.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\OptionAll.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\__test__\Loader.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\__test__\ReportTitle.test.js" />
+    <Content Include="Areas\Portal\www\source\js\layouts\__test__\AppLayout.test.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\htmlHelper.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\__tests__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\GridData.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\utils.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\__test__\reportExcel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\__test__\utils.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\reducers\__tests__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\GridData.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\__test__\reportExcel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\__test__\AddGroup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\__test__\AssignGroup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\__test__\AssignPrivateGroup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\__test__\EditGroup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\__test__\GridData.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\DeductionSetting.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\FeeSettingItem.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\PlatformFeeItem.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\PlatformFeeSetting.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\__test__\TierSetting.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\__test__\TierSettingItem.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\CommGroup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\QmTurnOverSetting.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\actions\changePassword.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\actions\paymentRequestUpdate.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\changePassword.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\paymentRequestUpdate.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\changePassword.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\commissionGroup.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\paymentRequestUpdate.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
     <Content Include="Areas\Portal\www\source\js\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
@@ -1556,12 +1301,6 @@
     <Content Include="Areas\Portal\www\source\js\pagelayout\pagelayout.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Content.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\__snapshots__\AppContainer.test.js.snap" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\__snapshots__\Content.test.js.snap" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\modules\helper.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\constants.js" />
@@ -1583,22 +1322,188 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\common\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ApprovedStatusInfo.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ContactApp.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\Language.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\CommissionPanel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\OnlineInfoPanel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\SettingPanel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\GeneralInfo.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\MainInfo.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\Panel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\PanelList.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\SearchBox.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\loadingDataAction.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\actions\__test__\loadingDataAction.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\reducers\commonReducer.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\reducers\__test__\commonReducer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\__test__\UserPanel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\__test__\UserPanelMenu.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\__test__\UserPanelMenuItem.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\menu.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\service.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\withUserPanel.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\__test__\service.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\DeleteEmail.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\EmailDetailForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\SelectAll.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\Detail.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\__test__\InsertUpdateNoteForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\reportExcel.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\Detail.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\modules\Constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\service.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\validation.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\loaderReducer.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\pagingReducer.js" />
+    <Content Include="Areas\Portal\www\source\js\reducers\__test__\loaderReducer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\reducers\__test__\pagingReducer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\setupTests.js" />
     <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
@@ -1609,6 +1514,9 @@
     <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_refresh.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_top.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\user-panel\a_bg.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_box_tab.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_button2.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\i_customer.png" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\left_button.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\right_button.jpg" />
@@ -1654,10 +1562,6 @@
     <Content Include="Content\Fanex.Result\images\goal-icon.png" />
     <Content Include="Content\tipsy\custom-tipsy.css" />
     <Content Include="Content\tipsy\tipsy.css" />
-    <Content Include="Customer\AffDefault.aspx" />
-    <Content Include="Customer\AffiliateInfo.aspx" />
-    <Content Include="Customer\blank.html" />
-    <Content Include="Customer\Statistics.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Domain\12BetDomain.aspx" />
     <Content Include="Domain\Add12BetDomain.aspx" />
@@ -1679,12 +1583,8 @@
     <Content Include="Media\EditBanner.aspx" />
     <Content Include="Media\ListBannerNew.aspx" />
     <Content Include="Media\ListText.aspx" />
-    <Content Include="Others\EmailHistory.aspx" />
     <Content Include="Others\Message.aspx" />
-    <Content Include="Others\ViewEmailDetails.aspx" />
     <Content Include="Others\ViewMessDetails.aspx" />
-    <Content Include="Payment\PaymentRequest.aspx" />
-    <Content Include="Payment\PaymentUpdate.aspx" />
     <Content Include="Release Note.txt" />
     <Content Include="Report\AffiliateReport.aspx" />
     <Content Include="Report\AffiliateReportDetail.aspx" />
@@ -1709,20 +1609,9 @@
     <Content Include="UserControl\ListUser.aspx" />
     <Content Include="UserControl\ListUserInDept.aspx" />
     <Content Include="UserControl\UpdateMultiAdmins.aspx" />
-    <Content Include="UserInfo\AddNote.aspx" />
-    <Content Include="UserInfo\Adjustment.aspx" />
-    <Content Include="UserInfo\AffiliateUpd.aspx" />
-    <Content Include="UserInfo\DailyEarning.aspx" />
-    <Content Include="UserInfo\DailyEarningDetail.aspx" />
-    <Content Include="UserInfo\EarningsHistory.aspx" />
-    <Content Include="UserInfo\MediaStatistics.aspx" />
-    <Content Include="UserInfo\MediaStatistics_LandingPage.aspx" />
-    <Content Include="UserInfo\MediaStatistics_New.aspx" />
     <Content Include="UserInfo\MemberActiveList.aspx" />
     <Content Include="UserInfo\MemberList.aspx" />
     <Content Include="UserInfo\MemberListAll.aspx" />
-    <Content Include="UserInfo\Note.aspx" />
-    <Content Include="UserInfo\UserLog.aspx" />
     <Content Include="AppSettings.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1757,7 +1646,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnOverSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSettingItem.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\index.jsx" />
     <Content Include="Areas\Portal\Views\Affiliate\Information.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-information.scss" />
     <Content Include="Areas\Portal\Views\Shared\_Header.cshtml" />
@@ -1851,13 +1739,9 @@
     <Content Include="Areas\Portal\www\source\style\components\monthpicker.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-report.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_spinner.scss" />
-    <Content Include="Areas\Portal\Views\UserPanel\StatementHistory\DailyEarning.cshtml" />
-    <Content Include="Areas\Portal\Views\UserPanel\StatementHistory\DailyEarningDetail.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\index.jsx" />
     <Content Include="Areas\Portal\Views\Shared\_UserPanelLayout.cshtml" />
     <Content Include="Areas\Portal\www\source\style\layout\user-panel-layout.scss" />
     <Content Include="Areas\Portal\Views\Shared\_UserPanelMenu.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\Filter.jsx" />
@@ -1865,11 +1749,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\GridData.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\Filter.jsx" />
-    <Content Include="Areas\Portal\Views\UserPanel\PlayerDetail\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\player-detail.scss" />
     <Content Include="Areas\Portal\Views\LandingPage\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\index.jsx" />
@@ -1877,12 +1759,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\landing-page.scss" />
-    <Content Include="Areas\Portal\Views\CustomerStatistics\Index.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\index.jsx" />
-    <Content Include="Areas\Portal\www\source\style\pages\customer-statistics.scss" />
-    <Content Include="Areas\Portal\Views\UserPanel\CustomerMember\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\customer\customer-statistics.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_datepicker.scss" />
     <Content Include="Areas\Portal\www\dist\vendors\moment-manifest.json" />
     <Content Include="Areas\Portal\www\source\js\components\Loader.jsx" />
@@ -1893,7 +1770,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Filter.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\customer-member.scss" />
     <Content Include="Areas\Portal\Views\AffiliateInfo\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-info.scss" />
@@ -1902,8 +1778,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\GridData.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\ChangePasswordForm.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\EditCommissionGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\ChangePasswordForm.jsx" />
     <Content Include=".babelrc" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Filter.test.js" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Home\Index.cshtml" />
@@ -1947,10 +1822,125 @@
     <Content Include="App_Data\IsoftbetData\isoftbet_23.json" />
     <Content Include="App_Data\IsoftbetData\isoftbet_24.json" />
     <Content Include="App_Data\IsoftbetData\isoftbet_25.json" />
-    <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\Index.cshtml" />
-    <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\XmlData.cshtml" />
-    <Content Include="Areas\Portal\Views\ThirdPartyProduct\TimeTracker\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\ExchangeSummaryTransaction\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Detail.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\InsertUpdateNoteForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\Detail.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\Detail.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\view-log.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\landing-page-statistics.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\referrers.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\note.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\adjustment.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\Appcontainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\statement-history.scss" />
+    <Content Include="Areas\Portal\Views\PaymentRequest\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\GeneralInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\MainInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\Panel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\PanelList.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\SearchBox.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request.scss" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.zh-TW.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.en-GB.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.en-US.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.es-ES.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.hi-IN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.id-ID.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.ja-JP.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.ko-KR.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.th-TH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.vi-VN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.zh-CN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.zh-TW.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.en-GB.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.en-US.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.es-ES.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.hi-IN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.id-ID.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.ja-JP.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.ko-KR.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.th-TH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.vi-VN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.zh-CN.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\PaymentRequestUpdateForm.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\customer\leftpanel.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-modal.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\user-account.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\Section.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\Additional.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\EmailFormat.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\Payment.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\Personal.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\WebSite.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\main.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\customer\main.scss" />
+    <Content Include="Areas\Portal\Views\Customer\Main.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenu.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenuItem.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\UserPanelBreadcrumb.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\UserPanelSubMenu.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\CommissionPanel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\ApprovedStatusInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\ContactApp.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\Language.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\SettingPanel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\OnlineInfoPanel.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\customer\rightpanel.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\CommissionGroupPopup.jsx" />
+    <Content Include="Handler\UpdateAcc.ashx" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.en-GB.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.en-US.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.es-ES.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.hi-IN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.id-ID.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.ja-JP.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.ko-KR.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.th-TH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.vi-VN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.zh-CN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.zh-TW.cshtml" />
+    <Content Include="Areas\Portal\Views\EmailHistory\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\EmailDetailForm.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\email-history.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\DeleteEmail.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\SelectAll.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-table.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1970,43 +1960,31 @@
     <Content Include="Handler\Banner\AddBanner.ashx" />
     <Content Include="Handler\AddNewText.ashx" />
     <Content Include="Handler\AddUser.ashx" />
-    <Content Include="Handler\Adjustment.ashx" />
     <Content Include="Handler\ChangeAdminPass.ashx" />
     <Content Include="Handler\ChangePass.ashx" />
     <Content Include="Handler\Banner\DelBanner.ashx" />
-    <Content Include="Handler\DeleteMailList.ashx" />
     <Content Include="Handler\DeleteMember.ashx" />
     <Content Include="Handler\DeleteMessageList.ashx" />
     <Content Include="Handler\DelText.ashx" />
     <Content Include="Handler\DomainControl.ashx" />
     <Content Include="Handler\EditRate.ashx" />
     <Content Include="Handler\GetAffiliateList.ashx" />
-    <Content Include="Handler\GetClickStatisticsList.ashx" />
     <Content Include="Handler\GetCommGroup.ashx" />
     <Content Include="Handler\GetDataBanner.ashx" />
     <Content Include="Handler\GetDataText.ashx" />
     <Content Include="Handler\GetEditedBanner.ashx" />
     <Content Include="Handler\GetEditedText.ashx" />
-    <Content Include="Handler\GetEmailContent.ashx" />
-    <Content Include="Handler\GetEmailHistoryList.ashx" />
     <Content Include="Handler\GetMessage.ashx" />
     <Content Include="Handler\GetMessageList.ashx" />
     <Content Include="Handler\GetOnlineList.ashx" />
-    <Content Include="Handler\GetStatisticsDetail_New.ashx" />
-    <Content Include="Handler\GetStatisticsListDetail.ashx" />
     <Content Include="Handler\GetSubCategory.ashx" />
     <Content Include="Handler\GetViewedBanner.ashx" />
     <Content Include="Handler\GetViewedText.ashx" />
     <Content Include="Handler\GroupPolicy.ashx" />
     <Content Include="Handler\ListUser.ashx" />
     <Content Include="Handler\Logout.ashx" />
-    <Content Include="Handler\Note.ashx" />
-    <Content Include="Handler\PaymentUpdate.ashx" />
     <Content Include="Handler\Banner\UpBanner.ashx" />
-    <Content Include="Handler\UpdAffInfo.ashx" />
-    <Content Include="Handler\UpdAffType.ashx" />
     <Content Include="Handler\Update12BetDomain.ashx" />
-    <Content Include="Handler\UpdateAcc.ashx" />
     <Content Include="Handler\UpdateAffDomain.ashx" />
     <Content Include="Handler\UpdateDepartment.ashx" />
     <Content Include="Handler\UpdateMessage.ashx" />
@@ -2087,7 +2065,7 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Portal\www\source\js\pages\customer\customer-info\components\" />
+    <Folder Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
@@ -2112,7 +2090,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65181</DevelopmentServerPort>
           <DevelopmentServerVPath>/V1</DevelopmentServerVPath>
-          <IISUrl>http://localhost:65181/Aff12BetAdmin</IISUrl>
+          <IISUrl>http://localhost:65186</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

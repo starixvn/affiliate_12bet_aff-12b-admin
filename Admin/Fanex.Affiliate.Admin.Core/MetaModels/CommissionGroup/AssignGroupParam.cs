@@ -1,13 +1,10 @@
-﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using System.ComponentModel.DataAnnotations;
+
+namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
 {
-    public class AssignGroupParam
+    public class AssignGroupParam : AffiliateBasicInfoParam
     {
-        public int UserId { get; set; }
-
-        public int AffId { get; set; }
-
         public int GroupId { get; set; }
-
-        public string Ip { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 {
@@ -14,12 +16,16 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 
         public string Creator { get; set; }
 
+        [MaxLength(100, ErrorMessage = "Description should shorter than 100 characters!")]
         public string Description { get; set; }
 
+        [Range(0, (double)Money.MaxValue, ErrorMessage = "QmTurnover not valid!")]
         public decimal QmTurnover { get; set; }
 
+        [Range(0, (double)Money.MaxValue, ErrorMessage = "NextQmTurnover not valid!")]
         public decimal NextQmTurnover { get; set; }
 
+        [Range(0, Validation.MaxId, ErrorMessage = "NextQmTurnover not valid!")]
         public int NoAffs { get; set; }
 
         public string CreatedDateText => CreatedDate.ToString("MM/dd/yyyy HH:mm:ss");

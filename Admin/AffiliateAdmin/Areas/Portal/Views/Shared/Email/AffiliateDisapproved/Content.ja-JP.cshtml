@@ -1,0 +1,17 @@
+﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.AffInformationEmail
+
+<div>
+    @(Model.FirstName)様、<br /><br />
+
+    この度は当社のアフィリエイトプログラムに応募して頂きありがとうございました。<br />
+    厳正なる選考の結果、誠に残念ではございますが、不承認となり申請は却下されたことをお知らせいたします。<br />
+
+    貴方のWebサイトが必要基準を満たしていない理由等ですが、何かご不明な点等ございましたら、お気軽に12BET<a href="mailto:@Model.MailContact">@Model.MailContact</a>までお問い合わせてください。<br />
+
+    この度は当社として大変心苦しい結果ですが、何卒ご了承深くお願い申し上げます。<br />
+
+    ありがとうございました。<br /><br />
+    アフィリエイトサービスマネージャー<br />
+    12BETアフィリエイトチーム<br />
+    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+</div> 

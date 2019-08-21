@@ -21,41 +21,6 @@ describe('MultipleSelectLabel ', () => {
         jest.resetAllMocks();
     })
 
-    describe('selectedItemsString', () => {
-        it('No item is selected - return "Select options" text', () => {
-            const expectedResult = "Select options";
-            const label = new MultipleSelectLabel(defaultProps);
-
-            const result = label.selectedItemsString;
-
-            expect(result).toBe(expectedResult);
-        })
-
-        it('selectedItemCount >= maxDisplayItemCount - return selected item count text', () => {
-            const expectedResult = "3 selected";
-            const selectedItems = [defaultSelectedItem, defaultSelectedItem, defaultSelectedItem]
-
-            const props = Object.assign({}, defaultProps, { selectedItems });
-            const label = new MultipleSelectLabel(props);
-
-            const result = label.selectedItemsString;
-
-            expect(result).toBe(expectedResult);
-        })
-
-        it('has selected item and item count is less than maxDisplayItemCount - return value of selected items with comma separator', () => {
-            const expectedResult = "valueDefault, value1";
-            const selectedItems = [defaultSelectedItem, { key: "key1", value: "value1" }];
-
-            const props = Object.assign({}, defaultProps, { selectedItems });
-            const label = new MultipleSelectLabel(props);
-
-            const result = label.selectedItemsString;
-
-            expect(result).toBe(expectedResult);
-        })
-    })
-
     describe('render', () => {
         it('rendered content should match to snap shot', () => {
             const label = renderer.create(<MultipleSelectLabel {...defaultProps} />);
@@ -67,7 +32,8 @@ describe('MultipleSelectLabel ', () => {
 
         it('click on label - props.onToggle should be called', () => {
             const toggleFunc = jest.fn();
-            const props = Object.assign({}, defaultProps, { onToggle: toggleFunc });
+            const selectedItems = [defaultSelectedItem, { key: "key1", value: "value1" }];
+            const props = Object.assign({}, defaultProps, { onToggle: toggleFunc, selectedItems });
             const label = renderer.create(<MultipleSelectLabel {...props} />);
 
             const renderedContent = label.toJSON();

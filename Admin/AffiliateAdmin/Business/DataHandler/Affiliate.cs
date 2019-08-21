@@ -11,30 +11,6 @@ namespace DataHandler
 {
     public class Affiliate
     {
-        public static DataTable SelAffInfo(int intCustId, ref string strMinMoneyBooker, ref string strMinNetteller, ref string strMinWire, ref string strMinPlayer)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", intCustId);
-            hsParam.Add("aff_minwire", "0");
-            hsParam.Add("aff_minneteller", "0");
-            hsParam.Add("aff_minmoneybookers", "0");
-            hsParam.Add("aff_minplayer", "0");
-            DbResult result = DbHelper.Execute("Aff_AffiliateSelEditInfo", DBType.AFFILIATE_12BET, hsParam);
-            strMinMoneyBooker = NumberFormat.DecFormat(result.Outputs["aff_minmoneybookers"], 0);
-            strMinNetteller = NumberFormat.DecFormat(result.Outputs["aff_minneteller"], 0);
-            strMinWire = NumberFormat.DecFormat(result.Outputs["aff_minwire"], 0);
-            strMinPlayer = NumberFormat.DecFormat(result.Outputs["aff_minplayer"], 0);
-            return result.ResultSet.Tables[0];
-        }
-
-        public static DbResult SelAffInfo_LeftPanel(string strUsername)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("username", strUsername);
-            hsParam.Add("iscasino", 0);
-            return DbHelper.Execute("Aff_AffiliateSelGeneralInfo", DBType.AFFILIATE_12BET, hsParam);
-        }
-
         public static void UpdateUser(int intAffId, int intUserId, string strFname, string strLname, string strGender, string strCountry,
             string strEmail, string strPhone, string strAddress, string strCity, string strState, string strPostal,
             string strLang, string strUrl, string strMoreUrl, string strNoSiteDesc, string strPlayerUserName, string strPayment,
@@ -112,62 +88,6 @@ namespace DataHandler
             errmsg = result.Outputs["errmsg"].ToString();
         }
 
-        public static DbResult SelStatistics(int AffID, DateTime dtmMonthDate)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", AffID);
-            hsParam.Add("monthdate", dtmMonthDate);
-            hsParam.Add("totalactiveplayer", 0);
-            hsParam.Add("totaldeposit", 0);
-            hsParam.Add("totaldepositup", 0);
-            hsParam.Add("totalturnover", 0);
-            hsParam.Add("totalturnoverup", 0);
-            hsParam.Add("totalplayerdepup", 0);
-            hsParam.Add("newsignupdep", 0);
-            hsParam.Add("totalqualifiedmembers", 0);
-            hsParam.Add("totalqualifiedmembershr", 0);
-            hsParam.Add("totalqualifiedcasino", 0);
-            hsParam.Add("totalwinlostup", 0);
-            hsParam.Add("totalwinlost", 0);
-            hsParam.Add("totaluniqueclicks", 0);
-            hsParam.Add("totalclicks", 0);
-            hsParam.Add("totaluniqueclicksbysite", 0);
-            hsParam.Add("totalclicksbysite", 0);
-            hsParam.Add("totaluniqueclicksbymobile", 0);
-            hsParam.Add("totalclicksbymobile", 0);
-            hsParam.Add("newsignup", 0);
-            hsParam.Add("totalplayer", 0);
-            return DbHelper.Execute("Aff_StatisticsSel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@Vinh
-        //Statistics
-        public static DbResult SelBalanceBF(int affiliateID)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affiliateID);
-            hsParam.Add("balbroughtforward", 0);
-            return DbHelper.Execute("Aff_CustomerSelBalBF", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        public static DataTable SelAffEarningDaily(int intAffID, int SportType, DateTime dtmMonthDate)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", intAffID);
-            hsParam.Add("sporttype", SportType);
-            hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDaily", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP).ResultSet.Tables[0]; ;
-        }
-
-        public static DataTable SelAffEarningDetail(int intAffId, int SportType, DateTime dtmMonthDate)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", intAffId);
-            hsParam.Add("sporttype", SportType);
-            hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDetail", DBType.AFFILIATE_12BET, hsParam).ResultSet.Tables[0]; ;
-        }
-
         //@Vinh
         public static DbResult SelMemberReportByAff(int intCustId, DateTime dtmFDate, DateTime dtmTDate, int affType)
         {
@@ -220,71 +140,6 @@ namespace DataHandler
         }
 
         //@Vinh
-        public static DbResult SelNoteList(int affid, int pageIndex, ref int rows, ref int totalPages, int pageSize)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affid);
-            hsParam.Add("pagesize", pageSize);
-            hsParam.Add("pageindex", pageIndex);
-            hsParam.Add("totalpages", 0);
-            hsParam.Add("nrows", 0);
-            DbResult rs = DbHelper.Execute("Aff_AdminNoteSel", DBType.AFFILIATE_12BET, hsParam);
-            rows = CastAide.AsInt32(rs.Outputs["nrows"]);
-            totalPages = CastAide.AsInt32(rs.Outputs["totalpages"]);
-            return rs;
-        }
-
-        //@Vinh
-        public static DbResult SelNoteDetail(int affid, object noteid)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affid);
-            hsParam.Add("noteid", noteid);
-            DbResult rs = DbHelper.Execute("Aff_AdminNoteSel", DBType.AFFILIATE_12BET, hsParam);
-            return rs;
-        }
-
-        //@Vinh
-        public static DbResult AddNote(int custid, int updateby, string strNote)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("noteid", 0);
-            hsParam.Add("note", HttpContext.Current.Server.HtmlEncode(strNote));
-            hsParam.Add("custid", custid);
-            hsParam.Add("updatedby", updateby);
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_AdminNoteIns", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        public static DbResult UpdateNote(int CustId, int updateby, int noteid, string strNote)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("noteid", noteid);
-            hsParam.Add("note", HttpContext.Current.Server.HtmlEncode(strNote));
-            hsParam.Add("userid", CustId);
-            hsParam.Add("updatedby", updateby);
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_AdminNoteUpd", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //@Vinh
-        public static DbResult DeleteNote(int AffId, int UserId, string strListNote)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", AffId);
-            hsParam.Add("userid", UserId);
-            hsParam.Add("listnode", strListNote);
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_AdminNoteDel", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //@Vinh
         public static DbResult SelPermission(int CustId, string funcName)
         {
             Hashtable hsParam = new Hashtable();
@@ -294,91 +149,6 @@ namespace DataHandler
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
             return DbHelper.Execute("Aff_Con_CheckPermission", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //@Peter
-        public static DbResult UpdateStatus(int affid, int groupID, string strStatus, string strPassword)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affid);
-            hsParam.Add("userid", AppSettings.Session.CustID);
-            hsParam.Add("status", HttpContext.Current.Server.HtmlEncode(strStatus));
-            if (!string.IsNullOrEmpty(strPassword.Trim()))
-                hsParam.Add("password", DNAide.Utils.Encryption.CfsEnCode(strPassword));
-            if (groupID != -1)
-            {
-                hsParam.Add("groupid", groupID);
-            }
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_AffiliateUpdStatus", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //@Peter
-        public static DbResult AffUpdateClosedStatus(int affid, bool isClosed)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affid);
-            hsParam.Add("userid", AppSettings.Session.CustID);
-            hsParam.Add("closed", isClosed);
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_AffiliateUpdClosedStatus", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //@Peter
-        public static DbResult AffUpdateAffType(int affid, int afftype)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affid);
-            hsParam.Add("userid", AppSettings.Session.CustID);
-            hsParam.Add("afftype", afftype);
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("language", AppSettings.Session.Language);
-            hsParam.Add("errcode", 0);
-            return DbHelper.Execute("Aff_UpdAffType", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        public static DbResult UpdateLanguage(int affID, string strLang)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affID);
-            hsParam.Add("userid", AppSettings.Session.CustID);
-            hsParam.Add("preferredlanguage", HttpContext.Current.Server.HtmlEncode(strLang));
-            hsParam.Add("errcode", 0);
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_PreferLangUpd", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //Vinh@20090512
-        public static int Adjustment(decimal Amt, int CustId, int UserId, string Desc, ref Int64 intTransId, ref string strErrorMsg)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("amount", Amt);
-            hsParam.Add("affid", CustId);
-            hsParam.Add("adminid", UserId);
-            hsParam.Add("transdesc", HttpContext.Current.Server.HtmlEncode(Desc));
-            hsParam.Add("transid", 0);
-            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", "");
-
-            DbResult result = DbHelper.Execute("Aff_AdjustmentIns", DBType.AFFILIATE_12BET, hsParam, 600);
-            intTransId = CastAide.AsInt32(result.Outputs["transid"]);
-            //dtmWinlostDate = CastAide.AsDateTime(result.Outputs["winlostdate"]);
-            strErrorMsg = result.Outputs["errmsg"].ToString();
-            return CastAide.AsInt32(result.Outputs["errcode"]);
-        }
-
-        //Vinh@20090512
-        public static DbResult SelAffUsename()
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affmaster", AppSettings.AffMaster);
-            return DbHelper.Execute("Aff_CustomerSelAffUsename", DBType.AFFILIATE_12BET, hsParam);
         }
 
         //Vinh@20090908
@@ -585,17 +355,6 @@ namespace DataHandler
             return CastAide.AsBoolean(result.Outputs["result"]);
         }
 
-        //@Smith 20101223
-        public static DbResult SignUpMembersReport(int? affId, DateTime dtmFDate, DateTime dtmTDate, bool isGetAll)
-        {
-            Hashtable hsParam = new Hashtable();
-            if (affId != -1)
-                hsParam.Add("affid", affId);
-            hsParam.Add("fromdate", dtmFDate);
-            hsParam.Add("todate", dtmTDate);
-            hsParam.Add("isgetall", isGetAll);
-            return DbHelper.Execute("DEP_SignUpMembersReport", DBType.DEPOSIT, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
 
         public static bool ValidatePermission(ValidationCriteria criteria)
         {

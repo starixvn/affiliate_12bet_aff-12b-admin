@@ -24,3 +24,7 @@ select.form-control:not([size]):not([multiple]) {
         }
     }
 }
+
+.input-required{
+    background-position-y: 50%!important;
+}

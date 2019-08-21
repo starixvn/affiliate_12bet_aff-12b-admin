@@ -1,22 +1,52 @@
-﻿import React, { Component } from 'react';
-
+﻿import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import MonthPicker from '@9softstudio/react-monthpicker';
 
-import { shortedMonthNames, minMonthDate } from '../../../../modules/constants';
-import { resource } from '../modules/constants';
+import { resource, selectedAllProduct, shortedMonthNames, minMonthDate } from '../modules/constants';
+import { setParam, getProductList, exportExcel } from '../actions';
+import ReportExcel from '../modules/reportExcel';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
-export default class Filter extends Component {
+export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { productList, selectedProduct, monthDate } = this.props;
-        this.productList = productList;
+        const { today, param } = this.props;
+        const monthDate = param.isClickLink ? (param.monthDate || today) : today;
+        const newMonthDate = new Date(monthDate);
 
         this.state = {
-            selectedProduct,
-            monthDate
+            selectedProduct: selectedAllProduct,
+            monthDate: newMonthDate,
+            productList: null
         }
+    }
+
+    componentDidMount() {
+        if (!this.state.productList) {
+            this.handleGetProductList();
+        }
+        if (this.props.param.isClickLink) {
+            const { monthDate } = this.state;
+            this.handleSearch(monthDate);
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const { param } = this.props;
+        if (param.isClickLink && param !== prevProps.param) {
+            const newMonthDate = new Date(param.monthDate);
+
+            this.setState({ monthDate: newMonthDate });
+            this.handleSearch(newMonthDate);
+        }
+    }
+
+    handleGetProductList = async () => {
+        const productList = await this.props.getProductList();
+        this.setState({ productList });
     }
 
     handleSelectMonth = (month, year) => {
@@ -37,29 +67,34 @@ export default class Filter extends Component {
         return `${shortedMonthNames[month - 1]}-${year}`
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-
-        const { selectedProduct, monthDate } = this.state;
+    handleSearch = (monthDate) => {
+        const { selectedProduct } = this.state;
 
         const param = {
-            ProductId: selectedProduct,
-            MonthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`
+            productId: selectedProduct,
+            monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
         }
-
-        this.props.onSubmit(param);
+        this.props.setParam(param);
     }
 
-    handleExportExcel = () => {
+    handleExportExcel = async () => {
         const { selectedProduct, monthDate } = this.state;
+        const { affId } = this.props;
 
         const param = {
-            ProductId: selectedProduct,
-            MonthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`
+            IsExportExcel: true,
+            productId: selectedProduct,
+            monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
+            affId
         }
 
-        const title = this._getReportTitle();
-        this.props.onExportExcel(param, title);
+        const data = await this.props.exportExcel(param);
+
+        if (data) {
+            const title = this._getReportTitle();
+            const reportExcel = new ReportExcel(data, title);
+            reportExcel.export();
+        }
     }
 
     _getReportTitle() {
@@ -71,30 +106,30 @@ export default class Filter extends Component {
     }
 
     _getSelectedProductName(productId) {
-        const selectedProduct = this.productList.find(p => p.ProductId === productId);
+        const selectedProduct = this.state.productList.find(p => p.ProductId === productId);
 
         return selectedProduct ? selectedProduct.ProductName : '';
     }
 
     render() {
-        const { selectedProduct, monthDate } = this.state;
+        const { productList, selectedProduct, monthDate } = this.state;
 
-        return (
+        return productList && (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <Label className="mr-2">{resource.Product}</Label>
                         <Input type="select" name="Product" id="Product" value={selectedProduct} onChange={this.handleChangeProduct}>
                             <option value="0">{resource.All}</option>
                             {
-                                this.productList.map(p => {
-                                    return (<option value={p.ProductId}>{p.ProductName}</option>)
+                                productList.map(p => {
+                                    return (<option value={p.ProductId}>{htmlDecode(p.ProductName)}</option>)
                                 })
                             }
                         </Input>
                     </FormGroup>
 
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mr-sm-2">
                         <Label className="mr-sm-2">{resource.Month}</Label>
                         <MonthPicker minMonth={minMonthDate.month} minYear={minMonthDate.year}
                             selectedDropdownYear={monthDate.getFullYear()}
@@ -104,7 +139,7 @@ export default class Filter extends Component {
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                     </FormGroup>
 
-                    <Button outline color="primary" type="button" onClick={this.handleSubmit}>
+                    <Button outline color="primary" type="button" onClick={() => this.handleSearch(monthDate)}>
                         <span className="oi oi-magnifying-glass"></span> {resource.Search}
                     </Button>
 
@@ -116,3 +151,20 @@ export default class Filter extends Component {
         );
     }
 }
+
+function mapStateToProps({ today, affCommonInfo, playerDetail }) {
+    const { param } = playerDetail;
+    const { affId } = affCommonInfo;
+
+    return Object.assign({}, {
+        param,
+        affId,
+        today
+    });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setParam, exportExcel, getProductList }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

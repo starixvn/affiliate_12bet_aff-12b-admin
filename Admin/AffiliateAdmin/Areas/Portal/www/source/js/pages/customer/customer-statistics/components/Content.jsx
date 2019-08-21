@@ -1,54 +1,55 @@
-﻿import React, { Component } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import MonthPicker from '@9softstudio/react-monthpicker';
-import { Table } from 'reactstrap';
+import { Table, Spinner } from 'reactstrap';
 import { rowTitle, resource } from '../modules/constants';
-import { shortedMonthNames, minMonthDate } from '../../../../modules/constants';
-import { post } from '../../../../modules/ajaxRequest';
-import { resolveClientUrl } from '../../../../modules/utils';
+import { shortedMonthNames, minMonthDate, selectedAllProduct } from '../../../../modules/constants';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 
-import { toggleLoader } from '../../../../actions/loaderAction';
-import { setMonthDate } from '../actions';
+import { redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers } from '../../user-panel/actions';
+import { deviceTypes, pcLaptop, mobile } from '../../user-panel/modules/constants';
+import { setMonthDate, fetchData } from '../actions';
 
-const API_URL = "Portal/CustomerStatistics/GetCustomerStatistics";
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
         this.state = {
-            data: null
+            data: null,
+            isLoading: false
         }
     }
 
     componentDidMount() {
-        this.fetchData(this.props.monthDate);
+        this.fetchData(this.props.today);
+    }
+
+    componentDidUpdate(prevProps) {
+        const { affId, today } = this.props;
+
+        if (prevProps.affId !== affId) {
+            this.fetchData(today);
+        }
     }
 
     fetchData = async (monthDate) => {
-        this.props.toggleLoader(true);
+        this.setState({ isLoading: true });
+        this.props.setMonthDate(monthDate);
         const { affId } = this.props;
 
         const param = {
             monthDate,
             affId
         }
-        const response = await post(API_URL, param);
-        if (response && response.status === 200) {
-            this.setState({
-                data: response.data
-            });
-        }
+        const data = await this.props.fetchData(param);
 
-        this.props.toggleLoader(false);
+        this.setState({ data, isLoading: false });
     }
 
     handleSelectMonth = (month, year) => {
         const monthDate = `${month}/1/${year}`;
-        this.props.setMonthDate(monthDate);
-
         this.fetchData(monthDate);
     }
 
@@ -61,8 +62,8 @@ export class Content extends Component {
             <thead>
                 <tr>
                     <th>{rowTitle.Statistics}</th>
-                    <th style={{ overflow: 'visible' }}>
-                        <div className="position-relative">
+                    <th className="width-30 month-picker">
+                        <div className="position-relative d-inline-block">
                             <MonthPicker minMonth={minMonthDate.month} minYear={minMonthDate.year}
                                 selectedDropdownYear={monthDate.getFullYear()}
                                 selectedMonth={monthDate.getMonth() + 1}
@@ -70,17 +71,16 @@ export class Content extends Component {
                                 onFormat={this.handleFormatMonthPicker}
                                 iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                         </div>
+                        <Spinner className={this.state.isLoading ? "" : "d-none"} size="sm" color="secondary" />
                     </th>
-                    <th>{rowTitle.UpToNow}</th>
+                    <th className="width-30">{rowTitle.UpToNow}</th>
                 </tr>
             </thead>
         )
                                 }
 
     _renderData(monthDate, data) {
-        const { affId, affName } = this.props;
-        const affiliateLinkParam = affId&&affName&&"&affId=" + affId + "&affName=" + affName;
-
+        data = data || {};
         const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
         const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
         const TurnoverByMonth = formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
@@ -104,7 +104,7 @@ export class Content extends Component {
                     this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
-                                <a href={`${resolveClientUrl('Portal/UserPanel/PlayerDetail/Index?isFromStatistics=true')}&monthDate=${startMonthString}${affiliateLinkParam}`} target="fContent">
+                                <a href="javascript:;" onClick={() => this.props.redirectToPlayerDetail({ productId: selectedAllProduct, monthDate: startMonthString, isClickLink: true })}>
                                     {format(data.ActivePlayerByMonth)}
                                 </a>) : format(data.ActivePlayerByMonth)
                         ),
@@ -116,21 +116,21 @@ export class Content extends Component {
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRate,
-                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics.aspx?month=${startMonthString}${affiliateLinkParam}`)} target="fContent">
+                        (<a href="javascript:;" onClick={() => this.props.redirectToTrackingStatistics({ isClickLink: true })}>
                             {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
-                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=0${affiliateLinkParam}`)} target="fContent">
+                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[pcLaptop], isClickLink: true })}>
                             {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
-                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=1${affiliateLinkParam}`)} target="fContent">
+                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[mobile], isClickLink: true })}>
                             {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
                         </a>),
                         resource.NA)
@@ -153,8 +153,8 @@ export class Content extends Component {
         const { data } = this.state;
         const monthDate = new Date(this.props.monthDate);
 
-        return data && (
-            <div className="my-2">
+        return (
+            <div className="my-2 table-responsive">
                 <Table id="statistic-data-table">
                     {this._renderHeader(monthDate)}
                     {this._renderData(monthDate, data)}
@@ -164,12 +164,13 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ monthDate, affId, affName }) {
-    return Object.assign({}, { monthDate, affId, affName });
+function mapStateToProps({ affCommonInfo, today, customerStatistics }) {
+    const { affId } = affCommonInfo;
+    return Object.assign({}, { monthDate: customerStatistics.monthDate, today, affId });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setMonthDate, toggleLoader }, dispatch);
+    return bindActionCreators({ setMonthDate, redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

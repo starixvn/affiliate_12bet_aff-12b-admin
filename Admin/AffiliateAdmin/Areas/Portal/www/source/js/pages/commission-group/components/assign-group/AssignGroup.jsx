@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { post } from '../../../../modules/ajaxRequest';
-import { Col, FormGroup, Label, Button, Input } from 'reactstrap';
-import { resolveClientUrl } from '../../../../modules/utils';
+import { Col, FormGroup, Label, Button, Input, Alert } from 'reactstrap';
 import { messages } from '../../modules/constant';
 import Loader from '../../../../components/Loader';
+import { popupEventNames } from '../../../common/modules/constants/commissionGroup';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export default class AssignGroup extends Component {
     constructor(props) {
@@ -11,10 +12,16 @@ export default class AssignGroup extends Component {
 
         let { commGroupList, selectedGroup, affInfo } = window.initialState;
         if (selectedGroup === 0) {
-            selectedGroup = commGroupList.length ? Number(commGroupList[0].Id) : 0
+            selectedGroup = commGroupList && commGroupList.length ? Number(commGroupList[0].Id) : 0
         }
 
-        this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, { isPrivateGroup: false, isShowLoader: false });
+        this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, {
+            isPrivateGroup: false,
+            isShowLoader: false,
+            isShowMessage: false,
+            isSuccess: true,
+            message: ''
+        });
     }
 
     handleChange = (event) => {
@@ -30,54 +37,59 @@ export default class AssignGroup extends Component {
     handleSave = async () => {
         const { isPrivateGroup, affInfo, selectedGroup } = this.state;
         if (isPrivateGroup) {
-            const url = resolveClientUrl('Portal/CommissionGroup/AssignPrivateGroup') + '?affId=' + affInfo.AffId;
-            var left = parent.innerWidth / 2 - 400;
-            parent.ibcWnd.open(url, `Approve affiliate ${affInfo.UserName} with a private commission group`, left, 50, 800, 529, 'class1', 'class2');
+            parent.postMessage(popupEventNames.changeAssignToPrivateGroup, window.location.origin);
         }
         else {
             if (affInfo.GroupId > 0 && affInfo.GroupId === selectedGroup) {
-                window.alert(messages.choseAnotherGroup);
+                this.setState({
+                    isShowMessage: true,
+                    isSuccess: false,
+                    message: messages.choseAnotherGroup
+                }, () => window.setTimeout(this.hideMessage, 3000));
                 return;
             }
 
-            if (confirm(messages.confirmChangeGroup.replace('{0}', affInfo.UserName))) {
-                this.setState({ isShowLoader: true });
-                const url = 'Portal/CommissionGroup/AssignGroup';
-                const params = {
-                    assignParam: {
-                        groupId: selectedGroup
-                    },
-                    affInfo
-                }
-                const response = await post(url, params);
-                if (response && response.status === 200) {
-                    const result = response.data;
-
-                    if (result.IsSuccessful) {
-                        window.alert(messages.assignGroupSuccessfully);
-                        const mainFrame = top.frames["mainFrame"];
-                        if (mainFrame) {
-                            mainFrame.location.reload();
-                        }
-                        else {
-                            window.location.reload();
-                        }
-                    }
-                    else {
-                        window.alert(result.Message);
-                    }
-                }
-
-                this.setState({ isShowLoader: false });
+            this.setState({ isShowLoader: true });
+            const url = 'Portal/CommGroupAssignment/AssignGroup';
+            const params = {
+                assignParam: {
+                    groupId: selectedGroup,
+                    affId: affInfo.AffId
+                },
+                affInfo
             }
+            const response = await post(url, params);
+            if (response && response.status === 200) {
+                const result = response.data;
+
+                this.setState({
+                    isShowMessage: true,
+                    isSuccess: result.IsSuccessful,
+                    message: result.IsSuccessful ? messages.assignGroupSuccessfully : result.Message
+                }, () => window.setTimeout(() => {
+                    this.hideMessage();
+                    result.IsSuccessful && parent.postMessage(popupEventNames.assignGroupSuccessfully, window.location.origin);
+                }, 3000));
+            }
+
+            this.setState({ isShowLoader: false });
         }
     }
 
+    hideMessage = () => {
+        this.setState({
+            isShowMessage: false
+        });
+    }
+
     render() {
-        const { commGroupList, selectedGroup, affInfo, isPrivateGroup, isShowLoader } = this.state;
-        return (
+        const { commGroupList, selectedGroup, affInfo, isPrivateGroup, isShowLoader, isShowMessage, isSuccess, message } = this.state;
+        return affInfo && (
             <div className="assign-normal-group" style={{ padding: 10 }}>
                 <Loader show={isShowLoader} />
+                <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                </Alert>
                 <fieldset>
                     <legend><h6 className="font-weight-bold">Assignee</h6></legend>
                     <p>{affInfo.UserName}</p>
@@ -91,7 +103,7 @@ export default class AssignGroup extends Component {
                             <select name="SelectedGroup" className="form-control" onChange={this.handleChange} value={selectedGroup.toString()}>
                                 {
                                     commGroupList && commGroupList.map((item, index) => {
-                                        return (<option key={`commgroup-${index}`} value={item.Id}>{item.Name}</option>)
+                                        return (<option key={`commgroup-${index}`} value={item.Id}>{htmlDecode(item.Name)}</option>)
                                     })
                                 }
                             </select>

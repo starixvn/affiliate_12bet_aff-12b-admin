@@ -1,12 +1,15 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
-import EditCommissionGroup from './EditCommissionGroup';
-import ChangePasswordForm from './ChangePasswordForm';
+import CommissionGroupPopup from '../../common/components/CommissionGroupPopup';
+import ChangePasswordForm from '../../common/components/ChangePasswordForm';
 import Loader from '../../../components/Loader';
+
+import { setShowPopupPassword, setShowPopupCommGroup } from '../actions'
 
 export class AppContainer extends Component {
     constructor(props) {
@@ -14,20 +17,35 @@ export class AppContainer extends Component {
     }
 
     render() {
+        const { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup } = this.props;
         return (
             <AppLayout>
-                <Loader show={this.props.isShowLoader} />
+                <Loader show={isShowLoader} />
                 <Filter />
                 <Content />
-                <EditCommissionGroup />
-                <ChangePasswordForm />
+                <CommissionGroupPopup
+                    showPopupCommGroup={showPopupCommGroup}
+                    isPrivateGroup={true}
+                    affId={affId}
+                    affName={commGroup}
+                    setShowPopupCommGroup={this.props.setShowPopupCommGroup}
+                />
+                <ChangePasswordForm
+                    showPopupPassword={showPopupPassword}
+                    affId={affId}
+                    setShowPopupPassword={this.props.setShowPopupPassword}
+                />
             </AppLayout>
         );
     }
 }
 
-function mapStateToProps({ isShowLoader }) {
-    return Object.assign({}, { isShowLoader });
+function mapStateToProps({ isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup }) {
+    return Object.assign({}, { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup });
 }
 
-export default connect(mapStateToProps)(AppContainer);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setShowPopupPassword, setShowPopupCommGroup }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

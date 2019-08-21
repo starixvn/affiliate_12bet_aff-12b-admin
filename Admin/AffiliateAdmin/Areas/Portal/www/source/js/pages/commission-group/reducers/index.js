@@ -1,23 +1,17 @@
 import { combineReducers } from "redux";
 
-import { SET_GRIDDATA, SET_PAGING_OPTION, SET_SELECTED_GROUP, SET_SEARCHED_GROUPNAME } from '../actions/types';
+import { SET_GRIDDATA, SET_SELECTED_GROUP, SET_SEARCHED_GROUPNAME } from '../actions/types';
 import createReducer from '../../../modules/createReducer';
-import { defaultPagingOption } from '../modules/constant';
 import { isShowLoader } from '../../../reducers/loaderReducer';
+import { pagingOption } from '../../../reducers/pagingReducer';
 
-const gridData = createReducer([], {
+export const gridData = createReducer(null, {
     [SET_GRIDDATA](prevState, action) {
         return action.data;
     }
 })
 
-const pagingOption = createReducer(defaultPagingOption, {
-    [SET_PAGING_OPTION](prevState, action) {
-        return Object.assign({}, prevState, action.data);
-    }
-})
-
-const searchedGroupName = createReducer('', {
+export const searchedGroupName = createReducer('', {
     [SET_SEARCHED_GROUPNAME](prevState, action) {
         return action.data;
     }

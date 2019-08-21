@@ -48,13 +48,14 @@ export class EditGroup extends React.Component {
             const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
 
             const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
+
             const response = await this.props.updateCommissionGroup(param);
             if (response && response.status === 200) {
                 const result = response.data;
 
                 if (result.IsSuccessful) {
                     window.setTimeout(this.props.onClose, 3000);
-                    const gettingParam = Object.assign({}, defaultPagingOption);
+                    const gettingParam = Object.assign({}, defaultPagingOption, { GroupName: this.props.searchedGroupName });
                     this.props.getGroupSettingList(gettingParam);
                 }
 
@@ -88,8 +89,8 @@ export class EditGroup extends React.Component {
     }
 }
 
-function mapStateToProp({ selectedGroup }) {
-    return { selectedGroup };
+function mapStateToProp({ selectedGroup, searchedGroupName }) {
+    return { selectedGroup, searchedGroupName };
 }
 
 function mapDispatchToProps(dispatch) {

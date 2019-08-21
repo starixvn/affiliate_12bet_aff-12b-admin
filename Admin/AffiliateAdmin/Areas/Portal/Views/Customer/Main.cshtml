@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+@model Fanex.Affiliate.Admin.Core.ViewModels.Customer.CustomerViewModel
+
+@section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/user-panel-layout.css")" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/customer.css")" rel="stylesheet" />
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")',
+            selectedUserPanel: null,
+            affCommonInfo: null,
+            leftPanel: {
+                affName: '@Model.AffName'
+            },
+            languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+            customerStatistics: {}
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/customer/customer.js")"></script>
+}
+<div id="root"></div>

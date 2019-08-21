@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`commission group - QmTurnOverSetting Should render correctly 1`] = `
+<fieldset>
+  <legend>
+    <h6
+      className="font-weight-bold"
+    >
+      QM Turnover
+    </h6>
+  </legend>
+  <p>
+    A member is considered a Qualified Member (QM) when his/her turnover in a month is equivalent to
+  </p>
+  <Form
+    inline={true}
+    tag="form"
+  >
+    <FormGroup
+      className="mb-2 mr-sm-2 mb-sm-0"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        for="QmTurnover"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        USD
+      </Label>
+      <Input
+        id="QmTurnover"
+        name="QmTurnover"
+        onChange={[Function]}
+        type="text"
+        value="100"
+      />
+    </FormGroup>
+  </Form>
+</fieldset>
+`;
+
+exports[`commission group - QmTurnOverSetting Should render correctly with GroupId different Zero and QmTurnover is null 1`] = `
+<fieldset>
+  <legend>
+    <h6
+      className="font-weight-bold"
+    >
+      QM Turnover
+    </h6>
+  </legend>
+  <p>
+    A member is considered a Qualified Member (QM) when his/her turnover in a month is equivalent to
+  </p>
+  <Form
+    inline={true}
+    tag="form"
+  >
+    <FormGroup
+      className="mb-2 mr-sm-2 mb-sm-0"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Current: 
+        0
+         | Next month: 
+      </Label>
+    </FormGroup>
+    <FormGroup
+      className="mb-2 mr-sm-2 mb-sm-0"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        for="NextQmTurnover"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        USD
+      </Label>
+      <Input
+        id="NextQmTurnover"
+        name="NextQmTurnover"
+        onChange={[Function]}
+        type="text"
+        value="0"
+      />
+    </FormGroup>
+  </Form>
+</fieldset>
+`;

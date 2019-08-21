@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import AppLayout from "../../../../layouts/AppLayout";
 import AssignGroup from './AssignGroup';
 
-class App extends Component {
+export default class App extends Component {
     constructor(props) {
         super(props);
     }

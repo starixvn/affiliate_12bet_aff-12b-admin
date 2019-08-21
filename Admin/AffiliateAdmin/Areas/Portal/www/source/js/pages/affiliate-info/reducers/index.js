@@ -1,10 +1,11 @@
 ﻿import { combineReducers } from 'redux';
 
 import createReducer from '../../../modules/createReducer';
-import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_PASSWORD, SET_SHOW_POPUP_COMMGROUP, SET_AFFID, SET_COMM_GROUP, SET_SELECTED_COLUMN } from '../actions/types';
+import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_COMMGROUP, SET_AFFID, SET_COMM_GROUP, SET_SELECTED_COLUMN } from '../actions/types';
 
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
+import { showPopupPassword } from '../../common/reducers';
 
 export const commGroupList = createReducer({}, {});
 
@@ -21,12 +22,6 @@ export const reportTitle = createReducer('', {
 export const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
         return Object.assign({}, prevState, action.data);
-    }
-})
-
-export const showPopupPassword = createReducer(false, {
-    [SET_SHOW_POPUP_PASSWORD](prevState, action) {
-        return action.data;
     }
 })
 

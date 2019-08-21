@@ -1,25 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
-import thunkMiddleware from "redux-thunk";
+import { configureStore } from '../../../../modules/store';
 import AssignPrivateGroup from './AssignPrivateGroup';
 
 import reducer from './reducer';
 
-function configureStore(initialState) {
-  const enhancer = compose(
-    applyMiddleware(
-      thunkMiddleware // lets us dispatch() functions
-    )
-  );
+const store = configureStore(window.initialState, reducer);
 
-  return createStore(reducer, initialState, enhancer);
-}
-
-const store = configureStore(window.initialState);
-
-export class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
   }

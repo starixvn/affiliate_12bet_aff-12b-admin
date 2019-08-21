@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`afiliate info - Filter  should render correctly 1`] = `
+exports[`affiliate info - Filter  should render correctly 1`] = `
 <div
   className="filter-container"
 >
@@ -36,9 +36,16 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
         value={0}
       >
         <option
+          key="commGroup-all"
           value={0}
         >
           All Comm Groups
+        </option>
+        <option
+          key="commGroup-en-US"
+          value="en-US"
+        >
+          English
         </option>
       </Input>
     </FormGroup>
@@ -54,9 +61,16 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
         value=""
       >
         <option
+          key="lang-all"
           value=""
         >
           All Languages
+        </option>
+        <option
+          key="lang-133"
+          value="133"
+        >
+          NewGroup
         </option>
       </Input>
     </FormGroup>
@@ -72,31 +86,37 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
         value=""
       >
         <option
+          key="status-all"
           value=""
         >
           All Statuses
         </option>
         <option
+          key="status-Favorite"
           value="Favorite"
         >
           Favorite
         </option>
         <option
+          key="status-Pending"
           value="Pending"
         >
           Pending
         </option>
         <option
+          key="status-Approved"
           value="Approved"
         >
           Approved
         </option>
         <option
+          key="status-Disapproved"
           value="Disapproved"
         >
           Disapproved
         </option>
         <option
+          key="status-Closed"
           value="Closed"
         >
           Closed
@@ -133,6 +153,19 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
       className="my-2 mr-sm-2"
       tag="div"
     >
+      <Input
+        id="AffId"
+        name="affId"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        placeholder="Affiliate Id"
+        type="text"
+      />
+    </FormGroup>
+    <FormGroup
+      className="my-2 mr-sm-2"
+      tag="div"
+    >
       <Label
         className="mr-sm-2"
         for="SortBy"
@@ -157,26 +190,31 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
         value={1}
       >
         <option
+          key="sortBy-Username"
           value={1}
         >
           Username
         </option>
         <option
+          key="sortBy-Registration Date"
           value={2}
         >
           Registration Date
         </option>
         <option
+          key="sortBy-Approval Date"
           value={3}
         >
           Approval Date
         </option>
         <option
+          key="sortBy-Balance B/F"
           value={4}
         >
           Balance B/F
         </option>
         <option
+          key="sortBy-Member"
           value={5}
         >
           Member
@@ -230,6 +268,7 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
         Displayed Columns
       </Label>
       <MultipleSelect
+        dataSource={Array []}
         hasAllOption={true}
         keyField="columnKey"
         maxDisplayItemCount={1}

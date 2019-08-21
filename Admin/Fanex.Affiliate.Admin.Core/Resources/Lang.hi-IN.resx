@@ -141,4 +141,22 @@
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
     <value>Affiliate Withdrawal Guidance</value>
   </data>
+  <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
+    <value>12Bet Affiliates - [{0}] - Your payment request has been processed and completed successfully</value>
+  </data>
+  <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
+    <value>Your payment request has been processed and completed successfully</value>
+  </data>
+  <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
+    <value>12Bet Affiliates - [{0}] - Your payment request has been rejected</value>
+  </data>
+  <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
+    <value>Your payment request has been rejected</value>
+  </data>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>Your Application</value>
+  </data>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>12Bet Affiliates – Your Application</value>
+  </data>
 </root>

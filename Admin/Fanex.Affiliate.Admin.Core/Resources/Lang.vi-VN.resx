@@ -141,4 +141,22 @@
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
     <value>Hướng dẫn hội viên rút tiền</value>
   </data>
+  <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
+    <value>12Bet Affiliates - [{0}] - Yêu cầu thanh toán của bạn đã được xử lý và hoàn tất.</value>
+  </data>
+  <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
+    <value>Yêu cầu thanh toán của bạn đã được xử lý và hoàn tất.</value>
+  </data>
+  <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
+    <value>12Bet Affiliates - [{0}] - Yêu cầu thanh toán của bạn bị từ chối.</value>
+  </data>
+  <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
+    <value>Yêu cầu thanh toán của bạn bị từ chối.</value>
+  </data>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>Đơn đăng ký chương trình liên kết 12BET bị từ chối</value>
+  </data>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>12Bet Affiliates – Đơn đăng ký chương trình liên kết 12BET bị từ chối</value>
+  </data>
 </root>

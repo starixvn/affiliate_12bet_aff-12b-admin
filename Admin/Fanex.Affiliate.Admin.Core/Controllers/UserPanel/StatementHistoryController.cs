@@ -2,61 +2,69 @@
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
-using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class StatementHistoryController : Controller
+    public class StatementHistoryController : BaseController
     {
         private readonly IStatementHistoryService _statementHistoryService;
 
-        private readonly IProductRepository _productRepository;
-
-        public StatementHistoryController(IStatementHistoryService statementHistoryService, IProductRepository productRepository)
+        public StatementHistoryController(
+            ISessionService sessionService,
+            IStatementHistoryService statementHistoryService) : base(sessionService)
         {
             _statementHistoryService = statementHistoryService;
-            _productRepository = productRepository;
         }
 
-        [HttpGet]
-        public ActionResult DailyEarning(DailyEarningParam param)
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [Compress]
+        public ActionResult GetStatementHistoryList(AffiliatePagingByDateParam param)
         {
-            var viewModel = new DailyEarningViewModel
+            if (ModelState.IsValid)
             {
-                ProductList = _productRepository.GetProductList(),
-                Param = param
-            };
+                return new JsonNetResult
+                {
+                    Data = _statementHistoryService.GetStatementHistoryList(param)
+                };
+            }
 
-            return View("~/Areas/Portal/Views/UserPanel/StatementHistory/DailyEarning.cshtml", viewModel);
+            return new JsonNetResult();
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetDailyEarning(DailyEarningParam param)
         {
-            return Json(_statementHistoryService.GetDailyEarning(param));
-        }
-
-        [HttpGet]
-        public ActionResult DailyEarningDetail(DailyEarningParam param)
-        {
-            var viewModel = new DailyEarningViewModel
+            if (ModelState.IsValid)
             {
-                ProductList = _productRepository.GetProductList(),
-                Param = param
-            };
+                return new JsonNetResult
+                {
+                    Data = _statementHistoryService.GetDailyEarning(param)
+                };
+            }
 
-            return View("~/Areas/Portal/Views/UserPanel/StatementHistory/DailyEarningDetail.cshtml", viewModel);
+            return new JsonNetResult();
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetDailyEarningDetail(DailyEarningParam param)
         {
-            return Json(_statementHistoryService.GetDailyEarningDetail(param));
+            if (ModelState.IsValid)
+            {
+                return new JsonNetResult
+                {
+                    Data = _statementHistoryService.GetDailyEarningDetail(param)
+                };
+            }
+
+            return new JsonNetResult();
         }
     }
 }

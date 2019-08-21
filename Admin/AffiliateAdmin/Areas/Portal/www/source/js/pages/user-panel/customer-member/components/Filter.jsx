@@ -5,6 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { memberTypes, resource } from '../modules/constants';
 import { setParam } from '../actions';
+import { getDateRange } from '../../../../modules/utils';
 
 const minDate = new Date(2009, 11, 1);
 export class Filter extends React.Component {
@@ -15,10 +16,10 @@ export class Filter extends React.Component {
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
         this.state = {
-            MemberType: '0',
-            FromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
-            ToDate: this.nowString,
-            IsGetAll: false
+            memberType: '0',
+            fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
+            toDate: this.nowString,
+            isGetAll: false
         }
     }
 
@@ -33,35 +34,27 @@ export class Filter extends React.Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        const { ToDate } = this.state;
-        const selectedDateString = momentDate.format("MM/DD/YYYY");
-        const fromDate = new Date(selectedDateString);
-        const toDate = new Date(ToDate);
-
-        const isOutsideRange = fromDate.getTime() > toDate.getTime();
-        const newState = isOutsideRange ? { FromDate: selectedDateString, ToDate: selectedDateString } : { FromDate: selectedDateString }
-
-        this.setState(newState);
+        this.setState(getDateRange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {
-        this.setState({ ToDate: momentDate.format("MM/DD/YYYY") });
+        this.setState({ toDate: momentDate.format("MM/DD/YYYY") });
     }
 
     handleSearch = () => {
-        const param = Object.assign({}, this.state, { PageIndex: 1, AffId: this.props.affId });
+        const param = Object.assign({}, this.state);
         this.props.setParam(param);
     }
 
     render() {
-        const { MemberType, FromDate, ToDate, IsGetAll } = this.state;
+        const { memberType, fromDate, toDate, isGetAll } = this.state;
 
         return (
-            <div className="filter-container">
+            <div className="filter-container py-0">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="Affiliate" className="mr-sm-2">{resource.Member}</Label>
-                        <Input type="select" name="MemberType" id="MemberType" value={MemberType} onChange={this.handleChangeInput}>
+                    <FormGroup className="my-2 mr-sm-2">
+                        <Label for="memberType" className="mr-sm-2">{resource.Member}</Label>
+                        <Input type="select" name="memberType" id="memberType" value={memberType} onChange={this.handleChangeInput}>
                             <option key="memberType-0" value="0">Select</option>
                             {
                                 Object.keys(memberTypes).map(k => {
@@ -70,27 +63,27 @@ export class Filter extends React.Component {
                             }
                         </Input>
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <Label className="mr-sm-2">{resource.From}</Label>
-                        <DatePicker minDate={minDate} maxDate={this.nowString} date={FromDate} isEnable={!IsGetAll}
+                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <Label className="mr-sm-2">{resource.To}</Label>
-                        <DatePicker minDate={FromDate} maxDate={this.nowString} date={ToDate} isEnable={!IsGetAll}
+                        <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!isGetAll}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeToDate} />
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <FormGroup check>
                             <Label check>
                                 {resource.GetAll}
-                                <Input name="IsGetAll" className="ml-1 mr-2" type="checkbox" checked={IsGetAll} onChange={this.handleChangeInput} />
+                                <Input name="isGetAll" className="ml-1 mr-2" type="checkbox" checked={isGetAll} onChange={this.handleChangeInput} />
                             </Label>
                         </FormGroup>
                     </FormGroup>
-                    <Button outline color="primary" type="button" onClick={this.handleSearch}>
+                    <Button outline color="primary" type="button" className="my-2" onClick={this.handleSearch}>
                         <span className="oi oi-magnifying-glass"></span> {resource.Search}
                     </Button>
                 </Form>
@@ -99,8 +92,8 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, affId }) {
-    return Object.assign({}, { today, affId });
+function mapStateToProps({ today }) {
+    return Object.assign({}, { today });
 }
 
 function mapDispatchToProps(dispatch) {

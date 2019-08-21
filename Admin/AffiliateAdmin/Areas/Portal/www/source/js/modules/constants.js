@@ -8,3 +8,20 @@ export const defaultPagingOption = {
 export const minMonthDate = { month: 12, year: 2009 };
 
 export const shortedMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+export const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+export const money = {
+    MaxValue: 922337203685477,
+    MinValue: -922337203685477
+}
+
+export const selectedAllProduct = 0;
+
+export const maxWidth = window.innerWidth - 282;
+
+const maxUserPanelHeight = window.innerHeight - 234;
+
+export const spinnerLoaderWidth = (maxWidth / 2) - 32
+export const spinnerLoaderUserPanelHeight = (maxUserPanelHeight / 2) - 32
+
+export const minDate = new Date(2009, 11, 1);

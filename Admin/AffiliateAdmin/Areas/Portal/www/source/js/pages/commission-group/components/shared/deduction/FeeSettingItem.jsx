@@ -56,7 +56,7 @@ export default class FeeSettingItem extends React.Component {
                 }
 
                 <Col sm={3}>
-                    <Input plaintext>{basedValueName}</Input>
+                    <Input plaintext tag="p">{basedValueName}</Input>
                 </Col>
             </FormGroup>
         )

@@ -7,7 +7,7 @@ import { setSelectedGroup } from '../../../actions';
 import TierSettingItem from './TierSettingItem';
 import { removeItem } from '../../../../../modules/dataHandler';
 import { isValidNumber } from '../../../../../modules/utils';
-import { INFINITY_AM, INFINITY_QM } from '../../../modules/constant';
+import { INFINITY_AM, INFINITY_QM, globalResource } from '../../../modules/constant';
 
 export class TierSetting extends Component {
     constructor(props) {
@@ -101,7 +101,7 @@ export class TierSetting extends Component {
                                         onRemove={() => this.handleRemove(i)}
                                         onChange={this.handleChangeInput} />);
                                 }) :
-                                (<tr><td colSpan="7" className="text-center">There is no information available</td></tr>)
+                                (<tr><td colSpan="7" className="text-center">{globalResource.NoInfo}</td></tr>)
                         }
                     </tbody>
                 </table>

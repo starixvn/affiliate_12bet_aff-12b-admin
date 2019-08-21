@@ -3,7 +3,7 @@
 exports[`MultipleSelect  render showOptionList = false - render component with "display: none" for dropdown list 1`] = `
 <div
   className="multiple-select-container"
-  id="multiple-select-20"
+  id="multiple-select-14"
 >
   <button
     className="multiple-select-default multiple-select-label"
@@ -37,13 +37,13 @@ exports[`MultipleSelect  render showOptionList = false - render component with "
         <input
           checked={true}
           className="option-checkbox"
-          id="multiple-select-20-optionItemAll"
+          id="multiple-select-14-optionItemAll"
           onChange={[Function]}
           type="checkbox"
         />
         <label
           className="option-label"
-          htmlFor="multiple-select-20-optionItemAll"
+          htmlFor="multiple-select-14-optionItemAll"
         >
           All
         </label>
@@ -59,7 +59,7 @@ exports[`MultipleSelect  render showOptionList = false - render component with "
 exports[`MultipleSelect  render showOptionList = true - render component with "display: block" for dropdown list 1`] = `
 <div
   className="multiple-select-container"
-  id="multiple-select-21"
+  id="multiple-select-15"
 >
   <button
     className="multiple-select-default multiple-select-label"
@@ -68,9 +68,9 @@ exports[`MultipleSelect  render showOptionList = true - render component with "d
   >
     <span
       className="text-display"
-      title="Select Options"
+      title="3 selected"
     >
-      Select Options
+      3 selected
     </span>
     <b
       className="caret"
@@ -93,13 +93,13 @@ exports[`MultipleSelect  render showOptionList = true - render component with "d
         <input
           checked={true}
           className="option-checkbox"
-          id="multiple-select-21-optionItemAll"
+          id="multiple-select-15-optionItemAll"
           onChange={[Function]}
           type="checkbox"
         />
         <label
           className="option-label"
-          htmlFor="multiple-select-21-optionItemAll"
+          htmlFor="multiple-select-15-optionItemAll"
         >
           All
         </label>
@@ -107,7 +107,59 @@ exports[`MultipleSelect  render showOptionList = true - render component with "d
     </ul>
     <ul
       className="multiple-select-options"
-    />
+    >
+      <li
+        className="multiple-select-item"
+      >
+        <input
+          checked={true}
+          className="option-checkbox"
+          id="multiple-select-15-optionItem-0"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <label
+          className="option-label"
+          htmlFor="multiple-select-15-optionItem-0"
+        >
+          Value SB
+        </label>
+      </li>
+      <li
+        className="multiple-select-item"
+      >
+        <input
+          checked={true}
+          className="option-checkbox"
+          id="multiple-select-15-optionItem-1"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <label
+          className="option-label"
+          htmlFor="multiple-select-15-optionItem-1"
+        >
+          Value BA
+        </label>
+      </li>
+      <li
+        className="multiple-select-item"
+      >
+        <input
+          checked={true}
+          className="option-checkbox"
+          id="multiple-select-15-optionItem-2"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <label
+          className="option-label"
+          htmlFor="multiple-select-15-optionItem-2"
+        >
+          Value RC
+        </label>
+      </li>
+    </ul>
   </div>
 </div>
 `;

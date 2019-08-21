@@ -1,11 +1,10 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -19,23 +18,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             _customerRepository = customerRepository;
         }
 
-        public ActionResult Index(AffiliateLinkParam affiliateLinkParam)
-        {
-            return View(affiliateLinkParam);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetCustomerStatistics(CustomerStatisticsParam param)
         {
-            if (!param.MonthDate.HasValue)
+            if (ModelState.IsValid)
             {
-                param.MonthDate = DateTime.Now;
+                return new JsonNetResult
+                {
+                    Data = _customerRepository.GetCustomerStatistics(param)
+                };
             }
 
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-
-            return Json(_customerRepository.GetCustomerStatistics(param));
+            return new JsonNetResult();
         }
     }
 }

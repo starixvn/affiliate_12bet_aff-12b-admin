@@ -1,4 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
+
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateInfo_Sel" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateOnlineList_Sel" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliatePreferredLanguage_Upd" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateAffType_Upd" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateStatus_Upd" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateClosed_Upd" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Affiliate_Password_Upd" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Assign" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateInfo_Upd" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateNote_Sel" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateNote_Detail_Sel" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateNote_Ins" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateNote_Upd" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateAdjustment_Ins" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateLog_Sel" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliatePaymentRequest_Sel" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliatePaymentRequest_Upd" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_EmailHistory_Sel" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_EmailHistory_Detail_Sel" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_EmailHistory_Del" Suffix="_xpre"></item>
 </Root>

@@ -7,6 +7,7 @@ import { setSelectedGroup } from '../../actions';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import { format } from '../../../../modules/numberFormat';
 import { isValidNumber } from '../../../../modules/utils';
+import { money } from '../../../../modules/constants';
 
 export class QmTurnOverSetting extends React.Component {
     constructor(props) {
@@ -19,7 +20,7 @@ export class QmTurnOverSetting extends React.Component {
         const numberValue = Number(textValue);
         const isValid = isValidNumber(numberValue);
 
-        if (isValid && numberValue <= Number.MAX_SAFE_INTEGER) {
+        if (isValid && numberValue <= money.MaxValue) {
             this.props.setSelectedGroup({ [name]: numberValue });
         }
     }

@@ -141,4 +141,22 @@
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
     <value>제휴사 출금 가이드</value>
   </data>
+  <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
+    <value>12Bet 업무제휴  - [{0}] – 고객님의 지불 요청이 승인되어 처리가 완료되었습니다.</value>
+  </data>
+  <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
+    <value>고객님의 지불 요청이 승인되어 처리가 완료되었습니다.</value>
+  </data>
+  <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
+    <value>12Bet업무제휴  - [{0}] – 고객님의 지불요청이 거부되었습니다</value>
+  </data>
+  <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
+    <value>고객님의 지불요청이 거부되었습니다</value>
+  </data>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>제휴 신청</value>
+  </data>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>12Bet제휴사– 제휴 신청</value>
+  </data>
 </root>

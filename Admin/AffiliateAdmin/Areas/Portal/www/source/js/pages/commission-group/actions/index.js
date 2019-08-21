@@ -1,22 +1,25 @@
 import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
+import { setPagingOption } from '../../../actions/pagingAction';
 
 import { SET_GRIDDATA, SET_PAGING_OPTION, SET_SELECTED_GROUP, SET_SEARCHED_GROUPNAME } from './types';
 
-const fetchGroupSettingData = (param) => {
+export { toggleLoader, setPagingOption };
+
+export const fetchGroupSettingData = (param) => {
     const url = 'Portal/CommissionGroup/GetCommissionGroupList';
 
     return post(url, param);
 }
 
-const setGridData = (data) => {
+export const setGridData = (data) => {
     return {
         type: SET_GRIDDATA,
         data
     }
 }
 
-export const getGroupSettingList = (param) => async(dispatch) => {
+export const getGroupSettingList = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
     if (!param.GroupName) {
@@ -25,26 +28,19 @@ export const getGroupSettingList = (param) => async(dispatch) => {
 
     const response = await fetchGroupSettingData(param);
     if (response && response.status === 200) {
-        const { CommissionSettingList, TotalRows } = response.data;
+        const data = response.data;
 
-        dispatch(setGridData(CommissionSettingList));
+        dispatch(setGridData(data ? data.CommissionSettingList : null));
 
         const { PageIndex, PageSize } = param;
         const pagingOption = {
             PageIndex,
             PageSize,
-            TotalItem: TotalRows
+            TotalItem: data ? data.TotalRows : 0
         };
         dispatch(setPagingOption(pagingOption));
     }
     dispatch(toggleLoader(false));
-}
-
-export const setPagingOption = (data) => {
-    return {
-        type: SET_PAGING_OPTION,
-        data
-    }
 }
 
 export const setSelectedGroup = (data) => {
@@ -73,12 +69,14 @@ export const updateCommissionGroup = (param) => {
     return () => post(url, param);
 }
 
-export const getSelectedCommGroup = (param) => async(dispatch) => {
+export const getSelectedCommGroup = (param) => async (dispatch) => {
     const url = 'Portal/CommissionGroup/GetCommissionGroup';
 
     const response = await post(url, param);
 
-    dispatch(setSelectedGroup(response.data))
+    const data = response && response.status === 200 ? response.data : null;
+
+    dispatch(setSelectedGroup(data))
 }
 
 export const deleteCommGroup = (param) => {

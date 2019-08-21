@@ -1,4 +1,7 @@
-﻿import { globalResource } from '../../../../modules/globalResource';
+﻿import { maxWidth } from '../../../../modules/constants';
+import { globalResource } from '../../../../modules/globalResource';
+
+export { maxWidth }
 
 export const memberTypes = {
     1: 'Non-Deposited',

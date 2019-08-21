@@ -1,20 +1,15 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
-    public class PlayerDetailParam
+    public class PlayerDetailParam : AffiliatePagingParam
     {
-        public int AffId { get; set; }
-
-        public string AffName { get; set; }
-
         public byte ProductId { get; set; }
 
+        [Required]
         public DateTime? MonthDate { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int PageSize { get; set; }
 
         public bool IsExportExcel { get; set; }
     }

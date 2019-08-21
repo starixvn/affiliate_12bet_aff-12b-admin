@@ -12,6 +12,7 @@ import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
 import Loader from '../../../../components/Loader';
 import { post } from '../../../../modules/ajaxRequest';
+import { popupEventNames } from '../../../common/modules/constants/commissionGroup';
 
 export class AssignPrivateGroup extends React.Component {
     constructor(props) {
@@ -31,7 +32,7 @@ export class AssignPrivateGroup extends React.Component {
         const { GroupId } = affInfo;
 
         if (GroupId === 0 || GroupId !== affInfo.AffId) {
-            const commGroup = buildDefaultCommGroup(deductionList, productList);
+            const commGroup = productList && deductionList && buildDefaultCommGroup(deductionList, productList);
             this.props.setSelectedGroup(commGroup);
         }
         else {
@@ -52,7 +53,7 @@ export class AssignPrivateGroup extends React.Component {
                 isShowMessage: !validationResult.isValid,
                 isSuccess: validationResult.isValid,
                 message: validationResult.messageList
-            });
+            }, () => window.setTimeout(this.hideMessage, 3000));
         }
         else {
             this.setState({ isShowLoader: true });
@@ -62,7 +63,7 @@ export class AssignPrivateGroup extends React.Component {
             const commGroup = { ...selectedGroup, PlatformFeeList: platformFeeList };
             const param = { commGroup, affInfo };
 
-            const response = await post('Portal/CommissionGroup/AssignPrivateGroup', param);
+            const response = await post('Portal/CommGroupAssignment/AssignPrivateGroup', param);
             if (response && response.status === 200) {
                 const result = response.data;
 
@@ -71,27 +72,24 @@ export class AssignPrivateGroup extends React.Component {
                     result.Message;
 
                 window.scrollTo({ top: 0, behavior: "smooth" });
+
                 this.setState({
                     isShowMessage: true,
                     isSuccess: result.IsSuccessful,
                     message: [resultMessage],
                     isShowLoader: false
-                });
-
-                if (result.IsSuccessful) {
-                    const mainFrame = top.frames["mainFrame"];
-                    const infoFrame = mainFrame && mainFrame.frames["fInfo"];
-                    window.setTimeout(() => {
-                        if (infoFrame) {
-                            mainFrame.location.reload();
-                        }
-                        else {
-                            parent.postMessage('closePopup', window.location.origin);
-                        }
-                    }, 2000)
-                }
+                }, () => window.setTimeout(() => {
+                    this.hideMessage();
+                    result.IsSuccessful && parent.postMessage(popupEventNames.updatePrivateGroupSuccessfully, window.location.origin);
+                }, 3000));
             }
         }
+    }
+
+    hideMessage = () => {
+        this.setState({
+            isShowMessage: false
+        });
     }
 
     _validate() {
@@ -110,8 +108,9 @@ export class AssignPrivateGroup extends React.Component {
 
     render() {
         const { isShowMessage, isSuccess, message, isShowLoader } = this.state;
+        const { affInfo, selectedGroup } = this.props;
 
-        return this.props.selectedGroup && (
+        return affInfo && selectedGroup && (
             <div className="comm-popup-container" style={{ padding: 10 }}>
                 <Loader show={isShowLoader} />
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>

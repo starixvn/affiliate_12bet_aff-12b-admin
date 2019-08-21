@@ -1,14 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
     public class StatementHistoryRepository : BaseRepository, IStatementHistoryRepository
     {
+        public EntityResult<StatementHistory> GetStatementHistoryList(AffiliatePagingByDateParam param)
+        {
+            const string SpKey = "Aff_Admin_StatementHistory_Sel";
+            var result = new EntityResult<StatementHistory>();
+            var dataList = new List<StatementHistory>();
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+                objectDb.AddInParameter("FDate", DbType.DateTime, param.FromDate);
+                objectDb.AddInParameter("TDate", DbType.DateTime, param.ToDate);
+                objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
+                objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
+
+                objectDb.AddOutParameter("NRows", DbType.Int32, 4);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        dataList.Add(new StatementHistory
+                        {
+                            TransId = Convert.ToInt64(reader["TransId"]),
+                            Date = Convert.ToDateTime(reader["MonthDate"]),
+                            TransType = Convert.ToInt32(reader["TransType"]),
+                            Amount = Convert.ToDecimal(reader["Amount"]),
+                            Status = Convert.ToString(reader["Status"]),
+                            Creator = Convert.ToString(reader["Creator"]),
+                            Description = Convert.ToString(reader["Description"])
+                        });
+                    }
+                }
+
+                result.MainData = dataList;
+                var totalRow = objectDb.GetParameterValue("NRows");
+                result.TotalItem = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
+            }
+
+            return result;
+        }
+
         public DailyEarningResult GetDailyEarning(DailyEarningParam param)
         {
             const string uSpKey = "Aff_DailyEarning_Sel";

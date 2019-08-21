@@ -1,0 +1,30 @@
+﻿import React from 'react';
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+
+const UserPanelBreadcrumb = (props) => {
+
+    function _renderBreadcrumbItem(breadcrumbList) {
+        const arrayItem = [];
+        const lastIndex = breadcrumbList.length - 1;
+
+        for (let i = 0; i < lastIndex; i++) {
+            arrayItem.push(<BreadcrumbItem><a href="javascript:;" onClick={breadcrumbList[i].handleClick}>{breadcrumbList[i].title}</a></BreadcrumbItem>);
+        }
+
+        arrayItem.push(<BreadcrumbItem active>{breadcrumbList[lastIndex].title}</BreadcrumbItem>)
+
+        return arrayItem;
+    }
+
+    const breadcrumbList = props.breadcrumbList || null;
+
+    return breadcrumbList && (
+        <Breadcrumb>
+            {
+                _renderBreadcrumbItem(breadcrumbList)
+            }
+        </Breadcrumb>
+    );
+}
+
+export default React.memo(UserPanelBreadcrumb);

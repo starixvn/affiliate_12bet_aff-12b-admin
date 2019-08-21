@@ -10,7 +10,12 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setReportTitle', type: types.SET_REPORT_TITLE, data: 'Affiliate Info Title' }
+    { name: 'setReportTitle', type: types.SET_REPORT_TITLE, data: 'Affiliate Info Title' },
+    { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } },
+    { name: 'setShowPopupCommGroup', type: types.SET_SHOW_POPUP_COMMGROUP, data: true },
+    { name: 'setAffId', type: types.SET_AFFID, data: 123 },
+    { name: 'setCommGroup', type: types.SET_COMM_GROUP, data: '12BETAFF001' },
+    { name: 'setSelectedColumn', type: types.SET_SELECTED_COLUMN, data: '1,2,3' },
 ]
 
 describe('affiliate info actions', () => {

@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
-
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { post } from '../../../../modules/ajaxRequest';
-import { toggleLoader } from '../../../../actions/loaderAction';
-import { resolveClientUrl } from '../../../../modules/utils';
-import { resource } from '../modules/constants';
+import { toggleLoaderUserPanel, fetchData, redirectToDailyEarningDetail } from '../actions';
+import { resource, selectedAllProduct, maxWidth, globalResource } from '../modules/constants';
 
-const allProduct = 0;
-
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -23,26 +19,21 @@ export class Content extends Component {
         }
     }
 
-    componentDidMount() {
-        this.fetchData(this.props.param);
-    }
-
     componentDidUpdate(prevProps) {
-        if (this.props.param !== prevProps.param) {
-            this.fetchData(this.props.param);
+        const { param } = this.props;
+        if (param !== prevProps.param) {
+            this.fetchData(param);
         }
     }
 
     async fetchData(param) {
-        this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/StatementHistory/GetDailyEarning';
-        const response = await post(url, param);
-        if (response && response.status === 200) {
-            const { MainData, Total } = response.data;
+        this.props.toggleLoaderUserPanel(true);
 
-            this.setState({ gridData: MainData, total: Total, isSelectedAllProducts: param.ProductId === allProduct });
-        }
-        this.props.toggleLoader(false);
+        const data = await this.props.fetchData(param);
+
+        this.setState({ gridData: data ? data.MainData : null, total: data ? data.Total : 0, isSelectedAllProducts: param.productId === selectedAllProduct });
+
+        this.props.toggleLoaderUserPanel(false);
     }
 
     _renderHeader() {
@@ -61,15 +52,23 @@ export class Content extends Component {
 
     _renderDataSection(dataList, productColumnClassName) {
         const dataRows = [];
-        const isTotalRow = dataList.length === 1 && !dataList[0].Date;
 
-        if (isTotalRow) {
-            dataList[0].Date = resource.Total;
+        if (dataList && dataList.length) {
+            const isTotalRow = dataList.length === 1 && !dataList[0].Date;
+
+            if (isTotalRow) {
+                dataList[0].Date = resource.Total;
+            }
+
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
+                dataRows.push(this._buildDataRow(dataItem, isTotalRow ? null : i + 1, productColumnClassName));
+            }
         }
-
-        for (let i = 0; i < dataList.length; i++) {
-            const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, isTotalRow ? null : i + 1, productColumnClassName));
+        else {
+            dataRows.push(<Row>
+                <Cell className="text-center" colSpan="7">{globalResource.NoInfo}</Cell>
+            </Row>);
         }
 
         return dataRows;
@@ -82,15 +81,17 @@ export class Content extends Component {
         const bonus = formatDecimal(dataItem.Bonus);
         const bankingFee = formatDecimal(dataItem.BankingFee);
 
-        const { param } = this.props;
-        const queryString = `AffId=${param.AffId}&AffName=${param.AffName}&ProductId=${param.ProductId}&MonthDate=${dataItem.Date}`;
-        const dateLink = resolveClientUrl('Portal/UserPanel/StatementHistory/DailyEarningDetail') + '?' + queryString;
+        const dailyEarningDetailParam = Object.assign({}, this.props.param, { monthDate: dataItem.Date });
 
         return (
-            <Row>
+            <Row key={`date-${dataItem.Date}`}>
                 {rowNumber && <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>}
                 <Cell className="text-center" title={dataItem.Date} colSpan={!rowNumber && 2}>
-                    {rowNumber ? (<a href={dateLink}>{dataItem.Date}</a>) : dataItem.Date}
+                    {rowNumber ?
+                        (<Button className="p-0" color="link"
+                            onClick={() => this.props.redirectToDailyEarningDetail(dailyEarningDetailParam)}>{dataItem.Date}</Button>) :
+                        dataItem.Date
+                    }
                 </Cell>
                 <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
@@ -104,16 +105,16 @@ export class Content extends Component {
     render() {
         const { gridData, total, isSelectedAllProducts } = this.state;
         const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
+        const hasFooter = gridData && gridData.length && total;
 
-        return gridData && total && (
+        return (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1000}
-                    autoWidth={true}
+                    maxWidth={maxWidth}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData, productColumnClassName)}
-                    footer={this._renderDataSection([total], productColumnClassName)}
+                    footer={hasFooter ? this._renderDataSection([total], productColumnClassName) : null}
                     containerPadding={10}
                 />
             </div>
@@ -121,12 +122,14 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ param }) {
+function mapStateToProps({ dailyEarning }) {
+    const { param } = dailyEarning;
+
     return Object.assign({}, { param });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader }, dispatch);
+    return bindActionCreators({ toggleLoaderUserPanel, fetchData, redirectToDailyEarningDetail }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

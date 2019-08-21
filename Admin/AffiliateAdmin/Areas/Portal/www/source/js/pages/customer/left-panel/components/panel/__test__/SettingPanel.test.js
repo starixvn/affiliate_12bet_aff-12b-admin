@@ -1,0 +1,284 @@
+﻿import React from 'react';
+import { SettingPanel } from '../SettingPanel';
+import { shallow } from 'enzyme';
+import CommissionGroupPopup from '../../../../../common/components/CommissionGroupPopup';
+
+describe('left panel - components - panel - SettingPanel', () => {
+    afterAll(() => {
+        jest.resetAllMocks();
+    });
+
+    const affiliateInfo = {
+        AffId: 1271808,
+        AffLink: "http://localhost:55690/Auth/AdminLogin?chalengeStr=esh5u7&accKey=E16156C28&custName=12BETAFF226&accId=1000000026&accOnId=8405",
+        AffName: "12BETAFF226",
+        AffType: 2,
+        BalanceBf: 9802280.5446,
+        CommGroupName: "NoCommission",
+        ContactApps: '[{"Name":"MSN/YM/QQ","Value":"@123","Order":0}]',
+        FirstName: "bb",
+        Gender: true,
+        GroupId: 102,
+        IsClosed: false,
+        LastLoginDateText: "04/11/2019 22:24:00",
+        LastLoginIp: "10.18.200.125",
+        LastName: "12BETAFF226",
+        MoreSiteUrl: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
+        NoSiteDescription: "",
+        Phone: "abc",
+        PreferredLanguage: "vi-VN",
+        SiteUrl: "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+        Status: "Approved"
+    };
+
+    const affInfoClosed = {
+        AffId: 1219631,
+        AffLink: "http://localhost:55690/Auth/AdminLogin?chalengeStr=5omp0h&accKey=6B8465&custName=12BETAFF016&accId=1000000026&accOnId=8405",
+        AffName: "12BETAFF016",
+        AffType: 2,
+        BalanceBf: 0,
+        CommGroupName: "",
+        ContactApps: '[{"Name":"MSN/YM/QQ","Value":"123123123","Order":0}]',
+        FirstName: "",
+        Gender: null,
+        GroupId: 0,
+        IsClosed: true,
+        LastLoginDateText: "01/01/1900 00:00:00",
+        LastLoginIp: "10.10.12.12",
+        LastName: "",
+        MoreSiteUrl: "",
+        NoSiteDescription: "",
+        Phone: "123456789",
+        PreferredLanguage: "en-US",
+        SiteUrl: "http://www.12345678.com",
+        Status: "Disapproved"
+    }
+
+    const affName = '12BETAFF226';
+    const defaultProps = {
+        affiliateInfo: affInfoClosed,
+        affName
+    }
+
+    it('render correctly', () => {
+        const result = shallow(<SettingPanel {...defaultProps} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('render correctly with isApproved is true', () => {
+        const props = Object.assign({}, defaultProps, { affiliateInfo })
+        const result = shallow(<SettingPanel {...props} isApproved={true} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('toggleChangingAffType - should call setState when onBlur AffType select', async () => {
+        const wrapper = shallow(<SettingPanel {...defaultProps} />);
+        wrapper.setState = jest.fn((val, fn) => fn());
+
+        wrapper.find('select').at(0).simulate('blur', false);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ isChangingAffType: false }, expect.any(Function));
+    });
+
+    it('toggleChangingAffType - should call setState when click AffType button', async () => {
+        const wrapper = shallow(<SettingPanel {...defaultProps} />);
+        wrapper.setState({ isChangingAffType: true });
+        wrapper.setState = jest.fn((val, fn) => fn());
+        wrapper.instance().affTypeDropdown.current = jest.fn();
+        wrapper.instance().affTypeDropdown.current.focus = jest.fn();
+
+        wrapper.find('Button').at(0).simulate('click', true);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ isChangingAffType: true }, expect.any(Function));
+    });
+
+    it('toggleChangingAffStatus - should call setState when onBlur AffStatus select', async () => {
+        const wrapper = shallow(<SettingPanel {...defaultProps} />);
+        wrapper.setState = jest.fn((val, fn) => fn());
+
+        wrapper.find('select').at(1).simulate('blur', false);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ isChangingAffStatus: false }, expect.any(Function));
+    });
+
+    it('toggleChangingAffStatus - should call setState when click AffStatus button', async () => {
+        const wrapper = shallow(<SettingPanel {...defaultProps} />);
+        wrapper.setState({ isChangingAffStatus: true });
+        wrapper.setState = jest.fn((val, fn) => fn());
+        wrapper.instance().affStatusDropdown.current = jest.fn();
+        wrapper.instance().affStatusDropdown.current.focus = jest.fn();
+
+        wrapper.find('Button').at(1).simulate('click', true);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ isChangingAffStatus: true }, expect.any(Function));
+    });
+
+    it('toggleAssignCommissionPopup - should call setState when setShowPopupCommGroup false', async () => {
+        const wrapper = shallow(<SettingPanel {...defaultProps} />);
+        wrapper.setState({ isAssignCommissionGroup: true });
+        wrapper.setState = jest.fn();
+
+        wrapper.find(CommissionGroupPopup).props().setShowPopupCommGroup(false);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ isAssignCommissionGroup: false });
+    });
+
+    it('handleChangeStatus - should call window.confirm', async () => {
+        window.confirm = jest.fn(() => false);
+        const wrapper = shallow(<SettingPanel {...defaultProps} />);
+
+        wrapper.find('select').at(1).simulate('change');
+
+        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to change status for this affiliate?");
+    });
+
+    it('handleChangeStatus - should call window.confirm and setState', async () => {
+        const event = {
+            target: {
+                value: 'Approved'
+            }
+        }
+        window.confirm = jest.fn(() => true);
+        const wrapper = shallow(<SettingPanel {...defaultProps} />);
+        wrapper.setState = jest.fn();
+
+        wrapper.find('select').at(1).simulate('change', event);
+
+        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to change status for this affiliate?");
+        expect(wrapper.setState).toHaveBeenCalledWith({ isAssignCommissionGroup: true });
+    });
+
+    it('handleChangeStatus - should call window.confirm, updateStatus and window.alert', async () => {
+        const event = {
+            target: {
+                value: 'Pending'
+            }
+        }
+        window.confirm = jest.fn(() => true);
+        window.alert = jest.fn();
+        const data = { IsSuccessful: false, Message: 'Update status is failed!' };
+        const updateStatus = jest.fn(() => data);
+        const props = Object.assign({}, defaultProps, { updateStatus });
+        const wrapper = shallow(<SettingPanel {...props} />);
+
+        await wrapper.find('select').at(1).simulate('change', event);
+
+        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to change status for this affiliate?");
+        expect(props.updateStatus).toHaveBeenCalledWith({ AffId: 1219631, Status: "Pending" });
+        expect(window.alert).toHaveBeenCalledWith('Update status is failed!');
+    });
+
+    it('handleChangeStatus - should call window.confirm, updateStatus, getAffiliateInfo and window.alert', async () => {
+        const event = {
+            target: {
+                value: 'Pending'
+            }
+        }
+        window.confirm = jest.fn(() => true);
+        window.alert = jest.fn();
+        const data = { IsSuccessful: true, Message: '' };
+        const updateStatus = jest.fn(() => data);
+        const getAffiliateInfo = jest.fn();
+        const props = Object.assign({}, defaultProps, { updateStatus, getAffiliateInfo });
+        const wrapper = shallow(<SettingPanel {...props} />);
+
+        await wrapper.find('select').at(1).simulate('change', event);
+
+        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to change status for this affiliate?");
+        expect(props.updateStatus).toHaveBeenCalledWith({ AffId: 1219631, Status: "Pending" });
+        expect(props.getAffiliateInfo).toHaveBeenCalledWith(affName);
+        expect(window.alert).toHaveBeenCalledWith("The status has been updated successfully!");
+    });
+
+    it('handleChangeClosedStatus - should call window.confirm', async () => {
+        window.confirm = jest.fn(() => false);
+        const wrapper = shallow(<SettingPanel {...defaultProps} isApproved={true}/>);
+
+        await wrapper.find('Button').at(1).simulate('click');
+
+        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to open this affiliate?");
+    });
+
+    it('handleChangeClosedStatus - should call window.confirm with close status', async () => {
+        window.confirm = jest.fn(() => false);
+        const props = Object.assign({}, defaultProps, { affiliateInfo });
+        const wrapper = shallow(<SettingPanel {...props} isApproved={true}/>);
+
+        await wrapper.find('Button').at(1).simulate('click');
+
+        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to close this affiliate?");
+    });
+
+    it('handleChangeClosedStatus - should call window.confirm, updateClosedStatus and window.alert', async () => {
+        window.confirm = jest.fn(() => true);
+        window.alert = jest.fn();
+        const data = { IsSuccessful: false, Message: 'Update status is failed!' };
+        const updateClosedStatus = jest.fn(() => data);
+        const props = Object.assign({}, defaultProps, { updateClosedStatus });
+        const wrapper = shallow(<SettingPanel {...props} isApproved={true}/>);
+
+        await wrapper.find('Button').at(1).simulate('click');
+
+        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to open this affiliate?");
+        expect(props.updateClosedStatus).toHaveBeenCalledWith({ AffId: 1219631, IsClosed: false });
+        expect(window.alert).toHaveBeenCalledWith('Update status is failed!');
+    });
+
+    it('handleChangeClosedStatus - should call window.confirm, updateClosedStatus, getAffiliateInfo and window.alert', async () => {
+        window.confirm = jest.fn(() => true);
+        window.alert = jest.fn();
+        const data = { IsSuccessful: true, Message: '' };
+        const updateClosedStatus = jest.fn(() => data);
+        const getAffiliateInfo = jest.fn();
+        const props = Object.assign({}, defaultProps, { updateClosedStatus, getAffiliateInfo });
+        const wrapper = shallow(<SettingPanel {...props} isApproved={true}/>);
+
+        await wrapper.find('Button').at(1).simulate('click');
+
+        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to open this affiliate?");
+        expect(props.updateClosedStatus).toHaveBeenCalledWith({ AffId: 1219631, IsClosed: false });
+        expect(props.getAffiliateInfo).toHaveBeenCalledWith(affName);
+        expect(window.alert).toHaveBeenCalledWith("The status has been updated successfully!");
+    });
+
+    it('handleChangeAffType - should call updateAffType and window.alert', async () => {
+        const event = {
+            target: {
+                value: 'Asian'
+            }
+        }
+        window.alert = jest.fn();
+        const data = { IsSuccessful: false, Message: 'Update afftype is failed!' };
+        const updateAffType = jest.fn(() => data);
+        const props = Object.assign({}, defaultProps, { updateAffType });
+        const wrapper = shallow(<SettingPanel {...props}/>);
+
+        await wrapper.find('select').at(0).simulate('change', event);
+
+        expect(props.updateAffType).toHaveBeenCalledWith({ AffId: 1219631, AffType: 'Asian' });
+        expect(window.alert).toHaveBeenCalledWith("Occur an error when updating affiliate type!");
+    });
+
+    it('handleChangeAffType - should call updateAffType, getAffiliateInfo and toggleChangingAffType', async () => {
+        const event = {
+            target: {
+                value: 'Asian'
+            }
+        }
+        window.alert = jest.fn();
+        const data = { IsSuccessful: true, Message: '' };
+        const updateAffType = jest.fn(() => data);
+        const getAffiliateInfo = jest.fn();
+        const props = Object.assign({}, defaultProps, { updateAffType, getAffiliateInfo });
+        const wrapper = shallow(<SettingPanel {...props}/>);
+        wrapper.setState = jest.fn();
+
+        await wrapper.find('select').at(0).simulate('change', event);
+
+        expect(props.updateAffType).toHaveBeenCalledWith({ AffId: 1219631, AffType: 'Asian' });
+        expect(props.getAffiliateInfo).toHaveBeenCalledWith('12BETAFF226');
+        expect(wrapper.setState).toHaveBeenCalledWith({ isChangingAffType: false }, expect.any(Function));
+    });
+});

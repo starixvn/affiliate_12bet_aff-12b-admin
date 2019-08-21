@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`daily earning detail - components - Filter render correctly 1`] = `
+<div
+  className="filter-container"
+>
+  <Form
+    inline={true}
+    tag="div"
+  >
+    <FormGroup
+      className="mr-sm-2"
+      tag="div"
+    >
+      <Label
+        className="mr-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Search By
+      </Label>
+      <Input
+        id="Product"
+        name="Product"
+        onChange={[Function]}
+        type="select"
+        value={0}
+      >
+        <option
+          value="0"
+        >
+          All
+        </option>
+      </Input>
+    </FormGroup>
+  </Form>
+</div>
+`;
+
+exports[`daily earning detail - components - Filter render correctly with has productList 1`] = `
+<div
+  className="filter-container"
+>
+  <Form
+    inline={true}
+    tag="div"
+  >
+    <FormGroup
+      className="mr-sm-2"
+      tag="div"
+    >
+      <Label
+        className="mr-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Search By
+      </Label>
+      <Input
+        id="Product"
+        name="Product"
+        onChange={[Function]}
+        type="select"
+        value={0}
+      >
+        <option
+          value="0"
+        >
+          All
+        </option>
+        <option
+          key="product-1"
+          value={1}
+        >
+          Sportsbook
+        </option>
+        <option
+          key="product-3"
+          value={3}
+        >
+          Playtech Casino
+        </option>
+        <option
+          key="product-4"
+          value={4}
+        >
+          Number Game
+        </option>
+      </Input>
+    </FormGroup>
+  </Form>
+</div>
+`;

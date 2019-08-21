@@ -1,4 +1,4 @@
-import { deductionNameList, messages, INFINITY_AM, INFINITY_QM } from '../modules/constant';
+import { deductionNameList, messages, INFINITY_AM, INFINITY_QM } from './constant';
 
 const emptyCommGroup = {
     GroupId: 0,
@@ -111,7 +111,7 @@ export const validate = (selectedGroup) => {
     const isValid = groupNameValidation.isValid && qmTurnoverValidation.isValid &&
         tierSettingValidation.isValid && platformFeeListValidation.isValid;
     const messageList = [...groupNameValidation.messageList, ...qmTurnoverValidation.messageList,
-        ...tierSettingValidation.messageList, ...platformFeeListValidation.messageList
+    ...tierSettingValidation.messageList, ...platformFeeListValidation.messageList
     ];
 
     return { isValid, messageList };

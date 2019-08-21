@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`commission group - TierSetting Should render correctly 1`] = `
+<fieldset>
+  <legend>
+    <h6
+      className="font-weight-bold"
+    >
+      Tier Setting
+    </h6>
+  </legend>
+  <table
+    className="table table-bordered tier-setting-table"
+    style={
+      Object {
+        "tableLayout": "fixed",
+      }
+    }
+  >
+    <thead>
+      <tr>
+        <th
+          style={
+            Object {
+              "width": 40,
+            }
+          }
+        >
+          Tier
+        </th>
+        <th>
+          Min AM
+        </th>
+        <th>
+          Max AM
+        </th>
+        <th>
+          Min QM
+        </th>
+        <th>
+          Max QM
+        </th>
+        <th
+          style={
+            Object {
+              "width": 85,
+            }
+          }
+        >
+          Commission
+        </th>
+        <th
+          style={
+            Object {
+              "width": 50,
+            }
+          }
+        >
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <TierSettingItem
+        data={
+          Object {
+            "Commission": 0,
+            "MaxAmount": 100,
+            "MaxQm": 10,
+            "MinAmount": 0,
+            "MinQm": 0,
+            "TierId": 1,
+          }
+        }
+        isDisabledInfinity={true}
+        key="tier-0"
+        onChange={[Function]}
+        onRemove={[Function]}
+      />
+      <TierSettingItem
+        data={
+          Object {
+            "Commission": 0,
+            "MaxAmount": 100000000000000,
+            "MaxQm": 1000000000,
+            "MinAmount": 100,
+            "MinQm": 10,
+            "TierId": 2,
+          }
+        }
+        isDisabledInfinity={false}
+        key="tier-1"
+        onChange={[Function]}
+        onRemove={[Function]}
+      />
+    </tbody>
+  </table>
+  <div>
+    <button
+      className="btn btn-addTier btn-secondary"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="oi oi-plus"
+      />
+       Add Tier
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`commission group - TierSetting Should render correctly with TierSettingList is null 1`] = `
+<fieldset>
+  <legend>
+    <h6
+      className="font-weight-bold"
+    >
+      Tier Setting
+    </h6>
+  </legend>
+  <table
+    className="table table-bordered tier-setting-table"
+    style={
+      Object {
+        "tableLayout": "fixed",
+      }
+    }
+  >
+    <thead>
+      <tr>
+        <th
+          style={
+            Object {
+              "width": 40,
+            }
+          }
+        >
+          Tier
+        </th>
+        <th>
+          Min AM
+        </th>
+        <th>
+          Max AM
+        </th>
+        <th>
+          Min QM
+        </th>
+        <th>
+          Max QM
+        </th>
+        <th
+          style={
+            Object {
+              "width": 85,
+            }
+          }
+        >
+          Commission
+        </th>
+        <th
+          style={
+            Object {
+              "width": 50,
+            }
+          }
+        >
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="text-center"
+          colSpan="7"
+        >
+          There is no information available
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button
+      className="btn btn-addTier btn-secondary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="oi oi-plus"
+      />
+       Add Tier
+    </button>
+  </div>
+</fieldset>
+`;

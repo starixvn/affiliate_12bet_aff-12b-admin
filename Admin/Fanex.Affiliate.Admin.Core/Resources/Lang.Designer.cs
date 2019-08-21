@@ -115,6 +115,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The amount is invalid.
+        /// </summary>
+        public static string AmountIsInvalid {
+            get {
+                return ResourceManager.GetString("AmountIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Approved.
         /// </summary>
         public static string Approved {
@@ -205,11 +214,38 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliates – Your Application.
+        /// </summary>
+        public static string EmailSubjectAffDisapproved {
+            get {
+                return ResourceManager.GetString("EmailSubjectAffDisapproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 12Bet Affiliates - Your Affiliate Information.
         /// </summary>
         public static string EmailSubjectAffInfor {
             get {
                 return ResourceManager.GetString("EmailSubjectAffInfor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliates - [{0}] - Your payment request has been processed and completed successfully.
+        /// </summary>
+        public static string EmailSubjectPaymentRequestApproved {
+            get {
+                return ResourceManager.GetString("EmailSubjectPaymentRequestApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliates - [{0}] - Your payment request has been rejected.
+        /// </summary>
+        public static string EmailSubjectPaymentRequestRejected {
+            get {
+                return ResourceManager.GetString("EmailSubjectPaymentRequestRejected", resourceCulture);
             }
         }
         
@@ -232,11 +268,38 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your Application.
+        /// </summary>
+        public static string EmailTitleAffDisapproved {
+            get {
+                return ResourceManager.GetString("EmailTitleAffDisapproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your Affiliate Information.
         /// </summary>
         public static string EmailTitleAffInfor {
             get {
                 return ResourceManager.GetString("EmailTitleAffInfor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your payment request has been processed and completed successfully.
+        /// </summary>
+        public static string EmailTitlePaymentRequestApproved {
+            get {
+                return ResourceManager.GetString("EmailTitlePaymentRequestApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your payment request has been rejected.
+        /// </summary>
+        public static string EmailTitlePaymentRequestRejected {
+            get {
+                return ResourceManager.GetString("EmailTitlePaymentRequestRejected", resourceCulture);
             }
         }
         
@@ -264,6 +327,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landing Pages.
+        /// </summary>
+        public static string LandingPages {
+            get {
+                return ResourceManager.GetString("LandingPages", resourceCulture);
             }
         }
         
@@ -322,11 +394,29 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Referrers.
+        /// </summary>
+        public static string Referrers {
+            get {
+                return ResourceManager.GetString("Referrers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Report Details.
         /// </summary>
         public static string ReportDetails {
             get {
                 return ResourceManager.GetString("ReportDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         
@@ -345,6 +435,357 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string TextList {
             get {
                 return ResourceManager.GetString("TextList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update is failed!.
+        /// </summary>
+        public static string UpdateIsFailed {
+            get {
+                return ResourceManager.GetString("UpdateIsFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong discount.
+        /// </summary>
+        public static string UpdatePaymentErr1 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, cannot create agent.
+        /// </summary>
+        public static string UpdatePaymentErr100 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid affiliate information.
+        /// </summary>
+        public static string UpdatePaymentErr1001 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr1001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email Address has been used. Please choose another one!.
+        /// </summary>
+        public static string UpdatePaymentErr1002 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr1002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET User Name is invalid.
+        /// </summary>
+        public static string UpdatePaymentErr1003 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr1003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid user infomation. Update process is unsuccessful.
+        /// </summary>
+        public static string UpdatePaymentErr1004 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr1004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error occurs. Update process is unsuccessful.
+        /// </summary>
+        public static string UpdatePaymentErr1005 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr1005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error occurs. Update process is unsuccessful.
+        /// </summary>
+        public static string UpdatePaymentErr1006 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr1006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email Address has been used by another affiliate. Please choose another one!.
+        /// </summary>
+        public static string UpdatePaymentErr1007 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr1007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This username is not available.
+        /// </summary>
+        public static string UpdatePaymentErr101 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong position taking (max for master set by super).
+        /// </summary>
+        public static string UpdatePaymentErr102 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, min bet must be less than max bet and max bet must be less than max bet per match.
+        /// </summary>
+        public static string UpdatePaymentErr103 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, credit update is not successful, You have exceeded your master credit.
+        /// </summary>
+        public static string UpdatePaymentErr104 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, min bet must be equal to or greater than master agent min bet.
+        /// </summary>
+        public static string UpdatePaymentErr105 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, Max Per Match must be equal to or less than master agent Max Per Match.
+        /// </summary>
+        public static string UpdatePaymentErr107 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr107", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create customer failed. Please try again.
+        /// </summary>
+        public static string UpdatePaymentErr111 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create customer failed. Please try again.
+        /// </summary>
+        public static string UpdatePaymentErr112 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr112", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create customer failed. Please try again.
+        /// </summary>
+        public static string UpdatePaymentErr113 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create customer failed. Please try again.
+        /// </summary>
+        public static string UpdatePaymentErr114 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr114", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create customer failed. Please try again.
+        /// </summary>
+        public static string UpdatePaymentErr115 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr115", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function.
+        /// </summary>
+        public static string UpdatePaymentErr116 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr116", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong Min bet/ Max bet/ Max per match/ Credit/ Master Agent name/ user group.
+        /// </summary>
+        public static string UpdatePaymentErr2 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, this affiliate does not exist. Please contact your Administrator.
+        /// </summary>
+        public static string UpdatePaymentErr3 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, this affiliate does not exist. Please contact your Administrator.
+        /// </summary>
+        public static string UpdatePaymentErr30010 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr30010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status must be approved or rejected.
+        /// </summary>
+        public static string UpdatePaymentErr30011 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr30011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, your input transid is invalid. Please recheck it again.
+        /// </summary>
+        public static string UpdatePaymentErr30012 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr30012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, System errors. Cannot insert into bettrans 1.
+        /// </summary>
+        public static string UpdatePaymentErr30014 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr30014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, System errors. Cannot insert into bettrans 2.
+        /// </summary>
+        public static string UpdatePaymentErr30015 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr30015", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert transaction failed.
+        /// </summary>
+        public static string UpdatePaymentErr3006 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr3006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong position taking (min/max set by company).
+        /// </summary>
+        public static string UpdatePaymentErr4 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid CustID.
+        /// </summary>
+        public static string UpdatePaymentErr4001 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr4001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This transaction is not a withdrawal.
+        /// </summary>
+        public static string UpdatePaymentErr4002 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr4002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This transaction has been cancelled before.
+        /// </summary>
+        public static string UpdatePaymentErr4003 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr4003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid balance account or the currency is not supported.
+        /// </summary>
+        public static string UpdatePaymentErr4004 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr4004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong position taking (max set by company).
+        /// </summary>
+        public static string UpdatePaymentErr5 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function.
+        /// </summary>
+        public static string UpdatePaymentErr500 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr500", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This transaction already accepted.
+        /// </summary>
+        public static string UpdatePaymentErr5001 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr5001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Affiliate Info failed. Please try again.
+        /// </summary>
+        public static string UpdatePaymentErr999 {
+            get {
+                return ResourceManager.GetString("UpdatePaymentErr999", resourceCulture);
             }
         }
     }

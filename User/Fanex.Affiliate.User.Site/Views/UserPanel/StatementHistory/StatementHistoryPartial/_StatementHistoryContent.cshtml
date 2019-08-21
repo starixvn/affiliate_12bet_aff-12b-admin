@@ -42,7 +42,7 @@
                         <td>
                             @if (item.TransType == (byte)Fanex.Affiliate.User.Core.Enum.TransType.Payment)
                             {
-                                @item.Description
+                                @Html.Raw(item.Description)
                             }
                         </td>
                     </tr>

@@ -7,7 +7,9 @@ exports[`affiliate info - components - AppContainer render correctly 1`] = `
   />
   <Connect(Filter) />
   <Connect(Content) />
-  <Connect(EditCommissionGroup) />
+  <CommissionGroupPopup
+    isPrivateGroup={true}
+  />
   <Connect(ChangePasswordForm) />
 </AppLayout>
 `;

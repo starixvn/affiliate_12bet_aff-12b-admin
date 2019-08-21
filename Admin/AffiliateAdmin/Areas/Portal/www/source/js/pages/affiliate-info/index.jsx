@@ -30,9 +30,9 @@ const columnList = filteredColumnList.map(item => {
     }
 });
 
-const { groupId } = window.initialState;
+const { groupId, param } = window.initialState;
 
-const store = configureStore({ languageList: language, commGroupList: commGroup, groupId, columnList }, reducer);
+const store = configureStore({ languageList: language, commGroupList: commGroup, groupId, param, columnList }, reducer);
 
 export default class App extends Component {
     constructor(props) {

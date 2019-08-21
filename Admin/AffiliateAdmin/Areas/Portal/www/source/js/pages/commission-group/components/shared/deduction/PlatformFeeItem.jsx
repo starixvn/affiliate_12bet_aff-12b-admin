@@ -77,7 +77,7 @@ export default class PlatformFeeItem extends React.Component {
                 }
 
                 <Col sm={2}>
-                    <Input plaintext>| Gross Win Loss |</Input>
+                    <Input plaintext tag="p">| Gross Win Loss |</Input>
                 </Col>
                 <Col sm={1}>
                     <button type="button" className="btn btn-action" onClick={handleClick}>{btnText}</button>

@@ -1,0 +1,327 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`left panel - components - panel - SettingPanel render correctly 1`] = `
+<Memo(Panel)
+  heading="Setting"
+>
+  <Row
+    tag="div"
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Affiliate Type
+    </Col>
+    <Col
+      className="text-right text-primary"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <select
+        onBlur={[Function]}
+        onChange={[Function]}
+        style={
+          Object {
+            "display": "none",
+          }
+        }
+        value={2}
+      >
+        <option
+          key="affinfo-type-0"
+          value="2"
+        >
+          Asian
+        </option>
+        <option
+          key="affinfo-type-1"
+          value="3"
+        >
+          Media
+        </option>
+        <option
+          key="affinfo-type-2"
+          value="4"
+        >
+          European
+        </option>
+      </select>
+      <Button
+        className="left-panel-btn-link"
+        color="link"
+        onClick={[Function]}
+        style={
+          Object {
+            "display": "inline-block",
+          }
+        }
+        tag="button"
+      >
+        Asian
+      </Button>
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Status
+    </Col>
+    <Col
+      className="text-right"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <div
+        className="text-primary"
+      >
+        <select
+          onBlur={[Function]}
+          onChange={[Function]}
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+          value="Disapproved"
+        >
+          <option
+            value="Approved"
+          >
+            Approved
+          </option>
+          <option
+            value="Disapproved"
+          >
+            Disapproved
+          </option>
+          <option
+            value="Pending"
+          >
+            Pending
+          </option>
+        </select>
+        <Button
+          className="left-panel-btn-link"
+          color="link"
+          onClick={[Function]}
+          style={
+            Object {
+              "display": "inline-block",
+            }
+          }
+          tag="button"
+        >
+          Disapproved
+        </Button>
+      </div>
+      <CommissionGroupPopup
+        affId={1219631}
+        affName="12BETAFF016"
+        isNewAffiliate={true}
+        isPrivateGroup={false}
+        setShowPopupCommGroup={[Function]}
+        showPopupCommGroup={false}
+      />
+    </Col>
+  </Row>
+</Memo(Panel)>
+`;
+
+exports[`left panel - components - panel - SettingPanel render correctly with isApproved is true 1`] = `
+<Memo(Panel)
+  heading="Setting"
+>
+  <Row
+    tag="div"
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Affiliate Type
+    </Col>
+    <Col
+      className="text-right text-primary"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <select
+        onBlur={[Function]}
+        onChange={[Function]}
+        style={
+          Object {
+            "display": "none",
+          }
+        }
+        value={2}
+      >
+        <option
+          key="affinfo-type-0"
+          value="2"
+        >
+          Asian
+        </option>
+        <option
+          key="affinfo-type-1"
+          value="3"
+        >
+          Media
+        </option>
+        <option
+          key="affinfo-type-2"
+          value="4"
+        >
+          European
+        </option>
+      </select>
+      <Button
+        className="left-panel-btn-link"
+        color="link"
+        onClick={[Function]}
+        style={
+          Object {
+            "display": "inline-block",
+          }
+        }
+        tag="button"
+      >
+        Asian
+      </Button>
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Status
+    </Col>
+    <Col
+      className="text-right"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Approved
+      <CommissionGroupPopup
+        affId={1271808}
+        affName="12BETAFF226"
+        isNewAffiliate={true}
+        isPrivateGroup={false}
+        setShowPopupCommGroup={[Function]}
+        showPopupCommGroup={false}
+      />
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Closed
+    </Col>
+    <Col
+      className="text-right text-primary"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Button
+        className="left-panel-btn-link btn-closed"
+        color="link"
+        onClick={[Function]}
+        tag="button"
+      >
+        No
+      </Button>
+    </Col>
+  </Row>
+</Memo(Panel)>
+`;

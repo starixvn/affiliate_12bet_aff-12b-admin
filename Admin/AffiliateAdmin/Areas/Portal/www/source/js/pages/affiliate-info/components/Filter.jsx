@@ -6,6 +6,7 @@ import MultipleSelect from '../../../components/multiple-select';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { statusList, sortByList, defaultSortBy, resource } from '../modules/constants';
 import { setReportTitle, setParam, setSelectedColumn } from '../actions';
+import { htmlDecode } from '../../../modules/htmlHelper';
 
 export class Filter extends Component {
     constructor(props) {
@@ -16,7 +17,7 @@ export class Filter extends Component {
         this.state = {
             selectedCommGroup: this.initialGroupId,
             selectedLanguage: '',
-            selectedStatus: '',
+            selectedStatus: props.param.Status || '',
             userName: '',
             email: '',
             affId: '',
@@ -26,7 +27,7 @@ export class Filter extends Component {
     }
 
     componentDidMount() {
-        if (this.initialGroupId !== 0) {
+        if (this.initialGroupId !== 0 || this.props.param.IsFromHome) {
             this.handleClickSearch();
         }
     }
@@ -109,7 +110,7 @@ export class Filter extends Component {
                             <option key="commGroup-all" value={0}>{resource.AllCommGroups}</option>
                             {
                                 Object.keys(commGroupList).map(commGroup => {
-                                    return (<option key={'commGroup-' + commGroup} value={commGroup}>{commGroupList[commGroup]}</option>)
+                                    return (<option key={'commGroup-' + commGroup} value={commGroup}>{htmlDecode(commGroupList[commGroup])}</option>)
                                 })
                             }
                         </Input>

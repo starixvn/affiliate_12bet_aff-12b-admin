@@ -1,22 +1,18 @@
 import { combineReducers } from 'redux';
-import { isShowLoader } from '../../../../reducers/loaderReducer';
+import { pagingOption } from '../../../../reducers/pagingReducer';
 import { SET_PARAM } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
-const today = createReducer('', {});
 const canViewMemberEmail = createReducer(false, {});
-const affId = createReducer(0, {});
 
-const param = createReducer(null, {
+export const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
-        return Object.assign({}, prevState, action.data);
+        return { ...action.data };
     }
 })
 
 export default combineReducers({
-    isShowLoader,
+    pagingOption,
     param,
-    today,
-    canViewMemberEmail,
-    affId
+    canViewMemberEmail
 });

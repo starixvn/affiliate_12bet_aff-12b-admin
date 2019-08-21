@@ -19,6 +19,7 @@ namespace AffiliateAdmin
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
 
             AreaRegistration.RegisterAllAreas();
+            LoggingConfig.RegisterSentry();
         }
 
         void Application_End(object sender, EventArgs e)

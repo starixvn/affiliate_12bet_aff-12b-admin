@@ -1,12 +1,10 @@
 import React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
 import { AppContainer } from '../AppContainer';
+import { shallow } from 'enzyme';
 
 describe('affiliate info - components - AppContainer', () => {
     it('render correctly', () => {
-        const renderer = new ShallowRenderer();
-
-        const result = renderer.render(<AppContainer isShowLoader={true} />);
+        const result = shallow(<AppContainer isShowLoader={true} />);
 
         expect(result).toMatchSnapshot();
     });

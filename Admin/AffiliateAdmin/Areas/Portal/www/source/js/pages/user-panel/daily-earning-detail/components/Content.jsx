@@ -1,15 +1,45 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
+import { resource, selectedAllProduct, maxWidth, globalResource } from '../modules/constants';
+import { fetchData, toggleLoaderUserPanel } from '../actions';
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { resource } from '../modules/constants';
 
-export default class Content extends Component{
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
+
+        this.state = {
+            gridData: null,
+            total: null,
+            isSelectedAllProducts: true
+        }
     }
 
-    _renderHeader(){
+    componentDidUpdate(prevProps) {
+        const { param } = this.props;
+        if (param !== prevProps.param) {
+            this.fetchData(param);
+        }
+    }
+
+    async fetchData(param) {
+        this.props.toggleLoaderUserPanel(true);
+
+        const data = await this.props.fetchData(param);
+
+        this.setState({
+            gridData: data ? data.MainData : null,
+            total: data ? data.Total : 0,
+            isSelectedAllProducts: param.productId === selectedAllProduct
+        });
+
+        this.props.toggleLoaderUserPanel(false);
+    }
+
+    _renderHeader() {
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
@@ -26,15 +56,23 @@ export default class Content extends Component{
 
     _renderDataSection(dataList, productColumnClassName) {
         const dataRows = [];
-        const isTotalRow = dataList.length === 1 && !dataList[0].IbcUserName;
 
-        if(isTotalRow){
-            dataList[0].IbcUserName = resource.Total;
+        if (dataList && dataList.length) {
+            const isTotalRow = dataList.length === 1 && !dataList[0].IbcUserName;
+
+            if (isTotalRow) {
+                dataList[0].IbcUserName = resource.Total;
+            }
+
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
+                dataRows.push(this._buildDataRow(dataItem, isTotalRow ? null : i + 1, productColumnClassName));
+            }
         }
-
-        for (let i = 0; i < dataList.length; i++) {
-            const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, isTotalRow ? null : i + 1, productColumnClassName));
+        else {
+            dataRows.push(<Row>
+                <Cell className="text-center" colSpan="8">{globalResource.NoInfo}</Cell>
+            </Row>);
         }
 
         return dataRows;
@@ -62,21 +100,33 @@ export default class Content extends Component{
     }
 
     render() {
-        const { gridData, total } = this.props.data;
-        const { productColumnClassName } = this.props;
+        const { gridData, total, isSelectedAllProducts } = this.state;
+        const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
+        const hasFooter = gridData && gridData.length && total;
 
-        return gridData && total && (
+        return (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1000}
-                    autoWidth={true}
+                    maxWidth={maxWidth}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData, productColumnClassName)}
-                    footer={this._renderDataSection([total], productColumnClassName)}
+                    footer={hasFooter ? this._renderDataSection([total], productColumnClassName) : null}
                     containerPadding={10}
                 />
             </div>
         );
     }
 }
+
+function mapStateToProps({ dailyEarningDetail }) {
+    const { param } = dailyEarningDetail;
+
+    return Object.assign({}, { param });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ toggleLoaderUserPanel, fetchData }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);
