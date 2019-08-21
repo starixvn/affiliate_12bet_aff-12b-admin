@@ -126,7 +126,7 @@ describe('customer statistics - components - Content', () => {
 
         expect(props.setMonthDate).toHaveBeenCalledWith("7/1/2019");
         expect(props.fetchData).toHaveBeenCalledWith({ monthDate: "7/1/2019", affId: 1271808 });
-        expect(wrapper.setState).toHaveBeenCalledWith({ data });
+        expect(wrapper.setState).toHaveBeenCalledWith({ data, isLoading: false });
     });
 
     it('redirectToPlayerDetail - should be called when click at player active link', () => {

@@ -118,23 +118,18 @@ describe('landing page statistics - components - Detail', () => {
         expect(props.setPagingOption).toHaveBeenCalledWith({ TotalItem: 0, PageIndex: 1, PageSize: 20 });
     });
 
-    it('handlePaging - should call setPagingOption and fetchData with correct parameters', () => {
+    it('handlePaging - should call fetchData with correct parameters', () => {
         const setPagingOption = jest.fn();
-        const PageIndex = 2;
-        const PageSize = 50;
-        const newPaging = {
-            PageIndex,
-            PageSize
-        };
-        const paramExpect = Object.assign({}, defaultProps.param, { ...selectedPage, PageIndex, PageSize });
+        const pageIndex = 2;
+        const pageSize = 50;
+        const paramExpect = Object.assign({}, defaultProps.param, { ...selectedPage, pageIndex, pageSize });
 
         const props = Object.assign({}, defaultProps, { setPagingOption });
         const componentInstance = new Detail(props);
         componentInstance.fetchData = jest.fn();
 
-        componentInstance.handlePaging(PageIndex, PageSize);
+        componentInstance.handlePaging(pageIndex, pageSize);
 
-        expect(props.setPagingOption).toHaveBeenCalledWith(newPaging);
         expect(componentInstance.fetchData).toHaveBeenCalledWith(paramExpect);
     });
 });

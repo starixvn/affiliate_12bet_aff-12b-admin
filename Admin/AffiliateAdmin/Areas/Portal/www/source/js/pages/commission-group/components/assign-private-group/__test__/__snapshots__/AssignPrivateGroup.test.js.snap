@@ -47,6 +47,7 @@ exports[`commission group - assign private group should render correctly 1`] = `
       }
     />
   </Alert>
+  <Connect(ExchangeRevenueShareSetting) />
   <Connect(DeductionSetting) />
   <Connect(QmTurnOverSetting) />
   <Connect(TierSetting) />
@@ -107,6 +108,7 @@ exports[`commission group - assign private group should render correctly with is
       }
     />
   </Alert>
+  <Connect(ExchangeRevenueShareSetting) />
   <Connect(DeductionSetting) />
   <Connect(QmTurnOverSetting) />
   <Connect(TierSetting) />

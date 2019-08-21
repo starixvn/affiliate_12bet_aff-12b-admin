@@ -296,7 +296,7 @@ exports[`statement history - components - Content render correctly with have dat
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Pending"
+              title="Processing"
             >
               <Button
                 className="p-0"

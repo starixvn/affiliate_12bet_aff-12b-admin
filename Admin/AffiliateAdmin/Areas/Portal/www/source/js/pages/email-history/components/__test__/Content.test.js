@@ -119,24 +119,19 @@ describe('email history - components - Content ', () => {
         expect(props.setCheckedEmails).toHaveBeenCalledWith({ 2255: true });
     });
 
-    it('handlePaging - should call setPagingOption and fetchData with correct parameters', () => {
+    it('handlePaging - should call fetchData with correct parameters', () => {
         const setPagingOption = jest.fn();
         const setParam = jest.fn();
-        const index = 2;
-        const size = 50;
-        const newPaging = {
-            PageIndex: index,
-            PageSize: size
-        };
-        const paramExpect = Object.assign({}, defaultProps.param, newPaging);
+        const PageIndex = 2;
+        const PageSize = 50;
+        const paramExpect = Object.assign({}, defaultProps.param, { PageIndex, PageSize });
 
         const props = Object.assign({}, defaultProps, { setPagingOption, setParam });
         const componentInstance = new Content(props);
         componentInstance.fetchData = jest.fn();
 
-        componentInstance.handlePaging(index, size);
+        componentInstance.handlePaging(PageIndex, PageSize);
 
-        expect(props.setPagingOption).toHaveBeenCalledWith(newPaging);
         expect(props.setParam).toHaveBeenCalledWith(paramExpect);
     });
 });

@@ -114,21 +114,17 @@ describe('referrers - components - Detail', () => {
 
     it('handlePaging - should call setPagingOption and fetchData with correct parameters', () => {
         const setPagingOption = jest.fn();
-        const PageIndex = 2;
-        const PageSize = 50;
-        const newPaging = {
-            PageIndex,
-            PageSize
-        };
-        const paramExpect = Object.assign({}, defaultProps.param, { selectedSiteUrl, pageIndex: PageIndex, pageSize: PageSize });
+        const pageIndex = 2;
+        const pageSize = 50;
+
+        const paramExpect = Object.assign({}, defaultProps.param, { selectedSiteUrl, pageIndex, pageSize });
 
         const props = Object.assign({}, defaultProps, { setPagingOption });
         const componentInstance = new Detail(props);
         componentInstance.fetchData = jest.fn();
 
-        componentInstance.handlePaging(PageIndex, PageSize);
+        componentInstance.handlePaging(pageIndex, pageSize);
 
-        expect(props.setPagingOption).toHaveBeenCalledWith(newPaging);
         expect(componentInstance.fetchData).toHaveBeenCalledWith(paramExpect);
     });
 });

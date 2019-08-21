@@ -15,14 +15,10 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
           Statistics
         </th>
         <th
-          style={
-            Object {
-              "overflow": "visible",
-            }
-          }
+          className="width-30 month-picker"
         >
           <div
-            className="position-relative"
+            className="position-relative d-inline-block"
           >
             <t
               enable={true}
@@ -41,8 +37,19 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
               selectedMonth={7}
             />
           </div>
+          <Spinner
+            className=""
+            color="secondary"
+            size="sm"
+            tag="div"
+            type="border"
+          >
+            Loading...
+          </Spinner>
         </th>
-        <th>
+        <th
+          className="width-30"
+        >
           Up To Now
         </th>
       </tr>
@@ -250,14 +257,10 @@ exports[`customer statistics - components - Content Should render correctly with
           Statistics
         </th>
         <th
-          style={
-            Object {
-              "overflow": "visible",
-            }
-          }
+          className="width-30 month-picker"
         >
           <div
-            className="position-relative"
+            className="position-relative d-inline-block"
           >
             <t
               enable={true}
@@ -276,8 +279,19 @@ exports[`customer statistics - components - Content Should render correctly with
               selectedMonth={7}
             />
           </div>
+          <Spinner
+            className=""
+            color="secondary"
+            size="sm"
+            tag="div"
+            type="border"
+          >
+            Loading...
+          </Spinner>
         </th>
-        <th>
+        <th
+          className="width-30"
+        >
           Up To Now
         </th>
       </tr>
@@ -495,14 +509,10 @@ exports[`customer statistics - components - Content Should render correctly with
           Statistics
         </th>
         <th
-          style={
-            Object {
-              "overflow": "visible",
-            }
-          }
+          className="width-30 month-picker"
         >
           <div
-            className="position-relative"
+            className="position-relative d-inline-block"
           >
             <t
               enable={true}
@@ -521,8 +531,19 @@ exports[`customer statistics - components - Content Should render correctly with
               selectedMonth={7}
             />
           </div>
+          <Spinner
+            className=""
+            color="secondary"
+            size="sm"
+            tag="div"
+            type="border"
+          >
+            Loading...
+          </Spinner>
         </th>
-        <th>
+        <th
+          className="width-30"
+        >
           Up To Now
         </th>
       </tr>

@@ -136,23 +136,18 @@ describe('payment request - components - Content ', () => {
         expect(props.setTransactionId).toHaveBeenCalledWith(1262276211);
     });
 
-    it('handlePaging - should call setPagingOption and fetchData with correct parameters', () => {
+    it('handlePaging - should call fetchData with correct parameters', () => {
         const setPagingOption = jest.fn();
-        const index = 2;
-        const size = 50;
-        const newPaging = {
-            PageIndex: index,
-            PageSize: size
-        };
-        const paramExpect = Object.assign({}, defaultProps.param, newPaging);
+        const PageIndex = 2;
+        const PageSize = 50;
+        const paramExpect = Object.assign({}, defaultProps.param, { PageIndex, PageSize });
 
         const props = Object.assign({}, defaultProps, { setPagingOption });
         const componentInstance = new Content(props);
         componentInstance.fetchData = jest.fn();
 
-        componentInstance.handlePaging(index, size);
+        componentInstance.handlePaging(PageIndex, PageSize);
 
-        expect(props.setPagingOption).toHaveBeenCalledWith(newPaging);
         expect(componentInstance.fetchData).toHaveBeenCalledWith(paramExpect);
     });
 });

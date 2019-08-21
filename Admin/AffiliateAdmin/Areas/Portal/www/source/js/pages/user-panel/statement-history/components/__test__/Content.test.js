@@ -175,14 +175,10 @@ describe('statement history - components - Content', () => {
         expect(props.redirectToDailyEarning).toHaveBeenCalledWith({ affId: 1271808, monthDate: "Jun-2019", productId: 0 });
     });
 
-    it('handlePaging - should call setPagingOption and fetchData with correct parameters', () => {
+    it('handlePaging - should call fetchData with correct parameters', () => {
         const setPagingOption = jest.fn();
         const pageIndex = 2;
         const pageSize = 50;
-        const newPaging = {
-            PageIndex: pageIndex,
-            PageSize: pageSize
-        };
         const paramExpect = Object.assign({}, defaultProps.param, { pageIndex, pageSize });
 
         const props = Object.assign({}, defaultProps, { setPagingOption });
@@ -191,7 +187,6 @@ describe('statement history - components - Content', () => {
 
         componentInstance.handlePaging(pageIndex, pageSize);
 
-        expect(props.setPagingOption).toHaveBeenCalledWith(newPaging);
         expect(componentInstance.fetchData).toHaveBeenCalledWith(paramExpect);
     });
 });
