@@ -8,10 +8,7 @@ import { resolveClientUrl } from '../../../../modules/utils';
 import { INFINITY_AM, INFINITY_QM, INFINITY_SYMBOL, defaultPagingOption, globalResource } from '../../modules/constant';
 import { format, formatDecimal } from '../../../../modules/numberFormat';
 import { deleteCommGroup, getGroupSettingList } from '../../actions';
-
-function rawHtml(content) {
-    return (<p dangerouslySetInnerHTML={{ __html: content }}></p>);
-}
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class GridData extends Component {
     constructor(props) {
@@ -105,7 +102,7 @@ export class GridData extends Component {
                             {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{group.RowIdx}</Cell>)}
                             {isFirstItem && (
                                 <Cell className="text-center" rowSpan={rowSpan} title={isPrivateGroup && "Private Group"}>
-                                    {isPrivateGroup && (<span className="oi oi-person"></span>)}{rawHtml(group.GroupName)}
+                                    {isPrivateGroup && (<span className="oi oi-person"></span>)}{htmlDecode(group.GroupName)}
                                 </Cell>
                             )}
                             {isFirstItem && (
@@ -113,7 +110,7 @@ export class GridData extends Component {
                                     <a href={resolveClientUrl("Portal/Affiliate?groupId=") + group.GroupId} target="_top">{group.NoAffs}</a>
                                 </Cell>
                             )}
-                            {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{rawHtml(group.Description)}</Cell>)}
+                            {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{htmlDecode(group.Description)}</Cell>)}
                             {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}><p>{group.Creator}</p><p>{group.CreatedDateText}</p></Cell>)}
 
                             {isFirstItem && (<Cell className="text-center font-weight-bold cell-tier" rowSpan={tierSettingRowSpan}>Tier Setting</Cell>)}

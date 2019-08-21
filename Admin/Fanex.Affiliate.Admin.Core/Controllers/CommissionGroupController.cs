@@ -69,10 +69,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (param.GroupId >= Validation.MinId)
             {
-                return new JsonNetResult
+                var commissionGroupInfo = _commissionGroupService.GetCommissionGroupList(param).FirstOrDefault();
+                if(commissionGroupInfo != null)
                 {
-                    Data = _commissionGroupService.GetCommissionGroupList(param).FirstOrDefault()
-                };
+                    var groupName = commissionGroupInfo.GroupName;
+                    var description = commissionGroupInfo.Description;
+
+                    commissionGroupInfo.GroupName = Server.HtmlDecode(groupName);
+                    commissionGroupInfo.Description = Server.HtmlDecode(description);
+
+                    return new JsonNetResult
+                    {
+                        Data = commissionGroupInfo
+                    };
+                }
             }
 
             return new JsonNetResult
@@ -108,11 +118,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     QmTurnover = commGroup.QmTurnover,
                     TierSettingList = commGroup.TierSettingList,
-                    PlatformFeeList = commGroup.PlatformFeeList.Select(platformFee => EncodeDeductionSetting(platformFee)),
-                    OperationalFee = EncodeDeductionSetting(commGroup.OperationalFee),
-                    BankingFee = EncodeDeductionSetting(commGroup.BankingFee),
-                    ExchangeWinLossShare = EncodeDeductionSetting(commGroup.ExchangeWinLossShare),
-                    ExchangeCommissionShare = EncodeDeductionSetting(commGroup.ExchangeCommissionShare)
+                    PlatformFeeList = commGroup.PlatformFeeList,
+                    OperationalFee = commGroup.OperationalFee,
+                    BankingFee = commGroup.BankingFee,
+                    ExchangeWinLossShare = commGroup.ExchangeWinLossShare,
+                    ExchangeCommissionShare = commGroup.ExchangeCommissionShare
                 };
 
                 return new JsonNetResult
@@ -128,19 +138,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     Code = Code.GeneralErrorCode,
                     Message = groupNameValidation.Message + platformFeeValidation.Message
                 }
-            };
-        }
-
-        private DeductionSetting EncodeDeductionSetting(DeductionSetting param)
-        {
-            return new DeductionSetting
-            {
-                GroupId = param.GroupId,
-                DeductionId = param.DeductionId,
-                DeductionName = Server.HtmlEncode(param.DeductionName),
-                ProductIds = Server.HtmlEncode(param.ProductIds),
-                DeductedPercentage = param.DeductedPercentage,
-                NextDeductedPercentage = param.NextDeductedPercentage
             };
         }
 
@@ -168,11 +165,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     QmTurnover = commGroup.NextQmTurnover,
                     TierSettingList = commGroup.TierSettingList,
-                    PlatformFeeList = commGroup.PlatformFeeList.Select(platformFee => EncodeDeductionSetting(platformFee)),
-                    OperationalFee = EncodeDeductionSetting(commGroup.OperationalFee),
-                    BankingFee = EncodeDeductionSetting(commGroup.BankingFee),
-                    ExchangeWinLossShare = EncodeDeductionSetting(commGroup.ExchangeWinLossShare),
-                    ExchangeCommissionShare = EncodeDeductionSetting(commGroup.ExchangeCommissionShare)
+                    PlatformFeeList = commGroup.PlatformFeeList,
+                    OperationalFee = commGroup.OperationalFee,
+                    BankingFee = commGroup.BankingFee,
+                    ExchangeWinLossShare = commGroup.ExchangeWinLossShare,
+                    ExchangeCommissionShare = commGroup.ExchangeCommissionShare
                 };
 
                 return new JsonNetResult
@@ -184,9 +181,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return new JsonNetResult
             {
                 Data = new ResultInfo
-            var validateGroupName = ValidateGroupName(param.GroupName);
-            var result = new ResultInfo();
-
                 {
                     Code = Code.GeneralErrorCode,
                     Message = groupNameValidation.Message + platformFeeValidation.Message
@@ -226,30 +220,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         private static ResultInfo ValidateGroupName(string groupName)
-                var affiliateBasicInfo = new AffiliateBasicInfo
-                {
-                    AffId = affInfo.AffId,
-                    GroupId = affInfo.GroupId,
-                    UserName = Server.HtmlEncode(affInfo.UserName),
-                    FirstName = Server.HtmlEncode(affInfo.FirstName),
-                    AffType = affInfo.AffType,
-                    Email = Server.HtmlEncode(affInfo.Email),
-                    MailOption = affInfo.MailOption,
-                    PreferredLanguage = Server.HtmlEncode(affInfo.PreferredLanguage),
-                    PlayerUsername = Server.HtmlEncode(affInfo.PlayerUsername)
-                };
-
         {
             var result = new ResultInfo();
             if (string.IsNullOrEmpty(groupName) || groupName.Length > 100)
             {
                 result.Code = Code.GeneralErrorCode;
                 result.Message = CommGroupErrorMessage.InvalidGroupName;
-                    PlatformFeeList = commGroup.PlatformFeeList.Select(platformFee => EncodeDeductionSetting(platformFee)),
-                    OperationalFee = EncodeDeductionSetting(commGroup.OperationalFee),
-                    BankingFee = EncodeDeductionSetting(commGroup.BankingFee),
-                    ExchangeWinLossShare = EncodeDeductionSetting(commGroup.ExchangeWinLossShare),
-                    ExchangeCommissionShare = EncodeDeductionSetting(commGroup.ExchangeCommissionShare),
             }
 
             return result;

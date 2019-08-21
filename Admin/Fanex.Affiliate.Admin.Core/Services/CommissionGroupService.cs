@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         private static bool IsPlatformFee(string productIdList)
         {
-            return productIdList != "0" && productIdList != "19";
+            return productIdList != ProductId.Default && productIdList != ProductId.Exchange;
         }
     }
 }
