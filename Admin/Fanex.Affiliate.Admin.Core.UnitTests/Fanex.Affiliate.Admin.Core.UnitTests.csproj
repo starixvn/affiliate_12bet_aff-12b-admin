@@ -104,6 +104,7 @@
     <Compile Include="Repository\CommissionGroupRepositoryTest.cs" />
     <Compile Include="Repository\LanguageRepositoryTest.cs" />
     <Compile Include="Repository\ProductRepositoryTest.cs" />
+    <Compile Include="Services\CommGroup\CommGroupCommonServiceTest.cs" />
     <Compile Include="Services\CommissionGroupServiceTest.cs" />
     <Compile Include="Services\LanguageServiceTest.cs" />
     <Compile Include="TestHelper\ReaderHelper.cs" />

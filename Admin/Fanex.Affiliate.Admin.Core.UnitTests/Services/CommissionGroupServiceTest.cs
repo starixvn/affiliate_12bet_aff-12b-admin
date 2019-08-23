@@ -20,9 +20,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             var param = new GetCommissionGroupParam();
             var commissionGroupResultEntity = new CommissionGroupResultEntity
             {
-                CommGroupList = new List<CommGroup>
+                CommGroupList = new List<DTO.CommissionGroup.CommGroup>
                 {
-                    new CommGroup
+                    new DTO.CommissionGroup.CommGroup
                     {
                         RowIdx = 1,
                         GroupId = 101,
