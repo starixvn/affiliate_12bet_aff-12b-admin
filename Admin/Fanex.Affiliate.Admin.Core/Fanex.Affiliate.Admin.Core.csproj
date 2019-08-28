@@ -238,6 +238,7 @@
     <Compile Include="DTO\Email\PaymentRequestUpdateEmail.cs" />
     <Compile Include="DTO\Email\WithdrawalEmail.cs" />
     <Compile Include="DTO\EntityResult.cs" />
+    <Compile Include="DTO\ExchangeRate\ExchangeRateInfo.cs" />
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\MediaGallery\LandingPage.cs" />
     <Compile Include="DTO\Payment\PaymentRequest.cs" />
@@ -319,6 +320,8 @@
     <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
     <Compile Include="Repository\EmailHistory\EmailHistoryRepository.cs" />
     <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
+    <Compile Include="Repository\ExchangeRate\ExchangeRateRepository.cs" />
+    <Compile Include="Repository\ExchangeRate\IExchangeRateRepository.cs" />
     <Compile Include="Repository\Payment\IPaymentRequestRepository.cs" />
     <Compile Include="Repository\Payment\PaymentRequestRepository.cs" />
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />
