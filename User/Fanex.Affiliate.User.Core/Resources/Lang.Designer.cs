@@ -97,6 +97,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12DIAMOND (OPUS GAMING).
+        /// </summary>
+        public static string _Product12DIAMOND {
+            get {
+                return ResourceManager.GetString("_Product12DIAMOND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About Us.
         /// </summary>
         public static string AboutUs {
@@ -2562,6 +2571,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Gibraltar {
             get {
                 return ResourceManager.GetString("Gibraltar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GPI LOTTERY.
+        /// </summary>
+        public static string GpiLottery {
+            get {
+                return ResourceManager.GetString("GpiLottery", resourceCulture);
             }
         }
         

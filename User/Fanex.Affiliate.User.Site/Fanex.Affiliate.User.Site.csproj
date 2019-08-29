@@ -647,6 +647,7 @@
     <Content Include="www\build\styles\Images\bgRight.jpg" />
     <Content Include="www\build\styles\Images\contact-us\qq_icon.png" />
     <Content Include="www\build\styles\Images\FAQ_banner.png" />
+    <Content Include="www\build\styles\Images\footer\cr-westbrom.png" />
     <Content Include="www\build\styles\Images\main-banner-2.jpg" />
     <Content Include="www\build\styles\Images\main-banner-1.jpg" />
     <Content Include="www\build\styles\Images\adv_contact.jpg" />
@@ -868,6 +869,7 @@
     <Content Include="www\source\styles\Images\bg-adv_contact.png" />
     <Content Include="www\source\styles\Images\bg-banner-signup.png" />
     <Content Include="www\build\styles\Images\products\bg-casino_affiliate.jpg" />
+    <Content Include="www\source\styles\Images\footer\cr-westbrom.png" />
     <Content Include="www\source\styles\Images\products\bg-casino_affiliate.jpg" />
     <Content Include="www\source\styles\Images\bg-Commission-Structure_Banner.png" />
     <Content Include="www\source\styles\Images\bg-FAQ_banner.png" />

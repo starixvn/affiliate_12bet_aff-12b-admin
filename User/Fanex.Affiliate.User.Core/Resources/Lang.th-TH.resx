@@ -2120,4 +2120,10 @@
   <data name="CaptchaIsRequired" xml:space="preserve">
     <value>โปรดกรอกCaptcha ที่แสดงด้านข้าง</value>
   </data>
+  <data name="GpiLottery" xml:space="preserve">
+    <value>GPI ล็อตเตอรี่</value>
+  </data>
+  <data name="_Product12DIAMOND" xml:space="preserve">
+    <value>12DIAMOND (OPUS GAMING)</value>
+  </data>
 </root>

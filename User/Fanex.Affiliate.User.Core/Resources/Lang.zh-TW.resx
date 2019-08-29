@@ -2125,4 +2125,10 @@
   <data name="CaptchaIsRequired" xml:space="preserve">
     <value>請填寫驗證碼</value>
   </data>
+  <data name="GpiLottery" xml:space="preserve">
+    <value>GPI彩票</value>
+  </data>
+  <data name="_Product12DIAMOND" xml:space="preserve">
+    <value>鑽石廳 (OPUS)</value>
+  </data>
 </root>

@@ -2113,4 +2113,10 @@
   <data name="CaptchaIsRequired" xml:space="preserve">
     <value>보안 문자 문자입력</value>
   </data>
+  <data name="GpiLottery" xml:space="preserve">
+    <value>GPI 로또</value>
+  </data>
+  <data name="_Product12DIAMOND" xml:space="preserve">
+    <value>12다이아몬드 (오푸스 게임)</value>
+  </data>
 </root>

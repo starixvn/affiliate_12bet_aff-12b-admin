@@ -2122,4 +2122,10 @@
   <data name="CaptchaIsRequired" xml:space="preserve">
     <value>Mã xác thực bắt buộc</value>
   </data>
+  <data name="GpiLottery" xml:space="preserve">
+    <value>Xổ Số GPI</value>
+  </data>
+  <data name="_Product12DIAMOND" xml:space="preserve">
+    <value>12DIAMOND (OPUS GAMING)</value>
+  </data>
 </root>
