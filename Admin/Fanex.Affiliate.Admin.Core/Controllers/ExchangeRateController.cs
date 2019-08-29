@@ -4,19 +4,19 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using System;
-using Fanex.Affiliate.Admin.Core.Repository.ExchangeRate;
+using Fanex.Affiliate.Admin.Core.Services.ExchangeRate;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.AffExRate)]
     public class ExchangeRateController : BaseController
     {
-        private readonly IExchangeRateRepository _exchangeRateRepository;
+        private readonly IExchangeRateService _exchangeRateService;
         public ExchangeRateController(
             ISessionService sessionService,
-            IExchangeRateRepository exchangeRateRepository) : base(sessionService)
+            IExchangeRateService exchangeRateService) : base(sessionService)
         {
-            _exchangeRateRepository = exchangeRateRepository;
+            _exchangeRateService = exchangeRateService;
         }
 
         public ActionResult Index()
@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         public ActionResult GetExchangeRateList(DateTime date)
         {
             return new JsonNetResult {
-                Data = _exchangeRateRepository.GetExchangeRateList(date)
+                Data = _exchangeRateService.GetExchangeRateList(date)
             };
         }
     }

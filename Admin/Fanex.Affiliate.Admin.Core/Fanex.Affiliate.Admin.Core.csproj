@@ -424,6 +424,8 @@
     <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
     <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
     <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\ExchangeRate\ExchangeRateService.cs" />
+    <Compile Include="Services\ExchangeRate\IExchangeRateService.cs" />
     <Compile Include="Services\IAffiliateService.cs" />
     <Compile Include="Services\ICommissionGroupService.cs" />
     <Compile Include="Services\IEmailService.cs" />

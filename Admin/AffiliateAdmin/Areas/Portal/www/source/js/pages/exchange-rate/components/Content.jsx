@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText, globalResource } from '../modules/contants';
-import { fetchData, setSelectedCurrency, setShouldResetScrollPosition } from '../actions';
+import { headerText, globalResource } from '../lib/constants';
+import { fetchData, setTogglePopup, setSelectedCurrency, setShouldResetScrollPosition } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -33,8 +33,7 @@ export class Content extends PureComponent {
 
     _renderDataSection(dataList) {
         const dataRows = [];
-        console.log(dataList);
-        console.log(dataList.length);
+
         if (dataList && dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
@@ -56,17 +55,28 @@ export class Content extends PureComponent {
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.Currency}>{dataItem.Currency}</Cell>
                 <Cell title={dataItem.ActualRate}>
-                    <Button color="link" className="p-0" onClick={() => this.props.setSelectedCurrency(dataItem.Currency)}>
+                    <Button color="link" className="p-0"
+                        onClick={() => this._handleSelectedCurrency({
+                            ExchangeId: dataItem.ExchangeId, Currency: dataItem.Currency, Rate: dataItem.ActualRate, isActualRate: true
+                        })}>
                         {dataItem.ActualRate}
                     </Button>
                 </Cell>
                 <Cell title={dataItem.BuyingRate}>
-                    <Button color="link" className="p-0" onClick={() => this.props.setSelectedEmailId(dataItem.Currency)}>
+                    <Button color="link" className="p-0"
+                        onClick={() => this._handleSelectedCurrency({
+                            ExchangeId: dataItem.ExchangeId, Currency: dataItem.Currency, Rate: dataItem.BuyingRate, isActualRate: false
+                        })}>
                         {dataItem.BuyingRate}
                     </Button>
                 </Cell>
             </Row>
         )
+    }
+
+    _handleSelectedCurrency = (param) => {
+        this.props.setTogglePopup(true);
+        this.props.setSelectedCurrency(param);
     }
 
     render() {
@@ -80,7 +90,6 @@ export class Content extends PureComponent {
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}
-                        containerPadding={20}
                         shouldResetScrollPosition={this.props.shouldResetScrollPosition}
                     />
                 </div>
@@ -94,7 +103,7 @@ function mapStateToProps({ param, shouldResetScrollPosition, gridData }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, setSelectedCurrency, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ fetchData, setSelectedCurrency, setTogglePopup, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

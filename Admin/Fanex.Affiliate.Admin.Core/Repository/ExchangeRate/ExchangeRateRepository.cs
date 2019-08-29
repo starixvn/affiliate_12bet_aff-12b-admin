@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.ExchangeRate;
 using System.Data;
@@ -11,11 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.ExchangeRate
 {
     public class ExchangeRateRepository : BaseRepository, IExchangeRateRepository
     {
-        public ExchangeRateInfo GetExchangeRateDetail()
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<ExchangeRateInfo> GetExchangeRateList(DateTime date)
         {
             string SpKey = "Aff_ExchangeSel";

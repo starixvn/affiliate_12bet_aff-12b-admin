@@ -2,7 +2,7 @@
 
 import createReducer from '../../../modules/createReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
-import { SET_PARAM, SET_GRID_DATA, SET_SELECTED_CURRENTCY, SHOULD_RESET_SCROLL_POSITION } from '../actions/types';
+import { SET_PARAM, SET_GRID_DATA, SET_TOGGLE_POPUP, SET_SELECTED_CURRENTCY, SHOULD_RESET_SCROLL_POSITION } from '../actions/types';
 
 const today = createReducer(null, {});
 
@@ -14,6 +14,12 @@ export const param = createReducer(null, {
 
 export const gridData = createReducer(null, {
     [SET_GRID_DATA](prevState, action) {
+        return action.data;
+    }
+});
+
+export const isOpenPopup = createReducer(false, {
+    [SET_TOGGLE_POPUP](prevState, action) {
         return action.data;
     }
 });
@@ -34,6 +40,7 @@ export default combineReducers({
     today,
     param,
     gridData,
+    isOpenPopup,
     isShowLoader,
     selectedCurrency,
     shouldResetScrollPosition

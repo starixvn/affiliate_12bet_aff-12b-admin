@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { Form, FormGroup, Label, Button } from 'reactstrap';
 
-import { resource, minDate } from '../modules/contants';
+import { resource, minDate } from '../lib/constants';
 import { setSelectedCurrency, setParam } from '../actions/index';
 
 export class Filter extends PureComponent {

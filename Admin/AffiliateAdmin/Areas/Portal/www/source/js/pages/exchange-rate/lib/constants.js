@@ -7,7 +7,11 @@ export const resource = {
     Date: 'Date',
     Submit: 'Submit',
     Title: 'Ex.Rate',
-    Search: globalResource.Search
+    Currency: 'Currency',
+    US$Rate: 'US$ Rate',
+    Buying: 'Buying',
+    Search: globalResource.Search,
+    Cancel: globalResource.Cancel,
 }
 
 export const headerText = {

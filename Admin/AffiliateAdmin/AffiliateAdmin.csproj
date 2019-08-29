@@ -1393,7 +1393,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\email-history\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\modules\contants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\lib\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
