@@ -97,15 +97,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12DIAMOND (OPUS GAMING).
-        /// </summary>
-        public static string _Product12DIAMOND {
-            get {
-                return ResourceManager.GetString("_Product12DIAMOND", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to About Us.
         /// </summary>
         public static string AboutUs {
@@ -4549,6 +4540,78 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Racebook {
             get {
                 return ResourceManager.GetString("Racebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12AMBER &lt;br/&gt; (BETSOFT).
+        /// </summary>
+        public static string RawProduct12AMBER {
+            get {
+                return ResourceManager.GetString("RawProduct12AMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12AMETHYST &lt;br/&gt; (GOLD DELUXE).
+        /// </summary>
+        public static string RawProduct12AMETHYST {
+            get {
+                return ResourceManager.GetString("RawProduct12AMETHYST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12CRYSTAL &lt;br/&gt; (GAME PLAY INTERACTIVE).
+        /// </summary>
+        public static string RawProduct12CRYSTAL {
+            get {
+                return ResourceManager.GetString("RawProduct12CRYSTAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12DIAMOND &lt;br/&gt; (OPUS GAMING).
+        /// </summary>
+        public static string RawProduct12DIAMOND {
+            get {
+                return ResourceManager.GetString("RawProduct12DIAMOND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12EMERALD &lt;br/&gt; (Playtech).
+        /// </summary>
+        public static string RawProduct12EMERALD {
+            get {
+                return ResourceManager.GetString("RawProduct12EMERALD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12ONYX &lt;br/&gt; (ALLBET).
+        /// </summary>
+        public static string RawProduct12ONYX {
+            get {
+                return ResourceManager.GetString("RawProduct12ONYX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12OPAL &lt;br/&gt; (EBET).
+        /// </summary>
+        public static string RawProduct12OPAL {
+            get {
+                return ResourceManager.GetString("RawProduct12OPAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12PEARL &lt;br/&gt; (ASIA GAMING).
+        /// </summary>
+        public static string RawProduct12PEARL {
+            get {
+                return ResourceManager.GetString("RawProduct12PEARL", resourceCulture);
             }
         }
         

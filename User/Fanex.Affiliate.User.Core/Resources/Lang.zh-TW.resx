@@ -2128,7 +2128,28 @@
   <data name="GpiLottery" xml:space="preserve">
     <value>GPI彩票</value>
   </data>
-  <data name="_Product12DIAMOND" xml:space="preserve">
-    <value>鑽石廳 (OPUS)</value>
+  <data name="RawProduct12DIAMOND" xml:space="preserve">
+    <value>鑽石廳 &lt;br/&gt; (OPUS)</value>
+  </data>
+  <data name="RawProduct12EMERALD" xml:space="preserve">
+    <value>PT翡翠廳 &lt;br/&gt; (PLAYTECH)</value>
+  </data>
+  <data name="RawProduct12PEARL" xml:space="preserve">
+    <value>珍珠廳 &lt;br/&gt; (ASIA GAMING)</value>
+  </data>
+  <data name="RawProduct12OPAL" xml:space="preserve">
+    <value>歐泊廳 &lt;br/&gt; (EBET)</value>
+  </data>
+  <data name="RawProduct12AMETHYST" xml:space="preserve">
+    <value>紫晶廳 &lt;br/&gt; (GOLD DELUXE) </value>
+  </data>
+  <data name="RawProduct12ONYX" xml:space="preserve">
+    <value>瑪瑙廳 &lt;br/&gt; (ALLBET)</value>
+  </data>
+  <data name="RawProduct12CRYSTAL" xml:space="preserve">
+    <value>水晶廳 &lt;br/&gt; (GAMEPLAY INTERACTIVE)</value>
+  </data>
+  <data name="RawProduct12AMBER" xml:space="preserve">
+    <value>琥珀廳 &lt;br/&gt; (BETSOFT)</value>
   </data>
 </root>

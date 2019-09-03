@@ -2116,7 +2116,28 @@
   <data name="GpiLottery" xml:space="preserve">
     <value>GPI 로또</value>
   </data>
-  <data name="_Product12DIAMOND" xml:space="preserve">
-    <value>12다이아몬드 (오푸스 게임)</value>
+  <data name="RawProduct12DIAMOND" xml:space="preserve">
+    <value>12다이아몬드 &lt;br/&gt; (오푸스 게임)</value>
+  </data>
+  <data name="RawProduct12EMERALD" xml:space="preserve">
+    <value>12에메랄드 &lt;br/&gt; (플레이텍,PLAYTECH)</value>
+  </data>
+  <data name="RawProduct12PEARL" xml:space="preserve">
+    <value>12펄 &lt;br/&gt; (아시아 게이밍)</value>
+  </data>
+  <data name="RawProduct12OPAL" xml:space="preserve">
+    <value>12오팔 &lt;br/&gt; (이벳)</value>
+  </data>
+  <data name="RawProduct12AMETHYST" xml:space="preserve">
+    <value>12에머시스트 &lt;br/&gt; (골드 디럭스)</value>
+  </data>
+  <data name="RawProduct12ONYX" xml:space="preserve">
+    <value>12오닉스 &lt;br/&gt; (올벳)</value>
+  </data>
+  <data name="RawProduct12CRYSTAL" xml:space="preserve">
+    <value>12크리스탈 &lt;br&gt; (게임플레이 인터렉티브)</value>
+  </data>
+  <data name="RawProduct12AMBER" xml:space="preserve">
+    <value>12엠버 &lt;br/&gt; (벳소프트)</value>
   </data>
 </root>

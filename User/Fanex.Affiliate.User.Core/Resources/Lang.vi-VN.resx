@@ -2125,7 +2125,28 @@
   <data name="GpiLottery" xml:space="preserve">
     <value>Xổ Số GPI</value>
   </data>
-  <data name="_Product12DIAMOND" xml:space="preserve">
-    <value>12DIAMOND (OPUS GAMING)</value>
+  <data name="RawProduct12DIAMOND" xml:space="preserve">
+    <value>12DIAMOND &lt;br/&gt; (OPUS GAMING)</value>
+  </data>
+  <data name="RawProduct12EMERALD" xml:space="preserve">
+    <value>12EMERALD &lt;br/&gt; (Playtech)</value>
+  </data>
+  <data name="RawProduct12PEARL" xml:space="preserve">
+    <value>12PEARL &lt;br/&gt; (ASIA GAMING)</value>
+  </data>
+  <data name="RawProduct12OPAL" xml:space="preserve">
+    <value>12OPAL &lt;br/&gt; (EBET)</value>
+  </data>
+  <data name="RawProduct12AMETHYST" xml:space="preserve">
+    <value>12AMETHYST &lt;br/&gt; (GOLD DELUXE)</value>
+  </data>
+  <data name="RawProduct12ONYX" xml:space="preserve">
+    <value>12ONYX &lt;br/&gt; (ALLBET)</value>
+  </data>
+  <data name="RawProduct12CRYSTAL" xml:space="preserve">
+    <value>12CRYSTAL &lt;br/&gt; (GAME PLAY INTERACTIVE)</value>
+  </data>
+  <data name="RawProduct12AMBER" xml:space="preserve">
+    <value>12AMBER &lt;br/&gt; (BETSOFT)</value>
   </data>
 </root>
