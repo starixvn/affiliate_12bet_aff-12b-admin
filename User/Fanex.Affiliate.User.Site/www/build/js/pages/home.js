@@ -6,7 +6,7 @@ var Home = (function ($) {
             _me.initEvent();
         },
         initEvent: function initEvent() {
-            $('#bannerSignup').on('click', function (event) {
+            $('#sportBanner').on('click', function (event) {
                 event.preventDefault();
                 var redirectLink = $(this).attr('href');
                 PageTracking.addTrackingForSignUpPage();
@@ -16,7 +16,7 @@ var Home = (function ($) {
                 }, 10);
             });
 
-            $('.mediaLink').on('click', function (event) {
+            $('#casinoBanner').on('click', function (event) {
                 event.preventDefault();
                 var $this = $(this);
                 var isLoggedIn = !$this.hasClass('mediaLoginLink');

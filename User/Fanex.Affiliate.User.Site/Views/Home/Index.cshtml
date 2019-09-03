@@ -25,33 +25,27 @@
     <div id="mainBanner" class="carousel slide banner-center" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <a id="bannerSignup" class="nounderline banner-signup" href="@Url.Content("~/Signup/Index")">
-                    <div class="upto">
-                        @Html.Raw(Lang.UpTo)
-                        <span class="value">40%</span>
-                    </div>
-                    <div class="text-border">
-                        @Html.Raw(Lang.MonthlyCommission)
-                        @Html.Raw(Lang.OnSportandCasino)
-                        <p class="text-yellow">@Lang.YouAreNotAffiliateYet</p>
-                    </div>
-                    <span class="btn">@Lang.SignUpAffiliatesNow</span>
+                <a id="sportBanner" class="nounderline" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
+                    @{
+                        var sportBannerFileName = Url.Content("~/www/build/styles/Images/sports-banners/AFF-Home-banner-SB." + Model.Language);
+                    }
+                    <picture>
+                        <source srcset="@(sportBannerFileName + ".webp?v=20190226")" type="image/webp" />
+                        <source srcset="@(sportBannerFileName + ".jpg?v=20190226")" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(sportBannerFileName + ".jpg?v=20190226")" alt="Casino Banner" />
+                    </picture>
                 </a>
             </div>
-
             <div class="item">
-                <a id="bannerMedia" class="nounderline get-banner mediaLink @(Model.IsAuthenticated ? string.Empty : "mediaLoginLink")" href="@Model.BannerLink">
-                    <div class="text-1">
-                        <p>@Lang.OptimizeYourWebsite</p>
-                        <p>@Lang.AndSocialChannels</p>
-                        <p>@Lang.ThroughSoccerSeason2018</p>
-                    </div>
-                    <div class="text-2">
-                        <p>@Lang.Update12BetBannersfromYourMediaGallery</p>
-                        <p>@Lang.AndPostPromotionsInYourWebsite</p>
-                        <p>@Lang.ToBeatTheBestCommission</p>
-                    </div>
-                    <span class="btn">@Lang.GetBannerNow</span>
+                <a id="casinoBanner" class="nounderline" href="@Url.Content("~/Product/Index")">
+                    @{
+                        var casinoBannerFileName = Url.Content("~/www/build/styles/Images/casino-banners/AFF-Home-banner-Casino." + Model.Language);
+                    }
+                    <picture>
+                        <source srcset="@(casinoBannerFileName + ".webp?v=20190226")" type="image/webp" />
+                        <source srcset="@(casinoBannerFileName + ".jpg?v=20190226")" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(casinoBannerFileName + ".jpg?v=20190226")" alt="Casino Banner" />
+                    </picture>
                 </a>
             </div>
         </div>
