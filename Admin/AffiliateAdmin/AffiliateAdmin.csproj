@@ -1962,6 +1962,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\EditExchangeRateForm.jsx" />
     <Content Include="Areas\Portal\Views\ExchangeRate\ExchangeRate.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\exchange-rate\exchange-rate.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

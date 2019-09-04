@@ -6,6 +6,7 @@ import { Button } from 'reactstrap';
 
 import { headerText, globalResource } from '../lib/constants';
 import { fetchData, setTogglePopup, setSelectedCurrency, setShouldResetScrollPosition } from '../actions';
+import { floatFormat, round } from '../../../modules/numberFormat';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -59,7 +60,7 @@ export class Content extends PureComponent {
                         onClick={() => this._handleSelectedCurrency({
                             ExchangeId: dataItem.ExchangeId, Currency: dataItem.Currency, Rate: dataItem.ActualRate, isActualRate: true
                         })}>
-                        {dataItem.ActualRate}
+                        {floatFormat(dataItem.ActualRate, 5)}
                     </Button>
                 </Cell>
                 <Cell title={dataItem.BuyingRate}>
@@ -67,7 +68,7 @@ export class Content extends PureComponent {
                         onClick={() => this._handleSelectedCurrency({
                             ExchangeId: dataItem.ExchangeId, Currency: dataItem.Currency, Rate: dataItem.BuyingRate, isActualRate: false
                         })}>
-                        {dataItem.BuyingRate}
+                        {floatFormat(dataItem.BuyingRate, 5)}
                     </Button>
                 </Cell>
             </Row>

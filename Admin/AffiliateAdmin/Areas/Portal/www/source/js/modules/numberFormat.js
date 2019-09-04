@@ -23,3 +23,13 @@ export function round(value, digits) {
 
     return sign * rounded;
 }
+
+export function floatFormat(value, digits = 0) {
+    if (typeof value !== "number" || isNaN(value)) {
+        return "";
+    }
+
+    const roundedValue = round(value, digits);
+
+    return roundedValue.toFixed(digits);
+}

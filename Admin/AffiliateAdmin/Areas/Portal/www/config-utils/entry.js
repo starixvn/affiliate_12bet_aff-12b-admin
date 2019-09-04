@@ -37,4 +37,5 @@ module.exports = {
     [`${styleDist}/pages/payment/payment-request`]: clientRoot + "/style/pages/payment/payment-request.scss",
     [`${styleDist}/pages/customer`]: clientRoot + "/style/pages/customer/main.scss",
     [`${styleDist}/pages/email-history`]: clientRoot + "/style/pages/email-history.scss",
+    [`${styleDist}/pages/exchange-rate/exchange-rate`]: clientRoot + "/style/pages/exchange-rate/exchange-rate.scss",
 };

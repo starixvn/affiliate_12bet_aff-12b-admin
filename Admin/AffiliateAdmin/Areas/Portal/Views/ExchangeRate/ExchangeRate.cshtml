@@ -3,6 +3,10 @@
     Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
 }
 
+@section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/exchange-rate/exchange-rate.css")" rel="stylesheet" />
+}
+
 @section scripts{
     <script type="text/javascript">
         window.initialState = {

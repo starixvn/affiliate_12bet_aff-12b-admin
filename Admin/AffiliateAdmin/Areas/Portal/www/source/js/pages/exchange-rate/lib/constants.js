@@ -1,7 +1,7 @@
 ﻿import { globalResource } from '../../../modules/globalResource';
-import { minDate } from '../../../modules/constants';
+import { minDate, money } from '../../../modules/constants';
 
-export { minDate, globalResource };
+export { minDate, globalResource, money };
 
 export const resource = {
     Date: 'Date',
@@ -19,4 +19,16 @@ export const headerText = {
     Currency: 'Currency',
     Selling: 'Selling',
     Buying: 'Buying'
+}
+
+export const message = {
+    Required: 'Exchange rate is required.',
+    Invalid: 'Exchange rate must be greater than zero.',
+    Success: 'Updated successfully!'
+}
+
+export const regExp = {
+    checkRate: "^\\-?(\\d+\\.?\\d*)?$",
+    shouldFormatRate: "^\\-?\\d+$",
+    validRate: "^\\-?\\d+(\\.\\d{1,})?$"
 }

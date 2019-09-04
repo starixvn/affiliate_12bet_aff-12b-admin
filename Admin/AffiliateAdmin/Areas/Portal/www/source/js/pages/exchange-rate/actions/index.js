@@ -2,6 +2,8 @@
 import { toggleLoader } from '../../../actions/loaderAction';
 import { SET_PARAM, SET_GRID_DATA, SET_TOGGLE_POPUP, SET_SELECTED_CURRENTCY, SHOULD_RESET_SCROLL_POSITION } from './types';
 
+export { toggleLoader };
+
 export const setParam = (data) => {
     return {
         type: SET_PARAM,
