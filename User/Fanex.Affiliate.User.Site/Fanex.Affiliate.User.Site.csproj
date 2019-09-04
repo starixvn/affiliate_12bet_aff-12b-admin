@@ -639,14 +639,9 @@
     <Content Include="www\build\styles\Images\banner-main-left.jpg" />
     <Content Include="www\build\styles\Images\banner-main-right.jpg" />
     <Content Include="www\build\styles\Images\bg-adv_contact.png" />
-    <Content Include="www\build\styles\Images\bg-banner-signup.png" />
     <Content Include="www\build\styles\Images\bg-Commission-Structure_Banner.png" />
     <Content Include="www\build\styles\Images\bg-FAQ_banner.png" />
-    <Content Include="www\build\styles\Images\bg-get-banner.png" />
-    <Content Include="www\build\styles\Images\bg-Sports_products.png" />
     <Content Include="www\build\styles\Images\bg-Terms_&amp;_conditions_banner.png" />
-    <Content Include="www\build\styles\Images\bgLeft.jpg" />
-    <Content Include="www\build\styles\Images\bgRight.jpg" />
     <Content Include="www\build\styles\Images\bootstrap-formhelpers-countries.flags.png" />
     <Content Include="www\build\styles\Images\casino-banners\AFF-Home-banner-Casino.zh-TW.jpg" />
     <Content Include="www\build\styles\Images\casino-banners\AFF-Home-banner-Casino.zh-CN.jpg" />
@@ -681,8 +676,6 @@
     <Content Include="www\build\styles\Images\icon-2.png" />
     <Content Include="www\build\styles\Images\icon-3.png" />
     <Content Include="www\build\styles\Images\logo.png" />
-    <Content Include="www\build\styles\Images\main-banner-1.jpg" />
-    <Content Include="www\build\styles\Images\main-banner-2.jpg" />
     <Content Include="www\build\styles\Images\notify\bgMain.jpg" />
     <Content Include="www\build\styles\Images\notify\icon.png" />
     <Content Include="www\build\styles\Images\notify\iconnf.png" />
@@ -886,7 +879,6 @@
     <Content Include="www\source\styles\Images\banner-main-left.jpg" />
     <Content Include="www\source\styles\Images\banner-main-right.jpg" />
     <Content Include="www\source\styles\Images\bg-adv_contact.png" />
-    <Content Include="www\source\styles\Images\bg-banner-signup.png" />
     <Content Include="www\source\styles\Images\casino-banners\AFF-Home-banner-Casino.en-US.jpg" />
     <Content Include="www\source\styles\Images\casino-banners\AFF-Home-banner-Casino.hi-IN.jpg" />
     <Content Include="www\source\styles\Images\casino-banners\AFF-Home-banner-Casino.id-ID.jpg" />
@@ -900,11 +892,7 @@
     <Content Include="www\source\styles\Images\products\bg-casino_affiliate.jpg" />
     <Content Include="www\source\styles\Images\bg-Commission-Structure_Banner.png" />
     <Content Include="www\source\styles\Images\bg-FAQ_banner.png" />
-    <Content Include="www\source\styles\Images\bg-get-banner.png" />
-    <Content Include="www\source\styles\Images\bg-Sports_products.png" />
     <Content Include="www\source\styles\Images\bg-Terms_&amp;_conditions_banner.png" />
-    <Content Include="www\source\styles\Images\bgLeft.jpg" />
-    <Content Include="www\source\styles\Images\bgRight.jpg" />
     <Content Include="www\source\styles\Images\bootstrap-formhelpers-countries.flags.png" />
     <Content Include="www\source\styles\Images\contact-us\China_lang.png" />
     <Content Include="www\source\styles\Images\contact-us\english_lang.png" />
@@ -946,8 +934,6 @@
     <Content Include="www\source\styles\Images\icon-2.png" />
     <Content Include="www\source\styles\Images\icon-3.png" />
     <Content Include="www\source\styles\Images\logo.png" />
-    <Content Include="www\source\styles\Images\main-banner-1.jpg" />
-    <Content Include="www\source\styles\Images\main-banner-2.jpg" />
     <Content Include="www\source\styles\Images\notify\bgMain.jpg" />
     <Content Include="www\source\styles\Images\notify\icon.png" />
     <Content Include="www\source\styles\Images\notify\iconnf.png" />
@@ -1051,18 +1037,6 @@
     <Content Include="www\source\styles\Images\adv_contact.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="www\source\styles\Images\bgLeft.webp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\source\styles\Images\bgRight.webp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\source\styles\Images\main-banner-1.webp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\source\styles\Images\main-banner-2.webp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="www\source\styles\Images\offers.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1127,11 +1101,8 @@
     <Content Include="www\build\styles\fonts\myriadPro\Myriad-Pro-Italic.ttf" />
     <Content Include="www\source\styles\fonts\myriadPro\Myriad-Pro-Italic.ttf" />
     <Content Include="www\source\styles\Images\bg-adv_contact.webp" />
-    <Content Include="www\source\styles\Images\bg-banner-signup.webp" />
     <Content Include="www\source\styles\Images\bg-Commission-Structure_Banner.webp" />
     <Content Include="www\source\styles\Images\bg-FAQ_banner.webp" />
-    <Content Include="www\source\styles\Images\bg-get-banner.webp" />
-    <Content Include="www\source\styles\Images\bg-Sports_products.webp" />
     <Content Include="www\source\styles\Images\bg-Terms_&amp;_conditions_banner.webp" />
     <Content Include="www\source\styles\Images\apply12bet\3step.zh-CN.webp" />
     <Content Include="www\source\styles\Images\apply12bet\3step.en-US.webp" />
@@ -1181,16 +1152,9 @@
     <Content Include="www\build\styles\Images\banner-main-left.webp" />
     <Content Include="www\build\styles\Images\banner-main-right.webp" />
     <Content Include="www\build\styles\Images\bg-adv_contact.webp" />
-    <Content Include="www\build\styles\Images\bg-banner-signup.webp" />
     <Content Include="www\build\styles\Images\bg-Commission-Structure_Banner.webp" />
     <Content Include="www\build\styles\Images\bg-FAQ_banner.webp" />
-    <Content Include="www\build\styles\Images\bg-get-banner.webp" />
-    <Content Include="www\build\styles\Images\bg-Sports_products.webp" />
     <Content Include="www\build\styles\Images\bg-Terms_&amp;_conditions_banner.webp" />
-    <Content Include="www\build\styles\Images\bgLeft.webp" />
-    <Content Include="www\build\styles\Images\bgRight.webp" />
-    <Content Include="www\build\styles\Images\main-banner-1.webp" />
-    <Content Include="www\build\styles\Images\main-banner-2.webp" />
     <Content Include="www\build\styles\Images\offers.webp" />
     <Content Include="www\build\styles\Images\products\bg-casino_affiliate.webp" />
     <Content Include="www\build\styles\Images\products\bg-sports_affiliate.webp" />

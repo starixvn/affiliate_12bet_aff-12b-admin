@@ -2128,28 +2128,52 @@
   <data name="GpiLottery" xml:space="preserve">
     <value>GPI彩票</value>
   </data>
-  <data name="RawProduct12DIAMOND" xml:space="preserve">
-    <value>鑽石廳 &lt;br/&gt; (OPUS)</value>
+  <data name="PrefixProduct12DIAMOND" xml:space="preserve">
+    <value>鑽石廳</value>
   </data>
-  <data name="RawProduct12EMERALD" xml:space="preserve">
-    <value>PT翡翠廳 &lt;br/&gt; (PLAYTECH)</value>
+  <data name="PrefixProduct12EMERALD" xml:space="preserve">
+    <value>PT翡翠廳</value>
   </data>
-  <data name="RawProduct12PEARL" xml:space="preserve">
-    <value>珍珠廳 &lt;br/&gt; (ASIA GAMING)</value>
+  <data name="PrefixProduct12PEARL" xml:space="preserve">
+    <value>珍珠廳</value>
   </data>
-  <data name="RawProduct12OPAL" xml:space="preserve">
-    <value>歐泊廳 &lt;br/&gt; (EBET)</value>
+  <data name="PrefixProduct12OPAL" xml:space="preserve">
+    <value>歐泊廳</value>
   </data>
-  <data name="RawProduct12AMETHYST" xml:space="preserve">
-    <value>紫晶廳 &lt;br/&gt; (GOLD DELUXE) </value>
+  <data name="PrefixProduct12AMETHYST" xml:space="preserve">
+    <value>紫晶廳</value>
   </data>
-  <data name="RawProduct12ONYX" xml:space="preserve">
-    <value>瑪瑙廳 &lt;br/&gt; (ALLBET)</value>
+  <data name="PrefixProduct12ONYX" xml:space="preserve">
+    <value>瑪瑙廳</value>
   </data>
-  <data name="RawProduct12CRYSTAL" xml:space="preserve">
-    <value>水晶廳 &lt;br/&gt; (GAMEPLAY INTERACTIVE)</value>
+  <data name="PrefixProduct12CRYSTAL" xml:space="preserve">
+    <value>水晶廳 </value>
   </data>
-  <data name="RawProduct12AMBER" xml:space="preserve">
-    <value>琥珀廳 &lt;br/&gt; (BETSOFT)</value>
+  <data name="PrefixProduct12AMBER" xml:space="preserve">
+    <value>琥珀廳</value>
+  </data>
+  <data name="SuffixProduct12DIAMOND" xml:space="preserve">
+    <value>(OPUS)</value>
+  </data>
+  <data name="SuffixProduct12EMERALD" xml:space="preserve">
+    <value>(PLAYTECH)</value>
+  </data>
+  <data name="SuffixProduct12PEARL" xml:space="preserve">
+    <value>(ASIA GAMING)</value>
+  </data>
+  <data name="SuffixProduct12OPAL" xml:space="preserve">
+    <value>(EBET)</value>
+  </data>
+  <data name="SuffixProduct12AMETHYST" xml:space="preserve">
+    <value>(GOLD DELUXE)</value>
+  </data>
+  <data name="SuffixProduct12ONYX" xml:space="preserve">
+    <value>(ALLBET)</value>
+  </data>
+  <data name="SuffixProduct12CRYSTAL" xml:space="preserve">
+    <value>(GAME PLAY INTERACTIVE)</value>
+  </data>
+  <data name="SuffixProduct12AMBER" xml:space="preserve">
+    <value>(BETSOFT)</value>
   </data>
 </root>
