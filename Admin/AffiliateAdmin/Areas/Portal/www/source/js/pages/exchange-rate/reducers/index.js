@@ -2,7 +2,7 @@
 
 import createReducer from '../../../modules/createReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
-import { SET_PARAM, SET_GRID_DATA, SET_TOGGLE_POPUP, SET_SELECTED_CURRENTCY, SHOULD_RESET_SCROLL_POSITION } from '../actions/types';
+import { SET_PARAM, SET_GRID_DATA, SET_TOGGLE_POPUP, SET_SELECTED_EXCHANGE_RATE, SHOULD_RESET_SCROLL_POSITION } from '../actions/types';
 
 const today = createReducer(null, {});
 
@@ -24,8 +24,8 @@ export const isOpenPopup = createReducer(false, {
     }
 });
 
-export const selectedCurrency = createReducer(null, {
-    [SET_SELECTED_CURRENTCY](prevState, action) {
+export const selectedExchangeRate = createReducer(null, {
+    [SET_SELECTED_EXCHANGE_RATE](prevState, action) {
         return Object.assign({}, prevState, action.data);
     }
 });
@@ -42,6 +42,6 @@ export default combineReducers({
     gridData,
     isOpenPopup,
     isShowLoader,
-    selectedCurrency,
+    selectedExchangeRate,
     shouldResetScrollPosition
 });

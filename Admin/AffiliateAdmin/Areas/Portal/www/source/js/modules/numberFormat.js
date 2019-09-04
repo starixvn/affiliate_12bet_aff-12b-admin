@@ -9,7 +9,7 @@ export function format(value, digits = 0) {
 
     const roundedValue = round(value, digits);
 
-    return roundedValue.toFixed(digits).replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
+    return roundedValue.toFixed(digits).replace(digits > 2 ? /(\d)(?=(\d{3})+(\.))/g : /(\d)(?=(\d{3})+(\.|$))/g, "$1,");
 }
 
 export function formatDecimalWithCurrencySymbol(value, currencySymbol = "$") {
@@ -22,14 +22,4 @@ export function round(value, digits) {
     const rounded = Number(Math.round(absoluteValue + 'e' + digits) + 'e-' + digits);
 
     return sign * rounded;
-}
-
-export function floatFormat(value, digits = 0) {
-    if (typeof value !== "number" || isNaN(value)) {
-        return "";
-    }
-
-    const roundedValue = round(value, digits);
-
-    return roundedValue.toFixed(digits);
 }

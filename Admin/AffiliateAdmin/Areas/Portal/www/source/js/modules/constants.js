@@ -25,3 +25,8 @@ export const spinnerLoaderWidth = (maxWidth / 2) - 32
 export const spinnerLoaderUserPanelHeight = (maxUserPanelHeight / 2) - 32
 
 export const minDate = new Date(2009, 11, 1);
+
+export const submitFail = {
+    IsSuccessful: false,
+    Message: 'Update Failed!'
+}

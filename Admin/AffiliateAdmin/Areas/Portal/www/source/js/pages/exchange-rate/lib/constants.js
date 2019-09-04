@@ -24,11 +24,17 @@ export const headerText = {
 export const message = {
     Required: 'Exchange rate is required.',
     Invalid: 'Exchange rate must be greater than zero.',
-    Success: 'Updated successfully!'
+    Success: 'Updated successfully!',
+    InputDigit: 'Please input digit only.'
 }
 
 export const regExp = {
-    checkRate: "^\\-?(\\d+\\.?\\d*)?$",
-    shouldFormatRate: "^\\-?\\d+$",
-    validRate: "^\\-?\\d+(\\.\\d{1,})?$"
+    checkRate: "^(\\d+\\.?\\d*)?$",
+    shouldFormatRate: "^\\d+$",
+    validRate: "^\\d+(\\.\\d{1,})?$"
+}
+
+export const rateType = {
+    ActualRate: 0,
+    BuyingRate: 1
 }

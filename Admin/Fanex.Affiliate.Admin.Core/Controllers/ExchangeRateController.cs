@@ -5,6 +5,8 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using System;
 using Fanex.Affiliate.Admin.Core.Services.ExchangeRate;
+using Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate;
+using Fanex.Affiliate.Admin.Core.DTO;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -29,10 +31,37 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return View("~/Areas/Portal/Views/ExchangeRate/ExchangeRate.cshtml");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetExchangeRateList(DateTime date)
         {
             return new JsonNetResult {
                 Data = _exchangeRateService.GetExchangeRateList(date)
+            };
+        }
+
+        [FunctionAuthorize(FunctionName = Function.AffExRate, IsHost = true)]
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult UpdateExchangeRate(ExchangeRateParam param)
+        {
+            if (ModelState.IsValid && param.IsValid())
+            {
+                param.UserId = SessionService.UserId;
+                param.Ip = Request.UserHostAddress;
+
+                return new JsonNetResult
+                {
+                    Data = _exchangeRateService.UpdateExchangeRate(param)
+                };
+            }
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "The rate is invalid."
+                }
             };
         }
     }

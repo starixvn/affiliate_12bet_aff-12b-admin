@@ -1,6 +1,7 @@
 ﻿import { post } from '../../../modules/ajaxRequest';
+import { submitFail } from "../../../modules/constants";
 import { toggleLoader } from '../../../actions/loaderAction';
-import { SET_PARAM, SET_GRID_DATA, SET_TOGGLE_POPUP, SET_SELECTED_CURRENTCY, SHOULD_RESET_SCROLL_POSITION } from './types';
+import { SET_PARAM, SET_GRID_DATA, SET_TOGGLE_POPUP, SET_SELECTED_EXCHANGE_RATE, SHOULD_RESET_SCROLL_POSITION } from './types';
 
 export { toggleLoader };
 
@@ -25,9 +26,9 @@ export const setTogglePopup = (data) => {
     }
 }
 
-export const setSelectedCurrency = (data) => {
+export const setSelectedExchangeRate = (data) => {
     return {
-        type: SET_SELECTED_CURRENTCY,
+        type: SET_SELECTED_EXCHANGE_RATE,
         data
     }
 }
@@ -52,9 +53,9 @@ export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
-export const updateExchangeRate = (selectedCurrency) => async () => {
-    const url = 'Portal/ExchangeRate/UpdateCurrency';
-    const response = await post(url, selectedCurrency);
+export const updateExchangeRate = (selectedExchangeRate) => async () => {
+    const url = 'Portal/ExchangeRate/UpdateExchangeRate';
+    const response = await post(url, selectedExchangeRate);
 
-    return response && response.status === 200 ? response.data : null;
+    return response && response.status === 200 ? response.data : submitFail;
 }

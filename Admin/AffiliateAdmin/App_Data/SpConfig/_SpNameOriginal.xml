@@ -86,5 +86,6 @@
   </Function>
   <Function Name="ExchangeRate">
     <Setting Key="Aff_ExchangeSel" SpName="Aff_ExchangeSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_ExchangeUpdate" SpName="Aff_ExchangeUpdate" DbName="affiliate_12bet" />
   </Function>
 </Functions>

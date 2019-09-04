@@ -6,8 +6,8 @@
 
         public string Currency { get; set; }
 
-        public double ActualRate { get; set; }
+        public decimal ActualRate { get; set; }
 
-        public double BuyingRate { get; set; }
+        public decimal BuyingRate { get; set; }
     }
 }
