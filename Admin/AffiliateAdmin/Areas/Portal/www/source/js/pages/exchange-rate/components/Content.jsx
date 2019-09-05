@@ -5,29 +5,27 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { headerText, globalResource, rateType } from '../lib/constants';
-import { fetchData, setTogglePopup, setSelectedExchangeRate, setShouldResetScrollPosition } from '../actions';
+import { setTogglePopup, setSelectedExchangeRate, setShouldResetScrollPosition } from '../actions';
 import { format } from '../../../modules/numberFormat';
 
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
-        
+
         this.state = {
-            isUpdated: true
+            isToday: true
         }
 
     }
 
     componentDidUpdate(prevProps) {
-        const { param } = this.props;
-        const date = new Date(param.date);
-        const now = new Date();
-        const isUpdated = date.getMonth() == now.getMonth() && date.getDate() == now.getDate() && date.getFullYear() == now.getFullYear()
+        const { date } = this.props;
+        if (date != prevProps.date) {
+            const selectedDate = new Date(date);
+            const now = new Date(this.props.today);
+            const isToday = selectedDate.getMonth() == now.getMonth() && selectedDate.getDate() == now.getDate() && selectedDate.getFullYear() == now.getFullYear()
 
-        this.setState({ isUpdated });
-
-        if (param && param !== prevProps.param) {
-            this.props.fetchData(param);
+            this.setState({ isToday });
         }
     }
 
@@ -61,47 +59,51 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
-        const { isUpdated } = this.state;
+        const { isToday } = this.state;
+        const { hasPermission } = this.props;
+        const actualRate = format(dataItem.ActualRate, 5);
+        const buyingRate = format(dataItem.BuyingRate, 5);
+
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={dataItem.Currency}>{dataItem.Currency}</Cell>
-                <Cell title={dataItem.ActualRate}>
+                <Cell className="text-center" title={index}>{index}</Cell>
+                <Cell className="text-center" title={dataItem.Currency}>{dataItem.Currency}</Cell>
+                <Cell className="text-center" title={dataItem.ActualRate}>
                     {
-                        isUpdated && dataItem.ExchangeId !== 3 ? <Button color="link" className="p-0"
+                        hasPermission && isToday && dataItem.ExchangeId !== 3 ? <Button color="link" className="p-0"
                             onClick={() => this._handleSelectedExchangeRate({
-                                ExchangeId: dataItem.ExchangeId, Currency: dataItem.Currency, Rate: dataItem.ActualRate, RateType: rateType.ActualRate
+                                ExchangeId: dataItem.ExchangeId, Currency: dataItem.Currency, Rate: actualRate, RateType: rateType.ActualRate
                             })}>
-                            {format(dataItem.ActualRate, 5)}
-                        </Button> : format(dataItem.ActualRate, 5)
+                            {actualRate}
+                        </Button> : actualRate
                     }
 
                 </Cell>
-                <Cell title={dataItem.BuyingRate}>
+                <Cell className="text-center" title={dataItem.BuyingRate}>
                     {
-                        isUpdated && dataItem.ExchangeId !== 3 ? <Button color="link" className="p-0"
+                        hasPermission && isToday && dataItem.ExchangeId !== 3 ? <Button color="link" className="p-0"
                             onClick={() => this._handleSelectedExchangeRate({
-                                ExchangeId: dataItem.ExchangeId, Currency: dataItem.Currency, Rate: dataItem.BuyingRate, RateType: rateType.BuyingRate
+                                ExchangeId: dataItem.ExchangeId, Currency: dataItem.Currency, Rate: buyingRate, RateType: rateType.BuyingRate
                             })}>
-                            {format(dataItem.BuyingRate, 5)}
-                        </Button> : format(dataItem.BuyingRate, 5)
+                            {buyingRate}
+                        </Button> : buyingRate
                     }
                 </Cell>
             </Row>
         )
     }
 
-    _handleSelectedExchangeRate = (param) => {
+    _handleSelectedExchangeRate = (selectedExchangeRate) => {
         this.props.setTogglePopup(true);
-        this.props.setSelectedExchangeRate(param);
+        this.props.setSelectedExchangeRate(selectedExchangeRate);
     }
 
     render() {
         const { gridData } = this.props;
 
         return gridData && (
-            <div className="data-content mx-1 mt-2">
-                <div className="table-responsive table-striped">
+            <div className="data-content mx-1">
+                <div className="table-responsive table-striped my-2">
                     <Table
                         maxWidth={1000}
                         bodyHeight={300}
@@ -115,12 +117,12 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ param, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { param, shouldResetScrollPosition, gridData });
+function mapStateToProps({ today, date, shouldResetScrollPosition, gridData, hasPermission }) {
+    return Object.assign({}, { today, date, shouldResetScrollPosition, gridData, hasPermission });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, setSelectedExchangeRate, setTogglePopup, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ setSelectedExchangeRate, setTogglePopup, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

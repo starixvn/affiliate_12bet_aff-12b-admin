@@ -7,6 +7,7 @@ using System;
 using Fanex.Affiliate.Admin.Core.Services.ExchangeRate;
 using Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate;
 using Fanex.Affiliate.Admin.Core.DTO;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -21,14 +22,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             _exchangeRateService = exchangeRateService;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public ActionResult ExchangeRate()
         {
-            return View("~/Areas/Portal/Views/ExchangeRate/ExchangeRate.cshtml");
+            var permissionList = SessionService.UserPermissionList;
+            var hasPermission = permissionList.Any(i => i.FunctionName.Equals(Function.AffExRate, StringComparison.OrdinalIgnoreCase) && i.IsHost);
+
+            return View("~/Areas/Portal/Views/ExchangeRate/ExchangeRate.cshtml", model: hasPermission);
         }
 
         [HttpPost]

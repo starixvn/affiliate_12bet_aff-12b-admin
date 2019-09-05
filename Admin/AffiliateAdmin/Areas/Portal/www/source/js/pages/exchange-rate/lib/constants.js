@@ -25,7 +25,8 @@ export const message = {
     Required: 'Exchange rate is required.',
     Invalid: 'Exchange rate must be greater than zero.',
     Success: 'Updated successfully!',
-    InputDigit: 'Please input digit only.'
+    InputDigit: 'Please input digit only.',
+    ExceedLimit: 'Exchange rate exceeds the allowable limit.'
 }
 
 export const regExp = {

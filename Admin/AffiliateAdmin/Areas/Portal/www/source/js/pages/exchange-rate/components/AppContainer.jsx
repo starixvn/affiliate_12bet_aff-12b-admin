@@ -7,7 +7,6 @@ import Filter from './Filter';
 import Content from './Content';
 import EditExChangeRateForm from './EditExChangeRateForm';
 
-
 export const AppContainer = (props) => {
     return (
         <AppLayout>

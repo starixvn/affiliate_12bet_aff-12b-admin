@@ -1,4 +1,4 @@
-﻿export const SET_PARAM = "SET_PARAM";
+﻿export const SET_DATE = "SET_DATE";
 export const SET_GRID_DATA = "SET_GRID_DATA";
 export const SET_TOGGLE_POPUP = "SET_TOGGLE_POPUP";
 export const SET_SELECTED_EXCHANGE_RATE = "SET_SELECTED_EXCHANGE_RATE";

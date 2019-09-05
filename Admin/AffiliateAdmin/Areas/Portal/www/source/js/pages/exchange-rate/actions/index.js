@@ -1,13 +1,13 @@
 ﻿import { post } from '../../../modules/ajaxRequest';
 import { submitFail } from "../../../modules/constants";
 import { toggleLoader } from '../../../actions/loaderAction';
-import { SET_PARAM, SET_GRID_DATA, SET_TOGGLE_POPUP, SET_SELECTED_EXCHANGE_RATE, SHOULD_RESET_SCROLL_POSITION } from './types';
+import { SET_DATE, SET_GRID_DATA, SET_TOGGLE_POPUP, SET_SELECTED_EXCHANGE_RATE, SHOULD_RESET_SCROLL_POSITION } from './types';
 
 export { toggleLoader };
 
-export const setParam = (data) => {
+export const setDate = (data) => {
     return {
-        type: SET_PARAM,
+        type: SET_DATE,
         data
     }
 }
@@ -40,11 +40,11 @@ export const setShouldResetScrollPosition = (data) => {
     }
 }
 
-export const fetchData = (param) => async (dispatch) => {
+export const fetchData = (date) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
     const url = 'Portal/ExchangeRate/GetExchangeRateList';
-    const response = await post(url, param);
+    const response = await post(url, { date });
 
     const data = response && response.status === 200 ? response.data : null;
 

@@ -5,7 +5,7 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 import { Form, FormGroup, Label, Button } from 'reactstrap';
 
 import { resource, minDate } from '../lib/constants';
-import { setSelectedCurrency, setParam } from '../actions/index';
+import { setSelectedCurrency, setDate, fetchData } from '../actions/index';
 
 export class Filter extends PureComponent {
     constructor(props) {
@@ -27,9 +27,8 @@ export class Filter extends PureComponent {
     _handleSearch = () => {
         const { date } = this.state;
 
-        const param = Object.assign({}, { date });
-
-        this.props.setParam(param);
+        this.props.setDate(date);
+        this.props.fetchData(date);
     }
 
     render() {
@@ -59,7 +58,7 @@ function mapStateToProps({ today }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedCurrency, setParam }, dispatch);
+    return bindActionCreators({ setSelectedCurrency, setDate, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

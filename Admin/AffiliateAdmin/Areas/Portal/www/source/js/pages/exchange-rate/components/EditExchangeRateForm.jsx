@@ -26,7 +26,7 @@ export class EditExChangeRateForm extends PureComponent {
     componentDidUpdate(prevProps) {
         var { selectedExchangeRate } = this.props;
         if (selectedExchangeRate && prevProps.selectedExchangeRate != selectedExchangeRate) {
-            this.setState({ rate: format(selectedExchangeRate.Rate, 5) });
+            this.setState({ rate: selectedExchangeRate.Rate });
         }
     }
 
@@ -36,23 +36,28 @@ export class EditExChangeRateForm extends PureComponent {
         const rate = value.replace(/,/g, '');
 
         if (regexCheckRate.test(rate)) {
-            if (regexShouldFormatRate.test(rate) && Number(rate) !== 0 && Number(rate) > money.MinValue && Number(rate) < money.MaxValue) {
-                this.setState({ [event.target.name]: format(Number(rate)) })
+            if (regexShouldFormatRate.test(rate) && Number(rate) > 0 && Number(rate) < money.MaxValue) {
+                this.setState({ [name]: format(Number(rate)) })
             }
             else {
-                this.setState({ [event.target.name]: value });
+                if (Number(rate) >= money.MaxValue || value.length > 25) {
+                    this._handleShowAlert(false, message.ExceedLimit);
+                    return;
+                }
+
+                this.setState({ [name]: value });
             }
         }
     }
 
     _isValidRate = (rate) => {
-        return regexValidRate.test(rate) && Number(rate) > money.MinValue && Number(rate) < money.MaxValue;
+        return regexValidRate.test(rate) && Number(rate) < money.MaxValue;
     }
 
     _validateRate = () => {
         const rate = this.state.rate.replace(/,/g, '');
         const result = {
-            isValid: this._isValidRate(rate) && Number(rate) != 0,
+            isValid: this._isValidRate(rate) && Number(rate) > 0,
             message: ''
         }
 
@@ -74,21 +79,16 @@ export class EditExChangeRateForm extends PureComponent {
             const newExchangeRate = Object.assign({}, this.props.selectedExchangeRate, { Rate: rateNumber });
             const result = await this.props.updateExchangeRate(newExchangeRate);
 
-            this.setState({
-                isShowMessage: true,
-                isSuccess: result.IsSuccessful,
-                message: result.IsSuccessful ? message.Success : result.Message,
-                rate: result.IsSuccessful ? '' : rate
-            }, () => window.setTimeout(this._hideMessage, 3000));
+            this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message.Success : result.Message);
 
             if (result.IsSuccessful) {
                 window.setTimeout(() => {
                     this.props.setTogglePopup(false);
-                    this.props.fetchData(this.props.param);
+                    this.props.fetchData(this.props.date);
                 }, 3000);
             }
         } else {
-            this._handleShowError(rateValidation.message);
+            this._handleShowAlert(false, rateValidation.message);
         }
 
         this.props.toggleLoader(false);
@@ -102,15 +102,15 @@ export class EditExChangeRateForm extends PureComponent {
         }
         if ((charCode > 31 && (charCode < 48 || charCode > 57)) && (charCode != 46)) {
             event.preventDefault();
-            this._handleShowError(message.InputDigit);
+            this._handleShowAlert(false, message.InputDigit);
         }
     }
 
-    _handleShowError = (message) => {
+    _handleShowAlert = (isSuccess, message) => {
         this.setState({
-            isSuccess: false,
+            message,
+            isSuccess,
             isShowMessage: true,
-            message: message,
         }, () => window.setTimeout(this._hideMessage, 3000));
     }
 
@@ -144,7 +144,7 @@ export class EditExChangeRateForm extends PureComponent {
                                     <Label for="rate" sm={4} className="required">{selectedExchangeRate.RateType ? resource.Buying : resource.US$Rate}</Label>
                                     <Col sm={8}>
                                         <Input type="text" className="input-required mt-2" name="rate" id="rate" autocomplete="false"
-                                            value={rate} onChange={this._handleChange} onKeyPress={this._handleKeyPress} maxLength="21"/>
+                                            value={rate} onChange={this._handleChange} onKeyPress={this._handleKeyPress} maxLength="26" />
                                     </Col>
                                 </FormGroup>
                             </Form>
@@ -159,8 +159,8 @@ export class EditExChangeRateForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ param, selectedExchangeRate, isOpenPopup }) {
-    return Object.assign({}, { param, selectedExchangeRate, isOpenPopup });
+function mapStateToProps({ date, selectedExchangeRate, isOpenPopup }) {
+    return Object.assign({}, { date, selectedExchangeRate, isOpenPopup });
 }
 
 function mapDispatchToProps(dispatch) {

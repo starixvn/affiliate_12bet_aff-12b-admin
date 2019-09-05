@@ -5,6 +5,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate
 {
     public class ExchangeRateParam
     {
+        [Range(Validation.MinId, Validation.MaxId)]
         public int ExchangeId { get; set; }
 
         [RegularExpression(@"^\d+\.?\d*$")]
@@ -19,8 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate
 
         public bool IsValid()
         {
-            return Rate != 0 && Rate > Money.MinValue
-                    && Rate < Money.MaxValue;
+            return Rate > 0 && Rate < Money.MaxValue;
         }
     }
 }
