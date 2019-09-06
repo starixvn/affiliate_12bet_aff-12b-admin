@@ -11,7 +11,7 @@ const regexCheckRate = new RegExp(regExp.checkRate);
 const regexValidRate = new RegExp(regExp.validRate);
 const regexShouldFormatRate = new RegExp(regExp.shouldFormatRate);
 
-export class EditExChangeRateForm extends PureComponent {
+export class EditExchangeRateForm extends PureComponent {
     constructor(props) {
         super(props)
 
@@ -167,4 +167,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ updateExchangeRate, setTogglePopup, toggleLoader, fetchData }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditExChangeRateForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditExchangeRateForm);
