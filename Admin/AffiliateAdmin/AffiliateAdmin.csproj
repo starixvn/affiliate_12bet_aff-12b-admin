@@ -1405,6 +1405,11 @@
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\actions\types.js" />
+    <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\__test__\index.test.js" />
@@ -1973,6 +1978,11 @@
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\EditExchangeRateForm.jsx" />
     <Content Include="Areas\Portal\Views\ExchangeRate\ExchangeRate.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\exchange-rate\exchange-rate.scss" />
+    <Content Include="Areas\Portal\Views\Message\Message.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\MessageDetailForm.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2120,7 +2130,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65181</DevelopmentServerPort>
           <DevelopmentServerVPath>/V1</DevelopmentServerVPath>

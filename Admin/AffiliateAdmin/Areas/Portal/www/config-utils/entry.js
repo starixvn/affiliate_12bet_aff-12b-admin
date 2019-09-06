@@ -16,6 +16,7 @@ module.exports = {
     [`${jsDist}/pages/customer/customer`]: clientRoot + "/js/pages/customer/index.jsx",
     [`${jsDist}/pages/affiliate/email-history`]: clientRoot + "/js/pages/email-history/index.jsx",
     [`${jsDist}/pages/exchange-rate/exchange-rate`]: clientRoot + "/js/pages/exchange-rate/index.jsx",
+    [`${jsDist}/pages/message/message`]: clientRoot + "/js/pages/message/index.jsx",
 
     //For Thirdparty Product pages
     [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",
