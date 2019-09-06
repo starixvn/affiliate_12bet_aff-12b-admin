@@ -138,14 +138,17 @@
   <ItemGroup>
     <Compile Include="Controllers\CommissionGroupControllerTest.cs" />
     <Compile Include="Controllers\Commission\CommGroupAssignmentControllerTest.cs" />
+    <Compile Include="Controllers\ExchangeRate\ExchangeRateControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CommissionGroupRepositoryTest.cs" />
     <Compile Include="Repository\LanguageRepositoryTest.cs" />
+    <Compile Include="Repository\ExchangeRate\ExchangeRateRepositoryTest.cs" />
     <Compile Include="Repository\ProductRepositoryTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupAssignmentServiceTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupCommonServiceTest.cs" />
     <Compile Include="Services\CommissionGroupServiceTest.cs" />
     <Compile Include="Services\LanguageServiceTest.cs" />
+    <Compile Include="Services\ExchangeRate\ExchangeRateServiceTest.cs" />
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />
     <Compile Include="TestHelper\ReaderHelper.cs" />
