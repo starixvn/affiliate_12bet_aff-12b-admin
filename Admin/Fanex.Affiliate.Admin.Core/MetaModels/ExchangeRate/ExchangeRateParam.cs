@@ -8,7 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate
         [Range(Validation.MinId, Validation.MaxId)]
         public int ExchangeId { get; set; }
 
-        [RegularExpression(@"^\d+\.?\d*$")]
         public decimal Rate { get; set; }
 
         public int UserId { get; set; }

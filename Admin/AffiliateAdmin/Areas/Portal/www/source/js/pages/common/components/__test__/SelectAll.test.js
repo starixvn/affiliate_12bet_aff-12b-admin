@@ -1,10 +1,10 @@
 ﻿import React from 'react';
-import { SelectAll } from '../SelectAll';
+import SelectAll from '../SelectAll';
 import { shallow } from 'enzyme';
 
-describe('payment request - components - Content ', () => {
+describe('common - components - Content ', () => {
     const defaultProps = {
-        checkedEmails: { 2205: false, 2255: true }
+        checkedList: { 2205: false, 2255: true }
     }
 
     it('render correctly', () => {
@@ -15,25 +15,25 @@ describe('payment request - components - Content ', () => {
 
     it('onCheckAll - should be called when click All button', () => {
         const setShouldResetScrollPosition = jest.fn();
-        const setCheckedEmails = jest.fn();
-        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition, setCheckedEmails });
+        const setCheckedList = jest.fn();
+        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition, setCheckedList });
         const result = shallow(<SelectAll {...props} />);
 
         result.find('Button').at(0).simulate('click', true);
 
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(props.setCheckedEmails).toHaveBeenCalledWith({ 2205: true, 2255: true });
+        expect(props.setCheckedList).toHaveBeenCalledWith({ 2205: true, 2255: true });
     });
 
     it('onCheckAll - should be called when click None button', () => {
         const setShouldResetScrollPosition = jest.fn();
-        const setCheckedEmails = jest.fn();
-        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition, setCheckedEmails });
+        const setCheckedList = jest.fn();
+        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition, setCheckedList });
         const result = shallow(<SelectAll {...props} />);
 
         result.find('Button').at(1).simulate('click', false);
 
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(props.setCheckedEmails).toHaveBeenCalledWith({ 2205: false, 2255: false });
+        expect(props.setCheckedList).toHaveBeenCalledWith({ 2205: false, 2255: false });
     });
 })

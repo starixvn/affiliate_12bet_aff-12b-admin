@@ -7,7 +7,9 @@ exports[`email history - components - Content  render correctly with have gridDa
   className="data-content"
 >
   <Connect(DeleteEmail) />
-  <Connect(SelectAll) />
+  <SelectAll
+    checkedList={Object {}}
+  />
   <div
     className="table-responsive table-striped"
   >
@@ -305,7 +307,9 @@ exports[`email history - components - Content  render correctly with have gridDa
   className="data-content"
 >
   <Connect(DeleteEmail) />
-  <Connect(SelectAll) />
+  <SelectAll
+    checkedList={Object {}}
+  />
   <div
     className="table-responsive table-striped"
   >

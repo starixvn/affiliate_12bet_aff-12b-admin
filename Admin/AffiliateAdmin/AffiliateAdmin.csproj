@@ -1292,6 +1292,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\changePassword.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\commissionGroup.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\paymentRequestUpdate.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\selectAll.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
     <Content Include="Areas\Portal\www\source\js\modules\constants.js" />
@@ -1386,7 +1387,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\DeleteEmail.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\EmailDetailForm.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\Filter.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\SelectAll.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\SelectAll.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\__test__\index.test.js" />
@@ -1407,6 +1408,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\SelectAll.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\reducers\index.js" />
@@ -1963,7 +1965,6 @@
     <Content Include="Areas\Portal\www\source\style\pages\email-history.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\DeleteEmail.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\SelectAll.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-table.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\SharePercentSettingItem.jsx" />
@@ -1983,6 +1984,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\message\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\MessageDetailForm.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\message\message.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -19,14 +19,11 @@ export const searchByList = {
 
 export const resource = {
     Delete: 'Delete',
-    Select: 'Select:',
     EmailDetail: 'Email Detail',
     Subject: 'Subject:',
     SentDate: 'Sent Date:',
     From: 'From:',
     Content: 'Content:',
-    All: 'All',
-    None: 'None',
     SearchText: 'Search Text',
     AllDate: 'All Date',
 }
