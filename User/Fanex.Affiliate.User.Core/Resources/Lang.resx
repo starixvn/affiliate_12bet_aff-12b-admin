@@ -2269,4 +2269,55 @@
   <data name="CaptchaIsRequired" xml:space="preserve">
     <value>Captcha is required</value>
   </data>
+  <data name="GpiLottery" xml:space="preserve">
+    <value>GPI LOTTERY</value>
+  </data>
+  <data name="PrefixProduct12DIAMOND" xml:space="preserve">
+    <value>12DIAMOND</value>
+  </data>
+  <data name="PrefixProduct12EMERALD" xml:space="preserve">
+    <value>12EMERALD</value>
+  </data>
+  <data name="PrefixProduct12PEARL" xml:space="preserve">
+    <value>12PEARL</value>
+  </data>
+  <data name="PrefixProduct12OPAL" xml:space="preserve">
+    <value>12OPAL</value>
+  </data>
+  <data name="PrefixProduct12AMETHYST" xml:space="preserve">
+    <value>12AMETHYST</value>
+  </data>
+  <data name="PrefixProduct12ONYX" xml:space="preserve">
+    <value>12ONYX</value>
+  </data>
+  <data name="PrefixProduct12CRYSTAL" xml:space="preserve">
+    <value>12CRYSTAL</value>
+  </data>
+  <data name="PrefixProduct12AMBER" xml:space="preserve">
+    <value>12AMBER</value>
+  </data>
+  <data name="SuffixProduct12DIAMOND" xml:space="preserve">
+    <value>(OPUS GAMING)</value>
+  </data>
+  <data name="SuffixProduct12EMERALD" xml:space="preserve">
+    <value>(Playtech)</value>
+  </data>
+  <data name="SuffixProduct12PEARL" xml:space="preserve">
+    <value>(ASIA GAMING)</value>
+  </data>
+  <data name="SuffixProduct12OPAL" xml:space="preserve">
+    <value>(EBET)</value>
+  </data>
+  <data name="SuffixProduct12AMETHYST" xml:space="preserve">
+    <value>(GOLD DELUXE)</value>
+  </data>
+  <data name="SuffixProduct12ONYX" xml:space="preserve">
+    <value>(ALLBET)</value>
+  </data>
+  <data name="SuffixProduct12CRYSTAL" xml:space="preserve">
+    <value>(GAME PLAY INTERACTIVE)</value>
+  </data>
+  <data name="SuffixProduct12AMBER" xml:space="preserve">
+    <value>(BETSOFT)</value>
+  </data>
 </root>

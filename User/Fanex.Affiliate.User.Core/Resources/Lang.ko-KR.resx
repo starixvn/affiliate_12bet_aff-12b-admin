@@ -2113,4 +2113,55 @@
   <data name="CaptchaIsRequired" xml:space="preserve">
     <value>보안 문자 문자입력</value>
   </data>
+  <data name="GpiLottery" xml:space="preserve">
+    <value>GPI 로또</value>
+  </data>
+  <data name="PrefixProduct12DIAMOND" xml:space="preserve">
+    <value>12다이아몬드</value>
+  </data>
+  <data name="PrefixProduct12EMERALD" xml:space="preserve">
+    <value>12에메랄드</value>
+  </data>
+  <data name="PrefixProduct12PEARL" xml:space="preserve">
+    <value>12펄</value>
+  </data>
+  <data name="PrefixProduct12OPAL" xml:space="preserve">
+    <value>12오팔</value>
+  </data>
+  <data name="PrefixProduct12AMETHYST" xml:space="preserve">
+    <value>12에머시스트</value>
+  </data>
+  <data name="PrefixProduct12ONYX" xml:space="preserve">
+    <value>12오닉스</value>
+  </data>
+  <data name="PrefixProduct12CRYSTAL" xml:space="preserve">
+    <value>12크리스탈</value>
+  </data>
+  <data name="PrefixProduct12AMBER" xml:space="preserve">
+    <value>12엠버</value>
+  </data>
+  <data name="SuffixProduct12DIAMOND" xml:space="preserve">
+    <value>(오푸스 게임)</value>
+  </data>
+  <data name="SuffixProduct12EMERALD" xml:space="preserve">
+    <value>(플레이텍,PLAYTECH)</value>
+  </data>
+  <data name="SuffixProduct12PEARL" xml:space="preserve">
+    <value>(아시아 게이밍)</value>
+  </data>
+  <data name="SuffixProduct12OPAL" xml:space="preserve">
+    <value>(이벳)</value>
+  </data>
+  <data name="SuffixProduct12AMETHYST" xml:space="preserve">
+    <value>(골드 디럭스)</value>
+  </data>
+  <data name="SuffixProduct12ONYX" xml:space="preserve">
+    <value>(올벳)</value>
+  </data>
+  <data name="SuffixProduct12CRYSTAL" xml:space="preserve">
+    <value>(게임플레이 인터렉티브)</value>
+  </data>
+  <data name="SuffixProduct12AMBER" xml:space="preserve">
+    <value>(벳소프트)</value>
+  </data>
 </root>

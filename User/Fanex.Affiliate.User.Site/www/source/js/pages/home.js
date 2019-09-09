@@ -4,7 +4,7 @@
             _me.initEvent();
         },
         initEvent: function () {
-            $('#bannerSignup').on('click', function (event) {
+            $('#sportBanner').on('click', function (event) {
                 event.preventDefault();
                 var redirectLink = $(this).attr('href');
                 PageTracking.addTrackingForSignUpPage();
@@ -14,7 +14,7 @@
                 }, 10);
             })
 
-            $('.mediaLink').on('click', function (event) {
+            $('#casinoBanner').on('click', function (event) {
                 event.preventDefault();
                 var $this = $(this);
                 var isLoggedIn = !$this.hasClass('mediaLoginLink');
