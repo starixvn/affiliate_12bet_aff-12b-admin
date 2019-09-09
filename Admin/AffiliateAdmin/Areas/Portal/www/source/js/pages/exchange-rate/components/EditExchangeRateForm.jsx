@@ -55,10 +55,9 @@ export class EditExchangeRateForm extends PureComponent {
         return regexValidRate.test(rate) && Number(rate) < money.MaxValue;
     }
 
-    _validateRate = () => {
-        const rate = this.state.rate.replace(/,/g, '');
+    _validateRate = (rate, rateNumber) => {
         const result = {
-            isValid: this._isValidRate(rate) && Number(rate) > 0,
+            isValid: this._isValidRate(rate) && rateNumber > 0,
             message: ''
         }
 
@@ -72,11 +71,11 @@ export class EditExchangeRateForm extends PureComponent {
     _handleSubmit = async () => {
         this.props.toggleLoader(true);
 
-        const rateValidation = this._validateRate();
+        const rate = this.state.rate.replace(/,/g, '');
+        const rateNumber = Number(rate);
+        const rateValidation = this._validateRate(rate, rateNumber);
 
         if (rateValidation.isValid) {
-            const { rate } = this.state;
-            const rateNumber = Number(rate.replace(/,/g, ''));
             const newExchangeRate = Object.assign({}, this.props.selectedExchangeRate, { Rate: rateNumber });
             const result = await this.props.updateExchangeRate(newExchangeRate);
 

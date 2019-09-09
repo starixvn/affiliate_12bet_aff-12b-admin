@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`common - components - Content  render correctly 1`] = `
+exports[`common - components - SelectAll  render correctly 1`] = `
 <div
   className="selection"
 >

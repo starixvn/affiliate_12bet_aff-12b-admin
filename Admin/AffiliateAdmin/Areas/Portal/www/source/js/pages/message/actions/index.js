@@ -43,7 +43,7 @@ export const setGridData = (data) => {
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const url = 'Portal/Message/Message/GetMessageList';
+    const url = 'Portal/Message/GetMessageList';
     const response = await post(url, param);
 
     const data = response && response.status === 200 ? response.data : null;
@@ -67,29 +67,29 @@ function _convertCheckedMessages(dataList) {
 }
 
 export const getMessageDetail = (selectedMessageId) => async () => {
-    const url = 'Portal/Message/Message/GetMessageDetail';
+    const url = 'Portal/Message/GetMessageDetail';
     const response = await post(url, { selectedMessageId });
 
     return response && response.status === 200 ? response.data : null;
 }
 
 export const createMessage = (param) => async () => {
-    const url = 'Portal/Message/Message/CreateMessage';
+    const url = 'Portal/Message/CreateMessage';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }
 
 export const updateMessage = (param) => async () => {
-    const url = 'Portal/Message/Message/UpdateMessage';
+    const url = 'Portal/Message/UpdateMessage';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }
 
-export const deleteMessage = (param) => async () => {
-    const url = 'Portal/Message/Message/DeleteMessage';
-    const response = await post(url, param);
+export const deleteMessages = (checkedMessages) => async () => {
+    const url = 'Portal/Message/DeleteMessages';
+    const response = await post(url, { checkedMessages });
 
     return response && response.status === 200 ? response.data : null;
 }

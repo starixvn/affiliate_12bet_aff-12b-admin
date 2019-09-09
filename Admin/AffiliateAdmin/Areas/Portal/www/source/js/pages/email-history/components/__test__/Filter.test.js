@@ -5,7 +5,7 @@ import * as ajaxRequest from '../../../../modules/ajaxRequest';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { defaultPagingOption } from '../../../../modules/constants';
 
-describe('payment request - components - Content ', () => {
+describe('email history - components - Filter ', () => {
     const defaultProps = {
         today: "6/28/2019",
         pagingOption: defaultPagingOption

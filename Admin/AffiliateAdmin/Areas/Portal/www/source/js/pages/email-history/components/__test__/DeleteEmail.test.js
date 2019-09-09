@@ -3,7 +3,7 @@ import { DeleteEmail } from '../DeleteEmail';
 import { shallow } from 'enzyme';
 import * as ajaxRequest from '../../../../modules/ajaxRequest';
 
-describe('payment request - components - Content ', () => {
+describe('email history - components - DeleteEmail ', () => {
     const defaultProps = {
         checkedEmails: {},
         param: {

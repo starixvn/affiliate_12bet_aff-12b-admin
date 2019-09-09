@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`payment request - components - Content  render correctly 1`] = `
+exports[`email history - components - DeleteEmail  render correctly 1`] = `
 <div
   className="my-2"
 >

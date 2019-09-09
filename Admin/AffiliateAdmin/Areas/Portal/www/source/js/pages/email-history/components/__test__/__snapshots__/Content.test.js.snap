@@ -7,7 +7,7 @@ exports[`email history - components - Content  render correctly with have gridDa
   className="data-content"
 >
   <Connect(DeleteEmail) />
-  <SelectAll
+  <Memo(SelectAll)
     checkedList={Object {}}
   />
   <div
@@ -307,7 +307,7 @@ exports[`email history - components - Content  render correctly with have gridDa
   className="data-content"
 >
   <Connect(DeleteEmail) />
-  <SelectAll
+  <Memo(SelectAll)
     checkedList={Object {}}
   />
   <div

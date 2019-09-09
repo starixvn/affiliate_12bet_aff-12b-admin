@@ -18,6 +18,7 @@ export const resource = {
     Select: 'Select:',
     None: 'None',
     AllDate: 'All Date',
+    ViewDetail: 'View Detail',
     Add: globalResource.Add,
     All: globalResource.All,
     From: globalResource.From,

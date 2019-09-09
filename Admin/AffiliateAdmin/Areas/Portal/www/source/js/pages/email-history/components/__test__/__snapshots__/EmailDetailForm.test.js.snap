@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`payment request - components - Content  render correctly 1`] = `""`;
+exports[`email history - components - EmailDetailForm  render correctly 1`] = `""`;
 
-exports[`payment request - components - Content  render correctly with have dataItem 1`] = `
+exports[`email history - components - EmailDetailForm  render correctly with have dataItem 1`] = `
 <Modal
   autoFocus={true}
   backdrop="static"
@@ -275,7 +275,7 @@ exports[`payment request - components - Content  render correctly with have data
 </Modal>
 `;
 
-exports[`payment request - components - Content  render correctly with have dataItem and isSuccess is false 1`] = `
+exports[`email history - components - EmailDetailForm  render correctly with have dataItem and isSuccess is false 1`] = `
 <Modal
   autoFocus={true}
   backdrop="static"

@@ -112,8 +112,8 @@ export class Content extends PureComponent {
                 <DeleteEmail />
                 <SelectAll
                     checkedList={this.props.checkedEmails}
-                    setCheckedList={this.props.setSelectedEmailId}
-                    setShouldResetScrollPosition={this.setShouldResetScrollPosition}
+                    setCheckedList={this.props.setCheckedEmails}
+                    setShouldResetScrollPosition={this.props.setShouldResetScrollPosition}
                 />
                 <div className="table-responsive table-striped">
                     <Table

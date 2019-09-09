@@ -3,7 +3,7 @@ import { EmailDetailForm } from '../EmailDetailForm';
 import { shallow } from 'enzyme';
 import * as ajaxRequest from '../../../../modules/ajaxRequest';
 
-describe('payment request - components - Content ', () => {
+describe('email history - components - EmailDetailForm ', () => {
     const defaultProps = {
         selectedEmailId: 2205,
         param: {

@@ -88,4 +88,7 @@
     <Setting Key="Aff_ExchangeSel" SpName="Aff_ExchangeSel" DbName="affiliate_12bet" />
     <Setting Key="Aff_ExchangeUpdate" SpName="Aff_ExchangeUpdate" DbName="affiliate_12bet" />
   </Function>
+  <Function Name="Message">
+    <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel" DbName="affiliate_12bet" />
+  </Function>
 </Functions>

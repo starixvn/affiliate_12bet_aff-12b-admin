@@ -1,38 +1,33 @@
-﻿import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+﻿import React from 'react';
 import { Button } from 'reactstrap';
 
 import { resource } from '../modules/constants/selectAll';
 
-export default class SelectAll extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
+export const SelectAll = (props) => {
 
-    _onCheckAll = (isCheckAll) => {
-        const { checkedList } = this.props;
+    function _onCheckAll(isCheckAll) {
+        const { checkedList } = props;
         const newCheckedList = Object.keys(checkedList).reduce((accumulator, currentValue) => {
             accumulator[currentValue] = isCheckAll;
 
             return accumulator;
         }, {});
 
-        this.props.setShouldResetScrollPosition(false);
-        this.props.setCheckedList(newCheckedList);
+        props.setShouldResetScrollPosition(false);
+        props.setCheckedList(newCheckedList);
     }
 
-    render() {
-        return (
-            <div className="selection">
-                <span>{resource.Select}</span>
-                <Button type="button" color="link" className="text-dark font-weight-bold" onClick={() => this._onCheckAll(true)}>
-                    <u>{resource.All}</u>
-                </Button>
-                <Button type="button" color="link" className="text-dark font-weight-bold" onClick={() => this._onCheckAll(false)}>
-                    <u>{resource.None}</u>
-                </Button>
-            </div>
-        );
-    }
+    return (
+        <div className="selection">
+            <span>{resource.Select}</span>
+            <Button type="button" color="link" className="text-dark font-weight-bold" onClick={() => _onCheckAll(true)}>
+                <u>{resource.All}</u>
+            </Button>
+            <Button type="button" color="link" className="text-dark font-weight-bold" onClick={() => _onCheckAll(false)}>
+                <u>{resource.None}</u>
+            </Button>
+        </div>
+    );
 }
+
+export default React.memo(SelectAll);

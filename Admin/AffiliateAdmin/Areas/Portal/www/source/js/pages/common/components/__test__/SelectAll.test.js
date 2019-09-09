@@ -2,7 +2,7 @@
 import SelectAll from '../SelectAll';
 import { shallow } from 'enzyme';
 
-describe('common - components - Content ', () => {
+describe('common - components - SelectAll ', () => {
     const defaultProps = {
         checkedList: { 2205: false, 2255: true }
     }
