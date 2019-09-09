@@ -1,62 +1,88 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.ExchangeRate;
-using Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate;
-using Fanex.Affiliate.Admin.Core.Repository.ExchangeRate;
+﻿using Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate;
 using Fanex.Affiliate.Admin.Core.Services.ExchangeRate;
+using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
+using Fanex.Data;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ExchangeRate
 {
     public class ExchangeRateServiceTest
     {
+        private const string SpKeyExchangeSel = "Aff_ExchangeSel";
+        private const string SpKeyExchangeUpdate = "Aff_ExchangeUpdate";
+
         [Fact]
-        public void GetExchangeRateList_WhenCall_ExcuteWithCorrectData()
+        public void GetExchangeRateList_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var date = new DateTime();
-            DateTime? passedDate = null;
-            var exchangeRateRepository = new Mock<IExchangeRateRepository>();
-            exchangeRateRepository.Setup(ex => ex.GetExchangeRateList(date)).Returns(new List<ExchangeRateInfo> { new ExchangeRateInfo() }).Callback<DateTime>(d => passedDate = d);
+            var service = new Mock<ExchangeRateService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
-            var service = CreateExchangeRateService(exchangeRateRepository.Object);
+            ReaderHelper.MapReaderData(dataReader, GetExchangeRateList());
+            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            service.Setup(re => re.GetObjectDb(SpKeyExchangeSel, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.GetExchangeRateList(date);
+            var result = service.Object.GetExchangeRateList(date);
 
             // Assert
             Assert.Single(result);
-            Assert.Equal(date, passedDate);
         }
 
         [Fact]
-        public void UpdateExchangeRate_WhenCall_ExcuteWithCorrectData()
+        public void UpdateExchangeRate_WhenCallWithValidParam_UpdateSuccessfully()
         {
             // Arrange
-            var param = new ExchangeRateParam();
-            ExchangeRateParam passedParam = null;
-            var exchangeRateRepository = new Mock<IExchangeRateRepository>();
-            exchangeRateRepository.Setup(ex => ex.UpdateExchangeRate(param)).Returns(new ResultInfo()).Callback<ExchangeRateParam>(d => passedParam = d);
-
-            var service = CreateExchangeRateService(exchangeRateRepository.Object);
+            var repository = new Mock<ExchangeRateService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+            repository.Setup(re => re.GetObjectDb(SpKeyExchangeUpdate, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.UpdateExchangeRate(param);
+            var result = repository.Object.UpdateExchangeRate(new ExchangeRateParam());
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
-        private static ExchangeRateService CreateExchangeRateService(IExchangeRateRepository exchangeRateRepository = null)
-        {
-            var fakeExchangeRateRepository = exchangeRateRepository ?? Mock.Of<IExchangeRateRepository>();
 
-            return new ExchangeRateService(fakeExchangeRateRepository);
+        [Fact]
+        public void UpdateExchangeRate_WhenCallWithInvalidParam_UpdateIsFailed()
+        {
+            // Arrange
+            var message = "Update is failed.";
+            var repository = new Mock<ExchangeRateService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
+            repository.Setup(re => re.GetObjectDb(SpKeyExchangeUpdate, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.UpdateExchangeRate(new ExchangeRateParam());
+
+            // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.Equal(message, result.Message);
+        }
+
+        private IDictionary<string, object> GetExchangeRateList()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["ExchangeId"] = 3,
+                ["Currency"] = "US$",
+                ["ActualRate"] = 1,
+                ["BuyingRate"] = 1
+            };
         }
     }
 }

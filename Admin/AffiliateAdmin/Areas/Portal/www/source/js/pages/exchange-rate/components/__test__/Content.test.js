@@ -75,11 +75,12 @@ describe('exchange rate - components - Content ', () => {
         expect(wrapper.instance()._handleSelectedExchangeRate).toHaveBeenCalledWith({ ExchangeId: 9, Currency: "AUD", Rate: "0.76779", RateType: 1 });
     });
 
-    it('_handleSelectedExchangeRate - should call setTogglePopup and setSelectedExchangeRate', () => {
+    it('_handleSelectedExchangeRate - should call setTogglePopup and setSelectedExchangeRate and setShouldResetScrollPosition', () => {
         const setTogglePopup = jest.fn();
         const setSelectedExchangeRate = jest.fn();
+        const setShouldResetScrollPosition = jest.fn();
 
-        const props = Object.assign({}, defaultProps, { setTogglePopup, setSelectedExchangeRate });
+        const props = Object.assign({}, defaultProps, { setTogglePopup, setSelectedExchangeRate, setShouldResetScrollPosition });
         const wrapper = shallow(<Content {...props} />);
 
         const selectedExchangeRate = { ExchangeId: 9, Currency: "AUD", Rate: 0.767789, RateType: 1 };
@@ -87,5 +88,6 @@ describe('exchange rate - components - Content ', () => {
 
         expect(props.setTogglePopup).toHaveBeenCalledWith(true);
         expect(props.setSelectedExchangeRate).toHaveBeenCalledWith(selectedExchangeRate);
+        expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
     });
 });

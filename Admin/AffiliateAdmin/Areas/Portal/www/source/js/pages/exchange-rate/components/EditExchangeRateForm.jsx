@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { resource, message, regExp, money } from '../lib/constants';
+import { resource, message, regExp, money, maxLength, charCodes } from '../libs/constants';
 import { updateExchangeRate, setTogglePopup, toggleLoader, fetchData } from '../actions/index';
 import { format } from '../../../modules/numberFormat';
 
@@ -24,8 +24,8 @@ export class EditExchangeRateForm extends PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        var { selectedExchangeRate } = this.props;
-        if (selectedExchangeRate && prevProps.selectedExchangeRate != selectedExchangeRate) {
+        const { selectedExchangeRate } = this.props;
+        if (selectedExchangeRate && prevProps.selectedExchangeRate !== selectedExchangeRate) {
             this.setState({ rate: selectedExchangeRate.Rate });
         }
     }
@@ -34,13 +34,14 @@ export class EditExchangeRateForm extends PureComponent {
         const value = event.target.value;
         const name = event.target.name;
         const rate = value.replace(/,/g, '');
+        const numberRate = Number(rate);
 
         if (regexCheckRate.test(rate)) {
-            if (regexShouldFormatRate.test(rate) && Number(rate) > 0 && Number(rate) < money.MaxValue) {
-                this.setState({ [name]: format(Number(rate)) })
+            if (regexShouldFormatRate.test(rate) && numberRate > 0 && numberRate < money.MaxValue) {
+                this.setState({ [name]: format(numberRate) })
             }
             else {
-                if (Number(rate) >= money.MaxValue || value.length > 25) {
+                if (numberRate >= money.MaxValue || value.length > maxLength) {
                     this._handleShowAlert(false, message.ExceedLimit);
                     return;
                 }
@@ -82,10 +83,7 @@ export class EditExchangeRateForm extends PureComponent {
             this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message.Success : result.Message);
 
             if (result.IsSuccessful) {
-                window.setTimeout(() => {
-                    this.props.setTogglePopup(false);
-                    this.props.fetchData(this.props.date);
-                }, 3000);
+                this.props.fetchData(this.props.date);
             }
         } else {
             this._handleShowAlert(false, rateValidation.message);
@@ -96,11 +94,11 @@ export class EditExchangeRateForm extends PureComponent {
 
     _handleKeyPress = (event) => {
         const charCode = event.charCode;
-        if (event.charCode === 13) {
+        if (event.charCode === charCodes.KeyEnter) {
             event.preventDefault();
             this._handleSubmit();
         }
-        if ((charCode > 31 && (charCode < 48 || charCode > 57)) && (charCode != 46)) {
+        if ((charCode > charCodes.KeyUnitSeparator && (charCode < charCodes.Key0 || charCode > charCodes.Key9)) && (charCode != charCodes.KeyDot)) {
             event.preventDefault();
             this._handleShowAlert(false, message.InputDigit);
         }
@@ -111,13 +109,17 @@ export class EditExchangeRateForm extends PureComponent {
             message,
             isSuccess,
             isShowMessage: true,
-        }, () => window.setTimeout(this._hideMessage, 3000));
+        }, () => window.setTimeout(() => this._hideMessage(isSuccess), 3000));
     }
 
-    _hideMessage = () => {
+    _hideMessage = (isSuccess) => {
         this.setState({
             isShowMessage: false
         });
+
+        if (!!isSuccess) {
+            this.props.setTogglePopup(false);
+        }
     }
 
     render() {

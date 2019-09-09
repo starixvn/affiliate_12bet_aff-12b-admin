@@ -39,3 +39,13 @@ export const rateType = {
     ActualRate: 0,
     BuyingRate: 1
 }
+
+export const maxLength = 25;
+export const exchangeUs$Id = 3;
+export const charCodes = {
+    KeyEnter: 13,
+    KeyDot: 46,
+    Key0: 48,
+    Key9: 57,
+    KeyUnitSeparator: 31
+}

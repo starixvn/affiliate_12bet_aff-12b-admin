@@ -1402,7 +1402,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\EditExchangeRateForm.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\Filter.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\lib\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\__test__\index.test.js" />

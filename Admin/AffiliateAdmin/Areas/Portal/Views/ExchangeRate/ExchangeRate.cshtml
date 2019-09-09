@@ -3,6 +3,10 @@
     Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
 }
 
+@{ 
+    var hasPermission = Model;
+}
+
 @model bool
 
 @section styles{
@@ -12,7 +16,7 @@
 @section scripts{
     <script type="text/javascript">
         window.initialState = {
-            hasPermission: '@Model'.toLowerCase() == 'true',
+            hasPermission: '@hasPermission' === 'True',
             today: '@DateTime.Now.ToString("MM/dd/yyyy")'
         }
     </script>

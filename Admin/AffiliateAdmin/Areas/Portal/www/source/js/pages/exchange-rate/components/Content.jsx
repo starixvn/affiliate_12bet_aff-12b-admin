@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText, globalResource, rateType } from '../lib/constants';
+import { headerText, globalResource, rateType, exchangeUs$Id } from '../libs/constants';
 import { setTogglePopup, setSelectedExchangeRate, setShouldResetScrollPosition } from '../actions';
 import { format } from '../../../modules/numberFormat';
 
@@ -20,10 +20,10 @@ export class Content extends PureComponent {
 
     componentDidUpdate(prevProps) {
         const { date } = this.props;
-        if (date != prevProps.date) {
+        if (date !== prevProps.date) {
             const selectedDate = new Date(date);
             const now = new Date(this.props.today);
-            const isToday = selectedDate.getMonth() == now.getMonth() && selectedDate.getDate() == now.getDate() && selectedDate.getFullYear() == now.getFullYear()
+            const isToday = selectedDate.getMonth() === now.getMonth() && selectedDate.getDate() === now.getDate() && selectedDate.getFullYear() === now.getFullYear()
 
             this.setState({ isToday });
         }
@@ -70,7 +70,7 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={dataItem.Currency}>{dataItem.Currency}</Cell>
                 <Cell className="text-center" title={dataItem.ActualRate}>
                     {
-                        hasPermission && isToday && dataItem.ExchangeId !== 3 ? <Button color="link" className="p-0"
+                        hasPermission && isToday && dataItem.ExchangeId !== exchangeUs$Id ? <Button color="link" className="p-0"
                             onClick={() => this._handleSelectedExchangeRate({
                                 ExchangeId: dataItem.ExchangeId, Currency: dataItem.Currency, Rate: actualRate, RateType: rateType.ActualRate
                             })}>
@@ -81,7 +81,7 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={dataItem.BuyingRate}>
                     {
-                        hasPermission && isToday && dataItem.ExchangeId !== 3 ? <Button color="link" className="p-0"
+                        hasPermission && isToday && dataItem.ExchangeId !== exchangeUs$Id ? <Button color="link" className="p-0"
                             onClick={() => this._handleSelectedExchangeRate({
                                 ExchangeId: dataItem.ExchangeId, Currency: dataItem.Currency, Rate: buyingRate, RateType: rateType.BuyingRate
                             })}>
@@ -96,6 +96,7 @@ export class Content extends PureComponent {
     _handleSelectedExchangeRate = (selectedExchangeRate) => {
         this.props.setTogglePopup(true);
         this.props.setSelectedExchangeRate(selectedExchangeRate);
+        this.props.setShouldResetScrollPosition(false);
     }
 
     render() {
