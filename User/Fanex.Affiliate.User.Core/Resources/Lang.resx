@@ -2320,4 +2320,8 @@
   <data name="SuffixProduct12AMBER" xml:space="preserve">
     <value>(BETSOFT)</value>
   </data>
+  <data name="MKK" xml:space="preserve">
+    <value>MMK</value>
+    <comment>MMK</comment>
+  </data>
 </root>
