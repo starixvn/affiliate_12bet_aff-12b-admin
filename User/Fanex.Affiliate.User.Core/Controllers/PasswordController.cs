@@ -104,7 +104,7 @@
         {
             if (uid == 0 || string.IsNullOrEmpty(vid))
             {
-                return Redirect("RecoverPasswordResult?isSuccessful=false");
+                return Redirect(Url.Content("~/Password/RecoverPasswordResult?isSuccessful=false"));
             }
             var newPassword = Generator.GetRandomString(10);
             var param = new PasswordRecoveryParam
@@ -136,10 +136,10 @@
                 _mailService.SendNewPasswordEmail(recoverEmailParam);
                 LanguageService.SetCulture(SessionService.CurrentLanguage);
 
-                return Redirect("RecoverPasswordResult?isSuccessful=true");
+                return Redirect(Url.Content("~/Password/RecoverPasswordResult?isSuccessful=true"));
             }
 
-            return Redirect($"RecoverPasswordResult?isSuccessful={isSuccessful}&errCode={param.ErrCode}");
+            return Redirect(Url.Content($"~/Password/RecoverPasswordResult?isSuccessful={isSuccessful}&errCode={param.ErrCode}"));
         }
 
         public ActionResult RecoverPasswordResult(bool isSuccessful = false, int errCode = 0)

@@ -104,28 +104,8 @@ var Layout = (function ($) {
         changeLanguage: function (selectedLanguage) {
             var hash = window.location.hash;
             var href = window.location.href;
-            var actualUrl = href.substring(0, href.indexOf(hash));
+            var actualUrl = !!hash ? href.substring(0, href.indexOf(hash)) : href;
             var newActualUrl = createNewUrlByLanguage(actualUrl, selectedLanguage);
-
-            var search = window.location.search;
-            var parameters = '';
-            if (search !== '') {
-                var langParamLength = 7;
-                var indexLang = search.indexOf('lang');
-                if (indexLang !== -1) {
-                    if (indexLang === 1) {
-                        parameters = search.substring(indexLang + langParamLength + 1, search.length);
-                    } else {
-                        parameters = search.substring(1, indexLang) + search.substring(indexLang + langParamLength, search.length);
-                    }
-                } else {
-                    parameters = search.substring(1, search.length);
-                }
-            }
-
-            if (parameters !== '') {
-                newActualUrl = newActualUrl + '&' + parameters;
-            }
 
             var url = newActualUrl + hash;
 
