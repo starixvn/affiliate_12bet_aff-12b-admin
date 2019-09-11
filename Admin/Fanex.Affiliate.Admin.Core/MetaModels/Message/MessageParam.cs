@@ -10,9 +10,11 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Message
 
         public bool IsGetAll { get; set; }
 
-        public DateTime? FromDate { get; set; }
+        [Required]
+        public DateTime FromDate { get; set; }
 
-        public DateTime? ToDate { get; set; }
+        [Required]
+        public DateTime ToDate { get; set; }
 
         [Range(Validation.MinPageIndex, Validation.MaxPageIndex)]
         public int PageIndex { get; set; }

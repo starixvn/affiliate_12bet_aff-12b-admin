@@ -49,7 +49,7 @@ export const fetchData = (param) => async (dispatch) => {
     const data = response && response.status === 200 ? response.data : null;
     const checkedMessages = data ? _convertCheckedMessages(data.MainData) : {};
 
-    dispatch(setGridData(data ? data.MainData : null));
+    dispatch(setGridData(data ? data.MainData : []));
     dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(setCheckedMessages(checkedMessages));

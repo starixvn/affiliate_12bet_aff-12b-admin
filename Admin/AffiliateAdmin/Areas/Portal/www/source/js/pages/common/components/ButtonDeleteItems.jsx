@@ -13,11 +13,11 @@ export const ButtonDeleteItems = (props) => {
         const itemIdList = _getCheckedItemIdList();
 
         if (itemIdList.length === 0) {
-            alert(messages.PleaseSelect);
+            alert(props.messages.PleaseSelect);
             return;
         }
 
-        const isConfirmed = window.confirm(messages.AreYouSureDeleteItems);
+        const isConfirmed = window.confirm(props.messages.AreYouSureDeleteItems);
         if (isConfirmed) {
             props.toggleLoader(true);
 
@@ -25,7 +25,7 @@ export const ButtonDeleteItems = (props) => {
 
             if (result) {
                 if (result.IsSuccessful) {
-                    alert(messages.DeleteSuccessfully);
+                    alert(props.messages.DeleteItemsSuccessfully);
 
                     props.fetchData();
                 }
@@ -39,9 +39,7 @@ export const ButtonDeleteItems = (props) => {
     }
 
     return (
-        <div className="my-2">
-            <Button outline type="button" color="danger" onClick={_handleDelete}>Delete<span className="oi oi-x ml-2"></span></Button>
-        </div>
+        <Button outline type="button" color="danger" onClick={_handleDelete}>Delete<span className="oi oi-x ml-2"></span></Button>
     );
 }
 

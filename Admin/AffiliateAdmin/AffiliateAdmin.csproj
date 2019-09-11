@@ -1410,6 +1410,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\SelectAll.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\ButtonDeleteItems.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\ControlButtons.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\reducers\index.js" />

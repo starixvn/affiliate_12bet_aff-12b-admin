@@ -6,8 +6,8 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../modules/htmlHelper';
 import { headerText, resource } from '../libs/constants';
-import { setSelectedMessageId, setPagingOption, fetchData, setCheckedMessages, setShouldResetScrollPosition, setParam, toggleLoader, deleteMessages } from '../actions';
-import ButtonDeleteItems from '../../common/components/ButtonDeleteItems';
+import { setSelectedMessageId, setPagingOption, fetchData, setCheckedMessages, setShouldResetScrollPosition, setParam } from '../actions';
+import ControlButtons from './ControlButtons';
 import SelectAll from '../../common/components/SelectAll';
 
 export class Content extends PureComponent {
@@ -41,21 +41,17 @@ export class Content extends PureComponent {
         this.props.setParam(newParam);
     };
 
-    _handleFetchData = () => {
-        this.props.fetchData(this.props.param);
-    };
-
     _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={35}></Cell>
-                <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.Creator}>{headerText.Creator}</Cell>
-                <Cell header={true} colWidth={150} title={headerText.PostedDate}>{headerText.PostedDate}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.Message}>{headerText.Message}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.Important}>{headerText.Important}</Cell>
+                <Cell header={true} colWidth={40}></Cell>
+                <Cell header={true} colWidth={40} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Creator}>{headerText.Creator}</Cell>
+                <Cell header={true} colWidth={140} title={headerText.PostedDate}>{headerText.PostedDate}</Cell>
+                <Cell header={true} colWidth={550} title={headerText.Message}>{headerText.Message}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Important}>{headerText.Important}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.UpdatedBy}>{headerText.UpdatedBy}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.UpdatedDate}>{headerText.UpdatedDate}</Cell>
+                <Cell header={true} colWidth={140} title={headerText.UpdatedDate}>{headerText.UpdatedDate}</Cell>
             </Row>
         );
     }
@@ -86,23 +82,24 @@ export class Content extends PureComponent {
         const message = htmlDecode(dataItem.Message);
         const important = dataItem.Important ? 'Yes' : 'No';
         const updatedBy = htmlDecode(dataItem.UpdatedBy);
+        const textDanger = dataItem.Important ? "text-danger" : "";
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
                     <input type="checkbox" checked={this.props.checkedMessages[dataItem.MessageId]}
                         onChange={(e) => this.onCheckItem(e.target.checked, dataItem.MessageId)} />
                 </Cell>
-                <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={creator}>{creator}</Cell>
-                <Cell title={dataItem.postedDateText}>{dataItem.postedDateText}</Cell>
+                <Cell className="text-center" title={index}>{index}</Cell>
+                <Cell className="text-center" title={creator}>{creator}</Cell>
+                <Cell className="text-center" title={dataItem.PostedDateText}>{dataItem.PostedDateText}</Cell>
                 <Cell title={resource.ViewDetail}>
-                    <Button color="link" className="p-0" onClick={() => this.props.setSelectedMessageId(dataItem.MessageId)}>
+                    <Button color="link" className={`p-0 message-content ${textDanger}`} onClick={() => this.props.setSelectedMessageId(dataItem.MessageId)}>
                         {message}
                     </Button>
                 </Cell>
-                <Cell title={important}>{important}</Cell>
-                <Cell title={updatedBy} className="text-center">{updatedBy}</Cell>
-                <Cell title={dataItem.updatedDateText}>{dataItem.updatedDateText}</Cell>
+                <Cell className="text-center" title={important}>{important}</Cell>
+                <Cell className="text-center" title={updatedBy}>{updatedBy}</Cell>
+                <Cell className="text-center" title={dataItem.UpdatedDateText}>{dataItem.UpdatedDateText}</Cell>
             </Row>
         )
     }
@@ -111,26 +108,14 @@ export class Content extends PureComponent {
         const { gridData, checkedMessages } = this.props;
 
         return gridData && (
-            <div className="data-content">
-                <ButtonDeleteItems
-                    checkedItems={checkedMessages}
-                    toggleLoader={this.props.toggleLoader}
-                    deleteItems={this.props.deleteMessages}
-                    fetchData={this._handleFetchData}
-                />
-                <SelectAll
-                    checkedList={checkedMessages}
-                    setCheckedList={this.props.setCheckedMessages}
-                    setShouldResetScrollPosition={this.props.setShouldResetScrollPosition}
-                />
-                <div className="table-responsive table-striped">
+            <div className="data-content mx-1">
+                <ControlButtons />
+                <div className="table-responsive table-striped my-2">
                     <Table
-                        minWidth={1000}
-                        autoWidth={true}
+                        maxWidth={1000}
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}
-                        containerPadding={20}
                         isPaging={true}
                         pageOption={this.props.pagingOption}
                         onPaging={this.handlePaging}
@@ -148,7 +133,7 @@ function mapStateToProps({ pagingOption, param, checkedMessages, shouldResetScro
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMessageId, fetchData, setPagingOption, setCheckedMessages, setShouldResetScrollPosition, setParam, toggleLoader, deleteMessages }, dispatch);
+    return bindActionCreators({ setSelectedMessageId, fetchData, setPagingOption, setCheckedMessages, setShouldResetScrollPosition, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

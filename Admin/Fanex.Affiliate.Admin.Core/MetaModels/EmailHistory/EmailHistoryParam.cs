@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.EmailHistory
         public string SearchText { get; set; }
 
         [Required]
-        public DateTime? FromDate { get; set; }
+        public DateTime FromDate { get; set; }
 
         [Required]
         public DateTime ToDate { get; set; }

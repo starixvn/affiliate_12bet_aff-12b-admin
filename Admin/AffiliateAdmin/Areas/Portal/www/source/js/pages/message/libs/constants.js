@@ -53,3 +53,11 @@ export const detailFormHeaderText = {
     Korean: 'Korean',
     Japanese: 'Japanese'
 }
+
+export const messages = {
+    PleaseSelect: 'Please select items to delete',
+    AreYouSureDeleteItems: 'Are you sure to delete the selected emails?',
+    DeleteItemsSuccessfully: 'Delete Emails Successfully',
+    AreYouSureDelete: 'Are you sure to delete the selected email?',
+    DeleteItemSuccessfully: 'Delete Email Successfully',
+}
