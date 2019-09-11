@@ -107,7 +107,28 @@ var Layout = (function ($) {
             var actualUrl = href.substring(0, href.indexOf(hash));
             var newActualUrl = createNewUrlByLanguage(actualUrl, selectedLanguage);
 
+            var search = window.location.search;
+            var parameters = '';
+            if (search !== '') {
+                var langParamLength = 7;
+                var indexLang = search.indexOf('lang');
+                if (indexLang !== -1) {
+                    if (indexLang === 1) {
+                        parameters = search.substring(indexLang + langParamLength + 1, search.length);
+                    } else {
+                        parameters = search.substring(1, indexLang) + search.substring(indexLang + langParamLength, search.length);
+                    }
+                } else {
+                    parameters = search.substring(1, search.length);
+                }
+            }
+
+            if (parameters !== '') {
+                newActualUrl = newActualUrl + '&' + parameters;
+            }
+
             var url = newActualUrl + hash;
+
             Site.redirect(url);
         }
     }

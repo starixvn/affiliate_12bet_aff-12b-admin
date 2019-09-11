@@ -108,6 +108,7 @@ var Layout = (function ($) {
             var newActualUrl = createNewUrlByLanguage(actualUrl, selectedLanguage);
 
             var url = newActualUrl + hash;
+
             Site.redirect(url);
         }
     }

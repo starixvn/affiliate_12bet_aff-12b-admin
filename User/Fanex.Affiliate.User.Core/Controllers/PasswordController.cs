@@ -15,6 +15,8 @@
 
     public class PasswordController : BaseController
     {
+        const int InvalidUrlAddress = 1001;
+        const int RecoverPasswordFailed = 1002;
         private readonly IAccountRepository _accountRepository;
         private readonly ICryptographyService _cryptographyService;
         private readonly IEmailService _mailService;
@@ -98,8 +100,12 @@
         }
 
         [HttpGet]
-        public ActionResult RecoverPassword(int uid, string vid)
+        public ActionResult RecoverPassword(string vid, int uid = 0)
         {
+            if (uid == 0 || string.IsNullOrEmpty(vid))
+            {
+                return Redirect("RecoverPasswordResult?isSuccessful=false");
+            }
             var newPassword = Generator.GetRandomString(10);
             var param = new PasswordRecoveryParam
             {
@@ -111,19 +117,10 @@
             };
 
             var userInfo = _accountRepository.RecoverPassword(param);
-            var result = new ResultInfo
-            {
-                IsOk = true,
-                Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.Foranyreasonyou.Replace("{0}", Url.Content("~/ContactUs"))}"
-            };
 
-            if (param.ErrCode != 0)
-            {
-                result.IsOk = false;
-                result.Message = Common.GetErrorMessage("RecoverPassword", param.ErrCode)
-                                    .Replace("{0}", Url.Content("~/ContactUs"));
-            }
-            else
+            var isSuccessful = param.ErrCode == 0;
+
+            if (isSuccessful)
             {
                 var recoverEmailParam = new NewPasswordEmailParam
                 {
@@ -138,6 +135,26 @@
                 LanguageService.SetCulture(userLang);
                 _mailService.SendNewPasswordEmail(recoverEmailParam);
                 LanguageService.SetCulture(SessionService.CurrentLanguage);
+
+                return Redirect("RecoverPasswordResult?isSuccessful=true");
+            }
+
+            return Redirect($"RecoverPasswordResult?isSuccessful={isSuccessful}&errCode={param.ErrCode}");
+        }
+
+        public ActionResult RecoverPasswordResult(bool isSuccessful = false, int errCode = 0)
+        {
+            var result = new ResultInfo
+            {
+                IsOk = false,
+                Message = Common.GetErrorMessage("RecoverPassword", errCode == RecoverPasswordFailed ? RecoverPasswordFailed : InvalidUrlAddress)
+                                    .Replace("{0}", Url.Content("~/ContactUs"))
+            };
+
+            if (isSuccessful)
+            {
+                result.IsOk = true;
+                result.Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.Foranyreasonyou.Replace("{0}", Url.Content("~/ContactUs"))}";
             }
 
             return View(result);

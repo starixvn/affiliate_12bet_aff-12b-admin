@@ -1021,7 +1021,6 @@
     <Content Include="Views\Notify\Error.cshtml" />
     <Content Include="www\source\styles\pages\notify.scss" />
     <Content Include="Views\Notify\PageNotFound.cshtml" />
-    <Content Include="Views\Password\RecoverPassword.cshtml" />
     <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_Main.cshtml" />
     <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_PaymentPending.cshtml" />
     <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_PaymentList.cshtml" />
@@ -1194,6 +1193,7 @@
     <Content Include="www\source\styles\Images\sports-banners\AFF-Home-banner-SB.vi-VN.webp" />
     <Content Include="www\source\styles\Images\sports-banners\AFF-Home-banner-SB.zh-CN.webp" />
     <Content Include="www\source\styles\Images\sports-banners\AFF-Home-banner-SB.zh-TW.webp" />
+    <Content Include="Views\Password\RecoverPasswordResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
