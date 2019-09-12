@@ -18,7 +18,21 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
         public EntityResult<MessageInfo> GetMessageList(MessageParam param)
         {
+            if (param.IsGetAll)
+            {
+                param.ToDate = null;
+                param.FromDate = null;
+            }
+            else
+            {
+                param.ToDate = param.ToDate.Value.AddDays(1).AddMilliseconds(-3);
+            }
             return _messageRepository.GetMessageList(param);
+        }
+
+        public MessageDetail GetMessageDetail(int selectedMessageId)
+        {
+            return _messageRepository.GetMessageDetail(selectedMessageId);
         }
     }
 }

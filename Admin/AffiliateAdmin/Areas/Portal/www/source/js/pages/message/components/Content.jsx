@@ -8,7 +8,6 @@ import { htmlDecode } from '../../../modules/htmlHelper';
 import { headerText, resource } from '../libs/constants';
 import { setSelectedMessageId, setPagingOption, fetchData, setCheckedMessages, setShouldResetScrollPosition, setParam } from '../actions';
 import ControlButtons from './ControlButtons';
-import SelectAll from '../../common/components/SelectAll';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -93,7 +92,7 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.PostedDateText}>{dataItem.PostedDateText}</Cell>
                 <Cell title={resource.ViewDetail}>
-                    <Button color="link" className={`p-0 message-content ${textDanger}`} onClick={() => this.props.setSelectedMessageId(dataItem.MessageId)}>
+                    <Button color="link" className={`p-0 ${textDanger}`} onClick={() => this.props.setSelectedMessageId(dataItem.MessageId)}>
                         {message}
                     </Button>
                 </Cell>
@@ -110,9 +109,9 @@ export class Content extends PureComponent {
         return gridData && (
             <div className="data-content mx-1">
                 <ControlButtons />
-                <div className="table-responsive table-striped my-2">
+                <div className="message-content table-responsive table-striped my-2">
                     <Table
-                        maxWidth={1000}
+                        maxWidth={1000} 
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}

@@ -6,15 +6,15 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Message
 {
     public class MessageParam
     {
-        public int SearchById { get; set; }
+        public byte? Important { get; set; }
 
         public bool IsGetAll { get; set; }
 
         [Required]
-        public DateTime FromDate { get; set; }
+        public DateTime? FromDate { get; set; }
 
         [Required]
-        public DateTime ToDate { get; set; }
+        public DateTime? ToDate { get; set; }
 
         [Range(Validation.MinPageIndex, Validation.MaxPageIndex)]
         public int PageIndex { get; set; }

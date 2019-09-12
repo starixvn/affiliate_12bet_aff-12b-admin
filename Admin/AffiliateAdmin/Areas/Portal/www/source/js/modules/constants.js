@@ -1,8 +1,8 @@
 export const defaultPagingOption = {
     PageIndex: 1,
-    PageSize: 20,
+    PageSize: 2,
     TotalItem: 0,
-    PageList: [10, 20, 50, 100, 500]
+    PageList: [2, 5, 10, 20, 50, 100, 500]
 };
 
 export const minMonthDate = { month: 12, year: 2009 };

@@ -8,5 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Message
     public interface IMessageRepository
     {
         EntityResult<MessageInfo> GetMessageList(MessageParam param);
+
+        MessageDetail GetMessageDetail(int selectedMessageId);
     }
 }

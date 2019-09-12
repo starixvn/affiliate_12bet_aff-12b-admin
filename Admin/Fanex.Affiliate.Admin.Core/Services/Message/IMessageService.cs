@@ -8,5 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
     public interface IMessageService
     {
         EntityResult<MessageInfo> GetMessageList(MessageParam param);
+
+        MessageDetail GetMessageDetail(int selectedMessageId);
     }
 }

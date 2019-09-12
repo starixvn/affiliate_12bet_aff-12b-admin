@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 
+import SelectAll from '../../common/components/SelectAll';
 import ButtonDeleteItems from '../../common/components/ButtonDeleteItems';
-import { resource, messages } from '../libs/constants';
+import { resource, messages, insertMessage, currentMessage } from '../libs/constants';
 import { fetchData, deleteMessages, toggleLoader, setCheckedMessages, setSelectedMessageId, setShouldResetScrollPosition } from '../actions';
 
 export const ControlButtons = (props) => {
 
-    function _handleOpenPopup() {
-        props.setSelectedMessageId(-1);
+    function _handleClickButton(selectedType) {
+        props.setSelectedMessageId(selectedType);
         props.setShouldResetScrollPosition(false);
     }
 
@@ -21,7 +22,7 @@ export const ControlButtons = (props) => {
             {
                 isNoData ? (
                     <div className="my-2">
-                        <Button outline type="button" onClick={() => _handleOpenPopup(0)}>{resource.Add}</Button>
+                        <Button outline type="button" onClick={() => _handleClickButton(insertMessage)}>{resource.Add}</Button>
                     </div>
                 )
                     : (
@@ -31,11 +32,11 @@ export const ControlButtons = (props) => {
                                     checkedItems={props.checkedMessages}
                                     toggleLoader={props.toggleLoader}
                                     deleteItems={props.deleteMessages}
-                                    fetchData={props.fetchData(props.param)}
+                                    fetchData={() => props.fetchData(props.param)}
                                     messages={messages}
                                 />
-                                <Button outline type="button" className="mx-2" onClick={() => _handleOpenPopup(0)}>{resource.Add}</Button>
-                                <Button outline type="button" onClick={() => _handleOpenPopup(-1)}>{resource.CurrentMessage}</Button>
+                                <Button outline type="button" className="mx-2" onClick={() => _handleClickButton(insertMessage)}>{resource.Add}</Button>
+                                <Button outline type="button" onClick={() => _handleClickButton(currentMessage)}>{resource.CurrentMessage}</Button>
                             </div>
                             <SelectAll
                                 checkedList={props.checkedMessages}

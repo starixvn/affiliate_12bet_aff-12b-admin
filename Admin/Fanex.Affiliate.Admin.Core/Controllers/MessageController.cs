@@ -41,5 +41,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 Data = _messageSevice.GetMessageList(param)
             };
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetMessageDetail(int selectedMessageId)
+        {
+            return new JsonNetResult
+            {
+                Data = _messageSevice.GetMessageDetail(selectedMessageId)
+            };
+        }
     }
 }

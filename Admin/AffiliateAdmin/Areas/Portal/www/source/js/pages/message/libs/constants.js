@@ -6,9 +6,10 @@ export { minDate };
 export const all = -1;
 export const normal = 0;
 export const important = 1;
+export const insertMessage = 0;
+export const currentMessage = -1;
 
 export const searchByList = {
-    [all]: globalResource.All,
     [normal]: 'Normal',
     [important]: 'Important'
 }
@@ -26,9 +27,11 @@ export const resource = {
     SearchBy: globalResource.SearchBy,
     Search: globalResource.Search,
     Edit: globalResource.Edit,
+    Update: globalResource.Update,
     Delete: globalResource.Delete,
     Cancel: globalResource.Cancel,
-    NoInfo: globalResource.NoInfo
+    NoInfo: globalResource.NoInfo,
+    Important: searchByList[important],
 }
 
 export const headerText = {
@@ -41,23 +44,28 @@ export const headerText = {
     UpdatedDate: 'Updated Date'
 }
 
-export const detailFormHeaderText = {
-    Important: searchByList[important],
-    English: 'English',
-    ChineseTraditional: 'Chinese Traditional',
-    ChineseSimplified	: 'Chinese Simplified',
-    Thai: 'Thai',
-    Spanish: 'Spanish',
-    Vietnamese: 'Vietnamese',
-    Indonesian: 'Indonesian',
-    Korean: 'Korean',
-    Japanese: 'Japanese'
-}
-
 export const messages = {
     PleaseSelect: 'Please select items to delete',
     AreYouSureDeleteItems: 'Are you sure to delete the selected emails?',
     DeleteItemsSuccessfully: 'Delete Emails Successfully',
     AreYouSureDelete: 'Are you sure to delete the selected email?',
     DeleteItemSuccessfully: 'Delete Email Successfully',
+}
+
+export const languages = {
+    en: 'English',
+    cn: 'Chinese Simplified',
+    tw: 'Chinese Traditional',
+    es: 'Thai',
+    th: 'Spanish',
+    vi: 'VietNamese',
+    id: 'Indonesian',
+    kr: 'Korean',
+    jp: 'Japanese'
+}
+
+export const popupTitle = {
+    Add: 'Add New Message',
+    Current: 'Current Message Detail',
+    Detail: 'Message Detail'
 }

@@ -52,7 +52,7 @@ export class Filter extends PureComponent {
         const { pagingOption } = this.props;
 
         const param = Object.assign({}, {
-            SearchById: searchBy,
+            Important: searchBy,
             IsGetAll: isGetAll,
             FromDate: fromDate,
             ToDate: toDate,
@@ -72,6 +72,7 @@ export class Filter extends PureComponent {
                     <FormGroup className="mr-sm-3">
                         <Label className="mr-2">{resource.SearchBy}</Label>
                         <Input type="select" name="searchBy" value={searchBy} onChange={this.handleChange}>
+                            <option key={'searchBy-all'} value={all}>{resource.All}</option>
                             {
                                 Object.keys(searchByList).map(key => {
                                     return (<option key={'searchBy-' + key} value={key}>{searchByList[key]}</option>)

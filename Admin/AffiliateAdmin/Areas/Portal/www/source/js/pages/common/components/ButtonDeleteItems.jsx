@@ -1,7 +1,10 @@
-﻿import React from 'react';
+﻿import React, { useState } from 'react';
 import { Button } from 'reactstrap';
+import Notification from './Notification';
 
 export const ButtonDeleteItems = (props) => {
+    const [isNotification, setNotification] = useState(false);
+    const [messageNotice, setMessageNotice] = useState('');
 
     function _getCheckedItemIdList() {
         const { checkedItems } = props;
@@ -9,11 +12,17 @@ export const ButtonDeleteItems = (props) => {
         return Object.keys(checkedItems).filter(key => checkedItems[key]);
     }
 
+    function _handleNotification(message, isNotification) {
+        setMessageNotice(message);
+        setNotification(isNotification);
+    }
+
     async function _handleDelete() {
         const itemIdList = _getCheckedItemIdList();
 
         if (itemIdList.length === 0) {
             alert(props.messages.PleaseSelect);
+            _handleNotification(props.messages.PleaseSelect, true);
             return;
         }
 
@@ -25,12 +34,12 @@ export const ButtonDeleteItems = (props) => {
 
             if (result) {
                 if (result.IsSuccessful) {
-                    alert(props.messages.DeleteItemsSuccessfully);
+                    _handleNotification(props.messages.DeleteItemsSuccessfully, true);
 
                     props.fetchData();
                 }
                 else {
-                    alert(result.Message);
+                    _handleNotification(result.Message, true);
                 }
             }
 
@@ -39,7 +48,14 @@ export const ButtonDeleteItems = (props) => {
     }
 
     return (
-        <Button outline type="button" color="danger" onClick={_handleDelete}>Delete<span className="oi oi-x ml-2"></span></Button>
+        <React.Fragment>
+            <Notification
+                message={messageNotice}
+                isNotification={isNotification}
+                onClose={() => _handleNotification('', false)}
+            />
+            <Button outline type="button" color="danger" onClick={_handleDelete}>Delete<span className="oi oi-x ml-2"></span></Button>
+        </React.Fragment>
     );
 }
 

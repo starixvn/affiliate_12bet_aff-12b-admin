@@ -5,6 +5,7 @@ import AppLayout from '../../../layouts/AppLayout';
 import Loader from '../../../components/Loader';
 import Filter from './Filter';
 import Content from './Content';
+import MessageDetailForm from './MessageDetailForm';
 
 export const AppContainer = (props) => {
     return (
@@ -12,6 +13,7 @@ export const AppContainer = (props) => {
             <Loader show={props.isShowLoader} />
             <Filter />
             <Content />
+            <MessageDetailForm />
         </AppLayout>
     );
 }

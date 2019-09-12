@@ -241,6 +241,7 @@
     <Compile Include="DTO\ExchangeRate\ExchangeRateInfo.cs" />
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\MediaGallery\LandingPage.cs" />
+    <Compile Include="DTO\Message\MessageDetail.cs" />
     <Compile Include="DTO\Message\MessageInfo.cs" />
     <Compile Include="DTO\Payment\PaymentRequest.cs" />
     <Compile Include="DTO\Payment\PaymentRequestDetail.cs" />

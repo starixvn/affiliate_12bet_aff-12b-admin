@@ -90,5 +90,9 @@
   </Function>
   <Function Name="Message">
     <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_HotNewsDetail" SpName="Aff_HotNewsDetail" DbName="affiliate_12bet" />
+    <Setting Key="Aff_HotNewsIns" SpName="Aff_HotNewsIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_HotNewsUpd" SpName="Aff_HotNewsUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_HotNewsDel" SpName="Aff_HotNewsDel" DbName="affiliate_12bet" />
   </Function>
 </Functions>

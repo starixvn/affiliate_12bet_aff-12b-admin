@@ -73,8 +73,8 @@ export const getMessageDetail = (selectedMessageId) => async () => {
     return response && response.status === 200 ? response.data : null;
 }
 
-export const createMessage = (param) => async () => {
-    const url = 'Portal/Message/CreateMessage';
+export const insertMessage = (param) => async () => {
+    const url = 'Portal/Message/insertMessage';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
