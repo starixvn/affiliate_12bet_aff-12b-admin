@@ -3401,6 +3401,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MMK.
+        /// </summary>
+        public static string MKK {
+            get {
+                return ResourceManager.GetString("MKK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MSN.
         /// </summary>
         public static string Mobile {

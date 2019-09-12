@@ -104,10 +104,11 @@ var Layout = (function ($) {
         changeLanguage: function (selectedLanguage) {
             var hash = window.location.hash;
             var href = window.location.href;
-            var actualUrl = href.substring(0, href.indexOf(hash));
+            var actualUrl = !!hash ? href.substring(0, href.indexOf(hash)) : href;
             var newActualUrl = createNewUrlByLanguage(actualUrl, selectedLanguage);
 
             var url = newActualUrl + hash;
+
             Site.redirect(url);
         }
     }

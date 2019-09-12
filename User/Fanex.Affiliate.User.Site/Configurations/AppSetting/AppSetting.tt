@@ -19,6 +19,6 @@ foreach(var environment in environments)
 			transform.Apply(document);
 			document.Save(projectPath + @"Configurations\AppSetting\AppSetting.12betuser-" + fileName);
 		}
- }
+	}
 }
 #>
