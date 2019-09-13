@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Message;
 using Fanex.Affiliate.Admin.Core.MetaModels.Message;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Message
 {
@@ -35,8 +36,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Message
                             Important = Convert.ToBoolean(reader["Important"]),
                             Creator = Convert.ToString(reader["creatorname"]),
                             PostedDate = Convert.ToDateTime(reader["PostedDate"]),
-                            UpdatedDate = Convert.ToDateTime(reader["UpdatedDate"]),
-                            UpdatedBy = Convert.ToString(reader["updatename"]),
+                            UpdatedDate = reader["UpdatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["UpdatedDate"]),
+                            UpdatedBy = reader["updatename"] == DBNull.Value ? string.Empty : Convert.ToString(reader["updatename"]),
                             Message = Convert.ToString(reader["message_en"])
                         });
                     }
@@ -82,6 +83,72 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Message
             }
 
             return item;
+        }
+
+        public ResultInfo InsertMessage(InsertUpdateMessageParam param)
+        {
+            const string SpKey = "Aff_HotNewsIns";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddOutParameter("id", DbType.Int32, 4);
+                AssignParam(objectDb, param);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        public ResultInfo UpdateMessage(InsertUpdateMessageParam param)
+        {
+            const string SpKey = "Aff_HotNewsUpd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("id", DbType.Int32, param.MessageId);
+                AssignParam(objectDb, param);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        public ResultInfo DeleteMessage(DeleteMessageParam param)
+        {
+            const string SpKey = "Aff_HotNewsDel";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("listmsgid", DbType.String, param.MessageIdList);
+                objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("ip", DbType.String, param.Ip);
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        private static void AssignParam(IObjectDb objectDb, InsertUpdateMessageParam param)
+        {
+            objectDb.AddInParameter("important", DbType.Boolean, param.Important);
+            objectDb.AddInParameter("msgen", DbType.String, param.MessageContentEn);
+            objectDb.AddInParameter("msgcn", DbType.String, param.MessageContentCn);
+            objectDb.AddInParameter("msgtw", DbType.String, param.MessageContentTw);
+            objectDb.AddInParameter("msges", DbType.String, param.MessageContentEs);
+            objectDb.AddInParameter("msgth", DbType.String, param.MessageContentTh);
+            objectDb.AddInParameter("msgvi", DbType.String, param.MessageContentVi);
+            objectDb.AddInParameter("msgid", DbType.String, param.MessageContentId);
+            objectDb.AddInParameter("msgkr", DbType.String, param.MessageContentKr);
+            objectDb.AddInParameter("msgjp", DbType.String, param.MessageContentJp);
+            objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
+            objectDb.AddInParameter("IP", DbType.String, param.Ip);
+
+            AssignResultOutputParam(objectDb);
         }
     }
 }

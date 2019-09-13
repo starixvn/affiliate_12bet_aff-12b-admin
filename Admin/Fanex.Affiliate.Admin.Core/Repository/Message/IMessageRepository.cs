@@ -10,5 +10,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Message
         EntityResult<MessageInfo> GetMessageList(MessageParam param);
 
         MessageDetail GetMessageDetail(int selectedMessageId);
+
+        ResultInfo InsertMessage(InsertUpdateMessageParam param);
+
+        ResultInfo UpdateMessage(InsertUpdateMessageParam param);
+
+        ResultInfo DeleteMessage(DeleteMessageParam param);
     }
 }

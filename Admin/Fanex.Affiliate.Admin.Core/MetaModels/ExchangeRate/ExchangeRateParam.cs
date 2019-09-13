@@ -3,16 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate
 {
-    public class ExchangeRateParam
+    public class ExchangeRateParam: UserInfoParam
     {
         [Range(Validation.MinId, Validation.MaxId)]
         public int ExchangeId { get; set; }
 
         public decimal Rate { get; set; }
-
-        public int UserId { get; set; }
-
-        public string Ip { get; set; }
 
         [Range(0, 1)]
         public byte RateType { get; set; }

@@ -290,12 +290,15 @@
     <Compile Include="MetaModels\ExchangeRate\ExchangeRateParam.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
+    <Compile Include="MetaModels\Message\DeleteMessageParam.cs" />
+    <Compile Include="MetaModels\Message\InsertUpdateMessageParam.cs" />
     <Compile Include="MetaModels\Message\MessageParam.cs" />
     <Compile Include="MetaModels\ParamFromHome.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestUpdateParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParamFromHome.cs" />
     <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
+    <Compile Include="MetaModels\UserInfoParam.cs" />
     <Compile Include="MetaModels\UserPanel\AdjustmentParam.cs" />
     <Compile Include="MetaModels\AffiliatePagingByDateParam.cs" />
     <Compile Include="MetaModels\UserPanel\CustomerMemberParam.cs" />

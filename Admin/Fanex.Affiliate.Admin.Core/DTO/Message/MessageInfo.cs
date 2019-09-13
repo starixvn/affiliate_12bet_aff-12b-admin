@@ -20,10 +20,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Message
 
         public string UpdatedBy { get; set; }
 
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
         public string PostedDateText => PostedDate.ToString("MM/dd/yyyy HH:mm:ss");
 
-        public string UpdatedDateText => UpdatedDate.ToString("MM/dd/yyyy HH:mm:ss");
+        public string UpdatedDateText => UpdatedDate?.ToString("MM/dd/yyyy HH:mm:ss");
     }
 }

@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 
 import SelectAll from '../../common/components/SelectAll';
 import ButtonDeleteItems from '../../common/components/ButtonDeleteItems';
-import { resource, messages, insertMessage, currentMessage } from '../libs/constants';
+import { resource, messages, messageInsertId, messageCurrentId } from '../libs/constants';
 import { fetchData, deleteMessages, toggleLoader, setCheckedMessages, setSelectedMessageId, setShouldResetScrollPosition } from '../actions';
 
 export const ControlButtons = (props) => {
@@ -22,7 +22,7 @@ export const ControlButtons = (props) => {
             {
                 isNoData ? (
                     <div className="my-2">
-                        <Button outline type="button" onClick={() => _handleClickButton(insertMessage)}>{resource.Add}</Button>
+                        <Button outline type="button" onClick={() => _handleClickButton(messageInsertId)}>{resource.Add}</Button>
                     </div>
                 )
                     : (
@@ -34,9 +34,10 @@ export const ControlButtons = (props) => {
                                     deleteItems={props.deleteMessages}
                                     fetchData={() => props.fetchData(props.param)}
                                     messages={messages}
+                                    hasIcon={true}
                                 />
-                                <Button outline type="button" className="mx-2" onClick={() => _handleClickButton(insertMessage)}>{resource.Add}</Button>
-                                <Button outline type="button" onClick={() => _handleClickButton(currentMessage)}>{resource.CurrentMessage}</Button>
+                                <Button outline type="button" className="mx-2" onClick={() => _handleClickButton(messageInsertId)}>{resource.Add}</Button>
+                                <Button outline type="button" onClick={() => _handleClickButton(messageCurrentId)}>{resource.CurrentMessage}</Button>
                             </div>
                             <SelectAll
                                 checkedList={props.checkedMessages}

@@ -80,10 +80,6 @@ export class EditExchangeRateForm extends PureComponent {
             const result = await this.props.updateExchangeRate(newExchangeRate);
 
             this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message.Success : result.Message);
-
-            if (result.IsSuccessful) {
-                this.props.fetchData(this.props.date);
-            }
         } else {
             this._handleShowAlert(false, rateValidation.message);
         }
@@ -116,7 +112,8 @@ export class EditExchangeRateForm extends PureComponent {
             isShowMessage: false
         });
 
-        if (!!isSuccess) {
+        if (isSuccess) {
+            this.props.fetchData(this.props.date);
             this.props.setTogglePopup(false);
         }
     }

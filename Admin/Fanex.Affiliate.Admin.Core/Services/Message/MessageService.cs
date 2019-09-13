@@ -34,5 +34,20 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
         {
             return _messageRepository.GetMessageDetail(selectedMessageId);
         }
+
+        public ResultInfo InsertMessage(InsertUpdateMessageParam param)
+        {
+            return _messageRepository.InsertMessage(param);
+        }
+
+        public ResultInfo UpdateMessage(InsertUpdateMessageParam param)
+        {
+            return _messageRepository.UpdateMessage(param);
+        }
+
+        public ResultInfo DeleteMessage(DeleteMessageParam param)
+        {
+            return _messageRepository.DeleteMessage(param);
+        }
     }
 }

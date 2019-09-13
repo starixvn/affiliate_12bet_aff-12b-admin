@@ -1,10 +1,11 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Button } from 'reactstrap';
-import Notification from './Notification';
+import NotificationPopup from './NotificationPopup';
 
 export const ButtonDeleteItems = (props) => {
-    const [isNotification, setNotification] = useState(false);
-    const [messageNotice, setMessageNotice] = useState('');
+    const [message, setMessage] = useState('');
+    const [isConfirmPopup, setConfirmPopup] = useState(false);
+    const itemIdList = _getCheckedItemIdList();
 
     function _getCheckedItemIdList() {
         const { checkedItems } = props;
@@ -12,49 +13,57 @@ export const ButtonDeleteItems = (props) => {
         return Object.keys(checkedItems).filter(key => checkedItems[key]);
     }
 
-    function _handleNotification(message, isNotification) {
-        setMessageNotice(message);
-        setNotification(isNotification);
+    function _handleOpenNotificationPopup(message, isConfirmPopup) {
+        setMessage(message);
+        setConfirmPopup(isConfirmPopup);
+        setConfirmResult(false);
     }
 
-    async function _handleDelete() {
-        const itemIdList = _getCheckedItemIdList();
+    function _handleCloseNotificationPopup(confirmResult) {
+        setMessage('');
 
+        if (confirmResult) {
+            _deleteExcute();
+        }
+    }
+
+    function _handleDelete() {
         if (itemIdList.length === 0) {
             alert(props.messages.PleaseSelect);
-            _handleNotification(props.messages.PleaseSelect, true);
+            _handleOpenNotificationPopup(props.messages.PleaseSelect);
             return;
         }
 
-        const isConfirmed = window.confirm(props.messages.AreYouSureDeleteItems);
-        if (isConfirmed) {
-            props.toggleLoader(true);
+        _handleOpenNotificationPopup(props.messages.AreYouSureDeleteItems, true);
+    }
 
-            const result = await props.deleteItems(itemIdList.join(','));
+    async function _deleteExcute() {
+        props.toggleLoader(true);
 
-            if (result) {
-                if (result.IsSuccessful) {
-                    _handleNotification(props.messages.DeleteItemsSuccessfully, true);
+        const result = await props.deleteItems(itemIdList.join(','));
 
-                    props.fetchData();
-                }
-                else {
-                    _handleNotification(result.Message, true);
-                }
+        if (result) {
+            if (result.IsSuccessful) {
+                _handleOpenNotificationPopup(props.messages.DeleteItemsSuccessfully);
+
+                props.fetchData();
             }
-
-            props.toggleLoader(false);
+            else {
+                _handleOpenNotificationPopup(result.Message);
+            }
         }
+
+        props.toggleLoader(false);
     }
 
     return (
         <React.Fragment>
-            <Notification
-                message={messageNotice}
-                isNotification={isNotification}
-                onClose={() => _handleNotification('', false)}
+            <NotificationPopup
+                message={message}
+                isConfirmPopup={isConfirmPopup}
+                onClose={_handleCloseNotificationPopup}
             />
-            <Button outline type="button" color="danger" onClick={_handleDelete}>Delete<span className="oi oi-x ml-2"></span></Button>
+            <Button outline type="button" color="danger" onClick={_handleDelete}>Delete<span className={props.hasIcon ? "oi oi-x ml-2" : ""}></span></Button>
         </React.Fragment>
     );
 }

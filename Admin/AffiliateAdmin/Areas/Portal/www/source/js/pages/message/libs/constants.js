@@ -6,8 +6,43 @@ export { minDate };
 export const all = -1;
 export const normal = 0;
 export const important = 1;
-export const insertMessage = 0;
-export const currentMessage = -1;
+export const messageInsertId = 0;
+export const messageCurrentId = -1;
+
+const english = 'MessageContentEn';
+const chineseTraditional = 'MessageContentTw';
+const chineseSimplified = 'MessageContentCn';
+const spanish = 'MessageContentEs';
+const thai = 'MessageContentTh';
+const vietNamese = 'MessageContentVi';
+const indonesian = 'MessageContentId';
+const korean = 'MessageContentKr';
+const japanese = 'MessageContentJp';
+
+export const defaultMessageContentList =
+{
+    [english]: '',
+    [chineseTraditional]: '',
+    [chineseSimplified]: '',
+    [spanish]: '',
+    [thai]: '',
+    [vietNamese]: '',
+    [indonesian]: '',
+    [korean]: '',
+    [japanese]: ''
+};
+
+export const languages = {
+    [english]: 'English',
+    [chineseTraditional]: 'Chinese Traditional',
+    [chineseSimplified]: 'Chinese Simplified',
+    [spanish]: 'Spanish',
+    [thai]: 'Thai',
+    [vietNamese]: 'VietNamese',
+    [indonesian]: 'Indonesian',
+    [korean]: 'Korean',
+    [japanese]: 'Japanese'
+}
 
 export const searchByList = {
     [normal]: 'Normal',
@@ -46,22 +81,10 @@ export const headerText = {
 
 export const messages = {
     PleaseSelect: 'Please select items to delete',
-    AreYouSureDeleteItems: 'Are you sure to delete the selected emails?',
-    DeleteItemsSuccessfully: 'Delete Emails Successfully',
-    AreYouSureDelete: 'Are you sure to delete the selected email?',
-    DeleteItemSuccessfully: 'Delete Email Successfully',
-}
-
-export const languages = {
-    en: 'English',
-    cn: 'Chinese Simplified',
-    tw: 'Chinese Traditional',
-    es: 'Thai',
-    th: 'Spanish',
-    vi: 'VietNamese',
-    id: 'Indonesian',
-    kr: 'Korean',
-    jp: 'Japanese'
+    AreYouSureDeleteItems: 'Are you sure to delete the selected email(s)?',
+    DeleteItemsSuccessfully: 'Delete Email(s) Successfully',
+    PleaseEnter: 'Please enter the content of message, one language at least.',
+    AreYouWant: 'Are you sure you want to update this message?'
 }
 
 export const popupTitle = {
