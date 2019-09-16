@@ -358,6 +358,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MessageId is invalid..
+        /// </summary>
+        public static string MessageIdIsInvalid {
+            get {
+                return ResourceManager.GetString("MessageIdIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Another session has logged in or your session is expired. Forced to logout!.
         /// </summary>
         public static string MsgKickout {
@@ -390,6 +399,24 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string Pending {
             get {
                 return ResourceManager.GetString("Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter the content of message, one language at least..
+        /// </summary>
+        public static string PleaseEnterContent {
+            get {
+                return ResourceManager.GetString("PleaseEnterContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select messages to delete..
+        /// </summary>
+        public static string PleaseSelectMessage {
+            get {
+                return ResourceManager.GetString("PleaseSelectMessage", resourceCulture);
             }
         }
         

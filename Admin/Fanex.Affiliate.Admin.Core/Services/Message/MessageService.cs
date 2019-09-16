@@ -45,9 +45,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
             return _messageRepository.UpdateMessage(param);
         }
 
-        public ResultInfo DeleteMessage(DeleteMessageParam param)
+        public ResultInfo DeleteMessages(DeleteMessageParam param)
         {
-            return _messageRepository.DeleteMessage(param);
+            return _messageRepository.DeleteMessages(param);
         }
     }
 }

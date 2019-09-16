@@ -360,4 +360,13 @@
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
     <value>12Bet Affiliates – Your Application</value>
   </data>
+  <data name="PleaseEnterContent" xml:space="preserve">
+    <value>Please enter the content of message, one language at least.</value>
+  </data>
+  <data name="PleaseSelectMessage" xml:space="preserve">
+    <value>Please select messages to delete.</value>
+  </data>
+  <data name="MessageIdIsInvalid" xml:space="preserve">
+    <value>MessageId is invalid.</value>
+  </data>
 </root>

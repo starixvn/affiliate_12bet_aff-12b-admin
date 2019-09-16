@@ -1,4 +1,4 @@
-﻿import React, { PureComponent } from 'react';
+﻿import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
@@ -9,38 +9,32 @@ import { headerText, resource } from '../libs/constants';
 import { setSelectedMessageId, setPagingOption, fetchData, setCheckedMessages, setShouldResetScrollPosition, setParam } from '../actions';
 import ControlButtons from './ControlButtons';
 
-export class Content extends PureComponent {
-    constructor(props) {
-        super(props);
+export const Content = (props) => {
+
+    useEffect(() => {
+        const { param } = props;
+        !!param && props.fetchData(param);
+    }, [props.param]);
+
+    const _onCheckItem = (isChecked, messageId) => {
+        const newCheckedMessages = Object.assign({}, props.checkedMessages, { [messageId]: isChecked });
+
+        props.setShouldResetScrollPosition(false);
+        props.setCheckedMessages(newCheckedMessages);
     }
 
-    componentDidUpdate(prevProps) {
-        const { param } = this.props;
-
-        if (param !== prevProps.param) {
-            this.props.fetchData(param);
-        }
-    }
-
-    onCheckItem = (isChecked, messageId) => {
-        const newCheckedMessages = Object.assign({}, this.props.checkedMessages, { [messageId]: isChecked });
-
-        this.props.setShouldResetScrollPosition(false);
-        this.props.setCheckedMessages(newCheckedMessages);
-    }
-
-    handlePaging = (pageIndex, pageSize) => {
+    const _handlePaging = (pageIndex, pageSize) => {
         const newPaging = {
             PageIndex: pageIndex,
             PageSize: pageSize
         };
-        const newParam = Object.assign({}, this.props.param, newPaging);
+        const newParam = Object.assign({}, props.param, newPaging);
 
-        this.props.setPagingOption(newPaging);
-        this.props.setParam(newParam);
+        props.setPagingOption(newPaging);
+        props.setParam(newParam);
     };
 
-    _renderHeader() {
+    function _renderHeader() {
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={40}></Cell>
@@ -55,16 +49,16 @@ export class Content extends PureComponent {
         );
     }
 
-    _renderDataSection(dataList) {
+    function _renderDataSection(dataList) {
         const dataRows = [];
 
         if (dataList && dataList.length) {
-            const { pagingOption } = this.props;
+            const { pagingOption } = props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, i + startIndex));
+                dataRows.push(_buildDataRow(dataItem, i + startIndex));
             }
         }
         else {
@@ -76,7 +70,7 @@ export class Content extends PureComponent {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index) {
+    function _buildDataRow(dataItem, index) {
         const creator = htmlDecode(dataItem.Creator);
         const message = htmlDecode(dataItem.Message);
         const important = dataItem.Important ? 'Yes' : 'No';
@@ -85,15 +79,15 @@ export class Content extends PureComponent {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={this.props.checkedMessages[dataItem.MessageId]}
-                        onChange={(e) => this.onCheckItem(e.target.checked, dataItem.MessageId)} />
+                    <input type="checkbox" checked={props.checkedMessages[dataItem.MessageId]}
+                        onChange={(e) => _onCheckItem(e.target.checked, dataItem.MessageId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.PostedDateText}>{dataItem.PostedDateText}</Cell>
                 <Cell title={resource.ViewDetail}>
-                    <Button color="link" className={`p-0 ${textDanger}`} onClick={() => this.props.setSelectedMessageId(dataItem.MessageId)}>
-                        {message}
+                    <Button color="link" className={`${textDanger} ${!message ? 'h-20' : ''}`} onClick={() => props.setSelectedMessageId(dataItem.MessageId)}>
+                        {message || ' '}
                     </Button>
                 </Cell>
                 <Cell className="text-center" title={important}>{important}</Cell>
@@ -103,27 +97,23 @@ export class Content extends PureComponent {
         )
     }
 
-    render() {
-        const { gridData, checkedMessages } = this.props;
-
-        return gridData && (
-            <div className="data-content mx-1">
-                <ControlButtons />
-                <div className="message-content table-responsive table-striped my-2">
-                    <Table
-                        maxWidth={1000} 
-                        bodyHeight={300}
-                        header={this._renderHeader()}
-                        body={this._renderDataSection(gridData)}
-                        isPaging={true}
-                        pageOption={this.props.pagingOption}
-                        onPaging={this.handlePaging}
-                        shouldResetScrollPosition={this.props.shouldResetScrollPosition}
-                    />
-                </div>
+    return props.gridData && (
+        <div className="data-content mx-1">
+            <ControlButtons />
+            <div className="message-content table-responsive table-striped my-2">
+                <Table
+                    maxWidth={1000}
+                    bodyHeight={300}
+                    header={_renderHeader()}
+                    body={_renderDataSection(props.gridData)}
+                    isPaging={true}
+                    pageOption={props.pagingOption}
+                    onPaging={_handlePaging}
+                    shouldResetScrollPosition={props.shouldResetScrollPosition}
+                />
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 
@@ -135,4 +125,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setSelectedMessageId, fetchData, setPagingOption, setCheckedMessages, setShouldResetScrollPosition, setParam }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Content);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

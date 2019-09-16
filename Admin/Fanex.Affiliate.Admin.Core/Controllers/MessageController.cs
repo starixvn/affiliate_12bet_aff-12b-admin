@@ -5,9 +5,9 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Message;
 using Fanex.Affiliate.Admin.Core.Services.Message;
-using System.Linq;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.Resources;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -62,18 +62,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (param.IsValid())
             {
-                GetUserInfoParam(param);
+                var encodeParam = EncodeParam(param);
+                GetUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
-                    Data = _messageSevice.InsertMessage(param)
+                    Data = _messageSevice.InsertMessage(encodeParam)
                 };
             }
 
             return Json(new ResultInfo
             {
                 Code = Code.GeneralErrorCode,
-                Message = "Please enter the content of message, one language at least."
+                Message = Lang.PleaseEnterContent
             });
         }
 
@@ -85,25 +86,26 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var isValidMessageId = param.MessageId >= Validation.MinId;
             if (param.IsValid() && isValidMessageId)
             {
-                GetUserInfoParam(param);
+                var encodeParam = EncodeParam(param);
+                GetUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
-                    Data = _messageSevice.UpdateMessage(param)
+                    Data = _messageSevice.UpdateMessage(encodeParam)
                 };
             }
 
             return Json(new ResultInfo
             {
                 Code = Code.GeneralErrorCode,
-                Message = !isValidMessageId ? "Invalid MessageId" : "Please enter the content of message, one language at least."
+                Message = !isValidMessageId ? Lang.MessageIdIsInvalid : Lang.PleaseEnterContent
             });
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.HotNews, IsHost = true)]
-        public ActionResult DeleteMessage(DeleteMessageParam param)
+        public ActionResult DeleteMessages(DeleteMessageParam param)
         {
             if (ModelState.IsValid)
             {
@@ -111,15 +113,33 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
                 return new JsonNetResult
                 {
-                    Data = _messageSevice.DeleteMessage(param)
+                    Data = _messageSevice.DeleteMessages(param)
                 };
             }
 
             return Json(new ResultInfo
             {
                 Code = Code.GeneralErrorCode,
-                Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                Message = Lang.PleaseSelectMessage
             });
+        }
+
+        private InsertUpdateMessageParam EncodeParam(InsertUpdateMessageParam param)
+        {
+            return new InsertUpdateMessageParam
+            {
+                MessageId = param.MessageId,
+                Important = param.Important,
+                MessageContentEn = Server.HtmlEncode(param.MessageContentEn),
+                MessageContentCn = Server.HtmlEncode(param.MessageContentCn),
+                MessageContentTw = Server.HtmlEncode(param.MessageContentTw),
+                MessageContentEs = Server.HtmlEncode(param.MessageContentEs),
+                MessageContentTh = Server.HtmlEncode(param.MessageContentTh),
+                MessageContentVi = Server.HtmlEncode(param.MessageContentVi),
+                MessageContentId = Server.HtmlEncode(param.MessageContentId),
+                MessageContentKr = Server.HtmlEncode(param.MessageContentKr),
+                MessageContentJp = Server.HtmlEncode(param.MessageContentJp)
+            };
         }
 
         private void GetUserInfoParam(UserInfoParam param)

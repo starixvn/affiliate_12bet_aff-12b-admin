@@ -35,6 +35,7 @@ export const ControlButtons = (props) => {
                                     fetchData={() => props.fetchData(props.param)}
                                     messages={messages}
                                     hasIcon={true}
+                                    isOpenNotification={true}
                                 />
                                 <Button outline type="button" className="mx-2" onClick={() => _handleClickButton(messageInsertId)}>{resource.Add}</Button>
                                 <Button outline type="button" onClick={() => _handleClickButton(messageCurrentId)}>{resource.CurrentMessage}</Button>

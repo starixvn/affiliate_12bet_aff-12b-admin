@@ -115,7 +115,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Message
             }
         }
 
-        public ResultInfo DeleteMessage(DeleteMessageParam param)
+        public ResultInfo DeleteMessages(DeleteMessageParam param)
         {
             const string SpKey = "Aff_HotNewsDel";
 

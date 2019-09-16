@@ -87,9 +87,9 @@ export const updateMessage = (param) => async () => {
     return response && response.status === 200 ? response.data : null;
 }
 
-export const deleteMessages = (checkedMessages) => async () => {
+export const deleteMessages = (messageIdList) => async () => {
     const url = 'Portal/Message/DeleteMessages';
-    const response = await post(url, { checkedMessages });
+    const response = await post(url, { messageIdList });
 
     return response && response.status === 200 ? response.data : null;
 }

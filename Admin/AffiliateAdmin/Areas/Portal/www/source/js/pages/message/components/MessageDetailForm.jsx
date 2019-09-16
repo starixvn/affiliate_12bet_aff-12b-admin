@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Alert, Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { setSelectedMessageId, getMessageDetail, fetchData, insertMessage, updateMessage } from '../actions';
+import { setSelectedMessageId, getMessageDetail, fetchData, insertMessage, updateMessage, toggleLoader, deleteMessages } from '../actions';
 
 import { htmlDecode } from '../../../modules/htmlHelper';
 import { resource, languages, popupTitle, messages, defaultMessageContentList, messageInsertId, messageCurrentId } from '../libs/constants';
@@ -21,7 +21,8 @@ export class MessageDetailForm extends PureComponent {
             isShowMessage: false,
             isSuccess: true,
             message: '',
-            messageNotification: ''
+            messageNotification: '',
+            isInsert: this.props.selectedMessageId === messageInsertId
         }
 
         this.modalRef = React.createRef();
@@ -33,15 +34,17 @@ export class MessageDetailForm extends PureComponent {
         if (selectedMessageId && selectedMessageId !== 0 && selectedMessageId !== prevProps.selectedMessageId) {
             this._handleGetMessageDetail(selectedMessageId);
         }
+
+        this.setState({ isInsert: selectedMessageId === messageInsertId });
     }
 
     _handleGetMessageDetail = async (selectedMessageId) => {
         const item = await this.props.getMessageDetail(selectedMessageId);
 
-        var messageContentList = {};
+        const messageContentList = {};
 
         Object.keys(this.state.messageContentList).map(key => {
-            messageContentList[key] = item[key];
+            messageContentList[key] = htmlDecode(item[key]);
         })
 
         this.setState({ messageContentList, important: item.Important });
@@ -57,16 +60,10 @@ export class MessageDetailForm extends PureComponent {
         this.props.fetchData(this.props.param);
     }
 
-    _handleEdit = () => {
-        this.setState({ isClickedEdit: true });
-    }
-
     _handleCloseNotificationPopup = (confirmResult) => {
         this.setState({ messageNotification: '' });
 
-        if (confirmResult) {
-            this._save();
-        }
+        !!confirmResult && this._save();
     }
 
     _validateMessageContent = () => {
@@ -90,20 +87,15 @@ export class MessageDetailForm extends PureComponent {
         const validateMessageContent = this._validateMessageContent();
 
         if (validateMessageContent.isValid) {
-            if (this.state.isClickedEdit) {
-                this.setState({ messageNotification: messages.AreYouWant });
-            } else {
-                this._save();
-            }
+            this.state.isClickedEdit ? this.setState({ messageNotification: messages.AreYouWant }) : this._save();
         } else {
             this._handleShowAlert(false, validateMessageContent.message);
         }
     }
 
     _save = async () => {
-        const { messageContentList, important } = this.state;
+        const { messageContentList, important, isInsert } = this.state;
         const { selectedMessageId } = this.props;
-        const isInsert = selectedMessageId === messageInsertId;
         const message = isInsert ? "Add Successfully!" : "Update Successfully!";
         const messageInfo = Object.assign({}, { ...messageContentList, important, MessageId: selectedMessageId });
         const result = isInsert ? await this.props.insertMessage(messageInfo) : await this.props.updateMessage(messageInfo);
@@ -131,9 +123,7 @@ export class MessageDetailForm extends PureComponent {
             confirmResult: false
         });
 
-        if (isSuccess) {
-            this._handleFetchData();
-        }
+        isSuccess && this._handleFetchData();
     }
 
     _handleClosePopup = () => {
@@ -142,11 +132,10 @@ export class MessageDetailForm extends PureComponent {
     }
 
     render() {
-        const { important, messageContentList, isClickedEdit, isSuccess, isShowMessage, message, messageNotification } = this.state;
+        const { important, messageContentList, isClickedEdit, isSuccess, isShowMessage, message, messageNotification, isInsert } = this.state;
         const { selectedMessageId } = this.props;
         const isShowPopup = selectedMessageId !== null;
         const isCurrentMessage = selectedMessageId === messageCurrentId;
-        const isInsert = selectedMessageId === messageInsertId;
         const title = isInsert ? popupTitle.Add : (isCurrentMessage ? popupTitle.Current : `${popupTitle.Detail} (ID=${selectedMessageId})`);
         const isDisabled = !isInsert && !isClickedEdit;
 
@@ -174,7 +163,7 @@ export class MessageDetailForm extends PureComponent {
                                                     <Label for={key} sm={2} className="d-flex justify-content-end align-items-center">{languages[key]}</Label>
                                                     <Col sm={10}>
                                                         <Input type="textarea" name={key} id={key} rows="4"
-                                                            value={htmlDecode(messageContentList[key])} onChange={this._handleChangeMessageContent} disabled={isDisabled} />
+                                                            value={messageContentList[key]} onChange={this._handleChangeMessageContent} disabled={isDisabled} />
                                                     </Col>
                                                 </FormGroup>
                                             )
@@ -187,13 +176,13 @@ export class MessageDetailForm extends PureComponent {
                                             <React.Fragment>
                                                 {
                                                     isClickedEdit ? <Button type="button" color="success" className="mr-2" onClick={this._handleSave}>{resource.Update}</Button>
-                                                        : <Button type="button" color="success" className="mr-2" onClick={this._handleEdit}>{resource.Edit}</Button>
+                                                        : <Button type="button" color="success" className="mr-2" onClick={() => this.setState({ isClickedEdit: true })}>{resource.Edit}</Button>
                                                 }
                                                 <ButtonDeleteItems
-                                                    checkedItems={[selectedMessageId]}
+                                                    checkedItems={{[selectedMessageId] : true}}
                                                     toggleLoader={this.props.toggleLoader}
                                                     deleteItems={this.props.deleteMessages}
-                                                    fetchData={this._handleFetchData}
+                                                    fetchData={() => this._handleShowAlert(true, "Delete Successfully!")}
                                                     messages={messages}
                                                 />
                                             </React.Fragment>
@@ -221,7 +210,7 @@ function mapStateToProps({ selectedMessageId, param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMessageId, getMessageDetail, fetchData, insertMessage, updateMessage }, dispatch);
+    return bindActionCreators({ setSelectedMessageId, getMessageDetail, fetchData, insertMessage, updateMessage, toggleLoader, deleteMessages }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(MessageDetailForm));

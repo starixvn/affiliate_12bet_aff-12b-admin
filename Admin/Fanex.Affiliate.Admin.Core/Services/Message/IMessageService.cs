@@ -15,6 +15,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
         ResultInfo UpdateMessage(InsertUpdateMessageParam param);
 
-        ResultInfo DeleteMessage(DeleteMessageParam param);
+        ResultInfo DeleteMessages(DeleteMessageParam param);
     }
 }

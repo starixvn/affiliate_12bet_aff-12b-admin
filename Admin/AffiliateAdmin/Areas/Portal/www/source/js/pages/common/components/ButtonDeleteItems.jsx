@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState } from 'react';
 import { Button } from 'reactstrap';
 import NotificationPopup from './NotificationPopup';
 
@@ -16,7 +16,6 @@ export const ButtonDeleteItems = (props) => {
     function _handleOpenNotificationPopup(message, isConfirmPopup) {
         setMessage(message);
         setConfirmPopup(isConfirmPopup);
-        setConfirmResult(false);
     }
 
     function _handleCloseNotificationPopup(confirmResult) {
@@ -44,7 +43,7 @@ export const ButtonDeleteItems = (props) => {
 
         if (result) {
             if (result.IsSuccessful) {
-                _handleOpenNotificationPopup(props.messages.DeleteItemsSuccessfully);
+                props.isOpenNotification && _handleOpenNotificationPopup(props.messages.DeleteItemsSuccessfully);
 
                 props.fetchData();
             }
@@ -58,11 +57,13 @@ export const ButtonDeleteItems = (props) => {
 
     return (
         <React.Fragment>
-            <NotificationPopup
-                message={message}
-                isConfirmPopup={isConfirmPopup}
-                onClose={_handleCloseNotificationPopup}
-            />
+            {
+                !!message && <NotificationPopup
+                    message={message}
+                    isConfirmPopup={isConfirmPopup}
+                    onClose={_handleCloseNotificationPopup}
+                />
+            }
             <Button outline type="button" color="danger" onClick={_handleDelete}>Delete<span className={props.hasIcon ? "oi oi-x ml-2" : ""}></span></Button>
         </React.Fragment>
     );
