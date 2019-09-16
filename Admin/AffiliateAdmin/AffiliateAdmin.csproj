@@ -1946,6 +1946,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\SharePercentSettingItem.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\ExchangeRevenueShareSetting.jsx" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\XmlData.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\TimeTracker\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
