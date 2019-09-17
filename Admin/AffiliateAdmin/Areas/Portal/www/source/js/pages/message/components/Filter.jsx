@@ -33,7 +33,7 @@ export const Filter = (props) => {
         const { pagingOption } = props;
 
         const param = Object.assign({}, {
-            Important: searchBy,
+            Important: searchBy === all ? null : searchBy,
             IsGetAll: isGetAll,
             FromDate: fromDate,
             ToDate: toDate,

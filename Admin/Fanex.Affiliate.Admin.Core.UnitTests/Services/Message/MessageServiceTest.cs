@@ -6,9 +6,6 @@ using Fanex.Affiliate.Admin.Core.Services.Message;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
@@ -57,8 +54,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
         public void GetMessageDetail_WhenCallWithNotGetAllDate_ExcuteWithCorrectData()
         {
             // Arrange
-            int selectedMessageId = 37;
-            int passedParam = 0;
+            var selectedMessageId = 37;
+            var passedParam = 0;
             var messageRepository = new Mock<IMessageRepository>();
             messageRepository.Setup(ex => ex.GetMessageDetail(selectedMessageId)).Returns(new MessageDetail { MessageId = selectedMessageId }).Callback<int>(p => passedParam = p);
 

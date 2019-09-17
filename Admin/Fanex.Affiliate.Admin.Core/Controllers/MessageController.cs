@@ -8,6 +8,8 @@ using Fanex.Affiliate.Admin.Core.Services.Message;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.DTO.Message;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -39,9 +41,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult GetMessageList(MessageParam param)
         {
+            if (ModelState.IsValid)
+            {
+                return new JsonNetResult
+                {
+                    Data = _messageSevice.GetMessageList(param)
+                };
+            }
+
             return new JsonNetResult
             {
-                Data = _messageSevice.GetMessageList(param)
+                Data = new EntityResult<MessageInfo>
+                {
+                    MainData = new List<MessageInfo>(),
+                    TotalItem = 0
+                }
             };
         }
 
@@ -49,9 +63,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult GetMessageDetail(int selectedMessageId)
         {
+            if (selectedMessageId >= Validation.MinId)
+            {
+                return new JsonNetResult
+                {
+                    Data = _messageSevice.GetMessageDetail(selectedMessageId)
+                };
+            }
+
             return new JsonNetResult
             {
-                Data = _messageSevice.GetMessageDetail(selectedMessageId)
+                Data = new MessageDetail()
             };
         }
 
@@ -71,11 +93,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
-            return Json(new ResultInfo
+            return new JsonNetResult
             {
-                Code = Code.GeneralErrorCode,
-                Message = Lang.PleaseEnterContent
-            });
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = Lang.PleaseEnterContent
+                }
+            };
         }
 
         [HttpPost]
@@ -95,11 +120,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
-            return Json(new ResultInfo
+            return new JsonNetResult
             {
-                Code = Code.GeneralErrorCode,
-                Message = !isValidMessageId ? Lang.MessageIdIsInvalid : Lang.PleaseEnterContent
-            });
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = !isValidMessageId ? Lang.MessageIdIsInvalid : Lang.PleaseEnterContent
+                }
+            };
         }
 
         [HttpPost]
@@ -117,11 +145,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
-            return Json(new ResultInfo
+            return new JsonNetResult
             {
-                Code = Code.GeneralErrorCode,
-                Message = Lang.PleaseSelectMessage
-            });
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = Lang.PleaseSelectMessage
+                }
+            };
         }
 
         private InsertUpdateMessageParam EncodeParam(InsertUpdateMessageParam param)
