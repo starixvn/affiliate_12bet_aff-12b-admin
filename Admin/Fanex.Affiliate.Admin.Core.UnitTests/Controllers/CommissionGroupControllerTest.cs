@@ -12,7 +12,6 @@ using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 using Moq;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -21,64 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 {
     public class CommissionGroupControllerTest
     {
-        private static CommissionGroupController CreateCommissionGroupController(
-            ISessionService sessionService = null,
-            ICommissionGroupService commissionGroupService = null,
-            IProductRepository productRepository = null,
-            ICommGroupCommonService commGroupCommonService = null
-            )
-        {
-            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeCommissionGroupService = commissionGroupService ?? Mock.Of<ICommissionGroupService>();
-            var fakeProductRepository = productRepository ?? Mock.Of<IProductRepository>();
-            var fakecommGroupCommonService = commGroupCommonService ?? Mock.Of<ICommGroupCommonService>();
-            var controller =  new CommissionGroupController(fakeSessionService, fakeCommissionGroupService, fakeProductRepository, fakecommGroupCommonService);
-
-            var request = MockingHelper.GetHttpRequest();
-            var server = new Mock<HttpServerUtilityBase>();
-            server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");
-
-            controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
-                ctx.HttpContext.Request == request &&
-                ctx.HttpContext.Server == server.Object &&
-                ctx.HttpContext.Session.SessionID == "SessionId"
-            );
-
-            return controller;
-        }
-
-        private static CommissionGroupSetting CreateCommissionGroupSetting()
-        {
-            return new CommissionGroupSetting
-            {
-                BankingFee = new DeductionSetting { DeductionId = 12, ProductIds = "0", DeductedPercentage = 0.02m },
-                Description = "Test",
-                ExchangeCommissionShare = new DeductionSetting { DeductionId = 14, ProductIds = "19", DeductedPercentage = 0.1m },
-                ExchangeWinLossShare = new DeductionSetting { DeductionId = 13, ProductIds = "19", DeductedPercentage = 0.05m },
-                GroupId = 0,
-                GroupName = "Test",
-                OperationalFee = new DeductionSetting { DeductionId = 11, ProductIds = "0", DeductedPercentage = 0.07m },
-                PlatformFeeList = new List<DeductionSetting>
-                {
-                    new DeductionSetting { DeductionId = 10, ProductIds = "1,3,4", DeductedPercentage = 0.17m }
-                },
-                QmTurnover = 100,
-                TierSettingList = new List<TierSetting>
-                {
-                    new TierSetting { Commission = 0.05m, MaxAmount = 100, MaxQm = 100, MinAmount = 0, MinQm = 0, TierId = 1 },
-                    new TierSetting { Commission = 0.15m, MaxAmount = 100000000000000, MaxQm = 1000000000, MinAmount = 101, MinQm = 101, TierId = 2 }
-                }
-            };
-        }
-
-        private static CommissionGroupSetting CreateUpdateCommissionGroupSetting()
-        {
-            var commissionGroupSetting = CreateCommissionGroupSetting();
-            commissionGroupSetting.GroupId = 123;
-
-            return commissionGroupSetting;
-        }
-
         [Fact]
         public void Index_WhenCall_ReturnView()
         {
@@ -90,11 +31,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             commGroupCommonService.Setup(c => c.GetDeductionList()).Returns(new List<Deduction> { new Deduction { DeductionId = 13, DeductionName = "ExchangeWinLossShare", DeductedPercentage = 0.05m } });
 
             var controller = CreateCommissionGroupController(productRepository: productRepository.Object, commGroupCommonService: commGroupCommonService.Object);
-            var expectedViewModel = new CommissionGroupViewModel
-            {
-                ProductList = new List<Product> { new Product { ProductId = 123, ProductName = "abc" } },
-                DeductionList = new List<Deduction> { new Deduction { DeductionId = 13, DeductionName = "ExchangeWinLossShare", DeductedPercentage = 0.05m } }
-            };
 
             // Action
             var viewResult = controller.Index() as ViewResult;
@@ -103,31 +39,26 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
             // Assert
             Assert.Equal("~/Areas/Portal/Views/CommissionGroup/Index.cshtml", viewName);
-            Assert.Equal(expectedViewModel.ProductList, model.ProductList);
-            Assert.Equal(expectedViewModel.DeductionList, model.DeductionList);
+            Assert.Single(model.ProductList);
+            Assert.Single(model.DeductionList);
         }
 
         [Fact]
         public void GetCommissionGroupList_GetData_ReturnCorrectData()
         {
             // Arrange
-            var param = new GetCommissionGroupParam();
+            var param = new GetCommissionGroupParam { GroupName = "abc" };
             var commissionGroupService = new Mock<ICommissionGroupService>();
-            commissionGroupService.Setup(c => c.GetCommissionGroupList(param)).Returns(new List<CommissionGroupSetting> { new CommissionGroupSetting() }).Callback<GetCommissionGroupParam>(p => param.Nrows = 1);
+            commissionGroupService.Setup(c => c.GetCommissionGroupList(param)).Returns(new List<CommissionGroupSetting> { new CommissionGroupSetting { GroupName = "abc" } }).Callback<GetCommissionGroupParam>(p => param.Nrows = 1);
             var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object);
-            var expectedViewModel = new GetCommissionGroupViewModel
-            {
-                CommissionSettingList = new List<CommissionGroupSetting> { new CommissionGroupSetting() },
-                TotalRows = 1
-            };
 
             // Action
             var result = controller.GetCommissionGroupList(param) as JsonNetResult;
             var model = result.Data as GetCommissionGroupViewModel;
 
             // Assert
-            Assert.Equal(expectedViewModel.TotalRows, model.TotalRows);
-            Assert.Equal(expectedViewModel.CommissionSettingList, model.CommissionSettingList);
+            Assert.Equal(1, model.TotalRows);
+            Assert.Single(model.CommissionSettingList);
         }
 
         [Fact]
@@ -135,39 +66,40 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         {
             // Arrange
             var param = new GetCommissionGroupParam { GroupId = 123 };
+            GetCommissionGroupParam passedParam = null;
             var commissionGroupService = new Mock<ICommissionGroupService>();
-            commissionGroupService.Setup(c => c.GetCommissionGroupList(It.IsAny<GetCommissionGroupParam>())).Returns(new List<CommissionGroupSetting> { new CommissionGroupSetting { GroupName = "Test", Description = "Test" } });
+            commissionGroupService.Setup(c => c.GetCommissionGroupList(param))
+                .Returns(new List<CommissionGroupSetting> { new CommissionGroupSetting { GroupId = 123 } })
+                .Callback<GetCommissionGroupParam>(p => passedParam = p);
             var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object);
-            var expectedResult = new CommissionGroupSetting();
 
             // Action
             var result = controller.GetCommissionGroup(param) as JsonNetResult;
             var model = result.Data as CommissionGroupSetting;
 
             // Assert
-            Assert.Equal(expectedResult, model);
+            Assert.Equal(param.GroupId, model.GroupId);
+            Assert.Equal(param, passedParam);
         }
 
         [Fact]
         public void GetCommissionGroup_GetData_ReturnNullData()
         {
             // Arrange
-            var param = new GetCommissionGroupParam();
+            var param = new GetCommissionGroupParam { GroupId = 123 };
+            GetCommissionGroupParam passedParam = null;
             var commissionGroupService = new Mock<ICommissionGroupService>();
-            commissionGroupService.Setup(c => c.GetCommissionGroupList(param));
+            commissionGroupService.Setup(c => c.GetCommissionGroupList(param)).Returns(new List<CommissionGroupSetting>()).Callback<GetCommissionGroupParam>(p => passedParam = p);
             var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object);
-            var expectedResult = new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = CommGroupErrorMessage.InvalidGroupId
-            };
 
             // Action
             var result = controller.GetCommissionGroup(param) as JsonNetResult;
-            var model = result.Data as ResultInfo;
+            var resultInfo = result.Data as ResultInfo;
 
             // Assert
-            Assert.Equal(expectedResult.Code, model.Code);
+            Assert.False(resultInfo.IsSuccessful);
+            Assert.Equal(CommGroupErrorMessage.InvalidGroupId, resultInfo.Message);
+            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -214,7 +146,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             // Arrange
             var param = CreateCommissionGroupSetting();
             param.GroupName = string.Empty;
-            var controller = CreateCommissionGroupController();
+            var productRepository = new Mock<IProductRepository>();
+            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 3 },
+                new Product { ProductId = 4 }
+            });
+            var controller = CreateCommissionGroupController(productRepository: productRepository.Object);
 
             // Action
             var result = controller.CreateCommissionGroup(param) as JsonNetResult;
@@ -230,7 +169,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             // Arrange
             var param = CreateCommissionGroupSetting();
             param.GroupName = "Create Commission Group When Call With Group Name More Than 100 Characters, Create Commission Group When Call With Group Name More Than 100 Characters";
-            var controller = CreateCommissionGroupController();
+            var productRepository = new Mock<IProductRepository>();
+            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 3 },
+                new Product { ProductId = 4 }
+            });
+            var controller = CreateCommissionGroupController(productRepository: productRepository.Object);
 
             // Action
             var result = controller.CreateCommissionGroup(param) as JsonNetResult;
@@ -246,6 +192,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         {
             // Arrange
             var param = CreateCommissionGroupSetting();
+            param.GroupName = "abc";
             param.PlatformFeeList = platformFeeList;
             var productRepository = new Mock<IProductRepository>();
             productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
@@ -266,11 +213,33 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         [Fact]
+        public void CreateCommissionGroup_WhenCallWithInvalidGroupNameAndPlatformFee_ExcuteIncorrect()
+        {
+            // Arrange
+            var param = CreateCommissionGroupSetting();
+            param.GroupName = string.Empty;
+            var productRepository = new Mock<IProductRepository>();
+            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 2 },
+                new Product { ProductId = 3 }
+            });
+            var controller = CreateCommissionGroupController(productRepository: productRepository.Object);
+
+            // Action
+            var result = controller.CreateCommissionGroup(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+        }
+
+        [Fact]
         public void CreateCommissionGroup_WhenCallWithValidParam_ExcuteCorrectly()
         {
             // Arrange
             var param = CreateCommissionGroupSetting();
-            var createParam = new CreateUpdateCommissionGroupParam();
             var productRepository = new Mock<IProductRepository>();
             productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
@@ -280,7 +249,33 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             });
 
             var commissionGroupService = new Mock<ICommissionGroupService>();
-            commissionGroupService.Setup(c => c.CreateCommissionGroup(createParam)).Returns(new ResultInfo());
+            commissionGroupService.Setup(c => c.CreateCommissionGroup(It.IsAny<CreateUpdateCommissionGroupParam>())).Returns(new ResultInfo());
+            var controller = CreateCommissionGroupController(productRepository: productRepository.Object, commissionGroupService: commissionGroupService.Object);
+
+            // Action
+            var result = controller.CreateCommissionGroup(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.True(resultInfo.IsSuccessful);
+        }
+
+        [Fact]
+        public void CreateCommissionGroup_WhenCallWithValidParamAndDescriptionNull_ExcuteCorrectly()
+        {
+            // Arrange
+            var param = CreateCommissionGroupSetting();
+            param.Description = null;
+            var productRepository = new Mock<IProductRepository>();
+            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 3 },
+                new Product { ProductId = 4 }
+            });
+
+            var commissionGroupService = new Mock<ICommissionGroupService>();
+            commissionGroupService.Setup(c => c.CreateCommissionGroup(It.IsAny<CreateUpdateCommissionGroupParam>())).Returns(new ResultInfo());
             var controller = CreateCommissionGroupController(productRepository: productRepository.Object, commissionGroupService: commissionGroupService.Object);
 
             // Action
@@ -330,7 +325,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             // Arrange
             var param = CreateUpdateCommissionGroupSetting();
             param.GroupName = string.Empty;
-            var controller = CreateCommissionGroupController();
+            var productRepository = new Mock<IProductRepository>();
+            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 3 },
+                new Product { ProductId = 4 }
+            });
+
+            var controller = CreateCommissionGroupController(productRepository: productRepository.Object);
 
             // Action
             var result = controller.UpdateCommissionGroup(param) as JsonNetResult;
@@ -346,7 +349,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             // Arrange
             var param = CreateUpdateCommissionGroupSetting();
             param.GroupName = "Update Commission Group When Call With Group Name More Than 100 Characters, Update Commission Group When Call With Group Name More Than 100 Characters";
-            var controller = CreateCommissionGroupController();
+
+            var productRepository = new Mock<IProductRepository>();
+            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 3 },
+                new Product { ProductId = 4 }
+            });
+
+            var controller = CreateCommissionGroupController(productRepository: productRepository.Object);
 
             // Action
             var result = controller.UpdateCommissionGroup(param) as JsonNetResult;
@@ -362,6 +374,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         {
             // Arrange
             var param = CreateUpdateCommissionGroupSetting();
+            param.GroupName = "abc";
             param.PlatformFeeList = platformFeeList;
             var productRepository = new Mock<IProductRepository>();
             productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
@@ -382,11 +395,33 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         [Fact]
+        public void UpdateCommissionGroup_WhenCallWithInvalidGroupNameAndPlatformFee_ExcuteIncorrect()
+        {
+            // Arrange
+            var param = CreateCommissionGroupSetting();
+            param.GroupName = string.Empty;
+            var productRepository = new Mock<IProductRepository>();
+            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 2 },
+                new Product { ProductId = 3 }
+            });
+            var controller = CreateCommissionGroupController(productRepository: productRepository.Object);
+
+            // Action
+            var result = controller.UpdateCommissionGroup(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+        }
+
+        [Fact]
         public void UpdateCommissionGroup_WhenCallWithValidParam_ExcuteCorrectly()
         {
             // Arrange
             var param = CreateUpdateCommissionGroupSetting();
-            var createParam = new CreateUpdateCommissionGroupParam();
             var productRepository = new Mock<IProductRepository>();
             productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
@@ -396,7 +431,33 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             });
 
             var commissionGroupService = new Mock<ICommissionGroupService>();
-            commissionGroupService.Setup(c => c.UpdateCommissionGroup(createParam)).Returns(new ResultInfo());
+            commissionGroupService.Setup(c => c.UpdateCommissionGroup(It.IsAny<CreateUpdateCommissionGroupParam>())).Returns(new ResultInfo());
+            var controller = CreateCommissionGroupController(productRepository: productRepository.Object, commissionGroupService: commissionGroupService.Object);
+
+            // Action
+            var result = controller.UpdateCommissionGroup(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.True(resultInfo.IsSuccessful);
+        }
+
+        [Fact]
+        public void UpdateCommissionGroup_WhenCallWithValidParamAndDescriptionNull_ExcuteCorrectly()
+        {
+            // Arrange
+            var param = CreateUpdateCommissionGroupSetting();
+            param.Description = null;
+            var productRepository = new Mock<IProductRepository>();
+            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 3 },
+                new Product { ProductId = 4 }
+            });
+
+            var commissionGroupService = new Mock<ICommissionGroupService>();
+            commissionGroupService.Setup(c => c.UpdateCommissionGroup(It.IsAny<CreateUpdateCommissionGroupParam>())).Returns(new ResultInfo());
             var controller = CreateCommissionGroupController(productRepository: productRepository.Object, commissionGroupService: commissionGroupService.Object);
 
             // Action
@@ -440,6 +501,64 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
             // Assert
             Assert.True(resultInfo.IsSuccessful);
+        }
+
+        private static CommissionGroupController CreateCommissionGroupController(
+            ISessionService sessionService = null,
+            ICommissionGroupService commissionGroupService = null,
+            IProductRepository productRepository = null,
+            ICommGroupCommonService commGroupCommonService = null
+            )
+        {
+            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakeCommissionGroupService = commissionGroupService ?? Mock.Of<ICommissionGroupService>();
+            var fakeProductRepository = productRepository ?? Mock.Of<IProductRepository>();
+            var fakecommGroupCommonService = commGroupCommonService ?? Mock.Of<ICommGroupCommonService>();
+            var controller = new CommissionGroupController(fakeSessionService, fakeCommissionGroupService, fakeProductRepository, fakecommGroupCommonService);
+
+            var request = MockingHelper.GetHttpRequest();
+            var server = new Mock<HttpServerUtilityBase>();
+            server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");
+
+            controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
+                ctx.HttpContext.Request == request &&
+                ctx.HttpContext.Server == server.Object &&
+                ctx.HttpContext.Session.SessionID == "SessionId"
+            );
+
+            return controller;
+        }
+
+        private static CommissionGroupSetting CreateCommissionGroupSetting()
+        {
+            return new CommissionGroupSetting
+            {
+                BankingFee = new DeductionSetting { DeductionId = 12, ProductIds = "0", DeductedPercentage = 0.02m },
+                Description = "Test",
+                ExchangeCommissionShare = new DeductionSetting { DeductionId = 14, ProductIds = "19", DeductedPercentage = 0.1m },
+                ExchangeWinLossShare = new DeductionSetting { DeductionId = 13, ProductIds = "19", DeductedPercentage = 0.05m },
+                GroupId = 0,
+                GroupName = "Test",
+                OperationalFee = new DeductionSetting { DeductionId = 11, ProductIds = "0", DeductedPercentage = 0.07m },
+                PlatformFeeList = new List<DeductionSetting>
+                {
+                    new DeductionSetting { DeductionId = 10, ProductIds = "1,3,4", DeductedPercentage = 0.17m }
+                },
+                QmTurnover = 100,
+                TierSettingList = new List<TierSetting>
+                {
+                    new TierSetting { Commission = 0.05m, MaxAmount = 100, MaxQm = 100, MinAmount = 0, MinQm = 0, TierId = 1 },
+                    new TierSetting { Commission = 0.15m, MaxAmount = 100000000000000, MaxQm = 1000000000, MinAmount = 101, MinQm = 101, TierId = 2 }
+                }
+            };
+        }
+
+        private static CommissionGroupSetting CreateUpdateCommissionGroupSetting()
+        {
+            var commissionGroupSetting = CreateCommissionGroupSetting();
+            commissionGroupSetting.GroupId = 123;
+
+            return commissionGroupSetting;
         }
     }
 

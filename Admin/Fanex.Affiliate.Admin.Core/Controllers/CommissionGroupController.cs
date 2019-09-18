@@ -114,7 +114,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 {
                     UserId = SessionService.UserId,
                     Ip = Request.UserHostAddress,
-                    GroupName = Server.HtmlEncode(commGroup.GroupName?.Trim()),
+                    GroupName = Server.HtmlEncode(commGroup.GroupName.Trim()),
                     Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     QmTurnover = commGroup.QmTurnover,
                     TierSettingList = commGroup.TierSettingList,
@@ -160,7 +160,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 {
                     UserId = SessionService.UserId,
                     GroupId = commGroup.GroupId,
-                    GroupName = Server.HtmlEncode(commGroup.GroupName?.Trim()),
+                    GroupName = Server.HtmlEncode(commGroup.GroupName.Trim()),
                     Ip = Request.UserHostAddress,
                     Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     QmTurnover = commGroup.NextQmTurnover,

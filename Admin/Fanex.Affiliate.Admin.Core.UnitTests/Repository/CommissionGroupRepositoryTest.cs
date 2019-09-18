@@ -8,6 +8,7 @@ using Fanex.Data;
 using Moq;
 using Xunit;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
 {
@@ -36,11 +37,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
 
             // Action
             var result = repository.Object.GetCommissionGroupList(new GetCommissionGroupParam());
+            var commGroupItem = result.CommGroupList.FirstOrDefault();
 
             // Assert
             Assert.Single(result.CommGroupList);
             Assert.Empty(result.TierSettingList);
             Assert.Empty(result.DeductionSettingList);
+            Assert.Equal("07/11/2018 00:00:00", commGroupItem.CreatedDateText);
         }
 
         [Fact]
