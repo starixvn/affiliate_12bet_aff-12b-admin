@@ -149,6 +149,7 @@
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />
     <Compile Include="TestHelper\ReaderHelper.cs" />
+    <Compile Include="TestHelper\SimpleLifetimeScopeProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

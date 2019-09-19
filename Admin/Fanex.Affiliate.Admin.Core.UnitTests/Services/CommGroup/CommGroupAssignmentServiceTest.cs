@@ -1,4 +1,7 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
@@ -7,14 +10,19 @@ using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
+using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
+using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
 {
     public class CommGroupAssignmentServiceTest
     {
+        private IDependencyResolver _originalResolver = null;
+        private ILifetimeScopeProvider _scopeProvider = null;
+
         [Fact]
         public void GetNormalCommGroupList_WhenCall_ReturnCorrectData()
         {
@@ -87,6 +95,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         [Fact]
         public void AssignGroup_WhenCallWithApprovedComm_ExcuteSuccessful()
         {
+            // Arrange
+            var appSetting = new Mock<IAppSetting>();
+            appSetting.Setup(a => a.EuropeanAffSiteUrl).Returns("https://ha.nexdev.net:7613/12BetUserEuNew");
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
+            var container = builder.Build();
+
+            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
+            this._originalResolver = DependencyResolver.Current;
+            DependencyResolver.SetResolver(resolver);
+
             var param = new AssignGroupParam();
             var affInfo = new AffiliateBasicInfo { AffType = 4 };
             var emailParam = new AffInformationEmail();
@@ -242,10 +263,21 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         public void AssignPrivateGroup_WhenCall_ExcuteCorrectWithCreateAndApprovedPrivateComm()
         {
             // Arrange
+            var appSetting = new Mock<IAppSetting>();
+            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://ha.nexdev.net:7613/12BetUserAsianNew");
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
+            var container = builder.Build();
+
+            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
+            this._originalResolver = DependencyResolver.Current;
+            DependencyResolver.SetResolver(resolver);
+
             var param = CreateValidCreateUpdateCommissionGroupParam();
-            var affInfo = new AffiliateBasicInfo();
+            var affInfo = new AffiliateBasicInfo { AffType = 3, PreferredLanguage = "US", PlayerUsername = "12Bet" };
             var emailParam = new AffInformationEmail();
-            AffInformationEmail passedEmailParam = null;
 
             var expectedResult = new ResultInfo();
 
@@ -259,27 +291,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             affiliateService.Setup(aff => aff.ApproveAffiliate(It.IsAny<ApproveAffiliateParam>())).Returns(expectedResult);
 
             var emailService = new Mock<IEmailService>();
-            emailService.Setup(e => e.SendApprovedEmail(It.IsAny<AffInformationEmail>())).Callback<AffInformationEmail>(p => passedEmailParam = p);
+            emailService.Setup(e => e.SendApprovedEmail(It.IsAny<AffInformationEmail>()));
 
             var service = CreateCommGroupAssignmentService(commGroupRepository.Object, affiliateService.Object , commGroupCommonService: commGroupCommonService.Object);
-
-            var expectedEmailParam = new AffInformationEmail
-            {
-                UserSiteUrl = "",
-                Language = "",
-                FirstName = affInfo.FirstName,
-                UserName = affInfo.UserName,
-                MailTo = affInfo.Email,
-                IsHtml = !affInfo.MailOption,
-                Password = "",
-            };
 
             // Action
             var result = service.AssignPrivateGroup(param, affInfo, emailParam);
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(expectedEmailParam, passedEmailParam);
         }
 
         [Fact]

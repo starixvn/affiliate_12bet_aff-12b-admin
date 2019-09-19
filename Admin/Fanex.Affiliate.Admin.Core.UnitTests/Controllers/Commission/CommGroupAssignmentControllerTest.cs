@@ -1,4 +1,7 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Controllers.Commission;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
@@ -22,6 +25,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Commission
 {
     public class CommGroupAssignmentControllerTest
     {
+        private IDependencyResolver _originalResolver = null;
+        private ILifetimeScopeProvider _scopeProvider = null;
+
         [Fact]
         public void AssignGroup_WhenCallWithInvalidAffId_ReturnViewWithEmptyModel()
         {
@@ -109,10 +115,23 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Commission
         public void AssignGroup_WhenCallPost_ExcuteCorrectly()
         {
             // Arrange
+            var appSetting = new Mock<IAppSetting>();
+            appSetting.Setup(a => a.Environment).Returns("UAT");
+            appSetting.Setup(a => a.IsProduction).Returns(true);
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
+            var container = builder.Build();
+
+            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
+            this._originalResolver = DependencyResolver.Current;
+            DependencyResolver.SetResolver(resolver);
+
             var assignParam = new AssignGroupParam { AffId = 1271808, GroupId = 133 };
             var affInfo = new AffiliateBasicInfo();
             var commGroupAssignmentService = new Mock<ICommGroupAssignmentService>();
-            commGroupAssignmentService.Setup(c => c.AssignGroup(assignParam, affInfo, new AffInformationEmail())).Returns(new ResultInfo());
+            commGroupAssignmentService.Setup(c => c.AssignGroup(It.IsAny<AssignGroupParam>(), affInfo, It.IsAny<AffInformationEmail>())).Returns(new ResultInfo());
             var controller = CreateCommGroupAssignmentController(commGroupAssignmentService: commGroupAssignmentService.Object);
 
             // Action
@@ -219,6 +238,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Commission
         public void AssignPrivateGroup_WhenCall_ExcuteCorrectly()
         {
             // Arrange
+            var appSetting = new Mock<IAppSetting>();
+            appSetting.Setup(a => a.Environment).Returns("LOCAL");
+            appSetting.Setup(a => a.IsProduction).Returns(false);
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
+            var container = builder.Build();
+
+            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
+            this._originalResolver = DependencyResolver.Current;
+            DependencyResolver.SetResolver(resolver);
+
             var commGroup = CreateCommissionGroupSetting();
             var affInfo = new AffiliateBasicInfo { AffId = 1271808 };
             var productRepository = new Mock<IProductRepository>();
@@ -228,8 +260,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Commission
                 new Product { ProductId = 3 },
                 new Product { ProductId = 4 }
             });
-
-            var controller = CreateCommGroupAssignmentController(productRepository: productRepository.Object);
+            var commGroupAssignmentService = new Mock<ICommGroupAssignmentService>();
+            commGroupAssignmentService.Setup(c => c.AssignPrivateGroup(It.IsAny<CreateUpdateCommissionGroupParam>(), affInfo, It.IsAny<AffInformationEmail>())).Returns(new ResultInfo());
+            var controller = CreateCommGroupAssignmentController(productRepository: productRepository.Object, commGroupAssignmentService: commGroupAssignmentService.Object);
 
             // Action
             var result = controller.AssignPrivateGroup(commGroup, affInfo) as JsonNetResult;
@@ -262,6 +295,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Commission
                 ctx.HttpContext.Server == server.Object &&
                 ctx.HttpContext.Session.SessionID == "SessionId"
             );
+
+            var expectedPath = "~/";
+            var expectedContent = "/";
+            var urlHelperMock = new Mock<UrlHelper>();
+            urlHelperMock
+                .Setup(m => m.Content(expectedPath))
+                .Returns(expectedContent);
+
+            controller.Url = urlHelperMock.Object;
 
             return controller;
         }
