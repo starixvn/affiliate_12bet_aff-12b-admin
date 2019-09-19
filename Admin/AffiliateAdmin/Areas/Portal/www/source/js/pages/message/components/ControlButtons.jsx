@@ -15,37 +15,36 @@ export const ControlButtons = (props) => {
         props.setShouldResetScrollPosition(false);
     }
 
-    const isNoData = !props.gridData.length;
+    const hasData = props.gridData && props.gridData.length;
 
-    return (
+    return props.gridData && (
         <React.Fragment>
             {
-                isNoData ? (
-                    <div className="my-2">
-                        <Button outline type="button" onClick={() => _handleClickButton(messageInsertId)}>{resource.Add}</Button>
-                    </div>
-                )
-                    : (
-                        <React.Fragment>
-                            <div className="my-2">
-                                <ButtonDeleteItems
-                                    checkedItems={props.checkedMessages}
-                                    toggleLoader={props.toggleLoader}
-                                    deleteItems={props.deleteMessages}
-                                    fetchData={() => props.fetchData(props.param)}
-                                    messages={messages}
-                                    hasIcon={true}
-                                    isOpenNotification={true}
-                                />
-                                <Button outline type="button" className="mx-2" onClick={() => _handleClickButton(messageInsertId)}>{resource.Add}</Button>
-                                <Button outline type="button" onClick={() => _handleClickButton(messageCurrentId)}>{resource.CurrentMessage}</Button>
-                            </div>
-                            <SelectAll
-                                checkedList={props.checkedMessages}
-                                setCheckedList={props.setCheckedMessages}
-                                setShouldResetScrollPosition={props.setShouldResetScrollPosition}
+                hasData ? (
+                    <React.Fragment>
+                        <div className="my-2">
+                            <ButtonDeleteItems
+                                checkedItems={props.checkedMessages}
+                                toggleLoader={props.toggleLoader}
+                                deleteItems={props.deleteMessages}
+                                fetchData={() => props.fetchData(props.param)}
+                                messages={messages}
+                                hasIcon={true}
+                                isOpenNotification={true}
                             />
-                        </React.Fragment>
+                            <Button outline type="button" className="mx-2" onClick={() => _handleClickButton(messageInsertId)}>{resource.Add}</Button>
+                            <Button outline type="button" onClick={() => _handleClickButton(messageCurrentId)}>{resource.CurrentMessage}</Button>
+                        </div>
+                        <SelectAll
+                            checkedList={props.checkedMessages}
+                            setCheckedList={props.setCheckedMessages}
+                            setShouldResetScrollPosition={props.setShouldResetScrollPosition}
+                        />
+                    </React.Fragment>
+                ) : (
+                        <div className="my-2">
+                            <Button outline type="button" onClick={() => _handleClickButton(messageInsertId)}>{resource.Add}</Button>
+                        </div>
                     )
             }
         </React.Fragment>

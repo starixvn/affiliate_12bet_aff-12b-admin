@@ -99,21 +99,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         }
 
         [Fact]
-        public void GetMessageDetail_WhenCallWithInvalidParam_ReturnEmptyObject()
-        {
-            // Arrange
-            var selectedMessageId = -1;
-            var controller = CreateMessageController();
-
-            // Action
-            var result = controller.GetMessageDetail(selectedMessageId) as JsonNetResult;
-            var messageDetail = result.Data as MessageDetail;
-
-            // Assert
-            Assert.Equal(0, messageDetail.MessageId);
-        }
-
-        [Fact]
         public void InsertMessage_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
@@ -152,7 +137,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         public void UpdateMessage_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam { MessageId = 1, MessageContentEn = "abc" };
+            var param = new InsertUpdateMessageParam { MessageId = 1, MessageContentVi = "abc" };
             InsertUpdateMessageParam passedParam = null;
             var messageSevice = new Mock<IMessageService>();
             messageSevice.Setup(s => s.UpdateMessage(It.IsAny<InsertUpdateMessageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);

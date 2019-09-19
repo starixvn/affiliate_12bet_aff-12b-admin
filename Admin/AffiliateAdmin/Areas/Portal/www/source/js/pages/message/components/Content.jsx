@@ -7,7 +7,6 @@ import { Button } from 'reactstrap';
 import { htmlDecode } from '../../../modules/htmlHelper';
 import { headerText, resource } from '../libs/constants';
 import { setSelectedMessageId, setPagingOption, fetchData, setCheckedMessages, setShouldResetScrollPosition, setParam } from '../actions';
-import ControlButtons from './ControlButtons';
 
 export const Content = (props) => {
 
@@ -98,8 +97,7 @@ export const Content = (props) => {
     }
 
     return props.gridData && (
-        <div className="data-content mx-1">
-            <ControlButtons />
+        <div className="data-content">
             <div className="message-content table-responsive table-striped my-2">
                 <Table
                     maxWidth={1000}

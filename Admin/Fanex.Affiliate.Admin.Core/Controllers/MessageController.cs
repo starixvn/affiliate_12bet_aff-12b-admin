@@ -63,17 +63,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult GetMessageDetail(int selectedMessageId)
         {
-            if (selectedMessageId >= Validation.MinId)
-            {
-                return new JsonNetResult
-                {
-                    Data = _messageSevice.GetMessageDetail(selectedMessageId)
-                };
-            }
-
             return new JsonNetResult
             {
-                Data = new MessageDetail()
+                Data = _messageSevice.GetMessageDetail(selectedMessageId)
             };
         }
 

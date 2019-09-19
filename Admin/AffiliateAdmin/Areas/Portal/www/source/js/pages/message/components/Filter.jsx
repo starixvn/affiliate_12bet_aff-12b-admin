@@ -45,7 +45,7 @@ export const Filter = (props) => {
     }
 
     return (
-        <div className="filter-container mx-1 mt-3">
+        <div className="filter-container">
             <Form inline tag="div">
                 <FormGroup className="mr-sm-3">
                     <Label className="mr-2">{resource.SearchBy}</Label>

@@ -37,10 +37,39 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Message
 
             // Action
             var result = repository.Object.GetMessageList(new MessageParam());
+            var messageInfo = result.MainData.FirstOrDefault();
 
             // Assert
             Assert.Single(result.MainData);
             Assert.Equal(1, result.TotalItem);
+            Assert.Equal("09/18/2019 00:00:00", messageInfo.PostedDateText);
+            Assert.Equal("09/19/2019 00:00:00", messageInfo.UpdatedDateText);
+        }
+
+        [Fact]
+        public void GetMessageList_WhenCall_ReturnCorrectDataWithUpdatedDateNull()
+        {
+            // Arrange
+            var repository = new Mock<MessageRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetMessageList());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
+            repository.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetMessageList(new MessageParam());
+            var messageInfo = result.MainData.FirstOrDefault();
+            messageInfo.UpdatedDate = null;
+
+            // Assert
+            Assert.Single(result.MainData);
+            Assert.Equal(1, result.TotalItem);
+            Assert.Equal("09/18/2019 00:00:00", messageInfo.PostedDateText);
+            Assert.Null(messageInfo.UpdatedDateText);
         }
 
         [Fact]
@@ -52,16 +81,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Message
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
-            ReaderHelper.MapReaderData(dataReader, GetMessageList());
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
             repository.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
 
             // Action
             var result = repository.Object.GetMessageList(new MessageParam());
+            var messageInfo = result.MainData.FirstOrDefault();
 
             // Assert
             Assert.Equal(0, result.TotalItem);
+            Assert.Equal("01/01/0001 00:00:00", messageInfo.UpdatedDateText);
         }
 
         [Fact]
@@ -223,11 +253,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Message
             {
                 ["msgid"] = 37,
                 ["creatorname"] = "sa",
-                ["PostedDate"] = new DateTime(),
+                ["PostedDate"] = new DateTime(2019, 09, 18),
                 ["message_en"] = "test",
                 ["Important"] = false,
                 ["updatename"] = "",
-                ["UpdatedDate"] = new DateTime()
+                ["UpdatedDate"] = new DateTime(2019, 09, 19)
             };
         }
     }
