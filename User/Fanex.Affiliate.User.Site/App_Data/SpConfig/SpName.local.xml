@@ -71,8 +71,8 @@
     <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="affiliate_12bet" />
     <Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage" DbName="affiliate_12bet_view" />
 
-    <Setting Key="Aff_User_StatisticsSel" SpName="Aff_User_StatisticsSel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_StatisticsSel_view" SpName="Aff_User_StatisticsSel_xtest" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_StatisticsSel" SpName="Aff_User_StatisticsSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_StatisticsSel_view" SpName="Aff_User_StatisticsSel" DbName="affiliate_12bet_view" />
   </Function>
 
   <Function Name="HotNews">
@@ -89,10 +89,10 @@
   </Function>
 
   <Function Name="Statement History">
-    <Setting Key="Aff_User_StatementHistory_Sel" SpName="Aff_User_StatementHistory_Sel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_StatementHistory_Sel_view" SpName="Aff_User_StatementHistory_Sel_xtest" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_ProductList_Sel_view" SpName="Aff_ProductList_Sel_xtest" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_StatementHistory_Sel" SpName="Aff_User_StatementHistory_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_StatementHistory_Sel_view" SpName="Aff_User_StatementHistory_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_ProductList_Sel_view" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_DailyEarning_Sel_view" SpName="Aff_DailyEarning_Sel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="affiliate_12bet" />
@@ -132,7 +132,7 @@
     <Setting Key="Aff_EmailHistoryIns" SpName="Aff_EmailHistoryIns" DbName="affiliate_12bet" />  
   </Function>
   <Function Name="CommissionReport">
-    <Setting Key="Aff_User_Rpt_Commission" SpName="Aff_User_Rpt_Commission_xtest" DbName="affiliate_12bet"></Setting>
+    <Setting Key="Aff_User_Rpt_Commission" SpName="Aff_User_Rpt_Commission" DbName="affiliate_12bet"></Setting>
   </Function>
   <Function Name="SecurityQuestion">
     <Setting Key="Aff_User_SecurityQuestions_Sel" SpName="Aff_User_SecurityQuestions_Sel" DbName="affiliate_12bet" />

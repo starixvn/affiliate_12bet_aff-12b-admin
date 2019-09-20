@@ -2,8 +2,4 @@
 <Root>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
 
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_StatisticsSel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_Rpt_Commission" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_StatementHistory_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_ProductList_Sel" Suffix="_xtest"></item>
 </Root>
