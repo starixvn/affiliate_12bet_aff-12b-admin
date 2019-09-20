@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`message - components - Filter  render correctly with SearchBy All 1`] = `
+exports[`message - components - Filter  render correctly 1`] = `
 <div
   className="filter-container"
 >

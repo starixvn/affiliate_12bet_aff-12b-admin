@@ -231,12 +231,11 @@ describe('exchange rate - components - EditExchangeRateForm ', () => {
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, 'Update failed!');
     });
 
-    it('handleSubmit - should call toggleLoader, updateExchangeRate, _handleShowAlert, setTogglePopup and fetchData with correct amount', async () => {
+    it('handleSubmit - should call toggleLoader, updateExchangeRate and _handleShowAlert with correct amount', async () => {
         const result = { IsSuccessful: true, Message: '' }
         const updateExchangeRate = jest.fn(() => result);
         const toggleLoader = jest.fn();
-        const fetchData = jest.fn();
-        const props = Object.assign({}, defaultProps, { updateExchangeRate, selectedExchangeRate, toggleLoader, fetchData });
+        const props = Object.assign({}, defaultProps, { updateExchangeRate, selectedExchangeRate, toggleLoader });
         const wrapper = shallow(<EditExchangeRateForm {...props} />);
         wrapper.setState({ rate: '0.05' });
 
@@ -251,7 +250,6 @@ describe('exchange rate - components - EditExchangeRateForm ', () => {
 
         expect(props.updateExchangeRate).toHaveBeenCalledWith({ Currency: "AUD", ExchangeId: 9, Rate: 0.05, RateType: 1 });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(true, 'Updated successfully!');
-        expect(props.fetchData).toHaveBeenCalledWith('09/06/2019');
     });
 
     it('_handleShowAlert - should call setState, setTimeout and _hideMessage', async () => {
@@ -269,24 +267,26 @@ describe('exchange rate - components - EditExchangeRateForm ', () => {
     });
 
     it('_hideMessage - should call setState and not call setTogglePopup', async () => {
-        const props = Object.assign({}, defaultProps, { setTogglePopup: jest.fn() });
+        const props = Object.assign({}, defaultProps, { setTogglePopup: jest.fn(), fetchData: jest.fn() });
         const wrapper = shallow(<EditExchangeRateForm {...props} />);
         wrapper.setState = jest.fn();
 
         wrapper.instance()._hideMessage()
 
         expect(wrapper.setState).toHaveBeenCalledWith({ isShowMessage: false });
+        expect(props.fetchData).not.toHaveBeenCalled();
         expect(props.setTogglePopup).not.toHaveBeenCalled();
     });
 
-    it('_hideMessage - should call setState and setTogglePopup', async () => {
-        const props = Object.assign({}, defaultProps, { setTogglePopup: jest.fn() });
+    it('_hideMessage - should call setState, fetchData and setTogglePopup', async () => {
+        const props = Object.assign({}, defaultProps, { setTogglePopup: jest.fn(), fetchData: jest.fn() });
         const wrapper = shallow(<EditExchangeRateForm {...props} />);
         wrapper.setState = jest.fn();
 
         wrapper.instance()._hideMessage(true)
 
         expect(wrapper.setState).toHaveBeenCalledWith({ isShowMessage: false });
+        expect(props.fetchData).toHaveBeenCalledWith('09/06/2019');
         expect(props.setTogglePopup).toHaveBeenCalledWith(false);
     });
 

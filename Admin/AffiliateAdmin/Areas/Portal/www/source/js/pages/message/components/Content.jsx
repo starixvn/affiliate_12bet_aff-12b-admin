@@ -86,7 +86,7 @@ export const Content = (props) => {
                 <Cell className="text-center" title={dataItem.PostedDateText}>{dataItem.PostedDateText}</Cell>
                 <Cell title={resource.ViewDetail}>
                     <Button color="link" className={`${textDanger} ${!message ? 'h-20' : ''}`} onClick={() => props.setSelectedMessageId(dataItem.MessageId)}>
-                        {message || ' '}
+                        {message}
                     </Button>
                 </Cell>
                 <Cell className="text-center" title={important}>{important}</Cell>

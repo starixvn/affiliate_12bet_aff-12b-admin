@@ -28,14 +28,15 @@ export class MessageDetailForm extends PureComponent {
         this.modalRef = React.createRef();
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         const { selectedMessageId } = this.props;
 
-        if (selectedMessageId && selectedMessageId !== 0 && selectedMessageId !== prevProps.selectedMessageId) {
-            this._handleGetMessageDetail(selectedMessageId);
-        }
+        if (selectedMessageId !== prevProps.selectedMessageId) {
 
-        this.setState({ isInsert: selectedMessageId === messageInsertId });
+            this.setState({ isInsert: selectedMessageId === messageInsertId });
+
+            selectedMessageId && this._handleGetMessageDetail(selectedMessageId);
+        }
     }
 
     _handleGetMessageDetail = async (selectedMessageId) => {
@@ -159,7 +160,7 @@ export class MessageDetailForm extends PureComponent {
                                     {
                                         Object.keys(messageContentList).map(key => {
                                             return (
-                                                <FormGroup row className="mb-2">
+                                                <FormGroup row className="mb-2" key={key}>
                                                     <Label for={key} sm={2} className="d-flex justify-content-end align-items-center">{languages[key]}</Label>
                                                     <Col sm={10}>
                                                         <Input type="textarea" name={key} id={key} rows="4"
@@ -179,7 +180,7 @@ export class MessageDetailForm extends PureComponent {
                                                         : <Button type="button" color="success" className="mr-2" onClick={() => this.setState({ isClickedEdit: true })}>{resource.Edit}</Button>
                                                 }
                                                 <ButtonDeleteItems
-                                                    checkedItems={{[selectedMessageId] : true}}
+                                                    checkedItems={{ [selectedMessageId]: true }}
                                                     toggleLoader={this.props.toggleLoader}
                                                     deleteItems={this.props.deleteMessages}
                                                     fetchData={() => this._handleShowAlert(true, "Delete Successfully!")}
