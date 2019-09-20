@@ -204,6 +204,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
     <Compile Include="Controllers\MediaGalleryController.cs" />
+    <Compile Include="Controllers\MediaGallery\TextList.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
@@ -240,7 +241,10 @@
     <Compile Include="DTO\EntityResult.cs" />
     <Compile Include="DTO\ExchangeRate\ExchangeRateInfo.cs" />
     <Compile Include="DTO\Language.cs" />
+    <Compile Include="MetaModels\MediaGallery\DeleteTextParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\InsertUpdateTextParam.cs" />
     <Compile Include="DTO\MediaGallery\LandingPage.cs" />
+    <Compile Include="DTO\MediaGallery\TextInfo.cs" />
     <Compile Include="DTO\Message\MessageDetail.cs" />
     <Compile Include="DTO\Message\MessageInfo.cs" />
     <Compile Include="DTO\Payment\PaymentRequest.cs" />
@@ -290,6 +294,7 @@
     <Compile Include="MetaModels\ExchangeRate\ExchangeRateParam.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\TextParam.cs" />
     <Compile Include="MetaModels\Message\DeleteMessageParam.cs" />
     <Compile Include="MetaModels\Message\InsertUpdateMessageParam.cs" />
     <Compile Include="MetaModels\Message\MessageParam.cs" />
@@ -327,6 +332,8 @@
     <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
     <Compile Include="Repository\EmailHistory\EmailHistoryRepository.cs" />
     <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
+    <Compile Include="Repository\MediaGallery\ITextListRepository.cs" />
+    <Compile Include="Repository\MediaGallery\TextListRepository.cs" />
     <Compile Include="Repository\Message\IMessageRepository.cs" />
     <Compile Include="Repository\Message\MessageRepository.cs" />
     <Compile Include="Repository\Payment\IPaymentRequestRepository.cs" />
@@ -439,7 +446,9 @@
     <Compile Include="Services\ILanguageService.cs" />
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\MediaGallery\ILandingPageService.cs" />
+    <Compile Include="Services\MediaGallery\ITextListService.cs" />
     <Compile Include="Services\MediaGallery\LandingPageService.cs" />
+    <Compile Include="Services\MediaGallery\TextListService.cs" />
     <Compile Include="Services\Message\IMessageService.cs" />
     <Compile Include="Services\Message\MessageService.cs" />
     <Compile Include="Services\Payment\IPaymentRequestService.cs" />

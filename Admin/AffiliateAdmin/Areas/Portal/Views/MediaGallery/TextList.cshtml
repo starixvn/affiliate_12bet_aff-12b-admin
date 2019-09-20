@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+
+@section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/text-list.css")" rel="stylesheet" />
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            categoryList: [],
+            languageList: [],
+            currencyList: []
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/text-list.js")"></script>
+}
+
+<div id="root"></div>
+
