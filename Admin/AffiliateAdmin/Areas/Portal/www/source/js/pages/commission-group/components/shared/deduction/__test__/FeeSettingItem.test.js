@@ -17,7 +17,7 @@ describe('commission group - FeeSettingItem', () => {
         const mockEvent = { target: { name: 'DeductedPercentage', value: '0.15' }};
         const wrapper = shallow(<FeeSettingItem {...defaultProps} />);
 
-        wrapper.find('select[name="DeductedPercentage"]').simulate('change', mockEvent);
+        wrapper.find('Input[type="select"][name="DeductedPercentage"]').simulate('change', mockEvent);
 
         expect(wrapper.instance().props.onChangeCommission).toHaveBeenCalledWith({ DeductedPercentage: 0.15 });
     });
@@ -27,7 +27,7 @@ describe('commission group - FeeSettingItem', () => {
         const props = Object.assign({}, defaultProps, { isCreating: false });
         const wrapper = shallow(<FeeSettingItem {...props} />);
 
-        wrapper.find('select[name="NextDeductedPercentage"]').simulate('change', mockEvent);
+        wrapper.find('Input[type="select"][name="NextDeductedPercentage"]').simulate('change', mockEvent);
 
         expect(wrapper.instance().props.onChangeCommission).toHaveBeenCalledWith({ NextDeductedPercentage: 0.15 });
     });

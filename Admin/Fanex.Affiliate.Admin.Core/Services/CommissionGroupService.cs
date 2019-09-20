@@ -44,9 +44,11 @@ namespace Fanex.Affiliate.Admin.Core.Services
                              NextQmTurnover = c.NextQmTurnover,
                              NoAffs = c.NoAffs,
                              TierSettingList = groupTierSetting,
-                             PlatformFeeList = groupDeduction.Where(p => IsPlatformFee(p.ProductIds)),
-                             OperationalFee = groupDeduction.FirstOrDefault(p => p.DeductionName == DeductionName.OperationalFee),
-                             BankingFee = groupDeduction.FirstOrDefault(p => p.DeductionName == DeductionName.BankingFee)
+                             PlatformFeeList = groupDeduction.Where(p => p.DeductionId == DeductionId.PlatformFee),
+                             OperationalFee = groupDeduction.FirstOrDefault(p => p.DeductionId == DeductionId.OperationalFee),
+                             BankingFee = groupDeduction.FirstOrDefault(p => p.DeductionId == DeductionId.BankingFee),
+                             ExchangeWinLossShare = groupDeduction.FirstOrDefault(p => p.DeductionId == DeductionId.ExchangeWinLossShare),
+                             ExchangeCommissionShare = groupDeduction.FirstOrDefault(p => p.DeductionId == DeductionId.ExchangeCommissionShare)
                          };
 
             return result;
@@ -65,11 +67,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
         public ResultInfo DeleteCommissionGroup(DeleteCommissionGroupParam param)
         {
             return _commGroupRepository.DeleteCommissionGroup(param);
-        }
-
-        private static bool IsPlatformFee(string productIdList)
-        {
-            return productIdList != "0";
         }
     }
 }

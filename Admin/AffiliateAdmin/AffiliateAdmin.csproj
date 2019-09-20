@@ -1270,6 +1270,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\FeeSettingItem.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\PlatformFeeItem.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\PlatformFeeSetting.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\__test__\ExchangeRevenueShareSetting.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\__test__\SharePercentSettingItem.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\__test__\TierSetting.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\__test__\TierSettingItem.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\CommGroup.test.js" />
@@ -1941,6 +1943,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\DeleteEmail.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\SelectAll.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-table.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\SharePercentSettingItem.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\ExchangeRevenueShareSetting.jsx" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\XmlData.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\TimeTracker\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

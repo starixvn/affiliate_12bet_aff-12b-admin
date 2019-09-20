@@ -120,14 +120,10 @@ describe('customer member - components - Content', () => {
         expect(props.setPagingOption).toHaveBeenCalledWith({ TotalItem: 0, PageIndex: 1, PageSize: 20 });
     });
 
-    it('handlePaging - should call setPagingOption and fetchData with correct parameters', () => {
+    it('handlePaging - should call fetchData with correct parameters', () => {
         const setPagingOption = jest.fn();
         const pageIndex = 2;
         const pageSize = 50;
-        const newPaging = {
-            PageIndex: pageIndex,
-            PageSize: pageSize
-        };
         const paramExpect = Object.assign({}, defaultProps.param, { pageIndex, pageSize });
 
         const props = Object.assign({}, defaultProps, { setPagingOption });
@@ -136,7 +132,6 @@ describe('customer member - components - Content', () => {
 
         componentInstance.handlePaging(pageIndex, pageSize);
 
-        expect(props.setPagingOption).toHaveBeenCalledWith(newPaging);
         expect(componentInstance.fetchData).toHaveBeenCalledWith(paramExpect);
     });
 });

@@ -8,6 +8,8 @@ jest.mock('../../../modules/constant');
 describe('commission group - assign private group', () => {
     const expectParam = {
         BankingFee: { DeductedPercentage: 0.02, DeductionId: 12, ProductIds: 0 },
+        ExchangeCommissionShare: { DeductedPercentage: 0, DeductionId: 14, ProductIds: 19 },
+        ExchangeWinLossShare: { DeductedPercentage: 0, DeductionId: 13, ProductIds: 19 }, 
         Description: "",
         GroupId: 0,
         GroupName: "",
@@ -42,7 +44,9 @@ describe('commission group - assign private group', () => {
         deductionList: [
              { DeductionId: 10, DeductionName: "Platform Fee", DeductedPercentage: 0.17 },
              { DeductionId: 11, DeductionName: "Operational Fee", DeductedPercentage: 0.07 },
-             { DeductionId: 12, DeductionName: "Banking Fee", DeductedPercentage: 0.02 }
+             { DeductionId: 12, DeductionName: "Banking Fee", DeductedPercentage: 0.02 },
+             { DeductionId: 13, DeductionName: "Exchange Win Loss Share", DeductedPercentage: 0 },
+             { DeductionId: 14, DeductionName: "Exchange Commission Share", DeductedPercentage: 0 }
         ],
         productList: [
             { ProductId: 1, ProductName: "Sportsbook" },

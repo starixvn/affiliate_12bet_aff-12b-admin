@@ -129,6 +129,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Commission
                     PlatformFeeList = commGroup.PlatformFeeList,
                     OperationalFee = commGroup.OperationalFee,
                     BankingFee = commGroup.BankingFee,
+                    ExchangeWinLossShare = commGroup.ExchangeWinLossShare,
+                    ExchangeCommissionShare = commGroup.ExchangeCommissionShare,
                     Ip = Request.UserHostAddress
                 };
 

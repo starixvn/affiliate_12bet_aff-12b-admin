@@ -124,7 +124,7 @@ exports[`left panel - components - panel - CommissionPanel render correctly with
       }
     >
       <Button
-        className="left-panel-btn-link align-baseline"
+        className="left-panel-btn-link align-baseline text-right"
         color="link"
         onClick={[Function]}
         tag="button"

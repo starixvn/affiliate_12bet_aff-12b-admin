@@ -35,11 +35,12 @@ exports[`commission group - FeeSettingItem Should render correctly 1`] = `
       ]
     }
   >
-    <select
+    <Input
       className="form-control"
       defaultValue=""
       name="DeductedPercentage"
       onChange={[Function]}
+      type="select"
     >
       <option
         key="feecomm-0"
@@ -647,7 +648,7 @@ exports[`commission group - FeeSettingItem Should render correctly 1`] = `
       >
         1.00
       </option>
-    </select>
+    </Input>
   </Col>
   <Col
     sm={3}
@@ -738,7 +739,7 @@ exports[`commission group - FeeSettingItem Should render correctly with isCreati
         className="mb-2 mr-sm-2 mb-sm-0"
         tag="div"
       >
-        <select
+        <Input
           className="form-control"
           defaultValue="0.00"
           name="NextDeductedPercentage"
@@ -748,6 +749,7 @@ exports[`commission group - FeeSettingItem Should render correctly with isCreati
               "width": 60,
             }
           }
+          type="select"
         >
           <option
             key="platformfee-nextmonth-comm-0"
@@ -1355,7 +1357,7 @@ exports[`commission group - FeeSettingItem Should render correctly with isCreati
           >
             1.00
           </option>
-        </select>
+        </Input>
       </FormGroup>
     </Form>
   </Col>

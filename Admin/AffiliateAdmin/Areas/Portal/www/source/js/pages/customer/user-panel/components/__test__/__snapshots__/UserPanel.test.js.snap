@@ -8,7 +8,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
     show={true}
     style={
       Object {
-        "left": undefined,
+        "left": 339,
         "top": 235,
       }
     }
@@ -186,7 +186,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
     show={true}
     style={
       Object {
-        "left": undefined,
+        "left": 339,
         "top": 235,
       }
     }

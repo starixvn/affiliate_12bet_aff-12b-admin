@@ -69,10 +69,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (param.GroupId >= Validation.MinId)
             {
-                return new JsonNetResult
+                var commissionGroupInfo = _commissionGroupService.GetCommissionGroupList(param).FirstOrDefault();
+                if(commissionGroupInfo != null)
                 {
-                    Data = _commissionGroupService.GetCommissionGroupList(param).FirstOrDefault()
-                };
+                    var groupName = commissionGroupInfo.GroupName;
+                    var description = commissionGroupInfo.Description;
+
+                    commissionGroupInfo.GroupName = Server.HtmlDecode(groupName);
+                    commissionGroupInfo.Description = Server.HtmlDecode(description);
+
+                    return new JsonNetResult
+                    {
+                        Data = commissionGroupInfo
+                    };
+                }
             }
 
             return new JsonNetResult
@@ -104,13 +114,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 {
                     UserId = SessionService.UserId,
                     Ip = Request.UserHostAddress,
-                    GroupName = commGroup.GroupName?.Trim(),
-                    Description = commGroup.Description?.Trim(),
+                    GroupName = Server.HtmlEncode(commGroup.GroupName.Trim()),
+                    Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     QmTurnover = commGroup.QmTurnover,
                     TierSettingList = commGroup.TierSettingList,
                     PlatformFeeList = commGroup.PlatformFeeList,
                     OperationalFee = commGroup.OperationalFee,
-                    BankingFee = commGroup.BankingFee
+                    BankingFee = commGroup.BankingFee,
+                    ExchangeWinLossShare = commGroup.ExchangeWinLossShare,
+                    ExchangeCommissionShare = commGroup.ExchangeCommissionShare
                 };
 
                 return new JsonNetResult
@@ -148,14 +160,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 {
                     UserId = SessionService.UserId,
                     GroupId = commGroup.GroupId,
-                    GroupName = commGroup.GroupName?.Trim(),
+                    GroupName = Server.HtmlEncode(commGroup.GroupName.Trim()),
                     Ip = Request.UserHostAddress,
-                    Description = commGroup.Description?.Trim(),
+                    Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     QmTurnover = commGroup.NextQmTurnover,
                     TierSettingList = commGroup.TierSettingList,
                     PlatformFeeList = commGroup.PlatformFeeList,
                     OperationalFee = commGroup.OperationalFee,
-                    BankingFee = commGroup.BankingFee
+                    BankingFee = commGroup.BankingFee,
+                    ExchangeWinLossShare = commGroup.ExchangeWinLossShare,
+                    ExchangeCommissionShare = commGroup.ExchangeCommissionShare
                 };
 
                 return new JsonNetResult

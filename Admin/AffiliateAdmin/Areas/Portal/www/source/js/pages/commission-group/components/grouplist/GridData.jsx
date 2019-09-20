@@ -8,10 +8,7 @@ import { resolveClientUrl } from '../../../../modules/utils';
 import { INFINITY_AM, INFINITY_QM, INFINITY_SYMBOL, defaultPagingOption, globalResource } from '../../modules/constant';
 import { format, formatDecimal } from '../../../../modules/numberFormat';
 import { deleteCommGroup, getGroupSettingList } from '../../actions';
-
-function rawHtml(content) {
-    return (<p dangerouslySetInnerHTML={{ __html: content }}></p>);
-}
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class GridData extends Component {
     constructor(props) {
@@ -59,11 +56,11 @@ export class GridData extends Component {
         return [
             <Row key="theard">
                 <Cell header={true} colWidth={40} rowSpan="2"></Cell>
-                <Cell header={true} colWidth={160} rowSpan="2">Name</Cell>
+                <Cell header={true} colWidth={150} rowSpan="2">Name</Cell>
                 <Cell header={true} colWidth={50} rowSpan="2">No.Aff</Cell>
-                <Cell header={true} colWidth={200} rowSpan="2">Description</Cell>
-                <Cell header={true} colWidth={100} rowSpan="2">Creation</Cell>
-                <Cell header={true} colSpan="10">Policy</Cell>
+                <Cell header={true} colWidth={150} rowSpan="2">Description</Cell>
+                <Cell header={true} colWidth={80} rowSpan="2">Creation</Cell>
+                <Cell header={true} colSpan="11">Policy</Cell>
                 <Cell header={true} colWidth={70} rowSpan="2">Action</Cell>
             </Row>,
             <Row key="sub-theard">
@@ -74,6 +71,7 @@ export class GridData extends Component {
                 <Cell header={true} colWidth={80} title="Minimum number of qualified members">Min QM</Cell>
                 <Cell header={true} colWidth={80} title="Maximum number of qualified members">Max QM</Cell>
                 <Cell header={true} colWidth={80}>Comm Rate</Cell>
+                <Cell header={true} colWidth={80}>Exchg. Rev%</Cell>
                 <Cell header={true} colWidth={80}>Operational Fee</Cell>
                 <Cell header={true} colWidth={80}>Banking Fee</Cell>
                 <Cell header={true} colWidth={80}>QM Turnover</Cell>
@@ -89,7 +87,7 @@ export class GridData extends Component {
             for (let index = 0; index < gridData.length; index++) {
                 const item = gridData[index];
 
-                const { TierSettingList, PlatformFeeList, OperationalFee, BankingFee, ...group } = item;
+                const { TierSettingList, PlatformFeeList, OperationalFee, BankingFee, ExchangeWinLossShare, ExchangeCommissionShare, ...group } = item;
                 const tierSettingRowSpan = TierSettingList.length;
                 const platformFeeRowSpan = PlatformFeeList.length;
                 const rowSpan = tierSettingRowSpan + platformFeeRowSpan;
@@ -104,7 +102,7 @@ export class GridData extends Component {
                             {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{group.RowIdx}</Cell>)}
                             {isFirstItem && (
                                 <Cell className="text-center" rowSpan={rowSpan} title={isPrivateGroup && "Private Group"}>
-                                    {isPrivateGroup && (<span className="oi oi-person"></span>)}{rawHtml(group.GroupName)}
+                                    {isPrivateGroup && (<span className="oi oi-person"></span>)}{htmlDecode(group.GroupName)}
                                 </Cell>
                             )}
                             {isFirstItem && (
@@ -112,7 +110,7 @@ export class GridData extends Component {
                                     <a href={resolveClientUrl("Portal/Affiliate?groupId=") + group.GroupId} target="_top">{group.NoAffs}</a>
                                 </Cell>
                             )}
-                            {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{rawHtml(group.Description)}</Cell>)}
+                            {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{htmlDecode(group.Description)}</Cell>)}
                             {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}><p>{group.Creator}</p><p>{group.CreatedDateText}</p></Cell>)}
 
                             {isFirstItem && (<Cell className="text-center font-weight-bold cell-tier" rowSpan={tierSettingRowSpan}>Tier Setting</Cell>)}
@@ -123,6 +121,10 @@ export class GridData extends Component {
                             <Cell className="text-right cell-tier">{tierSetting.MaxQm === INFINITY_QM ? INFINITY_SYMBOL : format(tierSetting.MaxQm)}</Cell>
                             <Cell className="text-right cell-tier">{formatDecimal(tierSetting.Commission)}</Cell>
 
+                            {isFirstItem && (<Cell className="text-right" rowSpan={rowSpan}>
+                                <p>WL: {ExchangeWinLossShare ? formatDecimal(ExchangeWinLossShare.DeductedPercentage) : 0}</p>
+                                <p>Comm: {ExchangeCommissionShare ? formatDecimal(ExchangeCommissionShare.DeductedPercentage) : 0}</p>
+                            </Cell>)}
                             {isFirstItem && (<Cell className="text-right" rowSpan={rowSpan}>
                                 {OperationalFee && formatDecimal(OperationalFee.DeductedPercentage)}</Cell>)}
                             {isFirstItem && (<Cell className="text-right" rowSpan={rowSpan}>

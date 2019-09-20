@@ -27,13 +27,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       sorting={false}
       title={false}
     >
-      <p
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "CG22125",
-          }
-        }
-      />
+      CG22125
     </t>
     <t
       asc={true}
@@ -59,15 +53,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       rowSpan={2}
       sortable={false}
       sorting={false}
-    >
-      <p
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "",
-          }
-        }
-      />
-    </t>
+    />
     <t
       asc={true}
       className="text-center"
@@ -154,6 +140,24 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       sorting={false}
     >
       0.02
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      rowSpan={2}
+      sortable={false}
+      sorting={false}
+    >
+      <p>
+        WL: 
+        0
+      </p>
+      <p>
+        Comm: 
+        0
+      </p>
     </t>
     <t
       asc={true}
@@ -276,13 +280,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       <span
         className="oi oi-person"
       />
-      <p
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "CG22125",
-          }
-        }
-      />
+      CG22125
     </t>
     <t
       asc={true}
@@ -308,15 +306,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       rowSpan={2}
       sortable={false}
       sorting={false}
-    >
-      <p
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "",
-          }
-        }
-      />
-    </t>
+    />
     <t
       asc={true}
       className="text-center"
@@ -403,6 +393,24 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       sorting={false}
     >
       0.02
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      rowSpan={2}
+      sortable={false}
+      sorting={false}
+    >
+      <p>
+        WL: 
+        0
+      </p>
+      <p>
+        Comm: 
+        0
+      </p>
     </t>
     <t
       asc={true}
@@ -511,7 +519,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
     />
     <t
       asc={true}
-      colWidth={160}
+      colWidth={150}
       header={true}
       onClick={[Function]}
       rowSpan="2"
@@ -533,7 +541,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
     </t>
     <t
       asc={true}
-      colWidth={200}
+      colWidth={150}
       header={true}
       onClick={[Function]}
       rowSpan="2"
@@ -544,7 +552,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
     </t>
     <t
       asc={true}
-      colWidth={100}
+      colWidth={80}
       header={true}
       onClick={[Function]}
       rowSpan="2"
@@ -555,7 +563,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
     </t>
     <t
       asc={true}
-      colSpan="10"
+      colSpan="11"
       header={true}
       onClick={[Function]}
       sortable={false}
@@ -658,6 +666,16 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sortable={false}
       sorting={false}
     >
+      Exchg. Rev%
+    </t>
+    <t
+      asc={true}
+      colWidth={80}
+      header={true}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
       Operational Fee
     </t>
     <t
@@ -718,13 +736,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
             sorting={false}
             title={false}
           >
-            <p
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "CG22125",
-                }
-              }
-            />
+            CG22125
           </t>
           <t
             asc={true}
@@ -751,13 +763,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
             sortable={false}
             sorting={false}
           >
-            <p
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "",
-                }
-              }
-            />
+            
           </t>
           <t
             asc={true}
@@ -845,6 +851,24 @@ exports[`commission group - GridData  Should render correctly 1`] = `
             sorting={false}
           >
             0.02
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            rowSpan={2}
+            sortable={false}
+            sorting={false}
+          >
+            <p>
+              WL: 
+              0
+            </p>
+            <p>
+              Comm: 
+              0
+            </p>
           </t>
           <t
             asc={true}
@@ -950,7 +974,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
           />
           <t
             asc={true}
-            colWidth={160}
+            colWidth={150}
             header={true}
             onClick={[Function]}
             rowSpan="2"
@@ -972,7 +996,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={200}
+            colWidth={150}
             header={true}
             onClick={[Function]}
             rowSpan="2"
@@ -983,7 +1007,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={100}
+            colWidth={80}
             header={true}
             onClick={[Function]}
             rowSpan="2"
@@ -994,7 +1018,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colSpan="10"
+            colSpan="11"
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -1086,6 +1110,16 @@ exports[`commission group - GridData  Should render correctly 1`] = `
             sorting={false}
           >
             Comm Rate
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Exchg. Rev%
           </t>
           <t
             asc={true}
@@ -1170,7 +1204,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
           />
           <t
             asc={true}
-            colWidth={160}
+            colWidth={150}
             header={true}
             onClick={[Function]}
             rowSpan="2"
@@ -1192,7 +1226,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
           </t>
           <t
             asc={true}
-            colWidth={200}
+            colWidth={150}
             header={true}
             onClick={[Function]}
             rowSpan="2"
@@ -1203,7 +1237,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
           </t>
           <t
             asc={true}
-            colWidth={100}
+            colWidth={80}
             header={true}
             onClick={[Function]}
             rowSpan="2"
@@ -1214,7 +1248,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
           </t>
           <t
             asc={true}
-            colSpan="10"
+            colSpan="11"
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -1315,6 +1349,16 @@ exports[`commission group - GridData  Should render correctly with data is null 
             sortable={false}
             sorting={false}
           >
+            Exchg. Rev%
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
             Operational Fee
           </t>
           <t
@@ -1386,13 +1430,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
             <span
               className="oi oi-person"
             />
-            <p
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "12BETAFF226",
-                }
-              }
-            />
+            12BETAFF226
           </t>
           <t
             asc={true}
@@ -1419,13 +1457,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
             sortable={false}
             sorting={false}
           >
-            <p
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "",
-                }
-              }
-            />
+            
           </t>
           <t
             asc={true}
@@ -1513,6 +1545,24 @@ exports[`commission group - GridData  Should render correctly with is private gr
             sorting={false}
           >
             0.02
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            rowSpan={2}
+            sortable={false}
+            sorting={false}
+          >
+            <p>
+              WL: 
+              0
+            </p>
+            <p>
+              Comm: 
+              0
+            </p>
           </t>
           <t
             asc={true}
@@ -1618,7 +1668,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
           />
           <t
             asc={true}
-            colWidth={160}
+            colWidth={150}
             header={true}
             onClick={[Function]}
             rowSpan="2"
@@ -1640,7 +1690,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
           </t>
           <t
             asc={true}
-            colWidth={200}
+            colWidth={150}
             header={true}
             onClick={[Function]}
             rowSpan="2"
@@ -1651,7 +1701,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
           </t>
           <t
             asc={true}
-            colWidth={100}
+            colWidth={80}
             header={true}
             onClick={[Function]}
             rowSpan="2"
@@ -1662,7 +1712,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
           </t>
           <t
             asc={true}
-            colSpan="10"
+            colSpan="11"
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -1754,6 +1804,16 @@ exports[`commission group - GridData  Should render correctly with is private gr
             sorting={false}
           >
             Comm Rate
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Exchg. Rev%
           </t>
           <t
             asc={true}

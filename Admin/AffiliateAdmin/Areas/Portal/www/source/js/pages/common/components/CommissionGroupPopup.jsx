@@ -80,7 +80,7 @@ export default class CommissionGroupPopup extends PureComponent {
                     </ModalHeader>
                     <ModalBody>
                         {
-                            isPrivate ? (<div className="modal-body-wrapper embed-responsive embed-responsive-4by3" style={{ height: 515 }}>
+                            isPrivate ? (<div className="modal-body-wrapper embed-responsive embed-responsive-4by3" style={{ height: 635 }}>
                                 <iframe className="embed-responsive-item" src={url}></iframe>
                             </div>) : (
                                     <div className="modal-body-wrapper" style={{ height: 280, padding: 0 }}>

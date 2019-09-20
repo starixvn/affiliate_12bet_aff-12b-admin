@@ -177,7 +177,7 @@
     <Compile Include="Constants\AffType.cs" />
     <Compile Include="Constants\Code.cs" />
     <Compile Include="Constants\CommGroupErrorMessage.cs" />
-    <Compile Include="Constants\DeductionName.cs" />
+    <Compile Include="Constants\DeductionId.cs" />
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
     <Compile Include="Constants\Money.cs" />

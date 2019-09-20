@@ -136,7 +136,7 @@ namespace DataHandler
             hsParam.Add("todate", dtmTDate);
             hsParam.Add("isgetall", isGetAll);
             hsParam.Add("affid", 0);
-            return DbHelper.Execute("Aff_Admin_AffiliateReport_Detail_Sel", DBType.AFFILIATE_12BET, hsParam, 180);
+            return DbHelper.Execute("Aff_Admin_AffiliateReport_Detail_Sel_xtest", DBType.AFFILIATE_12BET, hsParam, 180);
         }
 
         //@Vinh
