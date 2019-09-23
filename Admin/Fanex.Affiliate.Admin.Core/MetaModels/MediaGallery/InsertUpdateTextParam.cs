@@ -1,8 +1,10 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 {
-    public class InsertUpdateTextParam
+    public class InsertUpdateTextParam: UserInfoParam
     {
         public int TextId { get; set; }
+
+        public string TextContent { get; set; }
 
         public string Category { get; set; }
 

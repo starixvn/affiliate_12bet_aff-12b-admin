@@ -57,13 +57,13 @@ export const fetchData = (param) => async (dispatch) => {
 }
 
 function _convertCheckedTexts(dataList) {
-    const checkedMessages = {};
+    const checkedTexts = {};
     for (let i = 0; i < dataList.length; i++) {
-        const itemId = dataList[i].MessageId;
-        checkedMessages[itemId] = false;
+        const itemId = dataList[i].TextId;
+        checkedTexts[itemId] = false;
     }
 
-    return checkedMessages;
+    return checkedTexts;
 }
 
 export const getTextDetail = (selectedTextId) => async () => {

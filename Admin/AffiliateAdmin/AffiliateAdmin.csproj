@@ -1371,7 +1371,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\__test__\UserPanel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\__test__\UserPanelMenu.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\__test__\UserPanelMenuItem.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\menu.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\withUserPanel.js" />
@@ -1423,6 +1422,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\TextDetailForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\ControlButtons.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />

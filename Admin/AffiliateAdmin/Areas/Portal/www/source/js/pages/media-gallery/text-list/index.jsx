@@ -7,7 +7,28 @@ import AppContainer from './components/AppContainer';
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 
-const store = configureStore({ ...window.initialState }, reducer);
+const categoryList = [...window.initialState.categoryList];
+const category = {};
+for (let i = 0; i < categoryList.length; i++) {
+    const categoryItem = categoryList[i];
+    category[categoryItem.Name] = categoryItem.Name;
+}
+
+const languageList = [...window.initialState.languageList];
+const language = {};
+for (let i = 0; i < languageList.length; i++) {
+    const languageItem = languageList[i];
+    language[languageItem.LanguageCode] = languageItem.LanguageName;
+}
+
+const currencyList = [...window.initialState.currencyList];
+const currency = {};
+for (let i = 0; i < currencyList.length; i++) {
+    const currencyItem = currencyList[i];
+    currency[currencyItem.Name] = currencyItem.Name;
+}
+
+const store = configureStore({ categoryList: category, languageList: language, currencyList: currency }, reducer);
 
 export default class App extends React.PureComponent {
     constructor(props) {

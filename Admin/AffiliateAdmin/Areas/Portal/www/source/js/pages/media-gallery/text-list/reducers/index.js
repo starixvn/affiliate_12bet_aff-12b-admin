@@ -40,7 +40,9 @@ export const gridData = createReducer(null, {
 })
 
 export default combineReducers({
-    today,
+    categoryList,
+    languageList,
+    currencyList,
     param,
     gridData,
     pagingOption,

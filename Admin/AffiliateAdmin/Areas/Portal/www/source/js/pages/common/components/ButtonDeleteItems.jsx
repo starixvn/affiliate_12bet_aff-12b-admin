@@ -28,7 +28,6 @@ export const ButtonDeleteItems = (props) => {
 
     function _handleDelete() {
         if (itemIdList.length === 0) {
-            alert(props.messages.PleaseSelect);
             _handleOpenNotificationPopup(props.messages.PleaseSelect);
             return;
         }
