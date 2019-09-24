@@ -1,136 +1,262 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Message;
-using Fanex.Affiliate.Admin.Core.MetaModels.Message;
-using Fanex.Affiliate.Admin.Core.Repository.Message;
+﻿using Fanex.Affiliate.Admin.Core.MetaModels.Message;
 using Fanex.Affiliate.Admin.Core.Services.Message;
+using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
+using Fanex.Data;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
 {
     public class MessageServiceTest
     {
+        private const string SpKeyHotNewsSel = "Aff_HotNewsSel";
+        private const string SpKeyHotNewsDetail = "Aff_HotNewsDetail";
+        private const string SpKeyHotNewsIns = "Aff_HotNewsIns";
+        private const string SpKeyHotNewsUpd = "Aff_HotNewsUpd";
+        private const string SpKeyHotNewsDel = "Aff_HotNewsDel";
+
         [Fact]
-        public void GetMessageList_WhenCallWithGetAllDate_ExcuteWithCorrectData()
+        public void GetMessageList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = new MessageParam { IsGetAll = true };
-            MessageParam passedParam = null;
-            var messageRepository = new Mock<IMessageRepository>();
-            messageRepository.Setup(ex => ex.GetMessageList(param)).Returns(new EntityResult<MessageInfo> { MainData = new List<MessageInfo> { new MessageInfo() }, TotalItem = 1 }).Callback<MessageParam>(p => passedParam = p);
+            var service = new Mock<MessageService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
-            var service = CreateExchangeRateService(messageRepository.Object);
+            ReaderHelper.MapReaderData(dataReader, GetMessageList());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
+            service.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.GetMessageList(param);
+            var result = service.Object.GetMessageList(new MessageParam());
+            var messageInfo = result.MainData.FirstOrDefault();
 
             // Assert
             Assert.Single(result.MainData);
-            Assert.Equal(param, passedParam);
+            Assert.Equal(1, result.TotalItem);
+            Assert.Equal("09/18/2019 00:00:00", messageInfo.PostedDateText);
+            Assert.Equal("09/19/2019 00:00:00", messageInfo.UpdatedDateText);
         }
 
         [Fact]
-        public void GetMessageList_WhenCallWithNotGetAllDate_ExcuteWithCorrectData()
+        public void GetMessageList_WhenCall_ReturnCorrectDataWithUpdatedDateNull()
         {
             // Arrange
-            var param = new MessageParam { IsGetAll = false, FromDate = new DateTime(), ToDate = new DateTime() };
-            MessageParam passedParam = null;
-            var messageRepository = new Mock<IMessageRepository>();
-            messageRepository.Setup(ex => ex.GetMessageList(param)).Returns(new EntityResult<MessageInfo> { MainData = new List<MessageInfo> { new MessageInfo() }, TotalItem = 1 }).Callback<MessageParam>(p => passedParam = p);
+            var service = new Mock<MessageService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
-            var service = CreateExchangeRateService(messageRepository.Object);
+            ReaderHelper.MapReaderData(dataReader, GetMessageList());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
+            service.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.GetMessageList(param);
+            var result = service.Object.GetMessageList(new MessageParam());
+            var messageInfo = result.MainData.FirstOrDefault();
+            messageInfo.UpdatedDate = null;
 
             // Assert
             Assert.Single(result.MainData);
-            Assert.Equal(param, passedParam);
+            Assert.Equal(1, result.TotalItem);
+            Assert.Equal("09/18/2019 00:00:00", messageInfo.PostedDateText);
+            Assert.Null(messageInfo.UpdatedDateText);
         }
 
         [Fact]
-        public void GetMessageDetail_WhenCallWithNotGetAllDate_ExcuteWithCorrectData()
+        public void GetMessageList_WhenCall_ReturnNullData()
         {
             // Arrange
-            var selectedMessageId = 37;
-            var passedParam = 0;
-            var messageRepository = new Mock<IMessageRepository>();
-            messageRepository.Setup(ex => ex.GetMessageDetail(selectedMessageId)).Returns(new MessageDetail { MessageId = selectedMessageId }).Callback<int>(p => passedParam = p);
+            var service = new Mock<MessageService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
-            var service = CreateExchangeRateService(messageRepository.Object);
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
+            service.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.GetMessageDetail(selectedMessageId);
+            var result = service.Object.GetMessageList(new MessageParam());
+            var messageInfo = result.MainData.FirstOrDefault();
 
             // Assert
-            Assert.Equal(selectedMessageId, result.MessageId);
-            Assert.Equal(selectedMessageId, passedParam);
+            Assert.Equal(0, result.TotalItem);
+            Assert.Equal("01/01/0001 00:00:00", messageInfo.UpdatedDateText);
         }
 
         [Fact]
-        public void InsertMessage_WhenCallWithNotGetAllDate_ExcuteWithCorrectData()
+        public void GetMessageDetail_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam();
-            InsertUpdateMessageParam passedParam = null;
-            var messageRepository = new Mock<IMessageRepository>();
-            messageRepository.Setup(ex => ex.InsertMessage(param)).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);
+            var service = new Mock<MessageService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.Setup(d => d.Read()).Returns(true);
 
-            var service = CreateExchangeRateService(messageRepository.Object);
+            ReaderHelper.MapReaderData(dataReader, GetMessageList());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            service.Setup(r => r.GetObjectDb(SpKeyHotNewsDetail, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.InsertMessage(param);
+            var result = service.Object.GetMessageDetail(37);
+
+            // Assert
+            Assert.Equal(37, result.MessageId);
+        }
+
+        [Fact]
+        public void GetMessageDetail_WhenCall_ReturnNullData()
+        {
+            // Arrange
+            var service = new Mock<MessageService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.Setup(d => d.Read()).Returns(false);
+
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            service.Setup(r => r.GetObjectDb(SpKeyHotNewsDetail, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = service.Object.GetMessageDetail(37);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void InsertMessage_WhenCallWithValidParam_InsertSuccessfully()
+        {
+            // Arrange
+            var service = new Mock<MessageService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+            service.Setup(re => re.GetObjectDb(SpKeyHotNewsIns, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = service.Object.InsertMessage(new InsertUpdateMessageParam());
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
-        public void UpdateMessage_WhenCallWithNotGetAllDate_ExcuteWithCorrectData()
+        public void InsertMessage_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam();
-            InsertUpdateMessageParam passedParam = null;
-            var messageRepository = new Mock<IMessageRepository>();
-            messageRepository.Setup(ex => ex.UpdateMessage(param)).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);
-
-            var service = CreateExchangeRateService(messageRepository.Object);
+            var message = "Update is failed.";
+            var service = new Mock<MessageService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
+            service.Setup(re => re.GetObjectDb(SpKeyHotNewsIns, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.UpdateMessage(param);
+            var result = service.Object.InsertMessage(new InsertUpdateMessageParam());
 
             // Assert
-            Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
+            Assert.False(result.IsSuccessful);
+            Assert.Equal(message, result.Message);
         }
 
         [Fact]
-        public void DeleteMessages_WhenCallWithNotGetAllDate_ExcuteWithCorrectData()
+        public void UpdateMessage_WhenCallWithValidParam_InsertSuccessfully()
         {
             // Arrange
-            var param = new DeleteMessageParam();
-            DeleteMessageParam passedParam = null;
-            var messageRepository = new Mock<IMessageRepository>();
-            messageRepository.Setup(ex => ex.DeleteMessages(param)).Returns(new ResultInfo()).Callback<DeleteMessageParam>(p => passedParam = p);
-
-            var service = CreateExchangeRateService(messageRepository.Object);
+            var service = new Mock<MessageService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+            service.Setup(re => re.GetObjectDb(SpKeyHotNewsUpd, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.DeleteMessages(param);
+            var result = service.Object.UpdateMessage(new InsertUpdateMessageParam());
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
-        private static MessageService CreateExchangeRateService(IMessageRepository messageRepository = null)
+        [Fact]
+        public void UpdateMessage_WhenCallWithInvalidParam_UpdateIsFailed()
         {
-            var fakeMessageRepository = messageRepository ?? Mock.Of<IMessageRepository>();
+            // Arrange
+            var message = "Update is failed.";
+            var service = new Mock<MessageService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
+            service.Setup(re => re.GetObjectDb(SpKeyHotNewsUpd, 120)).Returns(objectDb.Object);
 
-            return new MessageService(fakeMessageRepository);
+            // Action
+            var result = service.Object.UpdateMessage(new InsertUpdateMessageParam());
+
+            // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.Equal(message, result.Message);
+        }
+
+        [Fact]
+        public void DeleteMessages_WhenCallWithValidParam_InsertSuccessfully()
+        {
+            // Arrange
+            var service = new Mock<MessageService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+            service.Setup(re => re.GetObjectDb(SpKeyHotNewsDel, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = service.Object.DeleteMessages(new DeleteMessageParam());
+
+            // Assert
+            Assert.True(result.IsSuccessful);
+        }
+
+        [Fact]
+        public void DeleteMessages_WhenCallWithInvalidParam_UpdateIsFailed()
+        {
+            // Arrange
+            var message = "Update is failed.";
+            var service = new Mock<MessageService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
+            service.Setup(re => re.GetObjectDb(SpKeyHotNewsDel, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = service.Object.DeleteMessages(new DeleteMessageParam());
+
+            // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.Equal(message, result.Message);
+        }
+
+        private IDictionary<string, object> GetMessageList()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["msgid"] = 37,
+                ["creatorname"] = "sa",
+                ["PostedDate"] = new DateTime(2019, 09, 18),
+                ["message_en"] = "test",
+                ["Important"] = false,
+                ["updatename"] = "",
+                ["UpdatedDate"] = new DateTime(2019, 09, 19)
+            };
         }
     }
 }

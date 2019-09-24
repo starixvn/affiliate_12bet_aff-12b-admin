@@ -335,10 +335,6 @@
     <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
     <Compile Include="Repository\EmailHistory\EmailHistoryRepository.cs" />
     <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
-    <Compile Include="Repository\MediaGallery\ITextListRepository.cs" />
-    <Compile Include="Repository\MediaGallery\TextListRepository.cs" />
-    <Compile Include="Repository\Message\IMessageRepository.cs" />
-    <Compile Include="Repository\Message\MessageRepository.cs" />
     <Compile Include="Repository\Payment\IPaymentRequestRepository.cs" />
     <Compile Include="Repository\Payment\PaymentRequestRepository.cs" />
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />

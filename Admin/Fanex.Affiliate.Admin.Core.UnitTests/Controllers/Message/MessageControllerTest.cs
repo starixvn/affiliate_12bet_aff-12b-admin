@@ -7,6 +7,7 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Message;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
@@ -44,10 +45,30 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         }
 
         [Fact]
-        public void GetMessageList_WhenCallWithValidParam_ExcuteWithCorrectData()
+        public void GetMessageList_WhenCallWithValidParamAndGetAllDate_ExcuteWithCorrectData()
         {
             // Arrange
-            var param = new MessageParam();
+            var param = new MessageParam { IsGetAll = true };
+            MessageParam passedParam = null;
+            var messageSevice = new Mock<IMessageService>();
+            messageSevice.Setup(s => s.GetMessageList(param)).Returns(new EntityResult<MessageInfo> { MainData = new List<MessageInfo> { new MessageInfo() }, TotalItem = 1 }).Callback<MessageParam>(p => passedParam = p);
+            var controller = CreateMessageController(messageSevice: messageSevice.Object);
+
+            // Action
+            var result = controller.GetMessageList(param) as JsonNetResult;
+            var entityResult = result.Data as EntityResult<MessageInfo>;
+
+            // Assert
+            Assert.Single(entityResult.MainData);
+            Assert.Equal(1, entityResult.TotalItem);
+            Assert.Equal(param, passedParam);
+        }
+
+        [Fact]
+        public void GetMessageList_WhenCallWithValidParamAndNotGetAllDate_ExcuteWithCorrectData()
+        {
+            // Arrange
+            var param = new MessageParam { IsGetAll = false, FromDate = new DateTime(), ToDate = new DateTime() };
             MessageParam passedParam = null;
             var messageSevice = new Mock<IMessageService>();
             messageSevice.Setup(s => s.GetMessageList(param)).Returns(new EntityResult<MessageInfo> { MainData = new List<MessageInfo> { new MessageInfo() }, TotalItem = 1 }).Callback<MessageParam>(p => passedParam = p);

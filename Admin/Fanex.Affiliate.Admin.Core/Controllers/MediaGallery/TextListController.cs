@@ -81,7 +81,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
-        public ActionResult InsertMessage(InsertUpdateTextParam param)
+        public ActionResult InsertText(InsertUpdateTextParam param)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = ""
+                    Message = "Please input text to upload."
                 }
             };
         }
@@ -126,7 +126,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = !isValidTextId ? "TextId is invalid!" : "Text is required!"
+                    Message = !isValidTextId ? "TextId is invalid." : "Please input text to update."
                 }
             };
         }
@@ -151,7 +151,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = ""
+                    Message = "Please select texts to delete."
                 }
             };
         }

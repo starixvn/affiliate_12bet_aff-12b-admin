@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
     public class CommonMediaGalleryService : BaseRepository, ICommonMediaGalleryService
     {
-        IEnumerable<MediaGalleryFilterItem> ICommonMediaGalleryService.GetMediaGalleryFilterItemList(string typeName)
+        public IEnumerable<MediaGalleryFilterItem> GetMediaGalleryFilterItemList(string typeName)
         {
             const string SpKey = "Aff_BannerSelType_1";
             var result = new List<MediaGalleryFilterItem>();

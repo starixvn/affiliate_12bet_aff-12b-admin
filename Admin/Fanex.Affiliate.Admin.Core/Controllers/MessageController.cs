@@ -43,6 +43,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (param.IsGetAll)
+                {
+                    param.ToDate = null;
+                    param.FromDate = null;
+                }
+                else
+                {
+                    param.ToDate = param.ToDate.Value.AddDays(1).AddMilliseconds(-3);
+                }
+
                 return new JsonNetResult
                 {
                     Data = _messageSevice.GetMessageList(param)
