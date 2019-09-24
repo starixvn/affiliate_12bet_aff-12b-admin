@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText, globalResource, deviceTypes } from '../libs/constants';
+import { headerText, globalResource } from '../libs/constants';
 import { setSelectedTextId, setPagingOption, fetchData, setCheckedTexts, setShouldResetScrollPosition, setParam } from '../actions';
 
 export const Content = (props) => {
@@ -79,7 +79,7 @@ export const Content = (props) => {
                         onChange={(e) => _onCheckItem(e.target.checked, dataItem.TextId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell title={content}>{content}</Cell>
+                <Cell className="text-content" title={content}>{content}</Cell>
                 <Cell className="text-center" title={dataItem.Category}>{dataItem.Category}</Cell>
                 <Cell className="text-center" title={dataItem.Language}>{dataItem.Language}</Cell>
                 <Cell className="text-center" title={dataItem.Currency}>{dataItem.Currency}</Cell>
@@ -95,9 +95,10 @@ export const Content = (props) => {
 
     return props.gridData && (
         <div className="data-content">
-            <div className="text-content table-responsive table-striped my-2">
+            <div className="text-list-content table-responsive table-striped my-2">
                 <Table
-                    minWidth={1000}
+                    minWidth={1200}
+                    autoWidth={true}
                     bodyHeight={300}
                     header={_renderHeader()}
                     body={_renderDataSection(props.gridData)}
@@ -111,7 +112,6 @@ export const Content = (props) => {
         </div>
     );
 }
-
 
 function mapStateToProps({ pagingOption, param, checkedTexts, shouldResetScrollPosition, gridData }) {
     return Object.assign({}, { pagingOption, param, checkedTexts, shouldResetScrollPosition, gridData });

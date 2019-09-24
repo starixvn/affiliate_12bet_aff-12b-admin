@@ -4,29 +4,38 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedTextId, getTextDetail, fetchData, insertText, updateText, toggleLoader } from '../actions/index';
-import { headerText, globalResource, deviceTypes, pcLaptop } from '../libs/constants';
+import { headerText, globalResource, deviceTypes, defaultState, defaultDevice } from '../libs/constants';
+import { defaultInsertId } from '../../common/libs/constants';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class TextDetailForm extends PureComponent {
     constructor(props) {
         super(props)
 
         this.state = {
-            textContent: '',
-            category: '',
-            language: '',
-            currency: '',
-            deviceType: deviceTypes[pcLaptop],
-            isShowMessage: false,
-            isSuccess: true,
-            message: ''
+            ...defaultState
         }
     }
 
     componentDidUpdate(prevProps) {
         const { selectedTextId } = this.props;
-        if (selectedTextId && prevProps.selectedTextId !== selectedTextId) {
+        if (prevProps.selectedTextId !== selectedTextId) {
+            this.setState({ isInsert: selectedTextId === defaultInsertId });
 
+            selectedTextId && this._handleGetTextDetail(selectedTextId);
         }
+    }
+
+    _handleGetTextDetail = async (selectedTextId) => {
+        const item = await this.props.getTextDetail(selectedTextId);
+
+        this.setState({
+            textContent: htmlDecode(item.TextContent),
+            category: item.Category,
+            language: item.Language,
+            currency: item.Currency,
+            deviceType: deviceTypes[item.DeviceType] || deviceTypes[defaultDevice]
+        });
     }
 
     _handleChange = (event) => {
@@ -38,6 +47,24 @@ export class TextDetailForm extends PureComponent {
 
     _handleSubmit = async () => {
         this.props.toggleLoader(true);
+
+        const { textContent, isInsert } = this.state;
+
+        if (!!textContent) {
+            const { category, language, currency, deviceType } = this.state;
+            const { selectedTextId } = this.props;
+            const message = isInsert ? "Add Successfully!" : "Update Successfully!";
+            const textInfo = Object.assign({}, { TextId: selectedTextId, textContent, category, language, currency, deviceType });
+            const result = isInsert ? await this.props.insertText(textInfo) : await this.props.updateText(textInfo);
+
+            if (result) {
+                this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
+            } else {
+                this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
+            }
+        } else {
+            this._handleShowAlert(false, isInsert ? 'Please input text to upload.' : "Please input text to update.");
+        }
 
         this.props.toggleLoader(false);
     }
@@ -57,18 +84,26 @@ export class TextDetailForm extends PureComponent {
 
         if (isSuccess) {
             this.props.fetchData(this.props.param);
-            this.props.setSelectedTextId(null);
+            this._handleClosePopup();
         }
     }
 
+    _handleClosePopup = () => {
+        this.props.setSelectedTextId(null);
+
+        this.setState({ ...defaultState });
+    }
+
     render() {
-        const { selectedTextId } = this.props;
-        const { textContent, category, language, currency, deviceType, isShowMessage, isSuccess, message } = this.state;
+        const { selectedTextId, categoryList, languageList, currencyList } = this.props;
+        const { textContent, category, language, currency, deviceType, isShowMessage, isSuccess, message, isInsert } = this.state;
         const isShowPopup = selectedTextId !== null;
+        const title = isInsert ? "Add Text" : "Update Text";
+        const buttonLabel = isInsert ? "Upload" : "Update";
 
         return (
-            <Modal isOpen={isShowPopup} toggle={() => this.props.setSelectedTextId(null)} backdrop='static'>
-                <ModalHeader toggle={() => this.props.setSelectedTextId(null)}><span className="iconpopup"></span>Add Text</ModalHeader>
+            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
+                <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
                         <div className="text-list-form-container">
@@ -77,64 +112,69 @@ export class TextDetailForm extends PureComponent {
                             </Alert>
                             <Form tag="form" className="mb-2 p-1 border" autocomplete="off">
                                 <FormGroup row className="mb-2">
-                                    <Label for={key} sm={2} className="d-flex justify-content-end align-items-center">Text</Label>
+                                    <Label for={textContent} sm={2} className="d-flex align-items-center">Text</Label>
                                     <Col sm={10}>
-                                        <Input type="textarea" name={key} id={key} rows="4"
-                                            value={props.textContent} onChange={this._handleChangeMessageContent} disabled={isDisabled} />
+                                        <Input type="textarea" className="text-content" name="textContent" id="textContent" rows="8"
+                                            value={textContent} onChange={this._handleChange} />
                                     </Col>
                                 </FormGroup>
 
                                 <FormGroup row className="mb-2">
-                                    <Label sm={4} for="category" className="mr-sm-2">{headerText.Category}</Label>
-                                    <Input sm={8} type="select" name="category" id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
-                                        <option key={'category-all'} value={''}>{globalResource.All}</option>
-                                        {
-                                            Object.keys(categoryList).map(key => {
-                                                return (<option key={`category-${key}`} value={key}>{key}</option>)
-                                            })
-                                        }
-                                    </Input>
+                                    <Label sm={2} for="category">{headerText.Category}</Label>
+                                    <Col sm={5}>
+                                        <Input type="select" name="category" id="category" value={category} onChange={this._handleChange}>
+                                            {
+                                                Object.keys(categoryList).map(key => {
+                                                    return (<option key={`category-${key}`} value={key}>{key}</option>)
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={4} for="language" className="mr-sm-2">{headerText.Language}</Label>
-                                    <Input sm={8} type="select" name="language" id="language" value={language} onChange={(e) => setLanguage(e.target.value)}>
-                                        <option key={'language-all'} value={''}>{globalResource.All}</option>
-                                        {
-                                            Object.keys(languageList).map(key => {
-                                                return (<option key={`language-${key}`} value={languageList[key]}>{languageList[key]}</option>)
-                                            })
-                                        }
-                                    </Input>
+                                    <Label sm={2} for="language">{headerText.Language}</Label>
+                                    <Col sm={5}>
+                                        <Input type="select" name="language" id="language" value={language} onChange={this._handleChange}>
+                                            {
+                                                Object.keys(languageList).map(key => {
+                                                    return (<option key={`language-${key}`} value={languageList[key]}>{languageList[key]}</option>)
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={4} for="currency" className="mr-sm-2">{headerText.Currency}</Label>
-                                    <Input sm={8} type="select" name="currency" id="currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
-                                        <option key={'currency-all'} value={''}>{globalResource.All}</option>
-                                        {
-                                            Object.keys(currencyList).map(key => {
-                                                return (<option key={`deviceType-${key}`} value={key}>{key}</option>)
-                                            })
-                                        }
-                                    </Input>
+                                    <Label sm={2} for="currency">{headerText.Currency}</Label>
+                                    <Col sm={5}>
+                                        <Input type="select" name="currency" id="currency" value={currency} onChange={this._handleChange}>
+                                            {
+                                                Object.keys(currencyList).map(key => {
+                                                    return (<option key={`deviceType-${key}`} value={key}>{key}</option>)
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={4}>Type</Label>
-                                    <Label sm={8}>Text</Label>
+                                    <Label sm={2}>Type</Label>
+                                    <Label sm={5}>Text</Label>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={4} for="deviceType" className="mr-sm-2">{headerText.Device}</Label>
-                                    <Input sm={8} type="select" name="deviceType" id="deviceType" value={deviceType} onChange={(e) => setDeviceType(e.target.value)}>
-                                        {
-                                            Object.keys(deviceTypes).map(key => {
-                                                return (<option key={`deviceType-${deviceTypes[key]}`} value={deviceTypes[key]}>{key}</option>)
-                                            })
-                                        }
-                                    </Input>
+                                    <Label sm={2} for="deviceType">{headerText.Device}</Label>
+                                    <Col sm={5}>
+                                        <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this._handleChange}>
+                                            {
+                                                Object.keys(deviceTypes).map(key => {
+                                                    return (<option key={`deviceType-${deviceTypes[key]}`} value={deviceTypes[key]}>{key}</option>)
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
                                 </FormGroup>
                             </Form>
 
-                            <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit}>{globalResource.Update}</Button>
-                            <Button type="button" color="info" onClick={() => this.props.setSelectedTextId(null)}>{globalResource.Cancel}</Button>
+                            <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit}>{buttonLabel}</Button>
+                            <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
                         </div>
                     </div>
                 </ModalBody>

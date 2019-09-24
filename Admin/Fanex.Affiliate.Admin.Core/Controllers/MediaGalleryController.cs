@@ -20,7 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var subMenu = new List<SubMenu>
             {
                 new SubMenu { Name = Lang.BannerList, Url = Url.Content("~/Media/ListBannerNew.aspx") },
-                new SubMenu { Name = Lang.TextList, Url = Url.Content("~/Media/ListText.aspx") },
                 new SubMenu { Name = Lang.TextList, Url = Url.Content("~/Portal/TextList/Index") },
                 new SubMenu { Name = "Landing Page List", Url = Url.Content("~/Portal/LandingPage/Index") }
             };

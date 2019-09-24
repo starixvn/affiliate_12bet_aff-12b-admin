@@ -1405,6 +1405,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\libs\constants.js" />

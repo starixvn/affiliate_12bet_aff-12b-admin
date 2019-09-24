@@ -31,7 +31,7 @@ export const submitFail = {
     Message: 'Update Failed!'
 }
 
-export const pcLaptop = 'PC/Laptop';
+export const pcLaptop = 'PC / Laptop';
 export const mobile = 'Mobile';
 
 export const deviceTypes = {

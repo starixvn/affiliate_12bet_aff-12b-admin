@@ -1,7 +1,12 @@
 ﻿import { deviceTypes, pcLaptop } from '../../../../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-export { deviceTypes, pcLaptop, globalResource };
+export { deviceTypes, globalResource };
+
+const defaultCategory = 'Basketball';
+const defaultLanguage = 'Chinese Simplified';
+const defaultCurrency = 'EURO';
+export const defaultDevice = pcLaptop;
 
 export const headerText = {
     Index: '#',
@@ -17,4 +22,16 @@ export const messages = {
     AreYouSureDeleteItems: 'Are you sure to delete the selected text(s)?',
     DeleteItemsSuccessfully: 'Delete Text(s) Successfully',
     PleaseEnter: 'Please input text to update.'
+}
+
+export const defaultState = {
+    textContent: '',
+    category: defaultCategory,
+    language: defaultLanguage,
+    currency: defaultCurrency,
+    deviceType: deviceTypes[defaultDevice],
+    isInsert: true,
+    isShowMessage: false,
+    isSuccess: true,
+    message: ''
 }

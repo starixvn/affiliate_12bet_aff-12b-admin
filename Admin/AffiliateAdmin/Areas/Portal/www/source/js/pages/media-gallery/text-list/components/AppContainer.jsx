@@ -7,9 +7,10 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import ControlButtons from '../../common/components/ControlButtons';
 import Content from './Content';
+import TextDetailForm from './TextDetailForm';
 
 import { messages } from '../libs/constants';
-import { setParam, fetchData, setSelectedTextId, setCheckedTexts, deleteTexts, setShouldResetScrollPosition } from '../actions';
+import { setParam, fetchData, toggleLoader, setSelectedTextId, setCheckedTexts, deleteTexts, setShouldResetScrollPosition } from '../actions';
 
 export const AppContainer = (props) => {
     return (
@@ -28,6 +29,7 @@ export const AppContainer = (props) => {
                 deleteItems={props.deleteTexts}
             />
             <Content />
+            <TextDetailForm />
         </AppLayout>
     );
 }
@@ -37,7 +39,7 @@ function mapStateToProps({ isShowLoader, param, gridData, checkedTexts }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, fetchData, setSelectedTextId, setCheckedTexts, deleteTexts, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ setParam, fetchData, toggleLoader, setSelectedTextId, setCheckedTexts, deleteTexts, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));

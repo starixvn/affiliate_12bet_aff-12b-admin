@@ -4,18 +4,18 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { setParam } from '../actions';
-import { headerText, globalResource, deviceTypes, pcLaptop } from '../libs/constants';
+import { headerText, globalResource, deviceTypes, defaultDevice } from '../libs/constants';
 
 export const Filter = (props) => {
     const { categoryList, languageList, currencyList } = props;
     const [category, setCategory] = useState('');
     const [language, setLanguage] = useState('');
     const [currency, setCurrency] = useState('');
-    const [deviceType, setDeviceType] = useState(deviceTypes[pcLaptop]);
+    const [deviceType, setDeviceType] = useState(deviceTypes[defaultDevice]);
 
     const _handleSearch = () => {
         const { pagingOption } = props;
-        
+
         const param = Object.assign({}, {
             category,
             language,

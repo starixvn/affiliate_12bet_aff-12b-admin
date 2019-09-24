@@ -1,0 +1,1 @@
+﻿export const defaultInsertId = 0;
