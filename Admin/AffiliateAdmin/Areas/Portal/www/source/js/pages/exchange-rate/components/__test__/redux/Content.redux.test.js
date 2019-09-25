@@ -2,9 +2,9 @@
 jest.mock('react-redux');
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../../actions/index';
+import * as actions from '../../../actions/index';
 
-describe('exchange rate - EditExchangeRateForm - connect', () => {
+describe('exchange rate - Content - connect', () => {
     let mapStateToProps, mapDispatchToProps;
     const connectMock = jest.fn();
 
@@ -14,19 +14,23 @@ describe('exchange rate - EditExchangeRateForm - connect', () => {
             mapDispatchToProps = mapDispatchToPropsFunc;
             return connectMock;
         });
-        require('../EditExchangeRateForm').default;
+        require('../../Content').default;
     });
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
+            today: '09/06/2019',
             date: '09/06/2019',
-            selectedExchangeRate: { ExchangeId: 3 },
-            isOpenPopup: true
+            shouldResetScrollPosition: true,
+            gridData: [],
+            hasPermission: true
         };
         const state = {
+            today: '09/06/2019',
             date: '09/06/2019',
-            selectedExchangeRate: { ExchangeId: 3 },
-            isOpenPopup: true,
+            shouldResetScrollPosition: true,
+            gridData: [],
+            hasPermission: true,
             anotherProp: "Not included"
         };
 
@@ -39,10 +43,9 @@ describe('exchange rate - EditExchangeRateForm - connect', () => {
         const mockBindAction = jest.fn();
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
-            updateExchangeRate: actions['updateExchangeRate'],
+            setSelectedExchangeRate: actions['setSelectedExchangeRate'],
             setTogglePopup: actions['setTogglePopup'],
-            toggleLoader: actions['toggleLoader'],
-            fetchData: actions['fetchData']
+            setShouldResetScrollPosition: actions['setShouldResetScrollPosition']
         }
 
         const dispatch = {};
@@ -52,8 +55,8 @@ describe('exchange rate - EditExchangeRateForm - connect', () => {
     })
 
     it('returned function of connect should be called with correct parameter', () => {
-        const EditExchangeRateForm = require('../EditExchangeRateForm').EditExchangeRateForm;
+        const Content = require('../../Content').Content;
 
-        expect(connectMock).toHaveBeenCalledWith(EditExchangeRateForm);
+        expect(connectMock).toHaveBeenCalledWith(Content);
     })
 })

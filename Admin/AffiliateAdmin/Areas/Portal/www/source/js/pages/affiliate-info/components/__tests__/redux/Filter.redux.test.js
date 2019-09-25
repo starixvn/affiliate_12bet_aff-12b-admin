@@ -1,10 +1,11 @@
 ﻿jest.mock('redux');
 jest.mock('react-redux');
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../../actions/index';
+import * as actions from '../../../actions/index';
 
-describe('exchange rate - Content - connect', () => {
+describe('affiliate info - Filter - connect', () => {
     let mapStateToProps, mapDispatchToProps;
     const connectMock = jest.fn();
 
@@ -14,23 +15,24 @@ describe('exchange rate - Content - connect', () => {
             mapDispatchToProps = mapDispatchToPropsFunc;
             return connectMock;
         });
-        require('../Content').default;
+        require('../../Filter').default;
     });
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            today: '09/06/2019',
-            date: '09/06/2019',
-            shouldResetScrollPosition: true,
-            gridData: [],
-            hasPermission: true
+            languageList: { en: 'English' },
+            commGroupList: { 133: 'New Group' },
+            param: { abc: 123 },
+            groupId: 123,
+            columnList: [1,2,3]
         };
+
         const state = {
-            today: '09/06/2019',
-            date: '09/06/2019',
-            shouldResetScrollPosition: true,
-            gridData: [],
-            hasPermission: true,
+            languageList: { en: 'English' },
+            commGroupList: { 133: 'New Group' },
+            param: { abc: 123 },
+            groupId: 123,
+            columnList: [1,2,3],
             anotherProp: "Not included"
         };
 
@@ -43,9 +45,9 @@ describe('exchange rate - Content - connect', () => {
         const mockBindAction = jest.fn();
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
-            setSelectedExchangeRate: actions['setSelectedExchangeRate'],
-            setTogglePopup: actions['setTogglePopup'],
-            setShouldResetScrollPosition: actions['setShouldResetScrollPosition']
+            setReportTitle: actions['setReportTitle'],
+            setParam: actions['setParam'],
+            setSelectedColumn: actions['setSelectedColumn']
         }
 
         const dispatch = {};
@@ -55,8 +57,8 @@ describe('exchange rate - Content - connect', () => {
     })
 
     it('returned function of connect should be called with correct parameter', () => {
-        const Content = require('../Content').Content;
+        const Filter = require('../../Filter').Filter;
 
-        expect(connectMock).toHaveBeenCalledWith(Content);
+        expect(connectMock).toHaveBeenCalledWith(Filter);
     })
 })

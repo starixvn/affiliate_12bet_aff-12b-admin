@@ -105,7 +105,7 @@ exports[`referrers - components - Filter render correctly 1`] = `
           key="deviceType-0"
           value={0}
         >
-          PC/Laptop
+          PC / Laptop
         </option>
         <option
           key="deviceType-1"

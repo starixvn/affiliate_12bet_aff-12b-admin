@@ -1,10 +1,11 @@
 ﻿jest.mock('redux');
 jest.mock('react-redux');
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../../actions/index';
+import * as actions from '../../../../actions/index';
 
-describe('exchange rate - Filter - connect', () => {
+describe('left panel - OnlineInfoPanel - connect', () => {
     let mapStateToProps, mapDispatchToProps;
     const connectMock = jest.fn();
 
@@ -14,13 +15,18 @@ describe('exchange rate - Filter - connect', () => {
             mapDispatchToProps = mapDispatchToPropsFunc;
             return connectMock;
         });
-        require('../Filter').default;
+        require('../../OnlineInfoPanel').default;
     });
 
     it('props should be mapped correctly', () => {
-        const expectedResult = { today: '09/06/2019' };
+        const expectedResult = {
+            affiliateInfo : { AffId: 1271808 },
+            affName: '12BETAFF226'
+        };
+
         const state = {
-            today: '09/06/2019'
+            leftPanel: { affiliateInfo : { AffId: 1271808 }, affName: '12BETAFF226' },
+            anotherProp: "Not included"
         };
 
         const result = mapStateToProps(state);
@@ -32,8 +38,8 @@ describe('exchange rate - Filter - connect', () => {
         const mockBindAction = jest.fn();
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
-            setDate: actions['setDate'],
-            fetchData: actions['fetchData'],
+            toggleLoaderLeftPanel: actions['toggleLoaderLeftPanel'],
+            getOnLineList: actions['getOnLineList']
         }
 
         const dispatch = {};
@@ -43,8 +49,8 @@ describe('exchange rate - Filter - connect', () => {
     })
 
     it('returned function of connect should be called with correct parameter', () => {
-        const Filter = require('../Filter').Filter;
+        const OnlineInfoPanel = require('../../OnlineInfoPanel').OnlineInfoPanel;
 
-        expect(connectMock).toHaveBeenCalledWith(Filter);
+        expect(connectMock).toHaveBeenCalledWith(OnlineInfoPanel);
     })
 })
