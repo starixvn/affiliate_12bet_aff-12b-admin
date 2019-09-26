@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 {
     public class DeleteTextParam : UserInfoParam
     {
-        [Required(ErrorMessage = "Please select messages to delete")]
+        [Required(ErrorMessage = "Please select texts to delete")]
         public string TextIdList { get; set; }
     }
 }

@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+
+@model Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery.BannerListViewModel
+
+@section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/banner-list.css")" rel="stylesheet" />
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            categoryList: @Html.Raw(Json.Encode(Model.CategoryList)),
+            languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+            currencyList: @Html.Raw(Json.Encode(Model.CurrencyList)),
+            sizeList: @Html.Raw(Json.Encode(Model.SizeList))
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/banner-list.js")"></script>
+}
+
+<div id="root"></div>
+

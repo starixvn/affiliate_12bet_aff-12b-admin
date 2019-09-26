@@ -369,4 +369,10 @@
   <data name="MessageIdIsInvalid" xml:space="preserve">
     <value>MessageId is invalid.</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
 </root>

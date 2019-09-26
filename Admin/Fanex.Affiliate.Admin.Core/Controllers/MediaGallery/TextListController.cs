@@ -11,6 +11,7 @@ using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
 using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.Resources;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
@@ -38,9 +39,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             var model = new TextListViewModel
             {
-                CategoryList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("Category"),
+                CategoryList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Category),
                 LanguageList = _languageService.GetLanguageList(),
-                CurrencyList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("Currency")
+                CurrencyList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Currency)
             };
 
             return View("~/Areas/Portal/Views/MediaGallery/TextList.cshtml", model);
@@ -48,6 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [Compress]
         public ActionResult GetTextList(TextParam param)
         {
             if (ModelState.IsValid)
