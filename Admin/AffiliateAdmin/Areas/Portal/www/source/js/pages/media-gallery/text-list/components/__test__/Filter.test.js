@@ -1,0 +1,86 @@
+﻿import React from 'react';
+import ReactDOM from 'react-dom';
+import { act } from 'react-dom/test-utils';
+import { Filter } from '../Filter';
+import { shallow } from 'enzyme';
+
+import { DatePicker } from '@9softstudio/react-datepicker';
+import { defaultPagingOption } from '../../../../../modules/constants';
+
+describe('text list - components - Filter ', () => {
+    const defaultProps = {
+        pagingOption: defaultPagingOption,
+        categoryList: {
+            Basketball: "Basketball",
+            Bonus: "Bonus"
+        },
+        languageList: {
+            'en-US': "English",
+            'vi-VN': "Vietnamese"
+        },
+        currencyList: {
+            EURO: "EURO",
+            VND: "VND"
+        }
+    }
+
+    it('render correctly', () => {
+        const result = shallow(<Filter {...defaultProps} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('_handleSearch - should be called when click Search Button', () => {
+        const setParam = jest.fn();
+        const props = Object.assign({}, defaultProps, { setParam });
+        const wrapper = shallow(<Filter {...props} />);
+
+        wrapper.find('Button').simulate('click');
+
+        expect(props.setParam).toHaveBeenCalledWith({ category: '', language: '', currency: '', deviceType: 0, PageIndex: 1, PageSize: 20 });
+    });
+
+    it('setCategory - should change category when change category select', () => {
+        const event = {
+            target: { value: 'category' }
+        };
+        const wrapper = shallow(<Filter {...defaultProps} />);
+
+        wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
+
+        expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('category');
+    });
+
+    it('setLanguage - should change category when change language select', () => {
+        const event = {
+            target: { value: 'language' }
+        };
+        const wrapper = shallow(<Filter {...defaultProps} />);
+
+        wrapper.find('Input[type="select"][id="language"]').simulate('change', event);
+
+        expect(wrapper.find('Input[type="select"][id="language"]').prop('value')).toEqual('language');
+    });
+
+    it('setCurrency - should change category when change currency select', () => {
+        const event = {
+            target: { value: 'currency' }
+        };
+        const wrapper = shallow(<Filter {...defaultProps} />);
+
+        wrapper.find('Input[type="select"][id="currency"]').simulate('change', event);
+
+        expect(wrapper.find('Input[type="select"][id="currency"]').prop('value')).toEqual('currency');
+    });
+
+    it('setDeviceType - should change category when change deviceType select', () => {
+        const event = {
+            target: { value: 'mobile' }
+        };
+        const wrapper = shallow(<Filter {...defaultProps} />);
+
+        wrapper.find('Input[type="select"][id="deviceType"]').simulate('change', event);
+
+        expect(wrapper.find('Input[type="select"][id="deviceType"]').prop('value')).toEqual('mobile');
+    });
+})

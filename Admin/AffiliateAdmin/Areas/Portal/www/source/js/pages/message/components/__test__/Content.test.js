@@ -1,8 +1,9 @@
 ﻿import React from 'react';
 import { Content } from '../Content';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import { defaultPagingOption } from '../../../../modules/constants';
+import { Table } from '@9softstudio/react-fixed-table-header';
 
 describe('message - components - Content ', () => {
     const gridData = [
@@ -65,5 +66,41 @@ describe('message - components - Content ', () => {
         const result = shallow(<Content {...props} />);
 
         expect(result).toMatchSnapshot();
+    });
+
+    it('_handlePaging - should be called when onPaging in Table', () => {
+        const props = Object.assign({}, defaultProps, { setPagingOption: jest.fn(), setParam: jest.fn() })
+        const result = shallow(<Content {...props} />);
+
+        result.find(Table).props().onPaging(50, 50);
+
+        expect(props.setPagingOption).toHaveBeenCalledWith({ PageIndex: 50, PageSize: 50 });
+        expect(props.setParam).toHaveBeenCalledWith({ FromDate: "9/20/2019", Important: null, IsGetAll: true, PageIndex: 50, PageSize: 50, ToDate: "9/20/2019" });
+    });
+
+    it('setSelectedMessageId - should be called when click edit button', () => {
+        const props = Object.assign({}, defaultProps, { setSelectedMessageId: jest.fn(), fetchData: jest.fn() })
+        const result = mount(<Content {...props} />);
+
+        result.find('Button').at(0).simulate('click');
+
+        expect(props.setSelectedMessageId).toHaveBeenCalledWith(37);
+        expect(props.fetchData).toHaveBeenCalledWith({ FromDate: "9/20/2019", Important: null, IsGetAll: true, PageIndex: 1, PageSize: 20, ToDate: "9/20/2019" });
+    });
+
+    it('_onCheckItem - should be called when click edit button', () => {
+        const event = {
+            target: {
+                checked: true
+            }
+        };
+        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition: jest.fn(), setCheckedMessages: jest.fn(), fetchData: jest.fn() })
+        const result = mount(<Content {...props} />);
+
+        result.find('input[type="checkbox"]').at(0).simulate('change', event);
+
+        expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
+        expect(props.setCheckedMessages).toHaveBeenCalledWith({ 37: true, 6: false });
+        expect(props.fetchData).toHaveBeenCalledWith({ FromDate: "9/20/2019", Important: null, IsGetAll: true, PageIndex: 1, PageSize: 20, ToDate: "9/20/2019" });
     });
 })
