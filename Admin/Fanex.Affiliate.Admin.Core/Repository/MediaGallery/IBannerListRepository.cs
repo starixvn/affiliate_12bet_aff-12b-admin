@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
     public interface IBannerListRepository
     {
-        EntityResult<BannerInfo> GetBannerList(BannerParam param);
+        EntityResult<BannerInfo> GetBannerList(BannerParam param, string spKey);
 
         BannerInfo GetBannerDetail(int selectedBannerId);
 

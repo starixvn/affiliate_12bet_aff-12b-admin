@@ -7,7 +7,8 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import ControlButtons from '../../common/components/ControlButtons';
 import Content from './Content';
-import BannerDetailForm from './BannerDetailForm';
+import EditBannerForm from './EditBannerForm';
+import BannerDetailPopup from './BannerDetailPopup';
 
 import { messages } from '../libs/constants';
 import { setParam, fetchData, toggleLoader, setSelectedBannerId, setCheckedBanners, deleteBanners, setShouldResetScrollPosition } from '../actions';
@@ -29,7 +30,8 @@ export const AppContainer = (props) => {
                 deleteItems={props.deleteBanners}
             />
             <Content />
-            <BannerDetailForm />
+            <EditBannerForm />
+            <BannerDetailPopup />
         </AppLayout>
     );
 }

@@ -18,8 +18,8 @@ export const SelectAll = (props) => {
     }
 
     return (
-        <div className="selection">
-            <span>{resource.Select}</span>
+        <div className="d-flex align-items-center">
+            <span>{resource.Select}:</span>
             <Button type="button" color="link" className="text-dark font-weight-bold" onClick={() => _onCheckAll(true)}>
                 <u>{resource.All}</u>
             </Button>

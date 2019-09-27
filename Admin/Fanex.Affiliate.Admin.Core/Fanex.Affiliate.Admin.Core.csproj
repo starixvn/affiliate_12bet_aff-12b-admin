@@ -223,6 +223,7 @@
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
+    <Compile Include="DTO\AffTypeInfo.cs" />
     <Compile Include="DTO\MediaGallery\BannerInfo.cs" />
     <Compile Include="DTO\MediaGallery\Category.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
@@ -431,6 +432,7 @@
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\AffiliateService.cs" />
+    <Compile Include="Services\AffTypeService.cs" />
     <Compile Include="Services\CommGroup\CommGroupAssignmentService.cs" />
     <Compile Include="Services\CommGroup\CommGroupCommonService.cs" />
     <Compile Include="Services\CommGroup\ICommGroupAssignmentService.cs" />
@@ -447,6 +449,7 @@
     <Compile Include="Services\ExchangeRate\ExchangeRateService.cs" />
     <Compile Include="Services\ExchangeRate\IExchangeRateService.cs" />
     <Compile Include="Services\IAffiliateService.cs" />
+    <Compile Include="Services\IAffTypeService.cs" />
     <Compile Include="Services\ICommissionGroupService.cs" />
     <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Services\ILanguageService.cs" />

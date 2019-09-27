@@ -13,9 +13,14 @@
     <script type="text/javascript">
         window.initialState = {
             categoryList: @Html.Raw(Json.Encode(Model.CategoryList)),
+            subCategoryCasinoList: @Html.Raw(Json.Encode(Model.SubCategoryCasinoList)),
+            subCategorySportsbookList: @Html.Raw(Json.Encode(Model.SubCategorySportsbookList)),
             languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
             currencyList: @Html.Raw(Json.Encode(Model.CurrencyList)),
-            sizeList: @Html.Raw(Json.Encode(Model.SizeList))
+            imageTypeList: @Html.Raw(Json.Encode(Model.ImageTypeList)),
+            sizeList: @Html.Raw(Json.Encode(Model.SizeList)),
+            affTypeList: @Html.Raw(Json.Encode(Model.AffTypeList)),
+            bannerUrl: '@Model.BannerUrl'
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/banner-list.js")"></script>

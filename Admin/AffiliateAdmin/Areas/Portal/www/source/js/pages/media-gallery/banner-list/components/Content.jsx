@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam } from '../actions';
+import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl } from '../actions';
 
 export const Content = (props) => {
 
@@ -36,16 +36,16 @@ export const Content = (props) => {
     function _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={30}></Cell>
-                <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.Images}>{headerText.Images}</Cell>
-                <Cell header={true} colWidth={150} title={headerText.FileName}>{headerText.FileName}</Cell>
-                <Cell header={true} colWidth={80} title={headerText.Category}>{headerText.Category}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Language}>{headerText.Language}</Cell>
-                <Cell header={true} colWidth={70} title={headerText.Currency}>{headerText.Currency}</Cell>
-                <Cell header={true} colWidth={70} title={headerText.Device}>{headerText.Device}</Cell>
-                <Cell header={true} colWidth={70} title={headerText.ImageType}>{headerText.ImageType}</Cell>
-                <Cell header={true} colWidth={70} title={headerText.Size}>{headerText.Size}</Cell>
+                <Cell header={true} colWidth={20}></Cell>
+                <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={415} title={headerText.Images}>{headerText.Images}</Cell>
+                <Cell header={true} colWidth={190} title={headerText.FileName}>{headerText.FileName}</Cell>
+                <Cell header={true} colWidth={55} title={headerText.Category}>{headerText.Category}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Language}>{headerText.Language}</Cell>
+                <Cell header={true} colWidth={55} title={headerText.Currency}>{headerText.Currency}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.Device}>{headerText.Device}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.ImageType}>{headerText.ImageType}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.Size}>{headerText.Size}</Cell>
                 <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>
             </Row>
         );
@@ -73,24 +73,50 @@ export const Content = (props) => {
     }
 
     function _buildDataRow(dataItem, index) {
-        const content = htmlDecode(dataItem.BannerContent);
+        const bannerId = dataItem.BannerId;
+        const fileName = dataItem.FileName;
+        const src = `${props.bannerUrl}/${fileName}`;
+        const size = dataItem.Size;
+        const strSize = size.split('x');
+        const realWidth = strSize[0];
+        const realHeight = strSize[1];
+        let width = Number(realWidth);
+        let height = Number(realHeight);
+
+        if (width > 500 || height > 500){
+            if (width > height)
+            {
+                height = 500 * height / width;
+                width = 500;
+            }
+            else
+            {
+                width = 500 * width / height;
+                height = 500;
+            }
+        }
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={props.checkedBanners[dataItem.BannerId]}
-                        onChange={(e) => _onCheckItem(e.target.checked, dataItem.BannerId)} />
+                    <input type="checkbox" checked={props.checkedBanners[bannerId]}
+                        onChange={(e) => _onCheckItem(e.target.checked, bannerId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-center" title={content}>{content}</Cell>
-                <Cell className="text-center" title={dataItem.Category}>{dataItem.Category}</Cell>
-                <Cell className="text-center" title={dataItem.Language}>{dataItem.Language}</Cell>
-                <Cell className="text-center" title={dataItem.Currency}>{dataItem.Currency}</Cell>
-                <Cell className="text-center" title={dataItem.DeviceType}>{dataItem.DeviceType}</Cell>
-                <Cell className="text-center" title={dataItem.ImageType}>{dataItem.ImageType}</Cell>
-                <Cell className="text-center" title={dataItem.Size}>{dataItem.Size}</Cell>
+                <Cell className="text-center">
+                    <a href="javascript:;" onClick={() => props.setBannerDetailUrl({src, height: realHeight, width: realWidth})}>
+                        <img id={`img${bannerId}`} src={src} alt="" height={height} width={width} />
+                    </a>
+                </Cell>
+                <Cell className="text-center text-break" title={fileName}>{fileName}</Cell>
+                <Cell className="text-center text-break" title={dataItem.Category}>{dataItem.Category}</Cell>
+                <Cell className="text-center text-break" title={dataItem.Language}>{dataItem.Language}</Cell>
+                <Cell className="text-center text-break" title={dataItem.Currency}>{dataItem.Currency}</Cell>
+                <Cell className="text-center text-break" title={dataItem.DeviceType}>{dataItem.DeviceType}</Cell>
+                <Cell className="text-center text-break" title={dataItem.ImageType}>{dataItem.ImageType}</Cell>
+                <Cell className="text-center text-break" title={size}>{size}</Cell>
                 <Cell className="text-center" title="Edit Banner">
-                    <Button color="link" onClick={() => props.setSelectedBannerId(dataItem.BannerId)}>
+                    <Button color="link" onClick={() => props.setSelectedBannerId(bannerId)}>
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
                 </Cell>
@@ -102,7 +128,7 @@ export const Content = (props) => {
         <div className="data-content">
             <div className="banner-list-content table-responsive table-striped my-2">
                 <Table
-                    minWidth={1200}
+                    minWidth={1250}
                     autoWidth={true}
                     bodyHeight={300}
                     header={_renderHeader()}
@@ -118,12 +144,12 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ pagingOption, param, checkedBanners, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { pagingOption, param, checkedBanners, shouldResetScrollPosition, gridData });
+function mapStateToProps({ pagingOption, param, checkedBanners, bannerUrl, shouldResetScrollPosition, gridData }) {
+    return Object.assign({}, { pagingOption, param, checkedBanners, bannerUrl, shouldResetScrollPosition, gridData });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedBannerId, fetchData, setPagingOption, setCheckedBanners, setShouldResetScrollPosition, setParam }, dispatch);
+    return bindActionCreators({ setSelectedBannerId, fetchData, setPagingOption, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

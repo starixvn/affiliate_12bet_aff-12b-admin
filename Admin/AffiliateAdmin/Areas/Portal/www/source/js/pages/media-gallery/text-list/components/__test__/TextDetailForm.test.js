@@ -24,18 +24,18 @@ describe('text list - components - TextDetailForm ', () => {
     const defaultProps = {
         selectedTextId: 0,
         param,
-        categoryList: {
-            Basketball: "Basketball",
-            Bonus: "Bonus"
-        },
-        languageList: {
-            'en-US': "English",
-            'vi-VN': "Vietnamese"
-        },
-        currencyList: {
-            EURO: "EURO",
-            VND: "VND"
-        }
+        categoryList: [
+            { Name: "Basketball" },
+            { Name: "Bonus" }
+        ],
+        languageList: [
+            { LanguageName: "English" },
+            { LanguageName: "Vietnamese" }
+        ],
+        currencyList: [
+            { Name: "EURO" },
+            { Name: "VND" }
+        ]
     };
 
     it('render correctly with insert', () => {

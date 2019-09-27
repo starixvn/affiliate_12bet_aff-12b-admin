@@ -2,10 +2,11 @@
 
 exports[`common - components - SelectAll  render correctly 1`] = `
 <div
-  className="selection"
+  className="d-flex align-items-center"
 >
   <span>
     Select
+    :
   </span>
   <Button
     className="text-dark font-weight-bold"

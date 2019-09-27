@@ -36,8 +36,8 @@ export const Filter = (props) => {
                     <Input type="select" name="category" id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
                         <option key={'category-all'} value={''}>{globalResource.All}</option>
                         {
-                            Object.keys(categoryList).map(key => {
-                                return (<option key={`category-${key}`} value={key}>{key}</option>)
+                            categoryList.map(item => {
+                                return (<option key={`category-${item.Name}`} value={item.Name}>{item.Name}</option>)
                             })
                         }
                     </Input>
@@ -47,8 +47,8 @@ export const Filter = (props) => {
                     <Input type="select" name="language" id="language" value={language} onChange={(e) => setLanguage(e.target.value)}>
                         <option key={'language-all'} value={''}>{globalResource.All}</option>
                         {
-                            Object.keys(languageList).map(key => {
-                                return (<option key={`language-${key}`} value={languageList[key]}>{languageList[key]}</option>)
+                            languageList.map(item => {
+                                return (<option key={`language-${item.LanguageName}`} value={item.LanguageName}>{item.LanguageName}</option>)
                             })
                         }
                     </Input>
@@ -58,8 +58,8 @@ export const Filter = (props) => {
                     <Input type="select" name="currency" id="currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
                         <option key={'currency-all'} value={''}>{globalResource.All}</option>
                         {
-                            Object.keys(currencyList).map(key => {
-                                return (<option key={`deviceType-${key}`} value={key}>{key}</option>)
+                            currencyList.map(item => {
+                                return (<option key={`currency-${item.Name}`} value={item.Name}>{item.Name}</option>)
                             })
                         }
                     </Input>

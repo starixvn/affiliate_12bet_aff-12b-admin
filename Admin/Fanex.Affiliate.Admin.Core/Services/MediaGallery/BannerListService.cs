@@ -16,7 +16,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public EntityResult<BannerInfo> GetBannerList(BannerParam param)
         {
-            return _bannerListRepository.GetBannerList(param);
+            if ((string.Compare(param.Category, "Casino", StringComparison.CurrentCultureIgnoreCase) == 0
+                || string.Compare(param.Category, "Sportsbook", StringComparison.CurrentCultureIgnoreCase) == 0) && string.IsNullOrEmpty(param.SubCategory))
+            {
+                return _bannerListRepository.GetBannerList(param, "Aff_BannerSelByParentCate");
+            }
+
+            if (!string.IsNullOrEmpty(param.SubCategory))
+            {
+                param.Category = param.SubCategory;
+            }
+
+            return _bannerListRepository.GetBannerList(param, "Aff_BannerSel_1");
         }
 
         public BannerInfo GetBannerDetail(int selectedBannerId)

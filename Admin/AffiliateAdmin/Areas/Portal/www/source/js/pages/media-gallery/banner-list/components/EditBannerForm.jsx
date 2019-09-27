@@ -4,11 +4,11 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader } from '../actions/index';
-import { headerText, globalResource, deviceTypes, defaultState, defaultDevice, imageTypes, affTypes } from '../libs/constants';
+import { headerText, globalResource, deviceTypes, defaultState, defaultDevice, Casino, Sportsbook, Baccarat } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
-export class BannerDetailForm extends PureComponent {
+export class EditBannerForm extends PureComponent {
     constructor(props) {
         super(props)
 
@@ -31,6 +31,7 @@ export class BannerDetailForm extends PureComponent {
 
         this.setState({
             fileName: htmlDecode(item.FileName),
+            subCategory: item.SubCategory || '',
             category: item.Category,
             language: item.Language,
             currency: item.Currency,
@@ -42,7 +43,14 @@ export class BannerDetailForm extends PureComponent {
         const value = event.target.value;
         const name = event.target.name;
 
-        this.setState({ [name]: value });
+        if (name === 'category') {
+            const isCategoryCasino = value === Casino;
+            this.setState({ [name]: value });
+
+            if (isCategoryCasino || value === Sportsbook) {
+                this.setState({ subCategory: isCategoryCasino ? Baccarat : 'Basketball' });
+            }
+        }
     }
 
     _handleSubmit = async () => {
@@ -95,11 +103,13 @@ export class BannerDetailForm extends PureComponent {
     }
 
     render() {
-        const { selectedBannerId, categoryList, languageList, currencyList } = this.props;
+        const { selectedBannerId, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, affTypeList } = this.props;
         const { fileName, category, subCategory, language, currency, imageType, affType, deviceType, isShowMessage, isSuccess, message, isInsert } = this.state;
         const isShowPopup = selectedBannerId !== null;
         const title = isInsert ? "Add Banner" : "Update Banner";
         const buttonLabel = isInsert ? "Upload" : "Update";
+        const isCategoryCasino = category === Casino;
+        const subCategoryList = (isCategoryCasino || category === Sportsbook) ? (isCategoryCasino ? subCategoryCasinoList : subCategorySportsbookList) : null;
 
         return (
             <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
@@ -119,32 +129,36 @@ export class BannerDetailForm extends PureComponent {
                                     <Col sm={5}>
                                         <Input type="select" name="category" id="category" value={category} onChange={this._handleChange}>
                                             {
-                                                Object.keys(categoryList).map(key => {
-                                                    return (<option key={`category-${key}`} value={key}>{key}</option>)
+                                                categoryList.map(item => {
+                                                    return (<option key={`category-${item.Name}`} value={item.Name}>{item.Name}</option>)
                                                 })
                                             }
                                         </Input>
                                     </Col>
                                 </FormGroup>
-                                <FormGroup row className="mb-2">
-                                    <Label sm={2} for="subCategory">{headerText.SubCategory}</Label>
-                                    <Col sm={5}>
-                                        <Input type="select" name="subCategory" id="subCategory" value={subCategory} onChange={this._handleChange}>
-                                            {
-                                                Object.keys(categoryList).map(key => {
-                                                    return (<option key={`subCategory-${key}`} value={key}>{key}</option>)
-                                                })
-                                            }
-                                        </Input>
-                                    </Col>
-                                </FormGroup>
+                                {
+                                    subCategoryList && (
+                                        <FormGroup row className="mb-2">
+                                            <Label sm={2} for="subCategory">{headerText.SubCategory}</Label>
+                                            <Col sm={5}>
+                                                <Input type="select" name="subCategory" id="subCategory" value={subCategory} onChange={this._handleChange}>
+                                                    {
+                                                        subCategoryList.map(item => {
+                                                            return (<option key={`subCategory-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                                        })
+                                                    }
+                                                </Input>
+                                            </Col>
+                                        </FormGroup>
+                                    )
+                                }
                                 <FormGroup row className="mb-2">
                                     <Label sm={2} for="language">{headerText.Language}</Label>
                                     <Col sm={5}>
                                         <Input type="select" name="language" id="language" value={language} onChange={this._handleChange}>
                                             {
-                                                Object.keys(languageList).map(key => {
-                                                    return (<option key={`language-${key}`} value={languageList[key]}>{languageList[key]}</option>)
+                                                languageList.map(item => {
+                                                    return (<option key={`language-${item.LanguageName}`} value={item.LanguageName}>{item.LanguageName}</option>)
                                                 })
                                             }
                                         </Input>
@@ -155,8 +169,8 @@ export class BannerDetailForm extends PureComponent {
                                     <Col sm={5}>
                                         <Input type="select" name="currency" id="currency" value={currency} onChange={this._handleChange}>
                                             {
-                                                Object.keys(currencyList).map(key => {
-                                                    return (<option key={`currency-${key}`} value={key}>{key}</option>)
+                                                currencyList.map(item => {
+                                                    return (<option key={`currency-${item.Name}`} value={item.Name}>{item.Name}</option>)
                                                 })
                                             }
                                         </Input>
@@ -167,8 +181,8 @@ export class BannerDetailForm extends PureComponent {
                                     <Col sm={5}>
                                         <Input type="select" name="imageType" id="imageType" value={imageType} onChange={this._handleChange}>
                                             {
-                                                Object.keys(imageTypes).map(key => {
-                                                    return (<option key={`imageType-${key}`} value={key}>{key}</option>)
+                                                imageTypeList.map(item => {
+                                                    return (<option key={`imageType-${item.Name}`} value={item.Name}>{item.Name}</option>)
                                                 })
                                             }
                                         </Input>
@@ -179,8 +193,8 @@ export class BannerDetailForm extends PureComponent {
                                     <Col sm={5}>
                                         <Input type="select" name="affType" id="affType" value={affType} onChange={this._handleChange}>
                                             {
-                                                Object.keys(affTypes).map(key => {
-                                                    return (<option key={`affType-${key}`} value={affTypes[key]}>{key}</option>)
+                                                affTypeList.map(item => {
+                                                    return (<option key={`affType-${item.AffTypeId}`} value={item.AffTypeId}>{item.AffTypeName}</option>)
                                                 })
                                             }
                                         </Input>
@@ -210,12 +224,12 @@ export class BannerDetailForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedBannerId, param, categoryList, languageList, currencyList, sizeList }) {
-    return Object.assign({}, { selectedBannerId, param, categoryList, languageList, currencyList, sizeList });
+function mapStateToProps({ selectedBannerId, param, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList }) {
+    return Object.assign({}, { selectedBannerId, param, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList });
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BannerDetailForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditBannerForm);

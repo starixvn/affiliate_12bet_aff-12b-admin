@@ -12,6 +12,7 @@ using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Configurations;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
@@ -21,16 +22,22 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         private readonly ILanguageService _languageService;
         private readonly ICommonMediaGalleryService _commonMediaGalleryService;
         private readonly IBannerListService _bannerListService;
+        private readonly IAffTypeService _affTypeService;
+        private readonly IAppSetting _appSetting;
 
         public BannerListController(
             ISessionService sessionService,
             ILanguageService languageService,
             ICommonMediaGalleryService commonMediaGalleryService,
-            IBannerListService bannerListService) : base(sessionService)
+            IBannerListService bannerListService,
+            IAffTypeService affTypeService,
+            IAppSetting appSetting) : base(sessionService)
         {
             _languageService = languageService;
             _commonMediaGalleryService = commonMediaGalleryService;
             _bannerListService = bannerListService;
+            _affTypeService = affTypeService;
+            _appSetting = appSetting;
         }
 
         [HttpGet]
@@ -38,10 +45,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             var model = new BannerListViewModel
             {
-                CategoryList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Category),
+                CategoryList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMedia"),
+                SubCategoryCasinoList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMediaCasino"),
+                SubCategorySportsbookList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMediaSportsbook"),
                 LanguageList = _languageService.GetLanguageList(),
                 CurrencyList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Currency),
-                SizeList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("Size")
+                ImageTypeList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("ImageType"),
+                SizeList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("Size"),
+                AffTypeList = _affTypeService.GetAffTypeList(),
+                BannerUrl = _appSetting.BannerUrl
             };
 
             return View("~/Areas/Portal/Views/MediaGallery/BannerList.cshtml", model);

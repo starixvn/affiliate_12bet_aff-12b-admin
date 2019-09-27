@@ -10,18 +10,18 @@ import { defaultPagingOption } from '../../../../../modules/constants';
 describe('text list - components - Filter ', () => {
     const defaultProps = {
         pagingOption: defaultPagingOption,
-        categoryList: {
-            Basketball: "Basketball",
-            Bonus: "Bonus"
-        },
-        languageList: {
-            'en-US': "English",
-            'vi-VN': "Vietnamese"
-        },
-        currencyList: {
-            EURO: "EURO",
-            VND: "VND"
-        }
+        categoryList: [
+            { Name: "Basketball" },
+            { Name: "Bonus" }
+        ],
+        languageList: [
+            { LanguageName: "English" },
+            { LanguageName: "Vietnamese" }
+        ],
+        currencyList: [
+            { Name: "EURO" },
+            { Name: "VND" }
+        ]
     }
 
     it('render correctly', () => {

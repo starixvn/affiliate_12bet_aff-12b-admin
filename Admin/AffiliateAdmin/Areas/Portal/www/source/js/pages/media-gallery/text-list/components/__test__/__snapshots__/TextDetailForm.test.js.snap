@@ -233,13 +233,13 @@ exports[`text list - components - TextDetailForm  render correctly with insert 1
                 value="Chinese Simplified"
               >
                 <option
-                  key="language-en-US"
+                  key="language-English"
                   value="English"
                 >
                   English
                 </option>
                 <option
-                  key="language-vi-VN"
+                  key="language-Vietnamese"
                   value="Vietnamese"
                 >
                   Vietnamese
@@ -289,13 +289,13 @@ exports[`text list - components - TextDetailForm  render correctly with insert 1
                 value="EURO"
               >
                 <option
-                  key="deviceType-EURO"
+                  key="currency-EURO"
                   value="EURO"
                 >
                   EURO
                 </option>
                 <option
-                  key="deviceType-VND"
+                  key="currency-VND"
                   value="VND"
                 >
                   VND
@@ -652,13 +652,13 @@ exports[`text list - components - TextDetailForm  render correctly with not show
                 value="Chinese Simplified"
               >
                 <option
-                  key="language-en-US"
+                  key="language-English"
                   value="English"
                 >
                   English
                 </option>
                 <option
-                  key="language-vi-VN"
+                  key="language-Vietnamese"
                   value="Vietnamese"
                 >
                   Vietnamese
@@ -708,13 +708,13 @@ exports[`text list - components - TextDetailForm  render correctly with not show
                 value="EURO"
               >
                 <option
-                  key="deviceType-EURO"
+                  key="currency-EURO"
                   value="EURO"
                 >
                   EURO
                 </option>
                 <option
-                  key="deviceType-VND"
+                  key="currency-VND"
                   value="VND"
                 >
                   VND
@@ -1071,13 +1071,13 @@ exports[`text list - components - TextDetailForm  render correctly with update 1
                 value="Chinese Simplified"
               >
                 <option
-                  key="language-en-US"
+                  key="language-English"
                   value="English"
                 >
                   English
                 </option>
                 <option
-                  key="language-vi-VN"
+                  key="language-Vietnamese"
                   value="Vietnamese"
                 >
                   Vietnamese
@@ -1127,13 +1127,13 @@ exports[`text list - components - TextDetailForm  render correctly with update 1
                 value="EURO"
               >
                 <option
-                  key="deviceType-EURO"
+                  key="currency-EURO"
                   value="EURO"
                 >
                   EURO
                 </option>
                 <option
-                  key="deviceType-VND"
+                  key="currency-VND"
                   value="VND"
                 >
                   VND

@@ -89,13 +89,13 @@ exports[`text list - components - Filter  render correctly 1`] = `
           All
         </option>
         <option
-          key="language-en-US"
+          key="language-English"
           value="English"
         >
           English
         </option>
         <option
-          key="language-vi-VN"
+          key="language-Vietnamese"
           value="Vietnamese"
         >
           Vietnamese
@@ -136,13 +136,13 @@ exports[`text list - components - Filter  render correctly 1`] = `
           All
         </option>
         <option
-          key="deviceType-EURO"
+          key="currency-EURO"
           value="EURO"
         >
           EURO
         </option>
         <option
-          key="deviceType-VND"
+          key="currency-VND"
           value="VND"
         >
           VND

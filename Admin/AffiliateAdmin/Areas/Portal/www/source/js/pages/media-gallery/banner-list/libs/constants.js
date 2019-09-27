@@ -3,28 +3,14 @@ import { globalResource } from '../../../../modules/globalResource';
 
 export { deviceTypes, globalResource };
 
-const Asian = 'Asian';
-const Media = 'Media';
-const European = 'European';
+export const Casino = 'Casino';
+export const Baccarat = 'Baccarat';
+export const Sportsbook = 'Sportsbook';
 
-export const affTypes = {
-    [Asian]: 2,
-    [Media]: 3,
-    [European]: 4
-}
-
-const Flash = 'Flash';
-export const imageTypes = {
-    Flash,
-    Image: 'Image'
-}
-
-const defaultCategory = 'Basketball';
-const defaultSubCategory = 'Baccarat';
 const defaultLanguage = 'Chinese Simplified';
 const defaultCurrency = 'EURO';
-const defaultImageType = imageTypes[Flash];
-export const defaultAffType = affTypes[Asian];
+const defaultImageType = 'Flash';
+export const Asian = 2;
 export const defaultDevice = pcLaptop;
 
 export const headerText = {
@@ -50,12 +36,12 @@ export const messages = {
 
 export const defaultState = {
     fileName: '',
-    category: defaultCategory,
-    subCategory: defaultSubCategory,
+    category: Casino,
+    subCategory: Baccarat,
     language: defaultLanguage,
     currency: defaultCurrency,
     imageType: defaultImageType,
-    affType: defaultAffType,
+    affType: Asian,
     deviceType: deviceTypes[defaultDevice],
     isInsert: true,
     isShowMessage: false,

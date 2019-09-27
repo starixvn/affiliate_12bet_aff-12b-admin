@@ -1,13 +1,20 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
-import { SET_PARAM, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from './types';
+import { SET_PARAM, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from './types';
 
 export { toggleLoader, setPagingOption };
 
 export const setParam = (data) => {
     return {
         type: SET_PARAM,
+        data
+    }
+}
+
+export const setBannerDetailUrl = (data) => {
+    return {
+        type: SET_BANNER_DETAIL_URL,
         data
     }
 }
