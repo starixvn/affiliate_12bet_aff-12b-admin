@@ -235,22 +235,6 @@
     <Compile Include="Auth\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
-    <Compile Include="BetList\BetList.aspx.designer.cs">
-      <DependentUpon>BetList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BetList\BetListCashOutDetail.aspx.cs">
-      <DependentUpon>BetListCashOutDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BetList\BetListCashOutDetail.aspx.designer.cs">
-      <DependentUpon>BetListCashOutDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BetList\BetListParlayDetail.aspx.designer.cs">
-      <DependentUpon>BetListParlayDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BetList\BetListResults.aspx.designer.cs">
-      <DependentUpon>BetListResults.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Business\Constants\PermissionNames.cs" />
     <Compile Include="Business\DataAccess\DbHelper.cs" />
     <Compile Include="Business\DataAccess\DbResult.cs" />
@@ -266,12 +250,10 @@
     <Compile Include="Business\Services\Banner\DeleteBannerService.cs" />
     <Compile Include="Business\Services\Banner\UploadBannerService.cs" />
     <Compile Include="Business\Services\DeleteMemberService.cs" />
-    <Compile Include="Business\Services\Message\AddMessageService.cs" />
     <Compile Include="Business\Services\Text\AddTextService.cs" />
     <Compile Include="Business\Services\AddUserService.cs" />
     <Compile Include="Business\Services\ChangeAdminPassService.cs" />
     <Compile Include="Business\Services\ChangePassService.cs" />
-    <Compile Include="Business\Services\Message\DeleteMessageListService.cs" />
     <Compile Include="Business\Services\Text\DeleteTextService.cs" />
     <Compile Include="Business\Services\DomainControlService.cs" />
     <Compile Include="Business\Services\EditRateService.cs" />
@@ -349,7 +331,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\TargetPageHelper.cs" />
     <Compile Include="Home\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
@@ -437,18 +418,6 @@
     </Compile>
     <Compile Include="Auth\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BetList\BetList.aspx.cs">
-      <DependentUpon>BetList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BetList\BetListParlayDetail.aspx.cs">
-      <DependentUpon>BetListParlayDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BetList\BetListResults.aspx.cs">
-      <DependentUpon>BetListResults.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Casino\UploadExcel.aspx.cs">
@@ -565,54 +534,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Report\AffiliateReport.aspx.cs">
-      <DependentUpon>AffiliateReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\AffiliateReport.aspx.designer.cs">
-      <DependentUpon>AffiliateReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\AffiliateReportDetail.aspx.cs">
-      <DependentUpon>AffiliateReportDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\AffiliateReportDetail.aspx.designer.cs">
-      <DependentUpon>AffiliateReportDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\MemberReport.aspx.cs">
-      <DependentUpon>MemberReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\MemberReport.aspx.designer.cs">
-      <DependentUpon>MemberReport.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SignIn.aspx.designer.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Test\DepMemberDetailUpd.aspx.cs">
-      <DependentUpon>DepMemberDetailUpd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\DepMemberDetailUpd.aspx.designer.cs">
-      <DependentUpon>DepMemberDetailUpd.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Test\test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Test\TestInternalLogin.aspx.cs">
-      <DependentUpon>TestInternalLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\TestInternalLogin.aspx.designer.cs">
-      <DependentUpon>TestInternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="UnderMaintenance.aspx.cs">
       <DependentUpon>UnderMaintenance.aspx</DependentUpon>
@@ -718,11 +645,6 @@
     </Compile>
     <Compile Include="UserInfo\MemberListAll.aspx.designer.cs">
       <DependentUpon>MemberListAll.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\AffBetlistService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -880,9 +802,6 @@
     <Content Include="App_Templates\PageIndex.html" />
     <Content Include="App_Templates\Paging.htm" />
     <Content Include="App_Templates\Paging.html" />
-    <Content Include="App_Templates\Report\AffiliateReport.htm" />
-    <Content Include="App_Templates\Report\AffiliateReportDetail.htm" />
-    <Content Include="App_Templates\Report\MemberReport.htm" />
     <Content Include="App_Templates\SubMenu.htm" />
     <Content Include="App_Templates\SubMenu1.htm" />
     <Content Include="App_Templates\UserControl\AddDepartment.html" />
@@ -1646,10 +1565,6 @@
     <Content Include="Areas\Portal\www\webpack.config.js" />
     <Content Include="Areas\Portal\www\webpack.config.vendor.js" />
     <Content Include="Auth\Error.aspx" />
-    <Content Include="BetList\BetList.aspx" />
-    <Content Include="BetList\BetListCashOutDetail.aspx" />
-    <Content Include="BetList\BetListParlayDetail.aspx" />
-    <Content Include="BetList\BetListResults.aspx" />
     <Content Include="Casino\UploadExcel.aspx" />
     <Content Include="ChangeAdminPass.aspx" />
     <Content Include="ChangePass.aspx" />
@@ -1705,17 +1620,10 @@
     <Content Include="Others\Message.aspx" />
     <Content Include="Others\ViewMessDetails.aspx" />
     <Content Include="Release Note.txt" />
-    <Content Include="Report\AffiliateReport.aspx" />
-    <Content Include="Report\AffiliateReportDetail.aspx" />
-    <Content Include="Report\MemberReport.aspx" />
     <Content Include="SignIn.aspx" />
     <Content Include="SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Test\DepMemberDetailUpd.aspx" />
-    <Content Include="Test\Login2.jpg" />
-    <Content Include="Test\test.aspx" />
-    <Content Include="Test\TestInternalLogin.aspx" />
     <Content Include="UnderMaintenance.aspx" />
     <Content Include="UserControl\AddDepartment.aspx" />
     <Content Include="UserControl\AddUser.aspx" />
@@ -1735,7 +1643,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.12betadmin.sit.config" />
-    <Content Include="BetList\BetListNewParlay.ashx" />
     <Content Include="Areas\Portal\Views\CommissionGroup\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Web.config" />
     <Content Include="AffiliateAdmin.ruleset" />
@@ -2084,12 +1991,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\AffBetlistService\AffiliateAPI.disco" />
     <Content Include="WhoamI.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Auth\ProcessLogin.ashx" />
-    <Content Include="BetList\BetListParlay.ashx" />
     <None Include="Content\Fanex.Result\fanex.result.less" />
     <Content Include="Deployment.ignore" />
     <Content Include="ExcelFiles\Casino\2012\Apr\casino stats march 21.csv" />
@@ -2132,7 +2037,6 @@
     <Content Include="Handler\UpdateUser.ashx" />
     <Content Include="Handler\UploadExcel.ashx" />
     <Content Include="Handler\UpText.ashx" />
-    <None Include="Logs\trace.log" />
     <Content Include="packages.config" />
     <Content Include="Web.12betadmin.backupmnl.config" />
     <Content Include="Web.12betadmin.local.config" />
@@ -2143,11 +2047,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.info" />
-    <None Include="Web References\AffBetlistService\AffiliateAPI.wsdl" />
-    <None Include="Web References\AffBetlistService\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="WebWorkbench.mswwsettings" />
   </ItemGroup>
   <ItemGroup>
@@ -2189,19 +2088,6 @@
       <Project>{118a9aa1-c33a-413a-a685-3495cf30c15f}</Project>
       <Name>Fanex.Affiliate.ThirdPartyProduct</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:52390/AffiliateAPI.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\AffBetlistService\</RelPath>
-      <UpdateFromURL>http://localhost:52390/AffiliateAPI.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>AffiliateAdmin_AffBetlistService_AffiliateAPI</CachedSettingsPropName>
-    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\" />
