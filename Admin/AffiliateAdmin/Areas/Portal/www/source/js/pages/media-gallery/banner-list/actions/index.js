@@ -1,7 +1,10 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
-import { SET_PARAM, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from './types';
+import {
+    SET_PARAM, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID, SET_BANNER_ROOT_URL,
+    SET_SUBCATEGORY_CASINO_LIST, SET_SUBCATEGORY_SPORTSBOOK_LIST, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA
+} from './types';
 
 export { toggleLoader, setPagingOption };
 
@@ -45,6 +48,54 @@ export const setGridData = (data) => {
         type: SET_GRID_DATA,
         data
     }
+}
+
+export const setBannerRootUrl = (data) => {
+    return {
+        type: SET_BANNER_ROOT_URL,
+        data
+    }
+}
+
+export const setSubCategoryCasinoList = (data) => {
+    return {
+        type: SET_SUBCATEGORY_CASINO_LIST,
+        data
+    }
+}
+
+export const setSubCategorySportbooksList = (data) => {
+    return {
+        type: SET_SUBCATEGORY_SPORTSBOOK_LIST,
+        data
+    }
+}
+
+export const getBannerRootUrl = () => async (dispatch) => {
+    const url = 'Portal/BannerList/GetBannerRootUrl';
+    const response = await post(url);
+
+    const data = response && response.status === 200 ? response.data : null;
+
+    dispatch(setBannerRootUrl(data));
+}
+
+export const getSubCategoryCasinoList = () => async (dispatch) => {
+    const url = 'Portal/BannerList/GetSubCategoryCasinoList';
+    const response = await post(url);
+
+    const data = response && response.status === 200 ? response.data : null;
+
+    dispatch(setSubCategoryCasinoList(data));
+}
+
+export const getSubCategorySportsbookList = () => async (dispatch) => {
+    const url = 'Portal/BannerList/GetSubCategorySportsbookList';
+    const response = await post(url);
+
+    const data = response && response.status === 200 ? response.data : null;
+
+    dispatch(setSubCategorySportbooksList(data));
 }
 
 export const fetchData = (param) => async (dispatch) => {

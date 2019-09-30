@@ -41,6 +41,6 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         public string RabbitMQConnectionString => GetValue("RabbitMQConnectionString");
 
         [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
-        public string BannerUrl => GetValue("BannerUrl");
+        public string BannerRootUrl => GetValue("BannerUrl");
     }
 }

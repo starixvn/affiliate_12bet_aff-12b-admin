@@ -46,5 +46,6 @@ export const defaultState = {
     isInsert: true,
     isShowMessage: false,
     isSuccess: true,
-    message: ''
+    message: '',
+    isDisabled: true
 }

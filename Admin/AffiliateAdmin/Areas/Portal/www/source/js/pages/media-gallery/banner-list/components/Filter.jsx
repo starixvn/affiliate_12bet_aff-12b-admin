@@ -1,9 +1,9 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { setParam } from '../actions';
+import { setParam, getSubCategoryCasinoList, getSubCategorySportsbookList } from '../actions';
 import { headerText, globalResource, deviceTypes, defaultDevice, Asian, Casino, Sportsbook } from '../libs/constants';
 
 export const Filter = (props) => {
@@ -21,6 +21,13 @@ export const Filter = (props) => {
     const hasSubCategory = isCategoryCasino || category === Sportsbook;
     const subCategoryList = hasSubCategory ? (isCategoryCasino ? subCategoryCasinoList : subCategorySportsbookList) : null;
 
+    useEffect(() => {
+        const { subCategoryCasinoList, subCategorySportsbookList } = props;
+
+        !subCategoryCasinoList && props.getSubCategoryCasinoList();
+        !subCategorySportsbookList && props.getSubCategorySportsbookList();
+    }, [props.subCategoryCasinoList, props.subCategorySportsbookList]);
+
     const _handleSearch = () => {
         const { pagingOption } = props;
 
@@ -36,7 +43,7 @@ export const Filter = (props) => {
             PageIndex: 1,
             PageSize: pagingOption.PageSize
         });
-        
+
         props.setParam(param);
     }
 
@@ -151,7 +158,7 @@ function mapStateToProps({ categoryList, subCategoryCasinoList, subCategorySport
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam }, dispatch);
+    return bindActionCreators({ setParam, getSubCategoryCasinoList, getSubCategorySportsbookList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

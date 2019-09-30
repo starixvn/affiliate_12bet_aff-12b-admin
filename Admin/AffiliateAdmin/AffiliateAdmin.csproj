@@ -1341,6 +1341,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\index.js" />

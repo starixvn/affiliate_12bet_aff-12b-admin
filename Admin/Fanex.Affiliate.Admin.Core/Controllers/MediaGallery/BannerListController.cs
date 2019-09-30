@@ -46,17 +46,44 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             var model = new BannerListViewModel
             {
                 CategoryList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMedia"),
-                SubCategoryCasinoList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMediaCasino"),
-                SubCategorySportsbookList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMediaSportsbook"),
                 LanguageList = _languageService.GetLanguageList(),
                 CurrencyList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Currency),
                 ImageTypeList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("ImageType"),
                 SizeList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("Size"),
-                AffTypeList = _affTypeService.GetAffTypeList(),
-                BannerUrl = _appSetting.BannerUrl
+                AffTypeList = _affTypeService.GetAffTypeList()
             };
 
             return View("~/Areas/Portal/Views/MediaGallery/BannerList.cshtml", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetSubCategoryCasinoList()
+        {
+            return new JsonNetResult
+            {
+                Data = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMediaCasino")
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetSubCategorySportsbookList()
+        {
+            return new JsonNetResult
+            {
+                Data = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMediaSportsbook")
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetBannerRootUrl()
+        {
+            return new JsonNetResult
+            {
+                Data = _appSetting.BannerRootUrl
+            };
         }
 
         [HttpPost]

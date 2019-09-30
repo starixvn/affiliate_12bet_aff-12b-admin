@@ -6,14 +6,16 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl } from '../actions';
+import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl, getBannerRootUrl } from '../actions';
 
 export const Content = (props) => {
 
     useEffect(() => {
-        const { param } = props;
+        const { param, bannerRootUrl } = props;
+
         !!param && props.fetchData(param);
-    }, [props.param]);
+        !bannerRootUrl && props.getBannerRootUrl();
+    }, [props.param, props.bannerRootUrl]);
 
     const _onCheckItem = (isChecked, BannerId) => {
         const newCheckedBanners = Object.assign({}, props.checkedBanners, { [BannerId]: isChecked });
@@ -75,7 +77,7 @@ export const Content = (props) => {
     function _buildDataRow(dataItem, index) {
         const bannerId = dataItem.BannerId;
         const fileName = dataItem.FileName;
-        const src = `${props.bannerUrl}/${fileName}`;
+        const src = `${props.bannerRootUrl}/${fileName}`;
         const size = dataItem.Size;
         const strSize = size.split('x');
         const realWidth = strSize[0];
@@ -83,14 +85,12 @@ export const Content = (props) => {
         let width = Number(realWidth);
         let height = Number(realHeight);
 
-        if (width > 500 || height > 500){
-            if (width > height)
-            {
+        if (width > 500 || height > 500) {
+            if (width > height) {
                 height = 500 * height / width;
                 width = 500;
             }
-            else
-            {
+            else {
                 width = 500 * width / height;
                 height = 500;
             }
@@ -104,7 +104,7 @@ export const Content = (props) => {
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center">
-                    <a href="javascript:;" onClick={() => props.setBannerDetailUrl({src, height: realHeight, width: realWidth})}>
+                    <a href="javascript:;" onClick={() => props.setBannerDetailUrl({ src, height: realHeight, width: realWidth })}>
                         <img id={`img${bannerId}`} src={src} alt="" height={height} width={width} />
                     </a>
                 </Cell>
@@ -144,12 +144,12 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ pagingOption, param, checkedBanners, bannerUrl, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { pagingOption, param, checkedBanners, bannerUrl, shouldResetScrollPosition, gridData });
+function mapStateToProps({ pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData }) {
+    return Object.assign({}, { pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedBannerId, fetchData, setPagingOption, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl }, dispatch);
+    return bindActionCreators({ setSelectedBannerId, fetchData, setPagingOption, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl, getBannerRootUrl }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

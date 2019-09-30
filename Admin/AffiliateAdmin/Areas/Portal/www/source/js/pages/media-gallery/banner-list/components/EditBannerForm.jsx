@@ -7,6 +7,7 @@ import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBa
 import { headerText, globalResource, deviceTypes, defaultState, defaultDevice, Casino, Sportsbook, Baccarat } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
+import { validateFileExtension } from '../libs/utils';
 
 export class EditBannerForm extends PureComponent {
     constructor(props) {
@@ -43,13 +44,24 @@ export class EditBannerForm extends PureComponent {
         const value = event.target.value;
         const name = event.target.name;
 
-        if (name === 'category') {
-            const isCategoryCasino = value === Casino;
-            this.setState({ [name]: value });
+        this.setState({ [name]: value });
 
-            if (isCategoryCasino || value === Sportsbook) {
-                this.setState({ subCategory: isCategoryCasino ? Baccarat : 'Basketball' });
-            }
+        const isCategoryCasino = value === Casino;
+        if (name === 'category' && (isCategoryCasino || value === Sportsbook)) {
+            this.setState({ subCategory: isCategoryCasino ? Baccarat : 'Basketball' });
+        }
+    }
+
+
+    _handleFile = (event) => {
+        const { files } = event.target;
+
+        if (files && files.length > 0) {
+            const fileName = files[0].name;
+            const result = validateFileExtension(fileName);
+
+            this.setState({ fileName, isDisabled: !result.isOK });
+            result.isOK ? this.setState({ imageType: result.imageType }) : this._handleShowAlert(false, result.message);
         }
     }
 
@@ -104,7 +116,7 @@ export class EditBannerForm extends PureComponent {
 
     render() {
         const { selectedBannerId, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, affTypeList } = this.props;
-        const { fileName, category, subCategory, language, currency, imageType, affType, deviceType, isShowMessage, isSuccess, message, isInsert } = this.state;
+        const { fileName, category, subCategory, language, currency, imageType, affType, deviceType, isShowMessage, isSuccess, message, isInsert, isDisabled } = this.state;
         const isShowPopup = selectedBannerId !== null;
         const title = isInsert ? "Add Banner" : "Update Banner";
         const buttonLabel = isInsert ? "Upload" : "Update";
@@ -125,7 +137,13 @@ export class EditBannerForm extends PureComponent {
                                 <Label className="d-block">[File Size Limit: 3MB]</Label>
                                 <br />
                                 <FormGroup row className="mb-2">
-                                    <Label sm={2} for="category">{headerText.Category}</Label>
+                                    <Label sm={3} for="file">File</Label>
+                                    <Col sm={9}>
+                                        <Input type="file" name="file" id="file" className={`border ${isDisabled ? "text-danger" : "text-success"}`} onChange={this._handleFile} />
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="mb-2">
+                                    <Label sm={3} for="category">{headerText.Category}</Label>
                                     <Col sm={5}>
                                         <Input type="select" name="category" id="category" value={category} onChange={this._handleChange}>
                                             {
@@ -139,7 +157,7 @@ export class EditBannerForm extends PureComponent {
                                 {
                                     subCategoryList && (
                                         <FormGroup row className="mb-2">
-                                            <Label sm={2} for="subCategory">{headerText.SubCategory}</Label>
+                                            <Label sm={3} for="subCategory">{headerText.SubCategory}</Label>
                                             <Col sm={5}>
                                                 <Input type="select" name="subCategory" id="subCategory" value={subCategory} onChange={this._handleChange}>
                                                     {
@@ -153,7 +171,7 @@ export class EditBannerForm extends PureComponent {
                                     )
                                 }
                                 <FormGroup row className="mb-2">
-                                    <Label sm={2} for="language">{headerText.Language}</Label>
+                                    <Label sm={3} for="language">{headerText.Language}</Label>
                                     <Col sm={5}>
                                         <Input type="select" name="language" id="language" value={language} onChange={this._handleChange}>
                                             {
@@ -165,7 +183,7 @@ export class EditBannerForm extends PureComponent {
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={2} for="currency">{headerText.Currency}</Label>
+                                    <Label sm={3} for="currency">{headerText.Currency}</Label>
                                     <Col sm={5}>
                                         <Input type="select" name="currency" id="currency" value={currency} onChange={this._handleChange}>
                                             {
@@ -177,7 +195,7 @@ export class EditBannerForm extends PureComponent {
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={2} for="imageType">{headerText.Currency}</Label>
+                                    <Label sm={3} for="imageType">{headerText.Type}</Label>
                                     <Col sm={5}>
                                         <Input type="select" name="imageType" id="imageType" value={imageType} onChange={this._handleChange}>
                                             {
@@ -189,7 +207,7 @@ export class EditBannerForm extends PureComponent {
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={2} for="affType">{headerText.Currency}</Label>
+                                    <Label sm={3} for="affType">{headerText.AffType}</Label>
                                     <Col sm={5}>
                                         <Input type="select" name="affType" id="affType" value={affType} onChange={this._handleChange}>
                                             {
@@ -201,7 +219,7 @@ export class EditBannerForm extends PureComponent {
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={2} for="deviceType">{headerText.Device}</Label>
+                                    <Label sm={3} for="deviceType">{headerText.Device}</Label>
                                     <Col sm={5}>
                                         <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this._handleChange}>
                                             {
@@ -212,9 +230,15 @@ export class EditBannerForm extends PureComponent {
                                         </Input>
                                     </Col>
                                 </FormGroup>
+                                <FormGroup row className="mb-2">
+                                    <Label sm={3} for="fileName">File Name</Label>
+                                    <Col sm={7}>
+                                        <Input type="text" name="fileName" id="fileName" value={fileName} onChange={this._handleChange} />
+                                    </Col>
+                                </FormGroup>
                             </Form>
 
-                            <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit}>{buttonLabel}</Button>
+                            <Button type="button" color="success" className="mr-3" disabled={isDisabled} onClick={this._handleSubmit}>{buttonLabel}</Button>
                             <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
                         </div>
                     </div>
