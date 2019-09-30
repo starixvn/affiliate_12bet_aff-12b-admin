@@ -11,9 +11,6 @@ namespace Affiliate.Infrastructure.Helpers
     {
         #region Const Params
 
-        private const string Chars = "qwertyuiopasdfghjklzxcvbnm0123456789";
-        private const string CharsNoZero = "qwertyuipasdfghjklzxcvbnm123456789";
-        private const string Numbers = "0123456789";
         private const string CfsKey = "&％#@?,:*!~^.";
         private static readonly DESCryptoServiceProvider CryptoServiceProvider = new DESCryptoServiceProvider();
         private static readonly byte[] RgbKey = { 0x21, 0x63, 0x54, 0x5a, 0x91, 0xac, 110, 0xcc };
@@ -31,12 +28,11 @@ namespace Affiliate.Infrastructure.Helpers
         public static string CfsEnCrypt(string plainText)
         {
             var encryptedText = string.Empty;
-            try
+            var rgbIV = new byte[0];
+            var rgbKey = new byte[] { 0x21, 0x63, 0x54, 0x5a, 0x91, 0xac, 110, 0xcc };
+            rgbIV = Encoding.UTF8.GetBytes(CfsKey);
+            using (var provider = new DESCryptoServiceProvider())
             {
-                var rgbIV = new byte[0];
-                var rgbKey = new byte[] { 0x21, 0x63, 0x54, 0x5a, 0x91, 0xac, 110, 0xcc };
-                rgbIV = Encoding.UTF8.GetBytes(CfsKey);
-                var provider = new DESCryptoServiceProvider();
                 var bytes = Encoding.UTF8.GetBytes(plainText);
                 using (MemoryStream stream = new MemoryStream())
                 {
@@ -47,10 +43,6 @@ namespace Affiliate.Infrastructure.Helpers
                         encryptedText = Convert.ToBase64String(stream.ToArray());
                     }
                 }
-            }
-            catch
-            {
-                throw;
             }
 
             return encryptedText;
@@ -97,37 +89,6 @@ namespace Affiliate.Infrastructure.Helpers
         }
         #endregion
 
-      
-
-        private static string Mid(string value, int startIndex, int length)
-        {
-            if (!string.IsNullOrWhiteSpace(value))
-            {
-                value = value.Substring(startIndex - 1, value.Length - startIndex + 1);
-                value = value.Length > length ? value.Substring(0, length) : value;
-            }
-
-            return value;
-        }
-
-        /// <summary>
-        /// Encrypt data SHA1.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>The encrypt value.</returns>
-        private static string GetSHA1(string value)
-        {
-            SHA1 algorithm = SHA1.Create();
-            byte[] data = algorithm.ComputeHash(Encoding.UTF8.GetBytes(value));
-            string sh1 = string.Empty;
-            for (int i = 0; i < data.Length; i++)
-            {
-                sh1 += data[i].ToString("x2").ToUpperInvariant();
-            }
-
-            return sh1;
-        }
-
         /// <summary>
         /// Creates the memory stream.
         /// </summary>
@@ -145,7 +106,6 @@ namespace Affiliate.Infrastructure.Helpers
             return stream;
         }
 
-     
         private static string[] GetDecryptPwd(string sourceString, string searchString)
         {
             int length = 1;
