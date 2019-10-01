@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -238,7 +238,7 @@
     <Compile Include="Business\Constants\PermissionNames.cs" />
     <Compile Include="Business\DataAccess\DbHelper.cs" />
     <Compile Include="Business\DataAccess\DbResult.cs" />
-    <Compile Include="Business\DeductionType.cs" />
+    <Compile Include="Business\DataHandler\ExchangeRate.cs" />
     <Compile Include="Business\Helpers\BannerHelper.cs" />
     <Compile Include="Business\Helpers\LogHelper.cs" />
     <Compile Include="Business\Helpers\MimeTypeHelper.cs" />
@@ -250,41 +250,24 @@
     <Compile Include="Business\Services\Banner\DeleteBannerService.cs" />
     <Compile Include="Business\Services\Banner\UploadBannerService.cs" />
     <Compile Include="Business\Services\DeleteMemberService.cs" />
-    <Compile Include="Business\Services\Text\AddTextService.cs" />
     <Compile Include="Business\Services\AddUserService.cs" />
     <Compile Include="Business\Services\ChangeAdminPassService.cs" />
     <Compile Include="Business\Services\ChangePassService.cs" />
-    <Compile Include="Business\Services\Text\DeleteTextService.cs" />
     <Compile Include="Business\Services\DomainControlService.cs" />
-    <Compile Include="Business\Services\EditRateService.cs" />
-    <Compile Include="Business\Services\GetAffiliateListService.cs" />
-    <Compile Include="Business\Services\GetCommGroupService.cs" />
     <Compile Include="Business\Services\GetDataBannerService.cs" />
-    <Compile Include="Business\Services\GetDataTextService.cs" />
     <Compile Include="Business\Services\GetEditedBannerService.cs" />
-    <Compile Include="Business\Services\GetEditedTextService.cs" />
-    <Compile Include="Business\Services\GetMessageListService.cs" />
-    <Compile Include="Business\Services\GetMessageService.cs" />
     <Compile Include="Business\Services\GetOnlineListService.cs" />
     <Compile Include="Business\Services\GetSubCategoryService.cs" />
     <Compile Include="Business\Services\GetViewedBannerService.cs" />
-    <Compile Include="Business\Services\GetViewedTextService.cs" />
     <Compile Include="Business\Services\GroupPolicyService.cs" />
     <Compile Include="Business\Services\ListUserService.cs" />
     <Compile Include="Business\Services\LogoutService.cs" />
-    <Compile Include="Business\Services\UpdateAccountService.cs" />
     <Compile Include="Business\Services\UpdateAffiliateDomainService.cs" />
     <Compile Include="Business\Services\Update12BetDomainService.cs" />
     <Compile Include="Business\Services\UpdateDepartmentService.cs" />
-    <Compile Include="Business\Services\Message\UpdateMessageService.cs" />
     <Compile Include="Business\Services\UpdatePolicyService.cs" />
     <Compile Include="Business\Services\UpdateStatusService.cs" />
-    <Compile Include="Business\Services\Text\UpdateTextService.cs" />
     <Compile Include="Business\Services\UpdateUserService.cs" />
-    <Compile Include="Business\Services\UploadExcelService.cs" />
-    <Compile Include="Casino\UploadExcel.aspx.designer.cs">
-      <DependentUpon>UploadExcel.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ChangeAdminPass.aspx.designer.cs">
       <DependentUpon>ChangeAdminPass.aspx</DependentUpon>
     </Compile>
@@ -321,13 +304,6 @@
     <Compile Include="Domain\EditAffiliateDomain.aspx.designer.cs">
       <DependentUpon>EditAffiliateDomain.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DTO\ContactApp.cs" />
-    <Compile Include="Exchange\AffEditRate.aspx.designer.cs">
-      <DependentUpon>AffEditRate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Exchange\AffRate.aspx.designer.cs">
-      <DependentUpon>AffRate.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -336,9 +312,6 @@
     </Compile>
     <Compile Include="Media\AddBanner.aspx.designer.cs">
       <DependentUpon>AddBanner.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Media\AddText.aspx.designer.cs">
-      <DependentUpon>AddText.aspx</DependentUpon>
     </Compile>
     <Compile Include="Media\BannerDetail.aspx.cs">
       <DependentUpon>BannerDetail.aspx</DependentUpon>
@@ -353,59 +326,31 @@
     <Compile Include="Media\ListBannerNew.aspx.designer.cs">
       <DependentUpon>ListBannerNew.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Media\ListText.aspx.designer.cs">
-      <DependentUpon>ListText.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Business\AffType.cs" />
     <Compile Include="Business\AppSettings.cs" />
     <Compile Include="Business\CacheUtil.cs" />
     <Compile Include="Business\Common.cs" />
-    <Compile Include="Business\Criterias\AffiliateReportCriteria.cs" />
-    <Compile Include="Business\Criterias\ValidationCriteria.cs" />
     <Compile Include="Business\DataHandler\Account.cs" />
     <Compile Include="Business\DataHandler\Active12BetAccount.cs" />
     <Compile Include="Business\DataHandler\Affiliate.cs" />
     <Compile Include="Business\DataHandler\Banner.cs" />
-    <Compile Include="Business\DataHandler\Casino.cs" />
     <Compile Include="Business\DataHandler\Domain.cs" />
-    <Compile Include="Business\DataHandler\ExchangeRate.cs" />
     <Compile Include="Business\DataHandler\Home.cs" />
-    <Compile Include="Business\DataHandler\HotNews.cs" />
     <Compile Include="Business\DataHandler\Login.cs" />
     <Compile Include="Business\DataHandler\Member.cs" />
     <Compile Include="Business\DataHandler\ServerDateTime.cs" />
-    <Compile Include="Business\DataHandler\Text.cs" />
     <Compile Include="Business\DataHandler\UserControl.cs" />
     <Compile Include="Business\DBType.cs" />
     <Compile Include="Business\DepositCustomerInfo.cs" />
     <Compile Include="Business\GenerateHTML\Banner.cs" />
     <Compile Include="Business\GenerateHTML\Domain.cs" />
-    <Compile Include="Business\GenerateHTML\HotNews.cs" />
     <Compile Include="Business\GenerateHTML\OnlineList.cs" />
-    <Compile Include="Business\GenerateHTML\Text.cs" />
     <Compile Include="Business\IBCHandler.cs" />
     <Compile Include="Business\IBCPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Business\Language.cs" />
-    <Compile Include="Business\Status.cs" />
     <Compile Include="Business\SubMenu.cs" />
     <Compile Include="Business\SwfInfo.cs" />
-    <Compile Include="App_GlobalResources\BetList.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BetList.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\Bingo.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Bingo.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\Casino.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Casino.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_GlobalResources\Lang.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -418,10 +363,6 @@
     </Compile>
     <Compile Include="Auth\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Casino\UploadExcel.aspx.cs">
-      <DependentUpon>UploadExcel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ChangeAdminPass.aspx.cs">
@@ -472,24 +413,12 @@
       <DependentUpon>EditAffiliateDomain.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Exchange\AffEditRate.aspx.cs">
-      <DependentUpon>AffEditRate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Exchange\AffRate.aspx.cs">
-      <DependentUpon>AffRate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Home\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Media\AddBanner.aspx.cs">
       <DependentUpon>AddBanner.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Media\AddText.aspx.cs">
-      <DependentUpon>AddText.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Media\EditBanner.aspx.cs">
@@ -499,24 +428,6 @@
     <Compile Include="Media\ListBannerNew.aspx.cs">
       <DependentUpon>ListBannerNew.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Media\ListText.aspx.cs">
-      <DependentUpon>ListText.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Others\Message.aspx.cs">
-      <DependentUpon>Message.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Others\Message.aspx.designer.cs">
-      <DependentUpon>Message.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Others\ViewMessDetails.aspx.cs">
-      <DependentUpon>ViewMessDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Others\ViewMessDetails.aspx.designer.cs">
-      <DependentUpon>ViewMessDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Portal\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -694,7 +605,6 @@
     <Content Include="App_Js\AutoComplete\autocomplete.js" />
     <Content Include="App_Js\AutoComplete\shadow.png" />
     <Content Include="App_Js\AutoComplete\styles.css" />
-    <Content Include="App_Js\BetList.js" />
     <Content Include="App_Js\Calendar2\calendar-control.js" />
     <Content Include="App_Js\Calendar2\calendar-normal.js" />
     <Content Include="App_Js\Calendar2\calendar-setup.js" />
@@ -746,7 +656,6 @@
     <Content Include="App_Js\libs\jquery-ui\jquery-ui.css" />
     <Content Include="App_Js\libs\jquery-ui\jquery-ui.min.js" />
     <Content Include="App_Js\ListBanner.js" />
-    <Content Include="App_Js\ListText.js" />
     <Content Include="App_Js\login.js" />
     <Content Include="App_Js\MonthPicker\Images\bg-month-picker-header.png" />
     <Content Include="App_Js\MonthPicker\jquery.mtz.monthpicker.js" />
@@ -768,7 +677,6 @@
     <Content Include="App_Templates\Alert.htm" />
     <Content Include="App_Templates\Calendar.html" />
     <Content Include="App_Templates\CalendarJs.html" />
-    <Content Include="App_Templates\Casino\UploadExcel.htm" />
     <Content Include="App_Templates\ChangeAdminPass.htm" />
     <Content Include="App_Templates\ChangePass.htm" />
     <Content Include="App_Templates\DateRangeSelect.html" />
@@ -781,24 +689,18 @@
     <Content Include="App_Templates\Domain\DomainControlUpd.htm" />
     <Content Include="App_Templates\Domain\Edit12BetDomain.html" />
     <Content Include="App_Templates\Domain\EditAffiliateDomain.html" />
-    <Content Include="App_Templates\Exchange\AffEditRate.htm" />
-    <Content Include="App_Templates\Exchange\ExchangeRate.htm" />
     <Content Include="App_Templates\GotoPage.html" />
     <Content Include="App_Templates\Home.htm" />
     <Content Include="App_Templates\Login.htm" />
     <Content Include="App_Templates\Media\BannerDetail.htm" />
     <Content Include="App_Templates\Media\MainAddBanner.htm" />
-    <Content Include="App_Templates\Media\MainAddText.htm" />
     <Content Include="App_Templates\Media\MainListBannerNew.htm" />
-    <Content Include="App_Templates\Media\MainListText.htm" />
     <Content Include="App_Templates\NoInfo.htm" />
     <Content Include="App_Templates\NoInfo1.htm" />
     <Content Include="App_Templates\NoInformation.htm" />
     <Content Include="App_Templates\OnlyOption.htm" />
     <Content Include="App_Templates\Option.htm" />
     <Content Include="App_Templates\Option1.htm" />
-    <Content Include="App_Templates\Others\Message.htm" />
-    <Content Include="App_Templates\Others\ViewMess.htm" />
     <Content Include="App_Templates\PageIndex.html" />
     <Content Include="App_Templates\Paging.htm" />
     <Content Include="App_Templates\Paging.html" />
@@ -815,10 +717,6 @@
     <Content Include="App_Templates\UserControl\ListUserInDept.htm" />
     <Content Include="App_Templates\UserControl\PolicyContent.html" />
     <Content Include="App_Templates\UserControl\PolicyHeader.html" />
-    <Content Include="App_Templates\UserInfo\BetList.htm" />
-    <Content Include="App_Templates\UserInfo\BetListCashOutDetail.htm" />
-    <Content Include="App_Templates\UserInfo\BetListParlayDetail.htm" />
-    <Content Include="App_Templates\UserInfo\BetListResults.htm" />
     <Content Include="App_Templates\UserInfo\MemActiveList.htm" />
     <Content Include="App_Templates\UserInfo\MemberList.htm" />
     <Content Include="App_Templates\UserInfo\MemList.htm" />
@@ -1566,32 +1464,8 @@
     <Content Include="Areas\Portal\www\webpack.config.js" />
     <Content Include="Areas\Portal\www\webpack.config.vendor.js" />
     <Content Include="Auth\Error.aspx" />
-    <Content Include="Casino\UploadExcel.aspx" />
     <Content Include="ChangeAdminPass.aspx" />
     <Content Include="ChangePass.aspx" />
-    <Content Include="Content\betlist\betlist.css" />
-    <Content Include="Content\betlist\cashoutdetail.css" />
-    <Content Include="Content\betlist\fanex.result.css" />
-    <Content Include="Content\betlist\global.content.css" />
-    <Content Include="Content\betlist\images\1F.gif" />
-    <Content Include="Content\betlist\images\1L.gif" />
-    <Content Include="Content\betlist\images\bar-loader.gif" />
-    <Content Include="Content\betlist\images\bgHeader.jpg" />
-    <Content Include="Content\betlist\images\blank.gif" />
-    <Content Include="Content\betlist\images\firstGoal.gif" />
-    <Content Include="Content\betlist\images\goal-icon.png" />
-    <Content Include="Content\betlist\images\lastGoal.gif" />
-    <Content Include="Content\betlist\images\link_14x14.png" />
-    <Content Include="Content\betlist\images\link_16x16.png" />
-    <Content Include="Content\betlist\images\note.png" />
-    <Content Include="Content\betlist\images\plus.png" />
-    <Content Include="Content\betlist\images\q_Icon2_1.png" />
-    <Content Include="Content\betlist\images\q_Icon_2.png" />
-    <Content Include="Content\betlist\images\tab_topbg.gif" />
-    <Content Include="Content\betlist\images\undo.png" />
-    <Content Include="Content\betlist\images\up.png" />
-    <Content Include="Content\betlist\rngcasino.handhistory.css" />
-    <Content Include="Content\betlist\systemparlay.detail.css" />
     <Content Include="Content\Fanex.Result\12betadmin.result.css" />
     <Content Include="Content\Fanex.Result\fanex.result.css" />
     <Content Include="Content\Fanex.Result\images\goal-icon.png" />
@@ -1608,18 +1482,12 @@
     <Content Include="Domain\Edit12BetDomain.aspx" />
     <Content Include="Domain\EditAffiliateDomain.aspx" />
     <Content Include="Error.aspx" />
-    <Content Include="Exchange\AffEditRate.aspx" />
-    <Content Include="Exchange\AffRate.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home\Home.aspx" />
     <Content Include="Media\AddBanner.aspx" />
-    <Content Include="Media\AddText.aspx" />
     <Content Include="Media\BannerDetail.aspx" />
     <Content Include="Media\EditBanner.aspx" />
     <Content Include="Media\ListBannerNew.aspx" />
-    <Content Include="Media\ListText.aspx" />
-    <Content Include="Others\Message.aspx" />
-    <Content Include="Others\ViewMessDetails.aspx" />
     <Content Include="Release Note.txt" />
     <Content Include="SignIn.aspx" />
     <Content Include="SpNames.xml">
@@ -1946,7 +1814,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\OnlineInfoPanel.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\rightpanel.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\CommissionGroupPopup.jsx" />
-    <Content Include="Handler\UpdateAcc.ashx" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.en-GB.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.en-US.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.es-ES.cshtml" />
@@ -1998,33 +1865,20 @@
     <Content Include="Auth\ProcessLogin.ashx" />
     <None Include="Content\Fanex.Result\fanex.result.less" />
     <Content Include="Deployment.ignore" />
-    <Content Include="ExcelFiles\Casino\2012\Apr\casino stats march 21.csv" />
     <Content Include="Handler\AccountPolicy.ashx" />
     <Content Include="Handler\ActiveMember.ashx" />
-    <Content Include="Handler\AddMessage.ashx" />
     <Content Include="Handler\Banner\AddBanner.ashx" />
-    <Content Include="Handler\AddNewText.ashx" />
     <Content Include="Handler\AddUser.ashx" />
     <Content Include="Handler\ChangeAdminPass.ashx" />
     <Content Include="Handler\ChangePass.ashx" />
     <Content Include="Handler\Banner\DelBanner.ashx" />
     <Content Include="Handler\DeleteMember.ashx" />
-    <Content Include="Handler\DeleteMessageList.ashx" />
-    <Content Include="Handler\DelText.ashx" />
     <Content Include="Handler\DomainControl.ashx" />
-    <Content Include="Handler\EditRate.ashx" />
-    <Content Include="Handler\GetAffiliateList.ashx" />
-    <Content Include="Handler\GetCommGroup.ashx" />
     <Content Include="Handler\GetDataBanner.ashx" />
-    <Content Include="Handler\GetDataText.ashx" />
     <Content Include="Handler\GetEditedBanner.ashx" />
-    <Content Include="Handler\GetEditedText.ashx" />
-    <Content Include="Handler\GetMessage.ashx" />
-    <Content Include="Handler\GetMessageList.ashx" />
     <Content Include="Handler\GetOnlineList.ashx" />
     <Content Include="Handler\GetSubCategory.ashx" />
     <Content Include="Handler\GetViewedBanner.ashx" />
-    <Content Include="Handler\GetViewedText.ashx" />
     <Content Include="Handler\GroupPolicy.ashx" />
     <Content Include="Handler\ListUser.ashx" />
     <Content Include="Handler\Logout.ashx" />
@@ -2032,12 +1886,9 @@
     <Content Include="Handler\Update12BetDomain.ashx" />
     <Content Include="Handler\UpdateAffDomain.ashx" />
     <Content Include="Handler\UpdateDepartment.ashx" />
-    <Content Include="Handler\UpdateMessage.ashx" />
     <Content Include="Handler\UpdatePolicy.ashx" />
     <Content Include="Handler\UpdateStatus.ashx" />
     <Content Include="Handler\UpdateUser.ashx" />
-    <Content Include="Handler\UploadExcel.ashx" />
-    <Content Include="Handler\UpText.ashx" />
     <Content Include="packages.config" />
     <Content Include="Web.12betadmin.backupmnl.config" />
     <Content Include="Web.12betadmin.local.config" />
@@ -2051,21 +1902,10 @@
     <None Include="WebWorkbench.mswwsettings" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\BetList.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>BetList.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Bingo.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Bingo.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Casino.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Casino.designer.cs</LastGenOutput>
-    </Content>
     <Content Include="App_GlobalResources\Lang.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Lang.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_GlobalResources\ResultLang.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>

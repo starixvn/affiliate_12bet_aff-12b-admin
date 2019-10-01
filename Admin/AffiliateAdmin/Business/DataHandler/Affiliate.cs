@@ -3,7 +3,6 @@ using System.Collections;
 using System.Data;
 using System.Web;
 using AffiliateAdmin.Business.DataAccess;
-using Criterias;
 using DNAide.Core;
 using DNAide.Utils;
 
@@ -89,57 +88,6 @@ namespace DataHandler
         }
 
         //@Vinh
-        public static DbResult SelMemberReportByAff(int intCustId, DateTime dtmFDate, DateTime dtmTDate, int affType)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", intCustId);
-            hsParam.Add("fromdate", dtmFDate);
-            hsParam.Add("todate", dtmTDate);
-            return DbHelper.Execute("Aff_Admin_ReportDetail_Sel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@Vinh
-        public static DbResult SelMemberReport(DateTime dtmFDate, DateTime dtmTDate, int affType)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("fromdate", dtmFDate);
-            hsParam.Add("todate", dtmTDate);
-            return DbHelper.Execute("Aff_Admin_ReportDetail_Sel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@Vinh
-        public static DbResult SelAffiliateReport(AffiliateReportCriteria criteria)
-        {
-            Hashtable hsParam = new Hashtable();
-            if (!string.IsNullOrEmpty(criteria.PreferredLanguage))
-                hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
-            if (criteria.SportId > 0)
-                hsParam.Add("sportid", criteria.SportId);
-            hsParam.Add("username", criteria.Username);
-            hsParam.Add("fromdate", criteria.FromDate);
-            hsParam.Add("todate", criteria.ToDate);
-            hsParam.Add("isgetall", criteria.IsGetAll);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("nrows", 0);
-            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@Vinh
-        public static DbResult SelAffiliateReportByAff(string strAffUsername, DateTime dtmFDate, DateTime dtmTDate, int intSportId, bool isGetAll)
-        {
-            Hashtable hsParam = new Hashtable();
-            if (intSportId > 0)
-                hsParam.Add("sportid", intSportId);
-            hsParam.Add("affusername", strAffUsername);
-            hsParam.Add("fromdate", dtmFDate);
-            hsParam.Add("todate", dtmTDate);
-            hsParam.Add("isgetall", isGetAll);
-            hsParam.Add("affid", 0);
-            return DbHelper.Execute("Aff_Admin_AffiliateReport_Detail_Sel_xtest", DBType.AFFILIATE_12BET, hsParam, 180);
-        }
-
-        //@Vinh
         public static DbResult SelPermission(int CustId, string funcName)
         {
             Hashtable hsParam = new Hashtable();
@@ -155,36 +103,6 @@ namespace DataHandler
         public static DbResult SportTypeSel()
         {
             return DbHelper.Execute("Aff_SportTypeSel", DBType.AFFILIATE_12BET);
-        }
-
-        //Johnny20100109
-        public static void Update12BetPlayerStatusToDeposit(int AffId, string depositUserName, int ibcCustid, string ibcUserName, out int errcode, out string errmsg)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("depusername", HttpContext.Current.Server.HtmlEncode(depositUserName));
-            hsParam.Add("ibccustid", ibcCustid);
-            hsParam.Add("ibcusername", HttpContext.Current.Server.HtmlEncode(ibcUserName));
-            hsParam.Add("errorcode", 0);
-            hsParam.Add("errormsg", string.Empty);
-            DbResult result = DbHelper.Execute("Deposit_MemberIBCDetail", DBType.DEPOSIT, hsParam);
-            errcode = CastAide.AsInt32(result.Outputs["errorcode"]);
-            errmsg = result.Outputs["errormsg"].ToString();
-
-            //wirite log if the user updating processed successfully
-            if (string.IsNullOrEmpty(errmsg))
-            {
-                int refNo = CastAide.AsInt32(result.Outputs["refno"]);
-
-                Hashtable logParam = new Hashtable();
-                logParam.Add("creator", AppSettings.Session.CustID);
-                logParam.Add("affid", AffId);
-                logParam.Add("typename", "Member");
-                logParam.Add("spname", "Deposit_MemberIBCDetail");
-                logParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-                logParam.Add("refno", refNo);
-                logParam.Add("details", "Fix the problem when updating 12Bet player status to deposit DepositCustID=" + ibcCustid);
-                DbHelper.Execute("Aff_WriteLog", DBType.AFFILIATE_12BET, logParam);
-            }
         }
 
         //@Johnny, 2010 Jan 14: Check 12Bet Exist in Deposit_Customer table or not
@@ -337,35 +255,6 @@ namespace DataHandler
                 logParam.Add("details", "Update 12Bet player status to deposit DepositCustID=" + ibcCustid);
                 DbHelper.Execute("Aff_WriteLog", DBType.AFFILIATE_12BET, logParam);
             }
-        }
-
-        //@Johnny, 2010 Jan 14: Check 12betUsername of Affiliate valid or not
-        public static bool Check12BetPlayerAccountActivated(int affiliate, out string depositUserName, out string errMsg)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("language", AppSettings.Session.Language);
-            hsParam.Add("affid", affiliate);
-            hsParam.Add("12betplayerusername", string.Empty);
-            hsParam.Add("result", false);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", "");
-            DbResult result = DbHelper.Execute("Aff_CustomerCheck12BetPlayerAccountActivated", DBType.AFFILIATE_12BET, hsParam);
-            errMsg = result.Outputs["errmsg"].ToString();
-            depositUserName = result.Outputs["12betplayerusername"].ToString();
-            return CastAide.AsBoolean(result.Outputs["result"]);
-        }
-
-
-        public static bool ValidatePermission(ValidationCriteria criteria)
-        {
-            Hashtable parameters = new Hashtable();
-            parameters.Add("adminname", null);
-            parameters.Add("affid", criteria.AffId);
-            parameters.Add("membername", criteria.MemberName);
-            parameters.Add("belonglevel2", false);
-
-            var rs = DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, parameters);
-            return CastAide.AsBoolean(rs.Outputs["belonglevel2"]);
         }
     }
 }
