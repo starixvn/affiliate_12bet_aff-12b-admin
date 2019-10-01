@@ -119,7 +119,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             objectDb.AddInParameter("category", DbType.String, param.Category);
             objectDb.AddInParameter("language", DbType.String, param.Language);
             objectDb.AddInParameter("currency", DbType.String, param.Currency);
-            objectDb.AddInParameter("devicetype", DbType.String, param.DeviceType);
+            objectDb.AddInParameter("devicetype", DbType.Byte, param.DeviceType);
             objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
             objectDb.AddInParameter("IP", DbType.String, param.Ip);
 

@@ -17,6 +17,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 
         public string Currency { get; set; }
 
+        public string Size { get; set; }
+
         public string ImageType { get; set; }
 
         public byte AffType { get; set; }

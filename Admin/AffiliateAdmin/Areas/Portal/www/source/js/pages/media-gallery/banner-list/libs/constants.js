@@ -36,6 +36,7 @@ export const messages = {
 
 export const defaultState = {
     fileName: '',
+    inputFileName: '',
     category: Casino,
     subCategory: Baccarat,
     language: defaultLanguage,

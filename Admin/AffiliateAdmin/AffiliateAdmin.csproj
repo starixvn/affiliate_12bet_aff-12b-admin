@@ -1467,11 +1467,6 @@
     <Content Include="Auth\Error.aspx" />
     <Content Include="ChangeAdminPass.aspx" />
     <Content Include="ChangePass.aspx" />
-    <Content Include="Content\Fanex.Result\12betadmin.result.css" />
-    <Content Include="Content\Fanex.Result\fanex.result.css" />
-    <Content Include="Content\Fanex.Result\images\goal-icon.png" />
-    <Content Include="Content\tipsy\custom-tipsy.css" />
-    <Content Include="Content\tipsy\tipsy.css" />
     <Content Include="Default.aspx" />
     <Content Include="Domain\12BetDomain.aspx" />
     <Content Include="Domain\Add12BetDomain.aspx" />
@@ -1862,7 +1857,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Auth\ProcessLogin.ashx" />
-    <None Include="Content\Fanex.Result\fanex.result.less" />
     <Content Include="Deployment.ignore" />
     <Content Include="Handler\AccountPolicy.ashx" />
     <Content Include="Handler\ActiveMember.ashx" />

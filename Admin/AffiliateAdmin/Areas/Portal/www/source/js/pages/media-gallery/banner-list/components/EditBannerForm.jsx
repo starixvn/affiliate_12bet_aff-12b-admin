@@ -31,11 +31,13 @@ export class EditBannerForm extends PureComponent {
         const item = await this.props.getBannerDetail(selectedBannerId);
 
         this.setState({
-            fileName: htmlDecode(item.FileName),
+            inputFileName: htmlDecode(item.FileName),
             subCategory: item.SubCategory || '',
             category: item.Category,
             language: item.Language,
             currency: item.Currency,
+            imageType: item.ImageType,
+            affType: item.AffType,
             deviceType: deviceTypes[item.DeviceType] || deviceTypes[defaultDevice]
         });
     }
@@ -60,30 +62,47 @@ export class EditBannerForm extends PureComponent {
             const fileName = files[0].name;
             const result = validateFileExtension(fileName);
 
-            this.setState({ fileName, isDisabled: !result.isOK });
+            this.setState({ fileName, inputFileName: fileName, isDisabled: !result.isOK });
             result.isOK ? this.setState({ imageType: result.imageType }) : this._handleShowAlert(false, result.message);
+        } else {
+            this.setState({ isDisabled: true, fileName: '', inputFileName: '' });
         }
     }
 
-    _handleSubmit = async () => {
+    _handleAfterSave = (result, isInsert) => {
+        if (result) {
+            const message = isInsert ? "Add Successfully!" : "Update Successfully!";
+
+            this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
+        } else {
+            this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
+        }
+    }
+
+    _save = async () => {
+        const { category, language, currency, deviceType, fileName, inputFileName, isInsert } = this.state;
+        const { selectedBannerId } = this.props;
+        const bannerInfo = Object.assign({}, { bannerId: selectedBannerId, fileName, inputFileName, category, language, currency, deviceType });
+
+        if (isInsert) {
+            const result = await this.props.insertBanner(bannerInfo);
+            this._handleAfterSave(result, isInsert);
+
+        } else {
+            const result = await this.props.updateBanner(bannerInfo);
+            this._handleAfterSave(result, isInsert);
+        };
+    }
+
+    _handleSubmit = () => {
         this.props.toggleLoader(true);
 
-        const { fileName, isInsert } = this.state;
+        const { fileName, inputFileName, isInsert } = this.state;
 
-        if (!!fileName) {
-            const { category, language, currency, deviceType } = this.state;
-            const { selectedBannerId } = this.props;
-            const message = isInsert ? "Add Successfully!" : "Update Successfully!";
-            const bannerInfo = Object.assign({}, { bannerId: selectedBannerId, fileName, category, language, currency, deviceType });
-            const result = isInsert ? await this.props.insertBanner(bannerInfo) : await this.props.updateBanner(bannerInfo);
-
-            if (result) {
-                this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
-            } else {
-                this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
-            }
+        if (!!inputFileName && (!isInsert || !!fileName)) {
+            this._save();
         } else {
-            this._handleShowAlert(false, isInsert ? 'Please select banner to upload.' : "Please select banner to update.");
+            !!fileName ? this._save() : this._handleShowAlert(false, isInsert ? 'Please select banner to upload.' : "You must enter a file name for banner.");
         }
 
         this.props.toggleLoader(false);
@@ -116,7 +135,7 @@ export class EditBannerForm extends PureComponent {
 
     render() {
         const { selectedBannerId, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, affTypeList } = this.props;
-        const { fileName, category, subCategory, language, currency, imageType, affType, deviceType, isShowMessage, isSuccess, message, isInsert, isDisabled } = this.state;
+        const { inputFileName, category, subCategory, language, currency, imageType, affType, deviceType, isShowMessage, isSuccess, message, isInsert, isDisabled } = this.state;
         const isShowPopup = selectedBannerId !== null;
         const title = isInsert ? "Add Banner" : "Update Banner";
         const buttonLabel = isInsert ? "Upload" : "Update";
@@ -139,7 +158,7 @@ export class EditBannerForm extends PureComponent {
                                 <FormGroup row className="mb-2">
                                     <Label sm={3} for="file">File</Label>
                                     <Col sm={9}>
-                                        <Input type="file" name="file" id="file" className={`border ${isDisabled ? "text-danger" : "text-success"}`} onChange={this._handleFile} />
+                                        <Input type="file" name="file" id="file" className={`border ${ isInsert && isDisabled ? "text-danger" : "text-success"}`} onChange={this._handleFile} />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
@@ -231,14 +250,14 @@ export class EditBannerForm extends PureComponent {
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={3} for="fileName">File Name</Label>
+                                    <Label sm={3} for="inputFileName">File Name</Label>
                                     <Col sm={7}>
-                                        <Input type="text" name="fileName" id="fileName" value={fileName} onChange={this._handleChange} />
+                                        <Input type="text" name="inputFileName" id="inputFileName" value={inputFileName} onChange={this._handleChange} />
                                     </Col>
                                 </FormGroup>
                             </Form>
 
-                            <Button type="button" color="success" className="mr-3" disabled={isDisabled} onClick={this._handleSubmit}>{buttonLabel}</Button>
+                            <Button type="button" color="success" className="mr-3" disabled={(isInsert || !inputFileName) ? isDisabled : false} onClick={this._handleSubmit}>{buttonLabel}</Button>
                             <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
                         </div>
                     </div>
