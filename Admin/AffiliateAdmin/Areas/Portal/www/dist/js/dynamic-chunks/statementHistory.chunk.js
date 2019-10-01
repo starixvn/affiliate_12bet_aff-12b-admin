@@ -1,1 +1,1392 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[37],{132:function(e,t,a){"use strict";a.d(t,"a",function(){return l}),a.d(t,"c",function(){return c}),a.d(t,"e",function(){return i}),a.d(t,"d",function(){return m});var n,r=a(2),s=a.n(r),o=a(233);a.d(t,"b",function(){return o.a});var l={NotChoose:"You must choose Approved or Rejected for this request!",UpdateFailed:"Update transaction failed!"},c="Pending",i=(n={},s()(n,c,"Processing"),s()(n,"Approved","Approved"),s()(n,"Rejected","Rejected"),s()(n,"Cancelled","Cancelled"),n),m={AccountInformation:"Account Information",UserName:"User Name",RequestedDate:"Requested Date",EmailAddress:"Email Address",FirstName:"First Name",LastName:"Last Name",PaymentInformation:"Payment Information",PaymentMethod:"Payment Method",Amount:"Amount",Status:"Status",UserName12Bet:"12BET User Name",CompletedDate:"Completed Date",UpdatedBy:"Updated By",AdminNote:"Admin Note",VisibleAdmin:"Visible only to admin",AffiliateNote:"Affiliate Note",VisibleAffiliate:"Visible also to affiliate"}},224:function(e,t,a){e.exports=a(231)(178)},375:function(e,t,a){"use strict";var n=a(19),r=a.n(n),s=a(29),o=a.n(s),l=a(16),c=a.n(l),i=a(11),m=a.n(i),u=a(12),d=a.n(u),p=a(13),f=a.n(p),h=a(14),g=a.n(h),E=a(6),b=a.n(E),y=a(15),C=a.n(y),v=a(2),D=a.n(v),w=a(0),P=a.n(w),S=a(30),I=a(24),N=a(1),A=a(132),k=a(40),L=a(43),T=function(e){return o()(r.a.mark(function t(){var a;return r.a.wrap(function(t){for(;;)switch(t.prev=t.next){case 0:return"Portal/PaymentRequest/GetPaymentRequestDetail",t.next=3,Object(L.a)("Portal/PaymentRequest/GetPaymentRequestDetail",e);case 3:return a=t.sent,t.abrupt("return",a&&200===a.status?a.data:null);case 5:case"end":return t.stop()}},t)}))},R=function(e){return o()(r.a.mark(function t(){var a;return r.a.wrap(function(t){for(;;)switch(t.prev=t.next){case 0:return"Portal/PaymentRequest/UpdatePaymentRequest",t.next=3,Object(L.a)("Portal/PaymentRequest/UpdatePaymentRequest",e);case 3:return a=t.sent,t.abrupt("return",a&&200===a.status?a.data:null);case 5:case"end":return t.stop()}},t)}))},x=a(83),F=A.c.toLowerCase(),O=A.e.Approved.toLowerCase(),j=A.e.Rejected.toLowerCase(),G=function(e){function t(e){var a;return m()(this,t),a=f()(this,g()(t).call(this,e)),D()(b()(a),"handleChange",function(e){a.setState({paymentRequestInfo:c()({},a.state.paymentRequestInfo,D()({},e.target.name,e.target.value))})}),D()(b()(a),"handleGetPaymentRequestInfo",function(){var e=o()(r.a.mark(function e(t){var n;return r.a.wrap(function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,a.props.getPaymentRequestDetail({transId:t});case 2:(n=e.sent)&&a.setState({paymentRequestInfo:n,originalStatus:Object(x.a)(n.Status)});case 4:case"end":return e.stop()}},e)}));return function(t){return e.apply(this,arguments)}}()),D()(b()(a),"handleSave",o()(r.a.mark(function e(){var t,n,s,o,l,i;return r.a.wrap(function(e){for(;;)switch(e.prev=e.next){case 0:if(t=a.state,n=t.paymentRequestInfo,s=t.originalStatus,o=n.Status,!s||s.toLowerCase()!==F||!o||o.toLowerCase()!==O&&o.toLowerCase()!==j){e.next=10;break}return l=c()({},{AffId:n.AffId,TransId:n.TransId,IsApproved:o.toLowerCase()===O,AdminDesc:n.AdminDesc,AffDesc:n.AffDesc}),e.next=6,a.props.updatePaymentRequest(l);case 6:(i=e.sent)?(a.setState({isShowMessage:!0,isSuccess:i.IsSuccessful,message:i.IsSuccessful?"Transaction ID ".concat(n.TransId," has been updated successfully!"):i.Message},function(){return window.setTimeout(a.hideMessage,3e3)}),i.IsSuccessful&&(window.setTimeout(function(){return a.props.handleClosePopup()},3e3),window.setTimeout(function(){return a.props.handleFetchData()},3200))):a.setState({isSuccess:!1,isShowMessage:!0,message:A.a.UpdateFailed},function(){return window.setTimeout(a.hideMessage,3e3)}),e.next=11;break;case 10:a.setState({isSuccess:!1,isShowMessage:!0,message:A.a.NotChoose},function(){return window.setTimeout(a.hideMessage,3e3)});case 11:case"end":return e.stop()}},e)}))),D()(b()(a),"hideMessage",function(){a.setState({isShowMessage:!1})}),D()(b()(a),"handleClosePopup",function(){a.props.handleClosePopup(),a.setState({paymentRequestInfo:null})}),a.state={paymentRequestInfo:null,originalStatus:"",isSuccess:!0,isShowMessage:!1,message:""},a}return C()(t,e),d()(t,[{key:"componentDidUpdate",value:function(e){var t=this.props.transactionId;t&&t!==e.transactionId&&this.handleGetPaymentRequestInfo(t)}},{key:"_renderAccountInformation",value:function(e){return P.a.createElement("fieldset",null,P.a.createElement("legend",null,P.a.createElement("h6",{className:"font-weight-bold"},A.d.AccountInformation)),P.a.createElement(N.FormGroup,{row:!0,className:"mb-2"},P.a.createElement(N.Label,{sm:6},A.d.UserName),P.a.createElement(N.Label,{sm:6},P.a.createElement("strong",null,e.AffName))),P.a.createElement(N.FormGroup,{row:!0,className:"mb-2"},P.a.createElement(N.Label,{sm:6},A.d.RequestedDate),P.a.createElement(N.Label,{sm:6},P.a.createElement("strong",null,e.TransDateText))),P.a.createElement(N.FormGroup,{row:!0,className:"mb-2"},P.a.createElement(N.Label,{sm:6},A.d.EmailAddress),P.a.createElement(N.Label,{sm:6},Object(x.a)(e.Email))),P.a.createElement(N.FormGroup,{row:!0,className:"mb-2"},P.a.createElement(N.Label,{sm:6},A.d.FirstName),P.a.createElement(N.Label,{sm:6},Object(x.a)(e.FirstName))),P.a.createElement(N.FormGroup,{row:!0,className:"mb-2"},P.a.createElement(N.Label,{sm:6},A.d.LastName),P.a.createElement(N.Label,{sm:6},Object(x.a)(e.LastName))))}},{key:"_renderPaymentCompletionInfo",value:function(e){return P.a.createElement(P.a.Fragment,null,P.a.createElement(N.FormGroup,{row:!0,className:"mb-2"},P.a.createElement(N.Label,{sm:6},A.d.CompletedDate),P.a.createElement(N.Label,{sm:6},P.a.createElement("strong",null,e.CompletedDateText))),P.a.createElement(N.FormGroup,{row:!0,className:"mb-2"},P.a.createElement(N.Label,{sm:6},A.d.UpdatedBy),P.a.createElement(N.Label,{sm:6},Object(x.a)(e.Creator))))}},{key:"_renderOptionalStatus",value:function(){return P.a.createElement(N.FormGroup,{row:!0,className:"mb-2 ml-1"},P.a.createElement(N.FormGroup,{className:"mr-4",check:!0},P.a.createElement(N.Label,{check:!0},P.a.createElement(N.Input,{name:"Status",type:"radio",className:"mr-2",value:A.e.Approved,onChange:this.handleChange}),A.e.Approved)),P.a.createElement(N.FormGroup,{check:!0},P.a.createElement(N.Label,{check:!0},P.a.createElement(N.Input,{name:"Status",type:"radio",className:"mr-2",value:A.e.Rejected,onChange:this.handleChange}),A.e.Rejected)))}},{key:"_renderPaymentInformation",value:function(e,t){return P.a.createElement("fieldset",null,P.a.createElement("legend",null,P.a.createElement("h6",{className:"font-weight-bold"},A.d.PaymentInformation)),P.a.createElement(N.FormGroup,{row:!0,className:"mb-2"},P.a.createElement(N.Label,{sm:6},A.d.PaymentMethod),P.a.createElement(N.Label,{sm:6},P.a.createElement("strong",null,Object(x.a)(e.PaymentMethod)))),P.a.createElement(N.FormGroup,{row:!0,className:"mb-2"},P.a.createElement(N.Label,{sm:6},A.d.Amount),P.a.createElement(N.Label,{sm:6},P.a.createElement("strong",null,Object(k.c)(e.Amount)))),P.a.createElement(N.FormGroup,{row:!0,className:"mb-2"},P.a.createElement(N.Label,{sm:6},A.d.Status),P.a.createElement(N.Label,{sm:6},P.a.createElement("strong",null,Object(x.a)(e.Status)))),P.a.createElement(N.FormGroup,{row:!0,className:"mb-2"},P.a.createElement(N.Label,{sm:6},A.d.UserName12Bet),P.a.createElement(N.Label,{sm:6},P.a.createElement("strong",null,Object(x.a)(e.PlayerUsername)))),t?this._renderOptionalStatus():this._renderPaymentCompletionInfo(e))}},{key:"_renderNote",value:function(e,t){var a=e.AdminDesc,n=e.AffDesc;return P.a.createElement(N.Row,null,P.a.createElement(N.Col,{sm:6,className:"pr-1"},P.a.createElement("fieldset",null,P.a.createElement("legend",null,P.a.createElement("h6",{className:"font-weight-bold"},A.d.AdminNote)),P.a.createElement(N.FormGroup,null,P.a.createElement(N.Label,{for:"AdminDesc"},A.d.VisibleAdmin),P.a.createElement(N.Input,{type:"textarea",name:"AdminDesc",rows:"6",disabled:!t,value:Object(x.a)(a),onChange:this.handleChange})))),P.a.createElement(N.Col,{sm:6,className:"pl-1"},P.a.createElement("fieldset",null,P.a.createElement("legend",null,P.a.createElement("h6",{className:"font-weight-bold"},A.d.AffiliateNote)),P.a.createElement(N.FormGroup,null,P.a.createElement(N.Label,{for:"AffDesc"},A.d.VisibleAffiliate),P.a.createElement(N.Input,{type:"textarea",name:"AffDesc",rows:"6",disabled:!t,value:Object(x.a)(n),onChange:this.handleChange})))))}},{key:"render",value:function(){var e=this.props.transactionId,t=this.state,a=t.paymentRequestInfo,n=t.originalStatus,r=t.isSuccess,s=t.isShowMessage,o=t.message,l=n&&n.toLowerCase()===F;return a&&P.a.createElement(N.Modal,{isOpen:e,toggle:this.handleClosePopup,backdrop:"static"},P.a.createElement(N.ModalHeader,{toggle:this.handleClosePopup},P.a.createElement("span",{className:"iconpopup"}),"Trxn.ID ",e),P.a.createElement(N.ModalBody,null,P.a.createElement("div",{className:"modal-body-wrapper p-0"},P.a.createElement(N.Form,{tag:"form",className:"payment-request-update-form"},P.a.createElement(N.Alert,{color:r?"success":"danger",isOpen:s},P.a.createElement("div",{dangerouslySetInnerHTML:{__html:o}})),this._renderAccountInformation(a),this._renderPaymentInformation(a,l),this._renderNote(a,l),P.a.createElement(N.Button,{type:"button",color:"success",className:"mr-3",disabled:!l,onClick:this.handleSave},A.b.Update),P.a.createElement(N.Button,{type:"button",color:"info",onClick:this.handleClosePopup},A.b.Cancel)))))}}]),t}(w.PureComponent);t.a=Object(S.connect)(null,function(e){return Object(I.bindActionCreators)({getPaymentRequestDetail:T,updatePaymentRequest:R},e)})(G)},643:function(e,t,a){"use strict";a.r(t);var n,r=a(16),s=a.n(r),o=a(11),l=a.n(o),c=a(12),i=a.n(c),m=a(13),u=a.n(m),d=a(14),p=a.n(d),f=a(6),h=a.n(f),g=a(15),E=a.n(g),b=a(2),y=a.n(b),C=a(0),v=a.n(C),D=a(30),w=a(24),P=a(88),S=a(38),I=a.n(S),N=a(1),A=a(307),k=a(233),L=a(219),T="#",R="Date",x="Type",F="Amount",O="Status",j="Creator",G="Description",M=(n={},y()(n,201,"Monthly Winlost"),y()(n,202,"Payment Request"),y()(n,203,"Adjustment"),y()(n,0,"Transaction"),n),q=a(48),U=a(19),_=a.n(U),H=a(29),B=a.n(H),W=a(43),Y=a(226),z=a(225),V=a(339),J=a(363),K=function(e){return{type:J.a,data:e}},Q=function(e){return{type:J.b,data:e}},X=function(e){return B()(_.a.mark(function t(){var a;return _.a.wrap(function(t){for(;;)switch(t.prev=t.next){case 0:return"Portal/UserPanel/StatementHistory/GetStatementHistoryList",t.next=3,Object(W.a)("Portal/UserPanel/StatementHistory/GetStatementHistoryList",e);case 3:return a=t.sent,t.abrupt("return",a&&200===a.status?a.data:null);case 5:case"end":return t.stop()}},t)}))},Z=new Date(2009,11,1),$=function(e){function t(e){var a,n,r,o,c;l()(this,t),c=u()(this,p()(t).call(this,e)),y()(h()(c),"handleSearch",function(){var e,t,a=c.state,n=a.isGetAll,r=a.fromDate,o=a.toDate,l=s()({},{isGetAll:n,fromDate:n?I()(e=I()(t="".concat(Z.getMonth()+1,"/")).call(t,Z.getDate(),"/")).call(e,Z.getFullYear()):r,toDate:n?c.nowString:o});c.props.setParam(l)}),y()(h()(c),"handleChecked",function(e){c.setState(y()({},e.target.name,e.target.checked))}),y()(h()(c),"handleChangeFromDate",function(e){c.setState(Object(q.b)(e,c.state.toDate))}),y()(h()(c),"handleChangeToDate",function(e){c.setState({toDate:e.format("MM/DD/YYYY")})});var i=c.props.today,m=new Date(i);c.nowString=I()(a=I()(n="".concat(m.getMonth()+1,"/")).call(n,m.getDate(),"/")).call(a,m.getFullYear());var d=new Date(i);return d.setMonth(d.getMonth()-6),c.state={isGetAll:!1,fromDate:I()(r=I()(o="".concat(d.getMonth()+1,"/")).call(o,d.getDate(),"/")).call(r,d.getFullYear()),toDate:c.nowString},c}return E()(t,e),i()(t,[{key:"componentDidMount",value:function(){this.handleSearch()}},{key:"render",value:function(){var e=this.state,t=e.isGetAll,a=e.fromDate,n=e.toDate;return v.a.createElement("div",{className:"filter-container"},v.a.createElement(N.Form,{inline:!0,tag:"div"},v.a.createElement(N.FormGroup,{className:"mr-sm-2"},v.a.createElement(N.Label,{className:"mr-sm-2"},k.a.From),v.a.createElement(A.DatePicker,{minDate:Z,maxDate:this.nowString,date:a,isEnable:!t,iconElement:v.a.createElement("span",{className:"oi oi-calendar icon-calendar ml-1"}),onChange:this.handleChangeFromDate})),v.a.createElement(N.FormGroup,{className:"mr-sm-2"},v.a.createElement(N.Label,{className:"mr-sm-2"},k.a.To),v.a.createElement(A.DatePicker,{minDate:a,maxDate:this.nowString,date:n,isEnable:!t,iconElement:v.a.createElement("span",{className:"oi oi-calendar icon-calendar ml-1"}),onChange:this.handleChangeToDate})),v.a.createElement(N.FormGroup,{className:"mr-sm-2"},v.a.createElement(N.FormGroup,{check:!0},v.a.createElement(N.Label,{check:!0},k.a.GetAll,v.a.createElement(N.Input,{name:"isGetAll",className:"ml-1 mr-2",type:"checkbox",checked:t,onChange:this.handleChecked})))),v.a.createElement(N.Button,{outline:!0,color:"primary",type:"button",onClick:this.handleSearch},v.a.createElement("span",{className:"oi oi-magnifying-glass"})," ",k.a.Search)))}}]),t}(C.PureComponent);var ee=Object(D.connect)(function(e){var t=e.today;return s()({},{today:t})},function(e){return Object(w.bindActionCreators)({setParam:K},e)})($),te=a(45),ae=a.n(te),ne=a(9),re=a(83),se=a(40),oe=function(e){function t(e){var a;return l()(this,t),a=u()(this,p()(t).call(this,e)),y()(h()(a),"_handleRedirectToDailyEarning",function(e){var t={affId:a.props.affId,monthDate:e.DateText,productId:L.g};return a.props.redirectToDailyEarning(t)}),y()(h()(a),"handleSetTransactionId",function(e){a.setState({shouldResetScrollPosition:!1}),a.props.setTransactionId(e)}),y()(h()(a),"handlePaging",function(e,t){var n=ae()({},a.props.param,{pageIndex:e,pageSize:t});a.fetchData(n)}),a.state={gridData:null,shouldResetScrollPosition:!0},a.transTypeClickHandler=a._getClickHandlerByTransType(),a}return E()(t,e),i()(t,[{key:"componentDidUpdate",value:function(e){var t=this.props,a=t.pagingOption,n=t.param,r=t.affId;if(n!==e.param||r!==e.affId){var o=s()({},n,{pageIndex:1,pageSize:a.PageSize});this.fetchData(o)}}},{key:"fetchData",value:function(){var e=B()(_.a.mark(function e(t){var a,n;return _.a.wrap(function(e){for(;;)switch(e.prev=e.next){case 0:return this.props.toggleLoaderUserPanel(!0),a=ae()({},t,{affId:this.props.affId}),e.next=4,this.props.fetchData(a);case 4:n=e.sent,this.setState({gridData:n?n.MainData:null,shouldResetScrollPosition:!0}),this.props.setPagingOption({TotalItem:n?n.TotalItem:0,PageIndex:t.pageIndex,PageSize:t.pageSize}),this.props.toggleLoaderUserPanel(!1);case 8:case"end":return e.stop()}},e,this)}));return function(t){return e.apply(this,arguments)}}()},{key:"_renderHeader",value:function(){return v.a.createElement(ne.Row,{key:"thead"},v.a.createElement(ne.Cell,{header:!0,colWidth:35,title:T},T),v.a.createElement(ne.Cell,{header:!0,colWidth:100,title:R},R),v.a.createElement(ne.Cell,{header:!0,colWidth:110,title:x},x),v.a.createElement(ne.Cell,{header:!0,colWidth:100,title:F},F),v.a.createElement(ne.Cell,{header:!0,colWidth:95,title:O},O),v.a.createElement(ne.Cell,{header:!0,colWidth:110,title:j},j),v.a.createElement(ne.Cell,{header:!0,colWidth:450,title:G},G))}},{key:"_renderDataSection",value:function(e){var t=[];if(e&&e.length)for(var a=this.props.pagingOption,n=(a.PageIndex-1)*a.PageSize+1,r=0;r<e.length;r++){var s=e[r];t.push(this._buildDataRow(s,r+n))}else t.push(v.a.createElement(ne.Row,null,v.a.createElement(ne.Cell,{className:"text-center",colSpan:"7"},k.a.NoInfo)));return t}},{key:"_getClickHandlerByTransType",value:function(){var e,t=this;return e={},y()(e,202,function(e){return function(){return t.handleSetTransactionId(e.TransId)}}),y()(e,201,function(e){return function(){return t._handleRedirectToDailyEarning(e)}}),y()(e,0,function(e){return function(){return t._handleRedirectToDailyEarning(e)}}),e}},{key:"_buildDataRow",value:function(e,t){var a=this,n=Object(se.c)(e.Amount),r=e.TransType,s=this.transTypeClickHandler[r],o=e.Status&&"pending"===e.Status.toLowerCase(),l=o?"Processing":e.Status,c=Object(re.a)(e.Creator),i=Object(re.a)(e.Description);return v.a.createElement(ne.Row,{key:"dataRow-".concat(t),className:l&&l.toLowerCase()},v.a.createElement(ne.Cell,{title:t,className:"text-center"},t),v.a.createElement(ne.Cell,{title:e.DateText,className:"text-center"},e.DateText),v.a.createElement(ne.Cell,{title:r,className:"text-center"},M[r]||"Monthly Winlost"),v.a.createElement(ne.Cell,{title:n,className:"text-right"},s?v.a.createElement(N.Button,{className:"p-0",color:"link",onClick:s(e)},n):n),v.a.createElement(ne.Cell,{title:l,className:"text-center"},o?v.a.createElement(N.Button,{className:"p-0",color:"link",onClick:function(){return a.handleSetTransactionId(e.TransId)}},l):l),v.a.createElement(ne.Cell,{title:c,className:"text-center"},c),v.a.createElement(ne.Cell,{title:i},i))}},{key:"render",value:function(){var e=this.state,t=e.gridData,a=e.shouldResetScrollPosition;return v.a.createElement("div",{className:"data-content payment-request"},v.a.createElement("div",{className:"table-responsive table-striped my-2"},v.a.createElement(ne.Table,{maxWidth:L.b,bodyHeight:300,header:this._renderHeader(),body:this._renderDataSection(t),containerPadding:10,isPaging:!0,pageOption:this.props.pagingOption,onPaging:this.handlePaging,shouldResetScrollPosition:a})))}}]),t}(C.PureComponent);var le=Object(D.connect)(function(e){var t=e.affCommonInfo,a=e.statementHistory,n=a.pagingOption,r=a.param,o=t.affId;return s()({},{affId:o,pagingOption:n,param:r})},function(e){return Object(w.bindActionCreators)({setPagingOption:Y.a,toggleLoaderUserPanel:z.h,fetchData:X,setTransactionId:Q,redirectToDailyEarning:z.a},e)})(oe),ce=a(375);a.d(t,"AppContainer",function(){return ie});var ie=function(e){function t(e){var a;return l()(this,t),a=u()(this,p()(t).call(this,e)),y()(h()(a),"handleClosePopup",function(){a.props.setTransactionId(null)}),y()(h()(a),"handleFetchData",function(){var e=a.props,t=e.affName,n=e.param;a.props.setParam(n),a.props.getAffiliateInfo(t)}),a}return E()(t,e),i()(t,[{key:"render",value:function(){var e=this.props.transactionId;return v.a.createElement(P.a,null,v.a.createElement(ee,null),v.a.createElement(le,null),v.a.createElement(ce.a,{transactionId:e,handleClosePopup:this.handleClosePopup,handleFetchData:this.handleFetchData}))}}]),t}(C.PureComponent);t.default=Object(D.connect)(function(e){var t=e.statementHistory,a=e.affCommonInfo,n=t.transactionId,r=t.param,o=a.affName;return s()({},{transactionId:n,param:r,affName:o})},function(e){return Object(w.bindActionCreators)({setTransactionId:Q,setParam:K,getAffiliateInfo:V.a},e)})(ie)}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["statementHistory"],{
+
+/***/ "./Areas/Portal/www/source/js/pages/common/actions/paymentRequestUpdate.js":
+/*!*********************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/common/actions/paymentRequestUpdate.js ***!
+  \*********************************************************************************/
+/*! exports provided: getPaymentRequestDetail, updatePaymentRequest */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPaymentRequestDetail", function() { return getPaymentRequestDetail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePaymentRequest", function() { return updatePaymentRequest; });
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modules_ajaxRequest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../modules/ajaxRequest */ "./Areas/Portal/www/source/js/modules/ajaxRequest.js");
+
+
+
+var getPaymentRequestDetail = function getPaymentRequestDetail(param) {
+  return (
+    /*#__PURE__*/
+    _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+    /*#__PURE__*/
+    _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var url, response;
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              url = 'Portal/PaymentRequest/GetPaymentRequestDetail';
+              _context.next = 3;
+              return Object(_modules_ajaxRequest__WEBPACK_IMPORTED_MODULE_2__["post"])(url, param);
+
+            case 3:
+              response = _context.sent;
+              return _context.abrupt("return", response && response.status === 200 ? response.data : null);
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))
+  );
+};
+var updatePaymentRequest = function updatePaymentRequest(param) {
+  return (
+    /*#__PURE__*/
+    _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+    /*#__PURE__*/
+    _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var url, response;
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              url = 'Portal/PaymentRequest/UpdatePaymentRequest';
+              _context2.next = 3;
+              return Object(_modules_ajaxRequest__WEBPACK_IMPORTED_MODULE_2__["post"])(url, param);
+
+            case 3:
+              response = _context2.sent;
+              return _context2.abrupt("return", response && response.status === 200 ? response.data : null);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))
+  );
+};
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/common/components/PaymentRequestUpdateForm.jsx":
+/*!*****************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/common/components/PaymentRequestUpdateForm.jsx ***!
+  \*****************************************************************************************/
+/*! exports provided: PaymentRequestUpdateForm, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaymentRequestUpdateForm", function() { return PaymentRequestUpdateForm; });
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs3/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/getPrototypeOf */ "./node_modules/@babel/runtime-corejs3/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/assertThisInitialized */ "./node_modules/@babel/runtime-corejs3/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/inherits */ "./node_modules/@babel/runtime-corejs3/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../modules/constants/paymentRequestUpdate */ "./Areas/Portal/www/source/js/pages/common/modules/constants/paymentRequestUpdate.js");
+/* harmony import */ var _modules_numberFormat__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../modules/numberFormat */ "./Areas/Portal/www/source/js/modules/numberFormat.js");
+/* harmony import */ var _actions_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../actions/paymentRequestUpdate */ "./Areas/Portal/www/source/js/pages/common/actions/paymentRequestUpdate.js");
+/* harmony import */ var _modules_htmlHelper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../modules/htmlHelper */ "./Areas/Portal/www/source/js/modules/htmlHelper.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var pendingStatus = _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["pending"].toLowerCase();
+var approvedStatus = _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["statusList"].Approved.toLowerCase();
+var rejectedStatus = _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["statusList"].Rejected.toLowerCase();
+var PaymentRequestUpdateForm =
+/*#__PURE__*/
+function (_PureComponent) {
+  _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(PaymentRequestUpdateForm, _PureComponent);
+
+  function PaymentRequestUpdateForm(props) {
+    var _this;
+
+    _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, PaymentRequestUpdateForm);
+
+    _this = _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default()(this, _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default()(PaymentRequestUpdateForm).call(this, props));
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "handleChange", function (event) {
+      _this.setState({
+        paymentRequestInfo: _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2___default()({}, _this.state.paymentRequestInfo, _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()({}, event.target.name, event.target.value))
+      });
+    });
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "handleGetPaymentRequestInfo",
+    /*#__PURE__*/
+    function () {
+      var _ref = _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+      /*#__PURE__*/
+      _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(transId) {
+        var data;
+        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.props.getPaymentRequestDetail({
+                  transId: transId
+                });
+
+              case 2:
+                data = _context.sent;
+                data && _this.setState({
+                  paymentRequestInfo: data,
+                  originalStatus: Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_17__["htmlDecode"])(data.Status)
+                });
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "handleSave",
+    /*#__PURE__*/
+    _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+    /*#__PURE__*/
+    _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var _this$state, paymentRequestInfo, originalStatus, selectedStatus, paymentInfo, result;
+
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _this$state = _this.state, paymentRequestInfo = _this$state.paymentRequestInfo, originalStatus = _this$state.originalStatus;
+              selectedStatus = paymentRequestInfo.Status;
+
+              if (!(originalStatus && originalStatus.toLowerCase() === pendingStatus && selectedStatus && (selectedStatus.toLowerCase() === approvedStatus || selectedStatus.toLowerCase() === rejectedStatus))) {
+                _context2.next = 10;
+                break;
+              }
+
+              paymentInfo = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2___default()({}, {
+                AffId: paymentRequestInfo.AffId,
+                TransId: paymentRequestInfo.TransId,
+                IsApproved: selectedStatus.toLowerCase() === approvedStatus,
+                AdminDesc: paymentRequestInfo.AdminDesc,
+                AffDesc: paymentRequestInfo.AffDesc
+              });
+              _context2.next = 6;
+              return _this.props.updatePaymentRequest(paymentInfo);
+
+            case 6:
+              result = _context2.sent;
+
+              if (result) {
+                _this.setState({
+                  isShowMessage: true,
+                  isSuccess: result.IsSuccessful,
+                  message: result.IsSuccessful ? "Transaction ID ".concat(paymentRequestInfo.TransId, " has been updated successfully!") : result.Message
+                }, function () {
+                  return window.setTimeout(_this.hideMessage, 3000);
+                });
+
+                if (result.IsSuccessful) {
+                  window.setTimeout(function () {
+                    return _this.props.handleClosePopup();
+                  }, 3000);
+                  window.setTimeout(function () {
+                    return _this.props.handleFetchData();
+                  }, 3200);
+                }
+              } else {
+                _this.setState({
+                  isSuccess: false,
+                  isShowMessage: true,
+                  message: _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["errorList"].UpdateFailed
+                }, function () {
+                  return window.setTimeout(_this.hideMessage, 3000);
+                });
+              }
+
+              _context2.next = 11;
+              break;
+
+            case 10:
+              _this.setState({
+                isSuccess: false,
+                isShowMessage: true,
+                message: _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["errorList"].NotChoose
+              }, function () {
+                return window.setTimeout(_this.hideMessage, 3000);
+              });
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    })));
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "hideMessage", function () {
+      _this.setState({
+        isShowMessage: false
+      });
+    });
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "handleClosePopup", function () {
+      _this.props.handleClosePopup();
+
+      _this.setState({
+        paymentRequestInfo: null
+      });
+    });
+
+    _this.state = {
+      paymentRequestInfo: null,
+      originalStatus: '',
+      isSuccess: true,
+      isShowMessage: false,
+      message: ''
+    };
+    return _this;
+  }
+
+  _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(PaymentRequestUpdateForm, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var transactionId = this.props.transactionId;
+
+      if (transactionId && transactionId !== prevProps.transactionId) {
+        this.handleGetPaymentRequestInfo(transactionId);
+      }
+    }
+  }, {
+    key: "_renderAccountInformation",
+    value: function _renderAccountInformation(paymentRequestInfo) {
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("fieldset", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("legend", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("h6", {
+        className: "font-weight-bold"
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].AccountInformation)), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].UserName), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("strong", null, paymentRequestInfo.AffName))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].RequestedDate), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("strong", null, paymentRequestInfo.TransDateText))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].EmailAddress), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_17__["htmlDecode"])(paymentRequestInfo.Email))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].FirstName), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_17__["htmlDecode"])(paymentRequestInfo.FirstName))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].LastName), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_17__["htmlDecode"])(paymentRequestInfo.LastName))));
+    }
+  }, {
+    key: "_renderPaymentCompletionInfo",
+    value: function _renderPaymentCompletionInfo(paymentRequestInfo) {
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_10___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].CompletedDate), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("strong", null, paymentRequestInfo.CompletedDateText))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].UpdatedBy), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_17__["htmlDecode"])(paymentRequestInfo.Creator))));
+    }
+  }, {
+    key: "_renderOptionalStatus",
+    value: function _renderOptionalStatus() {
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2 ml-1"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        className: "mr-4",
+        check: true
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        check: true
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Input"], {
+        name: "Status",
+        type: "radio",
+        className: "mr-2",
+        value: _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["statusList"].Approved,
+        onChange: this.handleChange
+      }), _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["statusList"].Approved)), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        check: true
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        check: true
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Input"], {
+        name: "Status",
+        type: "radio",
+        className: "mr-2",
+        value: _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["statusList"].Rejected,
+        onChange: this.handleChange
+      }), _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["statusList"].Rejected)));
+    }
+  }, {
+    key: "_renderPaymentInformation",
+    value: function _renderPaymentInformation(paymentRequestInfo, isPending) {
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("fieldset", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("legend", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("h6", {
+        className: "font-weight-bold"
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].PaymentInformation)), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].PaymentMethod), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("strong", null, Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_17__["htmlDecode"])(paymentRequestInfo.PaymentMethod)))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].Amount), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("strong", null, Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_15__["formatDecimalWithCurrencySymbol"])(paymentRequestInfo.Amount)))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].Status), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("strong", null, Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_17__["htmlDecode"])(paymentRequestInfo.Status)))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
+        row: true,
+        className: "mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].UserName12Bet), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        sm: 6
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("strong", null, Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_17__["htmlDecode"])(paymentRequestInfo.PlayerUsername)))), isPending ? this._renderOptionalStatus() : this._renderPaymentCompletionInfo(paymentRequestInfo));
+    }
+  }, {
+    key: "_renderNote",
+    value: function _renderNote(paymentRequestInfo, isPending) {
+      var AdminDesc = paymentRequestInfo.AdminDesc,
+          AffDesc = paymentRequestInfo.AffDesc;
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Row"], null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Col"], {
+        sm: 6,
+        className: "pr-1"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("fieldset", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("legend", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("h6", {
+        className: "font-weight-bold"
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].AdminNote)), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        for: "AdminDesc"
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].VisibleAdmin), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Input"], {
+        type: "textarea",
+        name: "AdminDesc",
+        rows: "6",
+        disabled: !isPending,
+        value: Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_17__["htmlDecode"])(AdminDesc),
+        onChange: this.handleChange
+      })))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Col"], {
+        sm: 6,
+        className: "pl-1"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("fieldset", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("legend", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("h6", {
+        className: "font-weight-bold"
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].AffiliateNote)), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
+        for: "AffDesc"
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["resource"].VisibleAffiliate), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Input"], {
+        type: "textarea",
+        name: "AffDesc",
+        rows: "6",
+        disabled: !isPending,
+        value: Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_17__["htmlDecode"])(AffDesc),
+        onChange: this.handleChange
+      })))));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var transactionId = this.props.transactionId;
+      var _this$state2 = this.state,
+          paymentRequestInfo = _this$state2.paymentRequestInfo,
+          originalStatus = _this$state2.originalStatus,
+          isSuccess = _this$state2.isSuccess,
+          isShowMessage = _this$state2.isShowMessage,
+          message = _this$state2.message;
+      var isPending = originalStatus && originalStatus.toLowerCase() === pendingStatus;
+      return paymentRequestInfo && react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Modal"], {
+        isOpen: transactionId,
+        toggle: this.handleClosePopup,
+        backdrop: "static"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["ModalHeader"], {
+        toggle: this.handleClosePopup
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("span", {
+        className: "iconpopup"
+      }), "Trxn.ID ", transactionId), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["ModalBody"], null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "modal-body-wrapper p-0"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Form"], {
+        tag: "form",
+        className: "payment-request-update-form"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Alert"], {
+        color: isSuccess ? 'success' : 'danger',
+        isOpen: isShowMessage
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        dangerouslySetInnerHTML: {
+          __html: message
+        }
+      })), this._renderAccountInformation(paymentRequestInfo), this._renderPaymentInformation(paymentRequestInfo, isPending), this._renderNote(paymentRequestInfo, isPending), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Button"], {
+        type: "button",
+        color: "success",
+        className: "mr-3",
+        disabled: !isPending,
+        onClick: this.handleSave
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["globalResource"].Update), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Button"], {
+        type: "button",
+        color: "info",
+        onClick: this.handleClosePopup
+      }, _modules_constants_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_14__["globalResource"].Cancel)))));
+    }
+  }]);
+
+  return PaymentRequestUpdateForm;
+}(react__WEBPACK_IMPORTED_MODULE_10__["PureComponent"]);
+
+function mapDispatchToProps(dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_12__["bindActionCreators"])({
+    getPaymentRequestDetail: _actions_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_16__["getPaymentRequestDetail"],
+    updatePaymentRequest: _actions_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_16__["updatePaymentRequest"]
+  }, dispatch);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_11__["connect"])(null, mapDispatchToProps)(PaymentRequestUpdateForm));
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/common/modules/constants/paymentRequestUpdate.js":
+/*!*******************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/common/modules/constants/paymentRequestUpdate.js ***!
+  \*******************************************************************************************/
+/*! exports provided: globalResource, errorList, pending, statusList, resource */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "errorList", function() { return errorList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pending", function() { return pending; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "statusList", function() { return statusList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resource", function() { return resource; });
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_globalResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../modules/globalResource */ "./Areas/Portal/www/source/js/modules/globalResource.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "globalResource", function() { return _modules_globalResource__WEBPACK_IMPORTED_MODULE_1__["globalResource"]; });
+
+
+
+var _statusList;
+
+
+
+var errorList = {
+  NotChoose: 'You must choose Approved or Rejected for this request!',
+  UpdateFailed: 'Update transaction failed!'
+};
+var pending = 'Pending';
+var statusList = (_statusList = {}, _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_statusList, pending, 'Processing'), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_statusList, "Approved", 'Approved'), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_statusList, "Rejected", 'Rejected'), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_statusList, "Cancelled", 'Cancelled'), _statusList);
+var resource = {
+  AccountInformation: 'Account Information',
+  UserName: 'User Name',
+  RequestedDate: 'Requested Date',
+  EmailAddress: 'Email Address',
+  FirstName: 'First Name',
+  LastName: 'Last Name',
+  PaymentInformation: 'Payment Information',
+  PaymentMethod: 'Payment Method',
+  Amount: 'Amount',
+  Status: 'Status',
+  UserName12Bet: '12BET User Name',
+  CompletedDate: 'Completed Date',
+  UpdatedBy: 'Updated By',
+  AdminNote: 'Admin Note',
+  VisibleAdmin: 'Visible only to admin',
+  AffiliateNote: 'Affiliate Note',
+  VisibleAffiliate: 'Visible also to affiliate'
+};
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/actions/index.js":
+/*!****************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/statement-history/actions/index.js ***!
+  \****************************************************************************************/
+/*! exports provided: setPagingOption, toggleLoaderUserPanel, getAffiliateInfo, redirectToDailyEarning, setParam, setTransactionId, fetchData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setParam", function() { return setParam; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTransactionId", function() { return setTransactionId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchData", function() { return fetchData; });
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modules_ajaxRequest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../modules/ajaxRequest */ "./Areas/Portal/www/source/js/modules/ajaxRequest.js");
+/* harmony import */ var _actions_pagingAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../actions/pagingAction */ "./Areas/Portal/www/source/js/actions/pagingAction.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "setPagingOption", function() { return _actions_pagingAction__WEBPACK_IMPORTED_MODULE_3__["setPagingOption"]; });
+
+/* harmony import */ var _customer_user_panel_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../customer/user-panel/actions */ "./Areas/Portal/www/source/js/pages/customer/user-panel/actions/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "toggleLoaderUserPanel", function() { return _customer_user_panel_actions__WEBPACK_IMPORTED_MODULE_4__["toggleLoaderUserPanel"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "redirectToDailyEarning", function() { return _customer_user_panel_actions__WEBPACK_IMPORTED_MODULE_4__["redirectToDailyEarning"]; });
+
+/* harmony import */ var _customer_mainpage_actions_loadingDataAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../customer/mainpage/actions/loadingDataAction */ "./Areas/Portal/www/source/js/pages/customer/mainpage/actions/loadingDataAction.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getAffiliateInfo", function() { return _customer_mainpage_actions_loadingDataAction__WEBPACK_IMPORTED_MODULE_5__["getAffiliateInfo"]; });
+
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions/types */ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/actions/types.js");
+
+
+
+
+
+
+
+
+
+var setParam = function setParam(data) {
+  return {
+    type: _actions_types__WEBPACK_IMPORTED_MODULE_6__["SET_PARAM"],
+    data: data
+  };
+};
+var setTransactionId = function setTransactionId(data) {
+  return {
+    type: _actions_types__WEBPACK_IMPORTED_MODULE_6__["TRANSACTION_ID"],
+    data: data
+  };
+};
+var fetchData = function fetchData(param) {
+  return (
+    /*#__PURE__*/
+    _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+    /*#__PURE__*/
+    _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var url, response;
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              url = 'Portal/UserPanel/StatementHistory/GetStatementHistoryList';
+              _context.next = 3;
+              return Object(_modules_ajaxRequest__WEBPACK_IMPORTED_MODULE_2__["post"])(url, param);
+
+            case 3:
+              response = _context.sent;
+              return _context.abrupt("return", response && response.status === 200 ? response.data : null);
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))
+  );
+};
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/components/AppContainer.jsx":
+/*!***************************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/statement-history/components/AppContainer.jsx ***!
+  \***************************************************************************************************/
+/*! exports provided: AppContainer, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppContainer", function() { return AppContainer; });
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs3/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/getPrototypeOf */ "./node_modules/@babel/runtime-corejs3/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/assertThisInitialized */ "./node_modules/@babel/runtime-corejs3/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/inherits */ "./node_modules/@babel/runtime-corejs3/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _layouts_AppLayout__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../layouts/AppLayout */ "./Areas/Portal/www/source/js/layouts/AppLayout.jsx");
+/* harmony import */ var _Filter__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Filter */ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/components/Filter.jsx");
+/* harmony import */ var _Content__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Content */ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/components/Content.jsx");
+/* harmony import */ var _common_components_PaymentRequestUpdateForm__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../common/components/PaymentRequestUpdateForm */ "./Areas/Portal/www/source/js/pages/common/components/PaymentRequestUpdateForm.jsx");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../actions */ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/actions/index.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AppContainer =
+/*#__PURE__*/
+function (_PureComponent) {
+  _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default()(AppContainer, _PureComponent);
+
+  function AppContainer(props) {
+    var _this;
+
+    _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, AppContainer);
+
+    _this = _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(AppContainer).call(this, props));
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "handleClosePopup", function () {
+      _this.props.setTransactionId(null);
+    });
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "handleFetchData", function () {
+      var _this$props = _this.props,
+          affName = _this$props.affName,
+          param = _this$props.param;
+
+      _this.props.setParam(param);
+
+      _this.props.getAffiliateInfo(affName);
+    });
+
+    return _this;
+  }
+
+  _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(AppContainer, [{
+    key: "render",
+    value: function render() {
+      var transactionId = this.props.transactionId;
+      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_layouts_AppLayout__WEBPACK_IMPORTED_MODULE_11__["default"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_Filter__WEBPACK_IMPORTED_MODULE_12__["default"], null), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_Content__WEBPACK_IMPORTED_MODULE_13__["default"], null), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_common_components_PaymentRequestUpdateForm__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        transactionId: transactionId,
+        handleClosePopup: this.handleClosePopup,
+        handleFetchData: this.handleFetchData
+      }));
+    }
+  }]);
+
+  return AppContainer;
+}(react__WEBPACK_IMPORTED_MODULE_8__["PureComponent"]);
+
+function mapStateToProps(_ref) {
+  var statementHistory = _ref.statementHistory,
+      affCommonInfo = _ref.affCommonInfo;
+  var transactionId = statementHistory.transactionId,
+      param = statementHistory.param;
+  var affName = affCommonInfo.affName;
+  return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, {
+    transactionId: transactionId,
+    param: param,
+    affName: affName
+  });
+}
+
+function mapDispatchToProps(dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_10__["bindActionCreators"])({
+    setTransactionId: _actions__WEBPACK_IMPORTED_MODULE_15__["setTransactionId"],
+    setParam: _actions__WEBPACK_IMPORTED_MODULE_15__["setParam"],
+    getAffiliateInfo: _actions__WEBPACK_IMPORTED_MODULE_15__["getAffiliateInfo"]
+  }, dispatch);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["connect"])(mapStateToProps, mapDispatchToProps)(AppContainer));
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/components/Content.jsx":
+/*!**********************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/statement-history/components/Content.jsx ***!
+  \**********************************************************************************************/
+/*! exports provided: Content, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Content", function() { return Content; });
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/objectSpread */ "./node_modules/@babel/runtime-corejs3/helpers/objectSpread.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs3/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/getPrototypeOf */ "./node_modules/@babel/runtime-corejs3/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/assertThisInitialized */ "./node_modules/@babel/runtime-corejs3/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/inherits */ "./node_modules/@babel/runtime-corejs3/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @9softstudio/react-fixed-table-header */ "./node_modules/@9softstudio/react-fixed-table-header/dist/index.js");
+/* harmony import */ var _9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _modules_htmlHelper__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../../modules/htmlHelper */ "./Areas/Portal/www/source/js/modules/htmlHelper.js");
+/* harmony import */ var _modules_numberFormat__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../../modules/numberFormat */ "./Areas/Portal/www/source/js/modules/numberFormat.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../actions */ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/actions/index.js");
+/* harmony import */ var _modules_constants__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../modules/constants */ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/modules/constants.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Content =
+/*#__PURE__*/
+function (_PureComponent) {
+  _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_9___default()(Content, _PureComponent);
+
+  function Content(props) {
+    var _this;
+
+    _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default()(this, Content);
+
+    _this = _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default()(this, _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default()(Content).call(this, props));
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "_handleRedirectToDailyEarning", function (dataItem) {
+      var affId = _this.props.affId;
+      var dailyEarningParam = {
+        affId: affId,
+        monthDate: dataItem.DateText,
+        productId: _modules_constants__WEBPACK_IMPORTED_MODULE_19__["selectedAllProduct"]
+      };
+      return _this.props.redirectToDailyEarning(dailyEarningParam);
+    });
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "handleSetTransactionId", function (transId) {
+      _this.setState({
+        shouldResetScrollPosition: false
+      });
+
+      _this.props.setTransactionId(transId);
+    });
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "handlePaging", function (pageIndex, pageSize) {
+      var newParam = _babel_runtime_corejs3_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3___default()({}, _this.props.param, {
+        pageIndex: pageIndex,
+        pageSize: pageSize
+      });
+
+      _this.fetchData(newParam);
+    });
+
+    _this.state = {
+      gridData: null,
+      shouldResetScrollPosition: true
+    };
+    _this.transTypeClickHandler = _this._getClickHandlerByTransType();
+    return _this;
+  }
+
+  _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(Content, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var _this$props = this.props,
+          pagingOption = _this$props.pagingOption,
+          param = _this$props.param,
+          affId = _this$props.affId;
+
+      if (param !== prevProps.param || affId !== prevProps.affId) {
+        var newParam = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2___default()({}, param, {
+          pageIndex: 1,
+          pageSize: pagingOption.PageSize
+        });
+
+        this.fetchData(newParam);
+      }
+    }
+  }, {
+    key: "fetchData",
+    value: function () {
+      var _fetchData = _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+      /*#__PURE__*/
+      _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(param) {
+        var postParam, data;
+        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.props.toggleLoaderUserPanel(true);
+                postParam = _babel_runtime_corejs3_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3___default()({}, param, {
+                  affId: this.props.affId
+                });
+                _context.next = 4;
+                return this.props.fetchData(postParam);
+
+              case 4:
+                data = _context.sent;
+                this.setState({
+                  gridData: data ? data.MainData : null,
+                  shouldResetScrollPosition: true
+                });
+                this.props.setPagingOption({
+                  TotalItem: data ? data.TotalItem : 0,
+                  PageIndex: param.pageIndex,
+                  PageSize: param.pageSize
+                });
+                this.props.toggleLoaderUserPanel(false);
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function fetchData(_x) {
+        return _fetchData.apply(this, arguments);
+      }
+
+      return fetchData;
+    }()
+  }, {
+    key: "_renderHeader",
+    value: function _renderHeader() {
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Row"], {
+        key: "thead"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        header: true,
+        colWidth: 35,
+        title: _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Index
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Index), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        header: true,
+        colWidth: 100,
+        title: _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Date
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Date), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        header: true,
+        colWidth: 110,
+        title: _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Type
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Type), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        header: true,
+        colWidth: 100,
+        title: _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Amount
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Amount), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        header: true,
+        colWidth: 95,
+        title: _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Status
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Status), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        header: true,
+        colWidth: 110,
+        title: _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Creator
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Creator), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        header: true,
+        colWidth: 450,
+        title: _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Description
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["headerText"].Description));
+    }
+  }, {
+    key: "_renderDataSection",
+    value: function _renderDataSection(dataList) {
+      var dataRows = [];
+
+      if (dataList && dataList.length) {
+        var pagingOption = this.props.pagingOption;
+        var startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
+
+        for (var i = 0; i < dataList.length; i++) {
+          var dataItem = dataList[i];
+          dataRows.push(this._buildDataRow(dataItem, i + startIndex));
+        }
+      } else {
+        dataRows.push(react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Row"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+          className: "text-center",
+          colSpan: "7"
+        }, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["globalResource"].NoInfo)));
+      }
+
+      return dataRows;
+    }
+  }, {
+    key: "_getClickHandlerByTransType",
+    value: function _getClickHandlerByTransType() {
+      var _this2 = this,
+          _ref;
+
+      return _ref = {}, _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_ref, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["PAYMENT_REQUEST"], function (dataItem) {
+        return function () {
+          return _this2.handleSetTransactionId(dataItem.TransId);
+        };
+      }), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_ref, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["MONTHLY_WINLOST"], function (dataItem) {
+        return function () {
+          return _this2._handleRedirectToDailyEarning(dataItem);
+        };
+      }), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_ref, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["TRANSACTION"], function (dataItem) {
+        return function () {
+          return _this2._handleRedirectToDailyEarning(dataItem);
+        };
+      }), _ref;
+    }
+  }, {
+    key: "_buildDataRow",
+    value: function _buildDataRow(dataItem, index) {
+      var _this3 = this;
+
+      var amount = Object(_modules_numberFormat__WEBPACK_IMPORTED_MODULE_17__["formatDecimalWithCurrencySymbol"])(dataItem.Amount);
+      var transType = dataItem.TransType;
+      var clickHandler = this.transTypeClickHandler[transType];
+      var isPending = dataItem.Status && dataItem.Status.toLowerCase() === 'pending';
+      var status = isPending ? "Processing" : dataItem.Status;
+      var creator = Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_16__["htmlDecode"])(dataItem.Creator);
+      var description = Object(_modules_htmlHelper__WEBPACK_IMPORTED_MODULE_16__["htmlDecode"])(dataItem.Description);
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Row"], {
+        key: "dataRow-".concat(index),
+        className: status && status.toLowerCase()
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        title: index,
+        className: "text-center"
+      }, index), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        title: dataItem.DateText,
+        className: "text-center"
+      }, dataItem.DateText), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        title: transType,
+        className: "text-center"
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_19__["transTypeList"][transType] || _modules_constants__WEBPACK_IMPORTED_MODULE_19__["monthlyWinlost"]), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        title: amount,
+        className: "text-right"
+      }, clickHandler ? react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_15__["Button"], {
+        className: "p-0",
+        color: "link",
+        onClick: clickHandler(dataItem)
+      }, amount) : amount), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        title: status,
+        className: "text-center"
+      }, isPending ? react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_15__["Button"], {
+        className: "p-0",
+        color: "link",
+        onClick: function onClick() {
+          return _this3.handleSetTransactionId(dataItem.TransId);
+        }
+      }, status) : status), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        title: creator,
+        className: "text-center"
+      }, creator), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Cell"], {
+        title: description
+      }, description));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$state = this.state,
+          gridData = _this$state.gridData,
+          shouldResetScrollPosition = _this$state.shouldResetScrollPosition;
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "data-content payment-request"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "table-responsive table-striped my-2"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_14__["Table"], {
+        maxWidth: _modules_constants__WEBPACK_IMPORTED_MODULE_19__["maxWidth"],
+        bodyHeight: 300,
+        header: this._renderHeader(),
+        body: this._renderDataSection(gridData),
+        containerPadding: 10,
+        isPaging: true,
+        pageOption: this.props.pagingOption,
+        onPaging: this.handlePaging,
+        shouldResetScrollPosition: shouldResetScrollPosition
+      })));
+    }
+  }]);
+
+  return Content;
+}(react__WEBPACK_IMPORTED_MODULE_11__["PureComponent"]);
+
+function mapStateToProps(_ref2) {
+  var affCommonInfo = _ref2.affCommonInfo,
+      statementHistory = _ref2.statementHistory;
+  var pagingOption = statementHistory.pagingOption,
+      param = statementHistory.param;
+  var affId = affCommonInfo.affId;
+  return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_2___default()({}, {
+    affId: affId,
+    pagingOption: pagingOption,
+    param: param
+  });
+}
+
+function mapDispatchToProps(dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_13__["bindActionCreators"])({
+    setPagingOption: _actions__WEBPACK_IMPORTED_MODULE_18__["setPagingOption"],
+    toggleLoaderUserPanel: _actions__WEBPACK_IMPORTED_MODULE_18__["toggleLoaderUserPanel"],
+    fetchData: _actions__WEBPACK_IMPORTED_MODULE_18__["fetchData"],
+    setTransactionId: _actions__WEBPACK_IMPORTED_MODULE_18__["setTransactionId"],
+    redirectToDailyEarning: _actions__WEBPACK_IMPORTED_MODULE_18__["redirectToDailyEarning"]
+  }, dispatch);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_12__["connect"])(mapStateToProps, mapDispatchToProps)(Content));
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/components/Filter.jsx":
+/*!*********************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/statement-history/components/Filter.jsx ***!
+  \*********************************************************************************************/
+/*! exports provided: Filter, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Filter", function() { return Filter; });
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs3/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/getPrototypeOf */ "./node_modules/@babel/runtime-corejs3/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/assertThisInitialized */ "./node_modules/@babel/runtime-corejs3/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/inherits */ "./node_modules/@babel/runtime-corejs3/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _9softstudio_react_datepicker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @9softstudio/react-datepicker */ "./node_modules/@9softstudio/react-datepicker/dist/index.js");
+/* harmony import */ var _9softstudio_react_datepicker__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_datepicker__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _modules_constants__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../modules/constants */ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/modules/constants.js");
+/* harmony import */ var _modules_utils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../../modules/utils */ "./Areas/Portal/www/source/js/modules/utils.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../actions */ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/actions/index.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var minDate = new Date(2009, 11, 1);
+var Filter =
+/*#__PURE__*/
+function (_PureComponent) {
+  _babel_runtime_corejs3_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default()(Filter, _PureComponent);
+
+  function Filter(props) {
+    var _context3, _context4, _context5, _context6;
+
+    var _this;
+
+    _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Filter);
+
+    _this = _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Filter).call(this, props));
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "handleSearch", function () {
+      var _context, _context2;
+
+      var _this$state = _this.state,
+          isGetAll = _this$state.isGetAll,
+          fromDate = _this$state.fromDate,
+          toDate = _this$state.toDate;
+
+      var newParam = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default()({}, {
+        isGetAll: isGetAll,
+        fromDate: isGetAll ? _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = "".concat(minDate.getMonth() + 1, "/")).call(_context2, minDate.getDate(), "/")).call(_context, minDate.getFullYear()) : fromDate,
+        toDate: isGetAll ? _this.nowString : toDate
+      });
+
+      _this.props.setParam(newParam);
+    });
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "handleChecked", function (event) {
+      _this.setState(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()({}, event.target.name, event.target.checked));
+    });
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "handleChangeFromDate", function (momentDate) {
+      _this.setState(Object(_modules_utils__WEBPACK_IMPORTED_MODULE_15__["getDateRange"])(momentDate, _this.state.toDate));
+    });
+
+    _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_corejs3_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "handleChangeToDate", function (momentDate) {
+      _this.setState({
+        toDate: momentDate.format("MM/DD/YYYY")
+      });
+    });
+
+    var today = _this.props.today;
+    var now = new Date(today);
+    _this.nowString = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context3 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context4 = "".concat(now.getMonth() + 1, "/")).call(_context4, now.getDate(), "/")).call(_context3, now.getFullYear());
+    var sixMonthAgo = new Date(today);
+    sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
+    _this.state = {
+      isGetAll: false,
+      fromDate: _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context5 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context6 = "".concat(sixMonthAgo.getMonth() + 1, "/")).call(_context6, sixMonthAgo.getDate(), "/")).call(_context5, sixMonthAgo.getFullYear()),
+      toDate: _this.nowString
+    };
+    return _this;
+  }
+
+  _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(Filter, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.handleSearch();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$state2 = this.state,
+          isGetAll = _this$state2.isGetAll,
+          fromDate = _this$state2.fromDate,
+          toDate = _this$state2.toDate;
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: "filter-container"
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Form"], {
+        inline: true,
+        tag: "div"
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["FormGroup"], {
+        className: "mr-sm-2"
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Label"], {
+        className: "mr-sm-2"
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_14__["globalResource"].From), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_9softstudio_react_datepicker__WEBPACK_IMPORTED_MODULE_13__["DatePicker"], {
+        minDate: minDate,
+        maxDate: this.nowString,
+        date: fromDate,
+        isEnable: !isGetAll,
+        iconElement: react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("span", {
+          className: "oi oi-calendar icon-calendar ml-1"
+        }),
+        onChange: this.handleChangeFromDate
+      })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["FormGroup"], {
+        className: "mr-sm-2"
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Label"], {
+        className: "mr-sm-2"
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_14__["globalResource"].To), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_9softstudio_react_datepicker__WEBPACK_IMPORTED_MODULE_13__["DatePicker"], {
+        minDate: fromDate,
+        maxDate: this.nowString,
+        date: toDate,
+        isEnable: !isGetAll,
+        iconElement: react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("span", {
+          className: "oi oi-calendar icon-calendar ml-1"
+        }),
+        onChange: this.handleChangeToDate
+      })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["FormGroup"], {
+        className: "mr-sm-2"
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["FormGroup"], {
+        check: true
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Label"], {
+        check: true
+      }, _modules_constants__WEBPACK_IMPORTED_MODULE_14__["globalResource"].GetAll, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Input"], {
+        name: "isGetAll",
+        className: "ml-1 mr-2",
+        type: "checkbox",
+        checked: isGetAll,
+        onChange: this.handleChecked
+      })))), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_12__["Button"], {
+        outline: true,
+        color: "primary",
+        type: "button",
+        onClick: this.handleSearch
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("span", {
+        className: "oi oi-magnifying-glass"
+      }), " ", _modules_constants__WEBPACK_IMPORTED_MODULE_14__["globalResource"].Search)));
+    }
+  }]);
+
+  return Filter;
+}(react__WEBPACK_IMPORTED_MODULE_9__["PureComponent"]);
+
+function mapStateToProps(_ref) {
+  var today = _ref.today;
+  return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default()({}, {
+    today: today
+  });
+}
+
+function mapDispatchToProps(dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_11__["bindActionCreators"])({
+    setParam: _actions__WEBPACK_IMPORTED_MODULE_16__["setParam"]
+  }, dispatch);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_10__["connect"])(mapStateToProps, mapDispatchToProps)(Filter));
+
+/***/ }),
+
+/***/ "./Areas/Portal/www/source/js/pages/user-panel/statement-history/modules/constants.js":
+/*!********************************************************************************************!*\
+  !*** ./Areas/Portal/www/source/js/pages/user-panel/statement-history/modules/constants.js ***!
+  \********************************************************************************************/
+/*! exports provided: globalResource, selectedAllProduct, maxWidth, headerText, MONTHLY_WINLOST, PAYMENT_REQUEST, ADJUSTMENT, TRANSACTION, transTypeList, monthlyWinlost */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "headerText", function() { return headerText; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MONTHLY_WINLOST", function() { return MONTHLY_WINLOST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PAYMENT_REQUEST", function() { return PAYMENT_REQUEST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADJUSTMENT", function() { return ADJUSTMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TRANSACTION", function() { return TRANSACTION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "transTypeList", function() { return transTypeList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "monthlyWinlost", function() { return monthlyWinlost; });
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_globalResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../modules/globalResource */ "./Areas/Portal/www/source/js/modules/globalResource.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "globalResource", function() { return _modules_globalResource__WEBPACK_IMPORTED_MODULE_1__["globalResource"]; });
+
+/* harmony import */ var _modules_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../modules/constants */ "./Areas/Portal/www/source/js/modules/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "selectedAllProduct", function() { return _modules_constants__WEBPACK_IMPORTED_MODULE_2__["selectedAllProduct"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "maxWidth", function() { return _modules_constants__WEBPACK_IMPORTED_MODULE_2__["maxWidth"]; });
+
+
+
+var _transTypeList;
+
+
+
+
+var headerText = {
+  Index: '#',
+  Date: 'Date',
+  Type: 'Type',
+  Amount: 'Amount',
+  Status: 'Status',
+  Creator: 'Creator',
+  Description: 'Description'
+};
+var MONTHLY_WINLOST = 201;
+var PAYMENT_REQUEST = 202;
+var ADJUSTMENT = 203;
+var TRANSACTION = 0;
+var transTypeList = (_transTypeList = {}, _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_transTypeList, MONTHLY_WINLOST, 'Monthly Winlost'), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_transTypeList, PAYMENT_REQUEST, 'Payment Request'), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_transTypeList, ADJUSTMENT, 'Adjustment'), _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_transTypeList, TRANSACTION, 'Transaction'), _transTypeList);
+var monthlyWinlost = 'Monthly Winlost';
+
+/***/ }),
+
+/***/ "./node_modules/moment/moment.js":
+/*!*******************************************************************************************************!*\
+  !*** delegated ../../../node_modules/moment/moment.js from dll-reference moment_b4d98fc51f6a4237233c ***!
+  \*******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(/*! dll-reference moment_b4d98fc51f6a4237233c */ "dll-reference moment_b4d98fc51f6a4237233c"))(178);
+
+/***/ })
+
+}]);
+//# sourceMappingURL=statementHistory.chunk.js.map

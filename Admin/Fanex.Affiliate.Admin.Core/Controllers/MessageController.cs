@@ -28,13 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Message()
-        {
-            return View("~/Areas/Portal/Views/Message/Message.cshtml");
+            return View("~/Areas/Portal/Views/Message/Index.cshtml");
         }
 
         [HttpPost]

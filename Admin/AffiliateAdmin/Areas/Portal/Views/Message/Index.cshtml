@@ -1,9 +1,19 @@
 ﻿@{
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
 }
-@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
 
-<div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Portal/Message/Message")"></iframe>
-    @*<iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Others/Message.aspx")"></iframe>*@
-</div>
+
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/message/message.css")" rel="stylesheet" />
+}
+
+@section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")'
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/message/message.js")"></script>
+}
+
+

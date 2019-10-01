@@ -58,7 +58,7 @@ export class GridData extends Component {
     async fetchData(param) {
         this.props.toggleLoader(true);
         const isMainView = this._isMainView();
-        const url = `Portal/AffiliateReport/${isMainView ? 'GetMainData' : 'GetDetailData'}`;
+        const url = `Portal/Report/${isMainView ? 'GetMainData' : 'GetDetailData'}`;
         const response = await post(url, param);
         if (response && response.status === 200) {
             const { MainData, Total, TotalItem } = response.data;

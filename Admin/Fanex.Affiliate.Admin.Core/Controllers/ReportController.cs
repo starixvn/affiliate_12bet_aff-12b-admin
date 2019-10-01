@@ -3,29 +3,77 @@ using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels.Report;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.Report;
+using Fanex.Affiliate.Admin.Core.ViewModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.AffReport)]
     public class ReportController : BaseController
     {
-        public ReportController(ISessionService sessionService) : base(sessionService)
+        private readonly IProductRepository _productRepository;
+
+        private readonly ILanguageService _languageService;
+
+        private readonly IAffiliateReportService _affiliateReportService;
+
+        public ReportController(
+            ISessionService sessionService,
+            IProductRepository productRepository,
+            ILanguageService languageService,
+            IAffiliateReportService affiliateReportService) : base(sessionService)
         {
+            _productRepository = productRepository;
+            _languageService = languageService;
+            _affiliateReportService = affiliateReportService;
         }
 
-        public ActionResult Index(int current = 0)
+
+        [HttpGet]
+        public ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
+            var viewModel = new AffiliateReportViewModel
             {
-                new SubMenu { Name = Lang.AffiliateReport, Url = Url.Content("~/Portal/AffiliateReport/Index") }
+                ProductList = _productRepository.GetProductList(),
+                LanguageList = _languageService.GetLanguageList()
             };
 
-            var activeIndex = current > subMenu.Count - 1 ? 0 : current;
-            subMenu[activeIndex].IsActive = true;
+            return View("~/Areas/Portal/Views/Report/Index.cshtml", viewModel);
+        }
 
-            return View(subMenu);
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [Compress]
+        public ActionResult GetMainData(AffiliateReportMainParam param)
+        {
+            return new JsonNetResult
+            {
+                Data = _affiliateReportService.GetMainReportData(param)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [Compress]
+        public ActionResult GetDetailData(AffiliateReportMainParam param)
+        {
+            return new JsonNetResult
+            {
+                Data = _affiliateReportService.GetDetailReportData(param)
+            };
+        }
+
+        [HttpGet]
+        public ActionResult GetAffiliateList(string query)
+        {
+            return Json(_affiliateReportService.SearchAffiliateList(query.Trim()), JsonRequestBehavior.AllowGet);
         }
     }
 }

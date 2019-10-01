@@ -1278,6 +1278,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\EditBannerForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\BannerDetailPopup.jsx" />
+    <Content Include="Areas\Portal\Views\Shared\_ReactPageLayout.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1626,7 +1627,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\index.jsx" />
     <Content Include="Areas\Portal\Views\Password\ChangePassword.cshtml" />
     <Content Include="package.json" />
-    <Content Include="Areas\Portal\Views\AffiliateReport\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\Filter.jsx" />
@@ -1847,7 +1847,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\EditExchangeRateForm.jsx" />
     <Content Include="Areas\Portal\Views\ExchangeRate\ExchangeRate.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\exchange-rate\exchange-rate.scss" />
-    <Content Include="Areas\Portal\Views\Message\Message.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\Content.jsx" />

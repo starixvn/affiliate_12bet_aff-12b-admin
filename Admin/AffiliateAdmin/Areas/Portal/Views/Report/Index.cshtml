@@ -1,24 +1,24 @@
 ﻿@{
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
 }
-@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
 
-@{ 
+@model Fanex.Affiliate.Admin.Core.ViewModels.AffiliateReportViewModel
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/affiliate-report.css")" rel="stylesheet" />
+}
+
+@section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            productList: @Html.Raw(Json.Encode(Model.ProductList)),
+            languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")'
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/report/affiliate-report.js")"></script>
+}
+@{
     var queryString = Request.QueryString.ToString();
     var defaultRelativeUrl = Url.Content("~/Portal/AffiliateReport/Index") + queryString;
 }
 
-<div class="sub-menu-container">
-    <div class="d-inline-block">
-        <img src="~/Areas/Portal/www/dist/imgs/i_report.png" />
-    </div>
-    <div class="d-inline-block">
-        @{
-            Html.RenderPartial("~/Areas/Portal/Views/Shared/_SubMenu.cshtml", Model);
-        }
-    </div>
-</div>
-
-<div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content(defaultRelativeUrl)"></iframe>
-</div>
