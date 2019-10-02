@@ -15,7 +15,6 @@ using ONEbook.UM.Services.Impl;
 
 public class Common
 {
-    private const int DeviceMobile = 0;
 
     public const string System = "Affiliate";
     public const string Approved = "Approved";
@@ -28,7 +27,6 @@ public class Common
     public const string RowBgClosed = "#d6d4d2";
     public const string RowBgPending = "#e8ded6";
     public const string NumberFormatPlaceholder = "N0";
-    private const int TimeCacheUM = 10;
 
     // ++ Added by Frank.Ngo on IRP 671 - 10 Jan 2012
     public const int NormalBanner = 0;
@@ -99,49 +97,6 @@ public class Common
         }
         return ip;
     }
-
-    public static string GerFullTextLang(object strLang)
-    {
-        switch (strLang.ToString().ToLower())
-        {
-            case "en-us":
-                return Resources.Lang.English;
-
-            case "en-gb":
-                return Resources.Lang.EnglishEU;
-
-            case "zh-tw":
-                return Resources.Lang.ChineseTraditional;
-
-            case "zh-cn":
-                return Resources.Lang.ChineseSimplified;
-
-            case "th-th":
-                return Resources.Lang.Thai;
-
-            case "es-es":
-                return Resources.Lang.Spanish;
-
-            case "vi-vn":
-                return Resources.Lang.Vietnamese;
-
-            case "id-id":
-                return Resources.Lang.Indonesian;
-
-            case "ko-kr":
-                return Resources.Lang.Korean;
-
-            case "ja-jp":
-                return Resources.Lang.Japanese;
-
-            case "hi-in":
-                return Resources.Lang.Indian;
-
-            default:
-                return Resources.Lang.English;
-        }
-    }
-
     public static string GenerateDropdownHtml(string id, IDictionary<string, string> values, string selectedValue)
     {
         var resultHtml = new StringBuilder();
@@ -191,54 +146,13 @@ public class Common
 
     }
 
-    public static string FormatNumber1(object Number, bool isMoneyAmount)
-    {
-        decimal dcNumber = CastAide.AsDecimal(Number);
-        if (isMoneyAmount)
-        {
-            return NumberFormat.DecFormat(dcNumber, 0);
-        }
-        return NumberFormat.DecFormat(dcNumber, 0);
-    }
-
-    public static string FormatDateNoHour(object dtmDate)
-    {
-        if (string.IsNullOrEmpty(dtmDate.ToString()))
-            return "N/A";
-        DateTime date = CastAide.AsDateTime(dtmDate);
-        return date.ToString("MM/dd/yyyy");
-    }
-
+ 
     public static string NoInfo(int intNumCols)
     {
         string strNoInfo = TemplateHandler.LoadTemplate("NoInfo.htm");
         TemplateHandler.Assign(ref strNoInfo, "noinfo", Resources.Lang.NoInfo);
         TemplateHandler.Assign(ref strNoInfo, "num-cols", intNumCols.ToString());
         return strNoInfo;
-    }
-
-    public static string GetStatus(object strStatus)
-    {
-        switch (strStatus.ToString().ToLower())
-        {
-            case "pending":
-                return Resources.Lang.Proccessing;
-
-            case "completed":
-                return Resources.Lang.Approved;
-
-            case "cancelled":
-                return Resources.Lang.Cancelled;
-
-            case "approved":
-                return Resources.Lang.Approved;
-
-            case "rejected":
-                return Resources.Lang.Rejected;
-
-            default:
-                return strStatus.ToString();
-        }
     }
 
     public static string GenNoInformation(string colspan)
@@ -287,12 +201,6 @@ public class Common
     {
         var result = DataHandler.Affiliate.SelPermission(CustId, funcName);
         return CastAide.AsInt32(result.Outputs["errcode"]) == 0;
-    }
-
-    //Get permission host per function
-    public static bool HasReadPermission(string funcName)
-    {
-        return AppSettings.Session.RoleAccess.IndexOf(funcName + "-1") >= 0;
     }
 
     public static string GenPaging(int numPages, int currPage, int pageSize, int numRows, string aID, string txtID, int width, bool hasCheckAll, bool hasPageSize)
@@ -467,97 +375,6 @@ public class Common
         return opt;
     }
 
-    public static string GenDropDownFromTable2(DataTable dt, string valueColumn, string nameColumn, string id, ref string activeValue, bool isGenAll, string labelAll)
-    {
-        var result = new StringBuilder();
-        string opt = TemplateHandler.LoadTemplate("Option.htm");
-        TemplateHandler.Assign(ref opt, "id", id);
-        string temp = TemplateHandler.CopyBlock(opt, "optionList");
-        string tempopt = temp;
-        if (isGenAll)
-        {
-            TemplateHandler.Assign(ref tempopt, "Optvalue", string.Empty);
-            TemplateHandler.Assign(ref tempopt, "Optname", string.IsNullOrEmpty(labelAll) ? Resources.Lang.All : labelAll);
-            if (string.IsNullOrEmpty(activeValue))
-            {
-                TemplateHandler.Assign(ref tempopt, "selected", "selected");
-            }
-            result.Append(tempopt);
-        }
-        foreach (DataRow dr in dt.Rows)
-        {
-            tempopt = temp;
-            TemplateHandler.Assign(ref tempopt, "Optvalue", dr[valueColumn].ToString());
-            TemplateHandler.Assign(ref tempopt, "Optname", dr[nameColumn].ToString());
-
-            if (string.Compare(activeValue, dr[valueColumn].ToString(), true) == 0)
-            {
-                TemplateHandler.Assign(ref tempopt, "selected", "selected");
-            }
-            else
-            {
-                TemplateHandler.Assign(ref tempopt, "selected", string.Empty);
-            }
-            result.Append(tempopt);
-        }
-
-        TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
-        return opt;
-    }
-
-    public static string GenListSportType(int intCurrent)
-    {
-        StringBuilder strBuild = new StringBuilder();
-        strBuild.Append("<select id=\"slSportType\" name=\"slSportType\" onchange=\"LoadData(1);\">");
-        if (intCurrent == 0)
-        {
-            strBuild.Append("<option value=\"0\" selected>" + Resources.Lang.All + "</option>");
-        }
-        else
-            strBuild.Append("<option value=\"0\">" + Resources.Lang.All + "</option>");
-        //Get List Sport type
-        DbResult rs = DataHandler.Affiliate.SportTypeSel();
-        if (rs.ResultSet.Tables.Count > 0)
-        {
-            DataTable dtb = rs.ResultSet.Tables[0];
-            foreach (DataRow dr in dtb.Rows)
-            {
-                int intId = CastAide.AsInt32(dr["SportId"], 0);
-                if (intId == intCurrent)
-                    strBuild.Append("<option value=\"" + intId.ToString() + "\" selected>" + dr["SportName"].ToString() + "</option>");
-                else
-                    strBuild.Append("<option value=\"" + intId.ToString() + "\">" + dr["SportName"].ToString() + "</option>");
-            }
-        }
-        strBuild.Append("</select>");
-        return strBuild.ToString();
-    }
-
-    public static string CutLongText(string strContent, int numChar)
-    {
-        StringBuilder strBuild = new StringBuilder();
-        int txtLength = strContent.Length;
-        for (int i = 0; i <= (txtLength / numChar); i++)
-        {
-            string strTmp = strContent.Substring(i * numChar, ((i + 1) * numChar > txtLength ? txtLength - (i * numChar) : numChar));
-            int start = strTmp.IndexOf(" ");
-            if (start < 0)
-            {
-                strTmp = strTmp + " ";
-            }
-            else
-            {
-                int last = strTmp.LastIndexOf(" ");
-                if (last < (numChar / 2))//the space is too far with last character
-                {
-                    strTmp = strTmp + " ";
-                }
-            }
-            strBuild.Append(strTmp);
-        }
-        return strBuild.ToString();
-    }
-
     public static string IBCDateTimeFormat(object dateCell, DTFormatType type)
     {
         switch (type)
@@ -570,135 +387,11 @@ public class Common
         }
     }
 
-    public static void SendEmail(string mailTo, string subject, string message, string mailBcc = "", string mailCC = "")
-    {
-        var mailItem = new Fanex.MailDeliver.Model.MailRecord
-        {
-            MailTo = mailTo,
-            Subject = subject,
-            Title = subject,
-            ////IsBodyHtml ready
-            Body = message,
-            MailBcc = mailBcc,
-            MailCc = mailCC,
-        };
-
-        using (var client = new MailDeliver())
-        {
-            client.SendMail(mailItem);
-        }
-    }
-
-    public static void SendEmailApproved(int affID, string strPreferLang, string strFname, string strUsername, string strEmail, string strPassword, string strEmailSuffix)
-    {
-        string[] strTags = { "fname", "username", "pass", "custid", "mailcontact", "url", "rooturl", "lang" };
-        string[] strValue = { strFname, strUsername, strPassword, affID.ToString(), AppSettings.MailContact, GetAffiliateUserRootUrl(), GetAffiliateUserRootUrl(), strPreferLang };
-
-        string FileName = "";
-        string FileName2 = "";
-        string FileName3 = "";
-        if (string.IsNullOrEmpty(strPreferLang) || strPreferLang == "en-US")
-        {
-            FileName = "Email/AffApprove/Approved" + strEmailSuffix + ".htm";
-            FileName2 = "Email/AffApprove/ApprovalEmail" + strEmailSuffix + ".htm";
-            FileName3 = "Email/AffApprove/WithdrawalEmail" + strEmailSuffix + ".htm";
-        }
-        else
-        {
-            FileName = "Email/AffApprove/Approved_" + strPreferLang + strEmailSuffix + ".htm";
-            FileName2 = "Email/AffApprove/ApprovalEmail_" + strPreferLang + strEmailSuffix + ".htm";
-            FileName3 = "Email/AffApprove/WithdrawalEmail_" + strPreferLang + strEmailSuffix + ".htm";
-        }
-
-        string strApproved = TemplateHandler.LoadHtml(FileName, strTags, strValue).Replace("\r\n", "");
-        string strSubject = TemplateHandler.ReplaceBlock(ref strApproved, "subject", "").Replace("\r\n", "").Trim();
-        Common.SendEmail(strEmail, strSubject, strApproved, AppSettings.BCCMail, AppSettings.CCMail);
-
-        strApproved = TemplateHandler.LoadHtml(FileName2, strTags, strValue).Replace("\r\n", "");
-        strSubject = TemplateHandler.ReplaceBlock(ref strApproved, "subject", "").Replace("\r\n", "").Trim();
-        Common.SendEmail(strEmail, strSubject, strApproved, AppSettings.BCCMail, AppSettings.CCMail);
-
-        strApproved = TemplateHandler.LoadHtml(FileName3, strTags, strValue).Replace("\r\n", "");
-        strSubject = TemplateHandler.ReplaceBlock(ref strApproved, "subject", "").Replace("\r\n", "").Trim();
-        Common.SendEmail(strEmail, strSubject, strApproved, AppSettings.BCCMail, AppSettings.CCMail);
-    }
-
-    public static void SendEmailDisapproved(string strPreferLang, string strFname, string strEmail, string strEmailSuffix)
-    {
-        string[] strTags = { "fname", "mailcontact", "rooturl", "lang" };
-        string[] strValue = { strFname, AppSettings.MailContact, GetAffiliateUserRootUrl(), strPreferLang };
-
-        string FileName = "";
-        if (string.IsNullOrEmpty(strPreferLang) || strPreferLang == "en-US")
-        {
-            FileName = "Email/AffDisapprove/Disapproved" + strEmailSuffix + ".htm";
-        }
-        else
-        {
-            FileName = "Email/AffDisapprove/Disapproved_" + strPreferLang + strEmailSuffix + ".htm";
-        }
-
-        string strDisapproved = TemplateHandler.LoadHtml(FileName, strTags, strValue).Replace("\r\n", "");
-        string strSubject = TemplateHandler.ReplaceBlock(ref strDisapproved, "subject", "").Replace("\r\n", "").Trim();
-        Common.SendEmail(strEmail, strSubject, strDisapproved, AppSettings.BCCMail, AppSettings.CCMail);
-    }
-
     public static string GetIPCheckerURL(string ip)
     {
         StringBuilder strIPCheckerURL = new StringBuilder(AppSettings.IPCheckerURL);
         strIPCheckerURL.Replace("{ip-val}", ip);
         return strIPCheckerURL.ToString();
-    }
-
-    public static string GetWebsiteCheckerURL(string url)
-    {
-        StringBuilder strWebsiteCheckerURL = new StringBuilder(AppSettings.WebsiteCheckerURL);
-        strWebsiteCheckerURL.Replace("{siteurl-val}", url);
-        return strWebsiteCheckerURL.ToString();
-    }
-
-    ///Johnny@20100317: Get suffix for sending mail template
-    public static string EmailSuffix(bool MailOption)
-    {
-        return (MailOption ? "" : "_html");
-    }
-
-    public static string FormatStringHtml(string value)
-    {
-        return HttpUtility.HtmlDecode(value.Replace("\r\n", "<br/>"));
-    }
-
-    public static string FormatStringJavascript(string value)
-    {
-        return HttpUtility.HtmlDecode(value).Replace("<br/>", "\r\n");
-    }
-
-    //Upload Excel file to Server
-    public static void UploadFileExcel(string path, HttpPostedFile fileUpload, ref string fileName, ref int errcode)
-    {
-        if (!string.IsNullOrEmpty(fileUpload.FileName))
-        {
-            if (!Directory.Exists(path))//Create folder
-                Directory.CreateDirectory(path);
-
-            string Extension = Path.GetExtension(fileUpload.FileName);
-
-            if (Extension.ToLower().Equals(".xls") || Extension.ToLower().Equals(".xlsx"))
-            {
-                fileName = Path.Combine(path, fileName);
-                fileUpload.SaveAs(fileName);
-            }
-            else
-            {
-                // Extension fail
-                errcode = 2;
-            }
-        }
-        else
-        {
-            // file is null
-            errcode = 1;
-        }
     }
 
     public static string GetAffiliateUserRootUrl()
@@ -709,11 +402,6 @@ public class Common
     public static string GetMarket(string market)
     {
         return string.IsNullOrEmpty(market) ? string.Empty : market;
-    }
-
-    public static string GetDeviceType(string deviceType)
-    {
-        return string.IsNullOrEmpty(deviceType) ? "0" : deviceType;
     }
 
     public static UnderMaintenanceTime GetUnderMaintenanceTime()
