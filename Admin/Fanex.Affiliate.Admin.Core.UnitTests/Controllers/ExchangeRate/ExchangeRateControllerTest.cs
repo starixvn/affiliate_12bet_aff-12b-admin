@@ -42,20 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.ExchangeRate
         }
 
         [Fact]
-        public void Index_WhenCall_ReturnView()
-        {
-            // Arrange
-            var controller = CreateExchangeRateController();
-
-            // Action
-            var viewResult = controller.Index() as ViewResult;
-
-            // Assert
-            Assert.Empty(viewResult.ViewName);
-        }
-
-        [Fact]
-        public void ExchangeRate_WhenCallHasPermission_ReturnView()
+        public void Index_WhenCallHasPermission_ReturnView()
         {
             // Arrange
             var sessionService = new Mock<ISessionService>();
@@ -63,17 +50,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.ExchangeRate
             var controller = CreateExchangeRateController(sessionService.Object);
 
             // Action
-            var viewResult = controller.ExchangeRate() as ViewResult;
+            var viewResult = controller.Index() as ViewResult;
             var viewName = viewResult.ViewName;
             var hasPermission = viewResult.Model as bool?;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/ExchangeRate/ExchangeRate.cshtml", viewName);
+            Assert.Equal("", viewName);
             Assert.True(hasPermission);
         }
 
         [Fact]
-        public void ExchangeRate_WhenCallNonPermission_ReturnView()
+        public void Index_WhenCallNonPermission_ReturnView()
         {
             // Arrange
             var sessionService = new Mock<ISessionService>();
@@ -81,12 +68,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.ExchangeRate
             var controller = CreateExchangeRateController(sessionService.Object);
 
             // Action
-            var viewResult = controller.ExchangeRate() as ViewResult;
+            var viewResult = controller.Index() as ViewResult;
             var viewName = viewResult.ViewName;
             var hasPermission = viewResult.Model as bool?;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/ExchangeRate/ExchangeRate.cshtml", viewName);
+            Assert.Equal("", viewName);
             Assert.False(hasPermission);
         }
 

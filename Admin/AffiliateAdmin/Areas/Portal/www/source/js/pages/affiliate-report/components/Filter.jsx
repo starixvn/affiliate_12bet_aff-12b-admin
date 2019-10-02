@@ -269,7 +269,7 @@ export class Filter extends Component {
         const sortByData = isMainView ? sortByMainView : sortByMonthOnMonthView;
 
         return (
-            <div className="filter-container">
+            <div className="filter-container mt-2">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="Affiliate" className="mr-sm-2">Affiliate</Label>

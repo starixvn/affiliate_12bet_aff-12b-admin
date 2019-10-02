@@ -21,7 +21,7 @@ using System.Web;
 using System.Web.Mvc;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Commission
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 {
     public class CommGroupAssignmentControllerTest
     {
@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Commission
             var model = viewResult.Model as AssignNormalGroupViewModel;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/CommissionGroup/AssignGroup.cshtml", viewResult.ViewName);
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/AssignGroup.cshtml", viewResult.ViewName);
             Assert.Equal(0, model.SelectedGroup);
         }
 
@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Commission
             var model = viewResult.Model as AssignNormalGroupViewModel;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/CommissionGroup/AssignGroup.cshtml", viewResult.ViewName);
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/AssignGroup.cshtml", viewResult.ViewName);
             Assert.Equal(0, model.SelectedGroup);
             Assert.Equal(affId, passedParam.AffId);
         }
@@ -153,7 +153,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Commission
             var model = viewResult.Model as AssignPrivateGroupViewModel;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/CommissionGroup/AssignPrivateGroup.cshtml", viewResult.ViewName);
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewResult.ViewName);
         }
 
         [Fact]
@@ -179,7 +179,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Commission
             var model = viewResult.Model as AssignPrivateGroupViewModel;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/CommissionGroup/AssignPrivateGroup.cshtml", viewResult.ViewName);
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewResult.ViewName);
             Assert.Equal(expectModel.ProductList, model.ProductList);
             Assert.Equal(expectModel.DeductionList, model.DeductionList);
         }

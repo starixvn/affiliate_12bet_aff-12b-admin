@@ -1,9 +1,23 @@
 ﻿@{
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
 }
-@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
 
-<div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Portal/ExchangeRate/ExchangeRate")"></iframe>
-    @*<iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Exchange/AffRate.aspx")"></iframe>*@
-</div>
+@{
+    var hasPermission = Model;
+}
+
+@model bool
+
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/exchange-rate/exchange-rate.css")" rel="stylesheet" />
+}
+
+@section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            hasPermission: '@hasPermission' === 'True',
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")'
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/exchange-rate/exchange-rate.js")"></script>
+}

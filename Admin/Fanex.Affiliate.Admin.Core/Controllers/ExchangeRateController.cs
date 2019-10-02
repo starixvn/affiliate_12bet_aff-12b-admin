@@ -25,16 +25,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult ExchangeRate()
-        {
             var permissionList = SessionService.UserPermissionList;
             var hasPermission = permissionList.Any(i => i.FunctionName.Equals(Function.AffExRate, StringComparison.OrdinalIgnoreCase) && i.IsHost);
 
-            return View("~/Areas/Portal/Views/ExchangeRate/ExchangeRate.cshtml", model: hasPermission);
+            return View(model: hasPermission);
         }
 
         [HttpPost]

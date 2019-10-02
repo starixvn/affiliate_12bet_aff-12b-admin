@@ -13,5 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.Affiliate
         public int SelectedGroupId { get; set; }
 
         public ParamFromHome Param { get; set; }
+
+        public IEnumerable<SubMenu> SubMenuList { get; set; }
     }
 }

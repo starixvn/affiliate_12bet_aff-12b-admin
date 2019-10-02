@@ -14,11 +14,12 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.Resources;
 
-namespace Fanex.Affiliate.Admin.Core.Controllers
+namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class AffiliateInfoController : BaseController
+    public class AffiliateController : BaseController
     {
         private readonly IAffiliateInfoRepository _affiliateInfoRepository;
 
@@ -26,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         private readonly ILanguageService _languageService;
 
-        public AffiliateInfoController(
+        public AffiliateController(
             ISessionService sessionService,
             IAffiliateInfoRepository affiliateInfoRepository,
             ICommissionGroupRepository commissionGroupRepository,
@@ -40,16 +41,25 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpGet]
         public ActionResult Index(ParamFromHome param, int groupId = 0)
         {
+            var subMenu = new List<SubMenu>
+            {
+                new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate"), IsActive = true },
+                new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest") },
+                new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/Portal/CommissionGroup") },
+                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory") }
+            };
+
             var groupListParam = new GetGroupListParam { AffId = -1 };
             var viewModel = new AffiliateInfoViewModel
             {
                 CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
                 LanguageList = _languageService.GetLanguageList(),
                 SelectedGroupId = groupId,
-                Param = param
+                Param = param,
+                SubMenuList = subMenu
             };
 
-            return View("~/Areas/Portal/Views/AffiliateInfo/Index.cshtml", viewModel);
+            return View(viewModel);
         }
 
         [HttpPost]

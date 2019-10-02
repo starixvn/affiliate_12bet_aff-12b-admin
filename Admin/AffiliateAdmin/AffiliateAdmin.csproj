@@ -1279,6 +1279,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\BannerDetailPopup.jsx" />
     <Content Include="Areas\Portal\Views\Shared\_ReactPageLayout.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\_AffiliateSubMenu.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\PaymentRequest.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\CommissionGroup.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\EmailHistory.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1508,7 +1512,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.12betadmin.sit.config" />
-    <Content Include="Areas\Portal\Views\CommissionGroup\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Web.config" />
     <Content Include="AffiliateAdmin.ruleset" />
     <Content Include="Areas\Portal\www\source\js\layouts\AppLayout.jsx" />
@@ -1537,8 +1540,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnOverSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSettingItem.jsx" />
-    <Content Include="Areas\Portal\Views\Affiliate\Information.cshtml" />
-    <Content Include="Areas\Portal\www\source\style\pages\affiliate-information.scss" />
     <Content Include="Areas\Portal\Views\Shared\_Header.cshtml" />
     <Content Include="Areas\Portal\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\_SinglePageLayout.cshtml" />
@@ -1577,8 +1578,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\EditGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\index.jsx" />
-    <Content Include="Areas\Portal\Views\CommissionGroup\AssignGroup.cshtml" />
-    <Content Include="Areas\Portal\Views\CommissionGroup\AssignPrivateGroup.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\AssignGroup.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\AssignPrivateGroup.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\CommonLayout.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.en-GB.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.en-US.cshtml" />
@@ -1661,7 +1662,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\customer-member.scss" />
-    <Content Include="Areas\Portal\Views\AffiliateInfo\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-info.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\AppContainer.jsx" />
@@ -1742,7 +1742,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\statement-history.scss" />
-    <Content Include="Areas\Portal\Views\PaymentRequest\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Filter.jsx" />
@@ -1795,7 +1794,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\main.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\main.scss" />
-    <Content Include="Areas\Portal\Views\Customer\Main.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanel.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenuItem.jsx" />
@@ -1820,7 +1818,6 @@
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.vi-VN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.zh-CN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.zh-TW.cshtml" />
-    <Content Include="Areas\Portal\Views\EmailHistory\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\Filter.jsx" />
@@ -1840,7 +1837,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\EditExchangeRateForm.jsx" />
-    <Content Include="Areas\Portal\Views\ExchangeRate\ExchangeRate.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\exchange-rate\exchange-rate.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\Filter.jsx" />

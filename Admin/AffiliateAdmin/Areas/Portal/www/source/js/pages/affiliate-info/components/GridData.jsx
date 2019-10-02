@@ -41,7 +41,7 @@ export class GridData extends Component {
         const regexCheckAffId = new RegExp(regExp.CheckAffId);
 
         if (param.AffId === '' || regexCheckAffId.test(param.AffId)) {
-            const url = 'Portal/AffiliateInfo/GetAffiliateList';
+            const url = 'Portal/Affiliate/GetAffiliateList';
             const response = await post(url, param);
 
             if (response && response.status === 200) {

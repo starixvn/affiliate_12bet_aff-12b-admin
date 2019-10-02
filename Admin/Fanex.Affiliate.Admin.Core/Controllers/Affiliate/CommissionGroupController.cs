@@ -12,6 +12,8 @@ using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using Fanex.Affiliate.Admin.Core.ViewModels;
+using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.Resources;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -38,13 +40,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            var a = Url.Content("~/Portal/Affiliate");
+            var subMenu = new List<SubMenu>
+            {
+                new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate") },
+                new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest") },
+                new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/Portal/CommissionGroup"), IsActive = true },
+                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory") }
+            };
+
             var viewModel = new CommissionGroupViewModel
             {
                 ProductList = _productRepository.GetProductList(),
-                DeductionList = _commGroupCommonService.GetDeductionList()
+                DeductionList = _commGroupCommonService.GetDeductionList(),
+                SubMenuList = subMenu
             };
 
-            return View("~/Areas/Portal/Views/CommissionGroup/Index.cshtml", viewModel);
+            return View("~/Areas/Portal/Views/Affiliate/CommissionGroup.cshtml", viewModel);
         }
 
         [HttpPost]

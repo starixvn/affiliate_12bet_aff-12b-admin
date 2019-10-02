@@ -29,7 +29,7 @@ export class Content extends Component {
         const regexCheckAffId = new RegExp(regExp.CheckAffId);
 
         if (param.AffId === '' || regexCheckAffId.test(param.AffId)) {
-            const url = `Portal/AffiliateInfo/GetAffiliateList`;
+            const url = `Portal/Affiliate/GetAffiliateList`;
             const postData = Object.assign({}, param, { IsExportExcel: true });
             const response = await post(url, postData);
 

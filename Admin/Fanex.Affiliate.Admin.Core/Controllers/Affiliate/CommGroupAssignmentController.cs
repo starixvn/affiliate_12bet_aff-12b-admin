@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Commission
                 };
             }
 
-            return View("~/Areas/Portal/Views/CommissionGroup/AssignGroup.cshtml", viewModel);
+            return View("~/Areas/Portal/Views/Affiliate/AssignGroup.cshtml", viewModel);
         }
 
         [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Commission
                 } :
                 new AssignPrivateGroupViewModel();
 
-            return View("~/Areas/Portal/Views/CommissionGroup/AssignPrivateGroup.cshtml", viewModel);
+            return View("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewModel);
         }
 
         [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]

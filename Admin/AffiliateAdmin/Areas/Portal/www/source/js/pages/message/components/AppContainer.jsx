@@ -12,7 +12,7 @@ export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />
-            <div className="message mx-1 mt-3">
+            <div className="message mt-2">
                 <Filter />
                 <ControlButtons />
                 <Content />

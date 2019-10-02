@@ -103,7 +103,7 @@ export class Content extends PureComponent {
         const { gridData } = this.props;
 
         return gridData && (
-            <div className="data-content mx-1">
+            <div className="data-content">
                 <div className="table-responsive table-striped my-2">
                     <Table
                         maxWidth={1000}

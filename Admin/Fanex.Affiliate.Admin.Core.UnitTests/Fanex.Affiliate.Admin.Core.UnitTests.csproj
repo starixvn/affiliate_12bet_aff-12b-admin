@@ -136,8 +136,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CommissionGroupControllerTest.cs" />
-    <Compile Include="Controllers\Commission\CommGroupAssignmentControllerTest.cs" />
+    <Compile Include="Controllers\Affiliate\CommissionGroupControllerTest.cs" />
+    <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />
     <Compile Include="Controllers\ExchangeRate\ExchangeRateControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\TextListControllerTest.cs" />
     <Compile Include="Controllers\Message\MessageControllerTest.cs" />

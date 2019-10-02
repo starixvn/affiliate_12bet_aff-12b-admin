@@ -16,7 +16,7 @@ using System.Web;
 using System.Web.Mvc;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 {
     public class CommissionGroupControllerTest
     {
@@ -32,13 +32,18 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
             var controller = CreateCommissionGroupController(productRepository: productRepository.Object, commGroupCommonService: commGroupCommonService.Object);
 
+            var urlHelperMock = new Mock<UrlHelper>();
+            urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal");
+
+            controller.Url = urlHelperMock.Object;
+
             // Action
             var viewResult = controller.Index() as ViewResult;
             var viewName = viewResult.ViewName;
             var model = viewResult.Model as CommissionGroupViewModel;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/CommissionGroup/Index.cshtml", viewName);
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/CommissionGroup.cshtml", viewName);
             Assert.Single(model.ProductList);
             Assert.Single(model.DeductionList);
         }

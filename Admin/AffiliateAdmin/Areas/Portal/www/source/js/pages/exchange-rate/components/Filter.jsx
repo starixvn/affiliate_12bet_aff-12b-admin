@@ -35,7 +35,7 @@ export class Filter extends PureComponent {
         const { date } = this.state;
 
         return (
-            <div className="filter-container mx-1 mt-3">
+            <div className="filter-container mt-2">
                 <Form inline tag="div">
                     <FormGroup className="mr-sm-3">
                         <Label className="mr-2">{resource.Date}</Label>

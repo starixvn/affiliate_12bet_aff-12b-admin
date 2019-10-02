@@ -16,7 +16,8 @@ using Xunit;
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
 {
     public class MessageControllerTest
-    {
+    { 
+
         [Fact]
         public void Index_WhenCall_ReturnView()
         {
@@ -25,23 +26,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
 
             // Action
             var viewResult = controller.Index() as ViewResult;
-
-            // Assert
-            Assert.Empty(viewResult.ViewName);
-        }
-
-        [Fact]
-        public void Message_WhenCall_ReturnView()
-        {
-            // Arrange
-            var controller = CreateMessageController();
-
-            // Action
-            var viewResult = controller.Message() as ViewResult;
             var viewName = viewResult.ViewName;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/Message/Message.cshtml", viewName);
+            Assert.Equal("", viewName);
         }
 
         [Fact]
