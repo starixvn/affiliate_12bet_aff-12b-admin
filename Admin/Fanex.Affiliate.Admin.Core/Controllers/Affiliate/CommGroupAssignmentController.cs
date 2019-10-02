@@ -16,7 +16,7 @@ using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 
-namespace Fanex.Affiliate.Admin.Core.Controllers.Commission
+namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
     [FunctionAuthorize(FunctionName = Function.CommissionGroup)]
     public class CommGroupAssignmentController : BaseController
