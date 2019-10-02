@@ -40,5 +40,9 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         string BannerRootUrl { get; }
+
+        string[] BannerFolders { get; }
+
+        int ImageSize { get; }
     }
 }

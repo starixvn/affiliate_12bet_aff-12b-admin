@@ -1,6 +1,9 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
+import axios from 'axios';
+import { resolveClientUrl } from '../../../../modules/utils';
+
 import {
     SET_PARAM, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID, SET_BANNER_ROOT_URL,
     SET_SUBCATEGORY_CASINO_LIST, SET_SUBCATEGORY_SPORTSBOOK_LIST, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA
@@ -133,7 +136,12 @@ export const getBannerDetail = (selectedBannerId) => async () => {
 
 export const insertBanner = (param) => async () => {
     const url = 'Portal/BannerList/insertBanner';
-    const response = await post(url, param);
+    const formData = new FormData();
+    for (let key in param ) {
+        formData.append(key, param[key]);
+    }
+
+    const response = await post(url, formData);
 
     return response && response.status === 200 ? response.data : null;
 }

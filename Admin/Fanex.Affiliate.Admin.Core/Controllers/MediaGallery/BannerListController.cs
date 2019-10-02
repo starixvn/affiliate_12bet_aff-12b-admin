@@ -13,6 +13,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Configurations;
+using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
@@ -123,7 +124,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult InsertBanner(InsertUpdateBannerParam param)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !string.IsNullOrEmpty(param.FileName))
             {
                 var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
@@ -202,9 +203,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 BannerId = param.BannerId,
                 FileName = Server.HtmlEncode(param.FileName),
-                Category = param.Category,
-                Language = param.Language,
-                Currency = param.Currency,
+                InputFileName = Server.HtmlEncode(param.InputFileName?.Trim()),
+                Category = Server.HtmlEncode(param.Category),
+                SubCategory = Server.HtmlEncode(param.SubCategory),
+                Language = Server.HtmlEncode(param.Language),
+                Currency = Server.HtmlEncode(param.Currency),
+                Size = Server.HtmlEncode(param.Size),
+                ImageType = Server.HtmlEncode(param.ImageType),
+                AffType = param.AffType,
                 DeviceType = param.DeviceType
             };
         }

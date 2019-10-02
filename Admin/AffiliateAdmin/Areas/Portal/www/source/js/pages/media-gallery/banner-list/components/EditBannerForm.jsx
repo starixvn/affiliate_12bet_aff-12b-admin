@@ -57,15 +57,15 @@ export class EditBannerForm extends PureComponent {
 
     _handleFile = (event) => {
         const { files } = event.target;
-
+console.log(files);
         if (files && files.length > 0) {
             const fileName = files[0].name;
             const result = validateFileExtension(fileName);
 
-            this.setState({ fileName, inputFileName: fileName, isDisabled: !result.isOK });
+            this.setState({ file: files[0], fileName, inputFileName: fileName, isDisabled: !result.isOK });
             result.isOK ? this.setState({ imageType: result.imageType }) : this._handleShowAlert(false, result.message);
         } else {
-            this.setState({ isDisabled: true, fileName: '', inputFileName: '' });
+            this.setState({ isDisabled: true, file: null, fileName: '', inputFileName: '' });
         }
     }
 
@@ -80,18 +80,23 @@ export class EditBannerForm extends PureComponent {
     }
 
     _save = async () => {
-        const { category, language, currency, deviceType, fileName, inputFileName, isInsert } = this.state;
+        const { file, fileName, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType, isInsert } = this.state;
         const { selectedBannerId } = this.props;
-        const bannerInfo = Object.assign({}, { bannerId: selectedBannerId, fileName, inputFileName, category, language, currency, deviceType });
+        const bannerInfo = Object.assign({}, { bannerId: selectedBannerId, file, fileName, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType });
 
         if (isInsert) {
             const result = await this.props.insertBanner(bannerInfo);
             this._handleAfterSave(result, isInsert);
-
         } else {
             const result = await this.props.updateBanner(bannerInfo);
             this._handleAfterSave(result, isInsert);
         };
+    }
+
+    _validateInputFile = (inputFileName) => {
+        const validFileName = validateFileExtension(inputFileName);
+        
+        validFileName.isOK ? this._save() : this._handleShowAlert(false, validFileName.message);
     }
 
     _handleSubmit = () => {
@@ -99,10 +104,16 @@ export class EditBannerForm extends PureComponent {
 
         const { fileName, inputFileName, isInsert } = this.state;
 
-        if (!!inputFileName && (!isInsert || !!fileName)) {
-            this._save();
+        if (fileName) {
+            const validInputFileName = validateFileExtension(fileName);
+
+            if (validInputFileName.isOK) {
+                inputFileName ? this._validateInputFile(inputFileName) : this._save();
+            } else {
+                this._handleShowAlert(false, validInputFileName.message);
+            }
         } else {
-            !!fileName ? this._save() : this._handleShowAlert(false, isInsert ? 'Please select banner to upload.' : "You must enter a file name for banner.");
+            (!insert && inputFileName) ? this._validateInputFile(inputFileName) : this._handleShowAlert(false, isInsert ? 'Please select banner to upload.' : "You must enter a file name for banner.");
         }
 
         this.props.toggleLoader(false);

@@ -32,7 +32,7 @@ export const ControlButtons = (props) => {
                                 hasIcon={true}
                                 isOpenNotification={true}
                             />
-                            <Button outline type="button" className="mx-2" onClick={() => _handleClickButton(messageInsertId)}>{resource.Add}</Button>
+                            <Button outline type="button" className="mx-2" onClick={() => _handleClickButton(messageInsertId)}>{resource.Add} <span className="oi oi-plus ml-2"></span></Button>
                             <Button outline type="button" onClick={() => _handleClickButton(messageCurrentId)}>{resource.CurrentMessage}</Button>
                         </div>
                         <SelectAll
@@ -43,7 +43,7 @@ export const ControlButtons = (props) => {
                     </React.Fragment>
                 ) : (
                         <div className="my-2">
-                            <Button outline type="button" onClick={() => _handleClickButton(messageInsertId)}>{resource.Add}</Button>
+                            <Button outline type="button" onClick={() => _handleClickButton(messageInsertId)}>{resource.Add} <span className="oi oi-plus ml-2"></span></Button>
                         </div>
                     )
             }
