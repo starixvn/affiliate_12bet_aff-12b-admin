@@ -7,15 +7,19 @@ using System.IO;
 using Fanex.Affiliate.Admin.Core.Utilities.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Constants;
 using System.Text;
+using Fanex.Affiliate.Admin.Core.Configurations;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
     public class BannerListService : IBannerListService
     {
         private readonly IBannerListRepository _bannerListRepository;
-        public BannerListService(IBannerListRepository bannerListRepository)
+        private readonly IAppSetting _appSetting;
+        public BannerListService(IBannerListRepository bannerListRepository, IAppSetting appSetting)
         {
             _bannerListRepository = bannerListRepository;
+            _appSetting = appSetting;
         }
 
         public EntityResult<BannerInfo> GetBannerList(BannerParam param)
@@ -41,14 +45,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public ResultInfo InsertBanner(InsertUpdateBannerParam param)
         {
-            var extension = string.Empty;
-            if (!string.IsNullOrEmpty(param.FileName))
+            if (!BannerHelper.IsValidExtension(Path.GetExtension(param.FileName)))
             {
-                extension = Path.GetExtension(param.FileName);
-                if (!BannerHelper.IsValidExtension(extension))
-                {
-                    return CreateErrorResult();
-                }
+                return CreateErrorResult();
             }
 
             if (string.IsNullOrEmpty(param.InputFileName))
@@ -63,6 +62,144 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 }
             }
 
+            var newFolder = GetNewFolder(param);
+            var result = BannerHelper.UploadFileWithAutoDetectSize(_appSetting, param, newFolder);
+
+            if (result.IsSuccessful)
+            {
+                result = _bannerListRepository.InsertBanner(param);
+
+                if (!result.IsSuccessful)
+                {
+                    BannerHelper.DeleteFile(_appSetting, param.FileName);
+                }
+            }
+
+            return result;
+        }
+
+        public ResultInfo UpdateBanner(InsertUpdateBannerParam param)
+        {
+            if (!BannerHelper.IsValidExtension(Path.GetExtension(param.InputFileName)))
+            {
+                return CreateErrorResult();
+            }
+
+            var newFolder = GetNewFolder(param);
+            var oldBannerInfo = _bannerListRepository.GetBannerDetail(param.BannerId);
+            var oldFilePath = oldBannerInfo.FileName;
+
+            if (param.File != null && !string.IsNullOrEmpty(param.FileName))
+            {
+                if (!BannerHelper.IsValidExtension(Path.GetExtension(param.FileName)))
+                {
+                    return CreateErrorResult();
+                }
+
+                return UpdateBannerByUploadNewFile(param, oldFilePath, newFolder);
+            }
+
+            param.Size = oldBannerInfo.Size;
+            return UpdateBannerByMoveFile(param, oldFilePath, newFolder);
+        }
+
+        private ResultInfo ValidateFilePath(string newFolder, string newFilePath)
+        {
+            var validateFolderResult = BannerHelper.EnsureFoldersExisted(_appSetting, newFolder);
+
+            if (validateFolderResult.IsSuccessful)
+            {
+                foreach (var folder in _appSetting.BannerFolders)
+                {
+                    var newFullPath = Path.Combine(folder, newFilePath);
+                    if (File.Exists(newFullPath))
+                    {
+                        return new ResultInfo
+                        {
+                            Code = Code.GeneralErrorCode,
+                            Message = "The file name already exists."
+                        };
+                    }
+                }
+            }
+
+            return validateFolderResult;
+        }
+
+        private ResultInfo UpdateBannerByMoveFile(InsertUpdateBannerParam param, string oldFilePath, string newFolder)
+        {
+            var validateFilePathResult = ValidateFilePath(newFolder, param.FileName);
+
+            if (validateFilePathResult.IsSuccessful)
+            {
+                var result = _bannerListRepository.UpdateBanner(param);
+
+                if (result.IsSuccessful)
+                {
+                    BannerHelper.MoveFiles(_appSetting, param.FileName, oldFilePath);
+                }
+
+                return result;
+            }
+
+            return validateFilePathResult;
+        }
+
+        private ResultInfo UpdateBannerByUploadNewFile(InsertUpdateBannerParam param, string oldFilePath, string newFolder)
+        {
+            var uploadingResult = BannerHelper.UploadFileWithAutoDetectSize(_appSetting, param, newFolder);
+            if (uploadingResult.IsSuccessful)
+            {
+                var result = _bannerListRepository.UpdateBanner(param);
+
+                if (!result.IsSuccessful)
+                {
+                    BannerHelper.DeleteFile(_appSetting, oldFilePath);
+                }
+
+                return result;
+            }
+
+            return uploadingResult;
+        }
+
+        public ResultInfo DeleteBanners(DeleteBannerParam param)
+        {
+            var fileNameList = GetFileNameList(param.BannerIdList);
+
+            var result = _bannerListRepository.DeleteBanners(param);
+
+            if (result.IsSuccessful)
+            {
+                DeleteFiles(fileNameList);
+            }
+            return new ResultInfo();
+        }
+
+        private List<string> GetFileNameList(string bannerIds)
+        {
+            var bannerIdList = bannerIds.Split(',');
+            var fileNameList = new List<string>();
+
+            foreach (var bannerId in bannerIdList)
+            {
+                var bannerInfo = _bannerListRepository.GetBannerDetail(Convert.ToInt32(bannerId));
+                fileNameList.Add(bannerInfo.FileName);
+            }
+
+            return fileNameList;
+        }
+
+        private void DeleteFiles(List<string> files)
+        {
+            for (int i = 0; i < files.Count; i++)
+            {
+                BannerHelper.DeleteFile(_appSetting, files[i].Replace("/", "\\"));
+            }
+        }
+
+        private static string GetNewFolder(InsertUpdateBannerParam param)
+        {
             var newFolder = string.Empty;
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("CategoryMedia/");
@@ -79,35 +216,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             stringBuilder.Append(param.InputFileName);
             param.FileName = stringBuilder.ToString();
 
-            var result = BannerHelper.UploadFileWithAutoDetectSize(param, newFolder);
-
-            if (result.IsSuccessful)
-            {
-                result = _bannerListRepository.InsertBanner(param);
-                if (!result.IsSuccessful)
-                {
-                    BannerHelper.DeleteFile(Path.Combine(newFolder, param.InputFileName));
-                }
-            }
-
-            if (result.IsSuccessful)
-            {
-                result.Message = "Your banner has been added successfully!.";
-            }
-
-            return result;
+            return newFolder;
         }
-
-        public ResultInfo UpdateBanner(InsertUpdateBannerParam param)
-        {
-            return _bannerListRepository.UpdateBanner(param);
-        }
-
-        public ResultInfo DeleteBanners(DeleteBannerParam param)
-        {
-            return _bannerListRepository.DeleteBanners(param);
-        }
-
         private static ResultInfo CreateErrorResult()
         {
             return new ResultInfo

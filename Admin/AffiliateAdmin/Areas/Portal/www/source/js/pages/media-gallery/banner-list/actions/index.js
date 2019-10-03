@@ -136,19 +136,23 @@ export const getBannerDetail = (selectedBannerId) => async () => {
 
 export const insertBanner = (param) => async () => {
     const url = 'Portal/BannerList/insertBanner';
+
+    return await handleExcute(url, param);
+}
+
+export const updateBanner = (param) => async () => {
+    const url = 'Portal/BannerList/UpdateBanner';
+
+    return await handleExcute(url, param);
+}
+
+const handleExcute = async (url, param) => {
     const formData = new FormData();
     for (let key in param ) {
         formData.append(key, param[key]);
     }
 
     const response = await post(url, formData);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const updateBanner = (param) => async () => {
-    const url = 'Portal/BannerList/UpdateBanner';
-    const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }

@@ -1,4 +1,6 @@
-﻿export const validateFileExtension = (fileName) => {
+﻿import { Casino, Sportsbook } from './constants';
+
+export const validateFileExtension = (fileName) => {
     const result = {
         isOK: false,
         message: "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.swf','.jpeg'",
@@ -18,4 +20,27 @@
 
     return result;
 
+}
+
+export const getSubCategory = (category, subCategoryCasinoList, subCategorySportsbookList) => {
+    var result = {
+        category: category,
+        subCategory: ''
+    }
+
+    subCategoryCasinoList.map(item => {
+        if (item.Name === category) {
+            result.category = Casino;
+            result.subCategory = category
+        }
+    })
+
+    subCategorySportsbookList.map(item => {
+        if (item.Name === category) {
+            result.category = Sportsbook;
+            result.subCategory = category
+        }
+    })
+
+    return result;
 }

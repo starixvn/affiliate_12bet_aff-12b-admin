@@ -31,6 +31,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 
         public byte DeviceType { get; set; }
 
-        public HttpPostedFile File { get; set; }
+        public HttpPostedFileBase File { get; set; }
     }
 }

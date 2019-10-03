@@ -40,7 +40,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var a = Url.Content("~/Portal/Affiliate");
             var subMenu = new List<SubMenu>
             {
                 new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate") },

@@ -59,6 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     if (reader.Read())
                     {
                         item = BuildBannerInfoItem(reader);
+                        item.AffType = Convert.ToByte(reader["AffType"]);
                     }
                 }
             }
@@ -123,7 +124,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             objectDb.AddInParameter("size", DbType.String, param.Size);
             objectDb.AddInParameter("afftype", DbType.Byte, param.AffType);
             objectDb.AddInParameter("devicetype", DbType.Byte, param.DeviceType);
-            objectDb.AddInParameter("imagetype", DbType.Byte, param.ImageType);
+            objectDb.AddInParameter("imagetype", DbType.String, param.ImageType);
             objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
             objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
@@ -141,7 +142,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                 Currency = Convert.ToString(reader["Currency"]),
                 ImageType = Convert.ToString(reader["ImageType"]),
                 Size = Convert.ToString(reader["Size"]),
-                DeviceType = Convert.ToString(reader["DeviceType"])
+                DeviceType = Convert.ToString(reader["DeviceType"]),
             };
         }
     }

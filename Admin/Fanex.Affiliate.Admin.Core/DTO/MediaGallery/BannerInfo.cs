@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 {
     public class BannerInfo
     {
@@ -17,6 +15,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
         public string DeviceType { get; set; }
 
         public string ImageType { get; set; }
+
+        public byte AffType { get; set; }
 
         public string Size { get; set; }
     }

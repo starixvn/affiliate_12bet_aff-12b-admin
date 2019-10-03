@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
 
         public int Height { get; set; }
 
-        private bool IsValid { get; set; }
+        public bool IsValid { get; set; } = true;
 
         private double FrameRate { get; set; }
 
@@ -45,19 +45,21 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
 
             using (BinaryReader reader = new BinaryReader(File.Open(filename, FileMode.Open)))
             {
-                // Read MAGIC FIELD
+                // Read MAGIC FIELD 3 byte
                 this.MagicBytes = new String(reader.ReadChars(3));
 
                 if (this.MagicBytes != "FWS" && this.MagicBytes != "CWS")
                 {
                     this.IsValid = false;
-                    throw new Exception(filename + " is not a valid/supported SWF file.");
                 }
 
+                // Compression (a C on the first byte states compression)
                 this.IsCompressed = this.MagicBytes.StartsWith("C", StringComparison.CurrentCulture);
+
+                // Get version 1 byte, i.e. 5 , 6, 7
                 this.Version = Convert.ToInt16(reader.ReadByte());
 
-                // 4 LSB-MSB
+                // SIZE: 4 bytes, uncompressed size in LSB-MSB format ([0]+[1]<<8+[2]<<16+[3]<<32)
                 for (int i = 0; i < 4; i++)
                 {
                     byte t = reader.ReadByte();
@@ -76,8 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
                     {
                         buffer[i] = buffer[i - 8];
                     }
-                    ((Array)(new byte[] { 31, 139, 8, 0, 0, 0, 0, 0, 4, 0 })).
-                        CopyTo(buffer, 0);
+                    ((Array)(new byte[] { 31, 139, 8, 0, 0, 0, 0, 0, 4, 0 })).CopyTo(buffer, 0);
 
                     MemoryStream ms = new MemoryStream(buffer);
 

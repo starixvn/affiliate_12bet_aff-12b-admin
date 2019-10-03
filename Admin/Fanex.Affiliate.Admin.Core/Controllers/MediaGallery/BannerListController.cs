@@ -13,7 +13,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Configurations;
-using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
@@ -124,7 +123,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult InsertBanner(InsertUpdateBannerParam param)
         {
-            if (ModelState.IsValid && !string.IsNullOrEmpty(param.FileName))
+            if (ModelState.IsValid && param.File != null)
             {
                 var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
@@ -151,7 +150,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         public ActionResult UpdateBanner(InsertUpdateBannerParam param)
         {
             var isValidBannerId = param.BannerId >= Validation.MinId;
-            if (ModelState.IsValid && isValidBannerId)
+            if (ModelState.IsValid && isValidBannerId && !string.IsNullOrEmpty(param.InputFileName))
             {
                 var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
@@ -167,7 +166,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = !isValidBannerId ? "BannerId is invalid." : "Please input Banner to update."
+                    Message = !isValidBannerId ? "BannerId is invalid." : "You must enter a file name for banner."
                 }
             };
         }
@@ -202,7 +201,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             return new InsertUpdateBannerParam
             {
                 BannerId = param.BannerId,
-                FileName = Server.HtmlEncode(param.FileName),
+                File = param.File,
+                FileName = param.File != null ? Server.HtmlEncode(param.File.FileName) : null,
                 InputFileName = Server.HtmlEncode(param.InputFileName?.Trim()),
                 Category = Server.HtmlEncode(param.Category),
                 SubCategory = Server.HtmlEncode(param.SubCategory),

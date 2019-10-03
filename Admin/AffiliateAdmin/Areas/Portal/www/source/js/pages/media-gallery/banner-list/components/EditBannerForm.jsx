@@ -7,7 +7,7 @@ import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBa
 import { headerText, globalResource, deviceTypes, defaultState, defaultDevice, Casino, Sportsbook, Baccarat } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { validateFileExtension } from '../libs/utils';
+import { validateFileExtension, getSubCategory } from '../libs/utils';
 
 export class EditBannerForm extends PureComponent {
     constructor(props) {
@@ -28,17 +28,23 @@ export class EditBannerForm extends PureComponent {
     }
 
     _handleGetBannerDetail = async (selectedBannerId) => {
-        const item = await this.props.getBannerDetail(selectedBannerId);
+        const bannerInfo = await this.props.getBannerDetail(selectedBannerId);
 
+        const { subCategoryCasinoList, subCategorySportsbookList } = this.props;
+        const result = getSubCategory(bannerInfo.Category, subCategoryCasinoList, subCategorySportsbookList);
+
+        const fileName = htmlDecode(bannerInfo.FileName);
+        const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
+        const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
+        
         this.setState({
-            inputFileName: htmlDecode(item.FileName),
-            subCategory: item.SubCategory || '',
-            category: item.Category,
-            language: item.Language,
-            currency: item.Currency,
-            imageType: item.ImageType,
-            affType: item.AffType,
-            deviceType: deviceTypes[item.DeviceType] || deviceTypes[defaultDevice]
+            inputFileName: shortFileName,
+            ...result,
+            language: bannerInfo.Language,
+            currency: bannerInfo.Currency,
+            imageType: bannerInfo.ImageType,
+            affType: bannerInfo.AffType,
+            deviceType: deviceTypes[bannerInfo.DeviceType] || deviceTypes[defaultDevice]
         });
     }
 
@@ -57,21 +63,21 @@ export class EditBannerForm extends PureComponent {
 
     _handleFile = (event) => {
         const { files } = event.target;
-console.log(files);
+
         if (files && files.length > 0) {
             const fileName = files[0].name;
             const result = validateFileExtension(fileName);
 
-            this.setState({ file: files[0], fileName, inputFileName: fileName, isDisabled: !result.isOK });
+            this.setState({ file: files[0], inputFileName: fileName, isDisabled: !result.isOK });
             result.isOK ? this.setState({ imageType: result.imageType }) : this._handleShowAlert(false, result.message);
         } else {
-            this.setState({ isDisabled: true, file: null, fileName: '', inputFileName: '' });
+            this.setState({ isDisabled: true, file: null, inputFileName: '' });
         }
     }
 
     _handleAfterSave = (result, isInsert) => {
         if (result) {
-            const message = isInsert ? "Add Successfully!" : "Update Successfully!";
+            const message = isInsert ? "Your banner has been added successfully!" : "Your banner has been updated successfully!";
 
             this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
         } else {
@@ -80,9 +86,9 @@ console.log(files);
     }
 
     _save = async () => {
-        const { file, fileName, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType, isInsert } = this.state;
+        const { file, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType, isInsert } = this.state;
         const { selectedBannerId } = this.props;
-        const bannerInfo = Object.assign({}, { bannerId: selectedBannerId, file, fileName, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType });
+        const bannerInfo = Object.assign({}, { bannerId: selectedBannerId, file, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType });
 
         if (isInsert) {
             const result = await this.props.insertBanner(bannerInfo);
@@ -102,7 +108,8 @@ console.log(files);
     _handleSubmit = () => {
         this.props.toggleLoader(true);
 
-        const { fileName, inputFileName, isInsert } = this.state;
+        const { file, inputFileName, isInsert } = this.state;
+        const fileName = file && file.name;
 
         if (fileName) {
             const validInputFileName = validateFileExtension(fileName);
@@ -113,7 +120,7 @@ console.log(files);
                 this._handleShowAlert(false, validInputFileName.message);
             }
         } else {
-            (!insert && inputFileName) ? this._validateInputFile(inputFileName) : this._handleShowAlert(false, isInsert ? 'Please select banner to upload.' : "You must enter a file name for banner.");
+            (!isInsert && inputFileName) ? this._validateInputFile(inputFileName) : this._handleShowAlert(false, isInsert ? 'Please select banner to upload.' : "You must enter a file name for banner.");
         }
 
         this.props.toggleLoader(false);

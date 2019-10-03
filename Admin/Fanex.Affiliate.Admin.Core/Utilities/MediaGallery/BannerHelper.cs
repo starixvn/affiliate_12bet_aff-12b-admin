@@ -26,29 +26,28 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
             return ValidExtensions.Contains(extension.ToLowerInvariant());
         }
 
-        public static ResultInfo UploadFileWithAutoDetectSize(InsertUpdateBannerParam param, string newFolder)
+        public static ResultInfo UploadFileWithAutoDetectSize(IAppSetting _appSetting, InsertUpdateBannerParam param, string newFolder)
         {
-            var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
-
             var uploadedFile = param.File;
-            var result = ValidateFile(uploadedFile);
+            var result = ValidateFile(_appSetting, uploadedFile);
             if (!result.IsSuccessful)
             {
                 return result;
             }
 
-            result = EnsureFoldersExisted(newFolder);
+            result = EnsureFoldersExisted(_appSetting, newFolder);
             if (!result.IsSuccessful)
             {
                 return result;
             }
 
-            foreach (var path in appSetting.BannerFolders)
+            foreach (var path in _appSetting.BannerFolders)
             {
-                var fullPath = Path.Combine(path, newFolder, param.FileName);
+                var fullPath = Path.Combine(path, param.FileName);
                 if (File.Exists(fullPath))
                 {
-                    return new ResultInfo {
+                    return new ResultInfo
+                    {
                         Code = Code.GeneralErrorCode,
                         Message = "The file name already exists."
                     };
@@ -56,26 +55,38 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
 
                 uploadedFile.SaveAs(fullPath);
 
-                if (!Path.GetExtension(uploadedFile.FileName).Equals(".swf"))
-                {
-                    var bitmap = new Bitmap(uploadedFile.InputStream);
-                    param.Size = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
-                }
-                else
+                if (Path.GetExtension(uploadedFile.FileName).Equals(".swf"))
                 {
                     SwfInfo swfInfo = new SwfInfo(fullPath);
                     param.Size = string.Format("{0}x{1}", swfInfo.Width, swfInfo.Height);
+                }
+                else
+                {
+                    var bitmap = new Bitmap(uploadedFile.InputStream);
+                    param.Size = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
                 }
             }
 
             return new ResultInfo();
         }
 
-        public static void DeleteFile(string relativeFilePath)
+        public static void MoveFiles(IAppSetting _appSetting, string newRelativeFilePath, string oldRelativeFilePath)
         {
-            var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+            foreach (var folder in _appSetting.BannerFolders)
+            {
+                var oldFullPath = Path.Combine(folder, oldRelativeFilePath);
+                var newFullPath = Path.Combine(folder, newRelativeFilePath);
 
-            foreach (var folder in appSetting.BannerFolders)
+                if (File.Exists(oldFullPath))
+                {
+                    File.Move(oldFullPath, newFullPath);
+                }
+            }
+        }
+
+        public static void DeleteFile(IAppSetting _appSetting, string relativeFilePath)
+        {
+            foreach (var folder in _appSetting.BannerFolders)
             {
                 try
                 {
@@ -93,11 +104,9 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
             }
         }
 
-        private static ResultInfo EnsureFoldersExisted(string newFolder)
+        public static ResultInfo EnsureFoldersExisted(IAppSetting _appSetting, string newFolder)
         {
-            var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
-
-            foreach (var path in appSetting.BannerFolders)
+            foreach (var path in _appSetting.BannerFolders)
             {
                 if (!Directory.Exists(Path.Combine(path, newFolder)))
                 {
@@ -119,10 +128,8 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
             return new ResultInfo();
         }
 
-        private static ResultInfo ValidateFile(HttpPostedFile uploadedFile)
+        private static ResultInfo ValidateFile(IAppSetting _appSetting, HttpPostedFileBase uploadedFile)
         {
-            var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
-
             if (uploadedFile == null)
             {
                 return new ResultInfo
@@ -142,7 +149,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
                 };
             }
 
-            if (uploadedFile.ContentLength > appSetting.ImageSize)
+            if (uploadedFile.ContentLength > _appSetting.ImageSize)
             {
                 return new ResultInfo
                 {
