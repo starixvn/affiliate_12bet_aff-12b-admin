@@ -36,7 +36,7 @@ export class EditBannerForm extends PureComponent {
         const fileName = htmlDecode(bannerInfo.FileName);
         const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
         const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
-        
+
         this.setState({
             inputFileName: shortFileName,
             ...result,
@@ -69,7 +69,7 @@ export class EditBannerForm extends PureComponent {
             const result = validateFileExtension(fileName);
 
             this.setState({ file: files[0], inputFileName: fileName, isDisabled: !result.isOK });
-            result.isOK ? this.setState({ imageType: result.imageType }) : this._handleShowAlert(false, result.message);
+            !result.isOK && this._handleShowAlert(false, result.message);
         } else {
             this.setState({ isDisabled: true, file: null, inputFileName: '' });
         }
@@ -101,7 +101,7 @@ export class EditBannerForm extends PureComponent {
 
     _validateInputFile = (inputFileName) => {
         const validFileName = validateFileExtension(inputFileName);
-        
+
         validFileName.isOK ? this._save() : this._handleShowAlert(false, validFileName.message);
     }
 
@@ -176,7 +176,7 @@ export class EditBannerForm extends PureComponent {
                                 <FormGroup row className="mb-2">
                                     <Label sm={3} for="file">File</Label>
                                     <Col sm={9}>
-                                        <Input type="file" name="file" id="file" className={`border ${ isInsert && isDisabled ? "text-danger" : "text-success"}`} onChange={this._handleFile} />
+                                        <Input type="file" name="file" id="file" className={`border ${isInsert && isDisabled ? "text-danger" : "text-success"}`} onChange={this._handleFile} />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">

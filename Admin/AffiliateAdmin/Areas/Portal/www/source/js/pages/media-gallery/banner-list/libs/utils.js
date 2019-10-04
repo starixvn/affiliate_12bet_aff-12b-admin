@@ -3,17 +3,15 @@
 export const validateFileExtension = (fileName) => {
     const result = {
         isOK: false,
-        message: "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.swf','.jpeg'",
-        imageType: ''
+        message: "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'",
     }
     if (fileName != "") {
         const fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length).toLowerCase();
 
-        const isOK = (fileExtension === "jpg" || fileExtension === "jpeg" || fileExtension === "png" || fileExtension === "gif" || fileExtension === "swf");
+        const isOK = (fileExtension === "jpg" || fileExtension === "jpeg" || fileExtension === "png" || fileExtension === "gif");
 
         if (isOK) {
             result.isOK = isOK
-            result.imageType = fileExtension === "swf" ? "Flash" : "Image";
             result.message = '';
         }
     }
@@ -43,4 +41,20 @@ export const getSubCategory = (category, subCategoryCasinoList, subCategorySport
     })
 
     return result;
+}
+
+export const resizeWidthHeight = (realWidth, realHeight, size = 500) => {
+    let width = Number(realWidth);
+    let height = Number(realHeight);
+
+    if (width > height) {
+        height = size * height / width;
+        width = size;
+    }
+    else {
+        width = size * width / height;
+        height = size;
+    }
+
+    return { width, height }
 }

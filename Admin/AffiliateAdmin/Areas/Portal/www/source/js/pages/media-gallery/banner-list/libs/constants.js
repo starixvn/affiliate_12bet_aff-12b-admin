@@ -9,9 +9,10 @@ export const Sportsbook = 'Sportsbook';
 
 const defaultLanguage = 'Chinese Simplified';
 const defaultCurrency = 'EURO';
-const defaultImageType = 'Flash';
+const defaultImageType = 'Image';
 export const Asian = 2;
 export const defaultDevice = pcLaptop;
+export const maxWidthHeight = 501;
 
 export const headerText = {
     Index: '#',

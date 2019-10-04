@@ -9,6 +9,7 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using System.Text;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.Resources;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
@@ -24,8 +25,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public EntityResult<BannerInfo> GetBannerList(BannerParam param)
         {
-            if ((string.Compare(param.Category, "Casino", StringComparison.CurrentCultureIgnoreCase) == 0
-                || string.Compare(param.Category, "Sportsbook", StringComparison.CurrentCultureIgnoreCase) == 0) && string.IsNullOrEmpty(param.SubCategory))
+            if ((string.Compare(param.Category, Lang.Casino, StringComparison.CurrentCultureIgnoreCase) == 0
+                || string.Compare(param.Category, Lang.Sportsbook, StringComparison.CurrentCultureIgnoreCase) == 0) && string.IsNullOrEmpty(param.SubCategory))
             {
                 return _bannerListRepository.GetBannerList(param, "Aff_BannerSelByParentCate");
             }
@@ -117,7 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                         return new ResultInfo
                         {
                             Code = Code.GeneralErrorCode,
-                            Message = "The file name already exists."
+                            Message = Lang.InvalidBannerAlready
                         };
                     }
                 }
@@ -205,8 +206,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             stringBuilder.Append("CategoryMedia/");
             stringBuilder.Append(param.Category);
             stringBuilder.Append("/");
-            if (string.Compare(param.Category, "Casino", StringComparison.CurrentCultureIgnoreCase) == 0
-                || string.Compare(param.Category, "Sportsbook", StringComparison.CurrentCultureIgnoreCase) == 0)
+            if (string.Compare(param.Category, Lang.Casino, StringComparison.CurrentCultureIgnoreCase) == 0
+                || string.Compare(param.Category, Lang.Sportsbook, StringComparison.CurrentCultureIgnoreCase) == 0)
             {
                 stringBuilder.Append(param.SubCategory);
                 stringBuilder.Append("/");
@@ -223,7 +224,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return new ResultInfo
             {
                 Code = Code.GeneralErrorCode,
-                Message = "Sorry! We just support these file types : .jpg, .gif, .png, .swf, .jpeg"
+                Message = Lang.InvalidBannerExtensionFile
             };
         }
     }

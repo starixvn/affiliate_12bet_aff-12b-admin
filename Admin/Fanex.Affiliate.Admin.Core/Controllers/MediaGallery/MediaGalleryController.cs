@@ -1,23 +1,23 @@
-﻿using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
-using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.MetaModels;
-using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Configurations;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
     [FunctionAuthorize(FunctionName = Function.Media)]
-    public class BannerListController : BaseController
+    public class MediaGalleryController : BaseController
     {
         private readonly ILanguageService _languageService;
         private readonly ICommonMediaGalleryService _commonMediaGalleryService;
@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         private readonly IAffTypeService _affTypeService;
         private readonly IAppSetting _appSetting;
 
-        public BannerListController(
+        public MediaGalleryController(
             ISessionService sessionService,
             ILanguageService languageService,
             ICommonMediaGalleryService commonMediaGalleryService,
@@ -40,9 +40,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             _appSetting = appSetting;
         }
 
-        [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(BannerParamFromHome param)
         {
+            var subMenu = new List<SubMenu>
+            {
+                new SubMenu { Name = Lang.BannerList, Url = Url.Content("~/Portal/MediaGallery"), IsActive = true },
+                new SubMenu { Name = Lang.TextList, Url = Url.Content("~/Portal/TextList") },
+                new SubMenu { Name = Lang.LandingPageList, Url = Url.Content("~/Portal/LandingPageList") }
+            };
+
             var model = new BannerListViewModel
             {
                 CategoryList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMedia"),
@@ -50,10 +56,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 CurrencyList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Currency),
                 ImageTypeList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("ImageType"),
                 SizeList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("Size"),
-                AffTypeList = _affTypeService.GetAffTypeList()
+                AffTypeList = _affTypeService.GetAffTypeList(),
+                SubMenuList = subMenu,
+                Param = param
             };
 
-            return View("~/Areas/Portal/Views/MediaGallery/BannerList.cshtml", model);
+            return View(model);
         }
 
         [HttpPost]
@@ -139,7 +147,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Please input Banner to upload."
+                    Message = Lang.InvalidBannerBrowser
                 }
             };
         }

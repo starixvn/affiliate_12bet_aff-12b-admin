@@ -4,7 +4,7 @@ import createReducer from '../../../../modules/createReducer';
 import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import {
-    SET_PARAM, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID, SET_BANNER_ROOT_URL,
+    SET_PARAM, SET_PARAM_FROM_HOME, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID, SET_BANNER_ROOT_URL,
     SET_SUBCATEGORY_CASINO_LIST, SET_SUBCATEGORY_SPORTSBOOK_LIST, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA
 } from '../actions/types';
 
@@ -35,6 +35,12 @@ export const subCategorySportsbookList = createReducer(null, {
 
 export const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
+        return Object.assign({}, prevState, action.data);
+    }
+})
+
+export const paramFromHome = createReducer(null, {
+    [SET_PARAM_FROM_HOME](prevState, action) {
         return Object.assign({}, prevState, action.data);
     }
 })
@@ -80,6 +86,7 @@ export default combineReducers({
     affTypeList,
     bannerRootUrl,
     param,
+    paramFromHome,
     gridData,
     pagingOption,
     isShowLoader,

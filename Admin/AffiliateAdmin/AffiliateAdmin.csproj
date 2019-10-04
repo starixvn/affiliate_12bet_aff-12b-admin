@@ -1263,7 +1263,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\TextDetailForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\redux\GridData.redux.test.js" />
-    <Content Include="Areas\Portal\Views\MediaGallery\BannerList.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\Content.jsx" />
@@ -1275,6 +1274,8 @@
     <Content Include="Areas\Portal\Views\Affiliate\PaymentRequest.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\CommissionGroup.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\EmailHistory.cshtml" />
+    <Content Include="Areas\Portal\Views\MediaGallery\_MediaGallerySubMenu.cshtml" />
+    <Content Include="Areas\Portal\Views\MediaGallery\LandingPageList.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1636,7 +1637,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\player-detail.scss" />
-    <Content Include="Areas\Portal\Views\LandingPage\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\GridData.jsx" />

@@ -375,4 +375,27 @@
   <data name="Currency" xml:space="preserve">
     <value>Currency</value>
   </data>
+  <data name="LandingPageList" xml:space="preserve">
+    <value>Landing Page List</value>
+  </data>
+  <data name="InvalidBannerExtensionFile" xml:space="preserve">
+    <value>Sorry! We just support these file types : .jpg, .gif, .png, .jpeg</value>
+  </data>
+  <data name="InvalidBannerBrowser" xml:space="preserve">
+    <value>You must browse banner to update.</value>
+  </data>
+  <data name="InvalidBannerSize" xml:space="preserve">
+    <value>Your upload file size must be &lt;= 3 MB.</value>
+  </data>
+  <data name="InvalidBannerAlready" xml:space="preserve">
+    <value>The file name already exists.</value>
+  </data>
+  <data name="Casino" xml:space="preserve">
+    <value></value>
+    <comment>Casino</comment>
+  </data>
+  <data name="Sportsbook" xml:space="preserve">
+    <value></value>
+    <comment>Sportsbook</comment>
+  </data>
 </root>

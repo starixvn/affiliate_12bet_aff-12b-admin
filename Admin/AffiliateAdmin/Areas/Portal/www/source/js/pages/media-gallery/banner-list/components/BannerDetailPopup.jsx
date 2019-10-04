@@ -4,6 +4,9 @@ import { bindActionCreators } from 'redux';
 
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { setBannerDetailUrl } from '../actions/index';
+import { resizeWidthHeight } from '../libs/utils';
+
+const maxWidthModal = 1108;
 
 export const BannerDetailPopup = (props) => {
 
@@ -13,12 +16,14 @@ export const BannerDetailPopup = (props) => {
         props.setBannerDetailUrl({ src: null })
     }
 
+    const resizeResult = bannerDetailUrl && resizeWidthHeight(bannerDetailUrl.width, bannerDetailUrl.height, bannerDetailUrl.width > maxWidthModal ? maxWidthModal : bannerDetailUrl.width);
+
     return bannerDetailUrl && bannerDetailUrl.src && (
-         <Modal isOpen={!!bannerDetailUrl.src} toggle={_handleClosePopup} size="lg" backdrop='static' style={{ width: bannerDetailUrl.width, height: bannerDetailUrl.height }}>
+         <Modal isOpen={!!bannerDetailUrl.src} toggle={_handleClosePopup} size="xl" backdrop='static'>
              <ModalHeader toggle={_handleClosePopup}><span className="iconpopup"></span></ModalHeader>
              <ModalBody>
-                 <div className="modal-body-wrapper embed-responsive embed-responsive-4by3">
-                     <img src={bannerDetailUrl.src} alt="" />
+                 <div className="modal-body-wrapper embed-responsive overflow-auto text-center">
+                     <img src={bannerDetailUrl.src} alt="" width={resizeResult.width} height={resizeResult.height}/>
                  </div>
              </ModalBody>
          </Modal>

@@ -53,9 +53,9 @@ public partial class Home : IBCPage
         TemplateHandler.Assign(ref content, "affclosedlink", affLink + "?Status=Closed&IsFromHome=true");
 
         var bannerLink = rootRelativeUrl + "Portal/MediaGallery";
-        TemplateHandler.Assign(ref content, "bannerlink", bannerLink);
-        TemplateHandler.Assign(ref content, "bannerimglink", bannerLink + "?typeoption=Image");
-        TemplateHandler.Assign(ref content, "bannerflashlink", bannerLink + "?typeoption=Flash");
+        TemplateHandler.Assign(ref content, "bannerlink", bannerLink + "?IsFromHome=true");
+        TemplateHandler.Assign(ref content, "bannerimglink", bannerLink + "?ImageType=Image&IsFromHome=true");
+        TemplateHandler.Assign(ref content, "bannerflashlink", bannerLink + "?ImageType=Flash&IsFromHome=true");
 
         //dynamic data render
         Decimal dcPSPToday = DataHandler.Member.GetPSPToday();

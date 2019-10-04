@@ -142,6 +142,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Casino {
+            get {
+                return ResourceManager.GetString("Casino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string Category {
@@ -349,6 +358,51 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file name already exists..
+        /// </summary>
+        public static string InvalidBannerAlready {
+            get {
+                return ResourceManager.GetString("InvalidBannerAlready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must browse banner to update..
+        /// </summary>
+        public static string InvalidBannerBrowser {
+            get {
+                return ResourceManager.GetString("InvalidBannerBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry! We just support these file types : .jpg, .gif, .png, .jpeg.
+        /// </summary>
+        public static string InvalidBannerExtensionFile {
+            get {
+                return ResourceManager.GetString("InvalidBannerExtensionFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your upload file size must be &lt;= 3 MB..
+        /// </summary>
+        public static string InvalidBannerSize {
+            get {
+                return ResourceManager.GetString("InvalidBannerSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landing Page List.
+        /// </summary>
+        public static string LandingPageList {
+            get {
+                return ResourceManager.GetString("LandingPageList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Landing Pages.
         /// </summary>
         public static string LandingPages {
@@ -453,6 +507,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string ReportDetails {
             get {
                 return ResourceManager.GetString("ReportDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Sportsbook {
+            get {
+                return ResourceManager.GetString("Sportsbook", resourceCulture);
             }
         }
         

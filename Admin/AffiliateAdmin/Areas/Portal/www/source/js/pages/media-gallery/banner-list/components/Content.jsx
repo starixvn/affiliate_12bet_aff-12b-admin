@@ -5,7 +5,8 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText, globalResource } from '../libs/constants';
+import { resizeWidthHeight } from '../libs/utils';
+import { headerText, globalResource, maxWidthHeight } from '../libs/constants';
 import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl, getBannerRootUrl } from '../actions';
 
 export const Content = (props) => {
@@ -13,7 +14,7 @@ export const Content = (props) => {
     useEffect(() => {
         const { param, bannerRootUrl } = props;
 
-        !!param && props.fetchData(param);
+        param && props.fetchData(param);
         !bannerRootUrl && props.getBannerRootUrl();
     }, [props.param, props.bannerRootUrl]);
 
@@ -76,25 +77,14 @@ export const Content = (props) => {
 
     function _buildDataRow(dataItem, index) {
         const bannerId = dataItem.BannerId;
-        const fileName = dataItem.FileName;
-        const src = `${props.bannerRootUrl}/${fileName}`;
+        const fileName = htmlDecode(dataItem.FileName);
+        const src = `${props.bannerRootUrl}/${dataItem.FileName}`;
         const size = dataItem.Size;
         const strSize = size.split('x');
         const realWidth = strSize[0];
         const realHeight = strSize[1];
-        let width = Number(realWidth);
-        let height = Number(realHeight);
-
-        if (width > 500 || height > 500) {
-            if (width > height) {
-                height = 500 * height / width;
-                width = 500;
-            }
-            else {
-                width = 500 * width / height;
-                height = 500;
-            }
-        }
+        const isValidWithHeight = realWidth < maxWidthHeight && realHeight < maxWidthHeight;
+        const resizeResult = !isValidWithHeight && resizeWidthHeight(realWidth, realHeight);
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -104,9 +94,15 @@ export const Content = (props) => {
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center">
-                    <a href="javascript:;" onClick={() => props.setBannerDetailUrl({ src, height: realHeight, width: realWidth })}>
-                        <img id={`img${bannerId}`} src={src} alt="" height={height} width={width} />
-                    </a>
+                    {
+                        isValidWithHeight ? (
+                            <img id={`img${bannerId}`} src={src} alt="" height={realWidth} width={realHeight} />
+                        ) : (
+                                <a href="javascript:;" onClick={() => props.setBannerDetailUrl({ src, height: realHeight, width: realWidth })}>
+                                    <img id={`img${bannerId}`} src={src} alt="" height={resizeResult.height} width={resizeResult.width} />
+                                </a>
+                            )
+                    }
                 </Cell>
                 <Cell className="text-center text-break" title={fileName}>{fileName}</Cell>
                 <Cell className="text-center text-break" title={dataItem.Category}>{dataItem.Category}</Cell>

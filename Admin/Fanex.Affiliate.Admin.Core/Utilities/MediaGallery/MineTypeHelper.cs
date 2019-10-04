@@ -8,9 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
         private static readonly byte[][] HeaderBytes = {
             new byte[] { 71, 73, 70, 56 }, // GIF
             new byte[] { 255, 216, 255 }, // JPG
-            new byte[] { 137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82 }, // PNG
-            new byte[] { 67, 87, 83 }, // SWF
-            new byte[] { 70, 87, 83 }  // SWF
+            new byte[] { 137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82 } // PNG
         };
 
         public static bool IsValidMimeType(Stream stream)

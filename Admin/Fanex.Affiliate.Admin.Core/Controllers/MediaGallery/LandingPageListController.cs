@@ -6,15 +6,17 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.Resources;
 
-namespace Fanex.Affiliate.Admin.Core.Controllers
+namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
     [FunctionAuthorize(FunctionName = Function.Media)]
-    public class LandingPageController : BaseController
+    public class LandingPageListController : BaseController
     {
         private readonly ILandingPageService _landingPageService;
 
-        public LandingPageController(ISessionService sessionService, ILandingPageService landingPageService) : base(sessionService)
+        public LandingPageListController(ISessionService sessionService, ILandingPageService landingPageService) : base(sessionService)
         {
             _landingPageService = landingPageService;
         }
@@ -22,7 +24,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View("~/Areas/Portal/Views/LandingPage/Index.cshtml");
+            var subMenu = new List<SubMenu>
+            {
+                new SubMenu { Name = Lang.BannerList, Url = Url.Content("~/Portal/MediaGallery") },
+                new SubMenu { Name = Lang.TextList, Url = Url.Content("~/Portal/TextList") },
+                new SubMenu { Name = Lang.LandingPageList, Url = Url.Content("~/Portal/LandingPageList"), IsActive = true }
+            };
+
+            return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml", subMenu);
         }
 
         [HttpPost]

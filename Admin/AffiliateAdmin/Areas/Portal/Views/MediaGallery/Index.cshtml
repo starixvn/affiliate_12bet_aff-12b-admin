@@ -1,27 +1,28 @@
-﻿@{
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
 }
-@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+@model Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery.BannerListViewModel
 
 @{
-    var activeMenu = Model.FirstOrDefault(p => p.IsActive) ?? Model.First();
-    if (activeMenu.Url.IndexOf('?') == -1)
-    {
-        activeMenu.Url = activeMenu.Url + "?" + Request.QueryString.ToString();
-    }
+    Html.RenderPartial("~/Areas/Portal/Views/MediaGallery/_MediaGallerySubMenu.cshtml", Model.SubMenuList);
 }
 
-<div class="sub-menu-container">
-    <div class="d-inline-block">
-        <img src="~/Areas/Portal/www/dist/imgs/i_media1.png" />
-    </div>
-    <div class="d-inline-block">
-        @{
-            Html.RenderPartial("~/Areas/Portal/Views/Shared/_SubMenu.cshtml", Model);
-        }
-    </div>
-</div>
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/banner-list.css")" rel="stylesheet" />
+}
 
-<div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@activeMenu.Url"></iframe>
-</div>
+@section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            categoryList: @Html.Raw(Json.Encode(Model.CategoryList)),
+            languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+            currencyList: @Html.Raw(Json.Encode(Model.CurrencyList)),
+            imageTypeList: @Html.Raw(Json.Encode(Model.ImageTypeList)),
+            sizeList: @Html.Raw(Json.Encode(Model.SizeList)),
+            affTypeList: @Html.Raw(Json.Encode(Model.AffTypeList)),
+            paramFromHome: @Html.Raw(Json.Encode(Model.Param))
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/banner-list.js")"></script>
+}

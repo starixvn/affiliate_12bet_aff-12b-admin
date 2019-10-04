@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -18,5 +19,9 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery
         public IEnumerable<MediaGalleryFilterItem> SizeList { get; set; }
 
         public IEnumerable<AffTypeInfo> AffTypeList { get; set; }
+
+        public IEnumerable<SubMenu> SubMenuList { get; set; }
+
+        public BannerParamFromHome Param { get; set; }
     }
 }

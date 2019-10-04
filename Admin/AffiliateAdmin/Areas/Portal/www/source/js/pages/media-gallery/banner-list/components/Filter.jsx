@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { setParam, getSubCategoryCasinoList, getSubCategorySportsbookList } from '../actions';
+import { setParam, setParamFromHome, getSubCategoryCasinoList, getSubCategorySportsbookList } from '../actions';
 import { headerText, globalResource, deviceTypes, defaultDevice, Asian, Casino, Sportsbook } from '../libs/constants';
 
 export const Filter = (props) => {
-    const { categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList } = props;
+    const { categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, paramFromHome } = props;
     const [category, setCategory] = useState('');
     const [subCategory, setSubCategory] = useState('');
     const [language, setLanguage] = useState('');
     const [currency, setCurrency] = useState('');
-    const [imageType, setImageType] = useState('');
+    const [imageType, setImageType] = useState(paramFromHome && paramFromHome.ImageType ? paramFromHome.ImageType : '');
     const [size, setSize] = useState('');
     const [affType, setAffType] = useState(Asian);
     const [deviceType, setDeviceType] = useState(deviceTypes[defaultDevice]);
@@ -22,29 +22,32 @@ export const Filter = (props) => {
     const subCategoryList = hasSubCategory ? (isCategoryCasino ? subCategoryCasinoList : subCategorySportsbookList) : null;
 
     useEffect(() => {
-        const { subCategoryCasinoList, subCategorySportsbookList } = props;
+        const { subCategoryCasinoList, subCategorySportsbookList, paramFromHome } = props;
 
         !subCategoryCasinoList && props.getSubCategoryCasinoList();
         !subCategorySportsbookList && props.getSubCategorySportsbookList();
-    }, [props.subCategoryCasinoList, props.subCategorySportsbookList]);
+        if (paramFromHome && paramFromHome.IsFromHome) {
+            _handleSearch();
+            props.setParamFromHome({ IsFromHome: false });
+        }
+    }, [props.subCategoryCasinoList, props.subCategorySportsbookList, props.paramFromHome]);
 
     const _handleSearch = () => {
         const { pagingOption } = props;
-
-        const param = Object.assign({}, {
-            category,
-            subCategory,
-            language,
-            currency,
-            imageType,
-            size,
-            affType,
-            deviceType,
+        const newParam = Object.assign({}, {
+            Category: category,
+            SubCategory: subCategory,
+            Language: language,
+            Currency: currency,
+            ImageType: imageType,
+            AffType: affType,
+            DeviceType: deviceType,
+            Size: size,
             PageIndex: 1,
-            PageSize: pagingOption.PageSize
+            PageSize: pagingOption.PageSize,
         });
 
-        props.setParam(param);
+        props.setParam(newParam);
     }
 
     const _handleChangeCategory = (event) => {
@@ -153,12 +156,12 @@ export const Filter = (props) => {
     )
 }
 
-function mapStateToProps({ categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, pagingOption }) {
-    return Object.assign({}, { categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, pagingOption });
+function mapStateToProps({ categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, pagingOption, paramFromHome }) {
+    return Object.assign({}, { categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, pagingOption, paramFromHome });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, getSubCategoryCasinoList, getSubCategorySportsbookList }, dispatch);
+    return bindActionCreators({ setParam, setParamFromHome, getSubCategoryCasinoList, getSubCategorySportsbookList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

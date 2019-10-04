@@ -2,23 +2,20 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Logging;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
 {
     public static class BannerHelper
     {
         private static readonly string[] ValidExtensions = {
-            ".gif", ".jpg", ".png", ".jpeg", ".swf"
+            ".gif", ".jpg", ".png", ".jpeg"
         };
 
         public static bool IsValidExtension(string extension)
@@ -49,22 +46,14 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
                     return new ResultInfo
                     {
                         Code = Code.GeneralErrorCode,
-                        Message = "The file name already exists."
+                        Message = Lang.InvalidBannerAlready
                     };
                 }
 
                 uploadedFile.SaveAs(fullPath);
 
-                if (Path.GetExtension(uploadedFile.FileName).Equals(".swf"))
-                {
-                    SwfInfo swfInfo = new SwfInfo(fullPath);
-                    param.Size = string.Format("{0}x{1}", swfInfo.Width, swfInfo.Height);
-                }
-                else
-                {
-                    var bitmap = new Bitmap(uploadedFile.InputStream);
-                    param.Size = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
-                }
+                var bitmap = new Bitmap(uploadedFile.InputStream);
+                param.Size = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
             }
 
             return new ResultInfo();
@@ -135,7 +124,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
                 return new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "You must browse banner to update.",
+                    Message = Lang.InvalidBannerBrowser
                 };
             }
 
@@ -145,7 +134,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
                 return new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Sorry! We just support these file types : .jpg, .gif, .png, .swf, .jpeg"
+                    Message = Lang.InvalidBannerExtensionFile
                 };
             }
 
@@ -154,7 +143,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
                 return new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Your upload file size must be <= 3 MB."
+                    Message = Lang.InvalidBannerSize
                 };
             }
 

@@ -201,9 +201,8 @@
     <Compile Include="Controllers\EmailTestingController.cs" />
     <Compile Include="Controllers\ExchangeRateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LandingPageController.cs" />
-    <Compile Include="Controllers\MediaGalleryController.cs" />
-    <Compile Include="Controllers\MediaGallery\BannerListController.cs" />
+    <Compile Include="Controllers\MediaGallery\LandingPageListController.cs" />
+    <Compile Include="Controllers\MediaGallery\MediaGalleryController.cs" />
     <Compile Include="Controllers\MediaGallery\TextListController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -224,14 +223,12 @@
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
     <Compile Include="DTO\AffTypeInfo.cs" />
     <Compile Include="DTO\MediaGallery\BannerInfo.cs" />
-    <Compile Include="DTO\MediaGallery\Category.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupResultEntity.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupSetting.cs" />
     <Compile Include="DTO\CommissionGroup\Deduction.cs" />
     <Compile Include="DTO\CommissionGroup\DeductionSetting.cs" />
     <Compile Include="DTO\CommissionGroup\TierSetting.cs" />
-    <Compile Include="DTO\MediaGallery\Currency.cs" />
     <Compile Include="DTO\Customer\AffiliateInfoOnLeftPanel.cs" />
     <Compile Include="DTO\Customer\CustomerStatistics.cs" />
     <Compile Include="DTO\Customer\OnlineList.cs" />
@@ -245,8 +242,9 @@
     <Compile Include="DTO\EntityResult.cs" />
     <Compile Include="DTO\ExchangeRate\ExchangeRateInfo.cs" />
     <Compile Include="DTO\Language.cs" />
-    <Compile Include="DTO\MediaGallery\FilterTypeList.cs" />
+    <Compile Include="DTO\MediaGallery\MediaGalleryFilterItem.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\BannerParamFromHome.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteBannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteTextParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateBannerParam.cs" />
@@ -480,7 +478,6 @@
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
     <Compile Include="Utilities\MediaGallery\MineTypeHelper.cs" />
-    <Compile Include="Utilities\MediaGallery\SwfInfo.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />

@@ -36,12 +36,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpGet]
         public ActionResult Index()
         {
+            var subMenu = new List<SubMenu>
+            {
+                new SubMenu { Name = Lang.BannerList, Url = Url.Content("~/Portal/MediaGallery") },
+                new SubMenu { Name = Lang.TextList, Url = Url.Content("~/Portal/TextList"), IsActive = true },
+                new SubMenu { Name = Lang.LandingPageList, Url = Url.Content("~/Portal/LandingPageList") }
+            };
 
             var model = new TextListViewModel
             {
                 CategoryList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Category),
                 LanguageList = _languageService.GetLanguageList(),
-                CurrencyList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Currency)
+                CurrencyList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Currency),
+                SubMenuList = subMenu
             };
 
             return View("~/Areas/Portal/Views/MediaGallery/TextList.cshtml", model);

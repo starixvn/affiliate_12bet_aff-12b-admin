@@ -1,11 +1,9 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
-import axios from 'axios';
-import { resolveClientUrl } from '../../../../modules/utils';
 
 import {
-    SET_PARAM, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID, SET_BANNER_ROOT_URL,
+    SET_PARAM, SET_PARAM_FROM_HOME, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID, SET_BANNER_ROOT_URL,
     SET_SUBCATEGORY_CASINO_LIST, SET_SUBCATEGORY_SPORTSBOOK_LIST, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA
 } from './types';
 
@@ -14,6 +12,13 @@ export { toggleLoader, setPagingOption };
 export const setParam = (data) => {
     return {
         type: SET_PARAM,
+        data
+    }
+}
+
+export const setParamFromHome = (data) => {
+    return {
+        type: SET_PARAM_FROM_HOME,
         data
     }
 }
@@ -75,7 +80,7 @@ export const setSubCategorySportbooksList = (data) => {
 }
 
 export const getBannerRootUrl = () => async (dispatch) => {
-    const url = 'Portal/BannerList/GetBannerRootUrl';
+    const url = 'Portal/MediaGallery/GetBannerRootUrl';
     const response = await post(url);
 
     const data = response && response.status === 200 ? response.data : null;
@@ -84,7 +89,7 @@ export const getBannerRootUrl = () => async (dispatch) => {
 }
 
 export const getSubCategoryCasinoList = () => async (dispatch) => {
-    const url = 'Portal/BannerList/GetSubCategoryCasinoList';
+    const url = 'Portal/MediaGallery/GetSubCategoryCasinoList';
     const response = await post(url);
 
     const data = response && response.status === 200 ? response.data : null;
@@ -93,7 +98,7 @@ export const getSubCategoryCasinoList = () => async (dispatch) => {
 }
 
 export const getSubCategorySportsbookList = () => async (dispatch) => {
-    const url = 'Portal/BannerList/GetSubCategorySportsbookList';
+    const url = 'Portal/MediaGallery/GetSubCategorySportsbookList';
     const response = await post(url);
 
     const data = response && response.status === 200 ? response.data : null;
@@ -103,8 +108,8 @@ export const getSubCategorySportsbookList = () => async (dispatch) => {
 
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
-
-    const url = 'Portal/BannerList/GetBannerList';
+    
+    const url = 'Portal/MediaGallery/GetBannerList';
     const response = await post(url, param);
 
     const data = response && response.status === 200 ? response.data : null;
@@ -128,20 +133,20 @@ function _convertCheckedBanners(dataList) {
 }
 
 export const getBannerDetail = (selectedBannerId) => async () => {
-    const url = 'Portal/BannerList/GetBannerDetail';
+    const url = 'Portal/MediaGallery/GetBannerDetail';
     const response = await post(url, { selectedBannerId });
 
     return response && response.status === 200 ? response.data : {};
 }
 
 export const insertBanner = (param) => async () => {
-    const url = 'Portal/BannerList/insertBanner';
+    const url = 'Portal/MediaGallery/insertBanner';
 
     return await handleExcute(url, param);
 }
 
 export const updateBanner = (param) => async () => {
-    const url = 'Portal/BannerList/UpdateBanner';
+    const url = 'Portal/MediaGallery/UpdateBanner';
 
     return await handleExcute(url, param);
 }
@@ -158,7 +163,7 @@ const handleExcute = async (url, param) => {
 }
 
 export const deleteBanners = (BannerIdList) => async () => {
-    const url = 'Portal/BannerList/DeleteBanners';
+    const url = 'Portal/MediaGallery/DeleteBanners';
     const response = await post(url, { BannerIdList });
 
     return response && response.status === 200 ? response.data : null;

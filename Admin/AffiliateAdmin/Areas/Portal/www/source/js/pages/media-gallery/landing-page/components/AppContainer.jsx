@@ -33,7 +33,7 @@ export default class AppContainer extends Component {
 
     fetchData = async () => {
         this.toggleLoader(true);
-        const url = 'Portal/LandingPage/GetLandingPageList';
+        const url = 'Portal/LandingPageList/GetLandingPageList';
         const response = await post(url);
         if (response) {
             const selectedPages = this._convertSelectedPages(response.data);
@@ -68,7 +68,7 @@ export default class AppContainer extends Component {
         const isConfirmed = window.confirm('Are you sure to delete the selected items?');
         if (isConfirmed) {
             this.toggleLoader(true);
-            const url = 'Portal/LandingPage/DeleteLandingPage';
+            const url = 'Portal/LandingPageList/DeleteLandingPage';
             const param = {
                 PageIds: pageIdList.join(',')
             }
@@ -103,7 +103,7 @@ export default class AppContainer extends Component {
     handleSave = async (dataItem) => {
         this.toggleLoader(true);
         const param = Object.assign({}, dataItem);
-        const url = param.PageId ? 'Portal/LandingPage/UpdateLandingPage' : 'Portal/LandingPage/InsertLandingPage';
+        const url = param.PageId ? 'Portal/LandingPageList/UpdateLandingPage' : 'Portal/LandingPageList/InsertLandingPage';
 
         const response = await post(url, param);
         if (response) {
@@ -135,7 +135,7 @@ export default class AppContainer extends Component {
 
     onEdit = async (pageId) => {
         this.toggleLoader(true);
-        const url = 'Portal/LandingPage/GetLandingPageItem?pageId=' + pageId;
+        const url = 'Portal/LandingPageList/GetLandingPageItem?pageId=' + pageId;
         const response = await post(url);
         if (response) {
             this.setState({
