@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Data;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
@@ -65,7 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
         private static void AssignAffiliateInfoParam(IObjectDb objectDb, AffiliateInfoParam param)
         {
-            objectDb.AddInParameter("AffId", DbType.Int32, param.AffIdNumber);
+            objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffIdNumber);
             objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
             objectDb.AddInParameter("GroupID", DbType.Int32, param.GroupId);
             objectDb.AddInParameter("PreferredLanguage", DbType.String, param.Language);
@@ -78,14 +79,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
             objectDb.AddInParameter("IsExportExcel", DbType.Boolean, param.IsExportExcel);
 
-            objectDb.AddOutParameter("NRows", DbType.Int32, 4);
+            objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
         }
 
         private static AffiliateInfo BuildAffiliateInfoItem(IDataReader reader)
         {
             return new AffiliateInfo
             {
-                AffId = Convert.ToInt32(reader["AffId"]),
+                AffId = Convert.ToInt32(reader[Field.AffId]),
                 UserName = Convert.ToString(reader["Username"]),
                 Status = Convert.ToString(reader["Status"]),
                 FirstName = Convert.ToString(reader["FirstName"]),
@@ -110,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
         private static void AssignFavoriteParam(IObjectDb objectDb, FavoriteParam param)
         {
             objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-            objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+            objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
             objectDb.AddInParameter("IsFavorite", DbType.Boolean, param.IsFavorite);
             objectDb.AddInParameter("IP", DbType.String, param.Ip);
         }
@@ -118,7 +119,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
         private static void AssignPasswordParam(IObjectDb objectDb, PasswordParam param)
         {
             objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-            objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+            objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
             objectDb.AddInParameter("Password", DbType.String, param.Password);
             objectDb.AddInParameter("IP", DbType.String, param.Ip);
         }

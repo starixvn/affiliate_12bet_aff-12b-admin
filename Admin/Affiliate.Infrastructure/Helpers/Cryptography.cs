@@ -28,9 +28,8 @@ namespace Affiliate.Infrastructure.Helpers
         public static string CfsEnCrypt(string plainText)
         {
             var encryptedText = string.Empty;
-            var rgbIV = new byte[0];
             var rgbKey = new byte[] { 0x21, 0x63, 0x54, 0x5a, 0x91, 0xac, 110, 0xcc };
-            rgbIV = Encoding.UTF8.GetBytes(CfsKey);
+            var rgbIV = Encoding.UTF8.GetBytes(CfsKey);
             using (var provider = new DESCryptoServiceProvider())
             {
                 var bytes = Encoding.UTF8.GetBytes(plainText);
@@ -109,28 +108,28 @@ namespace Affiliate.Infrastructure.Helpers
         private static string[] GetDecryptPwd(string sourceString, string searchString)
         {
             int length = 1;
-            string str = string.Empty;
-            string str2 = string.Empty;
-            string str3 = string.Empty;
+            var str = new StringBuilder();
+            var str2 = new StringBuilder();
+            var str3 = new StringBuilder();
             string str4;
 
             for (int i = sourceString.Length - 1; i >= 0; i--)
             {
-                str = str + sourceString.Substring(i, 1);
+                str = str.Append(sourceString.Substring(i, 1));
             }
 
             for (int j = searchString.Length - 1; j >= 0; j--)
             {
-                str2 = str2 + searchString.Substring(j, 1);
+                str2 = str2.Append(searchString.Substring(j, 1));
             }
 
-            if (str.Substring(1, 2) != "==")
+            if (str.ToString(1, 2) != "==")
             {
-                if (str.Substring(1, 1) != "=")
+                if (str.ToString(1, 1) != "=")
                 {
                     for (int n = 1; n <= str.Length; n++)
                     {
-                        if (str.Substring(n, 1) == "=")
+                        if (str.ToString(n, 1) == "=")
                         {
                             break;
                         }
@@ -138,19 +137,19 @@ namespace Affiliate.Infrastructure.Helpers
                         length++;
                     }
 
-                    str4 = str.Substring(0, length);
+                    str4 = str.ToString(0, length);
                     for (int num9 = str4.Length; num9 > 1; num9--)
                     {
-                        str3 = str3 + str4.Substring(num9 - 1, 1);
+                        str3 = str3.Append(str4.Substring(num9 - 1, 1));
                     }
 
-                    return new[] { sourceString.Substring(0, sourceString.Length - length), str3 };
+                    return new[] { sourceString.Substring(0, sourceString.Length - length), str3.ToString() };
                 }
 
                 length++;
                 for (int m = 2; m <= str.Length; m++)
                 {
-                    if (str.Substring(m, 1) == "=")
+                    if (str.ToString(m, 1) == "=")
                     {
                         break;
                     }
@@ -163,7 +162,7 @@ namespace Affiliate.Infrastructure.Helpers
                 length += 2;
                 for (int num4 = 3; num4 <= str.Length; num4++)
                 {
-                    if (str.Substring(num4, 1) == "=")
+                    if (str.ToString(num4, 1) == "=")
                     {
                         break;
                     }
@@ -171,22 +170,22 @@ namespace Affiliate.Infrastructure.Helpers
                     length++;
                 }
 
-                str4 = str.Substring(0, length);
+                str4 = str.ToString(0, length);
                 for (int num5 = str4.Length; num5 > 1; num5--)
                 {
-                    str3 = str3 + str4.Substring(num5 - 1, 1);
+                    str3 = str3.Append(str4.Substring(num5 - 1, 1));
                 }
 
-                return new[] { sourceString.Substring(0, sourceString.Length - length), str3 };
+                return new[] { sourceString.Substring(0, sourceString.Length - length), str3.ToString() };
             }
 
-            str4 = str.Substring(0, length);
+            str4 = str.ToString(0, length);
             for (int k = str4.Length; k > 1; k--)
             {
-                str3 = str3 + str4.Substring(k - 1, 1);
+                str3 = str3.Append(str4.Substring(k - 1, 1));
             }
 
-            return new[] { sourceString.Substring(0, sourceString.Length - length), str3 };
+            return new[] { sourceString.Substring(0, sourceString.Length - length), str3.ToString() };
         }
 
 

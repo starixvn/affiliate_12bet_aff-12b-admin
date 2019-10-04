@@ -9,6 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 {
     public static class CommGroupValidationHelper
     {
+        private const string brElementHtml = "<br />";
         public static ResultInfo ValidatePlatformFeeList(IProductRepository productRepository, IEnumerable<DeductionSetting> platformFeeList)
         {
             var result = new ResultInfo
@@ -42,28 +43,28 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
             if (tierSettingList == null || !tierSettingList.Any())
             {
                 result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "Tier Setting must have at least 1 tier!");
+                result.Message = string.Join(result.Message + brElementHtml, "Tier Setting must have at least 1 tier!");
                 return result;
             }
 
             if (!tierSettingList.Any(item => (item.MaxAmount == Validation.InfinityAmount && item.MaxQm == Validation.InfinityQualifiedMember)))
             {
                 result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "Last Tier Setting must have maximum value=∞!");
+                result.Message = string.Join(result.Message + brElementHtml, "Last Tier Setting must have maximum value=∞!");
                 return result;
             }
 
             if (tierSettingList.Any(item => item.MinAmount > item.MaxAmount))
             {
                 result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "Max Amount must be greater than or equal to Min Amount!");
+                result.Message = string.Join(result.Message + brElementHtml, "Max Amount must be greater than or equal to Min Amount!");
                 return result;
             }
 
             if (tierSettingList.Any(item => item.MinQm > item.MaxQm))
             {
                 result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + "<br />", "Max QM must be greater than or equal to Min QM!");
+                result.Message = string.Join(result.Message + brElementHtml, "Max QM must be greater than or equal to Min QM!");
             }
 
             return result;

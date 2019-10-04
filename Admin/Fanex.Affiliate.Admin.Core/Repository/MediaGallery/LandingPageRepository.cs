@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Data;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
@@ -23,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     {
                         result.Add(new LandingPage
                         {
-                            PageId = Convert.ToInt32(reader["PageId"]),
+                            PageId = Convert.ToInt32(reader[Field.PageId]),
                             PageName = Convert.ToString(reader["PageName"]),
                             PageCode = Convert.ToString(reader["PageCode"])
                         });
@@ -41,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("PageId", DbType.Int32, pageId);
+                objectDb.AddInParameter(Field.PageId, DbType.Int32, pageId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -49,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     {
                         result = new LandingPage
                         {
-                            PageId = Convert.ToInt32(reader["PageId"]),
+                            PageId = Convert.ToInt32(reader[Field.PageId]),
                             PageName = Convert.ToString(reader["PageName"]),
                             PageCode = Convert.ToString(reader["PageCode"])
                         };
@@ -82,7 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
-                objectDb.AddInParameter("PageId", DbType.Int32, param.PageId);
+                objectDb.AddInParameter(Field.PageId, DbType.Int32, param.PageId);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();

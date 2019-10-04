@@ -12,7 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.ExchangeRate
     {
         public IEnumerable<ExchangeRateInfo> GetExchangeRateList(DateTime date)
         {
-            string SpKey = "Aff_ExchangeSel";
+            const string SpKey = "Aff_ExchangeSel";
             var result = new List<ExchangeRateInfo>();
 
             using (var objectDb = GetObjectDb(SpKey))
@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.ExchangeRate
 
         public ResultInfo UpdateExchangeRate(ExchangeRateParam param)
         {
-            string SpKey = "Aff_ExchangeUpdate";
+            const string SpKey = "Aff_ExchangeUpdate";
 
             using (var objectDb = GetObjectDb(SpKey))
             {

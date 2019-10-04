@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             var affiliateInfo = _customerLeftPanelRepository.GetAffiliateInfoOnLeftPanel(affUserName);
             if (affiliateInfo != null)
             {
-                affiliateInfo.AffLink = GenerateUrl(affUserName, affiliateInfo.AffType, accId, accOnId, sessionId);
+                affiliateInfo.AffLink = GenerateUrl(affUserName, affiliateInfo.AffType, accId, accOnId, sessionId).ToString();
             }
             return affiliateInfo;
         }
@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             _emailService.SendDisapprovedEmail(emailParam);
         }
 
-        private static string GenerateUrl(string custName, int affType, string accId, string accOnId, string sessionId)
+        private static Uri GenerateUrl(string custName, int affType, string accId, string accOnId, string sessionId)
         {
             var rndStr = Encryption.RandomString(6);
             var accKey = GenerateSHA512String(sessionId + rndStr);
@@ -96,7 +96,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             url += "&custName=" + custName;
             url += "&accId=" + accId;
             url += "&accOnId=" + accOnId;
-            return url;
+            return new Uri(url, UriKind.Absolute);
         }
 
         private static string GenerateSHA512String(string inputString)

@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.Repository;
 using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
@@ -13,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
     {
         public EntityResult<TextInfo> GetTextList(TextParam param)
         {
-            string SpKey = "Aff_TextSel_1";
+            const string SpKey = "Aff_TextSel_1";
             var result = new EntityResult<TextInfo>();
             var dataList = new List<TextInfo>();
 
@@ -26,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
 
-                objectDb.AddOutParameter("NRows", DbType.Int32, 4);
+                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -46,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public TextInfo GetTextDetail(int selectedTextId)
         {
-            string SpKey = "Aff_TextSelDetail_1";
+            const string SpKey = "Aff_TextSelDetail_1";
             TextInfo item = null;
 
             using (var objectDb = GetObjectDb(SpKey))
@@ -71,7 +72,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddOutParameter("bannerid", DbType.Int32, 4);
+                objectDb.AddOutParameter("bannerid", DbType.Int32, Size.SizeOfInt);
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();

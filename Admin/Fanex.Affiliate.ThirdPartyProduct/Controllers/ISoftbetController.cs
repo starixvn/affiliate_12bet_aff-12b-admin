@@ -23,6 +23,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
     public class ISoftbetController : Controller
     {
         private const string SuccessStatus = "success";
+        private const string ContentType = "application/json";
 
         private readonly IISoftbetService _isoftbetService;
 
@@ -118,7 +119,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                     var status = Convert.ToString(jObject["status"]);
                     if (status != SuccessStatus)
                     {
-                        return Content(JsonConvert.SerializeObject(new { Message = $"Status: {status}\n" + item.JsonData }), "application/json");
+                        return Content(JsonConvert.SerializeObject(new { Message = $"Status: {status}\n" + item.JsonData }), ContentType);
                     }
 
                     var summary = ISoftbetParser.FromJsonObject(jObject);
@@ -127,7 +128,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             }
             catch (Exception ex)
             {
-                return Content(JsonConvert.SerializeObject(ex), "application/json");
+                return Content(JsonConvert.SerializeObject(ex), ContentType);
             }
 
             param.UserName = param.UserName?.Trim();
@@ -145,7 +146,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                     Turnover = resultList.Sum(p => p.Turnover),
                     Winloss = resultList.Sum(p => p.Winloss)
                 }
-            }), "application/json");
+            }), ContentType);
         }
 
         private IList<ISoftbetReport> GetResultDataList(List<ISoftbetBetHistory> betHistoryList)
@@ -181,7 +182,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 LogMessage = log,
                 RawData = rawData,
                 ConvertedData = convertedData
-            }), "application/json");
+            }), ContentType);
         }
 
         private ISoftbetEntryParam CreateParam(ISoftbetRequestParam param)

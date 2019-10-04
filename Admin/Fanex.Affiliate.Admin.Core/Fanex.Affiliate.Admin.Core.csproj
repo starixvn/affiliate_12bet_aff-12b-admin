@@ -179,10 +179,12 @@
     <Compile Include="Constants\Code.cs" />
     <Compile Include="Constants\CommGroupErrorMessage.cs" />
     <Compile Include="Constants\DeductionId.cs" />
+    <Compile Include="Constants\Field.cs" />
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
     <Compile Include="Constants\Money.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />
+    <Compile Include="Constants\Size.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Constants\UserPanelConstant.cs" />
     <Compile Include="Constants\Validation.cs" />

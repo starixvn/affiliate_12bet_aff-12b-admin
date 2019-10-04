@@ -5,5 +5,7 @@
         public const int GeneralErrorCode = -999;
         public const int MonthlyWinlost = 201;
         public const int Transaction = 0;
+        public const int ErrdCodeSessionExpired = 401;
+        public const int ErrdCodeAccessDenied = 401;
     }
 }

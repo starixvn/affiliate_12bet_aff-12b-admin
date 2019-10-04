@@ -32,9 +32,12 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         {
             var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
 
-            return (appSetting != null && appSetting.IsProduction) ?
-                request.Url.Scheme :
-                (IsSecure(request) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp);
+            if(appSetting != null && appSetting.IsProduction)
+            {
+                return request.Url.Scheme;
+            }
+
+            return IsSecure(request) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
         }
 
         private static bool IsSecure(HttpRequestBase request)

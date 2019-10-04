@@ -4,6 +4,7 @@ using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
@@ -36,25 +37,25 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("GroupId", DbType.Int32, param.GroupId);
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("GroupName", DbType.String, param.GroupName);
+                objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.GroupId);
+                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
+                objectDb.AddInParameter(Field.GroupName, DbType.String, param.GroupName);
                 objectDb.AddInParameter("Description", DbType.String, param.Description);
                 objectDb.AddInParameter("DeductionList", DbType.Xml, param.DeductionList);
                 objectDb.AddInParameter("TierList", DbType.Xml, param.TierList);
                 objectDb.AddInParameter("QMTurnover", DbType.Decimal, param.QmTurnover);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
-                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
-                objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
+                objectDb.AddOutParameter(Field.ErrCode, DbType.Int32, Size.SizeOfInt);
+                objectDb.AddOutParameter(Field.ErrMsg, DbType.String, Size.SizeOfString);
 
                 objectDb.ExecuteNonQuery();
 
-                var code = objectDb.GetParameterValue("ErrCode");
+                var code = objectDb.GetParameterValue(Field.ErrCode);
 
                 return new ResultInfo
                 {
                     Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
-                    Message = objectDb.GetParameterValue("ErrMsg").ToString()
+                    Message = objectDb.GetParameterValue(Field.ErrMsg).ToString()
                 };
             }
         }
@@ -65,25 +66,25 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("GroupId", DbType.Int32, param.GroupId);
-                objectDb.AddInParameter("GroupName", DbType.String, param.GroupName);
+                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
+                objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.GroupId);
+                objectDb.AddInParameter(Field.GroupName, DbType.String, param.GroupName);
                 objectDb.AddInParameter("Description", DbType.String, param.Description);
                 objectDb.AddInParameter("DeductionList", DbType.Xml, param.DeductionList);
                 objectDb.AddInParameter("TierList", DbType.Xml, param.TierList);
                 objectDb.AddInParameter("QMTurnover", DbType.Decimal, param.QmTurnover);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
-                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
-                objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
+                objectDb.AddOutParameter(Field.ErrCode, DbType.Int32, Size.SizeOfInt);
+                objectDb.AddOutParameter(Field.ErrMsg, DbType.String, Size.SizeOfString);
 
                 objectDb.ExecuteNonQuery();
 
-                var code = objectDb.GetParameterValue("ErrCode");
+                var code = objectDb.GetParameterValue(Field.ErrCode);
 
                 return new ResultInfo
                 {
                     Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
-                    Message = objectDb.GetParameterValue("ErrMsg").ToString()
+                    Message = objectDb.GetParameterValue(Field.ErrMsg).ToString()
                 };
             }
         }
@@ -94,20 +95,20 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("GroupId", DbType.Int32, param.GroupId);
+                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
+                objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.GroupId);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
-                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
-                objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
+                objectDb.AddOutParameter(Field.ErrCode, DbType.Int32, Size.SizeOfInt);
+                objectDb.AddOutParameter(Field.ErrMsg, DbType.String, Size.SizeOfString);
 
                 objectDb.ExecuteNonQuery();
 
-                var code = objectDb.GetParameterValue("ErrCode");
+                var code = objectDb.GetParameterValue(Field.ErrCode);
 
                 return new ResultInfo
                 {
                     Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
-                    Message = objectDb.GetParameterValue("ErrMsg").ToString()
+                    Message = objectDb.GetParameterValue(Field.ErrMsg).ToString()
                 };
             }
         }
@@ -130,7 +131,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddOutParameter("GroupId", DbType.Int32, 4);
+                objectDb.AddOutParameter(Field.GroupId, DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -138,12 +139,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                     {
                         result.Add(new SelectItem
                         {
-                            Id = reader["GroupId"].ToString(),
-                            Name = reader["GroupName"].ToString()
+                            Id = reader[Field.GroupId].ToString(),
+                            Name = reader[Field.GroupName].ToString()
                         });
                     }
                 }
-                var groupId = objectDb.GetParameterValue("GroupId");
+                var groupId = objectDb.GetParameterValue(Field.GroupId);
                 param.GroupId = groupId == DBNull.Value ? 0 : Convert.ToInt32(groupId);
             }
 
@@ -156,21 +157,21 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
                 objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("GroupId", DbType.Int32, param.GroupId);
+                objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.GroupId);
                 objectDb.AddInParameter("Ip", DbType.String, param.Ip);
-                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
-                objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
+                objectDb.AddOutParameter(Field.ErrCode, DbType.Int32, Size.SizeOfInt);
+                objectDb.AddOutParameter(Field.ErrMsg, DbType.String, Size.SizeOfString);
 
                 objectDb.ExecuteNonQuery();
 
-                var code = objectDb.GetParameterValue("ErrCode");
+                var code = objectDb.GetParameterValue(Field.ErrCode);
 
                 return new ResultInfo
                 {
                     Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
-                    Message = objectDb.GetParameterValue("ErrMsg").ToString()
+                    Message = objectDb.GetParameterValue(Field.ErrMsg).ToString()
                 };
             }
         }
@@ -183,8 +184,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 commGroupList.Add(new CommGroup
                 {
                     RowIdx = Convert.ToInt32(reader["RowIDX"]),
-                    GroupId = Convert.ToInt32(reader["GroupId"]),
-                    GroupName = reader["GroupName"].ToString(),
+                    GroupId = Convert.ToInt32(reader[Field.GroupId]),
+                    GroupName = reader[Field.GroupName].ToString(),
                     CreatedDate = Convert.ToDateTime(reader["CreatedDate"]),
                     Creator = reader["Creator"].ToString(),
                     Description = reader["Description"].ToString(),
@@ -206,7 +207,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 {
                     tierSettingList.Add(new TierSetting
                     {
-                        GroupId = Convert.ToInt32(reader["GroupId"]),
+                        GroupId = Convert.ToInt32(reader[Field.GroupId]),
                         TierId = Convert.ToInt32(reader["TierId"]),
                         MinAmount = Convert.ToDecimal(reader["MinAmount"]),
                         MaxAmount = Convert.ToDecimal(reader["MaxAmount"]),
@@ -229,7 +230,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 {
                     deductionSettingList.Add(new DeductionSetting
                     {
-                        GroupId = Convert.ToInt32(reader["GroupId"]),
+                        GroupId = Convert.ToInt32(reader[Field.GroupId]),
                         DeductionId = Convert.ToInt32(reader["DeductionId"]),
                         DeductionName = reader["DeductionName"].ToString(),
                         ProductIds = reader["ProductIds"].ToString(),

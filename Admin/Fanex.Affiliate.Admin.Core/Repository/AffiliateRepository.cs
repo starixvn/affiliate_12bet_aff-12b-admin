@@ -3,6 +3,7 @@ using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
@@ -41,8 +42,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 objectDb.AddInParameter("Password", DbType.String, param.Password);
                 objectDb.AddInParameter("Status", DbType.String, param.Status);
                 objectDb.AddInParameter("Ip", DbType.String, param.Ip);
-                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
-                objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
+                objectDb.AddOutParameter("ErrCode", DbType.Int32, Size.SizeOfInt);
+                objectDb.AddOutParameter("ErrMsg", DbType.String, Size.SizeOfString);
 
                 objectDb.ExecuteNonQuery();
 

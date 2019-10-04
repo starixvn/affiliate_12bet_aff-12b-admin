@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
@@ -27,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
 
-                objectDb.AddOutParameter("NRows", DbType.Int32, 4);
+                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Payment
 {
@@ -20,14 +21,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
             {
                 objectDb.AddInParameter("SearchById", DbType.Int32, param.SearchBy);
                 objectDb.AddInParameter("Username", DbType.String, param.Username);
-                objectDb.AddInParameter("Status", DbType.String, param.Status);
+                objectDb.AddInParameter(Field.Status, DbType.String, param.Status);
                 objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
                 objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
                 objectDb.AddInParameter("IsGetAll", DbType.Boolean, param.IsGetAll);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
 
-                objectDb.AddOutParameter("NRows", DbType.Int32, 4);
+                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -37,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
                         {
                             TransId = Convert.ToInt64(reader["Transid"]),
                             TransDate = Convert.ToDateTime(reader["Transdate"]),
-                            Status = Convert.ToString(reader["Status"]),
+                            Status = Convert.ToString(reader[Field.Status]),
                             AffName = Convert.ToString(reader["Username"]),
                             Amount = Convert.ToDecimal(reader["Amount"]),
                             CompletedDate = Convert.ToDateTime(reader["Completeddate"]),
@@ -78,7 +79,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
                             LastName = Convert.ToString(reader["lastname"]),
                             PaymentMethod = Convert.ToString(reader["PreferredPayment"]),
                             Amount = Convert.ToDecimal(reader["Amount"]),
-                            Status = Convert.ToString(reader["Status"]),
+                            Status = Convert.ToString(reader[Field.Status]),
                             PlayerUsername = Convert.ToString(reader["Username2"]),
                             CompletedDate = Convert.ToDateTime(reader["Completeddate"]),
                             Creator = Convert.ToString(reader["adminname"]),
@@ -98,7 +99,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Status", DbType.String, param.Status);
+                objectDb.AddInParameter(Field.Status, DbType.String, param.Status);
                 objectDb.AddInParameter("TransID", DbType.Int64, param.TransId);
                 objectDb.AddInParameter("AdminDesc", DbType.String, param.AdminDesc);
                 objectDb.AddInParameter("AffDesc", DbType.String, param.AffDesc);

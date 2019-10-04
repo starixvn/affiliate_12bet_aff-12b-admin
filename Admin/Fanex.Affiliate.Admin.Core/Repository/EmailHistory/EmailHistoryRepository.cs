@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO.EmailHistory;
 using Fanex.Affiliate.Admin.Core.DTO;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
 {
@@ -67,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
 
-                objectDb.AddOutParameter("NRows", DbType.Int32, 4);
+                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

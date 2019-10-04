@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Repository;
 using System.Data;
 using Fanex.Data;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Message
 {
@@ -13,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
     {
         public EntityResult<MessageInfo> GetMessageList(MessageParam param)
         {
-            string SpKey = "Aff_HotNewsSel";
+            const string SpKey = "Aff_HotNewsSel";
             var result = new EntityResult<MessageInfo>();
             var dataList = new List<MessageInfo>();
 
@@ -25,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
 
-                objectDb.AddOutParameter("NRows", DbType.Int32, 4);
+                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -54,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
         public MessageDetail GetMessageDetail(int selectedMessageId)
         {
-            string SpKey = "Aff_HotNewsDetail";
+            const string SpKey = "Aff_HotNewsDetail";
             MessageDetail item = null;
 
             using (var objectDb = GetObjectDb(SpKey))
@@ -92,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddOutParameter("id", DbType.Int32, 4);
+                objectDb.AddOutParameter("id", DbType.Int32, Size.SizeOfInt);
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();

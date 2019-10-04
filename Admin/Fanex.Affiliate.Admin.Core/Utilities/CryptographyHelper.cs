@@ -6,6 +6,11 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 {
     public static class CryptographyHelper
     {
+        private const int num = 30;
+        private const int twenty = 20;
+        private const int eightTeen = 18;
+        private const int twentyOne = 21;
+
         public static string Encrypt(string inputString)
         {
             return CfsEnCode(inputString);
@@ -13,7 +18,6 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
         private static string CfsEnCode(string codeStr)
         {
-            int num = 30;
             int num2 = num - codeStr.Length;
 
             var codeBuilder = new StringBuilder();
@@ -22,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             {
                 for (int i = 1; i <= num2; i++)
                 {
-                    codeBuilder.Append(Convert.ToChar(21));
+                    codeBuilder.Append(Convert.ToChar(twentyOne));
                 }
             }
 
@@ -43,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
             var text = textBuilder.ToString();
             var text2 = new StringBuilder();
-            for (int l = 20; l <= text.Length - 18; l += 2)
+            for (int l = twenty; l <= text.Length - eightTeen; l += 2)
             {
                 text2.Append(text.Substring(l - 1, 1));
             }

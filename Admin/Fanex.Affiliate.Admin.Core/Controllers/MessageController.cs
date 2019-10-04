@@ -16,6 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [FunctionAuthorize(FunctionName = Function.HotNews)]
     public class MessageController : BaseController
     {
+        private const int threeMilliSecond = 3;
         private readonly IMessageService _messageSevice;
 
         public MessageController(
@@ -45,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 }
                 else
                 {
-                    param.ToDate = param.ToDate.Value.AddDays(1).AddMilliseconds(-3);
+                    param.ToDate = param.ToDate.Value.AddDays(1).AddMilliseconds(-threeMilliSecond);
                 }
 
                 return new JsonNetResult

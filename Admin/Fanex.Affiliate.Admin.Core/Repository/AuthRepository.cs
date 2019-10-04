@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
@@ -9,10 +10,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository
     {
         public IList<UserPermission> GetPermissionList(int userId)
         {
-            var spKey = "Aff_Admin_PolicySel";
+            const string SpKey = "Aff_Admin_PolicySel";
             var result = new List<UserPermission>();
 
-            using (var objectDb = GetObjectDb(spKey))
+            using (var objectDb = GetObjectDb(SpKey))
             {
                 using (var reader = objectDb.ExecuteReader(new { userId }))
                 {
@@ -32,12 +33,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
         public bool ReCheckin(int onUserId)
         {
-            var spKey = "Aff_Recheckin";
+            const string SpKey = "Aff_Recheckin";
 
-            using (var objectDb = GetObjectDb(spKey))
+            using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("on_userid", DbType.Int32, onUserId);
-                objectDb.AddOutParameter("iskickedout", DbType.Int32, 4);
+                objectDb.AddOutParameter("iskickedout", DbType.Int32, Size.SizeOfInt);
                 objectDb.ExecuteNonQuery();
                 var isKickedOut = objectDb.GetParameterValue("iskickedout");
 

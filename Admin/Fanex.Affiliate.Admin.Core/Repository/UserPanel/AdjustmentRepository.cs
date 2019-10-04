@@ -2,6 +2,7 @@
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using System.Data;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
@@ -15,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             {
                 objectDb.AddInParameter("AffID", DbType.Int32, affId);
 
-                objectDb.AddOutParameter("BalBroughtForward", DbType.Currency, 8);
+                objectDb.AddOutParameter("BalBroughtForward", DbType.Currency, Size.SizeOfCurrency);
 
                 objectDb.ExecuteNonQuery();
 
