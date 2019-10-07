@@ -6,7 +6,6 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
@@ -42,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         }
 
         [Fact]
-        public void GetMessageList_WhenCall_ReturnNullData()
+        public void GetTextList_WhenCall_ReturnNullData()
         {
             // Arrange
             var service = new Mock<TextListService> { CallBase = true };
@@ -56,14 +55,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 
             // Action
             var result = service.Object.GetTextList(new TextParam());
-            var messageInfo = result.MainData.FirstOrDefault();
 
             // Assert
             Assert.Equal(0, result.TotalItem);
         }
 
         [Fact]
-        public void GetMessageDetail_WhenCall_ReturnCorrectData()
+        public void GetTextDetail_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var service = new Mock<TextListService> { CallBase = true };
@@ -83,7 +81,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         }
 
         [Fact]
-        public void GetMessageDetail_WhenCall_ReturnNullData()
+        public void GetTextDetail_WhenCall_ReturnNullData()
         {
             // Arrange
             var service = new Mock<TextListService> { CallBase = true };
@@ -102,7 +100,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         }
 
         [Fact]
-        public void InsertMessage_WhenCallWithValidParam_InsertSuccessfully()
+        public void InsertText_WhenCallWithValidParam_InsertSuccessfully()
         {
             // Arrange
             var service = new Mock<TextListService> { CallBase = true };
@@ -120,10 +118,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         }
 
         [Fact]
-        public void InsertMessage_WhenCallWithInvalidParam_UpdateIsFailed()
+        public void InsertText_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
-            var message = "Update is failed.";
+            var message = "Insert Text is failed.";
             var service = new Mock<TextListService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
@@ -140,7 +138,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         }
 
         [Fact]
-        public void UpdateMessage_WhenCallWithValidParam_InsertSuccessfully()
+        public void UpdateText_WhenCallWithValidParam_InsertSuccessfully()
         {
             // Arrange
             var service = new Mock<TextListService> { CallBase = true };
@@ -158,10 +156,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         }
 
         [Fact]
-        public void UpdateMessage_WhenCallWithInvalidParam_UpdateIsFailed()
+        public void UpdateText_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
-            var message = "Update is failed.";
+            var message = "Update Text is failed.";
             var service = new Mock<TextListService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
@@ -178,7 +176,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         }
 
         [Fact]
-        public void DeleteMessages_WhenCallWithValidParam_InsertSuccessfully()
+        public void DeleteTexts_WhenCallWithValidParam_InsertSuccessfully()
         {
             // Arrange
             var service = new Mock<TextListService> { CallBase = true };
@@ -196,10 +194,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         }
 
         [Fact]
-        public void DeleteMessages_WhenCallWithInvalidParam_UpdateIsFailed()
+        public void DeleteTexts_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
-            var message = "Update is failed.";
+            var message = "Delete Text(s) is failed.";
             var service = new Mock<TextListService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);

@@ -25,14 +25,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public EntityResult<BannerInfo> GetBannerList(BannerParam param)
         {
+            var a = string.Compare(param.Category, Lang.Casino, StringComparison.CurrentCultureIgnoreCase);
             if ((string.Compare(param.Category, Lang.Casino, StringComparison.CurrentCultureIgnoreCase) == 0
-                || string.Compare(param.Category, Lang.Sportsbook, StringComparison.CurrentCultureIgnoreCase) == 0) && string.IsNullOrEmpty(param.SubCategory))
+                || string.Compare(param.Category, Lang.Sportsbook, StringComparison.CurrentCultureIgnoreCase) == 0))
             {
-                return _bannerListRepository.GetBannerList(param, "Aff_BannerSelByParentCate");
-            }
+                if (string.IsNullOrEmpty(param.SubCategory))
+                {
+                    return _bannerListRepository.GetBannerList(param, "Aff_BannerSelByParentCate");
+                }
 
-            if (!string.IsNullOrEmpty(param.SubCategory))
-            {
                 param.Category = param.SubCategory;
             }
 
@@ -86,22 +87,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 return CreateErrorResult();
             }
 
-            var newFolder = GetNewFolder(param);
-            var oldBannerInfo = _bannerListRepository.GetBannerDetail(param.BannerId);
-            var oldFilePath = oldBannerInfo.FileName;
-
-            if (param.File != null && !string.IsNullOrEmpty(param.FileName))
+            if (!string.IsNullOrEmpty(param.FileName) && !BannerHelper.IsValidExtension(Path.GetExtension(param.FileName)))
             {
-                if (!BannerHelper.IsValidExtension(Path.GetExtension(param.FileName)))
-                {
-                    return CreateErrorResult();
-                }
-
-                return UpdateBannerByUploadNewFile(param, oldFilePath, newFolder);
+                return CreateErrorResult();
             }
 
+            var oldBannerInfo = _bannerListRepository.GetBannerDetail(param.BannerId);
+            var oldFilePath = oldBannerInfo.FileName;
+            var newFolder = GetNewFolder(param);
             param.Size = oldBannerInfo.Size;
-            return UpdateBannerByMoveFile(param, oldFilePath, newFolder);
+
+            return param.File != null ? UpdateBannerByUploadNewFile(param, oldFilePath, newFolder) : UpdateBannerByMoveFile(param, oldFilePath, newFolder);
         }
 
         private ResultInfo ValidateFilePath(string newFolder, string newFilePath)
@@ -174,7 +170,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             {
                 DeleteFiles(fileNameList);
             }
-            return new ResultInfo();
+            return result;
         }
 
         private List<string> GetFileNameList(string bannerIds)

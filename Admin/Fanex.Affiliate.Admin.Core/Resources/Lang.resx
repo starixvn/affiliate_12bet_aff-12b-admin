@@ -382,7 +382,7 @@
     <value>Sorry! We just support these file types : .jpg, .gif, .png, .jpeg</value>
   </data>
   <data name="InvalidBannerBrowser" xml:space="preserve">
-    <value>You must browse banner to update.</value>
+    <value>You must browse banner to upload.</value>
   </data>
   <data name="InvalidBannerSize" xml:space="preserve">
     <value>Your upload file size must be &lt;= 3 MB.</value>
@@ -391,11 +391,11 @@
     <value>The file name already exists.</value>
   </data>
   <data name="Casino" xml:space="preserve">
-    <value></value>
-    <comment>Casino</comment>
+    <value>Casino</value>
+    
   </data>
   <data name="Sportsbook" xml:space="preserve">
-    <value></value>
-    <comment>Sportsbook</comment>
+    <value>Sportsbook</value>
+    
   </data>
 </root>

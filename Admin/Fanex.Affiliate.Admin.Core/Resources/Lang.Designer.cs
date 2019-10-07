@@ -142,7 +142,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Casino.
         /// </summary>
         public static string Casino {
             get {
@@ -367,7 +367,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must browse banner to update..
+        ///   Looks up a localized string similar to You must browse banner to upload..
         /// </summary>
         public static string InvalidBannerBrowser {
             get {
@@ -511,7 +511,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Sportsbook.
         /// </summary>
         public static string Sportsbook {
             get {

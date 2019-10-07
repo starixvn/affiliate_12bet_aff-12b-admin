@@ -210,7 +210,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 BannerId = param.BannerId,
                 File = param.File,
-                FileName = param.File != null ? Server.HtmlEncode(param.File.FileName) : null,
+                FileName = param.File != null ? Server.HtmlEncode(param.File.FileName) : "",
                 InputFileName = Server.HtmlEncode(param.InputFileName?.Trim()),
                 Category = Server.HtmlEncode(param.Category),
                 SubCategory = Server.HtmlEncode(param.SubCategory),

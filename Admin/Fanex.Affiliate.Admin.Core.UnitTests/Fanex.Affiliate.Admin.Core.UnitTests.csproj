@@ -139,17 +139,20 @@
     <Compile Include="Controllers\Affiliate\CommissionGroupControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />
     <Compile Include="Controllers\ExchangeRate\ExchangeRateControllerTest.cs" />
+    <Compile Include="Controllers\MediaGallery\MediaGalleryControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\TextListControllerTest.cs" />
     <Compile Include="Controllers\Message\MessageControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CommissionGroupRepositoryTest.cs" />
     <Compile Include="Repository\LanguageRepositoryTest.cs" />
+    <Compile Include="Repository\MediaGalleryRepository\BannerListReppositoryTest.cs" />
     <Compile Include="Repository\ProductRepositoryTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupAssignmentServiceTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupCommonServiceTest.cs" />
     <Compile Include="Services\CommissionGroupServiceTest.cs" />
     <Compile Include="Services\LanguageServiceTest.cs" />
     <Compile Include="Services\ExchangeRate\ExchangeRateServiceTest.cs" />
+    <Compile Include="Services\MediaGallery\BannerListServiceTest.cs" />
     <Compile Include="Services\MediaGallery\CommonMediaGalleryServiceTest.cs" />
     <Compile Include="Services\MediaGallery\TextListServiceTest.cs" />
     <Compile Include="Services\Message\MessageServiceTest.cs" />
@@ -178,6 +181,7 @@
   <ItemGroup>
     <Analyzer Include="..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

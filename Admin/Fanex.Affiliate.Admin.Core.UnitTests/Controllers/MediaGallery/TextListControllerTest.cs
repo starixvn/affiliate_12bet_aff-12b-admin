@@ -30,6 +30,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
             var controller = CreateTextListController(commonMediaGalleryService: commonMediaGalleryService.Object, languageService: languageService.Object);
 
+            var urlHelperMock = new Mock<UrlHelper>();
+            urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/TextList");
+
+            controller.Url = urlHelperMock.Object;
             // Action
             var viewResult = controller.Index() as ViewResult;
             var viewName = viewResult.ViewName;
@@ -63,7 +67,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         }
 
         [Fact]
-        public void GetMessageList_WhenCallWithInvalidParam_ReturnEmptyData()
+        public void GetTextList_WhenCallWithInvalidParam_ReturnEmptyData()
         {
             // Arrange
             var controller = CreateTextListController();

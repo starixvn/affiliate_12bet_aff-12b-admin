@@ -153,7 +153,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
         public void InsertMessage_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
-            var message = "Update is failed.";
+            var message = "Insert Message is failed.";
             var service = new Mock<MessageService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
@@ -191,7 +191,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
         public void UpdateMessage_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
-            var message = "Update is failed.";
+            var message = "Update Message is failed.";
             var service = new Mock<MessageService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
@@ -229,7 +229,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
         public void DeleteMessages_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
-            var message = "Update is failed.";
+            var message = "Delete Message(s) is failed.";
             var service = new Mock<MessageService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);

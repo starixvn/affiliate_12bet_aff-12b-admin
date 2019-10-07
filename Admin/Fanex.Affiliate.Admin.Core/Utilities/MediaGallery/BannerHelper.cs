@@ -128,8 +128,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
                 };
             }
 
-            string extension = Path.GetExtension(uploadedFile.FileName);
-            if (!IsValidExtension(extension) || !MimeTypeHelper.IsValidMimeType(uploadedFile.InputStream))
+            if (!MimeTypeHelper.IsValidMimeType(uploadedFile.InputStream))
             {
                 return new ResultInfo
                 {
