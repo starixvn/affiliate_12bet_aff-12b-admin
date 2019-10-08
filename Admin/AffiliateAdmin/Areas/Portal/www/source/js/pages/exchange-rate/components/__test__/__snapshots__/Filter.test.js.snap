@@ -2,7 +2,7 @@
 
 exports[`exchange rate - components - Filter  render correctly 1`] = `
 <div
-  className="filter-container mx-1 mt-3"
+  className="filter-container mt-2"
 >
   <Form
     inline={true}

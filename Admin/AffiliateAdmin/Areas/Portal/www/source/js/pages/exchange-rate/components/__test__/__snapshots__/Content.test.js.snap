@@ -4,7 +4,7 @@ exports[`exchange rate - components - Content  render correctly 1`] = `""`;
 
 exports[`exchange rate - components - Content  render correctly with have gridData 1`] = `
 <div
-  className="data-content mx-1"
+  className="data-content"
 >
   <div
     className="table-responsive table-striped my-2"
@@ -184,7 +184,7 @@ exports[`exchange rate - components - Content  render correctly with have gridDa
 
 exports[`exchange rate - components - Content  render correctly with have gridData and no permission 1`] = `
 <div
-  className="data-content mx-1"
+  className="data-content"
 >
   <div
     className="table-responsive table-striped my-2"
@@ -350,7 +350,7 @@ exports[`exchange rate - components - Content  render correctly with have gridDa
 
 exports[`exchange rate - components - Content  render correctly with have gridData is empty 1`] = `
 <div
-  className="data-content mx-1"
+  className="data-content"
 >
   <div
     className="table-responsive table-striped my-2"

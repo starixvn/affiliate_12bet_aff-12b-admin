@@ -8,7 +8,7 @@ import { globalResource } from '../../../../modules/globalResource';
 
 export const ControlButtons = (props) => {
 
-    function _handleAddText() {
+    function _handleAddItem() {
         props.setSelectedItemId(defaultInsertId);
         props.setShouldResetScrollPosition(false);
     }
@@ -30,7 +30,7 @@ export const ControlButtons = (props) => {
                                 hasIcon={true}
                                 isOpenNotification={true}
                             />
-                            <Button outline type="button" className="mx-2" onClick={_handleAddText}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
+                            <Button outline type="button" className="mx-2" onClick={_handleAddItem}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
                         </div>
                         <SelectAll
                             checkedList={props.checkedItems}
@@ -40,7 +40,7 @@ export const ControlButtons = (props) => {
                     </React.Fragment>
                 ) : (
                         <div className="my-2">
-                            <Button outline type="button" onClick={_handleAddText}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
+                            <Button outline type="button" onClick={_handleAddItem}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
                         </div>
                     )
             }

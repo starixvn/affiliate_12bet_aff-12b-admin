@@ -17,6 +17,10 @@ exports[`note - components - Content render correctly with have data 1`] = `
       type="button"
     >
       Add
+       
+      <span
+        className="oi oi-plus ml-2"
+      />
     </Button>
   </div>
   <div
@@ -258,6 +262,10 @@ exports[`note - components - Content render correctly with have data is empty 1`
       type="button"
     >
       Add
+       
+      <span
+        className="oi oi-plus ml-2"
+      />
     </Button>
   </div>
   <div

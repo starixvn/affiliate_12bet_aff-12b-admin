@@ -90,7 +90,7 @@ describe('affiliate report - Content ', () => {
                 userName: 'Main view',
                 IsExportExcel: true
             };
-            const expectedUrl = 'Portal/AffiliateReport/GetMainData';
+            const expectedUrl = 'Portal/Report/GetMainData';
 
             ajaxRequest.post = jest.fn();
             const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), param: { userName: 'Main view' } });
@@ -107,7 +107,7 @@ describe('affiliate report - Content ', () => {
                 IsExportExcel: true
             }
 
-            const expectedUrl = 'Portal/AffiliateReport/GetDetailData';
+            const expectedUrl = 'Portal/Report/GetDetailData';
 
             ajaxRequest.post = jest.fn();
             const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), param: { userName: 'Month on Month view' }, currentViewLevel: monthOnMonth });

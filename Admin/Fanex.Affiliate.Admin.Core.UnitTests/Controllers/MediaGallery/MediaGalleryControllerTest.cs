@@ -23,6 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
+            var param = new BannerParamFromHome { ImageType = "Image", IsFromHome = true };
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
             commonMediaGalleryService.Setup(c => c.GetMediaGalleryFilterItemList("CategoryMedia")).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 123, Name = "Category" } });
             commonMediaGalleryService.Setup(c => c.GetMediaGalleryFilterItemList("Currency")).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
@@ -40,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
             controller.Url = urlHelperMock.Object;
             // Action
-            var viewResult = controller.Index(new BannerParamFromHome()) as ViewResult;
+            var viewResult = controller.Index(param) as ViewResult;
             var viewName = viewResult.ViewName;
             var model = viewResult.Model as BannerListViewModel;
 
@@ -52,6 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             Assert.Single(model.ImageTypeList);
             Assert.Single(model.SizeList);
             Assert.Single(model.AffTypeList);
+            Assert.Equal(param, model.Param);
         }
 
         [Fact]

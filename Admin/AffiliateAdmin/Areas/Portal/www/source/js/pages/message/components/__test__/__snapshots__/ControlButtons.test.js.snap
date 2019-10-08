@@ -34,6 +34,10 @@ exports[`message - components - ControlButtons  render correctly 1`] = `
       type="button"
     >
       Add
+       
+      <span
+        className="oi oi-plus ml-2"
+      />
     </Button>
     <Button
       color="secondary"
@@ -69,6 +73,10 @@ exports[`message - components - ControlButtons  render correctly with gridData i
       type="button"
     >
       Add
+       
+      <span
+        className="oi oi-plus ml-2"
+      />
     </Button>
   </div>
 </Fragment>
