@@ -122,7 +122,7 @@ export class GridData extends Component {
         const balanceBf = dataItem.BalanceBf === null ? resource.NA : formatDecimal(dataItem.BalanceBf);
         const formattedMemberValue = dataItem.Member === null ? resource.NA : format(dataItem.Member);
         const member = dataItem.Member === null ? resource.NA : (
-            <a href={resolveClientUrl(`Portal/Member?txtAffUsername=${dataItem.UserName}`)} target="_top">
+            <a href={resolveClientUrl(`Portal/Member?AffName=${dataItem.UserName}`)} target="_top">
                 {formattedMemberValue}
             </a>);
 

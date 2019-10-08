@@ -5,8 +5,9 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.ViewModels.Member;
 
-namespace Fanex.Affiliate.Admin.Core.Controllers
+namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class MemberController : BaseController
@@ -15,18 +16,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
         }
 
-        public ActionResult Index(int current = 0)
+        public ActionResult Index(string affName)
         {
             var subMenu = new List<SubMenu>
             {
-                new SubMenu { Name = Lang.Member, Url = Url.Content("~/UserInfo/MemberListAll.aspx") },
-                new SubMenu { Name = Lang.ActiveMember, Url = Url.Content("~/UserInfo/MemberActiveList.aspx") }
+                new SubMenu { Name = Lang.Member, Url = Url.Content("~/Portal/Member"), IsActive = true },
+                new SubMenu { Name = Lang.ActiveMember, Url = Url.Content("~/Portal/ActiveMember") }
             };
 
-            var activeIndex = current > subMenu.Count - 1 ? 0 : current;
-            subMenu[activeIndex].IsActive = true;
+            var model = new MemberListViewModel
+            {
+                SubMenuList = subMenu,
+                AffName = affName
+            };
 
-            return View(subMenu);
+            return View(model);
         }
     }
 }

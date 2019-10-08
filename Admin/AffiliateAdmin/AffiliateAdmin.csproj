@@ -1261,6 +1261,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\SelectAll.jsx" />
@@ -1289,6 +1292,12 @@
     <Content Include="Areas\Portal\Views\Affiliate\EmailHistory.cshtml" />
     <Content Include="Areas\Portal\Views\MediaGallery\_MediaGallerySubMenu.cshtml" />
     <Content Include="Areas\Portal\Views\MediaGallery\LandingPageList.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Content.jsx" />
+    <Content Include="Areas\Portal\Views\Member\ActiveMember.cshtml" />
+    <Content Include="Areas\Portal\Views\Member\_MemberSubMenu.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\index.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />

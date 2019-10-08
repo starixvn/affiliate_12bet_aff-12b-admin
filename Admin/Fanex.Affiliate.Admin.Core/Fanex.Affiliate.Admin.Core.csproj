@@ -206,7 +206,8 @@
     <Compile Include="Controllers\MediaGallery\LandingPageListController.cs" />
     <Compile Include="Controllers\MediaGallery\MediaGalleryController.cs" />
     <Compile Include="Controllers\MediaGallery\TextListController.cs" />
-    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\Member\ActiveMemberController.cs" />
+    <Compile Include="Controllers\Member\MemberController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\Affiliate\PaymentRequestController.cs" />
@@ -491,6 +492,7 @@
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\BannerListViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\TextListViewModel.cs" />
+    <Compile Include="ViewModels\Member\MemberListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

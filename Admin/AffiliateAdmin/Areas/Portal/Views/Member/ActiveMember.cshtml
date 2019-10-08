@@ -1,0 +1,16 @@
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
+}
+
+@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+
+@{
+    Html.RenderPartial("~/Areas/Portal/Views/Member/_MemberSubMenu.cshtml", Model);
+    <div class="mainFrameWrapper">
+        <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/UserInfo/MemberActiveList.aspx")"></iframe>
+    </div>
+}
+
+@section pagejs{
+}
