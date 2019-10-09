@@ -246,6 +246,7 @@
     <Compile Include="DTO\ExchangeRate\ExchangeRateInfo.cs" />
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\MediaGallery\MediaGalleryFilterItem.cs" />
+    <Compile Include="DTO\Member\MemberInfo.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParamFromHome.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteBannerParam.cs" />
@@ -304,6 +305,8 @@
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\TextParam.cs" />
+    <Compile Include="MetaModels\Member\DeleteMemberParam.cs" />
+    <Compile Include="MetaModels\Member\MemberParam.cs" />
     <Compile Include="MetaModels\Message\DeleteMessageParam.cs" />
     <Compile Include="MetaModels\Message\InsertUpdateMessageParam.cs" />
     <Compile Include="MetaModels\Message\MessageParam.cs" />
@@ -343,6 +346,8 @@
     <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
     <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
     <Compile Include="Repository\MediaGallery\IBannerListRepository.cs" />
+    <Compile Include="Repository\Member\IMemberRepository.cs" />
+    <Compile Include="Repository\Member\MemberRepository.cs" />
     <Compile Include="Repository\Payment\IPaymentRequestRepository.cs" />
     <Compile Include="Repository\Payment\PaymentRequestRepository.cs" />
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />
@@ -464,6 +469,8 @@
     <Compile Include="Services\MediaGallery\ITextListService.cs" />
     <Compile Include="Services\MediaGallery\LandingPageService.cs" />
     <Compile Include="Services\MediaGallery\TextListService.cs" />
+    <Compile Include="Services\Member\IMemberService.cs" />
+    <Compile Include="Services\Member\MemberService.cs" />
     <Compile Include="Services\Message\IMessageService.cs" />
     <Compile Include="Services\Message\MessageService.cs" />
     <Compile Include="Services\Payment\IPaymentRequestService.cs" />

@@ -110,4 +110,10 @@
     <Setting Key="Aff_HotNewsUpd" SpName="Aff_HotNewsUpd" DbName="affiliate_12bet" />
     <Setting Key="Aff_HotNewsDel" SpName="Aff_HotNewsDel" DbName="affiliate_12bet" />
   </Function>
+  <Function Name="Member">
+    <Setting Key="Aff_MemberListSel" SpName="Aff_MemberListSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_MemberDel" SpName="Aff_MemberDel" DbName="affiliate_12bet" />
+    <Setting Key="DEP_AdminUpdAffID" SpName="DEP_AdminUpdAffID" DbName="deposit" />
+    <Setting Key="Aff_WriteLog" SpName="Aff_WriteLog" DbName="affiliate_12bet" />
+  </Function>
 </Functions>

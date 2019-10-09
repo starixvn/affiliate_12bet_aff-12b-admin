@@ -1263,6 +1263,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\types.js" />
@@ -1859,6 +1860,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\message\message.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\text-list.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\banner-list.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\member\member-list.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

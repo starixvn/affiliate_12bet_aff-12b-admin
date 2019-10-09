@@ -45,4 +45,5 @@ module.exports = {
     [`${styleDist}/pages/email-history`]: clientRoot + "/style/pages/email-history.scss",
     [`${styleDist}/pages/exchange-rate/exchange-rate`]: clientRoot + "/style/pages/exchange-rate/exchange-rate.scss",
     [`${styleDist}/pages/message/message`]: clientRoot + "/style/pages/message/message.scss",
+    [`${styleDist}/pages/member/member-list`]: clientRoot + "/style/pages/member/member-list.scss",
 };

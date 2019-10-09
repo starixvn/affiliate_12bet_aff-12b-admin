@@ -97,6 +97,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [Compress]
         public ActionResult GetBannerList(BannerParam param)
         {
             if (ModelState.IsValid)

@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
+    var isFromOtherPages = Model.IsFromOtherPages;
 }
 
 @model Fanex.Affiliate.Admin.Core.ViewModels.Member.MemberListViewModel
@@ -15,10 +16,8 @@
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {
-            param: {
-                affName: @Model.AffName,
-                isFromOtherPages: @Model.IsFromOtherPages
-            }
+            affName: '@Model.AffName',
+            isFromOtherPages: '@isFromOtherPages'.toLowerCase() === 'true' ? true : false
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/member/member-list.js")"></script>

@@ -4,12 +4,15 @@ import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
+import Filter from './Filter';
+import Content from './Content';
 
 export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />
-            <h1>Member</h1>
+            <Filter />
+            <Content />
         </AppLayout>
     );
 }
