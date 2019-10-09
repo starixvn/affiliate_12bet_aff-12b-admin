@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 {
@@ -7,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
     {
         public int BannerId { get; set; }
 
-        public string FileName { get; set; }
+        public string FilePath { get; set; }
 
         public string InputFileName { get; set; }
 
@@ -30,7 +29,5 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
         public byte AffType { get; set; }
 
         public byte DeviceType { get; set; }
-
-        public HttpPostedFileBase File { get; set; }
     }
 }

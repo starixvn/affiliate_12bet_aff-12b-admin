@@ -13,6 +13,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
@@ -129,16 +130,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
-        public ActionResult InsertBanner(InsertUpdateBannerParam param)
+        public ActionResult InsertBanner(HttpPostedFileBase file, InsertUpdateBannerParam param)
         {
-            if (ModelState.IsValid && param.File != null)
+            if (ModelState.IsValid && file != null)
             {
                 var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
-                    Data = _bannerListService.InsertBanner(encodeParam)
+                    Data = _bannerListService.InsertBanner(file, encodeParam)
                 };
             }
 
@@ -155,7 +156,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
-        public ActionResult UpdateBanner(InsertUpdateBannerParam param)
+        public ActionResult UpdateBanner(HttpPostedFileBase file, InsertUpdateBannerParam param)
         {
             var isValidBannerId = param.BannerId >= Validation.MinId;
             if (ModelState.IsValid && isValidBannerId && !string.IsNullOrEmpty(param.InputFileName))
@@ -165,7 +166,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
                 return new JsonNetResult
                 {
-                    Data = _bannerListService.UpdateBanner(encodeParam)
+                    Data = _bannerListService.UpdateBanner(file, encodeParam)
                 };
             }
 
@@ -209,8 +210,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             return new InsertUpdateBannerParam
             {
                 BannerId = param.BannerId,
-                File = param.File,
-                FileName = param.File != null ? Server.HtmlEncode(param.File.FileName) : "",
                 InputFileName = Server.HtmlEncode(param.InputFileName?.Trim()),
                 Category = Server.HtmlEncode(param.Category),
                 SubCategory = Server.HtmlEncode(param.SubCategory),

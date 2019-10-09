@@ -455,8 +455,10 @@
     <Compile Include="Services\ILanguageService.cs" />
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\MediaGallery\BannerListService.cs" />
+    <Compile Include="Services\MediaGallery\BannerValidationService.cs" />
     <Compile Include="Services\MediaGallery\CommonMediaGalleryService.cs" />
     <Compile Include="Services\MediaGallery\IBannerListService.cs" />
+    <Compile Include="Services\MediaGallery\IBannerValidationService.cs" />
     <Compile Include="Services\MediaGallery\ICommonMediaGalleryService.cs" />
     <Compile Include="Services\MediaGallery\ILandingPageService.cs" />
     <Compile Include="Services\MediaGallery\ITextListService.cs" />
@@ -478,10 +480,11 @@
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
+    <Compile Include="Utilities\ISystemFile.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
-    <Compile Include="Utilities\MediaGallery\MineTypeHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
+    <Compile Include="Utilities\SystemFile.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />

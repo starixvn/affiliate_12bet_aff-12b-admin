@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
@@ -10,9 +11,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         BannerInfo GetBannerDetail(int selectedBannerId);
 
-        ResultInfo InsertBanner(InsertUpdateBannerParam param);
+        ResultInfo InsertBanner(HttpPostedFileBase file, InsertUpdateBannerParam param);
 
-        ResultInfo UpdateBanner(InsertUpdateBannerParam param);
+        ResultInfo UpdateBanner(HttpPostedFileBase file, InsertUpdateBannerParam param);
 
         ResultInfo DeleteBanners(DeleteBannerParam param);
     }

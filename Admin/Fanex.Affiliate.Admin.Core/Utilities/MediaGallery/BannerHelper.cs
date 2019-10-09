@@ -1,14 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Logging;
 using System;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Web;
+using System.Text;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
 {
@@ -23,130 +18,34 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
             return ValidExtensions.Contains(extension.ToLowerInvariant());
         }
 
-        public static ResultInfo UploadFileWithAutoDetectSize(IAppSetting _appSetting, InsertUpdateBannerParam param, string newFolder)
+        public static string GetSize(int width, int height)
         {
-            var uploadedFile = param.File;
-            var result = ValidateFile(_appSetting, uploadedFile);
-            if (!result.IsSuccessful)
-            {
-                return result;
-            }
-
-            result = EnsureFoldersExisted(_appSetting, newFolder);
-            if (!result.IsSuccessful)
-            {
-                return result;
-            }
-
-            foreach (var path in _appSetting.BannerFolders)
-            {
-                var fullPath = Path.Combine(path, param.FileName);
-                if (File.Exists(fullPath))
-                {
-                    return new ResultInfo
-                    {
-                        Code = Code.GeneralErrorCode,
-                        Message = Lang.InvalidBannerAlready
-                    };
-                }
-
-                uploadedFile.SaveAs(fullPath);
-
-                var bitmap = new Bitmap(uploadedFile.InputStream);
-                param.Size = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
-            }
-
-            return new ResultInfo();
+            return string.Format("{0}x{1}", width, height);
         }
 
-        public static void MoveFiles(IAppSetting _appSetting, string newRelativeFilePath, string oldRelativeFilePath)
+        public static string GeneralFolder(string category, string subCategory)
         {
-            foreach (var folder in _appSetting.BannerFolders)
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append("CategoryMedia/");
+            stringBuilder.Append(category);
+            stringBuilder.Append("/");
+            if (string.Compare(category, Lang.Casino, StringComparison.CurrentCultureIgnoreCase) == 0
+                || string.Compare(category, Lang.Sportsbook, StringComparison.CurrentCultureIgnoreCase) == 0)
             {
-                var oldFullPath = Path.Combine(folder, oldRelativeFilePath);
-                var newFullPath = Path.Combine(folder, newRelativeFilePath);
-
-                if (File.Exists(oldFullPath))
-                {
-                    File.Move(oldFullPath, newFullPath);
-                }
+                stringBuilder.Append(subCategory);
+                stringBuilder.Append("/");
             }
+
+            return stringBuilder.ToString();
         }
 
-        public static void DeleteFile(IAppSetting _appSetting, string relativeFilePath)
+        public static ResultInfo CreateErrorResult()
         {
-            foreach (var folder in _appSetting.BannerFolders)
+            return new ResultInfo
             {
-                try
-                {
-                    var fullPath = Path.Combine(folder, relativeFilePath);
-                    var file = new FileInfo(fullPath);
-                    if (file.Exists)
-                    {
-                        file.Delete();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log.Error(ex.Message, ex);
-                }
-            }
-        }
-
-        public static ResultInfo EnsureFoldersExisted(IAppSetting _appSetting, string newFolder)
-        {
-            foreach (var path in _appSetting.BannerFolders)
-            {
-                if (!Directory.Exists(Path.Combine(path, newFolder)))
-                {
-                    try
-                    {
-                        Directory.CreateDirectory(path + newFolder);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Log.Error(ex.Message, ex);
-                        return new ResultInfo {
-                            Code = Code.GeneralErrorCode,
-                            Message = "Can not access folder."
-                        };
-                    }
-                }
-            }
-
-            return new ResultInfo();
-        }
-
-        private static ResultInfo ValidateFile(IAppSetting _appSetting, HttpPostedFileBase uploadedFile)
-        {
-            if (uploadedFile == null)
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidBannerBrowser
-                };
-            }
-
-            if (!MimeTypeHelper.IsValidMimeType(uploadedFile.InputStream))
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidBannerExtensionFile
-                };
-            }
-
-            if (uploadedFile.ContentLength > _appSetting.ImageSize)
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidBannerSize
-                };
-            }
-
-            return new ResultInfo();
+                Code = Code.GeneralErrorCode,
+                Message = Lang.InvalidBannerExtensionFile
+            };
         }
     }
 }

@@ -54,9 +54,9 @@ export class EditBannerForm extends PureComponent {
 
         this.setState({ [name]: value });
 
-        const isCategoryCasino = value === Casino;
-        if (name === 'category' && (isCategoryCasino || value === Sportsbook)) {
-            this.setState({ subCategory: isCategoryCasino ? Baccarat : 'Basketball' });
+        if (name === 'category') {
+            const isCategoryCasino = value === Casino;
+            (isCategoryCasino || value === Sportsbook) ? this.setState({ subCategory: isCategoryCasino ? Baccarat : 'Basketball' }) : this.setState({ subCategory: '' });
         }
     }
 

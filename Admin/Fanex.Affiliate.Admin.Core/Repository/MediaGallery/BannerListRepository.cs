@@ -118,7 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         private static void AssignParam(IObjectDb objectDb, InsertUpdateBannerParam param)
         {
-            objectDb.AddInParameter("filename", DbType.String, param.FileName);
+            objectDb.AddInParameter("filename", DbType.String, param.FilePath);
             objectDb.AddInParameter("category", DbType.String, param.Category);
             objectDb.AddInParameter("language", DbType.String, param.Language);
             objectDb.AddInParameter("currency", DbType.String, param.Currency);

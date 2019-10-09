@@ -7,6 +7,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Affiliate.Admin.Core.UnitTests.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
 using Moq;
@@ -160,35 +161,27 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void InsertBanner_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var httpPostedFileBase = new Mock<HttpPostedFileBase>();
-            httpPostedFileBase.Setup(h => h.FileName).Returns("abc.gif");
-            var param = new InsertUpdateBannerParam { File = httpPostedFileBase.Object };
-            InsertUpdateBannerParam passedParam = null;
             var bannerListService = new Mock<IBannerListService>();
-            bannerListService.Setup(s => s.InsertBanner(It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo ()).Callback<InsertUpdateBannerParam>(p => passedParam = p);
+            bannerListService.Setup(s => s.InsertBanner(It.IsAny<HttpPostedFileBase>(), It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo ());
             var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
 
             // Action
-            var result = controller.InsertBanner(param) as JsonNetResult;
+            var result = controller.InsertBanner(new MockFile(), new InsertUpdateBannerParam()) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
             Assert.True(resultInfo.IsSuccessful);
-            Assert.Equal(param.BannerId, passedParam.BannerId);
         }
 
         [Fact]
         public void InsertBanner_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
-            var httpPostedFileBase = new Mock<HttpPostedFileBase>();
-            var param = new InsertUpdateBannerParam { File = httpPostedFileBase.Object };
-           
             var controller = CreateMediaGalleryController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.InsertBanner(param) as JsonNetResult;
+            var result = controller.InsertBanner(new MockFile(), new InsertUpdateBannerParam()) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -203,7 +196,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var controller = CreateMediaGalleryController();
 
             // Action
-            var result = controller.InsertBanner(new InsertUpdateBannerParam()) as JsonNetResult;
+            var result = controller.InsertBanner(null, new InsertUpdateBannerParam()) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -216,18 +209,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var param = new InsertUpdateBannerParam { BannerId = 123, InputFileName = "abc.gif" };
-            InsertUpdateBannerParam passedParam = null;
             var bannerListService = new Mock<IBannerListService>();
-            bannerListService.Setup(s => s.UpdateBanner(It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo()).Callback<InsertUpdateBannerParam>(p => passedParam = p);
+            bannerListService.Setup(s => s.UpdateBanner(null, It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo());
             var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
 
             // Action
-            var result = controller.UpdateBanner(param) as JsonNetResult;
+            var result = controller.UpdateBanner(null, param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
             Assert.True(resultInfo.IsSuccessful);
-            Assert.Equal(param.BannerId, passedParam.BannerId);
         }
 
         [Fact]
@@ -239,7 +230,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.UpdateBanner(param) as JsonNetResult;
+            var result = controller.UpdateBanner(null, param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -255,7 +246,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var controller = CreateMediaGalleryController();
 
             // Action
-            var result = controller.UpdateBanner(param) as JsonNetResult;
+            var result = controller.UpdateBanner(null, param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -271,7 +262,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var controller = CreateMediaGalleryController();
 
             // Action
-            var result = controller.UpdateBanner(param) as JsonNetResult;
+            var result = controller.UpdateBanner(null, param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
