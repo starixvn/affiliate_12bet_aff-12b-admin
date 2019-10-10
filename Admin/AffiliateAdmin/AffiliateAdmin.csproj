@@ -1003,8 +1003,13 @@
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\customer\customer.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\exchange-rate\exchange-rate.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\banner-list.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\landing-page.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\text-list.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\member\member-list.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\message\message.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\payment\payment-request.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\report\affiliate-report.js" />
@@ -1024,7 +1029,11 @@
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\customer.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\email-history.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\exchange-rate\exchange-rate.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\banner-list.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\landing-page.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\text-list.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\message\message.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\payment\payment-request.css" />
     <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
     <Content Include="Areas\Portal\www\dist\style\user-panel-layout.css" />
@@ -1860,7 +1869,6 @@
     <Content Include="Areas\Portal\www\source\style\pages\message\message.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\text-list.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\banner-list.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\member\member-list.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -16,10 +16,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Member
 
         public decimal CurrentBalance { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
         public string AffName { get; set; }
 
-        public string CreatedDateText => CreatedDate.ToString("MM/dd/yyyy HH:mm:ss");
+        public string CreatedDateText => CreatedDate?.ToString("MM/dd/yyyy HH:mm:ss") ?? "N/A";
     }
 }

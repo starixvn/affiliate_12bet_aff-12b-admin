@@ -9,10 +9,6 @@
     Html.RenderPartial("~/Areas/Portal/Views/Member/_MemberSubMenu.cshtml", Model.SubMenuList);
 }
 
-@section pagecss{
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/member/member-list.css")" rel="stylesheet" />
-}
-
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {

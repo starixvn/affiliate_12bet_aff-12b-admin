@@ -46,6 +46,7 @@ export const Content = (props) => {
     }
 
     const _handleDeleteMember = (selectedMemberId) => {
+        props.setShouldResetScrollPosition(false);
         setSelectedMemberId(selectedMemberId);
         _handleOpenNotificationPopup('Are you sure you want to remove this member from his affiliate?', true);
     }
@@ -72,15 +73,15 @@ export const Content = (props) => {
     function _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.UserName}>{headerText.UserName}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.IbcUserName}>{headerText.IbcUserName}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.FirstName}>{headerText.FirstName}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.LastName}>{headerText.LastName}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.CurrentBalance}>{headerText.CurrentBalance}</Cell>
-                <Cell header={true} colWidth={110} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.Remove}>{headerText.Remove}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.Remove}>{headerText.Remove}</Cell>
             </Row>
         );
     }
@@ -135,10 +136,12 @@ export const Content = (props) => {
         <div className="data-content">
             <div className="member-list-content table-responsive table-striped my-2">
                 <Table
-                    maxWidth={1000}
+                    minWidth={1000}
+                    autoWidth={true}
                     bodyHeight={300}
                     header={_renderHeader()}
                     body={_renderDataSection(props.gridData)}
+                    containerPadding={20}
                     isPaging={true}
                     pageOption={pagingOption}
                     onPaging={_handlePaging}

@@ -33,10 +33,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                         dataList.Add(new MemberInfo {
                             MemberId = Convert.ToInt32(reader["IBCCustID"]),
                             UserName = Convert.ToString(reader["UserName"]),
-                            IbcUserName = reader["IBCUserName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["IBCUserName"]),
+                            IbcUserName = Convert.ToString(reader["IBCUserName"]),
                             FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]),
                             LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"]),
-                            CreatedDate = reader["CreatedDate"] == DBNull.Value ? new DateTime() : Convert.ToDateTime(reader["CreatedDate"]),
+                            CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"]),
                             AffName = Convert.ToString(reader["AffUserName"]),
                             CurrentBalance = Convert.ToDecimal(reader["CurrBalance"])
                         });
@@ -107,8 +107,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                 objectDb.AddInParameter("Details", DbType.String, $"Remove member. DepositCustID={param.DepositMemberId} (On Deposit_DB)");
 
                 objectDb.AddOutParameter("RefNo", DbType.Int64, Size.SizeOfInt);
-
-                AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
             }
