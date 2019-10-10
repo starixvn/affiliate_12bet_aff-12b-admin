@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         public void GetCommissionGroupList_GetData_ReturnCorrectData()
         {
             // Arrange
-            var param = new GetCommissionGroupParam { GroupName = "abc" };
+            var param = new GetCommissionGroupParam { GroupName = "abc", PageIndex = 1, PageSize = 20 };
             var commissionGroupService = new Mock<ICommissionGroupService>();
             commissionGroupService.Setup(c => c.GetCommissionGroupList(param)).Returns(new List<CommissionGroupSetting> { new CommissionGroupSetting { GroupName = "abc" } }).Callback<GetCommissionGroupParam>(p => param.Nrows = 1);
             var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object);

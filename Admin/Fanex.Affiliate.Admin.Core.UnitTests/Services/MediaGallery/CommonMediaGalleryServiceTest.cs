@@ -5,9 +5,6 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
@@ -17,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         private const string SpKeyBannerSelType = "Aff_BannerSelType_1";
 
         [Fact]
-        public void GetTextList_WhenCall_ReturnCorrectData()
+        public void GetMediaGalleryFilterItemList_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var service = new Mock<CommonMediaGalleryService> { CallBase = true };
@@ -37,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         }
 
         [Fact]
-        public void GetTextList_WhenCall_ReturnNullData()
+        public void GetMediaGalleryFilterItemList_WhenCall_ReturnNullData()
         {
             // Arrange
             var service = new Mock<CommonMediaGalleryService> { CallBase = true };

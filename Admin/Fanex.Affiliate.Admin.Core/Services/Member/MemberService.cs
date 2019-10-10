@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
 
             if(result.IsSuccessful)
             {
-                result = _memberRepository.DeleteMemberInDepositDB(param);
+                result = _memberRepository.DeleteMemberInDepositDB(param.DepositMemberId);
 
                 if(result.IsSuccessful)
                 {

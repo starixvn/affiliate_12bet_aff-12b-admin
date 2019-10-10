@@ -82,10 +82,8 @@
     <Setting Key="Aff_BannerMediaIns" SpName="Aff_BannerMediaIns" DbName="affiliate_12bet" />
     <Setting Key="Aff_BannerUpd_1" SpName="Aff_BannerUpd_1" DbName="affiliate_12bet" />
     <Setting Key="Aff_BannerDel_1" SpName="Aff_BannerDel_1" DbName="affiliate_12bet" />
-    <Setting Key="Aff_BannerSel" SpName="Aff_BannerSel" DbName="affiliate_12bet" />
     <Setting Key="Aff_BannerSel_1" SpName="Aff_BannerSel_1" DbName="affiliate_12bet" />
     <Setting Key="Aff_BannerSelByParentCate" SpName="Aff_BannerSelByParentCate" DbName="affiliate_12bet" />
-    <Setting Key="Aff_BannerSelDetail" SpName="Aff_BannerSelDetail" DbName="affiliate_12bet" />
     <Setting Key="Aff_BannerSelDetail_1" SpName="Aff_BannerSelDetail_1" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffTypeSel" SpName="Aff_AffTypeSel" DbName="affiliate_12bet" />
   </Function>

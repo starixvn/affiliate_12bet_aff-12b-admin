@@ -6,12 +6,12 @@ import { Button } from 'reactstrap';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText } from '../libs/constants';
+import { headerText, globalResource } from '../libs/constants';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
-import { deleteMember, fetchData, setPagingOption, setShouldResetScrollPosition, setParam } from '../actions';
+import { deleteMember, fetchData, setPagingOption, toggleLoader, setShouldResetScrollPosition, setParam } from '../actions';
 
 export const Content = (props) => {
-    const { pagingOption, param } = props;
+    const { pagingOption, param, gridData, shouldResetScrollPosition } = props;
 
     const [selectedMemberId, setSelectedMemberId] = useState(0);
     const [message, setMessage] = useState('');
@@ -41,7 +41,7 @@ export const Content = (props) => {
         setMessage('');
 
         if (confirmResult && selectedMemberId) {
-            props.deleteMember(selectedMemberId);
+            _deleteMember();
         }
     }
 
@@ -64,7 +64,7 @@ export const Content = (props) => {
                 _handleOpenNotificationPopup(result.Message);
             }
 
-            props.fetchData();
+            props.fetchData(param);
         }
 
         props.toggleLoader(false);
@@ -132,7 +132,7 @@ export const Content = (props) => {
         )
     }
 
-    return props.gridData && (
+    return gridData && (
         <div className="data-content">
             <div className="member-list-content table-responsive table-striped my-2">
                 <Table
@@ -140,12 +140,12 @@ export const Content = (props) => {
                     autoWidth={true}
                     bodyHeight={300}
                     header={_renderHeader()}
-                    body={_renderDataSection(props.gridData)}
+                    body={_renderDataSection(gridData)}
                     containerPadding={20}
                     isPaging={true}
                     pageOption={pagingOption}
                     onPaging={_handlePaging}
-                    shouldResetScrollPosition={props.shouldResetScrollPosition}
+                    shouldResetScrollPosition={shouldResetScrollPosition}
                 />
             </div>
             {
@@ -164,7 +164,7 @@ function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridD
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteMember, fetchData, setPagingOption, setShouldResetScrollPosition, setParam }, dispatch);
+    return bindActionCreators({ deleteMember, fetchData, setPagingOption, toggleLoader, setShouldResetScrollPosition, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

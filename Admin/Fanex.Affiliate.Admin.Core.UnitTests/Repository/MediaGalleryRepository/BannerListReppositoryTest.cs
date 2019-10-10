@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             var repository = new Mock<BannerListRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+            dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
@@ -219,7 +219,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         }
 
         [Fact]
-        public void DeleteBanners_WhenCallWithValidParam_InsertSuccessfully()
+        public void DeleteBanners_WhenCallWithValidParam_DeleteSuccessfully()
         {
             // Arrange
             var repository = new Mock<BannerListRepository> { CallBase = true };
@@ -237,7 +237,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         }
 
         [Fact]
-        public void DeleteBanners_WhenCallWithInvalidParam_UpdateIsFailed()
+        public void DeleteBanners_WhenCallWithInvalidParam_DeleteIsFailed()
         {
             // Arrange
             var message = "Delete Banner(s) is failed.";

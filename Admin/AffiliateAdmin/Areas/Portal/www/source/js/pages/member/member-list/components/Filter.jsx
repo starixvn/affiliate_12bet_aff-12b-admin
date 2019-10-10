@@ -7,20 +7,20 @@ import { setParam, setIsFromOtherPages } from '../actions';
 import { headerText } from '../libs/constants';
 
 export const Filter = (props) => {
+    const { pagingOption, isFromOtherPages } = props;
+
     const [affName, setAffName] = useState(props.affName);
     const [userName, setUserName] = useState('');
     const [ibcUserName, setIbcUserName] = useState('');
 
     useEffect(() => {
-        if (props.isFromOtherPages) {
+        if (isFromOtherPages) {
             _handleSearch();
             props.setIsFromOtherPages(false);
         }
-    }, [props.isFromOtherPages]);
+    }, [isFromOtherPages]);
 
     const _handleSearch = () => {
-        const { pagingOption } = props;
-
         const newParam = Object.assign({}, {
             AffName: affName,
             UserName: userName,

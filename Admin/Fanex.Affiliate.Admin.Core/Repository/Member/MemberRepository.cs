@@ -79,13 +79,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
             }
         }
 
-        public ResultInfo DeleteMemberInDepositDB(DeleteMemberParam param)
+        public ResultInfo DeleteMemberInDepositDB(int depositMemberId)
         {
             const string SpKey = "DEP_AdminUpdAffID";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("DepositCustID", DbType.Int32, param.DepositMemberId);
+                objectDb.AddInParameter("DepositCustID", DbType.Int32, depositMemberId);
                 AssignResultOutputParam(objectDb);
                 objectDb.ExecuteNonQuery();
 
