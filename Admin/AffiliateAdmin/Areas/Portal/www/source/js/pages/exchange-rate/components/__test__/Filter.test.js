@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { Filter } from '../Filter';
 import { shallow } from 'enzyme';
-import * as ajaxRequest from '../../../../modules/ajaxRequest';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
 describe('exchange rate - components - Filter ', () => {

@@ -1,6 +1,5 @@
 ﻿import * as actions from '../index';
 import * as types from '../types';
-import { defaultPagingOption } from '../../../../../modules/constants';
 import * as ajaxRequest from '../../../../../modules/ajaxRequest';
 
 import configureMockStore from 'redux-mock-store';

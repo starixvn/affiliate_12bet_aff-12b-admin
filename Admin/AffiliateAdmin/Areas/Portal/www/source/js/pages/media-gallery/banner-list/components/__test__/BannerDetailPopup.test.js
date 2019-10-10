@@ -1,8 +1,7 @@
 ﻿import React from 'react';
 import { BannerDetailPopup } from '../BannerDetailPopup';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
-import { defaultPagingOption } from '../../../../../modules/constants';
 import { Modal } from 'reactstrap';
 
 describe('banner list - components - BannerDetailPopup ', () => {
@@ -10,8 +9,8 @@ describe('banner list - components - BannerDetailPopup ', () => {
     const defaultProps = {
         bannerDetailUrl: {
             src: "CategoryMedia/Casino/Baccarat/SBNG_2.gif",
-            witdh: 1655,
-            height: 438
+            width: 1655,
+            height: 1855
         }
     };
 
@@ -29,7 +28,8 @@ describe('banner list - components - BannerDetailPopup ', () => {
     });
 
     it('setBannerDetailUrl - should be called when close popup', () => {
-        const props = Object.assign({}, defaultProps, { setBannerDetailUrl: jest.fn(), witdh: 900 })
+        const bannerDetailUrl = Object.assign({}, defaultProps.bannerDetailUrl, { width: 1000 })
+        const props = Object.assign({}, defaultProps, { setBannerDetailUrl: jest.fn(), bannerDetailUrl })
         const result = shallow(<BannerDetailPopup {...props} />);
 
         result.find(Modal).props().toggle();

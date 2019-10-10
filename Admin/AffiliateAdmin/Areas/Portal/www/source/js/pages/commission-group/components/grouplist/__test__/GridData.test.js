@@ -1,7 +1,5 @@
 ﻿import React from 'react';
-import { connect } from 'react-redux';
 import { GridData } from '../GridData';
-import * as ajaxRequest from '../../../../../modules/ajaxRequest';
 import { shallow } from 'enzyme';
 jest.mock('../../../modules/constant');
 
@@ -72,10 +70,10 @@ describe('commission group - GridData ', () => {
     it('_convertToProductNameText - return correct data with correct parameter', () => {
         const productIdList = "1,3,4,5,6,7,8,13,14,15,16,17,18";
         const expectResult = "Sportsbook,Playtech Casino,Number Game,Virtual Sports,Keno";
-        const wrapper = shallow(<GridData {...defaultProps}/>);
+        const wrapper = shallow(<GridData {...defaultProps} />);
 
         const result = wrapper.instance()._convertToProductNameText(productIdList);
-        
+
         expect(result).toEqual(expectResult);
     });
 
@@ -90,10 +88,10 @@ describe('commission group - GridData ', () => {
         window.alert = jest.fn();
 
         await componentInstance.handleDelete(153, "CG22125");
-        
+
         expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to delete the commission group CG22125 ?");
         expect(props.deleteCommGroup).toHaveBeenCalledWith({ "groupId": 153 });
-        expect(props.getGroupSettingList).toHaveBeenCalledWith({ PageIndex: 1, PageList: [], PageSize: 10, TotalItem: 0});
+        expect(props.getGroupSettingList).toHaveBeenCalledWith({ PageIndex: 1, PageList: [], PageSize: 10, TotalItem: 0 });
         expect(window.alert).toHaveBeenCalledWith("Delete Commission Group Successfully");
     });
 
@@ -108,7 +106,7 @@ describe('commission group - GridData ', () => {
         window.alert = jest.fn();
 
         await componentInstance.handleDelete(153, "CG22125");
-        
+
         expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to delete the commission group CG22125 ?");
         expect(props.deleteCommGroup).toHaveBeenCalledWith({ "groupId": 153 });
         expect(props.getGroupSettingList).not.toHaveBeenCalled();
@@ -125,7 +123,7 @@ describe('commission group - GridData ', () => {
         window.alert = jest.fn();
 
         await componentInstance.handleDelete(153, "CG22125");
-        
+
         expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to delete the commission group CG22125 ?");
         expect(props.deleteCommGroup).toHaveBeenCalledWith({ "groupId": 153 });
         expect(window.alert).not.toHaveBeenCalled();
@@ -140,7 +138,7 @@ describe('commission group - GridData ', () => {
         window.confirm = jest.fn(() => false);
 
         await componentInstance.handleDelete(153, "CG22125");
-        
+
         expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to delete the commission group CG22125 ?");
         expect(props.deleteCommGroup).not.toHaveBeenCalled();
     });
@@ -148,16 +146,16 @@ describe('commission group - GridData ', () => {
     it('_renderHeader - render correctly', () => {
         const componentInstance = new GridData(defaultProps);
 
-        const renderHeader = shallow(<div>{ componentInstance._renderHeader() }</div>);
-        
+        const renderHeader = shallow(<div>{componentInstance._renderHeader()}</div>);
+
         expect(renderHeader).toMatchSnapshot();
     });
 
     it('_renderGroupData - render correctly', () => {
         const componentInstance = new GridData(defaultProps);
 
-        const renderGroupData = shallow(<div>{ componentInstance._renderGroupData() }</div>);
-        
+        const renderGroupData = shallow(<div>{componentInstance._renderGroupData()}</div>);
+
         expect(renderGroupData).toMatchSnapshot();
     });
 
@@ -167,8 +165,8 @@ describe('commission group - GridData ', () => {
         const props = Object.assign({}, defaultProps, { gridData: [data] });
         const componentInstance = new GridData(props);
 
-        const renderGroupData = shallow(<div>{ componentInstance._renderGroupData() }</div>);
-        
+        const renderGroupData = shallow(<div>{componentInstance._renderGroupData()}</div>);
+
         expect(renderGroupData).toMatchSnapshot();
     });
 
@@ -176,8 +174,8 @@ describe('commission group - GridData ', () => {
         const props = Object.assign({}, defaultProps, { onEdit: jest.fn() })
         const componentInstance = new GridData(props);
 
-        const renderGroupData = shallow(<div>{ componentInstance._renderGroupData() }</div>);
-        
+        const renderGroupData = shallow(<div>{componentInstance._renderGroupData()}</div>);
+
         renderGroupData.find('button').at(0).simulate('click')
 
         expect(props.onEdit).toHaveBeenCalledWith(153);
@@ -188,15 +186,15 @@ describe('commission group - GridData ', () => {
         const props = Object.assign({}, defaultProps, { gridData: [data] });
         const componentInstance = new GridData(props);
         componentInstance.handleDelete = jest.fn();
-        const renderGroupData = shallow(<div>{ componentInstance._renderGroupData() }</div>);
-        
+        const renderGroupData = shallow(<div>{componentInstance._renderGroupData()}</div>);
+
         renderGroupData.find('button').at(1).simulate('click')
 
         expect(componentInstance.handleDelete).toHaveBeenCalledWith(153, "CG22125");
     });
 
     it('Should render correctly', () => {
-        const wrapper = shallow(<GridData {...defaultProps}/>);
+        const wrapper = shallow(<GridData {...defaultProps} />);
 
         expect(wrapper).toMatchSnapshot();
     });
@@ -244,14 +242,14 @@ describe('commission group - GridData ', () => {
             ]
         };
         const props = Object.assign({}, defaultProps, { gridData: [dataPrivateGroupItem] });
-        const wrapper = shallow(<GridData {...props}/>);
+        const wrapper = shallow(<GridData {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });
 
     it('Should render correctly with data is null', () => {
         const props = Object.assign({}, defaultProps, { gridData: [] });
-        const wrapper = shallow(<GridData {...props}/>);
+        const wrapper = shallow(<GridData {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });

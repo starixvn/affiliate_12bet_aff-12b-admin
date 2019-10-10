@@ -52,7 +52,6 @@ describe('banner list - components - Content ', () => {
     };
 
     it('render correctly', () => {
-        const props = Object.assign({}, defaultProps, { getBannerRootUrl: jest.fn(() => 'abc/test') });
         const result = shallow(<Content {...defaultProps} />);
 
         expect(result).toMatchSnapshot();

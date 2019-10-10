@@ -59,12 +59,12 @@ export const Content = (props) => {
         if (result) {
             if (result.IsSuccessful) {
                 _handleOpenNotificationPopup("Member has been removed suseccfully!");
+
+                props.fetchData(param);
             }
             else {
                 _handleOpenNotificationPopup(result.Message);
             }
-
-            props.fetchData(param);
         }
 
         props.toggleLoader(false);

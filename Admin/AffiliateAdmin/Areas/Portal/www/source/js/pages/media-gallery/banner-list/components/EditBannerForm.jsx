@@ -75,13 +75,13 @@ export class EditBannerForm extends PureComponent {
         }
     }
 
-    _handleAfterSave = (result, isInsert) => {
+    _handleAfterSave = (isInsert, result) => {
         if (result) {
             const message = isInsert ? "Your banner has been added successfully!" : "Your banner has been updated successfully!";
 
             this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
         } else {
-            this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
+            this._handleShowAlert(false, isInsert ? "The add is failed!" : "The update is failed!");
         }
     }
 
@@ -92,10 +92,10 @@ export class EditBannerForm extends PureComponent {
 
         if (isInsert) {
             const result = await this.props.insertBanner(bannerInfo);
-            this._handleAfterSave(result, isInsert);
+            this._handleAfterSave(isInsert, result);
         } else {
             const result = await this.props.updateBanner(bannerInfo);
-            this._handleAfterSave(result, isInsert);
+            this._handleAfterSave(isInsert, result);
         };
     }
 

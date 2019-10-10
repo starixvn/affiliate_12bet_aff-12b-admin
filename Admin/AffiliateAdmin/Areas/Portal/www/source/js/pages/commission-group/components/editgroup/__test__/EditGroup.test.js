@@ -1,7 +1,5 @@
 ﻿import React from 'react';
-import { connect } from 'react-redux';
 import { EditGroup } from '../EditGroup';
-import * as ajaxRequest from '../../../../../modules/ajaxRequest';
 import { shallow } from 'enzyme';
 jest.mock('../../../modules/constant');
 
@@ -13,7 +11,7 @@ describe('commission group - EditGroup', () => {
             GroupId: 0,
             GroupName: "",
             OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
-            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4"}],
+            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }],
             QmTurnover: 100,
             TierSettingList: []
         },
@@ -23,7 +21,7 @@ describe('commission group - EditGroup', () => {
     };
     it('componentDidMount - should call setSelectedCommGroup', () => {
         const mockGetSelectedCommGroup = jest.fn();
-        const props = Object.assign({}, defaultProps, { getSelectedCommGroup: mockGetSelectedCommGroup});
+        const props = Object.assign({}, defaultProps, { getSelectedCommGroup: mockGetSelectedCommGroup });
 
         const componentInstance = new EditGroup(props);
 
@@ -70,7 +68,7 @@ describe('commission group - EditGroup', () => {
             GroupId: 0,
             GroupName: "test",
             OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
-            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8"}],
+            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8" }],
             QmTurnover: 100,
             TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]
         }
@@ -79,8 +77,10 @@ describe('commission group - EditGroup', () => {
         const mockUpdateCommissionGroup = jest.fn(() => expectedResponse);
         const mockGetGroupSettingList = jest.fn();
 
-        const props = Object.assign({}, defaultProps, { getSelectedCommGroup: mockGetSelectedCommGroup, updateCommissionGroup: mockUpdateCommissionGroup,
-                                                        selectedGroup: selectedGroupValid, toggleLoader: mockToggleLoader, getGroupSettingList: mockGetGroupSettingList});
+        const props = Object.assign({}, defaultProps, {
+            getSelectedCommGroup: mockGetSelectedCommGroup, updateCommissionGroup: mockUpdateCommissionGroup,
+            selectedGroup: selectedGroupValid, toggleLoader: mockToggleLoader, getGroupSettingList: mockGetGroupSettingList
+        });
         window.setTimeout = jest.fn();
         const wrapper = shallow(<EditGroup {...props} />);
         wrapper.instance().setState = jest.fn();
@@ -91,7 +91,7 @@ describe('commission group - EditGroup', () => {
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(window.setTimeout).toHaveBeenCalledTimes(1);
-        expect(props.getGroupSettingList).toHaveBeenCalledWith({ PageIndex: 1, PageList: [], PageSize: 10, TotalItem: 0});
+        expect(props.getGroupSettingList).toHaveBeenCalledWith({ PageIndex: 1, PageList: [], PageSize: 10, TotalItem: 0 });
         expect(wrapper.instance().setState).toHaveBeenCalledWith({ isShowMessage: true, isSuccess: true, message: ["Update Commission Group Successfully"] });
     });
 
@@ -103,7 +103,7 @@ describe('commission group - EditGroup', () => {
             GroupId: 0,
             GroupName: "test",
             OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
-            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8"}],
+            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8" }],
             QmTurnover: 100,
             TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]
         }
@@ -112,8 +112,10 @@ describe('commission group - EditGroup', () => {
         const mockUpdateCommissionGroup = jest.fn(() => expectedResponse);
         const mockGetGroupSettingList = jest.fn();
 
-        const props = Object.assign({}, defaultProps, { getSelectedCommGroup: mockGetSelectedCommGroup, updateCommissionGroup: mockUpdateCommissionGroup,
-                                                        selectedGroup: selectedGroupValid, toggleLoader: mockToggleLoader, getGroupSettingList: mockGetGroupSettingList});
+        const props = Object.assign({}, defaultProps, {
+            getSelectedCommGroup: mockGetSelectedCommGroup, updateCommissionGroup: mockUpdateCommissionGroup,
+            selectedGroup: selectedGroupValid, toggleLoader: mockToggleLoader, getGroupSettingList: mockGetGroupSettingList
+        });
         window.setTimeout = jest.fn();
         const wrapper = shallow(<EditGroup {...props} />);
         wrapper.instance().setState = jest.fn();
@@ -128,7 +130,7 @@ describe('commission group - EditGroup', () => {
         expect(wrapper.instance().setState).toHaveBeenCalledWith({ isShowMessage: true, isSuccess: false, message: ["fail"] });
     });
 
-    it('handleSave - should call toggleLoader,  when click button SAVE with incorrect response', async() => {
+    it('handleSave - should call toggleLoader,  when click button SAVE with incorrect response', async () => {
         const expectedResponse = { status: 500 };
 
         const selectedGroupValid = {
@@ -137,7 +139,7 @@ describe('commission group - EditGroup', () => {
             GroupId: 0,
             GroupName: "test",
             OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
-            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8"}],
+            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8" }],
             QmTurnover: 100,
             TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]
         }
@@ -146,8 +148,10 @@ describe('commission group - EditGroup', () => {
         const mockUpdateCommissionGroup = jest.fn(() => expectedResponse);
         const mockGetGroupSettingList = jest.fn();
 
-        const props = Object.assign({}, defaultProps, { getSelectedCommGroup: mockGetSelectedCommGroup, updateCommissionGroup: mockUpdateCommissionGroup,
-                                                        selectedGroup: selectedGroupValid, toggleLoader: mockToggleLoader, getGroupSettingList: mockGetGroupSettingList });
+        const props = Object.assign({}, defaultProps, {
+            getSelectedCommGroup: mockGetSelectedCommGroup, updateCommissionGroup: mockUpdateCommissionGroup,
+            selectedGroup: selectedGroupValid, toggleLoader: mockToggleLoader, getGroupSettingList: mockGetGroupSettingList
+        });
         window.setTimeout = jest.fn();
         const wrapper = shallow(<EditGroup {...props} />);
         wrapper.instance().setState = jest.fn();

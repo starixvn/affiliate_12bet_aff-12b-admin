@@ -24,14 +24,14 @@ describe('affiliate info - GridData - connect', () => {
 			languageList: { en: 'English' },
 			pagingOption: { PageIndex: 1 },
 			param: { abc: 123 },
-			columnList: [1,2,3]
+			columnList: [1, 2, 3]
 		};
 
 		const state = {
 			languageList: { en: 'English' },
 			pagingOption: { PageIndex: 1 },
 			param: { abc: 123 },
-			columnList: [1,2,3],
+			columnList: [1, 2, 3],
 			anotherProp: "Not included"
 		};
 

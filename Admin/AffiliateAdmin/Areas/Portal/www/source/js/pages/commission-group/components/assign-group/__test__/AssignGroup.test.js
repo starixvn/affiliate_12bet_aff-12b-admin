@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import { connect } from 'react-redux';
 import AssignGroup from '../AssignGroup';
 import * as ajaxRequest from '../../../../../modules/ajaxRequest';
 import { shallow } from 'enzyme';
@@ -9,8 +8,8 @@ describe('commission group - AssignGroup', () => {
     beforeEach(() => {
         window.initialState = {
             commGroupList: [
-                {Id: "133", Name: "NewGroup"},
-                {Id: "152", Name: "CG22124"}
+                { Id: "133", Name: "NewGroup" },
+                { Id: "152", Name: "CG22124" }
             ],
             selectedGroup: 102,
             affInfo: {
@@ -28,7 +27,7 @@ describe('commission group - AssignGroup', () => {
     });
 
     it('handleChange - should call setState when change commGroup', () => {
-        const mockedEvent = { target: { name: "commGroup", value: 133 }};
+        const mockedEvent = { target: { name: "commGroup", value: 133 } };
         const wrapper = shallow(<AssignGroup />);
         wrapper.setState = jest.fn();
         wrapper.find('select[name="SelectedGroup"]').simulate('change', mockedEvent);
@@ -38,7 +37,7 @@ describe('commission group - AssignGroup', () => {
 
     it('handleCheck - should call setState when check private group with selectedGroup is 0', () => {
         window.initialState = Object.assign({}, window.initialState, { selectedGroup: 0 });
-        const mockedEvent = { target: { name: "privateGroup", checked: true }};
+        const mockedEvent = { target: { name: "privateGroup", checked: true } };
         const wrapper = shallow(<AssignGroup />);
         wrapper.setState = jest.fn();
         wrapper.find('Input[id="isPrivateGroup"]').simulate('change', mockedEvent);
@@ -48,7 +47,7 @@ describe('commission group - AssignGroup', () => {
 
     it('handleCheck - should call setState when check private group with selectedGroup is 0 and commGroupList is null', () => {
         window.initialState = Object.assign({}, window.initialState, { selectedGroup: 0, commGroupList: [] });
-        const mockedEvent = { target: { name: "privateGroup", checked: false }};
+        const mockedEvent = { target: { name: "privateGroup", checked: false } };
         const wrapper = shallow(<AssignGroup />);
         wrapper.setState = jest.fn();
         wrapper.find('Input[id="isPrivateGroup"]').simulate('change', mockedEvent);

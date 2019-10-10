@@ -1,13 +1,9 @@
 ﻿import React from 'react';
-import { connect } from 'react-redux';
-import ConnectedTierSetting, { TierSetting } from '../TierSetting';
+import { TierSetting } from '../TierSetting';
 import TierSettingItem from '../TierSettingItem';
 import { shallow } from 'enzyme';
 jest.mock('../../../../modules/constant');
 
-import configureMockStore from 'redux-mock-store';
-
-const mockStore = configureMockStore();
 describe('commission group - TierSetting', () => {
     const defaultSelectedGroup = {
         BankingFee: { DeductedPercentage: 0.02, DeductionId: 12, ProductIds: 0 },
@@ -18,7 +14,7 @@ describe('commission group - TierSetting', () => {
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6" }],
         QmTurnover: 100,
         TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100, MinQm: 0, MaxQm: 10, Commission: 0 },
-            { TierId: 2, MinAmount: 100, MaxAmount: 100000000000000, MinQm: 10, MaxQm: 1000000000, Commission: 0 }]
+        { TierId: 2, MinAmount: 100, MaxAmount: 100000000000000, MinQm: 10, MaxQm: 1000000000, Commission: 0 }]
     }
     const defaultProps = {
         selectedGroup: defaultSelectedGroup
@@ -27,9 +23,9 @@ describe('commission group - TierSetting', () => {
     it('handleAdd - should call setSelectedGroup when click button Add Tier', () => {
         const expectParam = {
             TierSettingList: [
-                { Commission: 0, MaxAmount: 100, MaxQm: 10, MinAmount: 0, MinQm: 0, TierId: 1},
-                { Commission: 0, MaxAmount: 100000000000000, MaxQm: 1000000000, MinAmount: 100, MinQm: 10, TierId: 2},
-                { Commission: 0, MaxAmount: 100000000000001, MaxQm: 1000000001, MinAmount: 100000000000001, MinQm: 1000000001, TierId: 3}
+                { Commission: 0, MaxAmount: 100, MaxQm: 10, MinAmount: 0, MinQm: 0, TierId: 1 },
+                { Commission: 0, MaxAmount: 100000000000000, MaxQm: 1000000000, MinAmount: 100, MinQm: 10, TierId: 2 },
+                { Commission: 0, MaxAmount: 100000000000001, MaxQm: 1000000001, MinAmount: 100000000000001, MinQm: 1000000001, TierId: 3 }
             ]
         };
         const mockSetSelectedGroup = jest.fn();
@@ -41,7 +37,7 @@ describe('commission group - TierSetting', () => {
     });
 
     it('handleAdd - should call setSelectedGroup when click button Add Tier with TierSettingList is null', () => {
-        const selectedGroup = Object.assign({}, defaultSelectedGroup, { TierSettingList: []});
+        const selectedGroup = Object.assign({}, defaultSelectedGroup, { TierSettingList: [] });
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selectedGroup });
         const wrapper = shallow(<TierSetting {...props} />);
@@ -71,14 +67,14 @@ describe('commission group - TierSetting', () => {
     it('handleChangeInput - Should call setSelectedGroup', () => {
         const expectParam = {
             TierSettingList: [
-                { Commission: 0, MinAmount: 10, MaxAmount: 500, MinQm: 10, MaxQm: 50, TierId: 1},
-                { Commission: 0, MaxAmount: 100000000000000, MaxQm: 1000000000, MinAmount: 100, MinQm: 10, TierId: 2}
+                { Commission: 0, MinAmount: 10, MaxAmount: 500, MinQm: 10, MaxQm: 50, TierId: 1 },
+                { Commission: 0, MaxAmount: 100000000000000, MaxQm: 1000000000, MinAmount: 100, MinQm: 10, TierId: 2 }
             ]
-        }; 
+        };
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup });
         const wrapper = shallow(<TierSetting {...props} />);
-        wrapper.find(TierSettingItem).at(1).simulate('change', 1, { MinAmount: 10, MaxAmount: 500, MinQm: 10, MaxQm: 50});
+        wrapper.find(TierSettingItem).at(1).simulate('change', 1, { MinAmount: 10, MaxAmount: 500, MinQm: 10, MaxQm: 50 });
 
         expect(props.setSelectedGroup).toHaveBeenCalledWith(expectParam);
     });
@@ -87,7 +83,7 @@ describe('commission group - TierSetting', () => {
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup });
         const wrapper = shallow(<TierSetting {...props} />);
-        wrapper.find(TierSettingItem).at(1).simulate('change', 1, { MinAmount: 'abc', MaxAmount: 0, MinQm: 0, MaxQm: 0});
+        wrapper.find(TierSettingItem).at(1).simulate('change', 1, { MinAmount: 'abc', MaxAmount: 0, MinQm: 0, MaxQm: 0 });
 
         expect(props.setSelectedGroup).not.toHaveBeenCalled();
     });
@@ -99,7 +95,7 @@ describe('commission group - TierSetting', () => {
     });
 
     it('Should render correctly with TierSettingList is null', () => {
-        const selectedGroup = Object.assign({}, defaultSelectedGroup, { TierSettingList: []});
+        const selectedGroup = Object.assign({}, defaultSelectedGroup, { TierSettingList: [] });
         const props = Object.assign({}, defaultProps, { selectedGroup: selectedGroup });
         const wrapper = shallow(<TierSetting {...props} />);
 

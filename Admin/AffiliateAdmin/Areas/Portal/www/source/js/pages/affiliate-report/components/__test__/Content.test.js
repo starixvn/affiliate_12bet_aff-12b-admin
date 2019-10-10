@@ -64,7 +64,7 @@ describe('affiliate report - Content ', () => {
 
         expect(result).toMatchSnapshot();
     });
-    
+
     it('should call handleExportExcel when clicking export excel button and currentViewLevel is Month on Month view', () => {
         const props = Object.assign({}, defaultProps, { currentViewLevel: monthOnMonth });
         const componentInstance = new Content(props);

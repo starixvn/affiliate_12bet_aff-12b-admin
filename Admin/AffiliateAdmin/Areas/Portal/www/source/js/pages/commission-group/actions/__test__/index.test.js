@@ -17,7 +17,7 @@ const runTestAction = ({ name, type, data }) => {
     });
 }
 
-const runTestActionReturnPost = ({ name, url}) => {
+const runTestActionReturnPost = ({ name, url }) => {
     it(`should create action to ${name}`, () => {
         ajaxRequest.post = jest.fn();
         actions[name](defaultPagingOption)();
@@ -124,10 +124,10 @@ describe('commission group actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER' , data: true },
-            { type: types.SET_SEARCHED_GROUPNAME , data: '' },
-            { type: types.SET_GRIDDATA , data: expectedResponse.data.CommissionSettingList },
-            { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 1 }},
+            { type: 'TOGGLE_LOADER', data: true },
+            { type: types.SET_SEARCHED_GROUPNAME, data: '' },
+            { type: types.SET_GRIDDATA, data: expectedResponse.data.CommissionSettingList },
+            { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 1 } },
             { type: 'TOGGLE_LOADER', data: false },
         ];
         const param = {
@@ -135,7 +135,7 @@ describe('commission group actions', () => {
             PageIndex: 1,
             PageSize: 20
         }
-        
+
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getGroupSettingList'](param)).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommissionGroup/GetCommissionGroupList', param);
@@ -151,9 +151,9 @@ describe('commission group actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER' , data: true },
-            { type: types.SET_GRIDDATA , data: null },
-            { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 0 }},
+            { type: 'TOGGLE_LOADER', data: true },
+            { type: types.SET_GRIDDATA, data: null },
+            { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 0 } },
             { type: 'TOGGLE_LOADER', data: false },
         ];
         const param = {
@@ -161,7 +161,7 @@ describe('commission group actions', () => {
             PageIndex: 1,
             PageSize: 20
         }
-        
+
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getGroupSettingList'](param)).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommissionGroup/GetCommissionGroupList', param);
@@ -173,7 +173,7 @@ describe('commission group actions', () => {
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER' , data: true },
+            { type: 'TOGGLE_LOADER', data: true },
             { type: 'TOGGLE_LOADER', data: false }
         ];
         const param = {
@@ -181,7 +181,7 @@ describe('commission group actions', () => {
             PageIndex: -1,
             PageSize: -20
         }
-        
+
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getGroupSettingList'](param)).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommissionGroup/GetCommissionGroupList', param);
@@ -197,7 +197,7 @@ describe('commission group actions', () => {
                 GroupId: 0,
                 GroupName: "",
                 OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
-                PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4"}],
+                PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }],
                 QmTurnover: 100,
                 TierSettingList: []
             },
@@ -205,11 +205,11 @@ describe('commission group actions', () => {
         };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
-        const expectedAction = [{ type: types.SET_SELECTED_GROUP , data: expectedResponse.data }];
+        const expectedAction = [{ type: types.SET_SELECTED_GROUP, data: expectedResponse.data }];
         const param = {
             GroupId: 102
         }
-        
+
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getSelectedCommGroup'](param)).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommissionGroup/GetCommissionGroup', param);
@@ -220,11 +220,11 @@ describe('commission group actions', () => {
     it('should create action to getSelectedCommGroup with incorrect parameter', () => {
         ajaxRequest.post = jest.fn();
 
-        const expectedAction = [{ type: types.SET_SELECTED_GROUP , data: null }];
+        const expectedAction = [{ type: types.SET_SELECTED_GROUP, data: null }];
         const param = {
             GroupId: 'abc'
         }
-        
+
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getSelectedCommGroup'](param)).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommissionGroup/GetCommissionGroup', param);

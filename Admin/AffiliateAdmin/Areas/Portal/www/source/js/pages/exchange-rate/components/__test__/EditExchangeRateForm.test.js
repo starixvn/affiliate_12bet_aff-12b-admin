@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { EditExchangeRateForm } from '../EditExchangeRateForm';
 import { shallow } from 'enzyme';
-import * as ajaxRequest from '../../../../modules/ajaxRequest';
 
 describe('exchange rate - components - EditExchangeRateForm ', () => {
     const defaultProps = {

@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as ajaxRequest from '../../../../modules/ajaxRequest';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-describe('payment request - components - Content ', () => {
+describe('payment request - components - Filter ', () => {
     const defaultProps = {
         today: "6/27/2019",
         param: {}
@@ -32,6 +32,14 @@ describe('payment request - components - Content ', () => {
         const result = shallow(<Filter {...props} />);
 
         expect(result).toMatchSnapshot();
+    });
+
+    it('componentDidMount - should call handleSearch', () => {
+        const props = Object.assign({}, defaultProps, { setParam: jest.fn(), param: { IsFromHome: true } });
+
+        shallow(<Filter {...props} />);
+
+        expect(props.setParam).toHaveBeenCalledWith({"FromDate": "6/26/2019", "IsFromHome": true, "IsGetAll": false, "SearchBy": 1, "Status": undefined, "ToDate": "6/27/2019", "Username": null});
     });
 
     it('handleSearch - should be called when click Search Button', () => {

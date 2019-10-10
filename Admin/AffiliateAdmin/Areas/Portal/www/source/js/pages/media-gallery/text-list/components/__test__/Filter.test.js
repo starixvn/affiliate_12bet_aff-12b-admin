@@ -1,10 +1,7 @@
 ﻿import React from 'react';
-import ReactDOM from 'react-dom';
-import { act } from 'react-dom/test-utils';
 import { Filter } from '../Filter';
 import { shallow } from 'enzyme';
 
-import { DatePicker } from '@9softstudio/react-datepicker';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('text list - components - Filter ', () => {

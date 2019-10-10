@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import { connect } from 'react-redux';
 import { QmTurnOverSetting } from '../QmTurnOverSetting';
 import { shallow } from 'enzyme';
 jest.mock('../../../modules/constant');
@@ -13,13 +12,14 @@ describe('commission group - QmTurnOverSetting', () => {
         OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6" }],
         QmTurnover: 100,
-        TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]};
+        TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]
+    };
     const defaultProps = {
         selectedGroup: defaultSelectedGroup
     };
 
     it('handleChange - should call setSelectedGroup when change QmTurnover', () => {
-        const mockEvent = { target: { name: 'QmTurnover', value: '150,000' }};
+        const mockEvent = { target: { name: 'QmTurnover', value: '150,000' } };
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup });
         const wrapper = shallow(<QmTurnOverSetting {...props} />);
@@ -29,7 +29,7 @@ describe('commission group - QmTurnOverSetting', () => {
     });
 
     it('handleChange - not call setSelectedGroup when change QmTurnover with value not isValidNumber', () => {
-        const mockEvent = { target: { name: 'QmTurnover', value: '15abc,000' }};
+        const mockEvent = { target: { name: 'QmTurnover', value: '15abc,000' } };
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup });
         const wrapper = shallow(<QmTurnOverSetting {...props} />);
@@ -40,7 +40,7 @@ describe('commission group - QmTurnOverSetting', () => {
 
     it('handleChange - should call setSelectedGroup when change NextQmTurnover', () => {
         const selectedGroup = Object.assign({}, defaultSelectedGroup, { GroupId: 123, QmTurnover: null });
-        const mockEvent = { target: { name: 'NextQmTurnover', value: '250,000' }};
+        const mockEvent = { target: { name: 'NextQmTurnover', value: '250,000' } };
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { selectedGroup: selectedGroup, setSelectedGroup: mockSetSelectedGroup });
         const wrapper = shallow(<QmTurnOverSetting {...props} />);
@@ -51,7 +51,7 @@ describe('commission group - QmTurnOverSetting', () => {
 
     it('handleChange - not call setSelectedGroup when change NextQmTurnover with value not isValidNumber', () => {
         const selectedGroup = Object.assign({}, defaultSelectedGroup, { GroupId: 123, QmTurnover: null });
-        const mockEvent = { target: { name: 'NextQmTurnover', value: '250,000,ABC' }};
+        const mockEvent = { target: { name: 'NextQmTurnover', value: '250,000,ABC' } };
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { selectedGroup: selectedGroup, setSelectedGroup: mockSetSelectedGroup });
         const wrapper = shallow(<QmTurnOverSetting {...props} />);

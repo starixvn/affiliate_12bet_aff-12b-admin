@@ -26,12 +26,12 @@ describe('commission group - Filter', () => {
         wrapper.instance().handleSearch = jest.fn();
 
         wrapper.find('Button').simulate('click');
-        
+
         expect(props.getGroupSettingList).toHaveBeenCalledWith(expectParam);
     });
 
     it("should call handleChange when change Group Name's value", () => {
-        const mockedEvent = { target: { value: "Group name"} };
+        const mockedEvent = { target: { value: "Group name" } };
         const mockGetGroupSettingList = jest.fn();
         const mockSetSearchedGroupName = jest.fn();
 
@@ -39,7 +39,7 @@ describe('commission group - Filter', () => {
         const wrapper = shallow(<Filter {...props} />);
 
         wrapper.find('Input').simulate('change', mockedEvent);
-        
+
         expect(props.setSearchedGroupName).toHaveBeenCalledWith("Group name");
     });
 
@@ -80,7 +80,7 @@ describe('commission group - Filter', () => {
 
         const props = Object.assign({}, defaultProps, { getGroupSettingList: mockGetGroupSettingList });
         const wrapper = shallow(<Filter {...props} />);
-        
+
         expect(wrapper).toMatchSnapshot();
     })
 });

@@ -15,7 +15,7 @@ describe('commission group - TierSettingItem', () => {
     };
 
     it('handleChange - should call onChange when change commission', () => {
-        const mockEvent = { target: { name: 'Commission', value: 'a,15' }};
+        const mockEvent = { target: { name: 'Commission', value: 'a,15' } };
         const wrapper = shallow(<TierSettingItem {...defaultProps} />);
 
         wrapper.find('select').simulate('change', mockEvent);
@@ -24,7 +24,7 @@ describe('commission group - TierSettingItem', () => {
     });
 
     it('handleCheck - should call onChange when checked checkbox', () => {
-        const mockEvent = { target: { checked: true }};
+        const mockEvent = { target: { checked: true } };
         const wrapper = shallow(<TierSettingItem {...defaultProps} />);
 
         wrapper.find('Input[type="checkbox"]').at(0).simulate('change', mockEvent);
@@ -33,7 +33,7 @@ describe('commission group - TierSettingItem', () => {
     });
 
     it('handleCheck - should call onChange when unchecked checkbox', () => {
-        const mockEvent = { target: { checked: false }};
+        const mockEvent = { target: { checked: false } };
         const wrapper = shallow(<TierSettingItem {...defaultProps} />);
 
         wrapper.find('Input[type="checkbox"]').at(1).simulate('change', mockEvent);

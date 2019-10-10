@@ -24,7 +24,7 @@ describe('affiliate info - Filter - connect', () => {
             commGroupList: { 133: 'New Group' },
             param: { abc: 123 },
             groupId: 123,
-            columnList: [1,2,3]
+            columnList: [1, 2, 3]
         };
 
         const state = {
@@ -32,7 +32,7 @@ describe('affiliate info - Filter - connect', () => {
             commGroupList: { 133: 'New Group' },
             param: { abc: 123 },
             groupId: 123,
-            columnList: [1,2,3],
+            columnList: [1, 2, 3],
             anotherProp: "Not included"
         };
 

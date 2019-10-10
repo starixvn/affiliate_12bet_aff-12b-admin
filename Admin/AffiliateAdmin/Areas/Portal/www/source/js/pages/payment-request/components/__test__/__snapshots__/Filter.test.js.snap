@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`payment request - components - Content  render correctly with SearchBy Others 1`] = `
+exports[`payment request - components - Filter  render correctly with SearchBy Others 1`] = `
 <div
   className="filter-container"
 >
@@ -220,7 +220,7 @@ exports[`payment request - components - Content  render correctly with SearchBy 
 </div>
 `;
 
-exports[`payment request - components - Content  render correctly with SearchBy Username 1`] = `
+exports[`payment request - components - Filter  render correctly with SearchBy Username 1`] = `
 <div
   className="filter-container"
 >

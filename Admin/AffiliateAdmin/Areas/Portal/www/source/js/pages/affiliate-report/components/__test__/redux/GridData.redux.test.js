@@ -27,9 +27,9 @@ describe('affiliate report - GridData - connect', () => {
 		};
 
 		const state = {
-		    pagingOption: { PageIndex: 1 },
-		    param: { abc: 123 },
-		    currentViewLevel: 123,
+			pagingOption: { PageIndex: 1 },
+			param: { abc: 123 },
+			currentViewLevel: 123,
 			anotherProp: "Not included"
 		};
 

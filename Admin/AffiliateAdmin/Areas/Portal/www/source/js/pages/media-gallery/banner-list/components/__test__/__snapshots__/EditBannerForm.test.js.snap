@@ -823,7 +823,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                 name="category"
                 onChange={[Function]}
                 type="select"
-                value="Casino"
+                value=""
               >
                 <option
                   key="category-Casino"
@@ -836,62 +836,6 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   value="Sportbook"
                 >
                   Sportbook
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="subCategory"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Sub Category
-            </Label>
-            <Col
-              sm={5}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                id="subCategory"
-                name="subCategory"
-                onChange={[Function]}
-                type="select"
-                value="Baccarat"
-              >
-                <option
-                  key="subCategory-Casino Bonus"
-                  value="Casino Bonus"
-                >
-                  Casino Bonus
-                </option>
-                <option
-                  key="subCategory-Slot"
-                  value="Slot"
-                >
-                  Slot
                 </option>
               </Input>
             </Col>
@@ -1282,7 +1226,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
     <span
       className="iconpopup"
     />
-    Add Banner
+    Update Banner
   </ModalHeader>
   <ModalBody
     tag="div"
@@ -1295,7 +1239,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
       >
         <Alert
           closeAriaLabel="Close"
-          color="success"
+          color="danger"
           fade={true}
           isOpen={false}
           tag="div"
@@ -1398,7 +1342,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
               }
             >
               <Input
-                className="border text-danger"
+                className="border text-success"
                 id="file"
                 name="file"
                 onChange={[Function]}
@@ -1445,7 +1389,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                 name="category"
                 onChange={[Function]}
                 type="select"
-                value="Casino"
+                value="Sportsbook"
               >
                 <option
                   key="category-Casino"
@@ -1504,16 +1448,16 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                 value="Baccarat"
               >
                 <option
-                  key="subCategory-Casino Bonus"
-                  value="Casino Bonus"
+                  key="subCategory-Basketball"
+                  value="Basketball"
                 >
-                  Casino Bonus
+                  Basketball
                 </option>
                 <option
-                  key="subCategory-Slot"
-                  value="Slot"
+                  key="subCategory-SB Bonus"
+                  value="SB Bonus"
                 >
-                  Slot
+                  SB Bonus
                 </option>
               </Input>
             </Col>
@@ -1837,7 +1781,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                 name="inputFileName"
                 onChange={[Function]}
                 type="text"
-                value=""
+                value="test.gif"
               />
             </Col>
           </FormGroup>
@@ -1845,12 +1789,12 @@ exports[`banner list - components - EditBannerForm  render correctly with update
         <Button
           className="mr-3"
           color="success"
-          disabled={true}
+          disabled={false}
           onClick={[Function]}
           tag="button"
           type="button"
         >
-          Upload
+          Update
         </Button>
         <Button
           color="info"

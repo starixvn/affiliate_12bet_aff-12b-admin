@@ -1,10 +1,7 @@
 ﻿import React from 'react';
-import ReactDOM from 'react-dom';
-import { act } from 'react-dom/test-utils';
 import { Filter } from '../Filter';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
-import { DatePicker } from '@9softstudio/react-datepicker';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('banner list - components - Filter ', () => {
@@ -172,5 +169,29 @@ describe('banner list - components - Filter ', () => {
         wrapper.find('Input[type="select"][id="deviceType"]').simulate('change', event);
 
         expect(wrapper.find('Input[type="select"][id="deviceType"]').prop('value')).toEqual('mobile');
+    });
+
+    it('useEffect - should call getSubCategoryCasinoList, getSubCategorySportsbookList, setParamFromHome and setParam', () => {
+        const props = Object.assign({}, defaultProps, { paramFromHome: { IsFromHome: true }, subCategoryCasinoList: null, subCategorySportsbookList : null,
+            setParamFromHome: jest.fn(), setParam: jest.fn(), getSubCategoryCasinoList: jest.fn(), getSubCategorySportsbookList: jest.fn()});
+        
+        mount(<Filter {...props} />);
+
+        expect(props.getSubCategoryCasinoList).toHaveBeenCalled();
+        expect(props.getSubCategorySportsbookList).toHaveBeenCalled();
+        expect(props.setParamFromHome).toHaveBeenCalledWith({ IsFromHome: false });
+        expect(props.setParam).toHaveBeenCalledWith({"AffType": 2, "Category": "", "Currency": "", "DeviceType": 0, "ImageType": "", "Language": "", "PageIndex": 1, "PageSize": 20, "Size": "", "SubCategory": ""});
+    });
+
+    it('useEffect - should call getSubCategoryCasinoList, getSubCategorySportsbookList and not call setParamFromHome and setParam', () => {
+        const props = Object.assign({}, defaultProps, { subCategoryCasinoList: null, subCategorySportsbookList : null,
+            setParamFromHome: jest.fn(), setParam: jest.fn(), getSubCategoryCasinoList: jest.fn(), getSubCategorySportsbookList: jest.fn()});
+        
+        mount(<Filter {...props} />);
+
+        expect(props.getSubCategoryCasinoList).toHaveBeenCalled();
+        expect(props.getSubCategorySportsbookList).toHaveBeenCalled();
+        expect(props.setParamFromHome).not.toHaveBeenCalled();
+        expect(props.setParam).not.toHaveBeenCalled();
     });
 })

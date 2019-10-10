@@ -181,7 +181,7 @@ exports[`affiliate info - GridData  _buildDataRow - should render correctly with
       title="6"
     >
       <a
-        href="/Portal/Member?txtAffUsername=12BETAFF001"
+        href="/Portal/Member?AffName=12BETAFF001"
         target="_top"
       >
         6
@@ -571,7 +571,7 @@ exports[`affiliate info - GridData  should render correctly 1`] = `
             title="6"
           >
             <a
-              href="/Portal/Member?txtAffUsername=12BETAFF001"
+              href="/Portal/Member?AffName=12BETAFF001"
               target="_top"
             >
               6
@@ -986,7 +986,7 @@ exports[`affiliate info - GridData  should render correctly with _renderDataSect
       title="6"
     >
       <a
-        href="/Portal/Member?txtAffUsername=12BETAFF001"
+        href="/Portal/Member?AffName=12BETAFF001"
         target="_top"
       >
         6

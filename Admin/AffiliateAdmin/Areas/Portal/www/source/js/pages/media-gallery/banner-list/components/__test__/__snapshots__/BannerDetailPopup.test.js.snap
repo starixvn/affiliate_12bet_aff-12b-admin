@@ -48,9 +48,9 @@ exports[`banner list - components - BannerDetailPopup  render correctly 1`] = `
     >
       <img
         alt=""
-        height={500}
+        height={1108}
         src="CategoryMedia/Casino/Baccarat/SBNG_2.gif"
-        width={NaN}
+        width={988.5390835579515}
       />
     </div>
   </ModalBody>

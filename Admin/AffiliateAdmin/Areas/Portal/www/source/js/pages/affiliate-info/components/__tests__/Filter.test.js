@@ -9,7 +9,7 @@ describe('affiliate info - Filter ', () => {
         commGroupList: {},
         param: {},
         groupId: 0,
-        columnList:[]
+        columnList: []
     };
 
     it('componentDidMount - should call handleClickSearch if initial group Id different 0', () => {
