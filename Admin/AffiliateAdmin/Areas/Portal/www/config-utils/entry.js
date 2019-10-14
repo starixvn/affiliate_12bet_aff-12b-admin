@@ -20,6 +20,7 @@ module.exports = {
     [`${jsDist}/pages/exchange-rate/exchange-rate`]: clientRoot + "/js/pages/exchange-rate/index.jsx",
     [`${jsDist}/pages/message/message`]: clientRoot + "/js/pages/message/index.jsx",
     [`${jsDist}/pages/member/member-list`]: clientRoot + "/js/pages/member/member-list/index.jsx",
+    [`${jsDist}/pages/login`]: clientRoot + "/js/pages/login/index.jsx",
 
     //For Thirdparty Product pages
     [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",
@@ -45,4 +46,5 @@ module.exports = {
     [`${styleDist}/pages/email-history`]: clientRoot + "/style/pages/email-history.scss",
     [`${styleDist}/pages/exchange-rate/exchange-rate`]: clientRoot + "/style/pages/exchange-rate/exchange-rate.scss",
     [`${styleDist}/pages/message/message`]: clientRoot + "/style/pages/message/message.scss",
+    [`${styleDist}/login`]: clientRoot + "/style/pages/login.scss",
 };

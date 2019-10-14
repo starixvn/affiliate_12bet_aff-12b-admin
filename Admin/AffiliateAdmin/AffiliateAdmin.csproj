@@ -1316,6 +1316,9 @@
     <Content Include="Areas\Portal\Views\Member\_MemberSubMenu.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\index.jsx" />
+    <Content Include="Areas\Portal\Views\LogIn\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\login\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\login\components\AppContainer.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1489,6 +1492,20 @@
     <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_refresh.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_top.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\btLg.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\FF.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\icAlert.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\icPass.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\icUser.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\IE.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgBg.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgFtleft.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgFtright.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgFtrp.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgLeft.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgLogo.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgRight.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgRp.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\a_bg.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_box_tab.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_button2.jpg" />
@@ -1877,6 +1894,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\message\message.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\text-list.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\banner-list.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\login.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
