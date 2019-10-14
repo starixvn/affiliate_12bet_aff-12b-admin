@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.MetaModels.Login;
+using DNAide.Utils;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
@@ -43,6 +46,66 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 var isKickedOut = objectDb.GetParameterValue("iskickedout");
 
                 return (isKickedOut != DBNull.Value) && Convert.ToBoolean(isKickedOut);
+            }
+        }
+
+        public ResultInfo Login(LoginParam param)
+        {
+            const string SpKey = "Aff_Admin_Login";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("UserName", DbType.String, param.UserName);
+                objectDb.AddInParameter("UserPwd", DbType.String, Encryption.CfsEnCode(param.Password));
+                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.AddInParameter("HostName", DbType.String, param.UserHostName);
+
+                objectDb.AddOutParameter("UserId", DbType.Int32, Size.SizeOfInt);
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                var userId = objectDb.GetParameterValue("UserId");
+
+                param.UserId = userId == DBNull.Value ? 0 : Convert.ToInt32(userId);
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        public int LoginOnUser(LoginParam param, string sessionId, string serverId)
+        {
+            const int AffiliateAdminSite = 6;
+            const string SpKey = "Aff_CheckIn";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("custid", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("netsessionid", DbType.String, sessionId);
+                objectDb.AddInParameter("serverid", DbType.String, serverId);
+                objectDb.AddInParameter("ip", DbType.String, param.Ip);
+                objectDb.AddInParameter("subaccid", DbType.Int32, AffiliateAdminSite);
+
+                objectDb.AddOutParameter("on_userid", DbType.Int32, Size.SizeOfInt);
+
+                objectDb.ExecuteNonQuery();
+
+                var userId = objectDb.GetParameterValue("on_userid");
+
+                return userId == DBNull.Value ? 0 : Convert.ToInt32(userId);
+            }
+        }
+
+        public void Logout(int onUserId)
+        {
+            const string SpKey = "Aff_Logout";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("on_userid", DbType.Int32, onUserId);
+
+                objectDb.ExecuteNonQuery();
             }
         }
     }

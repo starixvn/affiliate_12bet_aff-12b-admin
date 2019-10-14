@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                 };
             }else
             {
-                filterContext.Result = new RedirectResult("~/SignIn.aspx");
+                filterContext.Result = new RedirectResult("~/Portal/Login");
             }
         }
     }

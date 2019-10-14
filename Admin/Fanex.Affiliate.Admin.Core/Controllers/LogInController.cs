@@ -1,14 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.Services.Common;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    public class LogInController : Controller
+    public class LoginController : Controller
     {
-        public LogInController(ISessionService sessionService)
-        {
-        }
-
         [HttpGet]
         public ActionResult Index()
         {

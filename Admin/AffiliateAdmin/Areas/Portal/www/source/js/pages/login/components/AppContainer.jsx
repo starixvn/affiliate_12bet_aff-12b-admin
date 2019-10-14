@@ -2,27 +2,22 @@
 import { Alert, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 
 import AppLayout from '../../../layouts/AppLayout';
-import Loader from '../../../components/Loader';
 
 import { post } from '../../../modules/ajaxRequest';
-import { resolveClientUrl } from './utils';
+import { resolveClientUrl } from '../../../modules/utils';
 
 export default class AppContainer extends PureComponent {
     constructor(props) {
         super(props);
 
+        const now = new Date();
         this.state = {
             userName: '',
             passWord: '',
-            isShowLoader: false,
             isShowMessage: false,
             message: '',
-            now: new Date()
+            year: now.getFullYear()
         }
-    }
-
-    _toggleLoader(isShow) {
-        this.setState({ isShowLoader: !!isShow });
     }
 
     _handleShowAlert = (isSuccess, message) => {
@@ -30,7 +25,7 @@ export default class AppContainer extends PureComponent {
             message,
             isSuccess,
             isShowMessage: true,
-        }, () => window.setTimeout(() => this._hideMessage, 3000));
+        }, () => window.setTimeout(this._hideMessage, 3000));
     }
 
     _hideMessage = () => {
@@ -54,34 +49,31 @@ export default class AppContainer extends PureComponent {
         const isValidAccount = this._validateAccount(userName, passWord);
 
         if (isValidAccount) {
-            this._toggleLoader(true);
-
             const param = { userName, passWord };
-
-            const response = await post('Portal/Login/Login', param);
+            const response = await post('Portal/Auth/Login', param);
 
             if (response) {
-                if (response.Message = "OK") {
+                const { data } = response;
+
+                if (data.Message === "OK") {
                     location.href = resolveClientUrl("Portal/Home")
+                } else {
+                    if (data.Message === 'UM') {
+                        location.href = resolveClientUrl("UnderMaintenance.aspx");
+                    } else {
+                        this._handleShowAlert(false, data.Message);
+                    }
                 }
-
-                if (response.Message == 'UM') {
-                    location.href = resolveClientUrl("UnderMaintenance.aspx");
-                }
-
-                this._handleShowAlert(false, response.Message);
             } else {
-                this._handleShowAlert(false, "Server Error!");
+                this._handleShowAlert(false, "An error occurred while processing your request");
             }
-
-            this._toggleLoader(false);
         }
     }
 
     _handlePressEnter = (event) => {
         if (event.charCode === 13) {
             event.preventDefault()
-            _handleSearch();
+            this._handleLogin();
         }
     }
 
@@ -92,11 +84,10 @@ export default class AppContainer extends PureComponent {
     }
 
     render() {
-        const { userName, passWord, isShowLoader, isShowMessage, message, now } = this.state;
+        const { userName, passWord, isShowMessage, message, year } = this.state;
 
         return (
             <AppLayout>
-                <Loader show={isShowLoader} />
                 <div className="login-container">
                     <div className="lgRight"></div>
                     <div className="lgRp">
@@ -130,7 +121,7 @@ export default class AppContainer extends PureComponent {
                         </div>
                         <div className="foot">
                             <span className="foot-left">&nbsp;</span>
-                            <span className="foot-rp">{`© Copyright ${now.getFullYear()} Pacific Sea Invests`}</span>
+                            <span className="foot-rp">{`© Copyright ${year} Pacific Sea Invests`}</span>
                             <span className="foot-right">&nbsp;</span>
                             <span className="foot-text">Best view in</span>
                             <span className="foot-icIE">&nbsp;</span>

@@ -44,5 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         string[] BannerFolders { get; }
 
         int ImageSize { get; }
+
+        string ServerId { get; }
     }
 }
