@@ -19,7 +19,7 @@ describe('changePassword actions', () => {
 
         const result = await updateChangePasswword(param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/AffiliateInfo/ChangePassword', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Affiliate/ChangePassword', param);
         expect(result).toEqual(null);
     })
 
@@ -34,7 +34,7 @@ describe('changePassword actions', () => {
         
         const result = await updateChangePasswword(param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/AffiliateInfo/ChangePassword', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Affiliate/ChangePassword', param);
         expect(result).toEqual({ IsSuccessful: true, Message: '' });
     })
 });

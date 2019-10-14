@@ -1,0 +1,208 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login - components - AppContainer render correctly 1`] = `
+<div
+  className="login-container"
+>
+  <div
+    className="lgRight"
+  />
+  <div
+    className="lgRp"
+  >
+    <div
+      className="logo"
+    />
+    <div
+      className="war-box"
+    >
+      <Alert
+        closeAriaLabel="Close"
+        color="danger"
+        fade={true}
+        isOpen={false}
+        tag="div"
+        transition={
+          Object {
+            "appear": true,
+            "baseClass": "fade",
+            "baseClassActive": "show",
+            "enter": true,
+            "exit": true,
+            "in": true,
+            "mountOnEnter": false,
+            "onEnter": [Function],
+            "onEntered": [Function],
+            "onEntering": [Function],
+            "onExit": [Function],
+            "onExited": [Function],
+            "onExiting": [Function],
+            "tag": "div",
+            "timeout": 150,
+            "unmountOnExit": true,
+          }
+        }
+      >
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "",
+            }
+          }
+        />
+      </Alert>
+    </div>
+    <Form
+      autocomplete="false"
+      className="form-login pl-3"
+      tag="form"
+    >
+      <FormGroup
+        className="mb-1"
+        row={true}
+        tag="div"
+      >
+        <span
+          className="icUser"
+        >
+           
+        </span>
+        <Label
+          className="form-login-text"
+          for="userName"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          User Name
+        </Label>
+        <Col
+          sm={6}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="userName"
+            name="userName"
+            onChange={[Function]}
+            onKeyPress={[Function]}
+            type="text"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <span
+          className="icPass"
+        >
+           
+        </span>
+        <Label
+          className="form-login-text"
+          for="passWord"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Password
+        </Label>
+        <Col
+          sm={6}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            autocomplete="false"
+            id="password"
+            name="password"
+            onChange={[Function]}
+            onKeyPress={[Function]}
+            type="password"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+    </Form>
+    <div
+      className="bt"
+    >
+      <a
+        class="bt-login"
+        href="javascript:;"
+        onClick={[Function]}
+      >
+        Log On
+      </a>
+    </div>
+    <div
+      className="foot"
+    >
+      <span
+        className="foot-left"
+      >
+         
+      </span>
+      <span
+        className="foot-rp"
+      >
+        © Copyright 2019 Pacific Sea Invests
+      </span>
+      <span
+        className="foot-right"
+      >
+         
+      </span>
+      <span
+        className="foot-text"
+      >
+        Best view in
+      </span>
+      <span
+        className="foot-icIE"
+      >
+         
+      </span>
+      <span
+        className="foot-icFirefox"
+      >
+         
+      </span>
+    </div>
+  </div>
+</div>
+`;
