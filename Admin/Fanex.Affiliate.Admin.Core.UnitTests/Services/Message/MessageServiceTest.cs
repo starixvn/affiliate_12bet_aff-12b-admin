@@ -13,11 +13,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
 {
     public class MessageServiceTest
     {
-        private const string SpKeyHotNewsSel = "Aff_HotNewsSel";
-        private const string SpKeyHotNewsDetail = "Aff_HotNewsDetail";
-        private const string SpKeyHotNewsIns = "Aff_HotNewsIns";
-        private const string SpKeyHotNewsUpd = "Aff_HotNewsUpd";
-        private const string SpKeyHotNewsDel = "Aff_HotNewsDel";
+        private const string SpKeyHotNewsSel = "Aff_Admin_Message_Sel";
+        private const string SpKeyHotNewsIns = "Aff_Admin_Message_Ins";
+        private const string SpKeyHotNewsUpd = "Aff_Admin_Message_Upd";
+        private const string SpKeyHotNewsDel = "Aff_Admin_Message_Del";
 
         [Fact]
         public void GetMessageList_WhenCall_ReturnCorrectData()
@@ -103,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
 
             ReaderHelper.MapReaderData(dataReader, GetMessageList());
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb(SpKeyHotNewsDetail, 120)).Returns(objectDb.Object);
+            service.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.GetMessageDetail(37);
@@ -122,7 +121,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             dataReader.Setup(d => d.Read()).Returns(false);
 
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb(SpKeyHotNewsDetail, 120)).Returns(objectDb.Object);
+            service.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.GetMessageDetail(37);
@@ -249,12 +248,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
-                ["msgid"] = 37,
+                ["MessageId"] = 37,
                 ["creatorname"] = "sa",
                 ["PostedDate"] = new DateTime(2019, 09, 18),
                 ["message_en"] = "test",
                 ["Important"] = false,
-                ["updatename"] = "",
+                ["updatedname"] = "",
                 ["UpdatedDate"] = new DateTime(2019, 09, 19)
             };
         }

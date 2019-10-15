@@ -3,9 +3,9 @@ import { globalResource } from '../../../modules/globalResource';
 
 export { minDate };
 
-export const all = '-1';
-export const normal = '0';
-export const important = '1';
+export const all = '0';
+export const normal = '1';
+export const important = '2';
 export const messageInsertId = 0;
 export const messageCurrentId = -1;
 
@@ -45,6 +45,7 @@ export const languages = {
 }
 
 export const searchByList = {
+    [all]: 'All',
     [normal]: 'Normal',
     [important]: 'Important'
 }

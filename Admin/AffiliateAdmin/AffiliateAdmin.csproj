@@ -1005,6 +1005,7 @@
     <Content Include="Areas\Portal\www\dist\js\pages\customer\customer.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\exchange-rate\exchange-rate.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\login.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\banner-list.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\landing-page.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\text-list.js" />
@@ -1022,8 +1023,11 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\timetracker.js" />
     <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
+    <Content Include="Areas\Portal\www\dist\style\assets\lgLeft.jpg" />
+    <Content Include="Areas\Portal\www\dist\style\assets\lgLogo.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
+    <Content Include="Areas\Portal\www\dist\style\login.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-info.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />

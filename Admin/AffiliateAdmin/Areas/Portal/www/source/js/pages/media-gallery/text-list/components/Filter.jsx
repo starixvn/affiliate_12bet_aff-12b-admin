@@ -37,7 +37,7 @@ export const Filter = (props) => {
                         <option key={'category-all'} value={''}>{globalResource.All}</option>
                         {
                             categoryList.map(item => {
-                                return (<option key={`category-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                return (<option key={`category-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
                             })
                         }
                     </Input>

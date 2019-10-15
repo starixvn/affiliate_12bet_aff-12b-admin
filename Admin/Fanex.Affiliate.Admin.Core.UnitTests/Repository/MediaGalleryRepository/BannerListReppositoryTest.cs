@@ -12,12 +12,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
 {
     public class BannerListReppositoryTest
     {
-        private const string SpKeyBannerSelByParentCate = "Aff_BannerSelByParentCate";
-        private const string SpKeyBannerSel = "Aff_BannerSel_1";
-        private const string SpKeyBannerSelDetail = "Aff_BannerSelDetail_1";
-        private const string SpKeyBannerMediaIns = "Aff_BannerMediaIns";
-        private const string SpKeyBannerUpd = "Aff_BannerUpd_1";
-        private const string SpKeyBannerDel = "Aff_BannerDel_1";
+        private const string SpKeyBannerSel = "Aff_Admin_Banner_Sel";
+        private const string SpKeyBannerMediaIns = "Aff_Admin_Banner_Ins";
+        private const string SpKeyBannerUpd = "Aff_Admin_Banner_Upd";
+        private const string SpKeyBannerDel = "Aff_Admin_Banner_Del";
 
         [Fact]
         public void GetBannerList_WhenCallWithSpKeyBannerSel_ReturnCorrectData()
@@ -34,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             repository.Setup(r => r.GetObjectDb(SpKeyBannerSel, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetBannerList(new BannerParam(), SpKeyBannerSel);
+            var result = repository.Object.GetBannerList(new BannerParam());
 
             // Assert
             Assert.Single(result.MainData);
@@ -55,32 +53,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             repository.Setup(r => r.GetObjectDb(SpKeyBannerSel, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetBannerList(new BannerParam(), SpKeyBannerSel);
+            var result = repository.Object.GetBannerList(new BannerParam());
 
             // Assert
             Assert.Equal(0, result.TotalItem);
-        }
-
-        [Fact]
-        public void GetBannerList_WhenCallWithSpKeyBannerSelByParentCate_ReturnCorrectData()
-        {
-            // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
-
-            ReaderHelper.MapReaderData(dataReader, GetBannerList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
-            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
-            repository.Setup(r => r.GetObjectDb(SpKeyBannerSelByParentCate, 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.GetBannerList(new BannerParam(), SpKeyBannerSelByParentCate);
-
-            // Assert
-            Assert.Single(result.MainData);
-            Assert.Equal(1, result.TotalItem);
         }
 
         [Fact]
@@ -94,10 +70,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
 
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
-            repository.Setup(r => r.GetObjectDb(SpKeyBannerSelByParentCate, 120)).Returns(objectDb.Object);
+            repository.Setup(r => r.GetObjectDb(SpKeyBannerSel, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetBannerList(new BannerParam(), SpKeyBannerSelByParentCate);
+            var result = repository.Object.GetBannerList(new BannerParam());
 
             // Assert
             Assert.Equal(0, result.TotalItem);
@@ -114,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
 
             ReaderHelper.MapReaderData(dataReader, GetBannerList());
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
-            repository.Setup(r => r.GetObjectDb(SpKeyBannerSelDetail, 120)).Returns(objectDb.Object);
+            repository.Setup(r => r.GetObjectDb(SpKeyBannerSel, 120)).Returns(objectDb.Object);
 
             // Action
             var result = repository.Object.GetBannerDetail(123);
@@ -133,7 +109,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             dataReader.Setup(d => d.Read()).Returns(false);
 
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
-            repository.Setup(r => r.GetObjectDb(SpKeyBannerSelDetail, 120)).Returns(objectDb.Object);
+            repository.Setup(r => r.GetObjectDb(SpKeyBannerSel, 120)).Returns(objectDb.Object);
 
             // Action
             var result = repository.Object.GetBannerDetail(123);
@@ -267,7 +243,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
                 ["ImageType"] = "Image",
                 ["AffType"] = 2,
                 ["Size"] = "320x250",
-                ["DeviceType"] = "PC/Laptop"
+                ["DeviceType"] = 1
             };
         }
     }

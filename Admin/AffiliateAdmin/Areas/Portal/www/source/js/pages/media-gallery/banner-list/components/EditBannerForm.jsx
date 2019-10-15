@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader } from '../actions/index';
-import { headerText, globalResource, deviceTypes, defaultState, defaultDevice, Casino, Sportsbook, Baccarat } from '../libs/constants';
+import { headerText, globalResource, deviceTypes, defaultState, defaultDevice, Casino, Sportsbook, Baccarat, maxLenght } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { validateFileExtension, getSubCategory } from '../libs/utils';
@@ -51,6 +51,10 @@ export class EditBannerForm extends PureComponent {
     _handleChange = (event) => {
         const value = event.target.value;
         const name = event.target.name;
+
+        if(name === "inputFileName" && value.length > maxLenght) {
+            return;
+        }
 
         this.setState({ [name]: value });
 
@@ -185,7 +189,7 @@ export class EditBannerForm extends PureComponent {
                                         <Input type="select" name="category" id="category" value={category} onChange={this._handleChange}>
                                             {
                                                 categoryList.map(item => {
-                                                    return (<option key={`category-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                                    return (<option key={`category-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
                                                 })
                                             }
                                         </Input>
@@ -199,7 +203,7 @@ export class EditBannerForm extends PureComponent {
                                                 <Input type="select" name="subCategory" id="subCategory" value={subCategory} onChange={this._handleChange}>
                                                     {
                                                         subCategoryList.map(item => {
-                                                            return (<option key={`subCategory-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                                            return (<option key={`subCategory-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
                                                         })
                                                     }
                                                 </Input>

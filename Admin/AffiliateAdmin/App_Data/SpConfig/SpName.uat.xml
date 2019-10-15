@@ -77,18 +77,18 @@
     <Setting Key="Aff_Admin_LandingPage_Ins" SpName="Aff_Admin_LandingPage_Ins" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_LandingPage_Upd" SpName="Aff_Admin_LandingPage_Upd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_LandingPage_Del" SpName="Aff_Admin_LandingPage_Del" DbName="affiliate_12bet" />
-    <Setting Key="Aff_BannerSelType_1" SpName="Aff_BannerSelType_1" DbName="affiliate_12bet" />
-    <Setting Key="Aff_TextSel_1" SpName="Aff_TextSel_1" DbName="affiliate_12bet" />
-    <Setting Key="Aff_TextSelDetail_1" SpName="Aff_TextSelDetail_1" DbName="affiliate_12bet" />
-    <Setting Key="Aff_TextIns_1" SpName="Aff_TextIns_1" DbName="affiliate_12bet" />
-    <Setting Key="Aff_TextUpd_1" SpName="Aff_TextUpd_1" DbName="affiliate_12bet" />
-    <Setting Key="Aff_TextDel_1" SpName="Aff_TextDel_1" DbName="affiliate_12bet" />
-    <Setting Key="Aff_BannerMediaIns" SpName="Aff_BannerMediaIns" DbName="affiliate_12bet" />
-    <Setting Key="Aff_BannerUpd_1" SpName="Aff_BannerUpd_1" DbName="affiliate_12bet" />
-    <Setting Key="Aff_BannerDel_1" SpName="Aff_BannerDel_1" DbName="affiliate_12bet" />
-    <Setting Key="Aff_BannerSel_1" SpName="Aff_BannerSel_1" DbName="affiliate_12bet" />
-    <Setting Key="Aff_BannerSelByParentCate" SpName="Aff_BannerSelByParentCate" DbName="affiliate_12bet" />
-    <Setting Key="Aff_BannerSelDetail_1" SpName="Aff_BannerSelDetail_1" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_MediaCategory_Sel" SpName="Aff_Admin_MediaCategory_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_MediaCurrency_Sel" SpName="Aff_Admin_MediaCurrency_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Text_Sel" SpName="Aff_Admin_Text_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Text_Ins" SpName="Aff_Admin_Text_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Text_Upd" SpName="Aff_Admin_Text_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Text_Del" SpName="Aff_Admin_Text_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_MediaType_Sel" SpName="Aff_Admin_MediaType_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Banner_Ins" SpName="Aff_Admin_Banner_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Banner_Upd" SpName="Aff_Admin_Banner_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Banner_Del" SpName="Aff_Admin_Banner_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffTypeSel" SpName="Aff_AffTypeSel" DbName="affiliate_12bet" />
   </Function>
   <Function Name="ThirdPartyProduct">
@@ -102,15 +102,15 @@
     <Setting Key="Aff_Admin_EmailHistory_Del" SpName="Aff_Admin_EmailHistory_Del" DbName="affiliate_12bet" />
   </Function>
   <Function Name="ExchangeRate">
-    <Setting Key="Aff_ExchangeSel" SpName="Aff_ExchangeSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_ExchangeUpdate" SpName="Aff_ExchangeUpdate" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Exchange_Sel" SpName="Aff_Admin_Exchange_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Exchange_Upd" SpName="Aff_Admin_Exchange_Upd" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Message">
-    <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_HotNewsDetail" SpName="Aff_HotNewsDetail" DbName="affiliate_12bet" />
-    <Setting Key="Aff_HotNewsIns" SpName="Aff_HotNewsIns" DbName="affiliate_12bet" />
-    <Setting Key="Aff_HotNewsUpd" SpName="Aff_HotNewsUpd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_HotNewsDel" SpName="Aff_HotNewsDel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Ins" SpName="Aff_Admin_Message_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Upd" SpName="Aff_Admin_Message_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Del" SpName="Aff_Admin_Message_Del" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Member">
     <Setting Key="Aff_MemberListSel" SpName="Aff_MemberListSel" DbName="affiliate_12bet" />

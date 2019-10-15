@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery
 {
     public class TextListViewModel
     {
-        public IEnumerable<MediaGalleryFilterItem> CategoryList { get; set; }
+        public IEnumerable<Category> CategoryList { get; set; }
 
         public IEnumerable<Language> LanguageList { get; set; }
 

@@ -11,10 +11,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 {
     public class CommonMediaGalleryServiceTest
     {
-        private const string SpKeyBannerSelType = "Aff_BannerSelType_1";
+        private const string SpKeyBannerSelType = "Aff_Admin_MediaCategory_Sel";
 
         [Fact]
-        public void GetMediaGalleryFilterItemList_WhenCall_ReturnCorrectData()
+        public void GetCategoryList_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var service = new Mock<CommonMediaGalleryService> { CallBase = true };
@@ -22,19 +22,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
-            ReaderHelper.MapReaderData(dataReader, GetMediaGalleryFilterItemList());
+            ReaderHelper.MapReaderData(dataReader, GetCategoryList());
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb(SpKeyBannerSelType, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetMediaGalleryFilterItemList("test");
+            var result = service.Object.GetCategoryList(1);
 
             // Assert
             Assert.Single(result);
         }
 
         [Fact]
-        public void GetMediaGalleryFilterItemList_WhenCall_ReturnNullData()
+        public void GetCategoryList_WhenCall_ReturnNullData()
         {
             // Arrange
             var service = new Mock<CommonMediaGalleryService> { CallBase = true };
@@ -46,18 +46,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             service.Setup(r => r.GetObjectDb(SpKeyBannerSelType, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetMediaGalleryFilterItemList("test");
+            var result = service.Object.GetCategoryList(1);
 
             // Assert
             Assert.Empty(result);
         }
 
-        private IDictionary<string, object> GetMediaGalleryFilterItemList()
+        private IDictionary<string, object> GetCategoryList()
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
-                ["id"] = 123,
-                ["Value"] = "test"
+                ["CategoryId"] = 123,
+                ["CategoryName"] = "test",
+                ["ParentCategoryId"] = 123
             };
         }
     }

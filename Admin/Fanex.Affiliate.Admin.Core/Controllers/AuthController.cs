@@ -86,6 +86,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                         var onUserId = _authRepository.LoginOnUser(param, HttpContext.Session.SessionID, _appSetting.ServerId);
                         _sessionService.OnUserId = onUserId;
 
+                        HttpContext.ApplicationInstance.Context.Session["UserName"] = param.UserName;
+
                         HttpContext.Response.SetCookie(cookie);
 
                         result.Message = "OK";
@@ -98,7 +100,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
             catch (Exception ex)
             {
-                LogHelper.WriteError(ex, param.UserName);
+                LogHelper.WriteError(ex);
 
                 result.Message = "UM"; //Common.IsUnderMaintenance() ? "UM" : ex.Message;
             }

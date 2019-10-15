@@ -125,7 +125,7 @@ export class TextDetailForm extends PureComponent {
                                         <Input type="select" name="category" id="category" value={category} onChange={this._handleChange}>
                                             {
                                                 categoryList.map(item => {
-                                                    return (<option key={`category-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                                    return (<option key={`category-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
                                                 })
                                             }
                                         </Input>

@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
     {
         public EntityResult<TextInfo> GetTextList(TextParam param)
         {
-            const string SpKey = "Aff_TextSel_1";
+            const string SpKey = "Aff_Admin_Text_Sel";
             var result = new EntityResult<TextInfo>();
             var dataList = new List<TextInfo>();
 
@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public TextInfo GetTextDetail(int selectedTextId)
         {
-            const string SpKey = "Aff_TextSelDetail_1";
+            const string SpKey = "Aff_Admin_Text_Sel";
             TextInfo item = null;
 
             using (var objectDb = GetObjectDb(SpKey))
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public ResultInfo InsertText(InsertUpdateTextParam param)
         {
-            const string SpKey = "Aff_TextIns_1";
+            const string SpKey = "Aff_Admin_Text_Ins";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -83,11 +83,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public ResultInfo UpdateText(InsertUpdateTextParam param)
         {
-            const string SpKey = "Aff_TextUpd_1";
+            const string SpKey = "Aff_Admin_Text_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("bannerid", DbType.Int32, param.TextId);
+                objectDb.AddInParameter("textid", DbType.Int32, param.TextId);
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();
@@ -98,11 +98,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public ResultInfo DeleteTexts(DeleteTextParam param)
         {
-            const string SpKey = "Aff_TextDel_1";
+            const string SpKey = "Aff_Admin_Text_Del";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("listbannerid", DbType.String, param.TextIdList);
+                objectDb.AddInParameter("textids", DbType.String, param.TextIdList);
                 objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("ip", DbType.String, param.Ip);
 
@@ -131,7 +131,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         {
             return new TextInfo
             {
-                TextId = Convert.ToInt32(reader["BannerID"]),
+                TextId = Convert.ToInt32(reader["TextId"]),
                 TextContent = Convert.ToString(reader["Message"]),
                 Category = Convert.ToString(reader["Category"]),
                 Language = Convert.ToString(reader["Language"]),

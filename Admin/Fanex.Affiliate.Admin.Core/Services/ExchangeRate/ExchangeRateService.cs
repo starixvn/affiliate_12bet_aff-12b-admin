@@ -12,12 +12,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.ExchangeRate
     {
         public IEnumerable<ExchangeRateInfo> GetExchangeRateList(DateTime date)
         {
-            const string SpKey = "Aff_ExchangeSel";
+            const string SpKey = "Aff_Admin_Exchange_Sel";
             var result = new List<ExchangeRateInfo>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("time", DbType.DateTime, date);
+                objectDb.AddInParameter("Date", DbType.DateTime, date);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -39,11 +39,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.ExchangeRate
 
         public ResultInfo UpdateExchangeRate(ExchangeRateParam param)
         {
-            const string SpKey = "Aff_ExchangeUpdate";
+            const string SpKey = "Aff_Admin_Exchange_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("CustId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("ExchangeId", DbType.Int32, param.ExchangeId);
                 objectDb.AddInParameter("Rate", DbType.Decimal, param.Rate);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);

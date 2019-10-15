@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Utilities;
 
 namespace AffiliateAdmin
 {
@@ -35,7 +36,7 @@ namespace AffiliateAdmin
                 return;
             }
 
-            AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
+            LogHelper.WriteError(ex);
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)

@@ -64,7 +64,7 @@ export const Filter = (props) => {
                         <option key={'category-all'} value={''}>{globalResource.All}</option>
                         {
                             categoryList.map(item => {
-                                return (<option key={`category-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                return (<option key={`category-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
                             })
                         }
                     </Input>
@@ -77,7 +77,7 @@ export const Filter = (props) => {
                                 <option key={'subCategory-all'} value={''}>{globalResource.All}</option>
                                 {
                                     subCategoryList.map(item => {
-                                        return (<option key={`subCategory-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                        return (<option key={`subCategory-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
                                     })
                                 }
                             </Input>

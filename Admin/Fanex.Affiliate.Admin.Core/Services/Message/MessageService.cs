@@ -14,13 +14,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
     {
         public EntityResult<MessageInfo> GetMessageList(MessageParam param)
         {
-            const string SpKey = "Aff_HotNewsSel";
+            const string SpKey = "Aff_Admin_Message_Sel";
             var result = new EntityResult<MessageInfo>();
             var dataList = new List<MessageInfo>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Important", DbType.Int32, param.Important);
+                objectDb.AddInParameter("SearchById", DbType.Int32, param.SearchById);
+                objectDb.AddInParameter("IsGetAll", DbType.Boolean, param.IsGetAll);
                 objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
                 objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
@@ -34,12 +35,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
                     {
                         dataList.Add(new MessageInfo
                         {
-                            MessageId = Convert.ToInt32(reader["msgid"]),
+                            MessageId = Convert.ToInt32(reader["MessageId"]),
                             Important = Convert.ToBoolean(reader["Important"]),
                             Creator = Convert.ToString(reader["creatorname"]),
                             PostedDate = Convert.ToDateTime(reader["PostedDate"]),
                             UpdatedDate = reader["UpdatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["UpdatedDate"]),
-                            UpdatedBy = reader["updatename"] == DBNull.Value ? string.Empty : Convert.ToString(reader["updatename"]),
+                            UpdatedBy = reader["UpdatedName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["UpdatedName"]),
                             Message = Convert.ToString(reader["message_en"])
                         });
                     }
@@ -55,12 +56,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
         public MessageDetail GetMessageDetail(int selectedMessageId)
         {
-            const string SpKey = "Aff_HotNewsDetail";
+            const string SpKey = "Aff_Admin_Message_Sel";
             MessageDetail item = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("MsgID", DbType.Int32, selectedMessageId);
+                objectDb.AddInParameter("MessageId", DbType.Int32, selectedMessageId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -68,7 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
                     {
                         item = new MessageDetail
                         {
-                            MessageId = Convert.ToInt32(reader["msgid"]),
+                            MessageId = Convert.ToInt32(reader["MessageId"]),
                             Important = Convert.ToBoolean(reader["Important"]),
                             MessageContentEn = Convert.ToString(reader["message_en"]),
                             MessageContentCn = Convert.ToString(reader["message_cn"]),
@@ -89,11 +90,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
         public ResultInfo InsertMessage(InsertUpdateMessageParam param)
         {
-            const string SpKey = "Aff_HotNewsIns";
+            const string SpKey = "Aff_Admin_Message_Ins";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddOutParameter("id", DbType.Int32, Size.SizeOfInt);
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();
@@ -104,11 +104,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
         public ResultInfo UpdateMessage(InsertUpdateMessageParam param)
         {
-            const string SpKey = "Aff_HotNewsUpd";
+            const string SpKey = "Aff_Admin_Message_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("id", DbType.Int32, param.MessageId);
+                objectDb.AddInParameter("MessageId", DbType.Int32, param.MessageId);
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();
@@ -119,11 +119,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
         public ResultInfo DeleteMessages(DeleteMessageParam param)
         {
-            const string SpKey = "Aff_HotNewsDel";
+            const string SpKey = "Aff_Admin_Message_Del";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("listmsgid", DbType.String, param.MessageIdList);
+                objectDb.AddInParameter("MessageIds", DbType.String, param.MessageIdList);
                 objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("ip", DbType.String, param.Ip);
 
@@ -137,7 +137,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
         private static void AssignParam(IObjectDb objectDb, InsertUpdateMessageParam param)
         {
-            objectDb.AddInParameter("important", DbType.Boolean, param.Important);
+            objectDb.AddInParameter("IsImportant", DbType.Boolean, param.Important);
             objectDb.AddInParameter("msgen", DbType.String, param.MessageContentEn);
             objectDb.AddInParameter("msgcn", DbType.String, param.MessageContentCn);
             objectDb.AddInParameter("msgtw", DbType.String, param.MessageContentTw);

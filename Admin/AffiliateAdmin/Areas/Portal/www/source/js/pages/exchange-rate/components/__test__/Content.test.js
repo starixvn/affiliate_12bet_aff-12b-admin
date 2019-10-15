@@ -51,6 +51,24 @@ describe('exchange rate - components - Content ', () => {
         expect(componentInstance.setState).toHaveBeenCalledWith({ isToday: false });
     });
 
+    it('componentDidUpdate - should call fetchData if param change', () => {
+        const props = Object.assign({}, defaultProps, { date: '09/06/2018' });
+        const componentInstance = new Content(props);
+        componentInstance.setState = jest.fn();
+        componentInstance.componentDidUpdate(defaultProps);
+
+        expect(componentInstance.setState).toHaveBeenCalledWith({ isToday: false });
+    });
+
+    it('componentDidUpdate - should not call fetchData if param not change', () => {
+        const props = Object.assign({}, defaultProps, { date: '09/06/2019' });
+        const componentInstance = new Content(props);
+        componentInstance.setState = jest.fn();
+        componentInstance.componentDidUpdate(defaultProps);
+
+        expect(componentInstance.setState).not.toHaveBeenCalled();
+    });
+
     it('_handleSelectedExchangeRate - should be called when click ActualRate Button', () => {
         const wrapper = shallow(<Content {...defaultProps} />);
 

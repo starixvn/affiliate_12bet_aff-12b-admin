@@ -12,8 +12,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ExchangeRate
 {
     public class ExchangeRateServiceTest
     {
-        private const string SpKeyExchangeSel = "Aff_ExchangeSel";
-        private const string SpKeyExchangeUpdate = "Aff_ExchangeUpdate";
+        private const string SpKeyExchangeSel = "Aff_Admin_Exchange_Sel";
+        private const string SpKeyExchangeUpdate = "Aff_Admin_Exchange_Upd";
 
         [Fact]
         public void GetExchangeRateList_WhenCall_ReturnCorrectData()

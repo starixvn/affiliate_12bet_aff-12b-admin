@@ -1,7 +1,7 @@
-﻿import { deviceTypes, pcLaptop } from '../../../../modules/constants';
+﻿import { deviceTypes, pcLaptop, mobile } from '../../../../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-export { deviceTypes, globalResource };
+export { deviceTypes, globalResource, mobile };
 
 export const Casino = 'Casino';
 export const Baccarat = 'Baccarat';
@@ -13,6 +13,7 @@ const defaultImageType = 'Image';
 export const Asian = 2;
 export const defaultDevice = pcLaptop;
 export const maxWidthHeight = 501;
+export const maxLenght = 60;
 
 export const headerText = {
     Index: '#',

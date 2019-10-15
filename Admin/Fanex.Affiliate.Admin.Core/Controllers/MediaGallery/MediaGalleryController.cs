@@ -14,12 +14,16 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using System.Web;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
     [FunctionAuthorize(FunctionName = Function.Media)]
     public class MediaGalleryController : BaseController
     {
+        private const int BannerListCategory = 1;
+        private const int CasinoCategoryId = 51;
+        private const int SportsbookCategoryId = 1;
         private readonly ILanguageService _languageService;
         private readonly ICommonMediaGalleryService _commonMediaGalleryService;
         private readonly IBannerListService _bannerListService;
@@ -52,11 +56,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             var model = new BannerListViewModel
             {
-                CategoryList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMedia"),
+                CategoryList = _commonMediaGalleryService.GetCategoryList(BannerListCategory).Where(c => c.CategoryId == c.ParentCategoryId),
                 LanguageList = _languageService.GetLanguageList(),
-                CurrencyList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Currency),
-                ImageTypeList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("ImageType"),
-                SizeList = _commonMediaGalleryService.GetMediaGalleryFilterItemList("Size"),
+                CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
+                ImageTypeList = _commonMediaGalleryService.GetImageTypeList(),
+                SizeList = _commonMediaGalleryService.GetSizeList(),
                 AffTypeList = _affTypeService.GetAffTypeList(),
                 SubMenuList = subMenu,
                 Param = param
@@ -71,7 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             return new JsonNetResult
             {
-                Data = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMediaCasino")
+                Data = _commonMediaGalleryService.GetCategoryList(BannerListCategory).Where(c => c.ParentCategoryId == CasinoCategoryId && c.CategoryId != c.ParentCategoryId)
             };
         }
 
@@ -81,7 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             return new JsonNetResult
             {
-                Data = _commonMediaGalleryService.GetMediaGalleryFilterItemList("CategoryMediaSportsbook")
+                Data = _commonMediaGalleryService.GetCategoryList(BannerListCategory).Where(c => c.ParentCategoryId == SportsbookCategoryId && c.CategoryId != c.ParentCategoryId)
             };
         }
 

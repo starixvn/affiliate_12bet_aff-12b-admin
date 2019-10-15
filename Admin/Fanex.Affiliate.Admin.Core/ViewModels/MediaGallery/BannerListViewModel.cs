@@ -2,13 +2,12 @@
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery
 {
     public class BannerListViewModel
     {
-        public IEnumerable<MediaGalleryFilterItem> CategoryList { get; set; }
+        public IEnumerable<Category> CategoryList { get; set; }
 
         public IEnumerable<MediaGalleryFilterItem> ImageTypeList { get; set; }
 

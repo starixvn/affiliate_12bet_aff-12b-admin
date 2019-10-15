@@ -33,7 +33,7 @@ export const Filter = (props) => {
         const { pagingOption } = props;
 
         const param = Object.assign({}, {
-            Important: searchBy === all ? null : searchBy,
+            SearchById: searchBy,
             IsGetAll: isGetAll,
             FromDate: fromDate,
             ToDate: toDate,
@@ -50,7 +50,6 @@ export const Filter = (props) => {
                 <FormGroup className="mr-sm-3">
                     <Label className="mr-2">{resource.SearchBy}</Label>
                     <Input type="select" name="searchBy" value={searchBy} onChange={(e) => setSearch(e.target.value)}>
-                        <option key={'searchBy-all'} value={all}>{resource.All}</option>
                         {
                             Object.keys(searchByList).map(key => {
                                 return (<option key={'searchBy-' + key} value={key}>{searchByList[key]}</option>)

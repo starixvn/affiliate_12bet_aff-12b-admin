@@ -24,7 +24,7 @@ describe('message - components - Filter ', () => {
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ FromDate: "9/19/2019", IsGetAll: true, PageIndex: 1, PageSize: 20, Important: null, ToDate: "9/19/2019" });
+        expect(props.setParam).toHaveBeenCalledWith({ FromDate: "9/19/2019", IsGetAll: true, PageIndex: 1, PageSize: 20, SearchById: 0, ToDate: "9/19/2019" });
     });
 
     it('_handleSearch - should be called when click Search Button with important', () => {
@@ -35,7 +35,7 @@ describe('message - components - Filter ', () => {
         wrapper.find('Input[type="select"][name="searchBy"]').simulate('change', { target: { value: '1' }});
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ FromDate: "9/19/2019", IsGetAll: true, PageIndex: 1, PageSize: 20, Important: '1', ToDate: "9/19/2019" });
+        expect(props.setParam).toHaveBeenCalledWith({ FromDate: "9/19/2019", IsGetAll: true, PageIndex: 1, PageSize: 20, SearchById: '1', ToDate: "9/19/2019" });
     });
 
     it('setSearch - should change category when change searchBy select', () => {

@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resizeWidthHeight } from '../libs/utils';
-import { headerText, globalResource, maxWidthHeight } from '../libs/constants';
+import { headerText, globalResource, maxWidthHeight, defaultDevice, mobile } from '../libs/constants';
 import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl, getBannerRootUrl } from '../actions';
 
 export const Content = (props) => {
@@ -85,6 +85,7 @@ export const Content = (props) => {
         const realHeight = strSize[1];
         const isValidWithHeight = realWidth < maxWidthHeight && realHeight < maxWidthHeight;
         const resizeResult = !isValidWithHeight && resizeWidthHeight(realWidth, realHeight);
+        const deviceType = dataItem.DeviceType === 0 ? defaultDevice : mobile;
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -108,7 +109,7 @@ export const Content = (props) => {
                 <Cell className="text-center text-break" title={dataItem.Category}>{dataItem.Category}</Cell>
                 <Cell className="text-center text-break" title={dataItem.Language}>{dataItem.Language}</Cell>
                 <Cell className="text-center text-break" title={dataItem.Currency}>{dataItem.Currency}</Cell>
-                <Cell className="text-center text-break" title={dataItem.DeviceType}>{dataItem.DeviceType}</Cell>
+                <Cell className="text-center text-break" title={deviceType}>{deviceType}</Cell>
                 <Cell className="text-center text-break" title={dataItem.ImageType}>{dataItem.ImageType}</Cell>
                 <Cell className="text-center text-break" title={size}>{size}</Cell>
                 <Cell className="text-center" title="Edit Banner">

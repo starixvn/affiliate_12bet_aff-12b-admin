@@ -5,6 +5,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
     public interface ICommonMediaGalleryService
     {
-        IEnumerable<MediaGalleryFilterItem> GetMediaGalleryFilterItemList(string typeName);
+        IEnumerable<Category> GetCategoryList(byte typeId);
+
+        IEnumerable<MediaGalleryFilterItem> GetCurrencyList();
+
+        IEnumerable<MediaGalleryFilterItem> GetImageTypeList();
+
+        IEnumerable<MediaGalleryFilterItem> GetSizeList();
     }
 }

@@ -246,6 +246,7 @@
     <Compile Include="DTO\EntityResult.cs" />
     <Compile Include="DTO\ExchangeRate\ExchangeRateInfo.cs" />
     <Compile Include="DTO\Language.cs" />
+    <Compile Include="DTO\MediaGallery\Category.cs" />
     <Compile Include="DTO\MediaGallery\MediaGalleryFilterItem.cs" />
     <Compile Include="DTO\Member\MemberInfo.cs" />
     <Compile Include="MetaModels\Login\LoginParam.cs" />

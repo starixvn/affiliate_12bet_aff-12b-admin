@@ -31,23 +31,23 @@ exports[`message - components - Filter  render correctly 1`] = `
         name="searchBy"
         onChange={[Function]}
         type="select"
-        value="-1"
+        value="0"
       >
-        <option
-          key="searchBy-all"
-          value="-1"
-        >
-          All
-        </option>
         <option
           key="searchBy-0"
           value="0"
         >
-          Normal
+          All
         </option>
         <option
           key="searchBy-1"
           value="1"
+        >
+          Normal
+        </option>
+        <option
+          key="searchBy-2"
+          value="2"
         >
           Important
         </option>

@@ -26,10 +26,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             // Arrange
             var param = new BannerParamFromHome { ImageType = "Image", IsFromHome = true };
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
-            commonMediaGalleryService.Setup(c => c.GetMediaGalleryFilterItemList("CategoryMedia")).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 123, Name = "Category" } });
-            commonMediaGalleryService.Setup(c => c.GetMediaGalleryFilterItemList("Currency")).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
-            commonMediaGalleryService.Setup(c => c.GetMediaGalleryFilterItemList("ImageType")).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 345, Name = "Image" } });
-            commonMediaGalleryService.Setup(c => c.GetMediaGalleryFilterItemList("Size")).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
+            commonMediaGalleryService.Setup(c => c.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryId = 123, CategoryName = "Category", ParentCategoryId = 123 } });
+            commonMediaGalleryService.Setup(c => c.GetCurrencyList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
+            commonMediaGalleryService.Setup(c => c.GetImageTypeList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 345, Name = "Image" } });
+            commonMediaGalleryService.Setup(c => c.GetSizeList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
             var languageService = new Mock<ILanguageService>();
             languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
             var affTypeService = new Mock<IAffTypeService>();
@@ -62,14 +62,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
-            commonMediaGalleryService.Setup(t => t.GetMediaGalleryFilterItemList("CategoryMediaCasino")).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 123, Name = "Casino Bonus" } });
+            commonMediaGalleryService.Setup(t => t.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryId = 123, CategoryName = "Casino Bonus", ParentCategoryId = 51 } });
             var controller = CreateMediaGalleryController(commonMediaGalleryService: commonMediaGalleryService.Object);
 
             // Action
             var result = controller.GetSubCategoryCasinoList() as JsonNetResult;
 
             // Assert
-            Assert.Single(result.Data as IEnumerable<MediaGalleryFilterItem>);
+            Assert.Single(result.Data as IEnumerable<Category>);
         }
 
         [Fact]
@@ -77,14 +77,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
-            commonMediaGalleryService.Setup(t => t.GetMediaGalleryFilterItemList("CategoryMediaSportsbook")).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 123, Name = "SB Bonus" } });
+            commonMediaGalleryService.Setup(t => t.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryId = 123, CategoryName = "SB Bonus", ParentCategoryId = 1 } });
             var controller = CreateMediaGalleryController(commonMediaGalleryService: commonMediaGalleryService.Object);
 
             // Action
             var result = controller.GetSubCategorySportsbookList() as JsonNetResult;
 
             // Assert
-            Assert.Single(result.Data as IEnumerable<MediaGalleryFilterItem>);
+            Assert.Single(result.Data as IEnumerable<Category>);
         }
 
         [Fact]

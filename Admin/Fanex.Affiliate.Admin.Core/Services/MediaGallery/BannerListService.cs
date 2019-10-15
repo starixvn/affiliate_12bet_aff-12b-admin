@@ -34,17 +34,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         public EntityResult<BannerInfo> GetBannerList(BannerParam param)
         {
             if ((string.Compare(param.Category, Lang.Casino, StringComparison.CurrentCultureIgnoreCase) == 0
-                || string.Compare(param.Category, Lang.Sportsbook, StringComparison.CurrentCultureIgnoreCase) == 0))
+                || string.Compare(param.Category, Lang.Sportsbook, StringComparison.CurrentCultureIgnoreCase) == 0)
+                && !string.IsNullOrEmpty(param.SubCategory))
             {
-                if (string.IsNullOrEmpty(param.SubCategory))
-                {
-                    return _bannerListRepository.GetBannerList(param, "Aff_BannerSelByParentCate");
-                }
-
                 param.Category = param.SubCategory;
             }
 
-            return _bannerListRepository.GetBannerList(param, "Aff_BannerSel_1");
+            return _bannerListRepository.GetBannerList(param);
         }
 
         public BannerInfo GetBannerDetail(int selectedBannerId)
@@ -113,17 +109,22 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             var oldFilePath = oldBannerInfo.FileName;
             var folder = BannerHelper.GeneralFolder(param.Category, param.SubCategory);
             var filePath = folder + param.InputFileName;
+            param.FilePath = filePath;
+            if (!string.IsNullOrEmpty(param.SubCategory))
+            {
+                param.Category = param.SubCategory;
+            }
 
             var result = _bannerValidationService.CheckFileInFolder(folder, filePath);
             if (!result.IsSuccessful)
             {
-                return result;
-            }
+                if (string.Compare(filePath, oldFilePath, StringComparison.CurrentCultureIgnoreCase) == 0)
+                {
+                    param.Size = oldBannerInfo.Size;
+                    result = _bannerListRepository.UpdateBanner(param);
+                }
 
-            param.FilePath = filePath;
-            if(!string.IsNullOrEmpty(param.SubCategory))
-            {
-                param.Category = param.SubCategory;
+                return result;
             }
 
             if (file != null)

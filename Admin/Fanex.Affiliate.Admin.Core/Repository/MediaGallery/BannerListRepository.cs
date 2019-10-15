@@ -11,12 +11,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
     public class BannerListRepository : BaseRepository, IBannerListRepository
     {
-        public EntityResult<BannerInfo> GetBannerList(BannerParam param, string spKey)
+        public EntityResult<BannerInfo> GetBannerList(BannerParam param)
         {
+            const string SpKey = "Aff_Admin_Banner_Sel";
             var result = new EntityResult<BannerInfo>();
             var dataList = new List<BannerInfo>();
 
-            using (var objectDb = GetObjectDb(spKey))
+            using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("category", DbType.String, param.Category);
                 objectDb.AddInParameter("language", DbType.String, param.Language);
@@ -48,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public BannerInfo GetBannerDetail(int selectedBannerId)
         {
-            string SpKey = "Aff_BannerSelDetail_1";
+            const string SpKey = "Aff_Admin_Banner_Sel";
             BannerInfo item = null;
 
             using (var objectDb = GetObjectDb(SpKey))
@@ -70,11 +71,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public ResultInfo InsertBanner(InsertUpdateBannerParam param)
         {
-            const string SpKey = "Aff_BannerMediaIns";
+            const string SpKey = "Aff_Admin_Banner_Ins";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddOutParameter("bannerid", DbType.Int32, 4);
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();
@@ -85,7 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public ResultInfo UpdateBanner(InsertUpdateBannerParam param)
         {
-            const string SpKey = "Aff_BannerUpd_1";
+            const string SpKey = "Aff_Admin_Banner_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -100,11 +100,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public ResultInfo DeleteBanners(DeleteBannerParam param)
         {
-            const string SpKey = "Aff_BannerDel_1";
+            const string SpKey = "Aff_Admin_Banner_Del";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("ListBannerID", DbType.String, param.BannerIdList);
+                objectDb.AddInParameter("BannerIds", DbType.String, param.BannerIdList);
                 objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
@@ -143,7 +143,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                 Currency = Convert.ToString(reader["Currency"]),
                 ImageType = Convert.ToString(reader["ImageType"]),
                 Size = Convert.ToString(reader["Size"]),
-                DeviceType = Convert.ToString(reader["DeviceType"]),
+                DeviceType = Convert.ToByte(reader["DeviceType"]),
             };
         }
     }

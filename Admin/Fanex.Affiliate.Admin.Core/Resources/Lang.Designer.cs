@@ -151,15 +151,6 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
-        /// </summary>
-        public static string Category {
-            get {
-                return ResourceManager.GetString("Category", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Closed.
         /// </summary>
         public static string Closed {
@@ -174,15 +165,6 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string CommGroup {
             get {
                 return ResourceManager.GetString("CommGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Currency.
-        /// </summary>
-        public static string Currency {
-            get {
-                return ResourceManager.GetString("Currency", resourceCulture);
             }
         }
         

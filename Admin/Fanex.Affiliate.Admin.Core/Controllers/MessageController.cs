@@ -39,15 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (param.IsGetAll)
-                {
-                    param.ToDate = null;
-                    param.FromDate = null;
-                }
-                else
-                {
-                    param.ToDate = param.ToDate.Value.AddDays(1).AddMilliseconds(-threeMilliSecond);
-                }
+                param.ToDate = param.ToDate.AddDays(1).AddMilliseconds(-threeMilliSecond);
 
                 return new JsonNetResult
                 {

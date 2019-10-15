@@ -18,6 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     [FunctionAuthorize(FunctionName = Function.Media)]
     public class TextListController : BaseController
     {
+        private const int TextListCategory = 2;
         private readonly ILanguageService _languageService;
         private readonly ICommonMediaGalleryService _commonMediaGalleryService;
         private readonly ITextListService _textListService;
@@ -45,9 +46,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             var model = new TextListViewModel
             {
-                CategoryList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Category),
+                CategoryList = _commonMediaGalleryService.GetCategoryList(TextListCategory),
                 LanguageList = _languageService.GetLanguageList(),
-                CurrencyList = _commonMediaGalleryService.GetMediaGalleryFilterItemList(Lang.Currency),
+                CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
                 SubMenuList = subMenu
             };
 

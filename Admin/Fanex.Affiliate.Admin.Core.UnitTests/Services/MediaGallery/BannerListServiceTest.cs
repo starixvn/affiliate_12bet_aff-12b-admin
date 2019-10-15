@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 {
     public class BannerListServiceTest
     {
-        private const string SpKeyBannerSel = "Aff_BannerSel_1";
+        private const string SpKeyBannerSel = "Aff_Admin_Banner_Sel";
         private const string ErrorMessage = "Sorry! We just support these file types : .jpg, .gif, .png, .jpeg";
 
         [Fact]
@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new BannerParam();
             var bannerListRepository = new Mock<IBannerListRepository>();
-            bannerListRepository.Setup(b => b.GetBannerList(param, SpKeyBannerSel)).Returns(new EntityResult<BannerInfo> { MainData = new List<BannerInfo> { new BannerInfo() }, TotalItem = 1 });
+            bannerListRepository.Setup(b => b.GetBannerList(param)).Returns(new EntityResult<BannerInfo> { MainData = new List<BannerInfo> { new BannerInfo() }, TotalItem = 1 });
             var service = CreateBannerListService(bannerListRepository.Object);
 
             // Action
@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new BannerParam { Category = "Casino", SubCategory = "Casino Bonus" };
             var bannerListRepository = new Mock<IBannerListRepository>();
-            bannerListRepository.Setup(b => b.GetBannerList(param, SpKeyBannerSel))
+            bannerListRepository.Setup(b => b.GetBannerList(param))
                 .Returns(new EntityResult<BannerInfo> { MainData = new List<BannerInfo> { new BannerInfo() }, TotalItem = 1 });
             var service = CreateBannerListService(bannerListRepository.Object);
 
@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new BannerParam { Category = "Casino" };
             var bannerListRepository = new Mock<IBannerListRepository>();
-            bannerListRepository.Setup(b => b.GetBannerList(It.IsAny<BannerParam>(), It.IsAny<string>()))
+            bannerListRepository.Setup(b => b.GetBannerList(It.IsAny<BannerParam>()))
                 .Returns(new EntityResult<BannerInfo> { MainData = new List<BannerInfo> { new BannerInfo() }, TotalItem = 1 });
             var service = CreateBannerListService(bannerListRepository.Object);
 

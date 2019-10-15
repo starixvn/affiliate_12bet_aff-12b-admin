@@ -8,9 +8,9 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 {
     public static class LogHelper
     {
-        public static void WriteError(Exception exception, string userName, string additionalMessage = null)
+        public static void WriteError(Exception exception, string additionalMessage = null)
         {
-            var content = BuildMessage(exception.Message, userName);
+            var content = BuildMessage(exception.Message);
             if (!string.IsNullOrWhiteSpace(additionalMessage))
             {
                 content.AppendLine(additionalMessage);
@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             LogService.Error(content.ToString(), exception);
         }
 
-        private static StringBuilder BuildMessage(string message, string userName)
+        private static StringBuilder BuildMessage(string message)
         {
             var request = HttpContext.Current.Request;
             var builder = new StringBuilder(message).AppendLine();
@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                    .AppendLine("BrowserVer: " + request.Browser.Version)
                    .AppendLine("Agent: " + request.UserAgent);
 
-            builder.AppendLine("UserName: " + userName);
+            builder.AppendLine("UserName: " + HttpContext.Current.Session["UserName"]);
 
             return builder;
         }

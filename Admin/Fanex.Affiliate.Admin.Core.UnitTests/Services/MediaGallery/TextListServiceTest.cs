@@ -12,11 +12,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 {
     public class TextListServiceTest
     {
-        private const string SpKeyTextSel = "Aff_TextSel_1";
-        private const string SpKeyTextSelDetail = "Aff_TextSelDetail_1";
-        private const string SpKeyTextIns = "Aff_TextIns_1";
-        private const string SpKeyTextUpd = "Aff_TextUpd_1";
-        private const string SpKeyTextDel = "Aff_TextDel_1";
+        private const string SpKeyTextSel = "Aff_Admin_Text_Sel";
+        private const string SpKeyTextIns = "Aff_Admin_Text_Ins";
+        private const string SpKeyTextUpd = "Aff_Admin_Text_Upd";
+        private const string SpKeyTextDel = "Aff_Admin_Text_Del";
 
         [Fact]
         public void GetTextList_WhenCall_ReturnCorrectData()
@@ -71,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 
             ReaderHelper.MapReaderData(dataReader, GetTextList());
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb(SpKeyTextSelDetail, 120)).Returns(objectDb.Object);
+            service.Setup(r => r.GetObjectDb(SpKeyTextSel, 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.GetTextDetail(123);
@@ -90,7 +89,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             dataReader.Setup(d => d.Read()).Returns(false);
 
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb(SpKeyTextSelDetail, 120)).Returns(objectDb.Object);
+            service.Setup(r => r.GetObjectDb(SpKeyTextSel, 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.GetTextDetail(123);
@@ -217,12 +216,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
-                ["BannerID"] = 123,
+                ["TextID"] = 123,
                 ["Message"] = "test",
                 ["Category"] = "Basketball",
                 ["Language"] = "English",
                 ["Currency"] = "EURO",
-                ["DeviceType"] = "PC/Laptop"
+                ["DeviceType"] = 1
             };
         }
     }
