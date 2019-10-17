@@ -70,27 +70,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 }
             }
 
-            var folder = BannerHelper.GeneralFolder(param.Category, param.SubCategory);
-            var filePath = folder + param.InputFileName;
-
-            result = _bannerValidationService.CheckFileInFolder(folder, filePath);
+            result = CheckFileInFolder(param);
 
             if (result.IsSuccessful)
             {
                 using (var bitmap = new Bitmap(file.InputStream))
                 {
                     param.Size = BannerHelper.GetSize(bitmap.Width, bitmap.Height);
-                    param.FilePath = filePath;
-                    if (!string.IsNullOrEmpty(param.SubCategory))
-                    {
-                        param.Category = param.SubCategory;
-                    }
-
                     result = _bannerListRepository.InsertBanner(param);
 
                     if (result.IsSuccessful)
                     {
-                        uploadFile(bitmap, filePath);
+                        uploadFile(bitmap, param.FilePath);
                     }
                 }
             }
@@ -107,20 +98,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             var oldBannerInfo = _bannerListRepository.GetBannerDetail(param.BannerId);
             var oldFilePath = oldBannerInfo.FileName;
-            var folder = BannerHelper.GeneralFolder(param.Category, param.SubCategory);
-            var filePath = folder + param.InputFileName;
-            param.FilePath = filePath;
-            if (!string.IsNullOrEmpty(param.SubCategory))
-            {
-                param.Category = param.SubCategory;
-            }
+            param.Size = oldBannerInfo.Size;
 
-            var result = _bannerValidationService.CheckFileInFolder(folder, filePath);
+            var result = CheckFileInFolder(param);
+
             if (!result.IsSuccessful)
             {
-                if (string.Compare(filePath, oldFilePath, StringComparison.CurrentCultureIgnoreCase) == 0)
+                if (string.Compare(param.FilePath, oldFilePath, StringComparison.CurrentCultureIgnoreCase) == 0)
                 {
-                    param.Size = oldBannerInfo.Size;
                     result = _bannerListRepository.UpdateBanner(param);
                 }
 
@@ -137,21 +122,20 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                     {
                         param.Size = BannerHelper.GetSize(bitmap.Width, bitmap.Height);
 
-                        uploadFile(bitmap, filePath);
+                        uploadFile(bitmap, param.FilePath);
                         result = _bannerListRepository.UpdateBanner(param);
 
-                        DeleteFile(result.IsSuccessful ? oldFilePath : filePath);
+                        DeleteFile(result.IsSuccessful ? oldFilePath : param.FilePath);
                     }
                 }
             }
             else
             {
-                param.Size = oldBannerInfo.Size;
                 result = _bannerListRepository.UpdateBanner(param);
 
                 if (result.IsSuccessful)
                 {
-                    MoveFile(filePath, oldFilePath);
+                    MoveFile(param.FilePath, oldFilePath);
                 }
             }
 
@@ -214,6 +198,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
 
             return fileNameList;
+        }
+
+        private ResultInfo CheckFileInFolder(InsertUpdateBannerParam param)
+        {
+            var folder = BannerHelper.GeneralFolder(param.Category, param.SubCategory);
+            param.FilePath = folder + param.InputFileName;
+            if (!string.IsNullOrEmpty(param.SubCategory))
+            {
+                param.Category = param.SubCategory;
+            }
+
+            return _bannerValidationService.CheckFileInFolder(folder, param.FilePath);
         }
     }
 }

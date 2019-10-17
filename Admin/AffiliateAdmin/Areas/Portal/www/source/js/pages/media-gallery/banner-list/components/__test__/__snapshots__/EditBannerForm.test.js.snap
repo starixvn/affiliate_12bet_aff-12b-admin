@@ -210,10 +210,10 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                   Casino
                 </option>
                 <option
-                  key="category-Sportbook"
-                  value="Sportbook"
+                  key="category-Sportsbook"
+                  value="Sportsbook"
                 >
-                  Sportbook
+                  Sportsbook
                 </option>
               </Input>
             </Col>
@@ -832,10 +832,10 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   Casino
                 </option>
                 <option
-                  key="category-Sportbook"
-                  value="Sportbook"
+                  key="category-Sportsbook"
+                  value="Sportsbook"
                 >
-                  Sportbook
+                  Sportsbook
                 </option>
               </Input>
             </Col>
@@ -1398,10 +1398,10 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                   Casino
                 </option>
                 <option
-                  key="category-Sportbook"
-                  value="Sportbook"
+                  key="category-Sportsbook"
+                  value="Sportsbook"
                 >
-                  Sportbook
+                  Sportsbook
                 </option>
               </Input>
             </Col>

@@ -8,16 +8,16 @@ describe('banner list - components - Filter ', () => {
     const defaultProps = {
         pagingOption: defaultPagingOption,
         categoryList: [
-            { Name: "Casino" },
-            { Name: "Sportbook" }
+            { CategoryName: "Casino" },
+            { CategoryName: "Sportbook" }
         ],
         subCategoryCasinoList: [
-            { Name: "Casino Bonus" },
-            { Name: "Slot" }
+            { CategoryName: "Casino Bonus" },
+            { CategoryName: "Slot" }
         ],
         subCategorySportsbookList: [
-            { Name: "Basketball" },
-            { Name: "SB Bonus" }
+            { CategoryName: "Basketball" },
+            { CategoryName: "SB Bonus" }
         ],
         languageList: [
             { LanguageName: "English" },

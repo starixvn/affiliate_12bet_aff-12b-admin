@@ -90,9 +90,9 @@ exports[`text list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="PC / Laptop"
+              title="Mobile"
             >
-              PC / Laptop
+              Mobile
             </t>
             <t
               asc={true}
@@ -191,9 +191,9 @@ exports[`text list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="PC / Laptop"
+              title="Mobile"
             >
-              PC / Laptop
+              Mobile
             </t>
             <t
               asc={true}

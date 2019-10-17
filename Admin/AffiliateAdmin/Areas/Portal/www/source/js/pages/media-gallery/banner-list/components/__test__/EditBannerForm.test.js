@@ -7,7 +7,7 @@ describe('banner list - components - EditBannerForm ', () => {
         BannerId: 2485,
         Category: "Baccarat",
         Currency: "EURO",
-        DeviceType: "PC / Laptop",
+        DeviceType: 1,
         FileName: "CategoryMedia/Casino/Baccarat/giphy.gif",
         ImageType: "Image",
         Language: "Chinese Simplified",
@@ -32,16 +32,16 @@ describe('banner list - components - EditBannerForm ', () => {
         selectedBannerId: 0,
         param,
         categoryList: [
-            { Name: "Casino" },
-            { Name: "Sportbook" }
+            { CategoryName: "Casino" },
+            { CategoryName: "Sportsbook" }
         ],
         subCategoryCasinoList: [
-            { Name: "Casino Bonus" },
-            { Name: "Slot" }
+            { CategoryName: "Casino Bonus" },
+            { CategoryName: "Slot" }
         ],
         subCategorySportsbookList: [
-            { Name: "Basketball" },
-            { Name: "SB Bonus" }
+            { CategoryName: "Basketball" },
+            { CategoryName: "SB Bonus" }
         ],
         languageList: [
             { LanguageName: "English" },
@@ -135,7 +135,7 @@ describe('banner list - components - EditBannerForm ', () => {
         await result.instance()._handleGetBannerDetail(selectedBannerId);
 
         expect(props.getBannerDetail).toHaveBeenCalledWith(selectedBannerId);
-        expect(result.setState).toHaveBeenCalledWith({ "affType": 2, "category": "Baccarat", "currency": "EURO", "deviceType": 0, "imageType": "Image", "inputFileName": "giphy.gif", "language": "Chinese Simplified", "subCategory": "" });
+        expect(result.setState).toHaveBeenCalledWith({ "affType": 2, "category": "Baccarat", "currency": "EURO", "deviceType": 1, "imageType": "Image", "inputFileName": "giphy.gif", "language": "Chinese Simplified", "subCategory": "" });
     });
 
     it('_handleGetBannerDetail should call getBannerDetail and setState  with casino category', async () => {
@@ -149,7 +149,7 @@ describe('banner list - components - EditBannerForm ', () => {
         await result.instance()._handleGetBannerDetail(selectedBannerId);
 
         expect(props.getBannerDetail).toHaveBeenCalledWith(selectedBannerId);
-        expect(result.setState).toHaveBeenCalledWith({ "affType": 2, "category": "Casino", "currency": "EURO", "deviceType": 0, "imageType": "Image", "inputFileName": "giphy.gif", "language": "Chinese Simplified", "subCategory": "Slot" });
+        expect(result.setState).toHaveBeenCalledWith({ "affType": 2, "category": "Casino", "currency": "EURO", "deviceType": 1, "imageType": "Image", "inputFileName": "giphy.gif", "language": "Chinese Simplified", "subCategory": "Slot" });
     });
 
     it('_handleGetBannerDetail should call getBannerDetail and setState with sportsbook category', async () => {
@@ -163,7 +163,7 @@ describe('banner list - components - EditBannerForm ', () => {
         await result.instance()._handleGetBannerDetail(selectedBannerId);
 
         expect(props.getBannerDetail).toHaveBeenCalledWith(selectedBannerId);
-        expect(result.setState).toHaveBeenCalledWith({ "affType": 2, "category": "Sportsbook", "currency": "EURO", "deviceType": 0, "imageType": "Image", "inputFileName": "giphy.gif", "language": "Chinese Simplified", "subCategory": "Basketball" });
+        expect(result.setState).toHaveBeenCalledWith({ "affType": 2, "category": "Sportsbook", "currency": "EURO", "deviceType": 1, "imageType": "Image", "inputFileName": "giphy.gif", "language": "Chinese Simplified", "subCategory": "Basketball" });
     });
 
     it('_handleFile should be called when change file', () => {
@@ -251,7 +251,7 @@ describe('banner list - components - EditBannerForm ', () => {
         expect(result.setState).toHaveBeenCalledWith({ category: 'Casino' });
     });
 
-    it('_handleChange should be called when change category select to Sportbook', () => {
+    it('_handleChange should be called when change category select to Sportsbook', () => {
         const event = {
             target: {
                 name: 'category',

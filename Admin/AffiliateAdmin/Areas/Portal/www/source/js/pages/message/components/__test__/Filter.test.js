@@ -24,7 +24,7 @@ describe('message - components - Filter ', () => {
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ FromDate: "9/19/2019", IsGetAll: true, PageIndex: 1, PageSize: 20, SearchById: 0, ToDate: "9/19/2019" });
+        expect(props.setParam).toHaveBeenCalledWith({ FromDate: "9/19/2019", IsGetAll: true, PageIndex: 1, PageSize: 20, SearchById: '0', ToDate: "9/19/2019" });
     });
 
     it('_handleSearch - should be called when click Search Button with important', () => {

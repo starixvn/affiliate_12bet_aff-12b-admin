@@ -10,7 +10,7 @@ describe('text list - components - Content ', () => {
                     {
                         Category: "Tennis",
                         Currency: "EURO",
-                        DeviceType: "PC / Laptop",
+                        DeviceType: 1,
                         Language: "Japanese",
                         TextContent: "anna 03",
                         TextId: 2438
@@ -18,7 +18,7 @@ describe('text list - components - Content ', () => {
                     {
                         Category: "Basketball",
                         Currency: "EURO",
-                        DeviceType: "PC / Laptop",
+                        DeviceType: 1,
                         Language: "Japanese",
                         TextContent: "anna 02",
                         TextId: 2437

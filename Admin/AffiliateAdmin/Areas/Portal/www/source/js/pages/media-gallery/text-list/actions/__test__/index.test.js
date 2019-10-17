@@ -37,7 +37,7 @@ describe('text list actions', () => {
                     {
                         Category: "Tennis",
                         Currency: "EURO",
-                        DeviceType: "PC / Laptop",
+                        DeviceType: 1,
                         Language: "Japanese",
                         TextContent: "anna 03",
                         TextId: 2438
@@ -45,7 +45,7 @@ describe('text list actions', () => {
                     {
                         Category: "Basketball",
                         Currency: "EURO",
-                        DeviceType: "PC / Laptop",
+                        DeviceType: 1,
                         Language: "Japanese",
                         TextContent: "anna 02",
                         TextId: 2437
@@ -112,7 +112,7 @@ describe('text list actions', () => {
         const expectedResponse = { data: {
             Category: "Basketball",
             Currency: "EURO",
-            DeviceType: "PC / Laptop",
+            DeviceType: 1,
             Language: "Japanese",
             TextContent: "anna 02",
             TextId: 2437
@@ -179,7 +179,7 @@ describe('text list actions', () => {
         const param = {
             Category: "Basketball",
             Currency: "EURO",
-            DeviceType: "PC / Laptop",
+            DeviceType: 1,
             Language: "Japanese",
             TextContent: "anna 02 abc",
             TextId: 2437
@@ -197,7 +197,7 @@ describe('text list actions', () => {
         const param = {
             Category: "Basketball",
             Currency: "EURO",
-            DeviceType: "PC / Laptop",
+            DeviceType: 1,
             Language: "Japanese",
             TextContent: "",
             TextId: 2437

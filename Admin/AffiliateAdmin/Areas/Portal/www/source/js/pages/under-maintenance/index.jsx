@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import AppLayout from '../../layouts/AppLayout';
 import AppContainer from './components/AppContainer';
 
-const { umTimeFrom, umTimeTo } = window.initialState;
-
 export default class App extends PureComponent {
     constructor(props) {
         super(props);
@@ -13,7 +11,7 @@ export default class App extends PureComponent {
     render() {
         return (
             <AppLayout>
-                <AppContainer umTimeFrom={umTimeFrom} umTimeTo={umTimeTo} />
+                <AppContainer {...window.initialState} />
             </AppLayout>
         );
     }

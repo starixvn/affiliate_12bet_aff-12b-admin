@@ -8,8 +8,8 @@ describe('text list - components - Filter ', () => {
     const defaultProps = {
         pagingOption: defaultPagingOption,
         categoryList: [
-            { Name: "Basketball" },
-            { Name: "Bonus" }
+            { CategoryName: "Basketball" },
+            { CategoryName: "Bonus" }
         ],
         languageList: [
             { LanguageName: "English" },

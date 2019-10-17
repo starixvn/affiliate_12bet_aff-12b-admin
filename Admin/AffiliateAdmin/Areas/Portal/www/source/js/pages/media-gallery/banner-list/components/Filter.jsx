@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { setParam, setParamFromHome, getSubCategoryCasinoList, getSubCategorySportsbookList } from '../actions';
-import { headerText, globalResource, deviceTypes, defaultDevice, Asian, Casino, Sportsbook } from '../libs/constants';
+import { headerText, globalResource, deviceTypes, pcLaptop, Asian, Casino, Sportsbook } from '../libs/constants';
 
 export const Filter = (props) => {
     const { categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, paramFromHome } = props;
@@ -15,7 +15,7 @@ export const Filter = (props) => {
     const [imageType, setImageType] = useState(paramFromHome && paramFromHome.ImageType ? paramFromHome.ImageType : '');
     const [size, setSize] = useState('');
     const [affType, setAffType] = useState(Asian);
-    const [deviceType, setDeviceType] = useState(deviceTypes[defaultDevice]);
+    const [deviceType, setDeviceType] = useState(deviceTypes[pcLaptop]);
 
     const isCategoryCasino = category === Casino;
     const hasSubCategory = isCategoryCasino || category === Sportsbook;

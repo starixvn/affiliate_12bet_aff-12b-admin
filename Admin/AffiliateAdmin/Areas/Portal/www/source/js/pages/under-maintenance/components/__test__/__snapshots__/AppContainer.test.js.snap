@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`under maintenance - components - AppContainer render correctly 1`] = `
+<div
+  className="under-maintenance-container"
+>
+  <div
+    class="text_time text_top"
+  >
+    <font
+      color="#555"
+    >
+       until 
+    </font>
+  </div>
+  <div
+    class="text_time text_button"
+  >
+    <font
+      color="#555"
+    >
+       至 
+    </font>
+  </div>
+</div>
+`;

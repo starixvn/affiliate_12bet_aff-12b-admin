@@ -6,7 +6,7 @@ describe('text list - components - TextDetailForm ', () => {
     const textInfo = {
         Category: "Basketball",
         Currency: "EURO",
-        DeviceType: "PC / Laptop",
+        DeviceType: 1,
         Language: "Japanese",
         TextContent: "anna 02",
         TextId: 2437
@@ -25,8 +25,8 @@ describe('text list - components - TextDetailForm ', () => {
         selectedTextId: 0,
         param,
         categoryList: [
-            { Name: "Basketball" },
-            { Name: "Bonus" }
+            { CategoryName: "Basketball" },
+            { CategoryName: "Bonus" }
         ],
         languageList: [
             { LanguageName: "English" },
