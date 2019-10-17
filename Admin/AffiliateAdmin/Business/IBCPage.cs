@@ -44,7 +44,7 @@ public class IBCPage : System.Web.UI.Page
     {
         if (Common.IsUnderMaintenance())
         {
-            Response.Redirect("~/UnderMaintenance.aspx");
+            Response.Redirect("~/Portal/UnderMaintenance");
         }
     }
 

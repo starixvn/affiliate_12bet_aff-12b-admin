@@ -40,7 +40,7 @@ namespace AffiliateAdmin.Portal
         {
             if (Common.IsUnderMaintenance())
             {
-                Response.Redirect("~/UnderMaintenance.aspx");
+                Response.Redirect("~/Portal/UnderMaintenance");
             }
         }
 

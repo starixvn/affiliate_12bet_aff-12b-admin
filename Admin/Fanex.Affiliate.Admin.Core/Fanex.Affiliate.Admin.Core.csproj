@@ -213,6 +213,7 @@
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\Affiliate\PaymentRequestController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\UserPanel\AdjustmentController.cs" />
     <Compile Include="Controllers\UserPanel\CustomerMemberController.cs" />
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsController.cs" />

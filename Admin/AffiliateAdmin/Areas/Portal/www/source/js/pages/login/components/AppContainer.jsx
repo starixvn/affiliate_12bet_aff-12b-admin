@@ -53,14 +53,10 @@ export default class AppContainer extends PureComponent {
             if (response) {
                 const { data } = response;
 
-                if (data.Message === "OK") {
+                if (data.IsSuccessful) {
                     window.location.href = resolveClientUrl("Portal/Home")
                 } else {
-                    if (data.Message === 'UM') {
-                        window.location.href = resolveClientUrl("UnderMaintenance.aspx");
-                    } else {
-                        this._handleShowAlert(false, data.Message);
-                    }
+                    this._handleShowAlert(false, data.Message);
                 }
             } else {
                 this._handleShowAlert(false, "An error occurred while processing your request");

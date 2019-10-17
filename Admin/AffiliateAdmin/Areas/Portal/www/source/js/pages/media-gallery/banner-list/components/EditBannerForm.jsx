@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader } from '../actions/index';
-import { headerText, globalResource, deviceTypes, defaultState, defaultDevice, Casino, Sportsbook, Baccarat, maxLenght } from '../libs/constants';
+import { headerText, globalResource, deviceTypes, defaultState, Casino, Sportsbook, Baccarat, maxLenght } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { validateFileExtension, getSubCategory } from '../libs/utils';
@@ -44,7 +44,7 @@ export class EditBannerForm extends PureComponent {
             currency: bannerInfo.Currency,
             imageType: bannerInfo.ImageType,
             affType: bannerInfo.AffType,
-            deviceType: deviceTypes[bannerInfo.DeviceType] || deviceTypes[defaultDevice]
+            deviceType: bannerInfo.DeviceType
         });
     }
 

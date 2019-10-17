@@ -21,6 +21,7 @@ module.exports = {
     [`${jsDist}/pages/message/message`]: clientRoot + "/js/pages/message/index.jsx",
     [`${jsDist}/pages/member/member-list`]: clientRoot + "/js/pages/member/member-list/index.jsx",
     [`${jsDist}/pages/login`]: clientRoot + "/js/pages/login/index.jsx",
+    [`${jsDist}/pages/under-maintenance`]: clientRoot + "/js/pages/under-maintenance/index.jsx",
 
     //For Thirdparty Product pages
     [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",
@@ -47,4 +48,5 @@ module.exports = {
     [`${styleDist}/pages/exchange-rate/exchange-rate`]: clientRoot + "/style/pages/exchange-rate/exchange-rate.scss",
     [`${styleDist}/pages/message/message`]: clientRoot + "/style/pages/message/message.scss",
     [`${styleDist}/login`]: clientRoot + "/style/pages/login.scss",
+    [`${styleDist}/under-maintenance`]: clientRoot + "/style/pages/under-maintenance.scss",
 };

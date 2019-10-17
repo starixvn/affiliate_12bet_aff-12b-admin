@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resizeWidthHeight } from '../libs/utils';
-import { headerText, globalResource, maxWidthHeight, defaultDevice, mobile } from '../libs/constants';
+import { headerText, globalResource, maxWidthHeight, pcLaptop, mobile } from '../libs/constants';
 import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl, getBannerRootUrl } from '../actions';
 
 export const Content = (props) => {
@@ -85,7 +85,7 @@ export const Content = (props) => {
         const realHeight = strSize[1];
         const isValidWithHeight = realWidth < maxWidthHeight && realHeight < maxWidthHeight;
         const resizeResult = !isValidWithHeight && resizeWidthHeight(realWidth, realHeight);
-        const deviceType = dataItem.DeviceType === 0 ? defaultDevice : mobile;
+        const deviceType = dataItem.DeviceType === 0 ? pcLaptop : mobile;
 
         return (
             <Row key={`dataRow-${index}`}>

@@ -1,7 +1,7 @@
 ﻿import { deviceTypes, pcLaptop, mobile } from '../../../../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-export { deviceTypes, globalResource, mobile };
+export { deviceTypes, globalResource, pcLaptop, mobile };
 
 export const Casino = 'Casino';
 export const Baccarat = 'Baccarat';
@@ -11,7 +11,6 @@ const defaultLanguage = 'Chinese Simplified';
 const defaultCurrency = 'EURO';
 const defaultImageType = 'Image';
 export const Asian = 2;
-export const defaultDevice = pcLaptop;
 export const maxWidthHeight = 501;
 export const maxLenght = 60;
 
@@ -45,7 +44,7 @@ export const defaultState = {
     currency: defaultCurrency,
     imageType: defaultImageType,
     affType: Asian,
-    deviceType: deviceTypes[defaultDevice],
+    deviceType: 0,
     isInsert: true,
     isShowMessage: false,
     isSuccess: true,
