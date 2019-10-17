@@ -999,6 +999,7 @@
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\xlsx-style.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\affiliate\affiliate-info.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\affiliate\email-history.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\change-admin-password.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
@@ -1027,6 +1028,7 @@
     <Content Include="Areas\Portal\www\dist\style\assets\lgLeft.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\lgLogo.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
+    <Content Include="Areas\Portal\www\dist\style\change-admin-password.css" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\login.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-info.css" />
@@ -1328,6 +1330,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\login\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\Views\UnderMaintenance\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\Views\ChangeAdminPassword\Index.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1683,7 +1688,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\AssignGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\index.jsx" />
-    <Content Include="Areas\Portal\Views\Password\ChangePassword.cshtml" />
     <Content Include="package.json" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\Content.jsx" />
@@ -1910,6 +1914,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\under-maintenance\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\under-maintenance\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\under-maintenance.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\change-admin-password.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

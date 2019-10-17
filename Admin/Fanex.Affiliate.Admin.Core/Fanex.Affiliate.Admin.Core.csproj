@@ -194,6 +194,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Affiliate\CommissionGroupController.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentController.cs" />
+    <Compile Include="Controllers\ChangeAdminPasswordController.cs" />
     <Compile Include="Controllers\CommonSettingController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\CustomerLeftPanelController.cs" />
@@ -210,7 +211,6 @@
     <Compile Include="Controllers\Member\ActiveMemberController.cs" />
     <Compile Include="Controllers\Member\MemberController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
-    <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\Affiliate\PaymentRequestController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />

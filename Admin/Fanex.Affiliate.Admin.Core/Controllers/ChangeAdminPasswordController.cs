@@ -2,9 +2,10 @@
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    public class PasswordController : Controller
+    public class ChangeAdminPasswordController: Controller
     {
-        public ActionResult ChangePassword()
+        [HttpGet]
+        public ActionResult Index()
         {
             return View();
         }
