@@ -11,5 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.Constants
         public const string UserId = "UserId";
         public const string PageId = "PageId";
         public const string Status = "Status";
+        public const string OnUserId = "on_userid";
     }
 }

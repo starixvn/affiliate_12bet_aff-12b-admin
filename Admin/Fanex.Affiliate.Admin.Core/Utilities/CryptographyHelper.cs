@@ -6,10 +6,11 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 {
     public static class CryptographyHelper
     {
-        private const int num = 30;
-        private const int twenty = 20;
-        private const int eightTeen = 18;
-        private const int twentyOne = 21;
+        private const int Num = 30;
+        private const int Two = 2;
+        private const int Twenty = 20;
+        private const int EightTeen = 18;
+        private const int TwentyOne = 21;
 
         public static string Encrypt(string inputString)
         {
@@ -18,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
         private static string CfsEnCode(string codeStr)
         {
-            int num2 = num - codeStr.Length;
+            int num2 = Num - codeStr.Length;
 
             var codeBuilder = new StringBuilder();
             codeBuilder.Append(codeStr);
@@ -26,15 +27,15 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             {
                 for (int i = 1; i <= num2; i++)
                 {
-                    codeBuilder.Append(Convert.ToChar(twentyOne));
+                    codeBuilder.Append(Convert.ToChar(TwentyOne));
                 }
             }
 
             var codeString = codeBuilder.ToString();
             double num3 = 1.0;
-            for (int j = 1; j <= num; j++)
+            for (int j = 1; j <= Num; j++)
             {
-                int num4 = num + Convert.ToInt32(Convert.ToChar(codeString.Substring(j - 1, 1))) * j;
+                int num4 = Num + Convert.ToInt32(Convert.ToChar(codeString.Substring(j - 1, 1))) * j;
                 num3 *= num4;
             }
             var num3String = num3.ToString(CultureInfo.InvariantCulture);
@@ -47,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
             var text = textBuilder.ToString();
             var text2 = new StringBuilder();
-            for (int l = twenty; l <= text.Length - eightTeen; l += 2)
+            for (int l = Twenty; l <= text.Length - EightTeen; l += Two)
             {
                 text2.Append(text.Substring(l - 1, 1));
             }

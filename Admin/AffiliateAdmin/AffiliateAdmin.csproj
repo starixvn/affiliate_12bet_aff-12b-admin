@@ -1324,10 +1324,10 @@
     <Content Include="Areas\Portal\Views\Member\_MemberSubMenu.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\index.jsx" />
-    <Content Include="Areas\Portal\Views\Login\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\login\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\login\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\Views\UnderMaintenance\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Login\Index.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />

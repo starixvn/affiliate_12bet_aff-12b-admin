@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("on_userid", DbType.Int32, onUserId);
+                objectDb.AddInParameter(Field.OnUserId, DbType.Int32, onUserId);
                 objectDb.AddOutParameter("iskickedout", DbType.Int32, Size.SizeOfInt);
                 objectDb.ExecuteNonQuery();
                 var isKickedOut = objectDb.GetParameterValue("iskickedout");
@@ -87,11 +87,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 objectDb.AddInParameter("ip", DbType.String, param.Ip);
                 objectDb.AddInParameter("subaccid", DbType.Int32, AffiliateAdminSite);
 
-                objectDb.AddOutParameter("on_userid", DbType.Int32, Size.SizeOfInt);
+                objectDb.AddOutParameter(Field.OnUserId, DbType.Int32, Size.SizeOfInt);
 
                 objectDb.ExecuteNonQuery();
 
-                var userId = objectDb.GetParameterValue("on_userid");
+                var userId = objectDb.GetParameterValue(Field.OnUserId);
 
                 return userId == DBNull.Value ? 0 : Convert.ToInt32(userId);
             }
@@ -103,7 +103,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("on_userid", DbType.Int32, onUserId);
+                objectDb.AddInParameter(Field.OnUserId, DbType.Int32, onUserId);
 
                 objectDb.ExecuteNonQuery();
             }

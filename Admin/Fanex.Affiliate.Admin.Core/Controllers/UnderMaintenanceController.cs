@@ -1,24 +1,28 @@
-﻿using ONEbook.UM.Services.Impl;
+﻿using Fanex.Affiliate.Admin.Core.Services.UnderMaintenanceService;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     public class UnderMaintenanceController: Controller
     {
+        private readonly IUnderMaintenanceService _underMaintenanceService;
+
+        public UnderMaintenanceController (IUnderMaintenanceService underMaintenanceService)
+        {
+            _underMaintenanceService = underMaintenanceService;
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
-            var _maintenanceService = new MaintenanceService();
-
-            if (_maintenanceService.IsUnderMaintenance())
+            if (_underMaintenanceService.IsUnderMaintenance())
             {
-                var underMaintenanceTime = _maintenanceService.GetUnderMaintenanceTime();
+                var underMaintenanceTime = _underMaintenanceService.GetUnderMaintenanceTime();
 
                 return View(model: underMaintenanceTime);
             }
 
-            return Redirect(FormsAuthentication.LoginUrl);
+            return Redirect("~/Portal/Login");
         }
     }
 }
