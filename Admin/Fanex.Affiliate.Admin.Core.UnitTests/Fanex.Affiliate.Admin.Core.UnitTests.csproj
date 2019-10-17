@@ -141,11 +141,13 @@
     <Compile Include="Controllers\Affiliate\CommissionGroupControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />
     <Compile Include="Controllers\ExchangeRate\ExchangeRateControllerTest.cs" />
+    <Compile Include="Controllers\LoginControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\MediaGalleryControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\TextListControllerTest.cs" />
     <Compile Include="Controllers\Member\MemberControllerTest.cs" />
     <Compile Include="Controllers\Message\MessageControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AuthRepositoryTest.cs" />
     <Compile Include="Repository\CommissionGroupRepositoryTest.cs" />
     <Compile Include="Repository\LanguageRepositoryTest.cs" />
     <Compile Include="Repository\MediaGalleryRepository\BannerListReppositoryTest.cs" />

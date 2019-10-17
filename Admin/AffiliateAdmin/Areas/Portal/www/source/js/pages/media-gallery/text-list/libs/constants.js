@@ -1,7 +1,7 @@
-﻿import { deviceTypes, pcLaptop } from '../../../../modules/constants';
+﻿import { deviceTypes, pcLaptop, mobile } from '../../../../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-export { deviceTypes, globalResource };
+export { deviceTypes, globalResource, mobile };
 
 const defaultCategory = 'Basketball';
 const defaultLanguage = 'Chinese Simplified';

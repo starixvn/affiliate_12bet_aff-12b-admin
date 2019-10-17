@@ -136,7 +136,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 Category = Convert.ToString(reader["Category"]),
                 Language = Convert.ToString(reader["Language"]),
                 Currency = Convert.ToString(reader["Currency"]),
-                DeviceType = Convert.ToString(reader["DeviceType"])
+                DeviceType = Convert.ToByte(reader["DeviceType"])
             };
         }
     }

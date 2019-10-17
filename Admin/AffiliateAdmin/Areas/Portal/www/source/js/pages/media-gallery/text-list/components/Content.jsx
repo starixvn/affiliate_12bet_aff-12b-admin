@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText, globalResource } from '../libs/constants';
+import { headerText, globalResource, defaultDevice, mobile } from '../libs/constants';
 import { setSelectedTextId, setPagingOption, fetchData, setCheckedTexts, setShouldResetScrollPosition, setParam } from '../actions';
 
 export const Content = (props) => {
@@ -71,6 +71,7 @@ export const Content = (props) => {
 
     function _buildDataRow(dataItem, index) {
         const content = htmlDecode(dataItem.TextContent);
+        const deviceType = dataItem.DeviceType === 0 ? defaultDevice : mobile;
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -83,7 +84,7 @@ export const Content = (props) => {
                 <Cell className="text-center" title={dataItem.Category}>{dataItem.Category}</Cell>
                 <Cell className="text-center" title={dataItem.Language}>{dataItem.Language}</Cell>
                 <Cell className="text-center" title={dataItem.Currency}>{dataItem.Currency}</Cell>
-                <Cell className="text-center" title={dataItem.DeviceType}>{dataItem.DeviceType}</Cell>
+                <Cell className="text-center" title={deviceType}>{deviceType}</Cell>
                 <Cell className="text-center" title="Edit Text">
                     <Button color="link" onClick={() => props.setSelectedTextId(dataItem.TextId)}>
                         <span className="oi oi-pencil text-secondary"></span>
