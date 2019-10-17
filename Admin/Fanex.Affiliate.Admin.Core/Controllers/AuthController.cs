@@ -62,47 +62,38 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             var result = _authRepository.Login(param);
 
-            try
-            {
-                var permissionList = param.UserId > 0 ? _authRepository.GetPermissionList(param.UserId) : new List<UserPermission>();
+            var permissionList = param.UserId > 0 ? _authRepository.GetPermissionList(param.UserId) : new List<UserPermission>();
 
-                if (result.IsSuccessful && param.UserId > 0)
+            if (result.IsSuccessful && param.UserId > 0)
+            {
+                if (permissionList.Any())
                 {
-                    if (permissionList.Any())
+                    var authTicket = new FormsAuthenticationTicket(param.UserName, true, 20);
+                    var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                    var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
                     {
-                        var authTicket = new FormsAuthenticationTicket(param.UserName, true, 20);
-                        var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-                        var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
-                        {
-                            HttpOnly = true,
-                            Secure = FormsAuthentication.RequireSSL,
-                            Path = FormsAuthentication.FormsCookiePath,
-                            Domain = FormsAuthentication.CookieDomain,
-                            Expires = authTicket.Expiration
-                        };
+                        HttpOnly = true,
+                        Secure = FormsAuthentication.RequireSSL,
+                        Path = FormsAuthentication.FormsCookiePath,
+                        Domain = FormsAuthentication.CookieDomain,
+                        Expires = authTicket.Expiration
+                    };
 
-                        _sessionService.UserId = param.UserId;
-                        _sessionService.UserPermissionList = permissionList;
-                        var onUserId = _authRepository.LoginOnUser(param, HttpContext.Session.SessionID, _appSetting.ServerId);
-                        _sessionService.OnUserId = onUserId;
+                    _sessionService.UserId = param.UserId;
+                    _sessionService.UserPermissionList = permissionList;
+                    var onUserId = _authRepository.LoginOnUser(param, HttpContext.Session.SessionID, _appSetting.ServerId);
+                    _sessionService.OnUserId = onUserId;
 
-                        HttpContext.ApplicationInstance.Context.Session["UserName"] = param.UserName;
+                    HttpContext.ApplicationInstance.Context.Session["UserName"] = param.UserName;
 
-                        HttpContext.Response.SetCookie(cookie);
+                    HttpContext.Response.SetCookie(cookie);
 
-                        result.Message = "OK";
-                    }
-                    else
-                    {
-                        result.Message = "Your account is not configured to access any functions! Please contact your administrator";
-                    }
+                    result.Message = "OK";
                 }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteError(ex);
-
-                result.Message = "UM"; //Common.IsUnderMaintenance() ? "UM" : ex.Message;
+                else
+                {
+                    result.Message = "Your account is not configured to access any functions! Please contact your administrator";
+                }
             }
 
             return new JsonNetResult
@@ -115,15 +106,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         public ActionResult Logout()
         {
             var context = HttpContext;
-            context.Response.ContentType = "text/html";
             _authRepository.Logout(_sessionService.OnUserId);
             FormsAuthentication.SignOut();
             context.Session.Clear();
             context.Session.Abandon();
-
-            FormsAuthentication.RedirectToLoginPage();
-
-            return new EmptyResult();
+            return Redirect(FormsAuthentication.LoginUrl);
         }
     }
 }
