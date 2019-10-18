@@ -107,6 +107,13 @@ export class ChangePasswordForm extends PureComponent {
         return result;
     }
 
+    _handlePressEnter = (isValid, event) => {
+        if (event.charCode === 13) {
+            event.preventDefault()
+            this.handleSubmit(isValid);
+        }
+    }
+
     render() {
         const { showPopupPassword } = this.props;
         const { password, confirmPassword, isShowMessage, isSuccess, message, isClickedSubmit } = this.state;
@@ -129,7 +136,7 @@ export class ChangePasswordForm extends PureComponent {
                                     <Label for="Password" sm={4} className="required">{resource.Password}:</Label>
                                     <Col sm={8}>
                                         <Input type="password" className="input-required" name="password" id="Password" autocomplete="false"
-                                            value={password} onChange={this.handleChange} invalid={isClickedSubmit && !passwordValidation.isValid} />
+                                            value={password} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this.handleChange} invalid={isClickedSubmit && !passwordValidation.isValid} />
                                         {passwordValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: passwordValidation.message }} /></FormFeedback>}
                                     </Col>
@@ -139,7 +146,7 @@ export class ChangePasswordForm extends PureComponent {
                                     <Label for="ConfirmPassword" sm={4} className="required">{resource.ConfirmPassword}:</Label>
                                     <Col sm={8}>
                                         <Input type="password" className="input-required" name="confirmPassword" id="ConfirmPassword" autocomplete="false"
-                                            value={confirmPassword} onChange={this.handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
+                                            value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this.handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
                                         {confirmPasswordValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
                                     </Col>

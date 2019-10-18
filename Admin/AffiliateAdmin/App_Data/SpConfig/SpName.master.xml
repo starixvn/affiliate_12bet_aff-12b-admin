@@ -118,4 +118,7 @@
     <Setting Key="DEP_AdminUpdAffID" SpName="DEP_AdminUpdAffID" DbName="deposit" />
     <Setting Key="Aff_WriteLog" SpName="Aff_WriteLog" DbName="affiliate_12bet" />
   </Function>
+  <Function Name="ChangeAdminPassword">
+    <Setting Key="Aff_AdminUpdPwd" SpName="Aff_AdminUpdPwd" DbName="affiliate_12bet" />
+  </Function>
 </Functions>
