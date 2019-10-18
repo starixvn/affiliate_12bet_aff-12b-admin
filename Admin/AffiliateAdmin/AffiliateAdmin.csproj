@@ -1028,6 +1028,7 @@
     <Content Include="Areas\Portal\www\dist\style\assets\lgLeft.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\lgLogo.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
+    <Content Include="Areas\Portal\www\dist\style\assets\UnderMaintenance.gif" />
     <Content Include="Areas\Portal\www\dist\style\change-admin-password.css" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\login.css" />
