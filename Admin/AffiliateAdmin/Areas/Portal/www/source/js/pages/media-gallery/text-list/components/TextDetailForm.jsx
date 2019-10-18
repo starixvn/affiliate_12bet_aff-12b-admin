@@ -34,7 +34,7 @@ export class TextDetailForm extends PureComponent {
             category: item.Category,
             language: item.Language,
             currency: item.Currency,
-            deviceType: deviceTypes[item.DeviceType] || deviceTypes[defaultDevice]
+            deviceType: item.DeviceType
         });
     }
 

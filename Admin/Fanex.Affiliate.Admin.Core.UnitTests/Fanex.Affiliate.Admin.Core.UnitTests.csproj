@@ -156,6 +156,8 @@
     <Compile Include="Common\MockFile.cs" />
     <Compile Include="Controllers\Affiliate\CommissionGroupControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />
+    <Compile Include="Controllers\AuthControllerTest.cs" />
+    <Compile Include="Controllers\ChangeAdminPasswordControllerTest.cs" />
     <Compile Include="Controllers\ExchangeRate\ExchangeRateControllerTest.cs" />
     <Compile Include="Controllers\LoginControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\MediaGalleryControllerTest.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="Repository\Member\MemberRepositoryTest.cs" />
     <Compile Include="Repository\ProductRepositoryTest.cs" />
     <Compile Include="Services\AffTypeServiceTest.cs" />
+    <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordServiceTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupAssignmentServiceTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupCommonServiceTest.cs" />
     <Compile Include="Services\CommissionGroupServiceTest.cs" />

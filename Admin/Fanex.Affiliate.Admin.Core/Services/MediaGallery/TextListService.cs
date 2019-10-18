@@ -72,7 +72,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddOutParameter("bannerid", DbType.Int32, Size.SizeOfInt);
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();

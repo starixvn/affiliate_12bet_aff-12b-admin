@@ -9,9 +9,7 @@ using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using System.Web.Security;
 using System.Web;
-using System;
 using System.Collections.Generic;
-using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Linq;
 using Fanex.Affiliate.Admin.Core.Configurations;
 
@@ -53,8 +51,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return Json(new { IsKickedOut = isKickedOut, Message = isKickedOut ? Lang.MsgKickout : string.Empty }, JsonRequestBehavior.AllowGet);
         }
 
-        [ValidateAntiForgeryHeader]
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult Login(LoginParam param)
         {
             param.UserHostName = HttpContext.Request.UserHostName;
