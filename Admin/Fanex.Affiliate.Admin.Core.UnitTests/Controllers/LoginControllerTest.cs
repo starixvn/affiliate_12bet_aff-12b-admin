@@ -19,6 +19,5 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             // Assert
             Assert.Equal("", viewName);
         }
-
     }
 }

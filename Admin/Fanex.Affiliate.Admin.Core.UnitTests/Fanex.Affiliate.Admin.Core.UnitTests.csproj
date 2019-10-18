@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\MockFile.cs" />
+    <Compile Include="Controllers\AccessDeniedControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommissionGroupControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />
     <Compile Include="Controllers\AuthControllerTest.cs" />

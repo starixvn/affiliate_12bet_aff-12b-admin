@@ -188,6 +188,7 @@
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Constants\UserPanelConstant.cs" />
     <Compile Include="Constants\Validation.cs" />
+    <Compile Include="Controllers\AccessDeniedController.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
     <Compile Include="Controllers\AuthController.cs" />

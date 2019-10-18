@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                     }
                     else
                     {
-                        context.Response.Redirect("~/AccessDenied.aspx");
+                        context.Response.Redirect("~/Portal/AccessDenied");
                     }
                 }
             }

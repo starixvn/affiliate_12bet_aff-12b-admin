@@ -1337,6 +1337,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\Views\ChangeAdminPassword\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\AccessDenied\Index.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />

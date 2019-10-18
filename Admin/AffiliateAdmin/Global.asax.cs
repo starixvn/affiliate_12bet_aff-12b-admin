@@ -67,7 +67,7 @@ namespace AffiliateAdmin
                 if (string.Compare(pageRole, "[All]", true) == 0) return;
                 if (AppSettings.Session.RoleAccess.IndexOf(pageRole) == -1)
                 {
-                    Response.Redirect("~/AccessDenied.aspx");
+                    Response.Redirect("~/Portal/AccessDenied");
                 }
             }
             catch

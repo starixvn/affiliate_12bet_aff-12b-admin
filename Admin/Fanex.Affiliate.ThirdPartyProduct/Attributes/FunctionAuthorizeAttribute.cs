@@ -37,13 +37,13 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Attributes
                     }
                     else
                     {
-                        context.Response.Redirect("~/AccessDenied.aspx");
+                        context.Response.Redirect("~/Portal/AccessDenied");
                     }
                 }
             }
             else
             {
-                context.Response.Redirect("~/AccessDenied.aspx");
+                context.Response.Redirect("~/Portal/AccessDenied");
             }
 
             base.OnActionExecuting(filterContext);
