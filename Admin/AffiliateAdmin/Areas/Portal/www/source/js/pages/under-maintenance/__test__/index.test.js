@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 jest.mock('react-dom', () => ({ render: jest.fn() }))
 
-describe('under maintenance list - App', () => {
+describe('under maintenance - App', () => {
     it('Should render correctly', () => {
         const wrapper = shallow(<App />);
 

@@ -1083,7 +1083,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\redux\GridData.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\__test__\AddGroup.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\__test__\AssignGroup.test.js" />

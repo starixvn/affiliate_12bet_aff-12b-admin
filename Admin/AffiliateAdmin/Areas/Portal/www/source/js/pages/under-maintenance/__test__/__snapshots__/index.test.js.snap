@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`under maintenance list - App Should render correctly 1`] = `
+exports[`under maintenance - App Should render correctly 1`] = `
 <AppLayout>
   <AppContainer />
 </AppLayout>

@@ -109,7 +109,7 @@ describe('text list - components - TextDetailForm ', () => {
         expect(result.setState).toHaveBeenCalledWith({
             category: "Basketball",
             currency: "EURO",
-            deviceType: 0,
+            deviceType: 1,
             language: "Japanese",
             textContent: "anna 02"
         });

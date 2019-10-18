@@ -37,7 +37,15 @@ export default class AppContainer extends PureComponent {
             message,
             isSuccess,
             isShowMessage: true,
-        }, () => window.setTimeout(this._handleReset, 3000));
+        }, () => window.setTimeout(() => this._hideMessage(isSuccess), 3000));
+    }
+
+    _hideMessage = (isSuccess) => {
+        this.setState({
+            isShowMessage: false
+        });
+
+        isSuccess && this._handleReset();
     }
 
     _handlePressEnter = (isValid, event) => {
@@ -90,7 +98,7 @@ export default class AppContainer extends PureComponent {
         const newPasswordValidation = this._validateNewPassword(newPassword);
         const confirmPasswordValidation = this._validateConfirmPassword(newPassword, confirmPassword);
         const isValidOldPassword = !!oldPassword;
-        const isValid = newPasswordValidation.isValid && confirmPasswordValidation.isValid && isValidOldPassword;
+        const isValid = isValidOldPassword && newPasswordValidation.isValid && confirmPasswordValidation.isValid;
 
         return (
             <div className="change-admin-password-container">
