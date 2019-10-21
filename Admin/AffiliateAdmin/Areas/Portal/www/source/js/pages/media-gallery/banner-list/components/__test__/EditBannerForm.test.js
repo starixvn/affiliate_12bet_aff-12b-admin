@@ -338,6 +338,23 @@ describe('banner list - components - EditBannerForm ', () => {
         expect(result.setState).toHaveBeenCalledWith({ deviceType: 1 });
     });
 
+    it('_handleChange should be not called when change input file name but invalid', () => {
+        const event = {
+            target: {
+                name: 'inputFileName',
+                value: 'should_call_handleShowAlert_with_invalid_lenght_test.png'
+            }
+        };
+
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+
+        result.setState = jest.fn();
+
+        result.find('Input[type="select"][id="deviceType"]').simulate('change', event);
+
+        expect(result.setState).not.toHaveBeenCalled();
+    });
+
     it('_handleSubmit - should call toggleLoader and _handleShowAlert when insert not has file', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
@@ -458,6 +475,17 @@ describe('banner list - components - EditBannerForm ', () => {
         await instance._validateInputFile('test.pdf');
 
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'");
+    });
+
+    it('_validateInputFile - should call _handleShowAlert with invalid lenght', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        const instance = wrapper.instance();
+
+        instance._handleShowAlert = jest.fn();
+
+        await instance._validateInputFile('should_call_handleShowAlert_with_invalid_lenght_test.png');
+
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "The maximum length of file name is 50. Please choose another name.");
     });
 
     it('_save - should call insertBanner and _handleAfterSave', async () => {

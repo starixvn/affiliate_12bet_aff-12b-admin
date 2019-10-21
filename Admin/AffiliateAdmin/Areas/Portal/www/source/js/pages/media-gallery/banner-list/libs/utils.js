@@ -5,19 +5,27 @@ export const validateFileExtension = (fileName) => {
         isOK: false,
         message: "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'",
     }
-    if (fileName != "" && fileName.length <= maxLenght) {
-        if(fileName.length <= maxLenght) {
-            const fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length).toLowerCase();
+    if (!!fileName) {
+        const fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length).toLowerCase();
 
-            const isOK = (fileExtension === "jpg" || fileExtension === "jpeg" || fileExtension === "png" || fileExtension === "gif");
+        const isOK = (fileExtension === "jpg" || fileExtension === "jpeg" || fileExtension === "png" || fileExtension === "gif");
 
-            if (isOK) {
-                result.isOK = isOK
-                result.message = '';
-            }
-        } else {
-            result.message = 'The file name must not exceed 60 characters';
+        if (isOK) {
+            result.isOK = isOK
+            result.message = '';
         }
+    }
+
+    return result;
+
+}
+
+export const validateInputFile = (inputFileName) => {
+    const result = validateFileExtension(inputFileName);
+
+    if (!!inputFileName && inputFileName.length > maxLenght) {
+        result.isOK = false;
+        result.message = 'The maximum length of file name is 50. Please choose another name.';
     }
 
     return result;

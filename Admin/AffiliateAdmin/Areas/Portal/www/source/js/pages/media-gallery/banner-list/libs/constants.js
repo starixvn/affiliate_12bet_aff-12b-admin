@@ -12,7 +12,7 @@ const defaultCurrency = 'EURO';
 const defaultImageType = 'Image';
 export const Asian = 2;
 export const maxWidthHeight = 501;
-export const maxLenght = 60;
+export const maxLenght = 50;
 
 export const headerText = {
     Index: '#',

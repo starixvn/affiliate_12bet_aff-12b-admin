@@ -7,7 +7,7 @@ import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBa
 import { headerText, globalResource, deviceTypes, defaultState, Casino, Sportsbook, Baccarat, maxLenght } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { validateFileExtension, getSubCategory } from '../libs/utils';
+import { validateFileExtension, validateInputFile, getSubCategory } from '../libs/utils';
 
 export class EditBannerForm extends PureComponent {
     constructor(props) {
@@ -104,7 +104,7 @@ export class EditBannerForm extends PureComponent {
     }
 
     _validateInputFile = (inputFileName) => {
-        const validFileName = validateFileExtension(inputFileName);
+        const validFileName = validateInputFile(inputFileName);
 
         validFileName.isOK ? this._save() : this._handleShowAlert(false, validFileName.message);
     }
