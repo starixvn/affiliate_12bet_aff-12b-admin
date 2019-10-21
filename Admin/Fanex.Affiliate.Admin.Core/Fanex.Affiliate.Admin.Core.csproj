@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AccessDeniedController.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
+    <Compile Include="Controllers\AlertController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Affiliate\CommissionGroupController.cs" />
@@ -251,6 +252,7 @@
     <Compile Include="DTO\MediaGallery\Category.cs" />
     <Compile Include="DTO\MediaGallery\MediaGalleryFilterItem.cs" />
     <Compile Include="DTO\Member\MemberInfo.cs" />
+    <Compile Include="MetaModels\AlertParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
     <Compile Include="MetaModels\Login\LoginParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />

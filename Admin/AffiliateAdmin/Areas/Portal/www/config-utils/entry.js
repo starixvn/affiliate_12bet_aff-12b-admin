@@ -23,6 +23,7 @@ module.exports = {
     [`${jsDist}/pages/login`]: clientRoot + "/js/pages/login/index.jsx",
     [`${jsDist}/pages/under-maintenance`]: clientRoot + "/js/pages/under-maintenance/index.jsx",
     [`${jsDist}/pages/change-admin-password`]: clientRoot + "/js/pages/change-admin-password/index.jsx",
+    [`${jsDist}/pages/alert`]: clientRoot + "/js/pages/alert/index.jsx",
 
     //For Thirdparty Product pages
     [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",
@@ -51,4 +52,5 @@ module.exports = {
     [`${styleDist}/login`]: clientRoot + "/style/pages/login.scss",
     [`${styleDist}/under-maintenance`]: clientRoot + "/style/pages/under-maintenance.scss",
     [`${styleDist}/change-admin-password`]: clientRoot + "/style/pages/change-admin-password.scss",
+    [`${styleDist}/alert`]: clientRoot + "/style/pages/alert.scss",
 };

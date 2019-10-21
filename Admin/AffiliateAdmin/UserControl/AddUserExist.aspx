@@ -36,8 +36,8 @@
                 onComplete: function(strdata) {
                     if (strdata.responseText == 'Ok') {
                         /*location.href='../Alert.aspx?code=2&user=' + $('username').value + '&link=UserControl/ListUser.aspx';       */
-                        ClosePopup();
-                        location.href = '../Alert.aspx?code=2&user=' + $('username').value + '&link=UserControl/ListUser.aspx';
+                        //ClosePopup();
+                        location.href = '../Portal/Alert?code=2&user=' + $('username').value + '&link=UserControl/ListUser.aspx';
                     }
                     if (strdata.responseText != 'Ok') {
                         Common.alertError(strdata.responseText);

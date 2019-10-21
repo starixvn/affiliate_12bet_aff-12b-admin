@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`alert - components - AppContainer render correctly 1`] = `
+<div
+  className="alert-container"
+>
+  <div>
+    <p>
+      Redirecting...
+    </p>
+  </div>
+  <div
+    className="text-center"
+  >
+    <p>
+      <strong>
+        sa
+         
+        has been updated successfully!
+      </strong>
+    </p>
+    <a
+      href="UserControl/ListUser.aspx"
+    >
+      <p>
+        Click here if your browser does not automatically redirect you.
+      </p>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`alert - components - AppContainer render correctly with invalid code 1`] = `
+<div
+  className="alert-container"
+>
+  <div>
+    <p>
+      Redirecting...
+    </p>
+  </div>
+  <div
+    className="text-center"
+  >
+    <p>
+      <strong>
+        sa
+         
+        has been updated successfully!
+      </strong>
+    </p>
+    <a
+      href="UserControl/ListUser.aspx"
+    >
+      <p>
+        Click here if your browser does not automatically redirect you.
+      </p>
+    </a>
+  </div>
+</div>
+`;
