@@ -117,6 +117,11 @@
     <Setting Key="Aff_MemberDel" SpName="Aff_MemberDel" DbName="affiliate_12bet" />
     <Setting Key="DEP_AdminUpdAffID" SpName="DEP_AdminUpdAffID" DbName="deposit" />
     <Setting Key="Aff_WriteLog" SpName="Aff_WriteLog" DbName="affiliate_12bet" />
+    <Setting Key="Aff_CustomerCheckList12BetPlayerAccountsActivated" SpName="Aff_CustomerCheckList12BetPlayerAccountsActivated" DbName="affiliate_12bet" />
+    <Setting Key="Deposit_MembersNotActivatedSel" SpName="Deposit_MembersNotActivatedSel" DbName="deposit" />
+    <Setting Key="Deposit_GetCustDataForCreateIBCACByUserNames" SpName="Deposit_GetCustDataForCreateIBCACByUserNames" DbName="deposit" />
+    <Setting Key="Dot_Dep_CustomerInsMember_Ag_Cust" SpName="Dot_Dep_CustomerInsMember_Ag_Cust" DbName="custdb" />
+    <Setting Key="Deposit_MemberIBCDetail" SpName="Deposit_MemberIBCDetail" DbName="deposit" />
   </Function>
   <Function Name="ChangeAdminPassword">
     <Setting Key="Aff_AdminUpdPwd" SpName="Aff_AdminUpdPwd" DbName="affiliate_12bet" />

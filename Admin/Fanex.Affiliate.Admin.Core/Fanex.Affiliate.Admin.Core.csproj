@@ -251,7 +251,9 @@
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\MediaGallery\Category.cs" />
     <Compile Include="DTO\MediaGallery\MediaGalleryFilterItem.cs" />
+    <Compile Include="DTO\Member\ActiveMemberInfo.cs" />
     <Compile Include="DTO\Member\MemberInfo.cs" />
+    <Compile Include="DTO\Member\UnactiveMemberInfo.cs" />
     <Compile Include="MetaModels\AlertParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
     <Compile Include="MetaModels\Login\LoginParam.cs" />
@@ -354,6 +356,8 @@
     <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
     <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
     <Compile Include="Repository\MediaGallery\IBannerListRepository.cs" />
+    <Compile Include="Repository\Member\ActiveMemberRepository.cs" />
+    <Compile Include="Repository\Member\IActiveMemberRepository.cs" />
     <Compile Include="Repository\Member\IMemberRepository.cs" />
     <Compile Include="Repository\Member\MemberRepository.cs" />
     <Compile Include="Repository\Payment\IPaymentRequestRepository.cs" />
@@ -479,6 +483,8 @@
     <Compile Include="Services\MediaGallery\ITextListService.cs" />
     <Compile Include="Services\MediaGallery\LandingPageService.cs" />
     <Compile Include="Services\MediaGallery\TextListService.cs" />
+    <Compile Include="Services\Member\ActiveMemberService.cs" />
+    <Compile Include="Services\Member\IActiveMemberService.cs" />
     <Compile Include="Services\Member\IMemberService.cs" />
     <Compile Include="Services\Member\MemberService.cs" />
     <Compile Include="Services\Message\IMessageService.cs" />

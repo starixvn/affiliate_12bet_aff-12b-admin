@@ -20,6 +20,7 @@ module.exports = {
     [`${jsDist}/pages/exchange-rate/exchange-rate`]: clientRoot + "/js/pages/exchange-rate/index.jsx",
     [`${jsDist}/pages/message/message`]: clientRoot + "/js/pages/message/index.jsx",
     [`${jsDist}/pages/member/member-list`]: clientRoot + "/js/pages/member/member-list/index.jsx",
+    [`${jsDist}/pages/member/active-member`]: clientRoot + "/js/pages/member/active-member/index.jsx",
     [`${jsDist}/pages/login`]: clientRoot + "/js/pages/login/index.jsx",
     [`${jsDist}/pages/under-maintenance`]: clientRoot + "/js/pages/under-maintenance/index.jsx",
     [`${jsDist}/pages/change-admin-password`]: clientRoot + "/js/pages/change-admin-password/index.jsx",
@@ -53,4 +54,5 @@ module.exports = {
     [`${styleDist}/under-maintenance`]: clientRoot + "/style/pages/under-maintenance.scss",
     [`${styleDist}/change-admin-password`]: clientRoot + "/style/pages/change-admin-password.scss",
     [`${styleDist}/alert`]: clientRoot + "/style/pages/alert.scss",
+    [`${styleDist}/pages/member/active-member`]: clientRoot + "/style/pages/member/active-member.scss",
 };

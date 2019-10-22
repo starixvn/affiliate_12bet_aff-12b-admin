@@ -9,14 +9,22 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Services.Member;
+using Fanex.Affiliate.Admin.Core.MetaModels.Member;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class ActiveMemberController: BaseController
     {
-        public ActiveMemberController(ISessionService sessionService) : base(sessionService)
+        private readonly IActiveMemberService _activeMemberService;
+
+        public ActiveMemberController(
+            ISessionService sessionService,
+            IActiveMemberService activeMemberService) : base(sessionService)
         {
+            _activeMemberService = activeMemberService;
         }
 
         public ActionResult Index()
@@ -28,6 +36,28 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
             };
 
             return View("~/Areas/Portal/Views/Member/ActiveMember.cshtml", subMenu);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [Compress]
+        public ActionResult GetUnactivedMemberList(string userNames)
+        {
+            return new JsonNetResult
+            {
+                Data = _activeMemberService.GetUnactivedMemberList(userNames)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [Compress]
+        public ActionResult GetActivedMemberList(string userNames)
+        {
+            return new JsonNetResult
+            {
+                Data = _activeMemberService.GetActivedMemberList(userNames)
+            };
         }
     }
 }
