@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         {
             return new JsonNetResult
             {
-                Data = _activeMemberService.GetUnactivedMemberList(userNames)
+                Data = _activeMemberService.GetUnactivatedMemberList(userNames)
             };
         }
 
@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         {
             return new JsonNetResult
             {
-                Data = _activeMemberService.GetActivedMemberList(userNames)
+                Data = _activeMemberService.GetActivatedMemberList(userNames)
             };
         }
 
@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "User not found!"
+                    Message = "Deposit User Name(s) is required!"
                 }
             };
         }

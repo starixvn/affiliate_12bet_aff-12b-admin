@@ -2,10 +2,10 @@
 using Fanex.Affiliate.Admin.Core.Repository.Member;
 using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.DTO;
-using System;
 using System.Text;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
 using Fanex.Affiliate.Admin.Core.Constants;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Member
 {
@@ -17,14 +17,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
             _activeMemberRepository = activeMemberRepository;
         }
 
-        public IEnumerable<ActiveMemberInfo> GetActivedMemberList(string userNames)
+        public IEnumerable<ActiveMemberInfo> GetActivatedMemberList(string userNames)
         {
-            return _activeMemberRepository.GetActivedMemberList(userNames);
+            return _activeMemberRepository.GetActivatedMemberList(userNames);
         }
 
-        public IEnumerable<UnactiveMemberInfo> GetUnactivedMemberList(string userNames)
+        public IEnumerable<UnactiveMemberInfo> GetUnactivatedMemberList(string userNames)
         {
-            return _activeMemberRepository.GetUnactivedMemberList(userNames);
+            return _activeMemberRepository.GetUnactivatedMemberList(userNames);
         }
 
         public ResultInfo ActiveMember(ActiveMemberParam param)
@@ -57,8 +57,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
 
             return new ResultInfo
             {
-                Code = string.IsNullOrEmpty(errorUserNames.ToString()) ? 0 : Code.GeneralErrorCode,
-                Message = errorUserNames.ToString()
+                Code = depositCustomerList.Any() && string.IsNullOrEmpty(errorUserNames.ToString()) ? 0 : Code.GeneralErrorCode,
+                Message = depositCustomerList.Any() ? errorUserNames.ToString() : "Deposit User Name(s) is incorrect"
             };
         }
     }

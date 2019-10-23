@@ -164,6 +164,7 @@
     <Compile Include="Controllers\LoginControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\MediaGalleryControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\TextListControllerTest.cs" />
+    <Compile Include="Controllers\Member\ActiveMemberControllerTest.cs" />
     <Compile Include="Controllers\Member\MemberControllerTest.cs" />
     <Compile Include="Controllers\Message\MessageControllerTest.cs" />
     <Compile Include="Controllers\UnderMaintenanceControllerTest.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Repository\CommissionGroupRepositoryTest.cs" />
     <Compile Include="Repository\LanguageRepositoryTest.cs" />
     <Compile Include="Repository\MediaGalleryRepository\BannerListReppositoryTest.cs" />
+    <Compile Include="Repository\Member\ActiveMemberRepositoryTest.cs" />
     <Compile Include="Repository\Member\MemberRepositoryTest.cs" />
     <Compile Include="Repository\ProductRepositoryTest.cs" />
     <Compile Include="Services\AffTypeServiceTest.cs" />
@@ -185,6 +187,7 @@
     <Compile Include="Services\MediaGallery\BannerValidationServiceTest.cs" />
     <Compile Include="Services\MediaGallery\CommonMediaGalleryServiceTest.cs" />
     <Compile Include="Services\MediaGallery\TextListServiceTest.cs" />
+    <Compile Include="Services\Member\ActiveMemberServiceTest.cs" />
     <Compile Include="Services\Member\MemberServiceTest.cs" />
     <Compile Include="Services\Message\MessageServiceTest.cs" />
     <Compile Include="Services\UnderMaintenance\UnderMaintenanceServiceTest.cs" />

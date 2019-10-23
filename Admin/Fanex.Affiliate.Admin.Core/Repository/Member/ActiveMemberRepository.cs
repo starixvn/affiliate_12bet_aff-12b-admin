@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 {
     public class ActiveMemberRepository : BaseRepository, IActiveMemberRepository
     {
-        public IEnumerable<UnactiveMemberInfo> GetUnactivedMemberList(string userNames)
+        public IEnumerable<UnactiveMemberInfo> GetUnactivatedMemberList(string userNames)
         {
             const string Spkey = "Deposit_MembersNotActivatedSel";
             var result = new List<UnactiveMemberInfo>();
@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
             return result;
         }
 
-        public IEnumerable<ActiveMemberInfo> GetActivedMemberList(string userNames)
+        public IEnumerable<ActiveMemberInfo> GetActivatedMemberList(string userNames)
         {
             const string Spkey = "Aff_CustomerCheckList12BetPlayerAccountsActivated";
             var result = new List<ActiveMemberInfo>();

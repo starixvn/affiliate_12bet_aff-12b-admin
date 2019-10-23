@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Member
         }
 
         [Fact]
-        public void DeleteMember_WhenCallWithValidParam_InsertSuccessful()
+        public void DeleteMember_WhenCallWithValidParam_DeleteSuccessful()
         {
             // Arrange
             var param = new DeleteMemberParam { MemberId = 123 };

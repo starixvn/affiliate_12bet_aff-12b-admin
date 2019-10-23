@@ -7,9 +7,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 {
     public interface IActiveMemberRepository
     {
-        IEnumerable<ActiveMemberInfo> GetActivedMemberList(string userNames);
+        IEnumerable<ActiveMemberInfo> GetActivatedMemberList(string userNames);
 
-        IEnumerable<UnactiveMemberInfo> GetUnactivedMemberList(string userNames);
+        IEnumerable<UnactiveMemberInfo> GetUnactivatedMemberList(string userNames);
 
         IEnumerable<DepositCustomerInfo> Get12BetPlayersDepositInfo(string userNames);
 
