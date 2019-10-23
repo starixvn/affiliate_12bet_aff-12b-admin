@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.DTO;
@@ -15,7 +11,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.ActiveMembers)]
     public class ActiveMemberController: BaseController
     {
         private readonly IActiveMemberService _activeMemberService;
@@ -41,7 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetUnactivedMemberList(string userNames)
+        public ActionResult GetUnactivatedMemberList(string userNames)
         {
             return new JsonNetResult
             {
@@ -52,11 +48,37 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetActivedMemberList(string userNames)
+        public ActionResult GetActivatedMemberList(string userNames)
         {
             return new JsonNetResult
             {
                 Data = _activeMemberService.GetActivedMemberList(userNames)
+            };
+        }
+
+        [FunctionAuthorize(FunctionName = Function.ActiveMembers, IsHost = true)]
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult ActiveMember(ActiveMemberParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                param.UserId = SessionService.UserId;
+                param.Ip = Request.UserHostAddress;
+
+                return new JsonNetResult
+                {
+                    Data = _activeMemberService.ActiveMember(param)
+                };
+            }
+
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "User not found!"
+                }
             };
         }
     }

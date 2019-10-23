@@ -1,6 +1,6 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_USER_NAMES, SET_SHOW_TEXT, SHOULD_RESET_SCROLL_POSITION, SET_ACTIVATED_GRID_DATA, SET_UNACTIVATED_GRID_DATA } from './types';
+import { SET_USER_NAMES, SET_SHOW_TEXT, SET_MESSAGE, SHOULD_RESET_SCROLL_POSITION, SET_ACTIVATED_GRID_DATA, SET_UNACTIVATED_GRID_DATA } from './types';
 
 export const setUserNames = (data) => {
     return {
@@ -12,6 +12,13 @@ export const setUserNames = (data) => {
 export const setShowText = (data) => {
     return {
         type: SET_SHOW_TEXT,
+        data
+    }
+}
+
+export const setMessage = (data) => {
+    return {
+        type: SET_MESSAGE,
         data
     }
 }
@@ -40,19 +47,29 @@ export const setUnactivatedGridData = (data) => {
 export const fetchUnactivatedData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const url = 'Portal/ActiveMember/GetUnactivedMemberList';
+    const url = 'Portal/ActiveMember/GetUnactivatedMemberList';
     const response = await post(url, param);
     const data = response && response.status === 200 ? response.data : [];
 
     dispatch(setUnactivatedGridData(data));
+    dispatch(setUserNames(_getUserNames(data)));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
 
     return data.length;
 }
 
+function _getUserNames(dataList) {
+    var userNames = '';
+    for (let i = 0; i < dataList.length; i++) {
+        userNames = dataList[i].UserName + ',';
+    }
+
+    return userNames;
+}
+
 export const fetchActivatedData = (param) => async (dispatch) => {
-    const url = 'Portal/ActiveMember/GetActivedMemberList';
+    const url = 'Portal/ActiveMember/GetActivatedMemberList';
     const response = await post(url, param);
     const data = response && response.status === 200 ? response.data : [];
 
@@ -61,9 +78,9 @@ export const fetchActivatedData = (param) => async (dispatch) => {
     return data.length;
 }
 
-export const ActiveMember = (memberIds) => async () => {
+export const activeMember = (param) => async () => {
     const url = 'Portal/ActiveMember/ActiveMember';
-    const response = await post(url, { memberIds });
+    const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }

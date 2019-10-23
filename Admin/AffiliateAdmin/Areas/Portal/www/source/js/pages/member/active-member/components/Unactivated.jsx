@@ -6,14 +6,17 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { activeMember, setShouldResetScrollPosition } from '../actions';
+import { setMessage, activeMember, setShouldResetScrollPosition } from '../actions';
 
 export const Unactivated = (props) => {
     const { unactivatedGridData, shouldResetScrollPosition, userNames } = props;
 
-    const _handleActive = (userNames) => {
+    const _handleActive = async (userNames) => {
         props.setShouldResetScrollPosition(false);
 
+        var data = await props.activeMember({ userNames });
+
+        data ? props.setMessage(data.IsSuccessful ? "Members has been activated successfully!" : data.Message) : props.setMessage("Activate members is failed!");
     }
 
     function _renderHeader() {
@@ -77,7 +80,7 @@ export const Unactivated = (props) => {
             <div className="active-member-content table-responsive table-striped my-2">
                 <div className="title-text">Members have not been activated</div>
                 <Table
-                    maxWidth={700}
+                    maxWidth={690}
                     bodyHeight={300}
                     header={_renderHeader()}
                     body={_renderDataSection(unactivatedGridData)}
@@ -94,7 +97,7 @@ function mapStateToProps({ unactivatedGridData, shouldResetScrollPosition, userN
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ activeMember, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ setMessage, activeMember, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Unactivated));
