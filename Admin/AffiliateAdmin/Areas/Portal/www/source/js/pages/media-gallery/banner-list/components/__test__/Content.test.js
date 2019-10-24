@@ -21,7 +21,7 @@ describe('banner list - components - Content ', () => {
             BannerId: 2448,
             Category: "Number Game",
             Currency: "EURO",
-            DeviceType: 1,
+            DeviceType: 0,
             FileName: "CategoryMedia/Number Game/step1.jpg",
             ImageType: "Image",
             Language: "Chinese Simplified",

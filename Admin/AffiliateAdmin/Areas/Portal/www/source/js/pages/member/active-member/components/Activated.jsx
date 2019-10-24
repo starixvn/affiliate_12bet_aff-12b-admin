@@ -43,16 +43,16 @@ export const Activated = (props) => {
     function _buildDataRow(dataItem, index) {
         const userName = htmlDecode(dataItem.UserName);
         const ibcUserName = htmlDecode(dataItem.IbcUserName);
-        const firstName = dataItem.FirstName ? htmlDecode(dataItem.FirstName) : '---';
-        const lastName = dataItem.LastName ? htmlDecode(dataItem.LastName) : '---';
+        const firstName = htmlDecode(dataItem.FirstName);
+        const lastName = htmlDecode(dataItem.LastName);
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={userName}>{userName}</Cell>
                 <Cell className="text-center" title={ibcUserName}>{ibcUserName}</Cell>
-                <Cell className="text-center" title={firstName}>{firstName}</Cell>
-                <Cell className="text-center" title={lastName}>{lastName}</Cell>
+                <Cell className="text-center" title={firstName}>{firstName || '---'}</Cell>
+                <Cell className="text-center" title={lastName}>{lastName || '---'}</Cell>
                 <Cell className="text-center" title={dataItem.IbcCustId}>{dataItem.IbcCustId}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
             </Row>

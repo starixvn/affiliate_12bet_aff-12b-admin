@@ -6,6 +6,6 @@ exports[`member list - components - AppContainer render correctly 1`] = `
     show={true}
   />
   <Connect(Component) />
-  <Connect(Component) />
+  <Connect(Content) />
 </AppLayout>
 `;

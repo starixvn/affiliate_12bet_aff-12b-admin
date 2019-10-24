@@ -251,9 +251,9 @@ exports[`banner list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Mobile"
+              title="PC / Laptop"
             >
-              Mobile
+              PC / Laptop
             </t>
             <t
               asc={true}

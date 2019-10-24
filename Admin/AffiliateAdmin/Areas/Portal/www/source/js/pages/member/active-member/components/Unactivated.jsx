@@ -64,8 +64,8 @@ export const Unactivated = (props) => {
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={userName}>{userName}</Cell>
-                <Cell className="text-center" title={firstName}>{firstName}</Cell>
-                <Cell className="text-center" title={lastName}>{lastName}</Cell>
+                <Cell className="text-center" title={firstName}>{firstName || '---'}</Cell>
+                <Cell className="text-center" title={lastName}>{lastName || '---'}</Cell>
                 <Cell className="text-center" title="Active">
                     <Button color="link p-0" onClick={() => _handleActive(dataItem.UserName)}>
                         Active

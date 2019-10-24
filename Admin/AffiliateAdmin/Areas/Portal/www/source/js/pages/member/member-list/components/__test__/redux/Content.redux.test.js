@@ -59,6 +59,6 @@ describe('member list - Content - connect', () => {
     it('returned function of connect should be called with correct parameter', () => {
         const Content = require('../../Content').Content;
 
-        expect(connectMock).toHaveBeenCalledWith(React.memo(Content));
+        expect(connectMock).toHaveBeenCalledWith(Content);
     })
 })

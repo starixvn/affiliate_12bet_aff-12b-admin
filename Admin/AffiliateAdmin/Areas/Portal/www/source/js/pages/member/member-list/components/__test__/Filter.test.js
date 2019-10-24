@@ -74,7 +74,7 @@ describe('member list - components - Filter ', () => {
         expect(props.setParam).toHaveBeenCalledWith({"AffName": "12BETAFF226", "IbcUserName": "", "PageIndex": 1, "PageSize": 20, "UserName": ""});
     });
 
-    it('setUserName - should call _handleSearch when press enter in user name textbox', () => {
+    it('_handlePressEnter - should call _handleSearch when press enter in user name textbox', () => {
         const event = {
             charCode: 13,
             preventDefault: jest.fn()
@@ -88,7 +88,7 @@ describe('member list - components - Filter ', () => {
         expect(props.setParam).toHaveBeenCalledWith({"AffName": "12BETAFF226", "IbcUserName": "", "PageIndex": 1, "PageSize": 20, "UserName": ""});
     });
 
-    it('setIbcUserName - should call _handleSearch when press enter in ibcUserName textbox', () => {
+    it('_handlePressEnter - should call _handleSearch when press enter in ibcUserName textbox', () => {
         const event = {
             charCode: 13,
             preventDefault: jest.fn()
@@ -102,7 +102,7 @@ describe('member list - components - Filter ', () => {
         expect(props.setParam).toHaveBeenCalledWith({"AffName": "12BETAFF226", "IbcUserName": "", "PageIndex": 1, "PageSize": 20, "UserName": ""});
     });
 
-    it('_handlePressEnter - should call _handleSearch when press other keys', () => {
+    it('_handlePressEnter - should not call _handleSearch when press other keys', () => {
         const event = {
             charCode: 16,
             preventDefault: jest.fn()

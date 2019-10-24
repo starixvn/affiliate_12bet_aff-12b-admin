@@ -18,7 +18,7 @@ describe('text list - components - Content ', () => {
                     {
                         Category: "Basketball",
                         Currency: "EURO",
-                        DeviceType: 1,
+                        DeviceType: 0,
                         Language: "Japanese",
                         TextContent: "anna 02",
                         TextId: 2437

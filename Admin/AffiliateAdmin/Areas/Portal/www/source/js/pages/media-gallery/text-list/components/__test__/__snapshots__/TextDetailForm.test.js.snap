@@ -889,7 +889,7 @@ exports[`text list - components - TextDetailForm  render correctly with update 1
       >
         <Alert
           closeAriaLabel="Close"
-          color="success"
+          color="danger"
           fade={true}
           isOpen={false}
           tag="div"

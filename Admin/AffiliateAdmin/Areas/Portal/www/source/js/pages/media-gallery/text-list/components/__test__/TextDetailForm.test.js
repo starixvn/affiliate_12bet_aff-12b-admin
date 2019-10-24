@@ -47,6 +47,7 @@ describe('text list - components - TextDetailForm ', () => {
     it('render correctly with update', () => {
         const props = Object.assign({}, defaultProps, { selectedTextId: 2437, getTextDetail: jest.fn() });
         const result = shallow(<TextDetailForm {...props} />);
+        result.setState({ isSuccess: false });
 
         expect(result).toMatchSnapshot();
     });

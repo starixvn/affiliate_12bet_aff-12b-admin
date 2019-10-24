@@ -364,1652 +364,371 @@ exports[`member list - components - Content  render correctly 1`] = `
 `;
 
 exports[`member list - components - Content  render correctly with NotificationPopup 1`] = `
-<Content
-  fetchData={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "AffName": "",
-            "IbcUserName": "",
-            "PageIndex": 1,
-            "PageSize": 20,
-            "UserName": "",
-          },
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": undefined,
-        },
-      ],
-    }
-  }
-  gridData={
-    Array [
-      Object {
-        "AffName": "12BETAFF017",
-        "CreatedDate": "2017-07-06T10:24:00",
-        "CreatedDateText": "07/06/2017 10:24:00",
-        "CurrentBalance": 0,
-        "FirstName": "",
-        "IbcUserName": "12BETRMB0239317",
-        "LastName": "",
-        "MemberId": 26522982,
-        "UserName": "12Bet$wjpwjp",
-      },
-      Object {
-        "AffName": "12BETAFF177",
-        "CreatedDate": "2017-07-05T18:25:00",
-        "CreatedDateText": "07/05/2017 18:25:00",
-        "CurrentBalance": 0,
-        "FirstName": "",
-        "IbcUserName": "12BETRMB0239312",
-        "LastName": "",
-        "MemberId": 26518302,
-        "UserName": "12Bet$jingguoan",
-      },
-    ]
-  }
-  pagingOption={
-    Object {
-      "PageIndex": 1,
-      "PageList": Array [
-        10,
-        20,
-        50,
-        100,
-        500,
-      ],
-      "PageSize": 20,
-      "TotalItem": 0,
-    }
-  }
-  param={
-    Object {
-      "AffName": "",
-      "IbcUserName": "",
-      "PageIndex": 1,
-      "PageSize": 20,
-      "UserName": "",
-    }
-  }
-  setShouldResetScrollPosition={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          false,
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": undefined,
-        },
-      ],
-    }
-  }
-  shouldResetScrollPosition={true}
+<div
+  className="data-content"
 >
   <div
-    className="data-content"
+    className="member-list-content table-responsive table-striped my-2"
   >
-    <div
-      className="member-list-content table-responsive table-striped my-2"
-    >
-      <t
-        adjustedHeight={0}
-        autoHeight={true}
-        autoWidth={true}
-        body={
-          Array [
-            <t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title={1}
-              >
-                1
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="12Bet$wjpwjp"
-              >
-                12Bet$wjpwjp
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="12BETRMB0239317"
-              >
-                12BETRMB0239317
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title=""
-              >
-                
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title=""
-              >
-                
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="$0.00"
-              >
-                $0.00
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="07/06/2017 10:24:00"
-              >
-                07/06/2017 10:24:00
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="12BETAFF017"
-              >
-                12BETAFF017
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="Remove Member"
-              >
-                <Button
-                  color="link p-0"
-                  onClick={[Function]}
-                  tag="button"
-                >
-                  <span
-                    className="oi oi-x text-danger"
-                  />
-                </Button>
-              </t>
-            </t>,
-            <t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title={2}
-              >
-                2
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="12Bet$jingguoan"
-              >
-                12Bet$jingguoan
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="12BETRMB0239312"
-              >
-                12BETRMB0239312
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title=""
-              >
-                
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title=""
-              >
-                
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="$0.00"
-              >
-                $0.00
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="07/05/2017 18:25:00"
-              >
-                07/05/2017 18:25:00
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="12BETAFF177"
-              >
-                12BETAFF177
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="Remove Member"
-              >
-                <Button
-                  color="link p-0"
-                  onClick={[Function]}
-                  tag="button"
-                >
-                  <span
-                    className="oi oi-x text-danger"
-                  />
-                </Button>
-              </t>
-            </t>,
-          ]
-        }
-        bodyHeight={300}
-        containerPadding={20}
-        header={
+    <t
+      adjustedHeight={0}
+      autoHeight={true}
+      autoWidth={true}
+      body={
+        Array [
           <t>
             <t
               asc={true}
-              colWidth={20}
-              header={true}
+              className="text-center"
+              header={false}
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="#"
+              title={1}
             >
-              #
+              1
             </t>
             <t
               asc={true}
-              colWidth={120}
-              header={true}
+              className="text-center"
+              header={false}
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="User Name"
+              title="12Bet$wjpwjp"
             >
-              User Name
+              12Bet$wjpwjp
             </t>
             <t
               asc={true}
-              colWidth={120}
-              header={true}
+              className="text-center"
+              header={false}
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="IBC User Name"
+              title="12BETRMB0239317"
             >
-              IBC User Name
+              12BETRMB0239317
             </t>
             <t
               asc={true}
-              colWidth={100}
-              header={true}
+              className="text-center"
+              header={false}
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="First Name"
+              title=""
             >
-              First Name
+              
             </t>
             <t
               asc={true}
-              colWidth={100}
-              header={true}
+              className="text-center"
+              header={false}
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Last Name"
+              title=""
             >
-              Last Name
+              
             </t>
             <t
               asc={true}
-              colWidth={120}
-              header={true}
+              className="text-center"
+              header={false}
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Current Balance Member"
+              title="$0.00"
             >
-              Current Balance Member
+              $0.00
             </t>
             <t
               asc={true}
-              colWidth={100}
-              header={true}
+              className="text-center"
+              header={false}
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Created Date"
+              title="07/06/2017 10:24:00"
             >
-              Created Date
+              07/06/2017 10:24:00
             </t>
             <t
               asc={true}
-              colWidth={100}
-              header={true}
+              className="text-center"
+              header={false}
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Affiliate"
+              title="12BETAFF017"
             >
-              Affiliate
+              12BETAFF017
             </t>
             <t
               asc={true}
-              colWidth={30}
-              header={true}
+              className="text-center"
+              header={false}
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Remove"
+              title="Remove Member"
             >
-              Remove
-            </t>
-          </t>
-        }
-        isPaging={true}
-        maxWidth={0}
-        minWidth={1000}
-        onPaging={[Function]}
-        pageOption={
-          Object {
-            "PageIndex": 1,
-            "PageList": Array [
-              10,
-              20,
-              50,
-              100,
-              500,
-            ],
-            "PageSize": 20,
-            "TotalItem": 0,
-          }
-        }
-        shouldResetScrollPosition={true}
-        width={0}
-      >
-        <div>
-          <div
-            className="table-container"
-            style={
-              Object {
-                "maxWidth": -20,
-              }
-            }
-          >
-            <u
-              autoWidth={true}
-              maxWidth={-20}
-              minWidth={1000}
-              tableClass="table"
-              width={-20}
-            >
-              <div
-                className="header-content"
-                style={
-                  Object {
-                    "maxHeight": undefined,
-                    "minWidth": 1000,
-                    "width": -20,
-                  }
-                }
+              <Button
+                color="link p-0"
+                onClick={[Function]}
+                tag="button"
               >
-                <div
-                  className="table-wrapper"
-                >
-                  <table
-                    className="table"
-                    style={
-                      Object {
-                        "width": 981,
-                      }
-                    }
-                  >
-                    <thead>
-                      <t
-                        columnLayout={
-                          Array [
-                            -0.962962962962963,
-                            -5.777777777777778,
-                            -5.777777777777778,
-                            -4.814814814814815,
-                            -4.814814814814815,
-                            -5.777777777777778,
-                            -4.814814814814815,
-                            -4.814814814814815,
-                            -1.4444444444444444,
-                          ]
-                        }
-                      >
-                        <tr
-                          className="first-row"
-                        >
-                          <td
-                            key="cellLayout0"
-                            style={
-                              Object {
-                                "width": "-0.962962962962963px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout1"
-                            style={
-                              Object {
-                                "width": "-5.777777777777778px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout2"
-                            style={
-                              Object {
-                                "width": "-5.777777777777778px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout3"
-                            style={
-                              Object {
-                                "width": "-4.814814814814815px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout4"
-                            style={
-                              Object {
-                                "width": "-4.814814814814815px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout5"
-                            style={
-                              Object {
-                                "width": "-5.777777777777778px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout6"
-                            style={
-                              Object {
-                                "width": "-4.814814814814815px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout7"
-                            style={
-                              Object {
-                                "width": "-4.814814814814815px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout8"
-                            style={
-                              Object {
-                                "width": "-1.4444444444444444px",
-                              }
-                            }
-                          />
-                        </tr>
-                      </t>
-                      <t
-                        key="thead"
-                      >
-                        <tr>
-                          <t
-                            asc={true}
-                            colWidth={20}
-                            header={true}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="#"
-                          >
-                            <th
-                              title="#"
-                            >
-                              #
-                            </th>
-                          </t>
-                          <t
-                            asc={true}
-                            colWidth={120}
-                            header={true}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="User Name"
-                          >
-                            <th
-                              title="User Name"
-                            >
-                              User Name
-                            </th>
-                          </t>
-                          <t
-                            asc={true}
-                            colWidth={120}
-                            header={true}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="IBC User Name"
-                          >
-                            <th
-                              title="IBC User Name"
-                            >
-                              IBC User Name
-                            </th>
-                          </t>
-                          <t
-                            asc={true}
-                            colWidth={100}
-                            header={true}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="First Name"
-                          >
-                            <th
-                              title="First Name"
-                            >
-                              First Name
-                            </th>
-                          </t>
-                          <t
-                            asc={true}
-                            colWidth={100}
-                            header={true}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="Last Name"
-                          >
-                            <th
-                              title="Last Name"
-                            >
-                              Last Name
-                            </th>
-                          </t>
-                          <t
-                            asc={true}
-                            colWidth={120}
-                            header={true}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="Current Balance Member"
-                          >
-                            <th
-                              title="Current Balance Member"
-                            >
-                              Current Balance Member
-                            </th>
-                          </t>
-                          <t
-                            asc={true}
-                            colWidth={100}
-                            header={true}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="Created Date"
-                          >
-                            <th
-                              title="Created Date"
-                            >
-                              Created Date
-                            </th>
-                          </t>
-                          <t
-                            asc={true}
-                            colWidth={100}
-                            header={true}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="Affiliate"
-                          >
-                            <th
-                              title="Affiliate"
-                            >
-                              Affiliate
-                            </th>
-                          </t>
-                          <t
-                            asc={true}
-                            colWidth={30}
-                            header={true}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="Remove"
-                          >
-                            <th
-                              title="Remove"
-                            >
-                              Remove
-                            </th>
-                          </t>
-                        </tr>
-                      </t>
-                    </thead>
-                  </table>
-                </div>
-              </div>
-            </u>
-            <u
-              autoWidth={true}
-              maxHeight={698}
-              maxWidth={-20}
-              minWidth={1000}
-              tableClass="table"
-              width={-20}
+                <span
+                  className="oi oi-x text-danger"
+                />
+              </Button>
+            </t>
+          </t>,
+          <t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title={2}
             >
-              <div
-                className="body-content"
-                style={
-                  Object {
-                    "maxHeight": 698,
-                    "minWidth": 1000,
-                    "width": -20,
-                  }
-                }
+              2
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="12Bet$jingguoan"
+            >
+              12Bet$jingguoan
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="12BETRMB0239312"
+            >
+              12BETRMB0239312
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="$0.00"
+            >
+              $0.00
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="07/05/2017 18:25:00"
+            >
+              07/05/2017 18:25:00
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="12BETAFF177"
+            >
+              12BETAFF177
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Remove Member"
+            >
+              <Button
+                color="link p-0"
+                onClick={[Function]}
+                tag="button"
               >
-                <div
-                  className="table-wrapper"
-                >
-                  <table
-                    className="table"
-                    style={
-                      Object {
-                        "width": 981,
-                      }
-                    }
-                  >
-                    <tbody>
-                      <t
-                        columnLayout={
-                          Array [
-                            -0.962962962962963,
-                            -5.777777777777778,
-                            -5.777777777777778,
-                            -4.814814814814815,
-                            -4.814814814814815,
-                            -5.777777777777778,
-                            -4.814814814814815,
-                            -4.814814814814815,
-                            -1.4444444444444444,
-                          ]
-                        }
-                      >
-                        <tr
-                          className="first-row"
-                        >
-                          <td
-                            key="cellLayout0"
-                            style={
-                              Object {
-                                "width": "-0.962962962962963px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout1"
-                            style={
-                              Object {
-                                "width": "-5.777777777777778px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout2"
-                            style={
-                              Object {
-                                "width": "-5.777777777777778px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout3"
-                            style={
-                              Object {
-                                "width": "-4.814814814814815px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout4"
-                            style={
-                              Object {
-                                "width": "-4.814814814814815px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout5"
-                            style={
-                              Object {
-                                "width": "-5.777777777777778px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout6"
-                            style={
-                              Object {
-                                "width": "-4.814814814814815px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout7"
-                            style={
-                              Object {
-                                "width": "-4.814814814814815px",
-                              }
-                            }
-                          />
-                          <td
-                            key="cellLayout8"
-                            style={
-                              Object {
-                                "width": "-1.4444444444444444px",
-                              }
-                            }
-                          />
-                        </tr>
-                      </t>
-                      <t
-                        key="dataRow-1"
-                      >
-                        <tr>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title={1}
-                          >
-                            <td
-                              className="text-center"
-                              title={1}
-                            >
-                              1
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="12Bet$wjpwjp"
-                          >
-                            <td
-                              className="text-center"
-                              title="12Bet$wjpwjp"
-                            >
-                              12Bet$wjpwjp
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="12BETRMB0239317"
-                          >
-                            <td
-                              className="text-center"
-                              title="12BETRMB0239317"
-                            >
-                              12BETRMB0239317
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title=""
-                          >
-                            <td
-                              className="text-center"
-                              title=""
-                            />
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title=""
-                          >
-                            <td
-                              className="text-center"
-                              title=""
-                            />
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="$0.00"
-                          >
-                            <td
-                              className="text-center"
-                              title="$0.00"
-                            >
-                              $0.00
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="07/06/2017 10:24:00"
-                          >
-                            <td
-                              className="text-center"
-                              title="07/06/2017 10:24:00"
-                            >
-                              07/06/2017 10:24:00
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="12BETAFF017"
-                          >
-                            <td
-                              className="text-center"
-                              title="12BETAFF017"
-                            >
-                              12BETAFF017
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="Remove Member"
-                          >
-                            <td
-                              className="text-center"
-                              title="Remove Member"
-                            >
-                              <Button
-                                color="link p-0"
-                                onClick={[Function]}
-                                tag="button"
-                              >
-                                <button
-                                  aria-label={null}
-                                  className="btn btn-link p-0"
-                                  onClick={[Function]}
-                                  type="button"
-                                >
-                                  <span
-                                    className="oi oi-x text-danger"
-                                  />
-                                </button>
-                              </Button>
-                            </td>
-                          </t>
-                        </tr>
-                      </t>
-                      <t
-                        key="dataRow-2"
-                      >
-                        <tr>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title={2}
-                          >
-                            <td
-                              className="text-center"
-                              title={2}
-                            >
-                              2
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="12Bet$jingguoan"
-                          >
-                            <td
-                              className="text-center"
-                              title="12Bet$jingguoan"
-                            >
-                              12Bet$jingguoan
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="12BETRMB0239312"
-                          >
-                            <td
-                              className="text-center"
-                              title="12BETRMB0239312"
-                            >
-                              12BETRMB0239312
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title=""
-                          >
-                            <td
-                              className="text-center"
-                              title=""
-                            />
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title=""
-                          >
-                            <td
-                              className="text-center"
-                              title=""
-                            />
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="$0.00"
-                          >
-                            <td
-                              className="text-center"
-                              title="$0.00"
-                            >
-                              $0.00
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="07/05/2017 18:25:00"
-                          >
-                            <td
-                              className="text-center"
-                              title="07/05/2017 18:25:00"
-                            >
-                              07/05/2017 18:25:00
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="12BETAFF177"
-                          >
-                            <td
-                              className="text-center"
-                              title="12BETAFF177"
-                            >
-                              12BETAFF177
-                            </td>
-                          </t>
-                          <t
-                            asc={true}
-                            className="text-center"
-                            header={false}
-                            onClick={[Function]}
-                            sortable={false}
-                            sorting={false}
-                            title="Remove Member"
-                          >
-                            <td
-                              className="text-center"
-                              title="Remove Member"
-                            >
-                              <Button
-                                color="link p-0"
-                                onClick={[Function]}
-                                tag="button"
-                              >
-                                <button
-                                  aria-label={null}
-                                  className="btn btn-link p-0"
-                                  onClick={[Function]}
-                                  type="button"
-                                >
-                                  <span
-                                    className="oi oi-x text-danger"
-                                  />
-                                </button>
-                              </Button>
-                            </td>
-                          </t>
-                        </tr>
-                      </t>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </u>
-          </div>
+                <span
+                  className="oi oi-x text-danger"
+                />
+              </Button>
+            </t>
+          </t>,
+        ]
+      }
+      bodyHeight={300}
+      containerPadding={20}
+      header={
+        <t>
           <t
-            isAllowInputPageIndex={true}
-            isShowPagingInfo={true}
-            onPaging={[Function]}
-            pageOption={
-              Object {
-                "PageIndex": 1,
-                "PageList": Array [
-                  10,
-                  20,
-                  50,
-                  100,
-                  500,
-                ],
-                "PageSize": 20,
-                "TotalItem": 0,
-              }
-            }
+            asc={true}
+            colWidth={20}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="#"
           >
-            <div
-              className="page-container center-align"
-              style={
-                Object {
-                  "display": "none",
-                }
-              }
-            >
-              <a
-                className="icon page-first disable"
-                href="javascript:;"
-                onClick={[Function]}
-              />
-              <a
-                className="icon page-prev disable"
-                href="javascript:;"
-                onClick={[Function]}
-              />
-              <div
-                className="page-input"
-              >
-                <span>
-                  Page 
-                </span>
-                <input
-                  className="page-form"
-                  maxLength="4"
-                  onChange={[Function]}
-                  onKeyUp={[Function]}
-                  size="2"
-                  type="text"
-                  value={1}
-                />
-                <span>
-                   of 0
-                   
-                </span>
-              </div>
-              <a
-                className="icon page-next disable"
-                href="javascript:;"
-                onClick={[Function]}
-              />
-              <a
-                className="icon page-last "
-                href="javascript:;"
-                onClick={[Function]}
-              />
-              <select
-                className="pagesize-select"
-                disabled={false}
-                onChange={[Function]}
-                value={20}
-              >
-                <option
-                  key="pagesize0"
-                  value={10}
-                >
-                  10
-                </option>
-                <option
-                  key="pagesize1"
-                  value={20}
-                >
-                  20
-                </option>
-                <option
-                  key="pagesize2"
-                  value={50}
-                >
-                  50
-                </option>
-                <option
-                  key="pagesize3"
-                  value={100}
-                >
-                  100
-                </option>
-                <option
-                  key="pagesize4"
-                  value={500}
-                >
-                  500
-                </option>
-              </select>
-              <span
-                className="page-info"
-              >
-                View 1-0 of 0
-              </span>
-            </div>
+            #
           </t>
-        </div>
-      </t>
-    </div>
-    <NotificationPopup
-      isConfirmPopup={true}
-      message="Are you sure you want to remove this member from his affiliate?"
-      onClose={[Function]}
-    >
-      <Modal
-        autoFocus={true}
-        backdrop="static"
-        backdropTransition={
-          Object {
-            "mountOnEnter": true,
-            "timeout": 150,
-          }
-        }
-        centered={false}
-        fade={true}
-        isOpen={true}
-        keyboard={true}
-        modalTransition={
-          Object {
-            "timeout": 300,
-          }
-        }
-        onClosed={[Function]}
-        onOpened={[Function]}
-        returnFocusAfterClose={true}
-        role="dialog"
-        scrollable={false}
-        toggle={[Function]}
-        unmountOnClose={true}
-        zIndex={1050}
-      >
-        <Portal
-          node={
-            <div
-              style="position: relative; z-index: 1050; display: block;"
-              tabindex="-1"
-            >
-              <div
-                class=""
-              >
-                <div
-                  class="modal fade"
-                  role="dialog"
-                  style="display: block;"
-                  tabindex="-1"
-                >
-                  <div
-                    class="modal-dialog"
-                    role="document"
-                  >
-                    <div
-                      class="modal-content"
-                    >
-                      <div
-                        class="notification-popup-content p-3"
-                        style="font-size: 15px;"
-                      >
-                        <h4>
-                          localhost
-                           says
-                        </h4>
-                        <p>
-                          Are you sure you want to remove this member from his affiliate?
-                        </p>
-                        <div
-                          class="float-right mt-4"
-                        >
-                          <button
-                            class="btn btn-primary mr-2"
-                            style="width: 70px; height: 35px;"
-                            type="button"
-                          >
-                            <strong>
-                              OK
-                            </strong>
-                          </button>
-                          <button
-                            class="btn btn-light border"
-                            style="width: 70px; height: 35px;"
-                            type="button"
-                          >
-                            <strong>
-                              Cancel
-                            </strong>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="modal-backdrop fade"
-                />
-              </div>
-            </div>
-          }
-        >
-          <Portal
-            containerInfo={
-              <div
-                style="position: relative; z-index: 1050; display: block;"
-                tabindex="-1"
-              >
-                <div
-                  class=""
-                >
-                  <div
-                    class="modal fade"
-                    role="dialog"
-                    style="display: block;"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="modal-dialog"
-                      role="document"
-                    >
-                      <div
-                        class="modal-content"
-                      >
-                        <div
-                          class="notification-popup-content p-3"
-                          style="font-size: 15px;"
-                        >
-                          <h4>
-                            localhost
-                             says
-                          </h4>
-                          <p>
-                            Are you sure you want to remove this member from his affiliate?
-                          </p>
-                          <div
-                            class="float-right mt-4"
-                          >
-                            <button
-                              class="btn btn-primary mr-2"
-                              style="width: 70px; height: 35px;"
-                              type="button"
-                            >
-                              <strong>
-                                OK
-                              </strong>
-                            </button>
-                            <button
-                              class="btn btn-light border"
-                              style="width: 70px; height: 35px;"
-                              type="button"
-                            >
-                              <strong>
-                                Cancel
-                              </strong>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="modal-backdrop fade"
-                  />
-                </div>
-              </div>
-            }
+          <t
+            asc={true}
+            colWidth={120}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="User Name"
           >
-            <div
-              className=""
-            >
-              <Fade
-                appear={true}
-                baseClass="fade"
-                baseClassActive="show"
-                className="modal"
-                enter={true}
-                exit={true}
-                in={true}
-                mountOnEnter={false}
-                onClick={[Function]}
-                onEnter={[Function]}
-                onEntered={[Function]}
-                onEntering={[Function]}
-                onExit={[Function]}
-                onExited={[Function]}
-                onExiting={[Function]}
-                onKeyDown={[Function]}
-                onKeyUp={[Function]}
-                onMouseDown={[Function]}
-                role="dialog"
-                style={
-                  Object {
-                    "display": "block",
-                  }
-                }
-                tabIndex="-1"
-                tag="div"
-                timeout={300}
-                unmountOnExit={false}
-              >
-                <Transition
-                  appear={true}
-                  enter={true}
-                  exit={true}
-                  in={true}
-                  mountOnEnter={false}
-                  onEnter={[Function]}
-                  onEntered={[Function]}
-                  onEntering={[Function]}
-                  onExit={[Function]}
-                  onExited={[Function]}
-                  onExiting={[Function]}
-                  timeout={300}
-                  unmountOnExit={false}
-                >
-                  <div
-                    className="modal fade"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    onKeyUp={[Function]}
-                    onMouseDown={[Function]}
-                    role="dialog"
-                    style={
-                      Object {
-                        "display": "block",
-                      }
-                    }
-                    tabIndex="-1"
-                  >
-                    <div
-                      className="modal-dialog"
-                      role="document"
-                    >
-                      <div
-                        className="modal-content"
-                      >
-                        <div
-                          className="notification-popup-content p-3"
-                          style={
-                            Object {
-                              "fontSize": 15,
-                            }
-                          }
-                        >
-                          <h4>
-                            localhost
-                             says
-                          </h4>
-                          <p>
-                            Are you sure you want to remove this member from his affiliate?
-                          </p>
-                          <div
-                            className="float-right mt-4"
-                          >
-                            <Button
-                              color="primary mr-2"
-                              onClick={[Function]}
-                              style={
-                                Object {
-                                  "height": 35,
-                                  "width": 70,
-                                }
-                              }
-                              tag="button"
-                            >
-                              <button
-                                aria-label={null}
-                                className="btn btn-primary mr-2"
-                                onClick={[Function]}
-                                style={
-                                  Object {
-                                    "height": 35,
-                                    "width": 70,
-                                  }
-                                }
-                                type="button"
-                              >
-                                <strong>
-                                  OK
-                                </strong>
-                              </button>
-                            </Button>
-                            <Button
-                              color="light border"
-                              onClick={[Function]}
-                              style={
-                                Object {
-                                  "height": 35,
-                                  "width": 70,
-                                }
-                              }
-                              tag="button"
-                            >
-                              <button
-                                aria-label={null}
-                                className="btn btn-light border"
-                                onClick={[Function]}
-                                style={
-                                  Object {
-                                    "height": 35,
-                                    "width": 70,
-                                  }
-                                }
-                                type="button"
-                              >
-                                <strong>
-                                  Cancel
-                                </strong>
-                              </button>
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Transition>
-              </Fade>
-              <Fade
-                appear={true}
-                baseClass="fade"
-                baseClassActive="show"
-                className="modal-backdrop"
-                enter={true}
-                exit={true}
-                in={true}
-                mountOnEnter={true}
-                onEnter={[Function]}
-                onEntered={[Function]}
-                onEntering={[Function]}
-                onExit={[Function]}
-                onExited={[Function]}
-                onExiting={[Function]}
-                tag="div"
-                timeout={150}
-                unmountOnExit={false}
-              >
-                <Transition
-                  appear={true}
-                  enter={true}
-                  exit={true}
-                  in={true}
-                  mountOnEnter={true}
-                  onEnter={[Function]}
-                  onEntered={[Function]}
-                  onEntering={[Function]}
-                  onExit={[Function]}
-                  onExited={[Function]}
-                  onExiting={[Function]}
-                  timeout={150}
-                  unmountOnExit={false}
-                >
-                  <div
-                    className="modal-backdrop fade"
-                  />
-                </Transition>
-              </Fade>
-            </div>
-          </Portal>
-        </Portal>
-      </Modal>
-    </NotificationPopup>
+            User Name
+          </t>
+          <t
+            asc={true}
+            colWidth={120}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="IBC User Name"
+          >
+            IBC User Name
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="First Name"
+          >
+            First Name
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Last Name"
+          >
+            Last Name
+          </t>
+          <t
+            asc={true}
+            colWidth={120}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Current Balance Member"
+          >
+            Current Balance Member
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Created Date"
+          >
+            Created Date
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Affiliate"
+          >
+            Affiliate
+          </t>
+          <t
+            asc={true}
+            colWidth={30}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Remove"
+          >
+            Remove
+          </t>
+        </t>
+      }
+      isPaging={true}
+      maxWidth={0}
+      minWidth={1000}
+      onPaging={[Function]}
+      pageOption={
+        Object {
+          "PageIndex": 1,
+          "PageList": Array [
+            10,
+            20,
+            50,
+            100,
+            500,
+          ],
+          "PageSize": 20,
+          "TotalItem": 0,
+        }
+      }
+      shouldResetScrollPosition={true}
+      width={0}
+    />
   </div>
-</Content>
+  <NotificationPopup
+    isConfirmPopup={true}
+    message="Has NotificationPopup"
+    onClose={[Function]}
+  />
+</div>
 `;
 
 exports[`member list - components - Content  render correctly with gridData is empty 1`] = `
