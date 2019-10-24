@@ -1239,6 +1239,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\domain\affiliate-domain\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\affiliate-domain\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\affiliate-domain\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\common\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\libs\constants.js" />
@@ -1396,6 +1397,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\domain\12bet-domain\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\12bet-domain\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\12bet-domain\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\common\components\DomainPopup.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />

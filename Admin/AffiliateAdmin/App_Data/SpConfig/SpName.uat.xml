@@ -126,4 +126,18 @@
   <Function Name="ChangeAdminPassword">
     <Setting Key="Aff_AdminUpdPwd" SpName="Aff_AdminUpdPwd" DbName="affiliate_12bet" />
   </Function>
+  <Function Name="Domain">
+    <Setting Key="Aff_DomainAffSel" SpName="Aff_DomainAffSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DomainAffIns" SpName="Aff_DomainAffIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DomainAffUpd" SpName="Aff_DomainAffUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DomainAffDel" SpName="Aff_DomainAffDel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Domain12BetSel" SpName="Aff_Domain12BetSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Domain12BetIns" SpName="Aff_Domain12BetIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Domain12BetUpd" SpName="Aff_Domain12BetUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Domain12BetDel" SpName="Aff_Domain12BetDel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DomainControlSel" SpName="Aff_DomainControlSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DomainControlIns" SpName="Aff_DomainControlIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DomainControlUpd" SpName="Aff_DomainControlUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DomainControlDel" SpName="Aff_DomainControlDel" DbName="affiliate_12bet" />
+  </Function>
 </Functions>

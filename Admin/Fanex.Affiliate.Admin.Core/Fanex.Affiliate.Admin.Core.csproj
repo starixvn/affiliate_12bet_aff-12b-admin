@@ -231,6 +231,7 @@
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
     <Compile Include="DTO\AffTypeInfo.cs" />
+    <Compile Include="DTO\Domain\DomainInfo.cs" />
     <Compile Include="DTO\MediaGallery\BannerInfo.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupResultEntity.cs" />
@@ -259,6 +260,8 @@
     <Compile Include="DTO\Member\UnactiveMemberInfo.cs" />
     <Compile Include="MetaModels\AlertParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
+    <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />
+    <Compile Include="MetaModels\Domain\InsertUpdateDomainParam.cs" />
     <Compile Include="MetaModels\Login\LoginParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParamFromHome.cs" />
@@ -356,6 +359,8 @@
     <Compile Include="Repository\Customer\CustomerStatisticsRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerLeftPanelRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
+    <Compile Include="Repository\Domain\DomainRepository.cs" />
+    <Compile Include="Repository\Domain\IDomainRepository.cs" />
     <Compile Include="Repository\EmailHistory\EmailHistoryRepository.cs" />
     <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
     <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
@@ -466,6 +471,8 @@
     <Compile Include="Services\Common\SessionService.cs" />
     <Compile Include="Services\Customer\CustomerLeftPanelService.cs" />
     <Compile Include="Services\Customer\ICustomerLeftPanelService.cs" />
+    <Compile Include="Services\Domain\DomainService.cs" />
+    <Compile Include="Services\Domain\IDomainService.cs" />
     <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
     <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
     <Compile Include="Services\EmailService.cs" />
@@ -589,6 +596,7 @@
       <Name>Fanex.Affiliate.ThirdPartyProduct</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
