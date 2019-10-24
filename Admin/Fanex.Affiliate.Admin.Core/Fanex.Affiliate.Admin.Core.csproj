@@ -201,8 +201,10 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\CustomerLeftPanelController.cs" />
     <Compile Include="Controllers\CustomerStatisticsController.cs" />
-    <Compile Include="Controllers\DomainController.cs" />
     <Compile Include="Controllers\Affiliate\EmailHistoryController.cs" />
+    <Compile Include="Controllers\Domain\12BetDomainsController.cs" />
+    <Compile Include="Controllers\Domain\DomainControlController.cs" />
+    <Compile Include="Controllers\Domain\DomainController.cs" />
     <Compile Include="Controllers\EmailTestingController.cs" />
     <Compile Include="Controllers\ExchangeRateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -580,6 +582,12 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.Affiliate.ThirdPartyProduct\Fanex.Affiliate.ThirdPartyProduct.csproj">
+      <Project>{118A9AA1-C33A-413A-A685-3495CF30C15F}</Project>
+      <Name>Fanex.Affiliate.ThirdPartyProduct</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

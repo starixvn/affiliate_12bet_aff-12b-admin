@@ -1005,6 +1005,9 @@
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\customer\customer.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\domain\12bet-domain.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\domain\affiliate-domain.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\domain\domain-control.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\exchange-rate\exchange-rate.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\login.js" />
@@ -1039,6 +1042,9 @@
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\customer.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\domain\12bet-domain.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\domain\affiliate-domain.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\domain\domain-control.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\email-history.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\exchange-rate\exchange-rate.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\banner-list.css" />
@@ -1225,6 +1231,18 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\12bet-domain\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\12bet-domain\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\12bet-domain\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\12bet-domain\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\affiliate-domain\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\affiliate-domain\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\affiliate-domain\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\affiliate-domain\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\__test__\index.test.js" />
@@ -1366,6 +1384,18 @@
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\Unactivated.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\Activated.jsx" />
+    <Content Include="Areas\Portal\Views\Domain\_12BetDomains.cshtml" />
+    <Content Include="Areas\Portal\Views\Domain\DomainControl.cshtml" />
+    <Content Include="Areas\Portal\Views\Domain\_DomainSubMenu.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\affiliate-domain\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\affiliate-domain\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\affiliate-domain\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\12bet-domain\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\12bet-domain\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\12bet-domain\index.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1951,6 +1981,9 @@
     <Content Include="Areas\Portal\www\source\style\pages\change-admin-password.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\alert.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\member\active-member.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\domain\affiliate-domain.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\domain\12bet-domain.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\domain\domain-control.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

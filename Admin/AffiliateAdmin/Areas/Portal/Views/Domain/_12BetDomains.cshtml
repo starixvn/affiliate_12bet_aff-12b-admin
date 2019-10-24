@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
+}
+
+@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+
+@{
+    Html.RenderPartial("~/Areas/Portal/Views/Domain/_DomainSubMenu.cshtml", Model);
+}
+
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/domain/12bet-domain.css")" rel="stylesheet" />
+}
+
+@section pagejs{
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/domain/12bet-domain.js")"></script>
+}

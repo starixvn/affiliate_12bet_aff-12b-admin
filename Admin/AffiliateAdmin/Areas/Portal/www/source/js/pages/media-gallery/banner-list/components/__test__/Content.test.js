@@ -97,7 +97,7 @@ describe('banner list - components - Content ', () => {
 
         result.find('a[id="link2448"]').simulate('click');
 
-        expect(props.setBannerDetailUrl).toHaveBeenCalledWith({ "height": "438", "src": "null/CategoryMedia/Number Game/step1.jpg", "width": "1655" });
+        expect(props.setBannerDetailUrl).toHaveBeenCalledWith({ "bannerId": 2448, "height": "438", "src": "null/CategoryMedia/Number Game/step1.jpg", "width": "1655" });
         expect(props.fetchData).toHaveBeenCalledWith({ "AffType": 2, "Category": "", "Currency": "", "DeviceType": 0, "ImageType": "", "Language": "", "PageIndex": 1, "PageSize": 20, "Size": "", "SubCategory": "" });
     });
 

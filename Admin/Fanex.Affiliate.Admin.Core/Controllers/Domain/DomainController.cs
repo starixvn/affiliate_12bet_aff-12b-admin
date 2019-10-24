@@ -6,7 +6,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 
-namespace Fanex.Affiliate.Admin.Core.Controllers
+namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
     [FunctionAuthorize(FunctionName = Function.Domain)]
     public class DomainController : BaseController
@@ -15,17 +15,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
         }
 
-        public ActionResult Index(int current = 0)
+        public ActionResult Index()
         {
             var subMenu = new List<SubMenu>
             {
-                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Domain/AffiliateDomain.aspx") },
-                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Domain/12BetDomain.aspx") },
-                new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Domain/DomainControl.aspx") }
+                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Portal/Domain"), IsActive = true },
+                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Portal/_12BetDomains") },
+                new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Portal/DomainControl") }
             };
-
-            var activeIndex = current > subMenu.Count - 1 ? 0 : current;
-            subMenu[activeIndex].IsActive = true;
 
             return View(subMenu);
         }
