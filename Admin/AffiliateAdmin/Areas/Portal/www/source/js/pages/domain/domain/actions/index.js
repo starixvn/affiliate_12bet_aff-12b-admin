@@ -39,7 +39,7 @@ export const fetchData = (isAffDomain) => async (dispatch) => {
 }
 
 export const insertDomain = (param) => async () => {
-    const url = 'Portal/Domain/insertDomain';
+    const url = 'Portal/Domain/InsertDomain';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
@@ -54,7 +54,7 @@ export const updateDomain = (param) => async () => {
 
 export const deleteDomain = (param) => async () => {
     const url = 'Portal/Domain/DeleteDomain';
-    const response = await post(url, { DomainId: param });
+    const response = await post(url, param );
 
     return response && response.status === 200 ? response.data : null;
 }

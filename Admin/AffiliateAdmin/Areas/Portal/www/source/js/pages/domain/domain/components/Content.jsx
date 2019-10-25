@@ -53,7 +53,7 @@ export class Content extends PureComponent {
             if (result.IsSuccessful) {
                 this.setState({ message: `${isAffDomain ? 'Affiliate' : '12Bet' } domain has been removed successfully!`, isConfirmPopup: false });
 
-                this.props.fetchData(this.props.param);
+                this.props.fetchData(isAffDomain);
             }
             else {
                 this.setState({ message: result.Message, isConfirmPopup: false });

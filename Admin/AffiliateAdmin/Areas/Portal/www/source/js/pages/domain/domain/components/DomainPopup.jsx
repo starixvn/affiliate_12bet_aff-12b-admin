@@ -57,7 +57,6 @@ export class DomainPopup extends PureComponent {
             this._handleShowAlert(false, "Please input domain name!")
         }
 
-
         this.props.toggleLoader(false);
     }
 
@@ -87,6 +86,10 @@ export class DomainPopup extends PureComponent {
         }
     }
 
+    _handleClosePopup = () => {
+        this.props.setSelectedDomain(null)
+    }
+
     render() {
         const { selectedDomain } = this.props;
         const { isInsert, isSuccess, isShowMessage, message } = this.state;
@@ -95,8 +98,8 @@ export class DomainPopup extends PureComponent {
         const buttonLabel = isInsert ? "Add" : "Submit";
 
         return selectedDomain && (
-            <Modal isOpen={isShowPopup} toggle={() => this.props.setSelectedDomain(null)} backdrop='static'>
-                <ModalHeader toggle={() => this.props.setSelectedDomain(null)}><span className="iconpopup"></span>{title}</ModalHeader>
+            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
+                <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
                         <div className="domain-form-container">
@@ -120,7 +123,7 @@ export class DomainPopup extends PureComponent {
                             </Form>
 
                             <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit}>{buttonLabel}</Button>
-                            <Button type="button" color="info" onClick={() => this.props.setSelectedDomain(null)}>Cancel</Button>
+                            <Button type="button" color="info" onClick={this._handleClosePopup}>Cancel</Button>
                         </div>
                     </div>
                 </ModalBody>
