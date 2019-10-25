@@ -1,38 +1,106 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using System;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using System.Collections.Generic;
+using System.Data;
+using Fanex.Data;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Repository;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
-    public class DomainService : IDomainService
+    public class DomainService : BaseRepository, IDomainService
     {
-        private readonly IDomainRepository _domainRepository;
-
-        public DomainService(IDomainRepository domainRepository)
-        {
-            _domainRepository = domainRepository;
-        }
-
         public IEnumerable<DomainInfo> GetDomainList(bool isAffDomain)
         {
-            return _domainRepository.GetDomainList(isAffDomain);
+            var spKey = isAffDomain ? "Aff_DomainAffSel" : "Aff_Domain12BetSel";
+
+            var result = new List<DomainInfo>();
+
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(BuildDomainInfoItem(reader));
+                    }
+                }
+            }
+
+            return result;
         }
 
         public ResultInfo InsertDomain(InsertUpdateDomainParam param)
         {
-            return _domainRepository.InsertDomain(param);
+            var spKey = param.IsAffDomain ? "Aff_DomainAffIns" : "Aff_Domain12BetIns";
+
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                objectDb.AddOutParameter("DomainId", DbType.Int32, Size.SizeOfInt);
+
+                AssignParam(objectDb, param);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
         }
 
         public ResultInfo UpdateDomain(InsertUpdateDomainParam param)
         {
-            return _domainRepository.UpdateDomain(param);
+            var spKey = param.IsAffDomain ? "Aff_DomainAffUpd" : "Aff_Domain12BetUpd";
+
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                objectDb.AddInParameter("DomainId", DbType.Int32, param.DomainId);
+                AssignParam(objectDb, param);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
         }
 
         public ResultInfo DeleteDomain(DeleteDomainParam param)
         {
-            return _domainRepository.DeleteDomain(param);
+            var spKey = param.IsAffDomain ? "Aff_DomainAffDel" : "Aff_Domain12BetDel";
+
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                objectDb.AddInParameter("DomainId", DbType.Int32, param.DomainId);
+                objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("ip", DbType.String, param.Ip);
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        private static void AssignParam(IObjectDb objectDb, InsertUpdateDomainParam param)
+        {
+            objectDb.AddInParameter("DomainName", DbType.String, param.DomainName);
+            objectDb.AddInParameter("IsSSL", DbType.Boolean, param.IsSSL);
+            objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
+            objectDb.AddInParameter("IP", DbType.String, param.Ip);
+
+            AssignResultOutputParam(objectDb);
+        }
+
+        private static DomainInfo BuildDomainInfoItem(IDataReader reader)
+        {
+            return new DomainInfo
+            {
+                DomainId = Convert.ToInt32(reader["DomainId"]),
+                DomainName = Convert.ToString(reader["DomainName"]),
+                IsSSL = Convert.ToBoolean(reader["IsSSL"]),
+                Creator = Convert.ToString(reader["Creator"]),
+                CreatedDate = Convert.ToDateTime(reader["CreateDate"])
+            };
         }
     }
 }

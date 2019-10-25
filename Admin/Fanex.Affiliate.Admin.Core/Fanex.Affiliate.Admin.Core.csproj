@@ -358,8 +358,6 @@
     <Compile Include="Repository\Customer\CustomerStatisticsRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerLeftPanelRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
-    <Compile Include="Repository\Domain\DomainRepository.cs" />
-    <Compile Include="Repository\Domain\IDomainRepository.cs" />
     <Compile Include="Repository\EmailHistory\EmailHistoryRepository.cs" />
     <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
     <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />

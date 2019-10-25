@@ -117,7 +117,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         }
 
         [Fact]
-        public void InsertText_WhenCallWithInvalidParam_UpdateIsFailed()
+        public void InsertText_WhenCallWithInvalidParam_InsertIsFailed()
         {
             // Arrange
             var message = "Insert Text is failed.";
