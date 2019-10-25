@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 {
     public interface IDomainRepository
     {
-        IEnumerable<DomainInfo> GetDomainList();
+        IEnumerable<DomainInfo> GetDomainList(bool isAffDomain);
 
         ResultInfo InsertDomain(InsertUpdateDomainParam param);
 

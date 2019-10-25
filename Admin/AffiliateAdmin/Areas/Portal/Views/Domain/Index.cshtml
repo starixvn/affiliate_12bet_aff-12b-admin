@@ -1,18 +1,24 @@
 ﻿
 @{
     Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
+    var isAffDomain = Model.IsAffDomain;
 }
 
-@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+@model Fanex.Affiliate.Admin.Core.ViewModels.Domain.DomainViewModel
 
 @{
-    Html.RenderPartial("~/Areas/Portal/Views/Domain/_DomainSubMenu.cshtml", Model);
+    Html.RenderPartial("~/Areas/Portal/Views/Domain/_DomainSubMenu.cshtml", Model.SubMenuList);
 }
 
 @section pagecss{
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/domain/affiliate-domain.css")" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/domain/domain.css")" rel="stylesheet" />
 }
 
 @section pagejs{
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/domain/affiliate-domain.js")"></script>
+    <script type="text/javascript">
+        window.initialState = {
+            isAffDomain: '@isAffDomain'.toLowerCase() === 'true',
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/domain/domain.js")"></script>
 }

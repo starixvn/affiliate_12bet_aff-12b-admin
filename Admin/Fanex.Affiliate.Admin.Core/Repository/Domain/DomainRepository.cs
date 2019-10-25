@@ -11,12 +11,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 {
     public class DomainRepository : BaseRepository, IDomainRepository
     {
-        public IEnumerable<DomainInfo> GetDomainList()
+        public IEnumerable<DomainInfo> GetDomainList(bool isAffDomain)
         {
-            const string SpKey = "Aff_DomainAffSel";
+            var spKey = isAffDomain ? "Aff_DomainAffSel" : "Aff_Domain12BetSel";
+
             var result = new List<DomainInfo>();
 
-            using (var objectDb = GetObjectDb(SpKey))
+            using (var objectDb = GetObjectDb(spKey))
             {
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -32,9 +33,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 
         public ResultInfo InsertDomain(InsertUpdateDomainParam param)
         {
-            const string SpKey = "Aff_DomainAffIns";
+            var spKey = param.IsAffDomain ? "Aff_DomainAffIns" : "Aff_Domain12BetIns";
 
-            using (var objectDb = GetObjectDb(SpKey))
+            using (var objectDb = GetObjectDb(spKey))
             {
                 objectDb.AddOutParameter("DomainId", DbType.Int32, Size.SizeOfInt);
 
@@ -48,9 +49,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 
         public ResultInfo UpdateDomain(InsertUpdateDomainParam param)
         {
-            const string SpKey = "Aff_DomainAffUpd";
+            var spKey = param.IsAffDomain ? "Aff_DomainAffUpd" : "Aff_Domain12BetUpd";
 
-            using (var objectDb = GetObjectDb(SpKey))
+            using (var objectDb = GetObjectDb(spKey))
             {
                 objectDb.AddInParameter("DomainId", DbType.Int32, param.DomainId);
                 AssignParam(objectDb, param);
@@ -63,9 +64,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 
         public ResultInfo DeleteDomain(DeleteDomainParam param)
         {
-            const string SpKey = "Aff_DomainAffDel";
+            var spKey = param.IsAffDomain ? "Aff_DomainAffDel" : "Aff_Domain12BetDel";
 
-            using (var objectDb = GetObjectDb(SpKey))
+            using (var objectDb = GetObjectDb(spKey))
             {
                 objectDb.AddInParameter("DomainId", DbType.Int32, param.DomainId);
                 objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
@@ -97,7 +98,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
                 DomainName = Convert.ToString(reader["DomainName"]),
                 IsSSL = Convert.ToBoolean(reader["IsSSL"]),
                 Creator = Convert.ToString(reader["Creator"]),
-                CreatedDate = Convert.ToDateTime(reader["CreatedDate"])
+                CreatedDate = Convert.ToDateTime(reader["CreateDate"])
             };
         }
     }

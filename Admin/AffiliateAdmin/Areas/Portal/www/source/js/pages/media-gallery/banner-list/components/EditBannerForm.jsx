@@ -52,10 +52,6 @@ export class EditBannerForm extends PureComponent {
         const value = event.target.value;
         const name = event.target.name;
 
-        if(name === "inputFileName" && value.length > maxLenght) {
-            return;
-        }
-
         this.setState({ [name]: value });
 
         if (name === 'category') {

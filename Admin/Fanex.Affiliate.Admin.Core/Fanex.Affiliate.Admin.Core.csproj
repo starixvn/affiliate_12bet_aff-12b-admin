@@ -202,7 +202,6 @@
     <Compile Include="Controllers\CustomerLeftPanelController.cs" />
     <Compile Include="Controllers\CustomerStatisticsController.cs" />
     <Compile Include="Controllers\Affiliate\EmailHistoryController.cs" />
-    <Compile Include="Controllers\Domain\12BetDomainsController.cs" />
     <Compile Include="Controllers\Domain\DomainControlController.cs" />
     <Compile Include="Controllers\Domain\DomainController.cs" />
     <Compile Include="Controllers\EmailTestingController.cs" />
@@ -528,6 +527,7 @@
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\Domain\DomainViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\BannerListViewModel.cs" />

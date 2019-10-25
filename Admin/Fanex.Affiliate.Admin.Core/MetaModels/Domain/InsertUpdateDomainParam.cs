@@ -11,5 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
         public string DomainName { get; set; }
 
         public bool IsSSL { get; set; }
+
+        public bool IsAffDomain { get; set; }
     }
 }

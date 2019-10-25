@@ -9,6 +9,7 @@ using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
@@ -24,26 +25,32 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             _domainService = domainService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(bool isAffDomain = true)
         {
             var subMenu = new List<SubMenu>
             {
-                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Portal/Domain"), IsActive = true },
-                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Portal/_12BetDomains") },
+                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Portal/Domain?isAffDomain=true"), IsActive = isAffDomain },
+                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Portal/Domain?isAffDomain=false"), IsActive = !isAffDomain },
                 new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Portal/DomainControl") }
             };
 
-            return View(subMenu);
+            var model = new DomainViewModel
+            {
+                SubMenuList = subMenu,
+                IsAffDomain = isAffDomain
+            };
+
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetDomainList()
+        public ActionResult GetDomainList(bool isAffDomain)
         {
             return new JsonNetResult
             {
-                Data = _domainService.GetDomainList()
+                Data = _domainService.GetDomainList(isAffDomain)
             };
         }
 

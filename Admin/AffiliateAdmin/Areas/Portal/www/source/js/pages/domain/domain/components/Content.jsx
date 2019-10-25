@@ -6,8 +6,8 @@ import { Button } from 'reactstrap';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText, globalResource } from '../../common/libs/constants';
-import { deleteDomain, fetchData, toggleLoader, setShouldResetScrollPosition } from '../actions';
+import { headerText, globalResource } from '../libs/constants';
+import { deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -21,7 +21,7 @@ export class Content extends PureComponent {
     }
 
     componentDidMount() {
-        this.props.fetchData();
+        this.props.fetchData(this.props.isAffDomain);
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
@@ -35,22 +35,23 @@ export class Content extends PureComponent {
 
     _handleDeleteDomain = (selectedDomainId) => {
         this.props.setShouldResetScrollPosition(false);
-        this.setState({ message: 'Are you sure you want to delete this affiliate domain?', isConfirmPopup: true, selectedDomainId });
+        this.setState({ message: `Are you sure you want to delete this ${this.props.isAffDomain ? 'affiliate' : '12bet' } domain?`, isConfirmPopup: true, selectedDomainId });
     }
 
-    _handleEditDomain = (selectedDomainId) => {
+    _handleEditDomain = (domainId, domainName, isSSL) => {
         this.props.setShouldResetScrollPosition(false);
-        this.selectedDomainId(selectedDomainId);
+        this.props.setSelectedDomain({ domainId, domainName, isSSL });
     }
 
     _deleteDomain = async (selectedDomainId) => {
         this.props.toggleLoader(true);
 
-        const result = await this.props.deleteDomain(selectedDomainId);
+        const { isAffDomain } = this.props;
+        const result = await this.props.deleteDomain({ DomainId: selectedDomainId, IsAffDomain: isAffDomain });
 
         if (result) {
             if (result.IsSuccessful) {
-                this.setState({ message: 'Affiliate domain has been removed suseccfully!', isConfirmPopup: false });
+                this.setState({ message: `${isAffDomain ? 'Affiliate' : '12Bet' } domain has been removed successfully!`, isConfirmPopup: false });
 
                 this.props.fetchData(this.props.param);
             }
@@ -95,20 +96,20 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
-        const domain = htmlDecode(dataItem.Domain);
+        const domainName = htmlDecode(dataItem.DomainName);
         const creator = htmlDecode(dataItem.Creator);
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-center" title={domain}>{domain}</Cell>
+                <Cell className="text-center" title={domainName}>{domainName}</Cell>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsSSL} />
+                    <input type="checkbox" disabled="true" checked={dataItem.IsSSL} />
                 </Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
                 <Cell className="text-center" title="Edit Affiliate Domain">
-                    <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId)}>
+                    <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId, domainName, dataItem.IsSSL)}>
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
                 </Cell>
@@ -119,18 +120,18 @@ export class Content extends PureComponent {
                 </Cell>
             </Row>
         )
-    }
+}
 
     render() {
-        const { gridData, shouldResetScrollPosition } = this.props;
+        const { gridData, shouldResetScrollPosition, isAffDomain } = this.props;
         const { message, isConfirmPopup } = this.state;
 
         return gridData && (
             <div className="data-content">
                 <div className="my-2">
-                    <Button outline type="button" onClick={() => this.handleShowPopup(0)}>Add AffDomain <span className="oi oi-plus ml-2"></span></Button>
+                    <Button outline type="button" onClick={() => this._handleEditDomain(0, '', false)}>{isAffDomain ? 'Add AffDomain' : 'Add 12Bet Domain'}<span className="oi oi-plus ml-2"></span></Button>
                 </div>
-                <div className="Domain-list-content table-responsive table-striped my-2">
+                <div className="domain-list-content table-responsive table-striped my-2">
                     <Table
                         minWidth={1000}
                         autoWidth={true}
@@ -142,24 +143,24 @@ export class Content extends PureComponent {
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
-                {
+{
                     !!message && <NotificationPopup
                         message={message}
                         isConfirmPopup={isConfirmPopup}
                         onClose={this._handleCloseNotificationPopup}
                     />
-                }
+}
             </div>
         );
-    }
+}
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData });
+function mapStateToProps({ shouldResetScrollPosition, gridData, isAffDomain }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, isAffDomain });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteDomain, fetchData, toggleLoader, selectedDomainId, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

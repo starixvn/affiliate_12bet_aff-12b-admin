@@ -338,7 +338,7 @@ describe('banner list - components - EditBannerForm ', () => {
         expect(result.setState).toHaveBeenCalledWith({ deviceType: 1 });
     });
 
-    it('_handleChange should be not called when change input file name but invalid', () => {
+    it('_handleChange should be not called when change input file name', () => {
         const event = {
             target: {
                 name: 'inputFileName',
@@ -350,9 +350,9 @@ describe('banner list - components - EditBannerForm ', () => {
 
         result.setState = jest.fn();
 
-        result.find('Input[type="select"][id="deviceType"]').simulate('change', event);
+        result.find('Input[type="text"][id="inputFileName"]').simulate('change', event);
 
-        expect(result.setState).not.toHaveBeenCalled();
+        expect(result.setState).toHaveBeenCalledWith({ inputFileName: 'should_call_handleShowAlert_with_invalid_lenght_test.png' });
     });
 
     it('_handleSubmit - should call toggleLoader and _handleShowAlert when insert not has file', async () => {

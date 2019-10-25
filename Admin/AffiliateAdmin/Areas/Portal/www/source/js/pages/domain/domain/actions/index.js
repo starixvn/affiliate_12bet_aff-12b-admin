@@ -1,6 +1,6 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SHOULD_RESET_SCROLL_POSITION, SET_SELECTED_DOMAIN_ID, SET_GRID_DATA } from './types';
+import { SHOULD_RESET_SCROLL_POSITION, SET_SELECTED_DOMAIN, SET_GRID_DATA } from './types';
 
 export { toggleLoader };
 
@@ -18,31 +18,24 @@ export const setGridData = (data) => {
     }
 }
 
-export const setSelectedDomainId = (data) => {
+export const setSelectedDomain = (data) => {
     return {
-        type: SET_SELECTED_DOMAIN_ID,
+        type: SET_SELECTED_DOMAIN,
         data
     }
 }
 
-export const fetchData = (param) => async (dispatch) => {
+export const fetchData = (isAffDomain) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const url = 'Portal/Domain/GetAffDomain';
-    const response = await post(url, param);
+    const url = 'Portal/Domain/GetDomainList';
+    const response = await post(url, { isAffDomain });
 
     const data = response && response.status === 200 ? response.data : null;
 
-    dispatch(setGridData(data ? data.MainData : []));
+    dispatch(setGridData(data ? data : []));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
-}
-
-export const getDomainDetail = (selectedDomainId) => async () => {
-    const url = 'Portal/Domain/GetDomainDetail';
-    const response = await post(url, { selectedDomainId });
-
-    return response && response.status === 200 ? response.data : {};
 }
 
 export const insertDomain = (param) => async () => {
@@ -59,9 +52,9 @@ export const updateDomain = (param) => async () => {
     return response && response.status === 200 ? response.data : null;
 }
 
-export const deleteDomain = (selectedDomainId) => async () => {
+export const deleteDomain = (param) => async () => {
     const url = 'Portal/Domain/DeleteDomain';
-    const response = await post(url, { selectedDomainId });
+    const response = await post(url, { DomainId: param });
 
     return response && response.status === 200 ? response.data : null;
 }

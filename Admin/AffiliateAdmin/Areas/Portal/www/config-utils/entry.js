@@ -25,8 +25,7 @@ module.exports = {
     [`${jsDist}/pages/under-maintenance`]: clientRoot + "/js/pages/under-maintenance/index.jsx",
     [`${jsDist}/pages/change-admin-password`]: clientRoot + "/js/pages/change-admin-password/index.jsx",
     [`${jsDist}/pages/alert`]: clientRoot + "/js/pages/alert/index.jsx",
-    [`${jsDist}/pages/domain/affiliate-domain`]: clientRoot + "/js/pages/domain/affiliate-domain/index.jsx",
-    [`${jsDist}/pages/domain/12bet-domain`]: clientRoot + "/js/pages/domain/12bet-domain/index.jsx",
+    [`${jsDist}/pages/domain/domain`]: clientRoot + "/js/pages/domain/domain/index.jsx",
     [`${jsDist}/pages/domain/domain-control`]: clientRoot + "/js/pages/domain/domain-control/index.jsx",
 
     //For Thirdparty Product pages
@@ -58,7 +57,6 @@ module.exports = {
     [`${styleDist}/change-admin-password`]: clientRoot + "/style/pages/change-admin-password.scss",
     [`${styleDist}/alert`]: clientRoot + "/style/pages/alert.scss",
     [`${styleDist}/pages/member/active-member`]: clientRoot + "/style/pages/member/active-member.scss",
-    [`${styleDist}/pages/domain/affiliate-domain`]: clientRoot + "/style/pages/domain/affiliate-domain.scss",
-    [`${styleDist}/pages/domain/12bet-domain`]: clientRoot + "/style/pages/domain/12bet-domain.scss",
+    [`${styleDist}/pages/domain/domain`]: clientRoot + "/style/pages/domain/domain.scss",
     [`${styleDist}/pages/domain/domain-control`]: clientRoot + "/style/pages/domain/domain-control.scss",
 };

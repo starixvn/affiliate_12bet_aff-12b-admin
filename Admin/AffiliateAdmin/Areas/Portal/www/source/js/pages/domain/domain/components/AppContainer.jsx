@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
+import Content from './Content';
+import DomainPopup from './DomainPopup';
 
 export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />
-            <h3>Affiliate Domain!</h3>
+            <Content />
+            <DomainPopup />
         </AppLayout>
     );
 }

@@ -15,9 +15,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             _domainRepository = domainRepository;
         }
 
-        public IEnumerable<DomainInfo> GetDomainList()
+        public IEnumerable<DomainInfo> GetDomainList(bool isAffDomain)
         {
-            return _domainRepository.GetDomainList();
+            return _domainRepository.GetDomainList(isAffDomain);
         }
 
         public ResultInfo InsertDomain(InsertUpdateDomainParam param)
