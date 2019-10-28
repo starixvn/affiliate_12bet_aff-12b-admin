@@ -230,6 +230,7 @@
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
     <Compile Include="DTO\AffTypeInfo.cs" />
+    <Compile Include="DTO\Domain\DomainControlInfo.cs" />
     <Compile Include="DTO\Domain\DomainInfo.cs" />
     <Compile Include="DTO\MediaGallery\BannerInfo.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
@@ -259,7 +260,9 @@
     <Compile Include="DTO\Member\UnactiveMemberInfo.cs" />
     <Compile Include="MetaModels\AlertParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
+    <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />
+    <Compile Include="MetaModels\Domain\InsertUpdateDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\InsertUpdateDomainParam.cs" />
     <Compile Include="MetaModels\Login\LoginParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
@@ -468,7 +471,9 @@
     <Compile Include="Services\Common\SessionService.cs" />
     <Compile Include="Services\Customer\CustomerLeftPanelService.cs" />
     <Compile Include="Services\Customer\ICustomerLeftPanelService.cs" />
+    <Compile Include="Services\Domain\DomainControlService.cs" />
     <Compile Include="Services\Domain\DomainService.cs" />
+    <Compile Include="Services\Domain\IDomainControlService.cs" />
     <Compile Include="Services\Domain\IDomainService.cs" />
     <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
     <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
@@ -525,6 +530,7 @@
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\Domain\DomainControlViewModel.cs" />
     <Compile Include="ViewModels\Domain\DomainViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />

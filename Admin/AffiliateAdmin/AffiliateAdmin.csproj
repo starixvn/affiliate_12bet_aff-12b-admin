@@ -1005,9 +1005,8 @@
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\customer\customer.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\domain\12bet-domain.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\domain\affiliate-domain.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\domain\domain-control.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\domain\domain.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\exchange-rate\exchange-rate.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\login.js" />
@@ -1042,9 +1041,8 @@
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\customer.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\domain\12bet-domain.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\domain\affiliate-domain.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\domain\domain-control.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\domain\domain.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\email-history.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\exchange-rate\exchange-rate.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\banner-list.css" />
@@ -1397,6 +1395,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\DomainPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\DomainControlPopup.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />

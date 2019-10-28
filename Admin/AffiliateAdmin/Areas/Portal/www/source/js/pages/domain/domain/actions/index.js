@@ -25,15 +25,19 @@ export const setSelectedDomain = (data) => {
     }
 }
 
-export const fetchData = (isAffDomain) => async (dispatch) => {
-    dispatch(toggleLoader(true));
-
+export const getDomainList = async (isAffDomain) => {
     const url = 'Portal/Domain/GetDomainList';
     const response = await post(url, { isAffDomain });
 
-    const data = response && response.status === 200 ? response.data : null;
+    return response && response.status === 200 ? response.data : [];
+}
 
-    dispatch(setGridData(data ? data : []));
+export const fetchData = (isAffDomain) => async (dispatch) => {
+    dispatch(toggleLoader(true));
+
+    const data = await getDomainList(isAffDomain);
+
+    dispatch(setGridData(data));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
 }

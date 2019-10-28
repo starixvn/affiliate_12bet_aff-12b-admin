@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
+import Filter from './Filter';
+import Content from './Content';
+import DomainControlPopup from './DomainControlPopup';
 
 export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />
-            <h3>Domain Control</h3>
+            <Filter />
+            <Content />
+            <DomainControlPopup />
         </AppLayout>
     );
 }

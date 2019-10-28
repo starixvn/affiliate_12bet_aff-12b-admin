@@ -35,7 +35,7 @@ export class Content extends PureComponent {
 
     _handleDeleteDomain = (selectedDomainId) => {
         this.props.setShouldResetScrollPosition(false);
-        this.setState({ message: `Are you sure you want to delete this ${this.props.isAffDomain ? 'affiliate' : '12bet' } domain?`, isConfirmPopup: true, selectedDomainId });
+        this.setState({ message: `Are you sure you want to delete this ${this.props.isAffDomain ? 'affiliate' : '12bet'} domain?`, isConfirmPopup: true, selectedDomainId });
     }
 
     _handleEditDomain = (domainId, domainName, isSSL) => {
@@ -51,7 +51,7 @@ export class Content extends PureComponent {
 
         if (result) {
             if (result.IsSuccessful) {
-                this.setState({ message: `${isAffDomain ? 'Affiliate' : '12Bet' } domain has been removed successfully!`, isConfirmPopup: false });
+                this.setState({ message: `${isAffDomain ? 'Affiliate' : '12Bet'} domain has been removed successfully!`, isConfirmPopup: false });
 
                 this.props.fetchData(isAffDomain);
             }
@@ -108,19 +108,19 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
-                <Cell className="text-center" title="Edit Affiliate Domain">
+                <Cell className="text-center" title="Edit Domain">
                     <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId, domainName, dataItem.IsSSL)}>
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
                 </Cell>
-                <Cell className="text-center" title="Delete Affiliate Domain">
+                <Cell className="text-center" title="Delete Domain">
                     <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
                         <span className="oi oi-x text-danger"></span>
                     </Button>
                 </Cell>
             </Row>
         )
-}
+    }
 
     render() {
         const { gridData, shouldResetScrollPosition, isAffDomain } = this.props;
@@ -143,16 +143,16 @@ export class Content extends PureComponent {
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
-{
+                {
                     !!message && <NotificationPopup
                         message={message}
                         isConfirmPopup={isConfirmPopup}
                         onClose={this._handleCloseNotificationPopup}
                     />
-}
+                }
             </div>
         );
-}
+    }
 }
 
 function mapStateToProps({ shouldResetScrollPosition, gridData, isAffDomain }) {
