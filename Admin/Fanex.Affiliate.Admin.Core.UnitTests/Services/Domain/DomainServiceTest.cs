@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         }
 
         [Fact]
-        public void InsertDomain_WhenCallWithValidParam_InsertIsFailed()
+        public void InsertDomain_WhenCallWithInvalidParam_InsertIsFailed()
         {
             // Arrange
             var message = "Insert Domain is failed.";
@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         }
 
         [Fact]
-        public void UpdateDomain_WhenCallWithValidParam_UpdateIsFailed()
+        public void UpdateDomain_WhenCallWithInalidParam_UpdateIsFailed()
         {
             // Arrange
             var message = "Update Domain is failed.";
@@ -149,7 +149,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         }
 
         [Fact]
-        public void DeleteDomain_WhenCallWithValidParam_DeleteIsFailed()
+        public void DeleteDomain_WhenCallWithInvalidParam_DeleteIsFailed()
         {
             // Arrange
             var message = "Delete Domain is failed.";
