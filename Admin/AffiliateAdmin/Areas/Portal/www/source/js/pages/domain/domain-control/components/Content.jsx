@@ -7,7 +7,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition } from '../actions';
+import { deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomain, setShouldResetScrollPosition } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -18,6 +18,12 @@ export class Content extends PureComponent {
             message: '',
             isConfirmPopup: true
         }
+    }
+
+    componentDidMount() {
+        const { affDomainList, redirectDomainList } = this.props;
+
+        (!affDomainList || !redirectDomainList) && this.props.fetchDomain();
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
@@ -123,13 +129,13 @@ export class Content extends PureComponent {
     }
 
     render() {
-        const { gridData, shouldResetScrollPosition } = this.props;
+        const { gridData, shouldResetScrollPosition, selectedMarket, affDomainList, redirectDomainList } = this.props;
         const { message, isConfirmPopup } = this.state;
 
         return gridData && (
             <div className="data-content">
                 <div className="my-2">
-                    <Button outline type="button" onClick={() => this._handleEditDomain(0, 'en-GB', 0, 0, false)}>Add New <span className="oi oi-plus ml-2"></span></Button>
+                    <Button outline type="button" onClick={() => this._handleEditDomain(0, selectedMarket || 'en-GB', affDomainList[0].DomainId, redirectDomainList[0].DomainId, false)}>Add New <span className="oi oi-plus ml-2"></span></Button>
                 </div>
                 <div className="domain-list-content table-responsive table-striped my-2">
                     <Table
@@ -155,12 +161,12 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarket }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarket });
+function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomain, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

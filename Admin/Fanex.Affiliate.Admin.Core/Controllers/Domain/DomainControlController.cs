@@ -65,12 +65,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             if (ModelState.IsValid)
             {
-                var encodeParam = EncodeParam(param);
-                GetUserInfoParam(encodeParam);
+                GetUserInfoParam(param);
 
                 return new JsonNetResult
                 {
-                    Data = _domainControlService.InsertDomainControl(encodeParam)
+                    Data = _domainControlService.InsertDomainControl(param)
                 };
             }
 
@@ -79,7 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = ""
+                    Message = "Domain's info is invalid!"
                 }
             };
         }
@@ -92,12 +91,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             var isValidDomainId = param.DomainId >= Validation.MinId;
             if (ModelState.IsValid && isValidDomainId)
             {
-                var encodeParam = EncodeParam(param);
-                GetUserInfoParam(encodeParam);
+                GetUserInfoParam(param);
 
                 return new JsonNetResult
                 {
-                    Data = _domainControlService.UpdateDomainControl(encodeParam)
+                    Data = _domainControlService.UpdateDomainControl(param)
                 };
             }
 
@@ -106,7 +104,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = !isValidDomainId ? "Domain Id is invalid." : ""
+                    Message = !isValidDomainId ? "Domain Id is invalid." : "Domain's info is invalid!"
                 }
             };
         }
@@ -131,20 +129,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Domain id is incorrect."
+                    Message = "Domain Id is invalid."
                 }
-            };
-        }
-
-        private InsertUpdateDomainControlParam EncodeParam(InsertUpdateDomainControlParam param)
-        {
-            return new InsertUpdateDomainControlParam
-            {
-                DomainId = param.DomainId,
-                Market = Server.HtmlEncode(param.Market),
-                AffDomainId = param.AffDomainId,
-                RedirectDomainId = param.RedirectDomainId,
-                IsUsed = param.IsUsed
             };
         }
 

@@ -51,6 +51,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
             using (var objectDb = GetObjectDb(SpKey))
             {
+                objectDb.AddInParameter("Creator", DbType.Int32, param.UserId);
+
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();
@@ -65,6 +67,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
             using (var objectDb = GetObjectDb(SpKey))
             {
+                objectDb.AddInParameter("Id", DbType.Int32, param.DomainId);
+
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();
@@ -79,7 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("DomainId", DbType.Int32, param.DomainId);
+                objectDb.AddInParameter("Id", DbType.Int32, param.DomainId);
                 objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("ip", DbType.String, param.Ip);
 
@@ -95,7 +99,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
         {
             objectDb.AddInParameter("AffDomainID", DbType.Int32, param.AffDomainId);
             objectDb.AddInParameter("12BetDomainID", DbType.Int32, param.RedirectDomainId);
-            objectDb.AddInParameter("MarketID", DbType.String, param.Market);
+            objectDb.AddInParameter("MarketID", DbType.String, param.MarketId);
             objectDb.AddInParameter("Status", DbType.Int32, param.IsUsed);
             objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
             objectDb.AddInParameter("IP", DbType.String, param.Ip);

@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
         public int DomainId { get; set; }
 
         [Required]
-        public string Market { get; set; }
+        public string MarketId { get; set; }
 
         [Range(Validation.MinId, Validation.MaxId)]
         public int AffDomainId { get; set; }

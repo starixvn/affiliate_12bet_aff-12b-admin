@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { insertDomain, updateDomain, toggleLoader, fetchData, fetchDomain, setSelectedDomain } from '../actions/index';
+import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomain } from '../actions/index';
 
 export class DomainControlPopup extends PureComponent {
     constructor(props) {
@@ -15,12 +15,6 @@ export class DomainControlPopup extends PureComponent {
             isSuccess: true,
             message: '',
         }
-    }
-
-    componentDidMount() {
-        const { affDomainList, redirectDomainList } = this.props;
-
-        (!affDomainList || !redirectDomainList) && this.props.fetchDomain();
     }
 
     componentDidUpdate(prevProps) {
@@ -43,24 +37,16 @@ export class DomainControlPopup extends PureComponent {
     _handleSubmit = async () => {
         this.props.toggleLoader(true);
 
+        const { isInsert } = this.state;
         const { selectedDomain } = this.props;
+        const message = isInsert ? "Add Successfully!" : "Update Successfully!";
 
-        if (selectedDomain.domainName) {
-            const { isInsert } = this.state;
-            const { selectedDomain, isAffDomain } = this.props;
-            const domainInfo = Object.assign({}, selectedDomain, { isAffDomain })
-            const message = isInsert ? "Add Successfully!" : "Update Successfully!";
+        const result = isInsert ? await this.props.insertDomain(selectedDomain) : await this.props.updateDomain(selectedDomain);
 
-            const result = isInsert ? await this.props.insertDomain(domainInfo) : await this.props.updateDomain(domainInfo);
-
-            if (result) {
-                this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
-            } else {
-                this._handleShowAlert(false, isInsert ? "Add Domain is failed!" : "Update Domain is failed!");
-            }
-
+        if (result) {
+            this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
         } else {
-            this._handleShowAlert(false, "Please input domain name!")
+            this._handleShowAlert(false, isInsert ? "Add Domain is failed!" : "Update Domain is failed!");
         }
 
         this.props.toggleLoader(false);
@@ -172,7 +158,7 @@ function mapStateToProps({ selectedDomain, selectedMarket, marketList, affDomain
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ insertDomain, updateDomain, toggleLoader, fetchData, fetchDomain, setSelectedDomain }, dispatch);
+    return bindActionCreators({ insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomain }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DomainControlPopup);
