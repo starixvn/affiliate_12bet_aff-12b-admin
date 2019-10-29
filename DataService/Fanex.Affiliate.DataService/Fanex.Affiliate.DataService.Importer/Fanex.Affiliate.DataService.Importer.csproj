@@ -105,10 +105,13 @@
     <Compile Include="Enum\GPI\GameType.cs" />
     <Compile Include="Enum\SystemType.cs" />
     <Compile Include="Exceptions\ThirdPartyProductException.cs" />
+    <Compile Include="Extension\EnumExtension.cs" />
+    <Compile Include="GpiLotteryService.cs" />
     <Compile Include="IBetsoftService.cs" />
     <Compile Include="ICrystalGpiService.cs" />
     <Compile Include="IDataImportingRunner.cs" />
     <Compile Include="IEbetService.cs" />
+    <Compile Include="IGpiLotteryService.cs" />
     <Compile Include="IISoftbetService.cs" />
     <Compile Include="IOpusService.cs" />
     <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
@@ -126,7 +129,7 @@
     <Compile Include="Utilities\DateTimeConverter.cs" />
     <Compile Include="Utilities\EbetConfigHelper.cs" />
     <Compile Include="Utilities\DataSimulator.cs" />
-    <Compile Include="Utilities\GPIHelper.cs" />
+    <Compile Include="Utilities\GpiHelper.cs" />
     <Compile Include="Utilities\IAppSettings.cs" />
     <Compile Include="Repository\ICasinoDataRepository.cs" />
     <Compile Include="ICasinoDataService.cs" />

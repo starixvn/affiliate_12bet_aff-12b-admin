@@ -11,5 +11,13 @@
         public const int ISoftbetProductId = 13;
 
         public const int OpusProductId = 14;
+
+        public const int GPILottery = 20;
+
+        public const int VRLottery = 21;
+
+        public const int LBKeno = 22;
+
+        public const int Topaz = 23;
     }
 }

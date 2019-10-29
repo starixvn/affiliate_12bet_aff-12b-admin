@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
+using System;
 
 namespace Fanex.Affiliate.DataService.Importer
 {

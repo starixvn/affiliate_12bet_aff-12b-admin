@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.DataService.Importer.MetaModels.GPI
 
         public DateTime EDate { get; set; }
 
-        public TransactionStatus Status { get; set; }
+        public TransactionStatus TransactionStatus { get; set; }
 
         public string Password { get; set; }
 
