@@ -95,7 +95,7 @@ exports[`domain - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Edit Affiliate Domain"
+              title="Edit Domain"
             >
               <Button
                 color="link p-0"
@@ -114,7 +114,7 @@ exports[`domain - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Delete Affiliate Domain"
+              title="Delete Domain"
             >
               <Button
                 color="link p-0"
@@ -193,7 +193,7 @@ exports[`domain - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Edit Affiliate Domain"
+              title="Edit Domain"
             >
               <Button
                 color="link p-0"
@@ -212,7 +212,7 @@ exports[`domain - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Delete Affiliate Domain"
+              title="Delete Domain"
             >
               <Button
                 color="link p-0"

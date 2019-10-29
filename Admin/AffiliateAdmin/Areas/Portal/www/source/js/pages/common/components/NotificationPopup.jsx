@@ -7,8 +7,8 @@ export const NotificationPopup = (props) => {
 
     return (
         <Modal isOpen={!!props.message} toggle={() => props.onClose()} backdrop='static'>
-            <div className="notification-popup-content p-3" style={{ fontSize: 15 }}>
-                <h4>{window.location.host} says</h4>
+            <div className="notification-popup-content p-3" style={{ fontSize: 14 }}>
+                <h5>{window.location.host} says</h5>
                 <div style={{ whiteSpace: "pre-line" }}>{props.message}</div>
                 {
                     props.isConfirmPopup ? (

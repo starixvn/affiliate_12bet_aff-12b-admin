@@ -52,13 +52,6 @@ export class DomainControlPopup extends PureComponent {
         this.props.toggleLoader(false);
     }
 
-    _handleKeyPress = (event) => {
-        if (event.charCode === 13) {
-            event.preventDefault();
-            this._handleSubmit();
-        }
-    }
-
     _handleShowAlert = (isSuccess, message) => {
         this.setState({
             message,
