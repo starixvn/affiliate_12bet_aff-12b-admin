@@ -71,6 +71,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -100,6 +101,8 @@
     <Compile Include="DTO\ISoftbet\ISoftbetSummary.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="EbetService.cs" />
+    <Compile Include="Enum\TransactionStatus.cs" />
+    <Compile Include="Enum\GPI\GameType.cs" />
     <Compile Include="Enum\SystemType.cs" />
     <Compile Include="Exceptions\ThirdPartyProductException.cs" />
     <Compile Include="IBetsoftService.cs" />
@@ -111,6 +114,7 @@
     <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
     <Compile Include="MetaModels\CrystalGpi\CrystalGpiParam.cs" />
     <Compile Include="MetaModels\Ebet\EbetParam.cs" />
+    <Compile Include="MetaModels\GPI\GpiParam.cs" />
     <Compile Include="MetaModels\ISoftbet\ISoftbetApiParam.cs" />
     <Compile Include="MetaModels\ISoftbet\ISoftbetEntryParam.cs" />
     <Compile Include="ISoftbetService.cs" />
@@ -122,6 +126,7 @@
     <Compile Include="Utilities\DateTimeConverter.cs" />
     <Compile Include="Utilities\EbetConfigHelper.cs" />
     <Compile Include="Utilities\DataSimulator.cs" />
+    <Compile Include="Utilities\GPIHelper.cs" />
     <Compile Include="Utilities\IAppSettings.cs" />
     <Compile Include="Repository\ICasinoDataRepository.cs" />
     <Compile Include="ICasinoDataService.cs" />
