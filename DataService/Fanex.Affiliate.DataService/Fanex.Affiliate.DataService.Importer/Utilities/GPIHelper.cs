@@ -22,17 +22,5 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
         {
             return gameType.ToString().ToLower();
         }
-
-        public static GameType ConvertStringToGameType(string game)
-        {
-            var lowerCaseGameName = game.ToLower();
-            var gpiGameTypes = System.Enum.GetNames(typeof(GameType));
-            var result = GameType.Keno;
-            foreach (var gameType in gpiGameTypes)
-            {
-                if (lowerCaseGameName.Equals(gameType.ToLower()))
-                    return System.Enum.TryParse(gameType)
-            }
-        }
     }
 }

@@ -1,0 +1,48 @@
+﻿using Fanex.Affiliate.DataService.Importer.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace Fanex.Affiliate.DataService.Importer.UnitTest.UtilityTests
+{
+    public class XmlHelperTests
+    {
+        [Theory]
+        [InlineData(@"{""root"":[{""OS"":""1"",""areaName"":""Beijing""},{""OS"":""1"",""areaName"":""Beijing""}]")]
+        [InlineData(@"{""root"":[{""OS"":""1"",""areaName"":""Beijing""}]")]
+        public void ParseToXDocumentFromJson_CallWithJsonFormatHasRoot_ReturnNotNull(string value)
+        {
+            var result = XmlHelper.ParseToXDocumentFromJson(value);
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void ParseToXDocumentFromJson_CallWithJsonFormatHasNoRoot_ReturnNull()
+        {
+            var json = @"[{""OS"":""1"",""areaName"":""Beijing""}]";
+            var result = XmlHelper.ParseToXDocumentFromJson(json);
+            Assert.Null(result);
+        }
+
+        [Theory]
+        [InlineData("test 1")]
+        public void ParseToXDocumentFromJson_CallWithWrongJsonFormat_ReturnNull(string value)
+        {
+            var result = XmlHelper.ParseToXDocumentFromJson(value);
+            Assert.Null(result);
+        }
+
+        [Theory]
+        [InlineData(@"[{""OS"":""1"",""areaName"":""Beijing""}]")]
+        [InlineData(@"[{""OS"":""1"",""areaName"":""Beijing""},{""OS"":""1"",""areaName"":""Beijing""}]")]
+        public void ParseToXDocumentFromJson_CallWithJsonFormatNoRoot_ReturnNotNull(string value)
+        {
+            var json = @"[{""OS"":""1"",""areaName"":""Beijing""}]";
+            var result = XmlHelper.ParseToXDocumentFromJson(value, "transaction");
+            Assert.NotNull(result);
+        }
+    }
+}

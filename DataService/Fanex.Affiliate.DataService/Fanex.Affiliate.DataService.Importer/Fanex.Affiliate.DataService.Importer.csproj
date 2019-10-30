@@ -118,6 +118,7 @@
     <Compile Include="MetaModels\CrystalGpi\CrystalGpiParam.cs" />
     <Compile Include="MetaModels\Ebet\EbetParam.cs" />
     <Compile Include="MetaModels\GPI\GpiParam.cs" />
+    <Compile Include="MetaModels\IParamQuery.cs" />
     <Compile Include="MetaModels\ISoftbet\ISoftbetApiParam.cs" />
     <Compile Include="MetaModels\ISoftbet\ISoftbetEntryParam.cs" />
     <Compile Include="ISoftbetService.cs" />

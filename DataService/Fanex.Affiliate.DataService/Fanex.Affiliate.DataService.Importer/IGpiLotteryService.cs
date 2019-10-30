@@ -9,6 +9,7 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public interface IGpiLotteryService
     {
+        List<string> GetXmlDataList(DateTime startDate, DateTime endDate);
         List<string> GetRawDataList(DateTime startDate, DateTime endDate);
         void Import(string xmlData);
         void Import(DateTime startDate, DateTime endDate);

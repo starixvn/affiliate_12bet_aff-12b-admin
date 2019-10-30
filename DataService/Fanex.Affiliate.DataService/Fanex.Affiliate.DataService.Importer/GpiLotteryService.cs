@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public void Import(DateTime startDate, DateTime endDate)
         {
-            var rawDatas = GetRawDataList(startDate, endDate);
+            var rawDatas = GetXmlDataList(startDate, endDate);
             Import(rawDatas);
         }
 
@@ -44,18 +44,40 @@ namespace Fanex.Affiliate.DataService.Importer
             _thirdPartyProductRepository.ImportData(Products.GPILottery, xml, 0);
         }
 
-        public List<string> GetRawDataList(DateTime startDate, DateTime endDate)
+        public List<string> GetXmlDataList(DateTime startDate, DateTime endDate)
         {
             var rawDataList = new List<string>();
             if (DateTime.Compare(startDate, endDate) >=0)
             {
-                throw new ArgumentException($"Start date: {startDate} is later than end date: {endDate}");
+                throw new ArgumentException($"Start date: {startDate} is later or equal than end date: {endDate}");
             }
             var paramForFirstPage = BuildParam(new GpiParam()
             {
                 SDate = startDate,
                 EDate = endDate
             });
+
+            var rawData = GetRawData(paramForFirstPage);
+            var xmlData = XmlHelper.ParseToXDocumentFromJson(rawData, "root");
+
+            rawDataList.Add(xmlData.ToString());
+
+            return rawDataList;
+        }
+
+        public List<string>GetRawDataList(DateTime startDate, DateTime endDate)
+        {
+            var rawDataList = new List<string>();
+            if (DateTime.Compare(startDate, endDate) >= 0)
+            {
+                throw new ArgumentException($"Start date: {startDate} is later or equal than end date: {endDate}");
+            }
+            var paramForFirstPage = BuildParam(new GpiParam()
+            {
+                SDate = startDate,
+                EDate = endDate
+            });
+
             var rawData = GetRawData(paramForFirstPage);
             rawDataList.Add(rawData);
             return rawDataList;

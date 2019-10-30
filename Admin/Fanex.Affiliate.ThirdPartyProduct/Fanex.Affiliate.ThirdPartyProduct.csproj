@@ -129,6 +129,7 @@
     <Compile Include="Controllers\CrystalGpiController.cs" />
     <Compile Include="Controllers\EbetController.cs" />
     <Compile Include="Controllers\ExchangeSummaryTransctionController.cs" />
+    <Compile Include="Controllers\GpiLotteryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportQueueController.cs" />
     <Compile Include="Controllers\ISoftbetController.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="MetaModels\CrystalGpiRequestParam.cs" />
     <Compile Include="MetaModels\EbetRequestParam.cs" />
     <Compile Include="MetaModels\ExchangeRequestParam.cs" />
+    <Compile Include="MetaModels\GplLotteryRequestParam.cs" />
     <Compile Include="MetaModels\ImportQueueParam.cs" />
     <Compile Include="MetaModels\ISoftbetRequestParam.cs" />
     <Compile Include="MetaModels\OpusRequestParam.cs" />
