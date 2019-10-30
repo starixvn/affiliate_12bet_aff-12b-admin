@@ -70,7 +70,7 @@ export const getTextDetail = (selectedTextId) => async () => {
     const url = 'Portal/TextList/GetTextDetail';
     const response = await post(url, { selectedTextId });
 
-    return response && response.status === 200 ? response.data : {};
+    return response && response.status === 200 ? response.data : null;
 }
 
 export const insertText = (param) => async () => {

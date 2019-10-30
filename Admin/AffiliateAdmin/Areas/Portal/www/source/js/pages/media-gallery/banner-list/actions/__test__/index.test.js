@@ -241,7 +241,7 @@ describe('banner list actions', () => {
         const result = await actions['getBannerDetail'](selectedBannerId)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetBannerDetail', { selectedBannerId: 123456 });
-        expect(result).toEqual({});
+        expect(result).toEqual(null);
     })
 
     it('should create action to insertBanner with correct parameter', async () => {

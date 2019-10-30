@@ -142,7 +142,7 @@ describe('message actions', () => {
         const result = await actions['getMessageDetail'](selectedMessageId)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Message/GetMessageDetail', { selectedMessageId: 123456 });
-        expect(result).toEqual({});
+        expect(result).toEqual(null);
     })
 
     it('should create action to insertMessage with correct parameter', async () => {

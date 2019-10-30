@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedTextId, getTextDetail, fetchData, insertText, updateText, toggleLoader } from '../actions/index';
-import { headerText, globalResource, deviceTypes, defaultState, defaultDevice } from '../libs/constants';
+import { headerText, globalResource, deviceTypes, defaultState } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
@@ -29,7 +29,7 @@ export class TextDetailForm extends PureComponent {
     _handleGetTextDetail = async (selectedTextId) => {
         const item = await this.props.getTextDetail(selectedTextId);
 
-        this.setState({
+        item && this.setState({
             textContent: htmlDecode(item.TextContent),
             category: item.Category,
             language: item.Language,

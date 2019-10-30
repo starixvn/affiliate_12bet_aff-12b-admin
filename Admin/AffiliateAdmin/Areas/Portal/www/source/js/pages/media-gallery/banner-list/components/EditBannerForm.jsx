@@ -30,22 +30,24 @@ export class EditBannerForm extends PureComponent {
     _handleGetBannerDetail = async (selectedBannerId) => {
         const bannerInfo = await this.props.getBannerDetail(selectedBannerId);
 
-        const { subCategoryCasinoList, subCategorySportsbookList } = this.props;
-        const result = getSubCategory(bannerInfo.Category, subCategoryCasinoList, subCategorySportsbookList);
+        if(bannerInfo) {
+            const { subCategoryCasinoList, subCategorySportsbookList } = this.props;
+            const result = getSubCategory(bannerInfo.Category, subCategoryCasinoList, subCategorySportsbookList);
 
-        const fileName = htmlDecode(bannerInfo.FileName);
-        const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
-        const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
+            const fileName = htmlDecode(bannerInfo.FileName);
+            const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
+            const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
 
-        this.setState({
-            inputFileName: shortFileName,
-            ...result,
-            language: bannerInfo.Language,
-            currency: bannerInfo.Currency,
-            imageType: bannerInfo.ImageType,
-            affType: bannerInfo.AffType,
-            deviceType: bannerInfo.DeviceType
-        });
+            this.setState({
+                inputFileName: shortFileName,
+                ...result,
+                language: bannerInfo.Language,
+                currency: bannerInfo.Currency,
+                imageType: bannerInfo.ImageType,
+                affType: bannerInfo.AffType,
+                deviceType: bannerInfo.DeviceType
+            });
+        }
     }
 
     _handleChange = (event) => {

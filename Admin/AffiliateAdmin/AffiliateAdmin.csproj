@@ -1306,6 +1306,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\__test__\ControlButtons.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\__test__\index.test.js" />
@@ -1407,6 +1411,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\DomainPopup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\DomainControlPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\Content.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1787,7 +1792,6 @@
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\player-detail.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\landing-page.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\customer-statistics.scss" />

@@ -134,7 +134,7 @@ describe('text list actions', () => {
         const result = await actions['getTextDetail'](selectedTextId)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/TextList/GetTextDetail', { selectedTextId: 123456 });
-        expect(result).toEqual({});
+        expect(result).toEqual(null);
     })
 
     it('should create action to insertText with correct parameter', async () => {

@@ -138,6 +138,19 @@ describe('banner list - components - EditBannerForm ', () => {
         expect(result.setState).toHaveBeenCalledWith({ "affType": 2, "category": "Baccarat", "currency": "EURO", "deviceType": 1, "imageType": "Image", "inputFileName": "giphy.gif", "language": "Chinese Simplified", "subCategory": "" });
     });
 
+    it('_handleGetBannerDetail should call getBannerDetail and not call setState', async () => {
+        const selectedBannerId = 2485;
+        const props = Object.assign({}, defaultProps, { getBannerDetail: jest.fn(() => null) });
+        const result = shallow(<EditBannerForm {...props} />);
+
+        result.setState = jest.fn();
+
+        await result.instance()._handleGetBannerDetail(selectedBannerId);
+
+        expect(props.getBannerDetail).toHaveBeenCalledWith(selectedBannerId);
+        expect(result.setState).not.toHaveBeenCalled();
+    });
+
     it('_handleGetBannerDetail should call getBannerDetail and setState  with casino category', async () => {
         const selectedBannerId = 2485;
         const banner = Object.assign({}, bannerInfo, { Category: 'Slot' })

@@ -123,6 +123,19 @@ describe('message - components - MessageDetailForm ', () => {
         expect(result.setState).toHaveBeenCalledWith({ messageContentList, important: false });
     });
 
+    it('_handleGetMessageDetail should call getMessageDetail but not call setState', async () => {
+        const MessageId = 37;
+        const props = Object.assign({}, defaultProps, { getMessageDetail: jest.fn(() => null) });
+        const result = shallow(<MessageDetailForm {...props} />);
+
+        result.setState = jest.fn();
+
+        await result.instance()._handleGetMessageDetail(MessageId);
+
+        expect(props.getMessageDetail).toHaveBeenCalledWith(MessageId);
+        expect(result.setState).not.toHaveBeenCalled();
+    });
+
     it('important should be changed when click checkbox', () => {
         const result = shallow(<MessageDetailForm {...defaultProps} />);
 

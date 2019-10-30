@@ -136,7 +136,7 @@ export const getBannerDetail = (selectedBannerId) => async () => {
     const url = 'Portal/MediaGallery/GetBannerDetail';
     const response = await post(url, { selectedBannerId });
 
-    return response && response.status === 200 ? response.data : {};
+    return response && response.status === 200 ? response.data : null;
 }
 
 export const insertBanner = (param) => async () => {

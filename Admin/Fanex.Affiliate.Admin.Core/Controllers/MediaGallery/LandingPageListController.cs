@@ -8,6 +8,7 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
@@ -38,14 +39,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [ValidateAntiForgeryHeader]
         public ActionResult GetLandingPageList()
         {
-            return Json(_landingPageService.GetLandingPageList());
+            return new JsonNetResult
+            {
+                Data = _landingPageService.GetLandingPageList()
+            };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetLandingPageItem(int pageId)
         {
-            return Json(_landingPageService.GetLandingPageById(pageId));
+            return new JsonNetResult
+            {
+                Data = _landingPageService.GetLandingPageById(pageId)
+            };
         }
 
         [HttpPost]
@@ -57,7 +64,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 AssignCommonParam(param);
 
-                return Json(_landingPageService.InsertLandingPage(param));
+                return new JsonNetResult
+                {
+                    Data = _landingPageService.InsertLandingPage(param)
+                };
             }
 
             return Json(new ResultInfo
@@ -76,7 +86,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 AssignCommonParam(param);
 
-                return Json(_landingPageService.UpdateLandingPage(param));
+                return new JsonNetResult
+                {
+                    Data = _landingPageService.UpdateLandingPage(param)
+                };
             }
 
             return Json(new ResultInfo
@@ -96,7 +109,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 param.UserId = SessionService.UserId;
                 param.Ip = Request.UserHostAddress;
 
-                return Json(_landingPageService.DeleteLandingPage(param));
+                return new JsonNetResult
+                {
+                    Data = _landingPageService.DeleteLandingPage(param)
+                };
             }
 
             return Json(new ResultInfo
