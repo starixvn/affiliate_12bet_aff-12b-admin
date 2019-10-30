@@ -6,14 +6,9 @@
         <img src="~/Areas/Portal/www/dist/imgs/i_member.png" />
     </div>
     <div class="d-inline-block">
-        <ul class="nav">
-            @foreach (var item in Model)
-            {
-                <li class="nav-item">
-                    <a class="nav-link @(item.IsActive? "active" : string.Empty)" href="@item.Url" target="_self">@item.Name</a>
-                </li>
-            }
-        </ul>
+        @{
+            Html.RenderPartial("~/Areas/Portal/Views/Shared/_SubMenu.cshtml", Model);
+        }
     </div>
 </div>
 

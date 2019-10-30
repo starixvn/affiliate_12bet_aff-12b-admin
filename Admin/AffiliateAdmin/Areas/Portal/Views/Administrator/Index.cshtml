@@ -1,19 +1,18 @@
-﻿@{
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
 }
+
 @model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
 
-<div class="sub-menu-container">
-    <div class="d-inline-block">
-        <img src="~/Areas/Portal/www/dist/imgs/i_admin.png" />
-    </div>
-    <div class="d-inline-block">
-        @{
-            Html.RenderPartial("~/Areas/Portal/Views/Shared/_SubMenu.cshtml", Model);
-        }
-    </div>
-</div>
+@{
+    Html.RenderPartial("~/Areas/Portal/Views/Administrator/_AdministratorSubMenu.cshtml", Model);
+}
 
-<div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/UserControl/ListUser.aspx")"></iframe>
-</div>
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/administrator/administrator.css")" rel="stylesheet" />
+}
+
+@section pagejs{
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/administrator/administrator.js")"></script>
+}

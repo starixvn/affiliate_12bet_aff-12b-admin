@@ -6,7 +6,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 
-namespace Fanex.Affiliate.Admin.Core.Controllers
+namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 {
     [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class AdministratorController : BaseController
@@ -15,16 +15,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
         }
 
-        public ActionResult Index(int current = 0)
+        public ActionResult Index()
         {
             var subMenu = new List<SubMenu>
             {
-                new SubMenu { Name = Lang.AdminList, Url = Url.Content("~/UserControl/ListUser.aspx") },
-                new SubMenu { Name = Lang.DeptList, Url = Url.Content("~/UserControl/ListDepartment.aspx") }
+                new SubMenu { Name = Lang.AdminList, Url = Url.Content("~/Portal/Administrator"), IsActive = true },
+                new SubMenu { Name = Lang.DeptList, Url = Url.Content("~/Portal/Department") }
             };
-
-            var activeIndex = current > subMenu.Count - 1 ? 0 : current;
-            subMenu[activeIndex].IsActive = true;
 
             return View(subMenu);
         }

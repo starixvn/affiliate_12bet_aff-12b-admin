@@ -1075,6 +1075,14 @@
     <Content Include="Areas\Portal\www\source\js\components\__test__\ReportTitle.test.js" />
     <Content Include="Areas\Portal\www\source\js\layouts\__test__\AppLayout.test.js" />
     <Content Include="Areas\Portal\www\source\js\modules\htmlHelper.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\__tests__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\GridData.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\redux\Filter.redux.test.js" />
@@ -1420,6 +1428,15 @@
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\DomainControlPopup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\Content.jsx" />
+    <Content Include="Areas\Portal\Views\Administrator\Department.cshtml" />
+    <Content Include="Areas\Portal\Views\Administrator\_AdministratorSubMenu.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\AppContainer.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -2006,6 +2023,8 @@
     <Content Include="Areas\Portal\www\source\style\pages\member\active-member.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\domain\domain.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\domain\domain-control.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\administrator\administrator.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\administrator\department.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
