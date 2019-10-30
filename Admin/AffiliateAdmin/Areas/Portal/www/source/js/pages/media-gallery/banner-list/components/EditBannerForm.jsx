@@ -172,7 +172,7 @@ export class EditBannerForm extends PureComponent {
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
                             <Form tag="form" className="mb-2 p-1 border" autocomplete="off">
-                                <Label>[Valid Types: .gif, .jpg, .png, .jpeg, .swf]</Label>
+                                <Label>[Valid Types: .gif, .jpg, .png, .jpeg]</Label>
                                 <Label className="d-block">[File Size Limit: 3MB]</Label>
                                 <br />
                                 <FormGroup row className="mb-2">
