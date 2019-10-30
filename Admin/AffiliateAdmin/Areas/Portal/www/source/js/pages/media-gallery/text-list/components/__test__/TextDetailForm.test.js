@@ -184,7 +184,7 @@ describe('text list - components - TextDetailForm ', () => {
         expect(result.setState).toHaveBeenCalledWith({ deviceType: 1 });
     });
 
-    it('_handleSubmit - should be called toggleLoader and _handleShowAlert when insert with text content empty', async () => {
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert when insert with text content empty', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<TextDetailForm {...props} />);
         const instance = wrapper.instance();
@@ -253,7 +253,7 @@ describe('text list - components - TextDetailForm ', () => {
         expect(instance._handleShowAlert).toHaveBeenCalledWith(true, "Add Successfully!");
     });
 
-    it('_handleSubmit - should be called toggleLoader and _handleShowAlert when update with text content empty', async () => {
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert when update with text content empty', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<TextDetailForm {...props} />);
         const instance = wrapper.instance();

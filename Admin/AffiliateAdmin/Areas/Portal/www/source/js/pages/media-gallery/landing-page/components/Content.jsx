@@ -85,8 +85,8 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ pagingOption, param, checkedLandingPages, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { pagingOption, param, checkedLandingPages, shouldResetScrollPosition, gridData });
+function mapStateToProps({ checkedLandingPages, shouldResetScrollPosition, gridData }) {
+    return Object.assign({}, { checkedLandingPages, shouldResetScrollPosition, gridData });
 }
 
 function mapDispatchToProps(dispatch) {

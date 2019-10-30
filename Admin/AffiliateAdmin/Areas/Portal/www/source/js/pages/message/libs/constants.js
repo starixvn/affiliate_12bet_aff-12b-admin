@@ -21,6 +21,7 @@ const japanese = 'MessageContentJp';
 
 export const defaultMessageContentList =
 {
+    MessageId: 0,
     [english]: '',
     [chineseTraditional]: '',
     [chineseSimplified]: '',

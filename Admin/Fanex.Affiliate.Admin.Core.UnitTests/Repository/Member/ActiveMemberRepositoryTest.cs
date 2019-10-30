@@ -130,7 +130,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("Add is failed");
             objectDb.Setup(obj => obj.GetParameterValue("custid")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("username")).Returns(string.Empty);
+            objectDb.Setup(obj => obj.GetParameterValue("username")).Returns(DBNull.Value);
             repository.Setup(re => re.GetObjectDb("Dot_Dep_CustomerInsMember_Ag_Cust", 120)).Returns(objectDb.Object);
 
             // Action

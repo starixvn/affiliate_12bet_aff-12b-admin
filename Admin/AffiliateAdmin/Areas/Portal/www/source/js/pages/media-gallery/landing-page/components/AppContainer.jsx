@@ -18,7 +18,7 @@ export const AppContainer = (props) => {
             <ControlButtons
                 messages={messages}
                 gridData={props.gridData}
-                fetchData={() => props.fetchData()}
+                fetchData={props.fetchData}
                 checkedItems={props.checkedLandingPages}
                 setCheckedItems={props.setCheckedLandingPages}
                 toggleLoader={props.toggleLoader}

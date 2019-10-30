@@ -98,9 +98,8 @@ export class MessageDetailForm extends PureComponent {
 
     _save = async () => {
         const { messageContentList, important, isInsert } = this.state;
-        const { selectedMessageId } = this.props;
         const message = isInsert ? "Add Successfully!" : "Update Successfully!";
-        const messageInfo = Object.assign({}, { ...messageContentList, important, MessageId: selectedMessageId });
+        const messageInfo = Object.assign({}, { ...messageContentList, important });
         const result = isInsert ? await this.props.insertMessage(messageInfo) : await this.props.updateMessage(messageInfo);
 
         if (result) {

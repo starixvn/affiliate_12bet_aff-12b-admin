@@ -62,19 +62,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             if (ModelState.IsValid)
             {
-                AssignCommonParam(param);
+                var encodeParam = EncodeParam(param);
+                AssignCommonParam(encodeParam);
 
                 return new JsonNetResult
                 {
-                    Data = _landingPageService.InsertLandingPage(param)
+                    Data = _landingPageService.InsertLandingPage(encodeParam)
                 };
             }
 
-            return Json(new ResultInfo
+            return new JsonNetResult
             {
-                Code = Code.GeneralErrorCode,
-                Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-            });
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                }
+            };
         }
 
         [HttpPost]
@@ -84,19 +88,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             if (ModelState.IsValid)
             {
-                AssignCommonParam(param);
+                var encodeParam = EncodeParam(param);
+                AssignCommonParam(encodeParam);
 
                 return new JsonNetResult
                 {
-                    Data = _landingPageService.UpdateLandingPage(param)
+                    Data = _landingPageService.UpdateLandingPage(encodeParam)
                 };
             }
 
-            return Json(new ResultInfo
+            return new JsonNetResult
             {
-                Code = Code.GeneralErrorCode,
-                Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-            });
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                }
+            };
         }
 
         [HttpPost]
@@ -115,11 +123,24 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 };
             }
 
-            return Json(new ResultInfo
+            return new JsonNetResult
             {
-                Code = Code.GeneralErrorCode,
-                Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-            });
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                }
+            };
+        }
+
+        private InsertUpdateLandingPageParam EncodeParam(InsertUpdateLandingPageParam param)
+        {
+            return new InsertUpdateLandingPageParam
+            {
+                PageId = param.PageId,
+                PageName = Server.HtmlEncode(param.PageName),
+                PageCode = Server.HtmlEncode(param.PageCode)
+            };
         }
 
         private void AssignCommonParam(InsertUpdateLandingPageParam param)

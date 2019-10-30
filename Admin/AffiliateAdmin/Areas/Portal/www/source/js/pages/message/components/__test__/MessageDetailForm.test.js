@@ -16,7 +16,8 @@ describe('message - components - MessageDetailForm ', () => {
         MessageContentKr: "",
         MessageContentTh: "",
         MessageContentTw: "",
-        MessageContentVi: ""
+        MessageContentVi: "",
+        MessageId: 0
     };
 
     const param = {
@@ -120,7 +121,7 @@ describe('message - components - MessageDetailForm ', () => {
         await result.instance()._handleGetMessageDetail(MessageId);
 
         expect(props.getMessageDetail).toHaveBeenCalledWith(MessageId);
-        expect(result.setState).toHaveBeenCalledWith({ messageContentList, important: false });
+        expect(result.setState).toHaveBeenCalledWith({ messageContentList: { ...messageContentList, MessageId: "37" }, important: false });
     });
 
     it('_handleGetMessageDetail should call getMessageDetail but not call setState', async () => {
