@@ -111,7 +111,7 @@
     <Compile Include="ICrystalGpiService.cs" />
     <Compile Include="IDataImportingRunner.cs" />
     <Compile Include="IEbetService.cs" />
-    <Compile Include="IGpiLotteryService.cs" />
+    <Compile Include="IImporterService.cs" />
     <Compile Include="IISoftbetService.cs" />
     <Compile Include="ImporterImxServiceBase.cs" />
     <Compile Include="IOpusService.cs" />
