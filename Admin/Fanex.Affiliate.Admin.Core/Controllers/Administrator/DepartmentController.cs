@@ -1,22 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Services.Administrator;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 {
     [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class DepartmentController : BaseController
     {
-        public DepartmentController(ISessionService sessionService) : base(sessionService)
+        private readonly IDepartmentService _departmentService;
+
+        public DepartmentController(
+            ISessionService sessionService,
+            IDepartmentService departmentService) : base(sessionService)
         {
+            _departmentService = departmentService;
         }
 
         public ActionResult Index()
@@ -28,6 +33,121 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
             };
 
             return View("~/Areas/Portal/Views/Administrator/Department.cshtml", subMenu);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [Compress]
+        public ActionResult GetDepartmentList()
+        {
+            return new JsonNetResult
+            {
+                Data = _departmentService.GetDepartmentList()
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetDepartmentDetail(int selectedDepartmentId)
+        {
+            return new JsonNetResult
+            {
+                Data = _departmentService.GetDepartmentDetail(selectedDepartmentId)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
+        public ActionResult InsertDepartment(InsertUpdateDepartmentParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                var encodeParam = EncodeParam(param);
+                GetUserInfoParam(encodeParam);
+
+                return new JsonNetResult
+                {
+                    Data = _departmentService.InsertDepartment(encodeParam)
+                };
+            }
+
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Please input Department's name."
+                }
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
+        public ActionResult UpdateDepartment(InsertUpdateDepartmentParam param)
+        {
+            var isValidDepartmentId = param.DepartmentId >= Validation.MinId;
+            if (ModelState.IsValid && isValidDepartmentId)
+            {
+                var encodeParam = EncodeParam(param);
+                GetUserInfoParam(encodeParam);
+
+                return new JsonNetResult
+                {
+                    Data = _departmentService.UpdateDepartment(encodeParam)
+                };
+            }
+
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = !isValidDepartmentId ? "Department Id is invalid." : "Please input Department's name."
+                }
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
+        public ActionResult DeleteDepartment(DeleteDepartmentParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                GetUserInfoParam(param);
+
+                return new JsonNetResult
+                {
+                    Data = _departmentService.DeleteDepartment(param)
+                };
+            }
+
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Department id is incorrect."
+                }
+            };
+        }
+
+        private InsertUpdateDepartmentParam EncodeParam(InsertUpdateDepartmentParam param)
+        {
+            return new InsertUpdateDepartmentParam
+            {
+                DepartmentId = param.DepartmentId,
+                DepartmentName = Server.HtmlEncode(param.DepartmentName),
+                Description = Server.HtmlEncode(param.Description)
+            };
+        }
+
+        private void GetUserInfoParam(UserInfoParam param)
+        {
+            param.UserId = SessionService.UserId;
+            param.Ip = Request.UserHostAddress;
         }
     }
 }

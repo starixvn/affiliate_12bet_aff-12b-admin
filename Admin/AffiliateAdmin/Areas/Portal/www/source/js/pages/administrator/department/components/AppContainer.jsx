@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
+import Content from './Content';
+import InsertUpdateForm from './InsertUpdateForm';
 
 export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />
-            <h1>Department List</h1>
+            <Content />
+            <InsertUpdateForm />
         </AppLayout>
     );
 }

@@ -997,6 +997,8 @@
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\viewLog.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\xlsx-style.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\administrator\administrator.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\administrator\department.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\affiliate\affiliate-info.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\affiliate\email-history.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\alert.js" />
@@ -1037,6 +1039,8 @@
     <Content Include="Areas\Portal\www\dist\style\change-admin-password.css" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\login.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\administrator\administrator.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\administrator\department.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-info.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
@@ -1437,6 +1441,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\InsertUpdateForm.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -2100,6 +2105,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Portal\www\source\js\pages\administrator\common\components\" />
+    <Folder Include="Areas\Portal\www\source\js\pages\administrator\common\libs\" />
     <Folder Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\" />
   </ItemGroup>
   <ItemGroup>

@@ -160,7 +160,7 @@ export class MessageDetailForm extends PureComponent {
                                     </FormGroup>
                                     {
                                         Object.keys(messageContentList).map(key => {
-                                            return (
+                                            return key === 'MessageId' ? null : (
                                                 <FormGroup row className="mb-2" key={key}>
                                                     <Label for={key} sm={2} className="d-flex justify-content-end align-items-center">{languages[key]}</Label>
                                                     <Col sm={10}>
@@ -181,7 +181,7 @@ export class MessageDetailForm extends PureComponent {
                                                         : <Button type="button" color="success" className="mr-2" onClick={() => this.setState({ isClickedEdit: true })}>{resource.Edit}</Button>
                                                 }
                                                 <ButtonDeleteItems
-                                                    checkedItems={{ [selectedMessageId]: true }}
+                                                    checkedItems={{ [messageContentList.MessageId]: true }}
                                                     toggleLoader={this.props.toggleLoader}
                                                     deleteItems={this.props.deleteMessages}
                                                     fetchData={() => this._handleShowAlert(true, "Delete Successfully!")}

@@ -139,7 +139,11 @@
     <Setting Key="Aff_DomainControlIns" SpName="Aff_DomainControlIns" DbName="affiliate_12bet" />
     <Setting Key="Aff_DomainControlUpd" SpName="Aff_DomainControlUpd" DbName="affiliate_12bet" />
     <Setting Key="Aff_DomainControlDel" SpName="Aff_DomainControlDel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DomainAffSel" SpName="Aff_DomainAffSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Domain12BetSel" SpName="Aff_Domain12BetSel" DbName="affiliate_12bet" />
+  </Function>
+  <Function Name="Administrator">
+    <Setting Key="Aff_Con_GroupInfoSel" SpName="Aff_Con_GroupInfoSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_GroupInfoIns" SpName="Aff_Con_GroupInfoIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_GroupInfoUpd" SpName="Aff_Con_GroupInfoUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_GroupInfoDel" SpName="Aff_Con_GroupInfoDel" DbName="affiliate_12bet" />
   </Function>
 </Functions>

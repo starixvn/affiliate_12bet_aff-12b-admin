@@ -272,7 +272,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
         ]
       }
       bodyHeight={300}
-      containerPadding={20}
+      containerPadding={30}
       header={
         <t>
           <t
@@ -436,7 +436,7 @@ exports[`domain control - components - Content  render correctly with gridData i
         ]
       }
       bodyHeight={300}
-      containerPadding={20}
+      containerPadding={30}
       header={
         <t>
           <t

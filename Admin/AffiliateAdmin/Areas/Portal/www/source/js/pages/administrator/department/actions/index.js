@@ -1,9 +1,36 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from './types';
-import { getDomainList } from '../../domain/actions/index';
+import { SET_SELECTED_DEPARTMENT_ID, SET_OPEN_IT_POPUP, SET_OPEN_POLICY_POPUP, SET_OPEN_INSERT_UPDATE_POPUP, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from './types';
 
 export { toggleLoader };
+
+export const setSelectedDepartmentId = (data) => {
+    return {
+        type: SET_SELECTED_DEPARTMENT_ID,
+        data
+    }
+}
+
+export const setOpenItPopup = (data) => {
+    return {
+        type: SET_OPEN_IT_POPUP,
+        data
+    }
+}
+
+export const setOpenPolicyPopup = (data) => {
+    return {
+        type: SET_OPEN_POLICY_POPUP,
+        data
+    }
+}
+
+export const setOpenInsertUpdatePopup = (data) => {
+    return {
+        type: SET_OPEN_INSERT_UPDATE_POPUP,
+        data
+    }
+}
 
 export const setShouldResetScrollPosition = (data) => {
     return {
@@ -22,7 +49,7 @@ export const setGridData = (data) => {
 export const fetchData = (market) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const url = '';
+    const url = 'Portal/Department/GetDepartmentList';
     const response = await post(url, { market });
 
     const data = response && response.status === 200 ? response.data : [];
@@ -32,15 +59,29 @@ export const fetchData = (market) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
-export const insertAdmin = (param) => async () => {
-    const url = '';
+export const getDepartmentDetail = (selectedDepartmentId) => async () => {
+    const url = 'Portal/Department/GetDepartmentDetail';
+    const response = await post(url, { selectedDepartmentId });
+
+    return response && response.status === 200 ? response.data : null;
+}
+
+export const insertDepartment = (param) => async () => {
+    const url = 'Portal/Department/InsertDepartment';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }
 
-export const updateAdmin = (param) => async () => {
-    const url = '';
+export const updateDepartment = (param) => async () => {
+    const url = 'Portal/Department/UpdateDepartment';
+    const response = await post(url, param);
+
+    return response && response.status === 200 ? response.data : null;
+}
+
+export const deleteDepartment = (param) => async () => {
+    const url = 'Portal/Department/DeleteDepartment';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;

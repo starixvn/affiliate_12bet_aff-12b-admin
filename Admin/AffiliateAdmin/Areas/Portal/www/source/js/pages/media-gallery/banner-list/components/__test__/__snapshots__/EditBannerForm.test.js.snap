@@ -101,7 +101,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
               ]
             }
           >
-            [Valid Types: .gif, .jpg, .png, .jpeg, .swf]
+            [Valid Types: .gif, .jpg, .png, .jpeg]
           </Label>
           <Label
             className="d-block"
@@ -723,7 +723,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
               ]
             }
           >
-            [Valid Types: .gif, .jpg, .png, .jpeg, .swf]
+            [Valid Types: .gif, .jpg, .png, .jpeg]
           </Label>
           <Label
             className="d-block"
@@ -1289,7 +1289,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
               ]
             }
           >
-            [Valid Types: .gif, .jpg, .png, .jpeg, .swf]
+            [Valid Types: .gif, .jpg, .png, .jpeg]
           </Label>
           <Label
             className="d-block"

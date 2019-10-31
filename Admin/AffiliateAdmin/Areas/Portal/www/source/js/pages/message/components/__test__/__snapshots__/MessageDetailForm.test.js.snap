@@ -622,7 +622,7 @@ exports[`message - components - MessageDetailForm  render correctly with current
           <Memo(ButtonDeleteItems)
             checkedItems={
               Object {
-                "-1": true,
+                "0": true,
               }
             }
             fetchData={[Function]}
@@ -1908,7 +1908,7 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
           <Memo(ButtonDeleteItems)
             checkedItems={
               Object {
-                "null": true,
+                "0": true,
               }
             }
             fetchData={[Function]}
@@ -2560,7 +2560,7 @@ exports[`message - components - MessageDetailForm  render correctly with update 
           <Memo(ButtonDeleteItems)
             checkedItems={
               Object {
-                "37": true,
+                "0": true,
               }
             }
             fetchData={[Function]}
@@ -3212,7 +3212,7 @@ exports[`message - components - MessageDetailForm  render correctly with update 
           <Memo(ButtonDeleteItems)
             checkedItems={
               Object {
-                "37": true,
+                "0": true,
               }
             }
             fetchData={[Function]}

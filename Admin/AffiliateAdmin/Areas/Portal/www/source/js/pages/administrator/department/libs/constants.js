@@ -4,12 +4,25 @@ export { globalResource };
 
 export const headerText = {
     Index: '#',
-    Market: 'Market',
-    AffDomain: 'AffDomain',
-    RedirectDomain: 'Redirect Domain',
-    Creator: 'Creator',
-    CreatedDate: 'Created Date',
-    Status: 'Status',
+    Department: 'Department',
+    NoOfUser: 'No of User',
+    Description: 'Description',
+    RolePolicy: 'Role Policy',
     Edit: globalResource.Edit,
     Delete: globalResource.Delete
+}
+
+export const defaultState = {
+    departmentName: '',
+    description: '',
+    isInsert: true,
+    isShowMessage: false,
+    isSuccess: true,
+    message: ''
+}
+
+export const charCodes = {
+    KeyEnter: 13,
+    KeyDoubleQuotationMark: 34,
+    KeySingleQuotationMark: 39
 }

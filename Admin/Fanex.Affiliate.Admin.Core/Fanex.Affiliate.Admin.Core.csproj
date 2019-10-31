@@ -228,6 +228,8 @@
     <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\UserAccountController.cs" />
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
+    <Compile Include="DTO\Administrator\AdministratorInfo.cs" />
+    <Compile Include="DTO\Administrator\DepartmentInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
     <Compile Include="DTO\AffTypeInfo.cs" />
@@ -259,6 +261,8 @@
     <Compile Include="DTO\Member\DepositCustomerInfo.cs" />
     <Compile Include="DTO\Member\MemberInfo.cs" />
     <Compile Include="DTO\Member\UnactiveMemberInfo.cs" />
+    <Compile Include="MetaModels\Administrator\DeleteDepartmentParam.cs" />
+    <Compile Include="MetaModels\Administrator\InsertUpdateDepartmentParam.cs" />
     <Compile Include="MetaModels\AlertParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />
@@ -356,6 +360,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repository\Administrator\DepartmentRepository.cs" />
+    <Compile Include="Repository\Administrator\IDepartmentRepository.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />
@@ -458,6 +464,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\Administrator\DepartmentService.cs" />
+    <Compile Include="Services\Administrator\IDepartmentService.cs" />
     <Compile Include="Services\AffiliateService.cs" />
     <Compile Include="Services\AffTypeService.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordService.cs" />
