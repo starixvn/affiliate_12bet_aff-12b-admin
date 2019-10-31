@@ -4,6 +4,7 @@ using Fanex.Affiliate.DataService.Importer.Enum.GPI;
 using Fanex.Affiliate.DataService.Importer.MetaModels.GPI;
 using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -14,73 +15,58 @@ using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public class GpiLotteryService : IGpiLotteryService
+    public class GpiLotteryService : ImporterXmlServiceBase
     {
-        private readonly IAppSettings _appSetting;
-        private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
-
-        public GpiLotteryService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProdutRespository = null)
+        public GpiLotteryService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProdutRespository = null) 
+            :base(appSetting, thirdPartyProdutRespository)
         {
-            _appSetting = appSetting ?? new AppSettings();
-            _thirdPartyProductRepository = thirdPartyProdutRespository ?? new ThirdPartyProductRepository();
         }
 
-        public void Import(DateTime startDate, DateTime endDate)
+        public override void Import(string data)
         {
-            var rawDatas = GetXmlDataList(startDate, endDate);
-            Import(rawDatas);
+            _thirdPartyProductRepository.ImportData(Products.GPILottery, data, 0);
         }
 
-        public void Import(List<string> xmls)
-        {
-            foreach (var xml in xmls)
-            {
-                this.Import(xml);
-            }
-        }
-
-        public void Import(string xml)
-        {
-            _thirdPartyProductRepository.ImportData(Products.GPILottery, xml, 0);
-        }
-
-        public List<string> GetXmlDataList(DateTime startDate, DateTime endDate)
-        {
-            var rawDataList = new List<string>();
-            if (DateTime.Compare(startDate, endDate) >=0)
-            {
-                throw new ArgumentException($"Start date: {startDate} is later or equal than end date: {endDate}");
-            }
-            var paramForFirstPage = BuildParam(new GpiParam()
-            {
-                SDate = startDate,
-                EDate = endDate
-            });
-
-            var rawData = GetRawData(paramForFirstPage);
-            var xmlData = XmlHelper.ParseToXDocumentFromJson(rawData, "root");
-
-            rawDataList.Add(xmlData.ToString());
-
-            return rawDataList;
-        }
-
-        public List<string>GetRawDataList(DateTime startDate, DateTime endDate)
+        public override IEnumerable<string>GetRawDataList(DateTime startDate, DateTime endDate)
         {
             var rawDataList = new List<string>();
             if (DateTime.Compare(startDate, endDate) >= 0)
             {
                 throw new ArgumentException($"Start date: {startDate} is later or equal than end date: {endDate}");
             }
-            var paramForFirstPage = BuildParam(new GpiParam()
+
+            var pageNumber = 1;
+            var paramForDateTime = new GpiParam()
             {
                 SDate = startDate,
                 EDate = endDate
-            });
+            };
 
+            var paramForFirstPage = BuildParam(paramForDateTime, 1);          
             var rawData = GetRawData(paramForFirstPage);
             rawDataList.Add(rawData);
+
+            while(HasAnotherPage(rawData))
+            {
+                pageNumber++;
+                var paramNextPage = BuildParam(paramForDateTime, pageNumber);
+                rawData = GetRawData(paramNextPage);
+                rawDataList.Add(rawData);
+            }
+
             return rawDataList;
+        }
+
+        protected override string ConvertToXmlString(string data)
+        {
+            return XmlHelper.ParseToXDocumentFromJson(data, "item").ToString();
+        }
+
+        private bool HasAnotherPage(string json)
+        {
+            var pageSize = int.Parse(_appSetting.GetValue("GpiLotteryPageSize"));
+            var jsonDic = JsonConvert.DeserializeObject<Dictionary<string, string>[]>(json);
+            return jsonDic.Count() == pageSize;
         }
 
         private string GetRawData(GpiParam param)

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public interface IGpiLotteryService
+    public interface IImporterService
     {
-        List<string> GetXmlDataList(DateTime startDate, DateTime endDate);
-        List<string> GetRawDataList(DateTime startDate, DateTime endDate);
-        void Import(string xmlData);
+        IEnumerable<string> GetXmlDataList(DateTime startDate, DateTime endDate);
+        IEnumerable<string> GetRawDataList(DateTime startDate, DateTime endDate);
+        void Import(string data);
         void Import(DateTime startDate, DateTime endDate);
     }
 }

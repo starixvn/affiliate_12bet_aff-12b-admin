@@ -113,7 +113,9 @@
     <Compile Include="IEbetService.cs" />
     <Compile Include="IGpiLotteryService.cs" />
     <Compile Include="IISoftbetService.cs" />
+    <Compile Include="ImporterImxServiceBase.cs" />
     <Compile Include="IOpusService.cs" />
+    <Compile Include="LBKenoService.cs" />
     <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
     <Compile Include="MetaModels\CrystalGpi\CrystalGpiParam.cs" />
     <Compile Include="MetaModels\Ebet\EbetParam.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="MetaModels\ISoftbet\ISoftbetApiParam.cs" />
     <Compile Include="MetaModels\ISoftbet\ISoftbetEntryParam.cs" />
     <Compile Include="ISoftbetService.cs" />
+    <Compile Include="MetaModels\LBKeno\LBKenoParam.cs" />
     <Compile Include="MetaModels\Opus\OpusParam.cs" />
     <Compile Include="OpusService.cs" />
     <Compile Include="Repository\BaseRepository.cs" />

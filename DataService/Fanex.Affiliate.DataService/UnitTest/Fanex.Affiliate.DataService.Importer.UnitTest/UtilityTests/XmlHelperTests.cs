@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,15 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.UtilityTests
             var json = @"[{""OS"":""1"",""areaName"":""Beijing""}]";
             var result = XmlHelper.ParseToXDocumentFromJson(value, "transaction");
             Assert.NotNull(result);
+        }
+
+        [Theory]
+        [InlineData(@"[{""OS"":""1"",""areaName"":""Beijing""}]")]
+        [InlineData(@"[{""OS"":""1"",""areaName"":""Beijing""},{""OS"":""1"",""areaName"":""Beijing""}]")]
+        public void JsonConvertToDictionary_WhenCall_ReturnNotNull(string value)
+        {
+            var result = JsonConvert.DeserializeObject<Dictionary<string, string>[]>(value);
+            Assert.NotEmpty(result);
         }
     }
 }
