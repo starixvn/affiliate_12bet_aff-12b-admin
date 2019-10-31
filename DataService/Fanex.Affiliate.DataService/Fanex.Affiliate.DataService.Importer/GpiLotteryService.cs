@@ -109,6 +109,7 @@ namespace Fanex.Affiliate.DataService.Importer
             queryParam.Add("sDate", param.SDate.ToString(dateTimeFormat));
             queryParam.Add("eDate", param.EDate.ToString(dateTimeFormat));
             queryParam.Add("status", GpiHelper.GetTransactionStatusName(param.TransactionStatus));
+            queryParam.Add("password", param.Password);
             queryParam.Add("pageNumber", param.PageNumber.ToString());
             queryParam.Add("pageSize", param.PageSize.ToString());
             return queryParam;
