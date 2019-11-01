@@ -230,6 +230,7 @@
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
     <Compile Include="DTO\Administrator\AdministratorInfo.cs" />
     <Compile Include="DTO\Administrator\DepartmentInfo.cs" />
+    <Compile Include="DTO\Administrator\PolicyInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
     <Compile Include="DTO\AffTypeInfo.cs" />
@@ -360,7 +361,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repository\Administrator\AdministratorRepository.cs" />
     <Compile Include="Repository\Administrator\DepartmentRepository.cs" />
+    <Compile Include="Repository\Administrator\IAdministratorRepository.cs" />
     <Compile Include="Repository\Administrator\IDepartmentRepository.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
@@ -464,7 +467,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\Administrator\AdministratorService.cs" />
     <Compile Include="Services\Administrator\DepartmentService.cs" />
+    <Compile Include="Services\Administrator\IAdministratorService.cs" />
     <Compile Include="Services\Administrator\IDepartmentService.cs" />
     <Compile Include="Services\AffiliateService.cs" />
     <Compile Include="Services\AffTypeService.cs" />

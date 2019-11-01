@@ -78,6 +78,7 @@ export const Content = (props) => {
                     bodyHeight={300}
                     header={_renderHeader()}
                     body={_renderDataSection(props.gridData)}
+                    containerPadding={20}
                     shouldResetScrollPosition={props.shouldResetScrollPosition}
                 />
             </div>

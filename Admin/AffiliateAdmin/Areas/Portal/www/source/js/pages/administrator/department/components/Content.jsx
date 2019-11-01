@@ -143,13 +143,14 @@ export class Content extends PureComponent {
                 <div className="my-2">
                     <Button outline type="button" onClick={() => this._handleEditDepartment(0)}>Add Dept<span className="oi oi-plus ml-2"></span></Button>
                 </div>
-                <div className="Department-list-content table-responsive table-striped my-2">
+                <div className="department-list-content table-responsive table-striped my-2">
                     <Table
                         minWidth={1000}
                         autoWidth={true}
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}
+                        containerPadding={20}
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>

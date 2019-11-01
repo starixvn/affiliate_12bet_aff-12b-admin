@@ -144,6 +144,7 @@ export class Content extends PureComponent {
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}
+                        containerPadding={20}
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>

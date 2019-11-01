@@ -100,10 +100,12 @@ export const Content = (props) => {
         <div className="data-content">
             <div className="message-content table-responsive table-striped my-2">
                 <Table
-                    maxWidth={1000}
+                    minWidth={1000}
+                    autoWidth={true}
                     bodyHeight={300}
                     header={_renderHeader()}
                     body={_renderDataSection(props.gridData)}
+                    containerPadding={20}
                     isPaging={true}
                     pageOption={props.pagingOption}
                     onPaging={_handlePaging}

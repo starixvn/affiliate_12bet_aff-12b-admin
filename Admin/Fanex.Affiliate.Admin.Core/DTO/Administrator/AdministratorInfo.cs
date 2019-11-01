@@ -11,9 +11,15 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Administrator
 
         public string FirstName { get; set; }
 
-        public string IsOpen { get; set; }
+        public string LastName { get; set; }
+
+        public bool IsOpen { get; set; }
 
         public string Creator { get; set; }
+
+        public int GroupId { get; set; }
+
+        public string GroupName { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
