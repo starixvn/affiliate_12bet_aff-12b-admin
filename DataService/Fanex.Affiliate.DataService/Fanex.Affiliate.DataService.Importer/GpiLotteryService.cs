@@ -27,34 +27,31 @@ namespace Fanex.Affiliate.DataService.Importer
             _thirdPartyProductRepository.ImportData(Products.GPILottery, data, 0);
         }
 
-        public override IEnumerable<string>GetRawDataList(DateTime startDate, DateTime endDate)
+        public override IEnumerable<string>GetRawDataList(DateTime startTime, DateTime endTime)
         {
-            var rawDataList = new List<string>();
-            if (DateTime.Compare(startDate, endDate) >= 0)
-            {
-                throw new ArgumentException($"Start date: {startDate} is later or equal than end date: {endDate}");
-            }
+            if (DateTime.Compare(startTime, endTime) >= 0)
+                throw new ArgumentException($"Start date: {startTime} is later or equal than end date: {endTime}");
+            
 
             var pageNumber = 1;
             var paramForDateTime = new GpiParam()
             {
-                SDate = startDate,
-                EDate = endDate
+                SDate = startTime,
+                EDate = endTime
             };
 
             var paramForFirstPage = BuildParam(paramForDateTime, 1);          
             var rawData = GetRawData(paramForFirstPage);
-            rawDataList.Add(rawData);
+            yield return rawData;
 
             while(HasAnotherPage(rawData))
             {
                 pageNumber++;
                 var paramNextPage = BuildParam(paramForDateTime, pageNumber);
                 rawData = GetRawData(paramNextPage);
-                rawDataList.Add(rawData);
+                yield return rawData;
             }
 
-            return rawDataList;
         }
 
         protected override string ConvertToXmlString(string data)

@@ -9,9 +9,9 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public interface IImporterService
     {
-        IEnumerable<string> GetXmlDataList(DateTime startDate, DateTime endDate);
-        IEnumerable<string> GetRawDataList(DateTime startDate, DateTime endDate);
+        IEnumerable<string> GetXmlDataList(DateTime startTime, DateTime endTime);
+        IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime);
         void Import(string data);
-        void Import(DateTime startDate, DateTime endDate);
+        void Import(DateTime startTime, DateTime endTime);
     }
 }

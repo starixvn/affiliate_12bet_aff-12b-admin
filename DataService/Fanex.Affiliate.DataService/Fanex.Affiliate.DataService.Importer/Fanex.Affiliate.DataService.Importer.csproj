@@ -106,6 +106,7 @@
     <Compile Include="Enum\SystemType.cs" />
     <Compile Include="Exceptions\ThirdPartyProductException.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
+    <Compile Include="FlowGamingService.cs" />
     <Compile Include="GpiLotteryService.cs" />
     <Compile Include="IBetsoftService.cs" />
     <Compile Include="ICrystalGpiService.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
     <Compile Include="MetaModels\CrystalGpi\CrystalGpiParam.cs" />
     <Compile Include="MetaModels\Ebet\EbetParam.cs" />
+    <Compile Include="MetaModels\FlowGaming\FlowGamingParam.cs" />
     <Compile Include="MetaModels\GPI\GpiParam.cs" />
     <Compile Include="MetaModels\IParamQuery.cs" />
     <Compile Include="MetaModels\ISoftbet\ISoftbetApiParam.cs" />
@@ -130,6 +132,8 @@
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IThirdPartyProductRepository.cs" />
     <Compile Include="Repository\ThirdPartyProductRepository.cs" />
+    <Compile Include="ResponseChecker\FlowGamingResponseChecker.cs" />
+    <Compile Include="ResponseChecker\IThirdPartyResponseChecker.cs" />
     <Compile Include="Utilities\DateTimeConverter.cs" />
     <Compile Include="Utilities\EbetConfigHelper.cs" />
     <Compile Include="Utilities\DataSimulator.cs" />

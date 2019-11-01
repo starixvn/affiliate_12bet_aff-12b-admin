@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,10 +50,16 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.UtilityTests
         [Theory]
         [InlineData(@"[{""OS"":""1"",""areaName"":""Beijing""}]")]
         [InlineData(@"[{""OS"":""1"",""areaName"":""Beijing""},{""OS"":""1"",""areaName"":""Beijing""}]")]
-        public void JsonConvertToDictionary_WhenCall_ReturnNotNull(string value)
+        public void JsonConvertToDictionaryArray_WhenCall_ReturnNotNull(string value)
         {
             var result = JsonConvert.DeserializeObject<Dictionary<string, string>[]>(value);
             Assert.NotEmpty(result);
+        }
+
+        [Fact]
+        public void ParseToXDocument_WhenCallLBKenoXmlString_ReturnNotNull()
+        {
+            //var filePath = Path.Combine(Directory.GetCurrentDirectory)
         }
     }
 }

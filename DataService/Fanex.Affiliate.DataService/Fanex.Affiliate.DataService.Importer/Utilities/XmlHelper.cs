@@ -21,22 +21,21 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
         }
 
         /// <summary>
-        /// Convert json to XDocument
+        /// Convert json to XDocument.
+        /// Root tag name is root.
         /// </summary>
         /// <param name="json"></param>
-        /// <param name="arrayName">root that is appended to json in case no root for an array in json</param>
+        /// <param name="arrayTagName">Array tag in case json is an array. The default tag for array is root</param>
         /// <returns></returns>
-        public static XDocument ParseToXDocumentFromJson(string json, string arrayName = "")
+        public static XDocument ParseToXDocumentFromJson(string json, string rootTagName = "root", string arrayTagName = "")
         {
             try
             {
                 var builder = new StringBuilder();
-                var result = json;
-                if (!string.IsNullOrEmpty(arrayName))
-                {
-                    result = builder.Append("{\"").Append("Response").Append('"').Append(':').Append(json).Append('}').ToString();
-                }
-                return JsonConvert.DeserializeXNode(result, "root", true);
+                var arrayTag = String.IsNullOrEmpty(arrayTagName) ? "root" : arrayTagName;
+                var rootTag = String.IsNullOrEmpty(rootTagName) ? "root" : rootTagName;
+                var result = builder.Append("{\"").Append(arrayTag).Append('"').Append(':').Append(json).Append('}').ToString();
+                return JsonConvert.DeserializeXNode(result, rootTag, true);
             }
             catch(Exception ex)
             {

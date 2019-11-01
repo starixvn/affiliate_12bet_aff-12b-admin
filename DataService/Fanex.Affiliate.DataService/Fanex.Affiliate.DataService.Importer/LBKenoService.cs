@@ -34,10 +34,10 @@ namespace Fanex.Affiliate.DataService.Importer
             return data;
         }
 
-        public override sealed IEnumerable<string> GetRawDataList(DateTime startDate, DateTime endDate)
+        public override sealed IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime)
         {
             var rawDatas = new List<string>();
-            var paramToRequest = BuildParam(startDate, endDate);
+            var paramToRequest = BuildParam(startTime, endTime);
 
             var data = GetRawData(paramToRequest);
             rawDatas.Add(data);

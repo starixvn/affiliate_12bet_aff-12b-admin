@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
+using System.Data.Common;
 
 namespace Fanex.Affiliate.DataService.Importer.Repository
 {

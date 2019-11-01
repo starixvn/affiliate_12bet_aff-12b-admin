@@ -18,12 +18,12 @@ namespace Fanex.Affiliate.DataService.Importer
             _appSetting = appSetting ?? new AppSettings();
             _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
-        public abstract IEnumerable<string> GetRawDataList(DateTime startDate, DateTime endDate);
+        public abstract IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime);
 
-        public IEnumerable<string> GetXmlDataList(DateTime startDate, DateTime endDate)
+        public IEnumerable<string> GetXmlDataList(DateTime startTime, DateTime endTime)
         {
             var xmls = new List<string>();
-            var rawDatas = GetRawDataList(startDate, endDate);
+            var rawDatas = GetRawDataList(startTime, endTime);
             foreach (var data in rawDatas)
             {
                 var xml = ConvertToXmlString(data);
@@ -39,9 +39,9 @@ namespace Fanex.Affiliate.DataService.Importer
             throw new NotImplementedException();
         }
 
-        public void Import(DateTime startDate, DateTime endDate)
+        public void Import(DateTime startTime, DateTime endTime)
         {
-            var xmls = GetXmlDataList(startDate, endDate);
+            var xmls = GetXmlDataList(startTime, endTime);
             foreach (var xml in xmls)
             {
                 Import(xml);
