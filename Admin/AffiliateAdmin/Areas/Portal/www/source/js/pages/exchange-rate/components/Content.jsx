@@ -6,7 +6,6 @@ import { Button } from 'reactstrap';
 
 import { headerText, globalResource, rateType, exchangeUs$Id } from '../libs/constants';
 import { setTogglePopup, setSelectedExchangeRate, setShouldResetScrollPosition } from '../actions';
-import { format } from '../../../modules/numberFormat';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -61,8 +60,8 @@ export class Content extends PureComponent {
     _buildDataRow(dataItem, index) {
         const { isToday } = this.state;
         const { hasPermission } = this.props;
-        const actualRate = format(dataItem.ActualRate, 5);
-        const buyingRate = format(dataItem.BuyingRate, 5);
+        const actualRate = dataItem.ActualRate;
+        const buyingRate = dataItem.BuyingRate;
 
         return (
             <Row key={`dataRow-${index}`}>

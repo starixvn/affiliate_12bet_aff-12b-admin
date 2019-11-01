@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.DTO.ExchangeRate;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate;
 using Fanex.Affiliate.Admin.Core.Repository;
+using DNAide.Utils;
 
 namespace Fanex.Affiliate.Admin.Core.Services.ExchangeRate
 {
@@ -27,8 +28,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.ExchangeRate
                         {
                             ExchangeId = Convert.ToInt32(reader["ExchangeId"]),
                             Currency = Convert.ToString(reader["Currency"]),
-                            ActualRate = Convert.ToDecimal(reader["ActualRate"]),
-                            BuyingRate = Convert.ToDecimal(reader["BuyingRate"])
+                            ActualRate = NumberFormat.DecFormat(Convert.ToDecimal(reader["ActualRate"]), 5),
+                            BuyingRate = NumberFormat.DecFormat(Convert.ToDecimal(reader["BuyingRate"]), 5)
                         });
                     }
                 }
