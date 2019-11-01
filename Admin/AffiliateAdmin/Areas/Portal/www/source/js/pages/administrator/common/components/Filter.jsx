@@ -26,6 +26,7 @@ export default class Filter extends PureComponent {
 
     handleSearch = () => {
         this.props.setParam(this.state);
+        this.props.fetchData(this.state);
     }
 
     render() {

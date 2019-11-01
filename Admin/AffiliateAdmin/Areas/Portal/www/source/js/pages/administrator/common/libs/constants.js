@@ -20,6 +20,7 @@ export const headerText = {
 
 export const defaultState = {
     selectedUserId: 0,
+    isOpen: false,
     isShowUserPopup: false,
     isShowPolicyPopup: false,
     isShowDepartmentPopup: false,

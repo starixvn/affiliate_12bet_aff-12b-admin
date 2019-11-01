@@ -115,21 +115,33 @@ export class Content extends PureComponent {
                     }
                 </Cell>
                 <Cell className="text-center" title={description}>{description}</Cell>
-                <Cell className="text-center" title="Edit Role Policy">
-                    <Button color="link p-0" onClick={() => this._handleEditPolicy(dataItem.DepartmentId)}>
-                        Role Policy
-                    </Button>
-                </Cell>
-                <Cell className="text-center" title="Edit Department">
-                    <Button color="link p-0" onClick={() => this._handleEditDepartment(dataItem.DepartmentId)}>
-                        <span className="oi oi-pencil text-secondary"></span>
-                    </Button>
-                </Cell>
-                <Cell className="text-center" title="Delete Department">
-                    <Button color="link p-0" onClick={() => this._handleDeleteDepartment(dataItem.DepartmentId)}>
-                        <span className="oi oi-x text-danger"></span>
-                    </Button>
-                </Cell>
+                {
+                    departmentName.toLowerCase() === 'none' ? (
+                        <React.Fragment>
+                            <Cell></Cell>
+                            <Cell></Cell>
+                            <Cell></Cell>
+                        </React.Fragment>
+                    ) : (
+                            <React.Fragment>
+                                <Cell className="text-center" title="Edit Role Policy">
+                                    <Button color="link p-0" onClick={() => this._handleEditPolicy(dataItem.DepartmentId)}>
+                                        Role Policy
+                                </Button>
+                                </Cell>
+                                <Cell className="text-center" title="Edit Department">
+                                    <Button color="link p-0" onClick={() => this._handleEditDepartment(dataItem.DepartmentId)}>
+                                        <span className="oi oi-pencil text-secondary"></span>
+                                    </Button>
+                                </Cell>
+                                <Cell className="text-center" title="Delete Department">
+                                    <Button color="link p-0" onClick={() => this._handleDeleteDepartment(dataItem.DepartmentId)}>
+                                        <span className="oi oi-x text-danger"></span>
+                                    </Button>
+                                </Cell>
+                            </ React.Fragment>
+                        )
+                }
             </Row>
         )
     }

@@ -1446,6 +1446,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\InsertUpdateForm.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />

@@ -36,8 +36,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if(ModelState.IsValid)
             {
-                param.OldPassword = CryptographyHelper.Encrypt(param.OldPassword);
-                param.NewPassword = CryptographyHelper.Encrypt(param.NewPassword);
+                param.OldPassword = CryptographyHelper.Encrypt(param.OldPassword.Trim());
+                param.NewPassword = CryptographyHelper.Encrypt(param.NewPassword.Trim());
                 param.UserId = SessionService.UserId;
                 param.Ip = Request.UserHostAddress;
 

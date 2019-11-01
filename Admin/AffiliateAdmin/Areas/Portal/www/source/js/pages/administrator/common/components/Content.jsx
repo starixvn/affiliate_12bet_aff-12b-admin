@@ -4,6 +4,8 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource, defaultState } from '../libs/constants';
+import InsertUpdateForm from './InsertUpdateForm';
+import NotificationPopup from '../../../common/components/NotificationPopup';
 
 export default class Content extends PureComponent {
     constructor(props) {
@@ -12,40 +14,53 @@ export default class Content extends PureComponent {
         this.state = defaultState;
     }
 
-    componentDidUpdate(prevProps) {
-        const { param } = this.props
-        if (param && param !== prevProps.param) {
-            this.props.fetchData(param);
-        }
+    _handleChangeStatus = (selectedUserId, isOpen) => {
+        this.props.setShouldResetScrollPosition(false);
+        this.setState({ message: `Are you sure you want to change status for this customer?`, isConfirmPopup: true, selectedUserId, isOpen });
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
         this.setState({ message: '' });
 
-        const { selectedUserId } = this.state;
+        const { selectedUserId, isOpen } = this.state;
         if (confirmResult && selectedUserId) {
-
+            this._handleSaveStatus(selectedUserId, isOpen);
         }
     }
 
-    _handleChangeStatus = (selectedUserId) => {
-        this.props.setShouldResetScrollPosition(false);
-        this.setState({ message: `Are you sure you want to change status for this customer?`, isConfirmPopup: true, selectedUserId });
+    _handleSaveStatus = async (selectedUserId, isOpen) => {
+        const result = await this.props.changeStatus({ selectedUserId, isOpen });
+
+        if (result && result.IsSuccessful) {
+            this.setState({ message: `The status has been updated successfully!`, isConfirmPopup: false });
+
+            this.handleFetchData();
+        } else {
+            this.setState({ message: !!result ? result.Message : 'Update is failed!', isConfirmPopup: false });
+        }
+    }
+
+    handleFetchData = () => {
+        this.props.fetchData(this.props.param);
     }
 
     _handleShowUserPopup = (userId) => {
+        this.props.setShouldResetScrollPosition(false);
         this.setState({ selectedUserId: userId, isShowUserPopup: true });
     }
 
     _handleShowPolicyPopup = (userId) => {
+        this.props.setShouldResetScrollPosition(false);
         this.setState({ selectedUserId: userId, isShowPolicyPopup: true });
     }
 
     _handleShowDepartmentPopup = (userId) => {
+        this.props.setShouldResetScrollPosition(false);
         this.setState({ selectedUserId: userId, isShowDepartmentPopup: true });
     }
 
     _handleShowPasswordPopup = (userId) => {
+        this.props.setShouldResetScrollPosition(false);
         this.setState({ selectedUserId: userId, isShowPasswordPopup: true });
     }
 
@@ -95,7 +110,7 @@ export default class Content extends PureComponent {
         const creator = htmlDecode(dataItem.Creator);
 
         return (
-            <Row key={`dataRow-${index}`}>
+            <Row key={`dataRow-${index}`} className={dataItem.IsOpen ? "" : "is-closed"}>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={userName}>
                     <Button color="link p-0" onClick={() => this._handleShowUserPopup(dataItem.UserId)}>
@@ -108,7 +123,7 @@ export default class Content extends PureComponent {
                 <Cell className="text-center" title={lastName}>{lastName}</Cell>
                 <Cell className="text-center" title="Change Status">
                     Open
-                    <input type="checkbox" className="ml-1" onChange={() => this._handleChangeStatus(dataItem.UserId)} checked={dataItem.IsOpen} />
+                    <input type="checkbox" className="ml-1" onChange={() => this._handleChangeStatus(dataItem.UserId, !dataItem.IsOpen)} checked={dataItem.IsOpen} />
                 </Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDate}>{dataItem.CreatedDate}</Cell>
@@ -122,17 +137,21 @@ export default class Content extends PureComponent {
                         {dataItem.GroupName}
                     </Button>
                 </Cell>
-                <Cell className="text-center" title="Change Password">
-                    <Button color="link p-0" onClick={() => this._handleShowPasswordPopup(dataItem.UserId)}>
-                        <span className="oi oi-pencil text-secondary"></span>
-                    </Button>
-                </Cell>
+                {
+                    dataItem.IsOpen ? (
+                        <Cell className="text-center" title="Change Password">
+                            <Button color="link p-0" onClick={() => this._handleShowPasswordPopup(dataItem.UserId)}>
+                                <span className="oi oi-pencil text-secondary"></span>
+                            </Button>
+                        </Cell>
+                    ) : (<Cell></Cell>)
+                }
             </Row>
         )
     }
 
     render() {
-        const { message, isConfirmPopup } = this.state;
+        const { selectedUserId, isOpen, isShowUserPopup, isShowPolicyPopup, isShowDepartmentPopup, isShowPasswordPopup, message, isConfirmPopup } = this.state;
         const { gridData, shouldResetScrollPosition } = this.props;
 
         return gridData && (
@@ -146,6 +165,13 @@ export default class Content extends PureComponent {
                         body={this._renderDataSection(gridData)}
                         containerPadding={20}
                         shouldResetScrollPosition={shouldResetScrollPosition}
+                    />
+                    <InsertUpdateForm
+                        isShowPopup={isShowUserPopup}
+                        selectedUserId={selectedUserId}
+                        closePopup={this.handleClosePopup}
+                        fetchData={this.handleFetchData}
+                        toggleLoader={this.props.toggleLoader}
                     />
                 </div>
                 {

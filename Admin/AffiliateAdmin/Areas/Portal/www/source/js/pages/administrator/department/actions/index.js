@@ -46,13 +46,17 @@ export const setGridData = (data) => {
     }
 }
 
-export const fetchData = (market) => async (dispatch) => {
+export const getDepartmentList = async () => {
+    const url = 'Portal/Department/GetDepartmentList';
+    const response = await post(url);
+
+    return response && response.status === 200 ? response.data : [];
+}
+
+export const fetchData = () => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const url = 'Portal/Department/GetDepartmentList';
-    const response = await post(url, { market });
-
-    const data = response && response.status === 200 ? response.data : [];
+    const data = await getDepartmentList();
 
     dispatch(setGridData(data));
     dispatch(setShouldResetScrollPosition(true));

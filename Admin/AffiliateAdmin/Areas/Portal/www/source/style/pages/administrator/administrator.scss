@@ -1,1 +1,13 @@
 ﻿@import "../../components/modal";
+
+.common-list-content {
+    &.table-striped {
+        tbody {
+            .is-closed {
+                td {
+                    background-color: #D6E0F6;
+                }
+            }
+        }
+    }
+}

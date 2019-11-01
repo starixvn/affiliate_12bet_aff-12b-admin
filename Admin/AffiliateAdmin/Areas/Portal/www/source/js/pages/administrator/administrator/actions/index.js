@@ -27,8 +27,8 @@ export const setGridData = (data) => {
 
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
-    console.log(param);
-    const url = 'Portal/Administrator/GetAdminList';
+
+    const url = 'Portal/Administrator/GetUserList';
     const response = await post(url, param);
 
     const data = response && response.status === 200 ? response.data : [];
@@ -38,15 +38,8 @@ export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
-export const insertAdmin = (param) => async () => {
-    const url = 'Portal/Administrator/InsertAdmin';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const updateAdmin = (param) => async () => {
-    const url = 'Portal/Administrator/UpdateAdmin';
+export const changeStatus = (param) => async () => {
+    const url = 'Portal/Administrator/ChangeStatus';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
