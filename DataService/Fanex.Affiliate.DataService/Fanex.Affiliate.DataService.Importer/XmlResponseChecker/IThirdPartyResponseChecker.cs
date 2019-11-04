@@ -13,6 +13,6 @@ namespace Fanex.Affiliate.DataService.Importer.ResponseChecker
         /// Check that xml 
         /// </summary>
         /// <param name="data"></param>
-        void CheckData(string data);
+        void CheckXml(XDocument xml);
     }
 }

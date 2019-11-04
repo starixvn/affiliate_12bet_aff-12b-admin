@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
@@ -26,12 +27,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public override sealed void Import(string data)
         {
-            _thirdPartyProductRepository.ImportData(Products.LBKeno, data, 0);
-        }
-
-        protected override sealed string ConvertToXmlString(string data)
-        {
-            return data;
+            _thirdPartyProductRepository.ImportData(Products.LBKenoId, data, 0);
         }
 
         public override sealed IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime)
@@ -109,6 +105,16 @@ namespace Fanex.Affiliate.DataService.Importer
             if (!System.Enum.TryParse(transactionName, true, out result))
                 throw new ArgumentException($"Wrong GpiTransactionStatus {transactionName}");
             return result;
+        }
+
+        protected override void CheckXmlResponseData(XDocument xml)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override XDocument ConvertToXml(string data)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,7 +1,10 @@
-﻿using Fanex.Affiliate.DataService.Importer.Exceptions;
+﻿using Fanex.Affiliate.DataService.Importer.Constants;
+using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.FlowGaming;
 using Fanex.Affiliate.DataService.Importer.Repository;
+using Fanex.Affiliate.DataService.Importer.ResponseChecker;
 using Fanex.Affiliate.DataService.Importer.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -9,19 +12,26 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public class FlowGamingService : ImporterXmlServiceBase
+    public class TopazService : ImporterXmlServiceBase
     {
         private const string CALL_LIMIT_EXCEEDED = "CALL_LIMIT_EXCEEDED";
         //60s to request next data for same brand_id request
         private const int TIME_BETWEEN_TWO_REQUEST = 60000;
         private const int MAX_TIME_RANGE_TRANSACTION = 15;
 
-        public FlowGamingService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyRepository = null) : base(appSetting, thirdPartyRepository)
+        public TopazService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyRepository = null) : base(appSetting, thirdPartyRepository)
         {
+        }
+
+        public override void Import(string data)
+        {
+            _thirdPartyProductRepository.ImportData(Products.TopazId, data, 0);
         }
 
         public override IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime)
@@ -32,14 +42,30 @@ namespace Fanex.Affiliate.DataService.Importer
             var startRequestTime = startTime;
             var compareEndDate = startRequestTime.AddMinutes(MAX_TIME_RANGE_TRANSACTION);
             var endRequestTime = GetEndRequestTime(compareEndDate, endTime);
+            var isFirstRequest = true;
+
             while (DateTime.Compare(endRequestTime, startRequestTime) > 0)
             {
+                if (!isFirstRequest)
+                    Thread.Sleep(TIME_BETWEEN_TWO_REQUEST);
+                isFirstRequest = false;
+
                 var data = GetRawData(startRequestTime, endRequestTime);
+                if (IsExceedCallLimit(data))
+                {
+                    Thread.Sleep(TIME_BETWEEN_TWO_REQUEST);
+                    data = GetRawData(startRequestTime, endRequestTime);
+                }
                 yield return data;
 
                 startRequestTime = endRequestTime;
-                endRequestTime = GetEndRequestTime(startRequestTime.AddMinutes(MAX_TIME_RANGE_TRANSACTION), endTime);                
+                endRequestTime = GetEndRequestTime(startRequestTime.AddMinutes(MAX_TIME_RANGE_TRANSACTION), endTime);             
             }
+        }
+
+        private bool IsExceedCallLimit(string data)
+        {
+            return data.Contains(CALL_LIMIT_EXCEEDED);
         }
 
         private string GetRawData(DateTime startRequestDate, DateTime endRequestDate)
@@ -68,7 +94,7 @@ namespace Fanex.Affiliate.DataService.Importer
             return new FlowGamingParam()
             {
                 BrandId = _appSetting.GetValue("TopazBrandId"),
-                BrandPassword = _appSetting.GetValue("TopazPassword"),
+                BrandPassword = _appSetting.GetValue("TopazBrandPassword"),
                 StartTime = flowGamingParam.StartTime,
                 EndTime = flowGamingParam.EndTime
             };
@@ -79,10 +105,18 @@ namespace Fanex.Affiliate.DataService.Importer
             return DateTime.Compare(compareTime, endTime) > 0 ? endTime : compareTime;
         }
 
-        protected override string ConvertToXmlString(string data)
+        protected override void CheckXmlResponseData(XDocument xml)
+        {
+            IThirdPartyResponseChecker checker = new TopazResponseChecker();
+            checker.CheckXml(xml);
+        }
+
+        protected override XDocument ConvertToXml(string data)
         {
             var xml = XmlHelper.ParseToXDocumentFromJson(data);
-            return xml.ToString();
+            if (xml == null)
+                throw new ThirdPartyProductException($"FlowGaming - Cant convert json response to xml - {data}");
+            return xml;
         }
     }
 }

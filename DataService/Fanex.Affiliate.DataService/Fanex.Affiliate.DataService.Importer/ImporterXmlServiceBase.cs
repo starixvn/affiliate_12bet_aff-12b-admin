@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
@@ -22,22 +23,20 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public IEnumerable<string> GetXmlDataList(DateTime startTime, DateTime endTime)
         {
-            var xmls = new List<string>();
             var rawDatas = GetRawDataList(startTime, endTime);
             foreach (var data in rawDatas)
             {
-                var xml = ConvertToXmlString(data);
-                xmls.Add(xml);
+                var xml = ConvertToXml(data);
+                CheckXmlResponseData(xml);
+                yield return xml.ToString();
             }
-            return xmls;
         }
 
-        protected abstract string ConvertToXmlString(string data);
+        protected abstract void CheckXmlResponseData(XDocument xml);
 
-        public virtual void Import(string data)
-        {
-            throw new NotImplementedException();
-        }
+        protected abstract XDocument ConvertToXml(string data);
+
+        public abstract void Import(string data);
 
         public void Import(DateTime startTime, DateTime endTime)
         {
@@ -46,6 +45,12 @@ namespace Fanex.Affiliate.DataService.Importer
             {
                 Import(xml);
             }
+        }
+        
+        protected void EnsureEndTimeLaterThanStartTime(DateTime startTime, DateTime endTime)
+        {
+            if (DateTime.Compare(startTime, endTime) >= 0)
+                throw new ArgumentException($"Start date {startTime} is later or equal than end date: {endTime}");
         }
     }
 }

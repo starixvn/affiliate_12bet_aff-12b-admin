@@ -106,7 +106,7 @@
     <Compile Include="Enum\SystemType.cs" />
     <Compile Include="Exceptions\ThirdPartyProductException.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
-    <Compile Include="FlowGamingService.cs" />
+    <Compile Include="TopazService.cs" />
     <Compile Include="GpiLotteryService.cs" />
     <Compile Include="IBetsoftService.cs" />
     <Compile Include="ICrystalGpiService.cs" />
@@ -114,7 +114,7 @@
     <Compile Include="IEbetService.cs" />
     <Compile Include="IImporterService.cs" />
     <Compile Include="IISoftbetService.cs" />
-    <Compile Include="ImporterImxServiceBase.cs" />
+    <Compile Include="ImporterXmlServiceBase.cs" />
     <Compile Include="IOpusService.cs" />
     <Compile Include="LBKenoService.cs" />
     <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
@@ -132,8 +132,8 @@
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IThirdPartyProductRepository.cs" />
     <Compile Include="Repository\ThirdPartyProductRepository.cs" />
-    <Compile Include="ResponseChecker\FlowGamingResponseChecker.cs" />
-    <Compile Include="ResponseChecker\IThirdPartyResponseChecker.cs" />
+    <Compile Include="XmlResponseChecker\TopazResponseChecker.cs" />
+    <Compile Include="XmlResponseChecker\IThirdPartyResponseChecker.cs" />
     <Compile Include="Utilities\DateTimeConverter.cs" />
     <Compile Include="Utilities\EbetConfigHelper.cs" />
     <Compile Include="Utilities\DataSimulator.cs" />

@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.Enum;
 using Fanex.Affiliate.DataService.Importer.Enum.GPI;
+using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.GPI;
 using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
@@ -24,15 +26,13 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public override void Import(string data)
         {
-            _thirdPartyProductRepository.ImportData(Products.GPILottery, data, 0);
+            _thirdPartyProductRepository.ImportData(Products.GPILotteryId, data, 0);
         }
 
         public override IEnumerable<string>GetRawDataList(DateTime startTime, DateTime endTime)
         {
-            if (DateTime.Compare(startTime, endTime) >= 0)
-                throw new ArgumentException($"Start date: {startTime} is later or equal than end date: {endTime}");
+            EnsureEndTimeLaterThanStartTime(startTime, endTime);
             
-
             var pageNumber = 1;
             var paramForDateTime = new GpiParam()
             {
@@ -40,23 +40,45 @@ namespace Fanex.Affiliate.DataService.Importer
                 EDate = endTime
             };
 
-            var paramForFirstPage = BuildParam(paramForDateTime, 1);          
-            var rawData = GetRawData(paramForFirstPage);
-            yield return rawData;
-
-            while(HasAnotherPage(rawData))
+            while(true)
             {
-                pageNumber++;
-                var paramNextPage = BuildParam(paramForDateTime, pageNumber);
-                rawData = GetRawData(paramNextPage);
+                var rawData = GetRawDataByPage(paramForDateTime, pageNumber);
                 yield return rawData;
+                pageNumber++;
+                if (!HasAnotherPage(rawData))
+                    break;
             }
-
         }
 
-        protected override string ConvertToXmlString(string data)
+        protected override XDocument ConvertToXml(string data)
         {
-            return XmlHelper.ParseToXDocumentFromJson(data, "item").ToString();
+            var json = BuildJsonString(data);
+            var xml = XmlHelper.ParseToXDocumentFromJson(json, "item");
+            if (xml == null)
+                throw new ThirdPartyProductException($"GpiLottery - Cant convert response data to xml - {json}");
+            return xml;
+        }
+
+        private string BuildJsonString(string data)
+        {
+            var builder = new StringBuilder();
+            builder.Append("{")
+                .Append("response")
+                .Append(":")
+                .Append(data)
+                .Append("}");
+            return builder.ToString();
+        }
+
+        protected override void CheckXmlResponseData(XDocument xml)
+        {
+        }
+
+        private string GetRawDataByPage(GpiParam param, int page = 1)
+        {
+            var paramForFirstPage = BuildParam(param, page);
+            var rawData = GetRawData(paramForFirstPage);
+            return rawData;
         }
 
         private bool HasAnotherPage(string json)

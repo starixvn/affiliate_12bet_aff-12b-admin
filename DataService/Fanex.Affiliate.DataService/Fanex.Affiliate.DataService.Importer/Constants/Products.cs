@@ -12,12 +12,12 @@
 
         public const int OpusProductId = 14;
 
-        public const int GPILottery = 20;
+        public const int GPILotteryId = 20;
 
-        public const int VRLottery = 21;
+        public const int VRLotteryId = 21;
 
-        public const int LBKeno = 22;
+        public const int LBKenoId = 22;
 
-        public const int Topaz = 23;
+        public const int TopazId = 23;
     }
 }

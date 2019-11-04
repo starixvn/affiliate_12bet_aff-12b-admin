@@ -21,16 +21,10 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.UtilityTests
             Assert.NotNull(result);
         }
 
-        [Fact]
-        public void ParseToXDocumentFromJson_CallWithJsonFormatHasNoRoot_ReturnNull()
-        {
-            var json = @"[{""OS"":""1"",""areaName"":""Beijing""}]";
-            var result = XmlHelper.ParseToXDocumentFromJson(json);
-            Assert.Null(result);
-        }
-
         [Theory]
         [InlineData("test 1")]
+        [InlineData(@"[{""OS"":""1"",""areaName"":""Beijing""},{""OS"":""1"",""areaName"":""Beijing""}]")]
+        [InlineData(@"[{""OS"":""1"",""areaName"":""Beijing""}]")]
         public void ParseToXDocumentFromJson_CallWithWrongJsonFormat_ReturnNull(string value)
         {
             var result = XmlHelper.ParseToXDocumentFromJson(value);
@@ -38,11 +32,10 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.UtilityTests
         }
 
         [Theory]
-        [InlineData(@"[{""OS"":""1"",""areaName"":""Beijing""}]")]
-        [InlineData(@"[{""OS"":""1"",""areaName"":""Beijing""},{""OS"":""1"",""areaName"":""Beijing""}]")]
+        [InlineData(@"{""status"":""FAIL"",""message"":null,""errors"":[{""field"":""brandPassword"",""error"":""INVALID_VALUE""}]}")]
+        [InlineData(@"{""status"":""FAIL"",""message"":""CALL_LIMIT_EXCEEDED"",""errors"":[]}")]
         public void ParseToXDocumentFromJson_CallWithJsonFormatNoRoot_ReturnNotNull(string value)
         {
-            var json = @"[{""OS"":""1"",""areaName"":""Beijing""}]";
             var result = XmlHelper.ParseToXDocumentFromJson(value, "transaction");
             Assert.NotNull(result);
         }
@@ -54,12 +47,6 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.UtilityTests
         {
             var result = JsonConvert.DeserializeObject<Dictionary<string, string>[]>(value);
             Assert.NotEmpty(result);
-        }
-
-        [Fact]
-        public void ParseToXDocument_WhenCallLBKenoXmlString_ReturnNotNull()
-        {
-            //var filePath = Path.Combine(Directory.GetCurrentDirectory)
         }
     }
 }

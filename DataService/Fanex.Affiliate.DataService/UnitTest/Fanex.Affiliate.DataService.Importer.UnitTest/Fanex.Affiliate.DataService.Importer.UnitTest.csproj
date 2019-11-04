@@ -68,6 +68,7 @@
     <Compile Include="GPIServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilityTests\XmlHelperTests.cs" />
+    <Compile Include="XmlResponseChecker\TopazResponseCheckerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
