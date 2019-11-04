@@ -1,0 +1,198 @@
+﻿import React, { PureComponent } from 'react';
+import { Table } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
+import { globalResource } from '../libs/constants';
+import { htmlDecode } from '../../../../modules/htmlHelper';
+import { getRolePolicy, getAccountPolicyList } from '../actions';
+
+const defaultState = {
+    data: null,
+    checkedPolicies: {},
+    isShowMessage: false,
+    isSuccess: true,
+    message: ''
+}
+
+export default class InsertUpdateAccForm extends PureComponent {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            departmentList: null,
+            ...defaultState
+        }
+    }
+    componentDidUpdate(prevProps) {
+        const { selectedId, isAccountPolicy } = this.props;
+        if (selectedId && (selectedId !== prevProps.selectedId || isAccountPolicy !== prevProps.isAccountPolicy)) {
+            this._handleGetPolicyList(selectedId, isAccountPolicy);
+        }
+    }
+
+    _handleGetPolicyList = async (selectedId, isAccountPolicy) => {
+        var result = isAccountPolicy ? await getAccountPolicyList({ groupId: selectedId }) : await getRolePolicy({ departmentId: selectedId });
+
+        this.setState({ ...result });
+    }
+
+    _handleChange = (event, funcId, isGroupPolicy) => {
+        const { name, checked } = event.target;
+        const { checkedPolicies } = this.state;
+        const { individualPermission, groupPermission } = checkedPolicies[funcId];
+
+        const newPermission = Object.assign({}, isGroupPolicy ? groupPermission : individualPermission, { [name]: checked });
+        const newCheckedPolicies = Object.assign({}, checkedPolicies, {
+            [funcId]: {
+                individualPermission: isGroupPolicy ? individualPermission : newPermission,
+                groupPermission: isGroupPolicy ? newPermission : groupPermission
+            }
+        });
+
+        this.setState({ checkedPolicies: newCheckedPolicies });
+    }
+
+    _handleSubmit = async () => {
+        const { selectedId, isAccountPolicy } = this.props;
+        const { userName, password, firstName, lastName, department, isInsert } = this.state;
+
+        const message = isInsert ? "Administrator has been added successfully!" : `The ${userName} has been updated successfully!`;
+        const userInfo = Object.assign({}, { UserId: selectedUserId, userName, password, firstName, lastName, groupId: department });
+        const result = isInsert ? await insertUser(userInfo) : await updateUser(userInfo);
+
+        if (result) {
+            this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
+        } else {
+            this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
+        }
+    }
+
+    _handleShowAlert = (isSuccess, message) => {
+        this.setState({
+            message,
+            isSuccess,
+            isShowMessage: true,
+        }, () => window.setTimeout(() => this._hideMessage(isSuccess), 3000));
+    }
+
+    _hideMessage = (isSuccess) => {
+        this.setState({
+            isShowMessage: false
+        });
+
+        if (isSuccess) {
+            this._handleClosePopup();
+        }
+    }
+
+    _handleClosePopup = () => {
+        this.props.closePopup();
+
+        this.setState({ ...defaultState });
+    }
+
+    _renderHeader() {
+        const { isAccountPolicy } = this.props;
+
+        return (
+            <thead>
+                <tr>
+                    <th rowSpan="2" colSpan="2">Function</th>
+                    {
+                        isAccountPolicy && <th colSpan="2">Individual Permission</th>
+                    }
+                    <th colSpan="2">Group Permision</th>
+                </tr>
+                <tr>
+                    {
+                        isAccountPolicy && (
+                            <React.Fragment>
+                                <th>Read</th>
+                                <th>Host</th>
+                            </ React.Fragment>)
+                    }
+                    <th>Read</th>
+                    <th>Host</th>
+                </tr>
+            </thead>
+        );
+    }
+
+    _renderDataSection(dataList) {
+        const dataRows = [];
+        const { isAccountPolicy } = this.props;
+
+        if (dataList && dataList.length) {
+            const { checkedPolicies } = this.state;
+
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
+                dataRows.push(this._buildDataRow(dataItem, checkedPolicies, isAccountPolicy));
+            }
+        }
+        else {
+            dataRows.push(<tr>
+                <td className="text-center" colSpan={isAccountPolicy ? "5" : "3"}>{globalResource.NoInfo}</td>
+            </tr>);
+        }
+
+        return dataRows;
+    }
+
+    _buildDataRow(dataItem, checkedPolicies, isAccountPolicy) {
+        const funcDescription = htmlDecode(dataItem.FunctionDescription);
+        const { individualPermission, groupPermission } = checkedPolicies[dataItem.FunctionId];
+
+        return (
+            <tr key={`dataRow-${funcDescription}`}>
+                <td className="text-center" title={funcDescription} colSpan="2">{funcDescription}</td>
+                {
+                    isAccountPolicy && (
+                        <React.Fragment>
+                            <td className="text-center">
+                                <input type="checkbox" name="HasRead" onChange={(e) => this._handleChange(e, dataItem.FunctionId, false)} checked={individualPermission.HasRead} />
+                            </td>
+                            <td className="text-center">
+                                <input type="checkbox" name="HasHost" onChange={(e) => this._handleChange(e, dataItem.FunctionId, false)} checked={individualPermission.HasHost} />
+                            </td>
+                        </ React.Fragment>)
+                }
+                <td className="text-center">
+                    <input type="checkbox" name="HasRead" disabled={isAccountPolicy} onChange={(e) => this._handleChange(e, dataItem.FunctionId, true)} checked={groupPermission.HasRead} />
+                </td>
+                <td className="text-center">
+                    <input type="checkbox" name="HasHost" disabled={isAccountPolicy} onChange={(e) => this._handleChange(e, dataItem.FunctionId, true)} checked={groupPermission.HasHost} />
+                </td>
+            </tr>
+        )
+    }
+
+    render() {
+        const { data, isShowMessage, isSuccess, message } = this.state;
+        const { isAccountPolicy, name, isShowPopup } = this.props;
+        const title = isAccountPolicy ? `IT - ${name}` : `Edit Policy: ${name}`;
+
+        return data && (
+            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
+                <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
+                <ModalBody>
+                    <div className="modal-body-wrapper data-content">
+                        <div className="policy-form-container">
+                            <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                            </Alert>
+                            <div className="policy-list-content table-responsive table-striped mb-2">
+                                <Table className="policy-data-table">
+                                    {this._renderHeader()}
+                                    {this._renderDataSection(data)}
+                                </Table>
+                            </div>
+
+                            <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit} >Update</Button>
+                            <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
+                        </div>
+                    </div>
+                </ModalBody>
+            </Modal>
+        );
+    }
+}

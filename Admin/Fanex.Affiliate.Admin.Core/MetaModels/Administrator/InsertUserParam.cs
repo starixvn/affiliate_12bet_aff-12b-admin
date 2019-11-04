@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
         [MaxLength(20)]
         public string LastName { get; set; }
 
-        [Range(Validation.MinId, Validation.MinId, ErrorMessage = "Please choose department!")]
+        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "Please choose department!")]
         public int GroupId { get; set; }
     }
 }

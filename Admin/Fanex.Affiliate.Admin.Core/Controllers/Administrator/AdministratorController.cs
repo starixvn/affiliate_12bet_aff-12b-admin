@@ -40,11 +40,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetPolicyList(int groupId)
+        public ActionResult GetAccountPolicyList(int groupId)
         {
             return new JsonNetResult
             {
-                Data = _administratorService.GetPolicyList(groupId)
+                Data = _administratorService.GetAccountPolicyList(groupId)
             };
         }
 
@@ -106,11 +106,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
-        public ActionResult InsertUserExist(InsertUserExistParam param)
+        public ActionResult InsertExistedUser(InsertExistedUserParam param)
         {
             if (ModelState.IsValid)
             {
-                var encodeParam = new InsertUserExistParam
+                var encodeParam = new InsertExistedUserParam
                 {
                     UserName = Server.HtmlEncode(param.UserName.Trim()),
                     GroupId = param.GroupId
@@ -120,7 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 
                 return new JsonNetResult
                 {
-                    Data = _administratorService.InsertUserExist(encodeParam)
+                    Data = _administratorService.InsertExistedUser(encodeParam)
                 };
             }
 
@@ -143,7 +143,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
             {
                 var encodeParam = new UpdateUserParam
                 {
-                    SelectedUserId = param.SelectedUserId,
+                    UserId = param.UserId,
                     FirstName = Server.HtmlEncode(param.FirstName.Trim()),
                     LastName = Server.HtmlEncode(param.LastName.Trim()),
                     GroupId = param.GroupId

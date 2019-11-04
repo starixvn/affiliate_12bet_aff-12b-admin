@@ -102,6 +102,35 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Administrator
             }
         }
 
+        public IEnumerable<PolicyInfo> GetRolePolicy(int departmentId)
+        {
+            const string SpKey = "Aff_Con_GroupPolicySel";
+
+            var result = new List<PolicyInfo>();
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("groupid", DbType.Int32, departmentId);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new PolicyInfo
+                        {
+                            ParentId = Convert.ToInt32(reader["ParentId"]),
+                            Policy = Convert.ToInt32(reader["Policy"]),
+                            FunctionId = Convert.ToInt32(reader["FuncId"]),
+                            FunctionDescription = Convert.ToString(reader["FuncDesc"]),
+                            SubFunctionCount = Convert.ToInt32(reader["SubFuncCount"])
+                        });
+                    }
+                }
+            }
+
+            return result;
+        }
+
         private static DepartmentInfo BuildDepartmentInfoItem(IDataReader reader)
         {
             return new DepartmentInfo

@@ -40,5 +40,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
         {
             return _departmentRepository.DeleteDepartment(param);
         }
+
+        public IEnumerable<PolicyInfo> GetRolePolicy(int departmentId)
+        {
+            return _departmentRepository.GetRolePolicy(departmentId);
+        }
     }
 }

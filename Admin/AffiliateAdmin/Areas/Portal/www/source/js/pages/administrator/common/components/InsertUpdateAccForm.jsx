@@ -1,13 +1,12 @@
 ﻿import React, { PureComponent } from 'react';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { headerText, globalResource, charCodes } from '../libs/constants';
+import { headerText, globalResource } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { getDepartmentList } from '../../department/actions/index';
-import { getUserDetail, insertUser, updateUser } from '../actions';
+import { getUserDetail, insertUser, insertExistedUser, updateUser } from '../actions';
 
 const defaultState = {
-    departmentList: [],
     userName: '',
     password: '',
     firstName: '',
@@ -19,11 +18,12 @@ const defaultState = {
     message: ''
 }
 
-export default class InsertUpdateForm extends PureComponent {
+export default class InsertUpdateAccForm extends PureComponent {
     constructor(props) {
         super(props)
 
         this.state = {
+            departmentList: null,
             ...defaultState
         }
     }
@@ -49,7 +49,7 @@ export default class InsertUpdateForm extends PureComponent {
 
     _handleGetUserDetail = async (selectedUserId) => {
         const item = await getUserDetail(selectedUserId);
-        console.log(item);
+
         item && this.setState({
             userName: htmlDecode(item.UserName),
             firstName: htmlDecode(item.FirstName),
@@ -78,19 +78,20 @@ export default class InsertUpdateForm extends PureComponent {
     }
 
     _handleSubmit = async () => {
+        const { selectedUserId, isInsertExistedAcc } = this.props;
         const { userName, password, firstName, lastName, department, isInsert } = this.state;
 
-        if (userName) {
+        if (!userName) {
             this._handleShowAlert(false, 'Please input user name!');
             return;
         }
 
-        if (password) {
+        if (!insertExistedUser && !password) {
             this._handleShowAlert(false, 'Password is required!');
             return;
         }
 
-        if (department) {
+        if (!department) {
             this._handleShowAlert(false, 'Please choose department!');
             return;
         }
@@ -99,11 +100,9 @@ export default class InsertUpdateForm extends PureComponent {
 
         if (isValidUserName) {
             this.props.toggleLoader(true);
-
-            const { selectedUserId } = this.props;
-            const message = isInsert ? "Administrator has been added successfully!" : "Update Successfully!";
-            const userInfo = Object.assign({}, { UserId: selectedUserId, userName, password, firstName, lastName, department });
-            const result = isInsert ? await this.props.insertUser(userInfo) : await this.props.updateUser(userInfo);
+            const message = isInsert ? "Administrator has been added successfully!" : `The ${userName} has been updated successfully!`;
+            const userInfo = Object.assign({}, { UserId: selectedUserId, userName, password, firstName, lastName, groupId: department });
+            const result = isInsert ? (isInsertExistedAcc ? await insertExistedUser(userInfo) : await insertUser(userInfo)) : await updateUser(userInfo);
 
             if (result) {
                 this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
@@ -118,15 +117,9 @@ export default class InsertUpdateForm extends PureComponent {
     }
 
     _handleKeyPress = (event) => {
-        const charCode = event.charCode;
-        if (charCode === charCodes.KeyEnter) {
+        if (event.charCode === 13) {
             event.preventDefault();
             this._handleSubmit();
-        }
-
-        if (charCode === charCodes.KeyDoubleQuotationMark || charCode === charCodes.KeySingleQuotationMark) {
-            event.preventDefault();
-            this._handleShowAlert(false, 'User name can not contain this character!');
         }
     }
 
@@ -152,15 +145,16 @@ export default class InsertUpdateForm extends PureComponent {
     _handleClosePopup = () => {
         this.props.closePopup();
 
-        this.setState({ ...defaultState });
+        window.setTimeout(() => { this.setState({ ...defaultState }) }, 300);
     }
 
     render() {
         const { departmentList, userName, password, firstName, lastName, department, isInsert, isShowMessage, isSuccess, message } = this.state;
-        const title = isInsert ? "Add New Account" : userName;
+        const { isInsertExistedAcc } = this.props;
+        const title = isInsert ? (isInsertExistedAcc ? "Add Existed Account" : "Add New Account") : userName;
         const labelButton = isInsert ? "Add" : "Submit";
 
-        return (
+        return departmentList && (
             <Modal isOpen={this.props.isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
@@ -179,33 +173,41 @@ export default class InsertUpdateForm extends PureComponent {
                                                     onKeyPress={this._handleKeyPress} />
                                             </Col>
                                         </FormGroup>
+                                        {
+                                            !isInsertExistedAcc && (
+                                                <FormGroup row className="mb-2">
+                                                    <Label for="password" sm={4} className="required">{headerText.Password}</Label>
+                                                    <Col sm={8}>
+                                                        <Input type="password" name="password" className="mt-2" maxlength="20" autocomplete="off" className="mt-2" value={password}
+                                                            onChange={this._handleChange} onKeyPress={this._handleKeyPress} />
+                                                    </Col>
+                                                </FormGroup>
+                                            )
+                                        }
+                                    </React.Fragment>)
+                                }
+                                {
+                                    !isInsertExistedAcc && (<React.Fragment>
                                         <FormGroup row className="mb-2">
-                                            <Label for="password" sm={4} className="required">{headerText.Password}</Label>
+                                            <Label for="firstName" sm={4}>{headerText.FirstName}</Label>
                                             <Col sm={8}>
-                                                <Input type="password" name="password" className="mt-2" maxlength="20" autocomplete="off" className="mt-2" value={password}
-                                                    onChange={this._handleChange} onKeyPress={this._handleKeyPress} />
+                                                <Input type="text" name="firstName" maxlength="20" className="mt-2" value={firstName} onChange={this._handleChange}
+                                                    onKeyPress={this._handleKeyPress} />
+                                            </Col>
+                                        </FormGroup>
+                                        <FormGroup row className="mb-2">
+                                            <Label for="lastName" sm={4}>{headerText.LastName}</Label>
+                                            <Col sm={8}>
+                                                <Input type="text" name="lastName" maxlength="20" className="mt-2" value={lastName} onChange={this._handleChange}
+                                                    onKeyPress={this._handleKeyPress} />
                                             </Col>
                                         </FormGroup>
                                     </React.Fragment>)
                                 }
-                                <FormGroup row className="mb-2">
-                                    <Label for="firstName" sm={4}>{headerText.FirstName}</Label>
-                                    <Col sm={8}>
-                                        <Input type="text" name="firstName" maxlength="20" className="mt-2" value={firstName} onChange={this._handleChange}
-                                            onKeyPress={this._handleKeyPress} />
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="mb-2">
-                                    <Label for="lastName" sm={4}>{headerText.LastName}</Label>
-                                    <Col sm={8}>
-                                        <Input type="text" name="lastName" maxlength="20" className="mt-2" value={lastName} onChange={this._handleChange}
-                                            onKeyPress={this._handleKeyPress} />
-                                    </Col>
-                                </FormGroup>
                                 <FormGroup row>
                                     <Label for="department" sm={4}>{headerText.Department}</Label>
                                     <Col sm={8}>
-                                        <Input type="select" name="department" className="mt-2" value={department} onChange={(e) => setSearch(e.target.value)}>
+                                        <Input type="select" name="department" className="mt-2" value={department} onChange={this._handleChange}>
                                             {
                                                 isInsert && <option key={'department-0'} value="0">[Select Dept]</option>
                                             }

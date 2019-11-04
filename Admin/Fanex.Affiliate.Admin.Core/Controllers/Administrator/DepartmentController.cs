@@ -134,6 +134,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
             };
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetRolePolicy(int departmentId)
+        {
+            return new JsonNetResult
+            {
+                Data = _departmentService.GetRolePolicy(departmentId)
+            };
+        }
+
         private InsertUpdateDepartmentParam EncodeParam(InsertUpdateDepartmentParam param)
         {
             return new InsertUpdateDepartmentParam

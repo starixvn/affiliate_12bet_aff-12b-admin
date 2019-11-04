@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 {
     public interface IAdministratorService
     {
-        IEnumerable<PolicyInfo> GetPolicyList(int groupId);
+        IEnumerable<PolicyInfo> GetAccountPolicyList(int groupId);
 
         IEnumerable<AdministratorInfo> GetUserList(int groupId, string userName, string firstLetter);
 
@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
         ResultInfo InsertUser(InsertUserParam param);
 
-        ResultInfo InsertUserExist(InsertUserExistParam param);
+        ResultInfo InsertExistedUser(InsertExistedUserParam param);
 
         ResultInfo UpdateUser(UpdateUserParam param);
 

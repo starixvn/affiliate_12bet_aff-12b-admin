@@ -19,7 +19,9 @@ export const headerText = {
 }
 
 export const defaultState = {
+    isInsertExistedAcc: false,
     selectedUserId: 0,
+    userName: '',
     isOpen: false,
     isShowUserPopup: false,
     isShowPolicyPopup: false,

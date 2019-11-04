@@ -77,15 +77,16 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Administrator
             return result;
         }
 
-        public IEnumerable<PolicyInfo> GetPolicyList(int groupId)
+        public IEnumerable<PolicyInfo> GetAccountPolicyList(int groupId)
         {
-            const string SpKey = "Aff_Con_GroupPolicySel";
+            const string SpKey = "Aff_Con_AdminPolicySelByCustID";
 
             var result = new List<PolicyInfo>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("GroupID", DbType.Int32, groupId);
+                objectDb.AddInParameter("CustID", DbType.Int32, groupId);
+                objectDb.AddOutParameter("GroupID", DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -95,10 +96,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Administrator
                         {
                             ParentId = Convert.ToInt32(reader["ParentId"]),
                             Policy = Convert.ToInt32(reader["Policy"]),
-                            FunctionId = Convert.ToInt32(reader["FunctionId"]),
-                            FunctionDescription = Convert.ToInt32(reader["FunctionDescription"]),
-                            GroupName = Convert.ToString(reader["GroupName"]),
-                            SubFunctionCount = Convert.ToInt32(reader["SubFunctionCount"])
+                            FunctionId = Convert.ToInt32(reader["FuncId"]),
+                            FunctionDescription = Convert.ToString(reader["FuncDesc"]),
+                            GroupPolicy = Convert.ToInt32(reader["GPolicy"]),
+                            SubFunctionCount = Convert.ToInt32(reader["SubFuncCount"])
                         });
                     }
                 }
@@ -130,7 +131,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Administrator
             }
         }
 
-        public ResultInfo InsertUserExist(InsertUserExistParam param)
+        public ResultInfo InsertExistedUser(InsertExistedUserParam param)
         {
             const string SpKey = "Aff_Con_AdminInsFromExisted";
 
@@ -155,7 +156,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("custid", DbType.Int32, param.SelectedUserId);
+                objectDb.AddInParameter("custid", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("firstname", DbType.String, param.FirstName);
                 objectDb.AddInParameter("lastname", DbType.String, param.LastName);
                 objectDb.AddInParameter("groupid", DbType.Int32, param.GroupId);

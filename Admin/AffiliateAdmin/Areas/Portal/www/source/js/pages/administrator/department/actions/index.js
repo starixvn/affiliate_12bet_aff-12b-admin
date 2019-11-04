@@ -1,26 +1,12 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_SELECTED_DEPARTMENT_ID, SET_OPEN_IT_POPUP, SET_OPEN_POLICY_POPUP, SET_OPEN_INSERT_UPDATE_POPUP, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from './types';
+import { SET_SELECTED_DEPARTMENT_ID, SET_OPEN_INSERT_UPDATE_POPUP, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from './types';
 
 export { toggleLoader };
 
 export const setSelectedDepartmentId = (data) => {
     return {
         type: SET_SELECTED_DEPARTMENT_ID,
-        data
-    }
-}
-
-export const setOpenItPopup = (data) => {
-    return {
-        type: SET_OPEN_IT_POPUP,
-        data
-    }
-}
-
-export const setOpenPolicyPopup = (data) => {
-    return {
-        type: SET_OPEN_POLICY_POPUP,
         data
     }
 }

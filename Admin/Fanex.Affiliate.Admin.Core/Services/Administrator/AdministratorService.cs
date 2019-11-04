@@ -29,9 +29,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
             return _administratorRepository.GetUserDetail(userId);
         }
 
-        public IEnumerable<PolicyInfo> GetPolicyList(int groupId)
+        public IEnumerable<PolicyInfo> GetAccountPolicyList(int groupId)
         {
-            return _administratorRepository.GetPolicyList(groupId);
+            return _administratorRepository.GetAccountPolicyList(groupId);
         }
 
         public ResultInfo InsertUser(InsertUserParam param)
@@ -39,9 +39,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
             return _administratorRepository.InsertUser(param);
         }
 
-        public ResultInfo InsertUserExist(InsertUserExistParam param)
+        public ResultInfo InsertExistedUser(InsertExistedUserParam param)
         {
-            return _administratorRepository.InsertUserExist(param);
+            return _administratorRepository.InsertExistedUser(param);
         }
 
         public ResultInfo UpdateUser(UpdateUserParam param)

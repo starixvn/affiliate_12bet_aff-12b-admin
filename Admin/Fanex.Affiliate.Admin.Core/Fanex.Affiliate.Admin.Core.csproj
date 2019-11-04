@@ -264,7 +264,7 @@
     <Compile Include="DTO\Member\UnactiveMemberInfo.cs" />
     <Compile Include="MetaModels\Administrator\ChangeStatusParam.cs" />
     <Compile Include="MetaModels\Administrator\DeleteDepartmentParam.cs" />
-    <Compile Include="MetaModels\Administrator\InsertUserExistParam.cs" />
+    <Compile Include="MetaModels\Administrator\InsertExistedUserParam.cs" />
     <Compile Include="MetaModels\Administrator\InsertUserParam.cs" />
     <Compile Include="MetaModels\Administrator\InsertUpdateDepartmentParam.cs" />
     <Compile Include="MetaModels\Administrator\UpdateUserParam.cs" />

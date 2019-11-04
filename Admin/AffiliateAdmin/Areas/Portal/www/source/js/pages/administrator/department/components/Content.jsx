@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
-import { NotificationPopup } from '../../../common/components/NotificationPopup';
+import EditPolicyForm from '../../common/components/EditPolicyForm';
+import NotificationPopup from '../../../common/components/NotificationPopup';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { deleteDepartment, fetchData, toggleLoader, setSelectedDepartmentId, setOpenItPopup, setOpenPolicyPopup, setOpenInsertUpdatePopup, setShouldResetScrollPosition } from '../actions';
+import { deleteDepartment, fetchData, toggleLoader, setSelectedDepartmentId, setOpenInsertUpdatePopup, setShouldResetScrollPosition } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -15,6 +16,8 @@ export class Content extends PureComponent {
 
         this.state = {
             selectedDepartmentId: 0,
+            isShowPolicyPopup: false,
+            departmentName: '',
             message: '',
             isConfirmPopup: true
         }
@@ -42,6 +45,11 @@ export class Content extends PureComponent {
         this.props.setShouldResetScrollPosition(false);
         this.props.setSelectedDepartmentId(departmentId);
         this.props.setOpenInsertUpdatePopup(true);
+    }
+
+    _handleEditPolicy = (departmentId, departmentName) => {
+        this.props.setShouldResetScrollPosition(false);
+        this.setState({ isShowPolicyPopup: true, selectedDepartmentId: departmentId, departmentName });
     }
 
     _deleteDepartment = async (selectedDepartmentId) => {
@@ -125,7 +133,7 @@ export class Content extends PureComponent {
                     ) : (
                             <React.Fragment>
                                 <Cell className="text-center" title="Edit Role Policy">
-                                    <Button color="link p-0" onClick={() => this._handleEditPolicy(dataItem.DepartmentId)}>
+                                    <Button color="link p-0" onClick={() => this._handleEditPolicy(dataItem.DepartmentId, departmentName)}>
                                         Role Policy
                                 </Button>
                                 </Cell>
@@ -148,7 +156,7 @@ export class Content extends PureComponent {
 
     render() {
         const { gridData, shouldResetScrollPosition } = this.props;
-        const { message, isConfirmPopup } = this.state;
+        const { message, isConfirmPopup, selectedDepartmentId, isShowPolicyPopup, departmentName } = this.state;
 
         return gridData && (
             <div className="data-content">
@@ -173,6 +181,13 @@ export class Content extends PureComponent {
                         onClose={this._handleCloseNotificationPopup}
                     />
                 }
+                <EditPolicyForm
+                    selectedId={selectedDepartmentId}
+                    name={departmentName}
+                    isAccountPolicy={false}
+                    isShowPopup={isShowPolicyPopup}
+                    closePopup={() => this.setState({ isShowPolicyPopup: false, selectedDepartmentId: 0, departmentName: '' })}
+                />
             </div>
         );
     }
@@ -183,7 +198,7 @@ function mapStateToProps({ shouldResetScrollPosition, gridData }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteDepartment, fetchData, toggleLoader, setSelectedDepartmentId, setOpenItPopup, setOpenPolicyPopup, setOpenInsertUpdatePopup, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ deleteDepartment, fetchData, toggleLoader, setSelectedDepartmentId, setOpenInsertUpdatePopup, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

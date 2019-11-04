@@ -9,9 +9,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Administrator
 
         public int FunctionId { get; set; }
 
-        public int FunctionDescription { get; set; }
+        public string FunctionDescription { get; set; }
 
-        public string GroupName { get; set; }
+        public int GroupPolicy { get; set; }
 
         public int SubFunctionCount { get; set; }
     }

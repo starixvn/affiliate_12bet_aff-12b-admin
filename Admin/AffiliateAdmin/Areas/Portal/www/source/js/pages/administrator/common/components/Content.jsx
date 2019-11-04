@@ -4,7 +4,8 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource, defaultState } from '../libs/constants';
-import InsertUpdateForm from './InsertUpdateForm';
+import InsertUpdateAccForm from './InsertUpdateAccForm';
+import EditPolicyForm from './EditPolicyForm';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 
 export default class Content extends PureComponent {
@@ -44,14 +45,14 @@ export default class Content extends PureComponent {
         this.props.fetchData(this.props.param);
     }
 
-    _handleShowUserPopup = (userId) => {
+    _handleShowUserPopup = (userId, isInsertExistedAcc) => {
         this.props.setShouldResetScrollPosition(false);
-        this.setState({ selectedUserId: userId, isShowUserPopup: true });
+        this.setState({ selectedUserId: userId, isShowUserPopup: true, isInsertExistedAcc });
     }
 
-    _handleShowPolicyPopup = (userId) => {
+    _handleShowPolicyPopup = (userId, userName) => {
         this.props.setShouldResetScrollPosition(false);
-        this.setState({ selectedUserId: userId, isShowPolicyPopup: true });
+        this.setState({ selectedUserId: userId, isShowPolicyPopup: true, userName });
     }
 
     _handleShowDepartmentPopup = (userId) => {
@@ -65,7 +66,13 @@ export default class Content extends PureComponent {
     }
 
     handleClosePopup = () => {
-        this.setState(defaultState);
+        this.setState({
+            isShowUserPopup: false,
+            isShowPolicyPopup: false,
+            isShowDepartmentPopup: false,
+            isShowPasswordPopup: false,
+            message: ''
+        }, () => window.setTimeout(() => { this.setState({ isInsertExistedAcc: false, selectedUserId: 0 })}, 200));
     }
 
     _renderHeader() {
@@ -113,7 +120,7 @@ export default class Content extends PureComponent {
             <Row key={`dataRow-${index}`} className={dataItem.IsOpen ? "" : "is-closed"}>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={userName}>
-                    <Button color="link p-0" onClick={() => this._handleShowUserPopup(dataItem.UserId)}>
+                    <Button color="link p-0" onClick={() => this._handleShowUserPopup(dataItem.UserId, false)}>
                         {
                             userName
                         }
@@ -128,7 +135,7 @@ export default class Content extends PureComponent {
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDate}>{dataItem.CreatedDate}</Cell>
                 <Cell className="text-center" title="Edit Account Policy">
-                    <Button color="link p-0" onClick={() => this._handleShowPolicyPopup(dataItem.UserId)}>
+                    <Button color="link p-0" onClick={() => this._handleShowPolicyPopup(dataItem.UserId, userName)}>
                         Account Policy
                     </Button>
                 </Cell>
@@ -151,11 +158,15 @@ export default class Content extends PureComponent {
     }
 
     render() {
-        const { selectedUserId, isOpen, isShowUserPopup, isShowPolicyPopup, isShowDepartmentPopup, isShowPasswordPopup, message, isConfirmPopup } = this.state;
+        const { departmentList, isInsertExistedAcc, selectedUserId, userName, isOpen, isShowUserPopup, isShowPolicyPopup, isShowDepartmentPopup, isShowPasswordPopup, message, isConfirmPopup } = this.state;
         const { gridData, shouldResetScrollPosition } = this.props;
 
         return gridData && (
             <div className="data-content">
+                <div className="my-2">
+                    <Button outline type="button" className="mr-2" onClick={() => this._handleShowUserPopup(0, false)}>Add Acc<span className="oi oi-plus ml-2"></span></Button>
+                    <Button outline type="button" onClick={() => this._handleShowUserPopup(0, true)}>Add Existed Acc<span className="oi oi-plus ml-2"></span></Button>
+                </div>
                 <div className="common-list-content table-responsive table-striped my-2">
                     <Table
                         minWidth={1000}
@@ -166,14 +177,23 @@ export default class Content extends PureComponent {
                         containerPadding={20}
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
-                    <InsertUpdateForm
+                </div>
+                <InsertUpdateAccForm
                         isShowPopup={isShowUserPopup}
                         selectedUserId={selectedUserId}
                         closePopup={this.handleClosePopup}
                         fetchData={this.handleFetchData}
                         toggleLoader={this.props.toggleLoader}
+                        departmentList={departmentList}
+                        isInsertExistedAcc={isInsertExistedAcc}
                     />
-                </div>
+                <EditPolicyForm
+                        selectedId={selectedUserId}
+                        name={userName}
+                        isAccountPolicy={true}
+                        isShowPopup={isShowPolicyPopup}
+                        closePopup={() => this.setState({ isShowPolicyPopup: false, selectedUserId: 0, userName: '' })}
+                    />
                 {
                     !!message && <NotificationPopup
                         message={message}

@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
 {
-    public class InsertUserExistParam: UserInfoParam
+    public class InsertExistedUserParam: UserInfoParam
     {
         [MaxLength(20)]
         [Required(ErrorMessage = "Please input user name!")]
         public string UserName { get; set; }
 
-        [Range(Validation.MinId, Validation.MinId, ErrorMessage = "Please choose department!")]
+        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "Please choose department!")]
         public int GroupId { get; set; }
     }
 }

@@ -1446,7 +1446,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\InsertUpdateForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\InsertUpdateAccForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\EditPolicyForm.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -2035,6 +2036,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\domain\domain-control.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\administrator\administrator.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\administrator\department.scss" />
+    <Content Include="Areas\Portal\www\source\style\components\_policy-popup.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
