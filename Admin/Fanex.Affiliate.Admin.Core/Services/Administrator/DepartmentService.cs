@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Administrator;
 using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
@@ -44,6 +43,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
         public IEnumerable<PolicyInfo> GetRolePolicy(int departmentId)
         {
             return _departmentRepository.GetRolePolicy(departmentId);
+        }
+
+        public ResultInfo UpdateRolePolicy(UpdatePolicyParam param)
+        {
+            return _departmentRepository.UpdateRolePolicy(param);
         }
     }
 }

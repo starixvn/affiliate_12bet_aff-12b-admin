@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 import { Button, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { globalResource } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { getRolePolicy, getAccountPolicyList } from '../actions';
+import { getRolePolicy, getAccountPolicyList, getPolicyListByGroupIds, updateAccountPolicy, updateRolePolicy, convertCheckedPolicies } from '../libs/services';
 
 const defaultState = {
     data: null,
@@ -23,14 +23,15 @@ export default class InsertUpdateAccForm extends PureComponent {
         }
     }
     componentDidUpdate(prevProps) {
-        const { selectedId, isAccountPolicy } = this.props;
+        const { selectedId, isAccountPolicy, isGetByIdList } = this.props;
         if (selectedId && (selectedId !== prevProps.selectedId || isAccountPolicy !== prevProps.isAccountPolicy)) {
-            this._handleGetPolicyList(selectedId, isAccountPolicy);
+            this._handleGetPolicyList(selectedId, isAccountPolicy, isGetByIdList);
         }
     }
 
-    _handleGetPolicyList = async (selectedId, isAccountPolicy) => {
-        var result = isAccountPolicy ? await getAccountPolicyList({ groupId: selectedId }) : await getRolePolicy({ departmentId: selectedId });
+    _handleGetPolicyList = async (selectedId, isAccountPolicy, isGetByIdList) => {
+        var result = isAccountPolicy ? (isGetByIdList ? await getPolicyListByGroupIds({ groupIds: selectedId }) : await getAccountPolicyList({ groupId: selectedId }))
+            : await getRolePolicy({ departmentId: selectedId });
 
         this.setState({ ...result });
     }
@@ -40,7 +41,8 @@ export default class InsertUpdateAccForm extends PureComponent {
         const { checkedPolicies } = this.state;
         const { individualPermission, groupPermission } = checkedPolicies[funcId];
 
-        const newPermission = Object.assign({}, isGroupPolicy ? groupPermission : individualPermission, { [name]: checked });
+        const newPermission = (name === 'HasHost' && checked) ? Object.assign({}, isGroupPolicy ? groupPermission : individualPermission, { HasHost: true, HasRead: true })
+            : Object.assign({}, isGroupPolicy ? groupPermission : individualPermission, { [name]: checked });
         const newCheckedPolicies = Object.assign({}, checkedPolicies, {
             [funcId]: {
                 individualPermission: isGroupPolicy ? individualPermission : newPermission,
@@ -52,17 +54,19 @@ export default class InsertUpdateAccForm extends PureComponent {
     }
 
     _handleSubmit = async () => {
-        const { selectedId, isAccountPolicy } = this.props;
-        const { userName, password, firstName, lastName, department, isInsert } = this.state;
+        const { checkedPolicies } = this.state;
+        const { selectedId, isAccountPolicy, isGetByIdList } = this.props;
 
-        const message = isInsert ? "Administrator has been added successfully!" : `The ${userName} has been updated successfully!`;
-        const userInfo = Object.assign({}, { UserId: selectedUserId, userName, password, firstName, lastName, groupId: department });
-        const result = isInsert ? await insertUser(userInfo) : await updateUser(userInfo);
+        const convertedPolicies = convertCheckedPolicies(checkedPolicies, selectedId, isAccountPolicy, isGetByIdList);
+
+        const message = isAccountPolicy ? "Update account policy successfully!" : `Update role policy successfully!`;
+        const param = Object.assign({}, { GroupPolicies: convertedPolicies });
+        const result = isAccountPolicy ? await updateAccountPolicy(param) : await updateRolePolicy(param);
 
         if (result) {
             this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
         } else {
-            this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
+            this._handleShowAlert(false, isAccountPolicy ? "Update account policy is failed!" : "Update role policy is failed!");
         }
     }
 
@@ -175,7 +179,7 @@ export default class InsertUpdateAccForm extends PureComponent {
             <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
-                    <div className="modal-body-wrapper data-content">
+                    <div className="modal-body-wrapper">
                         <div className="policy-form-container">
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>

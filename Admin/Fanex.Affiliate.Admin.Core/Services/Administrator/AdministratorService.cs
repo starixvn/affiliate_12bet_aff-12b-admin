@@ -34,6 +34,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
             return _administratorRepository.GetAccountPolicyList(groupId);
         }
 
+        public IEnumerable<PolicyInfo> GetPolicyListByGroupIds(string groupIds)
+        {
+            return _administratorRepository.GetPolicyListByGroupIds(groupIds);
+        }
+
         public ResultInfo InsertUser(InsertUserParam param)
         {
             return _administratorRepository.InsertUser(param);
@@ -52,6 +57,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
         public ResultInfo ChangeStatus(ChangeStatusParam param)
         {
             return _administratorRepository.ChangeStatus(param);
+        }
+
+        public ResultInfo UpdateAccountPolicy(UpdatePolicyParam param)
+        {
+            return _administratorRepository.UpdateAccountPolicy(param);
+        }
+
+        public ResultInfo ChangePassword(UpdatePasswordParam param)
+        {
+            return _administratorRepository.ChangePassword(param);
         }
     }
 }

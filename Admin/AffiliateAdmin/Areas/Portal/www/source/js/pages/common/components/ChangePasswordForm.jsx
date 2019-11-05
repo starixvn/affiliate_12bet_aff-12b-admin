@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { resource, regExp, messages } from '../modules/constants/changePassword';
-import { updateChangePasswword } from '../actions/changePassword';
+import { updateChangeAffPasswword, updateChangeAdminPasswword } from '../actions/changePassword';
 
 export class ChangePasswordForm extends PureComponent {
     constructor(props) {
@@ -28,15 +28,19 @@ export class ChangePasswordForm extends PureComponent {
         this.setState({ isClickedSubmit: true });
 
         if (isValid) {
-            const { affId } = this.props;
+            const { selectedId } = this.props;
             const { password, confirmPassword } = this.state;
 
-            const param = {
-                AffId: affId,
+            const param = this.props.isAdmin ? {
+                AccountId: selectedId,
                 Password: password,
                 ConfirmPassword: confirmPassword
-            }
-
+            } : {
+                    AffId: selectedId,
+                    Password: password,
+                    ConfirmPassword: confirmPassword
+                };
+            console.log(param);
             this.saveChangePassword(param)
         }
     }
@@ -47,7 +51,7 @@ export class ChangePasswordForm extends PureComponent {
     }
 
     async saveChangePassword(param) {
-        const result = await this.props.updateChangePasswword(param);
+        const result = this.props.isAdmin ? await this.props.updateChangeAdminPasswword(param) : await this.props.updateChangeAffPasswword(param);
 
         if (result) {
             if (result.IsSuccessful) {
@@ -164,7 +168,7 @@ export class ChangePasswordForm extends PureComponent {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateChangePasswword }, dispatch);
+    return bindActionCreators({ updateChangeAffPasswword, updateChangeAdminPasswword }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(ChangePasswordForm);

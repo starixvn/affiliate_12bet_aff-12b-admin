@@ -18,5 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Administrator
         ResultInfo DeleteDepartment(DeleteDepartmentParam param);
 
         IEnumerable<PolicyInfo> GetRolePolicy(int departmentId);
+
+        ResultInfo UpdateRolePolicy(UpdatePolicyParam param);
     }
 }

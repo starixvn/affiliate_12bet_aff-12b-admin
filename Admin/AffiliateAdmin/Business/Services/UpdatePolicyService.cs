@@ -78,7 +78,7 @@ namespace AffiliateAdmin.Business.Services
                         }
                     }
                 }
-                dr = DataHandler.UserControl.UpdateUserPolicy(groupPolicies, AppSettings.Session.CustID);
+                dr = DataHandler.UserControl.UpdateUserPolicy(groupPolicies, 1000000034);
 
                 if (CastAide.AsInt32(dr.Outputs["errcode"]) != 0)
                 {

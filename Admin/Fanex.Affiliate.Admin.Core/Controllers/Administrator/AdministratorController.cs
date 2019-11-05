@@ -51,6 +51,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
+        public ActionResult GetPolicyListByGroupIds(string groupIds)
+        {
+            return new JsonNetResult
+            {
+                Data = _administratorService.GetPolicyListByGroupIds(groupIds)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [Compress]
         public ActionResult GetUserList(string userName, string firstLetter, int groupId = 0)
         {
             return new JsonNetResult
@@ -190,6 +201,53 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
                     Message = "User Id is invalid"
                 }
             };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
+        public ActionResult UpdateAccountPolicy(UpdatePolicyParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                var encodeParam = new UpdatePolicyParam
+                {
+                    GroupPolicies = Server.HtmlEncode(param.GroupPolicies.Trim())
+                };
+                GetUserInfoParam(encodeParam);
+
+                return new JsonNetResult
+                {
+                    Data = _administratorService.UpdateAccountPolicy(encodeParam)
+                };
+            }
+
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "The account policy is invalid."
+                }
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult ChangePassword(UpdatePasswordParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                param.Password = CryptographyHelper.Encrypt(param.Password);
+                GetUserInfoParam(param);
+
+                return Json(_administratorService.ChangePassword(param));
+            }
+            return Json(new ResultInfo
+            {
+                Code = Code.GeneralErrorCode,
+                Message = "Change Password is failed!"
+            });
         }
 
         private void GetUserInfoParam(UserInfoParam param)

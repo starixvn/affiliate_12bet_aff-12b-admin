@@ -5,6 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 import EditPolicyForm from '../../common/components/EditPolicyForm';
 import NotificationPopup from '../../../common/components/NotificationPopup';
+import DepartmentPopup from '../../common/components/DepartmentPopup';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
@@ -17,6 +18,7 @@ export class Content extends PureComponent {
         this.state = {
             selectedDepartmentId: 0,
             isShowPolicyPopup: false,
+            isShowDepartmentPopup: false,
             departmentName: '',
             message: '',
             isConfirmPopup: true
@@ -50,6 +52,11 @@ export class Content extends PureComponent {
     _handleEditPolicy = (departmentId, departmentName) => {
         this.props.setShouldResetScrollPosition(false);
         this.setState({ isShowPolicyPopup: true, selectedDepartmentId: departmentId, departmentName });
+    }
+
+    _handleShowDepartmentPopup = (departmentId, departmentName) => {
+        this.props.setShouldResetScrollPosition(false);
+        this.setState({ isShowDepartmentPopup: true, selectedDepartmentId: departmentId, departmentName });
     }
 
     _deleteDepartment = async (selectedDepartmentId) => {
@@ -114,7 +121,7 @@ export class Content extends PureComponent {
                 <Cell className="text-center">
                     {
                         dataItem.NoOfUser ? (
-                            <Button color="link p-0" onClick={() => this._handleEditIt(dataItem.DepartmentId)}>
+                            <Button color="link p-0" onClick={() => this._handleShowDepartmentPopup(dataItem.DepartmentId, departmentName)}>
                                 {
                                     dataItem.NoOfUser
                                 }
@@ -156,7 +163,7 @@ export class Content extends PureComponent {
 
     render() {
         const { gridData, shouldResetScrollPosition } = this.props;
-        const { message, isConfirmPopup, selectedDepartmentId, isShowPolicyPopup, departmentName } = this.state;
+        const { message, isConfirmPopup, selectedDepartmentId, isShowPolicyPopup, isShowDepartmentPopup, departmentName } = this.state;
 
         return gridData && (
             <div className="data-content">
@@ -187,6 +194,13 @@ export class Content extends PureComponent {
                     isAccountPolicy={false}
                     isShowPopup={isShowPolicyPopup}
                     closePopup={() => this.setState({ isShowPolicyPopup: false, selectedDepartmentId: 0, departmentName: '' })}
+                />
+                <DepartmentPopup
+                    isAdmin={false}
+                    groupId={selectedDepartmentId}
+                    name={departmentName}
+                    isShowPopup={isShowDepartmentPopup}
+                    closePopup={() => this.setState({ isShowDepartmentPopup: false, selectedDepartmentId: 0, departmentName: '' })}
                 />
             </div>
         );

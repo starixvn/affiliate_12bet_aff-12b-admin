@@ -108,6 +108,37 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Administrator
             return result;
         }
 
+        public IEnumerable<PolicyInfo> GetPolicyListByGroupIds(string groupIds)
+        {
+            const string SpKey = "Aff_Con_Batch_AdminPolicySel";
+
+            var result = new List<PolicyInfo>();
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("custids", DbType.String, groupIds);
+                objectDb.AddOutParameter("GroupID", DbType.Int32, Size.SizeOfInt);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new PolicyInfo
+                        {
+                            ParentId = Convert.ToInt32(reader["ParentId"]),
+                            Policy = Convert.ToInt32(reader["Policy"]),
+                            FunctionId = Convert.ToInt32(reader["FuncId"]),
+                            FunctionDescription = Convert.ToString(reader["FuncDesc"]),
+                            GroupPolicy = Convert.ToInt32(reader["GPolicy"]),
+                            SubFunctionCount = Convert.ToInt32(reader["SubFuncCount"])
+                        });
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public ResultInfo InsertUser(InsertUserParam param)
         {
             const string SpKey = "Aff_Con_AdminIns";
@@ -181,6 +212,43 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Administrator
                 objectDb.AddInParameter("closed", DbType.Boolean, !param.IsOpen);
                 objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        public ResultInfo UpdateAccountPolicy(UpdatePolicyParam param)
+        {
+            const string SpKey = "Aff_Con_AdminPolicyUpd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("mempolicys", DbType.String, param.GroupPolicies);
+                objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("ip", DbType.String, param.Ip);
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        public ResultInfo ChangePassword(UpdatePasswordParam param)
+        {
+            const string SpKey = "Aff_AdminUpdPwd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("CustId", DbType.Int32, param.AccountId);
+                objectDb.AddInParameter("UserPwd", DbType.String, param.Password);
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
                 AssignResultOutputParam(objectDb);
 

@@ -144,6 +144,35 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
             };
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
+        public ActionResult UpdateRolePolicy(UpdatePolicyParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                var encodeParam = new UpdatePolicyParam
+                {
+                    GroupPolicies = Server.HtmlEncode(param.GroupPolicies.Trim())
+                };
+                GetUserInfoParam(encodeParam);
+
+                return new JsonNetResult
+                {
+                    Data = _departmentService.UpdateRolePolicy(encodeParam)
+                };
+            }
+
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "The role policy is invalid."
+                }
+            };
+        }
+
         private InsertUpdateDepartmentParam EncodeParam(InsertUpdateDepartmentParam param)
         {
             return new InsertUpdateDepartmentParam

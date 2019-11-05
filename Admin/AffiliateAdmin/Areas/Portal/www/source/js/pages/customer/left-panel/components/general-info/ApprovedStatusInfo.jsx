@@ -25,7 +25,7 @@ export const ApprovedStatusInfo = (props) => {
                     </Button>
                     {affiliateInfo && <ChangePasswordForm
                         showPopupPassword={isChangingPassword}
-                        affId={affiliateInfo.AffId}
+                        selectedId={affiliateInfo.AffId}
                         setShowPopupPassword={toggleChangingPassword}
                     />}
                 </Col>

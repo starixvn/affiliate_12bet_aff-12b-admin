@@ -6,7 +6,7 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
 import Filter from '../../common/components/Filter';
 import Content from '../../common/components/Content';
-import { setParam, setShouldResetScrollPosition, fetchData, changeStatus, toggleLoader } from '../actions';
+import { setParam, setShouldResetScrollPosition, fetchData, changeStatus } from '../actions';
 
 export const AppContainer = (props) => {
     return (
@@ -19,21 +19,21 @@ export const AppContainer = (props) => {
             <Content
                 param={props.param}
                 gridData={props.gridData}
+                shouldResetScrollPosition={props.shouldResetScrollPosition}
                 setShouldResetScrollPosition={props.setShouldResetScrollPosition}
                 fetchData={props.fetchData}
                 changeStatus={props.changeStatus}
-                toggleLoader={props.toggleLoader}
             />
         </AppLayout>
     );
 }
 
-function mapStateToProps({ isShowLoader, param, gridData }) {
-    return Object.assign({}, { isShowLoader, param, gridData });
+function mapStateToProps({ isShowLoader, param, gridData, shouldResetScrollPosition }) {
+    return Object.assign({}, { isShowLoader, param, gridData, shouldResetScrollPosition });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, setShouldResetScrollPosition, fetchData, changeStatus, toggleLoader }, dispatch);
+    return bindActionCreators({ setParam, setShouldResetScrollPosition, fetchData, changeStatus }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));

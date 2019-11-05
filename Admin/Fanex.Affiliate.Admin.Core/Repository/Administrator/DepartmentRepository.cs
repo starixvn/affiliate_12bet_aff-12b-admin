@@ -131,6 +131,24 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Administrator
             return result;
         }
 
+        public ResultInfo UpdateRolePolicy(UpdatePolicyParam param)
+        {
+            const string SpKey = "Aff_Con_GroupPolicyUpd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("grouppolicys", DbType.String, param.GroupPolicies);
+                objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("ip", DbType.String, param.Ip);
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
         private static DepartmentInfo BuildDepartmentInfoItem(IDataReader reader)
         {
             return new DepartmentInfo

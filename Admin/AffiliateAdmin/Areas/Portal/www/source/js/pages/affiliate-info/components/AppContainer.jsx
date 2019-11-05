@@ -32,7 +32,7 @@ export class AppContainer extends Component {
                 />
                 <ChangePasswordForm
                     showPopupPassword={showPopupPassword}
-                    affId={affId}
+                    selectedId={affId}
                     setShowPopupPassword={this.props.setShowPopupPassword}
                 />
             </AppLayout>

@@ -4,7 +4,7 @@ import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBo
 import { headerText, globalResource } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { getDepartmentList } from '../../department/actions/index';
-import { getUserDetail, insertUser, insertExistedUser, updateUser } from '../actions';
+import { getUserDetail, insertUser, insertExistedUser, updateUser } from '../libs/services';
 
 const defaultState = {
     userName: '',
@@ -99,7 +99,6 @@ export default class InsertUpdateAccForm extends PureComponent {
         const isValidUserName = this._checkSpecialChar(userName);
 
         if (isValidUserName) {
-            this.props.toggleLoader(true);
             const message = isInsert ? "Administrator has been added successfully!" : `The ${userName} has been updated successfully!`;
             const userInfo = Object.assign({}, { UserId: selectedUserId, userName, password, firstName, lastName, groupId: department });
             const result = isInsert ? (isInsertExistedAcc ? await insertExistedUser(userInfo) : await insertUser(userInfo)) : await updateUser(userInfo);
@@ -109,8 +108,6 @@ export default class InsertUpdateAccForm extends PureComponent {
             } else {
                 this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
             }
-
-            this.props.toggleLoader(false);
         } else {
             this._handleShowAlert(false, 'User Name can not be contained the special characters. Please try again!');
         }

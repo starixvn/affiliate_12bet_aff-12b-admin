@@ -2,8 +2,8 @@
 
 export { globalResource };
 
-export const listAlPhabet = ['0-9','A','B','C','D','E','F','G','H','I','J','K','L','M', 
-    'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+export const listAlPhabet = ['0-9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 export const headerText = {
     Index: '#',
@@ -21,7 +21,9 @@ export const headerText = {
 export const defaultState = {
     isInsertExistedAcc: false,
     selectedUserId: 0,
+    selectedGroupId: 0,
     userName: '',
+    groupName: '',
     isOpen: false,
     isShowUserPopup: false,
     isShowPolicyPopup: false,

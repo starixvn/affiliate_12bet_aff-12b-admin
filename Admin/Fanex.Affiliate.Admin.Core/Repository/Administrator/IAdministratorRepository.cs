@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Administrator
     {
         IEnumerable<PolicyInfo> GetAccountPolicyList(int groupId);
 
+        IEnumerable<PolicyInfo> GetPolicyListByGroupIds(string groupIds);
+
         IEnumerable<AdministratorInfo> GetUserList(int groupId, string userName, string firstLetter);
 
         AdministratorInfo GetUserDetail(int userId);
@@ -21,5 +23,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Administrator
         ResultInfo UpdateUser(UpdateUserParam param);
 
         ResultInfo ChangeStatus(ChangeStatusParam param);
+
+        ResultInfo UpdateAccountPolicy(UpdatePolicyParam param);
+
+        ResultInfo ChangePassword(UpdatePasswordParam param);
     }
 }

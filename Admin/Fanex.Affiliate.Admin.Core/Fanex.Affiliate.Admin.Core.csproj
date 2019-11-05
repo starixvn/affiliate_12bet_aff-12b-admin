@@ -267,6 +267,8 @@
     <Compile Include="MetaModels\Administrator\InsertExistedUserParam.cs" />
     <Compile Include="MetaModels\Administrator\InsertUserParam.cs" />
     <Compile Include="MetaModels\Administrator\InsertUpdateDepartmentParam.cs" />
+    <Compile Include="MetaModels\Administrator\UpdatePasswordParam.cs" />
+    <Compile Include="MetaModels\Administrator\UpdatePolicyParam.cs" />
     <Compile Include="MetaModels\Administrator\UpdateUserParam.cs" />
     <Compile Include="MetaModels\AlertParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
