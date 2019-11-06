@@ -101,8 +101,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                             Policy = Convert.ToInt32(reader["Policy"]),
                             FunctionId = Convert.ToInt32(reader["FuncId"]),
                             FunctionDescription = Convert.ToString(reader["FuncDesc"]),
-                            GroupPolicy = Convert.ToInt32(reader["GPolicy"]),
-                            SubFunctionCount = Convert.ToInt32(reader["SubFuncCount"])
+                            GroupPolicy = Convert.ToInt32(reader["GPolicy"])
                         });
                     }
                 }
@@ -132,8 +131,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                             Policy = Convert.ToInt32(reader["Policy"]),
                             FunctionId = Convert.ToInt32(reader["FuncId"]),
                             FunctionDescription = Convert.ToString(reader["FuncDesc"]),
-                            GroupPolicy = Convert.ToInt32(reader["GPolicy"]),
-                            SubFunctionCount = Convert.ToInt32(reader["SubFuncCount"])
+                            GroupPolicy = Convert.ToInt32(reader["GPolicy"])
                         });
                     }
                 }

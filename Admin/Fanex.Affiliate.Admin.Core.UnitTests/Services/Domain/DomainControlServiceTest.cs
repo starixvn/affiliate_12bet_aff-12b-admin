@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         }
 
         [Fact]
-        public void UpdateDomainControl_WhenCallWithInalidParam_UpdateIsFailed()
+        public void UpdateDomainControl_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
             var message = "Update Domain is failed.";

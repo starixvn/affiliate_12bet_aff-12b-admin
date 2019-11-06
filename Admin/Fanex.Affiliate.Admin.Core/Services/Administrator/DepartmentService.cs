@@ -122,8 +122,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                             ParentId = Convert.ToInt32(reader["ParentId"]),
                             Policy = Convert.ToInt32(reader["Policy"]),
                             FunctionId = Convert.ToInt32(reader["FuncId"]),
-                            FunctionDescription = Convert.ToString(reader["FuncDesc"]),
-                            SubFunctionCount = Convert.ToInt32(reader["SubFuncCount"])
+                            FunctionDescription = Convert.ToString(reader["FuncDesc"])
                         });
                     }
                 }
