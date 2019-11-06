@@ -42,7 +42,11 @@ export class InsertUpdateForm extends PureComponent {
         const value = event.target.value;
         const name = event.target.name;
 
-        this.setState({ [name]: value });
+        if (value.includes("'") || value.includes("'")) {
+            this._handleShowAlert(false, `Department name can not contain (') and (") characters!`);
+        } else {
+            this.setState({ [name]: value });
+        }
     }
 
     _handleSubmit = async () => {
@@ -50,16 +54,16 @@ export class InsertUpdateForm extends PureComponent {
 
         const { departmentName, description, isInsert } = this.state;
 
-        if(!!departmentName) {
+        if (!!departmentName) {
             const { selectedDepartmentId } = this.props;
-            const message = isInsert ? "Add Successfully!" : "Update Successfully!";
+            const message = isInsert ? "The Department has been added successfully!" : "The Department has been updated successfully!";
             const departmentInfo = Object.assign({}, { departmentId: selectedDepartmentId, departmentName, description });
             const result = isInsert ? await this.props.insertDepartment(departmentInfo) : await this.props.updateDepartment(departmentInfo);
 
             if (result) {
                 this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
             } else {
-                this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
+                this._handleShowAlert(false, isInsert ? "Adding the department was failed!" : "Updating the department was failed!");
             }
         } else {
             this._handleShowAlert(false, 'Please input department name!');

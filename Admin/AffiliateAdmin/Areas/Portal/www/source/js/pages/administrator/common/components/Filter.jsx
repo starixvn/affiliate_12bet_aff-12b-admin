@@ -1,7 +1,7 @@
 ﻿import React, { PureComponent } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { listAlPhabet } from '../libs/constants';
+import { listAlPhabet, globalResource } from '../libs/constants';
 
 export default class Filter extends PureComponent {
     constructor(props) {
@@ -43,7 +43,7 @@ export default class Filter extends PureComponent {
                     <FormGroup className="mr-sm-3">
                         <Label className="mr-2">First Letter</Label>
                         <Input type="select" name="firstLetter" value={firstLetter} onChange={this.handleChange}>
-                            <option key={'firstLetter-All'} value=''>All</option>
+                            <option key={'firstLetter-All'} value=''>{globalResource.All}</option>
                             {
                                 listAlPhabet.map((value) => {
                                     return (<option key={'firstLetter-' + value} value={value}>{value}</option>)
@@ -52,7 +52,7 @@ export default class Filter extends PureComponent {
                         </Input>
                     </FormGroup>
                     <Button outline color="primary" type="button" onClick={this.handleSearch}>
-                        <span className="oi oi-magnifying-glass"></span> Search
+                        <span className="oi oi-magnifying-glass"></span> {globalResource.Search}
                     </Button>
                 </Form>
             </div>

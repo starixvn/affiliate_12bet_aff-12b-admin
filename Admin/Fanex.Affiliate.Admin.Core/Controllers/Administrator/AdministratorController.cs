@@ -154,7 +154,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
             {
                 var encodeParam = new UpdateUserParam
                 {
-                    UserId = param.UserId,
+                    AccountId = param.AccountId,
                     FirstName = Server.HtmlEncode(param.FirstName.Trim()),
                     LastName = Server.HtmlEncode(param.LastName.Trim()),
                     GroupId = param.GroupId
@@ -198,7 +198,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "User Id is invalid"
+                    Message = "Account Id is invalid"
                 }
             };
         }
@@ -241,13 +241,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
                 param.Password = CryptographyHelper.Encrypt(param.Password);
                 GetUserInfoParam(param);
 
-                return Json(_administratorService.ChangePassword(param));
+                return new JsonNetResult
+                {
+                    Data = _administratorService.ChangePassword(param)
+                };
             }
-            return Json(new ResultInfo
+
+            return new JsonNetResult
             {
-                Code = Code.GeneralErrorCode,
-                Message = "Change Password is failed!"
-            });
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                }
+            };
         }
 
         private void GetUserInfoParam(UserInfoParam param)

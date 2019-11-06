@@ -161,9 +161,36 @@ export class Content extends PureComponent {
         )
     }
 
+    _renderPopups = () => {
+        const { message, isConfirmPopup, selectedDepartmentId, isShowPolicyPopup, isShowDepartmentPopup, departmentName } = this.state;
+
+        return (
+            <React.Fragment>
+                <NotificationPopup
+                    message={message}
+                    isConfirmPopup={isConfirmPopup}
+                    onClose={this._handleCloseNotificationPopup}
+                />
+                <EditPolicyForm
+                    selectedId={selectedDepartmentId}
+                    name={departmentName}
+                    isAccountPolicy={false}
+                    isShowPopup={isShowPolicyPopup}
+                    closePopup={() => this.setState({ isShowPolicyPopup: false, selectedDepartmentId: 0, departmentName: '' })}
+                />
+                <DepartmentPopup
+                    isAdmin={false}
+                    groupId={selectedDepartmentId}
+                    name={departmentName}
+                    isShowPopup={isShowDepartmentPopup}
+                    closePopup={() => this.setState({ isShowDepartmentPopup: false, selectedDepartmentId: 0, departmentName: '' })}
+                />
+            </React.Fragment>
+        )
+    }
+
     render() {
         const { gridData, shouldResetScrollPosition } = this.props;
-        const { message, isConfirmPopup, selectedDepartmentId, isShowPolicyPopup, isShowDepartmentPopup, departmentName } = this.state;
 
         return gridData && (
             <div className="data-content">
@@ -182,26 +209,8 @@ export class Content extends PureComponent {
                     />
                 </div>
                 {
-                    !!message && <NotificationPopup
-                        message={message}
-                        isConfirmPopup={isConfirmPopup}
-                        onClose={this._handleCloseNotificationPopup}
-                    />
+                    this._renderPopups()
                 }
-                <EditPolicyForm
-                    selectedId={selectedDepartmentId}
-                    name={departmentName}
-                    isAccountPolicy={false}
-                    isShowPopup={isShowPolicyPopup}
-                    closePopup={() => this.setState({ isShowPolicyPopup: false, selectedDepartmentId: 0, departmentName: '' })}
-                />
-                <DepartmentPopup
-                    isAdmin={false}
-                    groupId={selectedDepartmentId}
-                    name={departmentName}
-                    isShowPopup={isShowDepartmentPopup}
-                    closePopup={() => this.setState({ isShowDepartmentPopup: false, selectedDepartmentId: 0, departmentName: '' })}
-                />
             </div>
         );
     }

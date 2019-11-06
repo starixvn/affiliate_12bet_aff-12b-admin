@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
 {
     public class ChangeStatusParam: UserInfoParam
     {
-        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "User Id is invalid!")]
+        [Range(Validation.MinId, Validation.MaxId)]
         public int SelectedUserId { get; set; }
 
         public bool IsOpen { get; set; }

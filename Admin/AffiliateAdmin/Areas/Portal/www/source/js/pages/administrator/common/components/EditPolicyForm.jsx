@@ -172,26 +172,30 @@ export default class InsertUpdateAccForm extends PureComponent {
 
     render() {
         const { data, isShowMessage, isSuccess, message } = this.state;
-        const { isAccountPolicy, name, isShowPopup } = this.props;
-        const title = isAccountPolicy ? `IT - ${name}` : `Edit Policy: ${name}`;
+        const { isAccountPolicy, name, isShowPopup, isGetByIdList } = this.props;
+        const title = isAccountPolicy ? (isGetByIdList ? name : `IT - ${name}`) : `Edit Policy: ${name}`;
 
         return data && (
             <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
-                <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
+                <ModalHeader toggle={this._handleClosePopup}>
+                    <div className="text-truncate" style={{ width: 450 }}>
+                        <span className="iconpopup"></span>{title}
+                    </div>
+                </ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
                         <div className="policy-form-container">
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <div className="policy-list-content table-responsive table-striped mb-2">
+                            <div className="policy-list-content table-responsive mb-2">
                                 <Table className="policy-data-table">
                                     {this._renderHeader()}
                                     {this._renderDataSection(data)}
                                 </Table>
                             </div>
 
-                            <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit} >Update</Button>
+                            <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit} >{globalResource.Update}</Button>
                             <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
                         </div>
                     </div>

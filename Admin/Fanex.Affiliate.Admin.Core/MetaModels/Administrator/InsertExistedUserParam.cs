@@ -5,7 +5,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
 {
     public class InsertExistedUserParam: UserInfoParam
     {
-        [MaxLength(20)]
         [Required(ErrorMessage = "Please input user name!")]
         public string UserName { get; set; }
 

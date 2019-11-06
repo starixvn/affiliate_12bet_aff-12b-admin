@@ -78,29 +78,18 @@ export const fetchData = async (param) => {
 
     const data = response && response.status === 200 ? response.data : [];
     const checkedUsers = data ? _convertCheckedUsers(data) : {};
-    const userInfoList = data ? _getUserInfoList(data) : {};
 
-    return { data, checkedUsers, userInfoList };
+    return { data, checkedUsers };
 }
 
 function _convertCheckedUsers(dataList) {
     const checkedUsers = {};
     for (let i = 0; i < dataList.length; i++) {
-        const userId = dataList[i].UserId;
+        const userId = `${dataList[i].UserId}`;
         checkedUsers[userId] = false;
     }
 
     return checkedUsers;
-}
-
-function _getUserInfoList(dataList) {
-    const userInfoList = {};
-    for (let i = 0; i < dataList.length; i++) {
-        const userId = dataList[i].UserId;
-        userInfoList[userId.toString()] = dataList[i].UserName;
-    }
-
-    return userInfoList;
 }
 
 function _convertCheckedAccountPolicy(dataList) {
@@ -167,4 +156,10 @@ const getStringConvertCheckedPolicies = (checkedPolicies, selectedId, isAccountP
 
         return accumulator = accumulator + policy + ',0;';
     }, '');
+}
+
+export const validateUserName = (userName) => {
+    const regexCheckSpecialChar = new RegExp("^[a-zA-Z0-9]{1,20}$");
+
+    return regexCheckSpecialChar.test(userName);
 }

@@ -3,12 +3,14 @@
 @import "../../components/department-popup";
 
 .common-list-content {
-    &.table-striped {
-        tbody {
-            .is-closed {
-                td {
-                    background-color: #D6E0F6;
-                }
+    .is-closed {
+        td {
+            background-color: #D6E0F6 !important;
+        }
+
+        &:hover {
+            td {
+                background-color: #fff4c2 !important;
             }
         }
     }

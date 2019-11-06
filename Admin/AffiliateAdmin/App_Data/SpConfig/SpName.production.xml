@@ -146,6 +146,7 @@
     <Setting Key="Aff_Con_GroupInfoUpd" SpName="Aff_Con_GroupInfoUpd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Con_GroupInfoDel" SpName="Aff_Con_GroupInfoDel" DbName="affiliate_12bet" />
     <Setting Key="Aff_Con_GroupPolicySel" SpName="Aff_Con_GroupPolicySel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_GroupPolicyUpd" SpName="Aff_Con_GroupPolicyUpd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Con_AdminSelByGroupID" SpName="Aff_Con_AdminSelByGroupID" DbName="affiliate_12bet" />
     <Setting Key="Aff_Con_AdminUpdClosed" SpName="Aff_Con_AdminUpdClosed" DbName="affiliate_12bet" />
     <Setting Key="Aff_Con_AdminIns" SpName="Aff_Con_AdminIns" DbName="affiliate_12bet" />
@@ -154,8 +155,6 @@
     <Setting Key="Aff_Con_AdminUpd" SpName="Aff_Con_AdminUpd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Con_AdminPolicySelByCustID" SpName="Aff_Con_AdminPolicySelByCustID" DbName="affiliate_12bet" />
     <Setting Key="Aff_Con_AdminPolicyUpd" SpName="Aff_Con_AdminPolicyUpd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Con_GroupPolicyUpd" SpName="Aff_Con_GroupPolicyUpd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Con_Batch_AdminPolicySel" SpName="Aff_Con_Batch_AdminPolicySel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Con_FuncInfoSel" SpName="Aff_Con_FuncInfoSel" DbName="affiliate_12bet" />
   </Function>
 </Functions>

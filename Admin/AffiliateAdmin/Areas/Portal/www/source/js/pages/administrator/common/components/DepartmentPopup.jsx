@@ -8,12 +8,10 @@ import SelectAll from '../../../common/components/SelectAll';
 import { Button, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { fetchData } from '../libs/services';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { userInfo } from 'os';
 
 const defaultState = {
     data: null,
     checkedUsers: {},
-    userInfoList: {},
     param: null,
     userNames: '',
     selectedUserIds: '',
@@ -61,38 +59,36 @@ export default class DepartmentPopup extends PureComponent {
     }
 
     _handleUpdate = () => {
-        const { checkedUsers, userInfoList } = this.state;
+        const { data, checkedUsers } = this.state;
 
         const userIdList = this._getCheckedItemIdList(checkedUsers);
 
         if (userIdList.length) {
-            const userNames = userIdList.map(userId => {
-                return htmlDecode(userInfoList[userId]);
-            });
+            const stringUserIdList = userIdList.toString();
+            const userInfoList = data.filter(userInfo => stringUserIdList.includes(userInfo.UserId));
+            const stringUserNames = userInfoList.reduce((accumulator, item) => {
+                return accumulator = accumulator + item.UserName + ', ';
+            }, '').slice(0, -2);
 
-            this.setState({ selectedUserIds: userIdList.toString(), userNames: userNames.toString(), isShowPolicyPopup: true });
+            this.setState({ selectedUserIds: stringUserIdList, userNames: htmlDecode(stringUserNames), isShowPolicyPopup: true });
         } else {
-            this._handleShowAlert(false, 'Please choose at least one account.');
+            this._handleShowAlert('Please choose at least one account.');
         }
 
     }
 
-    _handleShowAlert = (isSuccess, message) => {
+    _handleShowAlert = (message) => {
         this.setState({
             message,
-            isSuccess,
+            isSuccess: false,
             isShowMessage: true,
-        }, () => window.setTimeout(() => this._hideMessage(isSuccess), 3000));
+        }, () => window.setTimeout(() => this._hideMessage(), 3000));
     }
 
-    _hideMessage = (isSuccess) => {
+    _hideMessage = () => {
         this.setState({
             isShowMessage: false
         });
-
-        if (isSuccess) {
-            this._handleClosePopup();
-        }
     }
 
     _getCheckedItemIdList = (checkedUsers) => {

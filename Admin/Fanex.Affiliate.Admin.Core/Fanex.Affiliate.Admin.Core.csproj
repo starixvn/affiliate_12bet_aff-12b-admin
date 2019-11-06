@@ -367,10 +367,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Repository\Administrator\AdministratorRepository.cs" />
-    <Compile Include="Repository\Administrator\DepartmentRepository.cs" />
-    <Compile Include="Repository\Administrator\IAdministratorRepository.cs" />
-    <Compile Include="Repository\Administrator\IDepartmentRepository.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />

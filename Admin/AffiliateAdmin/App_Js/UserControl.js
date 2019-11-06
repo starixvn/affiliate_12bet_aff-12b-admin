@@ -131,11 +131,6 @@ function OpenUpdateMult(deptid,dept,isListUser)
     
     if(hasCheck)        
     {  
-        console.log(strCustid);
-        console.log(strUser);
-        console.log(dept);
-        console.log(deptid);
-        console.log(isListUser)
         LoadMultUpdate(strCustid,strUser,dept,deptid,isListUser);
     }
     else

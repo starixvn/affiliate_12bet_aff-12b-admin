@@ -5,14 +5,14 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
 {
     public class UpdatePasswordParam: UserInfoParam
     {
-        [Range(Validation.MinId, Validation.MaxId)]
+        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "Account Id is invalid!")]
         public int AccountId { get; set; }
 
-        [Required]
-        [RegularExpression("^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$")]
+        [Required(ErrorMessage = "Password is required!")]
+        [RegularExpression("^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$", ErrorMessage = "Password is invalid!")]
         public string Password { get; set; }
 
-        [Compare(nameof(Password))]
+        [Compare(nameof(Password), ErrorMessage = "Confirm password is incorrect!")]
         public string ConfirmPassword { get; set; }
     }
 }

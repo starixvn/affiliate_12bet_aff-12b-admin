@@ -4,11 +4,11 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource, defaultState } from '../libs/constants';
-import InsertUpdateAccForm from './InsertUpdateAccForm';
 import EditPolicyForm from './EditPolicyForm';
+import DepartmentPopup from './DepartmentPopup';
+import InsertUpdateAccForm from './InsertUpdateAccForm';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 import ChangePasswordForm from '../../../common/components/ChangePasswordForm';
-import DepartmentPopup from './DepartmentPopup';
 
 export default class Content extends PureComponent {
     constructor(props) {
@@ -46,7 +46,7 @@ export default class Content extends PureComponent {
 
             this.handleFetchData();
         } else {
-            this.setState({ message: !!result ? result.Message : 'Update is failed!', isConfirmPopup: false });
+            this.setState({ message: !!result ? result.Message : 'Update the status is failed!', isConfirmPopup: false });
         }
     }
 
@@ -189,8 +189,51 @@ export default class Content extends PureComponent {
         )
     }
 
+    _renderPopups = () => {
+        const { departmentList, isInsertExistedAcc, selectedUserId, selectedGroupId, userName, groupName, isShowUserPopup, isShowPolicyPopup,
+            isShowDepartmentPopup, isShowPasswordPopup, message, isConfirmPopup } = this.state;
+        return (
+            <React.Fragment>
+                <InsertUpdateAccForm
+                    isShowPopup={isShowUserPopup}
+                    selectedUserId={selectedUserId}
+                    closePopup={this.handleClosePopup}
+                    fetchData={this.handleFetchData}
+                    departmentList={departmentList}
+                    isInsertExistedAcc={isInsertExistedAcc}
+                />
+                <EditPolicyForm
+                    selectedId={selectedUserId}
+                    name={userName}
+                    isAccountPolicy={true}
+                    isShowPopup={isShowPolicyPopup}
+                    closePopup={() => this.setState({ isShowPolicyPopup: false, selectedUserId: 0, userName: '' })}
+                />
+                <ChangePasswordForm
+                    showPopupPassword={isShowPasswordPopup}
+                    selectedId={selectedUserId}
+                    isAdmin={true}
+                    setShowPopupPassword={() => this.setState({ isShowPasswordPopup: false })}
+                />
+                <NotificationPopup
+                    message={message}
+                    isConfirmPopup={isConfirmPopup}
+                    onClose={this._handleCloseNotificationPopup}
+                />
+                {
+                    !this.props.isPopup && <DepartmentPopup
+                        groupId={selectedGroupId}
+                        isAdmin={true}
+                        name={groupName}
+                        isShowPopup={isShowDepartmentPopup}
+                        closePopup={() => this.setState({ isShowDepartmentPopup: false, selectedGroupId: 0, groupName: '' })}
+                    />
+                }
+            </React.Fragment>
+        )
+    }
+
     render() {
-        const { departmentList, isInsertExistedAcc, selectedUserId, selectedGroupId, userName, groupName, isShowUserPopup, isShowPolicyPopup, isShowDepartmentPopup, isShowPasswordPopup, message, isConfirmPopup } = this.state;
         const { gridData, shouldResetScrollPosition, isPopup } = this.props;
 
         return gridData && (
@@ -225,42 +268,8 @@ export default class Content extends PureComponent {
                         />)
                     }
                 </div>
-                <InsertUpdateAccForm
-                    isShowPopup={isShowUserPopup}
-                    selectedUserId={selectedUserId}
-                    closePopup={this.handleClosePopup}
-                    fetchData={this.handleFetchData}
-                    departmentList={departmentList}
-                    isInsertExistedAcc={isInsertExistedAcc}
-                />
-                <EditPolicyForm
-                    selectedId={selectedUserId}
-                    name={userName}
-                    isAccountPolicy={true}
-                    isShowPopup={isShowPolicyPopup}
-                    closePopup={() => this.setState({ isShowPolicyPopup: false, selectedUserId: 0, userName: '' })}
-                />
-                <ChangePasswordForm
-                    showPopupPassword={isShowPasswordPopup}
-                    selectedId={selectedUserId}
-                    isAdmin={true}
-                    setShowPopupPassword={() => this.setState({ isShowPasswordPopup: false })}
-                />
                 {
-                    !isPopup && <DepartmentPopup
-                        groupId={selectedGroupId}
-                        isAdmin={true}
-                        name={groupName}
-                        isShowPopup={isShowDepartmentPopup}
-                        closePopup={() => this.setState({ isShowDepartmentPopup: false, selectedGroupId: 0, groupName: '' })}
-                    />
-                }
-                {
-                    !!message && <NotificationPopup
-                        message={message}
-                        isConfirmPopup={isConfirmPopup}
-                        onClose={this._handleCloseNotificationPopup}
-                    />
+                    this._renderPopups()
                 }
             </div>
         );

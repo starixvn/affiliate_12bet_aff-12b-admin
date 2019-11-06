@@ -7,8 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
     {
         public int DepartmentId { get; set; }
 
-        [MaxLength(20)]
-        [Required(ErrorMessage = "Please input department name!")]
+        [Required]
         public string DepartmentName { get; set; }
 
         public string Description { get; set; }

@@ -1,10 +1,10 @@
 ﻿import React, { PureComponent } from 'react';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { headerText, globalResource } from '../libs/constants';
+import { headerText, globalResource, MaxLength } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { getDepartmentList } from '../../department/actions/index';
-import { getUserDetail, insertUser, insertExistedUser, updateUser } from '../libs/services';
+import { getUserDetail, insertUser, insertExistedUser, updateUser, validateUserName } from '../libs/services';
 
 const defaultState = {
     userName: '',
@@ -59,22 +59,14 @@ export default class InsertUpdateAccForm extends PureComponent {
     }
 
     _handleChange = (event) => {
-        const value = event.target.value;
+        let value = event.target.value;
         const name = event.target.name;
 
-        this.setState({ [name]: value });
-    }
-
-    _checkSpecialChar = (userName) => {
-        const iChars = "!@#$%^&*()+=-[]\';,./{}|\":<>?";
-        const length = userName.length;
-        for (var i = 0; i < length; i++) {
-            if (iChars.indexOf(userName.charAt(i)) != -1) {
-                return false;
-            }
+        if (value.length > MaxLength) {
+            value = value.slice(0, MaxLength);
         }
 
-        return true;
+        this.setState({ [name]: value });
     }
 
     _handleSubmit = async () => {
@@ -96,17 +88,17 @@ export default class InsertUpdateAccForm extends PureComponent {
             return;
         }
 
-        const isValidUserName = this._checkSpecialChar(userName);
+        const isValidUserName = validateUserName(userName);
 
         if (isValidUserName) {
             const message = isInsert ? "Administrator has been added successfully!" : `The ${userName} has been updated successfully!`;
-            const userInfo = Object.assign({}, { UserId: selectedUserId, userName, password, firstName, lastName, groupId: department });
+            const userInfo = Object.assign({}, { AccountId: selectedUserId, userName, password, firstName, lastName, groupId: department });
             const result = isInsert ? (isInsertExistedAcc ? await insertExistedUser(userInfo) : await insertUser(userInfo)) : await updateUser(userInfo);
 
             if (result) {
                 this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
             } else {
-                this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
+                this._handleShowAlert(false, isInsert ? "Adding the administrator was failed!" : `Updating the ${userName} was failed!`);
             }
         } else {
             this._handleShowAlert(false, 'User Name can not be contained the special characters. Please try again!');

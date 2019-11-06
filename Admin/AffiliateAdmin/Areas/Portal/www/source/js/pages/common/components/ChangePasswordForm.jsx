@@ -40,7 +40,7 @@ export class ChangePasswordForm extends PureComponent {
                     Password: password,
                     ConfirmPassword: confirmPassword
                 };
-            console.log(param);
+
             this.saveChangePassword(param)
         }
     }
