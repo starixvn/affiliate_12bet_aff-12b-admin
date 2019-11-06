@@ -143,51 +143,6 @@ exports[`message - components - MessageDetailForm  render correctly with current
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageId"
-              row={true}
-              tag="div"
-            >
-              <Label
-                className="d-flex justify-content-end align-items-center"
-                for="MessageId"
-                sm={2}
-                tag="label"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              />
-              <Col
-                sm={10}
-                tag="div"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              >
-                <Input
-                  disabled={true}
-                  id="MessageId"
-                  name="MessageId"
-                  onChange={[Function]}
-                  rows="4"
-                  type="textarea"
-                  value={0}
-                />
-              </Col>
-            </FormGroup>
-            <FormGroup
-              className="mb-2"
               key="MessageContentEn"
               row={true}
               tag="div"
@@ -795,51 +750,6 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageId"
-              row={true}
-              tag="div"
-            >
-              <Label
-                className="d-flex justify-content-end align-items-center"
-                for="MessageId"
-                sm={2}
-                tag="label"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              />
-              <Col
-                sm={10}
-                tag="div"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              >
-                <Input
-                  disabled={false}
-                  id="MessageId"
-                  name="MessageId"
-                  onChange={[Function]}
-                  rows="4"
-                  type="textarea"
-                  value={0}
-                />
-              </Col>
-            </FormGroup>
-            <FormGroup
-              className="mb-2"
               key="MessageContentEn"
               row={true}
               tag="div"
@@ -1424,51 +1334,6 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
                   name="important"
                   onChange={[Function]}
                   type="checkbox"
-                />
-              </Col>
-            </FormGroup>
-            <FormGroup
-              className="mb-2"
-              key="MessageId"
-              row={true}
-              tag="div"
-            >
-              <Label
-                className="d-flex justify-content-end align-items-center"
-                for="MessageId"
-                sm={2}
-                tag="label"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              />
-              <Col
-                sm={10}
-                tag="div"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              >
-                <Input
-                  disabled={true}
-                  id="MessageId"
-                  name="MessageId"
-                  onChange={[Function]}
-                  rows="4"
-                  type="textarea"
-                  value={0}
                 />
               </Col>
             </FormGroup>
@@ -2081,51 +1946,6 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageId"
-              row={true}
-              tag="div"
-            >
-              <Label
-                className="d-flex justify-content-end align-items-center"
-                for="MessageId"
-                sm={2}
-                tag="label"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              />
-              <Col
-                sm={10}
-                tag="div"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              >
-                <Input
-                  disabled={true}
-                  id="MessageId"
-                  name="MessageId"
-                  onChange={[Function]}
-                  rows="4"
-                  type="textarea"
-                  value={0}
-                />
-              </Col>
-            </FormGroup>
-            <FormGroup
-              className="mb-2"
               key="MessageContentEn"
               row={true}
               tag="div"
@@ -2728,51 +2548,6 @@ exports[`message - components - MessageDetailForm  render correctly with update 
                   name="important"
                   onChange={[Function]}
                   type="checkbox"
-                />
-              </Col>
-            </FormGroup>
-            <FormGroup
-              className="mb-2"
-              key="MessageId"
-              row={true}
-              tag="div"
-            >
-              <Label
-                className="d-flex justify-content-end align-items-center"
-                for="MessageId"
-                sm={2}
-                tag="label"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              />
-              <Col
-                sm={10}
-                tag="div"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              >
-                <Input
-                  disabled={false}
-                  id="MessageId"
-                  name="MessageId"
-                  onChange={[Function]}
-                  rows="4"
-                  type="textarea"
-                  value={0}
                 />
               </Col>
             </FormGroup>

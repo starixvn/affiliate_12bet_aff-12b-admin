@@ -45,7 +45,7 @@ exports[`exchange rate - components - Content  render correctly with have gridDa
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={0.7}
+              title="0.70000"
             >
               <Button
                 className="p-0"
@@ -63,7 +63,7 @@ exports[`exchange rate - components - Content  render correctly with have gridDa
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={0.767789}
+              title="0.76779"
             >
               <Button
                 className="p-0"
@@ -105,7 +105,7 @@ exports[`exchange rate - components - Content  render correctly with have gridDa
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={1}
+              title="1.00000"
             >
               1.00000
             </t>
@@ -116,9 +116,9 @@ exports[`exchange rate - components - Content  render correctly with have gridDa
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={1}
+              title="1.0000"
             >
-              1.00000
+              1.0000
             </t>
           </t>,
         ]
@@ -225,7 +225,7 @@ exports[`exchange rate - components - Content  render correctly with have gridDa
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={0.7}
+              title="0.70000"
             >
               0.70000
             </t>
@@ -236,7 +236,7 @@ exports[`exchange rate - components - Content  render correctly with have gridDa
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={0.767789}
+              title="0.76779"
             >
               0.76779
             </t>
@@ -271,7 +271,7 @@ exports[`exchange rate - components - Content  render correctly with have gridDa
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={1}
+              title="1.00000"
             >
               1.00000
             </t>
@@ -282,9 +282,9 @@ exports[`exchange rate - components - Content  render correctly with have gridDa
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={1}
+              title="1.0000"
             >
-              1.00000
+              1.0000
             </t>
           </t>,
         ]

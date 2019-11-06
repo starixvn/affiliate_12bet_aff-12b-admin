@@ -152,7 +152,7 @@ exports[`landing page list - components - Content  render correctly 1`] = `
         ]
       }
       bodyHeight={300}
-      containerPadding={30}
+      containerPadding={20}
       header={
         <t>
           <t
@@ -248,7 +248,7 @@ exports[`landing page list - components - Content  render correctly with gridDat
         ]
       }
       bodyHeight={300}
-      containerPadding={30}
+      containerPadding={20}
       header={
         <t>
           <t

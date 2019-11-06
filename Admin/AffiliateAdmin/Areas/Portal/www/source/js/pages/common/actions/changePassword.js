@@ -8,14 +8,14 @@ export const setShowPopupPassword = (data) => {
     }
 }
 
-export const updateChangeAffPasswword = (param) => async () => {
+export const updateChangeAffPasswword = async(param) => {
     const url = 'Portal/Affiliate/ChangePassword';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }
 
-export const updateChangeAdminPasswword = (param) => async () => {
+export const updateChangeAdminPasswword = async (param) => {
     const url = 'Portal/Administrator/ChangePassword';
     const response = await post(url, param);
 

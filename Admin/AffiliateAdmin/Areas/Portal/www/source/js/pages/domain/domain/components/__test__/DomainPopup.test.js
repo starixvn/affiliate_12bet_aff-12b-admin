@@ -86,8 +86,7 @@ describe('domain - components - DomainPopup ', () => {
     });
 
     it('_handleSubmit - should be called toggleLoader and _handleShowAlert with domain is empty', async () => {
-        const result = { IsSuccessful: true, Message: "" };
-        const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(() => result), selectedDomain: emptyDomain });
+        const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), selectedDomain: emptyDomain });
         const wrapper = shallow(<DomainPopup {...props} />);
         const instance = wrapper.instance();
 

@@ -214,7 +214,7 @@ exports[`message - components - Content  render correctly 1`] = `
         ]
       }
       bodyHeight={300}
-      containerPadding={30}
+      containerPadding={20}
       header={
         <t>
           <t
@@ -305,7 +305,8 @@ exports[`message - components - Content  render correctly 1`] = `
         </t>
       }
       isPaging={true}
-      maxWidth={1000}
+      maxWidth={0}
+      minWidth={1000}
       onPaging={[Function]}
       pageOption={
         Object {
@@ -357,7 +358,7 @@ exports[`message - components - Content  render correctly with gridData is empty
         ]
       }
       bodyHeight={300}
-      containerPadding={30}
+      containerPadding={20}
       header={
         <t>
           <t
@@ -448,7 +449,8 @@ exports[`message - components - Content  render correctly with gridData is empty
         </t>
       }
       isPaging={true}
-      maxWidth={1000}
+      maxWidth={0}
+      minWidth={1000}
       onPaging={[Function]}
       pageOption={
         Object {

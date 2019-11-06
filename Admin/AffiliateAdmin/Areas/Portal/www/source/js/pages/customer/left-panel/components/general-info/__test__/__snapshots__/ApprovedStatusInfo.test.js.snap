@@ -97,8 +97,8 @@ exports[`left panel - components - general-info - ApprovedStatusInfo render corr
         Change
         ]
       </Button>
-      <Connect(ChangePasswordForm)
-        affId={1271808}
+      <ChangePasswordForm
+        selectedId={1271808}
         setShowPopupPassword={[Function]}
         showPopupPassword={false}
       />

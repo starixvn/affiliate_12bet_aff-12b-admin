@@ -42,7 +42,7 @@ export class InsertUpdateForm extends PureComponent {
         const value = event.target.value;
         const name = event.target.name;
 
-        if (value.includes("'") || value.includes("'")) {
+        if (value.includes("'") || value.includes('"')) {
             this._handleShowAlert(false, `Department name can not contain (') and (") characters!`);
         } else {
             this.setState({ [name]: value });

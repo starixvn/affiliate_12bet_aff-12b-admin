@@ -11,8 +11,8 @@ describe('exchange rate - components - Content ', () => {
     }
 
     const gridData = [
-        { ExchangeId: 9, Currency: "AUD", ActualRate: 0.7, BuyingRate: 0.767789 },
-        { ExchangeId: 3, Currency: "US$", ActualRate: 1, BuyingRate: 1 }
+        { ExchangeId: 9, Currency: "AUD", ActualRate: '0.70000', BuyingRate: '0.76779' },
+        { ExchangeId: 3, Currency: "US$", ActualRate: '1.00000', BuyingRate: '1.0000' }
     ]
 
     it('render correctly', () => {
@@ -101,7 +101,7 @@ describe('exchange rate - components - Content ', () => {
         const props = Object.assign({}, defaultProps, { setTogglePopup, setSelectedExchangeRate, setShouldResetScrollPosition });
         const wrapper = shallow(<Content {...props} />);
 
-        const selectedExchangeRate = { ExchangeId: 9, Currency: "AUD", Rate: 0.767789, RateType: 1 };
+        const selectedExchangeRate = { ExchangeId: 9, Currency: "AUD", Rate: 0.76779, RateType: 1 };
         wrapper.instance()._handleSelectedExchangeRate(selectedExchangeRate);
 
         expect(props.setTogglePopup).toHaveBeenCalledWith(true);
