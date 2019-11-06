@@ -17,7 +17,7 @@ using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public class GpiLotteryService : ImporterXmlServiceBase
+    public class GpiLotteryService : XmlImpoterlServiceBase
     {
         public GpiLotteryService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProdutRespository = null) 
             :base(appSetting, thirdPartyProdutRespository)

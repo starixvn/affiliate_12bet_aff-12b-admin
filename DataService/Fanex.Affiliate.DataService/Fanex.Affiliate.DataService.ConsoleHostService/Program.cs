@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
             //    };
             //    _timeTracker.SaveTime(saveTimeTrackerParam);
             //}
-
+            RunJobs();
             Console.WriteLine("Done");
             Console.ReadLine();
         }

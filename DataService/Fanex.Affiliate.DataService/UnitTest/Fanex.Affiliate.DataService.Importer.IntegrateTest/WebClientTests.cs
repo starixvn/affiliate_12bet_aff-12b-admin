@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.DataService.Importer.IntegratedTest
 {
     public class WebClientTests
     {
-        [Fact]
+        [Fact(Skip ="Need run local host")]
         public void WebClient_CallLocalGpiLotter_ReturnNotNull()
         {
             var url = "http://localhost:62166/api/home/GetGpiLotteryJson";
@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.DataService.Importer.IntegratedTest
             }
         }
 
-        [Fact]
+        [Fact(Skip = "Need run local host")]
         public void ParseToXDocumentFromJson_ParseDateFromWebApi_ReturnNotNull()
         {
             var url = "http://localhost:62166/api/home/GetGpiLotteryJson";

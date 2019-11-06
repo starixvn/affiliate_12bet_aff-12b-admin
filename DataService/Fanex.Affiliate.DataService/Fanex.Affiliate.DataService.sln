@@ -25,6 +25,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegratedTest", "Integrate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.DataService.Importer.IntegratedTest", "UnitTest\Fanex.Affiliate.DataService.Importer.IntegrateTest\Fanex.Affiliate.DataService.Importer.IntegratedTest.csproj", "{1B10278E-C480-4797-9567-098692A40563}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.DataService.Importer.Core", "Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj", "{410276E1-1E99-4662-809C-25F0F1777C08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.DataService.Importer.IMOne", "Fanex.Affiliate.DataService.Importer.IMOne\Fanex.Affiliate.DataService.Importer.IMOne.csproj", "{7C3E0E3A-A71E-4D43-9D77-491EE5214E8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +71,14 @@ Global
 		{1B10278E-C480-4797-9567-098692A40563}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B10278E-C480-4797-9567-098692A40563}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B10278E-C480-4797-9567-098692A40563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{410276E1-1E99-4662-809C-25F0F1777C08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{410276E1-1E99-4662-809C-25F0F1777C08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{410276E1-1E99-4662-809C-25F0F1777C08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{410276E1-1E99-4662-809C-25F0F1777C08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C3E0E3A-A71E-4D43-9D77-491EE5214E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C3E0E3A-A71E-4D43-9D77-491EE5214E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C3E0E3A-A71E-4D43-9D77-491EE5214E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C3E0E3A-A71E-4D43-9D77-491EE5214E8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

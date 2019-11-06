@@ -9,19 +9,19 @@ using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public abstract class ImporterXmlServiceBase : IImporterService
+    public abstract class XmlImpoterlServiceBase : IImporterService
     {
         protected IAppSettings _appSetting;
         protected IThirdPartyProductRepository _thirdPartyProductRepository;
 
-        protected ImporterXmlServiceBase(IAppSettings appSetting, IThirdPartyProductRepository thirdPartyProductRepository)
+        protected XmlImpoterlServiceBase(IAppSettings appSetting, IThirdPartyProductRepository thirdPartyProductRepository)
         {
             _appSetting = appSetting ?? new AppSettings();
             _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
         public abstract IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime);
 
-        public IEnumerable<string> GetXmlDataList(DateTime startTime, DateTime endTime)
+        public virtual IEnumerable<string> GetXmlDataList(DateTime startTime, DateTime endTime)
         {
             var rawDatas = GetRawDataList(startTime, endTime);
             foreach (var data in rawDatas)

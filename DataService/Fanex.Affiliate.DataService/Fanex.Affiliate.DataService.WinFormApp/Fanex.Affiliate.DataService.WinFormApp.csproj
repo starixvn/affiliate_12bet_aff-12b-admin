@@ -107,6 +107,12 @@
     <Compile Include="Forms\EbetForm.Designer.cs">
       <DependentUpon>EbetForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ImporterFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ImporterFormBase.Designer.cs">
+      <DependentUpon>ImporterFormBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ISoftbetForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EbetForm.resx">
       <DependentUpon>EbetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ImporterFormBase.resx">
+      <DependentUpon>ImporterFormBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ISoftbetForm.resx">
       <DependentUpon>ISoftbetForm.cs</DependentUpon>
@@ -302,6 +311,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
+      <Project>{410276E1-1E99-4662-809C-25F0F1777C08}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
       <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>
       <Name>Fanex.Affiliate.DataService.Importer</Name>

@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.UtilityTests
     public class XmlHelperTests
     {
         [Theory]
-        [InlineData(@"{""root"":[{""OS"":""1"",""areaName"":""Beijing""},{""OS"":""1"",""areaName"":""Beijing""}]")]
+        [InlineData(@"{""root"":[{""OS"":""1"",""areaName"":""Beijing""},{""OS"":""2"",""areaName"":""Beijing1""}]")]
         [InlineData(@"{""root"":[{""OS"":""1"",""areaName"":""Beijing""}]")]
         public void ParseToXDocumentFromJson_CallWithJsonFormatHasRoot_ReturnNotNull(string value)
         {

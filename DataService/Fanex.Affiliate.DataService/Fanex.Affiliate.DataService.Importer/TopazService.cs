@@ -18,7 +18,7 @@ using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public class TopazService : ImporterXmlServiceBase
+    public class TopazService : XmlImpoterlServiceBase
     {
         private const string CALL_LIMIT_EXCEEDED = "CALL_LIMIT_EXCEEDED";
         //60s to request next data for same brand_id request

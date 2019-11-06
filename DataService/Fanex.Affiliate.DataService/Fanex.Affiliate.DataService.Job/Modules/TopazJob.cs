@@ -55,7 +55,9 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         {
                             var nextStartTime = start.AddMinutes(minuteToRun);
 
-                            _topazService.Import(start,nextStartTime);
+                            var startUtcTime = start.ToUniversalTime();
+                            var endUtcTime = nextStartTime.ToUniversalTime();
+                            _topazService.Import(startUtcTime, endUtcTime);
 
                             var saveTimeTrackerParam = new InsertTimeTrackerParam
                             {

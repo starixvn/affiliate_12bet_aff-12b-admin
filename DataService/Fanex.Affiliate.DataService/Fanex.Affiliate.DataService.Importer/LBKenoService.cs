@@ -15,7 +15,7 @@ using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public class LBKenoService : ImporterXmlServiceBase
+    public class LBKenoService : XmlImpoterlServiceBase
     {
         private const string OK_STATUS = "00";
         private const string HOST_ACCESS_DENIED_STATUS = "40.01";

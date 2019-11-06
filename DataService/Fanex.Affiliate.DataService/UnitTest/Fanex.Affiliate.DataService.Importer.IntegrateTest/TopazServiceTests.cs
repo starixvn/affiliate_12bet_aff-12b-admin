@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fanex.Data.Configuration;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
         [InlineData(31)]
         public void GetXmlDataList_WhenCall_ReturnNotNull(int minute)
         {
-            var endTime = DateTime.Now;
+            var endTime = DateTime.UtcNow;
             //subtract 15 min;
             var startTime = endTime.AddMinutes(-minute);
             var service = CreateService();
@@ -43,7 +44,7 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
         [InlineData(31,4)]
         public void GetXmlDataList_WhenCall_TimeToProcessLesserThanExpectTime(int minute, int expectTime)
         {
-            var endTime = DateTime.Now;
+            var endTime = DateTime.UtcNow;
             //subtract 15 min;
             var startTime = endTime.AddMinutes(-minute);
             var service = CreateService();
@@ -55,6 +56,28 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
             var elapseTime = TimeDif(startCount, Environment.TickCount);
 
             Assert.InRange(elapseTime, maxTime - 120 * 1000, maxTime);
+        }
+
+        [Fact]
+        public void Import_WhenCall_NotThrowException()
+        {
+            DbSettingProviderManager.Current.Start();
+            var service = CreateService();
+            var endTime = DateTime.UtcNow;
+            var startTime = endTime.AddMinutes(-15);
+            service.Import(startTime, endTime);
+            Assert.True(true);
+        }
+
+        [Fact]
+        public void GetXmlDataList_WhenCall_NotReturnEmpty()
+        {
+            DbSettingProviderManager.Current.Start();
+            var service = CreateService();
+            var endTime = DateTime.UtcNow;
+            var startTime = endTime.AddMinutes(-15);
+            var list = service.GetXmlDataList(startTime, endTime);
+            Assert.NotEmpty(list);
         }
     }
 }

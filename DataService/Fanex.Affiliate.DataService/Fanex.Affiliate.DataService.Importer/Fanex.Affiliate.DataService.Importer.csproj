@@ -83,80 +83,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BetsoftService.cs" />
-    <Compile Include="Constants\Products.cs" />
-    <Compile Include="Constants\TimeZoneId.cs" />
     <Compile Include="CrystalGpiService.cs" />
     <Compile Include="DataImportingRunner.cs" />
     <Compile Include="CasinoDataService.cs" />
-    <Compile Include="DTO\CasinoDataMetaModel.cs" />
-    <Compile Include="DTO\ColumnName.cs" />
-    <Compile Include="DTO\Ebet\EbetApiConfig.cs" />
-    <Compile Include="DTO\Ebet\EbetApiResult.cs" />
-    <Compile Include="DTO\Ebet\EbetHistory.cs" />
-    <Compile Include="DTO\Ebet\EbetResultInfo.cs" />
-    <Compile Include="DTO\Ebet\EbetSummary.cs" />
-    <Compile Include="DTO\ISoftbet\ISoftbetApiParamResultPair.cs" />
-    <Compile Include="DTO\ISoftbet\ISoftbetBetHistory.cs" />
-    <Compile Include="DTO\ISoftbet\ISoftbetResultInfo.cs" />
-    <Compile Include="DTO\ISoftbet\ISoftbetSummary.cs" />
-    <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="EbetService.cs" />
-    <Compile Include="Enum\TransactionStatus.cs" />
-    <Compile Include="Enum\GPI\GameType.cs" />
-    <Compile Include="Enum\SystemType.cs" />
-    <Compile Include="Exceptions\ThirdPartyProductException.cs" />
-    <Compile Include="Extension\EnumExtension.cs" />
     <Compile Include="TopazService.cs" />
     <Compile Include="GpiLotteryService.cs" />
-    <Compile Include="IBetsoftService.cs" />
-    <Compile Include="ICrystalGpiService.cs" />
-    <Compile Include="IDataImportingRunner.cs" />
-    <Compile Include="IEbetService.cs" />
-    <Compile Include="IImporterService.cs" />
-    <Compile Include="IISoftbetService.cs" />
-    <Compile Include="ImporterXmlServiceBase.cs" />
-    <Compile Include="IOpusService.cs" />
+    <Compile Include="Interface\IBetsoftService.cs" />
+    <Compile Include="Interface\ICrystalGpiService.cs" />
+    <Compile Include="Interface\IDataImportingRunner.cs" />
+    <Compile Include="Interface\IEbetService.cs" />
+    <Compile Include="Interface\IImporterService.cs" />
+    <Compile Include="Interface\IISoftbetService.cs" />
+    <Compile Include="Interface\IOpusService.cs" />
     <Compile Include="LBKenoService.cs" />
-    <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
-    <Compile Include="MetaModels\CrystalGpi\CrystalGpiParam.cs" />
-    <Compile Include="MetaModels\Ebet\EbetParam.cs" />
-    <Compile Include="MetaModels\FlowGaming\FlowGamingParam.cs" />
-    <Compile Include="MetaModels\GPI\GpiParam.cs" />
-    <Compile Include="MetaModels\IParamQuery.cs" />
-    <Compile Include="MetaModels\ISoftbet\ISoftbetApiParam.cs" />
-    <Compile Include="MetaModels\ISoftbet\ISoftbetEntryParam.cs" />
     <Compile Include="ISoftbetService.cs" />
-    <Compile Include="MetaModels\LBKeno\LBKenoParam.cs" />
-    <Compile Include="MetaModels\Opus\OpusParam.cs" />
     <Compile Include="OpusService.cs" />
-    <Compile Include="Repository\BaseRepository.cs" />
-    <Compile Include="Repository\IThirdPartyProductRepository.cs" />
-    <Compile Include="Repository\ThirdPartyProductRepository.cs" />
-    <Compile Include="XmlResponseChecker\TopazResponseChecker.cs" />
-    <Compile Include="XmlResponseChecker\IThirdPartyResponseChecker.cs" />
-    <Compile Include="Utilities\DateTimeConverter.cs" />
-    <Compile Include="Utilities\EbetConfigHelper.cs" />
-    <Compile Include="Utilities\DataSimulator.cs" />
-    <Compile Include="Utilities\GpiHelper.cs" />
-    <Compile Include="Utilities\IAppSettings.cs" />
-    <Compile Include="Repository\ICasinoDataRepository.cs" />
-    <Compile Include="ICasinoDataService.cs" />
+    <Compile Include="ImOneVrLotteryService.cs" />
+    <Compile Include="Interface\ICasinoDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\CasinoDataRepository.cs" />
-    <Compile Include="Utilities\AppSettings.cs" />
-    <Compile Include="Utilities\IEbetConfigHelper.cs" />
-    <Compile Include="Utilities\EbetParser.cs" />
-    <Compile Include="Utilities\IDataSimulator.cs" />
-    <Compile Include="Utilities\ISoftbetParser.cs" />
-    <Compile Include="Utilities\RsaHelper.cs" />
-    <Compile Include="Utilities\XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="DTO\Betsoft\" />
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
+      <Project>{410276e1-1e99-4662-809c-25f0f1777c08}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
