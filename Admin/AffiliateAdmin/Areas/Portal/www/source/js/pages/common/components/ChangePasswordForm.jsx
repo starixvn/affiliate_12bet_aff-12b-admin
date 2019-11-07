@@ -1,10 +1,12 @@
 ﻿import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { resource, regExp, messages } from '../modules/constants/changePassword';
 import { updateChangeAffPasswword, updateChangeAdminPasswword } from '../actions/changePassword';
 
-export default class ChangePasswordForm extends PureComponent {
+export class ChangePasswordForm extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -164,3 +166,9 @@ export default class ChangePasswordForm extends PureComponent {
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ updateChangeAffPasswword, updateChangeAdminPasswword }, dispatch);
+                                    }
+
+export default connect(null, mapDispatchToProps)(ChangePasswordForm);

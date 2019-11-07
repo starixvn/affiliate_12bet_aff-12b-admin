@@ -91,8 +91,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
                 {
                     UserName = Server.HtmlEncode(param.UserName.Trim()),
                     Password = CryptographyHelper.Encrypt(param.Password.Trim()),
-                    FirstName = Server.HtmlEncode(param.FirstName.Trim()),
-                    LastName = Server.HtmlEncode(param.LastName.Trim()),
+                    FirstName = Server.HtmlEncode(param.FirstName),
+                    LastName = Server.HtmlEncode(param.LastName),
                     GroupId = param.GroupId
                 };
 
@@ -155,8 +155,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
                 var encodeParam = new UpdateUserParam
                 {
                     AccountId = param.AccountId,
-                    FirstName = Server.HtmlEncode(param.FirstName.Trim()),
-                    LastName = Server.HtmlEncode(param.LastName.Trim()),
+                    FirstName = Server.HtmlEncode(param.FirstName),
+                    LastName = Server.HtmlEncode(param.LastName),
                     GroupId = param.GroupId
                 };
 

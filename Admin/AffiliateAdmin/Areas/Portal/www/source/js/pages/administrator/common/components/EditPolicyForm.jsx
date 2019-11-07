@@ -1,9 +1,13 @@
 ﻿import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Table } from 'reactstrap';
 import { Button, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
+
 import { globalResource } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { getRolePolicy, getAccountPolicyList, getPolicyListByGroupIds, updateAccountPolicy, updateRolePolicy, convertCheckedPolicies } from '../libs/services';
+import { convertCheckedPolicies } from '../libs/services';
+import { getRolePolicy, getAccountPolicyList, getPolicyListByGroupIds, updateAccountPolicy, updateRolePolicy } from '../actions/index';
 
 const defaultState = {
     data: null,
@@ -13,7 +17,7 @@ const defaultState = {
     message: ''
 }
 
-export default class InsertUpdateAccForm extends PureComponent {
+export class EditPolicyForm extends PureComponent {
     constructor(props) {
         super(props)
 
@@ -30,8 +34,8 @@ export default class InsertUpdateAccForm extends PureComponent {
     }
 
     _handleGetPolicyList = async (selectedId, isAccountPolicy, isGetByIdList) => {
-        var result = isAccountPolicy ? (isGetByIdList ? await getPolicyListByGroupIds({ groupIds: selectedId }) : await getAccountPolicyList({ groupId: selectedId }))
-            : await getRolePolicy({ departmentId: selectedId });
+        var result = isAccountPolicy ? (isGetByIdList ? await this.props.getPolicyListByGroupIds({ groupIds: selectedId }) : await this.props.getAccountPolicyList({ groupId: selectedId }))
+            : await this.props.getRolePolicy({ departmentId: selectedId });
 
         this.setState({ ...result });
     }
@@ -61,7 +65,7 @@ export default class InsertUpdateAccForm extends PureComponent {
 
         const message = isAccountPolicy ? "Update account policy successfully!" : `Update role policy successfully!`;
         const param = Object.assign({}, { GroupPolicies: convertedPolicies });
-        const result = isAccountPolicy ? await updateAccountPolicy(param) : await updateRolePolicy(param);
+        const result = isAccountPolicy ? await this.props.updateAccountPolicy(param) : await this.props.updateRolePolicy(param);
 
         if (result) {
             this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
@@ -204,3 +208,9 @@ export default class InsertUpdateAccForm extends PureComponent {
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ getRolePolicy, getAccountPolicyList, getPolicyListByGroupIds, updateAccountPolicy, updateRolePolicy }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(EditPolicyForm);

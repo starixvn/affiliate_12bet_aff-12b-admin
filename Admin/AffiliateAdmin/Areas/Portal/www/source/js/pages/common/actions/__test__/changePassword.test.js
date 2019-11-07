@@ -17,7 +17,7 @@ describe('changePassword actions', () => {
             ConfirmPassword: '123abc'
         }
 
-        const result = await updateChangeAffPasswword(param);
+        const result = await updateChangeAffPasswword(param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Affiliate/ChangePassword', param);
         expect(result).toEqual(null);
@@ -32,7 +32,7 @@ describe('changePassword actions', () => {
             ConfirmPassword: '123abc'
         }
         
-        const result = await updateChangeAffPasswword(param);
+        const result = await updateChangeAffPasswword(param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Affiliate/ChangePassword', param);
         expect(result).toEqual({ IsSuccessful: true, Message: '' });
@@ -46,7 +46,7 @@ describe('changePassword actions', () => {
             ConfirmPassword: '123abc'
         }
 
-        const result = await updateChangeAdminPasswword(param);
+        const result = await updateChangeAdminPasswword(param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Administrator/ChangePassword', param);
         expect(result).toEqual(null);
@@ -61,7 +61,7 @@ describe('changePassword actions', () => {
             ConfirmPassword: '123abc'
         }
         
-        const result = await updateChangeAdminPasswword(param);
+        const result = await updateChangeAdminPasswword(param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Administrator/ChangePassword', param);
         expect(result).toEqual({ IsSuccessful: true, Message: '' });

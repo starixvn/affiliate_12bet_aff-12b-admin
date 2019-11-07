@@ -404,14 +404,14 @@ exports[`department list - components - Content  render correctly 1`] = `
     message=""
     onClose={[Function]}
   />
-  <InsertUpdateAccForm
+  <Connect(EditPolicyForm)
     closePopup={[Function]}
     isAccountPolicy={false}
     isShowPopup={false}
     name=""
     selectedId={0}
   />
-  <DepartmentPopup
+  <Connect(DepartmentPopup)
     closePopup={[Function]}
     groupId={0}
     isAdmin={false}
@@ -560,14 +560,14 @@ exports[`department list - components - Content  render correctly with gridData 
     message=""
     onClose={[Function]}
   />
-  <InsertUpdateAccForm
+  <Connect(EditPolicyForm)
     closePopup={[Function]}
     isAccountPolicy={false}
     isShowPopup={false}
     name=""
     selectedId={0}
   />
-  <DepartmentPopup
+  <Connect(DepartmentPopup)
     closePopup={[Function]}
     groupId={0}
     isAdmin={false}

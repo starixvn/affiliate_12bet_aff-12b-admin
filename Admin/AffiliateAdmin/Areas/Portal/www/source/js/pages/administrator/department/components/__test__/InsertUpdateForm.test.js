@@ -95,7 +95,7 @@ describe('department list - components - InsertUpdateForm ', () => {
         expect(result.instance()._handleShowAlert).toHaveBeenCalledWith(false, `Department name can not contain (') and (") characters!`);
     });
 
-    it('_handleSubmit - should be called toggleLoader and _handleShowAlert with departmentName is empty', async () => {
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert with departmentName is empty', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<InsertUpdateForm {...props} />);
         const instance = wrapper.instance();
@@ -111,7 +111,7 @@ describe('department list - components - InsertUpdateForm ', () => {
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Please input department name!");
     });
 
-    it('_handleSubmit - should be called toggleLoader, insertDepartment and _handleShowAlert with with insert successfully', async () => {
+    it('_handleSubmit - should call toggleLoader, insertDepartment and _handleShowAlert with with insert successfully', async () => {
         const result = { IsSuccessful: true, Message: "" };
         const props = Object.assign({}, defaultProps, { insertDepartment: jest.fn(() => result), toggleLoader: jest.fn() });
         const wrapper = shallow(<InsertUpdateForm {...props} />);
@@ -129,7 +129,7 @@ describe('department list - components - InsertUpdateForm ', () => {
         expect(instance._handleShowAlert).toHaveBeenCalledWith(true, "The Department has been added successfully!");
     });
 
-    it('_handleSubmit - should be called toggleLoader, insertDepartment and _handleShowAlert with with insert is failed', async () => {
+    it('_handleSubmit - should call toggleLoader, insertDepartment and _handleShowAlert with with insert is failed', async () => {
         const result = { IsSuccessful: false, Message: "Adding was failed!" };
         const props = Object.assign({}, defaultProps, { insertDepartment: jest.fn(() => result), toggleLoader: jest.fn() });
         const wrapper = shallow(<InsertUpdateForm {...props} />);
@@ -147,7 +147,7 @@ describe('department list - components - InsertUpdateForm ', () => {
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Adding was failed!");
     });
 
-    it('_handleSubmit - should be called toggleLoader, insertDepartment and _handleShowAlert with with insert is errored', async () => {
+    it('_handleSubmit - should call toggleLoader, insertDepartment and _handleShowAlert with with insert is errored', async () => {
         const props = Object.assign({}, defaultProps, { insertDepartment: jest.fn(), toggleLoader: jest.fn() });
         const wrapper = shallow(<InsertUpdateForm {...props} />);
         const instance = wrapper.instance();
@@ -164,7 +164,7 @@ describe('department list - components - InsertUpdateForm ', () => {
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Adding the department was failed!");
     });
 
-    it('_handleSubmit - should be called toggleLoader, updateDepartment and _handleShowAlert with with update successfully', async () => {
+    it('_handleSubmit - should call toggleLoader, updateDepartment and _handleShowAlert with with update successfully', async () => {
         const result = { IsSuccessful: true, Message: "" };
         const props = Object.assign({}, defaultProps, { updateDepartment: jest.fn(() => result), toggleLoader: jest.fn() });
         const wrapper = shallow(<InsertUpdateForm {...props} />);
@@ -182,7 +182,7 @@ describe('department list - components - InsertUpdateForm ', () => {
         expect(instance._handleShowAlert).toHaveBeenCalledWith(true, "The Department has been updated successfully!");
     });
 
-    it('_handleSubmit - should be called toggleLoader, updateDepartment and _handleShowAlert with with update is failed', async () => {
+    it('_handleSubmit - should call toggleLoader, updateDepartment and _handleShowAlert with with update is failed', async () => {
         const result = { IsSuccessful: false, Message: "Updating is failed!" };
         const props = Object.assign({}, defaultProps, { updateDepartment: jest.fn(() => result), toggleLoader: jest.fn() });
         const wrapper = shallow(<InsertUpdateForm {...props} />);
@@ -200,7 +200,7 @@ describe('department list - components - InsertUpdateForm ', () => {
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Updating is failed!");
     });
 
-    it('_handleSubmit - should be called toggleLoader, updateDepartment and _handleShowAlert with with update is errored', async () => {
+    it('_handleSubmit - should call toggleLoader, updateDepartment and _handleShowAlert with with update is errored', async () => {
         const props = Object.assign({}, defaultProps, { updateDepartment: jest.fn(), toggleLoader: jest.fn() });
         const wrapper = shallow(<InsertUpdateForm {...props} />);
         wrapper.setState({ isInsert: false, departmentName: 'abc' });

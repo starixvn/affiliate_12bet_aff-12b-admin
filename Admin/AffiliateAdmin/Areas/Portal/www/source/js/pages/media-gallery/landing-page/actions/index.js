@@ -38,10 +38,10 @@ export const fetchData = () => async (dispatch) => {
     const url = 'Portal/LandingPageList/GetLandingPageList';
     const response = await post(url);
 
-    const data = response && response.status === 200 ? response.data : [];
+    const data = response && response.status === 200 ? response.data : null;
     const checkedLandingPages = data ? _convertCheckedLandingPages(data) : {};
 
-    dispatch(setGridData(data));
+    dispatch(setGridData(data ? data : []));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(setCheckedLandingPages(checkedLandingPages));
     dispatch(toggleLoader(false));

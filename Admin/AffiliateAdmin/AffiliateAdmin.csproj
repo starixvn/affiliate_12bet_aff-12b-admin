@@ -1081,9 +1081,19 @@
     <Content Include="Areas\Portal\www\source\js\modules\htmlHelper.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\EditPolicyForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\InsertUpdateAccForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\redux\EditPolicyForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\redux\InsertUpdateAccForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\libs\services.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\department\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\department\actions\types.js" />
@@ -1091,7 +1101,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\InsertUpdateForm.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\redux\InsertUpdateForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\department\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\department\reducers\index.js" />
@@ -1153,6 +1162,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\changePassword.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\paymentRequestUpdate.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\redux\ChangePasswordForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\redux\PaymentRequestUpdateForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\changePassword.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\commissionGroup.js" />

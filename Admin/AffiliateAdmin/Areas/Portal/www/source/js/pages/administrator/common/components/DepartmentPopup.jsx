@@ -1,4 +1,6 @@
 ﻿import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Filter from './Filter';
 import Content from './Content';
@@ -6,7 +8,7 @@ import EditPolicyForm from './EditPolicyForm';
 import SelectAll from '../../../common/components/SelectAll';
 
 import { Button, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { fetchData } from '../libs/services';
+import { fetchData } from '../actions/index';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 const defaultState = {
@@ -22,7 +24,7 @@ const defaultState = {
     message: ''
 }
 
-export default class DepartmentPopup extends PureComponent {
+export class DepartmentPopup extends PureComponent {
     constructor(props) {
         super(props)
 
@@ -49,7 +51,7 @@ export default class DepartmentPopup extends PureComponent {
     }
 
     getData = async (param) => {
-        const result = await fetchData(param);
+        const result = await this.props.fetchData(param);
 
         this.setState({ ...result });
     }
@@ -157,3 +159,9 @@ export default class DepartmentPopup extends PureComponent {
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ fetchData }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(DepartmentPopup);

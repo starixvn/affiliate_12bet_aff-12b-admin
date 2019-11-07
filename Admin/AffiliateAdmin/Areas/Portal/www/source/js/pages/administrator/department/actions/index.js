@@ -32,7 +32,7 @@ export const setGridData = (data) => {
     }
 }
 
-export const getDepartmentList = async () => {
+export const getDepartmentList = () => async() => {
     const url = 'Portal/Department/GetDepartmentList';
     const response = await post(url);
 
@@ -42,7 +42,7 @@ export const getDepartmentList = async () => {
 export const fetchData = () => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const data = await getDepartmentList();
+    const data = await getDepartmentList()();
 
     dispatch(setGridData(data));
     dispatch(setShouldResetScrollPosition(true));

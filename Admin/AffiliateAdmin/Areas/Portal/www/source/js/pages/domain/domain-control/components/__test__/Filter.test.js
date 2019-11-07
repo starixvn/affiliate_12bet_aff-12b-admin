@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 import { defaultPagingOption } from '../../../../../modules/constants';
 
-describe('text list - components - Filter ', () => {
+describe('domain control - components - Filter ', () => {
     const defaultProps = {
         marketList: [
             {

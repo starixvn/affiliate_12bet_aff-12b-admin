@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`department list control - App Should render correctly 1`] = `
+exports[`department list - App Should render correctly 1`] = `
 <Provider
   store={
     Object {

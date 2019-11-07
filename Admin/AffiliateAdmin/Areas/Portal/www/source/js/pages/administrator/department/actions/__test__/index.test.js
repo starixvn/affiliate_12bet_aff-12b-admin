@@ -2,7 +2,6 @@
 import * as types from '../types';
 import { defaultPagingOption } from '../../../../../modules/constants';
 import * as ajaxRequest from '../../../../../modules/ajaxRequest';
-import { getDepartmentList } from '../../../Department/actions/index';
 
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';

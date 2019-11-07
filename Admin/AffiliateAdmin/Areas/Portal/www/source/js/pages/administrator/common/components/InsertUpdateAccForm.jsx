@@ -1,10 +1,13 @@
 ﻿import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { headerText, globalResource, MaxLength } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { getDepartmentList } from '../../department/actions/index';
-import { getUserDetail, insertUser, insertExistedUser, updateUser, validateUserName } from '../libs/services';
+import { validateUserName } from '../libs/services';
+import { getUserDetail, insertUser, insertExistedUser, updateUser } from '../actions/index';
 
 const defaultState = {
     userName: '',
@@ -18,7 +21,7 @@ const defaultState = {
     message: ''
 }
 
-export default class InsertUpdateAccForm extends PureComponent {
+export class InsertUpdateAccForm extends PureComponent {
     constructor(props) {
         super(props)
 
@@ -42,13 +45,13 @@ export default class InsertUpdateAccForm extends PureComponent {
     }
 
     _handleGetDepartmentList = async () => {
-        var departmentList = await getDepartmentList();
+        const departmentList = await this.props.getDepartmentList();
 
         this.setState({ departmentList });
     }
 
     _handleGetUserDetail = async (selectedUserId) => {
-        const item = await getUserDetail(selectedUserId);
+        const item = await this.props.getUserDetail(selectedUserId);
 
         item && this.setState({
             userName: htmlDecode(item.UserName),
@@ -78,7 +81,7 @@ export default class InsertUpdateAccForm extends PureComponent {
             return;
         }
 
-        if (!insertExistedUser && !password) {
+        if (!isInsertExistedAcc && !password) {
             this._handleShowAlert(false, 'Password is required!');
             return;
         }
@@ -93,7 +96,7 @@ export default class InsertUpdateAccForm extends PureComponent {
         if (isValidUserName) {
             const message = isInsert ? "Administrator has been added successfully!" : `The ${userName} has been updated successfully!`;
             const userInfo = Object.assign({}, { AccountId: selectedUserId, userName, password, firstName, lastName, groupId: department });
-            const result = isInsert ? (isInsertExistedAcc ? await insertExistedUser(userInfo) : await insertUser(userInfo)) : await updateUser(userInfo);
+            const result = isInsert ? (isInsertExistedAcc ? await this.props.insertExistedUser(userInfo) : await this.props.insertUser(userInfo)) : await this.props.updateUser(userInfo);
 
             if (result) {
                 this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
@@ -219,3 +222,9 @@ export default class InsertUpdateAccForm extends PureComponent {
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ getUserDetail, insertUser, insertExistedUser, updateUser, getDepartmentList }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(InsertUpdateAccForm);

@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
                 using (var reader = objectDb.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (reader.Read())
                     {
                         result = new AdministratorInfo
                         {

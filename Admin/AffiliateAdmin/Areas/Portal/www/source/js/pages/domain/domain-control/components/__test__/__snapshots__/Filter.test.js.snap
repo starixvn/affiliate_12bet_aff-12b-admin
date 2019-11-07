@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`text list - components - Filter  render correctly 1`] = `
+exports[`domain control - components - Filter  render correctly 1`] = `
 <div
   className="filter-container my-2"
 >

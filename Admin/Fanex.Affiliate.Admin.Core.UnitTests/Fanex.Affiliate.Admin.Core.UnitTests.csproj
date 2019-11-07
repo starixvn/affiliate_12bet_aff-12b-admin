@@ -155,6 +155,7 @@
   <ItemGroup>
     <Compile Include="Common\MockFile.cs" />
     <Compile Include="Controllers\AccessDeniedControllerTest.cs" />
+    <Compile Include="Controllers\Administrator\AdministratorControllerTest.cs" />
     <Compile Include="Controllers\Administrator\DepartmentControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommissionGroupControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Repository\Member\ActiveMemberRepositoryTest.cs" />
     <Compile Include="Repository\Member\MemberRepositoryTest.cs" />
     <Compile Include="Repository\ProductRepositoryTest.cs" />
+    <Compile Include="Services\Administrator\AdministratorServiceTest.cs" />
     <Compile Include="Services\Administrator\DepartmentServiceTest.cs" />
     <Compile Include="Services\AffTypeServiceTest.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordServiceTest.cs" />
