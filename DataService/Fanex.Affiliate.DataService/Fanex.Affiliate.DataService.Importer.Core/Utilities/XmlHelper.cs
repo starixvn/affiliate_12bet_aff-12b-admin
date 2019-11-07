@@ -30,11 +30,10 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
         {
             try
             {
-                var builder = new StringBuilder();
                 var rootTag = String.IsNullOrEmpty(rootTagName) ? "root" : rootTagName;
                 return JsonConvert.DeserializeXNode(json, rootTag, true);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return null;
             }

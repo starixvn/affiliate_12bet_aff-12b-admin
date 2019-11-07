@@ -11,5 +11,9 @@ namespace Fanex.Affiliate.DataService.Importer.Infrastructure
         IEnumerable<string> GetRawDataListByCurrencies(DateTime startTime, DateTime endTime, IEnumerable<string> currencies);
 
         IEnumerable<string> GetRawDataListByCurrency(DateTime startTime, DateTime endTime, string currency);
+
+        Task<IEnumerable<string>> GetRawDataListByCurrenciesAsync(DateTime startTime, DateTime endTime, IEnumerable<string> currencies);
+
+        Task<IEnumerable<string>> GetRawDataListByCurrencyAsync(DateTime startTime, DateTime endTime, string currency);
     }
 }

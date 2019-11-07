@@ -52,5 +52,29 @@ namespace Fanex.Affiliate.DataService.Importer
             if (DateTime.Compare(startTime, endTime) >= 0)
                 throw new ArgumentException($"Start date {startTime} is later or equal than end date: {endTime}");
         }
+
+        public async Task<IEnumerable<string>> GetXmlDataListAsync(DateTime startTime, DateTime endTime)
+        {
+            await Task.Yield();
+            return GetXmlDataList(startTime, endTime);
+        }
+
+        public async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
+        {
+            await Task.Yield();
+            return GetRawDataList(startTime, endTime);
+        }
+
+        public async Task ImportAsync(string data)
+        {
+            await Task.Yield();
+            Import(data);
+        }
+
+        public async Task ImportAsync(DateTime startTime, DateTime endTime)
+        {
+            await Task.Yield();
+            Import(startTime, endTime);
+        }
     }
 }

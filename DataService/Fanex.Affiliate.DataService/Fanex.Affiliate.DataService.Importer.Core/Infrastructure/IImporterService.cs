@@ -11,7 +11,11 @@ namespace Fanex.Affiliate.DataService.Importer
     {
         IEnumerable<string> GetXmlDataList(DateTime startTime, DateTime endTime);
         IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime);
+        Task<IEnumerable<string>> GetXmlDataListAsync(DateTime startTime, DateTime endTime);
+        Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime);
         void Import(string data);
         void Import(DateTime startTime, DateTime endTime);
+        Task ImportAsync(string data);
+        Task ImportAsync(DateTime startTime, DateTime endTime);
     }
 }

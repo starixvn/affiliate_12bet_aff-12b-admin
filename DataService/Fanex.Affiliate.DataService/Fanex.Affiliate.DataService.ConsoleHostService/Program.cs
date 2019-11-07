@@ -2,10 +2,10 @@
 using System.Globalization;
 using System.Threading;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Opus;
-using Fanex.Affiliate.DataService.Importer.Utilities;
 using Fanex.Affiliate.DataService.Job;
 using Fanex.Data.Configuration;
+using Fanex.Affiliate.DataService.CheckSum.Utilities;
+using Fanex.Affiliate.DataService.Importer.MetaModels.Opus;
 
 namespace Fanex.Affiliate.DataService.ConsoleHostService
 {

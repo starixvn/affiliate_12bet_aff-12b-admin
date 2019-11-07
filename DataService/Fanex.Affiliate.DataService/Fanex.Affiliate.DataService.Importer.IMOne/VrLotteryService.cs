@@ -9,15 +9,20 @@ using Fanex.Affiliate.DataService.Importer.IMOne.Extension;
 using Fanex.Affiliate.DataService.Importer.Infrastructure;
 using System.Collections.Specialized;
 using Fanex.Affiliate.DataService.Importer.IMOne.Client;
+using System.Threading.Tasks;
+using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
     public class VrLotteryService : XmlImpoterlServiceBase, IDataRequestByCurrency
     {
         private readonly TimeSpan MAX_REQUEST_TIMESPAN = new TimeSpan(31, 0, 0, 0);
+        protected IApiClient _client;
 
-        public VrLotteryService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) : base(appSetting, thirdPartyProductRepository)
-        {}
+        public VrLotteryService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) : base(appSetting, thirdPartyProductRepository)
+        {
+            _client = client ?? new VrLotteryClient();
+        }
 
         public override IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime)
         {
@@ -64,8 +69,7 @@ namespace Fanex.Affiliate.DataService.Importer
             var url = _appSetting.GetValue("VrLotteryApiUrl");
             var queryValue = BuildQuery(startTimeRequest, endTimeRequest, currency);
 
-            var client = new VrLotteryClient();
-            return client.GetResponse(url, queryValue);
+            return _client.GetResponse(url, queryValue);
         }
 
         private NameValueCollection BuildQuery(DateTime startTimeRequest, DateTime endTimeRequest, string currency)
@@ -99,6 +103,18 @@ namespace Fanex.Affiliate.DataService.Importer
         protected override XDocument ConvertToXml(string data)
         {
             return XmlHelper.ParseToXDocumentFromJson(data);
+        }
+
+        public async Task<IEnumerable<string>> GetRawDataListByCurrenciesAsync(DateTime startTime, DateTime endTime, IEnumerable<string> currencies)
+        {
+            await Task.Yield();
+            return GetRawDataListByCurrencies(startTime, endTime, currencies);
+        }
+
+        public async Task<IEnumerable<string>> GetRawDataListByCurrencyAsync(DateTime startTime, DateTime endTime, string currency)
+        {
+            await Task.Yield();
+            return GetRawDataListByCurrency(startTime, endTime, currency);
         }
     }
 }

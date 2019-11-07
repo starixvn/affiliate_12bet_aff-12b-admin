@@ -196,8 +196,12 @@
       <Project>{6A965DB8-4270-4859-97C1-CD22C4B50969}</Project>
       <Name>Fanex.Affiliate.DataService.CheckSum</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
+      <Project>{410276e1-1e99-4662-809c-25f0f1777c08}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
-      <Project>{8278F547-CD9E-48EC-8184-E10F273683F7}</Project>
+      <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>
       <Name>Fanex.Affiliate.DataService.Importer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Job\Fanex.Affiliate.DataService.Job.csproj">

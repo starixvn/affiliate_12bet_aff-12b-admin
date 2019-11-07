@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
 
         public string GetResponse(string url, NameValueCollection query)
         {
-            return GetResponseAsync(url, query).ToString();
+            return GetResponseAsync(url, query).Result;
         }
 
         public async Task<string> GetResponseAsync(string url, NameValueCollection query)

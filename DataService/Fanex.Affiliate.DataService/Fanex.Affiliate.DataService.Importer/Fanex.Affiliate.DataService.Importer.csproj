@@ -93,13 +93,11 @@
     <Compile Include="Interface\ICrystalGpiService.cs" />
     <Compile Include="Interface\IDataImportingRunner.cs" />
     <Compile Include="Interface\IEbetService.cs" />
-    <Compile Include="Interface\IImporterService.cs" />
     <Compile Include="Interface\IISoftbetService.cs" />
     <Compile Include="Interface\IOpusService.cs" />
     <Compile Include="LBKenoService.cs" />
     <Compile Include="ISoftbetService.cs" />
     <Compile Include="OpusService.cs" />
-    <Compile Include="ImOneVrLotteryService.cs" />
     <Compile Include="Interface\ICasinoDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
