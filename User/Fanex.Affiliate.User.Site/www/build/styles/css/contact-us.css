@@ -36,6 +36,17 @@
       margin: 0 auto; }
   .languages-item .im-icon {
     width: 2rem; }
+  .languages-item .im-whats-app {
+    width: 11rem;
+    margin-top: -5px;
+    margin-left: -9px; }
+  .languages-item .im-line {
+    width: 3rem;
+    margin: -4px 5px 0px -4px; }
+  .languages-item .im-zalo {
+    width: 4rem;
+    margin-left: -9px;
+    margin-top: -4px; }
   .languages-item .info {
     height: 100%;
     border-left: 1px solid #e7e7e7;
@@ -61,6 +72,16 @@
       display: inline-block; }
       .languages-item .info .contact-info .im-icon {
         margin-right: 5px; }
+    .languages-item .info-whats-app {
+      margin-top: -4px;
+      color: green !important; }
+    .languages-item .info-line {
+      margin-bottom: 4px;
+      color: green !important; }
+    .languages-item .info-zalo {
+      color: dodgerblue !important;
+      margin-bottom: -5px;
+      margin-top: -8px; }
 
 .contact-form {
   padding-top: 20px; }
