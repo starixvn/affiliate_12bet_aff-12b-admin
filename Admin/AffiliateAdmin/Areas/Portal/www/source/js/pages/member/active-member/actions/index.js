@@ -52,20 +52,10 @@ export const fetchUnactivatedData = (param) => async (dispatch) => {
     const data = response && response.status === 200 ? response.data : [];
 
     dispatch(setUnactivatedGridData(data));
-    dispatch(setUserNames(_getUserNames(data)));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
 
-    return data.length;
-}
-
-function _getUserNames(dataList) {
-    var userNames = '';
-    for (let i = 0; i < dataList.length; i++) {
-        userNames = dataList[i].UserName + ',';
-    }
-
-    return userNames;
+    return data;
 }
 
 export const fetchActivatedData = (param) => async (dispatch) => {
@@ -75,7 +65,7 @@ export const fetchActivatedData = (param) => async (dispatch) => {
 
     dispatch(setActivatedGridData(data));
 
-    return data.length;
+    return data;
 }
 
 export const activeMember = (param) => async () => {

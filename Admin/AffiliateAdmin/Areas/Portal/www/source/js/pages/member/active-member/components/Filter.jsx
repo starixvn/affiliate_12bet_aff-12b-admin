@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { setMessage, setShowText, fetchActivatedData, fetchUnactivatedData } from '../actions';
-import { headerText } from '../libs/constants';
+import { setMessage, setShowText, fetchActivatedData, fetchUnactivatedData, setUserNames } from '../actions';
+import { headerText, getUnexistUserNames } from '../libs/constants';
 
 export const Filter = (props) => {
 
@@ -12,16 +12,18 @@ export const Filter = (props) => {
 
     const _handleSearch = () => {
         const userNamesTrim = userNames.replace(/ /g, '');
+
         !!userNamesTrim ? _handleFetchData(userNamesTrim) : props.setMessage('Please input Deposit User Name!');
     }
 
     const _handleFetchData = async (userNames) => {
-        const activeGridDataLength = await props.fetchActivatedData({ userNames });
-        const unactiveGridDataLength = await props.fetchUnactivatedData({ userNames });
+        const activeGridData = await props.fetchActivatedData({ userNames });
+        const unactiveGridData = await props.fetchUnactivatedData({ userNames });
 
-        if (!activeGridDataLength && !unactiveGridDataLength) {
-            props.setShowText(true)
-        }
+        const unexistUserNames = getUnexistUserNames(activeGridData, unactiveGridData, userNames);
+
+        unexistUserNames && props.setShowText(true);
+        props.setUserNames(unexistUserNames);
     }
 
     const _handlePressEnter = (event) => {
@@ -45,7 +47,7 @@ export const Filter = (props) => {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setMessage, setShowText, fetchActivatedData, fetchUnactivatedData }, dispatch);
+    return bindActionCreators({ setMessage, setShowText, fetchActivatedData, fetchUnactivatedData, setUserNames }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(React.memo(Filter));
