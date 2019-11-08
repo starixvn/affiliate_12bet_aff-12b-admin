@@ -99,13 +99,18 @@
         }
 
         &-whats-app {
-            margin-top: -4px;
+            white-space: pre-line;
+            margin-top: -21px;
             color: green !important;
         }
 
         &-line {
             margin-bottom: 4px;
             color: green !important;
+
+            @media (max-width: 1044px) and (min-width: 1024px) {
+                margin-bottom: 22px !important;
+            }
         }
 
         &-zalo {

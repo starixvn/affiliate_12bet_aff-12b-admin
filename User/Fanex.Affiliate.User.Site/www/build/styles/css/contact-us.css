@@ -73,11 +73,15 @@
       .languages-item .info .contact-info .im-icon {
         margin-right: 5px; }
     .languages-item .info-whats-app {
-      margin-top: -4px;
+      white-space: pre-line;
+      margin-top: -21px;
       color: green !important; }
     .languages-item .info-line {
       margin-bottom: 4px;
       color: green !important; }
+      @media (max-width: 1044px) and (min-width: 1024px) {
+        .languages-item .info-line {
+          margin-bottom: 22px !important; } }
     .languages-item .info-zalo {
       color: dodgerblue !important;
       margin-bottom: -5px;
