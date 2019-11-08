@@ -11,13 +11,30 @@ exports[`active member - components - AppContainer render correctly 1`] = `
     Each username seperated by Comma ","
   </div>
   <Connect(Component) />
+  <Connect(Component) />
+  <Connect(Component) />
+  <NotificationPopup
+    message="Please input Deposit User Name!"
+    onClose={[Function]}
+  />
+</AppLayout>
+`;
+
+exports[`active member - components - AppContainer render correctly with memberNotExist 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
   <div
-    className="text-red"
+    className="rule-text mt-2"
   >
-    These members do not exist: 
-    <strong>
-      123abc
-    </strong>
+    Each username seperated by Comma ","
+  </div>
+  <Connect(Component) />
+  <div
+    className="text-red mt-1"
+  >
+    These members do not exist: abc
   </div>
   <Connect(Component) />
   <Connect(Component) />

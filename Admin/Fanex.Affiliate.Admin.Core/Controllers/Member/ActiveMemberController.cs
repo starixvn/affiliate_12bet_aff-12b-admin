@@ -37,22 +37,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetUnactivatedMemberList(string userNames)
+        public ActionResult GetAllMembers(string userNames)
         {
             return new JsonNetResult
             {
-                Data = _activeMemberService.GetUnactivatedMemberList(userNames)
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        [Compress]
-        public ActionResult GetActivatedMemberList(string userNames)
-        {
-            return new JsonNetResult
-            {
-                Data = _activeMemberService.GetActivatedMemberList(userNames)
+                Data = _activeMemberService.GetAllMembers(userNames)
             };
         }
 

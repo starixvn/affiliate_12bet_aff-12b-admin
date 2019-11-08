@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Member
 {
-    public class ActiveMemberInfo: UnactiveMemberInfo
+    public class ActiveMemberInfo: InactiveMemberInfo
     {
         public int IbcCustId { get; set; }
 

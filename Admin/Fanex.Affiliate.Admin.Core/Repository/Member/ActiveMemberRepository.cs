@@ -10,55 +10,63 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 {
     public class ActiveMemberRepository : BaseRepository, IActiveMemberRepository
     {
-        public IEnumerable<UnactiveMemberInfo> GetUnactivatedMemberList(string userNames)
+        public AllMemberEntities GetAllMembers(string userNames)
         {
-            const string Spkey = "Deposit_MembersNotActivatedSel";
-            var result = new List<UnactiveMemberInfo>();
+            const string SpKey = "Aff_Admin_ActiveMember_CheckStatus";
 
-            using (var objectDb = GetObjectDb(Spkey))
+            var result = new AllMemberEntities();
+
+            using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("UserNames", DbType.String, userNames);
+                objectDb.AddInParameter("Username", DbType.String, userNames);
+                AssignResultOutputParam(objectDb);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
-                    while (reader.Read())
-                    {
-                        result.Add(new UnactiveMemberInfo
-                        {
-                            UserName = Convert.ToString(reader["UserName"]),
-                            FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]),
-                            LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"])
-                        });
-                    }
+                    result.ActivedMemeberList = GetActivatedMemberList(reader);
+                    result.InactiveMemberList = GetInactivatedMemberList(reader);
                 }
+
+                result.MemberNotExist = objectDb.GetParameterValue("ErrMsg").ToString();
             }
 
             return result;
         }
 
-        public IEnumerable<ActiveMemberInfo> GetActivatedMemberList(string userNames)
+        public IEnumerable<ActiveMemberInfo> GetActivatedMemberList(IDataReader reader)
         {
-            const string Spkey = "Aff_CustomerCheckList12BetPlayerAccountsActivated";
             var result = new List<ActiveMemberInfo>();
 
-            using (var objectDb = GetObjectDb(Spkey))
+            while (reader.Read())
             {
-                objectDb.AddInParameter("UserNames", DbType.String, userNames);
-
-                using (var reader = objectDb.ExecuteReader())
+                result.Add(new ActiveMemberInfo
                 {
-                    while (reader.Read())
+                    IbcCustId = Convert.ToInt32(reader["IBCCustID"]),
+                    IbcUserName = Convert.ToString(reader["IBCUserName"]),
+                    UserName = Convert.ToString(reader["UserName"]),
+                    FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]),
+                    LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"]),
+                    CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"])
+                });
+            }
+
+            return result;
+        }
+
+        public IEnumerable<InactiveMemberInfo> GetInactivatedMemberList(IDataReader reader)
+        {
+            var result = new List<InactiveMemberInfo>();
+
+            if (reader.NextResult())
+            {
+                while (reader.Read())
+                {
+                    result.Add(new InactiveMemberInfo
                     {
-                        result.Add(new ActiveMemberInfo
-                        {
-                            IbcCustId = Convert.ToInt32(reader["IBCCustID"]),
-                            IbcUserName = Convert.ToString(reader["IBCUserName"]),
-                            UserName = Convert.ToString(reader["UserName"]),
-                            FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]),
-                            LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"]),
-                            CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"])
-                        });
-                    }
+                        UserName = Convert.ToString(reader["UserName"]),
+                        FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]),
+                        LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"])
+                    });
                 }
             }
 

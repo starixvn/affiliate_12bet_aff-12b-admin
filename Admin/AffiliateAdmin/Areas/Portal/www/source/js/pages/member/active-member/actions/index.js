@@ -1,6 +1,6 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_USER_NAMES, SET_SHOW_TEXT, SET_MESSAGE, SHOULD_RESET_SCROLL_POSITION, SET_ACTIVATED_GRID_DATA, SET_UNACTIVATED_GRID_DATA } from './types';
+import { SET_USER_NAMES, SET_SHOW_TEXT, SET_MESSAGE, SET_MEMBER_NOT_EXIST, SHOULD_RESET_SCROLL_POSITION, SET_ACTIVATED_GRID_DATA, SET_UNACTIVATED_GRID_DATA } from './types';
 
 export const setUserNames = (data) => {
     return {
@@ -19,6 +19,13 @@ export const setShowText = (data) => {
 export const setMessage = (data) => {
     return {
         type: SET_MESSAGE,
+        data
+    }
+}
+
+export const setMemberNotExist = (data) => {
+    return {
+        type: SET_MEMBER_NOT_EXIST,
         data
     }
 }
@@ -44,28 +51,18 @@ export const setUnactivatedGridData = (data) => {
     }
 }
 
-export const fetchUnactivatedData = (param) => async (dispatch) => {
+export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const url = 'Portal/ActiveMember/GetUnactivatedMemberList';
+    const url = 'Portal/ActiveMember/GetAllMembers';
     const response = await post(url, param);
-    const data = response && response.status === 200 ? response.data : [];
+    const data = response && response.status === 200 ? response.data : null;
 
-    dispatch(setUnactivatedGridData(data));
+    dispatch(setUnactivatedGridData(data ? data.InactiveMemberList : []));
+    dispatch(setActivatedGridData(data ? data.ActivedMemeberList : []));
+    dispatch(setMemberNotExist(data ? data.MemberNotExist : ''));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
-
-    return data;
-}
-
-export const fetchActivatedData = (param) => async (dispatch) => {
-    const url = 'Portal/ActiveMember/GetActivatedMemberList';
-    const response = await post(url, param);
-    const data = response && response.status === 200 ? response.data : [];
-
-    dispatch(setActivatedGridData(data));
-
-    return data;
 }
 
 export const activeMember = (param) => async () => {

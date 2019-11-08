@@ -7,9 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
 {
     public interface IActiveMemberService
     {
-        IEnumerable<ActiveMemberInfo> GetActivatedMemberList(string userNames);
-
-        IEnumerable<UnactiveMemberInfo> GetUnactivatedMemberList(string userNames);
+        AllMemberEntities GetAllMembers(string userNames);
 
         ResultInfo ActiveMember(ActiveMemberParam param);
     }

@@ -2,7 +2,7 @@
 
 import createReducer from '../../../../modules/createReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
-import { SET_USER_NAMES, SET_SHOW_TEXT, SET_MESSAGE, SHOULD_RESET_SCROLL_POSITION, SET_ACTIVATED_GRID_DATA, SET_UNACTIVATED_GRID_DATA } from '../actions/types';
+import { SET_USER_NAMES, SET_SHOW_TEXT, SET_MESSAGE, SET_MEMBER_NOT_EXIST, SHOULD_RESET_SCROLL_POSITION, SET_ACTIVATED_GRID_DATA, SET_UNACTIVATED_GRID_DATA } from '../actions/types';
 
 export const userNames = createReducer('', {
     [SET_USER_NAMES](prevState, action) {
@@ -18,6 +18,12 @@ export const isShowText = createReducer(false, {
 
 export const message = createReducer('', {
     [SET_MESSAGE](prevState, action) {
+        return action.data;
+    }
+})
+
+export const memberNotExist = createReducer('', {
+    [SET_MEMBER_NOT_EXIST](prevState, action) {
         return action.data;
     }
 })
@@ -45,6 +51,7 @@ export default combineReducers({
     isShowText,
     userNames,
     message,
+    memberNotExist,
     activatedGridData,
     unactivatedGridData,
     shouldResetScrollPosition

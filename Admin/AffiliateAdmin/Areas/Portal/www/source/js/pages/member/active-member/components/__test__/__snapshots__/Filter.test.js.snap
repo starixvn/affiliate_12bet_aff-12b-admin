@@ -29,6 +29,7 @@ exports[`active member - components - Filter  render correctly 1`] = `
       </Label>
       <Input
         className="deposit-user-name"
+        maxLength="4000"
         onChange={[Function]}
         onKeyPress={[Function]}
         type="text"

@@ -17,14 +17,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
             _activeMemberRepository = activeMemberRepository;
         }
 
-        public IEnumerable<ActiveMemberInfo> GetActivatedMemberList(string userNames)
+        public AllMemberEntities GetAllMembers(string userNames)
         {
-            return _activeMemberRepository.GetActivatedMemberList(userNames);
-        }
-
-        public IEnumerable<UnactiveMemberInfo> GetUnactivatedMemberList(string userNames)
-        {
-            return _activeMemberRepository.GetUnactivatedMemberList(userNames);
+            return _activeMemberRepository.GetAllMembers(userNames);
         }
 
         public ResultInfo ActiveMember(ActiveMemberParam param)

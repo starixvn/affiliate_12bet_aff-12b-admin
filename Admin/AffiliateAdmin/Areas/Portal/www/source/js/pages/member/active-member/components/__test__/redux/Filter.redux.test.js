@@ -23,8 +23,8 @@ describe('active member - Filter - connect', () => {
         const expectedActionCreator = {
             setMessage: actions['setMessage'],
             setShowText: actions['setShowText'],
-            fetchActivatedData: actions['fetchActivatedData'],
-            fetchUnactivatedData: actions['fetchUnactivatedData']
+            fetchData: actions['fetchData'],
+            setUserNames: actions['setUserNames']
         }
 
         const dispatch = {};

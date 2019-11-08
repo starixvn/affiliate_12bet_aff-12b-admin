@@ -1,7 +1,7 @@
 ﻿
 namespace Fanex.Affiliate.Admin.Core.DTO.Member
 {
-    public class UnactiveMemberInfo
+    public class InactiveMemberInfo
     {
         public string UserName { get; set; }
 

@@ -11,7 +11,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 import { setMessage } from '../actions';
 
 export const AppContainer = (props) => {
-    const { isShowLoader, isShowText, userNames, message } = props;
+    const { isShowLoader, isShowText, memberNotExist, message } = props;
 
     return (
         <AppLayout>
@@ -19,7 +19,7 @@ export const AppContainer = (props) => {
             <div className="rule-text mt-2">Each username seperated by Comma ","</div>
             <Filter />
             {
-                isShowText && <div className="text-red">These members do not exist: <strong>{userNames}</strong></div>
+                memberNotExist && <div className="text-red mt-1">{memberNotExist}</div>
             }
             <Unactivated />
             <Activated />
@@ -33,8 +33,8 @@ export const AppContainer = (props) => {
     );
 }
 
-function mapStateToProps({ isShowLoader, isShowText, userNames, message }) {
-    return Object.assign({}, { isShowLoader, isShowText, userNames, message });
+function mapStateToProps({ isShowLoader, isShowText, memberNotExist, message }) {
+    return Object.assign({}, { isShowLoader, isShowText, memberNotExist, message });
 }
 
 function mapDispatchToProps(dispatch) {

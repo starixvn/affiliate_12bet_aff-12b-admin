@@ -35,40 +35,27 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Member
         }
 
         [Fact]
-        public void GetUnactivatedMemberList_WhenCall_ReturnCorrectData()
+        public void GetAllMembers_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var userNames = "abc";
             string passedParam = null;
             var activeMemberService = new Mock<IActiveMemberService>();
-            activeMemberService.Setup(t => t.GetUnactivatedMemberList(userNames)).Returns(new List<UnactiveMemberInfo> { new UnactiveMemberInfo() }).Callback<string>(p => passedParam = p);
+            activeMemberService.Setup(t => t.GetAllMembers(userNames)).Returns(new AllMemberEntities {
+                ActivedMemeberList = new List<ActiveMemberInfo> { new ActiveMemberInfo() },
+                InactiveMemberList = new List<InactiveMemberInfo> { new InactiveMemberInfo() },
+                MemberNotExist = ""
+            }).Callback<string>(p => passedParam = p);
             var controller = CreateActiveMemberController(activeMemberService: activeMemberService.Object);
 
             // Action
-            var result = controller.GetUnactivatedMemberList(userNames) as JsonNetResult;
-            var entityResult = result.Data as List<UnactiveMemberInfo>;
+            var result = controller.GetAllMembers(userNames) as JsonNetResult;
+            var allMemberEntities = result.Data as AllMemberEntities;
 
             // Assert
-            Assert.Single(entityResult);
-            Assert.Equal(userNames, passedParam);
-        }
-
-        [Fact]
-        public void GetActivatedMemberList_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var userNames = "abc";
-            string passedParam = null;
-            var activeMemberService = new Mock<IActiveMemberService>();
-            activeMemberService.Setup(t => t.GetActivatedMemberList(userNames)).Returns(new List<ActiveMemberInfo> { new ActiveMemberInfo() }).Callback<string>(p => passedParam = p);
-            var controller = CreateActiveMemberController(activeMemberService: activeMemberService.Object);
-
-            // Action
-            var result = controller.GetActivatedMemberList(userNames) as JsonNetResult;
-            var entityResult = result.Data as List<ActiveMemberInfo>;
-
-            // Assert
-            Assert.Single(entityResult);
+            Assert.Single(allMemberEntities.ActivedMemeberList);
+            Assert.Single(allMemberEntities.InactiveMemberList);
+            Assert.Equal("", allMemberEntities.MemberNotExist);
             Assert.Equal(userNames, passedParam);
         }
 

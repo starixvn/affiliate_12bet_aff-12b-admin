@@ -12,38 +12,27 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
     public class ActiveMemberServiceTest
     {
         [Fact]
-        public void GetActivatedMemberList_WhenCall_ReturnCorrectData()
+        public void GetAllMembers_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var userNames = "abc";
             string passedParam = null;
             var activeMemberRepository = new Mock<IActiveMemberRepository>();
-            activeMemberRepository.Setup(t => t.GetActivatedMemberList(userNames)).Returns(new List<ActiveMemberInfo> { new ActiveMemberInfo() }).Callback<string>(p => passedParam = p);
+            activeMemberRepository.Setup(t => t.GetAllMembers(userNames)).Returns(new AllMemberEntities
+            {
+                ActivedMemeberList = new List<ActiveMemberInfo> { new ActiveMemberInfo() },
+                InactiveMemberList = new List<InactiveMemberInfo> { new InactiveMemberInfo() },
+                MemberNotExist = ""
+            }).Callback<string>(p => passedParam = p);
             var service = CreateActiveMemberService(activeMemberRepository.Object);
 
             // Action
-            var result = service.GetActivatedMemberList(userNames);
+            var result = service.GetAllMembers(userNames);
 
             // Assert
-            Assert.Single(result);
-            Assert.Equal(userNames, passedParam);
-        }
-
-        [Fact]
-        public void GetUnactivatedMemberList_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var userNames = "abc";
-            string passedParam = null;
-            var activeMemberRepository = new Mock<IActiveMemberRepository>();
-            activeMemberRepository.Setup(t => t.GetUnactivatedMemberList(userNames)).Returns(new List<UnactiveMemberInfo> { new UnactiveMemberInfo() }).Callback<string>(p => passedParam = p);
-            var service = CreateActiveMemberService(activeMemberRepository.Object);
-
-            // Action
-            var result = service.GetUnactivatedMemberList(userNames);
-
-            // Assert
-            Assert.Single(result);
+            Assert.Single(result.ActivedMemeberList);
+            Assert.Single(result.InactiveMemberList);
+            Assert.Equal("", result.MemberNotExist);
             Assert.Equal(userNames, passedParam);
         }
 

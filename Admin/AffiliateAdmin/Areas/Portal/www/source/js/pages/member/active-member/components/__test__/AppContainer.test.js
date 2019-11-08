@@ -16,6 +16,13 @@ describe('active member - components - AppContainer', () => {
         expect(result).toMatchSnapshot();
     });
 
+    it('render correctly with memberNotExist', () => {
+        const props = Object.assign({}, defaultProps, { memberNotExist: 'These members do not exist: abc' });
+        const result = shallow(<AppContainer {...props} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
     it('setMessage - should be called when close NotificationPopup', () => {
         const props = Object.assign({}, defaultProps, { setMessage: jest.fn() });
         const result = shallow(<AppContainer {...props} />);
