@@ -49,6 +49,23 @@
         width: 2rem;
     }
 
+    .im-whats-app {
+        width: 11rem;
+        margin-top: -5px;
+        margin-left: -9px;
+    }
+
+    .im-line {
+        width: 3rem;
+        margin: -4px 5px 0px -4px;
+    }
+
+    .im-zalo {
+        width: 4rem;
+        margin-left: -9px;
+        margin-top: -4px;
+    }
+
     .info {
         height: 100%;
         border-left: 1px solid #e7e7e7;
@@ -79,6 +96,27 @@
             .im-icon {
                 margin-right: 5px;
             }
+        }
+
+        &-whats-app {
+            white-space: pre-line;
+            margin-top: -21px;
+            color: green !important;
+        }
+
+        &-line {
+            margin-bottom: 4px;
+            color: green !important;
+
+            @media (max-width: 1044px) and (min-width: 1024px) {
+                margin-bottom: 22px !important;
+            }
+        }
+
+        &-zalo {
+            color: dodgerblue !important;
+            margin-bottom: -5px;
+            margin-top: -8px;
         }
     }
 }
