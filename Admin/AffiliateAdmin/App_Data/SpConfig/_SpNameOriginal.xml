@@ -156,4 +156,10 @@
     <Setting Key="Aff_Con_AdminPolicyUpd" SpName="Aff_Con_AdminPolicyUpd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Con_Batch_AdminPolicySel" SpName="Aff_Con_Batch_AdminPolicySel" DbName="affiliate_12bet" />
   </Function>
+  <Function Name="Home">
+    <Setting Key="DEP_AffiliateGetPSP" SpName="DEP_AffiliateGetPSP" DbName="deposit" />
+    <Setting Key="DEP_AffiliateGeneralInfo" SpName="DEP_AffiliateGeneralInfo" DbName="deposit" />
+    <Setting Key="Aff_UserOnlineList" SpName="Aff_UserOnlineList" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_GeneralInfo_Sel" SpName="Aff_Admin_GeneralInfo_Sel" DbName="affiliate_12bet" />
+  </Function>
 </Functions>
