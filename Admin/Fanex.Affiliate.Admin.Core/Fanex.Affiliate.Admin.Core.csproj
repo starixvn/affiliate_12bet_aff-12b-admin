@@ -236,6 +236,7 @@
     <Compile Include="DTO\AffTypeInfo.cs" />
     <Compile Include="DTO\Domain\DomainControlInfo.cs" />
     <Compile Include="DTO\Domain\DomainInfo.cs" />
+    <Compile Include="DTO\Home\OnlineListInfo.cs" />
     <Compile Include="DTO\MediaGallery\BannerInfo.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupResultEntity.cs" />
@@ -376,6 +377,8 @@
     <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
     <Compile Include="Repository\EmailHistory\EmailHistoryRepository.cs" />
     <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
+    <Compile Include="Repository\Home\HomeRepository.cs" />
+    <Compile Include="Repository\Home\IHomeRepository.cs" />
     <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
     <Compile Include="Repository\MediaGallery\IBannerListRepository.cs" />
     <Compile Include="Repository\Member\ActiveMemberRepository.cs" />
@@ -497,6 +500,8 @@
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\ExchangeRate\ExchangeRateService.cs" />
     <Compile Include="Services\ExchangeRate\IExchangeRateService.cs" />
+    <Compile Include="Services\Home\HomeService.cs" />
+    <Compile Include="Services\Home\IHomeService.cs" />
     <Compile Include="Services\IAffiliateService.cs" />
     <Compile Include="Services\IAffTypeService.cs" />
     <Compile Include="Services\ICommissionGroupService.cs" />

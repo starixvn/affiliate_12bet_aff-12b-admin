@@ -29,6 +29,7 @@ module.exports = {
     [`${jsDist}/pages/domain/domain-control`]: clientRoot + "/js/pages/domain/domain-control/index.jsx",
     [`${jsDist}/pages/administrator/administrator`]: clientRoot + "/js/pages/administrator/administrator/index.jsx",
     [`${jsDist}/pages/administrator/department`]: clientRoot + "/js/pages/administrator/department/index.jsx",
+    [`${jsDist}/pages/home`]: clientRoot + "/js/pages/home/index.jsx",
 
     //For Thirdparty Product pages
     [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",
@@ -63,4 +64,5 @@ module.exports = {
     [`${styleDist}/pages/domain/domain-control`]: clientRoot + "/style/pages/domain/domain-control.scss",
     [`${styleDist}/pages/administrator/administrator`]: clientRoot + "/style/pages/administrator/administrator.scss",
     [`${styleDist}/pages/administrator/department`]: clientRoot + "/style/pages/administrator/department.scss",
+    [`${styleDist}/pages/home`]: clientRoot + "/style/pages/home.scss",
 };

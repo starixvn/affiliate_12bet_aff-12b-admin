@@ -1010,6 +1010,7 @@
     <Content Include="Areas\Portal\www\dist\js\pages\domain\domain-control.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\domain\domain.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\exchange-rate\exchange-rate.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\home.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\login.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\banner-list.js" />
@@ -1049,6 +1050,7 @@
     <Content Include="Areas\Portal\www\dist\style\pages\domain\domain.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\email-history.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\exchange-rate\exchange-rate.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\home.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\banner-list.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\landing-page.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\text-list.css" />
@@ -1316,6 +1318,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\login\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\login\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\actions\index.js" />
@@ -1464,6 +1470,13 @@
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\InsertUpdateAccForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\EditPolicyForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\DepartmentPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\OnlineList.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\MemberStatistics.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\AffiliateStatistics.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\TasksWaitingForApproval.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\BannerStatistics.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -2054,6 +2067,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\administrator\department.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_policy-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_department-popup.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\home.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

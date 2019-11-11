@@ -1,7 +1,20 @@
 ﻿@{
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
 }
 
-<div class="mainFrameWrapper">
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/home.css")" rel="stylesheet" />
+}
+
+@section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")'
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/home.js")"></script>
+}
+
+@*<div class="mainFrameWrapper">
     <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Home/Home.aspx")"></iframe>
-</div>
+</div>*@
