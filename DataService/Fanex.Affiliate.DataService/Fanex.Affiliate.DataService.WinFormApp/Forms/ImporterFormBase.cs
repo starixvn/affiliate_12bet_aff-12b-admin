@@ -71,6 +71,10 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             btnImport.Enabled = toggle;
         }
 
+        private void btnCovert_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     public class Logger
     {

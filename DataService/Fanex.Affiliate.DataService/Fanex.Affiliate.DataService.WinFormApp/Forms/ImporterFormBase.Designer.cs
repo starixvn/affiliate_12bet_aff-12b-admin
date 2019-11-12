@@ -136,6 +136,7 @@
             this.btnCovert.TabIndex = 7;
             this.btnCovert.Text = "Converted Data";
             this.btnCovert.UseVisualStyleBackColor = true;
+            this.btnCovert.Click += new System.EventHandler(this.btnCovert_Click);
             // 
             // splitContainer1
             // 
