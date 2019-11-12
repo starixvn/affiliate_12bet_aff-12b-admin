@@ -5,7 +5,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
-using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Repository;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
@@ -14,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
     {
         public IEnumerable<DomainInfo> GetDomainList(bool isAffDomain)
         {
-            var spKey = isAffDomain ? "Aff_DomainAffSel" : "Aff_Domain12BetSel";
+            var spKey = isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_12BETDomain_Sel";
 
             var result = new List<DomainInfo>();
 
@@ -34,12 +33,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         public ResultInfo InsertDomain(InsertUpdateDomainParam param)
         {
-            var spKey = param.IsAffDomain ? "Aff_DomainAffIns" : "Aff_Domain12BetIns";
+            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Ins" : "Aff_Admin_12BETDomain_Ins";
 
             using (var objectDb = GetObjectDb(spKey))
             {
-                objectDb.AddOutParameter("DomainId", DbType.Int32, Size.SizeOfInt);
-
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();
@@ -50,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         public ResultInfo UpdateDomain(InsertUpdateDomainParam param)
         {
-            var spKey = param.IsAffDomain ? "Aff_DomainAffUpd" : "Aff_Domain12BetUpd";
+            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Upd" : "Aff_Admin_12BETDomain_Upd";
 
             using (var objectDb = GetObjectDb(spKey))
             {
@@ -65,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         public ResultInfo DeleteDomain(DeleteDomainParam param)
         {
-            var spKey = param.IsAffDomain ? "Aff_DomainAffDel" : "Aff_Domain12BetDel";
+            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Del" : "Aff_Admin_12BETDomain_Del";
 
             using (var objectDb = GetObjectDb(spKey))
             {

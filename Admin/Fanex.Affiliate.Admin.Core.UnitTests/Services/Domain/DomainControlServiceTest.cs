@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
 
             ReaderHelper.MapReaderData(dataReader, GetDomainControlList());
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("Aff_DomainControlSel", 120)).Returns(objectDb.Object);
+            service.Setup(r => r.GetObjectDb("Aff_Admin_DomainControl_Sel", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.GetDomainControlList("en-GB");
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("Aff_DomainControlSel", 120)).Returns(objectDb.Object);
+            service.Setup(r => r.GetObjectDb("Aff_Admin_DomainControl_Sel", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.GetDomainControlList(string.Empty);
@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("Aff_DomainControlIns", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Ins", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.InsertDomainControl(new InsertUpdateDomainControlParam());
@@ -82,7 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            service.Setup(re => re.GetObjectDb("Aff_DomainControlIns", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Ins", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.InsertDomainControl(new InsertUpdateDomainControlParam());
@@ -101,7 +101,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("Aff_DomainControlUpd", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Upd", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.UpdateDomainControl(new InsertUpdateDomainControlParam());
@@ -120,7 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            service.Setup(re => re.GetObjectDb("Aff_DomainControlUpd", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Upd", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.UpdateDomainControl(new InsertUpdateDomainControlParam());
@@ -139,7 +139,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("Aff_DomainControlDel", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Del", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.DeleteDomainControl(new DeleteDomainControlParam());
@@ -158,7 +158,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            service.Setup(re => re.GetObjectDb("Aff_DomainControlDel", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Del", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.DeleteDomainControl(new DeleteDomainControlParam());
@@ -172,7 +172,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
-                ["Id"] = 123,
+                ["DomainControlId"] = 123,
                 ["MarketID"] = "en-GB",
                 ["MarketName"] = "English (Euro)",
                 ["AffDomainID"] = 234,
@@ -181,7 +181,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
                 ["RedirectDomain"] = "abc.com",
                 ["Status"] = true,
                 ["Creator"] = "sa",
-                ["CreateDate"] = new DateTime(2019, 10, 29)
+                ["CreatedDate"] = new DateTime(2019, 10, 29)
             };
         }
     }

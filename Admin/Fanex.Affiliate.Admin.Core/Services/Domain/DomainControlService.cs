@@ -13,13 +13,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
     {
         public IEnumerable<DomainControlInfo> GetDomainControlList(string market)
         {
-            const string SpKey = "Aff_DomainControlSel";
+            const string SpKey = "Aff_Admin_DomainControl_Sel";
 
             var result = new List<DomainControlInfo>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("MarketId", DbType.String, string.IsNullOrEmpty(market) ? null : market);
+                objectDb.AddInParameter("MarketId", DbType.String, market);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
                     {
                         result.Add(new DomainControlInfo
                         {
-                            DomainId = Convert.ToInt32(reader["Id"]),
+                            DomainId = Convert.ToInt32(reader["DomainControlId"]),
                             MarketId = Convert.ToString(reader["MarketId"]),
                             Market = Convert.ToString(reader["MarketName"]),
                             AffDomainId = Convert.ToInt32(reader["AffDomainId"]),
@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
                             RedirectDomain = Convert.ToString(reader["RedirectDomain"]),
                             IsUsed = Convert.ToBoolean(reader["Status"]),
                             Creator = Convert.ToString(reader["Creator"]),
-                            CreatedDate = Convert.ToDateTime(reader["CreateDate"])
+                            CreatedDate = Convert.ToDateTime(reader["CreatedDate"])
                         });
                     }
                 }
@@ -47,12 +47,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         public ResultInfo InsertDomainControl(InsertUpdateDomainControlParam param)
         {
-            const string SpKey = "Aff_DomainControlIns";
+            const string SpKey = "Aff_Admin_DomainControl_Ins";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Creator", DbType.Int32, param.UserId);
-
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();
@@ -63,11 +61,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         public ResultInfo UpdateDomainControl(InsertUpdateDomainControlParam param)
         {
-            const string SpKey = "Aff_DomainControlUpd";
+            const string SpKey = "Aff_Admin_DomainControl_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Id", DbType.Int32, param.DomainId);
+                objectDb.AddInParameter("DomainControlId", DbType.Int32, param.DomainId);
 
                 AssignParam(objectDb, param);
 
@@ -79,11 +77,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         public ResultInfo DeleteDomainControl(DeleteDomainControlParam param)
         {
-            const string SpKey = "Aff_DomainControlDel";
+            const string SpKey = "Aff_Admin_DomainControl_Del";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Id", DbType.Int32, param.DomainId);
+                objectDb.AddInParameter("DomainControlId", DbType.Int32, param.DomainId);
                 objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("ip", DbType.String, param.Ip);
 

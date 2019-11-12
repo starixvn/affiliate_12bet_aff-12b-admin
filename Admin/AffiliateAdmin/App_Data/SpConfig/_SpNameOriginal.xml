@@ -126,18 +126,18 @@
     <Setting Key="Aff_AdminUpdPwd" SpName="Aff_AdminUpdPwd" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Domain">
-    <Setting Key="Aff_DomainAffSel" SpName="Aff_DomainAffSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DomainAffIns" SpName="Aff_DomainAffIns" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DomainAffUpd" SpName="Aff_DomainAffUpd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DomainAffDel" SpName="Aff_DomainAffDel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Domain12BetSel" SpName="Aff_Domain12BetSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Domain12BetIns" SpName="Aff_Domain12BetIns" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Domain12BetUpd" SpName="Aff_Domain12BetUpd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Domain12BetDel" SpName="Aff_Domain12BetDel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DomainControlSel" SpName="Aff_DomainControlSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DomainControlIns" SpName="Aff_DomainControlIns" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DomainControlUpd" SpName="Aff_DomainControlUpd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DomainControlDel" SpName="Aff_DomainControlDel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateDomain_Sel" SpName="Aff_Admin_AffiliateDomain_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateDomain_Ins" SpName="Aff_Admin_AffiliateDomain_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateDomain_Upd" SpName="Aff_Admin_AffiliateDomain_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateDomain_Del" SpName="Aff_Admin_AffiliateDomain_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_12BETDomain_Sel" SpName="Aff_Admin_12BETDomain_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_12BETDomain_Ins" SpName="Aff_Admin_12BETDomain_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_12BETDomain_Upd" SpName="Aff_Admin_12BETDomain_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_12BETDomain_Del" SpName="Aff_Admin_12BETDomain_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_DomainControl_Sel" SpName="Aff_Admin_DomainControl_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_DomainControl_Ins" SpName="Aff_Admin_DomainControl_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_DomainControl_Upd" SpName="Aff_Admin_DomainControl_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_DomainControl_Del" SpName="Aff_Admin_DomainControl_Del" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Administrator">
     <Setting Key="Aff_Con_GroupInfoSel" SpName="Aff_Con_GroupInfoSel" DbName="affiliate_12bet" />

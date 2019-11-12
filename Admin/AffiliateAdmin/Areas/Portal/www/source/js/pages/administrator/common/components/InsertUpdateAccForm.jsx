@@ -81,7 +81,7 @@ export class InsertUpdateAccForm extends PureComponent {
             return;
         }
 
-        if (!isInsertExistedAcc && !password) {
+        if (isInsert && !isInsertExistedAcc && !password) {
             this._handleShowAlert(false, 'Password is required!');
             return;
         }
@@ -160,10 +160,20 @@ export class InsertUpdateAccForm extends PureComponent {
                                     isInsert && (<React.Fragment>
                                         <FormGroup row className="mb-2">
                                             <Label for="userName" sm={4} className="required">{headerText.UserName}</Label>
-                                            <Col sm={8}>
-                                                <Input type="text" name="userName" autocomplete="off" className="mt-2" maxlength="20" value={userName} onChange={this._handleChange}
-                                                    onKeyPress={this._handleKeyPress} />
-                                            </Col>
+                                            {
+                                                isInsertExistedAcc ? (
+                                                    <Col sm={8}>
+                                                        <Input type="text" name="userName" className="mt-2" autocomplete="off" maxlength="20" value={userName} onChange={this._handleChange}
+                                                            onKeyPress={this._handleKeyPress} />
+                                                    </Col>
+                                                ) : (
+                                                        <Col sm={8} className="row-user">
+                                                            <Input type="text" className="refix" disabled value="AA" />
+                                                            <Input type="text" name="userName" className="userName" autocomplete="off" maxlength="20" value={userName} onChange={this._handleChange}
+                                                                onKeyPress={this._handleKeyPress} />
+                                                        </Col>
+                                                    )
+                                            }
                                         </FormGroup>
                                         {
                                             !isInsertExistedAcc && (

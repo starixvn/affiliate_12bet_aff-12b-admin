@@ -66,13 +66,13 @@ export class Content extends PureComponent {
     _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={150} title={headerText.Domain}>{headerText.Domain}</Cell>
-                <Cell header={true} colWidth={20} title={headerText.SSL}>{headerText.SSL}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.Creator}>{headerText.Creator}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                <Cell header={true} colWidth={20} title={headerText.Edit}>{headerText.Edit}</Cell>
-                <Cell header={true} colWidth={20} title={headerText.Delete}>{headerText.Delete}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={500} title={headerText.Domain}>{headerText.Domain}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.SSL}>{headerText.SSL}</Cell>
+                <Cell header={true} colWidth={160} title={headerText.Creator}>{headerText.Creator}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Edit}>{headerText.Edit}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Delete}>{headerText.Delete}</Cell>
             </Row>
         );
     }

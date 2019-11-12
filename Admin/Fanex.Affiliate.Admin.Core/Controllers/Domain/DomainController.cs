@@ -138,7 +138,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             {
                 DomainId = param.DomainId,
                 DomainName = Server.HtmlEncode(param.DomainName),
-                IsSSL = param.IsSSL
+                IsSSL = param.IsSSL,
+                IsAffDomain = param.IsAffDomain
             };
         }
 

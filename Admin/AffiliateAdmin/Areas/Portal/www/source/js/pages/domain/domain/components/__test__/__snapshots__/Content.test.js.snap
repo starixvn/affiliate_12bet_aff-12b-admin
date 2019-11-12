@@ -233,7 +233,7 @@ exports[`domain - components - Content  render correctly 1`] = `
         <t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={60}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -244,7 +244,7 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={150}
+            colWidth={500}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -255,7 +255,7 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={60}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -266,7 +266,7 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={40}
+            colWidth={160}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -277,7 +277,7 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={60}
+            colWidth={100}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -288,7 +288,7 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={60}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -299,7 +299,7 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={60}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -375,7 +375,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
         <t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={60}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -386,7 +386,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={150}
+            colWidth={500}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -397,7 +397,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={60}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -408,7 +408,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={40}
+            colWidth={160}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -419,7 +419,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={60}
+            colWidth={100}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -430,7 +430,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={60}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -441,7 +441,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={60}
             header={true}
             onClick={[Function]}
             sortable={false}

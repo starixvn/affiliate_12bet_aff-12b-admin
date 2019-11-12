@@ -153,7 +153,9 @@ export default class Content extends PureComponent {
                 <Cell className="text-center" title={firstName}>{firstName}</Cell>
                 <Cell className="text-center" title={lastName}>{lastName}</Cell>
                 <Cell className="text-center" title="Change Status">
-                    Open
+                    {
+                        dataItem.IsOpen ? 'Open' : 'Closed'
+                    }
                     {
                         !isPopup && <input type="checkbox" className="ml-1" onChange={() => this._handleChangeStatus(dataItem.UserId, !dataItem.IsOpen)} checked={dataItem.IsOpen} />
                     }

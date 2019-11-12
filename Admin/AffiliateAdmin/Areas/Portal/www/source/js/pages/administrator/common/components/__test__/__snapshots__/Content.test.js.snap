@@ -226,7 +226,7 @@ exports[`administrator - common - components - Content  render correctly 1`] = `
               sorting={false}
               title="Change Status"
             >
-              Open
+              Closed
             </t>
             <t
               asc={true}
