@@ -120,6 +120,8 @@
     <Compile Include="Modules\CrystalGpiScheduler.cs" />
     <Compile Include="Modules\EbetJob.cs" />
     <Compile Include="Modules\EbetScheduler.cs" />
+    <Compile Include="Modules\GpiLotteryJob.cs" />
+    <Compile Include="Modules\GPILotteryScheduler.cs" />
     <Compile Include="Modules\ISoftbetDailyJob.cs" />
     <Compile Include="Modules\ISoftbetDailyScheduler.cs" />
     <Compile Include="Modules\ISoftbetJob.cs" />
@@ -146,6 +148,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
       <Project>{410276E1-1E99-4662-809C-25F0F1777C08}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.GPI\Fanex.Affiliate.DataService.Importer.GPI.csproj">
+      <Project>{7e74c2b1-80bd-4d88-8c30-7f02d2e038a1}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.GPI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
       <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>

@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 
         [HttpPost]
         [Compress]
-        public async  Task<ActionResult> Index(ImporterBaseParam param)
+        public async Task<ActionResult> Index(ImporterBaseParam param)
         {
             var logBuilder = new StringBuilder();
             var rawDataBuilder = new StringBuilder();
@@ -43,7 +43,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 var endTime = DateTime.ParseExact(param.EndTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
 
                 var rawDataList = await _service.GetRawDataListAsync(startTime, endTime).ConfigureAwait(false);
-                rawDataList.ToList();
 
                 if (rawDataList.Any())
                 {
