@@ -1088,9 +1088,11 @@
     <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\EditPolicyForm.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\InsertUpdateAccForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\DepartmentPopup.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\redux\EditPolicyForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\redux\InsertUpdateAccForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\common\libs\constants.js" />

@@ -34,14 +34,3 @@ export const defaultState = {
     message: '',
     isConfirmPopup: true
 }
-
-export const convertCheckedPolicies = (checkedPolicies, selectedId, isAccountPolicy, isGetByIdList) => {
-    if (isGetByIdList) {
-        const isList = selectedId.split(',');
-        return isList.reduce((accumulator, id) => {
-            return accumulator = accumulator + getStringConvertCheckedPolicies(checkedPolicies, id, isAccountPolicy);
-        }, '');
-    }
-
-    return getStringConvertCheckedPolicies(checkedPolicies, selectedId, isAccountPolicy);
-}

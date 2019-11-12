@@ -102,7 +102,7 @@ export class EditPolicyForm extends PureComponent {
         const { isAccountPolicy } = this.props;
 
         return (
-            <thead>
+            <thead key="thead">
                 <tr>
                     <th rowSpan="2" colSpan="2">Function</th>
                     {
@@ -138,7 +138,7 @@ export class EditPolicyForm extends PureComponent {
             }
         }
         else {
-            dataRows.push(<tr>
+            dataRows.push(<tr key="no-info">
                 <td className="text-center" colSpan={isAccountPolicy ? "5" : "3"}>{globalResource.NoInfo}</td>
             </tr>);
         }
