@@ -35,6 +35,8 @@
             this.btnCrystal = new System.Windows.Forms.Button();
             this.btnQuartz = new System.Windows.Forms.Button();
             this.btnOpus = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnTopaz = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -106,11 +108,32 @@
             this.btnOpus.UseVisualStyleBackColor = true;
             this.btnOpus.Click += new System.EventHandler(this.btnOpus_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(153, 195);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Lottery - GPI";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnTopaz
+            // 
+            this.btnTopaz.Location = new System.Drawing.Point(15, 195);
+            this.btnTopaz.Name = "btnTopaz";
+            this.btnTopaz.Size = new System.Drawing.Size(110, 23);
+            this.btnTopaz.TabIndex = 8;
+            this.btnTopaz.Text = "12Topaz";
+            this.btnTopaz.UseVisualStyleBackColor = true;
+            this.btnTopaz.Click += new System.EventHandler(this.btnTopaz_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.btnTopaz);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnOpus);
             this.Controls.Add(this.btnQuartz);
             this.Controls.Add(this.btnCrystal);
@@ -135,5 +158,7 @@
         private System.Windows.Forms.Button btnCrystal;
         private System.Windows.Forms.Button btnQuartz;
         private System.Windows.Forms.Button btnOpus;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTopaz;
     }
 }

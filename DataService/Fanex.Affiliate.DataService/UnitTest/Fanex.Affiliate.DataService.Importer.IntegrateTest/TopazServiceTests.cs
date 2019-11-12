@@ -72,11 +72,10 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
         [Fact]
         public void GetXmlDataList_WhenCall_NotReturnEmpty()
         {
-            DbSettingProviderManager.Current.Start();
             var service = CreateService();
             var endTime = DateTime.UtcNow;
             var startTime = endTime.AddMinutes(-15);
-            var list = service.GetXmlDataList(startTime, endTime);
+            var list = service.GetXmlDataList(startTime, endTime).ToList();
             Assert.NotEmpty(list);
         }
     }

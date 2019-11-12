@@ -1,4 +1,6 @@
-﻿using Fanex.Affiliate.DataService.Importer.Constants;
+﻿using Fanex.Affiliate.DataService.Importer.Client;
+using Fanex.Affiliate.DataService.Importer.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.FlowGaming;
 using Fanex.Affiliate.DataService.Importer.Repository;
@@ -25,8 +27,12 @@ namespace Fanex.Affiliate.DataService.Importer
         private const int TIME_BETWEEN_TWO_REQUEST = 60000;
         private const int MAX_TIME_RANGE_TRANSACTION = 15;
 
-        public TopazService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyRepository = null) : base(appSetting, thirdPartyRepository)
+        private readonly IApiClient _client;
+        private bool disposed = false;
+
+        public TopazService(IApiClient client = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyRepository = null) : base(appSetting, thirdPartyRepository)
         {
+            _client = client ?? new TopazClient();
         }
 
         public override void Import(string data)
@@ -70,34 +76,20 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private string GetRawData(DateTime startRequestDate, DateTime endRequestDate)
         {
-            var param = BuildParam(new FlowGamingParam {
-                StartTime = startRequestDate,
-                EndTime = endRequestDate
-            });
-
-            var url = BuildUrl(param);
-            using(WebClient client = new WebClient())
-            {
-                return client.DownloadString(url);
-            }
-        }
-
-        private string BuildUrl(FlowGamingParam param)
-        {
+            var param = GetQueryParam(startRequestDate, endRequestDate);
             var baseUrl = _appSetting.GetValue("TopazApiUrl");
-            var dateTimeFormat = _appSetting.GetValue("TopazFormatDateTime");
-            return $"{baseUrl}?brandId={param.BrandId}&brandPassword={param.BrandPassword}&startTime={param.StartTime.ToString(dateTimeFormat)}&endTime={param.EndTime.ToString(dateTimeFormat)}";
+            return _client.GetResponse(baseUrl, param);
         }
 
-        private FlowGamingParam BuildParam(FlowGamingParam flowGamingParam)
+        private NameValueCollection GetQueryParam(DateTime startTime, DateTime endTime)
         {
-            return new FlowGamingParam()
-            {
-                BrandId = _appSetting.GetValue("TopazBrandId"),
-                BrandPassword = _appSetting.GetValue("TopazBrandPassword"),
-                StartTime = flowGamingParam.StartTime,
-                EndTime = flowGamingParam.EndTime
-            };
+            var dateTimeFormat = _appSetting.GetValue("TopazFormatDateTime");
+            var result = new NameValueCollection(5);
+            result.Add("brandId", _appSetting.GetValue("TopazBrandId"));
+            result.Add("brandPassword", _appSetting.GetValue("TopazBrandPassword"));
+            result.Add("startTime", startTime.ToString(dateTimeFormat));
+            result.Add("endTime", endTime.ToString(dateTimeFormat));
+            return result;
         }
 
         private DateTime GetEndRequestTime(DateTime compareTime, DateTime endTime)
@@ -117,6 +109,26 @@ namespace Fanex.Affiliate.DataService.Importer
             if (xml == null)
                 throw new ThirdPartyProductException($"FlowGaming - Cant convert json response to xml - {data}");
             return xml;
+        }
+
+        public override void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+            if (disposing)
+                _client?.Dispose();
+            disposed = true;
+        }
+
+        ~TopazService()
+        {
+            Dispose(false);
         }
     }
 }

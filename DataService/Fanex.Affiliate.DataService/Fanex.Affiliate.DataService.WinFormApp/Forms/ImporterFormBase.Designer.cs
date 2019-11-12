@@ -31,12 +31,12 @@
             this.richTextConvertedData = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.richTextRawData = new System.Windows.Forms.RichTextBox();
-            this.btnImportDirectly = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
             this.endTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPageNumber = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnImport = new System.Windows.Forms.Button();
+            this.btnCovert = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.richTextLog = new System.Windows.Forms.RichTextBox();
@@ -84,14 +84,14 @@
             this.richTextRawData.TabIndex = 3;
             this.richTextRawData.Text = "";
             // 
-            // btnImportDirectly
+            // btnImport
             // 
-            this.btnImportDirectly.Location = new System.Drawing.Point(316, 58);
-            this.btnImportDirectly.Name = "btnImportDirectly";
-            this.btnImportDirectly.Size = new System.Drawing.Size(132, 23);
-            this.btnImportDirectly.TabIndex = 18;
-            this.btnImportDirectly.Text = "Import Directly";
-            this.btnImportDirectly.UseVisualStyleBackColor = true;
+            this.btnImport.Location = new System.Drawing.Point(316, 58);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(132, 23);
+            this.btnImport.TabIndex = 18;
+            this.btnImport.Text = "Import Converted Data";
+            this.btnImport.UseVisualStyleBackColor = true;
             // 
             // endTimePicker
             // 
@@ -128,14 +128,14 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "Page Number:";
             // 
-            // btnImport
+            // btnCovert
             // 
-            this.btnImport.Location = new System.Drawing.Point(149, 58);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(132, 23);
-            this.btnImport.TabIndex = 7;
-            this.btnImport.Text = "Import Converted Data";
-            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnCovert.Location = new System.Drawing.Point(149, 58);
+            this.btnCovert.Name = "btnCovert";
+            this.btnCovert.Size = new System.Drawing.Size(132, 23);
+            this.btnCovert.TabIndex = 7;
+            this.btnCovert.Text = "Converted Data";
+            this.btnCovert.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
@@ -195,6 +195,7 @@
             this.btnGetRawData.TabIndex = 6;
             this.btnGetRawData.Text = "Get Raw Data";
             this.btnGetRawData.UseVisualStyleBackColor = true;
+            this.btnGetRawData.Click += new System.EventHandler(this.btnGetRawData_Click);
             // 
             // startTimePicker
             // 
@@ -207,12 +208,12 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnImportDirectly);
+            this.groupBox1.Controls.Add(this.btnImport);
             this.groupBox1.Controls.Add(this.endTimePicker);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtPageNumber);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.btnImport);
+            this.groupBox1.Controls.Add(this.btnCovert);
             this.groupBox1.Controls.Add(this.btnGetRawData);
             this.groupBox1.Controls.Add(this.startTimePicker);
             this.groupBox1.Controls.Add(this.label2);
@@ -258,22 +259,22 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextConvertedData;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RichTextBox richTextRawData;
-        private System.Windows.Forms.Button btnImportDirectly;
-        private System.Windows.Forms.DateTimePicker endTimePicker;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtPageNumber;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnImport;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RichTextBox richTextLog;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button btnGetRawData;
-        private System.Windows.Forms.DateTimePicker startTimePicker;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.RichTextBox richTextConvertedData;
+        public System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.RichTextBox richTextRawData;
+        public System.Windows.Forms.Button btnImport;
+        public System.Windows.Forms.DateTimePicker endTimePicker;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox txtPageNumber;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Button btnCovert;
+        public System.Windows.Forms.SplitContainer splitContainer1;
+        public System.Windows.Forms.GroupBox groupBox4;
+        public System.Windows.Forms.RichTextBox richTextLog;
+        public System.Windows.Forms.GroupBox groupBox5;
+        public System.Windows.Forms.Button btnGetRawData;
+        public System.Windows.Forms.DateTimePicker startTimePicker;
+        public System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.Label label2;
     }
 }

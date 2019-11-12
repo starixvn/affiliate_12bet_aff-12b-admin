@@ -18,9 +18,11 @@ using System.Xml.Linq;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {
+    [Authorize]
+    [FunctionAuthorize]
     public class GpiLotteryController : Controller
     {
-        private readonly IGpiLotteryService GpiLotteryService;
+        private readonly IImporterService GpiLotteryService;
 
         public GpiLotteryController()
         {
@@ -35,7 +37,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 
         [HttpPost]
         [Compress]
-        public ActionResult Index(GplLotteryRequestParam param)
+        public async  Task<ActionResult> Index(GplLotteryRequestParam param)
         {
             var logBuilder = new StringBuilder();
             var rawDataBuilder = new StringBuilder();
@@ -45,13 +47,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 var startTime = DateTime.ParseExact(param.StartTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
                 var endTime = DateTime.ParseExact(param.EndTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
 
-                if (param.IsGetByApiTimeZone)
-                {
-                    startTime = DateTimeConverter.ConvertTime(startTime, TimeZoneId.GmtPlus8, TimeZoneInfo.Local.Id);
-                    endTime = DateTimeConverter.ConvertTime(endTime, TimeZoneId.GmtPlus8, TimeZoneInfo.Local.Id);
-                }
-
-                var rawDataList = GpiLotteryService.GetRawDataList(startTime, endTime);
+                var rawDataList = await GpiLotteryService.GetRawDataListAsync(startTime, endTime).ConfigureAwait(false);
 
                 if (rawDataList.Any())
                 {

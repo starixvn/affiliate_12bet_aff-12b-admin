@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GpiLotteryServiceTests.cs" />
+    <Compile Include="LBKenoServiceTests.cs" />
     <Compile Include="TopazServiceTests.cs" />
     <Compile Include="VrLotteryServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,6 +126,10 @@
     <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer.IMOne\Fanex.Affiliate.DataService.Importer.IMOne.csproj">
       <Project>{7c3e0e3a-a71e-4d43-9d77-491ee5214e8a}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.IMOne</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
+      <Project>{b04723a2-c292-4104-8061-6a54f890b094}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.LBKeno</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
       <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>

@@ -8,31 +8,29 @@ using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading;
 using Fanex.Affiliate.DataService.Importer.Core.Extension;
+using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
 {
-    public class VrLotteryClient : IApiClient, IConnectionCountable
+    public class VrLotteryClient : ApiClientBase, IConnectionCountable
     {
-        private static Lazy<Dictionary<string, int>> _requestCountMapping = new Lazy<Dictionary<string, int>>(true);
+        private static Lazy<Dictionary<string, int>> _requestCountMapping = new Lazy<Dictionary<string, int>>(() => new Dictionary<string, int>(), true);
         private Dictionary<string, int> RequestCountMapping => _requestCountMapping.Value;
 
-        public string GetResponse(string url, NameValueCollection query)
-        {
-            return GetResponseAsync(url, query).Result;
-        }
+        public VrLotteryClient(HttpClient client = null) : base(client) { }
 
-        public async Task<string> GetResponseAsync(string url, NameValueCollection query)
+        public override async Task<string> GetResponseAsync(string url, NameValueCollection query)
         {
-            using (var client = new HttpClient())
-            {
-                IncreaseConnection(url);
-                var sendContent = new FormUrlEncodedContent(query.ToKeyValuePairCollection());
-                var resposeMessage =  await client.PostAsync(url, sendContent);
-                DecreaseConnection(url);
-                resposeMessage.EnsureSuccessStatusCode();
-
-                return await resposeMessage.Content.ReadAsStringAsync();
-            }
+            IncreaseConnection(url);
+            var dictionary = query.ToDictionary();
+            var json = JsonConvert.SerializeObject(dictionary);
+            var sendContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var resposeMessage = await Client.PostAsync(url, sendContent);
+            DecreaseConnection(url);
+            resposeMessage.EnsureSuccessStatusCode();
+            var data = await resposeMessage.Content.ReadAsStringAsync();
+            resposeMessage.Dispose();
+            return data;
         }
 
         public int TotalConnection(string url)
@@ -55,7 +53,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
 
         private void IncreaseConnection(string url)
         {
-            lock(RequestCountMapping)
+            lock (RequestCountMapping)
             {
                 if (RequestCountMapping.ContainsKey(url))
                     RequestCountMapping[url]++;
@@ -63,6 +61,12 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
                     RequestCountMapping.Add(url, 1);
             }
         }
+
+        ~VrLotteryClient()
+        {
+            Dispose(false);
+        }
+
     }
 
 }

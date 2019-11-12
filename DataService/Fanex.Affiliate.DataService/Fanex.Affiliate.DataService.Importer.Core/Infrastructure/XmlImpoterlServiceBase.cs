@@ -21,17 +21,22 @@ namespace Fanex.Affiliate.DataService.Importer
         }
         public abstract IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime);
 
-        public virtual IEnumerable<string> GetXmlDataList(DateTime startTime, DateTime endTime)
+        public virtual IEnumerable<XDocument> GetXmlDataList(DateTime startTime, DateTime endTime)
         {
             var rawDatas = GetRawDataList(startTime, endTime);
             foreach (var data in rawDatas)
             {
                 var xml = ConvertToXml(data);
                 CheckXmlResponseData(xml);
-                yield return xml.ToString();
+                yield return xml;
             }
         }
 
+        /// <summary>
+        /// Throw third party exception if xml is not correct format.
+        /// </summary>
+        /// <param name="xml"></param>
+        /// <returns></returns>
         protected abstract void CheckXmlResponseData(XDocument xml);
 
         protected abstract XDocument ConvertToXml(string data);
@@ -43,26 +48,32 @@ namespace Fanex.Affiliate.DataService.Importer
             var xmls = GetXmlDataList(startTime, endTime);
             foreach (var xml in xmls)
             {
-                Import(xml);
+                if (CheckIsSuitableToImport(xml))
+                    Import(xml.ToString());
             }
         }
-        
+
+        protected virtual bool CheckIsSuitableToImport(XDocument xml)
+        {
+            return true;
+        }
+
         protected void EnsureEndTimeLaterThanStartTime(DateTime startTime, DateTime endTime)
         {
             if (DateTime.Compare(startTime, endTime) >= 0)
                 throw new ArgumentException($"Start date {startTime} is later or equal than end date: {endTime}");
         }
 
-        public async Task<IEnumerable<string>> GetXmlDataListAsync(DateTime startTime, DateTime endTime)
+        public async Task<IEnumerable<XDocument>> GetXmlDataListAsync(DateTime startTime, DateTime endTime)
         {
             await Task.Yield();
-            return GetXmlDataList(startTime, endTime);
+            return GetXmlDataList(startTime, endTime).ToList();
         }
 
         public async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
         {
             await Task.Yield();
-            return GetRawDataList(startTime, endTime);
+            return GetRawDataList(startTime, endTime).ToList();
         }
 
         public async Task ImportAsync(string data)
@@ -76,5 +87,7 @@ namespace Fanex.Affiliate.DataService.Importer
             await Task.Yield();
             Import(startTime, endTime);
         }
+
+        public abstract void Dispose();
     }
 }

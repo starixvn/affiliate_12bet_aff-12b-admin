@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fanex.Affiliate.DataService.Importer.IMOneTests
+namespace Fanex.Affiliate.DataService.Importer.UnitTest
 {
-    public class VrLotteryClientTests
+    public class LBKenoServiceTests
     {
+
     }
 }

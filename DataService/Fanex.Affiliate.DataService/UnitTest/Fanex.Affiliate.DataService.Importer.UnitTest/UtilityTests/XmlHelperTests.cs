@@ -48,5 +48,22 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.UtilityTests
             var result = JsonConvert.DeserializeObject<Dictionary<string, string>[]>(value);
             Assert.NotEmpty(result);
         }
+
+        [Theory]
+        [InlineData(@"<?xml version=""1.0""?><game_transaction_detail></game_transaction_detail>")]
+        public void ParseToXDocument_WhenCall_NotThrowException(string xml)
+        {
+            XmlHelper.ParseToXDocument(xml);
+            Assert.True(true);
+        }
+        [Fact]
+        public void ParseToXDocument_WhenCall_ReturnWithRightRootName()
+        {
+            var rootName = "game_transaction_detai";
+            var xmlString = $"<?xml version=\"1.0\"?><{rootName}></{rootName}>";
+            var xml = XmlHelper.ParseToXDocument(xmlString);
+            var root = xml.Root.Name.LocalName;
+            Assert.Contains(rootName, root);
+        }
     }
 }

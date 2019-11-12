@@ -332,8 +332,10 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\ebet.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\exchange-summary-transaction.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\gpi-lottery.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\imone-vrlottery.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\importqueue.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\isoftbet.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\lb-keno.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\timetracker.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\under-maintenance.js" />

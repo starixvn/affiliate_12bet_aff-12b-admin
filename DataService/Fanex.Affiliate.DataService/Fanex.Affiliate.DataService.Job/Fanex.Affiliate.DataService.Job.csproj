@@ -130,6 +130,8 @@
     <Compile Include="Modules\PlaytechCasinoScheduler.cs" />
     <Compile Include="Modules\TopazJob.cs" />
     <Compile Include="Modules\TopazScheduler.cs" />
+    <Compile Include="Modules\ImOneVrLotteryJob.cs" />
+    <Compile Include="Modules\ImOneVrLotteryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ITimeTrackerRepository.cs" />
     <Compile Include="Repository\TimeTrackerRepository.cs" />

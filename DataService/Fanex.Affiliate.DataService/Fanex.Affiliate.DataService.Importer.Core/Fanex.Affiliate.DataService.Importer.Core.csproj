@@ -98,6 +98,7 @@
     <Compile Include="Exceptions\ThirdPartyProductException.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
     <Compile Include="Extension\NameValueCollectionExtension.cs" />
+    <Compile Include="Infrastructure\ApiClientBase.cs" />
     <Compile Include="Infrastructure\IApiClient.cs" />
     <Compile Include="Infrastructure\IConnectionCountable.cs" />
     <Compile Include="Infrastructure\IDataRequestByCurrency.cs" />
@@ -131,7 +132,6 @@
     <Compile Include="Utilities\XmlHelper.cs" />
     <Compile Include="Infrastructure\XmlImpoterlServiceBase.cs" />
     <Compile Include="XmlResponseChecker\IThirdPartyResponseChecker.cs" />
-    <Compile Include="XmlResponseChecker\TopazResponseChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -1,6 +1,9 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Enum;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
+using Fanex.Affiliate.DataService.Importer.LBKeno;
+using Fanex.Affiliate.DataService.Importer.LBKeno.Client;
 using Fanex.Affiliate.DataService.Importer.MetaModels.LBKeno;
 using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
@@ -17,12 +20,12 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public class LBKenoService : XmlImpoterlServiceBase
     {
-        private const string OK_STATUS = "00";
-        private const string HOST_ACCESS_DENIED_STATUS = "40.01";
-
-        public LBKenoService(IAppSettings appSetting, IThirdPartyProductRepository thirdPartyProductRepository) 
+        protected readonly IApiClient _client;
+        protected bool disposed = false;
+        public LBKenoService(IApiClient client = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
             : base(appSetting, thirdPartyProductRepository)
         {
+            _client = client ?? new LBKenoClient();
         }
 
         public override sealed void Import(string data)
@@ -30,44 +33,21 @@ namespace Fanex.Affiliate.DataService.Importer
             _thirdPartyProductRepository.ImportData(Products.LBKenoId, data, 0);
         }
 
-        public override sealed IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime)
+        public override IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime)
         {
-            var rawDatas = new List<string>();
             var paramToRequest = BuildParam(startTime, endTime);
 
             var data = GetRawData(paramToRequest);
-            rawDatas.Add(data);
-            return rawDatas;
+            yield return data;
         }
 
         private string GetRawData(LBKenoParam paramToRequest)
         {
             var queryValues = BuildQueryParam(paramToRequest);
-            string data = "";
-            using(var client = new WebClient())
-            {
-                var url = _appSetting.GetValue("LBKenoApiUrl");
-                var bytes = client.UploadValues(url, "POST", queryValues);
-                data = Encoding.UTF8.GetString(bytes);
-            }
-            CheckData(data);
+            var url = _appSetting.GetValue("LBKenoApiUrl");
+            var data = _client.GetResponse(url, queryValues);
             return data;
 
-        }
-
-        private void CheckData(string data)
-        {
-            var xml = XmlHelper.ParseToXDocument(data);
-            if (xml == null)
-                throw new ThirdPartyProductException($"Error: LBKeno - xDocument is null\n{data}");
-            var statusCode = xml.Root.Element("status_code").Value.Trim();
-            if (statusCode != OK_STATUS)
-            {
-                if (statusCode == HOST_ACCESS_DENIED_STATUS)
-                    throw new ThirdPartyProductException($"Error: LBKeno - {HOST_ACCESS_DENIED_STATUS} Invalid secret key and/or IP address not white listed");
-                else
-                    throw new ThirdPartyProductException($"Error: LBKeno - {data}");
-            }
         }
 
         private NameValueCollection BuildQueryParam(LBKenoParam paramToRequest)
@@ -109,12 +89,36 @@ namespace Fanex.Affiliate.DataService.Importer
 
         protected override void CheckXmlResponseData(XDocument xml)
         {
-            throw new NotImplementedException();
+            var checker = new LBKenoXmlChecker();
+            checker.CheckXml(xml);
         }
 
         protected override XDocument ConvertToXml(string data)
         {
-            throw new NotImplementedException();
+            var xml = XmlHelper.ParseToXDocument(data);
+            if (xml == null)
+                throw new ThirdPartyProductException($"LBKeno - Can't convert raw data to xml {data}");
+            return xml;
+        }
+
+        public override void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool diposing)
+        {
+            if (disposed)
+                return;
+            if (diposing)
+                _client?.Dispose();
+            disposed = true;
+        }
+
+        ~LBKenoService()
+        {
+            Dispose(false);
         }
     }
 }

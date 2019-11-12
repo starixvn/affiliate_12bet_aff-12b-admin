@@ -65,5 +65,13 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             opusForm.Show();
             this.Hide();
         }
+
+        private void btnTopaz_Click(object sender, EventArgs e)
+        {
+            var topazForm = new TopazForm();
+            topazForm.FormClosing += FormClosingHandler;
+            topazForm.Show();
+            this.Hide();
+        }
     }
 }

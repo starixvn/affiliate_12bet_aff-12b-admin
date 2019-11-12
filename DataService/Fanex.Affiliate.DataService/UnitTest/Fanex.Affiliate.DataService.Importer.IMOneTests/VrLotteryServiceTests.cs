@@ -67,7 +67,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             stubAppSetting.GetValue(Arg.Compat.Any<string>()).Returns("");
             var service = CreateService(stubApi, stubAppSetting);
 
-            service.GetRawDataListByCurrency(startTime, endTime,"CNY").ToList();
+            service.GetRawDataListByCurrency(startTime, endTime,"CNY").Count();
 
             Assert.True(true);
         }
@@ -101,7 +101,6 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
                 .ReturnsForAnyArgs(this.SuccessReturn);
             stubAppSetting.GetValue(Arg.Compat.Any<string>()).Returns("");
             stubAppSetting.GetValue("VrLotteryCurrencies").Returns("CNC,BOB");
-
             var service = CreateService(stubApi, stubAppSetting);
 
             service.GetXmlDataList(startTime, endTime).Count();

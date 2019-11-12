@@ -21,8 +21,22 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
             stubApiClient.GetResponse(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
                 .Returns("");
             var service = new VrLotteryService(stubApiClient);
+
             service.GetRawDataList(startTime, endTime).ToList();
+
             Assert.True(true);
+        }
+
+        [Fact]
+        public void GetRawDataList_WhenCall_ResponseNotEmpty()
+        {
+            var startTime = new DateTime(2019, 10, 30, 12, 0, 0);
+            var endTime = new DateTime(2019, 10, 30, 13, 0, 0);
+            var service = new VrLotteryService();
+
+            var data = service.GetRawDataList(startTime, endTime).ToList();
+
+            Assert.NotEmpty(data);
         }
     }
 }

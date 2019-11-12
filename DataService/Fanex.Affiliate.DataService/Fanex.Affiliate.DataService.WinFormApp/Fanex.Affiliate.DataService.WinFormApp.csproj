@@ -125,6 +125,12 @@
     <Compile Include="Forms\OpusForm.Designer.cs">
       <DependentUpon>OpusForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TopazForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TopazForm.Designer.cs">
+      <DependentUpon>TopazForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OpusForm.resx">
       <DependentUpon>OpusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TopazForm.resx">
+      <DependentUpon>TopazForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

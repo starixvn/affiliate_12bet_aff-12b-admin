@@ -1,4 +1,6 @@
-﻿using Fanex.Affiliate.DataService.Importer.Constants;
+﻿using Fanex.Affiliate.DataService.Importer.Client;
+using Fanex.Affiliate.DataService.Importer.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Enum;
 using Fanex.Affiliate.DataService.Importer.Enum.GPI;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
@@ -19,9 +21,12 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public class GpiLotteryService : XmlImpoterlServiceBase
     {
-        public GpiLotteryService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProdutRespository = null) 
+        private readonly IApiClient _client;
+        private bool disposed = false;
+        public GpiLotteryService(IApiClient client = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProdutRespository = null) 
             :base(appSetting, thirdPartyProdutRespository)
         {
+            _client = client ?? new GpiLotteryClient();
         }
 
         public override void Import(string data)
@@ -72,6 +77,16 @@ namespace Fanex.Affiliate.DataService.Importer
 
         protected override void CheckXmlResponseData(XDocument xml)
         {
+            if (xml.Root.IsEmpty)
+                return;
+            var elem = xml.Root.Element("OS");
+            if (elem == null)
+                throw new ThirdPartyProductException($"GpiLotteryService - Not correct format {xml.ToString()}");;
+        }
+
+        protected override bool CheckIsSuitableToImport(XDocument xml)
+        {
+            return xml.Root.IsEmpty;
         }
 
         private string GetRawDataByPage(GpiParam param, int page = 1)
@@ -84,8 +99,9 @@ namespace Fanex.Affiliate.DataService.Importer
         private bool HasAnotherPage(string json)
         {
             var pageSize = int.Parse(_appSetting.GetValue("GpiLotteryPageSize"));
-            var jsonDic = JsonConvert.DeserializeObject<Dictionary<string, string>[]>(json);
-            return jsonDic.Count() == pageSize;
+            var xml = ConvertToXml(json);
+            CheckXmlResponseData(xml);
+            return xml.Root.Elements().Count() == pageSize;
         }
 
         private string GetRawData(GpiParam param)
@@ -96,13 +112,8 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private string GetDataString(NameValueCollection query)
         {
-            using (WebClient client = new WebClient())
-            {
-                var addressBase = _appSetting.GetValue("GpiLotterApiUrl");
-                var responseByte = client.UploadValues(addressBase, "POST", query);
-                var requestBody = Encoding.UTF8.GetString(responseByte);
-                return requestBody;
-            }
+            var addressBase = _appSetting.GetValue("GpiLotterApiUrl");
+            return _client.GetResponse(addressBase, query);
         }
 
         private NameValueCollection BuildApiQuery(GpiParam param)
@@ -159,5 +170,28 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
+        public override void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                _client?.Dispose();
+            }
+
+            disposed = true;
+        }
+
+        ~GpiLotteryService()
+        {
+            Dispose(false);
+        }
     }
 }

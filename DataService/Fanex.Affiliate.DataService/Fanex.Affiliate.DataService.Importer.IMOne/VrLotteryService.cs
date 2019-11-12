@@ -12,12 +12,14 @@ using Fanex.Affiliate.DataService.Importer.IMOne.Client;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 
-namespace Fanex.Affiliate.DataService.Importer
+namespace Fanex.Affiliate.DataService.Importer 
 {
     public class VrLotteryService : XmlImpoterlServiceBase, IDataRequestByCurrency
     {
         private readonly TimeSpan MAX_REQUEST_TIMESPAN = new TimeSpan(31, 0, 0, 0);
-        protected IApiClient _client;
+        protected readonly IApiClient _client;
+
+        private bool disposed = false;
 
         public VrLotteryService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) : base(appSetting, thirdPartyProductRepository)
         {
@@ -115,6 +117,30 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             await Task.Yield();
             return GetRawDataListByCurrency(startTime, endTime, currency);
+        }
+
+        public override void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                _client?.Dispose();
+            }
+
+            disposed = true;
+        }
+
+        ~VrLotteryService()
+        {
+            Dispose(false);
         }
     }
 }
