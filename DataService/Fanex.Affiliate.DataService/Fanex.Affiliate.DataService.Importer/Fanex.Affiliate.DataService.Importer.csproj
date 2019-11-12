@@ -82,7 +82,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\GpiLotteryClient.cs" />
     <Compile Include="Client\TopazClient.cs" />
     <Compile Include="Service\BetsoftService.cs" />
     <Compile Include="Service\CrystalGpiService.cs" />
@@ -90,7 +89,6 @@
     <Compile Include="Service\CasinoDataService.cs" />
     <Compile Include="Service\EbetService.cs" />
     <Compile Include="Service\TopazService.cs" />
-    <Compile Include="Service\GpiLotteryService.cs" />
     <Compile Include="Interface\IBetsoftService.cs" />
     <Compile Include="Interface\ICrystalGpiService.cs" />
     <Compile Include="Interface\IDataImportingRunner.cs" />
@@ -112,6 +110,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
       <Project>{410276e1-1e99-4662-809c-25f0f1777c08}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.GPI\Fanex.Affiliate.DataService.Importer.GPI.csproj">
+      <Project>{7e74c2b1-80bd-4d88-8c30-7f02d2e038a1}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.GPI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.IMOne\Fanex.Affiliate.DataService.Importer.IMOne.csproj">
       <Project>{7c3e0e3a-a71e-4d43-9d77-491ee5214e8a}</Project>

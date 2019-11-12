@@ -4,6 +4,7 @@ using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Enum;
 using Fanex.Affiliate.DataService.Importer.Enum.GPI;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
+using Fanex.Affiliate.DataService.Importer.GPI.Extension;
 using Fanex.Affiliate.DataService.Importer.MetaModels.GPI;
 using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
@@ -19,7 +20,7 @@ using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public class GpiLotteryService : XmlImpoterlServiceBase
+    public class GpiLotteryService : XmlImpoterlServiceBase, IGetDataByGameType<GameType>
     {
         private readonly IApiClient _client;
         private bool disposed = false;
@@ -37,15 +38,28 @@ namespace Fanex.Affiliate.DataService.Importer
         public override IEnumerable<string>GetRawDataList(DateTime startTime, DateTime endTime)
         {
             EnsureEndTimeLaterThanStartTime(startTime, endTime);
-            
+            var gameTypesString = _appSetting.GetGpiLotteryGame();
+            foreach (var typeInString in gameTypesString)
+            {
+                var type = GetGameType(typeInString);
+                var datas = GetRawDataByGameType(startTime, endTime, type);
+                foreach (var data in datas)
+                {
+                    yield return data;
+                }
+            }
+        }
+
+        public virtual IEnumerable<string> GetRawDataByGameType(DateTime startTime, DateTime endTime, GameType type)
+        {
             var pageNumber = 1;
             var paramForDateTime = new GpiParam()
             {
                 SDate = startTime,
-                EDate = endTime
+                EDate = endTime,
+                Game = type
             };
-
-            while(true)
+            while (true)
             {
                 var rawData = GetRawDataByPage(paramForDateTime, pageNumber);
                 yield return rawData;
@@ -137,7 +151,6 @@ namespace Fanex.Affiliate.DataService.Importer
             var vendorName = _appSetting.GetValue("GpiLotteryVendorName");
             var password = _appSetting.GetValue("GpiLotteryPassword");
             var pageSize = int.Parse(_appSetting.GetValue("GpiLotteryPageSize"));
-            var gameType = GetGameType();
             var tranStatus = GetTransactionStatus();
 
             return new GpiParam()
@@ -145,7 +158,7 @@ namespace Fanex.Affiliate.DataService.Importer
                 VendorName = vendorName,
                 SDate = param.SDate,
                 EDate = param.EDate,
-                Game = gameType,
+                Game = param.Game,
                 TransactionStatus = tranStatus,
                 Password = password,
                 PageNumber = pageNumber,
@@ -162,10 +175,9 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        private GameType GetGameType()
+        private GameType GetGameType(string gameName)
         {
             GameType result;
-            var gameName = _appSetting.GetValue("GpiLotteryGameType");
             if (!System.Enum.TryParse(gameName, true, out result))
                 throw new ArgumentException($"Wrong GpiLotteryGameType {gameName}");
             return result;
