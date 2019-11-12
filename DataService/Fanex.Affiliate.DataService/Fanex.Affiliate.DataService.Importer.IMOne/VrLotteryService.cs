@@ -102,9 +102,9 @@ namespace Fanex.Affiliate.DataService.Importer
             checker.CheckXml(xml);
         }
 
-        protected override XDocument ConvertToXml(string data)
+        public override XDocument ConvertRawDataToXml(string raw)
         {
-            return XmlHelper.ParseToXDocumentFromJson(data);
+            return XmlHelper.ParseToXDocumentFromJson(raw);
         }
 
         public async Task<IEnumerable<string>> GetRawDataListByCurrenciesAsync(DateTime startTime, DateTime endTime, IEnumerable<string> currencies)

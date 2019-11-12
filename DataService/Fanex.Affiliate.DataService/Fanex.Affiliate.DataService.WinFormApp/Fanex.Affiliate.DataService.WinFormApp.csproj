@@ -107,6 +107,12 @@
     <Compile Include="Forms\EbetForm.Designer.cs">
       <DependentUpon>EbetForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GpiLotteryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GpiLotteryForm.Designer.cs">
+      <DependentUpon>GpiLotteryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ImporterFormBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,12 @@
     <Compile Include="Forms\ISoftbetForm.Designer.cs">
       <DependentUpon>ISoftbetForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LBKenoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LBKenoForm.Designer.cs">
+      <DependentUpon>LBKenoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\OpusForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +142,12 @@
     </Compile>
     <Compile Include="Forms\TopazForm.Designer.cs">
       <DependentUpon>TopazForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VrLotteryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VrLotteryForm.Designer.cs">
+      <DependentUpon>VrLotteryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -151,17 +169,26 @@
     <EmbeddedResource Include="Forms\EbetForm.resx">
       <DependentUpon>EbetForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GpiLotteryForm.resx">
+      <DependentUpon>GpiLotteryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ImporterFormBase.resx">
       <DependentUpon>ImporterFormBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ISoftbetForm.resx">
       <DependentUpon>ISoftbetForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LBKenoForm.resx">
+      <DependentUpon>LBKenoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\OpusForm.resx">
       <DependentUpon>OpusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TopazForm.resx">
       <DependentUpon>TopazForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VrLotteryForm.resx">
+      <DependentUpon>VrLotteryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -323,6 +350,14 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
       <Project>{410276E1-1E99-4662-809C-25F0F1777C08}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.IMOne\Fanex.Affiliate.DataService.Importer.IMOne.csproj">
+      <Project>{7C3E0E3A-A71E-4D43-9D77-491EE5214E8A}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.IMOne</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
+      <Project>{B04723A2-C292-4104-8061-6A54F890B094}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.LBKeno</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
       <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>

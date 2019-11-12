@@ -35,8 +35,10 @@
             this.btnCrystal = new System.Windows.Forms.Button();
             this.btnQuartz = new System.Windows.Forms.Button();
             this.btnOpus = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnGpiLottery = new System.Windows.Forms.Button();
             this.btnTopaz = new System.Windows.Forms.Button();
+            this.btLBKeno = new System.Windows.Forms.Button();
+            this.btnVrLottery = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -108,14 +110,15 @@
             this.btnOpus.UseVisualStyleBackColor = true;
             this.btnOpus.Click += new System.EventHandler(this.btnOpus_Click);
             // 
-            // button1
+            // btnGpiLottery
             // 
-            this.button1.Location = new System.Drawing.Point(153, 195);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Lottery - GPI";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnGpiLottery.Location = new System.Drawing.Point(153, 195);
+            this.btnGpiLottery.Name = "btnGpiLottery";
+            this.btnGpiLottery.Size = new System.Drawing.Size(110, 23);
+            this.btnGpiLottery.TabIndex = 7;
+            this.btnGpiLottery.Text = "Lottery - GPI";
+            this.btnGpiLottery.UseVisualStyleBackColor = true;
+            this.btnGpiLottery.Click += new System.EventHandler(this.btnGpiLottery_Click);
             // 
             // btnTopaz
             // 
@@ -127,13 +130,35 @@
             this.btnTopaz.UseVisualStyleBackColor = true;
             this.btnTopaz.Click += new System.EventHandler(this.btnTopaz_Click);
             // 
+            // btLBKeno
+            // 
+            this.btLBKeno.Location = new System.Drawing.Point(153, 236);
+            this.btLBKeno.Name = "btLBKeno";
+            this.btLBKeno.Size = new System.Drawing.Size(110, 23);
+            this.btLBKeno.TabIndex = 9;
+            this.btLBKeno.Text = "LB Keno";
+            this.btLBKeno.UseVisualStyleBackColor = true;
+            this.btLBKeno.Click += new System.EventHandler(this.btLBKeno_Click);
+            // 
+            // btnVrLottery
+            // 
+            this.btnVrLottery.Location = new System.Drawing.Point(15, 236);
+            this.btnVrLottery.Name = "btnVrLottery";
+            this.btnVrLottery.Size = new System.Drawing.Size(110, 23);
+            this.btnVrLottery.TabIndex = 10;
+            this.btnVrLottery.Text = "VR Lottery - IMOne";
+            this.btnVrLottery.UseVisualStyleBackColor = true;
+            this.btnVrLottery.Click += new System.EventHandler(this.btnVrLottery_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(284, 298);
+            this.Controls.Add(this.btnVrLottery);
+            this.Controls.Add(this.btLBKeno);
             this.Controls.Add(this.btnTopaz);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnGpiLottery);
             this.Controls.Add(this.btnOpus);
             this.Controls.Add(this.btnQuartz);
             this.Controls.Add(this.btnCrystal);
@@ -158,7 +183,9 @@
         private System.Windows.Forms.Button btnCrystal;
         private System.Windows.Forms.Button btnQuartz;
         private System.Windows.Forms.Button btnOpus;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGpiLottery;
         private System.Windows.Forms.Button btnTopaz;
+        private System.Windows.Forms.Button btLBKeno;
+        private System.Windows.Forms.Button btnVrLottery;
     }
 }

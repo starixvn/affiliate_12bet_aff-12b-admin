@@ -93,11 +93,11 @@ namespace Fanex.Affiliate.DataService.Importer
             checker.CheckXml(xml);
         }
 
-        protected override XDocument ConvertToXml(string data)
+        public override XDocument ConvertRawDataToXml(string raw)
         {
-            var xml = XmlHelper.ParseToXDocument(data);
+            var xml = XmlHelper.ParseToXDocument(raw);
             if (xml == null)
-                throw new ThirdPartyProductException($"LBKeno - Can't convert raw data to xml {data}");
+                throw new ThirdPartyProductException($"LBKeno - Can't convert raw data to xml {raw}");
             return xml;
         }
 

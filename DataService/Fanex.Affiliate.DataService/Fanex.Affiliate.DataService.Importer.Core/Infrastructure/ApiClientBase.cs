@@ -21,12 +21,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
         public string GetResponse(string url, NameValueCollection query)
         {
             var task = Task.Run(async () => await GetResponseAsync(url, query));
-            Task.WaitAll(task);
-            var result = task.Result;
-            var exception = task.Exception;
-
-            if (exception != null)
-                throw exception;
+            var result = task.GetAwaiter().GetResult();
 
             return result;
         }

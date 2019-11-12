@@ -69,8 +69,31 @@ namespace Fanex.Affiliate.DataService.WinFormApp
         private void btnTopaz_Click(object sender, EventArgs e)
         {
             var topazForm = new TopazForm();
-            topazForm.FormClosing += FormClosingHandler;
-            topazForm.Show();
+            SetUpServiceForm(topazForm);
+        }
+
+        private void btnGpiLottery_Click(object sender, EventArgs e)
+        {
+            var gpiForm = new GpiLotteryForm();
+            SetUpServiceForm(gpiForm);
+        }
+
+        private void btnVrLottery_Click(object sender, EventArgs e)
+        {
+            var form = new VrLotteryForm();
+            SetUpServiceForm(form);
+        }
+
+        private void btLBKeno_Click(object sender, EventArgs e)
+        {
+            var form = new LBKenoForm();
+            SetUpServiceForm(form);
+        }
+
+        private void SetUpServiceForm(Form form)
+        {
+            form.FormClosing += FormClosingHandler;
+            form.Show();
             this.Hide();
         }
     }

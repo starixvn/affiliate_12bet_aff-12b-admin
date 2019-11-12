@@ -92,6 +92,7 @@
             this.btnImport.TabIndex = 18;
             this.btnImport.Text = "Import Converted Data";
             this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // endTimePicker
             // 
@@ -142,7 +143,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 197);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 203);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -181,7 +182,7 @@
             // 
             this.groupBox5.Controls.Add(this.richTextLog);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(0, 97);
+            this.groupBox5.Location = new System.Drawing.Point(0, 103);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(829, 100);
             this.groupBox5.TabIndex = 7;
@@ -221,7 +222,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(829, 97);
+            this.groupBox1.Size = new System.Drawing.Size(829, 103);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input Param";
@@ -239,7 +240,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 607);
+            this.ClientSize = new System.Drawing.Size(829, 613);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox1);

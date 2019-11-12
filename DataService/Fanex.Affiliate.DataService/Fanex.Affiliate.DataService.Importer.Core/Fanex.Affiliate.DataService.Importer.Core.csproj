@@ -96,7 +96,6 @@
     <Compile Include="Enum\SystemType.cs" />
     <Compile Include="Enum\TransactionStatus.cs" />
     <Compile Include="Exceptions\ThirdPartyProductException.cs" />
-    <Compile Include="Extension\EnumExtension.cs" />
     <Compile Include="Extension\NameValueCollectionExtension.cs" />
     <Compile Include="Infrastructure\ApiClientBase.cs" />
     <Compile Include="Infrastructure\IApiClient.cs" />

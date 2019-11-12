@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
     public partial class TopazForm : ImporterFormBase
     {
-        public TopazForm()
+        public TopazForm() : base()
         {
             InitializeComponent();
             Service = new TopazService();

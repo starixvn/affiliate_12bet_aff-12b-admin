@@ -55,10 +55,10 @@ namespace Fanex.Affiliate.DataService.Importer
             }
         }
 
-        protected override XDocument ConvertToXml(string data)
+        public override XDocument ConvertRawDataToXml(string raw)
         {
-            var json = BuildJsonString(data);
-            var xml = XmlHelper.ParseToXDocumentFromJson(json, "item");
+            var json = BuildJsonString(raw);
+            var xml = XmlHelper.ParseToXDocumentFromJson(json);
             if (xml == null)
                 throw new ThirdPartyProductException($"GpiLottery - Cant convert response data to xml - {json}");
             return xml;
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var builder = new StringBuilder();
             builder.Append("{")
-                .Append("response")
+                .Append("transactions")
                 .Append(":")
                 .Append(data)
                 .Append("}");
@@ -79,7 +79,7 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             if (xml.Root.IsEmpty)
                 return;
-            var elem = xml.Root.Element("OS");
+            var elem = xml.Root.Element("transactions");
             if (elem == null)
                 throw new ThirdPartyProductException($"GpiLotteryService - Not correct format {xml.ToString()}");;
         }
@@ -99,9 +99,10 @@ namespace Fanex.Affiliate.DataService.Importer
         private bool HasAnotherPage(string json)
         {
             var pageSize = int.Parse(_appSetting.GetValue("GpiLotteryPageSize"));
-            var xml = ConvertToXml(json);
+            var xml = ConvertRawDataToXml(json);
             CheckXmlResponseData(xml);
-            return xml.Root.Elements().Count() == pageSize;
+            var count = xml.Root.Elements("transactions").Count();
+            return count == pageSize;
         }
 
         private string GetRawData(GpiParam param)

@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.DataService.Importer
             var rawDatas = GetRawDataList(startTime, endTime);
             foreach (var data in rawDatas)
             {
-                var xml = ConvertToXml(data);
+                var xml = ConvertRawDataToXml(data);
                 CheckXmlResponseData(xml);
                 yield return xml;
             }
@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.DataService.Importer
         /// <returns></returns>
         protected abstract void CheckXmlResponseData(XDocument xml);
 
-        protected abstract XDocument ConvertToXml(string data);
+        public abstract XDocument ConvertRawDataToXml(string raw);
 
         public abstract void Import(string data);
 
@@ -74,6 +74,12 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             await Task.Yield();
             return GetRawDataList(startTime, endTime).ToList();
+        }
+
+        public async Task<XDocument> ConvertRawDataToXmlAsync(string raw)
+        {
+            await Task.Yield();
+            return ConvertRawDataToXml(raw);
         }
 
         public async Task ImportAsync(string data)

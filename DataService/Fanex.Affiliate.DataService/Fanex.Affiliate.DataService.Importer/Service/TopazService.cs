@@ -103,11 +103,11 @@ namespace Fanex.Affiliate.DataService.Importer
             checker.CheckXml(xml);
         }
 
-        protected override XDocument ConvertToXml(string data)
+        public override XDocument ConvertRawDataToXml(string raw)
         {
-            var xml = XmlHelper.ParseToXDocumentFromJson(data);
+            var xml = XmlHelper.ParseToXDocumentFromJson(raw);
             if (xml == null)
-                throw new ThirdPartyProductException($"FlowGaming - Cant convert json response to xml - {data}");
+                throw new ThirdPartyProductException($"FlowGaming - Cant convert json response to xml - {raw}");
             return xml;
         }
 
