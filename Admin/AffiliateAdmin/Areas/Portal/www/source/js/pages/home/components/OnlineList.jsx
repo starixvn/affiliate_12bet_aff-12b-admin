@@ -2,37 +2,24 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
-import { Button } from 'reactstrap';
+import { Col, Button } from 'reactstrap';
 
-import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText, globalResource, maxWidth } from '../libs/constants';
-import { setPagingOption, toggleLoader, getOnlineList } from '../actions';
+import { htmlDecode } from '../../../modules/htmlHelper';
+import { headerText, countDownList } from '../libs/constants';
+import { setPagingOption, getOnlineList } from '../actions';
+import Filter from './Filter';
 
 export class OnlineList extends PureComponent {
     constructor(props) {
         super(props);
-
-        this.state = {
-            gridData: null,
-            shouldResetScrollPosition: true
-        }
     }
 
     componentDidMount() {
         this.fetchData({ pageIndex: 1, pageSize: this.props.pagingOption.PageSize });
     }
 
-    componentDidUpdate(prevProps) {
-        const { pagingOption, param } = this.props;
-
-        if (param !== prevProps.param) {
-            const newParam = Object.assign({}, param, { pageIndex: 1, pageSize: pagingOption.PageSize });
-            this.fetchData(newParam);
-        }
-    }
-
     async fetchData(param) {
-        await this.props.fetchData(param);
+        await this.props.getOnlineList(param);
     }
 
     _renderHeader() {
@@ -56,12 +43,12 @@ export class OnlineList extends PureComponent {
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
-                dataRows.push(this._buildDataRow(dataItem, i + startIndex));
+                dataRows.push(this._buildDataRow(dataList[i], i + startIndex));
             }
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="6">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="6">No users are online</Cell>
             </Row>);
         }
 
@@ -76,13 +63,13 @@ export class OnlineList extends PureComponent {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={id} className="text-center">{userName}</Cell>
+                <Cell title={userName} className="text-center">{userName}</Cell>
                 <Cell title={dataItem.LoggedInDateText} className="text-center">{dataItem.LoggedInDateText}</Cell>
                 <Cell title={dataItem.LastRequestDateText} className="text-center">{dataItem.LastRequestDateText}</Cell>
                 <Cell title={ipAddress} className="text-center">
                     <a target="_blank" href={url}>{ipAddress}</a>
                 </Cell>
-                <Cell title={dataItem.Role} className="text-break">{dataItem.Role}</Cell>
+                <Cell title={dataItem.Role} className="text-center">{dataItem.Role}</Cell>
             </Row>
         )
     }
@@ -92,21 +79,22 @@ export class OnlineList extends PureComponent {
     };
 
     render() {
-        const { gridData, shouldResetScrollPosition } = this.props;
+        const { gridData } = this.props;
 
         return gridData && (
             <div className="data-content">
+                <Filter />
                 <div className="table-responsive table-striped my-2">
                     <Table
-                        maxWidth={maxWidth}
+                        minWidth={1000}
+                        autoWidth={true}
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}
-                        containerPadding={10}
+                        containerPadding={20}
                         isPaging={true}
                         pageOption={this.props.pagingOption}
                         onPaging={this.handlePaging}
-                        shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
             </div>
@@ -115,12 +103,12 @@ export class OnlineList extends PureComponent {
 }
 
 
-function mapStateToProps({ pagingOption, gridData, shouldResetScrollPosition }) {
-    return Object.assign({}, { pagingOption, gridData, shouldResetScrollPosition });
+function mapStateToProps({ pagingOption, gridData }) {
+    return Object.assign({}, { pagingOption, gridData });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, getOnlineList }, dispatch);
+    return bindActionCreators({ setPagingOption, getOnlineList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(OnlineList);

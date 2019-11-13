@@ -9,11 +9,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.ChangeAdminPassword
     {
         public ResultInfo ChangePassword(ChangeAdminPasswordParam param)
         {
-            const string SpKey = "Aff_AdminUpdPwd";
+            const string SpKey = "Aff_Admin_ChangePassword";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("custid", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("oldpwd", DbType.String, param.OldPassword);
                 objectDb.AddInParameter("userpwd", DbType.String, param.NewPassword);
                 objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);

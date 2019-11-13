@@ -8,6 +8,7 @@ import TasksWaitingForApproval from './TasksWaitingForApproval';
 import BannerStatistics from './BannerStatistics';
 import AffiliateStatistics from './AffiliateStatistics';
 import MemberStatistics from './MemberStatistics';
+import OnlineList from './OnlineList';
 
 export const AppContainer = (props) => {
     return (
@@ -40,6 +41,9 @@ export const AppContainer = (props) => {
                     <Col sm={6}>
                         <MemberStatistics isUpToNow={false} />
                     </Col>
+                </Row>
+                <Row>
+                    <OnlineList />
                 </Row>
             </Col>
         </AppLayout>

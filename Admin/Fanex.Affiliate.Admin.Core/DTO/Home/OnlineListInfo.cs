@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Home
 
         public DateTime LastRequestDate { get; set; }
 
-        public string IP { get; set; }
+        public string Ip { get; set; }
 
         public string Role { get; set; }
 

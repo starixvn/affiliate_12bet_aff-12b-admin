@@ -3,7 +3,7 @@ import { toggleLoader } from '../../../actions/loaderAction';
 import { setPagingOption } from '../../../actions/pagingAction';
 import { SET_GRID_DATA } from './types';
 
-export { toggleLoader, setPagingOption };
+export { setPagingOption };
 
 export const setGridData = (data) => {
     return {
@@ -11,6 +11,7 @@ export const setGridData = (data) => {
         data
     }
 }
+
 
 export const getOnlineList = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
@@ -21,7 +22,7 @@ export const getOnlineList = (param) => async (dispatch) => {
     const data = response && response.status === 200 ? response.data : null;
 
     dispatch(setGridData(data ? data.MainData : []));
-    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
+    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize }));
     dispatch(toggleLoader(false));
 }
 

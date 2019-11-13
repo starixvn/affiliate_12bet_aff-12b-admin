@@ -236,6 +236,8 @@
     <Compile Include="DTO\AffTypeInfo.cs" />
     <Compile Include="DTO\Domain\DomainControlInfo.cs" />
     <Compile Include="DTO\Domain\DomainInfo.cs" />
+    <Compile Include="DTO\Home\DepositInfo.cs" />
+    <Compile Include="DTO\Home\GeneralInfo.cs" />
     <Compile Include="DTO\Home\OnlineListInfo.cs" />
     <Compile Include="DTO\MediaGallery\BannerInfo.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />

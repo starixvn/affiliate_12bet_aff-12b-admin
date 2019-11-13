@@ -6,5 +6,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Home
     public interface IHomeRepository
     {
         EntityResult<OnlineListInfo> GetOnlineList(int pageIndex, int pageSize);
+
+        decimal GetPSPToday();
+
+        DepositInfo GetDepositInfo();
+
+        GeneralInfo GetGeneralInfo();
     }
 }
