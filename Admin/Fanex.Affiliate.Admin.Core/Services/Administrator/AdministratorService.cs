@@ -168,7 +168,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("UserName", DbType.String, "AA" + param.UserName);
+                objectDb.AddInParameter("UserName", DbType.String, param.UserName);
                 objectDb.AddInParameter("groupid", DbType.Int32, param.GroupId);
                 objectDb.AddInParameter("creator", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("Ip", DbType.String, param.Ip);

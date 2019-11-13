@@ -1038,6 +1038,7 @@
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
     <Content Include="Areas\Portal\www\dist\style\assets\UnderMaintenance.gif" />
     <Content Include="Areas\Portal\www\dist\style\change-admin-password.css" />
+    <Content Include="Areas\Portal\www\dist\style\home.css" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\login.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\administrator\administrator.css" />
@@ -1050,7 +1051,6 @@
     <Content Include="Areas\Portal\www\dist\style\pages\domain\domain.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\email-history.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\exchange-rate\exchange-rate.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\home.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\banner-list.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\landing-page.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\text-list.css" />
@@ -1479,6 +1479,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\home\components\AffiliateStatistics.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\TasksWaitingForApproval.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\BannerStatistics.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\Panel.jsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1649,6 +1650,10 @@
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\excel-icon.svg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\icon_home01.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\icon_home02.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\tbl_icon01.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\tbl_icon02.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon-check.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon-uncheck.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />

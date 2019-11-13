@@ -1,8 +1,13 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
+import { Col, Row } from 'reactstrap';
 
 import AppLayout from '../../../layouts/AppLayout';
 import Loader from '../../../components/Loader';
+import TasksWaitingForApproval from './TasksWaitingForApproval';
+import BannerStatistics from './BannerStatistics';
+import AffiliateStatistics from './AffiliateStatistics';
+import MemberStatistics from './MemberStatistics';
 
 export const AppContainer = (props) => {
     return (
@@ -11,6 +16,32 @@ export const AppContainer = (props) => {
             <div className="ml-4 my-2 pl-3">
                 Below you see tasks that are waiting for your approval and overview of the affiliate program
             </ div>
+            <Col lg={8}>
+                <Row>
+                    <Col sm={6}>
+                        <TasksWaitingForApproval />
+                    </Col>
+                    <Col sm={6}>
+                        <BannerStatistics />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={6}>
+                        <AffiliateStatistics isUpToNow={true} />
+                    </Col>
+                    <Col sm={6}>
+                        <AffiliateStatistics isUpToNow={false} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={6}>
+                        <MemberStatistics isUpToNow={true} />
+                    </Col>
+                    <Col sm={6}>
+                        <MemberStatistics isUpToNow={false} />
+                    </Col>
+                </Row>
+            </Col>
         </AppLayout>
     );
 }

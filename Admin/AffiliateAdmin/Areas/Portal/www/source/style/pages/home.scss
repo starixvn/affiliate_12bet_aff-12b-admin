@@ -1,2 +1,33 @@
-﻿body {
+﻿.waiting-approval {
+    .tbl-icon02 {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        background: transparent url(../assets/home/tbl_icon02.jpg) no-repeat scroll 0 0;
+    }
+}
+
+.banner-statistics {
+    .tbl-icon01 {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        background: transparent url(../assets/home/tbl_icon01.jpg) no-repeat scroll 0 0;
+    }
+}
+
+.home-panel {
+    .icon-home01 {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        background: transparent url(../assets/home/icon_home01.png) no-repeat scroll 0 0;
+    }
+
+    .icon-home02 {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        background: transparent url(../assets/home/icon_home02.png) no-repeat scroll 0 0;
+    }
 }

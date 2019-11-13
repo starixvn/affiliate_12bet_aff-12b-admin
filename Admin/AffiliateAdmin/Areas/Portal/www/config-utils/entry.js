@@ -64,5 +64,5 @@ module.exports = {
     [`${styleDist}/pages/domain/domain-control`]: clientRoot + "/style/pages/domain/domain-control.scss",
     [`${styleDist}/pages/administrator/administrator`]: clientRoot + "/style/pages/administrator/administrator.scss",
     [`${styleDist}/pages/administrator/department`]: clientRoot + "/style/pages/administrator/department.scss",
-    [`${styleDist}/pages/home`]: clientRoot + "/style/pages/home.scss",
+    [`${styleDist}/home`]: clientRoot + "/style/pages/home.scss",
 };
