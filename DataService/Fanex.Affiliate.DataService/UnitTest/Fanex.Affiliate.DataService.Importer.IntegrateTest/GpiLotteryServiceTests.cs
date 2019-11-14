@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fanex.Affiliate.DataService.Importer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

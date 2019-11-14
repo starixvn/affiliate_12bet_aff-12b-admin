@@ -56,7 +56,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                         var saveTimeTrackerParam = new InsertTimeTrackerParam
                         {
-                            ProductId = Products.TopazId,
+                            ProductId = Products.GPILotteryId,
                             CallTime = endTime
                         };
                         _timeTracker.SaveTime(saveTimeTrackerParam);

@@ -45,6 +45,7 @@
             this.startTimePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.chkBoxConvertDirectFromTxtField = new System.Windows.Forms.CheckBox();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -60,7 +61,7 @@
             this.richTextConvertedData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextConvertedData.Location = new System.Drawing.Point(3, 16);
             this.richTextConvertedData.Name = "richTextConvertedData";
-            this.richTextConvertedData.Size = new System.Drawing.Size(415, 391);
+            this.richTextConvertedData.Size = new System.Drawing.Size(415, 381);
             this.richTextConvertedData.TabIndex = 0;
             this.richTextConvertedData.Text = "";
             // 
@@ -70,7 +71,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(403, 410);
+            this.groupBox3.Size = new System.Drawing.Size(403, 400);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Raw data";
@@ -80,7 +81,7 @@
             this.richTextRawData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextRawData.Location = new System.Drawing.Point(3, 16);
             this.richTextRawData.Name = "richTextRawData";
-            this.richTextRawData.Size = new System.Drawing.Size(397, 391);
+            this.richTextRawData.Size = new System.Drawing.Size(397, 381);
             this.richTextRawData.TabIndex = 3;
             this.richTextRawData.Text = "";
             // 
@@ -143,7 +144,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 203);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 213);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -153,7 +154,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox4);
-            this.splitContainer1.Size = new System.Drawing.Size(829, 410);
+            this.splitContainer1.Size = new System.Drawing.Size(829, 400);
             this.splitContainer1.SplitterDistance = 403;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 8;
@@ -164,7 +165,7 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(421, 410);
+            this.groupBox4.Size = new System.Drawing.Size(421, 400);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Converted Xml";
@@ -182,7 +183,7 @@
             // 
             this.groupBox5.Controls.Add(this.richTextLog);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(0, 103);
+            this.groupBox5.Location = new System.Drawing.Point(0, 113);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(829, 100);
             this.groupBox5.TabIndex = 7;
@@ -210,6 +211,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkBoxConvertDirectFromTxtField);
             this.groupBox1.Controls.Add(this.btnImport);
             this.groupBox1.Controls.Add(this.endTimePicker);
             this.groupBox1.Controls.Add(this.label1);
@@ -222,7 +224,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(829, 103);
+            this.groupBox1.Size = new System.Drawing.Size(829, 113);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input Param";
@@ -235,6 +237,16 @@
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Start Time:";
+            // 
+            // chkBoxConvertDirectFromTxtField
+            // 
+            this.chkBoxConvertDirectFromTxtField.AutoSize = true;
+            this.chkBoxConvertDirectFromTxtField.Location = new System.Drawing.Point(15, 90);
+            this.chkBoxConvertDirectFromTxtField.Name = "chkBoxConvertDirectFromTxtField";
+            this.chkBoxConvertDirectFromTxtField.Size = new System.Drawing.Size(157, 17);
+            this.chkBoxConvertDirectFromTxtField.TabIndex = 19;
+            this.chkBoxConvertDirectFromTxtField.Text = "Convert direct from text field";
+            this.chkBoxConvertDirectFromTxtField.UseVisualStyleBackColor = true;
             // 
             // ImporterFormBase
             // 
@@ -278,5 +290,6 @@
         public System.Windows.Forms.DateTimePicker startTimePicker;
         public System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chkBoxConvertDirectFromTxtField;
     }
 }

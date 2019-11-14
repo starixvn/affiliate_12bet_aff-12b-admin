@@ -56,11 +56,17 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             ToggleButton(false);
             try
             {
-                foreach (var data in RawDatas)
+                if (chkBoxConvertDirectFromTxtField.Checked)
                 {
-                    var xml = await Task.Run(async () => await Service.ConvertRawDataToXmlAsync(data));
+                    var xml =  await GetXmlFromTextFieldAsync();
                     XmlDatas.Add(xml);
                 }
+                else
+                    foreach (var data in RawDatas)
+                    {
+                        var xml = await Task.Run(async () => await Service.ConvertRawDataToXmlAsync(data));
+                        XmlDatas.Add(xml);
+                    }
                 DisplayXmlData();
                 Logger.Log("Finished convert raw data");
             }
@@ -70,6 +76,12 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             }
 
             ToggleButton(true);
+        }
+
+        private async Task<XDocument> GetXmlFromTextFieldAsync()
+        {
+            var data = richTextRawData.Text;
+            return await Task.Run(async () => await Service.ConvertRawDataToXmlAsync(data));
         }
 
         protected virtual async void btnImport_Click(object sender, EventArgs e)

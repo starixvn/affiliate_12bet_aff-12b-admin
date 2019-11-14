@@ -123,6 +123,10 @@
       <Project>{410276E1-1E99-4662-809C-25F0F1777C08}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer.GPI\Fanex.Affiliate.DataService.Importer.GPI.csproj">
+      <Project>{7E74C2B1-80BD-4D88-8C30-7F02D2E038A1}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.GPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer.IMOne\Fanex.Affiliate.DataService.Importer.IMOne.csproj">
       <Project>{7c3e0e3a-a71e-4d43-9d77-491ee5214e8a}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.IMOne</Name>

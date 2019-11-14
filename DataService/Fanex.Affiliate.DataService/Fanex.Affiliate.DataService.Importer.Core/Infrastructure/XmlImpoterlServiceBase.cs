@@ -66,32 +66,27 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public async Task<IEnumerable<XDocument>> GetXmlDataListAsync(DateTime startTime, DateTime endTime)
         {
-            await Task.Yield();
-            return GetXmlDataList(startTime, endTime).ToList();
+            return await Task.Run(() => GetXmlDataList(startTime, endTime).ToList());
         }
 
         public async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
         {
-            await Task.Yield();
-            return GetRawDataList(startTime, endTime).ToList();
+            return await Task.Run(() => GetRawDataList(startTime, endTime).ToList());
         }
 
         public async Task<XDocument> ConvertRawDataToXmlAsync(string raw)
         {
-            await Task.Yield();
-            return ConvertRawDataToXml(raw);
+            return await Task.Run(() => ConvertRawDataToXml(raw));
         }
 
         public async Task ImportAsync(string data)
         {
-            await Task.Yield();
-            Import(data);
+            await Task.Run(() => Import(data));
         }
 
         public async Task ImportAsync(DateTime startTime, DateTime endTime)
         {
-            await Task.Yield();
-            Import(startTime, endTime);
+            await Task.Run(() => Import(startTime, endTime));
         }
 
         public abstract void Dispose();
