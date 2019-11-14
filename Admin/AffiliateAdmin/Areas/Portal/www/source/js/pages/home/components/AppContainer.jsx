@@ -17,28 +17,28 @@ export const AppContainer = (props) => {
             <div className="ml-4 my-2 pl-3">
                 Below you see tasks that are waiting for your approval and overview of the affiliate program
             </ div>
-            <Col lg={8}>
+            <Col lg={8} className="home">
                 <Row>
                     <Col sm={6}>
                         <TasksWaitingForApproval />
                     </Col>
-                    <Col sm={6}>
+                    <Col className="home-right">
                         <BannerStatistics />
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={6}>
+                    <Col className="home-panel" sm={6}>
                         <AffiliateStatistics isUpToNow={true} />
                     </Col>
-                    <Col sm={6}>
+                    <Col className="home-panel home-right">
                         <AffiliateStatistics isUpToNow={false} />
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={6}>
+                    <Col className="home-panel" sm={6}>
                         <MemberStatistics isUpToNow={true} />
                     </Col>
-                    <Col sm={6}>
+                    <Col className="home-panel home-right">
                         <MemberStatistics isUpToNow={false} />
                     </Col>
                 </Row>

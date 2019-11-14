@@ -15,3 +15,11 @@ export const countDownList = {
     1800: '30 mins',
     3600: '60 mins'
 }
+
+export const roleList = {
+    Admin: 'Administrator',
+    Aff: 'Affiliate'
+}
+
+export const SixtySeconds = 60;
+export const TenSeconds = 10;

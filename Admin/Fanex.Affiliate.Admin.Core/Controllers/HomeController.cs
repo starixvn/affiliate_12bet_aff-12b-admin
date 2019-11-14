@@ -2,10 +2,12 @@
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Home;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
-
 {
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class HomeController : BaseController
     {
         private readonly IHomeService _homeService;
@@ -24,6 +26,34 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetPSPToday()
+        {
+            return new JsonNetResult
+            {
+                Data = _homeService.GetPSPToday()
+            };
+        }
+
+        [HttpPost]
+        public ActionResult GetDepositInfo()
+        {
+            return new JsonNetResult
+            {
+                Data = _homeService.GetDepositInfo()
+            };
+        }
+
+        [HttpPost]
+        public ActionResult GetGeneralInfo()
+        {
+            return new JsonNetResult
+            {
+                Data = _homeService.GetGeneralInfo()
+            };
+        }
+
+        [HttpPost]
+        [Compress]
         public ActionResult GetOnlineList(int pageIndex = 1, int pageSize = 20)
         {
             return new JsonNetResult

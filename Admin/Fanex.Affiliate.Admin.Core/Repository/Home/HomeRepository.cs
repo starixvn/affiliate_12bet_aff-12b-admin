@@ -75,8 +75,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Home
                     {
                         result = new DepositInfo
                         {
-                            UpToNowDeposit = Convert.ToInt32(reader["MemInProAllNum"]),
-                            ThisMonthDeposit = Convert.ToInt32(reader["MemInProMonthNum"])
+                            AllMemberDepositUpToNow = Convert.ToInt32(reader["MemInProAllNum"]),
+                            AllMemberDepositThisMonth = Convert.ToInt32(reader["MemInProMonthNum"])
                         };
                     }
                 }
@@ -107,26 +107,26 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Home
                             PendingAffiliateNumber = Convert.ToInt32(reader["PendingAllNum"]),
                             ApprovedAffiliateNumber = Convert.ToInt32(reader["ApprovedAllNum"]),
                             DisapprovedAffiliateNumber = Convert.ToInt32(reader["DisapprovedAllNum"]),
-                            ClosedAffiliateNumber = Convert.ToInt32(reader["DepositMemAllNum"]),
-                            AllMemberDepositNumber = Convert.ToInt32(reader["ClosedAllNum"]),
-                            AllDepositNumber = Convert.ToInt32(reader["DepositAll"]),
-                            AllWinlostNumber = Convert.ToInt32(reader["WinlostAll"]),
-                            AllBonusNumber = Convert.ToInt32(reader["BonusAll"]),
-                            AllPSPFeeNumber = Convert.ToInt32(reader["PSPFeeAll"]),
-                            AllAdjustmentNumber = Convert.ToInt32(reader["AdjustmentAll"]),
-                            AllNetWinlostNumber = Convert.ToInt32(reader["NetWinlostAll"]),
+                            ClosedAffiliateNumber = Convert.ToInt32(reader["ClosedAllNum"]),
+                            AllMemberDepositNumber = Convert.ToInt32(reader["DepositMemAllNum"]),
+                            AllDepositNumber = Convert.ToDecimal(reader["DepositAll"]),
+                            AllWinlostNumber = Convert.ToDecimal(reader["WinlostAll"]),
+                            AllBonusNumber = Convert.ToDecimal(reader["BonusAll"]),
+                            AllPSPFeeNumber = Convert.ToDecimal(reader["PSPFeeAll"]),
+                            AllAdjustmentNumber = Convert.ToDecimal(reader["AdjustmentAll"]),
+                            AllNetWinlostNumber = Convert.ToDecimal(reader["NetWinlostAll"]),
                             AllAffiliateMonthNumber = Convert.ToInt32(reader["AffInProMonthNum"]),
                             PendingAffiliateMonthNumber = Convert.ToInt32(reader["PendingMonthNum"]),
                             ApprovedAffiliateMonthNumber = Convert.ToInt32(reader["ApprovedMonthNum"]),
                             DisapprovedAffiliateMonthNumber = Convert.ToInt32(reader["DisapprovedMonthNum"]),
-                            ClosedAffiliateMonthNumber = Convert.ToInt32(reader["DepositMemMonthNum"]),
-                            DepositMemberMonthNumber = Convert.ToInt32(reader["ClosedMonthNum"]),
-                            AllDepositMonthNumber = Convert.ToInt32(reader["DepositMonth"]),
-                            AllWinlostMonthNumber = Convert.ToInt32(reader["WinlostMonth"]),
-                            AllBonusMonthNumber = Convert.ToInt32(reader["BonusMonth"]),
-                            AllPSPFeeMonthNumber = Convert.ToInt32(reader["PSPFeeMonth"]),
-                            AllAdjustmentMonthNumber = Convert.ToInt32(reader["AdjustmentMonth"]),
-                            AllNetWinlostMonthNumber = Convert.ToInt32(reader["NetWinlostMonth"])
+                            ClosedAffiliateMonthNumber = Convert.ToInt32(reader["ClosedMonthNum"]),
+                            AllMemberDepositMonthNumber = Convert.ToInt32(reader["DepositMemMonthNum"]),
+                            AllDepositMonthNumber = Convert.ToDecimal(reader["DepositMonth"]),
+                            AllWinlostMonthNumber = Convert.ToDecimal(reader["WinlostMonth"]),
+                            AllBonusMonthNumber = Convert.ToDecimal(reader["BonusMonth"]),
+                            AllPSPFeeMonthNumber = Convert.ToDecimal(reader["PSPFeeMonth"]),
+                            AllAdjustmentMonthNumber = Convert.ToDecimal(reader["AdjustmentMonth"]),
+                            AllNetWinlostMonthNumber = Convert.ToDecimal(reader["NetWinlostMonth"])
                         };
                     }
                 }

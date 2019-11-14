@@ -1,1 +1,4 @@
 ﻿export const SET_GRID_DATA = 'SET_GRID_DATA';
+export const SET_PSP_TODAY = 'SET_PSP_TODAY';
+export const SET_DEPOSIT_INFO = 'SET_DEPOSIT_INFO';
+export const SET_GENERAL_INFO = 'SET_GENERAL_INFO';

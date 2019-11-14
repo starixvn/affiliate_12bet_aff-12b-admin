@@ -5,12 +5,15 @@ export const Panel = (props) => {
     const { heading, children, className } = props;
 
     return (
-        <div className="home-panel">
-            <Row>
+        <div>
+            <Row className="home-panel-header">
+                <span className="home-panel-header-left"></span>
                 <span className={className}></span>
-                <h5>{heading}</h5>
+                <span className="home-panel-header-right">{heading}</span>
             </Row>
-            {children}
+            <Row className="home-panel-body">
+                {children}
+            </Row>
         </div>
     )
 }

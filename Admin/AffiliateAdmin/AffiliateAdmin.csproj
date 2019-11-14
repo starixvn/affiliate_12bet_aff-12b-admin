@@ -1651,10 +1651,15 @@
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\excel-icon.svg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\bg_home_top.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\dho.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\htab.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\htab_l.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\home\icon_home01.png" />
     <Content Include="Areas\Portal\www\source\style\assets\home\icon_home02.png" />
     <Content Include="Areas\Portal\www\source\style\assets\home\tbl_icon01.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\home\tbl_icon02.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\tbl_m.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon-check.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon-uncheck.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />

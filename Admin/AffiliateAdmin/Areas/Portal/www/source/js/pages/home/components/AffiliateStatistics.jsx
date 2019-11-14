@@ -6,31 +6,38 @@ import { Col, Row } from 'reactstrap';
 import Panel from './Panel';
 import { resolveClientUrl } from '../../../modules/utils';
 import { getAffiliateStatisticsUpToNow } from '../actions';
+import { format } from '../../../modules/numberFormat';
 
 export class AffiliateStatistics extends PureComponent {
     constructor(props) {
         super(props);
-
-        this.state = {
-
-        }
-    }
-
-    componentDidUpdate() {
     }
 
     render() {
-        const { } = this.state;
-        const { isUpToNow } = this.props;
+        const { isUpToNow, generalInfo } = this.props;
 
-        return (
-            <Panel heading={"Affiliate statistics (up to now)"} className={"icon-home01"}>
+        return generalInfo && (
+            <Panel heading={`Affiliate statistics (${isUpToNow ? 'up to now' : 'this month'})`} className={"icon-home01"}>
                 <Row>
-                    <Col sm={12}>
-                        <span>We have 3,113 affiliates in the program</span>
+                    <Col sm={12} className="mx-2">
+                        <span>We have <strong>{format(isUpToNow ? generalInfo.AllAffiliateNumber : generalInfo.AllAffiliateMonthNumber)}</strong> affiliates in the program</span>
                     </Col>
-                    <Col sm={12}>
-                        <span><a href={resolveClientUrl("Portal/Affiliate?Status=Pending&IsFromHome=true")}>1,024</a> Pending / <a href={resolveClientUrl("Portal/Affiliate?Status=Approved&IsFromHome=true")}>236</a> Approved / <a href={resolveClientUrl("Portal/Affiliate?Status=Disapproved&IsFromHome=true")}>1,016</a> Disapproved / <a href={resolveClientUrl("Portal/Affiliate?Status=Closed&IsFromHome=true")}>837</a> Closed</span>
+                    <Col sm={12} className="mx-2">
+                        {
+                            isUpToNow ? (
+                                <span>
+                                    <a href={resolveClientUrl("Portal/Affiliate?Status=Pending&IsFromHome=true")}><strong>{format(generalInfo.PendingAffiliateNumber)}</strong></a>
+                                    Pending / <a href={resolveClientUrl("Portal/Affiliate?Status=Approved&IsFromHome=true")}><strong>{format(generalInfo.ApprovedAffiliateNumber)}</strong></a>
+                                    Approved / <a href={resolveClientUrl("Portal/Affiliate?Status=Disapproved&IsFromHome=true")}><strong>{format(generalInfo.DisapprovedAffiliateNumber)}</strong></a>
+                                    Disapproved / <a href={resolveClientUrl("Portal/Affiliate?Status=Closed&IsFromHome=true")}><strong>{format(generalInfo.ClosedAffiliateNumber)}</strong></a>
+                                    Closed
+                                </span>
+                            ) : (
+                                    <span>
+                                        <strong>{format(generalInfo.PendingAffiliateMonthNumber)}</strong> Pending / <strong>{format(generalInfo.ApprovedAffiliateMonthNumber)}</strong> Approved / <strong>{format(generalInfo.DisapprovedAffiliateMonthNumber)}</strong> Disapproved / <strong>{format(generalInfo.ClosedAffiliateMonthNumber)}</strong> Closed
+                                    </span>
+                                )
+                        }
                     </Col>
                 </Row>
             </Panel>
@@ -38,8 +45,8 @@ export class AffiliateStatistics extends PureComponent {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getAffiliateStatisticsUpToNow }, dispatch);
+function mapStateToProps({ generalInfo }) {
+    return Object.assign({}, { generalInfo });
 }
 
-export default connect(null, mapDispatchToProps)(AffiliateStatistics);
+export default connect(mapStateToProps)(AffiliateStatistics);

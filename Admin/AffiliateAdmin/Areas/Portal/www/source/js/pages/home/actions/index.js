@@ -1,7 +1,7 @@
 ﻿import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { setPagingOption } from '../../../actions/pagingAction';
-import { SET_GRID_DATA } from './types';
+import { SET_GRID_DATA, SET_PSP_TODAY, SET_DEPOSIT_INFO, SET_GENERAL_INFO } from './types';
 
 export { setPagingOption };
 
@@ -12,6 +12,53 @@ export const setGridData = (data) => {
     }
 }
 
+export const setPSPToday = (data) => {
+    return {
+        type: SET_PSP_TODAY,
+        data
+    }
+}
+
+export const setDepositInfo = (data) => {
+    return {
+        type: SET_DEPOSIT_INFO,
+        data
+    }
+}
+
+export const setGeneralInfo = (data) => {
+    return {
+        type: SET_GENERAL_INFO,
+        data
+    }
+}
+
+export const getPSPToday = () => async (dispatch) => {
+    const url = 'Portal/Home/GetPSPToday';
+    const response = await post(url);
+
+    const data = response && response.status === 200 ? response.data : 0;
+
+    dispatch(setPSPToday(data));
+}
+
+export const getDepositInfo = () => async (dispatch) => {
+    const url = 'Portal/Home/GetDepositInfo';
+    const response = await post(url);
+
+    const data = response && response.status === 200 ? response.data : null;
+
+    dispatch(setDepositInfo(data));
+}
+
+export const getGeneralInfo = (param) => async (dispatch) => {
+    const url = 'Portal/Home/GetGeneralInfo';
+    const response = await post(url, param);
+
+    const data = response && response.status === 200 ? response.data : null;
+
+    dispatch(setGeneralInfo(data));
+}
 
 export const getOnlineList = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
@@ -24,46 +71,4 @@ export const getOnlineList = (param) => async (dispatch) => {
     dispatch(setGridData(data ? data.MainData : []));
     dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize }));
     dispatch(toggleLoader(false));
-}
-
-export const getTasksWaitingForApproval = () => async () => {
-    const url = 'Portal/Home/GetTasksWaitingForApproval';
-    const response = await post(url);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const getBannerStatistics = () => async () => {
-    const url = 'Portal/Home/GetBannerStatistics';
-    const response = await post(url);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const getAffiliateStatisticsUpToNow = (param) => async () => {
-    const url = 'Portal/Home/GetAffiliateStatisticsUpToNow';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const getAffiliateStatisticsThisMonth = (param) => async () => {
-    const url = 'Portal/Home/GetAffiliateStatisticsThisMonth';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const getMemberStatisticsUpToNow = (param) => async () => {
-    const url = 'Portal/Home/GetMemberStatisticsUpToNow';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const getMemberStatisticsThisMonth = (param) => async () => {
-    const url = 'Portal/Home/GetMemberStatisticsThisMonth';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
 }

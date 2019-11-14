@@ -2,8 +2,8 @@
 {
     public class DepositInfo
     {
-        public int UpToNowDeposit { get; set; }
+        public int AllMemberDepositUpToNow { get; set; }
 
-        public int ThisMonthDeposit { get; set; }
+        public int AllMemberDepositThisMonth { get; set; }
     }
 }

@@ -4,7 +4,8 @@ import { bindActionCreators } from 'redux';
 import { Col, Row } from 'reactstrap';
 
 import { resolveClientUrl } from '../../../modules/utils';
-import { getTasksWaitingForApproval } from '../actions';
+import { getGeneralInfo } from '../actions';
+import { format } from '../../../modules/numberFormat';
 
 export class TasksWaitingForApproval extends PureComponent {
     constructor(props) {
@@ -15,23 +16,31 @@ export class TasksWaitingForApproval extends PureComponent {
         }
     }
 
-    //componentDidMount() {
-    //    this.props.getTasksWaitingForApproval();
-    //}
+    componentDidMount() {
+        this.props.getGeneralInfo();
+    }
 
     render() {
-        const { tasksWaitingForApproval } = this.state;
+        const { generalInfo } = this.props;
 
-        return (
+        return generalInfo && (
             <div className="waiting-approval">
                 <Row>
                     <span className="tbl-icon02"></span>
-                    <h5>Tasks waiting for approval</h5>
-                    <Col sm={12}>
-                        <span sm={3}>Affiliate</span>
-                        <a sm={2} href={resolveClientUrl("Portal/Affiliate?Status=Pending&IsFromHome=true")}>1,024</a>
-                        <span sm={4}>Payment Request</span>
-                        <a sm={2} href={resolveClientUrl("Portal/PaymentRequest?SearchBy=2&Status=Pending&FromDate=12/01/2009&IsFromHome=true")}>1</a>
+                    <span className="text-blue">Tasks waiting for approval</span>
+                    <Col sm={12} className="background-gray">
+                        <Col sm={3} className="text-border">
+                            <span><strong>Affiliate</strong></span>
+                        </Col>
+                        <Col sm={2} className="text-border">
+                            <a href={resolveClientUrl("Portal/Affiliate?Status=Pending&IsFromHome=true")}><strong>{format(generalInfo.PendingAffiliateNumber)}</strong></a>
+                        </Col>
+                        <Col sm={5} className="text-border">
+                            <span><strong>Payment Request</strong></span>
+                        </Col>
+                        <Col sm={2} className="text-border">
+                            <a href={resolveClientUrl("Portal/PaymentRequest?SearchBy=2&Status=Pending&FromDate=12/01/2009&IsFromHome=true")}><strong>{format(generalInfo.PaymentRequestNumber)}</strong></a>
+                        </Col>
                     </Col>
                 </Row>
             </div>
@@ -39,8 +48,12 @@ export class TasksWaitingForApproval extends PureComponent {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getTasksWaitingForApproval }, dispatch);
+function mapStateToProps({ generalInfo }) {
+    return Object.assign({}, { generalInfo });
 }
 
-export default connect(null, mapDispatchToProps)(TasksWaitingForApproval);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ getGeneralInfo }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TasksWaitingForApproval);

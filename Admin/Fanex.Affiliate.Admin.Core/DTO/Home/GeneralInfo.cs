@@ -24,17 +24,17 @@
 
         public int AllMemberDepositNumber { get; set; }
 
-        public int AllDepositNumber { get; set; }
+        public decimal AllDepositNumber { get; set; }
 
-        public int AllWinlostNumber { get; set; }
+        public decimal AllWinlostNumber { get; set; }
 
-        public int AllBonusNumber { get; set; }
+        public decimal AllBonusNumber { get; set; }
 
-        public int AllPSPFeeNumber { get; set; }
+        public decimal AllPSPFeeNumber { get; set; }
 
-        public int AllAdjustmentNumber { get; set; }
+        public decimal AllAdjustmentNumber { get; set; }
 
-        public int AllNetWinlostNumber { get; set; }
+        public decimal AllNetWinlostNumber { get; set; }
 
         public int AllAffiliateMonthNumber { get; set; }
 
@@ -46,18 +46,18 @@
 
         public int ClosedAffiliateMonthNumber { get; set; }
 
-        public int DepositMemberMonthNumber { get; set; }
+        public int AllMemberDepositMonthNumber { get; set; }
 
-        public int AllDepositMonthNumber { get; set; }
+        public decimal AllDepositMonthNumber { get; set; }
 
-        public int AllWinlostMonthNumber { get; set; }
+        public decimal AllWinlostMonthNumber { get; set; }
 
-        public int AllBonusMonthNumber { get; set; }
+        public decimal AllBonusMonthNumber { get; set; }
 
-        public int AllPSPFeeMonthNumber { get; set; }
+        public decimal AllPSPFeeMonthNumber { get; set; }
 
-        public int AllAdjustmentMonthNumber { get; set; }
+        public decimal AllAdjustmentMonthNumber { get; set; }
 
-        public int AllNetWinlostMonthNumber { get; set; }
+        public decimal AllNetWinlostMonthNumber { get; set; }
     }
 }
