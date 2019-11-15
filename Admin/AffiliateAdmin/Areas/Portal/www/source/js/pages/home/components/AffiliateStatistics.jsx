@@ -10,7 +10,7 @@ export const AffiliateStatistics = (props) => {
 
     const { isUpToNow, generalInfo } = props;
 
-    return generalInfo && (
+    return (
         <Panel heading={`Affiliate statistics (${isUpToNow ? 'up to now' : 'this month'})`} className={"icon-home01"}>
             <Row>
                 <Col sm={12} className="pl-4">

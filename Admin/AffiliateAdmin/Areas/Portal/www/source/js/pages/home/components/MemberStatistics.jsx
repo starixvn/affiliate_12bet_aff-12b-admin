@@ -48,7 +48,7 @@ export class MemberStatistics extends PureComponent {
     render() {
         const { isUpToNow, generalInfo, depositInfo, pSPToday } = this.props;
 
-        return generalInfo && depositInfo && (
+        return (
             <Panel heading={`Member statistics (${isUpToNow ? 'up to now' : 'this month'})`} className={"icon-home02"}>
                 <Row>
                     <Col sm={12} className="pl-4">

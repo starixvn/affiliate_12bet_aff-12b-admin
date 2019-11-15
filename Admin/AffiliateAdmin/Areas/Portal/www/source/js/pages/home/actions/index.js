@@ -1,6 +1,7 @@
 ﻿import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { setPagingOption } from '../../../actions/pagingAction';
+import { defaultGeneralInfo, defaultDepositInfo} from '../libs/constants';
 import { SET_ONLINE_LIST, SET_PSP_TODAY, SET_DEPOSIT_INFO, SET_GENERAL_INFO } from './types';
 
 export { setPagingOption };
@@ -46,7 +47,7 @@ export const getDepositInfo = () => async (dispatch) => {
     const url = 'Portal/Home/GetDepositInfo';
     const response = await post(url);
 
-    const data = response && response.status === 200 ? response.data : null;
+    const data = response && response.status === 200 ? response.data : defaultDepositInfo;
 
     dispatch(setDepositInfo(data));
 }
@@ -55,7 +56,7 @@ export const getGeneralInfo = () => async (dispatch) => {
     const url = 'Portal/Home/GetGeneralInfo';
     const response = await post(url);
 
-    const data = response && response.status === 200 ? response.data : null;
+    const data = response && response.status === 200 ? response.data : defaultGeneralInfo;
 
     dispatch(setGeneralInfo(data));
 }

@@ -19,7 +19,7 @@ export class TasksWaitingForApproval extends PureComponent {
     render() {
         const { generalInfo } = this.props;
 
-        return generalInfo && (
+        return (
             <div className="waiting-approval">
                 <Row>
                     <span className="tbl-icon02"></span>

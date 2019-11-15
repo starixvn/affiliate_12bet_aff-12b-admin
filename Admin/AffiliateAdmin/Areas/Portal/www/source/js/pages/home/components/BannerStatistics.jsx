@@ -9,7 +9,7 @@ export const BannerStatistics = (props) => {
 
     const { generalInfo } = props;
 
-    return generalInfo && (
+    return (
         <div className="banner-statistics">
             <Row>
                 <span className="tbl-icon01"></span>

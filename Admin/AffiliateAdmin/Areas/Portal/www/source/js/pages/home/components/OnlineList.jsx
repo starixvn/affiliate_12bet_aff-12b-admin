@@ -86,7 +86,7 @@ export class OnlineList extends PureComponent {
     render() {
         const { onlineList } = this.props;
 
-        return onlineList && (
+        return (
             <div className="data-content">
                 <Filter />
                 <div className="table-responsive table-striped my-2">

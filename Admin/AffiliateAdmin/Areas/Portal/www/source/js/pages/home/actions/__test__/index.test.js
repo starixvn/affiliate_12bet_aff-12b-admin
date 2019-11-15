@@ -1,6 +1,7 @@
 ﻿import * as actions from '../index';
 import * as types from '../types';
 import * as ajaxRequest from '../../../../modules/ajaxRequest';
+import { defaultGeneralInfo, defaultDepositInfo} from '../../libs/constants';
 
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -132,7 +133,7 @@ describe('home actions', () => {
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
-            { type: types.SET_DEPOSIT_INFO , data: null }
+            { type: types.SET_DEPOSIT_INFO , data: defaultDepositInfo }
         ];
         
         const store = mockStore({ todos: [] });
@@ -161,7 +162,7 @@ describe('home actions', () => {
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
-            { type: types.SET_GENERAL_INFO , data: null }
+            { type: types.SET_GENERAL_INFO , data: defaultGeneralInfo }
         ];
         
         const store = mockStore({ todos: [] });

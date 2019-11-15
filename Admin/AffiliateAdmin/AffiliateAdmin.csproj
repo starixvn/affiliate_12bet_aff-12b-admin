@@ -819,6 +819,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\home\components\BannerStatistics.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\Panel.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\Filter.jsx" />
+    <Content Include=".babelrc" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
