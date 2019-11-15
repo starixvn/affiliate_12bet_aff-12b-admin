@@ -2,12 +2,11 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
-import { Col, Button } from 'reactstrap';
 
 import Filter from './Filter';
 import { htmlDecode } from '../../../modules/htmlHelper';
 import { resolveClientUrl } from '../../../modules/utils';
-import { headerText, countDownList, roleList } from '../libs/constants';
+import { headerText, roleList } from '../libs/constants';
 import { setPagingOption, getOnlineList } from '../actions';
 
 export class OnlineList extends PureComponent {
@@ -16,10 +15,10 @@ export class OnlineList extends PureComponent {
     }
 
     componentDidMount() {
-        this.fetchData({ pageIndex: 1, pageSize: this.props.pagingOption.PageSize });
+        this._handleFetchData({ pageIndex: 1, pageSize: this.props.pagingOption.PageSize });
     }
 
-    async fetchData(param) {
+    async _handleFetchData(param) {
         await this.props.getOnlineList(param);
     }
 
@@ -81,13 +80,13 @@ export class OnlineList extends PureComponent {
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        this.fetchData({ pageIndex, pageSize });
+        this._handleFetchData({ pageIndex, pageSize });
     };
 
     render() {
-        const { gridData } = this.props;
+        const { onlineList } = this.props;
 
-        return gridData && (
+        return onlineList && (
             <div className="data-content">
                 <Filter />
                 <div className="table-responsive table-striped my-2">
@@ -96,7 +95,7 @@ export class OnlineList extends PureComponent {
                         autoWidth={true}
                         bodyHeight={300}
                         header={this._renderHeader()}
-                        body={this._renderDataSection(gridData)}
+                        body={this._renderDataSection(onlineList)}
                         containerPadding={20}
                         isPaging={true}
                         pageOption={this.props.pagingOption}
@@ -109,8 +108,8 @@ export class OnlineList extends PureComponent {
 }
 
 
-function mapStateToProps({ pagingOption, gridData }) {
-    return Object.assign({}, { pagingOption, gridData });
+function mapStateToProps({ pagingOption, onlineList }) {
+    return Object.assign({}, { pagingOption, onlineList });
 }
 
 function mapDispatchToProps(dispatch) {

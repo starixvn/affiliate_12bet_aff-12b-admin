@@ -10,10 +10,6 @@ import { formatDecimalWithCurrencySymbol, format } from '../../../modules/number
 export class MemberStatistics extends PureComponent {
     constructor(props) {
         super(props);
-
-        this.state = {
-
-        }
     }
 
     componentDidMount() {
@@ -50,16 +46,15 @@ export class MemberStatistics extends PureComponent {
     }
 
     render() {
-        const { } = this.state;
         const { isUpToNow, generalInfo, depositInfo, pSPToday } = this.props;
 
         return generalInfo && depositInfo && (
             <Panel heading={`Member statistics (${isUpToNow ? 'up to now' : 'this month'})`} className={"icon-home02"}>
                 <Row>
-                    <Col sm={12} className="mx-2">
+                    <Col sm={12} className="pl-4">
                         <span>We have <strong>{format(isUpToNow ? depositInfo.AllMemberDepositUpToNow : depositInfo.AllMemberDepositThisMonth)}</strong> members in the program</span>
                     </Col>
-                    <Col sm={12} className="mx-2">
+                    <Col sm={12} className="pl-4">
                         <span><strong>{format(isUpToNow ? generalInfo.AllMemberDepositNumber : generalInfo.AllMemberDepositMonthNumber)}</strong> Deposit / <strong>{format(isUpToNow ? (depositInfo.AllMemberDepositUpToNow - generalInfo.AllMemberDepositNumber) : (depositInfo.AllMemberDepositThisMonth - generalInfo.AllMemberDepositMonthNumber))}</strong> Non-Deposit</span>
                     </Col>
                     <Col sm={12}>

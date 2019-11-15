@@ -10,7 +10,7 @@ export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        this.counDownDropdown = React.createRef();
+        this.countDownDropdown = React.createRef();
 
         this.state = {
             isChangingCountDown: false,
@@ -21,36 +21,28 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
-        this._handleCountDown();
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        const { selectedCountDown } = this.state;
-
-        if (selectedCountDown !== prevState.selectedCountDown) {
-            this.fetchData();
-        }
+        window.setInterval(this._handleCountDown, 1000);
     }
 
     _handleCountDown = () => {
-        window.setInterval(() => {
-            const { countDown, selectedCountDown } = this.state;
+        const { countDown, selectedCountDown } = this.state;
 
-            if (countDown || selectedCountDown) {
-                const time = countDown ? countDown - 1 : selectedCountDown - 1;
-                let min = Math.floor(time / SixtySeconds);
-                let sec = time % SixtySeconds;
-                min = (min < TenSeconds ? "0" + min : min);
-                sec = (sec < TenSeconds ? "0" + sec : sec);
+        if (countDown >= 1 || selectedCountDown != 0) {
+            const time = countDown ? countDown - 1 : selectedCountDown - 1;
+            let min = Math.floor(time / SixtySeconds);
+            let sec = time % SixtySeconds;
+            min = (min < TenSeconds ? "0" + min : min);
+            sec = (sec < TenSeconds ? "0" + sec : sec);
 
-                !countDown && this.fetchData();
+            !countDown && this._handleFetchData();
 
-                this.setState({ countDown: time, time: min + ":" + sec });
-            }
-        }, 1000);
+            this.setState({ countDown: time, time: min + ":" + sec });
+        } else {
+            this.setState({ time: '' });
+        }
     }
 
-    fetchData = async () => {
+    _handleFetchData = async () => {
         const { pagingOption } = this.props;
 
         await this.props.getOnlineList({ pageIndex: 1, pageSize: pagingOption.PageSize });
@@ -59,7 +51,7 @@ export class Filter extends PureComponent {
     }
 
     _toggleChangingCountDown = (isChanging) => {
-        this.setState({ isChangingCountDown: isChanging }, () => isChanging && this.counDownDropdown.current.focus());
+        this.setState({ isChangingCountDown: isChanging }, () => isChanging && this.countDownDropdown.current.focus());
     }
 
     _handleChangeCountDown = async (event) => {
@@ -67,7 +59,7 @@ export class Filter extends PureComponent {
 
         this.setState({ selectedCountDown: value, countDown: value });
 
-        await this.props.getOnlineList({ pageIndex: 1, pageSize: this.props.pagingOption.PageSize });
+        this._handleFetchData();
     }
 
     render() {
@@ -78,7 +70,7 @@ export class Filter extends PureComponent {
                     <Col><span className="text-primary"><strong>Online List</strong></span></Col>
                     <Col className="text-right text-primary">
                         <select style={{ display: isChangingCountDown ? 'inline-block' : 'none' }} value={selectedCountDown}
-                            onChange={this._handleChangeCountDown} onBlur={() => this._toggleChangingCountDown(false)} ref={this.counDownDropdown}>
+                            onChange={this._handleChangeCountDown} onBlur={() => this._toggleChangingCountDown(false)} ref={this.countDownDropdown}>
                             {
                                 Object.keys(countDownList).map(key => {
                                     return (<option value={key} key={`count-down-${key}`}>{countDownList[key]}</option>)

@@ -1,13 +1,13 @@
 ﻿import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { setPagingOption } from '../../../actions/pagingAction';
-import { SET_GRID_DATA, SET_PSP_TODAY, SET_DEPOSIT_INFO, SET_GENERAL_INFO } from './types';
+import { SET_ONLINE_LIST, SET_PSP_TODAY, SET_DEPOSIT_INFO, SET_GENERAL_INFO } from './types';
 
 export { setPagingOption };
 
-export const setGridData = (data) => {
+export const setOnlineList = (data) => {
     return {
-        type: SET_GRID_DATA,
+        type: SET_ONLINE_LIST,
         data
     }
 }
@@ -51,9 +51,9 @@ export const getDepositInfo = () => async (dispatch) => {
     dispatch(setDepositInfo(data));
 }
 
-export const getGeneralInfo = (param) => async (dispatch) => {
+export const getGeneralInfo = () => async (dispatch) => {
     const url = 'Portal/Home/GetGeneralInfo';
-    const response = await post(url, param);
+    const response = await post(url);
 
     const data = response && response.status === 200 ? response.data : null;
 
@@ -68,7 +68,7 @@ export const getOnlineList = (param) => async (dispatch) => {
 
     const data = response && response.status === 200 ? response.data : null;
 
-    dispatch(setGridData(data ? data.MainData : []));
+    dispatch(setOnlineList(data ? data.MainData : []));
     dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize }));
     dispatch(toggleLoader(false));
 }

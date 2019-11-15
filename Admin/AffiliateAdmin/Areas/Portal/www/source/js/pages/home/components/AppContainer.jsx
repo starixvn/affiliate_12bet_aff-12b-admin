@@ -17,7 +17,7 @@ export const AppContainer = (props) => {
             <div className="ml-4 my-2 pl-3">
                 Below you see tasks that are waiting for your approval and overview of the affiliate program
             </ div>
-            <Col lg={8} className="home">
+            <Col xl={6} className="home">
                 <Row>
                     <Col sm={6}>
                         <TasksWaitingForApproval />
