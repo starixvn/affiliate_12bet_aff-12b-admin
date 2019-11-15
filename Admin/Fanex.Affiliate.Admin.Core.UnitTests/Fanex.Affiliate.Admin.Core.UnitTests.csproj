@@ -165,6 +165,7 @@
     <Compile Include="Controllers\Domain\DomainControlControllerTest.cs" />
     <Compile Include="Controllers\Domain\DomainControllerTest.cs" />
     <Compile Include="Controllers\ExchangeRate\ExchangeRateControllerTest.cs" />
+    <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\LoginControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\LandingPageControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\MediaGalleryControllerTest.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="Services\CommissionGroupServiceTest.cs" />
     <Compile Include="Services\Domain\DomainControlServiceTest.cs" />
     <Compile Include="Services\Domain\DomainServiceTest.cs" />
+    <Compile Include="Services\Home\HomeServiceTest.cs" />
     <Compile Include="Services\LanguageServiceTest.cs" />
     <Compile Include="Services\ExchangeRate\ExchangeRateServiceTest.cs" />
     <Compile Include="Services\MediaGallery\BannerListServiceTest.cs" />

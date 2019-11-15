@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ChangeAdminPassword
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("");
 
             var repository = new Mock<ChangeAdminPasswordService> { CallBase = true };
-            repository.Setup(re => re.GetObjectDb("Aff_AdminUpdPwd", 120)).Returns(objectDb.Object);
+            repository.Setup(re => re.GetObjectDb("Aff_Admin_ChangePassword", 120)).Returns(objectDb.Object);
 
             // Action
             var result = repository.Object.ChangePassword(new ChangeAdminPasswordParam());
@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ChangeAdminPassword
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("Old password is incorrect.");
 
             var repository = new Mock<ChangeAdminPasswordService> { CallBase = true };
-            repository.Setup(re => re.GetObjectDb("Aff_AdminUpdPwd", 120)).Returns(objectDb.Object);
+            repository.Setup(re => re.GetObjectDb("Aff_Admin_ChangePassword", 120)).Returns(objectDb.Object);
 
             // Action
             var result = repository.Object.ChangePassword(new ChangeAdminPasswordParam());

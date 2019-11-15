@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Home;
-using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Home
 {

@@ -379,8 +379,6 @@
     <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
     <Compile Include="Repository\EmailHistory\EmailHistoryRepository.cs" />
     <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
-    <Compile Include="Repository\Home\HomeRepository.cs" />
-    <Compile Include="Repository\Home\IHomeRepository.cs" />
     <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
     <Compile Include="Repository\MediaGallery\IBannerListRepository.cs" />
     <Compile Include="Repository\Member\ActiveMemberRepository.cs" />

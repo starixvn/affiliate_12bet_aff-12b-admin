@@ -32,8 +32,6 @@
 
         public decimal AllPSPFeeNumber { get; set; }
 
-        public decimal AllAdjustmentNumber { get; set; }
-
         public decimal AllNetWinlostNumber { get; set; }
 
         public int AllAffiliateMonthNumber { get; set; }
@@ -55,8 +53,6 @@
         public decimal AllBonusMonthNumber { get; set; }
 
         public decimal AllPSPFeeMonthNumber { get; set; }
-
-        public decimal AllAdjustmentMonthNumber { get; set; }
 
         public decimal AllNetWinlostMonthNumber { get; set; }
     }
