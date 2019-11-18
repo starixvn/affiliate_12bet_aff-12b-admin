@@ -336,7 +336,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("Aff_AdminUpdPwd", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_ChangePassword", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.ChangePassword(new UpdatePasswordParam());
@@ -355,7 +355,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            service.Setup(re => re.GetObjectDb("Aff_AdminUpdPwd", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_ChangePassword", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.ChangePassword(new UpdatePasswordParam());

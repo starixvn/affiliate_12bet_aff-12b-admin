@@ -238,12 +238,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
         public ResultInfo ChangePassword(UpdatePasswordParam param)
         {
-            const string SpKey = "Aff_AdminUpdPwd";
+            const string SpKey = "Aff_Admin_ChangePassword";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("CustId", DbType.Int32, param.AccountId);
-                objectDb.AddInParameter("UserPwd", DbType.String, param.Password);
+                objectDb.AddInParameter("NewPwd", DbType.String, param.Password);
 
                 AssignUserInfoParam(objectDb, param);
                 AssignResultOutputParam(objectDb);

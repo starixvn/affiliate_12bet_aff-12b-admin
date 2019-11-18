@@ -14,7 +14,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.ChangeAdminPassword
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("oldpwd", DbType.String, param.OldPassword);
-                objectDb.AddInParameter("userpwd", DbType.String, param.NewPassword);
+                objectDb.AddInParameter("NewPwd", DbType.String, param.NewPassword);
+                objectDb.AddInParameter("CustId", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
