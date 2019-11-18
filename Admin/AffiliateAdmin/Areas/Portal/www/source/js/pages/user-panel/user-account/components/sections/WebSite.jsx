@@ -5,6 +5,7 @@ import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 import { capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo, setMoreSiteUrlsList } from '../../actions';
+import { NotificationPopup } from '../../../../common/components/NotificationPopup';
 
 export class WebSite extends PureComponent {
     constructor(props) {
@@ -14,6 +15,10 @@ export class WebSite extends PureComponent {
 
         for (let i = 0; i < this.props.moreSiteUrlsList.length; i++) {
             this.moreSiteUrlRefs.push(React.createRef());
+        }
+
+        this.state = {
+            messageNotification: ''
         }
     }
 
@@ -43,8 +48,8 @@ export class WebSite extends PureComponent {
             moreSiteUrlsList.push('');
             this.props.setMoreSiteUrlsList(moreSiteUrlsList);
         } else {
-            window.alert(`Please input Website URL ${findIndex + 2}`);
             this.moreSiteUrlRefs[findIndex].current.focus();
+            this.setState({ messageNotification: `Please input Website URL ${findIndex + 2}` });
         }
     }
 
@@ -77,27 +82,37 @@ export class WebSite extends PureComponent {
     }
 
     render() {
+        const { messageNotification } = this.state;
         const { userAccountInfo, moreSiteUrlsList } = this.props;
 
         return (
-            <Form tag="div">
-                <FormGroup row>
-                    <Label for="siteUrl" sm={3} xl={2} className="required">Website URL</Label>
-                    <Col sm={5} xl={6}>
-                        <Input type="text" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
-                    </Col>
-                    <Button outline color="secondary" className="mb-2" onClick={this.handleAddUrl}>Add Url</Button>
-                </FormGroup>
+            <React.Fragment>
+                <Form tag="div">
+                    <FormGroup row>
+                        <Label for="siteUrl" sm={3} xl={2} className="required">Website URL</Label>
+                        <Col sm={5} xl={6}>
+                            <Input type="text" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
+                        </Col>
+                        <Button outline color="secondary" className="mb-2" onClick={this.handleAddUrl}>Add Url</Button>
+                    </FormGroup>
+                    {
+                        this._renderMoreSiteUrl(moreSiteUrlsList)
+                    }
+                    <FormGroup row>
+                        <Label for="noSiteDescription" sm={3} xl={2}>I do not have a website Please describe how you would like to promote 12Bet if you do not have the URL .</Label>
+                        <Col sm={6} xl={7}>
+                            <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={userAccountInfo.NoSiteDescription} onChange={this.handleChange} />
+                        </Col>
+                    </FormGroup>
+                </Form>
                 {
-                    this._renderMoreSiteUrl(moreSiteUrlsList)
+                    !!messageNotification && <NotificationPopup
+                        message={messageNotification}
+                        isConfirmPopup={false}
+                        onClose={() => this.setState({ messageNotification: '' })}
+                    />
                 }
-                <FormGroup row>
-                    <Label for="noSiteDescription" sm={3} xl={2}>I do not have a website Please describe how you would like to promote 12Bet if you do not have the URL .</Label>
-                    <Col sm={6} xl={7}>
-                        <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={userAccountInfo.NoSiteDescription} onChange={this.handleChange} />
-                    </Col>
-                </FormGroup>
-            </Form>
+            </React.Fragment>
         )
     }
 }

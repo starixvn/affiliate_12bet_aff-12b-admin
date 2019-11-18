@@ -14,6 +14,7 @@ import { updateObjectInArray } from '../../../modules/dataHandler';
 import { resolveClientUrl } from '../../../modules/utils';
 import { convertSelectedColumnList } from '../modules/utils';
 import { htmlDecode } from '../../../modules/htmlHelper';
+import { NotificationPopup } from '../../common/components/NotificationPopup';
 
 export class GridData extends Component {
     constructor(props) {
@@ -21,7 +22,8 @@ export class GridData extends Component {
 
         this.state = {
             gridData: null,
-            shouldResetScrollPosition: true
+            shouldResetScrollPosition: true,
+            messageNotification: ''
         }
     }
 
@@ -185,7 +187,7 @@ export class GridData extends Component {
     }
 
     async saveToggleFavorite(param) {
-        const url = `Portal/AffiliateInfo/ToggleFavorite`;
+        const url = `Portal/Affiliate/ToggleFavorite`;
         const response = await post(url, param);
 
         if (response) {
@@ -198,7 +200,7 @@ export class GridData extends Component {
                 this.setState({ gridData: gridDataUpdate, shouldResetScrollPosition: false });
             }
             else {
-                alert(response.data.Message);
+                this.setState({ messageNotification: response.data.Message });
             }
         }
     }
@@ -226,7 +228,7 @@ export class GridData extends Component {
     }
 
     render() {
-        const { gridData, shouldResetScrollPosition } = this.state;
+        const { gridData, shouldResetScrollPosition, messageNotification } = this.state;
 
         if (!gridData) {
             return null;
@@ -236,20 +238,29 @@ export class GridData extends Component {
         const selectedColumnList = convertSelectedColumnList(columnList);
 
         return (
-            <div className="table-responsive table-striped">
-                <Table
-                    minWidth={1000}
-                    autoWidth={true}
-                    bodyHeight={300}
-                    header={this._renderHeader(selectedColumnList)}
-                    body={this._renderDataSection(gridData, selectedColumnList)}
-                    containerPadding={20}
-                    isPaging={true}
-                    pageOption={this.props.pagingOption}
-                    onPaging={this.handlePaging}
-                    shouldResetScrollPosition={shouldResetScrollPosition}
-                />
-            </div>
+            <React.Fragment>
+                <div className="table-responsive table-striped">
+                    <Table
+                        minWidth={1000}
+                        autoWidth={true}
+                        bodyHeight={300}
+                        header={this._renderHeader(selectedColumnList)}
+                        body={this._renderDataSection(gridData, selectedColumnList)}
+                        containerPadding={20}
+                        isPaging={true}
+                        pageOption={this.props.pagingOption}
+                        onPaging={this.handlePaging}
+                        shouldResetScrollPosition={shouldResetScrollPosition}
+                    />
+                </div>
+                {
+                    !!messageNotification && <NotificationPopup
+                        message={messageNotification}
+                        isConfirmPopup={false}
+                        onClose={() => this.setState({ messageNotification: '' })}
+                    />
+                }
+            </React.Fragment>
         );
     }
 }

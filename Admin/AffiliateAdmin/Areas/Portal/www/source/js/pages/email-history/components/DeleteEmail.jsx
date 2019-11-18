@@ -5,43 +5,54 @@ import { Button } from 'reactstrap';
 
 import { resource, messages } from '../modules/constants';
 import { fetchData, deleteEmailHistory, toggleLoader } from '../actions';
+import { NotificationPopup } from '../../common/components/NotificationPopup';
 
 export class DeleteEmail extends PureComponent {
     constructor(props) {
         super(props);
+
+        this.state = {
+            emailIdList: '',
+            messageNotification: '',
+            isConfirmPopup: true
+        }
     }
 
-    handleDelete = async () => {
+    handleCloseNotificationPopup = (confirmResult) => {
+        this.setState({ messageNotification: '' });
+
+        const { emailIdList } = this.state;
+        if (confirmResult && emailIdList) {
+            this._deleteEmails(emailIdList);
+        }
+    }
+
+    _handleDeleteEmails = () => {
         const emailIdList = this._getCheckedEmailIdList();
 
-        if (emailIdList.length === 0) {
-            alert(messages.PleaseSelect);
-            return;
-        }
+        emailIdList.length === 0 ? this.setState({ messageNotification: messages.PleaseSelect, isConfirmPopup: false }) : this.setState({ messageNotification: messages.AreYouSureDeleteEmails, isConfirmPopup: true, emailIdList });
+    }
 
-        const isConfirmed = window.confirm(messages.AreYouSureDeleteEmails);
-        if (isConfirmed) {
-            this.props.toggleLoader(true);
+    _deleteEmails = async (emailIdList) => {
+        this.props.toggleLoader(true);
 
-            const param = {
-                EmailIdList: emailIdList.join(',')
-            };
+        const param = {
+            EmailIdList: emailIdList.join(',')
+        };
 
-            const result = await this.props.deleteEmailHistory(param);
+        const result = await this.props.deleteEmailHistory(param);
 
-            if (result) {
-                if (result.IsSuccessful) {
-                    alert(messages.DeleteEmails);
-
-                    this.props.fetchData(this.props.param);
-                }
-                else {
-                    alert(result.Message);
-                }
+        if (result) {
+            if (result.IsSuccessful) {
+                this.setState({ messageNotification: messages.DeleteEmails, isConfirmPopup: false });
+                this.props.fetchData(this.props.param);
             }
-
-            this.props.toggleLoader(false);
+            else {
+                this.setState({ messageNotification: result.Message, isConfirmPopup: false });
+            }
         }
+
+        this.props.toggleLoader(false);
     }
 
     _getCheckedEmailIdList() {
@@ -51,9 +62,18 @@ export class DeleteEmail extends PureComponent {
     }
 
     render() {
+        const { messageNotification, isConfirmPopup } = this.state;
+
         return (
             <div className="my-2">
-                <Button outline type="button" color="danger" onClick={this.handleDelete}>{resource.Delete}<span className="oi oi-x ml-2"></span></Button>
+                <Button outline type="button" color="danger" onClick={this._handleDeleteEmails}>{resource.Delete}<span className="oi oi-x ml-2"></span></Button>
+                {
+                    !!messageNotification && <NotificationPopup
+                        message={messageNotification}
+                        isConfirmPopup={isConfirmPopup}
+                        onClose={this.handleCloseNotificationPopup}
+                    />
+                }
             </div>
         );
     }
