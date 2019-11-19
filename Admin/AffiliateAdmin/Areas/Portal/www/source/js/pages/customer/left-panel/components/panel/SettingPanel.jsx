@@ -55,7 +55,7 @@ export class SettingPanel extends PureComponent {
     }
 
     _handleChangeStatus = (event) => {
-        this.setState({ messageNotification: messages.areYouChangeLanguage, isConfirmPopup: true, isConfirmStatus: true, selectedStatus: event.target.value });
+        this.setState({ messageNotification: messages.areYouChangeStatus, isConfirmPopup: true, isConfirmStatus: true, selectedStatus: event.target.value });
     }
 
     _changeStatus = async (selectedStatus) => {

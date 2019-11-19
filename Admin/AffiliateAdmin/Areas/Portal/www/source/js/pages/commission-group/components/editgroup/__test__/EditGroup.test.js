@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { EditGroup } from '../EditGroup';
 import { shallow } from 'enzyme';
+import { defaultPagingOption } from '../../../../../modules/constants';
 jest.mock('../../../modules/constant');
 
 describe('commission group - EditGroup', () => {
@@ -17,7 +18,9 @@ describe('commission group - EditGroup', () => {
         },
         onClose: jest.fn(),
         onSave: jest.fn(),
-        itemId: 1
+        itemId: 1,
+        pagingOption: defaultPagingOption,
+        searchedGroupName: ''
     };
     it('componentDidMount - should call setSelectedCommGroup', () => {
         const mockGetSelectedCommGroup = jest.fn();
@@ -91,7 +94,7 @@ describe('commission group - EditGroup', () => {
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(window.setTimeout).toHaveBeenCalledTimes(1);
-        expect(props.getGroupSettingList).toHaveBeenCalledWith({ PageIndex: 1, PageList: [], PageSize: 10, TotalItem: 0 });
+        expect(props.getGroupSettingList).toHaveBeenCalledWith({ PageIndex: 1, PageSize: 20, GroupName: '' });
         expect(wrapper.instance().setState).toHaveBeenCalledWith({ isShowMessage: true, isSuccess: true, message: ["Update Commission Group Successfully"] });
     });
 

@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { GridData } from '../GridData';
 import { shallow } from 'enzyme';
+import { defaultPagingOption } from '../../../../../modules/constants';
 jest.mock('../../../modules/constant');
 
 describe('commission group - GridData ', () => {
@@ -64,7 +65,9 @@ describe('commission group - GridData ', () => {
         ],
         gridData: [
             dataItem
-        ]
+        ],
+        pagingOption: defaultPagingOption,
+        searchedGroupName: ''
     };
 
     it('_convertToProductNameText - return correct data with correct parameter', () => {
@@ -77,70 +80,59 @@ describe('commission group - GridData ', () => {
         expect(result).toEqual(expectResult);
     });
 
-    it('handleDelete - delete Commission Group Successfully', async () => {
+    it('_handleDeleteCommGroup - should call setState', async () => {
+        const componentInstance = new GridData(defaultProps);
+        componentInstance.setState = jest.fn();
+
+        await componentInstance._handleDeleteCommGroup(153, "CG22125");
+
+        expect(componentInstance.setState).toHaveBeenCalledWith({ messageNotification: "Are you sure you want to delete the commission group CG22125 ?", isConfirmPopup: true, selectedGroupId: 153, shouldResetScrollPosition: false });
+    });
+
+    it('_deleteCommGroup - delete Commission Group Successfully', async () => {
         const expectedResponse = { data: { IsSuccessful: true, Message: "OK" }, status: 200 };
         const mockDeleteCommGroup = jest.fn(() => expectedResponse);
         const mockGetGroupSettingList = jest.fn();
 
         const props = Object.assign({}, defaultProps, { deleteCommGroup: mockDeleteCommGroup, getGroupSettingList: mockGetGroupSettingList });
         const componentInstance = new GridData(props);
-        window.confirm = jest.fn(() => true);
-        window.alert = jest.fn();
+        componentInstance.setState = jest.fn();
 
-        await componentInstance.handleDelete(153, "CG22125");
+        await componentInstance._deleteCommGroup(153);
 
-        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to delete the commission group CG22125 ?");
         expect(props.deleteCommGroup).toHaveBeenCalledWith({ "groupId": 153 });
-        expect(props.getGroupSettingList).toHaveBeenCalledWith({ PageIndex: 1, PageList: [], PageSize: 10, TotalItem: 0 });
-        expect(window.alert).toHaveBeenCalledWith("Delete Commission Group Successfully");
+        expect(props.getGroupSettingList).toHaveBeenCalledWith({ PageIndex: 1, PageSize: 20, GroupName: '' });
+        expect(componentInstance.setState).toHaveBeenCalledWith({ messageNotification: "Delete Commission Group Successfully", isConfirmPopup: false, shouldResetScrollPosition: true });
     });
 
-    it('handleDelete - delete Commission Group Failed', async () => {
+    it('_deleteCommGroup - delete Commission Group Failed', async () => {
         const expectedResponse = { data: { IsSuccessful: false, Message: "Failed" }, status: 200 };
         const mockDeleteCommGroup = jest.fn(() => expectedResponse);
         const mockGetGroupSettingList = jest.fn();
 
         const props = Object.assign({}, defaultProps, { deleteCommGroup: mockDeleteCommGroup, getGroupSettingList: mockGetGroupSettingList });
         const componentInstance = new GridData(props);
-        window.confirm = jest.fn(() => true);
-        window.alert = jest.fn();
+        componentInstance.setState = jest.fn();
 
-        await componentInstance.handleDelete(153, "CG22125");
+        await componentInstance._deleteCommGroup(153);
 
-        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to delete the commission group CG22125 ?");
         expect(props.deleteCommGroup).toHaveBeenCalledWith({ "groupId": 153 });
         expect(props.getGroupSettingList).not.toHaveBeenCalled();
-        expect(window.alert).toHaveBeenCalledWith("Failed");
+        expect(componentInstance.setState).toHaveBeenCalledWith({ messageNotification: "Failed", isConfirmPopup: false, shouldResetScrollPosition: true });
     });
 
-    it('handleDelete - reponse is incorrect', async () => {
+    it('_deleteCommGroup - reponse is incorrect', async () => {
         const expectedResponse = { data: { IsSuccessful: false, Message: "Failed" }, status: 500 };
         const mockDeleteCommGroup = jest.fn(() => expectedResponse);
 
         const props = Object.assign({}, defaultProps, { deleteCommGroup: mockDeleteCommGroup });
         const componentInstance = new GridData(props);
-        window.confirm = jest.fn(() => true);
-        window.alert = jest.fn();
+        componentInstance.setState = jest.fn();
 
-        await componentInstance.handleDelete(153, "CG22125");
+        await componentInstance._deleteCommGroup(153, "CG22125");
 
-        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to delete the commission group CG22125 ?");
         expect(props.deleteCommGroup).toHaveBeenCalledWith({ "groupId": 153 });
-        expect(window.alert).not.toHaveBeenCalled();
-    });
-
-    it('handleDelete - comfirm is cancel', async () => {
-        const expectedResponse = { data: { IsSuccessful: false, Message: "Failed" }, status: 500 };
-        const mockDeleteCommGroup = jest.fn(() => expectedResponse);
-
-        const props = Object.assign({}, defaultProps, { deleteCommGroup: mockDeleteCommGroup });
-        const componentInstance = new GridData(props);
-        window.confirm = jest.fn(() => false);
-
-        await componentInstance.handleDelete(153, "CG22125");
-
-        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to delete the commission group CG22125 ?");
-        expect(props.deleteCommGroup).not.toHaveBeenCalled();
+        expect(componentInstance.setState).not.toHaveBeenCalled();
     });
 
     it('_renderHeader - render correctly', () => {
@@ -181,16 +173,16 @@ describe('commission group - GridData ', () => {
         expect(props.onEdit).toHaveBeenCalledWith(153);
     });
 
-    it('_renderGroupData - should call handleDelete when click button edit', () => {
+    it('_renderGroupData - should call _handleDeleteCommGroup when click button edit', () => {
         const data = Object.assign({}, dataItem, { NoAffs: 0 })
         const props = Object.assign({}, defaultProps, { gridData: [data] });
         const componentInstance = new GridData(props);
-        componentInstance.handleDelete = jest.fn();
+        componentInstance._handleDeleteCommGroup = jest.fn();
         const renderGroupData = shallow(<div>{componentInstance._renderGroupData()}</div>);
 
         renderGroupData.find('button').at(1).simulate('click')
 
-        expect(componentInstance.handleDelete).toHaveBeenCalledWith(153, "CG22125");
+        expect(componentInstance._handleDeleteCommGroup).toHaveBeenCalledWith(153, "CG22125");
     });
 
     it('Should render correctly', () => {
@@ -252,5 +244,30 @@ describe('commission group - GridData ', () => {
         const wrapper = shallow(<GridData {...props} />);
 
         expect(wrapper).toMatchSnapshot();
+    });
+
+    it('handleCloseNotificationPopup - should call setState and _deleteCommGroup', async () => {
+        const wrapper = shallow(<GridData {...defaultProps} />);
+        wrapper.setState({ selectedGroupId: 123 });
+        wrapper.setState = jest.fn();
+        const instance = wrapper.instance();
+        instance._deleteCommGroup = jest.fn();
+
+        await instance.handleCloseNotificationPopup(true);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: '' });
+        expect(instance._deleteCommGroup).toHaveBeenCalledWith(123);
+    });
+
+    it('handleCloseNotificationPopup - should call setState but not call _deleteCommGroup', async () => {
+        const wrapper = shallow(<GridData {...defaultProps} />);
+        wrapper.setState = jest.fn();
+        const instance = wrapper.instance();
+        instance._deleteCommGroup = jest.fn();
+
+        await instance.handleCloseNotificationPopup(false);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: '' });
+        expect(instance._deleteCommGroup).not.toHaveBeenCalled();
     });
 });

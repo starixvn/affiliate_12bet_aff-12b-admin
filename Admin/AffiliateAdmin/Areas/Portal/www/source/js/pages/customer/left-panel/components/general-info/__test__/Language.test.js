@@ -82,58 +82,69 @@ describe('left panel - components - general-info - Language', () => {
         expect(wrapper.setState).toHaveBeenCalledWith({ isChangingLanguage: false }, expect.any(Function));
     });
 
-    it('handleChangeLanguage - should call window.confirm when change language select', () => {
+    it('_handleChangeLanguage - should call setState when change language select', () => {
         const wrapper = shallow(<Language {...defaultProps} />);
         wrapper.setState({ isChangingLanguage: true });
-        window.confirm = jest.fn(() => false);
+        wrapper.setState = jest.fn();
 
-        wrapper.find('select').simulate('change');
+        wrapper.find('select').simulate('change', { target: { value: 'en-US' }});
 
-        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to change language for this affiliate?");
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: "Are you sure you want to change language for this affiliate?", isConfirmPopup: true, preferredLanguage: 'en-US' });
     });
 
-    it('handleChangeLanguage - should call window.confirm, updateLanguage and window.alert when change language select', async () => {
-        const event = {
-            target: {
-                value: 'en-US'
-            }
-        };
+    it('_changeLanguage - should call updateLanguage and setState when change language select', async () => {
         const data = { IsSuccessful: false, Message: 'Change language is failed!' };
         const updateLanguage = jest.fn(() => data);
 
         const props = Object.assign({}, defaultProps, { updateLanguage });
         const wrapper = shallow(<Language {...props} />);
         wrapper.setState({ isChangingLanguage: true });
-        window.confirm = jest.fn(() => true);
-        window.alert = jest.fn();
+        wrapper.setState = jest.fn();
 
-        await wrapper.find('select').simulate('change', event);
+        await wrapper.instance()._changeLanguage('en-US');
 
-        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to change language for this affiliate?");
         expect(props.updateLanguage).toHaveBeenCalledWith({ AffId: 1271808, PreferredLanguage: "en-US" });
-        expect(alert).toHaveBeenCalledWith('Change language is failed!');
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: 'Change language is failed!', isConfirmPopup: false });
     });
 
-    it('handleChangeLanguage - should call window.confirm, updateLanguage, window.alert and getAffiliateInfo when change language select', async () => {
-        const event = {
-            target: {
-                value: 'en-US'
-            }
-        };
+    it('handleChangeLanguage - should call updateLanguage, setState and getAffiliateInfo when change language successfully', async () => {
         const data = { IsSuccessful: true, Message: '' };
         const updateLanguage = jest.fn(() => data);
         const getAffiliateInfo = jest.fn();
         const props = Object.assign({}, defaultProps, { updateLanguage, getAffiliateInfo });
         const wrapper = shallow(<Language {...props} />);
         wrapper.setState({ isChangingLanguage: true });
-        window.confirm = jest.fn(() => true);
-        window.alert = jest.fn();
+        wrapper.setState = jest.fn();
 
-        await wrapper.find('select').simulate('change', event);
+        await wrapper.instance()._changeLanguage('en-US');
 
-        expect(window.confirm).toHaveBeenCalledWith("Are you sure you want to change language for this affiliate?");
         expect(props.updateLanguage).toHaveBeenCalledWith({ AffId: 1271808, PreferredLanguage: "en-US" });
-        expect(alert).toHaveBeenCalledWith('The Language has been updated successfully!');
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: 'The Language has been updated successfully!', isConfirmPopup: false });
         expect(props.getAffiliateInfo).toHaveBeenCalledWith('12BETAFF226');
+    });
+
+    it('handleCloseNotificationPopup - should call setState and _changeLanguage', async () => {
+        const wrapper = shallow(<Language {...defaultProps} />);
+        wrapper.setState({ preferredLanguage: 'en-US'});
+        wrapper.setState = jest.fn();
+        const instance = wrapper.instance();
+        instance._changeLanguage = jest.fn();
+
+        await instance.handleCloseNotificationPopup(true);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: '' });
+        expect(instance._changeLanguage).toHaveBeenCalledWith('en-US');
+    });
+
+    it('handleCloseNotificationPopup - should call setState but not call _changeLanguage', async () => {
+        const wrapper = shallow(<Language {...defaultProps} />);
+        wrapper.setState = jest.fn();
+        const instance = wrapper.instance();
+        instance._changeLanguage = jest.fn();
+
+        await instance.handleCloseNotificationPopup(false);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: '' });
+        expect(instance._changeLanguage).not.toHaveBeenCalled();
     });
 });

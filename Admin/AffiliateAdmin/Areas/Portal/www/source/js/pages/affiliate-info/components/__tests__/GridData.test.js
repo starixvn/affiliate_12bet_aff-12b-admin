@@ -204,7 +204,7 @@ describe('affiliate info - GridData ', () => {
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: [dataItemExpect], shouldResetScrollPosition: false });
     });
 
-    it('saveToggleFavorite - not call setState with the response is not successful', async () => {
+    it('saveToggleFavorite - call setState with the response is not successful', async () => {
         const param = {
             AffId: 927841,
             IsFavorite: true
@@ -219,8 +219,7 @@ describe('affiliate info - GridData ', () => {
 
         await componentInstance.saveToggleFavorite(param);
 
-        expect(componentInstance.setState).not.toHaveBeenCalled();
-        expect(alert).toHaveBeenCalledWith("Toggle favorite is failed!");
+        expect(componentInstance.setState).toHaveBeenCalledWith({"messageNotification": "Toggle favorite is failed!"});
     });
 
     it('saveToggleFavorite - not call setState with incorrect parameter', async () => {
@@ -382,42 +381,4 @@ describe('affiliate info - GridData ', () => {
 
         expect(wrapper).toMatchSnapshot();
     });
-
-    //it('maps state and dispatch to props', () => { 
-    //    const initialState = {
-    //        param: { Id: 'Id' },
-    //        languageList: { English: 'English' },
-    //        pagingOption: { PageIndex: 1 }
-    //    };
-
-    //    const store = mockStore(initialState);
-
-    //    const wrapper = shallow(<ConnectedGridData store={store} />);
-    //    expect(wrapper.props().param).toEqual({ Id: 'Id' });
-    //    expect(wrapper.props().languageList).toEqual({ English: 'English' });
-    //    expect(wrapper.props().pagingOption).toEqual({ PageIndex: 1 });
-    //});
-
-    //it('maps setPagingOption, toggleLoader, setShowPopupPassword, setShowPopupCommGroup, setAffId and setCommGroup to dispatch', () => {
-    //    const store = mockStore();
-
-    //    const wrapper = shallow(<ConnectedGridData store={store} />);
-    //    const expectedActions = [
-    //        { type: 'SET_PAGING_OPTION' },
-    //        { type: 'TOGGLE_LOADER' },
-    //        { type: 'SET_SHOW_POPUP_PASSWORD' },
-    //        { type: 'SET_SHOW_POPUP_COMMGROUP' },
-    //        { type: 'SET_AFFID' },
-    //        { type: 'SET_COMM_GROUP' }
-    //    ];
-
-    //    wrapper.props().setPagingOption();
-    //    wrapper.props().toggleLoader();
-    //    wrapper.props().setShowPopupPassword();
-    //    wrapper.props().setShowPopupCommGroup();
-    //    wrapper.props().setAffId();
-    //    wrapper.props().setCommGroup();
-
-    //    expect(store.getActions()).toEqual(expectedActions);
-    //});
 })

@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { AddGroup } from '../AddGroup';
 import { shallow } from 'enzyme';
+import { defaultPagingOption } from '../../../../../modules/constants';
 jest.mock('../../../modules/constant');
 
 describe('commission group - AddGroup', () => {
@@ -39,6 +40,8 @@ describe('commission group - AddGroup', () => {
             QmTurnover: 100,
             TierSettingList: []
         },
+        pagingOption: defaultPagingOption,
+        searchedGroupName: '',
         onClose: jest.fn(), onSave: jest.fn()
     };
     it('componentDidMount - should call setSelectedGroup', () => {
@@ -112,7 +115,7 @@ describe('commission group - AddGroup', () => {
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(window.setTimeout).toHaveBeenCalledTimes(1);
-        expect(props.getGroupSettingList).toHaveBeenCalledWith({ PageIndex: 1, PageList: [], PageSize: 10, TotalItem: 0 });
+        expect(props.getGroupSettingList).toHaveBeenCalledWith({ PageIndex: 1, PageSize: 20, GroupName: '' });
         expect(wrapper.instance().setState).toHaveBeenCalledWith({ isShowMessage: true, isSuccess: true, message: ["Add Commission Group Successfully"] });
     });
 
