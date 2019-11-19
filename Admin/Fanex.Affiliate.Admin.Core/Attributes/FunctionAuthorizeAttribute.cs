@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                         filterContext.HttpContext.Response.ContentType = "application/json";
                         filterContext.Result = new JsonResult
                         {
-                            Data = new { ErrCode = Code.ErrdCodeAccessDenied, ErrMsg = "Access Denied." },
+                            Data = new { ErrCode = Code.ErrCodeAccessDenied, ErrMsg = "Access Denied." },
                             JsonRequestBehavior = JsonRequestBehavior.AllowGet
                         };
                     }

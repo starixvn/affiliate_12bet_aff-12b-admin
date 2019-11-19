@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Username", DbType.String, userNames);
+                objectDb.AddInParameter(Field.UserName, DbType.String, userNames);
                 AssignResultOutputParam(objectDb);
 
                 using (var reader = objectDb.ExecuteReader())
@@ -43,9 +43,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                 {
                     IbcCustId = Convert.ToInt32(reader["IBCCustID"]),
                     IbcUserName = Convert.ToString(reader["IBCUserName"]),
-                    UserName = Convert.ToString(reader["UserName"]),
-                    FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]),
-                    LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"]),
+                    UserName = Convert.ToString(reader[Field.UserName]),
+                    FirstName = reader[Field.FirstName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.FirstName]),
+                    LastName = reader[Field.LastName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.LastName]),
                     CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"])
                 });
             }
@@ -63,9 +63,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                 {
                     result.Add(new InactiveMemberInfo
                     {
-                        UserName = Convert.ToString(reader["UserName"]),
-                        FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]),
-                        LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"])
+                        UserName = Convert.ToString(reader[Field.UserName]),
+                        FirstName = reader[Field.FirstName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.FirstName]),
+                        LastName = reader[Field.LastName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.LastName])
                     });
                 }
             }
@@ -88,9 +88,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                     {
                         result.Add(new DepositCustomerInfo
                         {
-                            DepositUserName = Convert.ToString(reader["UserName"]),
-                            FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]),
-                            LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"]),
+                            DepositUserName = Convert.ToString(reader[Field.UserName]),
+                            FirstName = reader[Field.FirstName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.FirstName]),
+                            LastName = reader[Field.LastName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.LastName]),
                             Email = Convert.ToString(reader["Email"]),
                             Password = Convert.ToString(reader["Password"]),
                             OddsType = reader["OddsType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["OddsType"]),
@@ -113,8 +113,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("firstname", DbType.String, param.FirstName);
-                objectDb.AddInParameter("lastname", DbType.String, param.LastName);
+                objectDb.AddInParameter(Field.FirstName, DbType.String, param.FirstName);
+                objectDb.AddInParameter(Field.LastName, DbType.String, param.LastName);
                 objectDb.AddInParameter("email", DbType.String, param.Email);
                 objectDb.AddInParameter("depositusername", DbType.String, param.DepositUserName);
                 objectDb.AddInParameter("deposituserid", DbType.String, param.DepositUserId);
@@ -126,14 +126,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                 objectDb.AddInParameter("Country", DbType.String, param.Country);
 
                 objectDb.AddOutParameter("custid", DbType.Int32, Size.SizeOfInt);
-                objectDb.AddOutParameter("username", DbType.String, Size.SizeOfString);
+                objectDb.AddOutParameter(Field.UserName, DbType.String, Size.SizeOfString);
 
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
 
                 var userId = objectDb.GetParameterValue("custid");
-                var userName = objectDb.GetParameterValue("username");
+                var userName = objectDb.GetParameterValue(Field.UserName);
 
                 param.UserId = userId == DBNull.Value ? 0 : Convert.ToInt32(userId);
                 param.UserName = userName == DBNull.Value ? string.Empty : Convert.ToString(userName);

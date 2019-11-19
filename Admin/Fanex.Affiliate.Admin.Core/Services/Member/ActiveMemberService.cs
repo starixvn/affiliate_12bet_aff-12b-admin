@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
                         _activeMemberRepository.WriteLogAfterUpdate12BetPlayerStatusToDepositSuccefully(param, depositCustomer.UserId);
                     } else
                     {
-                        errorUserNames.Append("\n" + depositCustomer.DepositUserName + " " + (result.Code == 102 ? "user already has IBC account" : "user not found"));
+                        errorUserNames.Append("\n" + depositCustomer.DepositUserName + " " + (result.Code == Code.ErrCodeUserAlreadyHasIBCAccount ? "user already has IBC account" : "user not found"));
                     }
                 } else
                 {

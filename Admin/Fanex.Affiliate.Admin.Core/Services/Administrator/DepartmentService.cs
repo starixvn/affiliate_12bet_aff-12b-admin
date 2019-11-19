@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("GroupID", DbType.Int32, selectedDepartmentId);
+                objectDb.AddInParameter(Field.GroupId, DbType.Int32, selectedDepartmentId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddOutParameter("GroupID", DbType.Int32, Size.SizeOfInt);
+                objectDb.AddOutParameter(Field.GroupId, DbType.Int32, Size.SizeOfInt);
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();
@@ -75,7 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("GroupID", DbType.Int32, param.DepartmentId);
+                objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.DepartmentId);
 
                 AssignParam(objectDb, param);
 
@@ -91,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("GroupID", DbType.Int32, param.DepartmentId);
+                objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.DepartmentId);
                 objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("ip", DbType.String, param.Ip);
 
@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("groupid", DbType.Int32, departmentId);
+                objectDb.AddInParameter(Field.GroupId, DbType.Int32, departmentId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

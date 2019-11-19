@@ -11,6 +11,7 @@ namespace Affiliate.Infrastructure.Helpers
     {
         #region Const Params
 
+        private const int Two = 2;
         private const string CfsKey = "&％#@?,:*!~^.";
         private static readonly DESCryptoServiceProvider CryptoServiceProvider = new DESCryptoServiceProvider();
         private static readonly byte[] RgbKey = { 0x21, 0x63, 0x54, 0x5a, 0x91, 0xac, 110, 0xcc };
@@ -123,7 +124,7 @@ namespace Affiliate.Infrastructure.Helpers
                 str2 = str2.Append(searchString.Substring(j, 1));
             }
 
-            if (str.ToString(1, 2) != "==")
+            if (str.ToString(1, Two) != "==")
             {
                 if (str.ToString(1, 1) != "=")
                 {
@@ -159,7 +160,7 @@ namespace Affiliate.Infrastructure.Helpers
             }
             else
             {
-                length += 2;
+                length += Two;
                 for (int num4 = 3; num4 <= str.Length; num4++)
                 {
                     if (str.ToString(num4, 1) == "=")

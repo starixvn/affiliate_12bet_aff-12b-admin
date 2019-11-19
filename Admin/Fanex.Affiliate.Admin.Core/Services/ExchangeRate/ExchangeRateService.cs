@@ -11,6 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.ExchangeRate
 {
     public class ExchangeRateService : BaseRepository, IExchangeRateService
     {
+        private const int MaxLength = 5;
         public IEnumerable<ExchangeRateInfo> GetExchangeRateList(DateTime date)
         {
             const string SpKey = "Aff_Admin_Exchange_Sel";
@@ -28,8 +29,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.ExchangeRate
                         {
                             ExchangeId = Convert.ToInt32(reader["ExchangeId"]),
                             Currency = Convert.ToString(reader["Currency"]),
-                            ActualRate = NumberFormat.DecFormat(Convert.ToDecimal(reader["ActualRate"]), 5),
-                            BuyingRate = NumberFormat.DecFormat(Convert.ToDecimal(reader["BuyingRate"]), 5)
+                            ActualRate = NumberFormat.DecFormat(Convert.ToDecimal(reader["ActualRate"]), MaxLength),
+                            BuyingRate = NumberFormat.DecFormat(Convert.ToDecimal(reader["BuyingRate"]), MaxLength)
                         });
                     }
                 }

@@ -17,6 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
     [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class AdministratorController : BaseController
     {
+        private const string BreakLine = "<br />";
         private readonly IAdministratorService _administratorService;
 
         public AdministratorController(
@@ -106,7 +107,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                    Message = string.Join(BreakLine, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                 }
             };
         }
@@ -137,7 +138,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                    Message = string.Join(BreakLine, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                 }
             };
         }
@@ -170,7 +171,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                    Message = string.Join(BreakLine, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                 }
             };
         }
@@ -249,7 +250,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                    Message = string.Join(BreakLine, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                 }
             };
         }

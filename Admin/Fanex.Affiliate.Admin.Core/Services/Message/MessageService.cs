@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
                     {
                         dataList.Add(new MessageInfo
                         {
-                            MessageId = Convert.ToInt32(reader["MessageId"]),
+                            MessageId = Convert.ToInt32(reader[Field.MessageId]),
                             Important = Convert.ToBoolean(reader["Important"]),
                             Creator = Convert.ToString(reader["creatorname"]),
                             PostedDate = Convert.ToDateTime(reader["PostedDate"]),
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("MessageId", DbType.Int32, selectedMessageId);
+                objectDb.AddInParameter(Field.MessageId, DbType.Int32, selectedMessageId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -69,7 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
                     {
                         item = new MessageDetail
                         {
-                            MessageId = Convert.ToInt32(reader["MessageId"]),
+                            MessageId = Convert.ToInt32(reader[Field.MessageId]),
                             Important = Convert.ToBoolean(reader["Important"]),
                             MessageContentEn = Convert.ToString(reader["message_en"]),
                             MessageContentCn = Convert.ToString(reader["message_cn"]),
@@ -108,7 +108,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("MessageId", DbType.Int32, param.MessageId);
+                objectDb.AddInParameter(Field.MessageId, DbType.Int32, param.MessageId);
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();

@@ -23,9 +23,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
             {
                 if (groupId != 0)
                 {
-                    objectDb.AddInParameter("GroupID", DbType.Int32, groupId);
+                    objectDb.AddInParameter(Field.GroupId, DbType.Int32, groupId);
                 }
-                objectDb.AddInParameter("UserName", DbType.String, "%" + userName + "%");
+                objectDb.AddInParameter(Field.UserName, DbType.String, "%" + userName + "%");
                 objectDb.AddInParameter("firstchar", DbType.String, firstLetter == "0-9" ? "[" + firstLetter + "]%" : firstLetter + "%");
 
                 using (var reader = objectDb.ExecuteReader())
@@ -34,13 +34,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                     {
                         result.Add(new AdministratorInfo
                         {
-                            UserId = Convert.ToInt32(reader["custid"]),
-                            UserName = Convert.ToString(reader["username"]),
-                            FirstName = Convert.ToString(reader["FirstName"]),
-                            LastName = Convert.ToString(reader["LastName"]),
+                            UserId = Convert.ToInt32(reader[Field.CustId]),
+                            UserName = Convert.ToString(reader[Field.UserName]),
+                            FirstName = Convert.ToString(reader[Field.FirstName]),
+                            LastName = Convert.ToString(reader[Field.LastName]),
                             Creator = Convert.ToString(reader["Creator"]),
                             IsOpen = !Convert.ToBoolean(reader["closed"]),
-                            GroupId = Convert.ToInt32(reader["GroupId"]),
+                            GroupId = Convert.ToInt32(reader[Field.GroupId]),
                             GroupName = Convert.ToString(reader["GroupName"]),
                             CreatedDate = Convert.ToDateTime(reader["CreateDate"])
                         });
@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("custid", DbType.Int32, userId);
+                objectDb.AddInParameter(Field.CustId, DbType.Int32, userId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -67,11 +67,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                     {
                         result = new AdministratorInfo
                         {
-                            UserId = Convert.ToInt32(reader["custid"]),
-                            UserName = Convert.ToString(reader["username"]),
-                            FirstName = Convert.ToString(reader["FirstName"]),
-                            LastName = Convert.ToString(reader["LastName"]),
-                            GroupId = Convert.ToInt32(reader["GroupId"]),
+                            UserId = Convert.ToInt32(reader[Field.CustId]),
+                            UserName = Convert.ToString(reader[Field.UserName]),
+                            FirstName = Convert.ToString(reader[Field.FirstName]),
+                            LastName = Convert.ToString(reader[Field.LastName]),
+                            GroupId = Convert.ToInt32(reader[Field.GroupId]),
                         };
                     }
                 }
@@ -88,8 +88,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("CustID", DbType.Int32, groupId);
-                objectDb.AddOutParameter("GroupID", DbType.Int32, Size.SizeOfInt);
+                objectDb.AddInParameter(Field.CustId, DbType.Int32, groupId);
+                objectDb.AddOutParameter(Field.GroupId, DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -119,7 +119,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("custids", DbType.String, groupIds);
-                objectDb.AddOutParameter("GroupID", DbType.Int32, Size.SizeOfInt);
+                objectDb.AddOutParameter(Field.GroupId, DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -146,12 +146,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddOutParameter("Custid", DbType.Int32, Size.SizeOfInt);
-                objectDb.AddInParameter("UserName", DbType.String, "AA" + param.UserName);
+                objectDb.AddOutParameter(Field.CustId, DbType.Int32, Size.SizeOfInt);
+                objectDb.AddInParameter(Field.UserName, DbType.String, "AA" + param.UserName);
                 objectDb.AddInParameter("userpwd", DbType.String, param.Password);
-                objectDb.AddInParameter("firstname", DbType.String, param.FirstName);
-                objectDb.AddInParameter("lastname", DbType.String, param.LastName);
-                objectDb.AddInParameter("groupid", DbType.Int32, param.GroupId);
+                objectDb.AddInParameter(Field.FirstName, DbType.String, param.FirstName);
+                objectDb.AddInParameter(Field.LastName, DbType.String, param.LastName);
+                objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.GroupId);
 
                 AssignUserInfoParam(objectDb, param);
                 AssignResultOutputParam(objectDb);
@@ -168,8 +168,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("UserName", DbType.String, param.UserName);
-                objectDb.AddInParameter("groupid", DbType.Int32, param.GroupId);
+                objectDb.AddInParameter(Field.UserName, DbType.String, param.UserName);
+                objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.GroupId);
                 objectDb.AddInParameter("creator", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("Ip", DbType.String, param.Ip);
 
@@ -187,10 +187,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("custid", DbType.Int32, param.AccountId);
-                objectDb.AddInParameter("firstname", DbType.String, param.FirstName);
-                objectDb.AddInParameter("lastname", DbType.String, param.LastName);
-                objectDb.AddInParameter("groupid", DbType.Int32, param.GroupId);
+                objectDb.AddInParameter(Field.CustId, DbType.Int32, param.AccountId);
+                objectDb.AddInParameter(Field.FirstName, DbType.String, param.FirstName);
+                objectDb.AddInParameter(Field.LastName, DbType.String, param.LastName);
+                objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.GroupId);
 
                 AssignUserInfoParam(objectDb, param);
                 AssignResultOutputParam(objectDb);
@@ -207,7 +207,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("custid", DbType.Int32, param.SelectedUserId);
+                objectDb.AddInParameter(Field.CustId, DbType.Int32, param.SelectedUserId);
                 objectDb.AddInParameter("closed", DbType.Boolean, !param.IsOpen);
 
                 AssignUserInfoParam(objectDb, param);
@@ -242,7 +242,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("CustId", DbType.Int32, param.AccountId);
+                objectDb.AddInParameter(Field.CustId, DbType.Int32, param.AccountId);
                 objectDb.AddInParameter("NewPwd", DbType.String, param.Password);
 
                 AssignUserInfoParam(objectDb, param);

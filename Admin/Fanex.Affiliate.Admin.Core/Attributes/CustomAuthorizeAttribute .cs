@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                 filterContext.HttpContext.Response.ContentType = "application/json";
                 filterContext.Result = new JsonResult
                 {
-                    Data = new { ErrCode = Code.ErrdCodeSessionExpired, ErrMsg = "Your session was expired! Please login again." },
+                    Data = new { ErrCode = Code.ErrCodeSessionExpired, ErrMsg = "Your session was expired! Please login again." },
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }else
