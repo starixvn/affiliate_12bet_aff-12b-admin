@@ -210,27 +210,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Portal\PortalAreaRegistration.cs" />
-    <Compile Include="Business\DataAccess\DbHelper.cs" />
-    <Compile Include="Business\DataAccess\DbResult.cs" />
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Business\AppSettings.cs" />
-    <Compile Include="Business\Common.cs" />
-    <Compile Include="Business\DataHandler\UserControl.cs" />
-    <Compile Include="Business\DBType.cs" />
-    <Compile Include="App_GlobalResources\Lang.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\ResultLang.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResultLang.resx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -1359,18 +1343,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.info" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Lang.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Lang.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_GlobalResources\ResultLang.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>ResultLang.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Affiliate.Infrastructure\Affiliate.Infrastructure.csproj">
