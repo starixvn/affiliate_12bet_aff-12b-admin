@@ -34,7 +34,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetMessageList(MessageParam param)
         {
             if (ModelState.IsValid)

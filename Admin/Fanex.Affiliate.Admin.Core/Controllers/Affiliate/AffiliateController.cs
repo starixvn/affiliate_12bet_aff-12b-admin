@@ -64,7 +64,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetAffiliateList(AffiliateInfoParam param)
         {
             int affId;

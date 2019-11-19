@@ -53,7 +53,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
-        [Compress]
         public ActionResult GetOnlineList(int pageIndex = 1, int pageSize = 20)
         {
             return new JsonNetResult

@@ -49,7 +49,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetDomainControlList(string market)
         {
             return new JsonNetResult

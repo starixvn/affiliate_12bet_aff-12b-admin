@@ -39,7 +39,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         }
 
         [HttpPost]
-        [Compress]
         public ActionResult Index(ISoftbetRequestParam param)
         {
             var logBuilder = new StringBuilder();
@@ -104,7 +103,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         }
 
         [HttpPost]
-        [Compress]
         public ActionResult GetReportData(ISoftbetRequestParam param)
         {
             var dataList = new List<ISoftbetBetHistory>();

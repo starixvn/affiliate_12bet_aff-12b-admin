@@ -39,7 +39,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetAccountPolicyList(int groupId)
         {
             return new JsonNetResult
@@ -50,7 +49,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetPolicyListByGroupIds(string groupIds)
         {
             return new JsonNetResult
@@ -61,7 +59,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetUserList(string userName, string firstLetter, int groupId = 0)
         {
             return new JsonNetResult

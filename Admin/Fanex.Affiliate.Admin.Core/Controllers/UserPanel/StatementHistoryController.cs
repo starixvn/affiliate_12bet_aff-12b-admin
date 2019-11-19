@@ -23,7 +23,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetStatementHistoryList(AffiliatePagingByDateParam param)
         {
             if (ModelState.IsValid)

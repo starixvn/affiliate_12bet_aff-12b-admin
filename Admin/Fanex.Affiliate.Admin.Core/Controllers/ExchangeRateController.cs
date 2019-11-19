@@ -33,7 +33,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetExchangeRateList(DateTime date)
         {
             return new JsonNetResult {

@@ -25,7 +25,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetNoteList(AffiliatePagingParam param)
         {
             if (ModelState.IsValid)
@@ -41,7 +40,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetNoteContentById(int affId, int noteId)
         {
             if (affId >= Validation.MinId && noteId >= Validation.MinId)
@@ -63,7 +61,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult InsertNote(InsertUpdateNoteParam param)
         {
             if (ModelState.IsValid)
@@ -89,7 +86,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult UpdateNote(InsertUpdateNoteParam param)
         {
             if (ModelState.IsValid && param.NoteId >= Validation.MinId)

@@ -31,7 +31,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetProductList()
         {
             return new JsonNetResult
@@ -42,7 +41,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetPageList()
         {
             return new JsonNetResult
@@ -53,7 +51,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetTrackingCodeList(int affId)
         {
             return new JsonNetResult

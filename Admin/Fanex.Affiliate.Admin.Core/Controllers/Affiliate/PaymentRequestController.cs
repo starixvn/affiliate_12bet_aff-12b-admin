@@ -42,7 +42,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetPaymentRequestList(PaymentRequestParam param)
         {
             if (ModelState.IsValid)
@@ -58,7 +57,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetPaymentRequestDetail(long transId)
         {
             if (transId >= Validation.MinId)

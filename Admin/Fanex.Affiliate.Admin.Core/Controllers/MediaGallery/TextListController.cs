@@ -57,7 +57,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetTextList(TextParam param)
         {
             if (ModelState.IsValid)

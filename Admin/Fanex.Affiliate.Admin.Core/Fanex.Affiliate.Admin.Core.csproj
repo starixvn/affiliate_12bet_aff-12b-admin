@@ -167,7 +167,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\CompressAttribute.cs" />
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryHeaderAttribute.cs" />

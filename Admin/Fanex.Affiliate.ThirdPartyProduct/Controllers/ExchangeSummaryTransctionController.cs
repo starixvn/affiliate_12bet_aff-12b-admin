@@ -31,7 +31,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         }
 
         [HttpPost]
-        [Compress]
         public ActionResult Index(ExchangeRequestParam param)
         {
             var startTime = DateTime.ParseExact(param.StartTime, Format.RequestDateTime, CultureInfo.InvariantCulture);

@@ -35,7 +35,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         }
 
         [HttpPost]
-        [Compress]
         public ActionResult Index(OpusRequestParam param)
         {
             var logBuilder = new StringBuilder();

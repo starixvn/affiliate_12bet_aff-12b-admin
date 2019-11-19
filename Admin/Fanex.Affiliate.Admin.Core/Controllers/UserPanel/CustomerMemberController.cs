@@ -20,7 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetCustomerMember(CustomerMemberParam param)
         {
             if (ModelState.IsValid)

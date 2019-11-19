@@ -36,7 +36,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetAllMembers(string userNames)
         {
             return new JsonNetResult

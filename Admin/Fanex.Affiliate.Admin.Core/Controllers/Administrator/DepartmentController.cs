@@ -37,7 +37,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetDepartmentList()
         {
             return new JsonNetResult

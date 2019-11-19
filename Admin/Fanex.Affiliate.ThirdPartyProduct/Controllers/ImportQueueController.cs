@@ -24,7 +24,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         }
 
         [HttpPost]
-        [Compress]
         public ActionResult GetDataList(ImportQueueParam param)
         {
             return Content(JsonConvert.SerializeObject(_repository.GetDataList(param)), "application/json");

@@ -21,7 +21,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetReferrersList(ReferrersParam param)
         {
             if (ModelState.IsValid)
@@ -37,7 +36,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetReferrersDetailList(ReferrersDetailParam param)
         {
             if (ModelState.IsValid)

@@ -45,7 +45,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetDomainList(bool isAffDomain)
         {
             return new JsonNetResult
