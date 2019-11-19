@@ -323,7 +323,6 @@
     <Content Include="Areas\Portal\www\dist\js\pages\administrator\department.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\affiliate\affiliate-info.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\affiliate\email-history.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\alert.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\change-admin-password.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
@@ -353,7 +352,6 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\timetracker.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\under-maintenance.js" />
-    <Content Include="Areas\Portal\www\dist\style\alert.css" />
     <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\lgLeft.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\lgLogo.jpg" />
@@ -448,8 +446,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\redux\GridData.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\alert\components\__test__\AppContainer.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\alert\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\__test__\index.test.js" />
@@ -777,9 +773,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\Views\ChangeAdminPassword\Index.cshtml" />
     <Content Include="Areas\Portal\Views\AccessDenied\Index.cshtml" />
-    <Content Include="Areas\Portal\Views\Alert\Index.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\alert\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\alert\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\Filter.jsx" />

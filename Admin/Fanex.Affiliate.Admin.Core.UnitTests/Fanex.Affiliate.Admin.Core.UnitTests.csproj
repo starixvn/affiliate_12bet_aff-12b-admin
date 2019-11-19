@@ -159,7 +159,6 @@
     <Compile Include="Controllers\Administrator\DepartmentControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommissionGroupControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />
-    <Compile Include="Controllers\AlertControllerTest.cs" />
     <Compile Include="Controllers\AuthControllerTest.cs" />
     <Compile Include="Controllers\ChangeAdminPasswordControllerTest.cs" />
     <Compile Include="Controllers\Domain\DomainControlControllerTest.cs" />
