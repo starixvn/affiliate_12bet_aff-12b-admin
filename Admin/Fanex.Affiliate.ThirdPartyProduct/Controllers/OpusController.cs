@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Opus;
-using Fanex.Affiliate.DataService.Importer.Utilities;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
-using Fanex.Affiliate.ThirdPartyProduct.Constants;
 using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
-using Fanex.Affiliate.ThirdPartyProduct.ViewModels;
-using Newtonsoft.Json;
+using Fanex.Affiliate.ThirdPartyProduct.Utilities;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {
@@ -42,25 +35,18 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 
             try
             {
-                var startTime = DateTime.ParseExact(param.StartTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
-                var endTime = DateTime.ParseExact(param.EndTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
-
-                if (param.IsGetByApiTimeZone)
-                {
-                    startTime = DateTimeConverter.ConvertTime(startTime, TimeZoneId.GmtPlus8, TimeZoneInfo.Local.Id);
-                    endTime = DateTimeConverter.ConvertTime(endTime, TimeZoneId.GmtPlus8, TimeZoneInfo.Local.Id);
-                }
-
+                var time = Helpers.GetTime(param);
                 var opusParam = new OpusParam
                 {
-                    StartTime = startTime,
-                    EndTime = endTime
+                    StartTime = time.Item1,
+                    EndTime = time.Item2,
                 };
                 var rawDataList = _opusService.GetRawDataList(opusParam);
+
                 param.UserName = param.UserName?.Trim();
                 if (!string.IsNullOrEmpty(param.UserName))
                 {
-                    rawDataList = GetDataByUserName(rawDataList, param.UserName);
+                    rawDataList = Helpers.GetDataByUserName(rawDataList, param.UserName, true);
                 }
 
                 foreach (var item in rawDataList)
@@ -76,32 +62,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 logBuilder.AppendLine(ex.Source);
             }
 
-            return Content(JsonConvert.SerializeObject(new ThirdPartyProductViewModel
-            {
-                LogMessage = logBuilder.ToString(),
-                RawData = rawDataBuilder.ToString()
-            }), "application/json");
-        }
-
-        private static IEnumerable<string> GetDataByUserName(IEnumerable<string> rawDataList, string userName)
-        {
-            var dataList = new List<string>();
-
-            foreach (var rawData in rawDataList)
-            {
-                var xdoc = XDocument.Parse(rawData);
-                var betHistoryList = xdoc.Root.Element("bets").Elements("row");
-
-                betHistoryList.Where(x => !string.Equals(x.Element("member_code").Value, userName, StringComparison.InvariantCultureIgnoreCase))
-                    .Remove();
-
-                if (betHistoryList.Any())
-                {
-                    dataList.Add(xdoc.ToString());
-                }
-            }
-
-            return dataList;
+            return Content(Helpers.Convert(logBuilder, rawDataBuilder), "application/json");
         }
     }
 }

@@ -7,10 +7,6 @@ using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using DNAide.Utils;
 using Fanex.Affiliate.Admin.Core.Constants;
 using System.Configuration;
-using System.Security.Cryptography;
-using System.Text;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
@@ -89,7 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
         private static Uri GenerateUrl(string custName, int affType, string accId, string accOnId, string sessionId)
         {
             var rndStr = Encryption.RandomString(6);
-            var accKey = GenerateSHA512String(sessionId + rndStr);
+            var accKey = Generator.GenerateSHA512String(sessionId + rndStr);
             var url = affType == AffType.European ? ConfigurationManager.AppSettings["internalEuropeanAffiliateURL"] : ConfigurationManager.AppSettings["internalAsianAffiliateURL"];
             url += "?chalengeStr=" + rndStr;
             url += "&accKey=" + accKey;
@@ -97,26 +93,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             url += "&accId=" + accId;
             url += "&accOnId=" + accOnId;
             return new Uri(url, UriKind.Absolute);
-        }
-
-        private static string GenerateSHA512String(string inputString)
-        {
-            var sha512 = SHA512.Create();
-            var bytes = Encoding.UTF8.GetBytes(inputString);
-            var hash = sha512.ComputeHash(bytes);
-
-            return GetStringFromHash(hash);
-        }
-
-        private static string GetStringFromHash(byte[] hash)
-        {
-            var result = new StringBuilder();
-            for (var i = 0; i < hash.Length; i++)
-            {
-                result.Append(hash[i].ToString("X2"));
-            }
-
-            return result.ToString();
         }
     }
 }

@@ -32,18 +32,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                 {
                     while (reader.Read())
                     {
-                        result.Add(new AdministratorInfo
-                        {
-                            UserId = Convert.ToInt32(reader[Field.CustId]),
-                            UserName = Convert.ToString(reader[Field.UserName]),
-                            FirstName = Convert.ToString(reader[Field.FirstName]),
-                            LastName = Convert.ToString(reader[Field.LastName]),
-                            Creator = Convert.ToString(reader["Creator"]),
-                            IsOpen = !Convert.ToBoolean(reader["closed"]),
-                            GroupId = Convert.ToInt32(reader[Field.GroupId]),
-                            GroupName = Convert.ToString(reader["GroupName"]),
-                            CreatedDate = Convert.ToDateTime(reader["CreateDate"])
-                        });
+                        var dataItem = BuildAdministratorInfo(reader);
+                        dataItem.Creator = Convert.ToString(reader["Creator"]);
+                        dataItem.IsOpen = !Convert.ToBoolean(reader["closed"]);
+                        dataItem.GroupName = Convert.ToString(reader["GroupName"]);
+                        dataItem.CreatedDate = Convert.ToDateTime(reader["CreateDate"]);
+
+                        result.Add(dataItem);
                     }
                 }
             }
@@ -65,14 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                 {
                     if (reader.Read())
                     {
-                        result = new AdministratorInfo
-                        {
-                            UserId = Convert.ToInt32(reader[Field.CustId]),
-                            UserName = Convert.ToString(reader[Field.UserName]),
-                            FirstName = Convert.ToString(reader[Field.FirstName]),
-                            LastName = Convert.ToString(reader[Field.LastName]),
-                            GroupId = Convert.ToInt32(reader[Field.GroupId]),
-                        };
+                        result = BuildAdministratorInfo(reader);
                     }
                 }
             }
@@ -95,14 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                 {
                     while (reader.Read())
                     {
-                        result.Add(new PolicyInfo
-                        {
-                            ParentId = Convert.ToInt32(reader["ParentId"]),
-                            Policy = Convert.ToInt32(reader["Policy"]),
-                            FunctionId = Convert.ToInt32(reader["FuncId"]),
-                            FunctionDescription = Convert.ToString(reader["FuncDesc"]),
-                            GroupPolicy = Convert.ToInt32(reader["GPolicy"])
-                        });
+                        result.Add(BuildPolicyInfo(reader));
                     }
                 }
             }
@@ -125,14 +106,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                 {
                     while (reader.Read())
                     {
-                        result.Add(new PolicyInfo
-                        {
-                            ParentId = Convert.ToInt32(reader["ParentId"]),
-                            Policy = Convert.ToInt32(reader["Policy"]),
-                            FunctionId = Convert.ToInt32(reader["FuncId"]),
-                            FunctionDescription = Convert.ToString(reader["FuncDesc"]),
-                            GroupPolicy = Convert.ToInt32(reader["GPolicy"])
-                        });
+                        result.Add(BuildPolicyInfo(reader));
                     }
                 }
             }
@@ -252,6 +226,30 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 
                 return GetResultInfo(objectDb);
             }
+        }
+
+        private AdministratorInfo BuildAdministratorInfo(IDataReader reader)
+        {
+            return new AdministratorInfo
+            {
+                UserId = Convert.ToInt32(reader[Field.CustId]),
+                UserName = Convert.ToString(reader[Field.UserName]),
+                FirstName = Convert.ToString(reader[Field.FirstName]),
+                LastName = Convert.ToString(reader[Field.LastName]),
+                GroupId = Convert.ToInt32(reader[Field.GroupId])
+            };
+        }
+
+        private PolicyInfo BuildPolicyInfo(IDataReader reader)
+        {
+            return new PolicyInfo
+            {
+                ParentId = Convert.ToInt32(reader["ParentId"]),
+                Policy = Convert.ToInt32(reader["Policy"]),
+                FunctionId = Convert.ToInt32(reader["FuncId"]),
+                FunctionDescription = Convert.ToString(reader["FuncDesc"]),
+                GroupPolicy = Convert.ToInt32(reader["GPolicy"])
+            };
         }
 
         private static void AssignUserInfoParam(IObjectDb objectDb, UserInfoParam param)
