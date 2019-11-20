@@ -197,12 +197,6 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\DataService\Fanex.Affiliate.DataService\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
-      <Project>{b04723a2-c292-4104-8061-6a54f890b094}</Project>
-      <Name>Fanex.Affiliate.DataService.Importer.LBKeno</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
