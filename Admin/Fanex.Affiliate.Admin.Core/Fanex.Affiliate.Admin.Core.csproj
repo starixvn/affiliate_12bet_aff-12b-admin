@@ -371,9 +371,7 @@
     <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />
-    <Compile Include="Repository\Customer\CustomerStatisticsRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerLeftPanelRepository.cs" />
-    <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
     <Compile Include="Repository\EmailHistory\EmailHistoryRepository.cs" />
     <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
     <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
@@ -487,7 +485,9 @@
     <Compile Include="DTO\Common\UserPermission.cs" />
     <Compile Include="Services\Common\SessionService.cs" />
     <Compile Include="Services\Customer\CustomerLeftPanelService.cs" />
+    <Compile Include="Services\Customer\CustomerStatisticsService.cs" />
     <Compile Include="Services\Customer\ICustomerLeftPanelService.cs" />
+    <Compile Include="Services\Customer\ICustomerStatisticsService.cs" />
     <Compile Include="Services\Domain\DomainControlService.cs" />
     <Compile Include="Services\Domain\DomainService.cs" />
     <Compile Include="Services\Domain\IDomainControlService.cs" />

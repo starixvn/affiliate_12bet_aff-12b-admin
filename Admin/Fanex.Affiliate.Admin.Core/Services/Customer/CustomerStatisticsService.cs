@@ -2,10 +2,11 @@
 using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
+using Fanex.Affiliate.Admin.Core.Repository;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.Customer
+namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {
-    public class CustomerStatisticsRepository : BaseRepository, ICustomerStatisticsRepository
+    public class CustomerStatisticsService : BaseRepository, ICustomerStatisticsService
     {
         public CustomerStatistics GetCustomerStatistics(CustomerStatisticsParam param)
         {

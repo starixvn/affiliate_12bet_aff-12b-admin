@@ -1,9 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.Customer
+namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {
-    public interface ICustomerStatisticsRepository
+    public interface ICustomerStatisticsService
     {
         CustomerStatistics GetCustomerStatistics(CustomerStatisticsParam param);
     }

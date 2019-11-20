@@ -161,6 +161,8 @@
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />
     <Compile Include="Controllers\AuthControllerTest.cs" />
     <Compile Include="Controllers\ChangeAdminPasswordControllerTest.cs" />
+    <Compile Include="Controllers\Customer\CustomerControllerTest.cs" />
+    <Compile Include="Controllers\Customer\CustomerStatisticsControllerTest.cs" />
     <Compile Include="Controllers\Domain\DomainControlControllerTest.cs" />
     <Compile Include="Controllers\Domain\DomainControllerTest.cs" />
     <Compile Include="Controllers\ExchangeRate\ExchangeRateControllerTest.cs" />
@@ -189,6 +191,7 @@
     <Compile Include="Services\CommGroup\CommGroupAssignmentServiceTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupCommonServiceTest.cs" />
     <Compile Include="Services\CommissionGroupServiceTest.cs" />
+    <Compile Include="Services\Customer\CustomerStatisticsServiceTest.cs" />
     <Compile Include="Services\Domain\DomainControlServiceTest.cs" />
     <Compile Include="Services\Domain\DomainServiceTest.cs" />
     <Compile Include="Services\Home\HomeServiceTest.cs" />
