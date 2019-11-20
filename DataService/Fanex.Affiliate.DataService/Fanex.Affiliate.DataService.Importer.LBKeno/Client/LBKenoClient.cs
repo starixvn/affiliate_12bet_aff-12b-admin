@@ -17,10 +17,12 @@ namespace Fanex.Affiliate.DataService.Importer.LBKeno.Client
 
         public override async Task<string> GetResponseAsync(string url, NameValueCollection query)
         {
-            var dic = query.ToDictionary();
-            var json = JsonConvert.SerializeObject(dic);
-            var content = new StringContent(json,Encoding.UTF8, "application/json");
-            var response = await Client.PostAsync(url,content);
+            //var dic = query.ToDictionary();
+            //var json = JsonConvert.SerializeObject(dic);
+            //var content = new StringContent(json,Encoding.UTF8, "application/json");
+            var uri = new Uri($"{url}?{query.ToQuery()}");
+            //var content = new FormUrlEncodedContent(query.ToKeyValuePairCollection());
+            var response = await Client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
