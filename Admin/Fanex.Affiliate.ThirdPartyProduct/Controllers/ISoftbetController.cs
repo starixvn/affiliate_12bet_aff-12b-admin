@@ -74,7 +74,8 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                     var status = Convert.ToString(jObject["status"]);
                     if (!string.Equals("success", status))
                     {
-                        return GetContentResult(string.Empty, rawDataBuilder.ToString(), string.Empty);
+                        var rawDataBuilderString = rawDataBuilder.ToString();
+                        return GetContentResult(string.Empty, rawDataBuilderString, string.Empty);
                     }
 
                     var summary = ISoftbetParser.FromJsonObject(jObject);

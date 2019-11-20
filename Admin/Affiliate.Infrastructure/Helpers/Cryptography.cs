@@ -12,8 +12,9 @@ namespace Affiliate.Infrastructure.Helpers
         #region Const Params
 
         private const int Two = 2;
+        private const int Three = 3;
         private const string CfsKey = "&％#@?,:*!~^.";
-        private static readonly DESCryptoServiceProvider CryptoServiceProvider = new DESCryptoServiceProvider();
+        private static readonly AesCryptoServiceProvider CryptoServiceProvider = new AesCryptoServiceProvider();
         private static readonly byte[] RgbKey = { 0x21, 0x63, 0x54, 0x5a, 0x91, 0xac, 110, 0xcc };
         private static readonly byte[] RgbIv = Encoding.UTF8.GetBytes("&％#@?,:*!~^.");
 
@@ -31,7 +32,7 @@ namespace Affiliate.Infrastructure.Helpers
             var encryptedText = string.Empty;
             var rgbKey = new byte[] { 0x21, 0x63, 0x54, 0x5a, 0x91, 0xac, 110, 0xcc };
             var rgbIV = Encoding.UTF8.GetBytes(CfsKey);
-            using (var provider = new DESCryptoServiceProvider())
+            using (var provider = new AesCryptoServiceProvider())
             {
                 var bytes = Encoding.UTF8.GetBytes(plainText);
                 using (MemoryStream stream = new MemoryStream())
@@ -128,15 +129,7 @@ namespace Affiliate.Infrastructure.Helpers
             {
                 if (str.ToString(1, 1) != "=")
                 {
-                    for (int n = 1; n <= str.Length; n++)
-                    {
-                        if (str.ToString(n, 1) == "=")
-                        {
-                            break;
-                        }
-
-                        length++;
-                    }
+                    length += getNewLength(str);
 
                     str4 = str.ToString(0, length);
                     for (int num9 = str4.Length; num9 > 1; num9--)
@@ -147,29 +140,11 @@ namespace Affiliate.Infrastructure.Helpers
                     return new[] { sourceString.Substring(0, sourceString.Length - length), str3.ToString() };
                 }
 
-                length++;
-                for (int m = 2; m <= str.Length; m++)
-                {
-                    if (str.ToString(m, 1) == "=")
-                    {
-                        break;
-                    }
-
-                    length++;
-                }
+                length += 1 + getNewLength(str, Two);
             }
             else
             {
-                length += Two;
-                for (int num4 = 3; num4 <= str.Length; num4++)
-                {
-                    if (str.ToString(num4, 1) == "=")
-                    {
-                        break;
-                    }
-
-                    length++;
-                }
+                length += Two + getNewLength(str, Three);
 
                 str4 = str.ToString(0, length);
                 for (int num5 = str4.Length; num5 > 1; num5--)
@@ -189,6 +164,17 @@ namespace Affiliate.Infrastructure.Helpers
             return new[] { sourceString.Substring(0, sourceString.Length - length), str3.ToString() };
         }
 
+        private static int getNewLength(StringBuilder str, int initialValue = 1)
+        {
+            var length = 0;
 
+            while(initialValue <= str.Length && str.ToString(initialValue, 1) != "=")
+            {
+                length++;
+                initialValue++;
+            }
+
+            return length;
+        }
     }
 }

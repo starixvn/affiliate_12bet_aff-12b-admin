@@ -12,7 +12,7 @@ namespace Affiliate.Infrastructure.Helpers
         {
             if (string.IsNullOrWhiteSpace(connectionStringName))
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(connectionStringName));
             }
             var key = string.Format("{0}:ConnectionString", connectionStringName);
             var text = connectionStringList.ContainsKey(key) ? connectionStringList[key] : string.Empty;
@@ -21,12 +21,12 @@ namespace Affiliate.Infrastructure.Helpers
             {
                 if (ConfigurationManager.ConnectionStrings[connectionStringName] == null)
                 {
-                    throw new NullReferenceException("Can not find connection string :" + connectionStringName);
+                    throw new ArgumentNullException("Can not find connection string :" + connectionStringName);
                 }
                 text = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
                 if (string.IsNullOrWhiteSpace(text))
                 {
-                    throw new NullReferenceException(connectionStringName + "is null or empty");
+                    throw new ArgumentNullException(connectionStringName + "is null or empty");
                 }
                 if (isEncryptedConnection)
                 {
