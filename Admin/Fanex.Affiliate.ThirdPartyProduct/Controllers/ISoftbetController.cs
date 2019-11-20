@@ -74,8 +74,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                     var status = Convert.ToString(jObject["status"]);
                     if (!string.Equals("success", status))
                     {
-                        var rawDataBuilderString = rawDataBuilder.ToString();
-                        return GetContentResult(string.Empty, rawDataBuilderString, string.Empty);
+                        return GetContentResult(string.Empty, rawDataBuilder.ToString());
                     }
 
                     var summary = ISoftbetParser.FromJsonObject(jObject);
@@ -174,7 +173,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             return result;
         }
 
-        private ActionResult GetContentResult(string log, string rawData, string convertedData)
+        private ActionResult GetContentResult(string log, string rawData, string convertedData = "")
         {
             return Content(JsonConvert.SerializeObject(new ThirdPartyProductViewModel
             {
