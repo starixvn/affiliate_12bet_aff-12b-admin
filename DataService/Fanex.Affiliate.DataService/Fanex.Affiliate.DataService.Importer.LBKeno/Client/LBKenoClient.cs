@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.DataService.Importer.LBKeno.Client
             //var content = new StringContent(json,Encoding.UTF8, "application/json");
             var uri = new Uri($"{url}?{query.ToQuery()}");
             //var content = new FormUrlEncodedContent(query.ToKeyValuePairCollection());
-            var response = await Client.GetAsync(url);
+            var response = await Client.GetAsync(uri);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
