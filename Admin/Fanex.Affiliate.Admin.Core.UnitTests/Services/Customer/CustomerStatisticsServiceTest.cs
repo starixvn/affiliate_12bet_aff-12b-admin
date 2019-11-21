@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
-using Fanex.Affiliate.Admin.Core.Service.Customer;
+using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;
 using Moq;
