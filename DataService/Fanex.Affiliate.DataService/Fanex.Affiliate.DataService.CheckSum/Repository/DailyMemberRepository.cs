@@ -51,8 +51,8 @@ namespace Fanex.Affiliate.DataService.CheckSum.Repository
 
         private static void AssignParam(IObjectDb objectDb, DateTime date)
         {
-            objectDb.AddInParameter("date", DbType.Date, date.Date);
-            objectDb.AddOutParameter("ismatch", DbType.Boolean, 4);
+            objectDb.SetParameterValue("date", date.Date);
+            objectDb.SetParameterValue("ismatch", 4);
         }
 
         private static IEnumerable<DailyMember> GetDailyMemberDataFor12Bet(IDataReader reader)

@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
             var service = new LBKenoService();
             var startDate = new DateTime(2019, 10, 30);
             var endDate = new DateTime(2019, 10, 31);
-            var data = service.GetRawDataList(startDate, endDate).ToList();
+            var data = service.GetRawDataListAsync(startDate, endDate).Result;
             Assert.NotEmpty(data);
 
         }

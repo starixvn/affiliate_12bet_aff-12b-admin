@@ -14,8 +14,8 @@ namespace Fanex.Affiliate.DataService.Job.Repository
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("ProductId", DbType.Int32, param.ProductId);
-                objectDb.AddInParameter("Currency", DbType.Int32, param.Currency);
+                objectDb.SetParameterValue("ProductId", param.ProductId);
+                objectDb.SetParameterValue("Currency", param.Currency);
 
                 return (DateTime?)objectDb.ExecuteScalar();
             }
@@ -27,11 +27,11 @@ namespace Fanex.Affiliate.DataService.Job.Repository
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("ProductId", DbType.Int32, param.ProductId);
-                objectDb.AddInParameter("Currency", DbType.Int32, param.Currency);
-                objectDb.AddInParameter("CallTime", DbType.DateTime, param.CallTime);
-                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
-                objectDb.AddOutParameter("ErrMsg", DbType.String, 4000);
+                objectDb.SetParameterValue("ProductId", param.ProductId);
+                objectDb.SetParameterValue("Currency", param.Currency);
+                objectDb.SetParameterValue("CallTime", param.CallTime);
+                objectDb.SetParameterValue("ErrCode", 4);
+                objectDb.SetParameterValue("ErrMsg", 4000);
 
                 objectDb.ExecuteNonQuery();
 

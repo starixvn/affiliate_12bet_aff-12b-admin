@@ -21,32 +21,29 @@ namespace Fanex.Affiliate.DataService.Importer
     public class LBKenoService : XmlImpoterlServiceBase
     {
         protected readonly IApiClient _client;
-        protected bool disposed = false;
+
+        protected override int ProductId => Products.LBKenoId;
         public LBKenoService(IApiClient client = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
             : base(appSetting, thirdPartyProductRepository)
         {
             _client = client ?? new LBKenoClient();
         }
 
-        public override sealed void Import(string data)
-        {
-            _thirdPartyProductRepository.ImportData(Products.LBKenoId, data, 0);
-        }
 
-        public override IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime)
+        public override async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
         {
             var paramToRequest = BuildParam(startTime, endTime);
+            var datas = new List<string>();
 
-            var data = GetRawData(paramToRequest);
-            yield return data;
+            datas.Add(await GetRawDataAsync(paramToRequest).ConfigureAwait(false));
+            return datas;
         }
 
-        private string GetRawData(LBKenoParam paramToRequest)
+        private async Task<string> GetRawDataAsync(LBKenoParam paramToRequest)
         {
             var queryValues = BuildQueryParam(paramToRequest);
             var url = _appSetting.GetValue("LBKenoApiUrl");
-            var data = _client.GetResponse(url, queryValues);
-            return data;
+            return await _client.GetResponseAsync(url, queryValues).ConfigureAwait(false);
 
         }
 
@@ -93,32 +90,12 @@ namespace Fanex.Affiliate.DataService.Importer
             checker.CheckXml(xml);
         }
 
-        public override XDocument ConvertRawDataToXml(string raw)
+        public override Task<XDocument> ConvertRawDataToXmlAsync(string raw)
         {
             var xml = XmlHelper.ParseToXDocument(raw);
             if (xml == null)
                 throw new ThirdPartyProductException($"LBKeno - Can't convert raw data to xml {raw}");
-            return xml;
-        }
-
-        public override void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool diposing)
-        {
-            if (disposed)
-                return;
-            if (diposing)
-                _client?.Dispose();
-            disposed = true;
-        }
-
-        ~LBKenoService()
-        {
-            Dispose(false);
+            return Task.FromResult(xml);
         }
     }
 }

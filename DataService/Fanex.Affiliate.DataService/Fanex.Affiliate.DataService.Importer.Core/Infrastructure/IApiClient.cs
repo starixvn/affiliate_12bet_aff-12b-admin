@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
 {
-    public interface IApiClient : IDisposable
+    public interface IApiClient 
     {
         string GetResponse(string url, NameValueCollection query);
         Task<string> GetResponseAsync(string url, NameValueCollection query);

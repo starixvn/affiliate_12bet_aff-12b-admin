@@ -13,8 +13,8 @@
             using (var objectDb = GetObjectDb(SpName))
             {
                 AssignCommonParam(objectDb, metaModel);
-                objectDb.AddInParameter("importdate", DbType.DateTime, metaModel.DateImport);
-                objectDb.AddInParameter("isreplacedata", DbType.Boolean, true);
+                objectDb.SetParameterValue("importdate", metaModel.DateImport);
+                objectDb.SetParameterValue("isreplacedata", true);
 
                 AddResultParam(objectDb);
 
@@ -31,7 +31,7 @@
             using (var objectDb = GetObjectDb(SpName))
             {
                 AssignCommonParam(objectDb, metaModel);
-                objectDb.AddInParameter("winlostdate", DbType.Date, metaModel.DateImport);
+                objectDb.SetParameterValue("winlostdate", metaModel.DateImport);
 
                 AddResultParam(objectDb);
 
@@ -43,8 +43,8 @@
 
         private static void AssignCommonParam(IObjectDb objectDb, CasinoDataMetaModel metaModel)
         {
-            objectDb.AddInParameter("adminid", DbType.Int32, metaModel.AdminId);
-            objectDb.AddInParameter("xmldata", DbType.String, metaModel.XmlData);
+            objectDb.SetParameterValue("adminid", metaModel.AdminId);
+            objectDb.SetParameterValue("xmldata",  metaModel.XmlData);
         }
     }
 }

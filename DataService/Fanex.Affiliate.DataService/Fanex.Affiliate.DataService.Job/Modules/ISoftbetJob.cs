@@ -9,6 +9,7 @@ using Fanex.Affiliate.DataService.Job.Services;
 using Fanex.Logging;
 using Quartz;
 using Sunplus.UMControllerLibrary;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
@@ -28,7 +29,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             _timeTracker = new TimeTracker();
         }
 
-        public void Execute(IJobExecutionContext context)
+        public Task Execute(IJobExecutionContext context)
         {
             try
             {
@@ -77,6 +78,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             {
                 LogService.Error(exception.Message, exception);
             }
+            return Task.CompletedTask;
         }
     }
 }

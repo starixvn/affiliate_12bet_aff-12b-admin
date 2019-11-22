@@ -6,7 +6,7 @@
     {
         protected internal virtual IObjectDb GetObjectDb(string spname)
         {
-            return new ObjectDb(spname);
+            return ObjectDbFactory.CreateInstance(spname);
         }
     }
 }

@@ -8,28 +8,23 @@ using System.Collections.Specialized;
 using System.Net.Http;
 using Fanex.Affiliate.DataService.Importer.Core.Extension;
 using Newtonsoft.Json;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.Importer.LBKeno.Client
 {
     public class LBKenoClient : ApiClientBase
     {
-        public LBKenoClient(HttpClient client = null) : base(client) { }
+        public LBKenoClient() : base() { }
 
         public override async Task<string> GetResponseAsync(string url, NameValueCollection query)
         {
-            //var dic = query.ToDictionary();
-            //var json = JsonConvert.SerializeObject(dic);
-            //var content = new StringContent(json,Encoding.UTF8, "application/json");
+            var client = HttpClientPooling.GetHttpClient(url);
             var uri = new Uri($"{url}?{query.ToQuery()}");
-            //var content = new FormUrlEncodedContent(query.ToKeyValuePairCollection());
-            var response = await Client.GetAsync(uri);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync();
-        }
-
-        ~LBKenoClient()
-        {
-            Dispose(false);
+            using (var response = await client.GetAsync(uri).ConfigureAwait(false))
+            {
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
         }
 
     }

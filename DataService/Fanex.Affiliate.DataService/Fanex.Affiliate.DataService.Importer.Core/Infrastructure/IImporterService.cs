@@ -8,17 +8,13 @@ using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public interface IImporterService : IDisposable
+    public interface IImporterService
     {
-        IEnumerable<XDocument> GetXmlDataList(DateTime startTime, DateTime endTime);
-        IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime);
-        XDocument ConvertRawDataToXml(string raw);       
+        Task<XDocument> ConvertRawDataToXmlAsync(string raw);       
         Task<IEnumerable<XDocument>> GetXmlDataListAsync(DateTime startTime, DateTime endTime);
         Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime);
-        Task<XDocument> ConvertRawDataToXmlAsync(string raw);
-        void Import(string data);
-        void Import(DateTime startTime, DateTime endTime);
         Task ImportAsync(string data);
+        Task ImportAsync(IEnumerable<string> datas);
         Task ImportAsync(DateTime startTime, DateTime endTime);
     }
 }

@@ -30,8 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Data.4.2.0\lib\net461\Fanex.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Logging, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -40,6 +44,10 @@
     </Reference>
     <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.MailDeliver.MailClient.1.0.0.2\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HttpClientFactory, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HttpClientFactory.1.0.1\lib\net45\HttpClientFactory.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -74,6 +82,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,15 +92,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\TopazClient.cs" />
     <Compile Include="Service\BetsoftService.cs" />
-    <Compile Include="Service\CrystalGpiService.cs" />
     <Compile Include="Service\DataImportingRunner.cs" />
     <Compile Include="Service\CasinoDataService.cs" />
     <Compile Include="Service\EbetService.cs" />
-    <Compile Include="Service\TopazService.cs" />
     <Compile Include="Interface\IBetsoftService.cs" />
-    <Compile Include="Interface\ICrystalGpiService.cs" />
     <Compile Include="Interface\IDataImportingRunner.cs" />
     <Compile Include="Interface\IEbetService.cs" />
     <Compile Include="Interface\IISoftbetService.cs" />
@@ -99,13 +105,16 @@
     <Compile Include="Service\OpusService.cs" />
     <Compile Include="Interface\ICasinoDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlResponseChecker\TopazResponseChecker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
       <Project>{410276e1-1e99-4662-809c-25f0f1777c08}</Project>
@@ -122,6 +131,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
       <Project>{b04723a2-c292-4104-8061-6a54f890b094}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.LBKeno</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Topaz\Fanex.Affiliate.DataService.Importer.Topaz.csproj">
+      <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Topaz</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

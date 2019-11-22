@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             _timeTracker = new TimeTracker();
         }
 
-        public void Execute(IJobExecutionContext context)
+        public async Task Execute(IJobExecutionContext context)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                         var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
                         var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
-                        _gpiLotteryService.Import(startTimeServer, endTimeServer);
+                        await _gpiLotteryService.ImportAsync(startTimeServer, endTimeServer);
 
                         var saveTimeTrackerParam = new InsertTimeTrackerParam
                         {

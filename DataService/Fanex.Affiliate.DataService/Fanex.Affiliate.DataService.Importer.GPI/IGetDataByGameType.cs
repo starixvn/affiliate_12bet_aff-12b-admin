@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public interface IGetDataByGameType<T> 
     {
-        IEnumerable<string> GetRawDataByGameType(DateTime startTime, DateTime endTime, T type);
+        Task<IEnumerable<string>> GetRawDataByGameTypeAsync(DateTime startTime, DateTime endTime, T type);
 
     }
 }

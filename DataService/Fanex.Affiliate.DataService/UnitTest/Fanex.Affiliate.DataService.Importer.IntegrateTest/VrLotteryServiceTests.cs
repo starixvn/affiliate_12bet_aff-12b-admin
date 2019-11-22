@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
                 .Returns("");
             var service = new VrLotteryService(stubApiClient);
 
-            service.GetRawDataList(startTime, endTime).ToList();
+            service.GetRawDataListAsync(startTime, endTime).Result.ToList();
 
             Assert.True(true);
         }
@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
             var endTime = new DateTime(2019, 10, 30, 13, 0, 0);
             var service = new VrLotteryService();
 
-            var data = service.GetRawDataList(startTime, endTime).ToList();
+            var data = service.GetRawDataListAsync(startTime, endTime).Result.ToList();
 
             Assert.NotEmpty(data);
         }

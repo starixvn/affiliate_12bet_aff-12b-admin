@@ -3,9 +3,10 @@ using System.Globalization;
 using System.Threading;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Job;
-using Fanex.Data.Configuration;
 using Fanex.Affiliate.DataService.CheckSum.Utilities;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Opus;
+using Fanex.Data;
+using Fanex.Data.SqlServer;
 
 namespace Fanex.Affiliate.DataService.ConsoleHostService
 {
@@ -13,7 +14,10 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
     {
         private static void Main(string[] args)
         {
-            DbSettingProviderManager.Current.Start();
+            DbSettingProviderManager
+             .StartNewSession()
+             .WithSqlServer("~/App_Data")
+             .Run();
 
             //RunOpusService();
             //var _ebetConfigHelper = new EbetConfigHelper();

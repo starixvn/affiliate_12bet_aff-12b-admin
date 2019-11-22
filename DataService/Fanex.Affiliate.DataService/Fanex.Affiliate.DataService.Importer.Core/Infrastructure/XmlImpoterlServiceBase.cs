@@ -14,22 +14,14 @@ namespace Fanex.Affiliate.DataService.Importer
         protected IAppSettings _appSetting;
         protected IThirdPartyProductRepository _thirdPartyProductRepository;
 
+        protected abstract int ProductId { get; }
+
+        public byte ImportType { get; set; } = 0;
+
         protected XmlImpoterlServiceBase(IAppSettings appSetting, IThirdPartyProductRepository thirdPartyProductRepository)
         {
             _appSetting = appSetting ?? new AppSettings();
             _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
-        }
-        public abstract IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime);
-
-        public virtual IEnumerable<XDocument> GetXmlDataList(DateTime startTime, DateTime endTime)
-        {
-            var rawDatas = GetRawDataList(startTime, endTime);
-            foreach (var data in rawDatas)
-            {
-                var xml = ConvertRawDataToXml(data);
-                CheckXmlResponseData(xml);
-                yield return xml;
-            }
         }
 
         /// <summary>
@@ -39,26 +31,12 @@ namespace Fanex.Affiliate.DataService.Importer
         /// <returns></returns>
         protected abstract void CheckXmlResponseData(XDocument xml);
 
-        public abstract XDocument ConvertRawDataToXml(string raw);
-
-        public abstract void Import(string data);
-
-        public void Import(DateTime startTime, DateTime endTime)
-        {
-            var xmls = GetXmlDataList(startTime, endTime);
-            foreach (var xml in xmls)
-            {
-                if (CheckIsSuitableToImport(xml))
-                    Import(xml.ToString());
-            }
-        }
-
         protected virtual bool CheckIsSuitableToImport(XDocument xml)
         {
             return true;
         }
 
-        protected void EnsureEndTimeLaterThanStartTime(DateTime startTime, DateTime endTime)
+        protected virtual void EnsureEndTimeLaterThanStartTime(DateTime startTime, DateTime endTime)
         {
             if (DateTime.Compare(startTime, endTime) >= 0)
                 throw new ArgumentException($"Start date {startTime} is later or equal than end date: {endTime}");
@@ -66,29 +44,47 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public async Task<IEnumerable<XDocument>> GetXmlDataListAsync(DateTime startTime, DateTime endTime)
         {
-            return await Task.Run(() => GetXmlDataList(startTime, endTime).ToList());
+            var rawDatas = await GetRawDataListAsync(startTime, endTime).ConfigureAwait(false);
+            var xmlDatas = new List<XDocument>(rawDatas.Count());
+            foreach (var data in rawDatas)
+            {
+                var xml = await ConvertRawDataToXmlAsync(data);
+                CheckXmlResponseData(xml);
+                xmlDatas.Add(xml);
+            }
+            return xmlDatas;
         }
 
-        public async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
-        {
-            return await Task.Run(() => GetRawDataList(startTime, endTime).ToList());
-        }
+        public abstract Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime);
 
-        public async Task<XDocument> ConvertRawDataToXmlAsync(string raw)
-        {
-            return await Task.Run(() => ConvertRawDataToXml(raw));
-        }
-
-        public async Task ImportAsync(string data)
-        {
-            await Task.Run(() => Import(data));
-        }
+        public abstract Task<XDocument> ConvertRawDataToXmlAsync(string raw);
 
         public async Task ImportAsync(DateTime startTime, DateTime endTime)
         {
-            await Task.Run(() => Import(startTime, endTime));
+            var xmls = await GetXmlDataListAsync(startTime, endTime).ConfigureAwait(false);
+            xmls = xmls.Where(xml => CheckIsSuitableToImport(xml));
+
+            await ImportSuitableDataAsync(xmls.Select(xml => xml.ToString()));
         }
 
-        public abstract void Dispose();
+        public virtual async Task ImportAsync(string data)
+        {
+            await _thirdPartyProductRepository.ImportDataAsync(ProductId, data, ImportType);
+        }
+
+        public virtual async Task ImportAsync(IEnumerable<string> datas)
+        {
+            var xmls = datas.Select(data => XmlHelper.ParseToXDocument(data))
+                .Select(xml => CheckIsSuitableToImport(xml));
+            await ImportSuitableDataAsync(xmls.Select(xml => xml.ToString()));
+
+        }
+
+        private async Task ImportSuitableDataAsync(IEnumerable<string> datas)
+        {
+            await _thirdPartyProductRepository.ImportDataAsync(ProductId, datas, ImportType);
+        }
+
+
     }
 }

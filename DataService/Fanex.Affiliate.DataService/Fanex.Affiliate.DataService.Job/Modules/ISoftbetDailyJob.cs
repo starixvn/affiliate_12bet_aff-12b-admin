@@ -7,6 +7,7 @@ using Fanex.Affiliate.DataService.Importer.MetaModels.ISoftbet;
 using Fanex.Logging;
 using Quartz;
 using Sunplus.UMControllerLibrary;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
@@ -24,7 +25,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             _isoftbetService = new ISoftbetService();
         }
 
-        public void Execute(IJobExecutionContext context)
+        public Task Execute(IJobExecutionContext context)
         {
             var logBuilder = new StringBuilder();
             try
@@ -61,6 +62,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 logBuilder.AppendLine(exception.Message);
                 LogService.Error(logBuilder.ToString(), exception);
             }
+            return Task.CompletedTask;
         }
     }
 }

@@ -33,8 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Data.4.2.0\lib\net461\Fanex.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Data.SqlServer, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Data.SqlServer.4.2.0\lib\net461\Fanex.Data.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -72,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -362,6 +372,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
       <Project>{B04723A2-C292-4104-8061-6A54F890B094}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.LBKeno</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Topaz\Fanex.Affiliate.DataService.Importer.Topaz.csproj">
+      <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Topaz</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
       <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.WinFormApp.Forms;
-using Fanex.Data.Configuration;
+using Fanex.Data;
+using Fanex.Data.SqlServer;
 
 namespace Fanex.Affiliate.DataService.WinFormApp
 {
@@ -9,7 +10,10 @@ namespace Fanex.Affiliate.DataService.WinFormApp
     {
         public MainForm()
         {
-            DbSettingProviderManager.Current.Start();
+            DbSettingProviderManager
+                .StartNewSession()
+                .WithSqlServer("~/App_Data")
+                .Run();
             InitializeComponent();
         }
 

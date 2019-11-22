@@ -13,8 +13,8 @@
 
         protected static void AddResultParam(IObjectDb objectDb)
         {
-            objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
-            objectDb.AddOutParameter("ErrMsg", DbType.String, 4000);
+            objectDb.SetParameterValue("ErrCode", 4);
+            objectDb.SetParameterValue("ErrMsg", 4000);
         }
 
         protected static ResultInfo GetResultInfo(IObjectDb objectDb)
@@ -31,7 +31,7 @@
 
         protected internal virtual IObjectDb GetObjectDb(string spname)
         {
-            return new ObjectDb(spname);
+            return ObjectDbFactory.CreateInstance(spname);
         }
     }
 }

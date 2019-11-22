@@ -23,34 +23,28 @@ namespace Fanex.Affiliate.DataService.Importer
     public class GpiLotteryService : XmlImpoterlServiceBase, IGetDataByGameType<GameType>
     {
         private readonly IApiClient _client;
-        private bool disposed = false;
+
+        protected override int ProductId => Products.GPILotteryId;
         public GpiLotteryService(IApiClient client = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProdutRespository = null) 
             :base(appSetting, thirdPartyProdutRespository)
         {
             _client = client ?? new GpiLotteryClient();
         }
 
-        public override void Import(string data)
-        {
-            _thirdPartyProductRepository.ImportData(Products.GPILotteryId, data, 0);
-        }
-
-        public override IEnumerable<string>GetRawDataList(DateTime startTime, DateTime endTime)
+        public override async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
         {
             EnsureEndTimeLaterThanStartTime(startTime, endTime);
             var gameTypesString = _appSetting.GetGpiLotteryGame();
+            var datas = new List<string>();
             foreach (var typeInString in gameTypesString)
             {
                 var type = GetGameType(typeInString);
-                var datas = GetRawDataByGameType(startTime, endTime, type);
-                foreach (var data in datas)
-                {
-                    yield return data;
-                }
+                datas.AddRange(await GetRawDataByGameTypeAsync(startTime, endTime, type).ConfigureAwait(false));
             }
+            return datas;
         }
 
-        public virtual IEnumerable<string> GetRawDataByGameType(DateTime startTime, DateTime endTime, GameType type)
+        public virtual async Task<IEnumerable<string>> GetRawDataByGameTypeAsync(DateTime startTime, DateTime endTime, GameType type)
         {
             var pageNumber = 1;
             var paramForDateTime = new GpiParam()
@@ -59,23 +53,25 @@ namespace Fanex.Affiliate.DataService.Importer
                 EDate = endTime,
                 Game = type
             };
+            var datas = new List<string>();
             while (true)
             {
-                var rawData = GetRawDataByPage(paramForDateTime, pageNumber);
-                yield return rawData;
+                var rawData = await GetRawDataByPageAsync(paramForDateTime, pageNumber);
+                datas.Add(rawData);
                 pageNumber++;
                 if (!HasAnotherPage(rawData))
                     break;
             }
+            return datas;
         }
 
-        public override XDocument ConvertRawDataToXml(string raw)
+        public override Task<XDocument> ConvertRawDataToXmlAsync(string raw)
         {
             var json = BuildJsonString(raw);
             var xml = XmlHelper.ParseToXDocumentFromJson(json);
             if (xml == null)
                 throw new ThirdPartyProductException($"GpiLottery - Cant convert response data to xml - {json}");
-            return xml;
+            return Task.FromResult(xml);
         }
 
         private string BuildJsonString(string data)
@@ -103,32 +99,32 @@ namespace Fanex.Affiliate.DataService.Importer
             return xml.Root.IsEmpty;
         }
 
-        private string GetRawDataByPage(GpiParam param, int page = 1)
+        private async Task<string> GetRawDataByPageAsync(GpiParam param, int page = 1)
         {
             var paramForFirstPage = BuildParam(param, page);
-            var rawData = GetRawData(paramForFirstPage);
+            var rawData = await GetRawDataAsync(paramForFirstPage).ConfigureAwait(false);
             return rawData;
         }
 
         private bool HasAnotherPage(string json)
         {
             var pageSize = int.Parse(_appSetting.GetValue("GpiLotteryPageSize"));
-            var xml = ConvertRawDataToXml(json);
+            var xml = ConvertRawDataToXmlAsync(json).GetAwaiter().GetResult();
             CheckXmlResponseData(xml);
             var count = xml.Root.Elements("transactions").Count();
             return count == pageSize;
         }
 
-        private string GetRawData(GpiParam param)
+        private async Task<string> GetRawDataAsync(GpiParam param)
         {
             var query = BuildApiQuery(param);
-            return GetDataString(query);
+            return await GetDataStringAsync(query);
         }
 
-        private string GetDataString(NameValueCollection query)
+        private async Task<string> GetDataStringAsync(NameValueCollection query)
         {
             var addressBase = _appSetting.GetValue("GpiLotterApiUrl");
-            return _client.GetResponse(addressBase, query);
+            return await _client.GetResponseAsync(addressBase, query);
         }
 
         private NameValueCollection BuildApiQuery(GpiParam param)
@@ -183,28 +179,5 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        public override void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                _client?.Dispose();
-            }
-
-            disposed = true;
-        }
-
-        ~GpiLotteryService()
-        {
-            Dispose(false);
-        }
     }
 }

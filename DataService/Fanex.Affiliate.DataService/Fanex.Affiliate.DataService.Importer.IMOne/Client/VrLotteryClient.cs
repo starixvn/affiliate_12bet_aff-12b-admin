@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading;
 using Fanex.Affiliate.DataService.Importer.Core.Extension;
 using Newtonsoft.Json;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
 {
@@ -17,20 +18,23 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
         private static Lazy<Dictionary<string, int>> _requestCountMapping = new Lazy<Dictionary<string, int>>(() => new Dictionary<string, int>(), true);
         private Dictionary<string, int> RequestCountMapping => _requestCountMapping.Value;
 
-        public VrLotteryClient(HttpClient client = null) : base(client) { }
+        public VrLotteryClient() : base() { }
 
         public override async Task<string> GetResponseAsync(string url, NameValueCollection query)
         {
-            IncreaseConnection(url);
+            var client = HttpClientPooling.GetHttpClient(url);
             var dictionary = query.ToDictionary();
             var json = JsonConvert.SerializeObject(dictionary);
             var sendContent = new StringContent(json, Encoding.UTF8, "application/json");
-            var resposeMessage = await Client.PostAsync(url, sendContent);
-            DecreaseConnection(url);
-            resposeMessage.EnsureSuccessStatusCode();
-            var data = await resposeMessage.Content.ReadAsStringAsync();
-            resposeMessage.Dispose();
-            return data;
+
+            IncreaseConnection(url);
+            using (var resposeMessage = await client.PostAsync(url, sendContent).ConfigureAwait(false))
+            {
+
+                DecreaseConnection(url);
+                resposeMessage.EnsureSuccessStatusCode();
+                return await resposeMessage.Content.ReadAsStringAsync();
+            }
         }
 
         public int TotalConnection(string url)
@@ -62,10 +66,6 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
             }
         }
 
-        ~VrLotteryClient()
-        {
-            Dispose(false);
-        }
 
     }
 

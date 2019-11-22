@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             ToggleButton(false);
             try
             {
-                RawDatas = await Task.Run(async () => await Service.GetRawDataListAsync(startTime, endTime));
+                RawDatas = await Service.GetRawDataListAsync(startTime, endTime);
                 DisplayRawData();
                 XmlDatas.Clear();
                 DisplayXmlData();
@@ -81,7 +81,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         private async Task<XDocument> GetXmlFromTextFieldAsync()
         {
             var data = richTextRawData.Text;
-            return await Task.Run(async () => await Service.ConvertRawDataToXmlAsync(data));
+            return await Service.ConvertRawDataToXmlAsync(data);
         }
 
         protected virtual async void btnImport_Click(object sender, EventArgs e)
@@ -100,10 +100,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 ToggleButton(false);
                 try
                 {
-                    foreach (var xml in XmlDatas)
-                    {
-                        await Task.Run(async () => await Service.ImportAsync(xml.ToString()));
-                    }
+                    await Service.ImportAsync(XmlDatas.Select(xml => xml.ToString()));
                     Logger.Log("Finished import data");
                 }
                 catch (Exception ex)

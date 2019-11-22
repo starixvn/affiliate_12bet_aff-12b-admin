@@ -90,8 +90,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\NSubstitute.Analyzers.CSharp.1.0.11\analyzers\dotnet\cs\NSubstitute.Analyzers.CSharp.dll" />
-    <Analyzer Include="..\..\packages\NSubstitute.Analyzers.CSharp.1.0.11\analyzers\dotnet\cs\NSubstitute.Analyzers.Shared.dll" />
     <Analyzer Include="..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +108,10 @@
     <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
       <Project>{B04723A2-C292-4104-8061-6A54F890B094}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.LBKeno</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer.Topaz\Fanex.Affiliate.DataService.Importer.Topaz.csproj">
+      <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Topaz</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
       <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>

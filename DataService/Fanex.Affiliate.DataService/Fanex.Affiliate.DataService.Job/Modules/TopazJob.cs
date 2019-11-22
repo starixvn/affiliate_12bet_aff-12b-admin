@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             _timeTracker = new TimeTracker();
         }
 
-        public void Execute(IJobExecutionContext context)
+        public async Task Execute(IJobExecutionContext context)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                             var startUtcTime = start.ToUniversalTime();
                             var endUtcTime = nextStartTime.ToUniversalTime();
-                            _topazService.Import(startUtcTime, endUtcTime);
+                            await _topazService.ImportAsync(startUtcTime, endUtcTime);
 
                             var saveTimeTrackerParam = new InsertTimeTrackerParam
                             {

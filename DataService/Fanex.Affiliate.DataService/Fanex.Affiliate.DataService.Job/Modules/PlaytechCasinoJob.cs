@@ -4,12 +4,13 @@ using Fanex.Affiliate.DataService.Importer;
 using Fanex.Logging;
 using Quartz;
 using Sunplus.UMControllerLibrary;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
     public class PlaytechCasinoJob : IJob
     {
-        public void Execute(IJobExecutionContext context)
+        public Task Execute(IJobExecutionContext context)
         {
             try
             {
@@ -36,6 +37,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             {
                 LogService.Error(GetExceptionMessage(exception), exception.InnerException);
             }
+            return Task.CompletedTask;
         }
 
         private static string GetExceptionMessage(Exception exception)

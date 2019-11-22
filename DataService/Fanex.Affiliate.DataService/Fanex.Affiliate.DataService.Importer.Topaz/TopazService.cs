@@ -28,45 +28,50 @@ namespace Fanex.Affiliate.DataService.Importer
         private const int MAX_TIME_RANGE_TRANSACTION = 15;
 
         private readonly IApiClient _client;
-        private bool disposed = false;
+
+        protected override int ProductId => Products.TopazId;
 
         public TopazService(IApiClient client = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyRepository = null) : base(appSetting, thirdPartyRepository)
         {
             _client = client ?? new TopazClient();
         }
 
-        public override void Import(string data)
-        {
-            _thirdPartyProductRepository.ImportData(Products.TopazId, data, 0);
-        }
-
-        public override IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime)
+        public override async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
         {
             if (DateTime.Compare(startTime, endTime) >= 0)
                 throw new ThirdPartyProductException($"Flow Gaming - startDate {startTime} later or equal than endDate {endTime}");
 
-            var startRequestTime = startTime;
-            var compareEndDate = startRequestTime.AddMinutes(MAX_TIME_RANGE_TRANSACTION);
-            var endRequestTime = GetEndRequestTime(compareEndDate, endTime);
-            var isFirstRequest = true;
+            var timeRanges = GetTimeRangeRequest(startTime, endTime);
+            var datas = new List<string>(timeRanges.Count());
 
-            while (DateTime.Compare(endRequestTime, startRequestTime) > 0)
+            foreach (var time in timeRanges)
             {
-                if (!isFirstRequest)
-                    Thread.Sleep(TIME_BETWEEN_TWO_REQUEST);
-                isFirstRequest = false;
-
-                var data = GetRawData(startRequestTime, endRequestTime);
+                var data = await GetRawDataAsync(time.Item1, time.Item2);
                 if (IsExceedCallLimit(data))
                 {
-                    Thread.Sleep(TIME_BETWEEN_TWO_REQUEST);
-                    data = GetRawData(startRequestTime, endRequestTime);
+                    await Task.Delay(TIME_BETWEEN_TWO_REQUEST);
+                    data = await GetRawDataAsync(time.Item1, time.Item2);
                 }
-                yield return data;
-
-                startRequestTime = endRequestTime;
-                endRequestTime = GetEndRequestTime(startRequestTime.AddMinutes(MAX_TIME_RANGE_TRANSACTION), endTime);             
+                datas.Add(data);
             }
+            return datas;
+        }
+
+        private IEnumerable<Tuple<DateTime,DateTime>> GetTimeRangeRequest(DateTime startTime, DateTime endTime)
+        {
+            var startRequestTime = startTime;
+            var endRequestTime = GetEndRequestTime(startRequestTime.AddMinutes(MAX_TIME_RANGE_TRANSACTION), endTime);
+            while(startRequestTime < endRequestTime)
+            {
+                yield return new Tuple<DateTime, DateTime>(startRequestTime, endRequestTime);
+                startRequestTime = endRequestTime;
+                endRequestTime = GetEndRequestTime(endRequestTime.AddMinutes(MAX_TIME_RANGE_TRANSACTION), endTime);
+            }
+        }
+
+        private DateTime GetEndRequestTime(DateTime compareTime, DateTime endTime)
+        {
+            return DateTime.Compare(compareTime, endTime) > 0 ? endTime : compareTime;
         }
 
         private bool IsExceedCallLimit(string data)
@@ -74,11 +79,11 @@ namespace Fanex.Affiliate.DataService.Importer
             return data.Contains(CALL_LIMIT_EXCEEDED);
         }
 
-        private string GetRawData(DateTime startRequestDate, DateTime endRequestDate)
+        private async Task<string> GetRawDataAsync(DateTime startRequestDate, DateTime endRequestDate)
         {
             var param = GetQueryParam(startRequestDate, endRequestDate);
             var baseUrl = _appSetting.GetValue("TopazApiUrl");
-            return _client.GetResponse(baseUrl, param);
+            return await _client.GetResponseAsync(baseUrl, param).ConfigureAwait(false);
         }
 
         private NameValueCollection GetQueryParam(DateTime startTime, DateTime endTime)
@@ -92,43 +97,18 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        private DateTime GetEndRequestTime(DateTime compareTime, DateTime endTime)
-        {
-            return DateTime.Compare(compareTime, endTime) > 0 ? endTime : compareTime;
-        }
-
         protected override void CheckXmlResponseData(XDocument xml)
         {
             IThirdPartyResponseChecker checker = new TopazResponseChecker();
             checker.CheckXml(xml);
         }
 
-        public override XDocument ConvertRawDataToXml(string raw)
+        public override Task<XDocument> ConvertRawDataToXmlAsync(string raw)
         {
             var xml = XmlHelper.ParseToXDocumentFromJson(raw);
             if (xml == null)
                 throw new ThirdPartyProductException($"FlowGaming - Cant convert json response to xml - {raw}");
-            return xml;
-        }
-
-        public override void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-            if (disposing)
-                _client?.Dispose();
-            disposed = true;
-        }
-
-        ~TopazService()
-        {
-            Dispose(false);
+            return Task.FromResult(xml);
         }
     }
 }

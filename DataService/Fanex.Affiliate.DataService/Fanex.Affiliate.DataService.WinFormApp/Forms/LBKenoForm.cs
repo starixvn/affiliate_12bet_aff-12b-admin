@@ -21,7 +21,6 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         private void LBKeno_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Service.Dispose();
         }
     }
 }

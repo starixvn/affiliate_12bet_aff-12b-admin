@@ -3,6 +3,7 @@ using Fanex.Affiliate.DataService.Importer.Utilities;
 using Fanex.Affiliate.DataService.Job.Constants;
 using Quartz;
 using Quartz.Impl;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.Job
 {
@@ -16,7 +17,7 @@ namespace Fanex.Affiliate.DataService.Job
         {
             var appSetting = new AppSettings();
             var schedulerFactory = new StdSchedulerFactory();
-            _scheduler = schedulerFactory.GetScheduler();
+            _scheduler = schedulerFactory.GetScheduler().Result;
 
             _jobSchedulerList = new List<IJobScheduler>();
 
@@ -48,6 +49,7 @@ namespace Fanex.Affiliate.DataService.Job
 
         public void Shutdown()
         {
+            HttpClientPooling.ClearAllHttpClient();
             _scheduler.Shutdown(true);
         }
 

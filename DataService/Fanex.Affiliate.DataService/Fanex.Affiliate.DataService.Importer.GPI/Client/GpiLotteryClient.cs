@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 using Fanex.Affiliate.DataService.Importer.Core.Extension;
 using Newtonsoft.Json;
 using System.Net.Http;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.Importer.Client
 {
@@ -18,19 +19,17 @@ namespace Fanex.Affiliate.DataService.Importer.Client
         }
         public override async Task<string> GetResponseAsync(string url, NameValueCollection query)
         {
+            var client = HttpClientPooling.GetHttpClient(url);
             var dic = query.ToDictionary();
             var json = JsonConvert.SerializeObject(dic);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await Client.PostAsync(url, content);
-            response.EnsureSuccessStatusCode();
-            var data = await response.Content.ReadAsStringAsync();
-            response.Dispose();
-            return data;
-        }
 
-        ~GpiLotteryClient()
-        {
-            Dispose(false);
+            using (var response = await client.PostAsync(url, content).ConfigureAwait(false))
+            {
+                response.EnsureSuccessStatusCode();
+                var data = await response.Content.ReadAsStringAsync();
+                return data;
+            }
         }
     }
 }

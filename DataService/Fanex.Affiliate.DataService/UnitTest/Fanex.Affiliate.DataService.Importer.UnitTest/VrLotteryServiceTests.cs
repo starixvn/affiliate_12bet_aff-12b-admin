@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
         public void GetRawDataListByCurrency_WithNotCorrectTimeRange_ThrowException(DateTime startTime, DateTime endTime)
         {
             var service = CreateService();
-            Assert.Throws<ArgumentException>(() => service.GetRawDataListByCurrency(startTime, endTime, "CNY").ToList());
+            Assert.Throws<ArgumentException>(() => service.GetRawDataListByCurrencyAsync(startTime, endTime, "CNY").GetAwaiter().GetResult());
         }
 
         [Theory]
@@ -62,12 +62,12 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
         {
             var stubApi = NSubstitute.Substitute.For<IApiClient>();
             var stubAppSetting = NSubstitute.Substitute.For<IAppSettings>();
-            stubApi.GetResponse(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
-                .ReturnsForAnyArgs(this.SuccessReturn);
+            stubApi.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+                .ReturnsForAnyArgs(Task.FromResult(this.SuccessReturn));
             stubAppSetting.GetValue(Arg.Compat.Any<string>()).Returns("");
             var service = CreateService(stubApi, stubAppSetting);
 
-            service.GetRawDataListByCurrency(startTime, endTime,"CNY").Count();
+            service.GetRawDataListByCurrencyAsync(startTime, endTime,"CNY").GetAwaiter().GetResult();
 
             Assert.True(true);
         }
@@ -79,14 +79,14 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var stubApi = NSubstitute.Substitute.For<IApiClient>();
             var stubAppSetting = NSubstitute.Substitute.For<IAppSettings>();
 
-            stubApi.GetResponse(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            stubApi.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
                 .ReturnsForAnyArgs(errorReturn);
             stubAppSetting.GetValue(Arg.Compat.Any<string>()).Returns("");
             stubAppSetting.GetValue("VrLotteryCurrencies").Returns("CNC,BOB");
 
             var service = CreateService(stubApi, stubAppSetting);
 
-            Assert.Throws<ThirdPartyProductException>(() => service.GetXmlDataList(startTime,endTime).Count());
+            Assert.Throws<ThirdPartyProductException>(() => service.GetXmlDataListAsync(startTime,endTime).GetAwaiter().GetResult());
         }
 
         [Fact]
@@ -97,13 +97,13 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var startTime = new DateTime(2019, 1, 1, 12, 0, 1);
             var endTime = new DateTime(2019, 1, 1, 13, 0, 0);
 
-            stubApi.GetResponse(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            stubApi.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
                 .ReturnsForAnyArgs(this.SuccessReturn);
             stubAppSetting.GetValue(Arg.Compat.Any<string>()).Returns("");
             stubAppSetting.GetValue("VrLotteryCurrencies").Returns("CNC,BOB");
             var service = CreateService(stubApi, stubAppSetting);
 
-            service.GetXmlDataList(startTime, endTime).Count();
+            service.GetXmlDataListAsync(startTime, endTime).GetAwaiter().GetResult();
 
             Assert.True(true);
         }

@@ -19,36 +19,36 @@ namespace Fanex.Affiliate.DataService.Importer
         private readonly TimeSpan MAX_REQUEST_TIMESPAN = new TimeSpan(31, 0, 0, 0);
         protected readonly IApiClient _client;
 
-        private bool disposed = false;
+        protected override int ProductId => Products.VRLotteryId;
 
         public VrLotteryService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) : base(appSetting, thirdPartyProductRepository)
         {
             _client = client ?? new VrLotteryClient();
         }
 
-        public override IEnumerable<string> GetRawDataList(DateTime startTime, DateTime endTime)
+        public override async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
         {
             var supportedCurrencies = _appSetting.GetSupportedVrLotteryCurrency();
-            return GetRawDataListByCurrencies(startTime, endTime, supportedCurrencies);
+            return await GetRawDataListByCurrenciesAsync(startTime, endTime, supportedCurrencies);
         }
 
-        public IEnumerable<string> GetRawDataListByCurrencies(DateTime startTime, DateTime endTime, IEnumerable<string> currencies)
+        public async Task<IEnumerable<string>> GetRawDataListByCurrenciesAsync(DateTime startTime, DateTime endTime, IEnumerable<string> currencies)
         {
+            var datas = new List<string>();
             foreach (var currency in currencies)
             {
-                var datas = GetRawDataListByCurrency(startTime, endTime, currency);
-                foreach (var data in datas)
-                {
-                    yield return data;
-                }
+                datas.AddRange(await GetRawDataListByCurrencyAsync(startTime, endTime, currency).ConfigureAwait(false));
             }
+            return datas;
         }
 
-        public IEnumerable<string> GetRawDataListByCurrency(DateTime startTime, DateTime endTime, string currency)
+        public async Task<IEnumerable<string>> GetRawDataListByCurrencyAsync(DateTime startTime, DateTime endTime, string currency)
         {
             DateTime startTimeRoundingByHour = GetRoundingByHour(startTime);
             DateTime endTimeRoundingByHour = GetRoundingByHour(endTime);
             EnsureEndTimeLaterThanStartTime(startTimeRoundingByHour, endTimeRoundingByHour);
+
+            var datas = new List<string>();
 
             var timeSpan = endTimeRoundingByHour - startTimeRoundingByHour;
             while(timeSpan > TimeSpan.Zero)
@@ -60,18 +60,19 @@ namespace Fanex.Affiliate.DataService.Importer
                 if (timeSpan > TimeSpan.Zero)
                     endTimeRequest = startTimeRoundingByHour.Add(MAX_REQUEST_TIMESPAN);
 
-                yield return GetRawData(startTimeRequest, endTimeRequest, currency);
+                datas.Add(await GetRawDataAsync(startTimeRequest, endTimeRequest, currency).ConfigureAwait(false));
 
                 startTimeRoundingByHour = endTimeRequest;
             }
+            return datas;
         }
 
-        private string GetRawData(DateTime startTimeRequest, DateTime endTimeRequest, string currency)
+        private async Task<string> GetRawDataAsync(DateTime startTimeRequest, DateTime endTimeRequest, string currency)
         {
             var url = _appSetting.GetValue("VrLotteryApiUrl");
             var queryValue = BuildQuery(startTimeRequest, endTimeRequest, currency);
 
-            return _client.GetResponse(url, queryValue);
+            return await _client.GetResponseAsync(url, queryValue);
         }
 
         private NameValueCollection BuildQuery(DateTime startTimeRequest, DateTime endTimeRequest, string currency)
@@ -91,56 +92,15 @@ namespace Fanex.Affiliate.DataService.Importer
             return new DateTime(time.Year, time.Month, time.Day, time.Hour, 0, 0, 0);
         }
 
-        public override void Import(string data)
-        {
-            _thirdPartyProductRepository.ImportData(Products.VRLotteryId, data, 0);
-        }
-
         protected override void CheckXmlResponseData(XDocument xml)
         {
             var checker = new VrLotteryXmlChecker();
             checker.CheckXml(xml);
         }
 
-        public override XDocument ConvertRawDataToXml(string raw)
+        public override Task<XDocument> ConvertRawDataToXmlAsync(string raw)
         {
-            return XmlHelper.ParseToXDocumentFromJson(raw);
-        }
-
-        public async Task<IEnumerable<string>> GetRawDataListByCurrenciesAsync(DateTime startTime, DateTime endTime, IEnumerable<string> currencies)
-        {
-            await Task.Yield();
-            return GetRawDataListByCurrencies(startTime, endTime, currencies);
-        }
-
-        public async Task<IEnumerable<string>> GetRawDataListByCurrencyAsync(DateTime startTime, DateTime endTime, string currency)
-        {
-            await Task.Yield();
-            return GetRawDataListByCurrency(startTime, endTime, currency);
-        }
-
-        public override void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                _client?.Dispose();
-            }
-
-            disposed = true;
-        }
-
-        ~VrLotteryService()
-        {
-            Dispose(false);
+            return Task.FromResult(XmlHelper.ParseToXDocumentFromJson(raw));
         }
     }
 }
