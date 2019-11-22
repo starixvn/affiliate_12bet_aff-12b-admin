@@ -37,6 +37,30 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
         }
 
         [Fact]
+        public void GetOnlineList_WhenCall_ReturnCorrectDataHasNull()
+        {
+            // Arrange
+            var service = new Mock<HomeService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetOnlineListHasNull());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
+            service.Setup(r => r.GetObjectDb("Aff_UserOnlineList", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = service.Object.GetOnlineList(1, 20);
+            var item = result.MainData.FirstOrDefault();
+
+            // Assert
+            Assert.Single(result.MainData);
+            Assert.Null(item.LoggedInDateText);
+            Assert.Null(item.LastRequestDateText);
+        }
+
+        [Fact]
         public void GetOnlineList_WhenCall_ReturnNull()
         {
             // Arrange
@@ -158,6 +182,18 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
                 ["UserName"] = "sa",
                 ["LoggedIn"] = new DateTime(2019, 11, 15),
                 ["LastRequest"] = new DateTime(2019, 11, 15),
+                ["IP"] = "::1",
+                ["RoleName"] = "Admin"
+            };
+        }
+
+        private IDictionary<string, object> GetOnlineListHasNull()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["UserName"] = "sa",
+                ["LoggedIn"] = DBNull.Value,
+                ["LastRequest"] = DBNull.Value,
                 ["IP"] = "::1",
                 ["RoleName"] = "Admin"
             };

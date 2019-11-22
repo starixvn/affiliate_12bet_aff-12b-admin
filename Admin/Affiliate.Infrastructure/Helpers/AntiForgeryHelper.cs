@@ -60,9 +60,9 @@
 
         private static string CreateFormToken(string guid, string userName)
         {
-            using (SHA256 sha256 = SHA256.Create())
+            using (SHA512 sha512 = SHA512.Create())
             {
-                byte[] hash = sha256.ComputeHash(Encoding.Default.GetBytes(guid + userName));
+                byte[] hash = sha512.ComputeHash(Encoding.Default.GetBytes(guid + userName));
                 return BitConverter.ToString(hash).Replace("-", string.Empty);
             }
         }

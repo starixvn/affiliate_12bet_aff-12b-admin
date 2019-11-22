@@ -32,8 +32,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
                         dataList.Add(new OnlineListInfo
                         {
                             UserName = Convert.ToString(reader["UserName"]),
-                            LoggedInDate = Convert.ToDateTime(reader["LoggedIn"]),
-                            LastRequestDate = Convert.ToDateTime(reader["LastRequest"]),
+                            LoggedInDate = reader["LoggedIn"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["LoggedIn"]),
+                            LastRequestDate = reader["LastRequest"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["LastRequest"]),
                             Ip = Convert.ToString(reader["IP"]),
                             Role = Convert.ToString(reader["RoleName"])
                         });
