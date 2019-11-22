@@ -97,5 +97,12 @@ namespace Fanex.Affiliate.DataService.Importer
                 throw new ThirdPartyProductException($"LBKeno - Can't convert raw data to xml {raw}");
             return Task.FromResult(xml);
         }
+
+        protected override void EnsureEndTimeLaterThanStartTime(DateTime startTime, DateTime endTime)
+        {
+            base.EnsureEndTimeLaterThanStartTime(startTime, endTime);
+            if (startTime.Year == endTime.Year && startTime.Month == endTime.Month && startTime.Day == endTime.Day)
+                throw new ThirdPartyProductException("LBKeno - start time day equal to end time day - Can't query api with the same day");
+        }
     }
 }
