@@ -2,7 +2,7 @@
 
 exports[`home - components - OnlineList render correctly 1`] = `
 <div
-  className="data-content"
+  className="data-content mb-5 mt-3"
 >
   <Connect(Filter) />
   <div
@@ -172,7 +172,7 @@ exports[`home - components - OnlineList render correctly 1`] = `
         <t>
           <t
             asc={true}
-            colWidth={35}
+            colWidth={50}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -183,7 +183,7 @@ exports[`home - components - OnlineList render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={125}
+            colWidth={190}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -194,7 +194,7 @@ exports[`home - components - OnlineList render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={125}
+            colWidth={190}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -205,7 +205,7 @@ exports[`home - components - OnlineList render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={125}
+            colWidth={190}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -216,7 +216,7 @@ exports[`home - components - OnlineList render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={125}
+            colWidth={190}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -227,7 +227,7 @@ exports[`home - components - OnlineList render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={125}
+            colWidth={190}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -240,7 +240,7 @@ exports[`home - components - OnlineList render correctly 1`] = `
       }
       isPaging={true}
       maxWidth={0}
-      minWidth={1000}
+      minWidth={987}
       onPaging={[Function]}
       pageOption={
         Object {
@@ -257,7 +257,7 @@ exports[`home - components - OnlineList render correctly 1`] = `
 
 exports[`home - components - OnlineList render correctly with online list is empty 1`] = `
 <div
-  className="data-content"
+  className="data-content mb-5 mt-3"
 >
   <Connect(Filter) />
   <div
@@ -290,7 +290,7 @@ exports[`home - components - OnlineList render correctly with online list is emp
         <t>
           <t
             asc={true}
-            colWidth={35}
+            colWidth={50}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -301,7 +301,7 @@ exports[`home - components - OnlineList render correctly with online list is emp
           </t>
           <t
             asc={true}
-            colWidth={125}
+            colWidth={190}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -312,7 +312,7 @@ exports[`home - components - OnlineList render correctly with online list is emp
           </t>
           <t
             asc={true}
-            colWidth={125}
+            colWidth={190}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -323,7 +323,7 @@ exports[`home - components - OnlineList render correctly with online list is emp
           </t>
           <t
             asc={true}
-            colWidth={125}
+            colWidth={190}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -334,7 +334,7 @@ exports[`home - components - OnlineList render correctly with online list is emp
           </t>
           <t
             asc={true}
-            colWidth={125}
+            colWidth={190}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -345,7 +345,7 @@ exports[`home - components - OnlineList render correctly with online list is emp
           </t>
           <t
             asc={true}
-            colWidth={125}
+            colWidth={190}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -358,7 +358,7 @@ exports[`home - components - OnlineList render correctly with online list is emp
       }
       isPaging={true}
       maxWidth={0}
-      minWidth={1000}
+      minWidth={987}
       onPaging={[Function]}
       pageOption={
         Object {

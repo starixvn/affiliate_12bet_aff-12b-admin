@@ -136,11 +136,7 @@ exports[`home - components - AppContainer render correctly 1`] = `
         />
       </Col>
     </Row>
-    <Row
-      tag="div"
-    >
-      <Connect(OnlineList) />
-    </Row>
   </Col>
+  <Connect(OnlineList) />
 </AppLayout>
 `;

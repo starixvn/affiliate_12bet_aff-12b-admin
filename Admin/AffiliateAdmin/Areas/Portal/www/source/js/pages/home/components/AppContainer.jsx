@@ -42,10 +42,8 @@ export const AppContainer = (props) => {
                         <MemberStatistics isUpToNow={false} />
                     </Col>
                 </Row>
-                <Row>
-                    <OnlineList />
-                </Row>
             </Col>
+            <OnlineList />
         </AppLayout>
     );
 }

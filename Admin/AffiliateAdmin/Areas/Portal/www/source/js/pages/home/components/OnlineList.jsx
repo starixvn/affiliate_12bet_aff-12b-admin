@@ -25,12 +25,12 @@ export class OnlineList extends PureComponent {
     _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={125} title={headerText.UserName}>{headerText.UserName}</Cell>
-                <Cell header={true} colWidth={125} title={headerText.LoggedIn}>{headerText.LoggedIn}</Cell>
-                <Cell header={true} colWidth={125} title={headerText.LastRequest}>{headerText.LastRequest}</Cell>
-                <Cell header={true} colWidth={125} title={headerText.Ip}>{headerText.Ip}</Cell>
-                <Cell header={true} colWidth={125} title={headerText.Role}>{headerText.Role}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={190} title={headerText.UserName}>{headerText.UserName}</Cell>
+                <Cell header={true} colWidth={190} title={headerText.LoggedIn}>{headerText.LoggedIn}</Cell>
+                <Cell header={true} colWidth={190} title={headerText.LastRequest}>{headerText.LastRequest}</Cell>
+                <Cell header={true} colWidth={190} title={headerText.Ip}>{headerText.Ip}</Cell>
+                <Cell header={true} colWidth={190} title={headerText.Role}>{headerText.Role}</Cell>
             </Row>
         );
     }
@@ -87,11 +87,11 @@ export class OnlineList extends PureComponent {
         const { onlineList } = this.props;
 
         return (
-            <div className="data-content">
+            <div className="data-content mb-5 mt-3">
                 <Filter />
                 <div className="table-responsive table-striped my-2">
                     <Table
-                        minWidth={1000}
+                        minWidth={987}
                         autoWidth={true}
                         bodyHeight={300}
                         header={this._renderHeader()}
