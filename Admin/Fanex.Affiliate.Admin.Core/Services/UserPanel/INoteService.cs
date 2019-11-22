@@ -3,9 +3,9 @@ using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
+namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public interface INoteRepository
+    public interface INoteService
     {
         EntityResult<NoteDetail> GetNoteList(AffiliatePagingParam param);
 

@@ -7,10 +7,11 @@ using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Repository;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
+namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class NoteRepository : BaseRepository, INoteRepository
+    public class NoteService : BaseRepository, INoteService
     {
         public EntityResult<NoteDetail> GetNoteList(AffiliatePagingParam param)
         {

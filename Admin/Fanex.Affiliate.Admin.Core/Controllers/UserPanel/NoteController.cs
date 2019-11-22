@@ -3,24 +3,24 @@ using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class NoteController : BaseController
     {
-        private readonly INoteRepository _noteRepository;
+        private readonly INoteService _noteService;
 
         public NoteController(
             ISessionService sessionService,
-            INoteRepository noteRepository) : base(sessionService)
+            INoteService noteService) : base(sessionService)
         {
-            _noteRepository = noteRepository;
+            _noteService = noteService;
         }
 
         [HttpPost]
@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 return new JsonNetResult
                 {
-                    Data = _noteRepository.GetNoteList(param)
+                    Data = _noteService.GetNoteList(param)
                 };
             }
 
@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (affId >= Validation.MinId && noteId >= Validation.MinId)
             {
-                var noteInfo = _noteRepository.GetNoteContentById(affId, noteId);
+                var noteInfo = _noteService.GetNoteContentById(affId, noteId);
                 return new JsonNetResult
                 {
                     Data = noteInfo != null ? new Note
@@ -69,7 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
                 return new JsonNetResult
                 {
-                    Data = _noteRepository.InsertNote(insertNoteParam)
+                    Data = _noteService.InsertNote(insertNoteParam)
                 };
             }
 
@@ -94,7 +94,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
                 return new JsonNetResult
                 {
-                    Data = _noteRepository.UpdateNote(updateNoteParam)
+                    Data = _noteService.UpdateNote(updateNoteParam)
                 };
             }
 
