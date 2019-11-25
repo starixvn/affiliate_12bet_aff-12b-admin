@@ -1,0 +1,80 @@
+﻿using Fanex.Affiliate.Admin.Core.Controllers;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
+using Moq;
+using System.Collections.Generic;
+using Xunit;
+
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
+{
+    public class CommonSettingControllerTest
+    {
+        [Fact]
+        public void GetProductList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var productRepository = new Mock<IProductRepository>();
+            productRepository.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
+            var controller = CreateCommonSettingController(productRepository: productRepository.Object);
+
+            // Action
+            var result = controller.GetProductList() as JsonNetResult;
+            var data = result.Data as List<Product>;
+
+            // Assert
+            Assert.Single(data);
+        }
+
+        [Fact]
+        public void GetPageList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var landingPageRepository = new Mock<ILandingPageRepository>();
+            landingPageRepository.Setup(s => s.GetLandingPageList()).Returns(new List<LandingPage> { new LandingPage() });
+            var controller = CreateCommonSettingController(landingPageRepository: landingPageRepository.Object);
+
+            // Action
+            var result = controller.GetPageList() as JsonNetResult;
+            var data = result.Data as List<LandingPage>;
+
+            // Assert
+            Assert.Single(data);
+        }
+
+        [Fact]
+        public void GetTrackingCodeList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var param = 1271808;
+            var passedParam = 0;
+            var trackingStatisticsRepository = new Mock<ITrackingStatisticsRepository>();
+            trackingStatisticsRepository.Setup(s => s.GetTrackingCodeList(param)).Returns(new List<string> { "Sportbook" }).Callback<int>(p => passedParam = p);
+            var controller = CreateCommonSettingController(trackingStatisticsRepository: trackingStatisticsRepository.Object);
+
+            // Action
+            var result = controller.GetTrackingCodeList(param) as JsonNetResult;
+            var data = result.Data as List<string>;
+
+            // Assert
+            Assert.Single(data);
+            Assert.Equal(param, passedParam);
+        }
+
+        private CommonSettingController CreateCommonSettingController(
+            IProductRepository productRepository = null,
+            ILandingPageRepository landingPageRepository = null,
+            ITrackingStatisticsRepository trackingStatisticsRepository = null
+            )
+        {
+            var fakeProductRepository = productRepository ?? Mock.Of<IProductRepository>();
+            var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
+            var fakeTrackingStatisticsRepository = trackingStatisticsRepository ?? Mock.Of<ITrackingStatisticsRepository>();
+
+            return new CommonSettingController(fakeProductRepository, fakeLandingPageRepository, fakeTrackingStatisticsRepository);
+        }
+    }
+}

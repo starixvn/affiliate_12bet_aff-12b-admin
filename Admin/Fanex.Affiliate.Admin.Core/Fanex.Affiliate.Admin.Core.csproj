@@ -403,14 +403,12 @@
     <Compile Include="Repository\UserPanel\IAdjustmentRepository.cs" />
     <Compile Include="Repository\UserPanel\ICustomerMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\ILandingPageStatisticsRepository.cs" />
-    <Compile Include="Repository\UserPanel\IPlayerDetailRepository.cs" />
     <Compile Include="Repository\UserPanel\IReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\ITrackingStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\IUserAccountRepository.cs" />
     <Compile Include="Repository\UserPanel\IViewLogRepository.cs" />
     <Compile Include="Repository\UserPanel\LandingPageStatisticsRepository.cs" />
-    <Compile Include="Repository\UserPanel\PlayerDetailRepository.cs" />
     <Compile Include="Repository\UserPanel\ReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\StatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\TrackingStatisticsRepository.cs" />
@@ -528,9 +526,11 @@
     <Compile Include="Services\UserPanel\CustomerMemberService.cs" />
     <Compile Include="Services\UserPanel\ICustomerMemberService.cs" />
     <Compile Include="Services\UserPanel\INoteService.cs" />
+    <Compile Include="Services\UserPanel\IPlayerDetailService.cs" />
     <Compile Include="Services\UserPanel\IStatementHistoryService.cs" />
     <Compile Include="Services\UserPanel\IUserAccountService.cs" />
     <Compile Include="Services\UserPanel\NoteService.cs" />
+    <Compile Include="Services\UserPanel\PlayerDetailService.cs" />
     <Compile Include="Services\UserPanel\StatementHistoryService.cs" />
     <Compile Include="Services\UserPanel\UserAccountService.cs" />
     <Compile Include="Utilities\CommGroup\CommGroupValidationHelper.cs" />

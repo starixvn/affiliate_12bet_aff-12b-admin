@@ -161,10 +161,12 @@
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />
     <Compile Include="Controllers\AuthControllerTest.cs" />
     <Compile Include="Controllers\ChangeAdminPasswordControllerTest.cs" />
+    <Compile Include="Controllers\CommonSettingControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerLeftPanelControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerStatisticsControllerTest.cs" />
     <Compile Include="Controllers\Customer\NoteControllerTest.cs" />
+    <Compile Include="Controllers\Customer\PlayerDetailControllerTest.cs" />
     <Compile Include="Controllers\Customer\StatementHistoryControllerTest.cs" />
     <Compile Include="Controllers\Domain\DomainControlControllerTest.cs" />
     <Compile Include="Controllers\Domain\DomainControllerTest.cs" />
@@ -201,6 +203,7 @@
     <Compile Include="Services\Customer\CustomerLeftPanelServiceTest.cs" />
     <Compile Include="Services\Customer\CustomerStatisticsServiceTest.cs" />
     <Compile Include="Services\Customer\NoteServiceTest.cs" />
+    <Compile Include="Services\Customer\PlayerDetailServiceTest.cs" />
     <Compile Include="Services\Customer\StatementHistoryServiceTest.cs" />
     <Compile Include="Services\Domain\DomainControlServiceTest.cs" />
     <Compile Include="Services\Domain\DomainServiceTest.cs" />

@@ -5,10 +5,11 @@ using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Data;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Repository;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
+namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class PlayerDetailRepository : BaseRepository, IPlayerDetailRepository
+    public class PlayerDetailService : BaseRepository, IPlayerDetailService
     {
         public PlayerDetailResult GetPlayerDetailList(PlayerDetailParam param)
         {
