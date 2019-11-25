@@ -283,7 +283,7 @@ exports[`administrator - common - components - Content  render correctly 1`] = `
         <t>
           <t
             asc={true}
-            colWidth={15}
+            colWidth={20}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -291,7 +291,7 @@ exports[`administrator - common - components - Content  render correctly 1`] = `
           />
           <t
             asc={true}
-            colWidth={15}
+            colWidth={20}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -489,7 +489,7 @@ exports[`administrator - common - components - Content  render correctly with em
         <t>
           <t
             asc={true}
-            colWidth={15}
+            colWidth={20}
             header={true}
             onClick={[Function]}
             sortable={false}

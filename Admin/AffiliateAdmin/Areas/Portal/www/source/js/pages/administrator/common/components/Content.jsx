@@ -90,9 +90,9 @@ export default class Content extends PureComponent {
         return (
             <Row key="thead">
                 {
-                    isPopup && <Cell header={true} colWidth={15}></Cell>
+                    isPopup && <Cell header={true} colWidth={20}></Cell>
                 }
-                <Cell header={true} colWidth={15} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.UserName}>{headerText.UserName}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.FirstName}>{headerText.FirstName}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.LastName}>{headerText.LastName}</Cell>

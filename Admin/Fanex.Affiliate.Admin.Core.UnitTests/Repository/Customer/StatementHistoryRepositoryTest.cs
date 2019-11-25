@@ -112,6 +112,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false).Returns(true);
             dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
+            dataReader.Setup(d => d.FieldCount).Returns(1);
+            dataReader.Setup(d => d.GetName(0)).Returns("WinlostDate");
 
             ReaderHelper.MapReaderData(dataReader, GetDailyEarningListHasWinlostDate());
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
@@ -123,7 +125,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
 
             // Assert
             Assert.Single(result.MainData);
-            Assert.Equal("", item.Date);
+            Assert.Equal("22 November 2019", item.Date);
         }
 
         [Fact]
