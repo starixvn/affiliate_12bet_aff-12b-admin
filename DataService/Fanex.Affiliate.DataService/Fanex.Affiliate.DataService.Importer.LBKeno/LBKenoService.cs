@@ -1,18 +1,15 @@
-﻿using Fanex.Affiliate.DataService.Importer.Constants;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Constants;
 using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
-using Fanex.Affiliate.DataService.Importer.Enum;
-using Fanex.Affiliate.DataService.Importer.Exceptions;
+using Fanex.Affiliate.DataService.Importer.Core.Enum;
+using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Affiliate.DataService.Importer.LBKeno;
 using Fanex.Affiliate.DataService.Importer.LBKeno.Client;
-using Fanex.Affiliate.DataService.Importer.MetaModels.LBKeno;
-using Fanex.Affiliate.DataService.Importer.Repository;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Importer.LBKeno.MetaModels;
+using Fanex.Affiliate.DataService.Importer.Core.Repository;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 

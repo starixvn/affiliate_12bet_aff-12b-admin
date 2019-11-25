@@ -1,5 +1,5 @@
 ﻿using System;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.Model;
 using Quartz;
 

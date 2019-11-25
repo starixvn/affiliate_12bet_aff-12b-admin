@@ -1,5 +1,5 @@
-﻿using Fanex.Affiliate.DataService.Importer.Repository;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Repository;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Fanex.Affiliate.DataService.Importer
+namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
 {
     public abstract class XmlImpoterlServiceBase : IImporterService
     {

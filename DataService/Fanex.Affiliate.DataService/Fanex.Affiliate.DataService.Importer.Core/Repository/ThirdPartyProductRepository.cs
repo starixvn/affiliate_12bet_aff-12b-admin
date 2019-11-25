@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.DataService.Importer.Exceptions;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Data;
 using System;
 using System.Collections;
@@ -7,7 +7,7 @@ using System.Data.Common;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Fanex.Affiliate.DataService.Importer.Repository
+namespace Fanex.Affiliate.DataService.Importer.Core.Repository
 {
     public class ThirdPartyProductRepository : BaseRepository, IThirdPartyProductRepository
     {
@@ -61,26 +61,17 @@ namespace Fanex.Affiliate.DataService.Importer.Repository
 
         public async Task ImportDataAsync(int productId, IEnumerable<string> xmlDatas, byte jobType = 0)
         {
-            using (var conn = GetObjectDb(SpName).CreateDbConnection())
+            try
             {
-                conn.Open();
-                using (var trans = conn.BeginTransaction())
+                foreach (var xmlData in xmlDatas)
                 {
-                    try
-                    {
-                        foreach (var xmlData in xmlDatas)
-                        {
-                            var paramValues = BuildParam(productId, xmlData, jobType);
-                            await ImportDataAsync(paramValues, trans);
-                        }
-                        trans.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        trans.Rollback();
-                        throw new ThirdPartyProductException(ex.Message, ex);
-                    }
+                    var paramValues = BuildParam(productId, xmlData, jobType);
+                    await ImportDataAsync(paramValues);
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new ThirdPartyProductException(ex.Message, ex);
             }
         }
 

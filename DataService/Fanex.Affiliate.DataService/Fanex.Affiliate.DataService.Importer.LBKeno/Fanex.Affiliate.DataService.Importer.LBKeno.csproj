@@ -52,6 +52,7 @@
     <Compile Include="Client\LBKenoClient.cs" />
     <Compile Include="LBKenoService.cs" />
     <Compile Include="LBKenoXmlChecker.cs" />
+    <Compile Include="MetaModels\LBKenoParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

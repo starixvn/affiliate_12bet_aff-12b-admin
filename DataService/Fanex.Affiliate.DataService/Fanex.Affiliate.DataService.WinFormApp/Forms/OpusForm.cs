@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Opus;
+using Fanex.Affiliate.DataService.Importer.Opus.MetaModels;
 
 namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {

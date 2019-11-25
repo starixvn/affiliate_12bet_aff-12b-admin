@@ -1,7 +1,7 @@
-﻿using System;
-using Fanex.Affiliate.DataService.Importer.Enum.GPI;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+﻿using Fanex.Affiliate.DataService.Importer.Gpi.Enum;
+using Fanex.Affiliate.DataService.Importer.Gpi.Utilities;
 using Xunit;
+
 
 namespace Fanex.Affiliate.DataService.Importer.UnitTest
 {

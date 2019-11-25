@@ -1,22 +1,17 @@
-﻿using Fanex.Affiliate.DataService.Importer.Client;
-using Fanex.Affiliate.DataService.Importer.Constants;
+﻿using Fanex.Affiliate.DataService.Importer.FlowGaming.Client;
+using Fanex.Affiliate.DataService.Importer.Core.Constants;
 using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
-using Fanex.Affiliate.DataService.Importer.Exceptions;
-using Fanex.Affiliate.DataService.Importer.MetaModels.FlowGaming;
-using Fanex.Affiliate.DataService.Importer.Repository;
-using Fanex.Affiliate.DataService.Importer.ResponseChecker;
-using Fanex.Affiliate.DataService.Importer.Utilities;
-using Newtonsoft.Json;
+using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
+using Fanex.Affiliate.DataService.Importer.Core.Repository;
+using Fanex.Affiliate.DataService.Importer.Core.ResponseChecker;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Fanex.Affiliate.DataService.Importer.FlowGaming.ResponseChecker;
 
 namespace Fanex.Affiliate.DataService.Importer
 {

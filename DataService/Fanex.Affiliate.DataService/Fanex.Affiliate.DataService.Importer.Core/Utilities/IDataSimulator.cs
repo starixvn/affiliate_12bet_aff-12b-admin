@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Fanex.Affiliate.DataService.Importer.Utilities
+namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
 {
     public interface IDataSimulator
     {

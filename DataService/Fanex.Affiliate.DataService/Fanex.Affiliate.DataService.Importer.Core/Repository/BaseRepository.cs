@@ -1,8 +1,7 @@
-﻿namespace Fanex.Affiliate.DataService.Importer.Repository
+﻿namespace Fanex.Affiliate.DataService.Importer.Core.Repository
 {
     using System;
-    using System.Data;
-    using Fanex.Affiliate.DataService.Importer.DTO;
+    using Fanex.Affiliate.DataService.Importer.Core.DTO;
     using Fanex.Data;
 
     public class BaseRepository

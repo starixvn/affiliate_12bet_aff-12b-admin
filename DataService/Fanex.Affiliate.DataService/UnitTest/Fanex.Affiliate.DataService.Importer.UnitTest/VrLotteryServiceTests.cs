@@ -1,16 +1,11 @@
-﻿using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
-using Fanex.Affiliate.DataService.Importer.Exceptions;
-using Fanex.Affiliate.DataService.Importer.IMOne.Extension;
-using Fanex.Affiliate.DataService.Importer.Repository;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
+using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
+using Fanex.Affiliate.DataService.Importer.Core.Repository;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using NSubstitute;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 

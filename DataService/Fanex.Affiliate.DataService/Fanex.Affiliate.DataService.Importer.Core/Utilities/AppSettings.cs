@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.DataService.Importer.Utilities
+﻿namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
 {
     using System;
     using System.Collections.Generic;

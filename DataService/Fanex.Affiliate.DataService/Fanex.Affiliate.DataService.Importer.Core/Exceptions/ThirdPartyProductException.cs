@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Fanex.Affiliate.DataService.Importer.Exceptions
+namespace Fanex.Affiliate.DataService.Importer.Core.Exceptions
 {
     public class ThirdPartyProductException : Exception
     {

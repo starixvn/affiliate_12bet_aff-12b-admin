@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Globalization;
 using System.Text;
-using Fanex.Affiliate.DataService.CheckSum.Utilities;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.MetaModels.ISoftbet;
 using Fanex.Logging;
 using Quartz;
 using Sunplus.UMControllerLibrary;
 using System.Threading.Tasks;
+using Fanex.Affiliate.DataService.Importer.ISoftbet.MetaModels;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {

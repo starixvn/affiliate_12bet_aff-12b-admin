@@ -200,13 +200,45 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fanex.Affiliate.DataService.CheckSum\Fanex.Affiliate.DataService.CheckSum.csproj">
-      <Project>{6A965DB8-4270-4859-97C1-CD22C4B50969}</Project>
-      <Name>Fanex.Affiliate.DataService.CheckSum</Name>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.AgCasino\Fanex.Affiliate.DataService.Importer.AgCasino.csproj">
+      <Project>{e1fea403-e07c-4d0b-8d9c-4a79ff356b18}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.AgCasino</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.BetSoft\Fanex.Affiliate.DataService.Importer.BetSoft.csproj">
+      <Project>{bffceb05-ad21-4881-b38c-612996966c0d}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.BetSoft</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
       <Project>{410276e1-1e99-4662-809c-25f0f1777c08}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Ebet\Fanex.Affiliate.DataService.Importer.Ebet.csproj">
+      <Project>{7ffaaeaa-14b8-4bbd-af2a-b23142dd230b}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Ebet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.GPI\Fanex.Affiliate.DataService.Importer.Gpi.csproj">
+      <Project>{7e74c2b1-80bd-4d88-8c30-7f02d2e038a1}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Gpi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.IMOne\Fanex.Affiliate.DataService.Importer.IMOne.csproj">
+      <Project>{7c3e0e3a-a71e-4d43-9d77-491ee5214e8a}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.IMOne</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.ISoftBet\Fanex.Affiliate.DataService.Importer.ISoftbet.csproj">
+      <Project>{1ff263f2-9c86-416d-af14-699a28beaca6}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.ISoftbet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
+      <Project>{b04723a2-c292-4104-8061-6a54f890b094}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.LBKeno</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Opus\Fanex.Affiliate.DataService.Importer.Opus.csproj">
+      <Project>{07b4e979-023d-4b6f-8caf-ce6919ade584}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Opus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Topaz\Fanex.Affiliate.DataService.Importer.FlowGaming.csproj">
+      <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.FlowGaming</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
       <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>

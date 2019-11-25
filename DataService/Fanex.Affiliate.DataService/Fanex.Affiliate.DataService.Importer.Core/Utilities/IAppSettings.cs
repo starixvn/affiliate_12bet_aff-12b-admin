@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fanex.Affiliate.DataService.Importer.Utilities
+namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
 {
     public interface IAppSettings
     {

@@ -90,19 +90,8 @@
   <ItemGroup>
     <Compile Include="Constants\Products.cs" />
     <Compile Include="Constants\TimeZoneId.cs" />
-    <Compile Include="DTO\CasinoDataMetaModel.cs" />
     <Compile Include="DTO\ColumnName.cs" />
-    <Compile Include="DTO\Ebet\EbetApiConfig.cs" />
-    <Compile Include="DTO\Ebet\EbetApiResult.cs" />
-    <Compile Include="DTO\Ebet\EbetHistory.cs" />
-    <Compile Include="DTO\Ebet\EbetResultInfo.cs" />
-    <Compile Include="DTO\Ebet\EbetSummary.cs" />
-    <Compile Include="DTO\ISoftbet\ISoftbetApiParamResultPair.cs" />
-    <Compile Include="DTO\ISoftbet\ISoftbetBetHistory.cs" />
-    <Compile Include="DTO\ISoftbet\ISoftbetResultInfo.cs" />
-    <Compile Include="DTO\ISoftbet\ISoftbetSummary.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
-    <Compile Include="Enum\GPI\GameType.cs" />
     <Compile Include="Enum\SystemType.cs" />
     <Compile Include="Enum\TransactionStatus.cs" />
     <Compile Include="Exceptions\ThirdPartyProductException.cs" />
@@ -111,37 +100,22 @@
     <Compile Include="Infrastructure\IApiClient.cs" />
     <Compile Include="Infrastructure\IConnectionCountable.cs" />
     <Compile Include="Infrastructure\IDataRequestByCurrency.cs" />
+    <Compile Include="Infrastructure\IGetDataByGameType.cs" />
     <Compile Include="Infrastructure\IImporterService.cs" />
-    <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
-    <Compile Include="MetaModels\CrystalGpi\CrystalGpiParam.cs" />
-    <Compile Include="MetaModels\Ebet\EbetParam.cs" />
-    <Compile Include="MetaModels\FlowGaming\FlowGamingParam.cs" />
-    <Compile Include="MetaModels\GPI\GpiParam.cs" />
-    <Compile Include="MetaModels\ISoftbet\ISoftbetApiParam.cs" />
-    <Compile Include="MetaModels\ISoftbet\ISoftbetEntryParam.cs" />
-    <Compile Include="MetaModels\LBKeno\LBKenoParam.cs" />
-    <Compile Include="MetaModels\Opus\OpusParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
-    <Compile Include="Repository\CasinoDataRepository.cs" />
-    <Compile Include="Repository\ICasinoDataRepository.cs" />
     <Compile Include="Repository\IThirdPartyProductRepository.cs" />
     <Compile Include="Repository\ThirdPartyProductRepository.cs" />
     <Compile Include="Utilities\AppSettings.cs" />
     <Compile Include="Utilities\DataSimulator.cs" />
     <Compile Include="Utilities\DateTimeConverter.cs" />
-    <Compile Include="Utilities\EbetConfigHelper.cs" />
-    <Compile Include="Utilities\EbetParser.cs" />
-    <Compile Include="Utilities\GpiHelper.cs" />
     <Compile Include="Utilities\HttpClientPooling.cs" />
     <Compile Include="Utilities\IAppSettings.cs" />
     <Compile Include="Utilities\IDataSimulator.cs" />
-    <Compile Include="Utilities\IEbetConfigHelper.cs" />
-    <Compile Include="Utilities\ISoftbetParser.cs" />
     <Compile Include="Utilities\RsaHelper.cs" />
     <Compile Include="Utilities\XmlHelper.cs" />
     <Compile Include="Infrastructure\XmlImpoterlServiceBase.cs" />
-    <Compile Include="XmlResponseChecker\IThirdPartyResponseChecker.cs" />
+    <Compile Include="ResponseChecker\IThirdPartyResponseChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -149,9 +123,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTO\Betsoft\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

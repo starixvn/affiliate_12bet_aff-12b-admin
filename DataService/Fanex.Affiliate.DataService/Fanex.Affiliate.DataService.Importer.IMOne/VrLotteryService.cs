@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-using Fanex.Affiliate.DataService.Importer.Repository;
-using Fanex.Affiliate.DataService.Importer.Utilities;
-using Fanex.Affiliate.DataService.Importer.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Repository;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using Fanex.Affiliate.DataService.Importer.Core.Constants;
 using Fanex.Affiliate.DataService.Importer.IMOne;
 using Fanex.Affiliate.DataService.Importer.IMOne.Extension;
-using Fanex.Affiliate.DataService.Importer.Infrastructure;
+using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using System.Collections.Specialized;
 using Fanex.Affiliate.DataService.Importer.IMOne.Client;
 using System.Threading.Tasks;
-using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 
 namespace Fanex.Affiliate.DataService.Importer 
 {

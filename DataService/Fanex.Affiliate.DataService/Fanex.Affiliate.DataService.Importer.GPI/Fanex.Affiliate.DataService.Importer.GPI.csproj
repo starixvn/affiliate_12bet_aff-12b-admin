@@ -7,8 +7,8 @@
     <ProjectGuid>{7E74C2B1-80BD-4D88-8C30-7F02D2E038A1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fanex.Affiliate.DataService.Importer.GPI</RootNamespace>
-    <AssemblyName>Fanex.Affiliate.DataService.Importer.GPI</AssemblyName>
+    <RootNamespace>Fanex.Affiliate.DataService.Importer.Gpi</RootNamespace>
+    <AssemblyName>Fanex.Affiliate.DataService.Importer.Gpi</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -50,11 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\GpiLotteryClient.cs" />
-    <Compile Include="Service\CrystalGpiService.cs" />
+    <Compile Include="MetaModels\CrystalGpiParam.cs" />
+    <Compile Include="MetaModels\GpiParam.cs" />
+    <Compile Include="Utilities\GpiHelper.cs" />
+    <Compile Include="Enum\GameType.cs" />
+    <Compile Include="CrystalGpiService.cs" />
     <Compile Include="Extension\AppSettingExtension.cs" />
-    <Compile Include="Service\GpiLotteryService.cs" />
+    <Compile Include="GpiLotteryService.cs" />
     <Compile Include="ICrystalGpiService.cs" />
-    <Compile Include="IGetDataByGameType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +69,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

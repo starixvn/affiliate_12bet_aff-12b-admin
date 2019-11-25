@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Globalization;
-using Fanex.Affiliate.DataService.CheckSum.Utilities;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.Constants;
-using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
+using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using Fanex.Affiliate.DataService.Importer.Gpi.MetaModels;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
 using Fanex.Logging;
 using Quartz;
 using Sunplus.UMControllerLibrary;
 using System.Threading.Tasks;
+
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {

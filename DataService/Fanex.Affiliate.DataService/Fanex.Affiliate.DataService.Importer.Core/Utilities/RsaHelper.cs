@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Fanex.Logging;
 
-namespace Fanex.Affiliate.DataService.Importer.Utilities
+namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
 {
     public static class RsaHelper
     {

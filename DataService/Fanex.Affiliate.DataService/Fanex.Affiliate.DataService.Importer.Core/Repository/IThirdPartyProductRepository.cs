@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Fanex.Affiliate.DataService.Importer.Repository
+namespace Fanex.Affiliate.DataService.Importer.Core.Repository
 {
     public interface IThirdPartyProductRepository
     {

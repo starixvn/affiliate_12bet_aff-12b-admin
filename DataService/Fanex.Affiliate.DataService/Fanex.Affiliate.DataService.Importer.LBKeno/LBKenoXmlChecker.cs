@@ -1,10 +1,5 @@
-﻿using Fanex.Affiliate.DataService.Importer.Exceptions;
-using Fanex.Affiliate.DataService.Importer.ResponseChecker;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
+using Fanex.Affiliate.DataService.Importer.Core.ResponseChecker;
 using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer.LBKeno

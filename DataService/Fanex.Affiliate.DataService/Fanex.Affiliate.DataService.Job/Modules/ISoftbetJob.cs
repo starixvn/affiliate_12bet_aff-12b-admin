@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Globalization;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.Constants;
-using Fanex.Affiliate.DataService.Importer.MetaModels.ISoftbet;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using Fanex.Affiliate.DataService.Importer.ISoftbet.MetaModels;
 using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
 using Fanex.Logging;

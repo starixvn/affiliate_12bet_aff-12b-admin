@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fanex.Affiliate.DataService.Importer.Infrastructure
+namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
 {
     public interface IDataRequestByCurrency
     {

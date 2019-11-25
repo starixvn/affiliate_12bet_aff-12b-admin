@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
-using Fanex.Affiliate.DataService.Importer.Exceptions;
-using Fanex.Affiliate.DataService.Importer.Repository;
+using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
+using Fanex.Affiliate.DataService.Importer.Core.Repository;
 using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 
 namespace Fanex.Affiliate.DataService.Job.Repository

@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Fanex.Affiliate.DataService.Importer.Utilities
+namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
 {
     public class DataSimulator : IDataSimulator
     {

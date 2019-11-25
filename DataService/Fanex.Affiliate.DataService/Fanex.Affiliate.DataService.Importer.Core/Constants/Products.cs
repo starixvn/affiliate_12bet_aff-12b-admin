@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.DataService.Importer.Constants
+﻿namespace Fanex.Affiliate.DataService.Importer.Core.Constants
 {
     public static class Products
     {

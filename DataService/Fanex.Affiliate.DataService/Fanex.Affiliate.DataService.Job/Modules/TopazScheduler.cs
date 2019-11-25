@@ -1,12 +1,8 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Job.Model;
-using Fanex.Affiliate.DataService.CheckSum.Utilities;
 using Quartz;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {

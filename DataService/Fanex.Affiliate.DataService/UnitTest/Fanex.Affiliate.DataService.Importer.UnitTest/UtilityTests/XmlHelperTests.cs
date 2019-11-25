@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.DataService.Importer.Utilities;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

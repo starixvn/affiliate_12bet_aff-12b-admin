@@ -4,7 +4,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace Fanex.Affiliate.DataService.Importer.Utilities
+namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
 {
     public static class XmlHelper
     {

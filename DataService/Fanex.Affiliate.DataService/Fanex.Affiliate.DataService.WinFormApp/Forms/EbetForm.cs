@@ -5,9 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.DTO.Ebet;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Importer.Ebet.DTO;
+using Fanex.Affiliate.DataService.Importer.Ebet.MetaModels;
+using Fanex.Affiliate.DataService.Importer.Ebet.Utilities;
 
 namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {

@@ -1,10 +1,5 @@
-﻿using Fanex.Affiliate.DataService.Importer.Exceptions;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Affiliate.DataService.Importer.LBKeno;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using Xunit;
 

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.Constants;
 using Quartz;
 using Quartz.Impl;
-using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.Job
 {

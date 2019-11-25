@@ -5,9 +5,9 @@ using Fanex.Affiliate.DataService.Importer;
 using Fanex.Logging;
 using Quartz;
 using Sunplus.UMControllerLibrary;
-using Fanex.Affiliate.DataService.CheckSum.Utilities;
-using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
+using Fanex.Affiliate.DataService.Importer.Gpi.MetaModels;
 using System.Threading.Tasks;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {

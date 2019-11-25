@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.DataService.Importer.DTO
+﻿namespace Fanex.Affiliate.DataService.Importer.Core.DTO
 {
     public static class ColumnName
     {

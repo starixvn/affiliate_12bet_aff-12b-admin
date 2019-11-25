@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace Fanex.Affiliate.DataService.Importer.Enum
+namespace Fanex.Affiliate.DataService.Importer.Core.Enum
 {
     public enum TransactionStatus
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using Fanex.Affiliate.DataService.CheckSum.Utilities;
 using Fanex.Affiliate.DataService.Job.Model;
 using Quartz;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
