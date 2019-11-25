@@ -162,6 +162,7 @@
     <Compile Include="Controllers\AuthControllerTest.cs" />
     <Compile Include="Controllers\ChangeAdminPasswordControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerControllerTest.cs" />
+    <Compile Include="Controllers\Customer\CustomerLeftPanelControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerStatisticsControllerTest.cs" />
     <Compile Include="Controllers\Customer\NoteControllerTest.cs" />
     <Compile Include="Controllers\Customer\StatementHistoryControllerTest.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AuthRepositoryTest.cs" />
     <Compile Include="Repository\CommissionGroupRepositoryTest.cs" />
+    <Compile Include="Repository\Customer\CustomerLeftPanelRepositoryTest.cs" />
     <Compile Include="Repository\Customer\StatementHistoryRepositoryTest.cs" />
     <Compile Include="Repository\LanguageRepositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\BannerListReppositoryTest.cs" />
@@ -194,6 +196,7 @@
     <Compile Include="Services\CommGroup\CommGroupAssignmentServiceTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupCommonServiceTest.cs" />
     <Compile Include="Services\CommissionGroupServiceTest.cs" />
+    <Compile Include="Services\Customer\CustomerLeftPanelServiceTest.cs" />
     <Compile Include="Services\Customer\CustomerStatisticsServiceTest.cs" />
     <Compile Include="Services\Customer\NoteServiceTest.cs" />
     <Compile Include="Services\Customer\StatementHistoryServiceTest.cs" />

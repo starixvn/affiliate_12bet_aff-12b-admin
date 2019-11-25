@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         }
 
         [Fact]
-        public void GetNoteList_WhenCall_ReturnCorrectDataHasNull()
+        public void GetStatementHistoryList_WhenCall_ReturnCorrectDataHasNull()
         {
             // Arrange
             var repository = new Mock<StatementHistoryRepository> { CallBase = true };
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         }
 
         [Fact]
-        public void GetNoteList_WhenCall_ReturnNull()
+        public void GetStatementHistoryList_WhenCall_ReturnNull()
         {
             // Arrange
             var repository = new Mock<StatementHistoryRepository> { CallBase = true };

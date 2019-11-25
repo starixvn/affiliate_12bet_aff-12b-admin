@@ -6,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using DNAide.Utils;
 using Fanex.Affiliate.Admin.Core.Constants;
-using System.Configuration;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
@@ -86,7 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
         {
             var rndStr = Encryption.RandomString(6);
             var accKey = Generator.GenerateSHA512String(sessionId + rndStr);
-            var url = affType == AffType.European ? ConfigurationManager.AppSettings["internalEuropeanAffiliateURL"] : ConfigurationManager.AppSettings["internalAsianAffiliateURL"];
+            var url = SiteDomainHelper.GetUserInternalSiteUrl(affType);
             url += "?chalengeStr=" + rndStr;
             url += "&accKey=" + accKey;
             url += "&custName=" + custName;
