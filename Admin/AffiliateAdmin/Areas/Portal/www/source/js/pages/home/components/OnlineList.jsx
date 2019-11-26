@@ -87,12 +87,11 @@ export class OnlineList extends PureComponent {
         const { onlineList } = this.props;
 
         return (
-            <div className="data-content mb-5 mt-3">
+            <div className="data-content mb-5 mt-3" style={{ width: window.innerWidth - 33 }}>
                 <Filter />
                 <div className="table-responsive table-striped my-2">
                     <Table
-                        minWidth={987}
-                        autoWidth={true}
+                        maxWidth={window.innerWidth - 13}
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(onlineList)}

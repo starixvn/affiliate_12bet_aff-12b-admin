@@ -3,6 +3,11 @@
 exports[`home - components - OnlineList render correctly 1`] = `
 <div
   className="data-content mb-5 mt-3"
+  style={
+    Object {
+      "width": 991,
+    }
+  }
 >
   <Connect(Filter) />
   <div
@@ -239,8 +244,7 @@ exports[`home - components - OnlineList render correctly 1`] = `
         </t>
       }
       isPaging={true}
-      maxWidth={0}
-      minWidth={987}
+      maxWidth={1011}
       onPaging={[Function]}
       pageOption={
         Object {
@@ -258,6 +262,11 @@ exports[`home - components - OnlineList render correctly 1`] = `
 exports[`home - components - OnlineList render correctly with online list is empty 1`] = `
 <div
   className="data-content mb-5 mt-3"
+  style={
+    Object {
+      "width": 991,
+    }
+  }
 >
   <Connect(Filter) />
   <div
@@ -357,8 +366,7 @@ exports[`home - components - OnlineList render correctly with online list is emp
         </t>
       }
       isPaging={true}
-      maxWidth={0}
-      minWidth={987}
+      maxWidth={1011}
       onPaging={[Function]}
       pageOption={
         Object {

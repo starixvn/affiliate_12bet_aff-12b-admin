@@ -76,8 +76,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
                     {
                         result = new DepositInfo
                         {
-                            AllMemberDepositUpToNow = Convert.ToInt32(reader["MemInProAllNum"]),
-                            AllMemberDepositThisMonth = Convert.ToInt32(reader["MemInProMonthNum"])
+                            AllMemberDepositUpToNow = reader["MemInProAllNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["MemInProAllNum"]),
+                            AllMemberDepositThisMonth = reader["MemInProMonthNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["MemInProMonthNum"])
                         };
                     }
                 }
@@ -97,41 +97,61 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
                 {
                     if (reader.Read())
                     {
-                        result = new GeneralInfo
-                        {
-                            PaymentRequestNumber = Convert.ToInt32(reader["PaymentReqNum"]),
-                            BannerNumber = Convert.ToInt32(reader["BannerNum"]),
-                            ImageBannerNumber = Convert.ToInt32(reader["ImageBannerNum"]),
-                            FlashBannerNumber = Convert.ToInt32(reader["FlashBannerNum"]),
-                            TextBannerNumber = Convert.ToInt32(reader["TextBannerNum"]),
-                            AllAffiliateNumber = Convert.ToInt32(reader["AffInProAllNum"]),
-                            PendingAffiliateNumber = Convert.ToInt32(reader["PendingAllNum"]),
-                            ApprovedAffiliateNumber = Convert.ToInt32(reader["ApprovedAllNum"]),
-                            DisapprovedAffiliateNumber = Convert.ToInt32(reader["DisapprovedAllNum"]),
-                            ClosedAffiliateNumber = Convert.ToInt32(reader["ClosedAllNum"]),
-                            AllMemberDepositNumber = Convert.ToInt32(reader["DepositMemAllNum"]),
-                            AllDepositNumber = Convert.ToDecimal(reader["DepositAll"]),
-                            AllWinlostNumber = Convert.ToDecimal(reader["WinlostAll"]),
-                            AllBonusNumber = Convert.ToDecimal(reader["BonusAll"]),
-                            AllPSPFeeNumber = Convert.ToDecimal(reader["PSPFeeAll"]),
-                            AllNetWinlostNumber = Convert.ToDecimal(reader["NetWinlostAll"]),
-                            AllAffiliateMonthNumber = Convert.ToInt32(reader["AffInProMonthNum"]),
-                            PendingAffiliateMonthNumber = Convert.ToInt32(reader["PendingMonthNum"]),
-                            ApprovedAffiliateMonthNumber = Convert.ToInt32(reader["ApprovedMonthNum"]),
-                            DisapprovedAffiliateMonthNumber = Convert.ToInt32(reader["DisapprovedMonthNum"]),
-                            ClosedAffiliateMonthNumber = Convert.ToInt32(reader["ClosedMonthNum"]),
-                            AllMemberDepositMonthNumber = Convert.ToInt32(reader["DepositMemMonthNum"]),
-                            AllDepositMonthNumber = Convert.ToDecimal(reader["DepositMonth"]),
-                            AllWinlostMonthNumber = Convert.ToDecimal(reader["WinlostMonth"]),
-                            AllBonusMonthNumber = Convert.ToDecimal(reader["BonusMonth"]),
-                            AllPSPFeeMonthNumber = Convert.ToDecimal(reader["PSPFeeMonth"]),
-                            AllNetWinlostMonthNumber = Convert.ToDecimal(reader["NetWinlostMonth"])
-                        };
+                        result = BuildItem(reader);
                     }
                 }
             }
 
             return result;
+        }
+
+        private GeneralInfo BuildItem(IDataReader reader)
+        {
+            var item = BuildItem_1(reader);
+            item.PaymentRequestNumber = reader["PaymentReqNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PaymentReqNum"]);
+            item.BannerNumber = reader["BannerNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["BannerNum"]);
+            item.ImageBannerNumber = reader["ImageBannerNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["ImageBannerNum"]);
+            item.FlashBannerNumber = reader["FlashBannerNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["FlashBannerNum"]);
+            item.TextBannerNumber = reader["TextBannerNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TextBannerNum"]);
+            item.AllAffiliateNumber = reader["AffInProAllNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["AffInProAllNum"]);
+            item.PendingAffiliateNumber = reader["PendingAllNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PendingAllNum"]);
+            item.ApprovedAffiliateNumber = reader["ApprovedAllNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["ApprovedAllNum"]);
+            item.DisapprovedAffiliateNumber = reader["DisapprovedAllNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["DisapprovedAllNum"]);
+
+            return item;
+        }
+
+        public GeneralInfo BuildItem_1(IDataReader reader)
+        {
+            var item = BuildItem_2(reader);
+            item.ClosedAffiliateNumber = reader["ClosedAllNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["ClosedAllNum"]);
+            item.AllMemberDepositNumber = reader["DepositMemAllNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["DepositMemAllNum"]);
+            item.AllDepositNumber = reader["DepositAll"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["DepositAll"]);
+            item.AllWinlostNumber = reader["WinlostAll"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["WinlostAll"]);
+            item.AllBonusNumber = reader["BonusAll"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["BonusAll"]);
+            item.AllPSPFeeNumber = reader["PSPFeeAll"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["PSPFeeAll"]);
+            item.AllNetWinlostNumber = reader["NetWinlostAll"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["NetWinlostAll"]);
+            item.AllAffiliateMonthNumber = reader["AffInProMonthNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["AffInProMonthNum"]);
+            item.PendingAffiliateMonthNumber = reader["PendingMonthNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["PendingMonthNum"]);
+
+            return item;
+
+        }
+
+        public GeneralInfo BuildItem_2(IDataReader reader)
+        {
+            return new GeneralInfo
+            {
+                ApprovedAffiliateMonthNumber = reader["ApprovedMonthNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["ApprovedMonthNum"]),
+                DisapprovedAffiliateMonthNumber = reader["DisapprovedMonthNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["DisapprovedMonthNum"]),
+                ClosedAffiliateMonthNumber = reader["ClosedMonthNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["ClosedMonthNum"]),
+                AllMemberDepositMonthNumber = reader["DepositMemMonthNum"] == DBNull.Value ? 0 : Convert.ToInt32(reader["DepositMemMonthNum"]),
+                AllDepositMonthNumber = reader["DepositMonth"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["DepositMonth"]),
+                AllWinlostMonthNumber = reader["WinlostMonth"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["WinlostMonth"]),
+                AllBonusMonthNumber = reader["BonusMonth"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["BonusMonth"]),
+                AllPSPFeeMonthNumber = reader["PSPFeeMonth"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["PSPFeeMonth"]),
+                AllNetWinlostMonthNumber = reader["NetWinlostMonth"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["NetWinlostMonth"])
+            };
         }
     }
 }

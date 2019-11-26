@@ -89,15 +89,15 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                         result.Add(new DepositCustomerInfo
                         {
                             DepositUserName = Convert.ToString(reader[Field.UserName]),
-                            FirstName = reader[Field.FirstName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.FirstName]),
-                            LastName = reader[Field.LastName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.LastName]),
+                            FirstName = Convert.ToString(reader[Field.FirstName]),
+                            LastName = Convert.ToString(reader[Field.LastName]),
                             Email = Convert.ToString(reader["Email"]),
                             Password = Convert.ToString(reader["Password"]),
-                            OddsType = reader["OddsType"] == DBNull.Value ? string.Empty : Convert.ToString(reader["OddsType"]),
+                            OddsType = Convert.ToString(reader["OddsType"]),
                             AffiliateId = reader["AffiliateId"] == DBNull.Value ? 0 : Convert.ToInt32(reader["AffiliateId"]),
-                            Country = reader["Country"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Country"]),
+                            Country = Convert.ToString(reader["Country"]),
                             AgentId = reader["AgentId"] == DBNull.Value ? 0 : Convert.ToInt32(reader["AgentId"]),
-                            BonusCode = reader["BonusCode"] == DBNull.Value ? string.Empty : Convert.ToString(reader["BonusCode"]),
+                            BonusCode = Convert.ToString(reader["BonusCode"]),
                             DepositUserId = Convert.ToInt32(reader["DepositUserId"]),
                         });
                     }
@@ -133,10 +133,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                 objectDb.ExecuteNonQuery();
 
                 var userId = objectDb.GetParameterValue("custid");
-                var userName = objectDb.GetParameterValue(Field.UserName);
 
                 param.UserId = userId == DBNull.Value ? 0 : Convert.ToInt32(userId);
-                param.UserName = userName == DBNull.Value ? string.Empty : Convert.ToString(userName);
+                param.UserName = Convert.ToString(objectDb.GetParameterValue(Field.UserName));
 
                 return GetResultInfo(objectDb);
             }

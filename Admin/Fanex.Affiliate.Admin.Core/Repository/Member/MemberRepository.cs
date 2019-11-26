@@ -34,8 +34,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                             MemberId = Convert.ToInt32(reader["IBCCustID"]),
                             UserName = Convert.ToString(reader["UserName"]),
                             IbcUserName = Convert.ToString(reader["IBCUserName"]),
-                            FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]),
-                            LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"]),
+                            FirstName =  Convert.ToString(reader["FirstName"]),
+                            LastName = Convert.ToString(reader["LastName"]),
                             CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"]),
                             AffName = Convert.ToString(reader["AffUserName"]),
                             CurrentBalance = Convert.ToDecimal(reader["CurrBalance"])
