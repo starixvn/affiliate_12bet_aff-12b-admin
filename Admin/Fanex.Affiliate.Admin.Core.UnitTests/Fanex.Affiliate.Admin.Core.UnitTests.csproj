@@ -162,6 +162,7 @@
     <Compile Include="Controllers\AuthControllerTest.cs" />
     <Compile Include="Controllers\ChangeAdminPasswordControllerTest.cs" />
     <Compile Include="Controllers\CommonSettingControllerTest.cs" />
+    <Compile Include="Controllers\Customer\AdjustmentControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerLeftPanelControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerStatisticsControllerTest.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="Services\CommGroup\CommGroupAssignmentServiceTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupCommonServiceTest.cs" />
     <Compile Include="Services\CommissionGroupServiceTest.cs" />
+    <Compile Include="Services\Customer\AdjustmentServiceTest.cs" />
     <Compile Include="Services\Customer\CustomerLeftPanelServiceTest.cs" />
     <Compile Include="Services\Customer\CustomerStatisticsServiceTest.cs" />
     <Compile Include="Services\Customer\NoteServiceTest.cs" />

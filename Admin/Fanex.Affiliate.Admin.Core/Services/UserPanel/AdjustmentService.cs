@@ -3,10 +3,11 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Repository;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
+namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class AdjustmentRepository : BaseRepository, IAdjustmentRepository
+    public class AdjustmentService : BaseRepository, IAdjustmentService
     {
         public decimal GetBalanceBroughtForward(int affId)
         {
