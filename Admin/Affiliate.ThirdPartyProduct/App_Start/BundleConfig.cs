@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Affiliate.ThirdPartyProduct.TestRequest
+namespace Affiliate.ThirdPartyProduct
 {
     public class BundleConfig
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Configurations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,7 @@ namespace Affiliate.ThirdPartyProduct.TestRequest
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            IoCConfig.Register();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

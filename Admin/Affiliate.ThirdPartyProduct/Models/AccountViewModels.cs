@@ -7,7 +7,6 @@ namespace Affiliate.ThirdPartyProduct.Models
     {
         [Required]
         [Display(Name = "User")]
-        [EmailAddress]
         public string User { get; set; }
 
         [Required]

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Affiliate.ThirdPartyProduct.TestRequest.Startup))]
-namespace Affiliate.ThirdPartyProduct.TestRequest
+[assembly: OwinStartupAttribute(typeof(Affiliate.ThirdPartyProduct.Startup))]
+namespace Affiliate.ThirdPartyProduct
 {
     public partial class Startup
     {

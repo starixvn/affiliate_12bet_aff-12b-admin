@@ -41,12 +41,13 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     var param = new TimeTrackerBaseParam { ProductId = Products.GPILotteryId };
                     var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
 
-                    var now = DateTime.Now;
+                    //
+                    var previousHour = DateTime.Now.AddHours(-1);
 
-                    if (DateTime.Compare(lastQueryTime, now) < 0)
+                    if (DateTime.Compare(lastQueryTime, previousHour) < 0)
                     {
                         var startTime = lastQueryTime;
-                        var endTime = now;
+                        var endTime = previousHour;
 
                         var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
                         var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);

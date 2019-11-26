@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     if (DateTime.Compare(lastQueryTime, now) < 0)
                     {
                         var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
-                        var endTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
+                        var endTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).AddMinutes(-15);
 
                         for (var start = startTime; DateTime.Compare(start.AddMinutes(minuteToRun), endTime) < 0; start = start.AddMinutes(minuteToRun))
                         {

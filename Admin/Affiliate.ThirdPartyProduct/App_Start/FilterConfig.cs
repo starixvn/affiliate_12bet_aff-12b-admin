@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Affiliate.ThirdPartyProduct.TestRequest
+namespace Affiliate.ThirdPartyProduct
 {
     public class FilterConfig
     {
