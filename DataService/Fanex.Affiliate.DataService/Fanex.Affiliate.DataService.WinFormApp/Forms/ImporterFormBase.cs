@@ -18,11 +18,18 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         protected IEnumerable<string> RawDatas { get; set; }
         protected List<XDocument> XmlDatas { get; set; } = new List<XDocument>();
 
+        protected TimeSpan _localTimeOffset => TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now);
+        protected virtual TimeSpan _serverTimeOffset => new TimeSpan(8, 0, 0); 
+
         public ImporterFormBase()
         {
             InitializeComponent();
             this.Logger = new Logger(this.richTextLog);
             RawDatas = new List<string>();
+            lbLocalTime.Text = _localTimeOffset.Hours >= 0 ? $"Local Time Zone: GMT+{_localTimeOffset.Hours}" : $"Local Time Zone: GMT{_localTimeOffset.Hours}";
+            lbServiceTime.Text =_serverTimeOffset.Hours >= 0 ? $"Server Time Zone: GMT+{_serverTimeOffset.Hours}" : $"Server Time Zone: GMT{_serverTimeOffset.Hours}";
+            startTimePicker.Value = DateTimeOffset.Now.ToOffset(_serverTimeOffset).DateTime;
+            endTimePicker.Value = DateTimeOffset.Now.ToOffset(_serverTimeOffset).DateTime;
         }
 
         protected virtual async void btnGetRawData_Click(object sender, EventArgs e)
@@ -109,6 +116,18 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             }
         }
 
+        private void datePickerLocalStartTime_ValueChanged(object sender, EventArgs e)
+        {
+            var timeOffSet = new DateTimeOffset(datePickerLocalStartTime.Value);
+            startTimePicker.Value = timeOffSet.ToOffset(_serverTimeOffset).DateTime;
+        }
+
+        private void datePickerLocalEndTime_ValueChanged(object sender, EventArgs e)
+        {
+            var timeOffSet = new DateTimeOffset(datePickerLocalEndTime.Value);
+            endTimePicker.Value = timeOffSet.ToOffset(_serverTimeOffset).DateTime;
+        }
+
         private void DisplayXmlData()
         {
             if (richTextConvertedData.InvokeRequired)
@@ -149,7 +168,6 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             btnCovert.Enabled = toggle;
             btnImport.Enabled = toggle;
         }
-
 
     }
     public class Logger

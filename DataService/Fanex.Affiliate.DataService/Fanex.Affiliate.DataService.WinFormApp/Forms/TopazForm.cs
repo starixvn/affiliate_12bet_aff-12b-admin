@@ -19,6 +19,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             Service = new TopazService();
         }
 
+        protected override TimeSpan _serverTimeOffset => new TimeSpan(0, 0, 0);
+
         private void TopazForm_FormClosed(object sender, FormClosedEventArgs e)
         {
         }
