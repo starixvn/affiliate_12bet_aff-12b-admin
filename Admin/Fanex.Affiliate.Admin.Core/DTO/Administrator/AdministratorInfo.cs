@@ -21,8 +21,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Administrator
 
         public string GroupName { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
-        public string CreatedDateText => CreatedDate.ToString("MM/dd/yyyy HH:mm:ss");
+        public string CreatedDateText => CreatedDate?.ToString("MM/dd/yyyy HH:mm:ss");
     }
 }

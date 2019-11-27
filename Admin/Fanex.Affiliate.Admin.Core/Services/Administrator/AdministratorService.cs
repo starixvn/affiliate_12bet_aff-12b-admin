@@ -8,6 +8,7 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Data;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 {
@@ -34,9 +35,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                     {
                         var dataItem = BuildAdministratorInfo(reader);
                         dataItem.Creator = Convert.ToString(reader["Creator"]);
-                        dataItem.IsOpen = !Convert.ToBoolean(reader["closed"]);
+                        dataItem.IsOpen = !reader.GetVal<bool>("closed");
                         dataItem.GroupName = Convert.ToString(reader["GroupName"]);
-                        dataItem.CreatedDate = Convert.ToDateTime(reader["CreateDate"]);
+                        dataItem.CreatedDate = reader["CreateDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreateDate"]);
 
                         result.Add(dataItem);
                     }
@@ -236,7 +237,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                 UserName = Convert.ToString(reader[Field.UserName]),
                 FirstName = Convert.ToString(reader[Field.FirstName]),
                 LastName = Convert.ToString(reader[Field.LastName]),
-                GroupId = Convert.ToInt32(reader[Field.GroupId])
+                GroupId = reader.GetVal<int>(Field.GroupId)
             };
         }
 
@@ -244,11 +245,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
         {
             return new PolicyInfo
             {
-                ParentId = Convert.ToInt32(reader["ParentId"]),
+                ParentId = reader.GetVal<int>("ParentId"),
                 Policy = Convert.ToInt32(reader["Policy"]),
                 FunctionId = Convert.ToInt32(reader["FuncId"]),
                 FunctionDescription = Convert.ToString(reader["FuncDesc"]),
-                GroupPolicy = Convert.ToInt32(reader["GPolicy"])
+                GroupPolicy = reader.GetVal<byte>("GPolicy")
             };
         }
 

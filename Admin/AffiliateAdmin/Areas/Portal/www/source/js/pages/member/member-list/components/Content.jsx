@@ -7,7 +7,6 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { deleteMember, fetchData, setPagingOption, toggleLoader, setShouldResetScrollPosition, setParam } from '../actions';
 
 export class Content extends PureComponent {
@@ -115,7 +114,6 @@ export class Content extends PureComponent {
         const ibcUserName = htmlDecode(dataItem.IbcUserName);
         const firstName = htmlDecode(dataItem.FirstName);
         const lastName = htmlDecode(dataItem.LastName);
-        const currentBalance = formatDecimalWithCurrencySymbol(dataItem.CurrentBalance)
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -124,7 +122,7 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={ibcUserName}>{ibcUserName}</Cell>
                 <Cell className="text-center" title={firstName}>{firstName}</Cell>
                 <Cell className="text-center" title={lastName}>{lastName}</Cell>
-                <Cell className="text-center" title={currentBalance}>{currentBalance}</Cell>
+                <Cell className="text-center" title={dataItem.CurrentBalance}>{dataItem.CurrentBalance}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
                 <Cell className="text-center" title={dataItem.AffName}>{dataItem.AffName}</Cell>
                 <Cell className="text-center" title="Remove Member">

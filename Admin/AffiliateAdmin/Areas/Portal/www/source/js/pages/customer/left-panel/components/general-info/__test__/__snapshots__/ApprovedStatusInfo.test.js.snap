@@ -46,7 +46,7 @@ exports[`left panel - components - general-info - ApprovedStatusInfo render corr
     </Col>
   </Row>
   <a
-    href="/Portal/Member?txtAffUsername=undefined"
+    href="/Portal/Member?AffName=undefined"
     target="fMain"
   >
     Member List
@@ -105,7 +105,7 @@ exports[`left panel - components - general-info - ApprovedStatusInfo render corr
     </Col>
   </Row>
   <a
-    href="/Portal/Member?txtAffUsername=12BETAFF226"
+    href="/Portal/Member?AffName=12BETAFF226"
     target="fMain"
   >
     Member List

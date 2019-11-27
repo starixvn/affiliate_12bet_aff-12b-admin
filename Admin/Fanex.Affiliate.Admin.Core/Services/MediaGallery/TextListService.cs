@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
@@ -135,7 +136,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 Category = Convert.ToString(reader["Category"]),
                 Language = Convert.ToString(reader["Language"]),
                 Currency = Convert.ToString(reader["Currency"]),
-                DeviceType = Convert.ToByte(reader["DeviceType"])
+                DeviceType = reader.GetVal<byte>("DeviceType")
             };
         }
     }

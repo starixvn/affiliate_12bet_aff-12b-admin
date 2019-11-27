@@ -36,6 +36,28 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         }
 
         [Fact]
+        public void GetDomainControlList_WhenCall_ReturnCorrectDataHasNull()
+        {
+            // Arrange
+            var service = new Mock<DomainControlService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetDomainControlListHasNull());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            service.Setup(r => r.GetObjectDb("Aff_Admin_DomainControl_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = service.Object.GetDomainControlList("en-GB");
+            var item = result.FirstOrDefault();
+
+            // Assert
+            Assert.Single(result);
+            Assert.Null(item.CreatedDateText);
+        }
+
+        [Fact]
         public void GetDomainControlList_WhenCall_ReturnNullData()
         {
             // Arrange
@@ -182,6 +204,23 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
                 ["Status"] = true,
                 ["Creator"] = "sa",
                 ["CreatedDate"] = new DateTime(2019, 10, 29)
+            };
+        }
+
+        private IDictionary<string, object> GetDomainControlListHasNull()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["DomainControlId"] = 123,
+                ["MarketID"] = "en-GB",
+                ["MarketName"] = "English (Euro)",
+                ["AffDomainID"] = 234,
+                ["AffDomain"] = "go.test.com",
+                ["RedirectDomainId"] = 345,
+                ["RedirectDomain"] = "abc.com",
+                ["Status"] = true,
+                ["Creator"] = "sa",
+                ["CreatedDate"] = DBNull.Value
             };
         }
     }

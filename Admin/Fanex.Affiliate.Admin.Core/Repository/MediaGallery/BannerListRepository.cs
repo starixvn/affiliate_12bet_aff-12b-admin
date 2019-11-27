@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
@@ -61,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     if (reader.Read())
                     {
                         item = BuildBannerInfoItem(reader);
-                        item.AffType = Convert.ToByte(reader["AffType"]);
+                        item.AffType = reader.GetVal<byte>("AffType");
                     }
                 }
             }
@@ -143,7 +144,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                 Currency = Convert.ToString(reader["Currency"]),
                 ImageType = Convert.ToString(reader["ImageType"]),
                 Size = Convert.ToString(reader["Size"]),
-                DeviceType = Convert.ToByte(reader["DeviceType"]),
+                DeviceType = reader.GetVal<byte>("DeviceType"),
             };
         }
     }

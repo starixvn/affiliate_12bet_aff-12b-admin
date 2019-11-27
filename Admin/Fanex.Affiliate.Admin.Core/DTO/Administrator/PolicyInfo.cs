@@ -11,6 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Administrator
 
         public string FunctionDescription { get; set; }
 
-        public int GroupPolicy { get; set; }
+        public byte GroupPolicy { get; set; }
     }
 }

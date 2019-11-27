@@ -5,6 +5,8 @@ using Fanex.Affiliate.Admin.Core.DTO.Member;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using DNAide.Core;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Member
 {
@@ -38,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                             LastName = Convert.ToString(reader["LastName"]),
                             CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"]),
                             AffName = Convert.ToString(reader["AffUserName"]),
-                            CurrentBalance = Convert.ToDecimal(reader["CurrBalance"])
+                            CurrentBalance = FormatNumber(reader["CurrBalance"])
                         });
                     }
                 }
@@ -110,6 +112,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
                 objectDb.ExecuteNonQuery();
             }
+        }
+
+        private static string FormatNumber(object Number)
+        {
+            decimal decimalNumber = CastAide.AsDecimal(Number, 0m);
+
+            return (decimalNumber >= 0 ? "$" : "-$") + Math.Abs(decimalNumber).ToString("N2");
+
         }
     }
 }

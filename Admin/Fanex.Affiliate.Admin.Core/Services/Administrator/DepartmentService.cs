@@ -7,6 +7,7 @@ using System.Data;
 using Fanex.Data;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 {
@@ -119,9 +120,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                     {
                         result.Add(new PolicyInfo
                         {
-                            ParentId = Convert.ToInt32(reader["ParentId"]),
+                            ParentId = reader.GetVal<int>("ParentId"),
                             Policy = Convert.ToInt32(reader["Policy"]),
-                            FunctionId = Convert.ToInt32(reader["FuncId"]),
+                            FunctionId = reader.GetVal<int>("FuncId"),
                             FunctionDescription = Convert.ToString(reader["FuncDesc"])
                         });
                     }
@@ -156,7 +157,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
                 DepartmentId = Convert.ToInt32(reader["groupid"]),
                 DepartmentName = Convert.ToString(reader["groupname"]),
                 Description = Convert.ToString(reader["groupdesc"]),
-                NoOfUser = Convert.ToInt32(reader["nouser"])
+                NoOfUser = reader.GetVal<int>("nouser")
             };
         }
 

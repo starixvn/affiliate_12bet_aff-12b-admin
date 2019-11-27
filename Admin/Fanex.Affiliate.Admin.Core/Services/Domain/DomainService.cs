@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using Fanex.Data;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
@@ -94,9 +95,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             {
                 DomainId = Convert.ToInt32(reader["DomainId"]),
                 DomainName = Convert.ToString(reader["DomainName"]),
-                IsSSL = Convert.ToBoolean(reader["IsSSL"]),
+                IsSSL = reader.GetVal<bool>("IsSSL"),
                 Creator = Convert.ToString(reader["Creator"]),
-                CreatedDate = Convert.ToDateTime(reader["CreateDate"])
+                CreatedDate = reader["CreateDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreateDate"])
             };
         }
     }

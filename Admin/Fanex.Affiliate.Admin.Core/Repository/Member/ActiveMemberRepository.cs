@@ -5,6 +5,7 @@ using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Member
 {
@@ -41,11 +42,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
             {
                 result.Add(new ActiveMemberInfo
                 {
-                    IbcCustId = Convert.ToInt32(reader["IBCCustID"]),
+                    IbcCustId = reader.GetVal<int>("IBCCustID"),
                     IbcUserName = Convert.ToString(reader["IBCUserName"]),
                     UserName = Convert.ToString(reader[Field.UserName]),
-                    FirstName = reader[Field.FirstName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.FirstName]),
-                    LastName = reader[Field.LastName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.LastName]),
+                    FirstName = Convert.ToString(reader[Field.FirstName]),
+                    LastName = Convert.ToString(reader[Field.LastName]),
                     CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"])
                 });
             }
@@ -64,8 +65,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                     result.Add(new InactiveMemberInfo
                     {
                         UserName = Convert.ToString(reader[Field.UserName]),
-                        FirstName = reader[Field.FirstName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.FirstName]),
-                        LastName = reader[Field.LastName] == DBNull.Value ? string.Empty : Convert.ToString(reader[Field.LastName])
+                        FirstName = Convert.ToString(reader[Field.FirstName]),
+                        LastName = Convert.ToString(reader[Field.LastName])
                     });
                 }
             }
@@ -94,11 +95,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                             Email = Convert.ToString(reader["Email"]),
                             Password = Convert.ToString(reader["Password"]),
                             OddsType = Convert.ToString(reader["OddsType"]),
-                            AffiliateId = reader["AffiliateId"] == DBNull.Value ? 0 : Convert.ToInt32(reader["AffiliateId"]),
+                            AffiliateId = reader.GetVal<int>("AffiliateId"),
                             Country = Convert.ToString(reader["Country"]),
-                            AgentId = reader["AgentId"] == DBNull.Value ? 0 : Convert.ToInt32(reader["AgentId"]),
+                            AgentId = reader.GetVal<int>("AgentId"),
                             BonusCode = Convert.ToString(reader["BonusCode"]),
-                            DepositUserId = Convert.ToInt32(reader["DepositUserId"]),
+                            DepositUserId = Convert.ToInt32(reader["DepositUserId"])
                         });
                     }
                 }

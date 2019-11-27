@@ -30,7 +30,7 @@ export const ApprovedStatusInfo = (props) => {
                     />}
                 </Col>
             </Row>
-            <a href={resolveClientUrl(`Portal/Member?txtAffUsername=${affName}`)} target='fMain'>{resource.MemberList}</a>
+            <a href={resolveClientUrl(`Portal/Member?AffName=${affName}`)} target='fMain'>{resource.MemberList}</a>
         </React.Fragment>
     )
 }

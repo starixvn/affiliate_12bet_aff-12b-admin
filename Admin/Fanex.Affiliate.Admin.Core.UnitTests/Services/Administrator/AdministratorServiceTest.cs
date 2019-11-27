@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
-            ReaderHelper.MapReaderData(dataReader, GetUser());
+            ReaderHelper.MapReaderData(dataReader, GetUserHasCreateDateIsNull());
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_Con_AdminSelByGroupID", 120)).Returns(objectDb.Object);
 
@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
 
             // Assert
             Assert.Single(result);
-            Assert.Equal("11/06/2019 00:00:00", item.CreatedDateText);
+            Assert.Null(item.CreatedDateText);
         }
 
         [Fact]
@@ -378,6 +378,23 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
                 ["GroupName"] = "abc",
                 ["username"] = "abc",
                 ["CreateDate"] = new DateTime(2019,11,6),
+                ["closed"] = false
+            };
+        }
+
+        private IDictionary<string, object> GetUserHasCreateDateIsNull()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["custid"] = 123,
+                ["username"] = "abc",
+                ["FirstName"] = "abc",
+                ["LastName"] = "abc",
+                ["Creator"] = "sa",
+                ["GroupId"] = 234,
+                ["GroupName"] = "abc",
+                ["username"] = "abc",
+                ["CreateDate"] = DBNull.Value,
                 ["closed"] = false
             };
         }

@@ -209,7 +209,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
                 ["IBCUserName"] = "12betaff226",
                 ["FirstName"] = "12Bet",
                 ["LastName"] = "Aff",
-                ["CurrBalance"] = 123m,
+                ["CurrBalance"] = -123m,
                 ["CreatedDate"] = DBNull.Value,
                 ["AffUserName"] = "12BETAFF226",
             };

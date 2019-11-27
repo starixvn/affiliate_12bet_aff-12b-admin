@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
         }
 
         [Fact]
-        public void GetMessageList_WhenCall_ReturnCorrectDataWithUpdatedDateNull()
+        public void GetMessageList_WhenCall_ReturnCorrectDataHasNull()
         {
             // Arrange
             var service = new Mock<MessageService> { CallBase = true };
@@ -61,11 +61,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             var result = service.Object.GetMessageList(new MessageParam());
             var messageInfo = result.MainData.FirstOrDefault();
             messageInfo.UpdatedDate = null;
+            messageInfo.PostedDate = null;
 
             // Assert
             Assert.Single(result.MainData);
             Assert.Equal(1, result.TotalItem);
-            Assert.Equal("09/18/2019 00:00:00", messageInfo.PostedDateText);
+            Assert.Null(messageInfo.PostedDateText);
             Assert.Null(messageInfo.UpdatedDateText);
         }
 

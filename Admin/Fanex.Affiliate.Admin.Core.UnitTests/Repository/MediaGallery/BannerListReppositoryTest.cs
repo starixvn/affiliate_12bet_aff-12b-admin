@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         private const string SpKeyBannerDel = "Aff_Admin_Banner_Del";
 
         [Fact]
-        public void GetBannerList_WhenCallWithSpKeyBannerSel_ReturnCorrectData()
+        public void GetBannerList_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var repository = new Mock<BannerListRepository> { CallBase = true };
@@ -47,26 +47,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
-
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
-            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
-            repository.Setup(r => r.GetObjectDb(SpKeyBannerSel, 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.GetBannerList(new BannerParam());
-
-            // Assert
-            Assert.Equal(0, result.TotalItem);
-        }
-
-        [Fact]
-        public void GetBannerList_WhenCallWithSpKeyBannerSelByParentCate_ReturnNullData()
-        {
-            // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);

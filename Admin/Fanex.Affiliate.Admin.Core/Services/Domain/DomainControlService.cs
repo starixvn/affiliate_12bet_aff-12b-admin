@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Data;
 using System.Data;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
@@ -30,13 +31,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
                             DomainId = Convert.ToInt32(reader["DomainControlId"]),
                             MarketId = Convert.ToString(reader["MarketId"]),
                             Market = Convert.ToString(reader["MarketName"]),
-                            AffDomainId = reader["AffDomainId"] == DBNull.Value ? 0 : Convert.ToInt32(reader["AffDomainId"]),
+                            AffDomainId = reader.GetVal<int>("AffDomainId"),
                             AffDomain = Convert.ToString(reader["AffDomain"]),
-                            RedirectDomainId = reader["RedirectDomainId"] == DBNull.Value ? 0 : Convert.ToInt32(reader["RedirectDomainId"]),
+                            RedirectDomainId = reader.GetVal<int>("RedirectDomainId"),
                             RedirectDomain = Convert.ToString(reader["RedirectDomain"]),
-                            IsUsed = Convert.ToBoolean(reader["Status"]),
+                            IsUsed = reader.GetVal<bool>("Status"),
                             Creator = Convert.ToString(reader["Creator"]),
-                            CreatedDate = Convert.ToDateTime(reader["CreatedDate"])
+                            CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"])
                         });
                     }
                 }

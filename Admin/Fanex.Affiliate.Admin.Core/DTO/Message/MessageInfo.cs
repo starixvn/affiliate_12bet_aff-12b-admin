@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Message
 {
@@ -12,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Message
 
         public string Creator { get; set; }
 
-        public DateTime PostedDate { get; set; }
+        public DateTime? PostedDate { get; set; }
 
         public string Message { get; set; }
 
@@ -22,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Message
 
         public DateTime? UpdatedDate { get; set; }
 
-        public string PostedDateText => PostedDate.ToString("MM/dd/yyyy HH:mm:ss");
+        public string PostedDateText => PostedDate?.ToString("MM/dd/yyyy HH:mm:ss");
 
         public string UpdatedDateText => UpdatedDate?.ToString("MM/dd/yyyy HH:mm:ss");
     }

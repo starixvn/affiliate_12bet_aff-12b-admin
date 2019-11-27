@@ -47,10 +47,10 @@ describe('home actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER' , data: true },
+            //{ type: 'TOGGLE_LOADER' , data: true },
             { type: types.SET_ONLINE_LIST , data: expectedResponse.data.MainData },
             { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 2 }},
-            { type: 'TOGGLE_LOADER', data: false },
+            //{ type: 'TOGGLE_LOADER', data: false },
         ];
         const param = {
             pageIndex: 1,
@@ -68,10 +68,10 @@ describe('home actions', () => {
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER' , data: true },
+            //{ type: 'TOGGLE_LOADER' , data: true },
             { type: types.SET_ONLINE_LIST , data: [] },
             { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 0 }},
-            { type: 'TOGGLE_LOADER', data: false },
+            //{ type: 'TOGGLE_LOADER', data: false },
         ];
         const param = {
             pageIndex: 1,
@@ -148,7 +148,9 @@ describe('home actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const expectedAction = [
-            { type: types.SET_GENERAL_INFO , data: { PaymentRequestNumber: 1 } }
+            { type: 'TOGGLE_LOADER' , data: true },
+            { type: types.SET_GENERAL_INFO , data: { PaymentRequestNumber: 1 } },
+            { type: 'TOGGLE_LOADER' , data: false }
         ];
         
         const store = mockStore({ todos: [] });
@@ -162,7 +164,9 @@ describe('home actions', () => {
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
-            { type: types.SET_GENERAL_INFO , data: defaultGeneralInfo }
+            { type: 'TOGGLE_LOADER' , data: true },
+            { type: types.SET_GENERAL_INFO , data: defaultGeneralInfo },
+            { type: 'TOGGLE_LOADER' , data: false }
         ];
         
         const store = mockStore({ todos: [] });

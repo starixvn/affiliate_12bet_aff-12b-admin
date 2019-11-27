@@ -36,6 +36,28 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         }
 
         [Fact]
+        public void GetDomainList_WhenCall_ReturnCorrectDataHasNull()
+        {
+            // Arrange
+            var service = new Mock<DomainService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetDomainListHasNull());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            service.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateDomain_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = service.Object.GetDomainList(true);
+            var item = result.FirstOrDefault();
+
+            // Assert
+            Assert.Single(result);
+            Assert.Null(item.CreatedDateText);
+        }
+
+        [Fact]
         public void GetDomainList_WhenCall_ReturnNullData()
         {
             // Arrange
@@ -177,6 +199,18 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
                 ["IsSSL"] = true,
                 ["Creator"] = "sa",
                 ["CreateDate"] = new DateTime(2019, 10, 25)
+            };
+        }
+
+        private IDictionary<string, object> GetDomainListHasNull()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["DomainId"] = 123,
+                ["DomainName"] = "abc.com",
+                ["IsSSL"] = true,
+                ["Creator"] = "sa",
+                ["CreateDate"] = DBNull.Value
             };
         }
     }

@@ -38,9 +38,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
                             MessageId = Convert.ToInt32(reader[Field.MessageId]),
                             Important = Convert.ToBoolean(reader["Important"]),
                             Creator = Convert.ToString(reader["creatorname"]),
-                            PostedDate = Convert.ToDateTime(reader["PostedDate"]),
+                            PostedDate = reader["PostedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["PostedDate"]),
                             UpdatedDate = reader["UpdatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["UpdatedDate"]),
-                            UpdatedBy = reader["UpdatedName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["UpdatedName"]),
+                            UpdatedBy = Convert.ToString(reader["UpdatedName"]),
                             Message = Convert.ToString(reader["message_en"])
                         });
                     }
