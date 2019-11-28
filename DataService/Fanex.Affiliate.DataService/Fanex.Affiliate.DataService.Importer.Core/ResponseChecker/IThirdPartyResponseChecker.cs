@@ -9,10 +9,6 @@ namespace Fanex.Affiliate.DataService.Importer.Core.ResponseChecker
 {
     public interface IThirdPartyResponseChecker
     {
-        /// <summary>
-        /// Check that xml 
-        /// </summary>
-        /// <param name="data"></param>
         void CheckXml(XDocument xml);
     }
 }

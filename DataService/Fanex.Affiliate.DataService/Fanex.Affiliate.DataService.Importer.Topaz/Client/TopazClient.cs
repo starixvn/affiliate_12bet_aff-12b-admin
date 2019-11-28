@@ -9,9 +9,6 @@ namespace Fanex.Affiliate.DataService.Importer.FlowGaming.Client
 {
     public class TopazClient : ApiClientBase
     {
-        public TopazClient() : base()
-        {
-        }
         public override async Task<string> GetResponseAsync(string url, NameValueCollection query)
         {
             var client = HttpClientPooling.GetHttpClient(url);

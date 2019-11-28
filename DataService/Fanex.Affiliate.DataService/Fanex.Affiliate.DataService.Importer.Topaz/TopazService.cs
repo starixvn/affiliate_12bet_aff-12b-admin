@@ -34,7 +34,9 @@ namespace Fanex.Affiliate.DataService.Importer
         public override async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
         {
             if (DateTime.Compare(startTime, endTime) >= 0)
+            {
                 throw new ThirdPartyProductException($"Flow Gaming - startDate {startTime} later or equal than endDate {endTime}");
+            }
 
             var timeRanges = GetTimeRangeRequest(startTime, endTime);
             var datas = new List<string>(timeRanges.Count());

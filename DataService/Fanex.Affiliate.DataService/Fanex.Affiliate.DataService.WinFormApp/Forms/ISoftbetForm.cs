@@ -94,13 +94,13 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             }
             finally
             {
-                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                this.Invoke(new MethodInvoker(() =>
                 {
                     DisplayResult();
                     richTextRawData.Text = rawDataBuilder.ToString();
                     richTextConvertedData.Text = convertedDataBuilder.ToString();
                     ToggleButton(true);
-                }), null);
+                }));
             }
         }
 
@@ -151,11 +151,11 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             }
             finally
             {
-                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                this.Invoke(new MethodInvoker(() =>
                 {
                     DisplayResult();
                     ToggleButton(true);
-                }), null);
+                }));
             }
         }
 
@@ -198,11 +198,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
                                 _isoftbetService.Import(paramByBatch);
 
-                                _logBuilder.AppendLine($"Done - Start:{paramByBatch.StartTime.ToString()} - End:{paramByBatch.EndTime.ToString()}");
-                                synchronizationContext.Post(new SendOrPostCallback((state) =>
-                                {
-                                    richTextLog.Text = _logBuilder.ToString();
-                                }), null);
+                                _logBuilder.AppendLine($"Done - Start:{paramByBatch.StartTime} - End:{paramByBatch.EndTime}");
+                                this.Invoke(new MethodInvoker(() => richTextLog.Text = _logBuilder.ToString()));
                             }
                         });
                     }
@@ -214,13 +211,13 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     }
                     finally
                     {
-                        synchronizationContext.Post(new SendOrPostCallback((state) =>
+                        this.Invoke(new MethodInvoker(() =>
                         {
                             _logBuilder.AppendLine("Done!");
                             richTextLog.Text = _logBuilder.ToString();
                             _logBuilder.Clear();
                             ToggleButton(true);
-                        }), null);
+                        }));
                     }
                 }
             }

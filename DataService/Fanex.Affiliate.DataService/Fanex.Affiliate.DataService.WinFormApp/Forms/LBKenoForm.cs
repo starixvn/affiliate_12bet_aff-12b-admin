@@ -13,14 +13,11 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
     public partial class LBKenoForm : ImporterFormBase
     {
-        public LBKenoForm() : base()
+        public LBKenoForm()
         {
             InitializeComponent();
             Service = new LBKenoService();
         }
 
-        private void LBKeno_FormClosed(object sender, FormClosedEventArgs e)
-        {
-        }
     }
 }

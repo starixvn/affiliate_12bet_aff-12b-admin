@@ -38,7 +38,9 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Extension
             { 
                 builder.Append(key).Append("=").Append(col[key]);
                 if (index < count)
+                {
                     builder.Append("&");
+                }
                 index++;
             }
             return builder.ToString();

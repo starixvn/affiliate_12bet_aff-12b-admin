@@ -15,9 +15,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
     public class VrLotteryClient : ApiClientBase, IConnectionCountable
     {
         private static Lazy<Dictionary<string, int>> _requestCountMapping = new Lazy<Dictionary<string, int>>(() => new Dictionary<string, int>(), true);
-        private Dictionary<string, int> RequestCountMapping => _requestCountMapping.Value;
-
-        public VrLotteryClient() : base() { }
+        private static Dictionary<string, int> RequestCountMapping => _requestCountMapping.Value;
 
         public override async Task<string> GetResponseAsync(string url, NameValueCollection query)
         {
@@ -27,7 +25,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
             var sendContent = new StringContent(json, Encoding.UTF8, "application/json");
 
             IncreaseConnection(url);
-            using (var resposeMessage = await client.PostAsync(url, sendContent).ConfigureAwait(false))
+            using (var resposeMessage = await client.PostAsync(new Uri(url), sendContent).ConfigureAwait(false))
             {
 
                 DecreaseConnection(url);
@@ -41,7 +39,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
             return RequestCountMapping.ContainsKey(url) ? RequestCountMapping[url] : 0;
         }
 
-        private void DecreaseConnection(string url)
+        private static void DecreaseConnection(string url)
         {
             lock (RequestCountMapping)
             {
@@ -49,19 +47,25 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
                 {
                     RequestCountMapping[url]--;
                     if (RequestCountMapping[url] < 0)
+                    {
                         RequestCountMapping[url] = 0;
+                    }
                 }
             }
         }
 
-        private void IncreaseConnection(string url)
+        private static void IncreaseConnection(string url)
         {
             lock (RequestCountMapping)
             {
                 if (RequestCountMapping.ContainsKey(url))
+                {
                     RequestCountMapping[url]++;
+                }
                 else
+                {
                     RequestCountMapping.Add(url, 1);
+                }
             }
         }
 

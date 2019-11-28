@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.DataService.Importer
     public class EbetService : IEbetService
     {
         private const int WaitingTimeInMillisecond = 90000;
-        public readonly IAppSettings _appSetting;
+        private readonly IAppSettings _appSetting;
 
         private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
 
@@ -114,7 +114,7 @@ namespace Fanex.Affiliate.DataService.Importer
                 foreach (EbetApiResult dataItem in resultDataList)
                 {
                     var ebetSummary = EbetParser.FromJson(dataItem.JsonData);
-                    if (ebetSummary.ResultInfo.Status != 200)
+                    if (ebetSummary.ResultInfo.Status != (int)HttpStatusCode.OK)
                     {
                         var message = BuildErrorMessage(param, ebetSummary, dataItem);
                         throw new ThirdPartyProductException(message);
@@ -184,8 +184,8 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var attributes = "CURRENCYID=\"" + param.CurrencyId + "\" " +
                             "USERNAME=\"" + param.UserName + "\" " +
-                            "STARTTIME=\"" + param.StartTime.ToString() + "\" " +
-                            "ENDTIME=\"" + param.EndTime.ToString() + "\" " +
+                            "STARTTIME=\"" + param.StartTime + "\" " +
+                            "ENDTIME=\"" + param.EndTime + "\" " +
                             "PAGENUMBER=\"" + param.PageNumber + "\" " +
                             "PAGESIZE=\"" + param.PageSize + "\" " +
                             "TIMESTAMP=\"" + param.TimeStamp + "\" " +
@@ -206,7 +206,8 @@ namespace Fanex.Affiliate.DataService.Importer
             {
                 var payoutTime = DateTimeConverter.ToGMT(DateTimeOffset.FromUnixTimeSeconds(item.PayoutUnixTime).DateTime, TimeZoneId.GmtPlus8);
                 var createTime = DateTimeConverter.ToGMT(DateTimeOffset.FromUnixTimeSeconds(item.CreateUnixTime).DateTime, TimeZoneId.GmtPlus8);
-                builder.AppendLine($"<BETHISTORY ID=\"{item.BetHistoryId}\" USERNAME=\"{item.UserName}\" BET=\"{item.Bet}\" PAYOUT=\"{item.Payout}\" PAYOUTTIME=\"{payoutTime.ToString()}\" CREATETIME=\"{createTime.ToString()}\" />");
+                builder.AppendLine($"<BETHISTORY ID=\"{item.BetHistoryId}\" USERNAME=\"{item.UserName}\"")
+                    .Append($"BET=\"{item.Bet}\" PAYOUT=\"{item.Payout}\" PAYOUTTIME=\"{payoutTime}\" CREATETIME=\"{createTime}\" />");
             }
             builder.AppendLine("</BETHISTORYLIST>");
 
