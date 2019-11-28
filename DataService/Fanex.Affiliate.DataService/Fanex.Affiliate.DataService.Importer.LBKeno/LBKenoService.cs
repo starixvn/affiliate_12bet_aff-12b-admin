@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Globalization;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
@@ -54,13 +55,13 @@ namespace Fanex.Affiliate.DataService.Importer
             queryValues.Add("product_code", paramToRequest.ProductCode);
             queryValues.Add("start_time", paramToRequest.StartTime.ToString(dateTimeFormat));
             queryValues.Add("end_time", paramToRequest.EndTime.ToString(dateTimeFormat));
-            queryValues.Add("status", paramToRequest.Status.ToString().ToLower());
+            queryValues.Add("status", paramToRequest.Status.ToString().ToLower(CultureInfo.InvariantCulture));
             return queryValues;
         }
 
         private LBKenoParam BuildParam(DateTime startTime, DateTime endTime)
         {
-            return new LBKenoParam()
+            return new LBKenoParam
             {
                 SecretKey = _appSetting.GetValue("LBKenoSecretKey"),
                 OperatorId = _appSetting.GetValue("LBKenoOperatorId"),

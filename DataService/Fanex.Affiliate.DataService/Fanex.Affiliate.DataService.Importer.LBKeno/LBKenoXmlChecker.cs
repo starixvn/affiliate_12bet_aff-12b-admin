@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Affiliate.DataService.Importer.Core.ResponseChecker;
+using Fanex.Affiliate.DataService.Importer.LBKeno.Constant;
 using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer.LBKeno
@@ -13,9 +14,9 @@ namespace Fanex.Affiliate.DataService.Importer.LBKeno
             if (statusField == null)
                 throw new ThirdPartyProductException("LBKeno - Wrong xml format");
             var code = statusField.Value.Trim();
-            if (code == "0")
+            if (code == ResponseCode.SUCCESS)
                 return;
-            if (code == "40.01")
+            if (code == ResponseCode.INVALID_ACCESS)
                 throw new ThirdPartyProductException($"LBKeno - {code} Invalid secrtkey and/or IP address not white listed");
 
             var message = "";

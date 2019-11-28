@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.DataService.Importer
         public virtual async Task<IEnumerable<string>> GetRawDataByGameTypeAsync(DateTime startTime, DateTime endTime, GameType type)
         {
             var pageNumber = 1;
-            var paramForDateTime = new GpiParam()
+            var paramForDateTime = new GpiParam
             {
                 SDate = startTime,
                 EDate = endTime,
@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.DataService.Importer
             return Task.FromResult(xml);
         }
 
-        private string BuildJsonString(string data)
+        private static string BuildJsonString(string data)
         {
             var builder = new StringBuilder();
             builder.Append("{")
@@ -148,7 +148,7 @@ namespace Fanex.Affiliate.DataService.Importer
             var pageSize = int.Parse(_appSetting.GetValue("GpiLotteryPageSize"));
             var tranStatus = GetTransactionStatus();
 
-            return new GpiParam()
+            return new GpiParam
             {
                 VendorName = vendorName,
                 SDate = param.SDate,
@@ -170,7 +170,7 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        private GameType GetGameType(string gameName)
+        private static GameType GetGameType(string gameName)
         {
             GameType result;
             if (!System.Enum.TryParse(gameName, true, out result))

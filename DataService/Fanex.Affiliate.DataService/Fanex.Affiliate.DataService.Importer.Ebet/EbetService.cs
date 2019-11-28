@@ -114,7 +114,7 @@ namespace Fanex.Affiliate.DataService.Importer
                 foreach (EbetApiResult dataItem in resultDataList)
                 {
                     var ebetSummary = EbetParser.FromJson(dataItem.JsonData);
-                    if (ebetSummary.ResultInfo.Status != 200)
+                    if (ebetSummary.ResultInfo.Status != (int)HttpStatusCode.OK)
                     {
                         var message = BuildErrorMessage(param, ebetSummary, dataItem);
                         throw new ThirdPartyProductException(message);
@@ -184,8 +184,8 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var attributes = "CURRENCYID=\"" + param.CurrencyId + "\" " +
                             "USERNAME=\"" + param.UserName + "\" " +
-                            "STARTTIME=\"" + param.StartTime.ToString() + "\" " +
-                            "ENDTIME=\"" + param.EndTime.ToString() + "\" " +
+                            "STARTTIME=\"" + param.StartTime + "\" " +
+                            "ENDTIME=\"" + param.EndTime + "\" " +
                             "PAGENUMBER=\"" + param.PageNumber + "\" " +
                             "PAGESIZE=\"" + param.PageSize + "\" " +
                             "TIMESTAMP=\"" + param.TimeStamp + "\" " +

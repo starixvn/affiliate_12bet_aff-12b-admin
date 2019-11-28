@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Affiliate.DataService.Importer.Core.ResponseChecker;
+using System;
 using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer.IMOne
@@ -12,25 +13,27 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne
             var code = root.Element("Code");
             if (code == null)
                 throw new ThirdPartyProductException($"VRLottery - xml not correct format {xml}");
-            int value;
-            if (!int.TryParse(code.Value, out value))
-                throw new ThirdPartyProductException($"VRLottery - Can't convert {code.Value} response code to int");
-            switch(value)
+
+            IMoneResponseStatus status;
+            if (!Enum.TryParse<IMoneResponseStatus>(code.Value, out status))
+                throw new ThirdPartyProductException($"VRLottery - Can't convert {code.Value} response code");
+
+            switch(status)
             {
-                case 507:
+                case IMoneResponseStatus.INVALID_CURRENCY:
                     throw new ThirdPartyProductException($"VRLottery - Invalid Currency.");
-                case 508:
+                case IMoneResponseStatus.INVALID_CODEWALLET:
                     throw new ThirdPartyProductException($"VRLottery - Invalid Product Wallet");
-                case 525:
+                case IMoneResponseStatus.INVALID_TIME_RANGE:
                     throw new ThirdPartyProductException($"VRLottery - Invalid timerange, it must be within the configured timerange.");
-                case 526:
+                case IMoneResponseStatus.INVALID_START_TIME:
                     throw new ThirdPartyProductException($"VRLottery - StartDate can't be later than EndDate or now.");
-                case 528:
+                case IMoneResponseStatus.INVALID_DATETIME_FORMAT:
                     throw new ThirdPartyProductException($"VRLottery - Invalid datetime format.");
-                case 0:
+                case IMoneResponseStatus.SUCCESS:
                     return;
                 default:
-                    throw new ThirdPartyProductException($"VRLottery - Fail request - response code {value}");
+                    throw new ThirdPartyProductException($"VRLottery - Fail request - response code {status}");
             }
         }
     }
