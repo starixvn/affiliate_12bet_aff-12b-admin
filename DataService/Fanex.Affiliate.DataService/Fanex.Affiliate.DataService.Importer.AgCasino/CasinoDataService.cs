@@ -91,7 +91,9 @@
                 for (int i = 0; i < lineContent.Length; i++)
                 {
                     if (!hsColumnName.ContainsKey(lineContent[i]))
+                    {
                         hsColumnName.Add(lineContent[i], i);//Map order column to Column name
+                    }
                 }
 
                 var indexDate = GetIndexOfColName(hsColumnName, ColumnName.Date);
@@ -147,16 +149,15 @@
                     return _casinoDataImporterRepository.ImportDataForIncomeAccess(metaModel);
 
                 default:
+#pragma warning disable S109 // Magic numbers should not be used
                     return new ResultInfo { Code = 999, Message = "System Type is not defined" };
+#pragma warning restore S109 // Magic numbers should not be used
             }
         }
 
         private static int GetIndexOfColName(Hashtable hs, string colName)
         {
-            if (hs[colName] != null)
-                return Convert.ToInt32(hs[colName]);
-            else
-                return Convert.ToInt32(hs["\"" + colName + "\""]);
+            return Convert.ToInt32(hs[colName] ?? hs["\"" + colName + "\""]);
         }
     }
 }

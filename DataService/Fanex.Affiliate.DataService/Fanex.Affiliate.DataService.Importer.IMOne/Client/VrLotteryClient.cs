@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Specialized;
@@ -27,7 +26,6 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne.Client
             IncreaseConnection(url);
             using (var resposeMessage = await client.PostAsync(new Uri(url), sendContent).ConfigureAwait(false))
             {
-
                 DecreaseConnection(url);
                 resposeMessage.EnsureSuccessStatusCode();
                 return await resposeMessage.Content.ReadAsStringAsync();

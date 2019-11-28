@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.DataService.Importer
             return datas;
         }
 
-        private IEnumerable<Tuple<DateTime,DateTime>> GetTimeRangeRequest(DateTime startTime, DateTime endTime)
+        private static IEnumerable<Tuple<DateTime,DateTime>> GetTimeRangeRequest(DateTime startTime, DateTime endTime)
         {
             var startRequestTime = startTime;
             var endRequestTime = GetEndRequestTime(startRequestTime.AddMinutes(MAX_TIME_RANGE_TRANSACTION), endTime);
@@ -66,12 +66,12 @@ namespace Fanex.Affiliate.DataService.Importer
             }
         }
 
-        private DateTime GetEndRequestTime(DateTime compareTime, DateTime endTime)
+        private static DateTime GetEndRequestTime(DateTime compareTime, DateTime endTime)
         {
             return DateTime.Compare(compareTime, endTime) > 0 ? endTime : compareTime;
         }
 
-        private bool IsExceedCallLimit(string data)
+        private static bool IsExceedCallLimit(string data)
         {
             return data.Contains(CALL_LIMIT_EXCEEDED);
         }
@@ -104,7 +104,9 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var xml = XmlHelper.ParseToXDocumentFromJson(raw);
             if (xml == null)
+            {
                 throw new ThirdPartyProductException($"FlowGaming - Cant convert json response to xml - {raw}");
+            }
             return Task.FromResult(xml);
         }
     }

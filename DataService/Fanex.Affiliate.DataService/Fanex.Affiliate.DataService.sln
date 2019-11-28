@@ -47,13 +47,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.DataService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.DataService.Importer.AgCasino", "Fanex.Affiliate.DataService.Importer.AgCasino\Fanex.Affiliate.DataService.Importer.AgCasino.csproj", "{E1FEA403-E07C-4D0B-8D9C-4A79FF356B18}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sonarqube", "Sonarqube", "{70224CE1-9D49-40A6-9B07-3EDF2914A764}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\SonarQube\12BETAFFADMINCSharp.ruleset = ..\..\SonarQube\12BETAFFADMINCSharp.ruleset
-		..\..\SonarQube\SolutionBinding.sqconfig = ..\..\SonarQube\SolutionBinding.sqconfig
-		..\..\SonarQube\SonarQube.Analysis.xml = ..\..\SonarQube\SonarQube.Analysis.xml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

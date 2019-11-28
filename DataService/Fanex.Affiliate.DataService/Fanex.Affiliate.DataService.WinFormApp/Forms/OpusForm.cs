@@ -11,16 +11,16 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
     public partial class OpusForm : Form
     {
-        private const int MAX_TIME_RANGE = 15;
-        private const int TIME_BETWEEN_TWO_TRANSACTION = 16000;
         private readonly IOpusService _opusService;
         private readonly StringBuilder _logBuilder;
 
+        private readonly SynchronizationContext synchronizationContext;
 
         public OpusForm()
         {
             InitializeComponent();
             _opusService = new OpusService();
+            synchronizationContext = SynchronizationContext.Current;
             _logBuilder = new StringBuilder();
         }
 
@@ -68,12 +68,12 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             }
             finally
             {
-                this.Invoke(new MethodInvoker(() =>
+                synchronizationContext.Post(new SendOrPostCallback((state) =>
                 {
                     DisplayResult();
                     richTextRawData.Text = rawDataBuilder.ToString();
                     ToggleButton(true);
-                }));
+                }), null);
             }
         }
 
@@ -113,9 +113,9 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     {
                         ToggleButton(false);
 
-                        await Task.Run(async () =>
+                        await Task.Run(() =>
                         {
-                            for (var start = startTimePicker.Value; DateTime.Compare(start, endTimePicker.Value) < 0; start = start.AddMinutes(MAX_TIME_RANGE))
+                            for (var start = startTimePicker.Value; DateTime.Compare(start, endTimePicker.Value) < 0; start = start.AddMinutes(15))
                             {
                                 var opusParam = new OpusParam
                                 {
@@ -124,9 +124,12 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                                 };
                                 _opusService.Import(opusParam);
 
-                                _logBuilder.AppendLine($"Done - Start:{opusParam.StartTime} - End:{opusParam.EndTime}");
-                                richTextLog.Invoke(new MethodInvoker(() => richTextLog.Text = _logBuilder.ToString()));
-                                await Task.Delay(TIME_BETWEEN_TWO_TRANSACTION);
+                                _logBuilder.AppendLine($"Done - Start:{opusParam.StartTime.ToString()} - End:{opusParam.EndTime.ToString()}");
+                                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                                {
+                                    richTextLog.Text = _logBuilder.ToString();
+                                }), null);
+                                Thread.Sleep(16000);
                             }
                         });
                     }
@@ -138,13 +141,13 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     }
                     finally
                     {
-                        this.Invoke(new MethodInvoker(() =>
+                        synchronizationContext.Post(new SendOrPostCallback((state) =>
                         {
                             _logBuilder.AppendLine("Done!");
                             richTextLog.Text = _logBuilder.ToString();
                             _logBuilder.Clear();
                             ToggleButton(true);
-                        }));
+                        }), null);
                     }
                 }
             }

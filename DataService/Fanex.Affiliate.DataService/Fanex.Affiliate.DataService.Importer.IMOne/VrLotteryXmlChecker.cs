@@ -11,27 +11,23 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne
             var root = xml.Root;
             var code = root.Element("Code");
             if (code == null)
-            {
                 throw new ThirdPartyProductException($"VRLottery - xml not correct format {xml}");
-            }
             int value;
             if (!int.TryParse(code.Value, out value))
-            {
                 throw new ThirdPartyProductException($"VRLottery - Can't convert {code.Value} response code to int");
-            }
             switch(value)
             {
-                case ResultCode.INVALID_CURRENCY:
+                case 507:
                     throw new ThirdPartyProductException($"VRLottery - Invalid Currency.");
-                case ResultCode.INVALID_PRODUCT_WALLET:
+                case 508:
                     throw new ThirdPartyProductException($"VRLottery - Invalid Product Wallet");
-                case ResultCode.INVALID_TIMERANGE:
+                case 525:
                     throw new ThirdPartyProductException($"VRLottery - Invalid timerange, it must be within the configured timerange.");
-                case ResultCode.INVALID_STARTTIME:
+                case 526:
                     throw new ThirdPartyProductException($"VRLottery - StartDate can't be later than EndDate or now.");
-                case ResultCode.INVALID_TIMEFORMAT:
+                case 528:
                     throw new ThirdPartyProductException($"VRLottery - Invalid datetime format.");
-                case ResultCode.SUCCESS:
+                case 0:
                     return;
                 default:
                     throw new ThirdPartyProductException($"VRLottery - Fail request - response code {value}");

@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                             JobType = 1
                         };
 
-                        logBuilder.AppendLine($"ISoftbet Daily Job is starting. Request time {param.StartTime} - {param.EndTime}");
+                        logBuilder.AppendLine($"ISoftbet Daily Job is starting. Request time {param.StartTime.ToString()} - {param.EndTime.ToString()}");
 
                         _isoftbetService.Import(param);
 

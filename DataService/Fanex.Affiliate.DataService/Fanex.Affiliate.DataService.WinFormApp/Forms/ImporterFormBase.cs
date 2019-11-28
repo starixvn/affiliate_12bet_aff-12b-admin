@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         protected IEnumerable<string> RawDatas { get; set; }
         protected List<XDocument> XmlDatas { get; set; } = new List<XDocument>();
 
-        protected TimeSpan _localTimeOffset = TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now);
+        protected TimeSpan _localTimeOffset => TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now);
         protected virtual TimeSpan _serverTimeOffset => new TimeSpan(8, 0, 0); 
 
         public ImporterFormBase()
@@ -63,17 +63,15 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             {
                 if (chkBoxConvertDirectFromTxtField.Checked)
                 {
-                    var xml = await GetXmlFromTextFieldAsync();
+                    var xml =  await GetXmlFromTextFieldAsync();
                     XmlDatas.Add(xml);
                 }
                 else
-                {
                     foreach (var data in RawDatas)
                     {
                         var xml = await Task.Run(async () => await Service.ConvertRawDataToXmlAsync(data));
                         XmlDatas.Add(xml);
                     }
-                }
                 DisplayXmlData();
                 Logger.Log("Finished convert raw data");
             }
@@ -174,8 +172,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
     }
     public class Logger
     {
-        private readonly RichTextBox _txtBox;
-        public Logger(RichTextBox txtBox)
+        private readonly TextBoxBase _txtBox;
+        public Logger(TextBoxBase txtBox)
         {
             _txtBox = txtBox;
         }
@@ -187,16 +185,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         public void Log(string msg, Color color)
         {
-            _txtBox.Invoke(new MethodInvoker(() => 
-            {
-                _txtBox.SelectionStart = _txtBox.TextLength;
-                _txtBox.SelectionLength = 0;
-
-                _txtBox.SelectionColor = color;
-                _txtBox.AppendText($"{msg}\n");
-                _txtBox.SelectionColor = _txtBox.ForeColor;
-                
-            }));
+            _txtBox.Invoke(new MethodInvoker(() => _txtBox.AppendText($"{msg}\n")));
         }
 
         public void Clear()

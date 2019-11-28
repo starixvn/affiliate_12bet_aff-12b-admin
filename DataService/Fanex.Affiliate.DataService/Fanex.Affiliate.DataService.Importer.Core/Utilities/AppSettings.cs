@@ -8,9 +8,9 @@
     {
         public bool IsLocalTest => GetValue("IsLocalTest") == "1";
 
-        public IList<string> SupportedProductList => GetValue("SupportedProductList").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+        public IList<string> SupportedProductList => GetValue("SupportedProductList").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-        public IList<string> ProductListHaveDailyJob => GetValue("ProductListHaveDailyJob").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+        public IList<string> ProductListHaveDailyJob => GetValue("ProductListHaveDailyJob").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }

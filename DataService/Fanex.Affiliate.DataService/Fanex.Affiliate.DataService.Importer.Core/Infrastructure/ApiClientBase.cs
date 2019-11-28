@@ -1,11 +1,4 @@
-﻿using HttpClientFactory;
-using HttpClientFactory.Impl;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Collections.Specialized;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure

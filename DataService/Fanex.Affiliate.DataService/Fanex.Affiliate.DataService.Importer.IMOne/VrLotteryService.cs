@@ -20,8 +20,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         protected override int ProductId => Products.VRLotteryId;
 
-        public VrLotteryService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
-            : base(appSetting, thirdPartyProductRepository)
+        public VrLotteryService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) : base(appSetting, thirdPartyProductRepository)
         {
             _client = client ?? new VrLotteryClient();
         }
@@ -58,9 +57,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
                 timeSpan = timeSpan - MAX_REQUEST_TIMESPAN;
                 if (timeSpan > TimeSpan.Zero)
-                {
                     endTimeRequest = startTimeRoundingByHour.Add(MAX_REQUEST_TIMESPAN);
-                }
 
                 datas.Add(await GetRawDataAsync(startTimeRequest, endTimeRequest, currency).ConfigureAwait(false));
 
@@ -89,7 +86,7 @@ namespace Fanex.Affiliate.DataService.Importer
             return queryValue;
         }
 
-        private static DateTime GetRoundingByHour(DateTime time)
+        private DateTime GetRoundingByHour(DateTime time)
         {
             return new DateTime(time.Year, time.Month, time.Day, time.Hour, 0, 0, 0);
         }

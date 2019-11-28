@@ -3,7 +3,6 @@ using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -24,11 +23,6 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
 
-        /// <summary>
-        /// Throw third party exception if xml is not correct format.
-        /// </summary>
-        /// <param name="xml"></param>
-        /// <returns></returns>
         protected abstract void CheckXmlResponseData(XDocument xml);
 
         protected virtual bool CheckIsSuitableToImport(XDocument xml)

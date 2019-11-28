@@ -48,6 +48,7 @@
             this.ClientSize = new System.Drawing.Size(829, 613);
             this.Name = "LBKeno";
             this.Text = "LBKeno";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LBKeno_FormClosed);
             this.groupBox3.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

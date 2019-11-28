@@ -147,7 +147,7 @@ namespace Fanex.Affiliate.DataService.Importer
             }
         }
 
-        private static void CheckRawData(string rawData)
+        private void CheckRawData(string rawData)
         {
             var xdoc = XmlHelper.ParseToXDocument(rawData);
             if (xdoc == null)

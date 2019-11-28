@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\..\SonarQube\12BETAFFADMINCSharp.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Fanex.Affiliate.DataService.Importer.BetSoft.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -71,7 +71,11 @@
     <Compile Include="MetaModels\BetsoftParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
       <Project>{410276e1-1e99-4662-809c-25f0f1777c08}</Project>
@@ -80,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Fanex.Affiliate.DataService.Importer.BetSoft.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

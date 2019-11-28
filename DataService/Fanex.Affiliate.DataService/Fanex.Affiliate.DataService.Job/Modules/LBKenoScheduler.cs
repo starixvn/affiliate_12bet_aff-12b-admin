@@ -7,10 +7,17 @@ namespace Fanex.Affiliate.DataService.Job.Modules
     public class LBKenoScheduler : IJobScheduler
     {
 
+        private readonly IAppSettings _appSetting;
+
+        public LBKenoScheduler(IAppSettings appSetting = null)
+        {
+            _appSetting = appSetting ?? new AppSettings();
+        }
+
         public ScheduleInfo BuildSchedule()
         {
             const string groupName = "LBKenoJobGroup";
-            const string jobName = nameof(LBKenoJob);
+            var jobName = nameof(LBKenoJob);
             var job = JobBuilder.Create<LBKenoJob>()
                .WithIdentity(jobName, groupName)
                .Build();
