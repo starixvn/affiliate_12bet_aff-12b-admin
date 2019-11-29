@@ -735,6 +735,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="12monitor.aspx" />
     <Content Include="AccessDenied.aspx" />
     <Content Include="Alert.aspx" />
     <Content Include="App_Data\OpusData\opus_1.xml" />

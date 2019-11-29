@@ -171,6 +171,7 @@
     <Compile Include="Services\Interface\ITrackingSystemService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="12monitor.aspx" />
     <Content Include="App_Data\SpNames.xml" />
     <Content Include="App_Data\SpNames.Pro.xml">
       <DependentUpon>SpNames.xml</DependentUpon>
