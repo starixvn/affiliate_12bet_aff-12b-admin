@@ -14,29 +14,33 @@
 
 @Html.InlineStyles("~/www/build/styles/css/account-overview.min.css")
 
-<div class="page-filter">
-    <div class="form-group filter">
-        <div id="monthPicker" class="form-wrapper d-inline-block">
-            <input readonly id="MonthDate" data-original-date="@selectedMonth.ToString("MM/dd/yyyy")" class="form-control d-inline-block" type="text" value="@selectedMonth.ToString("MMM-yyyy")" />
-            <span class="glyphicon glyphicon-calendar" id="monthPickerTrigger"></span>
-        </div>
-        <div class="d-inline-block">
-            <button class="btn btn-submit" id="statisticsSubmit" type="button">@Lang.Submit</button>
+<div class="account-overview">
+    <div class="account-overview-filter">
+        <div class="form-group">
+            <div id="monthPicker" class="form-wrapper d-inline-block">
+                <input readonly id="MonthDate" data-original-date="@selectedMonth.ToString("MM/dd/yyyy")" class="form-control d-inline-block" type="text" value="@selectedMonth.ToString("MMM-yyyy")" />
+                <span class="glyphicon glyphicon-calendar" id="monthPickerTrigger"></span>
+            </div>
+            <div class="d-inline-block">
+                <button class="btn btn-submit" id="statisticsSubmit" type="button">@Lang.Submit</button>
+            </div>
         </div>
     </div>
-</div>
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
+    <div class="account-overview-content">
+        <div class="tab-menu">
+            <ul class="menu list-unstyled">
+                <li><a class="menu-item">Summary</a></li>
+                <li><a class="menu-item">Summary</a></li>
+            </ul>
+        </div>
 
-<div class="tab-menu">
-    <ul class="menu list-unstyled">
-        <li><a class="menu-item">Summary</a></li>
-        <li><a class="menu-item">Summary</a></li>
-    </ul>
-</div>
-
-<div class="summary-content">
-    <div class="bg-red">
-        <span class="text">@(Lang.Statistic + " " + Lang.For) @selectedMonth.ToString("MMMM-yyyy")</span>
+        <div class="summary-content">
+            <div class="bg-red">
+                <span class="text"><strong>Last Login:</strong> @selectedMonth.ToString("dd-MMM-yyyy hh:mm tt")</span>
+                <span class="text"><strong>Last Login IP Address:</strong> 192.50.23.299</span>
+            </div>
+        </div>
     </div>
 </div>
 

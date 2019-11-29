@@ -2,84 +2,121 @@
 @import "../scss/abstracts/variables";
 @import "../scss/abstracts/mixins";
 
-.page-filter {
-    margin-left: -15px;
+.account-overview {
+    &-filter {
+        margin-left: -15px;
 
-    &:before {
-        content: '';
-        display: inline-block;
-        background: #e04f29;
-        height: 1px;
-        width: calc(100% - 220px);
-    }
-}
-
-.tab-menu {
-    background: $bg-main-color;
-    border-bottom: 1px solid #e04f29;
-
-    .menu {
-        display: flex;
-        margin: 0 !important;
-
-        li:not(:last-child) {
-            border-right: 1px solid #f9f9f9;
-        }
-
-        .menu-item {
-            display: block;
-            text-transform: capitalize;
-            font-weight: 400;
-            color: #fff;
-            text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
-            transition: all .2s ease;
+        &:before {
+            content: '';
+            display: inline-block;
             background: #e04f29;
-            border-radius: 8px 8px 0px 0px;
+            height: 1px;
+            width: calc(100% - 220px);
+        }
+    }
 
-            &:hover, &:focus {
-                text-decoration: none;
-                outline: none;
+    &-content {
+        margin-top: -25px;
 
-                & + .submenu-container {
+        .tab-menu {
+            background: $bg-main-color;
+            border-bottom: 1px solid #e04f29;
+
+            .menu {
+                display: flex;
+                margin: 0 !important;
+
+                li:not(:last-child) {
+                    border-right: 1px solid #f9f9f9;
+                }
+
+                .menu-item {
                     display: block;
+                    text-transform: capitalize;
+                    font-weight: 400;
+                    line-height: 24px !important;
+                    color: #fff;
+                    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
+                    transition: all .2s ease;
+                    background: #e04f29;
+                    border-radius: 8px 8px 0px 0px;
+
+                    &:hover, &:focus {
+                        text-decoration: none;
+                        outline: none;
+
+                        & + .submenu-container {
+                            display: block;
+                        }
+                    }
+
+                    & + .submenu-container {
+                        display: none;
+
+                        &:hover, &:focus {
+                            display: block;
+                        }
+                    }
+
+                    &.active, &:hover {
+                        $bg-active: #ff7a00, #ffea00;
+                        @include background-gradient(top, $bg-active);
+                        color: #2b2b2b;
+                        text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.32);
+                    }
+
+                    &.parent:hover {
+                        background: #985b22;
+                        color: #fff;
+                        text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
+                    }
                 }
             }
+        }
 
-            & + .submenu-container {
-                display: none;
+        .summary-content {
+            .bg-red {
+                display: flex;
+                justify-content: flex-end;
+                background: #e04f29;
+                color: #FFF;
+                line-height: 2.5rem;
 
-                &:hover, &:focus {
-                    display: block;
+                .text {
+                    padding-right: 100px;
+                    padding-left: 10px;
                 }
-            }
-
-            &.active, &:hover {
-                $bg-active: #ff7a00, #ffea00;
-                @include background-gradient(top, $bg-active);
-                color: #2b2b2b;
-                text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.32);
-            }
-
-            &.parent:hover {
-                background: #985b22;
-                color: #fff;
-                text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
             }
         }
     }
 }
 
-.summary-content {
-    .bg-red {
-        background: #e04f29;
-        color: #FFF;
+@media (max-width: 424px) {
+    .account-overview {
+        &-content {
+            margin-top: 0;
+        }
+    }
+}
+
+@media (max-width: 716px) {
+    .account-overview {
+        &-content {
+            .summary-content {
+                .bg-red {
+                    .text {
+                        padding-right: 10px;
+                    }
+                }
+            }
+        }
     }
 }
 
 .form-group {
     /*position: absolute;
-    right: 0;
-    top: 197px;*/
+            right: 0;
+            top: 197px;*/
     float: right;
     margin-top: 11px;
 
