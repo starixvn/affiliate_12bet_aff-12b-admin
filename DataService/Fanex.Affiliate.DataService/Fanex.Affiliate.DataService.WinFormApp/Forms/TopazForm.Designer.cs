@@ -48,7 +48,6 @@
             this.ClientSize = new System.Drawing.Size(829, 607);
             this.Name = "TopazForm";
             this.Text = "Topaz";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TopazForm_FormClosed);
             this.groupBox3.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

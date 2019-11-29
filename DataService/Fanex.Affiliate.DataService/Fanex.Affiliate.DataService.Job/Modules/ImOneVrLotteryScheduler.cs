@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                   .RepeatForever())
               .Build();
 
-            return new ScheduleInfo() { Job = job, Trigger = trigger };
+            return new ScheduleInfo { Job = job, Trigger = trigger };
         }
     }
 }

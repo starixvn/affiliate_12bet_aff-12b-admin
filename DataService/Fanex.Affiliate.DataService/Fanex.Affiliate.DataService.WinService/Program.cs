@@ -1,5 +1,6 @@
 ﻿using Fanex.Data;
 using Fanex.Data.SqlServer;
+using System.ServiceProcess;
 
 namespace Fanex.Affiliate.DataService.WinService
 {

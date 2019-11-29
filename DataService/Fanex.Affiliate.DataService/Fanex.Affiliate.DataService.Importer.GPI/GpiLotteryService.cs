@@ -13,7 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -58,7 +57,8 @@ namespace Fanex.Affiliate.DataService.Importer
                 var rawData = await GetRawDataByPageAsync(paramForDateTime, pageNumber);
                 datas.Add(rawData);
                 pageNumber++;
-                if (!HasAnotherPage(rawData))
+                var isHasAnotherPage = await CheckHasAnotherPage(rawData);
+                if (!isHasAnotherPage)
                     break;
             }
             return datas;
@@ -66,22 +66,11 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public override Task<XDocument> ConvertRawDataToXmlAsync(string raw)
         {
-            var json = BuildJsonString(raw);
+            var json = GpiHelper.BuildJsonString(raw);
             var xml = XmlHelper.ParseToXDocumentFromJson(json);
             if (xml == null)
                 throw new ThirdPartyProductException($"GpiLottery - Cant convert response data to xml - {json}");
             return Task.FromResult(xml);
-        }
-
-        private static string BuildJsonString(string data)
-        {
-            var builder = new StringBuilder();
-            builder.Append("{")
-                .Append("transactions")
-                .Append(":")
-                .Append(data)
-                .Append("}");
-            return builder.ToString();
         }
 
         protected override void CheckXmlResponseData(XDocument xml)
@@ -90,25 +79,25 @@ namespace Fanex.Affiliate.DataService.Importer
                 return;
             var elem = xml.Root.Element("transactions");
             if (elem == null)
-                throw new ThirdPartyProductException($"GpiLotteryService - Not correct format {xml.ToString()}");;
+                throw new ThirdPartyProductException($"GpiLotteryService - Not correct format {xml.ToString()}");
         }
 
         protected override bool CheckIsSuitableToImport(XDocument xml)
         {
-            return xml.Root.IsEmpty;
+            return !xml.Root.IsEmpty;
         }
 
         private async Task<string> GetRawDataByPageAsync(GpiParam param, int page = 1)
         {
-            var paramForFirstPage = BuildParam(param, page);
-            var rawData = await GetRawDataAsync(paramForFirstPage).ConfigureAwait(false);
+            var paramForPage = BuildParam(param, page);
+            var rawData = await GetRawDataAsync(paramForPage).ConfigureAwait(false);
             return rawData;
         }
 
-        private bool HasAnotherPage(string json)
+        private async Task<bool> CheckHasAnotherPage(string json)
         {
             var pageSize = int.Parse(_appSetting.GetValue("GpiLotteryPageSize"));
-            var xml = ConvertRawDataToXmlAsync(json).GetAwaiter().GetResult();
+            var xml = await ConvertRawDataToXmlAsync(json);
             CheckXmlResponseData(xml);
             var count = xml.Root.Elements("transactions").Count();
             return count == pageSize;

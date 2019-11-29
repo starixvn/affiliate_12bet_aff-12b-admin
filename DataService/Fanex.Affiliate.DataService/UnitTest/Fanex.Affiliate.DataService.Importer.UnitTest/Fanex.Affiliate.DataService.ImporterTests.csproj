@@ -78,11 +78,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GPIServiceTest.cs" />
-    <Compile Include="LBKenoServiceTests.cs" />
+    <Compile Include="Helper\GpiTestHelper.cs" />
+    <Compile Include="Helper\LBKenoTestHelper.cs" />
+    <Compile Include="Service\GPIServiceTest.cs" />
+    <Compile Include="Service\LBKenoServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilityTests\XmlHelperTests.cs" />
-    <Compile Include="VrLotteryServiceTests.cs" />
+    <Compile Include="Service\VrLotteryServiceTests.cs" />
     <Compile Include="XmlResponseChecker\LBKenoXmlCheckerTests.cs" />
     <Compile Include="XmlResponseChecker\TopazResponseCheckerTests.cs" />
   </ItemGroup>

@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.XmlResponseChecker
         public void ChechXml_WhenCallWithRightStatusCode_NotThrowException()
         {
             var xml = new XDocument();
-            xml.Add(new XElement("root", new XElement("status_code", "0   ")));
+            xml.Add(new XElement("root", new XElement("status_code", "00")));
             var checker = new LBKenoXmlChecker();
             checker.CheckXml(xml);
             Assert.True(true);

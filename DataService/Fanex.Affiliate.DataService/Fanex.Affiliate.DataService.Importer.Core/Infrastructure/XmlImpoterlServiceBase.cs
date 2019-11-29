@@ -38,6 +38,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
 
         public async Task<IEnumerable<XDocument>> GetXmlDataListAsync(DateTime startTime, DateTime endTime)
         {
+            EnsureEndTimeLaterThanStartTime(startTime,endTime);
             var rawDatas = await GetRawDataListAsync(startTime, endTime).ConfigureAwait(false);
             var xmlDatas = new List<XDocument>(rawDatas.Count());
             foreach (var data in rawDatas)
@@ -70,6 +71,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
         {
             var xmls = datas.Select(data => XmlHelper.ParseToXDocument(data))
                 .Select(xml => CheckIsSuitableToImport(xml));
+
             await ImportSuitableDataAsync(xmls.Select(xml => xml.ToString()));
 
         }
