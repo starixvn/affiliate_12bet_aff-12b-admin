@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         public ScheduleInfo BuildSchedule()
         {
             const string groupName = "LBKenoJobGroup";
-            var jobName = nameof(LBKenoJob);
+            const string jobName = nameof(LBKenoJob);
             var job = JobBuilder.Create<LBKenoJob>()
                .WithIdentity(jobName, groupName)
                .Build();

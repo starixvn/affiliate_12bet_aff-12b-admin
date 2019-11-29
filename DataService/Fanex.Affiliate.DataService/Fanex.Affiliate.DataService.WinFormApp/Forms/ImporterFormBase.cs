@@ -1,8 +1,6 @@
-﻿using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -63,15 +61,17 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             {
                 if (chkBoxConvertDirectFromTxtField.Checked)
                 {
-                    var xml =  await GetXmlFromTextFieldAsync();
+                    var xml = await GetXmlFromTextFieldAsync();
                     XmlDatas.Add(xml);
                 }
                 else
+                {
                     foreach (var data in RawDatas)
                     {
                         var xml = await Task.Run(async () => await Service.ConvertRawDataToXmlAsync(data));
                         XmlDatas.Add(xml);
                     }
+                }
                 DisplayXmlData();
                 Logger.Log("Finished convert raw data");
             }

@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         public ScheduleInfo BuildSchedule()
         {
             const string groupName = "EbetJobGroup";
-            var jobName = nameof(EbetJob);
+            const string jobName = nameof(EbetJob);
             var job = JobBuilder.Create<EbetJob>()
                .WithIdentity(jobName, groupName)
                .Build();

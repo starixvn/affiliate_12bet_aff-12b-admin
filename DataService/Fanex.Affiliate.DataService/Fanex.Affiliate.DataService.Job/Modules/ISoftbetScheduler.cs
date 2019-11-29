@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         public ScheduleInfo BuildSchedule()
         {
             const string groupName = "ISoftbetJobGroup";
-            var jobName = nameof(ISoftbetJob);
+            const string jobName = nameof(ISoftbetJob);
             var job = JobBuilder.Create<ISoftbetJob>()
                .WithIdentity(jobName, groupName)
                .Build();

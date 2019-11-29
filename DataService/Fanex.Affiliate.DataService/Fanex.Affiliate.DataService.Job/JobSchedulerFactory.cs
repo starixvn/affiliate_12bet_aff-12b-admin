@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.DataService.Job
         {
             var appSetting = new AppSettings();
             var schedulerFactory = new StdSchedulerFactory();
-            _scheduler = schedulerFactory.GetScheduler().Result;
+            _scheduler = schedulerFactory.GetScheduler().GetAwaiter().GetResult();
 
             _jobSchedulerList = new List<IJobScheduler>();
 

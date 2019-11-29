@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         public ScheduleInfo BuildSchedule()
         {
             const string groupName = "GpiLotteryJobGroup";
-            var jobName = nameof(GpiLotteryJob);
+            const string jobName = nameof(GpiLotteryJob);
             var job = JobBuilder.Create<GpiLotteryJob>()
                .WithIdentity(jobName, groupName)
                .Build();

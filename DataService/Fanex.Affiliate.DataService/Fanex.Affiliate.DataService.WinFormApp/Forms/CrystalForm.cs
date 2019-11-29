@@ -133,7 +133,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                                     PageSize = param.PageSize
                                 };
                                 _crystalGpiService.Import(crystalGpiParam);
-                                _logBuilder.AppendLine($"Done - Start:{crystalGpiParam.StartTime.ToString()} - End:{crystalGpiParam.EndTime.ToString()}");
+                                _logBuilder.AppendLine($"Done - Start:{crystalGpiParam.StartTime} - End:{crystalGpiParam.EndTime}");
                                 synchronizationContext.Post(new SendOrPostCallback((state) =>
                                 {
                                     richTextLog.Text = _logBuilder.ToString();
