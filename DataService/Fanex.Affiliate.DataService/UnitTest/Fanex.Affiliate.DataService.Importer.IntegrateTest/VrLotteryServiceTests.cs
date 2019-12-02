@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
             var startTime = new DateTime(2019, 1, 1, 12, 0, 0);
             var endTime = new DateTime(2019, 1, 1, 13, 0, 0);
             var stubApiClient = NSubstitute.Substitute.For<IApiClient>();
-            stubApiClient.GetResponse(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            stubApiClient.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
                 .Returns("");
             var service = new VrLotteryService(stubApiClient);
 
