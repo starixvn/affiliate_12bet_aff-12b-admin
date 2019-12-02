@@ -5,6 +5,7 @@ using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
 using Fanex.Logging;
+using ONEbook.UM.NonWebApp;
 using Quartz;
 using Sunplus.UMControllerLibrary;
 using System;
@@ -13,17 +14,16 @@ using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
+    [DisallowConcurrentExecution]
     public class ImOneVrLotteryJob : IJob
     {
         private readonly IAppSettings _appSetting;
-        private readonly UMBusiness _umBusiness;
         private readonly IImporterService _service;
         private readonly ITimeTracker _timeTracker;
 
         public ImOneVrLotteryJob()
         {
             _appSetting = new AppSettings();
-            _umBusiness = new UMBusiness();
             _service = new VrLotteryService();
             _timeTracker = new TimeTracker();
         }
@@ -32,8 +32,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         {
             try
             {
-                var umUrl = _appSetting.GetValue("LBUrl");
-                var isUm = !string.IsNullOrEmpty(umUrl) && _umBusiness.isUnderMaintainence(Sites.Aff12Bet, umUrl);
+                var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
 
                 if (!isUm)
                 {

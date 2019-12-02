@@ -22,6 +22,9 @@ namespace Fanex.Affiliate.DataService.Importer
         private const int TIME_BETWEEN_TWO_REQUEST = 60000;
         private const int MAX_TIME_RANGE_TRANSACTION = 15;
 
+        public bool IsTestMode { get; set; } = false;
+        public int NextRequestWaitTime => IsTestMode ? 1 : TIME_BETWEEN_TWO_REQUEST;
+
         private readonly IApiClient _client;
 
         protected override int ProductId => Products.TopazId;
@@ -46,7 +49,7 @@ namespace Fanex.Affiliate.DataService.Importer
                 var data = await GetRawDataAsync(time.Item1, time.Item2);
                 if (IsExceedCallLimit(data))
                 {
-                    await Task.Delay(TIME_BETWEEN_TWO_REQUEST);
+                    await Task.Delay(NextRequestWaitTime);
                     data = await GetRawDataAsync(time.Item1, time.Item2);
                 }
                 datas.Add(data);

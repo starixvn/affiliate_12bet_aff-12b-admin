@@ -10,12 +10,12 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
     public class LBKenoServiceTests
     {
         [Fact]
-        public void GetRawDataList_WhenCall_NotEmptyResponse()
+        public async Task GetRawDataList_WhenCall_NotEmptyResponse()
         {
             var service = new LBKenoService();
             var startDate = new DateTime(2019, 10, 30);
             var endDate = new DateTime(2019, 10, 31);
-            var data = service.GetRawDataListAsync(startDate, endDate).Result;
+            var data = await service.GetRawDataListAsync(startDate, endDate);
             Assert.NotEmpty(data);
 
         }

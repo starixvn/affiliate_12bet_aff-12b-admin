@@ -3,6 +3,7 @@ using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.Constants;
 using Quartz;
 using Quartz.Impl;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Job
 {
@@ -16,8 +17,7 @@ namespace Fanex.Affiliate.DataService.Job
         {
             var appSetting = new AppSettings();
             var schedulerFactory = new StdSchedulerFactory();
-            _scheduler = schedulerFactory.GetScheduler().GetAwaiter().GetResult();
-
+            this._scheduler = schedulerFactory.GetScheduler().Result;
             _jobSchedulerList = new List<IJobScheduler>();
 
             foreach (var product in appSetting.SupportedProductList)

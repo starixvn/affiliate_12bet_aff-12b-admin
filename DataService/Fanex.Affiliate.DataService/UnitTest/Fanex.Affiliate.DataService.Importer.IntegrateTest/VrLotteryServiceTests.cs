@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
     public class VrLotteryServiceTests
     {
         [Fact]
-        public void GetRawDataList_WhenCallWithEnoughFieldAppsetting_NotThrowException()
+        public async Task GetRawDataList_WhenCallWithEnoughFieldAppsetting_NotThrowException()
         {
             var startTime = new DateTime(2019, 1, 1, 12, 0, 0);
             var endTime = new DateTime(2019, 1, 1, 13, 0, 0);
@@ -22,19 +22,19 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
                 .Returns("");
             var service = new VrLotteryService(stubApiClient);
 
-            service.GetRawDataListAsync(startTime, endTime).Result.ToList();
+            await service.GetRawDataListAsync(startTime, endTime);
 
             Assert.True(true);
         }
 
         [Fact]
-        public void GetRawDataList_WhenCall_ResponseNotEmpty()
+        public async Task GetRawDataList_WhenCall_ResponseNotEmpty()
         {
             var startTime = new DateTime(2019, 10, 30, 12, 0, 0);
             var endTime = new DateTime(2019, 10, 30, 13, 0, 0);
             var service = new VrLotteryService();
 
-            var data = service.GetRawDataListAsync(startTime, endTime).Result.ToList();
+            var data = await service.GetRawDataListAsync(startTime, endTime);
 
             Assert.NotEmpty(data);
         }

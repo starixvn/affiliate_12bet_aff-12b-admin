@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Text;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer.Core.Utilities

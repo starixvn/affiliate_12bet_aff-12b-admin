@@ -1,6 +1,8 @@
 ﻿using Fanex.Affiliate.DataService.Job.Model;
 using Quartz;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using System;
+using System.Globalization;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
@@ -25,8 +27,9 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var trigger = TriggerBuilder.Create()
               .WithIdentity(jobName + "Trigger", groupName)
               .StartNow()
-              .WithDailyTimeIntervalSchedule(builder => builder
-                    .StartingDailyAt(new TimeOfDay(6,0)))
+              .WithSimpleSchedule(x => x
+                  .WithIntervalInMinutes(Convert.ToInt32(_appSetting.GetValue("LBKenoIntervalTime")))
+                  .RepeatForever())
               .Build();
 
             return new ScheduleInfo

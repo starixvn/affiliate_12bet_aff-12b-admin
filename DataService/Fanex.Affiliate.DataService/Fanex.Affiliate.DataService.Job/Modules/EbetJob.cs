@@ -9,9 +9,8 @@ using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
 using Fanex.Logging;
 using Quartz;
-using Sunplus.UMControllerLibrary;
 using System.Threading.Tasks;
-
+using ONEbook.UM.NonWebApp;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
@@ -19,7 +18,6 @@ namespace Fanex.Affiliate.DataService.Job.Modules
     public class EbetJob : IJob
     {
         private readonly IAppSettings _appSetting;
-        private readonly UMBusiness _umBusiness;
         private readonly IEbetService _ebetService;
         private readonly ITimeTracker _timeTracker;
         private readonly IEbetConfigHelper _ebetConfigHelper;
@@ -27,7 +25,6 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         public EbetJob()
         {
             _appSetting = new AppSettings();
-            _umBusiness = new UMBusiness();
             _ebetService = new EbetService();
             _timeTracker = new TimeTracker();
             _ebetConfigHelper = new EbetConfigHelper();
@@ -37,8 +34,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         {
             try
             {
-                var umUrl = _appSetting.GetValue("LBUrl");
-                var isUm = !string.IsNullOrEmpty(umUrl) && _umBusiness.isUnderMaintainence(Sites.Aff12Bet, umUrl);
+                var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
 
                 if (!isUm)
                 {

@@ -10,7 +10,7 @@ using Fanex.Logging;
 using Quartz;
 using Sunplus.UMControllerLibrary;
 using System.Threading.Tasks;
-
+using ONEbook.UM.NonWebApp;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
@@ -18,14 +18,12 @@ namespace Fanex.Affiliate.DataService.Job.Modules
     public class CrystalGpiJob : IJob
     {
         private readonly IAppSettings _appSetting;
-        private readonly UMBusiness _umBusiness;
         private readonly ICrystalGpiService _crystalGpiService;
         private readonly ITimeTracker _timeTracker;
 
         public CrystalGpiJob()
         {
             _appSetting = new AppSettings();
-            _umBusiness = new UMBusiness();
             _crystalGpiService = new CrystalGpiService();
             _timeTracker = new TimeTracker();
         }
@@ -34,8 +32,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         {
             try
             {
-                var umUrl = _appSetting.GetValue("LBUrl");
-                var isUm = !string.IsNullOrEmpty(umUrl) && _umBusiness.isUnderMaintainence(Sites.Aff12Bet, umUrl);
+                var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
 
                 if (!isUm)
                 {

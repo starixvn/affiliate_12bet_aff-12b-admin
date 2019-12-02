@@ -4,10 +4,10 @@ using System.Text;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Logging;
 using Quartz;
-using Sunplus.UMControllerLibrary;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.ISoftbet.MetaModels;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using ONEbook.UM.NonWebApp;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
@@ -15,13 +15,11 @@ namespace Fanex.Affiliate.DataService.Job.Modules
     public class ISoftbetDailyJob : IJob
     {
         private readonly IAppSettings _appSetting;
-        private readonly UMBusiness _umBusiness;
         private readonly IISoftbetService _isoftbetService;
 
         public ISoftbetDailyJob()
         {
             _appSetting = new AppSettings();
-            _umBusiness = new UMBusiness();
             _isoftbetService = new ISoftbetService();
         }
 
@@ -30,8 +28,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var logBuilder = new StringBuilder();
             try
             {
-                var umUrl = _appSetting.GetValue("LBUrl");
-                var isUm = !string.IsNullOrEmpty(umUrl) && _umBusiness.isUnderMaintainence(Sites.Aff12Bet, umUrl);
+                var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
 
                 if (!isUm)
                 {

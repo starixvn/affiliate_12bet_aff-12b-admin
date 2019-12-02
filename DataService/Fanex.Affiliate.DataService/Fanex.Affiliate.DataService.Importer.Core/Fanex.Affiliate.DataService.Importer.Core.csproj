@@ -98,7 +98,6 @@
     <Compile Include="Enum\TransactionStatus.cs" />
     <Compile Include="Exceptions\ThirdPartyProductException.cs" />
     <Compile Include="Extension\NameValueCollectionExtension.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Infrastructure\ApiClientBase.cs" />
     <Compile Include="Infrastructure\IApiClient.cs" />
     <Compile Include="Infrastructure\IConnectionCountable.cs" />

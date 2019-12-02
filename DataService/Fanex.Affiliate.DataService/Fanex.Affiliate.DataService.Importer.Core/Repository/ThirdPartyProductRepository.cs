@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace Fanex.Affiliate.DataService.Importer.Core.Repository
 {
@@ -18,19 +17,6 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Repository
             {
                 var paramValues = BuildParam(productId, xmlData, jobType);
                 ImportData(paramValues);
-            }
-            catch (Exception ex)
-            {
-                throw new ThirdPartyProductException(ex.Message, ex);
-            }
-        }
-
-        public async Task ImportDataAsync(int productId, string xmlData, byte jobType = 0)
-        {
-            try
-            {
-                var paramValues = BuildParam(productId, xmlData, jobType);
-                await ImportDataAsync(paramValues).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -56,6 +42,19 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Repository
                     trans.Rollback();
                     throw new ThirdPartyProductException(ex.Message, ex);
                 }
+            }
+        }
+
+        public async Task ImportDataAsync(int productId, string xmlData, byte jobType = 0)
+        {
+            try
+            {
+                var paramValues = BuildParam(productId, xmlData, jobType);
+                await ImportDataAsync(paramValues).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                throw new ThirdPartyProductException(ex.Message, ex);
             }
         }
 
@@ -94,7 +93,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Repository
             }
         }
 
-        private IDictionary BuildParam(int productId, string xmlData, byte jobType)
+        private static IDictionary BuildParam(int productId, string xmlData, byte jobType)
         {
             var dic = new Dictionary<string, object>(8);
             dic.Add("ProductId", productId);
@@ -105,7 +104,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Repository
             return dic;
         }
 
-        private void EnsureUpdateSuccess(IObjectDb objectDb)
+        private static void EnsureUpdateSuccess(IObjectDb objectDb)
         {
             var code = objectDb.GetParameterValue("ErrCode");
             var productId = objectDb.GetParameterValue("ProductId");

@@ -45,15 +45,15 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
 
         [Theory]
         [MemberData(nameof(TestGenerator.GenerateNotCorrectTimeRange), MemberType = typeof(TestGenerator))]
-        public void GetRawDataListByCurrency_WithNotCorrectTimeRange_ThrowException(DateTime startTime, DateTime endTime)
+        public async Task GetRawDataListByCurrency_WithNotCorrectTimeRange_ThrowException(DateTime startTime, DateTime endTime)
         {
             var service = CreateService();
-            Assert.Throws<ArgumentException>(() => service.GetRawDataListByCurrencyAsync(startTime, endTime, "CNY").GetAwaiter().GetResult());
+            await Assert.ThrowsAsync<ArgumentException>(() => service.GetRawDataListByCurrencyAsync(startTime, endTime, "CNY"));
         }
 
         [Theory]
         [MemberData(nameof(TestGenerator.GenerateCorrectTimeRange), MemberType = typeof(TestGenerator))]
-        public void GetRawDataListByCurrency_WithGoodTimeRange_NotThrowException(DateTime startTime, DateTime endTime)
+        public async Task GetRawDataListByCurrency_WithGoodTimeRange_NotThrowException(DateTime startTime, DateTime endTime)
         {
             var stubApi = NSubstitute.Substitute.For<IApiClient>();
             var stubAppSetting = NSubstitute.Substitute.For<IAppSettings>();
@@ -62,14 +62,14 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             stubAppSetting.GetValue(Arg.Compat.Any<string>()).Returns("");
             var service = CreateService(stubApi, stubAppSetting);
 
-            service.GetRawDataListByCurrencyAsync(startTime, endTime,"CNY").GetAwaiter().GetResult();
+            await service.GetRawDataListByCurrencyAsync(startTime, endTime,"CNY");
 
             Assert.True(true);
         }
 
         [Theory]
         [MemberData(nameof(TestGenerator.GenerateResponseErrorCode), MemberType = typeof(TestGenerator))]
-        public void GetXmlDataList_WhenCall_ThrowException(string errorReturn, DateTime startTime, DateTime endTime)
+        public async Task GetXmlDataList_WhenCall_ThrowException(string errorReturn, DateTime startTime, DateTime endTime)
         {
             var stubApi = NSubstitute.Substitute.For<IApiClient>();
             var stubAppSetting = NSubstitute.Substitute.For<IAppSettings>();
@@ -81,11 +81,11 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
 
             var service = CreateService(stubApi, stubAppSetting);
 
-            Assert.Throws<ThirdPartyProductException>(() => service.GetXmlDataListAsync(startTime,endTime).GetAwaiter().GetResult());
+            await Assert.ThrowsAsync<ThirdPartyProductException>(() => service.GetXmlDataListAsync(startTime,endTime));
         }
 
         [Fact]
-        public void GetXmlDataList_WhenCall_NotThrowException()
+        public async Task GetXmlDataList_WhenCall_NotThrowException()
         {
             var stubApi = NSubstitute.Substitute.For<IApiClient>();
             var stubAppSetting = NSubstitute.Substitute.For<IAppSettings>();
@@ -98,7 +98,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             stubAppSetting.GetValue("VrLotteryCurrencies").Returns("CNC,BOB");
             var service = CreateService(stubApi, stubAppSetting);
 
-            service.GetXmlDataListAsync(startTime, endTime).GetAwaiter().GetResult();
+            await service.GetXmlDataListAsync(startTime, endTime);
 
             Assert.True(true);
         }

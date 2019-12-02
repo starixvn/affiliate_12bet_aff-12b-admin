@@ -30,13 +30,13 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
         [Theory]
         [InlineData(15)]
         [InlineData(31)]
-        public void GetXmlDataList_WhenCall_ReturnNotNull(int minute)
+        public async Task GetXmlDataList_WhenCall_ReturnNotNull(int minute)
         {
             var endTime = DateTime.UtcNow;
 
             var startTime = endTime.AddMinutes(-minute);
             var service = CreateService();
-            var dataList = service.GetXmlDataListAsync(startTime, endTime).GetAwaiter().GetResult();
+            var dataList = await service.GetXmlDataListAsync(startTime, endTime);
             var count = dataList.Count();
             Assert.True(count > 0);
         }
@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
         [Theory]
         [InlineData(15,2)]
         [InlineData(31,4)]
-        public void GetXmlDataList_WhenCall_TimeToProcessLesserThanExpectTime(int minute, int expectTime)
+        public async Task GetXmlDataList_WhenCall_TimeToProcessLesserThanExpectTime(int minute, int expectTime)
         {
             var endTime = DateTime.UtcNow;
 
@@ -53,14 +53,14 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
             var maxTime = expectTime * 60 * 1000;
             var startCount = Environment.TickCount;
 
-            service.GetXmlDataListAsync(startTime, endTime).GetAwaiter().GetResult();
+            await service.GetXmlDataListAsync(startTime, endTime);
             var elapseTime = TimeDif(startCount, Environment.TickCount);
 
             Assert.InRange(elapseTime, maxTime - 120 * 1000, maxTime);
         }
 
         [Fact]
-        public void Import_WhenCall_NotThrowException()
+        public async Task Import_WhenCall_NotThrowException()
         {
             DbSettingProviderManager
                 .StartNewSession()
@@ -69,17 +69,17 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
             var service = CreateService();
             var endTime = DateTime.UtcNow;
             var startTime = endTime.AddMinutes(-15);
-            service.ImportAsync(startTime, endTime).GetAwaiter().GetResult();
+            await service.ImportAsync(startTime, endTime);
             Assert.True(true);
         }
 
         [Fact]
-        public void GetXmlDataList_WhenCall_NotReturnEmpty()
+        public async Task GetXmlDataList_WhenCall_NotReturnEmpty()
         {
             var service = CreateService();
             var endTime = DateTime.UtcNow;
             var startTime = endTime.AddMinutes(-15);
-            var list = service.GetXmlDataListAsync(startTime, endTime).GetAwaiter().GetResult();
+            var list = await service.GetXmlDataListAsync(startTime, endTime);
             Assert.NotEmpty(list);
         }
     }

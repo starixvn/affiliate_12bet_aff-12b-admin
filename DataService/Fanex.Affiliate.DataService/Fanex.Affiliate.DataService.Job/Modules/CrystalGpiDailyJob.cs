@@ -8,6 +8,7 @@ using Sunplus.UMControllerLibrary;
 using Fanex.Affiliate.DataService.Importer.Gpi.MetaModels;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using ONEbook.UM.NonWebApp;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
@@ -15,13 +16,11 @@ namespace Fanex.Affiliate.DataService.Job.Modules
     public class CrystalGpiDailyJob : IJob
     {
         private readonly IAppSettings _appSetting;
-        private readonly UMBusiness _umBusiness;
         private readonly ICrystalGpiService _crystalGpiService;
 
         public CrystalGpiDailyJob()
         {
             _appSetting = new AppSettings();
-            _umBusiness = new UMBusiness();
             _crystalGpiService = new CrystalGpiService();
         }
 
@@ -30,8 +29,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var logBuilder = new StringBuilder();
             try
             {
-                var umUrl = _appSetting.GetValue("LBUrl");
-                var isUm = !string.IsNullOrEmpty(umUrl) && _umBusiness.isUnderMaintainence(Sites.Aff12Bet, umUrl);
+                var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
 
                 if (!isUm)
                 {
