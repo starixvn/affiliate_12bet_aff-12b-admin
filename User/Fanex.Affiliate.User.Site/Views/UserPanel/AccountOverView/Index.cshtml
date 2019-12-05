@@ -30,8 +30,7 @@
     <div class="account-overview-content">
         <div class="tab-menu">
             <ul class="menu list-unstyled">
-                <li><a class="menu-item">Summary</a></li>
-                <li><a class="menu-item">Summary</a></li>
+                <li><span class="menu-item">Summary</span></li>
             </ul>
         </div>
 
@@ -40,103 +39,75 @@
                 <span class="text"><strong>Last Login:</strong> @selectedMonth.ToString("dd-MMM-yyyy hh:mm tt")</span>
                 <span class="text"><strong>Last Login IP Address:</strong> 192.50.23.299</span>
             </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4">
+                        <p class="my-account">My Account</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="img-icon">
+                            <img class="img-responsive" src="~/www/build/styles/Images/contact-us/vietnam_lang.png" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="info-panel info-panel-green">
+                            <p class="info-panel-title"><strong>New Signups / Deposited</strong></p>
+                            <p class="info-panel-content"><strong>43/25</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="info-panel info-panel-green">
+                            <p class="info-panel-title"><strong>Active Players / Qualified</strong></p>
+                            <p class="info-panel-content"><strong>125/85</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="img-icon">
+                            <img class="img-responsive" src="~/www/build/styles/Images/contact-us/vietnam_lang.png" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="info-panel info-panel-blue">
+                            <p class="info-panel-title"><strong>Commission</strong></p>
+                            <p class="info-panel-content"><strong>$3,000.00</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="info-panel info-panel-blue">
+                            <p class="info-panel-title"><strong>Balance Brought Forward</strong></p>
+                            <p class="info-panel-content"><strong>$255.00</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="img-icon">
+                            <img class="img-responsive" src="~/www/build/styles/Images/contact-us/vietnam_lang.png" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="info-panel info-panel-orange">
+                            <p class="info-panel-title"><strong>Total Deposits</strong></p>
+                            <p class="info-panel-content"><strong>$38,489.75</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="info-panel info-panel-orange">
+                            <p class="info-panel-title"><strong>Total Turnover</strong></p>
+                            <p class="info-panel-content"><strong>$1,254,665.00</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="info-group">
-    <div class="title">
-        <span class="text">@(Lang.Statistic + " " + Lang.For) @selectedMonth.ToString("MMMM-yyyy")</span>
-    </div>
-
-    <div class="table table-responsive">
-        <table class="table-statistics">
-            <thead style="visibility: hidden; height: 0; border: none;">
-                <tr>
-                    <th width="30%"></th>
-                    <th width="10%"></th>
-                    <th width="20%"></th>
-                    <th width="40%"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@Lang.NewSignup:</td>
-                    <td class="text-right">@statistics.NewSignups.FormatNumber()</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>@Lang.TotalActive:</td>
-                    <td class="text-right">@statistics.ActivePlayers.FormatNumber()</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>@Lang.TotalQualifiedMembers:</td>
-                    <td class="text-right">@statistics.QualifiedMembers.FormatNumber()</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>@Lang.TotalDeposit:</td>
-                    <td class="text-right">@statistics.Deposit.ToStringMoneyWithSymbol()</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>@Lang.Turnover:</td>
-                    <td class="text-right">@statistics.Turnover.ToStringMoneyWithSymbol()</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="info-group">
-    <div class="title">
-        <span class="text">@(Lang.Statistic + " " + Lang.UpToNow)</span>
-    </div>
-
-    <div class="table">
-        <table class="table-statistics">
-            <thead style="visibility: hidden; height: 0;">
-                <tr>
-                    <th width="30%"></th>
-                    <th width="10%"></th>
-                    <th width="20%"></th>
-                    <th width="40%"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@Lang.TotalPlay:</td>
-                    <td class="text-right">@statistics.TotalPlayers.FormatNumber()</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>@Lang.Turnover:</td>
-                    <td class="text-right">@statistics.TurnoverUp.ToStringMoneyWithSymbol()</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>@Lang.TotalDeposit:</td>
-                    <td class="text-right">@statistics.DepositUp.ToStringMoneyWithSymbol()</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>@Lang.BalForward:</td>
-                    <td class="text-right">@statistics.BalanceBroughtForward.ToStringMoneyWithSymbol()</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>
 
