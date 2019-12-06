@@ -58,7 +58,7 @@
   .account-overview-filter:before {
     content: '';
     display: inline-block;
-    background: #e04f29;
+    background: #BC2608;
     height: 1px;
     width: calc(100% - 220px); }
   .account-overview-filter .form-group {
@@ -88,6 +88,7 @@
         display: block;
         text-transform: capitalize;
         font-weight: 400;
+        font-size: 1.5rem;
         line-height: 24px !important;
         color: #fff;
         text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
@@ -95,12 +96,12 @@
         background-color: gray;
         border-radius: 8px 8px 0px 0px; }
         .account-overview-content .tab-menu .menu .menu-item.active, .account-overview-content .tab-menu .menu .menu-item:hover {
-          background-color: #e04f29;
+          background-color: #BC2608;
           text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.32); }
   .account-overview-content .summary-section .summary-content .bg-red {
     display: flex;
     justify-content: flex-end;
-    background: #e04f29;
+    background: #BC2608;
     color: #FFF;
     line-height: 2.5rem; }
     .account-overview-content .summary-section .summary-content .bg-red .text {
@@ -146,16 +147,35 @@
     margin-top: 10px; }
     .account-overview-content .overview-section .tab-menu {
       border-bottom: 1px solid #fff; }
+    .account-overview-content .overview-section .table .has-scroll thead {
+      padding-right: 17px; }
+    .account-overview-content .overview-section .table .has-scroll tbody {
+      height: 290px; }
     .account-overview-content .overview-section .table table {
       border: none !important; }
+      .account-overview-content .overview-section .table table tbody {
+        overflow: auto;
+        display: block;
+        position: relative;
+        width: 100%; }
+      .account-overview-content .overview-section .table table thead {
+        display: block; }
+        .account-overview-content .overview-section .table table thead tr, .account-overview-content .overview-section .table table thead th {
+          background: #BC2608 !important;
+          align-items: center; }
       .account-overview-content .overview-section .table table tr {
-        background: #FCD5B5; }
+        display: flex;
+        background: #FCD5B5;
+        padding: 0;
+        min-width: 890px; }
         .account-overview-content .overview-section .table table tr:nth-child(even) {
           background: #FDEADA; }
         .account-overview-content .overview-section .table table tr:hover {
           background-color: #f5f5f5; }
         .account-overview-content .overview-section .table table tr td, .account-overview-content .overview-section .table table tr th {
-          border: none; }
+          border: none;
+          flex-basis: 100%;
+          font-size: 1.3rem; }
 
 @media (max-width: 350px) {
   .account-overview-content {

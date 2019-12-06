@@ -2,6 +2,8 @@
 @import "../scss/abstracts/variables";
 @import "../scss/abstracts/mixins";
 
+$bg-color: #BC2608;
+
 .account-overview {
     &-filter {
         margin-left: -15px;
@@ -9,7 +11,7 @@
         &:before {
             content: '';
             display: inline-block;
-            background: #e04f29;
+            background: $bg-color;
             height: 1px;
             width: calc(100% - 220px);
         }
@@ -56,6 +58,7 @@
                     display: block;
                     text-transform: capitalize;
                     font-weight: 400;
+                    font-size: 1.5rem;
                     line-height: 24px !important;
                     color: #fff;
                     text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
@@ -64,7 +67,7 @@
                     border-radius: 8px 8px 0px 0px;
 
                     &.active, &:hover {
-                        background-color: #e04f29;
+                        background-color: $bg-color;
                         text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.32);
                     }
                 }
@@ -76,7 +79,7 @@
                 .bg-red {
                     display: flex;
                     justify-content: flex-end;
-                    background: #e04f29;
+                    background: $bg-color;
                     color: #FFF;
                     line-height: 2.5rem;
 
@@ -150,11 +153,41 @@
             }
 
             .table {
+                .has-scroll {
+                    thead {
+                        padding-right: 17px;
+                    }
+
+                    tbody {
+                        height: 290px;
+                    }
+                }
+
                 table {
                     border: none !important;
 
+                    tbody {
+                        overflow: auto;
+                        display: block;
+                        position: relative;
+                        width: 100%;
+                    }
+
+                    thead {
+                        display: block;
+
+                        tr, th {
+                            background: $bg-color !important;
+                            align-items: center;
+                        }
+                    }
+
                     tr {
+                        display: flex;
                         background: #FCD5B5;
+                        padding: 0;
+                        min-width: 890px;
+
 
                         &:nth-child(even) {
                             background: #FDEADA;
@@ -166,6 +199,8 @@
 
                         td, th {
                             border: none;
+                            flex-basis: 100%;
+                            font-size: 1.3rem;
                         }
                     }
                 }
