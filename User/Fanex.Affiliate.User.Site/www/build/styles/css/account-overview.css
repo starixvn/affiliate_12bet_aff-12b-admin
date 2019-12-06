@@ -94,7 +94,8 @@
         text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
         transition: all .2s ease;
         background-color: gray;
-        border-radius: 8px 8px 0px 0px; }
+        border-radius: 8px 8px 0px 0px;
+        text-decoration: none; }
         .account-overview-content .tab-menu .menu .menu-item.active, .account-overview-content .tab-menu .menu .menu-item:hover {
           background-color: #BC2608;
           text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.32); }

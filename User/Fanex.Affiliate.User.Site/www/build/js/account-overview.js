@@ -149,10 +149,14 @@ var AccountOverview = (function ($) {
         });
     }
 
+    var _ajaxRequest = null;
+
     var _me = {
         initialize: function () {
             initMonthPicker();
             _me.initEvent();
+            _me.renderSummaryView(null, "Summary");
+            //_me.renderOverviewView(null, "Overview");
         },
 
         initEvent: function () {
@@ -163,7 +167,77 @@ var AccountOverview = (function ($) {
 
                 Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverView?") + $.param(params));
             });
-        }
+
+            $('#summary-section').on('click', '.menu-summary', function () {
+                var name = $(this).data('name');
+                _me.renderSummaryView(null, name);
+            });
+
+            $('#overview-section').on('click', '.menu-overview', function () {
+                var name = $(this).data('name');
+                _me.renderOverviewView(null, name);
+            });
+        },
+
+        activeMenu: function (sectionName, actionName) {
+            var activeClassName = "active";
+            $("#mainMenu .menu-" + sectionName).removeClass(activeClassName);
+            $("#menu" + actionName).addClass(activeClassName);
+        },
+
+        renderSummaryView: function (params, actionName) {
+            $("#summary-section-content").html("");
+            _me.activeMenu("summary", actionName);
+
+            if (_ajaxRequest !== null) {
+                _ajaxRequest.abort();
+            }
+
+            _ajaxRequest = $.ajax({
+                type: "POST",
+                dataType: "html",
+                cache: false,
+                data: JSON.stringify(params),
+                url: Site.resolveRelativeUrl("UserPanel/AccountOverView/" + actionName),
+                contentType: "application/json; charset=UTF-8",
+                success: function (response) {
+                    $("#summary-section-content").html(response);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
+
+        renderOverviewView: function (params, actionName) {
+            $("#overview-section-content").html("");
+            _me.activeMenu("overview", actionName);
+
+            if (_ajaxRequest !== null) {
+                _ajaxRequest.abort();
+            }
+
+            _ajaxRequest = $.ajax({
+                type: "POST",
+                dataType: "html",
+                cache: false,
+                data: JSON.stringify(params),
+                url: Site.resolveRelativeUrl("UserPanel/AccountOverView/" + actionName),
+                contentType: "application/json; charset=UTF-8",
+                success: function (response) {
+                    $("#overview-section-content").html(response);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
     };
 
     return _me;

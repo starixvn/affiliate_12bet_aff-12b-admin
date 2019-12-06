@@ -44,5 +44,26 @@
 
             return View("~/Views/UserPanel/AccountOverView/Index.cshtml", viewModel);
         }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult Summary()
+        {
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary.cshtml");
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult Overview()
+        {
+            return PartialView("~/Views/UserPanel/AccountOverView/Overview.cshtml");
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult PlayersDetails()
+        {
+            return PartialView("~/Views/UserPanel/AccountOverView/PlayersDetails.cshtml");
+        }
     }
 }

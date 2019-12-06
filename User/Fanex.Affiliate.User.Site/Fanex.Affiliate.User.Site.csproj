@@ -1201,6 +1201,9 @@
     <Content Include="www\source\styles\Images\sports-banners\AFF-Home-banner-SB.zh-CN.webp" />
     <Content Include="www\source\styles\Images\sports-banners\AFF-Home-banner-SB.zh-TW.webp" />
     <Content Include="Views\Password\RecoverPasswordResult.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Summary.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Overview.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\PlayersDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

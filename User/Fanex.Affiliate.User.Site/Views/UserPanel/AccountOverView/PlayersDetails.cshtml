@@ -1,0 +1,44 @@
+﻿@{
+    var hasCommissionData = true;
+}
+
+<div class="table table-responsive">
+    <table class="has-scroll">
+        <thead>
+            <tr>
+                <th width="10%">No.</th>
+                <th width="15%">User Name</th>
+                <th width="15%">Registered Date</th>
+                <th width="10%">Deposit</th>
+                <th width="10%">Turnover</th>
+                <th width="10%">Withdrawal</th>
+                <th width="10%">Win/Loss</th>
+                <th width="10%">Bonus</th>
+                <th width="10%">Banking Fee</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                for (var i = 1; i < 32; i++)
+                {
+                    <tr>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">@(DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"))</td>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">1,059.85</td>
+                        <td class="text-center">3,719.96</td>
+                        <td class="text-center">81.53</td>
+                        <td class="text-center">-220.14</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    @if (!hasCommissionData)
+    {
+        <p class="text-center">@Lang.NoInfo</p>
+    }
+</div>

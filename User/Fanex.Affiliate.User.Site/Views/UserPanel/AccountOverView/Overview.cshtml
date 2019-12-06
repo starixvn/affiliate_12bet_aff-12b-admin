@@ -1,0 +1,58 @@
+﻿@{
+    var hasCommissionData = true;
+}
+
+<div class="table table-responsive">
+    <table class="has-scroll">
+        <thead>
+            <tr>
+                <th width="10%">Date</th>
+                <th width="10%">New Sign Up</th>
+                <th width="12%">Deposited members</th>
+                <th width="12%">Active members</th>
+                <th width="16%">Qualified Active members</th>
+                <th width="10%">Deposits</th>
+                <th width="10%">Turnover</th>
+                <th width="10%">Withdrawal</th>
+                <th width="10%">Win/Loss</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                for (var i = 1; i < 10; i++)
+                {
+                    <tr>
+                        <td class="text-center">@("08/0" + i + "/2018")</td>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">1,059.85</td>
+                        <td class="text-center">3,719.96</td>
+                        <td class="text-center">81.53</td>
+                        <td class="text-center">-220.14</td>
+                    </tr>
+                }
+                for (var i = 10; i < 31; i++)
+                {
+                    <tr>
+                        <td class="text-center">@("08/" + i + "/2018")</td>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">747.87</td>
+                        <td class="text-center">2,221.42</td>
+                        <td class="text-center">21.64</td>
+                        <td class="text-center">-232.51</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    @if (!hasCommissionData)
+    {
+        <p class="text-center">@Lang.NoInfo</p>
+    }
+</div>
