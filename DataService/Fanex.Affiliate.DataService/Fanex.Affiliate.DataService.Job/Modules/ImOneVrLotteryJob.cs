@@ -5,9 +5,7 @@ using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
 using Fanex.Logging;
-using ONEbook.UM.NonWebApp;
 using Quartz;
-using Sunplus.UMControllerLibrary;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -15,7 +13,7 @@ using System.Threading.Tasks;
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
     [DisallowConcurrentExecution]
-    public class ImOneVrLotteryJob : IJob
+    public class ImOneVrLotteryJob : JobBase
     {
         private readonly IAppSettings _appSetting;
         private readonly IImporterService _service;
@@ -28,43 +26,34 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             _timeTracker = new TimeTracker();
         }
 
-        public async Task Execute(IJobExecutionContext context)
+        protected override async Task ImportDataToSystem(IJobExecutionContext context = null)
         {
-            try
-            {
-                var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
+            var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("VrLotteryStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
+            var param = new TimeTrackerBaseParam { ProductId = Products.VRLotteryId };
+            var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
+            var now = DateTime.Now;
+            var previousHour = now.AddHours(-1);
 
-                if (!isUm)
+            LogService.Info($"Start VrLottery service at {now}");
+            if (DateTime.Compare(lastQueryTime, previousHour) < 0)
+            {
+                var startTime = lastQueryTime;
+                var endTime = previousHour;
+
+                var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
+                var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
+
+                LogService.Info($"VrLottery service - Get data from {startTimeServer} to {endTimeServer}");
+                await _service.ImportAsync(startTimeServer, endTimeServer);
+
+                var saveTimeTrackerParam = new InsertTimeTrackerParam
                 {
-                    var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("GpiLotteryStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
-                    var param = new TimeTrackerBaseParam { ProductId = Products.VRLotteryId };
-                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
-
-                    var previousHour = DateTime.Now.AddHours(-1);
-
-                    if (DateTime.Compare(lastQueryTime, previousHour) < 0)
-                    {
-                        var startTime = lastQueryTime;
-                        var endTime = previousHour;
-
-                        var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
-                        var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
-                        await _service.ImportAsync(startTimeServer, endTimeServer);
-
-                        var saveTimeTrackerParam = new InsertTimeTrackerParam
-                        {
-                            ProductId = Products.VRLotteryId,
-                            CallTime = endTime
-                        };
-                        _timeTracker.SaveTime(saveTimeTrackerParam);
-                    }
-                }
+                    ProductId = Products.VRLotteryId,
+                    CallTime = endTime
+                };
+                _timeTracker.SaveTime(saveTimeTrackerParam);
+                LogService.Info($"VrLottery service - Finish get data");
             }
-            catch (Exception exception)
-            {
-                LogService.Error(exception.Message, exception);
-            }
-
         }
     }
 }

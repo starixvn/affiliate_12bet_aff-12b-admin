@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
     [DisallowConcurrentExecution]
-    public class GpiLotteryJob : IJob
+    public class GpiLotteryJob : JobBase
     {
         private readonly IAppSettings _appSetting;
         private readonly IImporterService _gpiLotteryService;
@@ -27,42 +27,34 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             _timeTracker = new TimeTracker();
         }
 
-        public async Task Execute(IJobExecutionContext context)
+        protected override async Task ImportDataToSystem(IJobExecutionContext context = null)
         {
-            try
-            {
-                var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
+            var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("GpiLotteryStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
+            var param = new TimeTrackerBaseParam { ProductId = Products.GPILotteryId };
+            var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
+            var now = DateTime.Now;
+            var previousHour = now.AddHours(-1);
 
-                if (!isUm)
+            LogService.Info($"Start GpiLottery service at {now}");
+            if (DateTime.Compare(lastQueryTime, previousHour) < 0)
+            {
+                var startTime = lastQueryTime;
+                var endTime = previousHour;
+
+                var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
+                var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
+
+                LogService.Info($"GpiLottery service - Get data from {startTimeServer} to {endTimeServer}");
+                await _gpiLotteryService.ImportAsync(startTimeServer, endTimeServer);
+
+                var saveTimeTrackerParam = new InsertTimeTrackerParam
                 {
-                    var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("GpiLotteryStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
-                    var param = new TimeTrackerBaseParam { ProductId = Products.GPILotteryId };
-                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
-                    var previousHour = DateTime.Now.AddHours(-1);
-
-                    if (DateTime.Compare(lastQueryTime, previousHour) < 0)
-                    {
-                        var startTime = lastQueryTime;
-                        var endTime = previousHour;
-
-                        var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
-                        var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
-                        await _gpiLotteryService.ImportAsync(startTimeServer, endTimeServer);
-
-                        var saveTimeTrackerParam = new InsertTimeTrackerParam
-                        {
-                            ProductId = Products.GPILotteryId,
-                            CallTime = endTime
-                        };
-                        _timeTracker.SaveTime(saveTimeTrackerParam);
-                    }
-                }
+                    ProductId = Products.GPILotteryId,
+                    CallTime = endTime
+                };
+                _timeTracker.SaveTime(saveTimeTrackerParam);
+                LogService.Info($"GpiLottery service - Finish get data");
             }
-            catch (Exception exception)
-            {
-                LogService.Error(exception.Message, exception);
-            }
-
         }
     }
 }

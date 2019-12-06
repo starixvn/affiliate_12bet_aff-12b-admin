@@ -14,62 +14,52 @@ using System.Threading.Tasks;
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
     [DisallowConcurrentExecution]
-    public class TopazJob : IJob
+    public class TopazJob : JobBase
     {
         private readonly IAppSettings _appSetting;
-        private readonly IImporterService _topazService;
+        private readonly IImporterService _service;
         private readonly ITimeTracker _timeTracker;
 
         public TopazJob()
         {
             _appSetting = new AppSettings();
-            _topazService = new TopazService();
+            _service = new TopazService();
             _timeTracker = new TimeTracker();
         }
 
-        public async Task Execute(IJobExecutionContext context)
+        protected override async Task ImportDataToSystem(IJobExecutionContext context = null)
         {
-            try
+            var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("TopazStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
+            var param = new TimeTrackerBaseParam { ProductId = Products.TopazId };
+            var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
+            var minuteToRun = int.Parse(_appSetting.GetValue("TopazIntervalTime"));
+
+            var now = DateTime.Now;
+
+            LogService.Info($"Start topaz serivce at {now}");
+            if (DateTime.Compare(lastQueryTime, now) < 0)
             {
-                var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
+                var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
+                var endTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).AddMinutes(-15);
 
-                if (!isUm)
-                {
-                    var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("TopazStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
-                    var param = new TimeTrackerBaseParam { ProductId = Products.TopazId };
-                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
-                    var minuteToRun = int.Parse(_appSetting.GetValue("TopazIntervalTime"));
+                for (var start = startTime; DateTime.Compare(start.AddMinutes(minuteToRun), endTime) < 0; start = start.AddMinutes(minuteToRun))
+                { 
+                    var nextStartTime = start.AddMinutes(minuteToRun);
 
-                    var now = DateTime.Now;
+                    var startUtcTime = start.ToUniversalTime();
+                    var endUtcTime = nextStartTime.ToUniversalTime();
+                    LogService.Info($"Topaz serivce - Get data from {startUtcTime} to {endUtcTime}");
+                    await _service.ImportAsync(startUtcTime, endUtcTime);
 
-                    if (DateTime.Compare(lastQueryTime, now) < 0)
+                    var saveTimeTrackerParam = new InsertTimeTrackerParam
                     {
-                        var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
-                        var endTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).AddMinutes(-15);
-
-                        for (var start = startTime; DateTime.Compare(start.AddMinutes(minuteToRun), endTime) < 0; start = start.AddMinutes(minuteToRun))
-                        {
-                            var nextStartTime = start.AddMinutes(minuteToRun);
-
-                            var startUtcTime = start.ToUniversalTime();
-                            var endUtcTime = nextStartTime.ToUniversalTime();
-                            await _topazService.ImportAsync(startUtcTime, endUtcTime);
-
-                            var saveTimeTrackerParam = new InsertTimeTrackerParam
-                            {
-                                ProductId = Products.TopazId,
-                                CallTime = nextStartTime
-                            };
-                            _timeTracker.SaveTime(saveTimeTrackerParam);
-                        }
-                    }
+                        ProductId = Products.TopazId,
+                        CallTime = nextStartTime
+                    };
+                    _timeTracker.SaveTime(saveTimeTrackerParam);
+                    LogService.Info($"Topaz service - Finished get data");
                 }
             }
-            catch (Exception exception)
-            {
-                LogService.Error(exception.Message, exception);
-            }
-
         }
     }
 }

@@ -131,6 +131,7 @@
     <Compile Include="Constants\JobSystem.cs" />
     <Compile Include="IJobScheduler.cs" />
     <Compile Include="IJobSchedulerFactory.cs" />
+    <Compile Include="JobBase.cs" />
     <Compile Include="JobSchedulerFactory.cs" />
     <Compile Include="MetaModels\TimeTracker\InsertTimeTrackerParam.cs" />
     <Compile Include="MetaModels\TimeTracker\TimeTrackerBaseParam.cs" />

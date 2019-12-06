@@ -15,7 +15,7 @@ using ONEbook.UM.NonWebApp;
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
     [DisallowConcurrentExecution]
-    public class BetsoftJob : IJob
+    public class BetsoftJob : JobBase
     {
         private readonly IAppSettings _appSetting;
         private readonly IBetsoftService _betSoftService;
@@ -28,52 +28,40 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             _timeTracker = new TimeTracker();
         }
 
-        public Task Execute(IJobExecutionContext context)
+        protected override Task ImportDataToSystem(IJobExecutionContext context)
         {
-            try
-            {
-                var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
+            var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("BetsoftStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
+            var param = new TimeTrackerBaseParam { ProductId = Products.BetsoftProductId };
+            var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
 
-                if (!isUm)
+            var hourAdjustment = Convert.ToInt32(_appSetting.GetValue("BetsoftHourAdjustment"));
+            var now = DateTime.Now.AddHours(hourAdjustment);
+            var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
+
+            if (DateTime.Compare(lastQueryTime, nowByHour) < 0)
+            {
+                var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
+                var endTime = new DateTime(nowByHour.Year, nowByHour.Month, nowByHour.Day, nowByHour.Hour, nowByHour.Minute, nowByHour.Second);
+
+                for (var start = startTime; DateTime.Compare(start, endTime) < 0; start = start.AddHours(1))
                 {
-                    var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("BetsoftStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
-                    var param = new TimeTrackerBaseParam { ProductId = Products.BetsoftProductId };
-                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
-
-                    var hourAdjustment = Convert.ToInt32(_appSetting.GetValue("BetsoftHourAdjustment"));
-                    var now = DateTime.Now.AddHours(hourAdjustment);
-                    var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
-
-                    if (DateTime.Compare(lastQueryTime, nowByHour) < 0)
+                    var endTimeByBatch = start.AddHours(1);
+                    var betSoftParam = new BetsoftParam
                     {
-                        var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
-                        var endTime = new DateTime(nowByHour.Year, nowByHour.Month, nowByHour.Day, nowByHour.Hour, nowByHour.Minute, nowByHour.Second);
+                        StartDate = start,
+                        EndDate = DateTime.Compare(endTimeByBatch, endTime) > 0 ? endTime : endTimeByBatch
+                    };
+                    var nextStartTime = betSoftParam.EndDate;
 
-                        for (var start = startTime; DateTime.Compare(start, endTime) < 0; start = start.AddHours(1))
-                        {
-                            var endTimeByBatch = start.AddHours(1);
-                            var betSoftParam = new BetsoftParam
-                            {
-                                StartDate = start,
-                                EndDate = DateTime.Compare(endTimeByBatch, endTime) > 0 ? endTime : endTimeByBatch
-                            };
-                            var nextStartTime = betSoftParam.EndDate;
+                    _betSoftService.Import(betSoftParam);
 
-                            _betSoftService.Import(betSoftParam);
-
-                            var saveTimeTrackerParam = new InsertTimeTrackerParam
-                            {
-                                ProductId = Products.BetsoftProductId,
-                                CallTime = nextStartTime
-                            };
-                            _timeTracker.SaveTime(saveTimeTrackerParam);
-                        }
-                    }
+                    var saveTimeTrackerParam = new InsertTimeTrackerParam
+                    {
+                        ProductId = Products.BetsoftProductId,
+                        CallTime = nextStartTime
+                    };
+                    _timeTracker.SaveTime(saveTimeTrackerParam);
                 }
-            }
-            catch (Exception exception)
-            {
-                LogService.Error(exception.Message, exception);
             }
             return Task.CompletedTask;
         }
