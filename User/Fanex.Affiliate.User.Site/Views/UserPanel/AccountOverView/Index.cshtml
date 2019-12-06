@@ -42,25 +42,25 @@
                 </div>
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-1"></div>
-                        <div class="col-sm-4">
+                        <div class="col-lg-1 col-sm-2"></div>
+                        <div class="col-lg-6 col-md-8 col-sm-10">
                             <p class="my-account">My Account</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-1">
+                        <div class="col-lg-1 col-sm-2">
                             <div class="img-icon">
                                 <img class="img-responsive" src="~/www/build/styles/Images/contact-us/vietnam_lang.png" />
                             </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-lg-3 col-md-4 col-sm-5">
                             <div class="info-panel info-panel-green">
                                 <p class="info-panel-title"><strong>New Signups / Deposited</strong></p>
                                 <p class="info-panel-content"><strong>43/25</strong></p>
                             </div>
                         </div>
 
-                        <div class="col-sm-2">
+                        <div class="col-lg-3 col-md-4 col-sm-5">
                             <div class="info-panel info-panel-green">
                                 <p class="info-panel-title"><strong>Active Players / Qualified</strong></p>
                                 <p class="info-panel-content"><strong>125/85</strong></p>
@@ -68,19 +68,19 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-1">
+                        <div class="col-lg-1 col-sm-2">
                             <div class="img-icon">
                                 <img class="img-responsive" src="~/www/build/styles/Images/contact-us/vietnam_lang.png" />
                             </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-lg-3 col-md-4 col-sm-5">
                             <div class="info-panel info-panel-blue">
                                 <p class="info-panel-title"><strong>Commission</strong></p>
                                 <p class="info-panel-content"><strong>$3,000.00</strong></p>
                             </div>
                         </div>
 
-                        <div class="col-sm-2">
+                        <div class="col-lg-3 col-md-4 col-sm-5">
                             <div class="info-panel info-panel-blue">
                                 <p class="info-panel-title"><strong>Balance Brought Forward</strong></p>
                                 <p class="info-panel-content"><strong>$255.00</strong></p>
@@ -88,19 +88,19 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-1">
+                        <div class="col-lg-1 col-sm-2">
                             <div class="img-icon">
                                 <img class="img-responsive" src="~/www/build/styles/Images/contact-us/vietnam_lang.png" />
                             </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-lg-3 col-md-4 col-sm-5">
                             <div class="info-panel info-panel-orange">
                                 <p class="info-panel-title"><strong>Total Deposits</strong></p>
                                 <p class="info-panel-content"><strong>$38,489.75</strong></p>
                             </div>
                         </div>
 
-                        <div class="col-sm-2">
+                        <div class="col-lg-3 col-md-4 col-sm-5">
                             <div class="info-panel info-panel-orange">
                                 <p class="info-panel-title"><strong>Total Turnover</strong></p>
                                 <p class="info-panel-content"><strong>$1,254,665.00</strong></p>
@@ -121,40 +121,46 @@
                 <table>
                     <thead>
                         <tr>
-                            <th width="20%">@Lang.Product</th>
-                            <th width="5%">@Lang.Tier</th>
-                            <th width="25%">@Lang.NetWinLoss</th>
-                            <th width="20%">@Lang.QualifyingMem</th>
-                            <th width="20%">@Lang.Comm</th>
+                            <th width="10%">Date</th>
+                            <th width="10%">New Sign Up</th>
+                            <th width="12%">Deposited members</th>
+                            <th width="12%">Active members</th>
+                            <th width="16%">Qualified Active members</th>
+                            <th width="10%">Deposits</th>
+                            <th width="10%">Turnover</th>
+                            <th width="10%">Withdrawal</th>
+                            <th width="10%">Win/Loss</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if (hasCommissionData)
-                        {
-                            var totalRow = commissionSettings.Count();
-                            var isFirstRow = true;
-                            for (var i = 0; i < totalRow; i++)
+                        @{
+                            for (var i = 1; i < 10; i++)
                             {
-                                var item = commissionSettings.ElementAt(i);
-                                var isLastRow = i == totalRow - 1;
-                                var maxAmount = isLastRow ? "+" : " - " + item.MaxAmount.ToStringMoneyWithSymbol();
-                                var maxQm = isLastRow ? "+" : " - " + item.MaxQm.FormatNumber();
                                 <tr>
-                                    @if (isFirstRow)
-                                    {
-                                        <td class="bg-sportsbook text-center" rowspan="@totalRow">@Lang.AllProducts</td>
-                                    }
-
-                                    <td class="text-center">@item.TierId</td>
-                                    <td class="text-right">@(item.MinAmount.ToStringMoneyWithSymbol())@maxAmount</td>
-                                    @if (isFirstRow)
-                                    {
-                                        <td class="text-center" rowspan="@totalRow">@Html.Raw(Lang.QualifyingMembers)</td>
-                                    }
-                                    <td class="text-right">@(Convert.ToDouble(item.Commission * 100).ToString())%</td>
+                                    <td class="text-center">@("08/0" + i + "/2018")</td>
+                                    <td class="text-center">@i</td>
+                                    <td class="text-center">@i</td>
+                                    <td class="text-center">@i</td>
+                                    <td class="text-center">@i</td>
+                                    <td class="text-center">1,059.85</td>
+                                    <td class="text-center">3,719.96</td>
+                                    <td class="text-center">81.53</td>
+                                    <td class="text-center">-220.14</td>
                                 </tr>
-
-                                isFirstRow = false;
+                            }
+                            for (var i = 10; i < 31; i++)
+                            {
+                                <tr>
+                                    <td class="text-center">@("08/" + i + "/2018")</td>
+                                    <td class="text-center">@i</td>
+                                    <td class="text-center">@i</td>
+                                    <td class="text-center">@i</td>
+                                    <td class="text-center">@i</td>
+                                    <td class="text-center">747.87</td>
+                                    <td class="text-center">2,221.42</td>
+                                    <td class="text-center">21.64</td>
+                                    <td class="text-center">-232.51</td>
+                                </tr>
                             }
                         }
                     </tbody>

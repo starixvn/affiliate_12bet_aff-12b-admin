@@ -127,8 +127,7 @@
     text-align: center;
     margin: .6rem;
     color: #fff;
-    border-radius: 3px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
+    box-shadow: 5px 0px 5px grey; }
     .account-overview-content .summary-section .summary-content .container-fluid .info-panel-green {
       background-color: green; }
     .account-overview-content .summary-section .summary-content .container-fluid .info-panel-blue {
@@ -140,24 +139,28 @@
       font-size: 1.75rem; }
     .account-overview-content .summary-section .summary-content .container-fluid .info-panel-content {
       width: 100%;
-      font-size: 2.75rem; }
+      font-size: 2.75rem;
+      margin-top: -10px;
+      padding-bottom: 10px; }
   .account-overview-content .overview-section {
     margin-top: 10px; }
     .account-overview-content .overview-section .tab-menu {
       border-bottom: 1px solid #fff; }
-    .account-overview-content .overview-section .table .table-statistics {
-      border: none; }
-      .account-overview-content .overview-section .table .table-statistics tr td, .account-overview-content .overview-section .table .table-statistics tr th {
-        border: none; }
-      .account-overview-content .overview-section .table .table-statistics tr:nth-child(even) {
-        background: #f1ebeb; }
-      .account-overview-content .overview-section .table .table-statistics tr:nth-child(odd) {
-        background: transparent; }
+    .account-overview-content .overview-section .table table {
+      border: none !important; }
+      .account-overview-content .overview-section .table table tr {
+        background: #FCD5B5; }
+        .account-overview-content .overview-section .table table tr:nth-child(even) {
+          background: #FDEADA; }
+        .account-overview-content .overview-section .table table tr:hover {
+          background-color: #f5f5f5; }
+        .account-overview-content .overview-section .table table tr td, .account-overview-content .overview-section .table table tr th {
+          border: none; }
 
 @media (max-width: 350px) {
   .account-overview-content {
-    margin-top: 0; } }
+    margin-top: -5px !important; } }
 
 @media (max-width: 716px) {
-  .account-overview-content .summary-content .bg-red .text {
-    padding-right: 10px; } }
+  .account-overview-content .summary-section .summary-content .bg-red .text {
+    padding-right: 10px !important; } }
