@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
 
         private static void RunJobs()
         {
-            var schedulerFactory = new JobSchedulerFactory();
+            var schedulerFactory = JobSchedulerFactory.CreateAsync().GetAwaiter().GetResult();
             schedulerFactory.SetUp();
             Console.WriteLine("Done!!!");
         }

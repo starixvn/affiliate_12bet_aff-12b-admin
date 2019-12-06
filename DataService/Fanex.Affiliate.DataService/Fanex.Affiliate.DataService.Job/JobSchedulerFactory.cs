@@ -4,22 +4,31 @@ using Fanex.Affiliate.DataService.Job.Constants;
 using Quartz;
 using Quartz.Impl;
 using System.Threading.Tasks;
+using Quartz.Logging;
+using System;
 
 namespace Fanex.Affiliate.DataService.Job
 {
     public class JobSchedulerFactory : IJobSchedulerFactory
     {
-        private readonly IScheduler _scheduler;
+        private IScheduler _scheduler;
 
-        private readonly IList<IJobScheduler> _jobSchedulerList;
+        private IList<IJobScheduler> _jobSchedulerList;
 
-        public JobSchedulerFactory()
+        public static async Task<IJobSchedulerFactory> CreateAsync()
         {
+            var factory = new JobSchedulerFactory();
+            await factory.Init();
+            return factory;
+        }
+
+        private async Task Init()
+        {
+            LogProvider.SetCurrentLogProvider(new FanexLogProvider());
             var appSetting = new AppSettings();
             var schedulerFactory = new StdSchedulerFactory();
-            this._scheduler = schedulerFactory.GetScheduler().Result;
-            _jobSchedulerList = new List<IJobScheduler>();
-
+            this._scheduler = await schedulerFactory.GetScheduler();
+            this._jobSchedulerList = new List<IJobScheduler>();
             foreach (var product in appSetting.SupportedProductList)
             {
                 if (JobSystem.JobHandlerList.ContainsKey(product))
@@ -35,31 +44,78 @@ namespace Fanex.Affiliate.DataService.Job
             }
         }
 
-        public void SetUp()
+        public async void SetUp()
         {
             foreach (var item in _jobSchedulerList)
             {
                 var job = item.BuildSchedule();
-                _scheduler.ScheduleJob(job.Job, job.Trigger);
+                await _scheduler.ScheduleJob(job.Job, job.Trigger);
             }
 
-            _scheduler.Start();
+            await _scheduler.Start();
         }
 
-        public void Shutdown()
+        public async void Shutdown()
         {
             HttpClientPooling.ClearAllHttpClient();
-            _scheduler.Shutdown(true);
+            await _scheduler.Shutdown(true);
         }
 
-        public void Pause()
+        public async void Pause()
         {
-            _scheduler.PauseAll();
+            await _scheduler.PauseAll();
         }
 
-        public void Resume()
+        public async void Resume()
         {
-            _scheduler.ResumeAll();
+            await _scheduler.ResumeAll();
+        }
+
+        private class FanexLogProvider: ILogProvider
+        {
+            public Logger GetLogger(string name)
+            {
+                return (level, func, exception, parameters) =>
+                {
+                    if (func == null)
+                        return false;
+
+                    var msg = func();
+                    switch (level)
+                    {
+                        case LogLevel.Debug:
+                            Logging.LogService.Debug(msg, parameters);
+                            break;
+                        case LogLevel.Error:
+                            Logging.LogService.Error(msg, exception);
+                            break;
+                        case LogLevel.Fatal:
+                            Logging.LogService.Critical(msg, parameters);
+                            Logging.LogService.Error(msg, exception);
+                            break;
+                        case LogLevel.Info:
+                            Logging.LogService.Info(msg, parameters);
+                            break;
+                        case LogLevel.Warn:
+                            Logging.LogService.Warn(msg, parameters);
+                            break;
+                        default:
+                            Logging.LogService.Debug(msg, parameters);
+                            break;
+                    }
+                    return true;
+                };
+            }
+
+            public IDisposable OpenMappedContext(string key, string value)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IDisposable OpenNestedContext(string message)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

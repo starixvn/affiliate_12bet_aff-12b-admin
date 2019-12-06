@@ -424,6 +424,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Web.12betthirdpartyproduct.local config" />
     <None Include="Web.12betthirdpartyproduct.uat.config" />
   </ItemGroup>
   <ItemGroup>

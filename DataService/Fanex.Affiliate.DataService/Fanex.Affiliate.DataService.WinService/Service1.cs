@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             InitializeComponent();
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
-            _schedulerFactory = new JobSchedulerFactory();
+            _schedulerFactory = JobSchedulerFactory.CreateAsync().GetAwaiter().GetResult();
         }
 
         protected override void OnStart(string[] args)
