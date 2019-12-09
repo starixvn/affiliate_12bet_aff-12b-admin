@@ -149,23 +149,27 @@ var AccountOverview = (function ($) {
         });
     }
 
-    var _ajaxRequest = null;
-
     var _me = {
         initialize: function () {
             initMonthPicker();
             _me.initEvent();
             _me.renderSummaryView(null, "Summary");
-            //_me.renderOverviewView(null, "Overview");
+            _me.renderOverviewView(null, "Overview");
         },
 
         initEvent: function () {
             $("#statisticsSubmit").on("click", function () {
-                var params = {
-                    monthDate: $("#MonthDate").data("original-date")
-                }
+                //var params = {
+                //    monthDate: $("#MonthDate").data("original-date")
+                //}
 
-                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverView?") + $.param(params));
+                var actionNameSummary = $('.menu-summary.active').data('name');
+                var actionNameOverview = $('.menu-overview.active').data('name');
+
+                _me.renderSummaryView(null, actionNameSummary);
+                _me.renderOverviewView(null, actionNameOverview);
+
+                //Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverView?") + $.param(params));
             });
 
             $('#summary-section').on('click', '.menu-summary', function () {
@@ -181,19 +185,14 @@ var AccountOverview = (function ($) {
 
         activeMenu: function (sectionName, actionName) {
             var activeClassName = "active";
-            $("#mainMenu .menu-" + sectionName).removeClass(activeClassName);
+            $(".menu-" + sectionName).removeClass(activeClassName);
             $("#menu" + actionName).addClass(activeClassName);
         },
 
         renderSummaryView: function (params, actionName) {
-            $("#summary-section-content").html("");
             _me.activeMenu("summary", actionName);
 
-            if (_ajaxRequest !== null) {
-                _ajaxRequest.abort();
-            }
-
-            _ajaxRequest = $.ajax({
+            $.ajax({
                 type: "POST",
                 dataType: "html",
                 cache: false,
@@ -213,14 +212,9 @@ var AccountOverview = (function ($) {
         },
 
         renderOverviewView: function (params, actionName) {
-            $("#overview-section-content").html("");
             _me.activeMenu("overview", actionName);
 
-            if (_ajaxRequest !== null) {
-                _ajaxRequest.abort();
-            }
-
-            _ajaxRequest = $.ajax({
+            $.ajax({
                 type: "POST",
                 dataType: "html",
                 cache: false,

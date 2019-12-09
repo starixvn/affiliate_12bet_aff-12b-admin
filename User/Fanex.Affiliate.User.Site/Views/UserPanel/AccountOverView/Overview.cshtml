@@ -1,9 +1,10 @@
 ﻿@{
     var hasCommissionData = true;
+    var hasScroll = true;
 }
 
 <div class="table table-responsive">
-    <table class="has-scroll">
+    <table class="@(hasScroll ? "has-scroll" : string.Empty)">
         <thead>
             <tr>
                 <th width="10%">Date</th>
