@@ -10,6 +10,7 @@ using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Drawing;
 using System.Web;
+using System.IO;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
@@ -158,7 +159,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         {
             foreach (var serverPath in _appSetting.BannerFolders)
             {
-                _systemFile.UploadFile(bitmap, serverPath + fileName);
+                var filePath = Path.Combine(serverPath, fileName);
+                _systemFile.UploadFile(bitmap, filePath);
             }
         }
 
