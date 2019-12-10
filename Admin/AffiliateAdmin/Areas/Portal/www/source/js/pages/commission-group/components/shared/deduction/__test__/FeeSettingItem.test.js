@@ -14,7 +14,7 @@ describe('commission group - FeeSettingItem', () => {
     };
 
     it('handleChangeComm - should call onChangeCommission when change DeductedPercentage', () => {
-        const mockEvent = { target: { name: 'DeductedPercentage', value: '0.15' }};
+        const mockEvent = { target: { name: 'DeductedPercentage', value: '0.15' } };
         const wrapper = shallow(<FeeSettingItem {...defaultProps} />);
 
         wrapper.find('Input[type="select"][name="DeductedPercentage"]').simulate('change', mockEvent);
@@ -23,7 +23,7 @@ describe('commission group - FeeSettingItem', () => {
     });
 
     it('handleChangeComm - should call onChangeCommission when change NextDeductedPercentage', () => {
-        const mockEvent = { target: { name: 'NextDeductedPercentage', value: '0.15' }};
+        const mockEvent = { target: { name: 'NextDeductedPercentage', value: '0.15' } };
         const props = Object.assign({}, defaultProps, { isCreating: false });
         const wrapper = shallow(<FeeSettingItem {...props} />);
 

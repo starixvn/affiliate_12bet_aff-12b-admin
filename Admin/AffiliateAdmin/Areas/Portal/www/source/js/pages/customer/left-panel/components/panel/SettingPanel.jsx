@@ -8,6 +8,7 @@ import { Row, Col, Button } from 'reactstrap';
 import { affType, resource, status, messages } from '../../modules/constants';
 import { updateAffType, updateClosedStatus, updateStatus, getAffiliateInfo } from '../../actions';
 import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
+import { NotificationPopup } from '../../../../common/components/NotificationPopup';
 
 export class SettingPanel extends PureComponent {
     constructor(props) {
@@ -19,7 +20,12 @@ export class SettingPanel extends PureComponent {
         this.state = {
             isChangingAffType: false,
             isChangingAffStatus: false,
-            isAssignCommissionGroup: false
+            isAssignCommissionGroup: false,
+            selectedStatus: '',
+            isClosed: false,
+            messageNotification: '',
+            isConfirmPopup: true,
+            isConfirmStatus: true
         }
     }
 
@@ -35,42 +41,57 @@ export class SettingPanel extends PureComponent {
         this.setState({ isAssignCommissionGroup: isChanging })
     }
 
-    handleChangeStatus = async (event) => {
-        const isConfirmed = window.confirm(messages.areYouChangeStatus);
-        if (isConfirmed) {
-            const selectedStatus = event.target.value;
-            if (selectedStatus && selectedStatus.toLowerCase() === status.Approved) {
-                this.setState({ isAssignCommissionGroup: true });
-            } else {
-                const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: selectedStatus });
-                const result = await this.props.updateStatus(param);
+    handleCloseNotificationPopup = (confirmResult) => {
+        this.setState({ messageNotification: '' });
 
-                if (result.IsSuccessful) {
-                    window.alert(messages.statusUpdatedSuccess);
-                    this.props.getAffiliateInfo(this.props.affName);
-                }
-                else {
-                    window.alert(result.Message);
-                }
+        const { isConfirmStatus, selectedStatus, isClosed } = this.state;
+        if (isConfirmStatus && confirmResult && selectedStatus) {
+            this._changeStatus(selectedStatus);
+        }
+
+        if (!isConfirmStatus && confirmResult) {
+            this._openCloseAff(isClosed);
+        }
+    }
+
+    _handleChangeStatus = (event) => {
+        this.setState({ messageNotification: messages.areYouChangeStatus, isConfirmPopup: true, isConfirmStatus: true, selectedStatus: event.target.value });
+    }
+
+    _changeStatus = async (selectedStatus) => {
+        if (selectedStatus && selectedStatus.toLowerCase() === status.Approved) {
+            this.setState({ isAssignCommissionGroup: true });
+        } else {
+            const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: selectedStatus });
+            const result = await this.props.updateStatus(param);
+
+            if (result.IsSuccessful) {
+                this.setState({ messageNotification: messages.statusUpdatedSuccess, isConfirmPopup: false });
+                this.props.getAffiliateInfo(this.props.affName);
+            }
+            else {
+                this.setState({ messageNotification: result.Message, isConfirmPopup: false });
             }
         }
     }
 
-    handleChangeClosedStatus = async () => {
+    _handleOpenCloseAff = () => {
         const { affiliateInfo } = this.props;
-        const nextStatus = !affiliateInfo.IsClosed;
-        const isConfirmed = confirm('Are you sure you want to ' + (nextStatus ? 'close' : 'open') + ' this affiliate?');
-        if (isConfirmed) {
-            const param = { AffId: this.props.affiliateInfo.AffId, IsClosed: nextStatus };
-            const result = await this.props.updateClosedStatus(param);
+        const isClosed = !affiliateInfo.IsClosed;
 
-            if (result.IsSuccessful) {
-                window.alert(messages.statusUpdatedSuccess);
-                this.props.getAffiliateInfo(this.props.affName);
-            }
-            else {
-                window.alert(result.Message);
-            }
+        this.setState({ messageNotification: `Are you sure you want to ${isClosed ? 'close' : 'open'} this affiliate?`, isConfirmPopup: true, isConfirmStatus: false, isClosed });
+    }
+
+    _openCloseAff = async (isClosed) => {
+        const param = { AffId: this.props.affiliateInfo.AffId, IsClosed: isClosed };
+        const result = await this.props.updateClosedStatus(param);
+
+        if (result.IsSuccessful) {
+            this.setState({ messageNotification: messages.statusUpdatedSuccess, isConfirmPopup: false });
+            this.props.getAffiliateInfo(this.props.affName);
+        }
+        else {
+            this.setState({ messageNotification: result.Message, isConfirmPopup: false });
         }
     }
 
@@ -84,13 +105,13 @@ export class SettingPanel extends PureComponent {
             this.toggleChangingAffType(false);
         }
         else {
-            window.alert(messages.affTypeUpdatedFail);
+            this.setState({ messageNotification: messages.affTypeUpdatedFail, isConfirmPopup: false });
         }
     }
 
     render() {
         const { affiliateInfo, isApproved } = this.props;
-        const { isChangingAffType, isChangingAffStatus, isAssignCommissionGroup } = this.state;
+        const { isChangingAffType, isChangingAffStatus, isAssignCommissionGroup, messageNotification, isConfirmPopup } = this.state;
 
         return (
             <Panel heading={resource.Setting}>
@@ -119,7 +140,7 @@ export class SettingPanel extends PureComponent {
                                 (
                                     <div className="text-primary">
                                         <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} value={affiliateInfo.Status}
-                                            onChange={this.handleChangeStatus}
+                                            onChange={this._handleChangeStatus}
                                             onBlur={() => this.toggleChangingAffStatus(false)}
                                             ref={this.affStatusDropdown}>
                                             <option value="Approved">Approved</option>
@@ -149,11 +170,18 @@ export class SettingPanel extends PureComponent {
                         <Row>
                             <Col>{resource.Closed}</Col>
                             <Col className="text-right text-primary">
-                                <Button color="link" className="left-panel-btn-link btn-closed" onClick={this.handleChangeClosedStatus}>
+                                <Button color="link" className="left-panel-btn-link btn-closed" onClick={this._handleOpenCloseAff}>
                                     {affiliateInfo.IsClosed ? resource.Yes : resource.No}
                                 </Button>
                             </Col>
                         </Row>)
+                }
+                {
+                    !!messageNotification && <NotificationPopup
+                        message={messageNotification}
+                        isConfirmPopup={isConfirmPopup}
+                        onClose={this.handleCloseNotificationPopup}
+                    />
                 }
             </Panel>
         );

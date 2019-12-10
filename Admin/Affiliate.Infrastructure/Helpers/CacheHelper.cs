@@ -3,7 +3,7 @@
     using Fanex.Caching;
     using Newtonsoft.Json;
 
-    public class CacheHelper
+    public static class CacheHelper
     {
         private const int TIMEOUT = 120; // 2 minutes.
 
@@ -16,7 +16,7 @@
 
         public static void Set<T>(string key, T value, int timeout = TIMEOUT)
         {
-            if (value != null)
+            if (!Equals(value, default(T)))
             {
                 Cache.Set(key, DeepClone(value), timeout);
             }
@@ -34,7 +34,7 @@
 
         private static T DeepClone<T>(T source)
         {
-            if (source == null)
+            if (Equals(source, default(T)))
             {
                 return source;
             }

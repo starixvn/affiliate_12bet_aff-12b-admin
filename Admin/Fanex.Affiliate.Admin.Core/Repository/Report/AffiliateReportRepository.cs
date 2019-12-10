@@ -6,11 +6,15 @@ using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 using Fanex.Data;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Report
 {
     public class AffiliateReportRepository : BaseRepository, IAffiliateReportRepository
     {
+        private const int OneHundred = 100;
+        private const int NumberOfDigits = 2;
+
         public EntityResult<AffiliateReport> GetMainReportData(AffiliateReportMainParam param)
         {
             const string SpKey = "Aff_Admin_AffiliateReport_Sel";
@@ -109,7 +113,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
             objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
             objectDb.AddInParameter("IsExportExcel", DbType.Boolean, param.IsExportExcel);
 
-            objectDb.AddOutParameter("NRows", DbType.Int32, 4);
+            objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
         }
 
         private static AffiliateReport BuildDataItem(IDataReader reader)
@@ -135,7 +139,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
                 OperationalFee = Convert.ToDecimal(reader["OperationalFee"]),
                 BankingFee = Convert.ToDecimal(reader["BankingFee"]),
                 TotalFee = Convert.ToDecimal(reader["TotalFee"]),
-                CommissionRate = decimal.Round(100 * Convert.ToDecimal(reader["CommissionRate"]), 2),
+                CommissionRate = decimal.Round(OneHundred * Convert.ToDecimal(reader["CommissionRate"]), NumberOfDigits),
                 Earning = Convert.ToDecimal(reader["Earning"]),
                 AffWithdrawal = Convert.ToDecimal(reader["AffWithdrawal"]),
                 AffAdjustment = Convert.ToDecimal(reader["AffAdjustment"]),

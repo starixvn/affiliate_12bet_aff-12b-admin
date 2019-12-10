@@ -1,31 +1,26 @@
-﻿@{
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
-}
-@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
-
-@{ 
-    var defaultUrl = (Model.FirstOrDefault(p => p.IsActive) ?? Model.First()).Url;
-    if(defaultUrl.IndexOf('?') == -1 && Request.QueryString.Count > 0)
-    {
-        defaultUrl = defaultUrl + "?" + Request.QueryString.ToString();
-    }
-    else if(Request.QueryString.Count > 0)
-    {
-        defaultUrl = defaultUrl + "&" + Request.QueryString.ToString();
-    }
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
 }
 
-<div class="sub-menu-container">
-    <div class="d-inline-block">
-        <img src="~/Areas/Portal/www/dist/imgs/i_affiliateslist.png" />
-    </div>
-    <div class="d-inline-block">
-        @{
-            Html.RenderPartial("~/Areas/Portal/Views/Shared/_SubMenu.cshtml", Model);
+@model Fanex.Affiliate.Admin.Core.ViewModels.Affiliate.AffiliateInfoViewModel
+
+@{
+    Html.RenderPartial("~/Areas/Portal/Views/Affiliate/_AffiliateSubMenu.cshtml", Model.SubMenuList);
+}
+
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/affiliate-info.css")" rel="stylesheet" />
+}
+
+@section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            commGroupList: @Html.Raw(Json.Encode(Model.CommGroupList)),
+            languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+            groupId: @Model.SelectedGroupId,
+            param: @Html.Raw(Json.Encode(Model.Param))
         }
-    </div>
-</div>
-
-<div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@defaultUrl"></iframe>
-</div>
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/affiliate/affiliate-info.js")"></script>
+}

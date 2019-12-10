@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -32,8 +32,8 @@
     <CodeAnalysisRuleSet>Fanex.Affiliate.Admin.Core.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
@@ -53,10 +53,6 @@
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.Logging.RabbitMQ, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.RabbitMQ.1.0.1\lib\net461\Fanex.Logging.RabbitMQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Logging.Sentry.RavenClient, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -127,6 +123,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
@@ -135,27 +132,27 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -166,7 +163,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\CompressAttribute.cs" />
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryHeaderAttribute.cs" />
@@ -178,37 +174,44 @@
     <Compile Include="Constants\Code.cs" />
     <Compile Include="Constants\CommGroupErrorMessage.cs" />
     <Compile Include="Constants\DeductionId.cs" />
+    <Compile Include="Constants\Field.cs" />
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
     <Compile Include="Constants\Money.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />
+    <Compile Include="Constants\Size.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Constants\UserPanelConstant.cs" />
     <Compile Include="Constants\Validation.cs" />
-    <Compile Include="Controllers\AdministratorController.cs" />
-    <Compile Include="Controllers\AffiliateController.cs" />
-    <Compile Include="Controllers\AffiliateInfoController.cs" />
-    <Compile Include="Controllers\AffiliateReportController.cs" />
+    <Compile Include="Controllers\AccessDeniedController.cs" />
+    <Compile Include="Controllers\Administrator\AdministratorController.cs" />
+    <Compile Include="Controllers\Administrator\DepartmentController.cs" />
+    <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\CommissionGroupController.cs" />
-    <Compile Include="Controllers\Commission\CommGroupAssignmentController.cs" />
+    <Compile Include="Controllers\Affiliate\CommissionGroupController.cs" />
+    <Compile Include="Controllers\Affiliate\CommGroupAssignmentController.cs" />
+    <Compile Include="Controllers\ChangeAdminPasswordController.cs" />
     <Compile Include="Controllers\CommonSettingController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\CustomerLeftPanelController.cs" />
     <Compile Include="Controllers\CustomerStatisticsController.cs" />
-    <Compile Include="Controllers\DomainController.cs" />
-    <Compile Include="Controllers\EmailHistoryController.cs" />
+    <Compile Include="Controllers\Affiliate\EmailHistoryController.cs" />
+    <Compile Include="Controllers\Domain\DomainControlController.cs" />
+    <Compile Include="Controllers\Domain\DomainController.cs" />
     <Compile Include="Controllers\EmailTestingController.cs" />
     <Compile Include="Controllers\ExchangeRateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LandingPageController.cs" />
-    <Compile Include="Controllers\MediaGalleryController.cs" />
-    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MediaGallery\LandingPageListController.cs" />
+    <Compile Include="Controllers\MediaGallery\MediaGalleryController.cs" />
+    <Compile Include="Controllers\MediaGallery\TextListController.cs" />
+    <Compile Include="Controllers\Member\ActiveMemberController.cs" />
+    <Compile Include="Controllers\Member\MemberController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
-    <Compile Include="Controllers\PasswordController.cs" />
-    <Compile Include="Controllers\PaymentRequestController.cs" />
+    <Compile Include="Controllers\Affiliate\PaymentRequestController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\UserPanel\AdjustmentController.cs" />
     <Compile Include="Controllers\UserPanel\CustomerMemberController.cs" />
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsController.cs" />
@@ -219,8 +222,18 @@
     <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\UserAccountController.cs" />
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
+    <Compile Include="DTO\Administrator\AdministratorInfo.cs" />
+    <Compile Include="DTO\Administrator\DepartmentInfo.cs" />
+    <Compile Include="DTO\Administrator\PolicyInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
+    <Compile Include="DTO\AffTypeInfo.cs" />
+    <Compile Include="DTO\Domain\DomainControlInfo.cs" />
+    <Compile Include="DTO\Domain\DomainInfo.cs" />
+    <Compile Include="DTO\Home\DepositInfo.cs" />
+    <Compile Include="DTO\Home\GeneralInfo.cs" />
+    <Compile Include="DTO\Home\OnlineListInfo.cs" />
+    <Compile Include="DTO\MediaGallery\BannerInfo.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupResultEntity.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupSetting.cs" />
@@ -238,8 +251,39 @@
     <Compile Include="DTO\Email\PaymentRequestUpdateEmail.cs" />
     <Compile Include="DTO\Email\WithdrawalEmail.cs" />
     <Compile Include="DTO\EntityResult.cs" />
+    <Compile Include="DTO\ExchangeRate\ExchangeRateInfo.cs" />
     <Compile Include="DTO\Language.cs" />
+    <Compile Include="DTO\MediaGallery\Category.cs" />
+    <Compile Include="DTO\MediaGallery\MediaGalleryFilterItem.cs" />
+    <Compile Include="DTO\Member\ActiveMemberInfo.cs" />
+    <Compile Include="DTO\Member\AllMemberEntities.cs" />
+    <Compile Include="DTO\Member\DepositCustomerInfo.cs" />
+    <Compile Include="DTO\Member\MemberInfo.cs" />
+    <Compile Include="DTO\Member\InactiveMemberInfo.cs" />
+    <Compile Include="MetaModels\Administrator\ChangeStatusParam.cs" />
+    <Compile Include="MetaModels\Administrator\DeleteDepartmentParam.cs" />
+    <Compile Include="MetaModels\Administrator\InsertExistedUserParam.cs" />
+    <Compile Include="MetaModels\Administrator\InsertUserParam.cs" />
+    <Compile Include="MetaModels\Administrator\InsertUpdateDepartmentParam.cs" />
+    <Compile Include="MetaModels\Administrator\UpdatePasswordParam.cs" />
+    <Compile Include="MetaModels\Administrator\UpdatePolicyParam.cs" />
+    <Compile Include="MetaModels\Administrator\UpdateUserParam.cs" />
+    <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
+    <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />
+    <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />
+    <Compile Include="MetaModels\Domain\InsertUpdateDomainControlParam.cs" />
+    <Compile Include="MetaModels\Domain\InsertUpdateDomainParam.cs" />
+    <Compile Include="MetaModels\Login\LoginParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\BannerParamFromHome.cs" />
+    <Compile Include="MetaModels\MediaGallery\DeleteBannerParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\DeleteTextParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\InsertUpdateBannerParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\InsertUpdateTextParam.cs" />
     <Compile Include="DTO\MediaGallery\LandingPage.cs" />
+    <Compile Include="DTO\MediaGallery\TextInfo.cs" />
+    <Compile Include="DTO\Message\MessageDetail.cs" />
+    <Compile Include="DTO\Message\MessageInfo.cs" />
     <Compile Include="DTO\Payment\PaymentRequest.cs" />
     <Compile Include="DTO\Payment\PaymentRequestDetail.cs" />
     <Compile Include="DTO\Product.cs" />
@@ -284,13 +328,22 @@
     <Compile Include="MetaModels\Customer\UpdateStatusParam.cs" />
     <Compile Include="MetaModels\EmailHistory\DeleteEmailHistoryParam.cs" />
     <Compile Include="MetaModels\EmailHistory\EmailHistoryParam.cs" />
+    <Compile Include="MetaModels\ExchangeRate\ExchangeRateParam.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\TextParam.cs" />
+    <Compile Include="MetaModels\Member\ActiveMemberParam.cs" />
+    <Compile Include="MetaModels\Member\DeleteMemberParam.cs" />
+    <Compile Include="MetaModels\Member\MemberParam.cs" />
+    <Compile Include="MetaModels\Message\DeleteMessageParam.cs" />
+    <Compile Include="MetaModels\Message\InsertUpdateMessageParam.cs" />
+    <Compile Include="MetaModels\Message\MessageParam.cs" />
     <Compile Include="MetaModels\ParamFromHome.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestUpdateParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParamFromHome.cs" />
     <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
+    <Compile Include="MetaModels\UserInfoParam.cs" />
     <Compile Include="MetaModels\UserPanel\AdjustmentParam.cs" />
     <Compile Include="MetaModels\AffiliatePagingByDateParam.cs" />
     <Compile Include="MetaModels\UserPanel\CustomerMemberParam.cs" />
@@ -314,11 +367,15 @@
     <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />
-    <Compile Include="Repository\Customer\CustomerStatisticsRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerLeftPanelRepository.cs" />
-    <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
     <Compile Include="Repository\EmailHistory\EmailHistoryRepository.cs" />
     <Compile Include="Repository\EmailHistory\IEmailHistoryRepository.cs" />
+    <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
+    <Compile Include="Repository\MediaGallery\IBannerListRepository.cs" />
+    <Compile Include="Repository\Member\ActiveMemberRepository.cs" />
+    <Compile Include="Repository\Member\IActiveMemberRepository.cs" />
+    <Compile Include="Repository\Member\IMemberRepository.cs" />
+    <Compile Include="Repository\Member\MemberRepository.cs" />
     <Compile Include="Repository\Payment\IPaymentRequestRepository.cs" />
     <Compile Include="Repository\Payment\PaymentRequestRepository.cs" />
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />
@@ -337,21 +394,15 @@
     <Compile Include="Repository\MediaGallery\ILandingPageRepository.cs" />
     <Compile Include="Repository\MediaGallery\LandingPageRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
-    <Compile Include="Repository\UserPanel\AdjustmentRepository.cs" />
     <Compile Include="Repository\UserPanel\CustomerMemberRepository.cs" />
-    <Compile Include="Repository\UserPanel\IAdjustmentRepository.cs" />
     <Compile Include="Repository\UserPanel\ICustomerMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\ILandingPageStatisticsRepository.cs" />
-    <Compile Include="Repository\UserPanel\INoteRepository.cs" />
-    <Compile Include="Repository\UserPanel\IPlayerDetailRepository.cs" />
     <Compile Include="Repository\UserPanel\IReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\ITrackingStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\IUserAccountRepository.cs" />
     <Compile Include="Repository\UserPanel\IViewLogRepository.cs" />
     <Compile Include="Repository\UserPanel\LandingPageStatisticsRepository.cs" />
-    <Compile Include="Repository\UserPanel\NoteRepository.cs" />
-    <Compile Include="Repository\UserPanel\PlayerDetailRepository.cs" />
     <Compile Include="Repository\UserPanel\ReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\StatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\TrackingStatisticsRepository.cs" />
@@ -407,7 +458,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\Administrator\AdministratorService.cs" />
+    <Compile Include="Services\Administrator\DepartmentService.cs" />
+    <Compile Include="Services\Administrator\IAdministratorService.cs" />
+    <Compile Include="Services\Administrator\IDepartmentService.cs" />
     <Compile Include="Services\AffiliateService.cs" />
+    <Compile Include="Services\AffTypeService.cs" />
+    <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordService.cs" />
+    <Compile Include="Services\ChangeAdminPassword\IChangeAdminPasswordService.cs" />
     <Compile Include="Services\CommGroup\CommGroupAssignmentService.cs" />
     <Compile Include="Services\CommGroup\CommGroupCommonService.cs" />
     <Compile Include="Services\CommGroup\ICommGroupAssignmentService.cs" />
@@ -417,41 +475,83 @@
     <Compile Include="DTO\Common\UserPermission.cs" />
     <Compile Include="Services\Common\SessionService.cs" />
     <Compile Include="Services\Customer\CustomerLeftPanelService.cs" />
+    <Compile Include="Services\Customer\CustomerStatisticsService.cs" />
     <Compile Include="Services\Customer\ICustomerLeftPanelService.cs" />
+    <Compile Include="Services\Customer\ICustomerStatisticsService.cs" />
+    <Compile Include="Services\Domain\DomainControlService.cs" />
+    <Compile Include="Services\Domain\DomainService.cs" />
+    <Compile Include="Services\Domain\IDomainControlService.cs" />
+    <Compile Include="Services\Domain\IDomainService.cs" />
     <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
     <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
     <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\ExchangeRate\ExchangeRateService.cs" />
+    <Compile Include="Services\ExchangeRate\IExchangeRateService.cs" />
+    <Compile Include="Services\Home\HomeService.cs" />
+    <Compile Include="Services\Home\IHomeService.cs" />
     <Compile Include="Services\IAffiliateService.cs" />
+    <Compile Include="Services\IAffTypeService.cs" />
     <Compile Include="Services\ICommissionGroupService.cs" />
     <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Services\ILanguageService.cs" />
     <Compile Include="Services\LanguageService.cs" />
+    <Compile Include="Services\MediaGallery\BannerListService.cs" />
+    <Compile Include="Services\MediaGallery\BannerValidationService.cs" />
+    <Compile Include="Services\MediaGallery\CommonMediaGalleryService.cs" />
+    <Compile Include="Services\MediaGallery\IBannerListService.cs" />
+    <Compile Include="Services\MediaGallery\IBannerValidationService.cs" />
+    <Compile Include="Services\MediaGallery\ICommonMediaGalleryService.cs" />
     <Compile Include="Services\MediaGallery\ILandingPageService.cs" />
+    <Compile Include="Services\MediaGallery\ITextListService.cs" />
     <Compile Include="Services\MediaGallery\LandingPageService.cs" />
+    <Compile Include="Services\MediaGallery\TextListService.cs" />
+    <Compile Include="Services\Member\ActiveMemberService.cs" />
+    <Compile Include="Services\Member\IActiveMemberService.cs" />
+    <Compile Include="Services\Member\IMemberService.cs" />
+    <Compile Include="Services\Member\MemberService.cs" />
+    <Compile Include="Services\Message\IMessageService.cs" />
+    <Compile Include="Services\Message\MessageService.cs" />
     <Compile Include="Services\Payment\IPaymentRequestService.cs" />
     <Compile Include="Services\Payment\PaymentRequestService.cs" />
     <Compile Include="Services\Report\AffiliateReportService.cs" />
     <Compile Include="Services\Report\IAffiliateReportService.cs" />
+    <Compile Include="Services\UnderMaintenanceService\IUnderMaintenanceService.cs" />
+    <Compile Include="Services\UnderMaintenanceService\UnderMaintenanceService.cs" />
+    <Compile Include="Services\UserPanel\AdjustmentService.cs" />
     <Compile Include="Services\UserPanel\CustomerMemberService.cs" />
+    <Compile Include="Services\UserPanel\IAdjustmentService.cs" />
     <Compile Include="Services\UserPanel\ICustomerMemberService.cs" />
+    <Compile Include="Services\UserPanel\INoteService.cs" />
+    <Compile Include="Services\UserPanel\IPlayerDetailService.cs" />
     <Compile Include="Services\UserPanel\IStatementHistoryService.cs" />
     <Compile Include="Services\UserPanel\IUserAccountService.cs" />
+    <Compile Include="Services\UserPanel\NoteService.cs" />
+    <Compile Include="Services\UserPanel\PlayerDetailService.cs" />
     <Compile Include="Services\UserPanel\StatementHistoryService.cs" />
     <Compile Include="Services\UserPanel\UserAccountService.cs" />
     <Compile Include="Utilities\CommGroup\CommGroupValidationHelper.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
+    <Compile Include="Utilities\ISystemFile.cs" />
+    <Compile Include="Utilities\LogHelper.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
+    <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
+    <Compile Include="Utilities\SystemFile.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\Domain\DomainControlViewModel.cs" />
+    <Compile Include="ViewModels\Domain\DomainViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
+    <Compile Include="ViewModels\MediaGallery\BannerListViewModel.cs" />
+    <Compile Include="ViewModels\MediaGallery\TextListViewModel.cs" />
+    <Compile Include="ViewModels\Member\MemberListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -508,6 +608,12 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.Affiliate.ThirdPartyProduct\Fanex.Affiliate.ThirdPartyProduct.csproj">
+      <Project>{118A9AA1-C33A-413A-A685-3495CF30C15F}</Project>
+      <Name>Fanex.Affiliate.ThirdPartyProduct</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

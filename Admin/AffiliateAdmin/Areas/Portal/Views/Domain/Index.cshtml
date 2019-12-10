@@ -1,19 +1,24 @@
-﻿@{
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
+    var isAffDomain = Model.IsAffDomain;
 }
-@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
 
-<div class="sub-menu-container">
-    <div class="d-inline-block">
-        <img src="~/Areas/Portal/www/dist/imgs/i_domain.jpg" />
-    </div>
-    <div class="d-inline-block">
-        @{
-            Html.RenderPartial("~/Areas/Portal/Views/Shared/_SubMenu.cshtml", Model);
+@model Fanex.Affiliate.Admin.Core.ViewModels.Domain.DomainViewModel
+
+@{
+    Html.RenderPartial("~/Areas/Portal/Views/Domain/_DomainSubMenu.cshtml", Model.SubMenuList);
+}
+
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/domain/domain.css")" rel="stylesheet" />
+}
+
+@section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            isAffDomain: '@isAffDomain'.toLowerCase() === 'true',
         }
-    </div>
-</div>
-
-<div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Domain/AffiliateDomain.aspx")"></iframe>
-</div>
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/domain/domain.js")"></script>
+}

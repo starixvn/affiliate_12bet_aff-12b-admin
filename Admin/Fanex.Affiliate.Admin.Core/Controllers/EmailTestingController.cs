@@ -67,9 +67,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 _languageService.SetCulture(language);
                 var content = GetEmailContent(language, function, format);
-                var subject = "Affilite 12Bet testing";
 
-                _mailProcessor.Send(content, emailAddress, subject);
+                _mailProcessor.Send(content, emailAddress, "Affilite 12Bet testing");
                 _languageService.SetCulture("en-US");
             }
             catch (Exception ex)
@@ -134,7 +133,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     return new AffInformationEmail
                     {
                         MailContact = _appSetting.MailContact,
-                        UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(2),
+                        UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(AffType.Asian),
                         FirstName = "First Name",
                         UserName = "AFF12BET00000",
                         Password = "qwrfsdg"

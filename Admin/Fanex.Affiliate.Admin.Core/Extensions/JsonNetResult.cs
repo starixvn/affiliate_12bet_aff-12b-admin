@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Extensions
         {
             if (context == null)
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             var response = context.HttpContext.Response;

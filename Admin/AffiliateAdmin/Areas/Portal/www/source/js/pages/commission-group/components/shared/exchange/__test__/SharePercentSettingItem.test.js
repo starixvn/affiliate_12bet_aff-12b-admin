@@ -13,7 +13,7 @@ describe('commission group - SharePercentSettingItem', () => {
     };
 
     it('handleChangeComm - should call onChangeCommission when change SharePercentage', () => {
-        const mockEvent = { target: { name: 'DeductedPercentage', value: '0.15' }};
+        const mockEvent = { target: { name: 'DeductedPercentage', value: '0.15' } };
         const wrapper = shallow(<SharePercentSettingItem {...defaultProps} />);
 
         wrapper.find('Input[type="select"][name="DeductedPercentage"]').simulate('change', mockEvent);
@@ -22,7 +22,7 @@ describe('commission group - SharePercentSettingItem', () => {
     });
 
     it('handleChangeComm - should call onChangeCommission when change NextSharePercentage', () => {
-        const mockEvent = { target: { name: 'NextDeductedPercentage', value: '0.15' }};
+        const mockEvent = { target: { name: 'NextDeductedPercentage', value: '0.15' } };
         const props = Object.assign({}, defaultProps, { isCreating: false });
         const wrapper = shallow(<SharePercentSettingItem {...props} />);
 

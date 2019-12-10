@@ -9,6 +9,7 @@ export const globalResource = {
     Add: 'Add',
     Edit: 'Edit',
     Update: 'Update',
+    Delete: 'Delete',
     Cancel: 'Cancel',
     NoInfo: 'There is no information available'
 }

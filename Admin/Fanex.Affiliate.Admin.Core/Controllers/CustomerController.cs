@@ -19,12 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             _languageService = languageService;
         }
 
-        public ActionResult Index()
-        {
-            return View("~/Areas/Portal/Views/Customer/Index.cshtml");
-        }
-
-        public ActionResult Main(string user)
+        public ActionResult Index(string user)
         {
             var viewModel = new CustomerViewModel
             {
@@ -37,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 viewModel.AffName = SessionService.AffName;
             }
 
-            return View("~/Areas/Portal/Views/Customer/Main.cshtml", viewModel);
+            return View(viewModel);
         }
     }
 }

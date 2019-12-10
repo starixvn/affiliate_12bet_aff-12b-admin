@@ -2,7 +2,7 @@ export const defaultPagingOption = {
     PageIndex: 1,
     PageSize: 20,
     TotalItem: 0,
-    PageList: [10, 20, 50, 100, 500]
+    PageList: [10, 20, 50, 100, 200, 500]
 };
 
 export const minMonthDate = { month: 12, year: 2009 };
@@ -25,3 +25,16 @@ export const spinnerLoaderWidth = (maxWidth / 2) - 32
 export const spinnerLoaderUserPanelHeight = (maxUserPanelHeight / 2) - 32
 
 export const minDate = new Date(2009, 11, 1);
+
+export const submitFail = {
+    IsSuccessful: false,
+    Message: 'Update Failed!'
+}
+
+export const pcLaptop = 'PC / Laptop';
+export const mobile = 'Mobile';
+
+export const deviceTypes = {
+    [pcLaptop]: 0,
+    [mobile]: 1
+}

@@ -1,7 +1,6 @@
-﻿import { maxWidth } from '../../../../modules/constants';
+﻿import { maxWidth, deviceTypes } from '../../../../modules/constants';
 import { headerText } from '../../referrers/modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
-import { deviceTypes } from '../../../customer/user-panel/modules/constants';
 
 export { globalResource, deviceTypes, maxWidth }
 

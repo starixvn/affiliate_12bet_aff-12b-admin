@@ -28,13 +28,24 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             return affType == AffType.European ? appSetting.EuropeanAffSiteUrl : appSetting.AsianAffSiteUrl;
         }
 
+        [SuppressMessage("Sonar Code Smell", "S3995:UriReturnValuesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
+        public static string GetUserInternalSiteUrl(int affType)
+        {
+            var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+
+            return affType == AffType.European ? appSetting.InternalEuropeanAffiliateUrl : appSetting.InternalAsianAffiliateUrl;
+        }
+
         private static string GetScheme(HttpRequestBase request)
         {
             var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
 
-            return (appSetting != null && appSetting.IsProduction) ?
-                request.Url.Scheme :
-                (IsSecure(request) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp);
+            if(appSetting != null && appSetting.IsProduction)
+            {
+                return request.Url.Scheme;
+            }
+
+            return IsSecure(request) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
         }
 
         private static bool IsSecure(HttpRequestBase request)

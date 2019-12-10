@@ -68,13 +68,13 @@ describe('affiliate report - Report Excel ', () => {
         Winlost: 0,
         Withdrawal: 0,
     }
-    const data = { MainData: [ itemHaveDescription, itemHaveNotDescription ], Total: 2 };
+    const data = { MainData: [itemHaveDescription, itemHaveNotDescription], Total: 2 };
     const title = 'Report Excel';
 
     it('contrustor - should call _getcolumnConfigs with Main view', () => {
         const instance = new ReportExcel(data, title, isMainView);
         instance._getcolumnConfigs = jest.fn();
-        
+
         instance.constructor(data, title, isMainView);
 
         expect(instance._getcolumnConfigs).toHaveBeenCalledWith(isMainView);
@@ -83,7 +83,7 @@ describe('affiliate report - Report Excel ', () => {
     it('contrustor - should call _getcolumnConfigs with Month on Month view', () => {
         const instance = new ReportExcel(data, title, !isMainView);
         instance._getcolumnConfigs = jest.fn();
-        
+
         instance.constructor(data, title, !isMainView);
 
         expect(instance._getcolumnConfigs).toHaveBeenCalledWith(!isMainView);
@@ -115,7 +115,7 @@ describe('affiliate report - Report Excel ', () => {
     it('_createTitle - should call Excel.getCellAddress', () => {
         const instance = new ReportExcel(data, title, !isMainView);
         Excel.getCellAddress = jest.fn();
-        
+
         instance._createTitle();
 
         expect(Excel.getCellAddress).toHaveBeenCalledWith({ c: 0, r: TITLE_ROW_INDEX });
@@ -154,7 +154,7 @@ describe('affiliate report - Report Excel ', () => {
         const instance = new ReportExcel(data, title, !isMainView);
         instance._buildColspanColumn = jest.fn();
         Excel.getCellAddress = jest.fn();
-        
+
         instance._createHeader();
 
         expect(Excel.getCellAddress).toHaveBeenCalledWith({ c: 0, r: HEADER_ROW_INDEX });
@@ -180,7 +180,7 @@ describe('affiliate report - Report Excel ', () => {
         });
 
         Excel.getCellAddress = jest.fn();
-        
+
         instance._buildColspanColumn(HEADER_ROW_INDEX, INDEX_DEPOSIT_COLUMN, COLSPAN_MEMBER_STATISTICS + 6, 'Member Statistics');
 
         expect(Excel.getCellAddress).toHaveBeenCalledTimes(16);
@@ -205,7 +205,7 @@ describe('affiliate report - Report Excel ', () => {
     it('_buildColspanColumn - should call Excel.getCellAddress', () => {
         const instance = new ReportExcel(data, title, isMainView);
         Excel.getCellAddress = jest.fn();
-        
+
         instance._buildColspanColumn(HEADER_ROW_INDEX, INDEX_DEPOSIT_COLUMN, COLSPAN_MEMBER_STATISTICS, 'Member Statistics');
 
         expect(Excel.getCellAddress).toHaveBeenCalledTimes(10);
@@ -223,12 +223,12 @@ describe('affiliate report - Report Excel ', () => {
 
     it('_createBodyData - should call _buildDataRow, Excel.getCellAddress with Main view', () => {
         const instance = new ReportExcel(data, title, isMainView);
-        
+
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createBodyData();
-        
+
         expect(Excel.getCellAddress).toHaveBeenCalledTimes(42);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 3 });
@@ -249,12 +249,12 @@ describe('affiliate report - Report Excel ', () => {
 
     it('_createBodyData - should call _buildDataRow, Excel.getCellAddress with Month on Month view', () => {
         const instance = new ReportExcel(data, title, !isMainView);
-        
+
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createBodyData();
-        
+
         expect(Excel.getCellAddress).toHaveBeenCalledTimes(40);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 3 });
@@ -274,13 +274,13 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createTotalRow - should call _buildDataRow, Excel.getCellAddress with Main view', () => {
-        const customTotalData = { CommissionRate: "N/A", UserName: "Total (all pages)"};
+        const customTotalData = { CommissionRate: "N/A", UserName: "Total (all pages)" };
         const instance = new ReportExcel(data, title, isMainView);
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createTotalRow();
-        
+
         expect(Excel.getCellAddress).toHaveBeenCalledTimes(21);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 3 });
@@ -300,13 +300,13 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createTotalRow - should call _buildDataRow, Excel.getCellAddress with Month on Month view', () => {
-        const customTotalData = { CommissionRate: "%", MonthDateString: "Total (all pages)"};
+        const customTotalData = { CommissionRate: "%", MonthDateString: "Total (all pages)" };
         const instance = new ReportExcel(data, title, !isMainView);
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createTotalRow();
-        
+
         expect(Excel.getCellAddress).toHaveBeenCalledTimes(20);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 3 });
@@ -331,9 +331,9 @@ describe('affiliate report - Report Excel ', () => {
         Excel.getCellType = jest.fn();
 
         const result = instance._buildDataRow(itemHaveDescription, MAIN_SECTION_STYLE, 1);
-        
+
         expect(Excel.getCellType).toHaveBeenCalledWith(0);
-        expect(result).toEqual({ s: { numFmt: "#,##0" }, t: undefined, v: 0});
+        expect(result).toEqual({ s: { numFmt: "#,##0" }, t: undefined, v: 0 });
     });
 
     it('_createExcelConfig - should call Excel.getCellAddress', () => {
@@ -342,7 +342,7 @@ describe('affiliate report - Report Excel ', () => {
         Excel.getCellAddress = jest.fn();
 
         instance._createExcelConfig();
-        
+
         expect(Excel.getCellAddress).toHaveBeenCalledTimes(2);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 0 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 21, "r": 3 });
@@ -350,31 +350,31 @@ describe('affiliate report - Report Excel ', () => {
 
     it('_getcolumnConfigs - return correct', () => {
         const expectResult = [
-            { field: "UserName", mainSectionStyle: { alignment: { horizontal: "left", vertical: "center" }}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true }}},
-            { field: "TotalClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true }, numFmt: "#,##0" }},
-            { field: "UniqueClick", mainSectionStyle: { numFmt: "#,##0"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0"}},
-            { field: "Signup", mainSectionStyle: { numFmt: "#,##0"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0"}},
-            { field: "Fdm", mainSectionStyle: { numFmt: "#,##0"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0"}},
-            { field: "ActiveMember", mainSectionStyle: { numFmt: "#,##0"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0"}},
-            { field: "QualifiedMember", mainSectionStyle: { numFmt: "#,##0"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0"}},
-            { field: "Deposit", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "Withdrawal", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "Turnover", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "Winlost", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "Bonus", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "PlatformFee", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "OperationalFee", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "BankingFee", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "TotalFee", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "CommissionRate", mainSectionStyle: {"alignment": { horizontal: "right", vertical: "center"}}, totalSectionStyle: { alignment: { horizontal: "right", vertical: "center"},  fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}}},
-            { field: "Earning", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "AffWithdrawal", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "AffAdjustment", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}},
-            { field: "BalanceBf", mainSectionStyle: { numFmt: "#,##0.00"}, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8"}, patternType: "solid"}, font: {"bold": true}, numFmt: "#,##0.00"}}]
+            { field: "UserName", mainSectionStyle: { alignment: { horizontal: "left", vertical: "center" } }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } } },
+            { field: "TotalClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true }, numFmt: "#,##0" } },
+            { field: "UniqueClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" } },
+            { field: "Signup", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" } },
+            { field: "Fdm", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" } },
+            { field: "ActiveMember", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" } },
+            { field: "QualifiedMember", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" } },
+            { field: "Deposit", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "Withdrawal", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "Turnover", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "Winlost", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "Bonus", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "PlatformFee", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "OperationalFee", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "BankingFee", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "TotalFee", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "CommissionRate", mainSectionStyle: { "alignment": { horizontal: "right", vertical: "center" } }, totalSectionStyle: { alignment: { horizontal: "right", vertical: "center" }, fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true } } },
+            { field: "Earning", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "AffWithdrawal", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "AffAdjustment", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
+            { field: "BalanceBf", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } }]
         const instance = new ReportExcel(data, title, isMainView);
 
         const result = instance._getcolumnConfigs(isMainView);
-        
+
         expect(result).toEqual(expectResult);
     });
 });

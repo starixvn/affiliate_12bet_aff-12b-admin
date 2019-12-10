@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { resource, regExp, messages } from '../modules/constants/changePassword';
-import { updateChangePasswword } from '../actions/changePassword';
+import { updateChangeAffPasswword, updateChangeAdminPasswword } from '../actions/changePassword';
 
 export class ChangePasswordForm extends PureComponent {
     constructor(props) {
@@ -28,16 +28,20 @@ export class ChangePasswordForm extends PureComponent {
         this.setState({ isClickedSubmit: true });
 
         if (isValid) {
-            const { affId } = this.props;
+            const { selectedId } = this.props;
             const { password, confirmPassword } = this.state;
 
-            const param = {
-                AffId: affId,
+            const param = this.props.isAdmin ? {
+                AccountId: selectedId,
                 Password: password,
                 ConfirmPassword: confirmPassword
-            }
+            } : {
+                    AffId: selectedId,
+                    Password: password,
+                    ConfirmPassword: confirmPassword
+                };
 
-            this.saveChangePassword(param)
+            this.saveChangePassword(param);
         }
     }
 
@@ -47,7 +51,7 @@ export class ChangePasswordForm extends PureComponent {
     }
 
     async saveChangePassword(param) {
-        const result = await this.props.updateChangePasswword(param);
+        const result = this.props.isAdmin ? await this.props.updateChangeAdminPasswword(param) : await this.props.updateChangeAffPasswword(param);
 
         if (result) {
             if (result.IsSuccessful) {
@@ -107,6 +111,13 @@ export class ChangePasswordForm extends PureComponent {
         return result;
     }
 
+    _handlePressEnter = (isValid, event) => {
+        if (event.charCode === 13) {
+            event.preventDefault()
+            this.handleSubmit(isValid);
+        }
+    }
+
     render() {
         const { showPopupPassword } = this.props;
         const { password, confirmPassword, isShowMessage, isSuccess, message, isClickedSubmit } = this.state;
@@ -129,7 +140,7 @@ export class ChangePasswordForm extends PureComponent {
                                     <Label for="Password" sm={4} className="required">{resource.Password}:</Label>
                                     <Col sm={8}>
                                         <Input type="password" className="input-required" name="password" id="Password" autocomplete="false"
-                                            value={password} onChange={this.handleChange} invalid={isClickedSubmit && !passwordValidation.isValid} />
+                                            value={password} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this.handleChange} invalid={isClickedSubmit && !passwordValidation.isValid} />
                                         {passwordValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: passwordValidation.message }} /></FormFeedback>}
                                     </Col>
@@ -139,7 +150,7 @@ export class ChangePasswordForm extends PureComponent {
                                     <Label for="ConfirmPassword" sm={4} className="required">{resource.ConfirmPassword}:</Label>
                                     <Col sm={8}>
                                         <Input type="password" className="input-required" name="confirmPassword" id="ConfirmPassword" autocomplete="false"
-                                            value={confirmPassword} onChange={this.handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
+                                            value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this.handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
                                         {confirmPasswordValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
                                     </Col>
@@ -157,7 +168,7 @@ export class ChangePasswordForm extends PureComponent {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateChangePasswword }, dispatch);
+    return bindActionCreators({ updateChangeAffPasswword, updateChangeAdminPasswword }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(ChangePasswordForm);

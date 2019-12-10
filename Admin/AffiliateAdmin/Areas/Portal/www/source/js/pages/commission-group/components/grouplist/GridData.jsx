@@ -5,10 +5,11 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { resolveClientUrl } from '../../../../modules/utils';
-import { INFINITY_AM, INFINITY_QM, INFINITY_SYMBOL, defaultPagingOption, globalResource } from '../../modules/constant';
+import { INFINITY_AM, INFINITY_QM, INFINITY_SYMBOL, globalResource } from '../../modules/constant';
 import { format, formatDecimal } from '../../../../modules/numberFormat';
 import { deleteCommGroup, getGroupSettingList } from '../../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
+import { NotificationPopup } from '../../../common/components/NotificationPopup';
 
 export class GridData extends Component {
     constructor(props) {
@@ -18,6 +19,13 @@ export class GridData extends Component {
         this.products = {};
         for (let i = 0; i < productList.length; i++) {
             this.products[productList[i].ProductId] = productList[i].ProductName;
+        }
+
+        this.state = {
+            shouldResetScrollPosition: true,
+            selectedGroupId: 0,
+            messageNotification: '',
+            isConfirmPopup: true
         }
     }
 
@@ -32,22 +40,33 @@ export class GridData extends Component {
         }, []).join(',');
     }
 
-    handleDelete = async (groupId, groupName) => {
-        const isConfirmed = window.confirm('Are you sure you want to delete the commission group ' + groupName + ' ?');
-        if (isConfirmed) {
-            const response = await this.props.deleteCommGroup({ groupId });
-            if (response && response.status === 200) {
-                const result = response.data;
+    handleCloseNotificationPopup = (confirmResult) => {
+        this.setState({ messageNotification: '' });
 
-                if (result.IsSuccessful) {
-                    const gettingParam = Object.assign({}, defaultPagingOption, { GroupName: this.props.searchedGroupName });
-                    this.props.getGroupSettingList(gettingParam);
+        const { selectedGroupId } = this.state;
+        if (confirmResult && selectedGroupId) {
+            this._deleteCommGroup(selectedGroupId);
+        }
+    }
 
-                    window.alert("Delete Commission Group Successfully");
-                }
-                else {
-                    window.alert(result.Message);
-                }
+    _handleDeleteCommGroup = (selectedGroupId, groupName) => {
+        this.setState({ messageNotification: `Are you sure you want to delete the commission group ${groupName} ?`, isConfirmPopup: true, selectedGroupId, shouldResetScrollPosition: false });
+    }
+
+    _deleteCommGroup = async (groupId) => {
+        const response = await this.props.deleteCommGroup({ groupId });
+        if (response && response.status === 200) {
+            const result = response.data;
+
+            if (result.IsSuccessful) {
+                const { pagingOption } = this.props;
+                const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize, GroupName: this.props.searchedGroupName });
+                this.props.getGroupSettingList(gettingParam);
+
+                this.setState({ messageNotification: "Delete Commission Group Successfully", isConfirmPopup: false, shouldResetScrollPosition: true });
+            }
+            else {
+                this.setState({ messageNotification: result.Message, isConfirmPopup: false, shouldResetScrollPosition: true });
             }
         }
     }
@@ -139,7 +158,7 @@ export class GridData extends Component {
 
                                     {
                                         group.NoAffs === 0 && (
-                                            <button className="btn btn-link" onClick={() => this.handleDelete(item.GroupId, item.GroupName)}>
+                                            <button className="btn btn-link" onClick={() => this._handleDeleteCommGroup(item.GroupId, item.GroupName)}>
                                                 <span className="oi oi-x text-danger"></span>
                                             </button>)
                                     }
@@ -174,23 +193,35 @@ export class GridData extends Component {
     }
 
     render() {
+        const { shouldResetScrollPosition, messageNotification, isConfirmPopup } = this.state;
+
         return (
-            <div className="table-responsive table-group-setting">
-                <Table
-                    minWidth={1000}
-                    autoWidth={true}
-                    bodyHeight={300}
-                    header={this._renderHeader()}
-                    body={this._renderGroupData()}
-                    containerPadding={20}
-                />
-            </div>
+            <React.Fragment>
+                <div className="table-responsive table-group-setting">
+                    <Table
+                        minWidth={1000}
+                        autoWidth={true}
+                        bodyHeight={300}
+                        header={this._renderHeader()}
+                        body={this._renderGroupData()}
+                        containerPadding={20}
+                        shouldResetScrollPosition={shouldResetScrollPosition}
+                    />
+                </div>
+                {
+                    !!messageNotification && <NotificationPopup
+                        message={messageNotification}
+                        isConfirmPopup={isConfirmPopup}
+                        onClose={this.handleCloseNotificationPopup}
+                    />
+                }
+            </React.Fragment>
         );
     }
 }
 
-function mapStateToProps({ gridData, productList, searchedGroupName }) {
-    return Object.assign({}, { gridData, productList, searchedGroupName });
+function mapStateToProps({ gridData, productList, searchedGroupName, pagingOption }) {
+    return Object.assign({}, { gridData, productList, searchedGroupName, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {

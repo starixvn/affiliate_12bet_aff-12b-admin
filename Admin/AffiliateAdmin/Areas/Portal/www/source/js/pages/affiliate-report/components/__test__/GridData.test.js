@@ -1,16 +1,14 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme';
-import ConnectedGridData, { GridData } from '../GridData';
+import { GridData } from '../GridData';
 
 import * as ajaxRequest from '../../../../modules/ajaxRequest';
 jest.mock('../../modules/constants');
-import configureMockStore from 'redux-mock-store';
 
-const mockStore = configureMockStore();
 describe('affiliate report - GridData ', () => {
     const mainView = 1;
     const monthOnMonth = 2;
-    
+
     const defaultProps = {
         pagingOption: {
             PageIndex: 1,
@@ -23,7 +21,7 @@ describe('affiliate report - GridData ', () => {
     };
 
     it('componentDidUpdate - should call setState, setPagingOption when param changed, cachedMainReport not null and currentViewLevel is Main view', () => {
-        const param = { 
+        const param = {
             PageIndex: 1,
             PageSize: 20
         };
@@ -78,7 +76,7 @@ describe('affiliate report - GridData ', () => {
         componentInstance.componentDidUpdate(defaultProps);
 
         expect(componentInstance._isMainView).toHaveBeenCalled();
-        expect(componentInstance.cachedMainReport).toEqual({ gridData: null, total: null, totalItem: 0});
+        expect(componentInstance.cachedMainReport).toEqual({ gridData: null, total: null, totalItem: 0 });
         expect(componentInstance.fetchData).toHaveBeenCalledWith(param);
     });
 
@@ -87,14 +85,14 @@ describe('affiliate report - GridData ', () => {
 
         const props = Object.assign({}, defaultProps, { param, currentViewLevel: monthOnMonth });
         const componentInstance = new GridData(props);
-        componentInstance.cachedMainReport = { gridData: [ { data: 'data' }]};
+        componentInstance.cachedMainReport = { gridData: [{ data: 'data' }] };
         componentInstance.fetchData = jest.fn();
         componentInstance._isMainView = jest.fn(() => false);
 
         componentInstance.componentDidUpdate(defaultProps);
 
         expect(componentInstance._isMainView).toHaveBeenCalled();
-        expect(componentInstance.cachedMainReport).not.toEqual({ gridData: null, total: null, totalItem: 0});
+        expect(componentInstance.cachedMainReport).not.toEqual({ gridData: null, total: null, totalItem: 0 });
         expect(componentInstance.fetchData).toHaveBeenCalledWith(param);
     });
 
@@ -117,7 +115,7 @@ describe('affiliate report - GridData ', () => {
         const expectedParam = {
             userName: 'Main view'
         }
-        const expectedUrl = 'Portal/AffiliateReport/GetMainData';
+        const expectedUrl = 'Portal/Report/GetMainData';
 
         ajaxRequest.post = jest.fn();
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), param: { userName: 'Main view' } });
@@ -132,7 +130,7 @@ describe('affiliate report - GridData ', () => {
         const expectedParam = {
             userName: 'Month on Month view'
         }
-        const expectedUrl = 'Portal/AffiliateReport/GetDetailData';
+        const expectedUrl = 'Portal/Report/GetDetailData';
 
         ajaxRequest.post = jest.fn();
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), param: { userName: 'Month on Month view' }, currentViewLevel: monthOnMonth });
@@ -144,7 +142,7 @@ describe('affiliate report - GridData ', () => {
     });
 
     it('fetchData - should call correctly with correct parameters is Main view', async () => {
-        const expectedResponse = { data: { MainData: [{ first: 1 }], Total: 1, TotalItem: 1}, status: 200 };
+        const expectedResponse = { data: { MainData: [{ first: 1 }], Total: 1, TotalItem: 1 }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const mockToggleLoader = jest.fn();
@@ -171,7 +169,7 @@ describe('affiliate report - GridData ', () => {
     });
 
     it('fetchData - should call correctly with correct parameters is Month on Month view', async () => {
-        const expectedResponse = { data: { MainData: [{ first: 1 }], Total: 1, TotalItem: 1}, status: 200 };
+        const expectedResponse = { data: { MainData: [{ first: 1 }], Total: 1, TotalItem: 1 }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const mockToggleLoader = jest.fn();
@@ -200,8 +198,8 @@ describe('affiliate report - GridData ', () => {
     it('should render correctly with _renderHeader when currentViewLevel is Main view', () => {
         const componentInstance = new GridData(defaultProps);
 
-        const renderHeader = shallow(<div>{ componentInstance._renderHeader() }</div>);
-        
+        const renderHeader = shallow(<div>{componentInstance._renderHeader()}</div>);
+
         expect(renderHeader).toMatchSnapshot();
     });
 
@@ -209,8 +207,8 @@ describe('affiliate report - GridData ', () => {
         const props = Object.assign({}, defaultProps, { currentViewLevel: monthOnMonth });
         const componentInstance = new GridData(props);
 
-        const renderHeader = shallow(<div>{ componentInstance._renderHeader() }</div>);
-        
+        const renderHeader = shallow(<div>{componentInstance._renderHeader()}</div>);
+
         expect(renderHeader).toMatchSnapshot();
     });
 
@@ -247,7 +245,7 @@ describe('affiliate report - GridData ', () => {
         const props = Object.assign({}, defaultProps, { currentViewLevel: monthOnMonth });
         const componentInstance = new GridData(props);
 
-        const renderDataSection = shallow(<div>{ componentInstance._renderDataSection(dataList) }</div>);
+        const renderDataSection = shallow(<div>{componentInstance._renderDataSection(dataList)}</div>);
 
         expect(renderDataSection).toMatchSnapshot();
     });
@@ -285,7 +283,7 @@ describe('affiliate report - GridData ', () => {
         const props = Object.assign({}, defaultProps, { currentViewLevel: monthOnMonth, param: { ProductIds: '0' } });
         const componentInstance = new GridData(props);
 
-        const renderDataSection = shallow(<div>{ componentInstance._renderDataSection(dataList) }</div>);
+        const renderDataSection = shallow(<div>{componentInstance._renderDataSection(dataList)}</div>);
 
         expect(renderDataSection).toMatchSnapshot();
     });
@@ -323,8 +321,8 @@ describe('affiliate report - GridData ', () => {
         const componentInstance = new GridData(defaultProps);
         componentInstance._isMainView = jest.fn(() => true);
 
-        const buildDataRow = shallow(<div>{ componentInstance._buildDataRow(dataItem, 'text-right' ,index) }</div>);
-        
+        const buildDataRow = shallow(<div>{componentInstance._buildDataRow(dataItem, 'text-right', index)}</div>);
+
         expect(buildDataRow).toMatchSnapshot();
     });
 
@@ -361,8 +359,8 @@ describe('affiliate report - GridData ', () => {
         const componentInstance = new GridData(defaultProps);
         componentInstance._isMainView = jest.fn(() => false);
 
-        const buildDataRow = shallow(<div>{ componentInstance._buildDataRow(dataItem, 'text-right' ,index) }</div>);
-        
+        const buildDataRow = shallow(<div>{componentInstance._buildDataRow(dataItem, 'text-right', index)}</div>);
+
         expect(buildDataRow).toMatchSnapshot();
     });
 
@@ -400,8 +398,8 @@ describe('affiliate report - GridData ', () => {
         componentInstance._isMainView = jest.fn(() => true);
         componentInstance.handleViewMonthOnMonth = jest.fn();
 
-        const buildDataRow = shallow(<div>{ componentInstance._buildDataRow(dataItem, 'text-right' ,index) }</div>);
-        
+        const buildDataRow = shallow(<div>{componentInstance._buildDataRow(dataItem, 'text-right', index)}</div>);
+
         buildDataRow.find('Button').simulate('click');
 
         expect(componentInstance.handleViewMonthOnMonth).toHaveBeenCalledWith("12BETAFF002");
@@ -413,7 +411,7 @@ describe('affiliate report - GridData ', () => {
 
         const componentInstance = new GridData(defaultProps);
         const result = componentInstance._buildMonthCell(monthDate, description);
-        
+
         expect(result).toEqual('11/29/2018 (_buildMonthCell)');
     });
 
@@ -423,7 +421,7 @@ describe('affiliate report - GridData ', () => {
 
         const componentInstance = new GridData(defaultProps);
         const result = componentInstance._buildMonthCell(monthDate, description);
-        
+
         expect(result).toEqual('11/29/2018');
     });
 
@@ -457,8 +455,8 @@ describe('affiliate report - GridData ', () => {
         };
         const componentInstance = new GridData(defaultProps);
 
-        const buildCommonCell = shallow(<div>{ componentInstance._buildCommonCell(dataItem, 'text-right' , false) }</div>);
-        
+        const buildCommonCell = shallow(<div>{componentInstance._buildCommonCell(dataItem, 'text-right', false)}</div>);
+
         expect(buildCommonCell).toMatchSnapshot();
     });
 
@@ -470,7 +468,7 @@ describe('affiliate report - GridData ', () => {
         const props = Object.assign({}, defaultProps, { setViewLevel: mockSetViewLevel, setParam: mockSetParam });
         const componentInstance = new GridData(props);
         componentInstance.handleViewMonthOnMonth(userName);
-        
+
         expect(props.setViewLevel).toHaveBeenCalledWith(monthOnMonth);
         expect(props.setParam).toHaveBeenCalledWith({ PageIndex: 1, PageSize: 20, SortDirectionType: 1, SortType: 1, UserName: "handleViewMonthOnMonth" });
     });
@@ -555,7 +553,7 @@ describe('affiliate report - GridData ', () => {
             }
         ];
 
-        const wrapper = shallow(<GridData {...defaultProps}/>);
+        const wrapper = shallow(<GridData {...defaultProps} />);
         wrapper.instance().setState({ gridData: dataList, total });
 
         expect(wrapper).toMatchSnapshot();

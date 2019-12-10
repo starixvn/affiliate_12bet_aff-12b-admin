@@ -1,0 +1,791 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`exchange rate - components - EditExchangeRateForm  render correctly 1`] = `""`;
+
+exports[`exchange rate - components - EditExchangeRateForm  render correctly with have selectedExchangeRate 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop="static"
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    <span
+      className="iconpopup"
+    />
+    Ex.Rate
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <div
+      className="modal-body-wrapper"
+    >
+      <div
+        className="exchange-rate-form-container"
+      >
+        <Alert
+          closeAriaLabel="Close"
+          color="success"
+          fade={true}
+          isOpen={false}
+          tag="div"
+          transition={
+            Object {
+              "appear": true,
+              "baseClass": "fade",
+              "baseClassActive": "show",
+              "enter": true,
+              "exit": true,
+              "in": true,
+              "mountOnEnter": false,
+              "onEnter": [Function],
+              "onEntered": [Function],
+              "onEntering": [Function],
+              "onExit": [Function],
+              "onExited": [Function],
+              "onExiting": [Function],
+              "tag": "div",
+              "timeout": 150,
+              "unmountOnExit": true,
+            }
+          }
+        >
+          <div
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "",
+              }
+            }
+          />
+        </Alert>
+        <Form
+          autocomplete="off"
+          className="mb-5"
+          tag="form"
+        >
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              sm={4}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Currency
+            </Label>
+            <Label
+              sm={8}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              AUD
+            </Label>
+          </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              className="required"
+              for="rate"
+              sm={4}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Buying
+            </Label>
+            <Col
+              sm={8}
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <Input
+                autocomplete="false"
+                className="input-required mt-2"
+                id="rate"
+                maxLength="26"
+                name="rate"
+                onChange={[Function]}
+                onKeyPress={[Function]}
+                type="text"
+                value=""
+              />
+            </Col>
+          </FormGroup>
+        </Form>
+        <Button
+          className="mr-3"
+          color="success"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          Submit
+        </Button>
+        <Button
+          color="info"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          Cancel
+        </Button>
+      </div>
+    </div>
+  </ModalBody>
+</Modal>
+`;
+
+exports[`exchange rate - components - EditExchangeRateForm  render correctly with have selectedExchangeRate and RateType is US$Rate 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop="static"
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    <span
+      className="iconpopup"
+    />
+    Ex.Rate
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <div
+      className="modal-body-wrapper"
+    >
+      <div
+        className="exchange-rate-form-container"
+      >
+        <Alert
+          closeAriaLabel="Close"
+          color="success"
+          fade={true}
+          isOpen={false}
+          tag="div"
+          transition={
+            Object {
+              "appear": true,
+              "baseClass": "fade",
+              "baseClassActive": "show",
+              "enter": true,
+              "exit": true,
+              "in": true,
+              "mountOnEnter": false,
+              "onEnter": [Function],
+              "onEntered": [Function],
+              "onEntering": [Function],
+              "onExit": [Function],
+              "onExited": [Function],
+              "onExiting": [Function],
+              "tag": "div",
+              "timeout": 150,
+              "unmountOnExit": true,
+            }
+          }
+        >
+          <div
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "",
+              }
+            }
+          />
+        </Alert>
+        <Form
+          autocomplete="off"
+          className="mb-5"
+          tag="form"
+        >
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              sm={4}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Currency
+            </Label>
+            <Label
+              sm={8}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              AUD
+            </Label>
+          </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              className="required"
+              for="rate"
+              sm={4}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              US$ Rate
+            </Label>
+            <Col
+              sm={8}
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <Input
+                autocomplete="false"
+                className="input-required mt-2"
+                id="rate"
+                maxLength="26"
+                name="rate"
+                onChange={[Function]}
+                onKeyPress={[Function]}
+                type="text"
+                value=""
+              />
+            </Col>
+          </FormGroup>
+        </Form>
+        <Button
+          className="mr-3"
+          color="success"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          Submit
+        </Button>
+        <Button
+          color="info"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          Cancel
+        </Button>
+      </div>
+    </div>
+  </ModalBody>
+</Modal>
+`;
+
+exports[`exchange rate - components - EditExchangeRateForm  render correctly with have selectedExchangeRate and isSuccess false  1`] = `
+<Modal
+  autoFocus={true}
+  backdrop="static"
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    <span
+      className="iconpopup"
+    />
+    Ex.Rate
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <div
+      className="modal-body-wrapper"
+    >
+      <div
+        className="exchange-rate-form-container"
+      >
+        <Alert
+          closeAriaLabel="Close"
+          color="danger"
+          fade={true}
+          isOpen={false}
+          tag="div"
+          transition={
+            Object {
+              "appear": true,
+              "baseClass": "fade",
+              "baseClassActive": "show",
+              "enter": true,
+              "exit": true,
+              "in": true,
+              "mountOnEnter": false,
+              "onEnter": [Function],
+              "onEntered": [Function],
+              "onEntering": [Function],
+              "onExit": [Function],
+              "onExited": [Function],
+              "onExiting": [Function],
+              "tag": "div",
+              "timeout": 150,
+              "unmountOnExit": true,
+            }
+          }
+        >
+          <div
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "",
+              }
+            }
+          />
+        </Alert>
+        <Form
+          autocomplete="off"
+          className="mb-5"
+          tag="form"
+        >
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              sm={4}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Currency
+            </Label>
+            <Label
+              sm={8}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              AUD
+            </Label>
+          </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              className="required"
+              for="rate"
+              sm={4}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Buying
+            </Label>
+            <Col
+              sm={8}
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <Input
+                autocomplete="false"
+                className="input-required mt-2"
+                id="rate"
+                maxLength="26"
+                name="rate"
+                onChange={[Function]}
+                onKeyPress={[Function]}
+                type="text"
+                value=""
+              />
+            </Col>
+          </FormGroup>
+        </Form>
+        <Button
+          className="mr-3"
+          color="success"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          Submit
+        </Button>
+        <Button
+          color="info"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          Cancel
+        </Button>
+      </div>
+    </div>
+  </ModalBody>
+</Modal>
+`;
+
+exports[`exchange rate - components - EditExchangeRateForm  render correctly with have selectedExchangeRate but invalid rate 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop="static"
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    <span
+      className="iconpopup"
+    />
+    Ex.Rate
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <div
+      className="modal-body-wrapper"
+    >
+      <div
+        className="exchange-rate-form-container"
+      >
+        <Alert
+          closeAriaLabel="Close"
+          color="success"
+          fade={true}
+          isOpen={false}
+          tag="div"
+          transition={
+            Object {
+              "appear": true,
+              "baseClass": "fade",
+              "baseClassActive": "show",
+              "enter": true,
+              "exit": true,
+              "in": true,
+              "mountOnEnter": false,
+              "onEnter": [Function],
+              "onEntered": [Function],
+              "onEntering": [Function],
+              "onExit": [Function],
+              "onExited": [Function],
+              "onExiting": [Function],
+              "tag": "div",
+              "timeout": 150,
+              "unmountOnExit": true,
+            }
+          }
+        >
+          <div
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "",
+              }
+            }
+          />
+        </Alert>
+        <Form
+          autocomplete="off"
+          className="mb-5"
+          tag="form"
+        >
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              sm={4}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Currency
+            </Label>
+            <Label
+              sm={8}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              AUD
+            </Label>
+          </FormGroup>
+          <FormGroup
+            className="mb-2 has-error"
+            row={true}
+            tag="div"
+          >
+            <Label
+              className="required"
+              for="rate"
+              sm={4}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Buying
+            </Label>
+            <Col
+              sm={8}
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <Input
+                autocomplete="false"
+                className="input-required mt-2"
+                id="rate"
+                maxLength="26"
+                name="rate"
+                onChange={[Function]}
+                onKeyPress={[Function]}
+                type="text"
+                value="0."
+              />
+            </Col>
+          </FormGroup>
+        </Form>
+        <Button
+          className="mr-3"
+          color="success"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          Submit
+        </Button>
+        <Button
+          color="info"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          Cancel
+        </Button>
+      </div>
+    </div>
+  </ModalBody>
+</Modal>
+`;

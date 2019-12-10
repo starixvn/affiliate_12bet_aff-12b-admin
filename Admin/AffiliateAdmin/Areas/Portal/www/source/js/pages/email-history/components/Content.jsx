@@ -8,7 +8,7 @@ import { htmlDecode } from '../../../modules/htmlHelper';
 import { headerText, globalResource } from '../modules/constants';
 import { setSelectedEmailId, setPagingOption, fetchData, setCheckedEmails, setShouldResetScrollPosition, setParam } from '../actions';
 import DeleteEmail from './DeleteEmail';
-import SelectAll from './SelectAll';
+import SelectAll from '../../common/components/SelectAll';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -110,7 +110,11 @@ export class Content extends PureComponent {
         return gridData && (
             <div className="data-content">
                 <DeleteEmail />
-                <SelectAll />
+                <SelectAll
+                    checkedList={this.props.checkedEmails}
+                    setCheckedList={this.props.setCheckedEmails}
+                    setShouldResetScrollPosition={this.props.setShouldResetScrollPosition}
+                />
                 <div className="table-responsive table-striped">
                     <Table
                         minWidth={1000}

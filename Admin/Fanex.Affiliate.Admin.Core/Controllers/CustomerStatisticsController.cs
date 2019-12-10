@@ -2,20 +2,22 @@
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
-using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.Services.Customer;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class CustomerStatisticsController : BaseController
     {
-        private readonly ICustomerStatisticsRepository _customerRepository;
+        private readonly ICustomerStatisticsService _customerStatisticsService;
 
-        public CustomerStatisticsController(ISessionService sessionService, ICustomerStatisticsRepository customerRepository) : base(sessionService)
+        public CustomerStatisticsController(
+            ISessionService sessionService,
+            ICustomerStatisticsService customerStatisticsService) : base(sessionService)
         {
-            _customerRepository = customerRepository;
+            _customerStatisticsService = customerStatisticsService;
         }
 
         [HttpPost]
@@ -26,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 return new JsonNetResult
                 {
-                    Data = _customerRepository.GetCustomerStatistics(param)
+                    Data = _customerStatisticsService.GetCustomerStatistics(param)
                 };
             }
 

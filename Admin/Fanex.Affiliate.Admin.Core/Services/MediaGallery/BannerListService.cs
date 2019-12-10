@@ -1,0 +1,217 @@
+﻿using System;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Utilities.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Configurations;
+using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Utilities;
+using System.Drawing;
+using System.Web;
+using System.IO;
+
+namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
+{
+    public class BannerListService : IBannerListService
+    {
+        private readonly IBannerListRepository _bannerListRepository;
+        private readonly IAppSetting _appSetting;
+        private readonly ISystemFile _systemFile;
+        private readonly IBannerValidationService _bannerValidationService;
+        public BannerListService(
+            IBannerListRepository bannerListRepository,
+            IAppSetting appSetting,
+            ISystemFile systemFile,
+            IBannerValidationService bannerValidationService)
+        {
+            _bannerListRepository = bannerListRepository;
+            _appSetting = appSetting;
+            _systemFile = systemFile;
+            _bannerValidationService = bannerValidationService;
+        }
+
+        public EntityResult<BannerInfo> GetBannerList(BannerParam param)
+        {
+            if ((string.Compare(param.Category, Lang.Casino, StringComparison.CurrentCultureIgnoreCase) == 0
+                || string.Compare(param.Category, Lang.Sportsbook, StringComparison.CurrentCultureIgnoreCase) == 0)
+                && !string.IsNullOrEmpty(param.SubCategory))
+            {
+                param.Category = param.SubCategory;
+            }
+
+            return _bannerListRepository.GetBannerList(param);
+        }
+
+        public BannerInfo GetBannerDetail(int selectedBannerId)
+        {
+            return _bannerListRepository.GetBannerDetail(selectedBannerId);
+        }
+
+        public ResultInfo InsertBanner(HttpPostedFileBase file, InsertUpdateBannerParam param)
+        {
+            var fileName = file.FileName;
+            var result = _bannerValidationService.ValidateFile(fileName, file.ContentLength);
+
+            if (!result.IsSuccessful)
+            {
+                return result;
+            }
+
+            if (string.IsNullOrEmpty(param.InputFileName))
+            {
+                param.InputFileName = fileName;
+            }
+            else
+            {
+                if (!BannerHelper.IsValidExtension(_systemFile.GetExtension(param.InputFileName)))
+                {
+                    return BannerHelper.CreateErrorResult();
+                }
+            }
+
+            result = CheckFileInFolder(param);
+
+            if (result.IsSuccessful)
+            {
+                using (var bitmap = new Bitmap(file.InputStream))
+                {
+                    param.Size = BannerHelper.GetSize(bitmap.Width, bitmap.Height);
+                    result = _bannerListRepository.InsertBanner(param);
+
+                    if (result.IsSuccessful)
+                    {
+                        uploadFile(bitmap, param.FilePath);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public ResultInfo UpdateBanner(HttpPostedFileBase file, InsertUpdateBannerParam param)
+        {
+            if (!BannerHelper.IsValidExtension(_systemFile.GetExtension(param.InputFileName)))
+            {
+                return BannerHelper.CreateErrorResult();
+            }
+
+            var oldBannerInfo = _bannerListRepository.GetBannerDetail(param.BannerId);
+            var oldFilePath = oldBannerInfo.FileName;
+            param.Size = oldBannerInfo.Size;
+
+            var result = CheckFileInFolder(param);
+
+            if (!result.IsSuccessful)
+            {
+                if (string.Compare(param.FilePath, oldFilePath, StringComparison.CurrentCultureIgnoreCase) == 0)
+                {
+                    result = _bannerListRepository.UpdateBanner(param);
+                }
+
+                return result;
+            }
+
+            if (file != null)
+            {
+                result = _bannerValidationService.ValidateFile(file.FileName, file.ContentLength);
+
+                if (result.IsSuccessful)
+                {
+                    using (var bitmap = new Bitmap(file.InputStream))
+                    {
+                        param.Size = BannerHelper.GetSize(bitmap.Width, bitmap.Height);
+
+                        uploadFile(bitmap, param.FilePath);
+                        result = _bannerListRepository.UpdateBanner(param);
+
+                        DeleteFile(result.IsSuccessful ? oldFilePath : param.FilePath);
+                    }
+                }
+            }
+            else
+            {
+                result = _bannerListRepository.UpdateBanner(param);
+
+                if (result.IsSuccessful)
+                {
+                    MoveFile(param.FilePath, oldFilePath);
+                }
+            }
+
+            return result;
+        }
+
+        public ResultInfo DeleteBanners(DeleteBannerParam param)
+        {
+            var fileNameList = GetFileNameList(param.BannerIdList);
+            var result = _bannerListRepository.DeleteBanners(param);
+
+            if (result.IsSuccessful)
+            {
+                DeleteFiles(fileNameList);
+            }
+            return result;
+        }
+
+        private void uploadFile(Bitmap bitmap, string fileName)
+        {
+            foreach (var serverPath in _appSetting.BannerFolders)
+            {
+                var filePath = Path.Combine(serverPath, fileName);
+                _systemFile.UploadFile(bitmap, filePath);
+            }
+        }
+
+        private void DeleteFile(string filePath)
+        {
+            foreach (var serverPath in _appSetting.BannerFolders)
+            {
+                _systemFile.DeleteFile(serverPath, filePath);
+            }
+        }
+
+        private void DeleteFiles(List<string> fileList)
+        {
+            for (int i = 0; i < fileList.Count; i++)
+            {
+                DeleteFile(fileList[i]);
+            }
+        }
+
+        private void MoveFile(string newFilePath, string oldFilePath)
+        {
+            foreach (var serverPath in _appSetting.BannerFolders)
+            {
+                _systemFile.MoveFile(serverPath, newFilePath, oldFilePath);
+            }
+        }
+
+        private List<string> GetFileNameList(string bannerIds)
+        {
+            var bannerIdList = bannerIds.Split(',');
+            var fileNameList = new List<string>();
+
+            foreach (var bannerId in bannerIdList)
+            {
+                var bannerInfo = _bannerListRepository.GetBannerDetail(Convert.ToInt32(bannerId));
+                fileNameList.Add(bannerInfo.FileName);
+            }
+
+            return fileNameList;
+        }
+
+        private ResultInfo CheckFileInFolder(InsertUpdateBannerParam param)
+        {
+            var folder = BannerHelper.GeneralFolder(param.Category, param.SubCategory);
+            param.FilePath = folder + param.InputFileName;
+            if (!string.IsNullOrEmpty(param.SubCategory))
+            {
+                param.Category = param.SubCategory;
+            }
+
+            return _bannerValidationService.CheckFileInFolder(folder, param.FilePath);
+        }
+    }
+}

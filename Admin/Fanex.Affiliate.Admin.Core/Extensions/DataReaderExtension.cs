@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlTypes;
 
 namespace Fanex.Affiliate.Admin.Core.Extensions
 {
@@ -16,6 +17,31 @@ namespace Fanex.Affiliate.Admin.Core.Extensions
             }
 
             return false;
+        }
+        public static T GetVal<T>(this IDataReader dataReader, string columnName, T defauleValue = default(T))
+        {
+            var dbValue = dataReader[columnName];
+            if (dbValue == DBNull.Value)
+            {
+                return defauleValue;
+            }
+
+            return Cast<T>(dbValue, defauleValue);
+        }
+
+        private static T Cast<T>(object dbValue, T defauleValue = default(T))
+        {
+            if (dbValue is T)
+            {
+                return (T)dbValue;
+            }
+
+            if (dbValue is INullable && (dbValue as INullable).IsNull)
+            {
+                return defauleValue;
+            }
+
+            return (T)Convert.ChangeType(dbValue, typeof(T));
         }
     }
 }

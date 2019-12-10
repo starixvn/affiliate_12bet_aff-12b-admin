@@ -142,6 +142,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Casino.
+        /// </summary>
+        public static string Casino {
+            get {
+                return ResourceManager.GetString("Casino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Closed.
         /// </summary>
         public static string Closed {
@@ -331,6 +340,51 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file name already exists..
+        /// </summary>
+        public static string InvalidBannerAlready {
+            get {
+                return ResourceManager.GetString("InvalidBannerAlready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must browse banner to upload..
+        /// </summary>
+        public static string InvalidBannerBrowser {
+            get {
+                return ResourceManager.GetString("InvalidBannerBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry! We just support these file types : .jpg, .gif, .png, .jpeg.
+        /// </summary>
+        public static string InvalidBannerExtensionFile {
+            get {
+                return ResourceManager.GetString("InvalidBannerExtensionFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your upload file size must be &lt;= 3 MB..
+        /// </summary>
+        public static string InvalidBannerSize {
+            get {
+                return ResourceManager.GetString("InvalidBannerSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landing Page List.
+        /// </summary>
+        public static string LandingPageList {
+            get {
+                return ResourceManager.GetString("LandingPageList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Landing Pages.
         /// </summary>
         public static string LandingPages {
@@ -354,6 +408,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string MessageHistory {
             get {
                 return ResourceManager.GetString("MessageHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MessageId is invalid..
+        /// </summary>
+        public static string MessageIdIsInvalid {
+            get {
+                return ResourceManager.GetString("MessageIdIsInvalid", resourceCulture);
             }
         }
         
@@ -394,6 +457,24 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter the content of message, one language at least..
+        /// </summary>
+        public static string PleaseEnterContent {
+            get {
+                return ResourceManager.GetString("PleaseEnterContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select messages to delete..
+        /// </summary>
+        public static string PleaseSelectMessage {
+            get {
+                return ResourceManager.GetString("PleaseSelectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Referrers.
         /// </summary>
         public static string Referrers {
@@ -408,6 +489,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string ReportDetails {
             get {
                 return ResourceManager.GetString("ReportDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sportsbook.
+        /// </summary>
+        public static string Sportsbook {
+            get {
+                return ResourceManager.GetString("Sportsbook", resourceCulture);
             }
         }
         

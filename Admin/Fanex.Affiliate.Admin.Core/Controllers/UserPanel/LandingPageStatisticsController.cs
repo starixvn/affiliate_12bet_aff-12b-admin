@@ -22,7 +22,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetLandingPageStatisticsList(LandingPageStatisticsParam param)
         {
             if(ModelState.IsValid)
@@ -38,7 +37,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetLandingPageStatisticsDetailList(LandingPageStatisticsDetailParam param)
         {
             if (ModelState.IsValid)

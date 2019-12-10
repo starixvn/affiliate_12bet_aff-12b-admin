@@ -360,4 +360,36 @@
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
     <value>12Bet Affiliates – Your Application</value>
   </data>
+  <data name="PleaseEnterContent" xml:space="preserve">
+    <value>Please enter the content of message, one language at least.</value>
+  </data>
+  <data name="PleaseSelectMessage" xml:space="preserve">
+    <value>Please select messages to delete.</value>
+  </data>
+  <data name="MessageIdIsInvalid" xml:space="preserve">
+    <value>MessageId is invalid.</value>
+  </data>
+  <data name="LandingPageList" xml:space="preserve">
+    <value>Landing Page List</value>
+  </data>
+  <data name="InvalidBannerExtensionFile" xml:space="preserve">
+    <value>Sorry! We just support these file types : .jpg, .gif, .png, .jpeg</value>
+  </data>
+  <data name="InvalidBannerBrowser" xml:space="preserve">
+    <value>You must browse banner to upload.</value>
+  </data>
+  <data name="InvalidBannerSize" xml:space="preserve">
+    <value>Your upload file size must be &lt;= 3 MB.</value>
+  </data>
+  <data name="InvalidBannerAlready" xml:space="preserve">
+    <value>The file name already exists.</value>
+  </data>
+  <data name="Casino" xml:space="preserve">
+    <value>Casino</value>
+    
+  </data>
+  <data name="Sportsbook" xml:space="preserve">
+    <value>Sportsbook</value>
+    
+  </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿﻿import { RESET_USER_PANEL } from '../../../user-panel/actions/types';
-import { rootReducer } from '../index'
+import { rootReducer } from '../index';
+import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('customer - mainpage reducer', () => {
     const expectedResult = {
@@ -8,18 +9,7 @@ describe('customer - mainpage reducer', () => {
         },
         affCommonInfo: null,
         clickStatistics: {
-            pagingOption: {
-                PageIndex: 1,
-                PageList: [
-                  10,
-                  20,
-                  50,
-                  100,
-                  500,
-                ],
-                PageSize: 20,
-                TotalItem: 0,
-            },
+            pagingOption: defaultPagingOption,
             param: {},
             selectedSiteUrl: null,
         },
@@ -30,18 +20,7 @@ describe('customer - mainpage reducer', () => {
             param: null,
         },
         dailyEarningDetail: {
-            pagingOption: {
-                PageIndex: 1,
-                PageList: [
-                  10,
-                  20,
-                  50,
-                  100,
-                  500,
-                ],
-                PageSize: 20,
-                TotalItem: 0,
-            },
+            pagingOption: defaultPagingOption,
             param: {},
         },
         edit: {
@@ -51,18 +30,7 @@ describe('customer - mainpage reducer', () => {
         isShowLoaderUserPanel: false,
         landingPageStatistics: {
             pageList: [],
-            pagingOption: {
-                PageIndex: 1,
-                PageList: [
-                  10,
-                  20,
-                  50,
-                  100,
-                  500,
-                ],
-                PageSize: 20,
-                TotalItem: 0,
-            },
+            pagingOption: defaultPagingOption,
             param: {},
             selectedPage: null,
             shortCodeLanguageList: {},
@@ -76,18 +44,7 @@ describe('customer - mainpage reducer', () => {
         },
         member: {
             canViewMemberEmail: false,
-            pagingOption: {
-                PageIndex: 1,
-                PageList: [
-                  10,
-                  20,
-                  50,
-                  100,
-                  500,
-                ],
-                PageSize: 20,
-                TotalItem: 0,
-            },
+            pagingOption: defaultPagingOption,
             param: null,
         },
         note: {
@@ -97,49 +54,16 @@ describe('customer - mainpage reducer', () => {
                 noteId: 0,
             },
             noteList: [],
-            pagingOption: {
-                PageIndex: 1,
-                PageList: [
-                  10,
-                  20,
-                  50,
-                  100,
-                  500,
-                ],
-                PageSize: 20,
-                TotalItem: 0,
-            },
+            pagingOption: defaultPagingOption,
         },
         playerDetail: {
-            pagingOption: {
-                PageIndex: 1,
-                PageList: [
-                  10,
-                  20,
-                  50,
-                  100,
-                  500,
-                ],
-                PageSize: 20,
-                TotalItem: 0,
-            },
+            pagingOption: defaultPagingOption,
             param: {},
             productList: [],
         },
         selectedUserPanel: null,
         statementHistory: {
-            pagingOption: {
-                PageIndex: 1,
-                PageList: [
-                  10,
-                  20,
-                  50,
-                  100,
-                  500,
-                ],
-                PageSize: 20,
-                TotalItem: 0,
-            },
+            pagingOption: defaultPagingOption,
             param: {},
             transactionId: null,
         },
@@ -149,18 +73,7 @@ describe('customer - mainpage reducer', () => {
             selectedMonth: null,
         },
         viewLog: {
-            pagingOption: {
-                PageIndex: 1,
-                PageList: [
-                  10,
-                  20,
-                  50,
-                  100,
-                  500,
-                ],
-                PageSize: 20,
-                TotalItem: 0,
-            },
+            pagingOption: defaultPagingOption,
             param: {},
             showIdList: {},
         },

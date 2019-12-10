@@ -26,6 +26,10 @@
   <Function Name="Auth">
     <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="affiliate_12bet" />
     <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Login" SpName="Aff_Admin_Login" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Logout" SpName="Aff_Logout" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Report">
     <Setting Key="Aff_Admin_AffiliateReport_Sel" SpName="Aff_Admin_AffiliateReport_Sel" DbName="affiliate_12bet" />
@@ -73,6 +77,19 @@
     <Setting Key="Aff_Admin_LandingPage_Ins" SpName="Aff_Admin_LandingPage_Ins" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_LandingPage_Upd" SpName="Aff_Admin_LandingPage_Upd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_LandingPage_Del" SpName="Aff_Admin_LandingPage_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_MediaCategory_Sel" SpName="Aff_Admin_MediaCategory_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_MediaCurrency_Sel" SpName="Aff_Admin_MediaCurrency_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Text_Sel" SpName="Aff_Admin_Text_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Text_Ins" SpName="Aff_Admin_Text_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Text_Upd" SpName="Aff_Admin_Text_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Text_Del" SpName="Aff_Admin_Text_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_MediaType_Sel" SpName="Aff_Admin_MediaType_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Banner_Ins" SpName="Aff_Admin_Banner_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Banner_Upd" SpName="Aff_Admin_Banner_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Banner_Del" SpName="Aff_Admin_Banner_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffTypeSel" SpName="Aff_AffTypeSel" DbName="affiliate_12bet" />
   </Function>
   <Function Name="ThirdPartyProduct">
     <Setting Key="Aff_3rdProduct_ImportQueueSel" SpName="Aff_3rdProduct_ImportQueueSel" DbName="affiliate_12bet" />
@@ -83,5 +100,66 @@
     <Setting Key="Aff_Admin_EmailHistory_Sel" SpName="Aff_Admin_EmailHistory_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_EmailHistory_Detail_Sel" SpName="Aff_Admin_EmailHistory_Detail_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_EmailHistory_Del" SpName="Aff_Admin_EmailHistory_Del" DbName="affiliate_12bet" />
+  </Function>
+  <Function Name="ExchangeRate">
+    <Setting Key="Aff_Admin_Exchange_Sel" SpName="Aff_Admin_Exchange_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Exchange_Upd" SpName="Aff_Admin_Exchange_Upd" DbName="affiliate_12bet" />
+  </Function>
+  <Function Name="Message">
+    <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Ins" SpName="Aff_Admin_Message_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Upd" SpName="Aff_Admin_Message_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Del" SpName="Aff_Admin_Message_Del" DbName="affiliate_12bet" />
+  </Function>
+  <Function Name="Member">
+    <Setting Key="Aff_MemberListSel" SpName="Aff_MemberListSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_MemberDel" SpName="Aff_MemberDel" DbName="affiliate_12bet" />
+    <Setting Key="DEP_AdminUpdAffID" SpName="DEP_AdminUpdAffID" DbName="deposit" />
+    <Setting Key="Aff_WriteLog" SpName="Aff_WriteLog" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_ActiveMember_CheckStatus" SpName="Aff_Admin_ActiveMember_CheckStatus" DbName="affiliate_12bet" />
+    <Setting Key="Deposit_GetCustDataForCreateIBCACByUserNames" SpName="Deposit_GetCustDataForCreateIBCACByUserNames" DbName="deposit" />
+    <Setting Key="Dot_Dep_CustomerInsMember_Ag_Cust" SpName="Dot_Dep_CustomerInsMember_Ag_Cust" DbName="custdb" />
+    <Setting Key="Deposit_MemberIBCDetail" SpName="Deposit_MemberIBCDetail" DbName="deposit" />
+  </Function>
+  <Function Name="ChangeAdminPassword">
+    <Setting Key="Aff_Admin_ChangePassword" SpName="Aff_Admin_ChangePassword" DbName="affiliate_12bet" />
+  </Function>
+  <Function Name="Domain">
+    <Setting Key="Aff_Admin_AffiliateDomain_Sel" SpName="Aff_Admin_AffiliateDomain_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateDomain_Ins" SpName="Aff_Admin_AffiliateDomain_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateDomain_Upd" SpName="Aff_Admin_AffiliateDomain_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateDomain_Del" SpName="Aff_Admin_AffiliateDomain_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_12BETDomain_Sel" SpName="Aff_Admin_12BETDomain_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_12BETDomain_Ins" SpName="Aff_Admin_12BETDomain_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_12BETDomain_Upd" SpName="Aff_Admin_12BETDomain_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_12BETDomain_Del" SpName="Aff_Admin_12BETDomain_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_DomainControl_Sel" SpName="Aff_Admin_DomainControl_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_DomainControl_Ins" SpName="Aff_Admin_DomainControl_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_DomainControl_Upd" SpName="Aff_Admin_DomainControl_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_DomainControl_Del" SpName="Aff_Admin_DomainControl_Del" DbName="affiliate_12bet" />
+  </Function>
+  <Function Name="Administrator">
+    <Setting Key="Aff_Con_GroupInfoSel" SpName="Aff_Con_GroupInfoSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_GroupInfoIns" SpName="Aff_Con_GroupInfoIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_GroupInfoUpd" SpName="Aff_Con_GroupInfoUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_GroupInfoDel" SpName="Aff_Con_GroupInfoDel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_GroupPolicySel" SpName="Aff_Con_GroupPolicySel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_GroupPolicyUpd" SpName="Aff_Con_GroupPolicyUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_AdminSelByGroupID" SpName="Aff_Con_AdminSelByGroupID" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_AdminUpdClosed" SpName="Aff_Con_AdminUpdClosed" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_AdminIns" SpName="Aff_Con_AdminIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_AdminInsFromExisted" SpName="Aff_Con_AdminInsFromExisted" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_AdminSelByCustID" SpName="Aff_Con_AdminSelByCustID" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_AdminUpd" SpName="Aff_Con_AdminUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_AdminPolicySelByCustID" SpName="Aff_Con_AdminPolicySelByCustID" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_AdminPolicyUpd" SpName="Aff_Con_AdminPolicyUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Con_Batch_AdminPolicySel" SpName="Aff_Con_Batch_AdminPolicySel" DbName="affiliate_12bet" />
+  </Function>
+  <Function Name="Home">
+    <Setting Key="DEP_AffiliateGetPSP" SpName="DEP_AffiliateGetPSP" DbName="deposit" />
+    <Setting Key="DEP_AffiliateGeneralInfo" SpName="DEP_AffiliateGeneralInfo" DbName="deposit" />
+    <Setting Key="Aff_UserOnlineList" SpName="Aff_UserOnlineList" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_GeneralInfo_Sel" SpName="Aff_Admin_GeneralInfo_Sel" DbName="affiliate_12bet" />
   </Function>
 </Functions>

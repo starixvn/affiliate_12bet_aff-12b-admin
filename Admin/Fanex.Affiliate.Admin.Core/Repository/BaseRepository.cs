@@ -2,6 +2,7 @@
 using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Data;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
@@ -14,8 +15,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
         protected static void AssignResultOutputParam(IObjectDb objectDb)
         {
-            objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
-            objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
+            objectDb.AddOutParameter("ErrCode", DbType.Int32, Size.SizeOfInt);
+            objectDb.AddOutParameter("ErrMsg", DbType.String, Size.SizeOfString);
         }
 
         protected static ResultInfo GetResultInfo(IObjectDb objectDb)

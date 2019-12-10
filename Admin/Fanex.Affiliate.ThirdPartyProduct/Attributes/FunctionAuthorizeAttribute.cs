@@ -9,6 +9,8 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Attributes
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public sealed class FunctionAuthorizeAttribute : ActionFilterAttribute
     {
+        private const int ErrdCodeAccessDenied = 403;
+
         public bool IsHost { get; set; }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -31,19 +33,19 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Attributes
                         filterContext.HttpContext.Response.ContentType = "application/json";
                         filterContext.Result = new JsonResult
                         {
-                            Data = new { ErrCode = 403, ErrMsg = "Access Denied." },
+                            Data = new { ErrCode = ErrdCodeAccessDenied, ErrMsg = "Access Denied." },
                             JsonRequestBehavior = JsonRequestBehavior.AllowGet
                         };
                     }
                     else
                     {
-                        context.Response.Redirect("~/AccessDenied.aspx");
+                        context.Response.Redirect("~/Portal/AccessDenied");
                     }
                 }
             }
             else
             {
-                context.Response.Redirect("~/AccessDenied.aspx");
+                context.Response.Redirect("~/Portal/AccessDenied");
             }
 
             base.OnActionExecuting(filterContext);

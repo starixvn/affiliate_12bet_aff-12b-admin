@@ -2,22 +2,22 @@
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class PlayerDetailController : BaseController
     {
-        private readonly IPlayerDetailRepository _playerDetailRepository;
+        private readonly IPlayerDetailService _playerDetailService;
 
         public PlayerDetailController(
             ISessionService sessionService,
-            IPlayerDetailRepository playerDetailRepository) : base(sessionService)
+            IPlayerDetailService playerDetailService) : base(sessionService)
         {
-            _playerDetailRepository = playerDetailRepository;
+            _playerDetailService = playerDetailService;
         }
 
         [HttpPost]
@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 return new JsonNetResult
                 {
-                    Data = _playerDetailRepository.GetPlayerDetailList(param)
+                    Data = _playerDetailService.GetPlayerDetailList(param)
                 };
             }
 

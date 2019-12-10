@@ -11,7 +11,7 @@ import ExchangeRevenueShareSetting from '../shared/exchange';
 import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
 import CommGroupInfo from '../shared/CommGroupInfo';
-import { defaultPagingOption, messages } from '../../modules/constant';
+import { messages } from '../../modules/constant';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
 export class AddGroup extends React.Component {
@@ -57,7 +57,8 @@ export class AddGroup extends React.Component {
                 const result = response.data;
                 if (result.IsSuccessful) {
                     window.setTimeout(this.props.onClose, 3000);
-                    const gettingParam = Object.assign({}, defaultPagingOption, { GroupName: this.props.searchedGroupName });
+                    const { pagingOption } = this.props;
+                    const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize, GroupName: this.props.searchedGroupName });
                     this.props.getGroupSettingList(gettingParam);
                 }
 
@@ -92,8 +93,8 @@ export class AddGroup extends React.Component {
     }
 }
 
-function mapStateToProp({ deductionList, productList, selectedGroup, searchedGroupName }) {
-    return { deductionList, productList, selectedGroup, searchedGroupName };
+function mapStateToProp({ deductionList, productList, selectedGroup, searchedGroupName, pagingOption }) {
+    return { deductionList, productList, selectedGroup, searchedGroupName, pagingOption };
 }
 
 function mapDispatchToProps(dispatch) {

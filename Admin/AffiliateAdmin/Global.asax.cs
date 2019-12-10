@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Utilities;
 
 namespace AffiliateAdmin
 {
@@ -13,9 +14,7 @@ namespace AffiliateAdmin
             MvcHandler.DisableMvcResponseHeader = true;
 
             IoCConfig.Register();
-            // Code that runs on application startup
-            Sunplus.Agent.Configurations.AppSettings.Configuration.Load();
-            // Code that runs on application startup
+       
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
 
             AreaRegistration.RegisterAllAreas();
@@ -37,44 +36,7 @@ namespace AffiliateAdmin
                 return;
             }
 
-            AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
-        }
-
-        protected void Application_AcquireRequestState(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!User.Identity.IsAuthenticated || Request.RawUrl.IndexOf(".aspx") == -1 || string.IsNullOrWhiteSpace(AppSettings.Session.RoleAccess))
-                    return;
-
-                if (AppSettings.Session.RoleAccess.IndexOf("[All]", StringComparison.CurrentCultureIgnoreCase) != -1) return;
-
-                string url;
-                if (AppSettings.VirtualDir)
-                {
-                    url = Request.RawUrl.Substring(Request.RawUrl.IndexOf("/", 1) + 1);
-                }
-                else
-                {
-                    url = Request.RawUrl.Substring(1);
-                }
-
-                url = url.Substring(0, url.IndexOf(".aspx") + 5);
-
-                if (Context.Cache["AccessPermission"] == null)
-                    Common.InitAccessPermission();
-                string pageRole = ((Dictionary<string, string>)Context.Cache["AccessPermission"]).ContainsKey(url) ? ((Dictionary<string, string>)Context.Cache["AccessPermission"])[url] : "";
-                //HttpContext.Current.Response.Write("Raw url: " + Request.RawUrl.ToString() + "");
-                if (string.Compare(pageRole, "[All]", true) == 0) return;
-                if (AppSettings.Session.RoleAccess.IndexOf(pageRole) == -1)
-                {
-                    Response.Redirect("~/AccessDenied.aspx");
-                }
-            }
-            catch
-            {
-
-            }
+            LogHelper.WriteError(ex);
         }
     }
 }

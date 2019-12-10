@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import { connect } from 'react-redux';
 import { CommGroupInfo } from '../CommGroupInfo';
 import { shallow } from 'enzyme';
 jest.mock('../../../modules/constant');
@@ -14,11 +13,12 @@ describe('commission group - CommGroupInfo', () => {
             OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
             PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6" }],
             QmTurnover: 100,
-            TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]}
+            TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]
+        }
     };
 
     it('handleChange - should call setSelectedGroup when change Group Name', () => {
-        const mockEvent = { target: { name: 'groupName', value: 'XYZ' }};
+        const mockEvent = { target: { name: 'groupName', value: 'XYZ' } };
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup });
         const wrapper = shallow(<CommGroupInfo {...props} />);
@@ -28,7 +28,7 @@ describe('commission group - CommGroupInfo', () => {
     });
 
     it('handleChange - not call setSelectedGroup when change Group Name > MAX_LENGTH', () => {
-        const mockEvent = { target: { name: 'groupName', value: 'ABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJK' }};
+        const mockEvent = { target: { name: 'groupName', value: 'ABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJK' } };
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup });
         const wrapper = shallow(<CommGroupInfo {...props} />);
@@ -38,7 +38,7 @@ describe('commission group - CommGroupInfo', () => {
     });
 
     it('handleChange - should call setSelectedGroup when change Description', () => {
-        const mockEvent = { target: { name: 'description', value: 'X Y Z' }};
+        const mockEvent = { target: { name: 'description', value: 'X Y Z' } };
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup });
         const wrapper = shallow(<CommGroupInfo {...props} />);
@@ -48,7 +48,7 @@ describe('commission group - CommGroupInfo', () => {
     });
 
     it('handleChange - not call setSelectedGroup when change Group Name > MAX_LENGTH', () => {
-        const mockEvent = { target: { name: 'description', value: 'ABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJK' }};
+        const mockEvent = { target: { name: 'description', value: 'ABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJKMNOPQRUSTXWYZABCDEFGHJK' } };
         const mockSetSelectedGroup = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup });
         const wrapper = shallow(<CommGroupInfo {...props} />);

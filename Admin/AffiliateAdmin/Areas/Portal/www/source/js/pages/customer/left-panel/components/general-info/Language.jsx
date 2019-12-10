@@ -6,6 +6,7 @@ import { Button } from 'reactstrap';
 import { updateLanguage, getAffiliateInfo } from '../../actions';
 import { messages } from '../../modules/constants';
 import { htmlDecode } from '../../../../../modules/htmlHelper';
+import { NotificationPopup } from '../../../../common/components/NotificationPopup';
 
 export class Language extends PureComponent {
     constructor(props) {
@@ -14,24 +15,36 @@ export class Language extends PureComponent {
         this.languageDropdown = React.createRef();
 
         this.state = {
-            isChangingLanguage: false
+            isChangingLanguage: false,
+            preferredLanguage: '',
+            messageNotification: '',
+            isConfirmPopup: true
         }
     }
 
-    handleChangeLanguage = async (event) => {
-        const isConfirmed = window.confirm(messages.areYouChangeLanguage);
-        if (isConfirmed) {
-            const preferredLanguage = event.target.value;
-            const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, PreferredLanguage: preferredLanguage });
-            const result = await this.props.updateLanguage(param);
+    handleCloseNotificationPopup = (confirmResult) => {
+        this.setState({ messageNotification: '' });
 
-            if (result.IsSuccessful) {
-                window.alert(messages.languageUpdatedSuccess);
-                this.props.getAffiliateInfo(this.props.affName);
-            }
-            else {
-                window.alert(result.Message);
-            }
+        const { preferredLanguage } = this.state;
+        if (confirmResult && preferredLanguage) {
+            this._changeLanguage(preferredLanguage);
+        }
+    }
+
+    _handleChangeLanguage = (event) => {
+        this.setState({ messageNotification: messages.areYouChangeLanguage, isConfirmPopup: true, preferredLanguage: event.target.value });
+    }
+
+    _changeLanguage = async (preferredLanguage) => {
+        const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, PreferredLanguage: preferredLanguage });
+        const result = await this.props.updateLanguage(param);
+
+        if (result.IsSuccessful) {
+            this.setState({ messageNotification: messages.languageUpdatedSuccess, isConfirmPopup: false });
+            this.props.getAffiliateInfo(this.props.affName);
+        }
+        else {
+            this.setState({ messageNotification: result.Message, isConfirmPopup: false });
         }
     }
 
@@ -44,7 +57,7 @@ export class Language extends PureComponent {
 
         return (
             <select value={affiliateInfo.PreferredLanguage}
-                onChange={this.handleChangeLanguage} onBlur={() => this.toggleChangingLanguage(false)} ref={this.languageDropdown}>
+                onChange={this._handleChangeLanguage} onBlur={() => this.toggleChangingLanguage(false)} ref={this.languageDropdown}>
                 {
                     languageList.map(language => {
                         return (<option value={language.LanguageCode} key={`affinfo-lang-${language.LanguageCode}`}>{htmlDecode(language.LanguageName)}</option>)
@@ -66,9 +79,22 @@ export class Language extends PureComponent {
     }
 
     render() {
-        const { isChangingLanguage } = this.state;
+        const { isChangingLanguage, messageNotification, isConfirmPopup } = this.state;
 
-        return isChangingLanguage ? this._renderLanguageList() : this._renderLanguageLabel();
+        return (
+            <React.Fragment>
+                {
+                    isChangingLanguage ? this._renderLanguageList() : this._renderLanguageLabel()
+                }
+                {
+                    !!messageNotification && <NotificationPopup
+                        message={messageNotification}
+                        isConfirmPopup={isConfirmPopup}
+                        onClose={this.handleCloseNotificationPopup}
+                    />
+                }
+            </React.Fragment>
+        )
     }
 }
 

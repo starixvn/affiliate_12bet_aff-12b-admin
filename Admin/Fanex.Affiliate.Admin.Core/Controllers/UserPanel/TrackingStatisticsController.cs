@@ -22,7 +22,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetTrackingStatisticsList(TrackingStatisticsParam param)
         {
             if (ModelState.IsValid)
@@ -38,7 +37,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetTrackingStatisticsDetailList(TrackingStatisticsDetailParam param)
         {
             if (ModelState.IsValid)

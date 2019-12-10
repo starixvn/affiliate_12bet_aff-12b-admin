@@ -32,7 +32,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [ValidateAntiForgeryHeader]
         [HttpPost]
-        [Compress]
         public ActionResult GetAffiliateInfo(string affUsername)
         {
             if (string.IsNullOrEmpty(affUsername))
@@ -54,7 +53,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [ValidateAntiForgeryHeader]
         [HttpPost]
-        [Compress]
         public ActionResult GetOnlineList(string affUsername)
         {
             if(string.IsNullOrEmpty(affUsername))

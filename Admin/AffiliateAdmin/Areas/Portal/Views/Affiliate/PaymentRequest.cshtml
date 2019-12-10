@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
+}
+
+@model Fanex.Affiliate.Admin.Core.MetaModels.Payment.PaymentRequestParamFromHome
+
+@{
+    Html.RenderPartial("~/Areas/Portal/Views/Affiliate/_AffiliateSubMenu.cshtml", Model.SubMenuList);
+}
+
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/payment/payment-request.css")" rel="stylesheet">
+}
+
+@section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")',
+            param: @Html.Raw(Json.Encode(Model))
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/payment/payment-request.js")"></script>
+}

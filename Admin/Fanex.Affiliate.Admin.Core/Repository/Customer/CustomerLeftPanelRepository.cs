@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
-using Sunplus.Agent.Configurations;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 {
@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                     {
                         result = new AffiliateInfoOnLeftPanel
                         {
-                            AffId = Convert.ToInt32(reader["AffId"]),
+                            AffId = Convert.ToInt32(reader[Field.AffId]),
                             GroupId = Convert.ToInt32(reader["GroupId"]),
                             AffName = Convert.ToString(reader["UserName"]),
                             FirstName = Convert.ToString(reader["FirstName"]),
@@ -83,12 +83,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
+                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
                 objectDb.AddInParameter("AffType", DbType.Byte, param.AffType);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
-                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
+                objectDb.AddOutParameter("ErrCode", DbType.Int32, Size.SizeOfInt);
 
                 objectDb.ExecuteNonQuery();
 
@@ -107,8 +107,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
+                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
                 objectDb.AddInParameter("IsClosed", DbType.Boolean, param.IsClosed);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
@@ -126,8 +126,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
+                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
                 objectDb.AddInParameter("Ip", DbType.String, param.Ip);
                 objectDb.AddInParameter("PreferredLanguage", DbType.String, param.PreferredLanguage);
 
@@ -145,8 +145,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
+                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
                 objectDb.AddInParameter("Ip", DbType.String, param.Ip);
                 objectDb.AddInParameter("Status", DbType.String, param.Status);
 

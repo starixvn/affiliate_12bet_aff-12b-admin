@@ -1,4 +1,5 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
+import { submitFail } from "../../../../modules/constants";
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
 
@@ -9,11 +10,6 @@ export const getBalanceBroughtForward = (param) => async () => {
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : 0;
-}
-
-const submitFail = {
-    IsSuccessful: false,
-    Message: 'Update Failed!'
 }
 
 export const handleSubmit = (param) => async () => {

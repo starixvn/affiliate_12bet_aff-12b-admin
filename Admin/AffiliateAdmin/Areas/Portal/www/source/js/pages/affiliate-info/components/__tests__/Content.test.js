@@ -89,7 +89,7 @@ describe('affiliate info - Content ', () => {
             const expectedResponse = { data: ['data 1', 'data 2'], status: 200 };
             ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
-            const expectedUrl = 'Portal/AffiliateInfo/GetAffiliateList';
+            const expectedUrl = 'Portal/Affiliate/GetAffiliateList';
             const expectedParam = {
                 AffId: 927841,
                 IsExportExcel: true
@@ -112,7 +112,7 @@ describe('affiliate info - Content ', () => {
             const expectedResponse = { data: ['data 1', 'data 2'], status: 500 };
             ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
-            const expectedUrl = 'Portal/AffiliateInfo/GetAffiliateList';
+            const expectedUrl = 'Portal/Affiliate/GetAffiliateList';
             const expectedParam = {
                 AffId: 927841,
                 IsExportExcel: true
@@ -133,7 +133,7 @@ describe('affiliate info - Content ', () => {
 
         it('should call toggleLoader twice, ReportExcel but not call post when exporting excel with affId incorrect', async () => {
             const expectData = { MainData: {}, TotalItem: 0 };
-            const expectedUrl = 'Portal/AffiliateInfo/GetAffiliateList';
+            const expectedUrl = 'Portal/Affiliate/GetAffiliateList';
             const expectedParam = {
                 AffId: "AFF001",
                 IsExportExcel: true

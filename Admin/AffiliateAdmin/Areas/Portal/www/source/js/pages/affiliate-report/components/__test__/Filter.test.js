@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme'
-import ConnectedFilter, { Filter } from '../Filter';
+import { Filter } from '../Filter';
 import AutoComplete from '../../../../components/auto-complete';
 
 import MonthPicker from '@9softstudio/react-monthpicker';
@@ -26,7 +26,7 @@ describe('affiliate report - Filter ', () => {
             PageList: [10, 20, 50, 100, 500]
         },
         languageList: {},
-        today: now.getMonth()+'/'+now.getDate()+'/'+now.getFullYear(),
+        today: now.getMonth() + '/' + now.getDate() + '/' + now.getFullYear(),
         currentViewLevel: mainView,
         param: {}
     };
@@ -57,7 +57,7 @@ describe('affiliate report - Filter ', () => {
         const mockSetParam = jest.fn();
         const props = Object.assign({}, defaultProps, { setReportTitle: mockSetReportTitle, setParam: mockSetParam });
         const componentInstance = new Filter(props);
-        
+
         componentInstance.cachedMainReportParam = cachedMainReportParam;
         componentInstance.setState = jest.fn();
         componentInstance._buildReportTitle = jest.fn(() => 'AFFILIATE REPORT - Main view');
@@ -86,7 +86,7 @@ describe('affiliate report - Filter ', () => {
         const expectReportTitle = 'AFFILIATE REPORT - Month on Month view';
         const mockSetReportTitle = jest.fn();
         const props = Object.assign({}, defaultProps, { productList, setReportTitle: mockSetReportTitle, param: { UserName: 'Month on Month view' }, currentViewLevel: monthOnMonth });
-        
+
         const componentInstance = new Filter(props);
         componentInstance.state.selectedProductList = selectedProductList;
 
@@ -124,7 +124,7 @@ describe('affiliate report - Filter ', () => {
         const instance = wrapper.instance();
 
         instance.handleClickSearch = jest.fn();
-        
+
         wrapper.find('Input[type="text"][id="Affiliate"]').simulate('keyPress', mockedEvent);
 
         expect(instance.handleClickSearch).toHaveBeenCalled();
@@ -137,7 +137,7 @@ describe('affiliate report - Filter ', () => {
         const instance = wrapper.instance();
 
         instance.handleClickSearch = jest.fn();
-        
+
         wrapper.find('Input[type="text"][id="Affiliate"]').simulate('keyPress', mockedEvent);
 
         expect(instance.handleClickSearch).not.toHaveBeenCalled();
@@ -150,7 +150,7 @@ describe('affiliate report - Filter ', () => {
         const instance = wrapper.instance();
 
         instance.setState = jest.fn();
-        
+
         wrapper.find('Input[type="text"][id="Affiliate"]').simulate('change', event);
 
         expect(instance.setState).toHaveBeenCalledWith({ userName: event.target.value });
@@ -163,14 +163,14 @@ describe('affiliate report - Filter ', () => {
         const instance = wrapper.instance();
 
         instance.setState = jest.fn();
-        
+
         wrapper.find('Input[type="select"][id="Language"]').simulate('change', event);
 
         expect(instance.setState).toHaveBeenCalledWith({ selectedLanguage: event.target.value });
     });
 
     it('should call handleSelectFromMonth when From Month change with correct parameters currentMainView is Main view', () => {
-        const toMonthRange = { 
+        const toMonthRange = {
             min: { month: now.getMonth(), year: now.getFullYear() },
             max: { month: now.getMonth(), year: now.getFullYear() }
         };
@@ -188,7 +188,7 @@ describe('affiliate report - Filter ', () => {
     });
 
     it('should call handleSelectFromMonth when From Month change with incorrect parameters pacurrentMainView is Main view', () => {
-        const toMonthRange = { 
+        const toMonthRange = {
             min: { month: now.getMonth() + 1, year: now.getFullYear() },
             max: { month: now.getMonth(), year: now.getFullYear() }
         };
@@ -214,7 +214,7 @@ describe('affiliate report - Filter ', () => {
         wrapper.find(MonthPicker).at(0).simulate('select', now.getMonth(), now.getFullYear());
 
         expect(wrapper.setState).toHaveBeenCalledWith({ fromMonth });
-    });  
+    });
 
     it('should call handleSelectToMonth when To Month change', () => {
         const toMonth = {
@@ -225,7 +225,7 @@ describe('affiliate report - Filter ', () => {
         const instance = wrapper.instance();
 
         instance.setState = jest.fn();
-        
+
         wrapper.find(MonthPicker).at(1).simulate('select', now.getMonth(), now.getFullYear());
 
         expect(instance.setState).toHaveBeenCalledWith({ toMonth });
@@ -242,7 +242,7 @@ describe('affiliate report - Filter ', () => {
         const instance = wrapper.instance();
 
         instance.setState = jest.fn();
-        
+
         wrapper.find(MultipleSelect).simulate('change', item, selectedProductList);
 
         expect(instance.setState).toHaveBeenCalledWith({ selectedProductList });
@@ -252,7 +252,7 @@ describe('affiliate report - Filter ', () => {
         const props = Object.assign({}, defaultProps, { currentViewLevel: monthOnMonth });
         const wrapper = shallow(<Filter {...props} />);
         wrapper.setState({ isGetAll: true });
-        
+
         wrapper.find('Input[type="checkbox"]').at(0).simulate('change');
 
         expect(wrapper.state('isGetAll')).toEqual(false);
@@ -264,7 +264,7 @@ describe('affiliate report - Filter ', () => {
         const instance = wrapper.instance();
 
         instance.setState = jest.fn();
-        
+
         wrapper.find('Input[type="select"][id="SortBy"]').simulate('change', event);
 
         expect(instance.setState).toHaveBeenCalledWith({ sortBy: event.target.value });
@@ -273,7 +273,7 @@ describe('affiliate report - Filter ', () => {
     it('should call handleChangeGetAll when checkbox A-Z change', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
         wrapper.setState({ isSortAscending: true });
-        
+
         wrapper.find('Input[type="checkbox"]').simulate('change');
 
         expect(wrapper.state('isSortAscending')).toEqual(false);
@@ -289,7 +289,7 @@ describe('affiliate report - Filter ', () => {
 
         wrapper.setState({ selectedProductList: '' });
         instance._buildReportTitle = jest.fn(() => 'Handle click Search button');
-        
+
         wrapper.find('Button').simulate('click');
 
         expect(instance._buildReportTitle).not.toHaveBeenCalled();
@@ -300,8 +300,8 @@ describe('affiliate report - Filter ', () => {
     it('should call handleClickSearch when click Search button with currentMainView is Main view', () => {
         const param = {
             UserName: '',
-            FromDate: now.getMonth()+'/1/'+now.getFullYear(),
-            ToDate: now.getMonth()+'/1/'+now.getFullYear(),
+            FromDate: now.getMonth() + '/1/' + now.getFullYear(),
+            ToDate: now.getMonth() + '/1/' + now.getFullYear(),
             PreferredLanguage: '',
             ProductIds: '0',
             SortType: 1,
@@ -320,7 +320,7 @@ describe('affiliate report - Filter ', () => {
 
         instance._buildReportTitle = jest.fn(() => 'Handle click Search button');
         instance._isMainView = jest.fn(() => true);
-        
+
         wrapper.find('Button').simulate('click');
 
         expect(instance._buildReportTitle).toHaveBeenCalledWith(true);
@@ -333,8 +333,8 @@ describe('affiliate report - Filter ', () => {
     it('should call handleClickSearch when click Search button with currentMainView is Month on Month view', () => {
         const param = {
             UserName: '',
-            FromDate: now.getMonth()+'/1/'+now.getFullYear(),
-            ToDate: now.getMonth()+'/1/'+now.getFullYear(),
+            FromDate: now.getMonth() + '/1/' + now.getFullYear(),
+            ToDate: now.getMonth() + '/1/' + now.getFullYear(),
             PreferredLanguage: '',
             ProductIds: '0',
             SortType: 1,
@@ -355,7 +355,7 @@ describe('affiliate report - Filter ', () => {
         const wrapper = shallow(<Filter {...props} />);
         wrapper.setState({ selectedProductList, isSortAscending: false });
         const instance = wrapper.instance();
-        
+
         instance._buildReportTitle = jest.fn(() => 'Handle click Search button');
         instance._isMainView = jest.fn(() => false);
 
@@ -371,8 +371,8 @@ describe('affiliate report - Filter ', () => {
     it('should call handleClickSearch when click Search button with selectedProductList not equal productList', () => {
         const param = {
             UserName: '',
-            FromDate: now.getMonth()+'/1/'+now.getFullYear(),
-            ToDate: now.getMonth()+'/1/'+now.getFullYear(),
+            FromDate: now.getMonth() + '/1/' + now.getFullYear(),
+            ToDate: now.getMonth() + '/1/' + now.getFullYear(),
             PreferredLanguage: '',
             ProductIds: '1,2',
             SortType: 1,
@@ -394,7 +394,7 @@ describe('affiliate report - Filter ', () => {
         const wrapper = shallow(<Filter {...props} />);
         wrapper.setState({ selectedProductList, isSortAscending: false });
         const instance = wrapper.instance();
-        
+
         instance._buildReportTitle = jest.fn(() => 'Handle click Search button');
         instance._isMainView = jest.fn(() => false);
 
@@ -437,12 +437,12 @@ describe('affiliate report - Filter ', () => {
         const result = componentInstance._buildMainReportTitle(isCheckedAllProduct);
 
         expect(componentInstance._getProductDataSource).toHaveBeenCalled();
-        expect(result).toEqual('AFFILIATE REPORT  - All languages - All Products - FROM '+ now.getMonth() +'/'+ now.getFullYear() +' TO '+ now.getMonth() +'/'+ now.getFullYear());
+        expect(result).toEqual('AFFILIATE REPORT  - All languages - All Products - FROM ' + now.getMonth() + '/' + now.getFullYear() + ' TO ' + now.getMonth() + '/' + now.getFullYear());
     });
 
     it('_buildMainReportTitle - return corrected value with incorrect parameter', () => {
         const productList = [
-           {ProductId: 1, ProductName: "Sportsbook", Checked: true}
+            { ProductId: 1, ProductName: "Sportsbook", Checked: true }
         ]
 
         const componentInstance = new Filter(defaultProps);
@@ -452,7 +452,7 @@ describe('affiliate report - Filter ', () => {
         const result = componentInstance._buildMainReportTitle(!isCheckedAllProduct);
 
         expect(componentInstance._getProductDataSource).toHaveBeenCalled();
-        expect(result).toEqual("AFFILIATE REPORT - Username contains '12Bet' - All languages - Sportsbook - FROM "+ now.getMonth() +'/'+ now.getFullYear() +' TO '+ now.getMonth() +'/'+ now.getFullYear());
+        expect(result).toEqual("AFFILIATE REPORT - Username contains '12Bet' - All languages - Sportsbook - FROM " + now.getMonth() + '/' + now.getFullYear() + ' TO ' + now.getMonth() + '/' + now.getFullYear());
     });
 
     it('_buildMonthOnMonthReportTile - return corrected value with correct parameter', () => {
@@ -462,12 +462,12 @@ describe('affiliate report - Filter ', () => {
         const result = componentInstance._buildMonthOnMonthReportTile(isCheckedAllProduct);
 
         expect(componentInstance._getProductDataSource).toHaveBeenCalled();
-        expect(result).toEqual('MONTH ON MONTH  - All Products - FROM '+ now.getMonth() +'/'+ now.getFullYear() +' TO '+ now.getMonth() +'/'+ now.getFullYear());
+        expect(result).toEqual('MONTH ON MONTH  - All Products - FROM ' + now.getMonth() + '/' + now.getFullYear() + ' TO ' + now.getMonth() + '/' + now.getFullYear());
     });
 
     it('_buildMonthOnMonthReportTile - return corrected value with incorrect parameter', () => {
         const productList = [
-           {ProductId: 1, ProductName: "Sportsbook", Checked: true}
+            { ProductId: 1, ProductName: "Sportsbook", Checked: true }
         ]
         const componentInstance = new Filter(defaultProps);
         componentInstance.state.userName = '12Bet';
@@ -482,15 +482,15 @@ describe('affiliate report - Filter ', () => {
 
     it('_getProductDataSource - return corrected value with selected all products', () => {
         const productList = [
-            {ProductId: 1, ProductName: "Sportsbook", Checked: true},
-            {ProductId: 6, ProductName: "Keno", Checked: true},
-            {ProductId: 8, ProductName: "Lottery", Checked: true}
+            { ProductId: 1, ProductName: "Sportsbook", Checked: true },
+            { ProductId: 6, ProductName: "Keno", Checked: true },
+            { ProductId: 8, ProductName: "Lottery", Checked: true }
         ]
 
         const expectProductList = [
-            {ProductId: 1, ProductName: "Sportsbook", Checked: true},
-            {ProductId: 6, ProductName: "Keno", Checked: true},
-            {ProductId: 8, ProductName: "Lottery", Checked: true}
+            { ProductId: 1, ProductName: "Sportsbook", Checked: true },
+            { ProductId: 6, ProductName: "Keno", Checked: true },
+            { ProductId: 8, ProductName: "Lottery", Checked: true }
         ]
 
         const props = Object.assign({}, defaultProps, { productList: productList })
@@ -503,15 +503,15 @@ describe('affiliate report - Filter ', () => {
 
     it('_getProductDataSource - return corrected value with not selected all products', () => {
         const productList = [
-            {ProductId: 1, ProductName: "Sportsbook", Checked: true},
-            {ProductId: 6, ProductName: "Keno", Checked: true},
-            {ProductId: 8, ProductName: "Lottery", Checked: true}
+            { ProductId: 1, ProductName: "Sportsbook", Checked: true },
+            { ProductId: 6, ProductName: "Keno", Checked: true },
+            { ProductId: 8, ProductName: "Lottery", Checked: true }
         ];
 
         const expectProductList = [
-            {ProductId: 1, ProductName: "Sportsbook", Checked: true},
-            {ProductId: 6, ProductName: "Keno", Checked: false},
-            {ProductId: 8, ProductName: "Lottery", Checked: false}
+            { ProductId: 1, ProductName: "Sportsbook", Checked: true },
+            { ProductId: 6, ProductName: "Keno", Checked: false },
+            { ProductId: 8, ProductName: "Lottery", Checked: false }
         ]
 
         const props = Object.assign({}, defaultProps, { productList: productList })
@@ -524,7 +524,7 @@ describe('affiliate report - Filter ', () => {
     });
 
     it('_getToMonthRange - return corrected value with correct parameter and currentMainView is Main view', () => {
-        const toMonthRange = { 
+        const toMonthRange = {
             min: { month: 1, year: 2018 },
             max: { month: 6, year: 2018 }
         };
@@ -532,14 +532,14 @@ describe('affiliate report - Filter ', () => {
         const componentInstance = new Filter(defaultProps);
 
         const result = componentInstance._getToMonthRange({ month: 1, year: 2018 });
-        
+
         expect(result).toEqual(toMonthRange);
     });
 
     it('_getToMonthRange - return corrected value with maxToYear is nowYear, actualMaxMonth bigger nowMonth and currentMainView is Main view', () => {
         const date = new Date('5/24/2018');
-        const today = date.getMonth()+'/'+date.getDate()+'/'+date.getFullYear();
-        const toMonthRange = { 
+        const today = date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+        const toMonthRange = {
             min: { month: 2, year: 2018 },
             max: { month: 4, year: 2018 }
         };
@@ -547,12 +547,12 @@ describe('affiliate report - Filter ', () => {
         const componentInstance = new Filter(props);
 
         const result = componentInstance._getToMonthRange({ month: 2, year: 2018 });
-        
+
         expect(result).toEqual(toMonthRange);
     });
 
     it('_getToMonthRange - return corrected value with correct parameter and currentMainView is Month on Month view', () => {
-        const toMonthRange = { 
+        const toMonthRange = {
             min: { month: 1, year: 2018 },
             max: { month: now.getMonth(), year: now.getFullYear() }
         };
@@ -561,15 +561,15 @@ describe('affiliate report - Filter ', () => {
         const componentInstance = new Filter(props);
 
         const result = componentInstance._getToMonthRange({ month: 1, year: 2018 });
-        
+
         expect(result).toEqual(toMonthRange);
     });
 
     it('should render correctly when currentMainView is Main view', () => {
-        const languageList = [ { English: 'English' }];
+        const languageList = [{ English: 'English' }];
         const props = Object.assign({}, defaultProps, { languageList });
         const result = shallow(<Filter {...props} />);
-        
+
         expect(result).toMatchSnapshot();
     });
 
@@ -580,16 +580,16 @@ describe('affiliate report - Filter ', () => {
 
         wrapper.find(AutoComplete).props().onSelect('selected value');
         wrapper.find(AutoComplete).props().onInput('inputed value');
-        
+
         expect(wrapper.instance().setState).toHaveBeenCalledTimes(2);
-        expect(wrapper.instance().setState.mock.calls[0][0]).toEqual({ userName: "selected value"});
-        expect(wrapper.instance().setState.mock.calls[1][0]).toEqual({ userName: "inputed value"});
+        expect(wrapper.instance().setState.mock.calls[0][0]).toEqual({ userName: "selected value" });
+        expect(wrapper.instance().setState.mock.calls[1][0]).toEqual({ userName: "inputed value" });
     });
 
     it('should render correctly when currentMainView is Month on Month view', () => {
         const props = Object.assign({}, defaultProps, { currentViewLevel: monthOnMonth });
         const result = shallow(<Filter {...props} />);
-        
+
         expect(result).toMatchSnapshot();
     });
 });

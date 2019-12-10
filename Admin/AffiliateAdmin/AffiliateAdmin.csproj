@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -32,6 +33,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <Use64BitIISExpress />
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -155,22 +157,6 @@
       <HintPath>..\..\packages\SharpRaven.2.4.0\lib\net45\SharpRaven.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Configurations, Version=1.0.4276.26261, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Sunplus.Agent.Configurations.dll</HintPath>
-    </Reference>
-    <Reference Include="Sunplus.Agent.Model, Version=1.0.4828.17564, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_Dependencies\Sunplus.Agent.Model.dll</HintPath>
-    </Reference>
-    <Reference Include="Sunplus.Agent.Utilities, Version=1.0.4734.26154, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
-    </Reference>
-    <Reference Include="Sunplus.Core.Common, Version=1.1.4505.19054, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Sunplus.Core.Common.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -186,27 +172,27 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
@@ -223,347 +209,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccessDenied.aspx.cs">
-      <DependentUpon>AccessDenied.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AccessDenied.aspx.designer.cs">
-      <DependentUpon>AccessDenied.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Alert.aspx.cs">
-      <DependentUpon>Alert.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Alert.aspx.designer.cs">
-      <DependentUpon>Alert.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Areas\Portal\PortalAreaRegistration.cs" />
-    <Compile Include="Auth\Error.aspx.designer.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BetList\BetList.aspx.designer.cs">
-      <DependentUpon>BetList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BetList\BetListCashOutDetail.aspx.cs">
-      <DependentUpon>BetListCashOutDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BetList\BetListCashOutDetail.aspx.designer.cs">
-      <DependentUpon>BetListCashOutDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BetList\BetListParlayDetail.aspx.designer.cs">
-      <DependentUpon>BetListParlayDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BetList\BetListResults.aspx.designer.cs">
-      <DependentUpon>BetListResults.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Business\Constants\PermissionNames.cs" />
-    <Compile Include="Business\DataAccess\DbHelper.cs" />
-    <Compile Include="Business\DataAccess\DbResult.cs" />
-    <Compile Include="Business\DeductionType.cs" />
-    <Compile Include="Business\Helpers\BannerHelper.cs" />
-    <Compile Include="Business\Helpers\LogHelper.cs" />
-    <Compile Include="Business\Helpers\MimeTypeHelper.cs" />
-    <Compile Include="Business\Models\Core\ResultInfo.cs" />
-    <Compile Include="Business\Services\AccountPolicyService.cs" />
-    <Compile Include="Business\Services\ActiveMemberService.cs" />
-    <Compile Include="Business\Services\Auth\LoginService.cs" />
-    <Compile Include="Business\Services\Banner\AddBannerService.cs" />
-    <Compile Include="Business\Services\Banner\DeleteBannerService.cs" />
-    <Compile Include="Business\Services\Banner\UploadBannerService.cs" />
-    <Compile Include="Business\Services\DeleteMemberService.cs" />
-    <Compile Include="Business\Services\Message\AddMessageService.cs" />
-    <Compile Include="Business\Services\Text\AddTextService.cs" />
-    <Compile Include="Business\Services\AddUserService.cs" />
-    <Compile Include="Business\Services\ChangeAdminPassService.cs" />
-    <Compile Include="Business\Services\ChangePassService.cs" />
-    <Compile Include="Business\Services\Message\DeleteMessageListService.cs" />
-    <Compile Include="Business\Services\Text\DeleteTextService.cs" />
-    <Compile Include="Business\Services\DomainControlService.cs" />
-    <Compile Include="Business\Services\EditRateService.cs" />
-    <Compile Include="Business\Services\GetAffiliateListService.cs" />
-    <Compile Include="Business\Services\GetCommGroupService.cs" />
-    <Compile Include="Business\Services\GetDataBannerService.cs" />
-    <Compile Include="Business\Services\GetDataTextService.cs" />
-    <Compile Include="Business\Services\GetEditedBannerService.cs" />
-    <Compile Include="Business\Services\GetEditedTextService.cs" />
-    <Compile Include="Business\Services\GetMessageListService.cs" />
-    <Compile Include="Business\Services\GetMessageService.cs" />
-    <Compile Include="Business\Services\GetOnlineListService.cs" />
-    <Compile Include="Business\Services\GetSubCategoryService.cs" />
-    <Compile Include="Business\Services\GetViewedBannerService.cs" />
-    <Compile Include="Business\Services\GetViewedTextService.cs" />
-    <Compile Include="Business\Services\GroupPolicyService.cs" />
-    <Compile Include="Business\Services\ListUserService.cs" />
-    <Compile Include="Business\Services\LogoutService.cs" />
-    <Compile Include="Business\Services\UpdateAccountService.cs" />
-    <Compile Include="Business\Services\UpdateAffiliateDomainService.cs" />
-    <Compile Include="Business\Services\Update12BetDomainService.cs" />
-    <Compile Include="Business\Services\UpdateDepartmentService.cs" />
-    <Compile Include="Business\Services\Message\UpdateMessageService.cs" />
-    <Compile Include="Business\Services\UpdatePolicyService.cs" />
-    <Compile Include="Business\Services\UpdateStatusService.cs" />
-    <Compile Include="Business\Services\Text\UpdateTextService.cs" />
-    <Compile Include="Business\Services\UpdateUserService.cs" />
-    <Compile Include="Business\Services\UploadExcelService.cs" />
-    <Compile Include="Casino\UploadExcel.aspx.designer.cs">
-      <DependentUpon>UploadExcel.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ChangeAdminPass.aspx.designer.cs">
-      <DependentUpon>ChangeAdminPass.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ChangePass.aspx.designer.cs">
-      <DependentUpon>ChangePass.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\12BetDomain.aspx.designer.cs">
-      <DependentUpon>12BetDomain.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\Add12BetDomain.aspx.designer.cs">
-      <DependentUpon>Add12BetDomain.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\AddAffiliateDomain.aspx.designer.cs">
-      <DependentUpon>AddAffiliateDomain.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\AffiliateDomain.aspx.designer.cs">
-      <DependentUpon>AffiliateDomain.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\DomainControl.aspx.designer.cs">
-      <DependentUpon>DomainControl.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\DomainControlIns.aspx.designer.cs">
-      <DependentUpon>DomainControlIns.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\DomainControlUpd.aspx.designer.cs">
-      <DependentUpon>DomainControlUpd.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\Edit12BetDomain.aspx.designer.cs">
-      <DependentUpon>Edit12BetDomain.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\EditAffiliateDomain.aspx.designer.cs">
-      <DependentUpon>EditAffiliateDomain.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DTO\ContactApp.cs" />
-    <Compile Include="Exchange\AffEditRate.aspx.designer.cs">
-      <DependentUpon>AffEditRate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Exchange\AffRate.aspx.designer.cs">
-      <DependentUpon>AffRate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\TargetPageHelper.cs" />
-    <Compile Include="Home\Home.aspx.designer.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Media\AddBanner.aspx.designer.cs">
-      <DependentUpon>AddBanner.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Media\AddText.aspx.designer.cs">
-      <DependentUpon>AddText.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Media\BannerDetail.aspx.cs">
-      <DependentUpon>BannerDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Media\BannerDetail.aspx.designer.cs">
-      <DependentUpon>BannerDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Media\EditBanner.aspx.designer.cs">
-      <DependentUpon>EditBanner.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Media\ListBannerNew.aspx.designer.cs">
-      <DependentUpon>ListBannerNew.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Media\ListText.aspx.designer.cs">
-      <DependentUpon>ListText.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Business\AffType.cs" />
-    <Compile Include="Business\AppSettings.cs" />
-    <Compile Include="Business\CacheUtil.cs" />
-    <Compile Include="Business\Common.cs" />
-    <Compile Include="Business\Criterias\AffiliateReportCriteria.cs" />
-    <Compile Include="Business\Criterias\ValidationCriteria.cs" />
-    <Compile Include="Business\DataHandler\Account.cs" />
-    <Compile Include="Business\DataHandler\Active12BetAccount.cs" />
-    <Compile Include="Business\DataHandler\Affiliate.cs" />
-    <Compile Include="Business\DataHandler\Banner.cs" />
-    <Compile Include="Business\DataHandler\Casino.cs" />
-    <Compile Include="Business\DataHandler\Domain.cs" />
-    <Compile Include="Business\DataHandler\ExchangeRate.cs" />
-    <Compile Include="Business\DataHandler\Home.cs" />
-    <Compile Include="Business\DataHandler\HotNews.cs" />
-    <Compile Include="Business\DataHandler\Login.cs" />
-    <Compile Include="Business\DataHandler\Member.cs" />
-    <Compile Include="Business\DataHandler\ServerDateTime.cs" />
-    <Compile Include="Business\DataHandler\Text.cs" />
-    <Compile Include="Business\DataHandler\UserControl.cs" />
-    <Compile Include="Business\DBType.cs" />
-    <Compile Include="Business\DepositCustomerInfo.cs" />
-    <Compile Include="Business\GenerateHTML\Banner.cs" />
-    <Compile Include="Business\GenerateHTML\Domain.cs" />
-    <Compile Include="Business\GenerateHTML\HotNews.cs" />
-    <Compile Include="Business\GenerateHTML\OnlineList.cs" />
-    <Compile Include="Business\GenerateHTML\Text.cs" />
-    <Compile Include="Business\IBCHandler.cs" />
-    <Compile Include="Business\IBCPage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Business\Language.cs" />
-    <Compile Include="Business\Status.cs" />
-    <Compile Include="Business\SubMenu.cs" />
-    <Compile Include="Business\SwfInfo.cs" />
-    <Compile Include="App_GlobalResources\BetList.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BetList.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\Bingo.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Bingo.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\Casino.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Casino.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\Lang.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\ResultLang.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResultLang.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Auth\Error.aspx.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BetList\BetList.aspx.cs">
-      <DependentUpon>BetList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BetList\BetListParlayDetail.aspx.cs">
-      <DependentUpon>BetListParlayDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BetList\BetListResults.aspx.cs">
-      <DependentUpon>BetListResults.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Casino\UploadExcel.aspx.cs">
-      <DependentUpon>UploadExcel.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ChangeAdminPass.aspx.cs">
-      <DependentUpon>ChangeAdminPass.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ChangePass.aspx.cs">
-      <DependentUpon>ChangePass.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Domain\12BetDomain.aspx.cs">
-      <DependentUpon>12BetDomain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Domain\Add12BetDomain.aspx.cs">
-      <DependentUpon>Add12BetDomain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Domain\AddAffiliateDomain.aspx.cs">
-      <DependentUpon>AddAffiliateDomain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Domain\AffiliateDomain.aspx.cs">
-      <DependentUpon>AffiliateDomain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Domain\DomainControl.aspx.cs">
-      <DependentUpon>DomainControl.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Domain\DomainControlIns.aspx.cs">
-      <DependentUpon>DomainControlIns.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Domain\DomainControlUpd.aspx.cs">
-      <DependentUpon>DomainControlUpd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Domain\Edit12BetDomain.aspx.cs">
-      <DependentUpon>Edit12BetDomain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Domain\EditAffiliateDomain.aspx.cs">
-      <DependentUpon>EditAffiliateDomain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Exchange\AffEditRate.aspx.cs">
-      <DependentUpon>AffEditRate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Exchange\AffRate.aspx.cs">
-      <DependentUpon>AffRate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Home\Home.aspx.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Media\AddBanner.aspx.cs">
-      <DependentUpon>AddBanner.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Media\AddText.aspx.cs">
-      <DependentUpon>AddText.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Media\EditBanner.aspx.cs">
-      <DependentUpon>EditBanner.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Media\ListBannerNew.aspx.cs">
-      <DependentUpon>ListBannerNew.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Media\ListText.aspx.cs">
-      <DependentUpon>ListText.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Others\Message.aspx.cs">
-      <DependentUpon>Message.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Others\Message.aspx.designer.cs">
-      <DependentUpon>Message.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Others\ViewMessDetails.aspx.cs">
-      <DependentUpon>ViewMessDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Others\ViewMessDetails.aspx.designer.cs">
-      <DependentUpon>ViewMessDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Portal\BasePage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Portal\Layout.Master.cs">
-      <DependentUpon>Layout.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Portal\Layout.Master.designer.cs">
-      <DependentUpon>Layout.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -571,177 +226,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Report\AffiliateReport.aspx.cs">
-      <DependentUpon>AffiliateReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\AffiliateReport.aspx.designer.cs">
-      <DependentUpon>AffiliateReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\AffiliateReportDetail.aspx.cs">
-      <DependentUpon>AffiliateReportDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\AffiliateReportDetail.aspx.designer.cs">
-      <DependentUpon>AffiliateReportDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\MemberReport.aspx.cs">
-      <DependentUpon>MemberReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\MemberReport.aspx.designer.cs">
-      <DependentUpon>MemberReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SignIn.aspx.cs">
-      <DependentUpon>SignIn.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SignIn.aspx.designer.cs">
-      <DependentUpon>SignIn.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Test\DepMemberDetailUpd.aspx.cs">
-      <DependentUpon>DepMemberDetailUpd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\DepMemberDetailUpd.aspx.designer.cs">
-      <DependentUpon>DepMemberDetailUpd.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Test\test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Test\TestInternalLogin.aspx.cs">
-      <DependentUpon>TestInternalLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\TestInternalLogin.aspx.designer.cs">
-      <DependentUpon>TestInternalLogin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UnderMaintenance.aspx.cs">
-      <DependentUpon>UnderMaintenance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UnderMaintenance.aspx.designer.cs">
-      <DependentUpon>UnderMaintenance.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\AddDepartment.aspx.cs">
-      <DependentUpon>AddDepartment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\AddDepartment.aspx.designer.cs">
-      <DependentUpon>AddDepartment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\AddUser.aspx.cs">
-      <DependentUpon>AddUser.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\AddUser.aspx.designer.cs">
-      <DependentUpon>AddUser.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\AddUserExist.aspx.cs">
-      <DependentUpon>AddUserExist.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\AddUserExist.aspx.designer.cs">
-      <DependentUpon>AddUserExist.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\EditAdminPolicy.aspx.cs">
-      <DependentUpon>EditAdminPolicy.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\EditAdminPolicy.aspx.designer.cs">
-      <DependentUpon>EditAdminPolicy.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\EditDepartment.aspx.cs">
-      <DependentUpon>EditDepartment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\EditDepartment.aspx.designer.cs">
-      <DependentUpon>EditDepartment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\EditGroupPolicy.aspx.cs">
-      <DependentUpon>EditGroupPolicy.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\EditGroupPolicy.aspx.designer.cs">
-      <DependentUpon>EditGroupPolicy.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\EditUser.aspx.cs">
-      <DependentUpon>EditUser.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\EditUser.aspx.designer.cs">
-      <DependentUpon>EditUser.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\ListDepartment.aspx.cs">
-      <DependentUpon>ListDepartment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\ListDepartment.aspx.designer.cs">
-      <DependentUpon>ListDepartment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\ListUser.aspx.cs">
-      <DependentUpon>ListUser.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\ListUser.aspx.designer.cs">
-      <DependentUpon>ListUser.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\ListUserInDept.aspx.cs">
-      <DependentUpon>ListUserInDept.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\ListUserInDept.aspx.designer.cs">
-      <DependentUpon>ListUserInDept.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\UpdateMultiAdmins.aspx.cs">
-      <DependentUpon>UpdateMultiAdmins.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\UpdateMultiAdmins.aspx.designer.cs">
-      <DependentUpon>UpdateMultiAdmins.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\MemberActiveList.aspx.cs">
-      <DependentUpon>MemberActiveList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\MemberActiveList.aspx.designer.cs">
-      <DependentUpon>MemberActiveList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\MemberList.aspx.cs">
-      <DependentUpon>MemberList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\MemberList.aspx.designer.cs">
-      <DependentUpon>MemberList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\MemberListAll.aspx.cs">
-      <DependentUpon>MemberListAll.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\MemberListAll.aspx.designer.cs">
-      <DependentUpon>MemberListAll.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\AffBetlistService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="12monitor.aspx" />
-    <Content Include="AccessDenied.aspx" />
-    <Content Include="Alert.aspx" />
-    <Content Include="App_Data\OpusData\opus_1.xml" />
-    <Content Include="App_Data\OpusData\opus_2.xml" />
-    <Content Include="App_Data\OpusData\opus_3.xml" />
-    <Content Include="App_Data\OpusData\opus_4.xml" />
     <Content Include="App_Data\SpConfig\SpName.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
@@ -775,384 +262,6 @@
     <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Js\AutoComplete\autocomplete.js" />
-    <Content Include="App_Js\AutoComplete\shadow.png" />
-    <Content Include="App_Js\AutoComplete\styles.css" />
-    <Content Include="App_Js\BetList.js" />
-    <Content Include="App_Js\Calendar2\calendar-control.js" />
-    <Content Include="App_Js\Calendar2\calendar-normal.js" />
-    <Content Include="App_Js\Calendar2\calendar-setup.js" />
-    <Content Include="App_Js\Calendar2\date.js" />
-    <Content Include="App_Js\Calendar2\Lang\calendar-CS.js" />
-    <Content Include="App_Js\Calendar2\Lang\calendar-CT.js" />
-    <Content Include="App_Js\Calendar2\Lang\calendar-E.js" />
-    <Content Include="App_Js\Calendar2\Lang\calendar-ES.js" />
-    <Content Include="App_Js\Calendar2\Lang\calendar-J.js" />
-    <Content Include="App_Js\Calendar2\Lang\calendar-TH.js" />
-    <Content Include="App_Js\Calendar2\Skin\calendar-blue.css" />
-    <Content Include="App_Js\Calendar2\Skin\calendar-system.css" />
-    <Content Include="App_Js\Calendar2\Skin\Images\bg_bg.gif" />
-    <Content Include="App_Js\Calendar\calendar-blue.css" />
-    <Content Include="App_Js\Calendar\calendar-en.js" />
-    <Content Include="App_Js\Calendar\calendar-setup.js" />
-    <Content Include="App_Js\Calendar\calendar.js" />
-    <Content Include="App_Js\Calendar\Images\bg_bg.gif" />
-    <Content Include="App_Js\CheckDate.js" />
-    <Content Include="App_Js\Common.js" />
-    <Content Include="App_Js\dhtmlwindow\bird.jpg" />
-    <Content Include="App_Js\dhtmlwindow\border-10.gif" />
-    <Content Include="App_Js\dhtmlwindow\close.gif" />
-    <Content Include="App_Js\dhtmlwindow\dhtmlwindow.css" />
-    <Content Include="App_Js\dhtmlwindow\dhtmlwindow.js" />
-    <Content Include="App_Js\dhtmlwindow\dog.jpg" />
-    <Content Include="App_Js\dhtmlwindow\max.gif" />
-    <Content Include="App_Js\dhtmlwindow\min.gif" />
-    <Content Include="App_Js\dhtmlwindow\resize.gif" />
-    <Content Include="App_Js\dhtmlwindow\restore.gif" />
-    <Content Include="App_Js\dhtmlwindow\x.jpg" />
-    <Content Include="App_Js\IBCWnd\blank.html" />
-    <Content Include="App_Js\IBCWnd\IBCWnd.css" />
-    <Content Include="App_Js\IBCWnd\IBCWnd.js" />
-    <Content Include="App_Js\IBCWnd\icon_close.png" />
-    <Content Include="App_Js\IBCWnd\icon_closeOV.png" />
-    <Content Include="App_Js\IBCWnd\icon_head.png" />
-    <Content Include="App_Js\IBCWnd\pop_footer.jpg" />
-    <Content Include="App_Js\IBCWnd\pop_g01.jpg" />
-    <Content Include="App_Js\IBCWnd\pop_gtop.jpg" />
-    <Content Include="App_Js\IBCWnd\pop_left.jpg" />
-    <Content Include="App_Js\IBCWnd\pop_lineR.jpg" />
-    <Content Include="App_Js\IBCWnd\pop_top.jpg" />
-    <Content Include="App_Js\IBCWnd\x.jpg" />
-    <Content Include="App_Js\interface.js" />
-    <Content Include="App_Js\libs\jquery-ui\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="App_Js\libs\jquery-ui\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="App_Js\libs\jquery-ui\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="App_Js\libs\jquery-ui\jquery-ui.css" />
-    <Content Include="App_Js\libs\jquery-ui\jquery-ui.min.js" />
-    <Content Include="App_Js\ListBanner.js" />
-    <Content Include="App_Js\ListText.js" />
-    <Content Include="App_Js\login.js" />
-    <Content Include="App_Js\MonthPicker\Images\bg-month-picker-header.png" />
-    <Content Include="App_Js\MonthPicker\jquery.mtz.monthpicker.js" />
-    <Content Include="App_Js\MonthPicker\month-picker.css" />
-    <Content Include="App_Js\NoScroll.js" />
-    <Content Include="App_Js\popup.css" />
-    <Content Include="App_Js\prototype-full.js" />
-    <Content Include="App_Js\prototype.js" />
-    <Content Include="App_Js\RefreshTime.js" />
-    <Content Include="App_Js\RSH0.6\blank.html" />
-    <Content Include="App_Js\RSH0.6\json2007.js" />
-    <Content Include="App_Js\RSH0.6\rsh.js" />
-    <Content Include="App_Js\swfobject.js" />
-    <Content Include="App_Js\tipsy\jquery.tipsy.js" />
-    <Content Include="App_Js\UserControl.js" />
-    <Content Include="App_Js\vendors\jquery.min.js" />
-    <Content Include="App_Js\wz_tooltip.js" />
-    <Content Include="App_Templates\AccessDenied.html" />
-    <Content Include="App_Templates\Alert.htm" />
-    <Content Include="App_Templates\Calendar.html" />
-    <Content Include="App_Templates\CalendarJs.html" />
-    <Content Include="App_Templates\Casino\UploadExcel.htm" />
-    <Content Include="App_Templates\ChangeAdminPass.htm" />
-    <Content Include="App_Templates\ChangePass.htm" />
-    <Content Include="App_Templates\DateRangeSelect.html" />
-    <Content Include="App_Templates\Domain\12BetDomain.html" />
-    <Content Include="App_Templates\Domain\Add12BetDomain.html" />
-    <Content Include="App_Templates\Domain\AddAffiliateDomain.html" />
-    <Content Include="App_Templates\Domain\AffiliateDomain.html" />
-    <Content Include="App_Templates\Domain\DomainControl.htm" />
-    <Content Include="App_Templates\Domain\DomainControlIns.htm" />
-    <Content Include="App_Templates\Domain\DomainControlUpd.htm" />
-    <Content Include="App_Templates\Domain\Edit12BetDomain.html" />
-    <Content Include="App_Templates\Domain\EditAffiliateDomain.html" />
-    <Content Include="App_Templates\Exchange\AffEditRate.htm" />
-    <Content Include="App_Templates\Exchange\ExchangeRate.htm" />
-    <Content Include="App_Templates\GotoPage.html" />
-    <Content Include="App_Templates\Home.htm" />
-    <Content Include="App_Templates\Login.htm" />
-    <Content Include="App_Templates\Media\BannerDetail.htm" />
-    <Content Include="App_Templates\Media\MainAddBanner.htm" />
-    <Content Include="App_Templates\Media\MainAddText.htm" />
-    <Content Include="App_Templates\Media\MainListBannerNew.htm" />
-    <Content Include="App_Templates\Media\MainListText.htm" />
-    <Content Include="App_Templates\NoInfo.htm" />
-    <Content Include="App_Templates\NoInfo1.htm" />
-    <Content Include="App_Templates\NoInformation.htm" />
-    <Content Include="App_Templates\OnlyOption.htm" />
-    <Content Include="App_Templates\Option.htm" />
-    <Content Include="App_Templates\Option1.htm" />
-    <Content Include="App_Templates\Others\Message.htm" />
-    <Content Include="App_Templates\Others\ViewMess.htm" />
-    <Content Include="App_Templates\PageIndex.html" />
-    <Content Include="App_Templates\Paging.htm" />
-    <Content Include="App_Templates\Paging.html" />
-    <Content Include="App_Templates\Report\AffiliateReport.htm" />
-    <Content Include="App_Templates\Report\AffiliateReportDetail.htm" />
-    <Content Include="App_Templates\Report\MemberReport.htm" />
-    <Content Include="App_Templates\SubMenu.htm" />
-    <Content Include="App_Templates\SubMenu1.htm" />
-    <Content Include="App_Templates\UserControl\AddDepartment.html" />
-    <Content Include="App_Templates\UserControl\AddUser.html" />
-    <Content Include="App_Templates\UserControl\AddUserExist.html" />
-    <Content Include="App_Templates\UserControl\EditDepartment.html" />
-    <Content Include="App_Templates\UserControl\EditUser.html" />
-    <Content Include="App_Templates\UserControl\ListDepartment.html" />
-    <Content Include="App_Templates\UserControl\ListUser.html" />
-    <Content Include="App_Templates\UserControl\ListUserContent.html" />
-    <Content Include="App_Templates\UserControl\ListUserInDept.htm" />
-    <Content Include="App_Templates\UserControl\PolicyContent.html" />
-    <Content Include="App_Templates\UserControl\PolicyHeader.html" />
-    <Content Include="App_Templates\UserInfo\BetList.htm" />
-    <Content Include="App_Templates\UserInfo\BetListCashOutDetail.htm" />
-    <Content Include="App_Templates\UserInfo\BetListParlayDetail.htm" />
-    <Content Include="App_Templates\UserInfo\BetListResults.htm" />
-    <Content Include="App_Templates\UserInfo\MemActiveList.htm" />
-    <Content Include="App_Templates\UserInfo\MemberList.htm" />
-    <Content Include="App_Templates\UserInfo\MemList.htm" />
-    <Content Include="App_Templates\UserInfo\MemListAll.htm" />
-    <Content Include="App_Themes\Aff12bet.ico" />
-    <Content Include="App_Themes\Aff12bet.png" />
-    <Content Include="App_Themes\DefaultV2\common.css" />
-    <Content Include="App_Themes\DefaultV2\content.css" />
-    <Content Include="App_Themes\DefaultV2\footer.css" />
-    <Content Include="App_Themes\DefaultV2\header.css" />
-    <Content Include="App_Themes\DefaultV2\Images\arrow_left.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\arrow_left_out.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\a_bg.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\banner_top.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_box_tab.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_button2.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_footer.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_header01.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_header_06.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_home_top.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_input_check.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_left.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_leftbottom.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_lefttop.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_menu.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_search01.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\bg_top.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\btLg.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\b_01.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\b_02.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\b_022.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\b_04.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\b_add01.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\b_add01_dis.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\b_next1.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\b_next2.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\b_prev1.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\b_prev2.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\b_search.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\cal.gif" />
-    <Content Include="App_Themes\DefaultV2\Images\calen_n.png" />
-    <Content Include="App_Themes\DefaultV2\Images\calen_OV.png" />
-    <Content Include="App_Themes\DefaultV2\Images\check.gif" />
-    <Content Include="App_Themes\DefaultV2\Images\checkbox01.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\checkbox02.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\checkbox03.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\checkbox04.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\clock.gif" />
-    <Content Include="App_Themes\DefaultV2\Images\delete.png" />
-    <Content Include="App_Themes\DefaultV2\Images\dho.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\done.png" />
-    <Content Include="App_Themes\DefaultV2\Images\ex_excel.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\FF.png" />
-    <Content Include="App_Themes\DefaultV2\Images\g_01.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\g_02.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\g_menuleft.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\g_menuright.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\htab.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\htab_l.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\icAlert.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icFF.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icIE.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon-affiliateslist-big.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon13.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_closeOV.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_delete.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_disable.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_edit.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_excel.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_header.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_home01.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_home02.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_refresh.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_report.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_search.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_tb01.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_tb02.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_top.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icon_view.png" />
-    <Content Include="App_Themes\DefaultV2\Images\icPass.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\icUser.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\ic_arr.gif" />
-    <Content Include="App_Themes\DefaultV2\Images\IE.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_admin.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_affiliateslist.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_commg.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_customer.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_disableSport.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_domain.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\i_email_history.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_enableSport.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_ex_rate.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_home.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_media1.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_member.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_message.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_pay_re.png" />
-    <Content Include="App_Themes\DefaultV2\Images\i_report.png" />
-    <Content Include="App_Themes\DefaultV2\Images\left_btleft.gif" />
-    <Content Include="App_Themes\DefaultV2\Images\left_button.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\lgBg.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\lgFtleft.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\lgFtright.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\lgFtrp.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\lgLeft.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\lgLogo.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\lgRight.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\lgRp.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\line_left02.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\line_left03.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\line_popup.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\loader3.gif" />
-    <Content Include="App_Themes\DefaultV2\Images\loading.gif" />
-    <Content Include="App_Themes\DefaultV2\Images\login_bgcenter.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\login_bgmain.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\login_butt.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\login_icon01.png" />
-    <Content Include="App_Themes\DefaultV2\Images\login_icon02.png" />
-    <Content Include="App_Themes\DefaultV2\Images\login_logo.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\login_welc.png" />
-    <Content Include="App_Themes\DefaultV2\Images\main_left.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\main_right.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\note_01.png" />
-    <Content Include="App_Themes\DefaultV2\Images\popup_01.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\popup_menu01.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\popup_menu02.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\pop_bgcenter.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\right_btleft.gif" />
-    <Content Include="App_Themes\DefaultV2\Images\right_button.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\table_left.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\TabsLeftKtHeader.gif" />
-    <Content Include="App_Themes\DefaultV2\Images\task.png" />
-    <Content Include="App_Themes\DefaultV2\Images\tbl_icon01.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\tbl_icon02.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\tbl_m.jpg" />
-    <Content Include="App_Themes\DefaultV2\Images\uncheck.gif" />
-    <Content Include="App_Themes\DefaultV2\left.css" />
-    <Content Include="App_Themes\DefaultV2\login.css" />
-    <Content Include="App_Themes\Default\Common.css" />
-    <Content Include="App_Themes\Default\Customer.css" />
-    <Content Include="App_Themes\Default\Images\18up.gif" />
-    <Content Include="App_Themes\Default\Images\1x1.gif" />
-    <Content Include="App_Themes\Default\Images\banner_img.jpg" />
-    <Content Include="App_Themes\Default\Images\banner_join.jpg" />
-    <Content Include="App_Themes\Default\Images\banner_live2.jpg" />
-    <Content Include="App_Themes\Default\Images\bg_button.gif" />
-    <Content Include="App_Themes\Default\Images\bg_center.gif" />
-    <Content Include="App_Themes\Default\Images\bg_footer.gif" />
-    <Content Include="App_Themes\Default\Images\bg_info.gif" />
-    <Content Include="App_Themes\Default\Images\bg_left.gif" />
-    <Content Include="App_Themes\Default\Images\bg_left.jpg" />
-    <Content Include="App_Themes\Default\Images\bg_leftbottom.jpg" />
-    <Content Include="App_Themes\Default\Images\bg_lefttop.jpg" />
-    <Content Include="App_Themes\Default\Images\bg_top.gif" />
-    <Content Include="App_Themes\Default\Images\box_bg.gif" />
-    <Content Include="App_Themes\Default\Images\bt.jpg" />
-    <Content Include="App_Themes\Default\Images\btn_icon.gif" />
-    <Content Include="App_Themes\Default\Images\btn_icon2.gif" />
-    <Content Include="App_Themes\Default\Images\button.gif" />
-    <Content Include="App_Themes\Default\Images\button_over.gif" />
-    <Content Include="App_Themes\Default\Images\b_01.jpg" />
-    <Content Include="App_Themes\Default\Images\b_022.jpg" />
-    <Content Include="App_Themes\Default\Images\cal.gif" />
-    <Content Include="App_Themes\Default\Images\conts_box002.gif" />
-    <Content Include="App_Themes\Default\Images\conts_box01.gif" />
-    <Content Include="App_Themes\Default\Images\conts_box02.gif" />
-    <Content Include="App_Themes\Default\Images\delete.gif" />
-    <Content Include="App_Themes\Default\Images\edit.gif" />
-    <Content Include="App_Themes\Default\Images\emsg_1_1.jpg" />
-    <Content Include="App_Themes\Default\Images\emsg_1_2.jpg" />
-    <Content Include="App_Themes\Default\Images\emsg_1_3.jpg" />
-    <Content Include="App_Themes\Default\Images\emsg_2_1.jpg" />
-    <Content Include="App_Themes\Default\Images\emsg_2_2.jpg" />
-    <Content Include="App_Themes\Default\Images\emsg_3_1.jpg" />
-    <Content Include="App_Themes\Default\Images\emsg_3_2.jpg" />
-    <Content Include="App_Themes\Default\Images\emsg_3_3.jpg" />
-    <Content Include="App_Themes\Default\Images\FC_logo.gif" />
-    <Content Include="App_Themes\Default\Images\footer_bg.gif" />
-    <Content Include="App_Themes\Default\Images\frbg58.gif" />
-    <Content Include="App_Themes\Default\Images\frbg581.gif" />
-    <Content Include="App_Themes\Default\Images\frbg582_1.gif" />
-    <Content Include="App_Themes\Default\Images\global_bg.gif" />
-    <Content Include="App_Themes\Default\Images\gradient_panel.gif" />
-    <Content Include="App_Themes\Default\Images\gradient_panelsurround.gif" />
-    <Content Include="App_Themes\Default\Images\gradient_tcat.gif" />
-    <Content Include="App_Themes\Default\Images\g_01.jpg" />
-    <Content Include="App_Themes\Default\Images\g_02.jpg" />
-    <Content Include="App_Themes\Default\Images\hd_bg.gif" />
-    <Content Include="App_Themes\Default\Images\hot_news.gif" />
-    <Content Include="App_Themes\Default\Images\icon_01.jpg" />
-    <Content Include="App_Themes\Default\Images\icon_02.jpg" />
-    <Content Include="App_Themes\Default\Images\icon_03.jpg" />
-    <Content Include="App_Themes\Default\Images\icon_dotbu.gif" />
-    <Content Include="App_Themes\Default\Images\icon_h1arrow.gif" />
-    <Content Include="App_Themes\Default\Images\icon_h1rbg.gif" />
-    <Content Include="App_Themes\Default\Images\ic_arr.gif" />
-    <Content Include="App_Themes\Default\Images\ic_close.jpg" />
-    <Content Include="App_Themes\Default\Images\ic_close_over.jpg" />
-    <Content Include="App_Themes\Default\Images\ic_del.jpg" />
-    <Content Include="App_Themes\Default\Images\ic_del.png" />
-    <Content Include="App_Themes\Default\Images\ic_error_msg.gif" />
-    <Content Include="App_Themes\Default\Images\ic_lock.gif" />
-    <Content Include="App_Themes\Default\Images\ic_lock.jpg" />
-    <Content Include="App_Themes\Default\Images\ic_lock.png" />
-    <Content Include="App_Themes\Default\Images\ic_lock1.jpg" />
-    <Content Include="App_Themes\Default\Images\ic_reset.gif" />
-    <Content Include="App_Themes\Default\Images\ic_reset.png" />
-    <Content Include="App_Themes\Default\Images\ic_warning.gif" />
-    <Content Include="App_Themes\Default\Images\left_btleft.gif" />
-    <Content Include="App_Themes\Default\Images\line_left02.jpg" />
-    <Content Include="App_Themes\Default\Images\line_left03.jpg" />
-    <Content Include="App_Themes\Default\Images\loader3.gif" />
-    <Content Include="App_Themes\Default\Images\login_code.jpg" />
-    <Content Include="App_Themes\Default\Images\logo.gif" />
-    <Content Include="App_Themes\Default\Images\more.gif" />
-    <Content Include="App_Themes\Default\Images\navbg.gif" />
-    <Content Include="App_Themes\Default\Images\navbg2.gif" />
-    <Content Include="App_Themes\Default\Images\navbg3.gif" />
-    <Content Include="App_Themes\Default\Images\navbg_new.gif" />
-    <Content Include="App_Themes\Default\Images\right_btleft.gif" />
-    <Content Include="App_Themes\Default\Images\sitenav.gif" />
-    <Content Include="App_Themes\Default\Images\sitenav1.gif" />
-    <Content Include="App_Themes\Default\Images\spacer.gif" />
-    <Content Include="App_Themes\Default\Images\subnav_foot.gif" />
-    <Content Include="App_Themes\Default\Images\subnav_footer.gif" />
-    <Content Include="App_Themes\Default\Images\t1.gif" />
-    <Content Include="App_Themes\Default\Images\TabsCenter.gif" />
-    <Content Include="App_Themes\Default\Images\TabsCenter3.gif" />
-    <Content Include="App_Themes\Default\Images\TabsLeft.gif" />
-    <Content Include="App_Themes\Default\Images\TabsLeft1.gif" />
-    <Content Include="App_Themes\Default\Images\TabsLeft3.gif" />
-    <Content Include="App_Themes\Default\Images\TabsLeftKtHeader.gif" />
-    <Content Include="App_Themes\Default\Images\TabsRight.gif" />
-    <Content Include="App_Themes\Default\Images\TabsRight1.gif" />
-    <Content Include="App_Themes\Default\Images\TabsRight2.gif" />
-    <Content Include="App_Themes\Default\Images\TabsRight3.gif" />
-    <Content Include="App_Themes\Default\Images\TabsRightKtHeader.gif" />
-    <Content Include="App_Themes\Default\Images\tab_th03.gif" />
-    <Content Include="App_Themes\Default\Images\tab_th03_1.gif" />
-    <Content Include="App_Themes\Default\Images\timelyinfobg.gif" />
-    <Content Include="App_Themes\Default\Images\tool_icon.jpg" />
-    <Content Include="App_Themes\Default\Images\TreeViewImg.gif" />
-    <Content Include="App_Themes\Default\Images\UnderMaintenance.gif" />
-    <Content Include="App_Themes\Default\Images\warning.gif" />
-    <Content Include="App_Themes\Default\Images\x5.gif" />
-    <Content Include="App_Themes\Default\jquery.ui.css" />
-    <Content Include="App_Themes\error2.png" />
     <Content Include="Areas\Portal\www\dist\imgs\email\banner.png" />
     <Content Include="Areas\Portal\www\dist\imgs\email\banner_en-GB.jpg" />
     <Content Include="Areas\Portal\www\dist\imgs\email\banner_en-US.jpg" />
@@ -1194,14 +303,27 @@
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\viewLog.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\xlsx-style.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\administrator\administrator.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\administrator\department.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\affiliate\affiliate-info.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\affiliate\email-history.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\change-admin-password.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\customer\customer.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\domain\domain-control.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\domain\domain.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\exchange-rate\exchange-rate.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\home.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\login.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\banner-list.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\landing-page.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\text-list.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\member\active-member.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\member\member-list.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\message\message.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\payment\payment-request.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\report\affiliate-report.js" />
@@ -1213,17 +335,34 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\isoftbet.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\timetracker.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\under-maintenance.js" />
     <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
+    <Content Include="Areas\Portal\www\dist\style\assets\lgLeft.jpg" />
+    <Content Include="Areas\Portal\www\dist\style\assets\lgLogo.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
+    <Content Include="Areas\Portal\www\dist\style\assets\UnderMaintenance.gif" />
+    <Content Include="Areas\Portal\www\dist\style\change-admin-password.css" />
+    <Content Include="Areas\Portal\www\dist\style\home.css" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
+    <Content Include="Areas\Portal\www\dist\style\login.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\administrator\administrator.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\administrator\department.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-info.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\customer.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\domain\domain-control.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\domain\domain.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\email-history.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\exchange-rate\exchange-rate.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\banner-list.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\landing-page.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\text-list.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\member\active-member.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\message\message.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\payment\payment-request.css" />
     <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
+    <Content Include="Areas\Portal\www\dist\style\under-maintenance.css" />
     <Content Include="Areas\Portal\www\dist\style\user-panel-layout.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
@@ -1246,8 +385,38 @@
     <Content Include="Areas\Portal\www\source\js\components\__test__\ReportTitle.test.js" />
     <Content Include="Areas\Portal\www\source\js\layouts\__test__\AppLayout.test.js" />
     <Content Include="Areas\Portal\www\source\js\modules\htmlHelper.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\EditPolicyForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\InsertUpdateAccForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\DepartmentPopup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\redux\EditPolicyForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\redux\InsertUpdateAccForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\libs\services.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\InsertUpdateForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\redux\InsertUpdateForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\__tests__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\GridData.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\__test__\utils.test.js" />
@@ -1257,8 +426,13 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\GridData.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\redux\GridData.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\__test__\AddGroup.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\__test__\AssignGroup.test.js" />
@@ -1267,19 +441,26 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\__test__\EditGroup.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\__test__\GridData.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\__test__\redux\GridData.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\DeductionSetting.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\FeeSettingItem.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\PlatformFeeItem.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\PlatformFeeSetting.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\__test__\redux\PlatformFeeSetting.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\__test__\ExchangeRevenueShareSetting.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\__test__\redux\ExchangeRevenueShareSetting.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\__test__\SharePercentSettingItem.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\__test__\redux\TierSetting.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\__test__\TierSetting.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\__test__\TierSettingItem.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\CommGroup.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\QmTurnOverSetting.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\redux\CommGroupInfo.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\redux\QmTurnOverSetting.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\changePassword.js" />
@@ -1287,9 +468,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\changePassword.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\paymentRequestUpdate.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\redux\ChangePasswordForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\redux\PaymentRequestUpdateForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\changePassword.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\commissionGroup.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\paymentRequestUpdate.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\selectAll.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
     <Content Include="Areas\Portal\www\source\js\modules\constants.js" />
@@ -1332,6 +516,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\reducers\__test__\index.test.js" />
@@ -1341,8 +526,13 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ApprovedStatusInfo.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ContactApp.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\Language.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\redux\ContactApp.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\redux\Language.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\CommissionPanel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\OnlineInfoPanel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\redux\CommissionPanel.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\redux\OnlineInfoPanel.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\redux\SettingPanel.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\__test__\SettingPanel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\Content.test.js" />
@@ -1350,6 +540,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\MainInfo.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\Panel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\PanelList.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\redux\SearchBox.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\__test__\SearchBox.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\reducers\index.js" />
@@ -1368,7 +559,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\__test__\UserPanel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\__test__\UserPanelMenu.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\__test__\UserPanelMenuItem.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\menu.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\modules\withUserPanel.js" />
@@ -1376,6 +566,32 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\__test__\DomainControlPopup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\__test__\redux\DomainControlPopup.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\__test__\DomainPopup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\__test__\redux\DomainPopup.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\__test__\index.test.js" />
@@ -1384,26 +600,237 @@
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\DeleteEmail.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\EmailDetailForm.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\Filter.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\SelectAll.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\SelectAll.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\redux\DeleteEmail.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\redux\EmailDetailForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\redux\EditExchangeRateForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\EditExchangeRateForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\AffiliateStatistics.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\BannerStatistics.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\MemberStatistics.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\OnlineList.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\Panel.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\redux\AffiliateStatistics.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\redux\BannerStatisticcs.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\redux\TasksWaitingForApproval.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\redux\MemberStatistics.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\TasksWaitingForApproval.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\login\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\login\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\__test__\BannerDetailPopup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\__test__\EditBannerForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\__test__\redux\EditBannerForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\__test__\redux\BannerDetailPopup.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\libs\utils.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\__test__\ControlButtons.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\__test__\redux\InsertUpdateForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\__test__\InsertUpdateForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\redux\TextDetailForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\TextDetailForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\__test__\Activated.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\__test__\Unactivated.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\__test__\redux\Unactivated.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\__test__\redux\Activated.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\SelectAll.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\ButtonDeleteItems.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\ControlButtons.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\NotificationPopup.jsx" />
+    <Content Include="Areas\Portal\Views\MediaGallery\TextList.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\TextDetailForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\ControlButtons.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\redux\GridData.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\EditBannerForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\BannerDetailPopup.jsx" />
+    <Content Include="Areas\Portal\Views\Shared\_ReactPageLayout.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\_AffiliateSubMenu.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\PaymentRequest.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\CommissionGroup.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\EmailHistory.cshtml" />
+    <Content Include="Areas\Portal\Views\MediaGallery\_MediaGallerySubMenu.cshtml" />
+    <Content Include="Areas\Portal\Views\MediaGallery\LandingPageList.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Content.jsx" />
+    <Content Include="Areas\Portal\Views\Member\ActiveMember.cshtml" />
+    <Content Include="Areas\Portal\Views\Member\_MemberSubMenu.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\member-list\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\login\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\login\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\Views\UnderMaintenance\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\Views\ChangeAdminPassword\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\AccessDenied\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\Unactivated.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\Activated.jsx" />
+    <Content Include="Areas\Portal\Views\Domain\DomainControl.cshtml" />
+    <Content Include="Areas\Portal\Views\Domain\_DomainSubMenu.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\DomainPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\DomainControlPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\Content.jsx" />
+    <Content Include="Areas\Portal\Views\Administrator\Department.cshtml" />
+    <Content Include="Areas\Portal\Views\Administrator\_AdministratorSubMenu.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\InsertUpdateForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\InsertUpdateAccForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\EditPolicyForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\DepartmentPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\OnlineList.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\MemberStatistics.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\AffiliateStatistics.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\TasksWaitingForApproval.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\BannerStatistics.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\Panel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\home\components\Filter.jsx" />
+    <Content Include=".babelrc" />
+    <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\ControlButtons.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\MessageDetailForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\redux\ControlButtons.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\redux\MessageDetailForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\under-maintenance\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\under-maintenance\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\index.js" />
@@ -1412,6 +839,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\reducers\__test__\index.test.js" />
@@ -1421,6 +850,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\reducers\__test__\index.test.js" />
@@ -1430,6 +861,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\reducers\__test__\index.test.js" />
@@ -1440,6 +873,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\Detail.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\redux\Detail.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\reducers\__test__\index.test.js" />
@@ -1449,6 +885,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\__test__\InsertUpdateNoteForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\__test__\redux\InsertUpdateNoteForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\reducers\__test__\index.test.js" />
@@ -1456,6 +894,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\reportExcel.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\reducers\index.js" />
@@ -1467,6 +907,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\Detail.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\redux\Detail.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\reducers\__test__\index.test.js" />
@@ -1476,6 +919,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\reducers\__test__\index.test.js" />
@@ -1483,12 +928,20 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\redux\Detail.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\modules\Constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\redux\WebSite.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\redux\Personal.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\redux\Payment.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\redux\EmailFormat.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\redux\Additional.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\service.js" />
@@ -1499,6 +952,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\reducers\__test__\index.test.js" />
@@ -1512,11 +967,36 @@
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\excel-icon.svg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\bg_home_top.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\dho.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\htab.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\htab_l.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\icon_home01.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\icon_home02.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\tbl_icon01.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\tbl_icon02.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\home\tbl_m.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon-check.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon-uncheck.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_refresh.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\icon_report.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_top.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\btLg.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\FF.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\icAlert.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\icPass.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\icUser.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\IE.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgBg.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgFtleft.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgFtright.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgFtrp.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgLeft.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgLogo.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgRight.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\login\lgRp.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\under-maintenance\UnderMaintenance.gif" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\a_bg.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_box_tab.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_button2.jpg" />
@@ -1529,98 +1009,16 @@
     <Content Include="Areas\Portal\www\webpack.config.dev.js" />
     <Content Include="Areas\Portal\www\webpack.config.js" />
     <Content Include="Areas\Portal\www\webpack.config.vendor.js" />
-    <Content Include="Auth\Error.aspx" />
-    <Content Include="BetList\BetList.aspx" />
-    <Content Include="BetList\BetListCashOutDetail.aspx" />
-    <Content Include="BetList\BetListParlayDetail.aspx" />
-    <Content Include="BetList\BetListResults.aspx" />
-    <Content Include="Casino\UploadExcel.aspx" />
-    <Content Include="ChangeAdminPass.aspx" />
-    <Content Include="ChangePass.aspx" />
-    <Content Include="Content\betlist\betlist.css" />
-    <Content Include="Content\betlist\cashoutdetail.css" />
-    <Content Include="Content\betlist\fanex.result.css" />
-    <Content Include="Content\betlist\global.content.css" />
-    <Content Include="Content\betlist\images\1F.gif" />
-    <Content Include="Content\betlist\images\1L.gif" />
-    <Content Include="Content\betlist\images\bar-loader.gif" />
-    <Content Include="Content\betlist\images\bgHeader.jpg" />
-    <Content Include="Content\betlist\images\blank.gif" />
-    <Content Include="Content\betlist\images\firstGoal.gif" />
-    <Content Include="Content\betlist\images\goal-icon.png" />
-    <Content Include="Content\betlist\images\lastGoal.gif" />
-    <Content Include="Content\betlist\images\link_14x14.png" />
-    <Content Include="Content\betlist\images\link_16x16.png" />
-    <Content Include="Content\betlist\images\note.png" />
-    <Content Include="Content\betlist\images\plus.png" />
-    <Content Include="Content\betlist\images\q_Icon2_1.png" />
-    <Content Include="Content\betlist\images\q_Icon_2.png" />
-    <Content Include="Content\betlist\images\tab_topbg.gif" />
-    <Content Include="Content\betlist\images\undo.png" />
-    <Content Include="Content\betlist\images\up.png" />
-    <Content Include="Content\betlist\rngcasino.handhistory.css" />
-    <Content Include="Content\betlist\systemparlay.detail.css" />
-    <Content Include="Content\Fanex.Result\12betadmin.result.css" />
-    <Content Include="Content\Fanex.Result\fanex.result.css" />
-    <Content Include="Content\Fanex.Result\images\goal-icon.png" />
-    <Content Include="Content\tipsy\custom-tipsy.css" />
-    <Content Include="Content\tipsy\tipsy.css" />
     <Content Include="Default.aspx" />
-    <Content Include="Domain\12BetDomain.aspx" />
-    <Content Include="Domain\Add12BetDomain.aspx" />
-    <Content Include="Domain\AddAffiliateDomain.aspx" />
-    <Content Include="Domain\AffiliateDomain.aspx" />
-    <Content Include="Domain\DomainControl.aspx" />
-    <Content Include="Domain\DomainControlIns.aspx" />
-    <Content Include="Domain\DomainControlUpd.aspx" />
-    <Content Include="Domain\Edit12BetDomain.aspx" />
-    <Content Include="Domain\EditAffiliateDomain.aspx" />
-    <Content Include="Error.aspx" />
-    <Content Include="Exchange\AffEditRate.aspx" />
-    <Content Include="Exchange\AffRate.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Home\Home.aspx" />
-    <Content Include="Media\AddBanner.aspx" />
-    <Content Include="Media\AddText.aspx" />
-    <Content Include="Media\BannerDetail.aspx" />
-    <Content Include="Media\EditBanner.aspx" />
-    <Content Include="Media\ListBannerNew.aspx" />
-    <Content Include="Media\ListText.aspx" />
-    <Content Include="Others\Message.aspx" />
-    <Content Include="Others\ViewMessDetails.aspx" />
     <Content Include="Release Note.txt" />
-    <Content Include="Report\AffiliateReport.aspx" />
-    <Content Include="Report\AffiliateReportDetail.aspx" />
-    <Content Include="Report\MemberReport.aspx" />
-    <Content Include="SignIn.aspx" />
     <Content Include="SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Test\DepMemberDetailUpd.aspx" />
-    <Content Include="Test\Login2.jpg" />
-    <Content Include="Test\test.aspx" />
-    <Content Include="Test\TestInternalLogin.aspx" />
-    <Content Include="UnderMaintenance.aspx" />
-    <Content Include="UserControl\AddDepartment.aspx" />
-    <Content Include="UserControl\AddUser.aspx" />
-    <Content Include="UserControl\AddUserExist.aspx" />
-    <Content Include="UserControl\EditAdminPolicy.aspx" />
-    <Content Include="UserControl\EditDepartment.aspx" />
-    <Content Include="UserControl\EditGroupPolicy.aspx" />
-    <Content Include="UserControl\EditUser.aspx" />
-    <Content Include="UserControl\ListDepartment.aspx" />
-    <Content Include="UserControl\ListUser.aspx" />
-    <Content Include="UserControl\ListUserInDept.aspx" />
-    <Content Include="UserControl\UpdateMultiAdmins.aspx" />
-    <Content Include="UserInfo\MemberActiveList.aspx" />
-    <Content Include="UserInfo\MemberList.aspx" />
-    <Content Include="UserInfo\MemberListAll.aspx" />
     <Content Include="AppSettings.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.12betadmin.sit.config" />
-    <Content Include="BetList\BetListNewParlay.ashx" />
-    <Content Include="Areas\Portal\Views\CommissionGroup\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Web.config" />
     <Content Include="AffiliateAdmin.ruleset" />
     <Content Include="Areas\Portal\www\source\js\layouts\AppLayout.jsx" />
@@ -1632,7 +1030,6 @@
     <Content Include="Areas\Portal\www\source\style\components\_form.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\commission-group.scss" />
     <Content Include="Areas\Portal\www\source\style\base\_common.scss" />
-    <Content Include="Portal\Layout.Master" />
     <Content Include="Areas\Portal\www\source\style\components\_modal.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\MultipleSelect.jsx" />
@@ -1649,8 +1046,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnOverSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSettingItem.jsx" />
-    <Content Include="Areas\Portal\Views\Affiliate\Information.cshtml" />
-    <Content Include="Areas\Portal\www\source\style\pages\affiliate-information.scss" />
     <Content Include="Areas\Portal\Views\Shared\_Header.cshtml" />
     <Content Include="Areas\Portal\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\_SinglePageLayout.cshtml" />
@@ -1689,8 +1084,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\EditGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\index.jsx" />
-    <Content Include="Areas\Portal\Views\CommissionGroup\AssignGroup.cshtml" />
-    <Content Include="Areas\Portal\Views\CommissionGroup\AssignPrivateGroup.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\AssignGroup.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\AssignPrivateGroup.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\CommonLayout.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.en-GB.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.en-US.cshtml" />
@@ -1732,9 +1127,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\AssignGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\index.jsx" />
-    <Content Include="Areas\Portal\Views\Password\ChangePassword.cshtml" />
     <Content Include="package.json" />
-    <Content Include="Areas\Portal\Views\AffiliateReport\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\Filter.jsx" />
@@ -1756,10 +1149,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\player-detail.scss" />
-    <Content Include="Areas\Portal\Views\LandingPage\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\landing-page.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\customer-statistics.scss" />
@@ -1774,7 +1165,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\customer-member.scss" />
-    <Content Include="Areas\Portal\Views\AffiliateInfo\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-info.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\AppContainer.jsx" />
@@ -1782,7 +1172,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\ChangePasswordForm.jsx" />
-    <Content Include=".babelrc" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Filter.test.js" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Home\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Betsoft\Index.cshtml" />
@@ -1790,41 +1179,6 @@
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\CrystalGpi\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\ISoftbet\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Opus\Index.cshtml" />
-    <Content Include="App_Data\EBetConfig.json" />
-    <Content Include="App_Data\EbetData\ebet_13.json" />
-    <Content Include="App_Data\EbetData\ebet_15.json" />
-    <Content Include="App_Data\EbetData\ebet_2.json" />
-    <Content Include="App_Data\EbetData\ebet_3.json" />
-    <Content Include="App_Data\EbetData\ebet_4.json" />
-    <Content Include="App_Data\EbetData\ebet_4_2.json" />
-    <Content Include="App_Data\EbetData\ebet_4_3.json" />
-    <Content Include="App_Data\EbetData\ebet_51.json" />
-    <Content Include="App_Data\EbetData\ebet_61.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_01.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_02.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_03.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_04.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_05.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_06.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_07.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_08.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_09.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_10.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_11.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_12.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_13.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_14.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_15.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_16.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_17.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_18.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_19.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_20.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_21.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_22.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_23.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_24.json" />
-    <Content Include="App_Data\IsoftbetData\isoftbet_25.json" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\ExchangeSummaryTransaction\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Content.jsx" />
@@ -1855,7 +1209,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\statement-history.scss" />
-    <Content Include="Areas\Portal\Views\PaymentRequest\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Filter.jsx" />
@@ -1908,7 +1261,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\mainpage\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\main.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\main.scss" />
-    <Content Include="Areas\Portal\Views\Customer\Main.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanel.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\user-panel\components\UserPanelMenuItem.jsx" />
@@ -1922,7 +1274,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\panel\OnlineInfoPanel.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\rightpanel.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\CommissionGroupPopup.jsx" />
-    <Content Include="Handler\UpdateAcc.ashx" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.en-GB.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.en-US.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.es-ES.cshtml" />
@@ -1934,7 +1285,6 @@
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.vi-VN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.zh-CN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.zh-TW.cshtml" />
-    <Content Include="Areas\Portal\Views\EmailHistory\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\Filter.jsx" />
@@ -1942,7 +1292,6 @@
     <Content Include="Areas\Portal\www\source\style\pages\email-history.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\components\DeleteEmail.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\email-history\components\SelectAll.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-table.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\exchange\SharePercentSettingItem.jsx" />
@@ -1950,59 +1299,40 @@
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\XmlData.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\TimeTracker\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\EditExchangeRateForm.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\exchange-rate\exchange-rate.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\message\components\MessageDetailForm.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\message\message.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\media-gallery\text-list.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\media-gallery\banner-list.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\login.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\under-maintenance\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\under-maintenance\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\under-maintenance.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\change-admin-password.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\alert.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\member\active-member.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\domain\domain.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\domain\domain-control.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\administrator\administrator.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\administrator\department.scss" />
+    <Content Include="Areas\Portal\www\source\style\components\_policy-popup.scss" />
+    <Content Include="Areas\Portal\www\source\style\components\_department-popup.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\home.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\AffBetlistService\AffiliateAPI.disco" />
-    <Content Include="WhoamI.aspx" />
+    <Content Include="WebWorkbench.mswwsettings" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Auth\ProcessLogin.ashx" />
-    <Content Include="BetList\BetListParlay.ashx" />
-    <None Include="Content\Fanex.Result\fanex.result.less" />
-    <Content Include="Deployment.ignore" />
-    <Content Include="ExcelFiles\Casino\2012\Apr\casino stats march 21.csv" />
-    <Content Include="Handler\AccountPolicy.ashx" />
-    <Content Include="Handler\ActiveMember.ashx" />
-    <Content Include="Handler\AddMessage.ashx" />
-    <Content Include="Handler\Banner\AddBanner.ashx" />
-    <Content Include="Handler\AddNewText.ashx" />
-    <Content Include="Handler\AddUser.ashx" />
-    <Content Include="Handler\ChangeAdminPass.ashx" />
-    <Content Include="Handler\ChangePass.ashx" />
-    <Content Include="Handler\Banner\DelBanner.ashx" />
-    <Content Include="Handler\DeleteMember.ashx" />
-    <Content Include="Handler\DeleteMessageList.ashx" />
-    <Content Include="Handler\DelText.ashx" />
-    <Content Include="Handler\DomainControl.ashx" />
-    <Content Include="Handler\EditRate.ashx" />
-    <Content Include="Handler\GetAffiliateList.ashx" />
-    <Content Include="Handler\GetCommGroup.ashx" />
-    <Content Include="Handler\GetDataBanner.ashx" />
-    <Content Include="Handler\GetDataText.ashx" />
-    <Content Include="Handler\GetEditedBanner.ashx" />
-    <Content Include="Handler\GetEditedText.ashx" />
-    <Content Include="Handler\GetMessage.ashx" />
-    <Content Include="Handler\GetMessageList.ashx" />
-    <Content Include="Handler\GetOnlineList.ashx" />
-    <Content Include="Handler\GetSubCategory.ashx" />
-    <Content Include="Handler\GetViewedBanner.ashx" />
-    <Content Include="Handler\GetViewedText.ashx" />
-    <Content Include="Handler\GroupPolicy.ashx" />
-    <Content Include="Handler\ListUser.ashx" />
-    <Content Include="Handler\Logout.ashx" />
-    <Content Include="Handler\Banner\UpBanner.ashx" />
-    <Content Include="Handler\Update12BetDomain.ashx" />
-    <Content Include="Handler\UpdateAffDomain.ashx" />
-    <Content Include="Handler\UpdateDepartment.ashx" />
-    <Content Include="Handler\UpdateMessage.ashx" />
-    <Content Include="Handler\UpdatePolicy.ashx" />
-    <Content Include="Handler\UpdateStatus.ashx" />
-    <Content Include="Handler\UpdateUser.ashx" />
-    <Content Include="Handler\UploadExcel.ashx" />
-    <Content Include="Handler\UpText.ashx" />
-    <None Include="Logs\trace.log" />
     <Content Include="packages.config" />
     <Content Include="Web.12betadmin.backupmnl.config" />
     <Content Include="Web.12betadmin.local.config" />
@@ -2013,38 +1343,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.info" />
-    <None Include="Web References\AffBetlistService\AffiliateAPI.wsdl" />
-    <None Include="Web References\AffBetlistService\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="WebWorkbench.mswwsettings" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\BetList.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>BetList.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Bingo.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Bingo.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Casino.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Casino.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Lang.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Lang.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\ResultLang.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>ResultLang.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Affiliate.Infrastructure\Affiliate.Infrastructure.csproj">
@@ -2061,19 +1359,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:52390/AffiliateAPI.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\AffBetlistService\</RelPath>
-      <UpdateFromURL>http://localhost:52390/AffiliateAPI.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>AffiliateAdmin_AffBetlistService_AffiliateAPI</CachedSettingsPropName>
-    </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\" />
   </ItemGroup>
   <ItemGroup>
@@ -2082,6 +1367,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
@@ -2089,13 +1375,14 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65181</DevelopmentServerPort>
           <DevelopmentServerVPath>/V1</DevelopmentServerVPath>
@@ -2113,7 +1400,7 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

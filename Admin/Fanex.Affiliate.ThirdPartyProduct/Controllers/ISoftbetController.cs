@@ -23,6 +23,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
     public class ISoftbetController : Controller
     {
         private const string SuccessStatus = "success";
+        private const string ContentType = "application/json";
 
         private readonly IISoftbetService _isoftbetService;
 
@@ -38,7 +39,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         }
 
         [HttpPost]
-        [Compress]
         public ActionResult Index(ISoftbetRequestParam param)
         {
             var logBuilder = new StringBuilder();
@@ -74,7 +74,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                     var status = Convert.ToString(jObject["status"]);
                     if (!string.Equals("success", status))
                     {
-                        return GetContentResult(string.Empty, rawDataBuilder.ToString(), string.Empty);
+                        return GetContentResult(string.Empty, rawDataBuilder.ToString());
                     }
 
                     var summary = ISoftbetParser.FromJsonObject(jObject);
@@ -103,7 +103,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         }
 
         [HttpPost]
-        [Compress]
         public ActionResult GetReportData(ISoftbetRequestParam param)
         {
             var dataList = new List<ISoftbetBetHistory>();
@@ -118,7 +117,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                     var status = Convert.ToString(jObject["status"]);
                     if (status != SuccessStatus)
                     {
-                        return Content(JsonConvert.SerializeObject(new { Message = $"Status: {status}\n" + item.JsonData }), "application/json");
+                        return Content(JsonConvert.SerializeObject(new { Message = $"Status: {status}\n" + item.JsonData }), ContentType);
                     }
 
                     var summary = ISoftbetParser.FromJsonObject(jObject);
@@ -127,7 +126,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             }
             catch (Exception ex)
             {
-                return Content(JsonConvert.SerializeObject(ex), "application/json");
+                return Content(JsonConvert.SerializeObject(ex), ContentType);
             }
 
             param.UserName = param.UserName?.Trim();
@@ -145,7 +144,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                     Turnover = resultList.Sum(p => p.Turnover),
                     Winloss = resultList.Sum(p => p.Winloss)
                 }
-            }), "application/json");
+            }), ContentType);
         }
 
         private IList<ISoftbetReport> GetResultDataList(List<ISoftbetBetHistory> betHistoryList)
@@ -174,14 +173,14 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             return result;
         }
 
-        private ActionResult GetContentResult(string log, string rawData, string convertedData)
+        private ActionResult GetContentResult(string log, string rawData, string convertedData = "")
         {
             return Content(JsonConvert.SerializeObject(new ThirdPartyProductViewModel
             {
                 LogMessage = log,
                 RawData = rawData,
                 ConvertedData = convertedData
-            }), "application/json");
+            }), ContentType);
         }
 
         private ISoftbetEntryParam CreateParam(ISoftbetRequestParam param)

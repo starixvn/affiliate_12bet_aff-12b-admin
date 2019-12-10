@@ -2,7 +2,7 @@
 
 exports[`affiliate report - Filter  should render correctly when currentMainView is Main view 1`] = `
 <div
-  className="filter-container"
+  className="filter-container mt-2"
 >
   <Form
     inline={true}
@@ -263,7 +263,7 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
 
 exports[`affiliate report - Filter  should render correctly when currentMainView is Month on Month view 1`] = `
 <div
-  className="filter-container"
+  className="filter-container mt-2"
 >
   <Form
     inline={true}

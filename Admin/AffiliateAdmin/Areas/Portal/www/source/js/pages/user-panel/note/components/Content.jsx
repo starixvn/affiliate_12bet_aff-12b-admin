@@ -107,7 +107,7 @@ export class Content extends PureComponent {
         return noteList && (
             <div className="data-content">
                 <div className="my-2">
-                    <Button outline type="button" onClick={() => this.handleShowPopup(0)}>{globalResource.Add}</Button>
+                    <Button outline type="button" onClick={() => this.handleShowPopup(0)}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
                 </div>
                 <div className="table-responsive table-striped">
                     <Table

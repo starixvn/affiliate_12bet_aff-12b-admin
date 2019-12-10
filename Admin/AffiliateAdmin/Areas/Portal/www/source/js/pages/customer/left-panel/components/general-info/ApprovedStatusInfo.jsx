@@ -25,12 +25,12 @@ export const ApprovedStatusInfo = (props) => {
                     </Button>
                     {affiliateInfo && <ChangePasswordForm
                         showPopupPassword={isChangingPassword}
-                        affId={affiliateInfo.AffId}
+                        selectedId={affiliateInfo.AffId}
                         setShowPopupPassword={toggleChangingPassword}
                     />}
                 </Col>
             </Row>
-            <a href={resolveClientUrl(`Portal/Member?txtAffUsername=${affName}`)} target='fMain'>{resource.MemberList}</a>
+            <a href={resolveClientUrl(`Portal/Member?AffName=${affName}`)} target='fMain'>{resource.MemberList}</a>
         </React.Fragment>
     )
 }

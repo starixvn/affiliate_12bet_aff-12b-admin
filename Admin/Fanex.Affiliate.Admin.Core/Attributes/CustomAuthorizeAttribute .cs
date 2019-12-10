@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
 {
@@ -31,12 +32,12 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                 filterContext.HttpContext.Response.ContentType = "application/json";
                 filterContext.Result = new JsonResult
                 {
-                    Data = new { ErrCode = 401, ErrMsg = "Your session was expired! Please login again." },
+                    Data = new { ErrCode = Code.ErrCodeSessionExpired, ErrMsg = "Your session was expired! Please login again." },
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }else
             {
-                filterContext.Result = new RedirectResult("~/SignIn.aspx");
+                filterContext.Result = new RedirectResult("~/Portal/Login");
             }
         }
     }

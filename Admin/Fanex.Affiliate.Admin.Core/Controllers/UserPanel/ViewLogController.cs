@@ -21,7 +21,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetViewLogList(ViewLogParam param)
         {
             if (ModelState.IsValid)

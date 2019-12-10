@@ -3,7 +3,7 @@ import { EmailDetailForm } from '../EmailDetailForm';
 import { shallow } from 'enzyme';
 import * as ajaxRequest from '../../../../modules/ajaxRequest';
 
-describe('payment request - components - Content ', () => {
+describe('email history - components - EmailDetailForm ', () => {
     const defaultProps = {
         selectedEmailId: 2205,
         param: {
@@ -84,16 +84,25 @@ describe('payment request - components - Content ', () => {
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
     });
 
-    it('handleDelete - should not toggleLoader and deleteEmailHistory with isConfirmed is true and response is null', async () => {
+    it('_handleDeleteEmail - should not setState', async () => {
+        const wrapper = shallow(<EmailDetailForm {...defaultProps} />);
+        wrapper.setState({ dataItem });
+        wrapper.setState = jest.fn();
+
+        await wrapper.find('Button').at(0).simulate('click');
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: 'Are you sure to delete the selected email?', isConfirmPopup: true, selectedEmailId: 2205 });
+    });
+
+    it('_deleteEmail - should not toggleLoader and deleteEmailHistory with isConfirmed is true and response is null', async () => {
         const toggleLoader = jest.fn();
         const deleteEmailHistory = jest.fn();
         const props = Object.assign({}, defaultProps, { toggleLoader, deleteEmailHistory });
         const wrapper = shallow(<EmailDetailForm {...props} />);
         wrapper.setState({ dataItem });
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
-        window.confirm = jest.fn(() => true);
 
-        await wrapper.find('Button').at(0).simulate('click');
+        await wrapper.instance()._deleteEmail(2205);
     
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
@@ -101,7 +110,7 @@ describe('payment request - components - Content ', () => {
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
     });
 
-    it('handleDelete - should not toggleLoader and deleteEmailHistory with isConfirmed is true and response is not success', async () => {
+    it('_deleteEmail - should not toggleLoader and deleteEmailHistory with isConfirmed is true and response is not success', async () => {
         const data = { IsSuccessful: false, Message: 'Delete Email is failed!' };
         const toggleLoader = jest.fn();
         const deleteEmailHistory = jest.fn(() => data);
@@ -110,9 +119,8 @@ describe('payment request - components - Content ', () => {
         wrapper.setState({ dataItem });
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
         window.setTimeout = jest.fn((fn, time) => fn());
-        window.confirm = jest.fn(() => true);
 
-        await wrapper.find('Button').at(0).simulate('click');
+        await wrapper.instance()._deleteEmail(2205);
     
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.deleteEmailHistory).toHaveBeenCalledWith({ EmailIdList: 2205 });
@@ -128,7 +136,7 @@ describe('payment request - components - Content ', () => {
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
     });
 
-    it('handleDelete - should not toggleLoader and deleteEmailHistory with isConfirmed is true and response is successful', async () => {
+    it('_deleteEmail - should not toggleLoader and deleteEmailHistory with isConfirmed is true and response is successful', async () => {
         const data = { IsSuccessful: true, Message: '' };
         const toggleLoader = jest.fn();
         const deleteEmailHistory = jest.fn(() => data);
@@ -139,9 +147,8 @@ describe('payment request - components - Content ', () => {
         wrapper.setState({ dataItem });
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
         window.setTimeout = jest.fn((fn, time) => fn());
-        window.confirm = jest.fn(() => true);
 
-        await wrapper.find('Button').at(0).simulate('click');
+        await wrapper.instance()._deleteEmail(2205);
     
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.deleteEmailHistory).toHaveBeenCalledWith({ EmailIdList: 2205 });
@@ -170,5 +177,30 @@ describe('payment request - components - Content ', () => {
         await result.find('Button').at(1).simulate('click');
     
         expect(props.setSelectedEmailId).toHaveBeenCalledWith(null);
+    });
+
+    it('handleCloseNotificationPopup - should call setState and _deleteEmail', async () => {
+        const wrapper = shallow(<EmailDetailForm {...defaultProps} />);
+        wrapper.setState({ selectedEmailId: 123 });
+        wrapper.setState = jest.fn();
+        const instance = wrapper.instance();
+        instance._deleteEmail = jest.fn();
+
+        await instance.handleCloseNotificationPopup(true);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: '' });
+        expect(instance._deleteEmail).toHaveBeenCalledWith(123);
+    });
+
+    it('handleCloseNotificationPopup - should call setState but not call _deleteEmail', async () => {
+        const wrapper = shallow(<EmailDetailForm {...defaultProps} />);
+        wrapper.setState = jest.fn();
+        const instance = wrapper.instance();
+        instance._deleteEmail = jest.fn();
+
+        await instance.handleCloseNotificationPopup(false);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: '' });
+        expect(instance._deleteEmail).not.toHaveBeenCalled();
     });
 })

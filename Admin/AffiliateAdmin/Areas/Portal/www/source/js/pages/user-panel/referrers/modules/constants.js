@@ -1,6 +1,5 @@
-﻿import { maxWidth } from '../../../../modules/constants';
+﻿import { maxWidth, deviceTypes, pcLaptop } from '../../../../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
-import { deviceTypes, pcLaptop } from '../../../customer/user-panel/modules/constants';
 
 export { maxWidth, globalResource, deviceTypes, pcLaptop }
 

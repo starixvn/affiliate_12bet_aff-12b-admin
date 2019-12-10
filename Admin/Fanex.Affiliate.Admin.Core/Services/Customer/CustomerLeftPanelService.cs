@@ -6,11 +6,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using DNAide.Utils;
 using Fanex.Affiliate.Admin.Core.Constants;
-using System.Configuration;
-using System.Security.Cryptography;
-using System.Text;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
@@ -37,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             var affiliateInfo = _customerLeftPanelRepository.GetAffiliateInfoOnLeftPanel(affUserName);
             if (affiliateInfo != null)
             {
-                affiliateInfo.AffLink = GenerateUrl(affUserName, affiliateInfo.AffType, accId, accOnId, sessionId);
+                affiliateInfo.AffLink = GenerateUrl(affUserName, affiliateInfo.AffType, accId, accOnId, sessionId).ToString();
             }
             return affiliateInfo;
         }
@@ -86,37 +81,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             _emailService.SendDisapprovedEmail(emailParam);
         }
 
-        private static string GenerateUrl(string custName, int affType, string accId, string accOnId, string sessionId)
+        private static Uri GenerateUrl(string custName, int affType, string accId, string accOnId, string sessionId)
         {
             var rndStr = Encryption.RandomString(6);
-            var accKey = GenerateSHA512String(sessionId + rndStr);
-            var url = affType == AffType.European ? ConfigurationManager.AppSettings["internalEuropeanAffiliateURL"] : ConfigurationManager.AppSettings["internalAsianAffiliateURL"];
+            var accKey = Generator.GenerateSHA512String(sessionId + rndStr);
+            var url = SiteDomainHelper.GetUserInternalSiteUrl(affType);
             url += "?chalengeStr=" + rndStr;
             url += "&accKey=" + accKey;
             url += "&custName=" + custName;
             url += "&accId=" + accId;
             url += "&accOnId=" + accOnId;
-            return url;
-        }
-
-        private static string GenerateSHA512String(string inputString)
-        {
-            var sha512 = SHA512.Create();
-            var bytes = Encoding.UTF8.GetBytes(inputString);
-            var hash = sha512.ComputeHash(bytes);
-
-            return GetStringFromHash(hash);
-        }
-
-        private static string GetStringFromHash(byte[] hash)
-        {
-            var result = new StringBuilder();
-            for (var i = 0; i < hash.Length; i++)
-            {
-                result.Append(hash[i].ToString("X2"));
-            }
-
-            return result.ToString();
+            return new Uri(url, UriKind.Absolute);
         }
     }
 }

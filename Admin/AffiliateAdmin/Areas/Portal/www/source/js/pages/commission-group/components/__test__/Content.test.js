@@ -1,8 +1,6 @@
 ﻿import React from 'react';
 import { Content } from '../Content';
-import { connect } from 'react-redux';
 import { shallow } from 'enzyme';
-import { Modal, ModalHeader, Button } from 'reactstrap';
 import GridData from '../grouplist/GridData';
 import AddGroup from '../addgroup';
 import EditGroup from '../editgroup';
@@ -68,14 +66,14 @@ describe('commission group - Content', () => {
         instance.handleSave = jest.fn();
 
         const expectedState = {
-            Popup: <AddGroup onClose={ instance.handleHide } onSave={ instance.handleSave } />,
+            Popup: <AddGroup onClose={instance.handleHide} onSave={instance.handleSave} />,
             popupTitle: "Add a Commission Group"
         }
         wrapper.find('Button').simulate('click');
 
         expect(instance.setState).toHaveBeenCalledWith(expectedState);
     });
-    
+
     it('should call handleEditGroup when click onEdit in GridData', () => {
         const wrapper = shallow(<Content {...defaultProps} />);
         const instance = wrapper.instance();
@@ -84,19 +82,19 @@ describe('commission group - Content', () => {
         instance.handleSave = jest.fn();
 
         const expectedState = {
-            Popup: <EditGroup onClose={ instance.handleHide } itemId={123} onSave={ instance.handleSave } />,
+            Popup: <EditGroup onClose={instance.handleHide} itemId={123} onSave={instance.handleSave} />,
             popupTitle: "Edit Commission Group"
         }
 
         wrapper.find(GridData).props().onEdit(123);
         expect(instance.setState).toHaveBeenCalledWith(expectedState);
-    });    
-    
+    });
+
     it('handleHide - should call setState', () => {
         const wrapper = shallow(<Content {...defaultProps} />);
         const instance = wrapper.instance();
         instance.setState = jest.fn();
-        
+
         instance.handleHide();
 
         expect(instance.setState).toHaveBeenCalledWith({ Popup: null });
@@ -119,14 +117,14 @@ describe('commission group - Content', () => {
         const props = Object.assign({}, defaultProps, { getGroupSettingList: mockGetGroupSettingList, searchedGroupName: '12Bet' });
         const componentInstance = new Content(props);
 
-        componentInstance.onPaging(1,20);
+        componentInstance.onPaging(1, 20);
 
         expect(props.getGroupSettingList).toHaveBeenCalledWith({ GroupName: "12Bet", PageIndex: 1, PageSize: 20 });
     });
 
     it('should render correctly', () => {
-        const wrapper= shallow(<Content {...defaultProps}/>);
-        
+        const wrapper = shallow(<Content {...defaultProps} />);
+
         expect(wrapper).toMatchSnapshot();
     })
 });
