@@ -59,19 +59,8 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private static IEnumerable<Tuple<DateTime,DateTime>> GetTimeRangeRequest(DateTime startTime, DateTime endTime)
         {
-            var startRequestTime = startTime;
-            var endRequestTime = GetEndRequestTime(startRequestTime.AddMinutes(MAX_TIME_RANGE_TRANSACTION), endTime);
-            while(startRequestTime < endRequestTime)
-            {
-                yield return new Tuple<DateTime, DateTime>(startRequestTime, endRequestTime);
-                startRequestTime = endRequestTime;
-                endRequestTime = GetEndRequestTime(endRequestTime.AddMinutes(MAX_TIME_RANGE_TRANSACTION), endTime);
-            }
-        }
-
-        private static DateTime GetEndRequestTime(DateTime compareTime, DateTime endTime)
-        {
-            return DateTime.Compare(compareTime, endTime) > 0 ? endTime : compareTime;
+            var span = new TimeSpan(0, MAX_TIME_RANGE_TRANSACTION, 0);
+            return DateTimeHelper.GetProportionTimeRange(startTime, endTime, span);
         }
 
         private static bool IsExceedCallLimit(string data)

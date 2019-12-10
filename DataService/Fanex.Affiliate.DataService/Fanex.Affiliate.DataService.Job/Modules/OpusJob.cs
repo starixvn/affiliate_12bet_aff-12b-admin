@@ -6,10 +6,8 @@ using Fanex.Affiliate.DataService.Importer.Opus.MetaModels;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
-using Fanex.Logging;
 using Quartz;
 using System.Threading.Tasks;
-using ONEbook.UM.NonWebApp;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
@@ -19,6 +17,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly IAppSettings _appSetting;
         private readonly IOpusService _opusService;
         private readonly ITimeTracker _timeTracker;
+
 
         public OpusJob()
         {

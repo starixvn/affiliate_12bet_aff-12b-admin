@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
             var now = DateTime.Now;
 
-            LogService.Info($"Start topaz serivce at {now}");
+            Logger.Info($"Start topaz serivce at {now}");
             if (DateTime.Compare(lastQueryTime, now) < 0)
             {
                 var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                     var startUtcTime = start.ToUniversalTime();
                     var endUtcTime = nextStartTime.ToUniversalTime();
-                    LogService.Info($"Topaz serivce - Get data from {startUtcTime} to {endUtcTime}");
+                    Logger.Info($"Topaz serivce - Get data from {startUtcTime} to {endUtcTime}");
                     await _service.ImportAsync(startUtcTime, endUtcTime);
 
                     var saveTimeTrackerParam = new InsertTimeTrackerParam
@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         CallTime = nextStartTime
                     };
                     _timeTracker.SaveTime(saveTimeTrackerParam);
-                    LogService.Info($"Topaz service - Finished get data");
+                    Logger.Info($"Topaz service - Finished get data");
                 }
             }
         }

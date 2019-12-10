@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Data;
 using System;
 using System.Collections;
@@ -99,8 +100,8 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Repository
             dic.Add("ProductId", productId);
             dic.Add("XmlData", xmlData);
             dic.Add("JobType", jobType);
-            dic.Add("ErrCode", 4);
-            dic.Add("ErrMsg", 4000);
+            dic.Add("ErrCode", RespositoryResponse.Success);
+            dic.Add("ErrMsg", RespositoryResponse.SuccessMessage);
             return dic;
         }
 

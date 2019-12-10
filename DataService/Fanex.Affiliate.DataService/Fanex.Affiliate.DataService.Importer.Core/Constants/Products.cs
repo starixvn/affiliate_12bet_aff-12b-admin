@@ -20,4 +20,11 @@
 
         public const int TopazId = 23;
     }
+
+    public static class RespositoryResponse
+    {
+        public const int Success = 0;
+
+        public const string SuccessMessage = "";
+    }
 }

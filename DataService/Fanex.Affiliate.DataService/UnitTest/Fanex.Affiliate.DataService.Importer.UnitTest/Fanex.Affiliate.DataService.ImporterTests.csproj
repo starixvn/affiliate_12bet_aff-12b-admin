@@ -81,6 +81,7 @@
     <Compile Include="Helper\GpiTestHelper.cs" />
     <Compile Include="Helper\LBKenoTestHelper.cs" />
     <Compile Include="Helper\TopazTestHelper.cs" />
+    <Compile Include="Helper\VrLotteryTestHelper.cs" />
     <Compile Include="Service\GPIServiceTest.cs" />
     <Compile Include="Service\LBKenoServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

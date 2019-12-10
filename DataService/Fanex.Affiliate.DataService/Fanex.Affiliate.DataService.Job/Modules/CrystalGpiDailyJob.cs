@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Globalization;
-using System.Text;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Logging;
 using Quartz;
-using Sunplus.UMControllerLibrary;
 using Fanex.Affiliate.DataService.Importer.Gpi.MetaModels;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
-using ONEbook.UM.NonWebApp;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
@@ -41,11 +38,11 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     JobType = 1
                 };
 
-                LogService.Info($"Crystal Gpi Daily Job is starting. Request time {param.StartTime} - {param.EndTime}");
+                Logger.Info($"Crystal Gpi Daily Job is starting. Request time {param.StartTime} - {param.EndTime}");
 
                 _crystalGpiService.Import(param);
 
-                LogService.Info("Crystal Gpi Daily Job Done");
+                Logger.Info("Crystal Gpi Daily Job Done");
             }
             return Task.CompletedTask;
         }

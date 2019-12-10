@@ -15,10 +15,13 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public class VrLotteryService : XmlImpoterlServiceBase, IDataRequestByCurrency
     {
-        private readonly TimeSpan MAX_REQUEST_TIMESPAN = new TimeSpan(31, 0, 0, 0);
-        protected readonly IApiClient _client;
+        private const int MINUTE_TIME_RANGE_LIMIT = 10;
+        public const int MAX_PAGE_SIZE = 50000;
 
+        protected readonly IApiClient _client;
         protected override int ProductId => Products.VRLotteryId;
+
+        public int TimeRangeLimitInMinForEachRequest { get; set; } = MINUTE_TIME_RANGE_LIMIT;
 
         public VrLotteryService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
             : base(appSetting, thirdPartyProductRepository)
@@ -44,54 +47,71 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public async Task<IEnumerable<string>> GetRawDataListByCurrencyAsync(DateTime startTime, DateTime endTime, string currency)
         {
-            DateTime startTimeRoundingByHour = GetRoundingByHour(startTime);
-            DateTime endTimeRoundingByHour = GetRoundingByHour(endTime);
-            EnsureEndTimeLaterThanStartTime(startTimeRoundingByHour, endTimeRoundingByHour);
+            EnsureEndTimeLaterThanStartTime(startTime, endTime);
 
             var datas = new List<string>();
-
-            var timeSpan = endTimeRoundingByHour - startTimeRoundingByHour;
-            while(timeSpan > TimeSpan.Zero)
+            var timeSpanRequest = new TimeSpan(0, TimeRangeLimitInMinForEachRequest, 0);
+            var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, timeSpanRequest);
+            foreach (var timeRange in timeRanges)
             {
-                var startTimeRequest = startTimeRoundingByHour;
-                var endTimeRequest = endTimeRoundingByHour;
+                var startRequestTime = timeRange.Item1;
+                var endRequestTime = timeRange.Item2;
+                datas.AddRange(await GetRawDataByPageAsync(startRequestTime, endRequestTime, currency).ConfigureAwait(false));
 
-                timeSpan = timeSpan - MAX_REQUEST_TIMESPAN;
-                if (timeSpan > TimeSpan.Zero)
-                {
-                    endTimeRequest = startTimeRoundingByHour.Add(MAX_REQUEST_TIMESPAN);
-                }
-
-                datas.Add(await GetRawDataAsync(startTimeRequest, endTimeRequest, currency).ConfigureAwait(false));
-
-                startTimeRoundingByHour = endTimeRequest;
             }
             return datas;
         }
 
-        private async Task<string> GetRawDataAsync(DateTime startTimeRequest, DateTime endTimeRequest, string currency)
+        private async Task<IEnumerable<string>> GetRawDataByPageAsync(DateTime startTimeRequest, DateTime endTimeRequest, string currency)
+        {
+            var datas = new List<string>();
+            var timeRange = new Tuple<DateTime, DateTime>(startTimeRequest, endTimeRequest);
+            int page = 1;
+            var rawData = await GetRawDataAsync(timeRange, currency, page);
+            datas.Add(rawData);
+            while (HasAnotherPage(rawData))
+            {
+                page++;
+                rawData = await GetRawDataAsync(timeRange, currency, page);
+                datas.Add(rawData);
+            }
+            return datas;
+
+        }
+
+        private bool HasAnotherPage(string rawData)
+        {
+            var xml = XmlHelper.ParseToXDocumentFromJson(rawData);
+            CheckXmlResponseData(xml);
+            var pageProportion = xml.Root.Element("Pagination");
+            var currentPage = int.Parse(pageProportion.Element("CurrentPage").Value);
+            var totalPage = int.Parse(pageProportion.Element("TotalPage").Value);
+            return currentPage < totalPage;
+        }
+
+        private async Task<string> GetRawDataAsync(Tuple<DateTime, DateTime> timeRange, string currency, int page)
         {
             var url = _appSetting.GetValue("VrLotteryApiUrl");
-            var queryValue = BuildQuery(startTimeRequest, endTimeRequest, currency);
+            var queryValue = BuildQuery(timeRange, currency, page);
 
             return await _client.GetResponseAsync(url, queryValue);
         }
 
-        private  NameValueCollection BuildQuery(DateTime startTimeRequest, DateTime endTimeRequest, string currency)
+        private  NameValueCollection BuildQuery(Tuple<DateTime, DateTime> timeRange, string currency, int page)
         {
+            var startTimeRequest = timeRange.Item1;
+            var endTimeRequest = timeRange.Item2;
             var queryValue = new NameValueCollection();
+
             queryValue.Add("MerchantCode",  _appSetting.GetValue("VrLotteryMerchantCode"));
             queryValue.Add("StartDate", startTimeRequest.ToString(IMOne.Constants.IMOneDateTimeFormat));
             queryValue.Add("EndDate", endTimeRequest.ToString(IMOne.Constants.IMOneDateTimeFormat));
             queryValue.Add("ProductWallet", _appSetting.GetValue("VrLotteryProductWallet"));
             queryValue.Add("Currency", currency);
-            queryValue.Add("ReportBy", _appSetting.GetValue("VrLotteryReportBy"));
-            return queryValue;
-        }
+            queryValue.Add("PageSize", MAX_PAGE_SIZE.ToString());
+            queryValue.Add("Page", page.ToString());
 
-        private static DateTime GetRoundingByHour(DateTime time)
-        {
-            return new DateTime(time.Year, time.Month, time.Day, time.Hour, 0, 0, 0);
+            return queryValue;
         }
 
         protected override void CheckXmlResponseData(XDocument xml)

@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\JobSystem.cs" />
+    <Compile Include="LogProvider.cs" />
     <Compile Include="IJobScheduler.cs" />
     <Compile Include="IJobSchedulerFactory.cs" />
     <Compile Include="JobBase.cs" />

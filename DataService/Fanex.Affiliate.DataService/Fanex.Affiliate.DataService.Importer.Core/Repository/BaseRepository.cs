@@ -3,6 +3,7 @@
     using System;
     using Fanex.Affiliate.DataService.Importer.Core.DTO;
     using Fanex.Data;
+    using Constants;
 
     public class BaseRepository
     {
@@ -12,8 +13,8 @@
 
         protected static void AddResultParam(IObjectDb objectDb)
         {
-            objectDb.SetParameterValue("ErrCode", 4);
-            objectDb.SetParameterValue("ErrMsg", 4000);
+            objectDb.SetParameterValue("ErrCode", RespositoryResponse.Success);
+            objectDb.SetParameterValue("ErrMsg", RespositoryResponse.SuccessMessage);
         }
 
         protected static ResultInfo GetResultInfo(IObjectDb objectDb)

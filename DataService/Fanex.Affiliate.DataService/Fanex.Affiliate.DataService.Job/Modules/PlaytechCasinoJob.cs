@@ -7,6 +7,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 {
     public class PlaytechCasinoJob : JobBase
     {
+
         protected override Task ImportDataToSystem(IJobExecutionContext context)
         {
             var dataMap = context.JobDetail.JobDataMap;
@@ -14,7 +15,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var importResult = importService.Run();
             if (!importResult.IsSuccessful)
             {
-                LogService.Error($"{importResult.Code}\n{importResult.Message}");
+                Logger.Error($"{importResult.Code}\n{importResult.Message}");
             }
 
             return Task.CompletedTask;

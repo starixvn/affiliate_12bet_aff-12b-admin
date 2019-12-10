@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Affiliate.ThirdPartyProduct.Helper
 {
-    internal class UserHelper
+    internal static class UserHelper
     {
         private static Dictionary<string, string> _userManager => new Dictionary<string, string>()
         {

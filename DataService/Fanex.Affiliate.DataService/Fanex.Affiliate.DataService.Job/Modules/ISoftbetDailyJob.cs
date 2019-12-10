@@ -16,6 +16,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly IAppSettings _appSetting;
         private readonly IISoftbetService _isoftbetService;
 
+
         public ISoftbetDailyJob()
         {
             _appSetting = new AppSettings();
@@ -38,11 +39,11 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     JobType = 1
                 };
 
-                LogService.Info($"ISoftbet Daily Job is starting. Request time {param.StartTime} - {param.EndTime}");
+                Logger.Info($"ISoftbet Daily Job is starting. Request time {param.StartTime} - {param.EndTime}");
 
                 _isoftbetService.Import(param);
 
-                LogService.Info("ISoftbet Daily Job Done");
+                Logger.Info("ISoftbet Daily Job Done");
             }
             return Task.CompletedTask;
         }

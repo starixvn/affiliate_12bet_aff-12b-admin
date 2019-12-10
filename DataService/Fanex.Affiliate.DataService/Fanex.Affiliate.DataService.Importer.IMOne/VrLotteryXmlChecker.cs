@@ -30,6 +30,12 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne
                     throw new ThirdPartyProductException($"VRLottery - StartDate can't be later than EndDate or now.");
                 case IMoneResponseStatus.INVALID_DATETIME_FORMAT:
                     throw new ThirdPartyProductException($"VRLottery - Invalid datetime format.");
+                case IMoneResponseStatus.BET_DETAIL_IN_PROCESS:
+                    throw new ThirdPartyProductException($"VrLottery - Bet details in process. Please try again");
+                case IMoneResponseStatus.NO_DATA_FOUND:
+                    throw new ThirdPartyProductException($"VrLottery - No data found");
+                case IMoneResponseStatus.INVALID_PAGE_SIZE:
+                    throw new ThirdPartyProductException($"VrLottery - Invalid page size");
                 case IMoneResponseStatus.SUCCESS:
                     return;
                 default:

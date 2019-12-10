@@ -14,6 +14,7 @@ namespace Affiliate.ThirdPartyProduct.TestRequest
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
             IoCConfig.Register();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

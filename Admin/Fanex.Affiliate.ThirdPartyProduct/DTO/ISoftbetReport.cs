@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.DataService.Importer.DTO.ISoftbet;
+﻿using Fanex.Affiliate.DataService.Importer.ISoftbet.DTO;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.DTO
 {

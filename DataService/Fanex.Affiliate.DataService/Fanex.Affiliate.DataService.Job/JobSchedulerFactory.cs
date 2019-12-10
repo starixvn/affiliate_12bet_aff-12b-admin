@@ -4,8 +4,6 @@ using Fanex.Affiliate.DataService.Job.Constants;
 using Quartz;
 using Quartz.Impl;
 using System.Threading.Tasks;
-using Quartz.Logging;
-using System;
 
 namespace Fanex.Affiliate.DataService.Job
 {
@@ -24,7 +22,7 @@ namespace Fanex.Affiliate.DataService.Job
 
         private async Task Init()
         {
-            LogProvider.SetCurrentLogProvider(new FanexLogProvider());
+            Quartz.Logging.LogProvider.SetCurrentLogProvider(new LogProvider());
             var appSetting = new AppSettings();
             var schedulerFactory = new StdSchedulerFactory();
             this._scheduler = await schedulerFactory.GetScheduler();
@@ -71,51 +69,6 @@ namespace Fanex.Affiliate.DataService.Job
             await _scheduler.ResumeAll();
         }
 
-        private class FanexLogProvider: ILogProvider
-        {
-            public Logger GetLogger(string name)
-            {
-                return (level, func, exception, parameters) =>
-                {
-                    if (func == null)
-                        return false;
 
-                    var msg = func();
-                    switch (level)
-                    {
-                        case LogLevel.Debug:
-                            Logging.LogService.Debug(msg, parameters);
-                            break;
-                        case LogLevel.Error:
-                            Logging.LogService.Error(msg, exception);
-                            break;
-                        case LogLevel.Fatal:
-                            Logging.LogService.Critical(msg, parameters);
-                            Logging.LogService.Error(msg, exception);
-                            break;
-                        case LogLevel.Info:
-                            Logging.LogService.Info(msg, parameters);
-                            break;
-                        case LogLevel.Warn:
-                            Logging.LogService.Warn(msg, parameters);
-                            break;
-                        default:
-                            Logging.LogService.Debug(msg, parameters);
-                            break;
-                    }
-                    return true;
-                };
-            }
-
-            public IDisposable OpenMappedContext(string key, string value)
-            {
-                throw new NotImplementedException();
-            }
-
-            public IDisposable OpenNestedContext(string message)
-            {
-                throw new NotImplementedException();
-            }
-        }
     }
 }

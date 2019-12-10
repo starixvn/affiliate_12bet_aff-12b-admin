@@ -2,6 +2,8 @@
 using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Affiliate.DataService.Importer.Core.Repository;
 using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
+using System.Collections.Generic;
+using Fanex.Affiliate.DataService.Importer.Core.Constants;
 
 namespace Fanex.Affiliate.DataService.Job.Repository
 {
@@ -26,13 +28,14 @@ namespace Fanex.Affiliate.DataService.Job.Repository
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue("ProductId", param.ProductId);
-                objectDb.SetParameterValue("Currency", param.Currency);
-                objectDb.SetParameterValue("CallTime", param.CallTime);
-                objectDb.SetParameterValue("ErrCode", 4);
-                objectDb.SetParameterValue("ErrMsg", 4000);
+                var query = new Dictionary<object, object>();
+                query.Add("ProductId", param.ProductId);
+                query.Add("Currency", param.Currency);
+                query.Add("CallTime", param.CallTime);
+                query.Add("ErrCode", RespositoryResponse.Success);
+                query.Add("ErrMsg", RespositoryResponse.SuccessMessage);
 
-                objectDb.ExecuteNonQuery();
+                objectDb.ExecuteNonQuery(query);
 
                 var code = objectDb.GetParameterValue("ErrCode");
                 var errorCode = code == DBNull.Value ? 0 : Convert.ToInt32(code);

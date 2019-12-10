@@ -1,11 +1,11 @@
 ﻿using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.Constants;
 using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
 using Fanex.Affiliate.ThirdPartyProduct.ViewModels;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 
         [HttpPost]
         [Compress]
-        public ActionResult Index(ImporterBaseParam param)
+        public async Task<ActionResult> Index(ImporterBaseParam param)
         {
             var logBuilder = new StringBuilder();
             var rawDataBuilder = new StringBuilder();
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 var startTime = DateTime.ParseExact(param.StartTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
                 var endTime = DateTime.ParseExact(param.EndTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
 
-                var rawDataList = _service.GetRawDataList(startTime, endTime);
+                var rawDataList = await _service.GetRawDataListAsync(startTime, endTime);
 
                 if (rawDataList.Any())
                 {

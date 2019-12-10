@@ -5,12 +5,19 @@
   -->
 <configuration>
   <configSections>
-    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
-    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <section name="cachingConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.CacheManagerSettings, Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <section name="Fanex.Data.DbSettingProvider" type="Fanex.Data.Configuration.DbSettingProviderConfigurationSection, Fanex.Data" />
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="AffiliateAdmin.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+
+    <section name="ONEbook.UM" type="ONEbook.UM.Configurations.UMClientConfiguration, ONEbook.UM" />
   </configSections>
-  <connectionStrings>
-    <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-Affiliate.ThirdPartyProduct-20191122050057.mdf;Initial Catalog=aspnet-Affiliate.ThirdPartyProduct-20191122050057;Integrated Security=True" providerName="System.Data.SqlClient" />
-  </connectionStrings>
+  <Fanex.Data.DbSettingProvider default="XmlDbSettingProvider">
+    <providers>
+      <add name="XmlDbSettingProvider" type="Fanex.Data.Configuration.XmlDbSettingProvider, Fanex.Data" resourcePath="~/App_Data/SpConfig/SpName.xml" enableWatching="1" />
+    </providers>
+  </Fanex.Data.DbSettingProvider>
   <appSettings>
     <add key="webpages:Version" value="3.0.0.0" />
     <add key="webpages:Enabled" value="false" />
@@ -81,7 +88,7 @@
     <add key="TopazStartTime" value="2019/11/11 13:00:00" />
 
     <!--VRLottery-->
-    <add key="VrLotteryApiUrl" value="http://imone.imaegisapi.com/Report/ProductReport" />
+    <add key="VrLotteryApiUrl" value="http://imone.imaegisapi.com/Report/GetBetLog" />
     <add key="VrLotteryMerchantCode" value="OkkMzjaRW9tac3HsBejgKKcchnTkbcMW" />
     <add key="VrLotteryCurrencies" value="CNY" />
     <add key="VrLotteryProductWallet" value="503" />
@@ -90,6 +97,14 @@
     <add key="VrLotteryStartTime" value="2019/11/11 13:00:00" />
 
   </appSettings>
+
+  <connectionStrings>
+    <add name="main" providerName="System.Data.SqlClient" connectionString="packet size=4096; Data Source=10.18.200.206;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;" />
+    <add name="custdb" providerName="System.Data.SqlClient" connectionString="packet size=4096; Data Source=10.18.200.233\SQLSERVER2008R2;Initial Catalog=custdb;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;" />
+    <add name="deposit" providerName="System.Data.SqlClient" connectionString="packet size=4096; Data Source=10.18.200.215;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;" />
+    <add name="affiliate_12bet" providerName="System.Data.SqlClient" connectionString="packet size=4096; Data Source=10.18.200.215;Initial Catalog=Affiliate_12Bet;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;" />
+  </connectionStrings>
+
   <system.web>
     <authentication mode="None" />
     <compilation debug="true" targetFramework="4.6.1" />
@@ -158,16 +173,6 @@
       </dependentAssembly>
     </assemblyBinding>
   </runtime>
-  <entityFramework>
-    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
-      <parameters>
-        <parameter value="mssqllocaldb" />
-      </parameters>
-    </defaultConnectionFactory>
-    <providers>
-      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
-    </providers>
-  </entityFramework>
   <system.codedom>
     <compilers>
       <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:6 /nowarn:1659;1699;1701" />

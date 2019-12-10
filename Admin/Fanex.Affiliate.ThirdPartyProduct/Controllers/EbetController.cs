@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.Constants;
-using Fanex.Affiliate.DataService.Importer.DTO.Ebet;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
-using Fanex.Affiliate.DataService.Importer.Utilities;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.Constants;
 using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
 using Fanex.Affiliate.ThirdPartyProduct.ViewModels;
 using Newtonsoft.Json;
+using Fanex.Affiliate.DataService.Importer.Ebet.Utilities;
+using Fanex.Affiliate.DataService.Importer.Ebet.DTO;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using Fanex.Affiliate.DataService.Importer.Ebet.MetaModels;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {

@@ -1,0 +1,65 @@
+﻿[
+  {
+    "CurrencyID": "51",
+    "ChannelId": "227",
+    "PublicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDWBC4JerX8erTkpE8f8tzXCzZ09ptflzoq8L5mp+lDLSOYBbpIbjk7kdHVby01AHdFh4uGQY/mGa8r+EYZgEwGUXNQvHAqRPjgiWcszknDppZJv0UY6TGusAR2UBCbYV1mUViQXvjqsf/6a1uPEbHZmxNBunbBv/70Iahz8KVNmQIDAQAB",
+    "PrivateKey": "<RSAKeyValue><Modulus>1gQuCXq1/Hq05KRPH/Lc1ws2dPabX5c6KvC+ZqfpQy0jmAW6SG45O5HR1W8tNQB3RYeLhkGP5hmvK/hGGYBMBlFzULxwKkT44IlnLM5Jw6aWSb9FGOkxrrAEdlAQm2FdZlFYkF746rH/+mtbjxGx2ZsTQbp2wb/+9CGoc/ClTZk=</Modulus><Exponent>AQAB</Exponent><P>+KFTtyUuQlr2Os4/0sYGgcmU8y8Su176GPLNdbUGr108wUhBSO7yX2aew24hEhduW3hivKuJq7oYLOd1OEAz5w==</P><Q>3FwxiyFHoFqZk9fzEniJeYJShy9Yhv8zOmIErSCZbcXfwEeTFC9+1VxveilO1Om07K21UCdjWApdhHmyHAZCfw==</Q><DP>e6JVa7QcbbinypQ3HouEPtPLsqXMzcmr2e4bBxYurdNSW9afSDIx6giwmAPShBmMsgWKK8GtIuzWCrZKDt+2Lw==</DP><DQ>Rj105V5UUH7QmVmqd2bIm1y5JbIny9Ao6iE4UF8lyOHb8pReA38oNKZkOlJUeHWOYCr2snf7qKKVMJcB+QDdzQ==</DQ><InverseQ>3TAuFkZwWtZLqeoluTsVLm/6KNLRDmJlHJ4cepnVvvEX4ZH4XTxXHM4kcSfahmjY28j2UjSLRlR1IqxrONLCEw==</InverseQ><D>LjHkxgMIuSC7XwbgVWMUrA4tiP2Z9/4qfg5M6tefj/J0VmIWHYA9NlB5XHqM5X3eQNHLGgWYy/ALUZBbgTGiNu2ud2c9DUSQhyJoeQkGc/arLZ71s9HooWmiN+vTaV0Gv9vr1jkIMWUI+2m9hYSvdAteSbrDPC4M6jHOEglGp2k=</D></RSAKeyValue>",
+    "ApiServerHost": "12betvm.ebet.im:8888",
+    "GameServerHost": "12betvm.g6trad.club/h5/bjuqff",
+    "AppLinkServerHost": "12betvm"
+  },
+  {
+    "CurrencyID": "13",
+    "ChannelId": "222",
+    "PublicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJ0cwndufVtHPmz2zP/l8mWpHAymgQdP0vThUhSG1pSQ+gDmygs2bMEthE9sCPwdt7UxChisX+TDYGSgFlk0GTYVUMINP/l+5B0oOmIX4L3goK54Xwmi+4f0bashDVAkujpIbL7RhxilV+sm8U9P7QYGcynurvYhiqK/f0u4plswIDAQAB",
+    "PrivateKey": "<RSAKeyValue><Modulus>idHMJ3bn1bRz5s9sz/5fJlqRwMpoEHT9L04VIUhtaUkPoA5soLNmzBLYRPbAj8Hbe1MQoYrF/kw2BkoBZZNBk2FVDCDT/5fuQdKDpiF+C94KCueF8JovuH9G2rIQ1QJLo6SGy+0YcYpVfrJvFPT+0GBnMp7q72IYqiv39LuKZbM=</Modulus><Exponent>AQAB</Exponent><P>6noIh5daaYIuG1gcysYJI5Rq4PkjKFJxsLQO0q318YB9StVpBAv5tEmNo6RrGtXYMK7TopgcwXg47q0GddZe8Q==</P><Q>lnhq8dHlZZpLzafwmVqO2YtDxozdwqSMtl5szU8oQsgeiQwdGIr6EE9GHg4FXctUW7F4dm9TtglYyytP5gOW4w==</Q><DP>2wVMrGMbiAyaxt4CXwKnDL4ZK7ZsOcDxA67dXbwzTPfJkTpRUv9gqyA9lssBZNq1i5vygiF2Ut3ayE+FBlNM8Q==</DP><DQ>Dc0PqgxhaPdE+qDrrXUj4wol9kEXWfHzwgpZGl+nRrDKNDG7PXQJyZMr0DfjAB5VJ2/Yp6xAVlL3JPNdCbDMlw==</DQ><InverseQ>K1dLVDKSN9bVeGJyd7UySJI0V0xog2+7eB9g2CoVkAiwv0irqmePK5EZKRxI/7nqQisT6yFhKJDwXwCNwPx6PA==</InverseQ><D>H0QtYLalGeJ6eN6N/RHkXDsn3ekNes5Psi+ws4BO8hfVJ6aeFkcdBycvUVX5kaOVO4E4wK1PBcYca4jWkEi8E3AobiFtIl1Y2lWruTccwHFCOfN7CNFjuTRMjVT4i/xoy5kWJaSL/BCkINPEuDxOsiAkAKBXYC+wX6dkbPWgfYE=</D></RSAKeyValue>",
+    "ApiServerHost": "12bet.ebet.im:8888",
+    "GameServerHost": "12bet.g6trad.club/h5/udewb8",
+    "AppLinkServerHost": "12bet"
+  },
+  {
+    "CurrencyID": "15",
+    "ChannelId": "225",
+    "PublicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCG2gfpVjdxU/6JRKB9bXxVbS5aPbGUmLITykzS5obpW+/BtgFumWJIgc3DbINU0QB4Q+XOsbQaGTtWRfooaFKXegCPirguzaGaTiR4wiEGI3T+u1oqUVqCFn/0MN/50wtDZ0Ww+y1cJz0dXHaNskDnyQvrWZoDy+OI5HecyosNwIDAQAB",
+    "PrivateKey": "<RSAKeyValue><Modulus>ghtoH6VY3cVP+iUSgfW18VW0uWj2xlJiyE8pM0uaG6VvvwbYBbpliSIHNw2yDVNEAeEPlzrG0Ghk7VkX6KGhSl3oAj4q4Ls2hmk4keMIhBiN0/rtaKlFaghZ/9DDf+dMLQ2dFsPstXCc9HVx2jbJA58kL61maA8vjiOR3nMqLDc=</Modulus><Exponent>AQAB</Exponent><P>7ZjXNIVL18zWvZHC1aETYjJy9BHW2OGGMkGXPLTRUJ3FC1ha7LBoLGlK5AaJnXTCCV+u+DgXqAXUHx6LqKArFQ==</P><Q>jC83WgzBvP/3k1BGPpCHxmmZa9uuz4qgLmVsIteZLl01KO4qAzRacFnl4PYuW8bWF0S0NQyKij6bZpnT6+NdGw==</Q><DP>FZt4tsYIh6+RN9wxo8vqP1vnKFsW9tJLqfZdEqA/CN3QNZ/rZOsGDkPlE6ekjDU6EDArcVdoj1c4Wzwj50npoQ==</DP><DQ>R5YZAxA+o0Bncj/tDygJXeYxJaYyl+Nntymt1gEZRVbtvbAZnjdO887EmGO++rkIPSulhu2Xlc8w1m05jl01/w==</DQ><InverseQ>H2iZbTyMxxzNyCLV2a9+/4Q/ysBQZAYYKZHcxtBTKqecskt5ybiqoa/LecNqArJpiCdWjz6XEinTobNgz1sufg==</InverseQ><D>PidxmoyW43r7Nfi32rXS8TOMXnayTRPWdPK8L/ER8dsagxt132aoUtaas8YrJQp+Fpe5pvlBORZmAKzrKwrrzbKNQRDF5TkYkAWwcTK+oBDgZAa772ncYOGgM9CyC9wFzlDddlTgZzSld0K48l6NTKjlzH/5olhjSgEGggFDgmE=</D></RSAKeyValue>",
+    "ApiServerHost": "12betid.ebet.im:8888",
+    "GameServerHost": "12betid.g6trad.club/h5/4luuyu",
+    "AppLinkServerHost": "12betid"
+  },
+  {
+    "CurrencyID": "4",
+    "ChannelId": "226",
+    "PublicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCO4jTOZcS70xtRevql1q9sz4yW3OC70uVPH/3PHmmo8NrvMPYqMRZXVJgysH1aIYA1TsXEOquU8AWw6I2zBZnxNyUW1JFRM/GrUUT9TES5DO8C3LNK3MWOGoSYTosvfEreVwugdqy9VGsqIZQFW9KQivdKvE4By13McNt8AcwAxwIDAQAB",
+    "PrivateKey": "<RSAKeyValue><Modulus>juI0zmXEu9MbUXr6pdavbM+Mltzgu9LlTx/9zx5pqPDa7zD2KjEWV1SYMrB9WiGANU7FxDqrlPAFsOiNswWZ8TclFtSRUTPxq1FE/UxEuQzvAtyzStzFjhqEmE6LL3xK3lcLoHasvVRrKiGUBVvSkIr3SrxOActdzHDbfAHMAMc=</Modulus><Exponent>AQAB</Exponent><P>1hJYtSbFtXdYcqPIlZvuOhPueny4ARb2zzw4po0PSAOhQtkUHWBpU/pHLtn3gMUsWdVrkOh7ST7GlHzwo9fU/w==</P><Q>qt51LmNdROpmPFMANvFRHAUFGjtnmfg9HL0TXuqGTQuDJ1uc/VUyOUSsXUdAVYldeq3tbfnEoTIaShCDfR5sOQ==</Q><DP>e0jfm5wzurl7z7Hxf+/od7wo2JPhKIeAJoNJIOoWBeRJSAVapzxyDHIT8rCG8LsdOrNFmpO5BMrJdJSrxcA0Iw==</DP><DQ>lXljwz/TUL1I0E6/qlCyZrORgiAjglLhiylwL6Ez+WQvyJdhH1CPTf/gVP1Gr00qhG5wfLt5opYE33PQwvyBKQ==</DQ><InverseQ>00bFZlKCAakHorJVX3ZV8doAM70n5E/ck5bH6BOXX39Mmxl3dE5Od+RJkOvl8Bl+NxvnQVhdL0+1KWVO5IPofg==</InverseQ><D>e7BsoCPPG/1TD8UTB88CS4KcJNkOnumhYk7Ca7LbKsld7WQIJVwbB/yOSIsp6IVJtFv9rbJQaH0joBKg39HAgZfMSTyFx8lCw0l5w86v6OiTA+V/E+It1oGmSqKUGk3nETtqkQiethnyN0pGeI3VTe5SDnm4t7xbvE4JyJ4ky1E=</D></RSAKeyValue>",
+    "ApiServerHost": "12betth.ebet.im:8888",
+    "GameServerHost": "12betth.g6trad.club/h5/lebelc",
+    "AppLinkServerHost": "12betth"
+  },
+  {
+    "CurrencyID": "61",
+    "ChannelId": "229",
+    "PublicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC0qqtAQX7rwO+6nHVpDuBSRFPW0sfVUQKrpIskjpZpyMuipAf6gLK+TI6f1EiYPQD8NXdOf522EcQbDOb8jPWFL1R4vMpzYSB86/JAAB2YPKH8S2NJdjGurWyx0pwsSyxJL+gCNQRlN1VcUXAknRoMb7dCilX1wPriZz+hiOqr5wIDAQAB",
+    "PrivateKey": "<RSAKeyValue><Modulus>tKqrQEF+68Dvupx1aQ7gUkRT1tLH1VECq6SLJI6WacjLoqQH+oCyvkyOn9RImD0A/DV3Tn+dthHEGwzm/Iz1hS9UeLzKc2EgfOvyQAAdmDyh/EtjSXYxrq1ssdKcLEssSS/oAjUEZTdVXFFwJJ0aDG+3QopV9cD64mc/oYjqq+c=</Modulus><Exponent>AQAB</Exponent><P>9np/Cx2WKyMC0n1sxvjmDTme84pi14QNz962tRK22ZRvcul+W3wc7Zrt43tAXth+9dA9GDWjr8d1SOgdFolufw==</P><Q>u6VWuPtYSqHjjFpR2MtK0tcbcaKplNTlY5lGRNS44frNETd/vz5kD5kuKaogHoJj84Xoo9FXar8CCUCTRUtemQ==</Q><DP>RhSqTrTI39cClGrJJQHcF2KMyV5NoE2Rx8rhVDbP+qlzzs6I+OYfK4fjn8yJju4rmyTsWhfWRMKHnIUy0BefbQ==</DP><DQ>K70CVePgVKUfkRuMcGgSbMrPDtHHjXWCcpDLnEepQKNhIV46XK2CTVB7PiL1kab6/Ux9SZIGOk+DffybV0+WIQ==</DQ><InverseQ>14q4HLdYdpWxBHsEBAP4Wfzw0FclntUdQUW0m4+JxodEtytExIL12aDwvPYdTHsA8I6zpGODKl3jxBOFOIwl9Q==</InverseQ><D>bZASyqTtk4st1r2LdmrPHxTQwzaQeYznUbA3sbPHA+ABnmBbdk8WFtHWrJbQb4KPVmQWNkSuH/wmMUFh00aonVUQ1sR642DX6jUoHc2Qal54uL4jpmCSTx9mh0XkVXXCiCykRJistvuJrq+7p7SY+VXFDvMOcnL/pvDjON9epAE=</D></RSAKeyValue>",
+    "ApiServerHost": "12betin.ebet.im:8888",
+    "GameServerHost": "12betin.g6trad.club/h5/t8hjab",
+    "AppLinkServerHost": "12betin"
+  },
+  {
+    "CurrencyID": "3",
+    "ChannelId": "250",
+    "PublicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzq3ppZZgZ7rXDW+YKNbVroRWTJqY0+lbs4qkvoByRxmiy16B0Rj8vreSCzO+24uzDiQ3lAF0SZG6H4tCx8A+bi8emvGwKqmtCum6xdBm/ZKJp3ylOxOn6qlQtKacxVFkcP3cWcd/8BGAJkvBbIFqyhddN9q5jpiz1CtzTRYA8WwIDAQAB",
+    "PrivateKey": "<RSAKeyValue><Modulus>s6t6aWWYGe61w1vmCjW1a6EVkyamNPpW7OKpL6AckcZostegdEY/L63kgszvtuLsw4kN5QBdEmRuh+LQsfAPm4vHprxsCqprQrpusXQZv2Siad8pTsTp+qpULSmnMVRZHD93FnHf/ARgCZLwWyBasoXXTfauY6Ys9Qrc00WAPFs=</Modulus><Exponent>AQAB</Exponent><P>4wpy+BUshSkVfGJV10LzKlt0q0bCUl6ZFt0SiuAG4fpYzRd/pBUvEPGk+6DnjsASDxxacpETPI5MTGfkRiyQEQ==</P><Q>ypY6JjzOKp6bqlzIioXbnTtewNONybqasMr49iFWDOsWqtM54v1jx4AOEbo3wHn9OlgSnO1SFb/zs1Il7Fzxqw==</Q><DP>rwjWO9YvHXXf/6XcIfmWeFhLqOQDWfdeNNc4vWIbTEpx/aOZHwnJ4Fk7ZVbWTiJbidTFEkAwQWY/AkSyIzul0Q==</DP><DQ>hAifA3bTw5E10TXBeg690F72ZWQ738MfuKPA2OFnLOo3DsS10Ivm8QozoTglx+t5sAHgt6gwvH4rPa8HimIVGw==</DQ><InverseQ>0F6FhcpSBzOex+m6q1DTQSv4/fdVoO1oxJmbZ24nOyj2etgukTPZ0t9gglvBgLpXlTBEuehDE5kMAO2jK43f/Q==</InverseQ><D>oftOUGlcmLyiuG9I1RmY52EB/3mPzSGJbuXmnF5gg3h6egp2yX1vh//hjZ9P2vV5ecw9b6FFR8it8eqmNlX06sbjIpbMbm2MPDoGx7RyrosXoFs5QJRYLYa8o1fVsciJYlNBk5/I8zG9HdovMg+XujM9/f/QQB3DIjvY76keMiE=</D></RSAKeyValue>",
+    "ApiServerHost": "opalen.ebet.im:8888",
+    "GameServerHost": "opalen.g6trad.club/h5/dr5l8a",
+    "AppLinkServerHost": "opalen"
+  },
+  {
+    "CurrencyID": "2",
+    "ChannelId": "249",
+    "PublicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2YW6hL1zo1rcNG710urlRvqjh/rAB0ifuc58QITjA5P6+8M2HWPRsovRIivnWpLj9lpERtms2sprVsVKKyHLb3F6OGSFbiuD0whk5sxcPgD/ywRlweK2UwNa/NAsYKANmWki9G5YDIT4yH2VePpeYHjb3RdoB2nwOTVAjF9dSfwIDAQAB",
+    "PrivateKey": "<RSAKeyValue><Modulus>tmFuoS9c6Na3DRu9dLq5Ub6o4f6wAdIn7nOfECE4wOT+vvDNh1j0bKL0SIr51qS4/ZaREbZrNrKa1bFSishy29xejhkhW4rg9MIZObMXD4A/8sEZcHitlMDWvzQLGCgDZlpIvRuWAyE+Mh9lXj6XmB4290XaAdp8Dk1QIxfXUn8=</Modulus><Exponent>AQAB</Exponent><P>5p8WPJyVa8Vhlw5IR+wC0W99/x763oTtAUWo65WKydcMvwPagJoGKRS8auPly7BZepQ3CrLqZ2MxH5SmP77sDw==</P><Q>ynNWKP1fB1F3fOPBfd428gPKAETO49BjY/pQ49VscqqL/WOw7rhJDi51kNBf+SpOyaNcocxKqMetz2Gh5eyCkQ==</Q><DP>HzaM5eszdgCi8rTmJ4XT49C5NtxUi+VlxnRNJoV44VSPzxKQcjNmfgzma3ko0uatVZ/Vy0bn3tJYBbQyxBHtFQ==</DP><DQ>JgSAspPaC5LF4IMYq91V7h6+CUzimS9h6r1wAUjr46CZR004Rav/tBUPaNFopG7Iet8dnxixEH7m6eHIuFewsQ==</DQ><InverseQ>wuZHUmvlCf1m2xuLMH36BKT8Dx7XBH/7ZZG9VF2/QyNnu8w533qyQWeh6EXzg6wQqfj4/e1PvJWGSXhzwwvvFw==</InverseQ><D>O/nul7MrqqZxrC3jL+/34ZoBj9BhsTebSh9bv8ItF8I2xDQMYuYt+0vbab/KSXwCGeLZ8ik7ONGjeYLG0jz5CCYU80BG1vBL1q5+1JQFIITmCYGKazir7k7wVhmxTyIjnaq908gCu7fGg1U5eAMQzw+xnN9hrNcbu6gbhJT/OgE=</D></RSAKeyValue>",
+    "ApiServerHost": "opalmy.ebet.im:8888",
+    "GameServerHost": "opalmy.g6trad.club/h5/69bs54",
+    "AppLinkServerHost": "opalmy"
+  }
+]

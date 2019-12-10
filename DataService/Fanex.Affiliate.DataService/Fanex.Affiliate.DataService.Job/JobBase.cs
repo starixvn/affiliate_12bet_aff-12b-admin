@@ -9,6 +9,8 @@ namespace Fanex.Affiliate.DataService.Job
 {
     public abstract class JobBase : IJob
     {
+        internal static ILogger Logger => LogProvider.Logger;
+
         public async Task Execute(IJobExecutionContext context)
         {
             try
@@ -16,7 +18,7 @@ namespace Fanex.Affiliate.DataService.Job
                 var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
                 if (isUm)
                 {
-                    LogService.Info("System is under maintained");
+                    Logger.Info("System is under maintained");
                 }
                 else
                 {
@@ -28,7 +30,7 @@ namespace Fanex.Affiliate.DataService.Job
             {
                 var builder = new StringBuilder();
                 AddExceptionInfo(builder, ex, 5);
-                LogService.Error(builder.ToString(), ex);
+                Logger.Error(builder.ToString(), ex);
             }
 
         }

@@ -47,6 +47,10 @@
     <CodeAnalysisRuleSet>Affiliate.ThirdPartyProduct.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -80,6 +84,26 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -211,6 +235,43 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\OpusData\opus_1.xml" />
+    <Content Include="App_Data\OpusData\opus_2.xml" />
+    <Content Include="App_Data\OpusData\opus_3.xml" />
+    <Content Include="App_Data\OpusData\opus_4.xml" />
+    <Content Include="App_Data\SpConfig\SpName.local.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.master.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.production.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.sit.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.uat.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpName.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>_SpName.txt</LastGenOutput>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpName.txt">
+      <DependentUpon>_SpName.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpNameConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Portal\www\config-utils\constant.js" />
     <Content Include="Areas\Portal\www\config-utils\entry.js" />
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
@@ -397,6 +458,41 @@
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\view-log.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\multiple-select.scss" />
     <Content Include="Affiliate.ThirdPartyProduct.ruleset" />
+    <Content Include="App_Data\EbetData\ebet_13.json" />
+    <Content Include="App_Data\EbetData\ebet_15.json" />
+    <Content Include="App_Data\EbetData\ebet_2.json" />
+    <Content Include="App_Data\EbetData\ebet_3.json" />
+    <Content Include="App_Data\EbetData\ebet_4.json" />
+    <Content Include="App_Data\EbetData\ebet_4_2.json" />
+    <Content Include="App_Data\EbetData\ebet_4_3.json" />
+    <Content Include="App_Data\EbetData\ebet_51.json" />
+    <Content Include="App_Data\EbetData\ebet_61.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_01.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_02.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_03.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_04.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_05.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_06.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_07.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_08.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_09.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_10.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_11.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_12.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_13.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_14.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_15.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_16.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_17.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_18.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_19.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_20.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_21.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_22.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_23.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_24.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_25.json" />
+    <Content Include="App_Data\EBetConfig.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -427,9 +523,7 @@
     <None Include="Web.12betthirdpartyproduct.local config" />
     <None Include="Web.12betthirdpartyproduct.uat.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

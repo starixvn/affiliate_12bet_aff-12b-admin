@@ -40,9 +40,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Affiliate.DataService.Importer.AgCasino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.AgCasino.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Affiliate.DataService.Importer.BetSoft, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.BetSoft.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Affiliate.DataService.Importer.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Affiliate.DataService.Importer.Ebet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.Ebet.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Affiliate.DataService.Importer.GPI">
       <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.GPI.dll</HintPath>
@@ -51,9 +63,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.IMOne.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Affiliate.DataService.Importer.ISoftBet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.ISoftBet.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Affiliate.DataService.Importer.LBKeno, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.LBKeno.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Affiliate.DataService.Importer.Opus, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.Opus.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Affiliate.DataService.Importer.Topaz, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.Topaz.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
@@ -73,6 +97,9 @@
     </Reference>
     <Reference Include="Fanex.ThirdParty.Importing.Service">
       <HintPath>_Dependencies\Fanex.ThirdParty.Importing.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="HttpClientFactory">
+      <HintPath>_Dependencies\HttpClientFactory.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -183,10 +210,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="_Dependencies\CitiXchangeLibrary.dll" />
+    <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.AgCasino.dll" />
+    <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.BetSoft.dll" />
     <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.Core.dll" />
     <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.dll" />
+    <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.Ebet.dll" />
+    <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.GPI.dll" />
     <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.IMOne.dll" />
+    <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.ISoftBet.dll" />
     <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.LBKeno.dll" />
+    <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.Opus.dll" />
+    <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.Topaz.dll" />
     <Content Include="_Dependencies\Fanex.ThirdParty.Importing.Core.dll" />
     <Content Include="_Dependencies\Fanex.ThirdParty.Importing.DataAccess.dll" />
     <Content Include="_Dependencies\Fanex.ThirdParty.Importing.Model.dll" />

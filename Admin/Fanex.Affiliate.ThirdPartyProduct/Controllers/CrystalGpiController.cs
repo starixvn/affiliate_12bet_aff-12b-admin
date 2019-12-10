@@ -3,10 +3,12 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
 using Fanex.Affiliate.ThirdPartyProduct.Utilities;
+using Fanex.Affiliate.DataService.Importer.Gpi.MetaModels;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using Fanex.Affiliate.DataService.Importer.Core.Constants;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {

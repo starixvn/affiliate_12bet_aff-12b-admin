@@ -1,20 +1,16 @@
 ﻿using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.Constants;
-using Fanex.Affiliate.DataService.Importer.MetaModels.GPI;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.Constants;
 using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
 using Fanex.Affiliate.ThirdPartyProduct.ViewModels;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Xml.Linq;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {

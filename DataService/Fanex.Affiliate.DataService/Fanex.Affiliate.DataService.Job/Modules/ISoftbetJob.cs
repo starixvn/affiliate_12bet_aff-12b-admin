@@ -19,6 +19,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly IISoftbetService _isoftbetService;
         private readonly ITimeTracker _timeTracker;
 
+
         public ISoftbetJob()
         {
             _appSetting = new AppSettings();

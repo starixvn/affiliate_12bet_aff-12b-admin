@@ -111,6 +111,7 @@
     <Compile Include="Utilities\AppSettings.cs" />
     <Compile Include="Utilities\DataSimulator.cs" />
     <Compile Include="Utilities\DateTimeConverter.cs" />
+    <Compile Include="Utilities\DateTimeHelper.cs" />
     <Compile Include="Utilities\HttpClientPooling.cs" />
     <Compile Include="Utilities\IAppSettings.cs" />
     <Compile Include="Utilities\IDataSimulator.cs" />

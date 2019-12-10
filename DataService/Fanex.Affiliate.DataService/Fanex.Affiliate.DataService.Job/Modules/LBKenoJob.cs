@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var now = DateTime.Now;
 
             var gapTime = now - lastQueryTime;
-            LogService.Info($"Start LBKeno service at {now}");
+            Logger.Info($"Start LBKeno service at {now}");
             if (gapTime.Days >= 1)
             {
                 var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                 var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
                 var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
-                LogService.Info($"LBKeno service - Get data from {startTimeServer} to {endTimeServer}");
+                Logger.Info($"LBKeno service - Get data from {startTimeServer} to {endTimeServer}");
                 await service.ImportAsync(startTimeServer, endTimeServer);
 
                 var saveTimeTrackerParam = new InsertTimeTrackerParam
@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     CallTime = endTime
                 };
                 _timeTracker.SaveTime(saveTimeTrackerParam);
-                LogService.Info($"LBKeno service - Finished get data");
+                Logger.Info($"LBKeno service - Finished get data");
             }
         }
     }
