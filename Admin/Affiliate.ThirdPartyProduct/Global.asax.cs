@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,6 +20,8 @@ namespace Affiliate.ThirdPartyProduct.TestRequest
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            LoggingConfig.RegisterSentry();
         }
+
     }
 }
