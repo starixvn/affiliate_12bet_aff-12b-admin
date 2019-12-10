@@ -53,137 +53,118 @@
           background: #ff8000;
           border: 0; }
 
-.account-overview-filter {
-  margin-left: -15px; }
-  .account-overview-filter:before {
-    content: '';
-    display: inline-block;
-    background: #BC2608;
-    height: 1px;
-    width: calc(100% - 220px); }
-  .account-overview-filter .form-group {
-    float: right;
-    margin-top: 11px; }
-    .account-overview-filter .form-group .form-wrapper .form-control {
-      width: 100px;
-      height: 24px;
-      text-align: center; }
-    .account-overview-filter .form-group .form-wrapper .glyphicon-calendar {
-      font-size: 14px;
-      color: darkred;
-      cursor: pointer; }
-    .account-overview-filter .form-group .btn-submit {
-      margin: 0 0px 5px 15px; }
+.account-overview .tab-menu {
+  background: #f5f5f5; }
+  .account-overview .tab-menu .menu {
+    display: flex;
+    margin: 0 !important; }
+    .account-overview .tab-menu .menu li:not(:last-child) {
+      border-right: 1px solid #f9f9f9; }
+    .account-overview .tab-menu .menu .menu-item {
+      display: block;
+      text-transform: capitalize;
+      font-weight: 400;
+      color: #fff;
+      transition: all .2s ease;
+      background-color: gray;
+      border-radius: 5px 5px 0px 0px;
+      text-decoration: none;
+      padding: 0 25px; }
+      .account-overview .tab-menu .menu .menu-item.active, .account-overview .tab-menu .menu .menu-item:hover {
+        background-color: #E15F01; }
+      .account-overview .tab-menu .menu .menu-item:focus {
+        outline: none; }
 
-.account-overview-content {
-  margin-top: -24px; }
-  .account-overview-content .tab-menu {
-    background: #f5f5f5; }
-    .account-overview-content .tab-menu .menu {
+.summary .bg-red {
+  background: #E15F01;
+  color: #FFF;
+  line-height: 2.5rem;
+  white-space: nowrap;
+  overflow: auto; }
+  .summary .bg-red .text {
+    padding-left: 15px;
+    padding-right: 50px; }
+
+.summary .form-group {
+  margin: 10px; }
+  .summary .form-group .form-wrapper .form-control {
+    width: 100px;
+    height: 24px;
+    text-align: center; }
+  .summary .form-group .form-wrapper .glyphicon-calendar {
+    font-size: 14px;
+    color: darkred;
+    cursor: pointer; }
+  .summary .form-group .btn-submit {
+    margin: 0 0px 5px 15px; }
+
+.summary-content .container-fluid .my-account {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold; }
+
+.summary-content .container-fluid .img-icon {
+  width: 80px;
+  height: 80px;
+  margin: 10px auto;
+  border-radius: 50%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  overflow: hidden; }
+
+.summary-content .container-fluid .info-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100px;
+  text-align: center;
+  margin: .6rem;
+  color: #fff;
+  box-shadow: 5px 0px 5px grey; }
+  .summary-content .container-fluid .info-panel-green {
+    background-color: #77933C; }
+  .summary-content .container-fluid .info-panel-blue {
+    background-color: #4F81BD; }
+  .summary-content .container-fluid .info-panel-orange {
+    background-color: #F79646; }
+  .summary-content .container-fluid .info-panel-title {
+    width: 100%;
+    font-size: 1.75rem; }
+  .summary-content .container-fluid .info-panel-content {
+    width: 100%;
+    font-size: 2.75rem;
+    margin-top: -10px;
+    padding-bottom: 10px; }
+
+.summary-content .details-section {
+  margin-top: 10px; }
+  .summary-content .details-section .table .has-scroll thead {
+    margin-right: 17px; }
+  .summary-content .details-section .table .has-scroll tbody {
+    height: 290px; }
+  .summary-content .details-section .table table {
+    border: none !important; }
+    .summary-content .details-section .table table tbody {
+      overflow: auto;
+      display: block;
+      position: relative;
+      width: 100%; }
+    .summary-content .details-section .table table thead {
+      display: block;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #fff; }
+      .summary-content .details-section .table table thead tr, .summary-content .details-section .table table thead th {
+        background: #E15F01 !important;
+        align-items: center; }
+    .summary-content .details-section .table table tr {
       display: flex;
-      margin: 0 !important; }
-      .account-overview-content .tab-menu .menu li:not(:last-child) {
-        border-right: 1px solid #f9f9f9; }
-      .account-overview-content .tab-menu .menu .menu-item {
-        display: block;
-        text-transform: capitalize;
-        font-weight: 400;
-        font-size: 1.5rem;
-        line-height: 24px !important;
-        color: #fff;
-        text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
-        transition: all .2s ease;
-        background-color: gray;
-        border-radius: 8px 8px 0px 0px;
-        text-decoration: none; }
-        .account-overview-content .tab-menu .menu .menu-item.active, .account-overview-content .tab-menu .menu .menu-item:hover {
-          background-color: #BC2608;
-          text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.32); }
-        .account-overview-content .tab-menu .menu .menu-item:focus {
-          outline: none; }
-  .account-overview-content .summary-section .summary-content .bg-red {
-    display: flex;
-    justify-content: flex-end;
-    background: #BC2608;
-    color: #FFF;
-    line-height: 2.5rem; }
-    .account-overview-content .summary-section .summary-content .bg-red .text {
-      padding-right: 100px;
-      padding-left: 10px; }
-  .account-overview-content .summary-section .summary-content .container-fluid .my-account {
-    text-align: center;
-    font-size: 3rem;
-    font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: -5px; }
-  .account-overview-content .summary-section .summary-content .container-fluid .img-icon {
-    width: 80px;
-    height: 80px;
-    margin: 10px auto;
-    border-radius: 50%;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    overflow: hidden; }
-  .account-overview-content .summary-section .summary-content .container-fluid .info-panel {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    height: 100px;
-    text-align: center;
-    margin: .6rem;
-    color: #fff;
-    box-shadow: 5px 0px 5px grey; }
-    .account-overview-content .summary-section .summary-content .container-fluid .info-panel-green {
-      background-color: #77933C; }
-    .account-overview-content .summary-section .summary-content .container-fluid .info-panel-blue {
-      background-color: #4F81BD; }
-    .account-overview-content .summary-section .summary-content .container-fluid .info-panel-orange {
-      background-color: #F79646; }
-    .account-overview-content .summary-section .summary-content .container-fluid .info-panel-title {
-      width: 100%;
-      font-size: 1.75rem; }
-    .account-overview-content .summary-section .summary-content .container-fluid .info-panel-content {
-      width: 100%;
-      font-size: 2.75rem;
-      margin-top: -10px;
-      padding-bottom: 10px; }
-  .account-overview-content .overview-section {
-    margin-top: 10px; }
-    .account-overview-content .overview-section .table .has-scroll thead {
-      margin-right: 17px; }
-    .account-overview-content .overview-section .table .has-scroll tbody {
-      height: 290px; }
-    .account-overview-content .overview-section .table table {
-      border: none !important; }
-      .account-overview-content .overview-section .table table tbody {
-        overflow: auto;
-        display: block;
-        position: relative;
-        width: 100%; }
-      .account-overview-content .overview-section .table table thead {
-        display: block;
-        border-top: 1px solid #fff;
-        border-bottom: 1px solid #fff; }
-        .account-overview-content .overview-section .table table thead tr, .account-overview-content .overview-section .table table thead th {
-          background: #BC2608 !important;
-          align-items: center; }
-      .account-overview-content .overview-section .table table tr {
-        display: flex;
-        background: #FCD5B5;
-        padding: 0;
-        min-width: 890px; }
-        .account-overview-content .overview-section .table table tr:nth-child(even) {
-          background: #FDEADA; }
-        .account-overview-content .overview-section .table table tr:hover {
-          background-color: #f5f5f5; }
-        .account-overview-content .overview-section .table table tr td, .account-overview-content .overview-section .table table tr th {
-          border: none;
-          flex-basis: 100%;
-          font-size: 1.3rem; }
-
-@media (max-width: 350px) {
-  .account-overview-content {
-    margin-top: -5px !important; } }
-
-@media (max-width: 716px) {
-  .account-overview-content .summary-section .summary-content .bg-red .text {
-    padding-right: 10px !important; } }
+      background: #FCD5B5;
+      padding: 0;
+      min-width: 890px; }
+      .summary-content .details-section .table table tr:nth-child(even) {
+        background: #FDEADA; }
+      .summary-content .details-section .table table tr:hover {
+        background-color: #f5f5f5; }
+      .summary-content .details-section .table table tr td, .summary-content .details-section .table table tr th {
+        border: none;
+        flex-basis: 100%;
+        font-size: 1.3rem; }

@@ -2,156 +2,134 @@
 @import "../scss/abstracts/variables";
 @import "../scss/abstracts/mixins";
 
-$bg-color: #BC2608;
+$bg-color: #E15F01;
 $white-border: 1px solid #fff;
 
 .account-overview {
-    &-filter {
-        margin-left: -15px;
+    .tab-menu {
+        background: $bg-main-color;
 
-        &:before {
-            content: '';
-            display: inline-block;
-            background: $bg-color;
-            height: 1px;
-            width: calc(100% - 220px);
+        .menu {
+            display: flex;
+            margin: 0 !important;
+
+            li:not(:last-child) {
+                border-right: 1px solid #f9f9f9;
+            }
+
+            .menu-item {
+                display: block;
+                text-transform: capitalize;
+                font-weight: 400;
+                color: #fff;
+                transition: all .2s ease;
+                background-color: gray;
+                border-radius: 5px 5px 0px 0px;
+                text-decoration: none;
+                padding: 0 25px;
+
+                &.active, &:hover {
+                    background-color: $bg-color;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+}
+
+.summary {
+    .bg-red {
+        background: $bg-color;
+        color: #FFF;
+        line-height: 2.5rem;
+        white-space: nowrap;
+        overflow: auto;
+
+        .text {
+            padding-left: 15px;
+            padding-right: 50px;
+        }
+    }
+
+    .form-group {
+        margin: 10px;
+
+        .form-wrapper {
+            .form-control {
+                width: 100px;
+                height: 24px;
+                text-align: center;
+            }
+
+            .glyphicon-calendar {
+                font-size: 14px;
+                color: darkred;
+                cursor: pointer;
+            }
         }
 
-        .form-group {
-            float: right;
-            margin-top: 11px;
-
-            .form-wrapper {
-                .form-control {
-                    width: 100px;
-                    height: 24px;
-                    text-align: center;
-                }
-
-                .glyphicon-calendar {
-                    font-size: 14px;
-                    color: darkred;
-                    cursor: pointer;
-                }
-            }
-
-            .btn-submit {
-                margin: 0 0px 5px 15px;
-            }
+        .btn-submit {
+            margin: 0 0px 5px 15px;
         }
     }
 
     &-content {
-        margin-top: -24px;
+        .container-fluid {
+            .my-account {
+                text-align: center;
+                font-size: 3rem;
+                font-weight: bold;
+            }
 
-        .tab-menu {
-            background: $bg-main-color;
+            .img-icon {
+                width: 80px;
+                height: 80px;
+                margin: 10px auto;
+                border-radius: 50%;
+                box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+                overflow: hidden;
+            }
 
-            .menu {
+            .info-panel {
                 display: flex;
-                margin: 0 !important;
+                flex-wrap: wrap;
+                align-items: center;
+                height: 100px;
+                text-align: center;
+                margin: .6rem;
+                color: #fff;
+                box-shadow: 5px 0px 5px grey;
 
-                li:not(:last-child) {
-                    border-right: 1px solid #f9f9f9;
+                &-green {
+                    background-color: #77933C;
                 }
 
-                .menu-item {
-                    display: block;
-                    text-transform: capitalize;
-                    font-weight: 400;
-                    font-size: 1.5rem;
-                    line-height: 24px !important;
-                    color: #fff;
-                    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
-                    transition: all .2s ease;
-                    background-color: gray;
-                    border-radius: 8px 8px 0px 0px;
-                    text-decoration: none;
-
-                    &.active, &:hover {
-                        background-color: $bg-color;
-                        text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.32);
-                    }
-
-                    &:focus {
-                        outline: none;
-                    }
-                }
-            }
-        }
-
-        .summary-section {
-            .summary-content {
-                .bg-red {
-                    display: flex;
-                    justify-content: flex-end;
-                    background: $bg-color;
-                    color: #FFF;
-                    line-height: 2.5rem;
-
-                    .text {
-                        padding-right: 100px;
-                        padding-left: 10px;
-                    }
+                &-blue {
+                    background-color: #4F81BD;
                 }
 
-                .container-fluid {
-                    .my-account {
-                        text-align: center;
-                        font-size: 3rem;
-                        font-weight: bold;
-                        margin-top: 10px;
-                        margin-bottom: -5px;
-                    }
+                &-orange {
+                    background-color: #F79646;
+                }
 
-                    .img-icon {
-                        width: 80px;
-                        height: 80px;
-                        margin: 10px auto;
-                        border-radius: 50%;
-                        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-                        overflow: hidden;
-                    }
+                &-title {
+                    width: 100%;
+                    font-size: 1.75rem;
+                }
 
-                    .info-panel {
-                        display: flex;
-                        flex-wrap: wrap;
-                        align-items: center;
-                        height: 100px;
-                        text-align: center;
-                        margin: .6rem;
-                        color: #fff;
-                        box-shadow: 5px 0px 5px grey;
-
-                        &-green {
-                            background-color: #77933C;
-                        }
-
-                        &-blue {
-                            background-color: #4F81BD;
-                        }
-
-                        &-orange {
-                            background-color: #F79646;
-                        }
-
-                        &-title {
-                            width: 100%;
-                            font-size: 1.75rem;
-                        }
-
-                        &-content {
-                            width: 100%;
-                            font-size: 2.75rem;
-                            margin-top: -10px;
-                            padding-bottom: 10px;
-                        }
-                    }
+                &-content {
+                    width: 100%;
+                    font-size: 2.75rem;
+                    margin-top: -10px;
+                    padding-bottom: 10px;
                 }
             }
         }
 
-        .overview-section {
+        .details-section {
             margin-top: 10px;
 
             .table {
@@ -205,30 +183,6 @@ $white-border: 1px solid #fff;
                             border: none;
                             flex-basis: 100%;
                             font-size: 1.3rem;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: 350px) {
-    .account-overview {
-        &-content {
-            margin-top: -5px !important;
-        }
-    }
-}
-
-@media (max-width: 716px) {
-    .account-overview {
-        &-content {
-            .summary-section {
-                .summary-content {
-                    .bg-red {
-                        .text {
-                            padding-right: 10px !important;
                         }
                     }
                 }

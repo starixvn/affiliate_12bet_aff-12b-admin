@@ -18,8 +18,7 @@
         initialize: function () {
             initMonthPicker();
             _me.initEvent();
-            _me.renderSummaryView(null, "Summary");
-            _me.renderOverviewView(null, "Overview");
+            _me.renderView(null, "Summary");
         },
 
         initEvent: function () {
@@ -28,34 +27,32 @@
                 //    monthDate: $("#MonthDate").data("original-date")
                 //}
 
-                var actionNameSummary = $('.menu-summary.active').data('name');
-                var actionNameOverview = $('.menu-overview.active').data('name');
+                var actionMenu = $('.account-overview-menu.active').data('name');
 
-                _me.renderSummaryView(null, actionNameSummary);
-                _me.renderOverviewView(null, actionNameOverview);
+                _me.renderView(null, actionMenu);
 
                 //Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverView?") + $.param(params));
             });
 
-            $('#summary-section').on('click', '.menu-summary', function () {
+            $('#account-overview-menu').on('click', '.account-overview-menu', function () {
+                var name = $(this).data('name');
+                _me.renderView(null, name);
+            });
+
+            $('#details-section').on('click', '.details-section-menu', function () {
                 var name = $(this).data('name');
                 _me.renderSummaryView(null, name);
             });
-
-            $('#overview-section').on('click', '.menu-overview', function () {
-                var name = $(this).data('name');
-                _me.renderOverviewView(null, name);
-            });
         },
 
-        activeMenu: function (sectionName, actionName) {
+        activeMenu: function (actionName) {
             var activeClassName = "active";
-            $(".menu-" + sectionName).removeClass(activeClassName);
+            $(".account-overview-menu").removeClass(activeClassName);
             $("#menu" + actionName).addClass(activeClassName);
         },
 
-        renderSummaryView: function (params, actionName) {
-            _me.activeMenu("summary", actionName);
+        renderView: function (params, actionName) {
+            _me.activeMenu(actionName);
 
             $.ajax({
                 type: "POST",
@@ -65,19 +62,29 @@
                 url: Site.resolveRelativeUrl("UserPanel/AccountOverView/" + actionName),
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
-                    $("#summary-section-content").html(response);
+                    $("#account-overview-content").html(response);
                 },
                 beforeSend: function () {
                     Site.showLoader();
                 },
                 complete: function () {
-                    Site.hideLoader();
+                    if (actionName === "Summary") {
+                        _me.renderSummaryView(null, "Overview");
+                    } else {
+                        Site.hideLoader();
+                    }
                 }
             });
         },
 
-        renderOverviewView: function (params, actionName) {
-            _me.activeMenu("overview", actionName);
+        activeSummaryMenu: function (actionName) {
+            var activeClassName = "active";
+            $(".details-section-menu").removeClass(activeClassName);
+            $("#menu" + actionName).addClass(activeClassName);
+        },
+
+        renderSummaryView: function (params, actionName) {
+            _me.activeSummaryMenu(actionName);
 
             $.ajax({
                 type: "POST",
@@ -87,7 +94,7 @@
                 url: Site.resolveRelativeUrl("UserPanel/AccountOverView/" + actionName),
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
-                    $("#overview-section-content").html(response);
+                    $("#details-section-content").html(response);
                 },
                 beforeSend: function () {
                     Site.showLoader();

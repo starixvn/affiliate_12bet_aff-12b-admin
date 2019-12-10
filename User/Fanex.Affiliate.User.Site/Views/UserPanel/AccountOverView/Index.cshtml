@@ -15,37 +15,12 @@
 @Html.InlineStyles("~/www/build/styles/css/account-overview.min.css")
 
 <div class="account-overview">
-    <div class="account-overview-filter">
-        <div class="form-group">
-            <div id="monthPicker" class="form-wrapper d-inline-block">
-                <input readonly id="MonthDate" data-original-date="@selectedMonth.ToString("MM/dd/yyyy")" class="form-control d-inline-block" type="text" value="@selectedMonth.ToString("MMM-yyyy")" />
-                <span class="glyphicon glyphicon-calendar" id="monthPickerTrigger"></span>
-            </div>
-            <div class="d-inline-block">
-                <button class="btn btn-submit" id="statisticsSubmit" type="button">@Lang.Submit</button>
-            </div>
-        </div>
+    <div class="tab-menu" id="account-overview-menu">
+        <ul class="menu list-unstyled">
+            <li><a href="javascript:;" data-name="Summary" class="menu-item account-overview-menu" id="menuSummary">SUMMARY</a></li>
+        </ul>
     </div>
-    <div class="clearfix"></div>
-    <div class="account-overview-content">
-        <div class="summary-section" id="summary-section">
-            <div class="tab-menu">
-                <ul class="menu list-unstyled">
-                    <li><a href="javascript:;" data-name="Summary" class="menu-item menu-summary" id="menuSummary">Summary</a></li>
-                </ul>
-            </div>
-            <div id="summary-section-content"></div>
-        </div>
-        <div class="overview-section" id="overview-section">
-            <div class="tab-menu">
-                <ul class="menu list-unstyled">
-                    <li><a href="javascript:;" data-name="Overview" class="menu-item menu-overview" id="menuOverview">Overview</a></li>
-                    <li><a href="javascript:;" data-name="PlayersDetails" class="menu-item menu-overview" id="menuPlayersDetails">Players Details</a></li>
-                </ul>
-            </div>
-            <div id="overview-section-content"></div>
-        </div>
-    </div>
+    <div id="account-overview-content"></div>
 </div>
 <input type="hidden" id="ToDay" value="@DateTime.Now.ToString("MM/dd/yyyy")" />
 @Html.InlineScripts("~/www/build/js/account-overview.js")
