@@ -510,6 +510,7 @@
     <Content Include="App_Data\IsoftbetData\isoftbet_24.json" />
     <Content Include="App_Data\IsoftbetData\isoftbet_25.json" />
     <Content Include="App_Data\EBetConfig.json" />
+    <None Include="Properties\PublishProfiles\ThirdPartyApi.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
