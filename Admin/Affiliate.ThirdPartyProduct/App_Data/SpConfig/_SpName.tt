@@ -12,8 +12,8 @@
 	const string SpNameTemplate = "SpName=\"{0}\"";
 	var environments = new string[] { "dev", "master", "local", "sit", "uat", "production" };
 
-	var originalSpName = System.IO.File.ReadAllText(@"AffiliateAdmin\App_Data\SpConfig\_SpNameOriginal.xml");
-	var configXml = System.Xml.Linq.XDocument.Load(@"AffiliateAdmin\App_Data\SpConfig\_SpNameConfig.xml");
+	var originalSpName = System.IO.File.ReadAllText(@"Affiliate.ThirdPartyProduct\App_Data\SpConfig\_SpNameOriginal.xml");
+	var configXml = System.Xml.Linq.XDocument.Load(@"Affiliate.ThirdPartyProduct\App_Data\SpConfig\_SpNameConfig.xml");
 	var elements = configXml.Root.Elements("item");
 
 	foreach(var env in environments)
