@@ -53,31 +53,39 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private static string Decrypt(string privateKey, string cipherText)
         {
             const byte BitInByte = 8;
-            using (var rsa = new RSACryptoServiceProvider(KeySize))
+
+            try
             {
-                rsa.PersistKeyInCsp = true;
-                rsa.FromXmlString(privateKey);
-
-                var bytes = Convert.FromBase64String(cipherText);
-
-                // Correct the error in the JS encryptor.
-                var rsaLength = rsa.KeySize / BitInByte;
-                if (bytes.Length < rsaLength)
+                using (var rsa = new RSACryptoServiceProvider(KeySize))
                 {
-                    byte[] tmp = new byte[rsaLength];
-                    Buffer.BlockCopy(bytes, 0, tmp, tmp.Length - bytes.Length, bytes.Length);
-                    bytes = tmp;
+                    rsa.PersistKeyInCsp = true;
+                    rsa.FromXmlString(privateKey);
+
+                    var bytes = Convert.FromBase64String(cipherText);
+
+                    // Correct the error in the JS encryptor.
+                    var rsaLength = rsa.KeySize / BitInByte;
+                    if (bytes.Length < rsaLength)
+                    {
+                        byte[] tmp = new byte[rsaLength];
+                        Buffer.BlockCopy(bytes, 0, tmp, tmp.Length - bytes.Length, bytes.Length);
+                        bytes = tmp;
+                    }
+
+                    var plain = rsa.Decrypt(bytes, false);
+
+                    return Encoding.UTF8.GetString(plain);
                 }
-
-                var plain = rsa.Decrypt(bytes, false);
-
-                return Encoding.UTF8.GetString(plain);
             }
+            catch
+            {
+                return cipherText;
+            }            
         }
 
         private static string DecodeUtfBase64(string base64EncodedData)
         {
-            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
             return Encoding.UTF8.GetString(base64EncodedBytes);
         }
     }
