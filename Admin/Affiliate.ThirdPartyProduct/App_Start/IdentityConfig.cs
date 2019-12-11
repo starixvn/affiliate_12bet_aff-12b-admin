@@ -34,7 +34,7 @@ namespace Affiliate.ThirdPartyProduct
 
                 var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 
-                AuthenticationManager.SignIn(new AuthenticationProperties()
+                AuthenticationManager.SignIn(new AuthenticationProperties
                 {
                     ExpiresUtc = DateTime.UtcNow.AddDays(1),
                     IsPersistent = remmemberMe,
