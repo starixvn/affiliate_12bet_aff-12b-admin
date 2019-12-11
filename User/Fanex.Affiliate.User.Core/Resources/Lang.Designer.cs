@@ -1342,7 +1342,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to © Copyright 2018. All Rights Reserved. Designed and Powered by.
+        ///   Looks up a localized string similar to Copyright © 2008 - 2019 | 12BET. All Rights Reserved | 21+.
         /// </summary>
         public static string Copyright {
             get {
