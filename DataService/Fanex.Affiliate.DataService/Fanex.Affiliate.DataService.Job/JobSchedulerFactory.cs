@@ -9,24 +9,20 @@ namespace Fanex.Affiliate.DataService.Job
 {
     public class JobSchedulerFactory : IJobSchedulerFactory
     {
-        private IScheduler _scheduler;
+        private ISchedulerFactory _schedulerFactory;
 
         private IList<IJobScheduler> _jobSchedulerList;
 
-        public static async Task<IJobSchedulerFactory> CreateAsync()
+        public JobSchedulerFactory()
         {
-            var factory = new JobSchedulerFactory();
-            await factory.Init();
-            return factory;
+            Init();
         }
-
-        private async Task Init()
+        private void Init()
         {
             Quartz.Logging.LogProvider.SetCurrentLogProvider(new LogProvider());
             var appSetting = new AppSettings();
-            var schedulerFactory = new StdSchedulerFactory();
-            this._scheduler = await schedulerFactory.GetScheduler();
-            this._jobSchedulerList = new List<IJobScheduler>();
+            _schedulerFactory = new StdSchedulerFactory();
+            _jobSchedulerList = new List<IJobScheduler>();
             foreach (var product in appSetting.SupportedProductList)
             {
                 if (JobSystem.JobHandlerList.ContainsKey(product))
@@ -41,32 +37,39 @@ namespace Fanex.Affiliate.DataService.Job
                 }
             }
         }
+        private async Task<IScheduler> GetSchedulerAsync() => await _schedulerFactory.GetScheduler().ConfigureAwait(true);
 
-        public async void SetUp()
+        public async Task SetUpAsync()
         {
+            var scheduler = await GetSchedulerAsync();
             foreach (var item in _jobSchedulerList)
             {
                 var job = item.BuildSchedule();
-                await _scheduler.ScheduleJob(job.Job, job.Trigger);
+                await scheduler.ScheduleJob(job.Job, job.Trigger);
             }
 
-            await _scheduler.Start();
+            await scheduler.Start();
         }
 
-        public async void Shutdown()
+        public async Task ShutdownAsync()
         {
+            var scheduler = await _schedulerFactory.GetScheduler();
+
             HttpClientPooling.ClearAllHttpClient();
-            await _scheduler.Shutdown(true);
+            await scheduler.Shutdown(true);
         }
 
-        public async void Pause()
+        public async Task PauseAsync()
         {
-            await _scheduler.PauseAll();
+            var scheduler = await GetSchedulerAsync();
+
+            await scheduler.PauseAll();
         }
 
-        public async void Resume()
+        public async Task ResumeAsync()
         {
-            await _scheduler.ResumeAll();
+            var scheduler = await GetSchedulerAsync();
+            await scheduler.ResumeAll();
         }
 
 

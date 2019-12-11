@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             InitializeComponent();
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
-            _schedulerFactory = JobSchedulerFactory.CreateAsync().GetAwaiter().GetResult();
+            _schedulerFactory = new JobSchedulerFactory();
         }
 
         protected override void OnStart(string[] args)
@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.DataService.WinService
             try
             {
                 LogService.Info("Start 12bet AFF service");
-                _schedulerFactory.SetUp();
+                _schedulerFactory.SetUpAsync();
             }
             catch (Exception exception)
             {
@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.DataService.WinService
             try
             {
                 LogService.Info("Stop 12bet AFF service");
-                _schedulerFactory.Shutdown();
+                _schedulerFactory.ShutdownAsync();
             }
             catch (Exception exception)
             {
@@ -47,20 +47,20 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             base.OnPause();
 
-            this._schedulerFactory.Pause();
+            this._schedulerFactory.PauseAsync();
         }
 
         protected override void OnContinue()
         {
             base.OnContinue();
 
-            this._schedulerFactory.Resume();
+            this._schedulerFactory.ResumeAsync();
         }
 
         protected override void OnShutdown()
         {
             base.OnShutdown();
-            this._schedulerFactory.Shutdown();
+            this._schedulerFactory.ShutdownAsync();
         }
     }
 }
