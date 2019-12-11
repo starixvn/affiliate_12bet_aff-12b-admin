@@ -235,6 +235,7 @@
     <Content Include="_Dependencies\Fanex.ThirdParty.Importing.DataAccess.dll" />
     <Content Include="_Dependencies\Fanex.ThirdParty.Importing.Model.dll" />
     <Content Include="_Dependencies\Fanex.ThirdParty.Importing.Service.dll" />
+    <Content Include="_Dependencies\HttpClientFactory.dll" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
