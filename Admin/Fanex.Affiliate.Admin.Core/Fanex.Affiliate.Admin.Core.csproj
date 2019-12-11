@@ -408,7 +408,6 @@
     <Compile Include="Repository\UserPanel\TrackingStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\UserAccountRepository.cs" />
     <Compile Include="Repository\UserPanel\ViewLogRepository.cs" />
-    <Compile Include="Filter\RequireSecureConnectionFilter.cs" />
     <Compile Include="Resources\Lang.zh-TW.Designer.cs">
       <DependentUpon>Lang.zh-TW.resx</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -1,9 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Configurations;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Web;
+﻿using Fanex.Affiliate.ThirdPartyProduct.Site;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -15,21 +10,13 @@ namespace Affiliate.ThirdPartyProduct.TestRequest
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
-            IoCConfig.Register();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
             LoggingConfig.RegisterSentry();
         }
 
-        protected void Application_EndRequest(Object sender, EventArgs e)
-        {
-            if (HttpContext.Current.Response.Status.StartsWith("401"))
-            {
-                HttpContext.Current.Response.ClearContent();
-                Response.Redirect("/Account/Login");
-            }
-        }
+
     }
 }

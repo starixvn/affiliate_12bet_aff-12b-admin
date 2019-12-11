@@ -1,14 +1,11 @@
-﻿using Fanex.Affiliate.Admin.Core.Filter;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace Affiliate.ThirdPartyProduct
+namespace Fanex.Affiliate.ThirdPartyProduct.Site
 {
     public class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new RequireSecureConnectionFilter());
             filters.Add(new HandleErrorAttribute());
         }
     }

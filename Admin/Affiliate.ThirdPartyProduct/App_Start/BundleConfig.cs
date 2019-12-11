@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Affiliate.ThirdPartyProduct
+namespace Fanex.Affiliate.ThirdPartyProduct.Site
 {
     public class BundleConfig
     {

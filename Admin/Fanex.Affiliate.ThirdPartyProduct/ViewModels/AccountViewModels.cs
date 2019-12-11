@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Affiliate.ThirdPartyProduct.Models
+namespace Fanex.Affiliate.ThirdPartyProduct.Models
 {
     public class LoginViewModel
     {

@@ -131,6 +131,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -169,6 +173,7 @@
   <ItemGroup>
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Constants\Format.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BetsoftController.cs" />
     <Compile Include="Controllers\CrystalGpiController.cs" />
     <Compile Include="Controllers\EbetController.cs" />
@@ -201,7 +206,11 @@
     <Compile Include="Repository\ImportQueueRepository.cs" />
     <Compile Include="Repository\ITimeTrackerRepository.cs" />
     <Compile Include="Repository\TimeTrackerRepository.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Utilities\Helpers.cs" />
+    <Compile Include="Utilities\UrlHelperExtension.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ThirdPartyProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,20 +1,20 @@
-﻿using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Logging;
+﻿using Fanex.Logging;
 using Fanex.Logging.Sentry.RavenClient;
-using SharpRaven;
-using System.Collections.Generic;
-using System.Web.Mvc;
 
-namespace Affiliate.ThirdPartyProduct.App_Start
+using SharpRaven;
+
+using System.Collections.Generic;
+using System.Configuration;
+
+namespace Fanex.Affiliate.ThirdPartyProduct.Site
 {
     public static class LoggingConfig
     {
         public static void RegisterSentry()
         {
-            var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
-            var env = appSetting.GetValue("Environment");
-            var dsn = appSetting.GetValue("SentryDsn");
-            var category = appSetting.GetValue("LoggingCategory");
+            var env = ConfigurationManager.AppSettings["Environment"];
+            var dsn = ConfigurationManager.AppSettings["SentryDsn"];
+            var category = ConfigurationManager.AppSettings["LoggingCategory"];
 
             if (!string.IsNullOrEmpty(dsn))
             {
