@@ -31,7 +31,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public ActionResult Login(Models.LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -57,7 +56,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         //
         // POST: /Account/LogOff
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
