@@ -16,6 +16,7 @@
 @section classNav{page-container}
 
 @section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js"></script>
 
     @if (settingService.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase) || settingService.IsProduction)
     {
@@ -42,7 +43,6 @@
         }
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js"></script>
     @Html.InlineScripts("~/www/build/js/pages/login.js")
     @RenderSection("scripts", required: false)
 }

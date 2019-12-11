@@ -622,6 +622,9 @@
     <Content Include="www\build\styles\fonts\tahoma\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\Images\account-overview\commission.png" />
+    <Content Include="www\build\styles\Images\account-overview\new-sign-up.png" />
+    <Content Include="www\build\styles\Images\account-overview\total-deposit.png" />
     <Content Include="www\build\styles\Images\ads-1.jpg" />
     <Content Include="www\build\styles\Images\ads-1\ads-1_200.jpg" />
     <Content Include="www\build\styles\Images\ads-1\ads-1_392.jpg" />
@@ -868,6 +871,9 @@
     <Content Include="www\source\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\source\styles\fonts\Montserrat\font.css" />
     <Content Include="www\source\styles\fonts\myriadPro\font.css" />
+    <Content Include="www\source\styles\Images\account-overview\commission.png" />
+    <Content Include="www\source\styles\Images\account-overview\new-sign-up.png" />
+    <Content Include="www\source\styles\Images\account-overview\total-deposit.png" />
     <Content Include="www\source\styles\Images\ads-1.jpg" />
     <Content Include="www\source\styles\Images\ads-1\ads-1_200.jpg" />
     <Content Include="www\source\styles\Images\ads-1\ads-1_392.jpg" />

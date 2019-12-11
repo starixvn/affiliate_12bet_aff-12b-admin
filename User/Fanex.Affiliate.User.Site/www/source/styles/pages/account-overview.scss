@@ -2,9 +2,6 @@
 @import "../scss/abstracts/variables";
 @import "../scss/abstracts/mixins";
 
-$bg-color: #E15F01;
-$white-border: 1px solid #fff;
-
 .account-overview {
     .tab-menu {
         background: $bg-main-color;
@@ -29,7 +26,7 @@ $white-border: 1px solid #fff;
                 padding: 0 25px;
 
                 &.active, &:hover {
-                    background-color: $bg-color;
+                    background: linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
                 }
 
                 &:focus {
@@ -42,7 +39,7 @@ $white-border: 1px solid #fff;
 
 .summary {
     .bg-red {
-        background: $bg-color;
+        background: #E15F00;
         color: #FFF;
         line-height: 2.5rem;
         white-space: nowrap;
@@ -55,7 +52,7 @@ $white-border: 1px solid #fff;
     }
 
     .form-group {
-        margin: 10px;
+        margin: 15px 15px 0 15px;
 
         .form-wrapper {
             .form-control {
@@ -79,59 +76,61 @@ $white-border: 1px solid #fff;
     &-content {
         .container-fluid {
             .my-account {
-                text-align: center;
-                font-size: 3rem;
+                font-size: 2rem;
                 font-weight: bold;
+                line-height: 4rem;
+            }
+
+            .group {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                height: 70px;
+                width: 570px;
+                border-radius: 5px;
+                margin-bottom: 10px;
+
+                &-one {
+                    background: linear-gradient(180deg, #1988A1 0%, #146A7D 99.99%, #156E82 100%);
+                }
+
+                &-two {
+                    background: linear-gradient(180deg, #2268D1 0%, #1C56AD 100%);
+                }
+
+                &-three {
+                    background: linear-gradient(180deg, #C26A17 0%, #9E5613 100%);
+                }
             }
 
             .img-icon {
-                width: 80px;
-                height: 80px;
-                margin: 10px auto;
-                border-radius: 50%;
-                box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-                overflow: hidden;
+                padding: 10px;
             }
 
             .info-panel {
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;
-                height: 100px;
+                height: 50px;
                 text-align: center;
-                margin: .6rem;
                 color: #fff;
-                box-shadow: 5px 0px 5px grey;
-
-                &-green {
-                    background-color: #77933C;
-                }
-
-                &-blue {
-                    background-color: #4F81BD;
-                }
-
-                &-orange {
-                    background-color: #F79646;
-                }
+                border-left: 1px solid #f9f9f9;
+                width: 250px;
 
                 &-title {
                     width: 100%;
-                    font-size: 1.75rem;
+                    font-size: 1.5rem;
                 }
 
                 &-content {
                     width: 100%;
-                    font-size: 2.75rem;
-                    margin-top: -10px;
-                    padding-bottom: 10px;
+                    font-size: 2rem;
+                    font-weight: 500;
                 }
             }
         }
 
         .details-section {
-            margin-top: 10px;
-
             .table {
                 .has-scroll {
                     thead {
@@ -139,7 +138,7 @@ $white-border: 1px solid #fff;
                     }
 
                     tbody {
-                        height: 290px;
+                        height: 97px;
                     }
                 }
 
@@ -155,12 +154,15 @@ $white-border: 1px solid #fff;
 
                     thead {
                         display: block;
-                        border-top: $white-border;
-                        border-bottom: $white-border;
 
                         tr, th {
-                            background: $bg-color !important;
+                            background: #CF1F21;
                             align-items: center;
+
+                            &.total {
+                                background: #FFC000;
+                                color: #000;
+                            }
                         }
                     }
 
@@ -169,7 +171,6 @@ $white-border: 1px solid #fff;
                         background: #FCD5B5;
                         padding: 0;
                         min-width: 890px;
-
 
                         &:nth-child(even) {
                             background: #FDEADA;

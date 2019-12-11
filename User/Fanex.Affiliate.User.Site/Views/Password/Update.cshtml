@@ -4,12 +4,14 @@
 @model Fanex.Affiliate.User.Core.MetalModels.UpdatePasswordParam
 
 @section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js"></script>
+
     <script type="text/javascript">
         var resource = {
             notMatchPassword: '@Lang.ReenterNewPassw'
         }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js"></script>
+
     <script src="@Url.RenderLink("~/www/build/js/validation.js")"></script>
     @Html.InlineScripts("~/www/build/js/pages/changepassword.js")
 }
