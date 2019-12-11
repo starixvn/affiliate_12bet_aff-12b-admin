@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
                 assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(i => !i.IsDynamic).ToArray();
             }
 
-            return assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate.ThirdPartyProduct", StringComparison.InvariantCulture)).ToArray();
+            return assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate", StringComparison.InvariantCulture)).ToArray();
         }
 
     }
