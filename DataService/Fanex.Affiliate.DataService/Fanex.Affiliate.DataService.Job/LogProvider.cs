@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.DataService.Job
 {
     public class LogProvider : ILogProvider
     {
-        public static Logging.ILogger Logger { get; set; } = Fanex.Logging.Logger.Log;
+        public Logging.ILogger Logger { get; set; } = Logging.Logger.Log;
 
         public Logger GetLogger(string name)
         {

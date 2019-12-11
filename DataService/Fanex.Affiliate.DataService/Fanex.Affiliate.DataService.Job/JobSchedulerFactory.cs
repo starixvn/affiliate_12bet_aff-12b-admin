@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
-using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.Constants;
+
 using Quartz;
 using Quartz.Impl;
+using Quartz.Logging;
+
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Job
@@ -12,14 +15,21 @@ namespace Fanex.Affiliate.DataService.Job
         private ISchedulerFactory _schedulerFactory;
 
         private IList<IJobScheduler> _jobSchedulerList;
-
         public JobSchedulerFactory()
         {
             Init();
         }
         private void Init()
         {
+
+            Quartz.Logging.LogProvider.IsDisabled = true;
+
+#if DEBUG
+            Quartz.Logging.LogProvider.IsDisabled = false;
+
             Quartz.Logging.LogProvider.SetCurrentLogProvider(new LogProvider());
+#endif
+
             var appSetting = new AppSettings();
             _schedulerFactory = new StdSchedulerFactory();
             _jobSchedulerList = new List<IJobScheduler>();

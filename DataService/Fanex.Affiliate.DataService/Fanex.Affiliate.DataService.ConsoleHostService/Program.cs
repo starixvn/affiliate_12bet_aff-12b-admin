@@ -21,13 +21,16 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
              .Run();
             await RunJobs();
             Console.WriteLine("Done");
-            
+
             Console.ReadLine();
         }
 
         private static async Task RunJobs()
         {
-            LogProvider.Logger = new ConsoleLogger();
+            var logProvider = new LogProvider
+            {
+                Logger = new ConsoleLogger()
+            };
             var schedulerFactory = new JobSchedulerFactory();
             await schedulerFactory.SetUpAsync();
             Console.WriteLine("Done!!!");

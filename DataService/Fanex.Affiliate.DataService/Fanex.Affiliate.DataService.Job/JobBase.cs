@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.DataService.Job
 {
     public abstract class JobBase : IJob
     {
-        internal static ILogger Logger => LogProvider.Logger;
+        internal static ILogger Logger => Fanex.Logging.Logger.Log;
 
         public async Task Execute(IJobExecutionContext context)
         {
@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.DataService.Job
             catch (System.Exception ex)
             {
                 var builder = new StringBuilder();
-                AddExceptionInfo(builder, ex, 5);
+                AddExceptionInfo(builder, ex, 3);
                 Logger.Error(builder.ToString(), ex);
             }
 

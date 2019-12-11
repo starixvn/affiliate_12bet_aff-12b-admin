@@ -4,9 +4,9 @@ using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
-using Fanex.Logging;
-using ONEbook.UM.NonWebApp;
+
 using Quartz;
+
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
