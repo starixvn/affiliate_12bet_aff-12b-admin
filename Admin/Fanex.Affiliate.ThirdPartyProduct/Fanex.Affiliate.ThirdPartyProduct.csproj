@@ -56,7 +56,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.Ebet.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Affiliate.DataService.Importer.GPI">
+    <Reference Include="Fanex.Affiliate.DataService.Importer.GPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.GPI.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Affiliate.DataService.Importer.IMOne, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

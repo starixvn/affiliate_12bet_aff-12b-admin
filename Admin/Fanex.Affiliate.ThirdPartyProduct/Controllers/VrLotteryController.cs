@@ -33,7 +33,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         }
 
         [HttpPost]
-        [Compress]
         public async Task<ActionResult> Index(ImporterBaseParam param)
         {
             var logBuilder = new StringBuilder();

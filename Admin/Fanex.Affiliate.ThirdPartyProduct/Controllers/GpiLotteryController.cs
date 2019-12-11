@@ -32,7 +32,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         }
 
         [HttpPost]
-        [Compress]
         public async  Task<ActionResult> Index(GplLotteryRequestParam param)
         {
             var logBuilder = new StringBuilder();
