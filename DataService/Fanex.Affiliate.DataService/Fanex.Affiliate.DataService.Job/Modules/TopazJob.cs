@@ -5,7 +5,6 @@ using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
 using Fanex.Logging;
-using ONEbook.UM.NonWebApp;
 using Quartz;
 using System;
 using System.Globalization;
@@ -20,6 +19,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly IImporterService _service;
         private readonly ITimeTracker _timeTracker;
 
+        public override string ServiceName => "Topaz Service";
         public TopazJob()
         {
             _appSetting = new AppSettings();
@@ -36,7 +36,6 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
             var now = DateTime.Now;
 
-            Logger.Info($"Start topaz serivce at {now}");
             if (DateTime.Compare(lastQueryTime, now) < 0)
             {
                 var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
@@ -48,7 +47,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                     var startUtcTime = start.ToUniversalTime();
                     var endUtcTime = nextStartTime.ToUniversalTime();
-                    Logger.Info($"Topaz serivce - Get data from {startUtcTime} to {endUtcTime}");
+                    Logger.Info($"{ServiceName} - Get data from {startUtcTime} to {endUtcTime}");
                     await _service.ImportAsync(startUtcTime, endUtcTime);
 
                     var saveTimeTrackerParam = new InsertTimeTrackerParam
@@ -57,7 +56,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         CallTime = nextStartTime
                     };
                     _timeTracker.SaveTime(saveTimeTrackerParam);
-                    Logger.Info($"Topaz service - Finished get data");
+                    Logger.Info($"{ServiceName} - Finished get data");
                 }
             }
         }

@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
         public virtual async Task ImportAsync(IEnumerable<string> datas)
         {
             var xmls = datas.Select(data => XmlHelper.ParseToXDocument(data))
-                .Select(xml => CheckIsSuitableToImport(xml));
+                .Where(xml => CheckIsSuitableToImport(xml));
 
             await ImportSuitableDataAsync(xmls.Select(xml => xml.ToString()));
 

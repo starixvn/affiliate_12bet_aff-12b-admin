@@ -3,6 +3,10 @@ using System.IO;
 using System.ServiceProcess;
 using Fanex.Affiliate.DataService.Job;
 using Fanex.Logging;
+using System.Configuration;
+using System.Collections.Generic;
+using Fanex.Logging.Sentry.RavenClient;
+using SharpRaven;
 
 namespace Fanex.Affiliate.DataService.WinService
 {
@@ -14,7 +18,30 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             InitializeComponent();
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+            InitLogging();
             _schedulerFactory = new JobSchedulerFactory();
+
+        }
+
+        private void InitLogging()
+        {
+            var env = ConfigurationManager.AppSettings["Environment"];
+            var dsn = ConfigurationManager.AppSettings["SentryDsn"];
+            var category = ConfigurationManager.AppSettings["LoggingCategory"];
+
+            if (!string.IsNullOrEmpty(dsn))
+            {
+                LogManager.SetDefaultLogCategory(category)
+                    .Use(new List<ILogEngine>
+                    {
+                        new SentryLogging(new SentryEngineOptions
+                        {
+                            Dsn = new Dsn(dsn),
+                            Environment = env
+                        })
+                        
+                    });
+            }
         }
 
         protected override void OnStart(string[] args)

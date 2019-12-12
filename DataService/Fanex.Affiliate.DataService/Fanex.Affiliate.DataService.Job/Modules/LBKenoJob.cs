@@ -20,6 +20,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly IImporterService service;
         private readonly ITimeTracker _timeTracker;
 
+        public override string ServiceName => "LBKeno Service";
         public LBKenoJob()
         {
             _appSetting = new AppSettings();
@@ -35,7 +36,6 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var now = DateTime.Now;
 
             var gapTime = now - lastQueryTime;
-            Logger.Info($"Start LBKeno service at {now}");
             if (gapTime.Days >= 1)
             {
                 var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                 var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
                 var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
-                Logger.Info($"LBKeno service - Get data from {startTimeServer} to {endTimeServer}");
+                Logger.Info($"{ServiceName} - Get data from {startTimeServer} to {endTimeServer}");
                 await service.ImportAsync(startTimeServer, endTimeServer);
 
                 var saveTimeTrackerParam = new InsertTimeTrackerParam
@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     CallTime = endTime
                 };
                 _timeTracker.SaveTime(saveTimeTrackerParam);
-                Logger.Info($"LBKeno service - Finished get data");
+                Logger.Info($"{ServiceName} - Finished get data");
             }
         }
     }

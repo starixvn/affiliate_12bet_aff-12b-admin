@@ -80,10 +80,9 @@ namespace Fanex.Affiliate.DataService.Importer
 
         }
 
-        private bool HasAnotherPage(string rawData)
+        private static bool HasAnotherPage(string rawData)
         {
             var xml = XmlHelper.ParseToXDocumentFromJson(rawData);
-            CheckXmlResponseData(xml);
             var pageProportion = xml.Root.Element("Pagination");
             if (pageProportion == null)
                 return false;
@@ -131,7 +130,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         protected override bool CheckIsSuitableToImport(XDocument xml)
         {
-            var codeElem = xml.Element("Code");
+            var codeElem = xml.Root.Element("Code");
             if (codeElem == null)
                 return false;
 

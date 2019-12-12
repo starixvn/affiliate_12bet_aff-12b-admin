@@ -15,6 +15,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly IAppSettings _appSetting;
         private readonly ICrystalGpiService _crystalGpiService;
 
+        public override string ServiceName => "Crystal GPI Daily Service";
+
         public CrystalGpiDailyJob()
         {
             _appSetting = new AppSettings();
@@ -38,11 +40,11 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     JobType = 1
                 };
 
-                Logger.Info($"Crystal Gpi Daily Job is starting. Request time {param.StartTime} - {param.EndTime}");
+                Logger.Info($"{ServiceName} - Get data from {param.StartTime} to {param.EndTime}");
 
                 _crystalGpiService.Import(param);
 
-                Logger.Info("Crystal Gpi Daily Job Done");
+                Logger.Info($"{ServiceName} - Finished get data");
             }
             return Task.CompletedTask;
         }

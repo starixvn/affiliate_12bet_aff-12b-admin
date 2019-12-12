@@ -18,6 +18,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly IBetsoftService _betSoftService;
         private readonly ITimeTracker _timeTracker;
 
+        public override string ServiceName => "Betsoft Service";
         public BetsoftJob()
         {
             _appSetting = new AppSettings();
@@ -49,7 +50,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         EndDate = DateTime.Compare(endTimeByBatch, endTime) > 0 ? endTime : endTimeByBatch
                     };
                     var nextStartTime = betSoftParam.EndDate;
-
+                    Logger.Info($"{ServiceName} - Get data from {betSoftParam.StartDate} to {betSoftParam.EndDate}");
                     _betSoftService.Import(betSoftParam);
 
                     var saveTimeTrackerParam = new InsertTimeTrackerParam
@@ -58,6 +59,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         CallTime = nextStartTime
                     };
                     _timeTracker.SaveTime(saveTimeTrackerParam);
+                    Logger.Info($"{ServiceName} - Finished get data");
                 }
             }
             return Task.CompletedTask;

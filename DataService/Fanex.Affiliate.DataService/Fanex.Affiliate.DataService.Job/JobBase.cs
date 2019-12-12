@@ -11,14 +11,17 @@ namespace Fanex.Affiliate.DataService.Job
     {
         internal static ILogger Logger => Fanex.Logging.Logger.Log;
 
+        public abstract string ServiceName { get; }
+
         public async Task Execute(IJobExecutionContext context)
         {
             try
             {
+                Logger.Info($"{ServiceName} - Start at {DateTime.Now}");
                 var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
                 if (isUm)
                 {
-                    Logger.Info("System is under maintained");
+                    Logger.Info($"{ServiceName} - System is under maintained");
                 }
                 else
                 {
@@ -32,7 +35,6 @@ namespace Fanex.Affiliate.DataService.Job
                 AddExceptionInfo(builder, ex, 3);
                 Logger.Error(builder.ToString(), ex);
             }
-
         }
 
         protected abstract Task ImportDataToSystem(IJobExecutionContext context = null);
@@ -41,7 +43,8 @@ namespace Fanex.Affiliate.DataService.Job
                   int limitedInnerException)
         {
             builder.AppendLine();
-            builder.AppendLine("EXCEPTION INFO");
+            builder.AppendLine($"{ServiceName} - EXCEPTION INFO");
+            builder.AppendLine($"Message: {exception.Message}");
             builder.AppendLine($"Source: {exception.Source}");
             builder.AppendLine($"TargetSite: {exception.TargetSite}");
             builder.AppendLine($"StackTrace: {exception.StackTrace}");

@@ -18,6 +18,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly IOpusService _opusService;
         private readonly ITimeTracker _timeTracker;
 
+        public override string ServiceName => "Opus Service";
 
         public OpusJob()
         {
@@ -49,7 +50,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         EndTime = DateTime.Compare(endTimeByBatch, endTime) > 0 ? endTime : endTimeByBatch
                     };
                     var nextStartTime = opusParam.EndTime;
-
+                    Logger.Info($"{ServiceName} - Get data from {opusParam.StartTime} to {opusParam.EndTime}");
                     _opusService.Import(opusParam);
 
                     var saveTimeParam = new InsertTimeTrackerParam
@@ -58,6 +59,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         CallTime = nextStartTime
                     };
                     _timeTracker.SaveTime(saveTimeParam);
+                    Logger.Info($"{ServiceName} - Finished get data");
                 }
             }
         }

@@ -8,34 +8,59 @@ using Fanex.Data;
 using Fanex.Data.SqlServer;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System.Threading.Tasks;
+using System.Configuration;
+using Fanex.Logging;
+using System.Collections.Generic;
+using Fanex.Logging.Sentry.RavenClient;
+using SharpRaven;
 
 namespace Fanex.Affiliate.DataService.ConsoleHostService
 {
     internal class Program
     {
-        private static async Task Main(string[] args)
+        private static void Main(string[] args)
         {
+
             DbSettingProviderManager
              .StartNewSession()
              .WithSqlServer("~/App_Data")
              .Run();
-            await RunJobs();
-            Console.WriteLine("Done");
+
+            InitLogging();
+            RunJobs().GetAwaiter().GetResult();
+            LogService.Info("Done");
 
             Console.ReadLine();
         }
 
         private static async Task RunJobs()
         {
-            var logProvider = new LogProvider
-            {
-                Logger = new ConsoleLogger()
-            };
             var schedulerFactory = new JobSchedulerFactory();
             await schedulerFactory.SetUpAsync();
-            Console.WriteLine("Done!!!");
+            LogService.Info("StartService!!!");
             await schedulerFactory.PauseAsync();
             await schedulerFactory.ResumeAsync();
+        }
+
+        private static void InitLogging()
+        {
+            var env = ConfigurationManager.AppSettings["Environment"];
+            var dsn = ConfigurationManager.AppSettings["SentryDsn"];
+            var category = ConfigurationManager.AppSettings["LoggingCategory"];
+
+            if (!string.IsNullOrEmpty(dsn))
+            {
+                LogManager.SetDefaultLogCategory(category)
+                    .Use(new List<ILogEngine>
+                    {
+                        new SentryLogging(new SentryEngineOptions
+                        {
+                            Dsn = new Dsn(dsn),
+                            Environment = env
+                        }),
+                        new ConsoleLoggerEngine()
+                    });
+            }
         }
 
 

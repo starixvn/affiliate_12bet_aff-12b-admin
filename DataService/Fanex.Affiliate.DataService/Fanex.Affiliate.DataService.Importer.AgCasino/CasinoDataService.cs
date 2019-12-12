@@ -149,9 +149,7 @@
                     return _casinoDataImporterRepository.ImportDataForIncomeAccess(metaModel);
 
                 default:
-#pragma warning disable S109 // Magic numbers should not be used
                     return new ResultInfo { Code = 999, Message = "System Type is not defined" };
-#pragma warning restore S109 // Magic numbers should not be used
             }
         }
 

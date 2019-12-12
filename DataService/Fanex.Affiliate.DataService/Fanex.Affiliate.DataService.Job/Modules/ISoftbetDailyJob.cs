@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly IAppSettings _appSetting;
         private readonly IISoftbetService _isoftbetService;
 
-
+        public override string ServiceName => "ISoftbetDaily Service";
         public ISoftbetDailyJob()
         {
             _appSetting = new AppSettings();
@@ -39,11 +39,11 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     JobType = 1
                 };
 
-                Logger.Info($"ISoftbet Daily Job is starting. Request time {param.StartTime} - {param.EndTime}");
+                Logger.Info($"{ServiceName} - Get data from {param.StartTime} to {param.EndTime}");
 
                 _isoftbetService.Import(param);
 
-                Logger.Info("ISoftbet Daily Job Done");
+                Logger.Info($"{ServiceName} - Finished get data");
             }
             return Task.CompletedTask;
         }

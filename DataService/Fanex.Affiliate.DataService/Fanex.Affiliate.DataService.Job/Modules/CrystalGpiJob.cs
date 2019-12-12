@@ -17,6 +17,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly ICrystalGpiService _crystalGpiService;
         private readonly ITimeTracker _timeTracker;
 
+        public override string ServiceName => "Crystal GPI Service";
+
         public CrystalGpiJob()
         {
             _appSetting = new AppSettings();
@@ -50,7 +52,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         PageSize = Convert.ToInt32(_appSetting.GetValue("CrystalGpiPageSize"))
                     };
                     var nextStartTime = param.EndTime;
-
+                    Logger.Info($"{ServiceName} - Get data from {param.StartTime} to {param.EndTime}");
                     _crystalGpiService.Import(param);
 
                     var saveTimeParam = new InsertTimeTrackerParam
@@ -59,6 +61,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         CallTime = nextStartTime
                     };
                     _timeTracker.SaveTime(saveTimeParam);
+
+                    Logger.Info($"{ServiceName} - Finished get data");
                 }
             }
             return Task.CompletedTask;

@@ -6,7 +6,6 @@ using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Importer.ISoftbet.MetaModels;
 using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
-using Fanex.Logging;
 using Quartz;
 using System.Threading.Tasks;
 
@@ -19,7 +18,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly IISoftbetService _isoftbetService;
         private readonly ITimeTracker _timeTracker;
 
-
+        public override string ServiceName => "ISoftbet Service";
         public ISoftbetJob()
         {
             _appSetting = new AppSettings();
@@ -52,7 +51,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         PageNumber = 1
                     };
                     var nextStartTime = isoftbetParam.EndTime;
-
+                    Logger.Info($"{ServiceName} - Get data from {isoftbetParam.StartTime} to {isoftbetParam.EndTime}");
                     _isoftbetService.Import(isoftbetParam);
 
                     var saveTimeParam = new InsertTimeTrackerParam
@@ -61,6 +60,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         CallTime = nextStartTime
                     };
                     _timeTracker.SaveTime(saveTimeParam);
+                    Logger.Info($"{ServiceName} - Finished get data");
                 }
             }
 

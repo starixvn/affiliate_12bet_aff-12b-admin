@@ -20,6 +20,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         private readonly IImporterService _gpiLotteryService;
         private readonly ITimeTracker _timeTracker;
 
+        public override string ServiceName => "GPI Lottery Service";
+
         public GpiLotteryJob()
         {
             _appSetting = new AppSettings();
@@ -35,7 +37,6 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var now = DateTime.Now;
             var previousHour = now.AddHours(-1);
 
-            Logger.Info($"Start GpiLottery service at {now}");
             if (DateTime.Compare(lastQueryTime, previousHour) < 0)
             {
                 var startTime = lastQueryTime;
@@ -44,7 +45,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
                 var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
 
-                Logger.Info($"GpiLottery service - Get data from {startTimeServer} to {endTimeServer}");
+                Logger.Info($"{ServiceName} - Get data from {startTimeServer} to {endTimeServer}");
                 await _gpiLotteryService.ImportAsync(startTimeServer, endTimeServer);
 
                 var saveTimeTrackerParam = new InsertTimeTrackerParam
@@ -53,7 +54,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     CallTime = endTime
                 };
                 _timeTracker.SaveTime(saveTimeTrackerParam);
-                Logger.Info($"GpiLottery service - Finish get data");
+                Logger.Info($"{ServiceName} - Finished get data");
             }
         }
     }

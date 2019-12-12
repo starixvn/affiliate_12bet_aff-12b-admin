@@ -1,13 +1,12 @@
-﻿using Quartz.Logging;
+﻿using Fanex.Logging;
+using Quartz.Logging;
 using System;
 
 namespace Fanex.Affiliate.DataService.Job
 {
     public class LogProvider : ILogProvider
     {
-        public Logging.ILogger Logger { get; set; } = Logging.Logger.Log;
-
-        public Logger GetLogger(string name)
+        public Quartz.Logging.Logger GetLogger(string name)
         {
             return (level, func, exception, parameters) =>
             {
@@ -18,23 +17,23 @@ namespace Fanex.Affiliate.DataService.Job
                 switch (level)
                 {
                     case LogLevel.Debug:
-                        Logger.Debug(msg, parameters);
+                        LogService.Debug(msg, parameters);
                         break;
                     case LogLevel.Error:
-                        Logger.Error(msg, exception);
+                        LogService.Error(msg, exception);
                         break;
                     case LogLevel.Fatal:
-                        Logger.Critical(msg, parameters);
-                        Logger.Error(msg, exception);
+                        LogService.Critical(msg, parameters);
+                        LogService.Error(msg, exception);
                         break;
                     case LogLevel.Info:
-                        Logger.Info(msg, parameters);
+                        LogService.Info(msg, parameters);
                         break;
                     case LogLevel.Warn:
-                        Logger.Warn(msg, parameters);
+                        LogService.Warn(msg, parameters);
                         break;
                     default:
-                        Logger.Debug(msg, parameters);
+                        LogService.Debug(msg, parameters);
                         break;
                 }
                 return true;

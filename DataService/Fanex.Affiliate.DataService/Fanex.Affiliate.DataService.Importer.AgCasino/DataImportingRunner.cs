@@ -22,7 +22,6 @@
         public ResultInfo Run()
         {
             var date = DateTime.Now;
-
             // Run Yesterday Data at the beginning and the end of today
             if (date.Hour == Convert.ToInt32(_appSettings.GetValue("ImportCheckingTime1")) ||
                 date.Hour == Convert.ToInt32(_appSettings.GetValue("ImportCheckingTime2")) ||
