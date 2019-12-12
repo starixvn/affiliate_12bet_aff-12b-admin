@@ -10,6 +10,7 @@ using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using System.Collections.Specialized;
 using Fanex.Affiliate.DataService.Importer.IMOne.Client;
 using System.Threading.Tasks;
+using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 
 namespace Fanex.Affiliate.DataService.Importer 
 {
@@ -84,6 +85,9 @@ namespace Fanex.Affiliate.DataService.Importer
             var xml = XmlHelper.ParseToXDocumentFromJson(rawData);
             CheckXmlResponseData(xml);
             var pageProportion = xml.Root.Element("Pagination");
+            if (pageProportion == null)
+                return false;
+
             var currentPage = int.Parse(pageProportion.Element("CurrentPage").Value);
             var totalPage = int.Parse(pageProportion.Element("TotalPage").Value);
             return currentPage < totalPage;
@@ -123,6 +127,23 @@ namespace Fanex.Affiliate.DataService.Importer
         public override Task<XDocument> ConvertRawDataToXmlAsync(string raw)
         {
             return Task.FromResult(XmlHelper.ParseToXDocumentFromJson(raw));
+        }
+
+        protected override bool CheckIsSuitableToImport(XDocument xml)
+        {
+            var codeElem = xml.Element("Code");
+            if (codeElem == null)
+                return false;
+
+            IMoneResponseStatus status;
+            if (!Enum.TryParse<IMoneResponseStatus>(codeElem.Value, out status))
+                throw new ThirdPartyProductException($"VRLottery - Can't convert {codeElem.Value} response code");
+
+            if (status == IMoneResponseStatus.SUCCESS)
+                return true;
+            else
+                return false;
+
         }
     }
 }
