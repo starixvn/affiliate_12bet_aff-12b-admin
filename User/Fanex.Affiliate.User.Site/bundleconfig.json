@@ -14,8 +14,14 @@
   {
     "outputFileName": "www/build/js/account-overview.js",
     "inputFiles": [
-      "www/source/js/components/monthpicker.js",
       "www/source/js/pages/account-overview.js"
+    ]
+  },
+  {
+    "outputFileName": "www/build/js/summary.js",
+    "inputFiles": [
+      "www/source/js/components/monthpicker.js",
+      "www/source/js/pages/account-overview/summary.js"
     ]
   },
   {

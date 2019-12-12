@@ -566,6 +566,7 @@
     <Content Include="www\build\js\signup.min.js">
       <DependentUpon>signup.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\summary.js" />
     <Content Include="www\build\js\user-panel.js" />
     <Content Include="www\build\js\user-panel.min.js">
       <DependentUpon>user-panel.js</DependentUpon>
@@ -712,6 +713,7 @@
     <Content Include="www\source\js\lib\jquery.validate.min.js" />
     <Content Include="www\source\js\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="www\source\js\lib\modernizr-webp.js" />
+    <Content Include="www\source\js\pages\account-overview\summary.js" />
     <Content Include="www\source\js\pages\commission-report.js" />
     <Content Include="www\source\js\pages\contactus.js" />
     <Content Include="www\source\js\pages\forgotpassword.js" />
@@ -1207,9 +1209,10 @@
     <Content Include="www\source\styles\Images\sports-banners\AFF-Home-banner-SB.zh-CN.webp" />
     <Content Include="www\source\styles\Images\sports-banners\AFF-Home-banner-SB.zh-TW.webp" />
     <Content Include="Views\Password\RecoverPasswordResult.cshtml" />
-    <Content Include="Views\UserPanel\AccountOverView\Summary.cshtml" />
-    <Content Include="Views\UserPanel\AccountOverView\Overview.cshtml" />
-    <Content Include="Views\UserPanel\AccountOverView\PlayersDetails.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Summary\Index.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Summary\Overview.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Summary\PlayersDetails.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Summary\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

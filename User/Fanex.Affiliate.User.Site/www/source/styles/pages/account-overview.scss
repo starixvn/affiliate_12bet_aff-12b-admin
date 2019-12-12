@@ -3,7 +3,17 @@
 @import "../scss/abstracts/mixins";
 
 .account-overview {
-    .tab-menu {
+    .menu-item {
+        display: block;
+        font-weight: 400;
+        text-decoration: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    #account-overview-menu {
         background: $bg-main-color;
 
         .menu {
@@ -15,22 +25,17 @@
             }
 
             .menu-item {
-                display: block;
-                text-transform: capitalize;
-                font-weight: 400;
-                color: #fff;
-                transition: all .2s ease;
-                background-color: gray;
+                color: #6E6E6E;
                 border-radius: 5px 5px 0px 0px;
-                text-decoration: none;
-                padding: 0 25px;
+                padding: 0 20px;
 
                 &.active, &:hover {
+                    color: #FFF;
+                    background: -ms-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+                    background: -webkit-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+                    background: -moz-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+                    background: -o-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
                     background: linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
-                }
-
-                &:focus {
-                    outline: none;
                 }
             }
         }
@@ -46,13 +51,17 @@
         overflow: auto;
 
         .text {
-            padding-left: 15px;
+            padding-left: 10px;
             padding-right: 50px;
         }
     }
 
     .form-group {
-        margin: 15px 15px 0 15px;
+        padding-top: 12px;
+        padding-left: 10px;
+        margin-bottom: 0;
+        border-left: 1px solid #bcbcbc;
+        border-right: 1px solid #bcbcbc;
 
         .form-wrapper {
             .form-control {
@@ -69,12 +78,29 @@
         }
 
         .btn-submit {
-            margin: 0 0px 5px 15px;
+            margin: 0 0 5px 15px;
+            background: -ms-linear-gradient(180deg, #D41F1F 0%, #B01A1A 100%);
+            background: -webkit-linear-gradient(180deg, #D41F1F 0%, #B01A1A 100%);
+            background: -moz-linear-gradient(180deg, #D41F1F 0%, #B01A1A 100%);
+            background: -o-linear-gradient(180deg, #D41F1F 0%, #B01A1A 100%);
+            background: linear-gradient(180deg, #D41F1F 0%, #B01A1A 100%);
+
+            &:hover {
+                background: -ms-linear-gradient(180deg, #A8441D 0%, #EE6736 100%);
+                background: -webkit-linear-gradient(180deg, #A8441D 0%, #EE6736 100%);
+                background: -moz-linear-gradient(180deg, #A8441D 0%, #EE6736 100%);
+                background: -o-linear-gradient(180deg, #A8441D 0%, #EE6736 100%);
+                background: linear-gradient(180deg, #A8441D 0%, #EE6736 100%);
+            }
         }
     }
 
     &-content {
-        .container-fluid {
+        padding: 0 10px;
+        border: 1px solid #BCBCBC;
+        border-top: none;
+
+        .dashboard-section {
             .my-account {
                 font-size: 2rem;
                 font-weight: bold;
@@ -91,14 +117,26 @@
                 margin-bottom: 10px;
 
                 &-one {
+                    background: -ms-linear-gradient(180deg, #1988A1 0%, #146A7D 99.99%, #156E82 100%);
+                    background: -webkit-linear-gradient(180deg, #1988A1 0%, #146A7D 99.99%, #156E82 100%);
+                    background: -moz-linear-gradient(180deg, #1988A1 0%, #146A7D 99.99%, #156E82 100%);
+                    background: -o-linear-gradient(180deg, #1988A1 0%, #146A7D 99.99%, #156E82 100%);
                     background: linear-gradient(180deg, #1988A1 0%, #146A7D 99.99%, #156E82 100%);
                 }
 
                 &-two {
+                    background: -ms-linear-gradient(180deg, #2268D1 0%, #1C56AD 100%);
+                    background: -webkit-linear-gradient(180deg, #2268D1 0%, #1C56AD 100%);
+                    background: -moz-linear-gradient(180deg, #2268D1 0%, #1C56AD 100%);
+                    background: -o-linear-gradient(180deg, #2268D1 0%, #1C56AD 100%);
                     background: linear-gradient(180deg, #2268D1 0%, #1C56AD 100%);
                 }
 
                 &-three {
+                    background: -ms-linear-gradient(180deg, #C26A17 0%, #9E5613 100%);
+                    background: -webkit-linear-gradient(180deg, #C26A17 0%, #9E5613 100%);
+                    background: -moz-linear-gradient(180deg, #C26A17 0%, #9E5613 100%);
+                    background: -o-linear-gradient(180deg, #C26A17 0%, #9E5613 100%);
                     background: linear-gradient(180deg, #C26A17 0%, #9E5613 100%);
                 }
             }
@@ -131,14 +169,32 @@
         }
 
         .details-section {
+            .tab-menu {
+                .menu {
+                    display: flex;
+                    border-bottom: 1px solid #E15F00;
+
+                    .menu-item {
+                        color: #6E6E6E;
+
+                        &.active, &:hover {
+                            color: #E46000;
+                            border-bottom: 2px solid #E15F00;
+                        }
+                    }
+                }
+            }
+
             .table {
+                margin-bottom: 10px;
+
                 .has-scroll {
                     thead {
-                        margin-right: 17px;
+                        overflow-y: scroll;
                     }
 
                     tbody {
-                        height: 97px;
+                        height: 128px;
                     }
                 }
 
@@ -156,13 +212,8 @@
                         display: block;
 
                         tr, th {
-                            background: #CF1F21;
+                            background: #CF1F21 !important;
                             align-items: center;
-
-                            &.total {
-                                background: #FFC000;
-                                color: #000;
-                            }
                         }
                     }
 
@@ -185,6 +236,43 @@
                             flex-basis: 100%;
                             font-size: 1.3rem;
                         }
+
+                        &.total {
+                            background: #FFC000;
+                            color: #000;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .account-overview {
+        .summary {
+            &-content {
+                .dashboard-section {
+                    text-align: center;
+
+                    .img-responsive {
+                        display: inline;
+                    }
+
+                    .group {
+                        display: block;
+                        height: auto;
+                        width: auto;
+                        border-radius: 5px;
+                        margin-bottom: 10px;
+                    }
+
+                    .info-panel {
+                        border-top: 1px solid #f9f9f9;
+                        border-left: none;
+                        width: auto;
+                        height: auto;
+                        padding: 10px 0;
                     }
                 }
             }

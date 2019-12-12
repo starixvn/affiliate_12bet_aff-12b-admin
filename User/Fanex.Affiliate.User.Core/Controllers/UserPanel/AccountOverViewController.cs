@@ -46,24 +46,27 @@
         }
 
         [HttpPost]
-        [AjaxOnly]
         public ActionResult Summary()
         {
-            return PartialView("~/Views/UserPanel/AccountOverView/Summary.cshtml");
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/Index.cshtml");
         }
 
         [HttpPost]
-        [AjaxOnly]
-        public ActionResult Overview()
+        public ActionResult Dashboard(DateTime? monthDate)
         {
-            return PartialView("~/Views/UserPanel/AccountOverView/Overview.cshtml");
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/Dashboard.cshtml");
         }
 
         [HttpPost]
-        [AjaxOnly]
-        public ActionResult PlayersDetails()
+        public ActionResult Overview(DateTime? monthDate)
         {
-            return PartialView("~/Views/UserPanel/AccountOverView/PlayersDetails.cshtml");
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/Overview.cshtml");
+        }
+
+        [HttpPost]
+        public ActionResult PlayersDetails(DateTime? monthDate)
+        {
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml");
         }
     }
 }

@@ -18,9 +18,10 @@
     <div class="tab-menu" id="account-overview-menu">
         <ul class="menu list-unstyled">
             <li><a href="javascript:;" data-name="Summary" class="menu-item account-overview-menu" id="menuSummary">SUMMARY</a></li>
+            <li><a href="javascript:;" data-name="Summary" class="menu-item account-overview-menu" id="menuAffiliateLink">AFFILIATE LINK</a></li>
         </ul>
     </div>
     <div id="account-overview-content"></div>
 </div>
-<input type="hidden" id="ToDay" value="@DateTime.Now.ToString("MM/dd/yyyy")" />
 @Html.InlineScripts("~/www/build/js/account-overview.js")
+

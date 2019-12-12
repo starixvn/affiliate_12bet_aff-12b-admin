@@ -1,0 +1,31 @@
+﻿
+<div class="summary">
+    <div class="bg-red">
+        <span class="text"><strong>Last Login:</strong> @DateTime.Now.ToString("dd-MMM-yyyy hh:mm tt")</span>
+        <span class="text"><strong>Last Login IP Address:</strong> 192.50.23.299</span>
+    </div>
+    <div class="form-group">
+        <div id="monthPicker" class="form-wrapper d-inline-block">
+            <input readonly id="MonthDate" data-original-date="@DateTime.Now.ToString("MM/dd/yyyy")" class="form-control d-inline-block" type="text" value="@DateTime.Now.ToString("MMM-yyyy")" />
+            <span class="glyphicon glyphicon-calendar" id="monthPickerTrigger"></span>
+        </div>
+        <div class="d-inline-block">
+            <button class="btn btn-submit" id="statisticsSubmit" type="button">@Lang.Submit</button>
+        </div>
+    </div>
+    <div class="summary-content">
+        <div class="dashboard-section" id="dashboard-section"></div>
+
+        <div class="details-section" id="details-section">
+            <div class="tab-menu">
+                <ul class="menu list-unstyled">
+                    <li><a href="javascript:;" data-name="Overview" class="menu-item details-section-menu" id="menuOverview">OVERVIEW</a></li>
+                    <li><a href="javascript:;" data-name="PlayersDetails" class="menu-item details-section-menu" id="menuPlayersDetails">PLAYERS DETAILS</a></li>
+                </ul>
+            </div>
+            <div id="details-section-content"></div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="ToDay" value="@DateTime.Now.ToString("MM/dd/yyyy")" />
+@Html.InlineScripts("~/www/build/js/summary.js")
