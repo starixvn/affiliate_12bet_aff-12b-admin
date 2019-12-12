@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.DataService.Job
                 }
                 else
                 {
-                    await ImportDataToSystem();
+                    await ImportDataToSystem(context);
                 }
 
             }

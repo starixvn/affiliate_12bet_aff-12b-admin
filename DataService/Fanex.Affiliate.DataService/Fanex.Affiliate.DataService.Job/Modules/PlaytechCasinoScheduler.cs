@@ -16,7 +16,9 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
         public ScheduleInfo BuildSchedule()
         {
+            const string group = "PlaytechCasinoJobGroup";
             var job = JobBuilder.Create<PlaytechCasinoJob>()
+                .WithIdentity(nameof(PlaytechCasinoJob), group)
                 .UsingJobData(new JobDataMap(new Dictionary<string, IDataImportingRunner>
                 {
                     { nameof(dataImportingRunner), dataImportingRunner}
@@ -24,7 +26,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 .Build();
 
             var trigger = TriggerBuilder.Create()
-                    .WithSimpleSchedule(a => a.WithIntervalInHours(1)
+                   .WithIdentity("PlaytechCasionTrigger", group)
+                   .WithSimpleSchedule(a => a.WithIntervalInHours(1)
                    .RepeatForever())
                    .Build();
 

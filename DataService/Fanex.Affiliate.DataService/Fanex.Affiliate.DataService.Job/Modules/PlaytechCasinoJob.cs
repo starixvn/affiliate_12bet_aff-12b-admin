@@ -1,8 +1,6 @@
 ﻿using Fanex.Affiliate.DataService.Importer;
-using Fanex.Logging;
 using Quartz;
 using System.Threading.Tasks;
-using System;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
