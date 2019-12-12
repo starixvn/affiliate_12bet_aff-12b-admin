@@ -107,9 +107,14 @@
                 var encryptedQueryString = AuthHelper.encrypt(queryString, publicKey);
                 $password.val(encryptedQueryString);
 
+                console.log(publicKey);
+                console.log(queryString);
+                console.log(encryptedQueryString);
+                console.log(encodeURIComponent(encryptedQueryString));
+
                 var postData = {
                     __RequestVerificationToken: token,
-                    LoginInfo: encryptedQueryString,
+                    LoginInfo: encodeURIComponent(encryptedQueryString),
                     ValidationKey: validation
                 };
 
