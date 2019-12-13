@@ -45,13 +45,15 @@
             return View("~/Views/UserPanel/AccountOverView/Index.cshtml", viewModel);
         }
 
-        [HttpPost]
+        [HttpGet]
+        [AjaxOnly]
         public ActionResult Summary()
         {
             return PartialView("~/Views/UserPanel/AccountOverView/Summary/Index.cshtml");
         }
 
         [HttpPost]
+        [AjaxOnly]
         public ActionResult Dashboard(DateTime? monthDate)
         {
             return PartialView("~/Views/UserPanel/AccountOverView/Summary/Dashboard.cshtml");
@@ -64,6 +66,7 @@
         }
 
         [HttpPost]
+        [AjaxOnly]
         public ActionResult PlayersDetails(DateTime? monthDate)
         {
             return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml");
