@@ -1,4 +1,5 @@
-﻿
+﻿@model Fanex.Affiliate.User.Core.DTO.UserPanel.OverviewSummary
+
 <span class="my-account">My Account</span>
 <div class="group group-one">
     <div class="img-icon">
@@ -6,12 +7,12 @@
     </div>
     <div class="info-panel">
         <span class="info-panel-title">New Signups / Deposited</span>
-        <span class="info-panel-content">43/25</span>
+        <span class="info-panel-content">@($"{Model.Signups}/{Model.DepositMembers}")</span>
     </div>
 
     <div class="info-panel">
         <span class="info-panel-title">Active Players / Qualified</span>
-        <span class="info-panel-content">125/85</span>
+        <span class="info-panel-content">@($"{Model.ActivePlayers}/{Model.QualifiedActivePlayers}")</span>
     </div>
 </div>
 <div class="group group-two">
@@ -20,11 +21,11 @@
     </div>
     <div class="info-panel">
         <span class="info-panel-title">Commission</span>
-        <span class="info-panel-content">$3,000.00</span>
+        <span class="info-panel-content">@Model.Commission.ToStringMoneyWithSymbol()</span>
     </div>
     <div class="info-panel">
         <span class="info-panel-title">Balance Brought Forward</span>
-        <span class="info-panel-content">$255.00</span>
+        <span class="info-panel-content">@Model.BalanceBroughtFoward.ToStringMoneyWithSymbol()</span>
     </div>
 </div>
 <div class="group group-three">
@@ -33,10 +34,10 @@
     </div>
     <div class="info-panel">
         <span class="info-panel-title">Total Deposits</span>
-        <span class="info-panel-content">$38,489.75</span>
+        <span class="info-panel-content">@Model.Deposit.ToStringMoneyWithSymbol()</span>
     </div>
     <div class="info-panel">
         <span class="info-panel-title">Total Turnover</span>
-        <span class="info-panel-content">$1,254,665.00</span>
+        <span class="info-panel-content">@Model.Turnover.ToStringMoneyWithSymbol()</span>
     </div>
 </div>

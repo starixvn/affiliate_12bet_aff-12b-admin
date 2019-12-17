@@ -182,6 +182,8 @@
       overflow-y: scroll; }
     .summary-content .details-section .table .has-scroll tbody {
       height: 128px; }
+    .summary-content .details-section .table .has-scroll.has-total tbody {
+      height: 96px !important; }
     .summary-content .details-section .table table {
       border: none !important; }
       .summary-content .details-section .table table tbody {
@@ -194,6 +196,9 @@
         .summary-content .details-section .table table thead tr, .summary-content .details-section .table table thead th {
           background: #CF1F21 !important;
           align-items: center; }
+        .summary-content .details-section .table table thead tr.total {
+          background: #FFC000 !important;
+          color: #000; }
       .summary-content .details-section .table table tr {
         display: flex;
         background: #FCD5B5;
@@ -207,9 +212,6 @@
           border: none;
           flex-basis: 100%;
           font-size: 1.3rem; }
-        .summary-content .details-section .table table tr.total {
-          background: #FFC000;
-          color: #000; }
 
 @media (max-width: 640px) {
   .account-overview .summary-content .dashboard-section {

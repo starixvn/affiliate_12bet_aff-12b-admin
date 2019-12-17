@@ -291,6 +291,9 @@
     <Compile Include="DTO\ProductItem.cs" />
     <Compile Include="DTO\RsaKeyPair.cs" />
     <Compile Include="DTO\SecurityQuestion.cs" />
+    <Compile Include="DTO\UserPanel\OverviewDetail.cs" />
+    <Compile Include="DTO\UserPanel\OverviewSummary.cs" />
+    <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResult.cs" />
     <Compile Include="DTO\Transaction.cs" />
@@ -394,7 +397,9 @@
     <Compile Include="Repository\ISecurityQuestionRepository.cs" />
     <Compile Include="Repository\IVerificationRepository.cs" />
     <Compile Include="Repository\SecurityQuestionRepository.cs" />
+    <Compile Include="Repository\UserPanel\AccountOverviewRepository.cs" />
     <Compile Include="Repository\UserPanel\CommissionReportRepository.cs" />
+    <Compile Include="Repository\UserPanel\IAccountOverviewRepository.cs" />
     <Compile Include="Repository\UserPanel\ICommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\MemberRepository.cs" />
     <Compile Include="Repository\UserPanel\IMemberRepository.cs" />

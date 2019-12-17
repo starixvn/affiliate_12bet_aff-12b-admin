@@ -1,15 +1,5 @@
-﻿@using Fanex.Affiliate.User.Core.Extensions
-
-@{
+﻿@{
     Layout = null;
-}
-
-@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.AccountOverviewViewModel
-@{
-    var selectedMonth = Model.SelectedMonth;
-    var statistics = Model.Statistics;
-    var commissionSettings = Model.CommissionSettingList;
-    var hasCommissionData = commissionSettings != null && commissionSettings.Any();
 }
 
 @Html.InlineStyles("~/www/build/styles/css/account-overview.min.css")
@@ -17,8 +7,9 @@
 <div class="account-overview">
     <div class="tab-menu" id="account-overview-menu">
         <ul class="menu list-unstyled">
-            <li><a href="javascript:;" data-name="Summary" class="menu-item account-overview-menu" id="menuSummary">SUMMARY</a></li>
-            <li><a href="javascript:;" data-name="Summary" class="menu-item account-overview-menu" id="menuAffiliateLink">AFFILIATE LINK</a></li>
+            <li><a href="javascript:;" data-name="Summary" class="menu-item account-overview-menu" id="menuSummary">Summary</a></li>
+            <li><a href="javascript:;" data-name="Summary" class="menu-item account-overview-menu" id="menuAffiliateLink">Affiliate Link</a></li>
+            <li><a href="javascript:;" data-name="Summary" class="menu-item account-overview-menu" id="menuAffiliateLink">Media Gallery</a></li>
         </ul>
     </div>
     <div id="account-overview-content"></div>

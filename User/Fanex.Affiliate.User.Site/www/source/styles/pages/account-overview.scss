@@ -196,6 +196,12 @@
                     tbody {
                         height: 128px;
                     }
+
+                    &.has-total {
+                        tbody {
+                            height: 96px !important;
+                        }
+                    }
                 }
 
                 table {
@@ -212,8 +218,13 @@
                         display: block;
 
                         tr, th {
-                            background: #CF1F21 !important;
+                            background: #CF1F21!important;
                             align-items: center;
+                        }
+
+                        tr.total {
+                            background: #FFC000!important;
+                            color: #000;
                         }
                     }
 
@@ -235,11 +246,6 @@
                             border: none;
                             flex-basis: 100%;
                             font-size: 1.3rem;
-                        }
-
-                        &.total {
-                            background: #FFC000;
-                            color: #000;
                         }
                     }
                 }

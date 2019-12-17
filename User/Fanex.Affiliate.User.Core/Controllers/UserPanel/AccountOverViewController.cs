@@ -6,43 +6,24 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
-    using MetalModels.UserPanel;
-    using ViewModels.UserPanel;
 
     [CustomAuthorize]
     public class AccountOverviewController : BaseController
     {
-        private readonly IStatisticsRepository _statisticsRepository;
-        private readonly IAccountRepository _accountRepository;
+        private readonly IAccountOverviewRepository _accountOverviewRepository;
         public AccountOverviewController(ISessionService sessionService,
             ILanguageService languageService,
-            IStatisticsRepository statisticsRepository,
-            IAccountRepository accountRepository
+            IAccountOverviewRepository accountOverviewRepository
             ) : base(sessionService, languageService)
         {
-            _statisticsRepository = statisticsRepository;
-            _accountRepository = accountRepository;
+            _accountOverviewRepository = accountOverviewRepository;
         }
 
         [HttpGet]
         [AjaxOnly]
-        public ActionResult Index(DateTime? monthDate)
+        public ActionResult Index()
         {
-            var param = new StatisticsOverviewParam
-            {
-                AffId = SessionService.UserSession.AffId,
-                MonthDate = monthDate.HasValue ? monthDate.Value : DateTime.Now.Date,
-                IsInternal = SessionService.IsInternal
-            };
-
-            var viewModel = new AccountOverviewViewModel
-            {
-                Statistics = _statisticsRepository.GetStatisticsOverview(param),
-                CommissionSettingList = _accountRepository.GetCommissionSettingList(param.AffId, param.IsInternal),
-                SelectedMonth = param.MonthDate
-            };
-
-            return View("~/Views/UserPanel/AccountOverView/Index.cshtml", viewModel);
+            return View("~/Views/UserPanel/AccountOverView/Index.cshtml");
         }
 
         [HttpGet]
@@ -54,22 +35,26 @@
 
         [HttpPost]
         [AjaxOnly]
-        public ActionResult Dashboard(DateTime? monthDate)
+        public ActionResult Dashboard(DateTime monthDate)
         {
-            return PartialView("~/Views/UserPanel/AccountOverView/Summary/Dashboard.cshtml");
-        }
-
-        [HttpPost]
-        public ActionResult Overview(DateTime? monthDate)
-        {
-            return PartialView("~/Views/UserPanel/AccountOverView/Summary/Overview.cshtml");
+            var model = _accountOverviewRepository.GetUserOverviewSummary(SessionService.UserSession.AffId, monthDate);
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/Dashboard.cshtml", model);
         }
 
         [HttpPost]
         [AjaxOnly]
-        public ActionResult PlayersDetails(DateTime? monthDate)
+        public ActionResult Overview(DateTime monthDate)
         {
-            return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml");
+            var model = _accountOverviewRepository.GetUserOverviewDetailList(SessionService.UserSession.AffId, monthDate);
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/Overview.cshtml", model);
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult PlayersDetails(DateTime monthDate)
+        {
+            var model = _accountOverviewRepository.GetPlayerDetailList(SessionService.UserSession.AffId, monthDate);
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", model);
         }
     }
 }

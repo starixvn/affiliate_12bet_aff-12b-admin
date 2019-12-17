@@ -1,10 +1,14 @@
-﻿@{
-    var hasCommissionData = true;
-    var hasScroll = true;
+﻿@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.OverviewDetail>
+
+@{
+    var rowNum = Model.Count();
+    var itemTotal = Model.FirstOrDefault();
+    var hasData = Model.Any();
+    var hasScroll = rowNum > 4;
 }
 
 <div class="table table-responsive">
-    <table class="@(hasScroll ? "has-scroll" : string.Empty)">
+    <table class="@(hasScroll ? "has-scroll" : string.Empty) has-total">
         <thead>
             <tr>
                 <th width="10%">Date</th>
@@ -17,54 +21,50 @@
                 <th width="10%">Withdrawal</th>
                 <th width="10%">Win/Loss</th>
             </tr>
-        </thead>
-        <tbody>
-            <tr class="total">
-                <td class="text-center">Total</td>
-                <td class="text-center">465</td>
-                <td class="text-center">465</td>
-                <td class="text-center">465</td>
-                <td class="text-center">465</td>
-                <td class="text-center">1,059.85</td>
-                <td class="text-center">3,719.96</td>
-                <td class="text-center">81.53</td>
-                <td class="text-center">-220.14</td>
-            </tr>
             @{
-                for (var i = 1; i < 10; i++)
+                if (hasData)
                 {
-                    <tr>
-                        <td class="text-center">@("08/0" + i + "/2018")</td>
-                        <td class="text-center">@i</td>
-                        <td class="text-center">@i</td>
-                        <td class="text-center">@i</td>
-                        <td class="text-center">@i</td>
-                        <td class="text-center">1,059.85</td>
-                        <td class="text-center">3,719.96</td>
-                        <td class="text-center">81.53</td>
-                        <td class="text-center">-220.14</td>
+                    <tr class="total">
+                        <td class="text-center">Total</td>
+                        <td class="text-center">@itemTotal.Signups</td>
+                        <td class="text-center">@itemTotal.DepositMembers</td>
+                        <td class="text-center">@itemTotal.ActivePlayers</td>
+                        <td class="text-center">@itemTotal.QualifiedActivePlayers</td>
+                        <td class="text-center">@itemTotal.Deposit</td>
+                        <td class="text-center">@itemTotal.Turnover</td>
+                        <td class="text-center">@itemTotal.Withdrawal</td>
+                        <td class="text-center">@itemTotal.Winloss</td>
                     </tr>
                 }
-                for (var i = 10; i < 31; i++)
+            }
+        </thead>
+        <tbody>
+            @{
+                if (hasData)
+                {
+                    for (var i = 1; i < rowNum; i++)
+                    {
+                        var item = Model.ElementAt(i);
+                        <tr>
+                            <td class="text-center">@item.Date.ToString("MM/dd/yyyy")</td>
+                            <td class="text-center">@item.Signups</td>
+                            <td class="text-center">@item.DepositMembers</td>
+                            <td class="text-center">@item.ActivePlayers</td>
+                            <td class="text-center">@item.QualifiedActivePlayers</td>
+                            <td class="text-center">@item.Deposit</td>
+                            <td class="text-center">@item.Turnover</td>
+                            <td class="text-center">@item.Withdrawal</td>
+                            <td class="text-center">@item.Winloss</td>
+                        </tr>
+                    }
+                }
+                else
                 {
                     <tr>
-                        <td class="text-center">@("08/" + i + "/2018")</td>
-                        <td class="text-center">@i</td>
-                        <td class="text-center">@i</td>
-                        <td class="text-center">@i</td>
-                        <td class="text-center">@i</td>
-                        <td class="text-center">747.87</td>
-                        <td class="text-center">2,221.42</td>
-                        <td class="text-center">21.64</td>
-                        <td class="text-center">-232.51</td>
+                        <td class="text-center" colspan="9">@Lang.NoInfo</td>
                     </tr>
                 }
             }
         </tbody>
     </table>
-
-    @if (!hasCommissionData)
-    {
-        <p class="text-center">@Lang.NoInfo</p>
-    }
 </div>
