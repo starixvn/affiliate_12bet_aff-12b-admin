@@ -113,7 +113,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
         }
 
         [Fact]
-        public async Task GetRawDataListByCurrency_WhenCallWithFailResponse_ThrowException()
+        public async Task GetRawDataListByCurrency_WhenCallWithFailResponse_NotThrowException()
         {
             var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
             var endTime = startTime.Add(new TimeSpan(0, 10, 0));
@@ -123,7 +123,9 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.INVALID_CODEWALLET));
             var service = CreateService(stubApi, stubSetting);
 
-            await Assert.ThrowsAsync<ThirdPartyProductException>(() => service.GetRawDataListByCurrencyAsync(startTime, endTime, "CNY"));
+            await service.GetRawDataListByCurrencyAsync(startTime, endTime, "CNY");
+
+            Assert.True(true);
         }
 
         [Fact]
@@ -189,6 +191,40 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             await service.ImportAsync(startTime, endTime);
 
             await stubRepo.Received().ImportDataAsync(Products.VRLotteryId, Arg.Compat.Is<IEnumerable<string>>(datas => datas.Count() == numberOfReponse), 0);
+        }
+
+        [Fact]
+        public async Task ImportAsync_WhenCallWithNotDataFoundResponse_ThirdPartyRepoReceiveNoData()
+        {
+            var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
+            var endTime = startTime.AddMinutes(10);
+            var stubApi = VrLotteryTestHelper.GetStubApi();
+            var stubSetting = VrLotteryTestHelper.GetStubSetting();
+            var stubRepo = VrLotteryTestHelper.GetStubRepo();
+            var service = CreateService(stubApi, stubSetting, stubRepo);
+
+            stubApi.GetResponseAsync(default(string), default(NameValueCollection))
+                .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.NO_DATA_FOUND));
+
+            await  service.ImportAsync(startTime, endTime);
+
+            await stubRepo.Received().ImportDataAsync(Products.VRLotteryId, Arg.Compat.Is<IEnumerable<string>>(a => !a.Any()), 0);
+        }
+
+        [Fact]
+        public async Task ImportAsync_WhenCallWithFailResponse_ThrowException()
+        {
+            var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
+            var endTime = startTime.AddMinutes(10);
+            var stubApi = VrLotteryTestHelper.GetStubApi();
+            var stubSetting = VrLotteryTestHelper.GetStubSetting();
+            var stubRepo = VrLotteryTestHelper.GetStubRepo();
+            var service = CreateService(stubApi, stubSetting, stubRepo);
+
+            stubApi.GetResponseAsync(default(string), default(NameValueCollection))
+                .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.INVALID_CODEWALLET));
+
+            await Assert.ThrowsAsync<ThirdPartyProductException>(() => service.ImportAsync(startTime,endTime));
         }
     }
 
