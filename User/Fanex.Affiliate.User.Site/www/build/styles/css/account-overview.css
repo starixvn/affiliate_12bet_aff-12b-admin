@@ -52,25 +52,28 @@
           background: #ff8000;
           border: 0; }
 
-.account-overview .menu-item {
-  display: block;
-  font-weight: 400;
-  text-decoration: none; }
-  .account-overview .menu-item:focus {
-    outline: none; }
+.account-overview .menu {
+  display: flex;
+  white-space: nowrap;
+  overflow: auto; }
+  .account-overview .menu-item {
+    display: block;
+    font-weight: 400;
+    text-decoration: none; }
+    .account-overview .menu-item:focus {
+      outline: none; }
 
 .account-overview #account-overview-menu {
   background: #f5f5f5; }
   .account-overview #account-overview-menu .menu {
-    display: flex;
     margin: 0 !important; }
     .account-overview #account-overview-menu .menu li:not(:last-child) {
       border-right: 1px solid #f9f9f9; }
-    .account-overview #account-overview-menu .menu .menu-item {
+    .account-overview #account-overview-menu .menu-item {
       color: #6E6E6E;
       border-radius: 5px 5px 0px 0px;
       padding: 0 20px; }
-      .account-overview #account-overview-menu .menu .menu-item.active, .account-overview #account-overview-menu .menu .menu-item:hover {
+      .account-overview #account-overview-menu .menu-item.active, .account-overview #account-overview-menu .menu-item:hover {
         color: #FFF;
         background: -ms-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
         background: -webkit-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
@@ -168,49 +171,40 @@
       width: 100%;
       font-size: 2rem;
       font-weight: 500; }
-  .summary-content .details-section .tab-menu .menu {
-    display: flex;
+  .summary-content .details-section .menu {
     border-bottom: 1px solid #E15F00; }
-    .summary-content .details-section .tab-menu .menu .menu-item {
+    .summary-content .details-section .menu-item {
       color: #6E6E6E; }
-      .summary-content .details-section .tab-menu .menu .menu-item.active, .summary-content .details-section .tab-menu .menu .menu-item:hover {
+      .summary-content .details-section .menu-item.active, .summary-content .details-section .menu-item:hover {
         color: #E46000;
         border-bottom: 2px solid #E15F00; }
   .summary-content .details-section .table {
     margin-bottom: 10px; }
-    .summary-content .details-section .table .has-scroll thead {
-      overflow-y: scroll; }
-    .summary-content .details-section .table .has-scroll tbody {
-      height: 128px; }
-    .summary-content .details-section .table .has-scroll.has-total tbody {
-      height: 96px !important; }
     .summary-content .details-section .table table {
+      position: relative;
       border: none !important; }
-      .summary-content .details-section .table table tbody {
-        overflow: auto;
-        display: block;
-        position: relative;
-        width: 100%; }
-      .summary-content .details-section .table table thead {
-        display: block; }
-        .summary-content .details-section .table table thead tr, .summary-content .details-section .table table thead th {
+      .summary-content .details-section .table table thead tr {
+        height: 32px;
+        background: #CF1F21 !important; }
+        .summary-content .details-section .table table thead tr th {
           background: #CF1F21 !important;
-          align-items: center; }
-        .summary-content .details-section .table table thead tr.total {
-          background: #FFC000 !important;
-          color: #000; }
+          position: sticky;
+          top: 0; }
+      .summary-content .details-section .table table thead tr.total {
+        background: #FFC000 !important;
+        color: #000; }
+        .summary-content .details-section .table table thead tr.total th {
+          background: #FFC000 !important; }
       .summary-content .details-section .table table tr {
-        display: flex;
         background: #FCD5B5;
         padding: 0;
-        min-width: 890px; }
+        min-width: 790px; }
         .summary-content .details-section .table table tr:nth-child(even) {
           background: #FDEADA; }
         .summary-content .details-section .table table tr:hover {
           background-color: #f5f5f5; }
         .summary-content .details-section .table table tr td, .summary-content .details-section .table table tr th {
           border: none;
-          flex-basis: 100%;
           font-size: 1.3rem; }
 
 @media (max-width: 640px) {
@@ -230,3 +224,28 @@
       width: auto;
       height: auto;
       padding: 10px 0; } }
+
+@media (max-width: 715px) {
+  .details-section .table {
+    overflow-x: scroll; }
+    .details-section .table .has-scroll thead {
+      overflow-y: scroll; }
+    .details-section .table .has-scroll tbody {
+      height: 288px; }
+    .details-section .table .has-scroll.has-total tbody {
+      height: 320px !important; }
+    .details-section .table table tbody {
+      overflow: auto;
+      display: block;
+      position: relative;
+      width: 100%; }
+    .details-section .table table thead {
+      display: block; }
+      .details-section .table table thead tr {
+        align-items: center; }
+        .details-section .table table thead tr.header {
+          height: auto !important; }
+    .details-section .table table tr {
+      display: flex; }
+      .details-section .table table tr td, .details-section .table table tr th {
+        flex-basis: 100%; } }

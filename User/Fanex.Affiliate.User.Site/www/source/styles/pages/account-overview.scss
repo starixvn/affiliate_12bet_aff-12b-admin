@@ -3,13 +3,19 @@
 @import "../scss/abstracts/mixins";
 
 .account-overview {
-    .menu-item {
-        display: block;
-        font-weight: 400;
-        text-decoration: none;
+    .menu {
+        display: flex;
+        white-space: nowrap;
+        overflow: auto;
 
-        &:focus {
-            outline: none;
+        &-item {
+            display: block;
+            font-weight: 400;
+            text-decoration: none;
+
+            &:focus {
+                outline: none;
+            }
         }
     }
 
@@ -17,14 +23,13 @@
         background: $bg-main-color;
 
         .menu {
-            display: flex;
             margin: 0 !important;
 
             li:not(:last-child) {
                 border-right: 1px solid #f9f9f9;
             }
 
-            .menu-item {
+            &-item {
                 color: #6E6E6E;
                 border-radius: 5px 5px 0px 0px;
                 padding: 0 20px;
@@ -169,18 +174,15 @@
         }
 
         .details-section {
-            .tab-menu {
-                .menu {
-                    display: flex;
-                    border-bottom: 1px solid #E15F00;
+            .menu {
+                border-bottom: 1px solid #E15F00;
 
-                    .menu-item {
-                        color: #6E6E6E;
+                &-item {
+                    color: #6E6E6E;
 
-                        &.active, &:hover {
-                            color: #E46000;
-                            border-bottom: 2px solid #E15F00;
-                        }
+                    &.active, &:hover {
+                        color: #E46000;
+                        border-bottom: 2px solid #E15F00;
                     }
                 }
             }
@@ -188,51 +190,37 @@
             .table {
                 margin-bottom: 10px;
 
-                .has-scroll {
-                    thead {
-                        overflow-y: scroll;
-                    }
-
-                    tbody {
-                        height: 128px;
-                    }
-
-                    &.has-total {
-                        tbody {
-                            height: 96px !important;
-                        }
-                    }
-                }
-
                 table {
+                    position: relative;
                     border: none !important;
 
-                    tbody {
-                        overflow: auto;
-                        display: block;
-                        position: relative;
-                        width: 100%;
-                    }
-
                     thead {
-                        display: block;
 
-                        tr, th {
-                            background: #CF1F21!important;
-                            align-items: center;
+                        tr {
+                            height: 32px;
+                            background: #CF1F21 !important;
+
+                            th {
+                                background: #CF1F21 !important;
+                                position: sticky;
+                                top: 0;
+                            }
                         }
 
                         tr.total {
-                            background: #FFC000!important;
+                            background: #FFC000 !important;
                             color: #000;
+
+                            th {
+                                background: #FFC000 !important;
+                            }
                         }
                     }
 
                     tr {
-                        display: flex;
                         background: #FCD5B5;
                         padding: 0;
-                        min-width: 890px;
+                        min-width: 790px;
 
                         &:nth-child(even) {
                             background: #FDEADA;
@@ -244,7 +232,6 @@
 
                         td, th {
                             border: none;
-                            flex-basis: 100%;
                             font-size: 1.3rem;
                         }
                     }
@@ -279,6 +266,59 @@
                         width: auto;
                         height: auto;
                         padding: 10px 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 715px) {
+    .details-section {
+        .table {
+            overflow-x: scroll;
+
+            .has-scroll {
+                thead {
+                    overflow-y: scroll;
+                }
+
+                tbody {
+                    height: 288px;
+                }
+
+                &.has-total {
+                    tbody {
+                        height: 320px !important;
+                    }
+                }
+            }
+
+            table {
+                tbody {
+                    overflow: auto;
+                    display: block;
+                    position: relative;
+                    width: 100%;
+                }
+
+                thead {
+                    display: block;
+
+                    tr {
+                        &.header {
+                            height: auto !important;
+                        }
+
+                        align-items: center;
+                    }
+                }
+
+                tr {
+                    display: flex;
+
+                    td, th {
+                        flex-basis: 100%;
                     }
                 }
             }
