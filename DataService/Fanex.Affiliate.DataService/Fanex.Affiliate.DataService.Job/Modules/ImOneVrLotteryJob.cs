@@ -32,13 +32,16 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var param = new TimeTrackerBaseParam { ProductId = Products.VRLotteryId };
             var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
             var delayTime = int.Parse(_appSetting.GetValue("VrLotteryDelayTime"));
+            var intervalTime = int.Parse(_appSetting.GetValue("VrLotteryIntervalTime"));
             var now = DateTime.Now;
             var previousTime = now.AddMinutes(-delayTime);
 
-            if (DateTime.Compare(lastQueryTime, previousTime) < 0)
+            var timeRanges = DateTimeHelper.GetProportionTimeRange(lastQueryTime, previousTime, TimeSpan.FromMinutes(intervalTime));
+
+            foreach (var range in timeRanges)
             {
-                var startTime = lastQueryTime;
-                var endTime = previousTime;
+                var startTime = range.Item1;
+                var endTime = range.Item2;
 
                 var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
                 var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);

@@ -41,9 +41,11 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
                 var endTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).AddMinutes(-15);
 
-                for (var start = startTime; DateTime.Compare(start.AddMinutes(minuteToRun), endTime) < 0; start = start.AddMinutes(minuteToRun))
-                { 
-                    var nextStartTime = start.AddMinutes(minuteToRun);
+                var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, TimeSpan.FromMinutes(minuteToRun));
+                foreach (var range in timeRanges)
+                {
+                    var start = range.Item1;
+                    var nextStartTime = range.Item2;
 
                     var startUtcTime = start.ToUniversalTime();
                     var endUtcTime = nextStartTime.ToUniversalTime();

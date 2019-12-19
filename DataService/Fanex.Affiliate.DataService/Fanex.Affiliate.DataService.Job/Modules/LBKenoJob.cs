@@ -36,11 +36,25 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var now = DateTime.Now;
 
             var gapTime = now - lastQueryTime;
-            if (gapTime.Days >= 1)
+            if (gapTime.Days < 1)
             {
-                var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
-                var endTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).AddDays(-1);
+                return;
+            }
+            var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
+            var endTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).AddDays(-1);
 
+            var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, TimeSpan.FromDays(1));
+
+            foreach (var range in timeRanges)
+            {
+                startTime = range.Item1;
+                endTime = range.Item2;
+                gapTime = endTime - startTime;
+                if (gapTime.Days < 1)
+                {
+                    Logger.Debug($"{ServiceName} - Ignore request from {startTime} to {endTime}");
+                    continue;
+                }
                 var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
                 var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
                 Logger.Info($"{ServiceName} - Get data from {startTimeServer} to {endTimeServer}");
@@ -54,6 +68,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 _timeTracker.SaveTime(saveTimeTrackerParam);
                 Logger.Info($"{ServiceName} - Finished get data");
             }
+
+
         }
     }
 }

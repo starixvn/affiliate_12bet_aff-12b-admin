@@ -100,5 +100,11 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             form.Show();
             this.Hide();
         }
+
+        private void importFromFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FileImportForm();
+            SetUpServiceForm(form);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,11 +14,12 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
     {
         protected IImporterService Service;
         protected Logger Logger;
-        protected IEnumerable<string> RawDatas { get; set; }
+        protected List<string> RawDatas { get; set; }
         protected List<XDocument> XmlDatas { get; set; } = new List<XDocument>();
 
         protected TimeSpan _localTimeOffset => TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now);
-        protected virtual TimeSpan _serverTimeOffset => new TimeSpan(8, 0, 0); 
+        protected virtual TimeSpan _serverTimeOffset => new TimeSpan(8, 0, 0);
+        protected virtual TimeSpan _pullRange => new TimeSpan(0, 1, 0, 0);
 
         public ImporterFormBase()
         {
@@ -33,13 +35,18 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         protected virtual async void btnGetRawData_Click(object sender, EventArgs e)
         {
             Logger.Log("Start getting raw data");
+            RawDatas.Clear();
             var startTime = startTimePicker.Value;
             var endTime = endTimePicker.Value;
             ToggleButton(false);
             try
             {
-                RawDatas = await Service.GetRawDataListAsync(startTime, endTime);
-                DisplayRawData();
+                var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, _pullRange);
+                foreach (var range in timeRanges)
+                {
+                    RawDatas.AddRange(await Service.GetRawDataListAsync(range.Item1, range.Item2));
+                    DisplayRawData();
+                }
                 XmlDatas.Clear();
                 DisplayXmlData();
                 Logger.Log("Finished get raw data");

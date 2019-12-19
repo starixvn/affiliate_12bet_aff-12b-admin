@@ -32,15 +32,17 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         protected override async Task ImportDataToSystem(IJobExecutionContext context = null)
         {
             var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("GpiLotteryStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
+            var intervalTime = int.Parse(_appSetting.GetValue("GpiLotteryIntervalTime"));
             var param = new TimeTrackerBaseParam { ProductId = Products.GPILotteryId };
             var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
             var now = DateTime.Now;
             var previousHour = now.AddHours(-1);
 
-            if (DateTime.Compare(lastQueryTime, previousHour) < 0)
+            var timeRanges = DateTimeHelper.GetProportionTimeRange(lastQueryTime, previousHour, TimeSpan.FromMinutes(intervalTime));
+            foreach (var range in timeRanges)
             {
-                var startTime = lastQueryTime;
-                var endTime = previousHour;
+                var startTime = range.Item1;
+                var endTime = range.Item2;
 
                 var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
                 var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);

@@ -95,6 +95,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter\IFileImporter.cs" />
+    <Compile Include="Converter\VRLotteryFileImporter.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +120,12 @@
     </Compile>
     <Compile Include="Forms\EbetForm.Designer.cs">
       <DependentUpon>EbetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FileImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FileImportForm.Designer.cs">
+      <DependentUpon>FileImportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GpiLotteryForm.cs">
       <SubType>Form</SubType>
@@ -167,6 +175,8 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Converter\IDataSpliter.cs" />
+    <Compile Include="Converter\WebApiSpliter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -180,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EbetForm.resx">
       <DependentUpon>EbetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FileImportForm.resx">
+      <DependentUpon>FileImportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GpiLotteryForm.resx">
       <DependentUpon>GpiLotteryForm.cs</DependentUpon>
@@ -415,6 +428,7 @@
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
