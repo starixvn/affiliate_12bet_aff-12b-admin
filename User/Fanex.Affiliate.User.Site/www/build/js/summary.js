@@ -235,30 +235,3 @@ Summary.initialize();
 
 const supportMinWidth = 716;
 const submenuHeight = 43;
-
-function handleSetTop() {
-    let headerHeight = $('#overview-table-header').height();
-    $('#overview-table-total > th').css({ top: `${submenuHeight + headerHeight}px` });
-}
-
-function handleScroll() {
-    if (window.innerWidth < supportMinWidth) {
-        $("#details-section-menu").removeClass("sticky-menu");
-    } else {
-        let stickyPoint = $("#details-section").offset().top;
-
-        if (window.pageYOffset >= stickyPoint) {
-            $("#details-section-menu").addClass("sticky-menu")
-        } else {
-            $("#details-section-menu").removeClass("sticky-menu");
-        }
-    }
-}
-
-function handleResize() {
-    handleScroll();
-    handleSetTop()
-}
-
-window.onscroll = handleScroll;
-window.addEventListener("resize", handleResize);

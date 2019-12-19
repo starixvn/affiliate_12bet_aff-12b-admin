@@ -1,64 +1,10 @@
 ﻿@model List<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
 
-@{
-    var hasScroll = true;
-}
-
-<div class="table">
-    <table class="@(hasScroll ? "has-scroll" : string.Empty)">
-        <thead>
-            <tr>
-                <th width="10%">No.</th>
-                <th width="15%">User Name</th>
-                <th width="15%">Registered Date</th>
-                <th width="10%">Deposit</th>
-                <th width="10%">Turnover</th>
-                <th width="10%">Withdrawal</th>
-                <th width="10%">Win/Loss</th>
-                <th width="10%">Bonus</th>
-                <th width="10%">Banking Fee</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                if (Model.Any())
-                {
-                    foreach (var item in Model)
-                    {
-                        <tr>
-                            <td class="text-center">@item.RowNum</td>
-                            <td class="text-center">@item.Username</td>
-                            <td class="text-center">@item.RegisteredDate.ToString("dd/MMM/yyyy hh:mm tt")</td>
-                            <td class="text-center">@item.Turnover</td>
-                            <td class="text-center">@item.Winloss</td>
-                            <td class="text-center">@item.Bonus</td>
-                            <td class="text-center">@item.Deposit</td>
-                            <td class="text-center">@item.Withdrawal</td>
-                            <td class="text-center">@item.BankingFee</td>
-                        </tr>
-                    }
-                    for (var i = 1; i < 32; i++)
-                    {
-                        <tr>
-                            <td class="text-center">@i</td>
-                            <td class="text-center">0</td>
-                            <td class="text-center">@DateTime.Now.ToString("dd/MMM/yyyy hh:mm tt")</td>
-                            <td class="text-center">0</td>
-                            <td class="text-center">0</td>
-                            <td class="text-center">0</td>
-                            <td class="text-center">0</td>
-                            <td class="text-center">0</td>
-                            <td class="text-center">0</td>
-                        </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td class="text-center" colspan="9">@Lang.NoInfo</td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
+<div class="player-detail-pager" id="player-detail-pager"></div>
+<div class="table player-detail-table" id="player-detail-table">
+    @{ Html.RenderPartial("~/Views/UserPanel/AccountOverView/Summary/PlayersDetailsContent.cshtml", Model); }
 </div>
+
+<input type="hidden" id="TotalItem" value="32" />
+
+<script src="@Url.RenderLink("~/www/build/js/player-detail.js")"></script>

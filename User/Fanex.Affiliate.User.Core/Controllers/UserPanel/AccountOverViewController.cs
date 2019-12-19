@@ -58,5 +58,13 @@
             //var model = _accountOverviewRepository.GetPlayerDetailList(SessionService.UserSession.AffId, monthDate);
             return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", new List<PlayerDetail> { new PlayerDetail() });
         }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult PlayersDetailsContent(DateTime monthDate, int pageIndex, int pageSize)
+        {
+            //var model = _accountOverviewRepository.GetPlayerDetailList(SessionService.UserSession.AffId, monthDate);
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetailsContent.cshtml", new List<PlayerDetail> { new PlayerDetail() });
+        }
     }
 }

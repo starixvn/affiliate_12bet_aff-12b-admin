@@ -27,5 +27,7 @@
         </div>
     </div>
 </div>
+
 <input type="hidden" id="ToDay" value="@DateTime.Now.ToString("MM/dd/yyyy")" />
-@Html.InlineScripts("~/www/build/js/summary.js")
+
+<script src="@Url.RenderLink("~/www/build/js/summary.js")"></script>

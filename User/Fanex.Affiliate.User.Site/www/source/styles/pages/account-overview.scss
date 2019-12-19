@@ -1,6 +1,7 @@
 ﻿@import "../scss/components/monthpicker";
 @import "../scss/abstracts/variables";
 @import "../scss/abstracts/mixins";
+@import "../scss/components/pager";
 
 .account-overview {
     .menu {
@@ -174,15 +175,15 @@
         }
 
         .details-section {
-            .sticky-menu {
+            &-sticky {
                 position: fixed;
-                top: 0;
                 background: #f5f5f5;
                 width: calc(100% - 52px);
             }
 
             &-menu {
                 z-index: 2;
+                top: 0;
 
                 .menu {
                     border-bottom: 1px solid #E15F00;
@@ -201,7 +202,18 @@
             &-content {
                 z-index: 1;
 
+                .player-detail-pager {
+                    z-index: 2;
+                    top: 43px;
+
+                    .pager-container {
+                        border: none !important;
+                        background-color: #f5f5f5 !important;
+                    }
+                }
+
                 .table {
+                    z-index: 1;
                     margin-bottom: 10px;
 
                     table {
@@ -226,6 +238,12 @@
 
                                     th {
                                         background: #FFC000 !important;
+                                    }
+                                }
+
+                                &.player-detail-table-header {
+                                    th {
+                                        top: 72px;
                                     }
                                 }
                             }
@@ -311,7 +329,7 @@
                 }
 
                 tbody {
-                    height: 288px;
+                    height: 352px;
                 }
 
                 &.has-total {
@@ -346,6 +364,7 @@
 
                     td, th {
                         flex-basis: 100%;
+                        align-self: center;
                     }
                 }
             }
