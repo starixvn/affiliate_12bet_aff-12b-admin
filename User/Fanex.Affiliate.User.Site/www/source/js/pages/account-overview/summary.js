@@ -32,13 +32,13 @@
                     monthDate: $("#MonthDate").data("original-date")
                 }
 
-                var actionMenu = $('.details-section-menu.active').data('name');
+                var actionMenu = $('.details-section-menu-item.active').data('name');
 
                 _me.renderDashBoardView(params);
                 _me.renderDetailView(params, actionMenu);
             });
 
-            $('#details-section').on('click', '.details-section-menu', function () {
+            $('#details-section-menu').on('click', '.details-section-menu-item', function () {
                 var name = $(this).data('name');
                 _me.renderDetailView({ monthDate: $("#MonthDate").data("original-date") }, name);
             });
@@ -66,7 +66,7 @@
 
         activeMenu: function (actionName) {
             var activeClassName = "active";
-            $(".details-section-menu").removeClass(activeClassName);
+            $(".details-section-menu-item").removeClass(activeClassName);
             $("#menu" + actionName).addClass(activeClassName);
         },
 
@@ -97,3 +97,33 @@
 })(jQuery);
 
 Summary.initialize();
+
+const supportMinWidth = 716;
+const submenuHeight = 43;
+
+function handleSetTop() {
+    let headerHeight = $('#overview-table-header').height();
+    $('#overview-table-total > th').css({ top: `${submenuHeight + headerHeight}px` });
+}
+
+function handleScroll() {
+    if (window.innerWidth < supportMinWidth) {
+        $("#details-section-menu").removeClass("sticky-menu");
+    } else {
+        let stickyPoint = $("#details-section").offset().top;
+
+        if (window.pageYOffset >= stickyPoint) {
+            $("#details-section-menu").addClass("sticky-menu")
+        } else {
+            $("#details-section-menu").removeClass("sticky-menu");
+        }
+    }
+}
+
+function handleResize() {
+    handleScroll();
+    handleSetTop()
+}
+
+window.onscroll = handleScroll;
+window.addEventListener("resize", handleResize);

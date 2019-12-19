@@ -171,41 +171,50 @@
       width: 100%;
       font-size: 2rem;
       font-weight: 500; }
-  .summary-content .details-section .menu {
-    border-bottom: 1px solid #E15F00; }
-    .summary-content .details-section .menu-item {
-      color: #6E6E6E; }
-      .summary-content .details-section .menu-item.active, .summary-content .details-section .menu-item:hover {
-        color: #E46000;
-        border-bottom: 2px solid #E15F00; }
-  .summary-content .details-section .table {
-    margin-bottom: 10px; }
-    .summary-content .details-section .table table {
-      position: relative;
-      border: none !important; }
-      .summary-content .details-section .table table thead tr {
-        height: 32px;
-        background: #CF1F21 !important; }
-        .summary-content .details-section .table table thead tr th {
-          background: #CF1F21 !important;
-          position: sticky;
-          top: 0; }
-      .summary-content .details-section .table table thead tr.total {
-        background: #FFC000 !important;
-        color: #000; }
-        .summary-content .details-section .table table thead tr.total th {
-          background: #FFC000 !important; }
-      .summary-content .details-section .table table tr {
-        background: #FCD5B5;
-        padding: 0;
-        min-width: 790px; }
-        .summary-content .details-section .table table tr:nth-child(even) {
-          background: #FDEADA; }
-        .summary-content .details-section .table table tr:hover {
-          background-color: #f5f5f5; }
-        .summary-content .details-section .table table tr td, .summary-content .details-section .table table tr th {
-          border: none;
-          font-size: 1.3rem; }
+  .summary-content .details-section .sticky-menu {
+    position: fixed;
+    top: 0;
+    background: #f5f5f5;
+    width: calc(100% - 52px); }
+  .summary-content .details-section-menu {
+    z-index: 2; }
+    .summary-content .details-section-menu .menu {
+      border-bottom: 1px solid #E15F00; }
+      .summary-content .details-section-menu .menu-item {
+        color: #6E6E6E; }
+        .summary-content .details-section-menu .menu-item.active, .summary-content .details-section-menu .menu-item:hover {
+          color: #E46000;
+          border-bottom: 2px solid #E15F00; }
+  .summary-content .details-section-content {
+    z-index: 1; }
+    .summary-content .details-section-content .table {
+      margin-bottom: 10px; }
+      .summary-content .details-section-content .table table {
+        position: relative;
+        border: none !important; }
+        .summary-content .details-section-content .table table thead tr {
+          height: 32px;
+          background: #CF1F21 !important; }
+          .summary-content .details-section-content .table table thead tr th {
+            background: #CF1F21 !important;
+            position: sticky;
+            top: 43px; }
+          .summary-content .details-section-content .table table thead tr.overview-table-total {
+            background: #FFC000 !important;
+            color: #000; }
+            .summary-content .details-section-content .table table thead tr.overview-table-total th {
+              background: #FFC000 !important; }
+        .summary-content .details-section-content .table table tr {
+          background: #FCD5B5;
+          padding: 0;
+          min-width: 790px; }
+          .summary-content .details-section-content .table table tr:nth-child(even) {
+            background: #FDEADA; }
+          .summary-content .details-section-content .table table tr:hover {
+            background-color: #f5f5f5; }
+          .summary-content .details-section-content .table table tr td, .summary-content .details-section-content .table table tr th {
+            border: none;
+            font-size: 1.3rem; }
 
 @media (max-width: 640px) {
   .account-overview .summary-content .dashboard-section {
@@ -226,26 +235,32 @@
       padding: 10px 0; } }
 
 @media (max-width: 715px) {
-  .details-section .table {
+  .details-section-content .table {
     overflow-x: scroll; }
-    .details-section .table .has-scroll thead {
+    .details-section-content .table .has-scroll thead {
       overflow-y: scroll; }
-    .details-section .table .has-scroll tbody {
+      .details-section-content .table .has-scroll thead tr {
+        height: auto !important; }
+        .details-section-content .table .has-scroll thead tr.overview-table-total {
+          height: 32px !important; }
+        .details-section-content .table .has-scroll thead tr th {
+          position: static !important; }
+    .details-section-content .table .has-scroll tbody {
       height: 288px; }
-    .details-section .table .has-scroll.has-total tbody {
+    .details-section-content .table .has-scroll.has-total tbody {
       height: 320px !important; }
-    .details-section .table table tbody {
+    .details-section-content .table table tbody {
       overflow: auto;
       display: block;
       position: relative;
       width: 100%; }
-    .details-section .table table thead {
+    .details-section-content .table table thead {
       display: block; }
-      .details-section .table table thead tr {
+      .details-section-content .table table thead tr {
         align-items: center; }
-        .details-section .table table thead tr.header {
+        .details-section-content .table table thead tr.overview-table-header {
           height: auto !important; }
-    .details-section .table table tr {
+    .details-section-content .table table tr {
       display: flex; }
-      .details-section .table table tr td, .details-section .table table tr th {
+      .details-section-content .table table tr td, .details-section-content .table table tr th {
         flex-basis: 100%; } }

@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
+﻿@model List<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
 
 @{
-    var hasScroll = Model.Count() > 5;
+    var hasScroll = true;
 }
 
-<div class="table table-responsive">
+<div class="table">
     <table class="@(hasScroll ? "has-scroll" : string.Empty)">
         <thead>
             <tr>
@@ -28,13 +28,27 @@
                         <tr>
                             <td class="text-center">@item.RowNum</td>
                             <td class="text-center">@item.Username</td>
-                            <td class="text-center">@item.RegisteredDate.ToString("dd/MMMM/yyyy hh:mm tt")</td>
+                            <td class="text-center">@item.RegisteredDate.ToString("dd/MMM/yyyy hh:mm tt")</td>
                             <td class="text-center">@item.Turnover</td>
                             <td class="text-center">@item.Winloss</td>
                             <td class="text-center">@item.Bonus</td>
                             <td class="text-center">@item.Deposit</td>
                             <td class="text-center">@item.Withdrawal</td>
                             <td class="text-center">@item.BankingFee</td>
+                        </tr>
+                    }
+                    for (var i = 1; i < 32; i++)
+                    {
+                        <tr>
+                            <td class="text-center">@i</td>
+                            <td class="text-center">0</td>
+                            <td class="text-center">@DateTime.Now.ToString("dd/MMM/yyyy hh:mm tt")</td>
+                            <td class="text-center">0</td>
+                            <td class="text-center">0</td>
+                            <td class="text-center">0</td>
+                            <td class="text-center">0</td>
+                            <td class="text-center">0</td>
+                            <td class="text-center">0</td>
                         </tr>
                     }
                 }

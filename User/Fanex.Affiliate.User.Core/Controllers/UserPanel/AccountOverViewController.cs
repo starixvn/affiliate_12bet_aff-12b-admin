@@ -6,6 +6,8 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
+    using System.Collections.Generic;
+    using DTO.UserPanel;
 
     [CustomAuthorize]
     public class AccountOverviewController : BaseController
@@ -53,8 +55,8 @@
         [AjaxOnly]
         public ActionResult PlayersDetails(DateTime monthDate)
         {
-            var model = _accountOverviewRepository.GetPlayerDetailList(SessionService.UserSession.AffId, monthDate);
-            return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", model);
+            //var model = _accountOverviewRepository.GetPlayerDetailList(SessionService.UserSession.AffId, monthDate);
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", new List<PlayerDetail> { new PlayerDetail() });
         }
     }
 }

@@ -10,7 +10,7 @@
 <div class="table">
     <table class="@(hasScroll ? "has-scroll" : string.Empty) has-total">
         <thead>
-            <tr class="header">
+            <tr class="overview-table-header" id="overview-table-header">
                 <th width="10%">Date</th>
                 <th width="10%">New Sign Up</th>
                 <th width="12%">Deposited members</th>
@@ -24,7 +24,7 @@
             @{
                 if (hasData)
                 {
-                    <tr class="total">
+                    <tr class="overview-table-total" id="overview-table-total">
                         <th class="text-center">Total</th>
                         <th class="text-center">@itemTotal.Signups</th>
                         <th class="text-center">@itemTotal.DepositMembers</th>
@@ -98,11 +98,5 @@
 </div>
 
 <script type="text/javascript">
-    function resizeHandler() {
-        var headerHeight = $('.header').height();
-        $('.total > th').css({ top: `${headerHeight}px` });
-    }
-
-    window.addEventListener("resize", resizeHandler);
-    $(document).ready(resizeHandler);
+    $(document).ready(handleSetTop);
 </script>

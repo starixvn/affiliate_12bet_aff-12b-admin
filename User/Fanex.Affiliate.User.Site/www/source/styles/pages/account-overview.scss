@@ -174,65 +174,80 @@
         }
 
         .details-section {
-            .menu {
-                border-bottom: 1px solid #E15F00;
+            .sticky-menu {
+                position: fixed;
+                top: 0;
+                background: #f5f5f5;
+                width: calc(100% - 52px);
+            }
 
-                &-item {
-                    color: #6E6E6E;
+            &-menu {
+                z-index: 2;
 
-                    &.active, &:hover {
-                        color: #E46000;
-                        border-bottom: 2px solid #E15F00;
+                .menu {
+                    border-bottom: 1px solid #E15F00;
+
+                    &-item {
+                        color: #6E6E6E;
+
+                        &.active, &:hover {
+                            color: #E46000;
+                            border-bottom: 2px solid #E15F00;
+                        }
                     }
                 }
             }
 
-            .table {
-                margin-bottom: 10px;
+            &-content {
+                z-index: 1;
 
-                table {
-                    position: relative;
-                    border: none !important;
+                .table {
+                    margin-bottom: 10px;
 
-                    thead {
+                    table {
+                        position: relative;
+                        border: none !important;
+
+                        thead {
+
+                            tr {
+                                height: 32px;
+                                background: #CF1F21 !important;
+
+                                th {
+                                    background: #CF1F21 !important;
+                                    position: sticky;
+                                    top: 43px;
+                                }
+
+                                &.overview-table-total {
+                                    background: #FFC000 !important;
+                                    color: #000;
+
+                                    th {
+                                        background: #FFC000 !important;
+                                    }
+                                }
+                            }
+                        }
 
                         tr {
-                            height: 32px;
-                            background: #CF1F21 !important;
+                            background: #FCD5B5;
+                            padding: 0;
+                            min-width: 790px;
 
-                            th {
-                                background: #CF1F21 !important;
-                                position: sticky;
-                                top: 0;
+                            &:nth-child(even) {
+                                background: #FDEADA;
                             }
-                        }
 
-                        tr.total {
-                            background: #FFC000 !important;
-                            color: #000;
-
-                            th {
-                                background: #FFC000 !important;
+                            &:hover {
+                                background-color: #f5f5f5;
                             }
-                        }
-                    }
 
-                    tr {
-                        background: #FCD5B5;
-                        padding: 0;
-                        min-width: 790px;
-
-                        &:nth-child(even) {
-                            background: #FDEADA;
-                        }
-
-                        &:hover {
-                            background-color: #f5f5f5;
-                        }
-
-                        td, th {
-                            border: none;
-                            font-size: 1.3rem;
+                            td, th {
+                                border: none;
+                                font-size: 1.3rem;
+                            }
                         }
                     }
                 }
@@ -274,13 +289,25 @@
 }
 
 @media (max-width: 715px) {
-    .details-section {
+    .details-section-content {
         .table {
             overflow-x: scroll;
 
             .has-scroll {
                 thead {
                     overflow-y: scroll;
+
+                    tr {
+                        height: auto !important;
+
+                        &.overview-table-total {
+                            height: 32px !important;
+                        }
+
+                        th {
+                            position: static !important;
+                        }
+                    }
                 }
 
                 tbody {
@@ -306,7 +333,7 @@
                     display: block;
 
                     tr {
-                        &.header {
+                        &.overview-table-header {
                             height: auto !important;
                         }
 
