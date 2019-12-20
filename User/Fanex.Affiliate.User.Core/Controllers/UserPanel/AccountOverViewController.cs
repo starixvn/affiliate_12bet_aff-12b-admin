@@ -6,8 +6,7 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
-    using System.Collections.Generic;
-    using DTO.UserPanel;
+    using MetalModels.UserPanel;
 
     [CustomAuthorize]
     public class AccountOverviewController : BaseController
@@ -53,18 +52,20 @@
 
         [HttpPost]
         [AjaxOnly]
-        public ActionResult PlayersDetails(DateTime monthDate)
+        public ActionResult PlayersDetails(PlayerDetailParam param)
         {
-            //var model = _accountOverviewRepository.GetPlayerDetailList(SessionService.UserSession.AffId, monthDate);
-            return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", new List<PlayerDetail> { new PlayerDetail() });
+            param.AffId = SessionService.UserSession.AffId;
+            var model = _accountOverviewRepository.GetPlayerDetailList(param);
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", model);
         }
 
         [HttpPost]
         [AjaxOnly]
-        public ActionResult PlayersDetailsContent(DateTime monthDate, int pageIndex, int pageSize)
+        public ActionResult PlayersDetailsContent(PlayerDetailParam param)
         {
-            //var model = _accountOverviewRepository.GetPlayerDetailList(SessionService.UserSession.AffId, monthDate);
-            return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetailsContent.cshtml", new List<PlayerDetail> { new PlayerDetail() });
+            param.AffId = SessionService.UserSession.AffId;
+            var model = _accountOverviewRepository.GetPlayerDetailList(param);
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetailsContent.cshtml", model);
         }
     }
 }

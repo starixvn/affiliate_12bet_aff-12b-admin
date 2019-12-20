@@ -97,6 +97,3 @@
 })(jQuery);
 
 Summary.initialize();
-
-const supportMinWidth = 716;
-const submenuHeight = 43;

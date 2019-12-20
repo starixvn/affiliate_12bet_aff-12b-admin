@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System;
 using System.Collections.Generic;
 
@@ -10,6 +11,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         IEnumerable<OverviewDetail> GetUserOverviewDetailList(int affId, DateTime monthDate);
 
-        IEnumerable<PlayerDetail> GetPlayerDetailList(int affId, DateTime monthDate);
+        IEnumerable<PlayerDetail> GetPlayerDetailList(PlayerDetailParam param);
     }
 }

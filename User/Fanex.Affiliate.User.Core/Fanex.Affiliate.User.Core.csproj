@@ -229,6 +229,7 @@
     <Compile Include="Constants\ControllerName.cs" />
     <Compile Include="Constants\DbParam.cs" />
     <Compile Include="Constants\Number.cs" />
+    <Compile Include="Constants\Page.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\Product.cs" />
     <Compile Include="Constants\TransType.cs" />
@@ -367,6 +368,7 @@
     <Compile Include="MetalModels\UserPanel\PaymentParam.cs" />
     <Compile Include="MetalModels\UserPanel\DailyEarningParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentCancelParam.cs" />
+    <Compile Include="MetalModels\UserPanel\PlayerDetailParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatementHistoryParam.cs" />
     <Compile Include="MetalModels\UpdateAccountParam.cs" />
     <Compile Include="MetalModels\BaseParam.cs" />

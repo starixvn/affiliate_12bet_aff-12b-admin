@@ -1,10 +1,13 @@
+var SUPPORT_MIN_WITDH = 716;
+var SUB_MENU_HEIGHT = 43;
+
 function handleSetTop() {
     let headerHeight = $('#overview-table-header').height();
-    $('#overview-table-total > th').css({ top: `${submenuHeight + headerHeight}px` });
+    $('#overview-table-total > th').css({ top: `${SUB_MENU_HEIGHT + headerHeight}px` });
 }
 
 function handleScroll() {
-    if (window.innerWidth < supportMinWidth) {
+    if (window.innerWidth < SUPPORT_MIN_WITDH) {
         $("#details-section-menu").removeClass("details-section-sticky");
     } else {
         let stickyPoint = $("#details-section").offset().top;

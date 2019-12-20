@@ -45,9 +45,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var result = actionResult.Model as AccountInformation;
 
             // Assert
-            Assert.Equal(expectedAccount, result);
+            Assert.Equal(expectedAccount.PreferredLanguage, result.PreferredLanguage);
             Assert.False(expectedAccount.IsRenderState);
-            Assert.Equal("English", expectedAccount.LanguageName);
+            Assert.Equal("English", result.LanguageName);
             Assert.Null(result.ContactAppList);
         }
 
@@ -88,11 +88,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var controller = CreateAccountController(accountRepository: accountRepository.Object, sessionService: sessionService);
 
             // Action
-            controller.Index();
+            var actionResult = controller.Index() as ViewResult;
+            var result = actionResult.Model as AccountInformation;
 
             // Assert
-            Assert.True(expectedAccount.IsRenderState);
-            Assert.Equal(ExpectedLanguageName, expectedAccount.LanguageName);
+            Assert.True(result.IsRenderState);
+            Assert.Equal(ExpectedLanguageName, result.LanguageName);
         }
 
         [Fact]
