@@ -259,8 +259,6 @@
             color: #000; }
             .summary-content .details-section-content .table table thead tr.overview-table-total th {
               background: #FFC000 !important; }
-          .summary-content .details-section-content .table table thead tr.player-detail-table-header th {
-            top: 72px; }
         .summary-content .details-section-content .table table tr {
           background: #FCD5B5;
           padding: 0;

@@ -56,26 +56,3 @@
 })(jQuery);
 
 PlayersDetails.initialize();
-
-var SUPPORT_MIN_WITDH = 716;
-
-function handleScroll() {
-    if (window.innerWidth < SUPPORT_MIN_WITDH) {
-        $("#details-section-menu").removeClass("details-section-sticky");
-        $("#player-detail-pager").removeClass("details-section-sticky");
-    } else {
-        let stickyPoint = $("#details-section").offset().top;
-
-        if (window.pageYOffset >= stickyPoint) {
-            $("#details-section-menu").addClass("details-section-sticky");
-            $("#player-detail-pager").addClass("details-section-sticky");
-        } else {
-            $("#details-section-menu").removeClass("details-section-sticky");
-            $("#player-detail-pager").removeClass("details-section-sticky");
-        }
-    }
-}
-
-window.onscroll = handleScroll;
-window.addEventListener("resize", handleScroll);
-$(document).ready(handleScroll);

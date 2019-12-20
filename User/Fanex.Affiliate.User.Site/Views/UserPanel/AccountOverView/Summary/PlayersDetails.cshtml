@@ -1,9 +1,9 @@
 ﻿@model List<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
 
-<div class="player-detail-pager" id="player-detail-pager"></div>
 <div class="table player-detail-table" id="player-detail-table">
     @{ Html.RenderPartial("~/Views/UserPanel/AccountOverView/Summary/PlayersDetailsContent.cshtml", Model); }
 </div>
+<div class="player-detail-pager" id="player-detail-pager"></div>
 
 <input type="hidden" id="TotalItem" value="32" />
 
