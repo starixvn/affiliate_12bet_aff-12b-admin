@@ -1,4 +1,4 @@
-﻿var TextBox = (function ($) {
+﻿var AffiliateLink = (function ($) {
     var _pageSize = 20;
     var _pageIndex = 0;
 
@@ -88,4 +88,4 @@
     return _me;
 })(jQuery);
 
-TextBox.initialize();
+AffiliateLink.initialize();

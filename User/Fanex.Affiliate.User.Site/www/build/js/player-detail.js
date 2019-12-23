@@ -272,7 +272,7 @@ var PlayersDetails = (function ($) {
                 cache: false,
                 data: JSON.stringify(params),
                 contentType: "application/json; charset=UTF-8",
-                url: Site.resolveRelativeUrl("UserPanel/AccountOverView/PlayersDetailsContent"),
+                url: Site.resolveRelativeUrl("UserPanel/Summary/PlayersDetailsContent"),
                 success: function (response) {
                     $("#player-detail-table").html(response);
                 },

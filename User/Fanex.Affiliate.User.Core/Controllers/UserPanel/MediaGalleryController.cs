@@ -56,7 +56,7 @@
 
             ViewBag.TotalItem = bannerParam.Nrows;
 
-            return View("~/Views/UserPanel/Marketing/MediaGallery/Index.cshtml", viewModel);
+            return View("~/Views/UserPanel/AccountOverview/MediaGallery/Index.cshtml", viewModel);
         }
 
         private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)

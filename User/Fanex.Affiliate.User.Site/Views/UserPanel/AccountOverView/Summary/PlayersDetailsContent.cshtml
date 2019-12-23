@@ -2,16 +2,17 @@
 
 @{
     var hasScroll = true;
+    var totalItem = ViewBag.TotalItem;
 }
 
 <table class="@(hasScroll ? "has-scroll" : string.Empty)">
     <thead>
         <tr class="player-detail-table-header">
-            <th width="10%">No.</th>
-            <th width="15%">User Name</th>
-            <th width="15%">Registered Date</th>
-            <th width="10%">Deposit</th>
+            <th width="8%">No.</th>
+            <th width="16%">User Name</th>
+            <th width="16%">Registered Date</th>
             <th width="10%">Turnover</th>
+            <th width="10%">Deposit</th>
             <th width="10%">Withdrawal</th>
             <th width="10%">Win/Loss</th>
             <th width="10%">Bonus</th>
@@ -29,10 +30,10 @@
                         <td class="text-center">@item.Username</td>
                         <td class="text-center">@item.RegisteredDate.ToString("dd/MMM/yyyy hh:mm tt")</td>
                         <td class="text-center">@item.Turnover</td>
-                        <td class="text-center">@item.Winloss</td>
-                        <td class="text-center">@item.Bonus</td>
                         <td class="text-center">@item.Deposit</td>
                         <td class="text-center">@item.Withdrawal</td>
+                        <td class="text-center">@item.Winloss</td>
+                        <td class="text-center">@item.Bonus</td>
                         <td class="text-center">@item.BankingFee</td>
                     </tr>
                 }
@@ -46,3 +47,5 @@
         }
     </tbody>
 </table>
+
+<input type="hidden" id="TotalItem" value="@totalItem" />

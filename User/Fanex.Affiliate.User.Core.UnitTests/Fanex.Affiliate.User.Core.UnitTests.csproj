@@ -118,6 +118,7 @@
     <Compile Include="Controllers\SignupControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\ReferrersStatisticsControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\StatisticsControllerTest.cs" />
+    <Compile Include="Controllers\UserPanel\SummaryControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\TrackingStatisticsControllerTest.cs" />
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />

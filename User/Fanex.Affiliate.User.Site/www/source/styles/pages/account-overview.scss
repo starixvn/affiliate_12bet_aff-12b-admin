@@ -46,10 +46,8 @@
             }
         }
     }
-}
 
-.summary {
-    .bg-red {
+    .bg-orange {
         background: #E15F00;
         color: #FFF;
         line-height: 2.5rem;
@@ -61,7 +59,9 @@
             padding-right: 50px;
         }
     }
+}
 
+.summary {
     .form-group {
         padding-top: 12px;
         padding-left: 10px;
@@ -234,10 +234,11 @@
 
                                 &.overview-table-total {
                                     background: #FFC000 !important;
-                                    color: #000;
 
                                     th {
                                         background: #FFC000 !important;
+                                        color: #000;
+                                        font-weight: bold;
                                     }
                                 }
                             }

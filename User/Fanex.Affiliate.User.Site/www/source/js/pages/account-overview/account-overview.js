@@ -1,6 +1,4 @@
 ﻿var AccountOverview = (function ($) {
-    var _ajaxRequest = null;
-
     var _me = {
         initialize: function () {
             _me.initEvent();
@@ -22,16 +20,14 @@
 
         renderView: function (actionName) {
             _me.activeMenu(actionName);
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleResize);
 
-            if (_ajaxRequest !== null) {
-                _ajaxRequest.abort();
-            }
-
-            _ajaxRequest = $.ajax({
+            $.ajax({
                 type: "GET",
                 dataType: "html",
                 cache: false,
-                url: Site.resolveRelativeUrl("UserPanel/AccountOverView/" + actionName),
+                url: Site.resolveRelativeUrl("UserPanel/" + actionName),
                 success: function (response) {
                     $("#account-overview-content").html(response);
                 },

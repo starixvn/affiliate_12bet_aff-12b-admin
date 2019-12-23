@@ -129,13 +129,13 @@
         background: -o-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
         background: linear-gradient(180deg, #FA6A00 0%, #E15F00 100%); }
 
-.summary .bg-red {
+.account-overview .bg-orange {
   background: #E15F00;
   color: #FFF;
   line-height: 2.5rem;
   white-space: nowrap;
   overflow: auto; }
-  .summary .bg-red .text {
+  .account-overview .bg-orange .text {
     padding-left: 10px;
     padding-right: 50px; }
 
@@ -255,10 +255,11 @@
             position: sticky;
             top: 43px; }
           .summary-content .details-section-content .table table thead tr.overview-table-total {
-            background: #FFC000 !important;
-            color: #000; }
+            background: #FFC000 !important; }
             .summary-content .details-section-content .table table thead tr.overview-table-total th {
-              background: #FFC000 !important; }
+              background: #FFC000 !important;
+              color: #000;
+              font-weight: bold; }
         .summary-content .details-section-content .table table tr {
           background: #FCD5B5;
           padding: 0;

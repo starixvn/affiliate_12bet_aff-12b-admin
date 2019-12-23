@@ -470,6 +470,8 @@
     <Content Include="www\build\js\account-overview.min.js">
       <DependentUpon>account-overview.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\affiliate-link.js" />
+    <Content Include="www\build\js\affiliate-link.min.js" />
     <Content Include="www\build\js\betlist.js" />
     <Content Include="www\build\js\betlist.min.js">
       <DependentUpon>betlist.js</DependentUpon>
@@ -850,15 +852,15 @@
     <Content Include="www\source\js\lib\jquery-3.3.1.min.js" />
     <Content Include="www\source\js\lib\pikaday.js" />
     <Content Include="www\source\js\layout.js" />
-    <Content Include="www\source\js\pages\account-overview.js" />
+    <Content Include="www\source\js\pages\account-overview\account-overview.js" />
     <Content Include="www\source\js\pages\betlist.js" />
     <Content Include="www\source\js\pages\changepassword.js" />
     <Content Include="www\source\js\pages\daily-earning-detail.js" />
     <Content Include="www\source\js\pages\daily-earning.js" />
     <Content Include="www\source\js\pages\home.js" />
     <Content Include="www\source\js\pages\login.js" />
-    <Content Include="www\source\js\pages\marketing\marketingbase.js" />
-    <Content Include="www\source\js\pages\marketing\mediagallery.js" />
+    <Content Include="www\source\js\pages\account-overview\marketingbase.js" />
+    <Content Include="www\source\js\pages\account-overview\mediagallery.js" />
     <Content Include="www\source\js\pages\myaccount.js" />
     <Content Include="www\source\js\pages\signup.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
@@ -866,7 +868,7 @@
     <Content Include="www\source\js\pages\statistics\referrerstatistics.js" />
     <Content Include="www\source\js\pages\statistics\trackingstatistics.js" />
     <Content Include="www\source\js\pages\test.js" />
-    <Content Include="www\source\js\pages\marketing\textbox.js" />
+    <Content Include="www\source\js\pages\account-overview\affiliate-link.js" />
     <Content Include="www\source\js\pages\user-panel.js" />
     <Content Include="www\source\js\pages\verification-account.js" />
     <Content Include="www\source\js\recheckin.js" />
@@ -1009,11 +1011,7 @@
     <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.woff" />
     <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.eot" />
     <Content Include="www\source\styles\scss\components\materialdesignicons.scss" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_TextLink.cshtml" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_BannerList.cshtml" />
     <Content Include="www\source\styles\scss\components\_loader.scss" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_BannerFilter.cshtml" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_TextList.cshtml" />
     <Content Include="www\source\styles\scss\components\_pager.scss" />
     <Content Include="www\source\styles\pages\statistics.scss" />
     <Content Include="Views\UserPanel\Statistics\StatisticsPartial\_TrackingStatisticsContent.cshtml" />
@@ -1221,6 +1219,14 @@
     <Content Include="Views\UserPanel\AccountOverView\Summary\PlayersDetails.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Summary\Dashboard.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Summary\PlayersDetailsContent.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\AffiliateLink\Index.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Partial\_BannerFilter.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Partial\_BannerList.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Partial\_LinkForm.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Partial\_SearchForm.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Partial\_TextLink.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Partial\_TextList.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\MediaGallery\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1523,11 +1529,7 @@
     <Content Include="Views\Faq\Index.cshtml" />
     <Content Include="Views\UserPanel\PaymentRequest\Index.cshtml" />
     <Content Include="www\source\styles\pages\payment-request.scss" />
-    <Content Include="Views\UserPanel\Marketing\MediaGallery\Index.cshtml" />
-    <Content Include="Views\UserPanel\Marketing\TextBox\Index.cshtml" />
     <Content Include="www\source\styles\pages\marketing.scss" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_SearchForm.cshtml" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_LinkForm.cshtml" />
     <Content Include="Views\UserPanel\Statistics\TrackingStatistics\Index.cshtml" />
     <Content Include="Views\UserPanel\Statistics\ReferrersStatistics\Index.cshtml" />
     <Content Include="Views\UserPanel\Statistics\LandingPageStatistics\Index.cshtml" />

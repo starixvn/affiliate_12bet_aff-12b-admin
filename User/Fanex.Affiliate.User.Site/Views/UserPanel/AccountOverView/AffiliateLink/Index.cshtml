@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.MarketingViewModel
+
+@Html.InlineStyles("~/www/build/styles/css/marketing.css")
+
+<div id="searchForm">
+    @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_SearchForm.cshtml", Model.SearchForm); }
+</div>
+
+<div id="linkForm">
+    @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_LinkForm.cshtml", Model.LinkForm); }
+</div>
+
+<div id="textLinkList">
+    @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", Model.TextLinkList); }
+</div>
+
+<div id="dataContainerList">
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.Text</span>
+        </div>
+
+        @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_BannerFilter.cshtml"); }
+
+        <div id="marketingDataList">
+            @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_TextList.cshtml", Model.MarketingDataList); }
+        </div>
+
+        <div id="marketingPager"></div>
+    </div>
+</div>
+
+<script src="@Url.RenderLink("~/www/build/js/affiliate-link.js")"></script>

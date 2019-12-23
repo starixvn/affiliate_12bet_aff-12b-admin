@@ -1,0 +1,32 @@
+﻿@{ 
+    Layout = null;
+    var totalItem = ViewBag.TotalItem;
+}
+
+@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.MarketingItem>
+
+<div class="list-container">
+    <ul class="list-unstyled list-content">
+        @if(totalItem < 1)
+        {
+            <li><p class="text-center">@Lang.NoInfo</p></li>
+        }
+        else
+        {
+            foreach (var banner in Model)
+            {
+                var width = banner.Width > 0 ? banner.Width.ToString() : string.Empty;
+                var height = banner.Height > 0 ? banner.Height.ToString() : string.Empty;
+                <li>
+                    <a class="banner-link" onclick='window.open("@(banner.RedirectLink + "?ref=")" + encodeURIComponent(window.location.href),"_blank"); return false;' href="javascript:;">
+                        <img width="@width" height="@height" src="@banner.FileName" alt="Affiliate 12Bet Banner" />
+                    </a>
+
+                    <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>" type="text" />
+                </li>
+            }
+        }
+    </ul>
+
+    <input type="hidden" id="TotalItem" value="@ViewBag.TotalItem" />
+</div>

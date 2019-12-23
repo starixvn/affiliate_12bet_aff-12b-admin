@@ -16,9 +16,9 @@
 
     [CheckUMFilter]
     [CustomAuthorize]
-    public class TextBoxController : BaseMarketingController
+    public class AffiliateLinkController : BaseMarketingController
     {
-        public TextBoxController(ISessionService sessionService,
+        public AffiliateLinkController(ISessionService sessionService,
             IAppSetting appSetting,
             ILanguageService languageService,
             IMarketingService marketingService) : base(sessionService,
@@ -61,7 +61,7 @@
 
             ViewBag.TotalItem = textParam.Nrows;
 
-            return View("~/Views/UserPanel/Marketing/TextBox/Index.cshtml", viewModel);
+            return View("~/Views/UserPanel/AccountOverview/AffiliateLink/Index.cshtml", viewModel);
         }
 
         private IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)

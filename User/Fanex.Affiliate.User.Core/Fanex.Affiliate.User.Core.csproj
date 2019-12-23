@@ -245,8 +245,9 @@
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
     <Compile Include="Controllers\UserPanel\ReferrersStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsController.cs" />
+    <Compile Include="Controllers\UserPanel\SummaryController.cs" />
     <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
-    <Compile Include="Controllers\UserPanel\TextBoxController.cs" />
+    <Compile Include="Controllers\UserPanel\AffiliateLinkController.cs" />
     <Compile Include="Controllers\UserPanel\MediaGalleryController.cs" />
     <Compile Include="Controllers\UserPanel\MarketingController.cs" />
     <Compile Include="Controllers\VerificationAccountController.cs" />
