@@ -13,33 +13,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
-                //return objectDb.DB.Query<PlayerDetail>(param);
-            }
-
-            const int nrows = 40;
-            param.NRows = nrows;
-            List<PlayerDetail> result = new List<PlayerDetail>();
-            for(int i = 1; i <= nrows; i++)
-            {
-                result.Add(new PlayerDetail { RowNum = i });
-            }
-
-            if(param.PageSize > nrows)
-            {
-                return result;
-            }
-            else
-            {
-                List<PlayerDetail> subResult = new List<PlayerDetail>();
-                int pageIndex = (param.PageSize * (param.PageIndex - 1)) + 1;
-                int rows = param.PageSize * param.PageIndex;
-
-                for (int i = pageIndex; i <= rows; i++)
-                {
-                    subResult.Add(result[i - 1]);
-                }
-
-                return subResult;
+                return objectDb.DB.Query<PlayerDetail>(param);
             }
         }
 

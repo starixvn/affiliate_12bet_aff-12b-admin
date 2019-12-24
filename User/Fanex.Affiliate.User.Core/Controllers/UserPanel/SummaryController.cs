@@ -1,9 +1,12 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
@@ -41,7 +44,20 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         public ActionResult Overview(DateTime monthDate)
         {
             var model = _accountOverviewRepository.GetUserOverviewDetailList(SessionService.UserSession.AffId, monthDate);
-            return PartialView("~/Views/UserPanel/AccountOverView/Summary/Overview.cshtml", model);
+
+            var itemTotal = new OverviewDetail
+            {
+                Signups = model.Sum(item => item.Signups),
+                Deposit = model.Sum(item => item.Deposit),
+                ActiveMembers = model.Sum(item => item.ActiveMembers),
+                Turnover = model.Sum(item => item.Turnover),
+                Winloss = model.Sum(item => item.Winloss),
+                Withdrawal = model.Sum(item => item.Withdrawal),
+                DepositedMembers = model.Sum(item => item.DepositedMembers),
+                QualifiedActiveMembers = model.Sum(item => item.QualifiedActiveMembers),
+            };
+
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/Overview.cshtml", model.Concat(new List<OverviewDetail> { itemTotal }));
         }
 
         [HttpPost]
@@ -52,6 +68,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             var model = _accountOverviewRepository.GetPlayerDetailList(param);
 
             ViewBag.TotalItem = param.NRows;
+            ViewBag.StartRowNumber = (param.PageIndex - 1) * param.PageSize + 1;
 
             return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", model);
         }
@@ -64,6 +81,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             var model = _accountOverviewRepository.GetPlayerDetailList(param);
 
             ViewBag.TotalItem = param.NRows;
+            ViewBag.StartRowNumber = (param.PageIndex - 1) * param.PageSize + 1;
 
             return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetailsContent.cshtml", model);
         }

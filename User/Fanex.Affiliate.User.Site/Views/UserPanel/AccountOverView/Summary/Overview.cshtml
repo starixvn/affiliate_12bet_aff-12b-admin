@@ -2,13 +2,13 @@
 
 @{
     var rowNum = Model.Count();
-    var itemTotal = Model.FirstOrDefault();
-    var hasData = Model.Any();
-    var hasScroll = true;
+    var itemTotal = Model.LastOrDefault();
+    var hasData = rowNum > 1;
+    var hasScroll = rowNum > 11;
 }
 
 <div class="table">
-    <table class="@(hasScroll ? "has-scroll" : string.Empty) has-total">
+    <table class="has-total">
         <thead>
             <tr class="overview-table-header" id="overview-table-header">
                 <th width="10%">Date</th>
@@ -27,67 +27,39 @@
                     <tr class="overview-table-total" id="overview-table-total">
                         <th class="text-center">Total</th>
                         <th class="text-center">@itemTotal.Signups</th>
-                        <th class="text-center">@itemTotal.DepositMembers</th>
-                        <th class="text-center">@itemTotal.ActivePlayers</th>
-                        <th class="text-center">@itemTotal.QualifiedActivePlayers</th>
-                        <th class="text-center">@itemTotal.Deposit</th>
-                        <th class="text-center">@itemTotal.Turnover</th>
-                        <th class="text-center">@itemTotal.Withdrawal</th>
-                        <th class="text-center">@itemTotal.Winloss</th>
+                        <th class="text-center">@itemTotal.DepositedMembers</th>
+                        <th class="text-center">@itemTotal.ActiveMembers</th>
+                        <th class="text-center">@itemTotal.QualifiedActiveMembers</th>
+                        <th class="text-center">@itemTotal.Deposit.FormatDecimal()</th>
+                        <th class="text-center">@itemTotal.Turnover.FormatDecimal()</th>
+                        <th class="text-center">@itemTotal.Withdrawal.FormatDecimal()</th>
+                        <th class="text-center">@itemTotal.Winloss.FormatDecimal()</th>
                     </tr>
                 }
             }
         </thead>
-        <tbody>
+        <tbody class="@(hasScroll ? "has-scroll" : string.Empty)">
             @{
                 if (hasData)
                 {
-                    for (var i = 1; i < rowNum; i++)
+                    for (var i = 0; i < rowNum - 1; i++)
                     {
                         var item = Model.ElementAt(i);
                         <tr>
-                            <td class="text-center">@item.Date.ToString("MM/dd/yyyy")</td>
+                            <td class="text-center">@item.WinlostDate.ToString("MM/dd/yyyy")</td>
                             <td class="text-center">@item.Signups</td>
-                            <td class="text-center">@item.DepositMembers</td>
-                            <td class="text-center">@item.ActivePlayers</td>
-                            <td class="text-center">@item.QualifiedActivePlayers</td>
-                            <td class="text-center">@item.Deposit</td>
-                            <td class="text-center">@item.Turnover</td>
-                            <td class="text-center">@item.Withdrawal</td>
-                            <td class="text-center">@item.Winloss</td>
+                            <td class="text-center">@item.DepositedMembers</td>
+                            <td class="text-center">@item.ActiveMembers</td>
+                            <td class="text-center">@item.QualifiedActiveMembers</td>
+                            <td class="text-center">@item.Deposit.FormatDecimal()</td>
+                            <td class="text-center">@item.Turnover.FormatDecimal()</td>
+                            <td class="text-center">@item.Withdrawal.FormatDecimal()</td>
+                            <td class="text-center">@item.Winloss.FormatDecimal()</td>
                         </tr>
                     }
-                for (var i = 2; i < 10; i++)
-                {
-                <tr>
-                    <td class="text-center">@("12/0" + i + "/2019")</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                </tr>
                 }
-                for (var i = 10; i < 32; i++)
+                else
                 {
-                <tr>
-                    <td class="text-center">@("12/" + i + "/2019")</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">0</td>
-                </tr>
-                }
-            }
-            else
-            {
                     <tr>
                         <td class="text-center" colspan="9">@Lang.NoInfo</td>
                     </tr>

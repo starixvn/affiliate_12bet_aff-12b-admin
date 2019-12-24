@@ -332,6 +332,7 @@
     <Compile Include="Enum\MemberType.cs" />
     <Compile Include="Enum\PaymentRequestType.cs" />
     <Compile Include="Enum\TransType.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
     <Compile Include="Extensions\StringExtension.cs" />

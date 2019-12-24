@@ -4,15 +4,15 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 {
     public class OverviewDetail
     {
-        public DateTime Date { get; set; }
+        public DateTime WinlostDate { get; set; }
 
         public int Signups { get; set; }
 
-        public int DepositMembers { get; set; }
+        public int DepositedMembers { get; set; }
 
-        public int ActivePlayers { get; set; }
+        public int ActiveMembers { get; set; }
 
-        public int QualifiedActivePlayers { get; set; }
+        public int QualifiedActiveMembers { get; set; }
 
         public decimal Deposit { get; set; }
 

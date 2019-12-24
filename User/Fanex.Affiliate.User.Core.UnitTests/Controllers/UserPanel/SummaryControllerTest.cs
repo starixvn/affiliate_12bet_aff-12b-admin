@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         {
             // Arrange
             var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetUserOverviewDetailList(It.IsAny<int>(), monthDate)).Returns(new List<OverviewDetail> { new OverviewDetail() });
+            accountOverviewRepository.Setup(a => a.GetUserOverviewDetailList(It.IsAny<int>(), monthDate)).Returns(new List<OverviewDetail>());
             var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
 
             // Action

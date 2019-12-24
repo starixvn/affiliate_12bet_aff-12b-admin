@@ -4,8 +4,6 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 {
     public class PlayerDetail
     {
-        public int RowNum { get; set; }
-
         public string Username { get; set; }
 
         public DateTime RegisteredDate { get; set; }

@@ -138,8 +138,8 @@
     <Setting Key="Aff_User_SecurityQuestions_Sel" SpName="Aff_User_SecurityQuestions_Sel" DbName="affiliate_12bet" />
   </Function>
   <Function Name="AccountOverview">
-    <Setting Key="Aff_User_Overview_PlayersDetail_Sel" SpName="Aff_User_Overview_PlayersDetail_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_Overview_Detail_Sel" SpName="Aff_User_Overview_Detail_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_Overview_Summary_Sel" SpName="Aff_User_Overview_Summary_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_Overview_PlayersDetail_Sel" SpName="Aff_User_Overview_PlayersDetail_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_Overview_Detail_Sel" SpName="Aff_User_Overview_Detail_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_Overview_Summary_Sel" SpName="Aff_User_Overview_Summary_Sel_xtest" DbName="affiliate_12bet" />
   </Function>
 </Functions>

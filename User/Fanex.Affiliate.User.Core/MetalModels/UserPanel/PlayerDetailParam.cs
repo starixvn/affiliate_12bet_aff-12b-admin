@@ -13,6 +13,10 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public DateTime MonthDate { get; set; } = DateTime.Now;
 
+        public int SortById { get; set; } = 1;
+
+        public int SortTypeId { get; set; } = 1;
+
         public int NRows { get; set; }
     }
 }

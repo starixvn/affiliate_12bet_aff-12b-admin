@@ -40,7 +40,7 @@
 
             $('#details-section-menu').on('click', '.details-section-menu-item', function () {
                 var name = $(this).data('name');
-                _me.renderDetailView({ monthDate: $("#MonthDate").data("original-date") }, name);
+                _me.renderDetailView({ monthDate: $("#MonthDate").data("original-date") }, name, true);
             });
         },
 
@@ -70,7 +70,7 @@
             $("#menu" + actionName).addClass(activeClassName);
         },
 
-        renderDetailView: function (params, actionName) {
+        renderDetailView: function (params, actionName, isClickSubMenu) {
             _me.activeMenu(actionName);
 
             $.ajax({
@@ -87,7 +87,7 @@
                     Site.showLoader();
                 },
                 complete: function () {
-                    Site.hideLoader();
+                    isClickSubMenu && Site.hideLoader();
                 }
             });
         },

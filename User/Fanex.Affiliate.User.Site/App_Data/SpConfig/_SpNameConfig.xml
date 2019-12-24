@@ -2,4 +2,7 @@
 <Root>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
 
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_Overview_PlayersDetail_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_Overview_Detail_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_Overview_Summary_Sel" Suffix="_xtest"></item>
 </Root>
