@@ -17,6 +17,10 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
 
         public byte ImportType { get; set; } = 0;
 
+        public virtual bool IsNeedConvertTime  => false;
+        public virtual int HoursAjust => 0;
+
+
         protected XmlImpoterlServiceBase(IAppSettings appSetting, IThirdPartyProductRepository thirdPartyProductRepository)
         {
             _appSetting = appSetting ?? new AppSettings();
@@ -59,7 +63,15 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             var xmls = await GetXmlDataListAsync(startTime, endTime).ConfigureAwait(false);
             xmls = xmls.Where(xml => CheckIsSuitableToImport(xml));
 
+            if (IsNeedConvertTime)
+                xmls = xmls.Select(xml => ConvertTimeZone(xml));
+
             await ImportSuitableDataAsync(xmls.Select(xml => xml.ToString()));
+        }
+
+        protected virtual XDocument ConvertTimeZone(XDocument xml)
+        {
+            return xml;
         }
 
         public virtual async Task ImportAsync(string data)
@@ -71,6 +83,9 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
         {
             var xmls = datas.Select(data => XmlHelper.ParseToXDocument(data))
                 .Where(xml => CheckIsSuitableToImport(xml));
+
+            if (IsNeedConvertTime)
+                xmls = xmls.Select(xml => ConvertTimeZone(xml));
 
             await ImportSuitableDataAsync(xmls.Select(xml => xml.ToString()));
 

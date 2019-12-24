@@ -32,7 +32,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             var dic = new Dictionary<string, IFileImporter>
             {
                 {"----Select one-----", null },
-                {"VR Lottery", new VRLotteryFileImporter() }
+                {"VR Lottery", new VRLotteryFileImporter() },
+                {"LB Keno", new LBKenoFileImporter() },          
             };
             return dic;
         }
@@ -58,7 +59,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         {
             if (FileImporter == null)
             {
-                MessageBox.Show("Not set up IFileImporter");
+                MessageBox.Show("Need select a product type");
                 return;
             }
             var path = txtBoxFilePath.Text;

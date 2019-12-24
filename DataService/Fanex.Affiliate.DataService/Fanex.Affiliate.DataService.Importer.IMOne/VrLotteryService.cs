@@ -11,18 +11,25 @@ using System.Collections.Specialized;
 using Fanex.Affiliate.DataService.Importer.IMOne.Client;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
+using System.Globalization;
 
 namespace Fanex.Affiliate.DataService.Importer 
 {
     public class VrLotteryService : XmlImpoterlServiceBase, IDataRequestByCurrency
     {
         private const int MINUTE_TIME_RANGE_LIMIT = 10;
+        private const string TimeDataFormat = "yyyy-MM-dd HH:mm:ss K";
+
         public const int MAX_PAGE_SIZE = 50000;
 
         protected readonly IApiClient _client;
         protected override int ProductId => Products.VRLotteryId;
 
+        public override bool IsNeedConvertTime => true;
+        public override int HoursAjust => 8;
         public int TimeRangeLimitInMinForEachRequest { get; set; } = MINUTE_TIME_RANGE_LIMIT;
+
+
 
         public VrLotteryService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
             : base(appSetting, thirdPartyProductRepository)
@@ -143,6 +150,30 @@ namespace Fanex.Affiliate.DataService.Importer
             else
                 return false;
 
+        }
+
+        protected override XDocument ConvertTimeZone(XDocument xml)
+        {
+            var results = xml.Root.Elements("Result");
+            foreach (var result in results)
+            {
+                UpdateTimeZoneData("BetDate", result);
+                UpdateTimeZoneData("ResultDate", result);
+                UpdateTimeZoneData("DateCreated", result);
+                UpdateTimeZoneData("LastUpdatedDate", result);
+            }
+            return xml;
+        }
+
+        private void UpdateTimeZoneData(string elementName, XElement element)
+        {
+            var timeString = element.Element(elementName)?.Value;
+            if (!string.IsNullOrEmpty(timeString))
+            {
+                var time = DateTimeOffset.ParseExact(timeString, TimeDataFormat, CultureInfo.InvariantCulture);
+                var ajustTime = time.AddHours(HoursAjust);
+                element.Element(elementName).Value = ajustTime.ToString(TimeDataFormat);
+            }
         }
     }
 }

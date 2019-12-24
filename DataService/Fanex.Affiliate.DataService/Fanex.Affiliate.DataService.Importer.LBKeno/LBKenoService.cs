@@ -18,9 +18,17 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public class LBKenoService : XmlImpoterlServiceBase
     {
+
+        private const string TimeDataFormat = "yyyy-MM-dd HH:mm:ss";
+
         protected readonly IApiClient _client;
 
         protected override int ProductId => Products.LBKenoId;
+
+        public override bool IsNeedConvertTime => true;
+
+        public override int HoursAjust => -8;
+
         public LBKenoService(IApiClient client = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
             : base(appSetting, thirdPartyProductRepository)
         {
@@ -101,6 +109,28 @@ namespace Fanex.Affiliate.DataService.Importer
             base.EnsureEndTimeLaterThanStartTime(startTime, endTime);
             if (startTime.Year == endTime.Year && startTime.Month == endTime.Month && startTime.Day == endTime.Day)
                 throw new ThirdPartyProductException("LBKeno - start time day equal to end time day - Can't query api with the same day");
+        }
+
+        protected override XDocument ConvertTimeZone(XDocument xml)
+        {
+            var items = xml.Root.Element("bet").Elements("item");
+            foreach (var item in items)
+            {
+                UpdateTimeZoneData("bet_time", item);
+                UpdateTimeZoneData("trans_time", item);
+            }
+            return xml;
+        }
+
+        private static void UpdateTimeZoneData(string elementName, XElement element)
+        {
+            var timeString = element.Attribute(elementName)?.Value;
+            if (!string.IsNullOrEmpty(timeString))
+            {
+                var time = DateTime.ParseExact(timeString, TimeDataFormat, CultureInfo.InvariantCulture);
+                var convertedTime = DateTimeConverter.ConvertTime(time, TimeZoneId.GmtPlus8, TimeZoneId.GMT);
+                element.Attribute(elementName).Value = convertedTime.ToString(TimeDataFormat);
+            }
         }
     }
 }
