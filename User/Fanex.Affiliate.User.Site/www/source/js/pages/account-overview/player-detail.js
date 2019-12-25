@@ -1,17 +1,17 @@
 ﻿var PlayersDetails = (function ($) {
     var _pageSize = 20;
     var _pageIndex = 0;
-    var _sortingColumn = 'UserName';
-    var _isSortingAsc = false;
+    var _sortingColumn = 'Username';
+    var _isSortingAsc = true;
     const SortByIdList = {
-        "Username": 1,
-        "RegisteredDate": 2,
-        "Deposit": 3,
-        "Withdrawal": 4,
-        "Turnover": 5,
-        "Winloss": 6,
-        "Bonus": 7,
-        "BankingFee": 8
+        Username: 1,
+        RegisteredDate: 2,
+        Deposit: 3,
+        Withdrawal: 4,
+        Turnover: 5,
+        Winloss: 6,
+        Bonus: 7,
+        BankingFee: 8
     };
 
     function initPager() {
@@ -44,13 +44,13 @@
             });
         },
 
-        getPlayersDetailsParam: function (sortById, sortTypeId) {
+        getPlayersDetailsParam: function (sortById, isSortAsc) {
             return {
                 MonthDate: $("#MonthDate").data("original-date"),
                 PageSize: _pageSize,
                 PageIndex: _pageIndex + 1,
                 SortById: sortById || 1,
-                SortTypeId: sortTypeId || 1
+                IsSortAsc: isSortAsc
             };
         },
 
@@ -78,9 +78,6 @@
         processSorting: function ($element) {
             var columnName = $element.closest('.th').data('name');
 
-            var params = _me.getPlayersDetailsParam(SortByIdList[columnName], _isSortingAsc ? 1 : 2);
-            _me.renderPlayersDetails(params);
-
             if (columnName === _sortingColumn) {
                 _isSortingAsc = !_isSortingAsc;
             } else {
@@ -91,6 +88,9 @@
             var sortingSelector = _isSortingAsc ? '.asc' : '.desc';
             var $sortIcon = $element.find(sortingSelector);
             _me.activeSortIcon($sortIcon);
+
+            var params = _me.getPlayersDetailsParam(SortByIdList[columnName], _isSortingAsc);
+            _me.renderPlayersDetails(params);
         },
         activeSortIcon: function ($element) {
             $('.th').find('.caret.current').removeClass('current');

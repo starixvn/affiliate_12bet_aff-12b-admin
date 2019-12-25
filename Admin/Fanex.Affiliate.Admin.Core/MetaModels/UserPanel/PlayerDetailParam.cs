@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
@@ -12,5 +11,9 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public DateTime? MonthDate { get; set; }
 
         public bool IsExportExcel { get; set; }
+
+        public bool IsSortAsc { get; set; } = true;
+
+        public int SortById { get; set; } = 1;
     }
 }

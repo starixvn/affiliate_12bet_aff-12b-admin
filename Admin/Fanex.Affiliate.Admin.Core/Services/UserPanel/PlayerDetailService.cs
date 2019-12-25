@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 BankingFee = Convert.ToDecimal(reader["BankingFee"]),
                 Bonus = Convert.ToDecimal(reader["Bonus"]),
                 Turnover = Convert.ToDecimal(reader["Turnover"]),
-                Winlost = Convert.ToDecimal(reader["Winlost"])
+                Winloss = Convert.ToDecimal(reader["Winloss"])
             };
         }
 
@@ -62,6 +62,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
             objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
             objectDb.AddInParameter("IsExportExcel", DbType.Boolean, param.IsExportExcel);
+            objectDb.AddInParameter("IsSortAsc", DbType.Boolean, param.IsSortAsc);
+            objectDb.AddInParameter("SortById", DbType.Int32, param.SortById);
 
             objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
         }

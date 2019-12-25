@@ -4,16 +4,19 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { headerText, globalResource, selectedAllProduct, maxWidth } from '../modules/constants';
+import { headerText, globalResource, selectedAllProduct, maxWidth, SortByIdList } from '../modules/constants';
 import { setPagingOption, toggleLoaderUserPanel, fetchData } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
+import SortingCell from './SortingCell';
 
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
         this.state = {
-            data: null
+            data: null,
+            isSortAsc: true,
+            sortingColumn: 'Username'
         }
     }
 
@@ -38,18 +41,35 @@ export class Content extends PureComponent {
         this.props.toggleLoaderUserPanel(false);
     }
 
+    handleClickHeader = (selectedColumn) => {
+        const { isSortAsc, sortingColumn } = this.state;
+        const { param, pagingOption } = this.props;
+        const postParam = { ...param, pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize, SortById: SortByIdList[selectedColumn] };
+
+        if (sortingColumn === selectedColumn) {
+            this.setState({ isSortAsc: !isSortAsc });
+            this._fetchData({ ...postParam, isSortAsc: !isSortAsc });
+
+        } else {
+            this.setState({ isSortAsc: true, sortingColumn: selectedColumn });
+            this._fetchData({ ...postParam, isSortAsc: true });
+        }
+    }
     _renderHeader() {
+        const { isSortAsc, sortingColumn } = this.state;
+
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
-                <Cell header={true} colWidth={100} title={headerText.UserName}>{headerText.UserName}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.IbcUserName}>{headerText.IbcUserName}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.RegisteredDateText}>{headerText.RegisteredDateText}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Turnover}>{headerText.Turnover}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Winlost}>{headerText.Winlost}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Deposit}>{headerText.Deposit}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Bonus}>{headerText.Bonus}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.BankingFee}>{headerText.BankingFee}</Cell>
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Username'} title={headerText.UserName} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'IbcUsername'} title={headerText.IbcUserName} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'RegisteredDate'} title={headerText.RegisteredDate} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Turnover'} title={headerText.Turnover} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Winloss'} title={headerText.Winloss} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Bonus'} title={headerText.Bonus} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Deposit'} title={headerText.Deposit} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Withdrawal'} title={headerText.Withdrawal} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'BankingFee'} title={headerText.BankingFee} handleClickHeader={this.handleClickHeader} />
             </Row>
         )
     }
@@ -80,9 +100,10 @@ export class Content extends PureComponent {
 
     _buildDataRow(dataItem, rowNumber, productColumnClassName) {
         const turnover = formatDecimal(dataItem.Turnover);
-        const winlost = formatDecimal(dataItem.Winlost);
-        const deposit = formatDecimal(dataItem.Deposit);
+        const winloss = formatDecimal(dataItem.Winloss);
         const bonus = formatDecimal(dataItem.Bonus);
+        const deposit = formatDecimal(dataItem.Deposit);
+        const withdrawal = formatDecimal(dataItem.Withdrawal);
         const bankingFee = formatDecimal(dataItem.BankingFee);
         const userName = htmlDecode(dataItem.UserName);
 
@@ -93,9 +114,10 @@ export class Content extends PureComponent {
                 <Cell title={dataItem.IbcUserName}>{dataItem.IbcUserName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateText}>{dataItem.RegisteredDateText}</Cell>
                 <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>
-                <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>
-                <Cell className="text-right" title={deposit}>{deposit}</Cell>
+                <Cell className={productColumnClassName} title={winloss}>{winloss}</Cell>
                 <Cell className="text-right" title={bonus}>{bonus}</Cell>
+                <Cell className="text-right" title={deposit}>{deposit}</Cell>
+                <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
                 <Cell className="text-right" title={bankingFee}>{bankingFee}</Cell>
             </Row>
         )
@@ -119,7 +141,7 @@ export class Content extends PureComponent {
         const { data } = this.state;
 
         return data && data.gridData && (
-            <div className="table-responsive table-striped my-2">
+            <div className="table-responsive table-striped my-2 player-detail">
                 <Table
                     maxWidth={maxWidth}
                     bodyHeight={300}

@@ -1167,7 +1167,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Filter.jsx" />
-    <Content Include="Areas\Portal\www\source\style\pages\user-panel\customer-member.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-info.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\AppContainer.jsx" />
@@ -1202,16 +1201,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\view-log.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\user-panel\landing-page-statistics.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\user-panel\referrers.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\user-panel\note.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\adjustment.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\Appcontainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Filter.jsx" />
-    <Content Include="Areas\Portal\www\source\style\pages\user-panel\statement-history.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Filter.jsx" />
@@ -1329,6 +1324,7 @@
     <Content Include="Areas\Portal\www\source\style\components\_policy-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_department-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\home.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\SortingCell.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

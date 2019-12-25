@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public int SortById { get; set; } = 1;
 
-        public int SortTypeId { get; set; } = 1;
+        public bool IsSortAsc { get; set; } = true;
 
         public int NRows { get; set; }
     }
