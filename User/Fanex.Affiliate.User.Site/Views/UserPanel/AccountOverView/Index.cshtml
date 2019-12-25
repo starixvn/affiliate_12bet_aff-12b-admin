@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
 }
+@model Fanex.Affiliate.User.Core.DTO.UserPanel.LastLoginInfo
 
 @Html.InlineStyles("~/www/build/styles/css/account-overview.min.css")
 
@@ -13,8 +14,8 @@
         </ul>
     </div>
     <div class="bg-orange">
-        <span class="text"><strong>Last Login:</strong> @DateTime.Now.ToString("dd-MMM-yyyy hh:mm tt")</span>
-        <span class="text"><strong>Last Login IP Address:</strong> 192.50.23.299</span>
+        <span class="text"><strong>Last Login:</strong> @Model.LastLoginDate.ToString("dd-MMM-yyyy hh:mm tt")</span>
+        <span class="text"><strong>Last Login IP Address:</strong> @Model.LastLoginIP</span>
     </div>
     <div id="account-overview-content"></div>
 </div>

@@ -293,6 +293,7 @@
     <Compile Include="DTO\ProductItem.cs" />
     <Compile Include="DTO\RsaKeyPair.cs" />
     <Compile Include="DTO\SecurityQuestion.cs" />
+    <Compile Include="DTO\UserPanel\LastLoginInfo.cs" />
     <Compile Include="DTO\UserPanel\OverviewDetail.cs" />
     <Compile Include="DTO\UserPanel\OverviewSummary.cs" />
     <Compile Include="DTO\UserPanel\PlayerDetail.cs" />

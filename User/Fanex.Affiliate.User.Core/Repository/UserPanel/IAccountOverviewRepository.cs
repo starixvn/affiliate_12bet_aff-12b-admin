@@ -12,5 +12,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         IEnumerable<OverviewDetail> GetUserOverviewDetailList(int affId, DateTime monthDate);
 
         IEnumerable<PlayerDetail> GetPlayerDetailList(PlayerDetailParam param);
+
+        LastLoginInfo GetLastLoginInfo(int affId);
     }
 }

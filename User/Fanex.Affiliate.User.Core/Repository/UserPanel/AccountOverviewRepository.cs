@@ -7,6 +7,16 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public class AccountOverviewRepository : IAccountOverviewRepository
     {
+        public LastLoginInfo GetLastLoginInfo(int affId)
+        {
+            const string uSpKey = "Aff_User_LoginInfo_Sel";
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            {
+                return objectDb.DB.QueryEntity<LastLoginInfo>(new { affId });
+            }
+        }
+
         public IEnumerable<PlayerDetail> GetPlayerDetailList(PlayerDetailParam param)
         {
             const string uSpKey = "Aff_User_Overview_PlayersDetail_Sel";
