@@ -35,6 +35,7 @@
             initPager();
             _me.initEvent();
             _me.activeSortIcon($('#defaultSorting'));
+            _me.togglePager();
         },
 
         initEvent: function () {
@@ -42,6 +43,11 @@
                 var $this = $(this);
                 _me.processSorting($this);
             });
+        },
+
+        togglePager: function () {
+            var totalItem = parseInt($("#TotalItem").val());
+            $("#player-detail-pager").toggle(totalItem !== 0);
         },
 
         getPlayersDetailsParam: function (sortById, isSortAsc) {
@@ -64,7 +70,8 @@
                 url: Site.resolveRelativeUrl("UserPanel/Summary/PlayersDetailsContent"),
                 success: function (response) {
                     $("#player-detail-content").html(response);
-                    $("#player-detail-content").addClass($("#HasScroll").val())
+                    $("#player-detail-content").addClass($("#HasScroll").val());
+                    _me.togglePager();
                 },
                 beforeSend: function () {
                     Site.showLoader();

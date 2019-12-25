@@ -16,13 +16,11 @@
     [CustomAuthorize]
     public class MarketingController : BaseController
     {
-
         private readonly IMarketingService _marketingService;
         private readonly IAppSetting _appSetting;
         public MarketingController(ISessionService sessionService, IAppSetting appSetting,
             ILanguageService languageService,
-            IMarketingService marketingService,
-            IAccountRepository accountRepository) : base(sessionService, languageService)
+            IMarketingService marketingService) : base(sessionService, languageService)
         {
 
             _marketingService = marketingService;
@@ -65,7 +63,7 @@
             var bannerList = GetBannerList(bannerParam);
             ViewBag.TotalItem = bannerParam.Nrows;
 
-            return View("~/Views/UserPanel/Marketing/MarketingPartial/_BannerList.cshtml", bannerList);
+            return View("~/Views/UserPanel/AccountOverview/Partial/_BannerList.cshtml", bannerList);
         }
 
         [HttpGet]
@@ -85,7 +83,7 @@
             var textList = GetTextList(textParam);
             ViewBag.TotalItem = textParam.Nrows;
 
-            return View("~/Views/UserPanel/Marketing/MarketingPartial/_TextList.cshtml", textList);
+            return View("~/Views/UserPanel/AccountOverview/Partial/_TextList.cshtml", textList);
         }
 
         [HttpGet]
@@ -101,7 +99,7 @@
 
             var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);
 
-            return View("~/Views/UserPanel/Marketing/MarketingPartial/_TextLink.cshtml", textLinkList);
+            return View("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", textLinkList);
         }
 
         private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)

@@ -27,6 +27,7 @@
         initialize: function () {
             _me.initEvent();
             initPager();
+            _me.togglePager();
         },
 
         initEvent: function () {
@@ -57,6 +58,11 @@
             $("#btnGenerateLink").on("click", function () {
                 _me.submitSearch();
             });
+        },
+
+        togglePager: function () {
+            var totalItem = parseInt($("#TotalItem").val());
+            $("#marketingPager").toggle(totalItem !== 0);
         },
 
         submitSearch: function(){
@@ -126,8 +132,7 @@
                     $("#marketingDataList").html(response);
                     onSuccess && onSuccess();
 
-                    var totalItem = parseInt($("#TotalItem").val());
-                    $("#marketingPager").toggle(totalItem !== 0);
+                    _me.togglePager();
                 }
             });
         },
