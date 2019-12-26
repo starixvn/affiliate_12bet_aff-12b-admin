@@ -15,8 +15,8 @@ export class Content extends PureComponent {
 
         this.state = {
             data: null,
-            isSortAsc: true,
-            sortingColumn: 'Username'
+            isSortAsc: false,
+            sortingColumn: 'Turnover'
         }
     }
 
@@ -25,6 +25,9 @@ export class Content extends PureComponent {
         if (param !== prevProps.param) {
             const postParam = { ...param, pageIndex: 1, pageSize: pagingOption.PageSize };
             this._fetchData(postParam);
+        }
+        if (param.isClickLink) {
+            this.setState({ isSortAsc: false, sortingColumn: 'Turnover' });
         }
     }
 
@@ -51,8 +54,8 @@ export class Content extends PureComponent {
             this._fetchData({ ...postParam, isSortAsc: !isSortAsc });
 
         } else {
-            this.setState({ isSortAsc: true, sortingColumn: selectedColumn });
-            this._fetchData({ ...postParam, isSortAsc: true });
+            this.setState({ isSortAsc: false, sortingColumn: selectedColumn });
+            this._fetchData({ ...postParam, isSortAsc: false });
         }
     }
     _renderHeader() {
@@ -66,9 +69,9 @@ export class Content extends PureComponent {
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'RegisteredDate'} title={headerText.RegisteredDate} handleClickHeader={this.handleClickHeader} />
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Turnover'} title={headerText.Turnover} handleClickHeader={this.handleClickHeader} />
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Winloss'} title={headerText.Winloss} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Bonus'} title={headerText.Bonus} handleClickHeader={this.handleClickHeader} />
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Deposit'} title={headerText.Deposit} handleClickHeader={this.handleClickHeader} />
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Withdrawal'} title={headerText.Withdrawal} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Bonus'} title={headerText.Bonus} handleClickHeader={this.handleClickHeader} />
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'BankingFee'} title={headerText.BankingFee} handleClickHeader={this.handleClickHeader} />
             </Row>
         )

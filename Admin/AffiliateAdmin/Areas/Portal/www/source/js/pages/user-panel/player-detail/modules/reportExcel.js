@@ -19,7 +19,7 @@ const fields = {
     Index: 'Index',
     UserName: 'UserName',
     IbcUserName: 'IbcUserName',
-    RegisteredDateText: 'RegisteredDateText',
+    RegisteredDate: 'RegisteredDate',
     Turnover: 'Turnover',
     Winloss: 'Winloss',
     Bonus: 'Bonus',
@@ -139,7 +139,7 @@ export default class ReportExcel {
             field: fields.IbcUserName,
             [MAIN_SECTION_STYLE]: bodyCellStyle.left
         }, {
-            field: fields.RegisteredDateText,
+            field: fields.RegisteredDate,
             [MAIN_SECTION_STYLE]: bodyCellStyle.center
         }, {
             field: fields.Turnover,

@@ -5,6 +5,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
     public class PlayerDetailParam
     {
+        private const int Turnover = 5;
+
         public int AffId { get; set; }
 
         public int PageIndex { get; set; } = Page.PageIndex;
@@ -13,9 +15,9 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public DateTime MonthDate { get; set; } = DateTime.Now;
 
-        public int SortById { get; set; } = 1;
+        public int SortById { get; set; } = Turnover;
 
-        public bool IsSortAsc { get; set; } = true;
+        public bool IsSortAsc { get; set; }
 
         public int NRows { get; set; }
     }

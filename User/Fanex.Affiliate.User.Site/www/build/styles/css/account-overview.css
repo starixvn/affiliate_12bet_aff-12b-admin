@@ -290,7 +290,7 @@
             display: block;
             border-width: 4px; }
             .summary-content .details-section-content .table #player-detail-table .th-wrapper .icon-container .caret.current {
-              border-top-color: #FD0302; }
+              border-top-color: #000; }
           .summary-content .details-section-content .table #player-detail-table .th-wrapper .icon-container > .asc {
             transform: rotate(180deg);
             margin-bottom: 3px; }

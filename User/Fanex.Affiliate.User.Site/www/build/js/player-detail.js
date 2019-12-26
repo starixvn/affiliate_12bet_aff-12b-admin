@@ -235,8 +235,8 @@
 var PlayersDetails = (function ($) {
     var _pageSize = 20;
     var _pageIndex = 0;
-    var _sortingColumn = 'Username';
-    var _isSortingAsc = true;
+    var _sortingColumn = 'Turnover';
+    var _isSortingAsc = false;
     const SortByIdList = {
         Username: 1,
         RegisteredDate: 2,
@@ -289,7 +289,7 @@ var PlayersDetails = (function ($) {
                 MonthDate: $("#MonthDate").data("original-date"),
                 PageSize: _pageSize,
                 PageIndex: _pageIndex + 1,
-                SortById: sortById || 1,
+                SortById: sortById || SortByIdList.Turnover,
                 IsSortAsc: isSortAsc
             };
         },
@@ -322,7 +322,7 @@ var PlayersDetails = (function ($) {
             if (columnName === _sortingColumn) {
                 _isSortingAsc = !_isSortingAsc;
             } else {
-                _isSortingAsc = true;
+                _isSortingAsc = false;
                 _sortingColumn = columnName;
             }
 
