@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public override bool IsNeedConvertTime => true;
 
-        public override int HoursAjust => -8;
+        public override int HoursAjust => -12;
 
         public LBKenoService(IApiClient client = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
             : base(appSetting, thirdPartyProductRepository)
@@ -128,7 +128,7 @@ namespace Fanex.Affiliate.DataService.Importer
             if (!string.IsNullOrEmpty(timeString))
             {
                 var time = DateTime.ParseExact(timeString, TimeDataFormat, CultureInfo.InvariantCulture);
-                var convertedTime = DateTimeConverter.ConvertTime(time, TimeZoneId.GmtPlus8, TimeZoneId.GMT);
+                var convertedTime = DateTimeConverter.ConvertTime(time, TimeZoneId.GmtPlus8, TimeZoneId.GmtMinus4);
                 element.Attribute(elementName).Value = convertedTime.ToString(TimeDataFormat);
             }
         }
