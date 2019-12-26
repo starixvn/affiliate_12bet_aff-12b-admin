@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 gapTime = endTime - startTime;
                 if (gapTime.Days < 1)
                 {
-                    Logger.Debug($"{ServiceName} - Ignore request from {startTime} to {endTime}");
+                    Logger.Info($"{ServiceName} - Ignore request from {startTime} to {endTime}");
                     continue;
                 }
                 var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
