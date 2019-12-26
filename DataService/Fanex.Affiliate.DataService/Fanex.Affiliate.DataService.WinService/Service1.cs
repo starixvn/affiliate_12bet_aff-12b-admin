@@ -47,6 +47,8 @@ namespace Fanex.Affiliate.DataService.WinService
             var env = ConfigurationManager.AppSettings["Environment"];
             var dsn = ConfigurationManager.AppSettings["SentryDsn"];
             var category = ConfigurationManager.AppSettings["LoggingCategory"];
+            var logLevel = (LogLevel)Enum.Parse(typeof(LogLevel), ConfigurationManager.AppSettings["LogLevel"]);
+            LogWrapper.Logger.SetLogLevel(logLevel);
 
             if (!string.IsNullOrEmpty(dsn))
             {

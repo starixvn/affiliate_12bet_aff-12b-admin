@@ -93,11 +93,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\JobSystem.cs" />
+    <Compile Include="ILogWrapper.cs" />
     <Compile Include="LogProvider.cs" />
     <Compile Include="IJobScheduler.cs" />
     <Compile Include="IJobSchedulerFactory.cs" />
     <Compile Include="JobBase.cs" />
     <Compile Include="JobSchedulerFactory.cs" />
+    <Compile Include="LogWrapper.cs" />
     <Compile Include="MetaModels\TimeTracker\InsertTimeTrackerParam.cs" />
     <Compile Include="MetaModels\TimeTracker\TimeTrackerBaseParam.cs" />
     <Compile Include="Model\ScheduleInfo.cs" />

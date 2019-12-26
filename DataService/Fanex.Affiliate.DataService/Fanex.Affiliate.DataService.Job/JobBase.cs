@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.DataService.Job
 {
     public abstract class JobBase : IJob
     {
-        internal static ILogger Logger => Fanex.Logging.Logger.Log;
+        internal static ILogWrapper Logger => LogWrapper.Logger;
 
         public abstract string ServiceName { get; }
 

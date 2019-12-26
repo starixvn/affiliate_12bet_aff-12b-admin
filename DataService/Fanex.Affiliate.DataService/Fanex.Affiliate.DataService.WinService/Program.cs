@@ -1,6 +1,4 @@
-﻿using Fanex.Data;
-using Fanex.Data.SqlServer;
-using System.ServiceProcess;
+﻿using System.ServiceProcess;
 
 namespace Fanex.Affiliate.DataService.WinService
 {
@@ -11,10 +9,6 @@ namespace Fanex.Affiliate.DataService.WinService
         /// </summary>
         private static void Main()
         {
-            DbSettingProviderManager
-                .StartNewSession()
-                .WithSqlServer("~/App_Data")
-                .Run();
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
