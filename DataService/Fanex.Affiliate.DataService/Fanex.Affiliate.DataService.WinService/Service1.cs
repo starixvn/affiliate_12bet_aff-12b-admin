@@ -7,6 +7,8 @@ using System.Configuration;
 using System.Collections.Generic;
 using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
+using Fanex.Data;
+using Fanex.Data.SqlServer;
 
 namespace Fanex.Affiliate.DataService.WinService
 {
@@ -19,7 +21,24 @@ namespace Fanex.Affiliate.DataService.WinService
             InitializeComponent();
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             InitLogging();
+            InitDbConnect();
             _schedulerFactory = new JobSchedulerFactory();
+
+        }
+
+        private void InitDbConnect()
+        {
+            try
+            {
+                DbSettingProviderManager
+                 .StartNewSession()
+                 .WithSqlServer("~/App_Data")
+                 .Run();
+            }
+            catch (Exception ex)
+            {
+                LogService.Error($"Connect db error {ex.Message}", ex.InnerException);
+            }
 
         }
 
