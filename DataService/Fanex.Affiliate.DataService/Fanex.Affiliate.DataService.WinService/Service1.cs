@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.DataService.WinService
 
         }
 
-        private void InitLogging()
+        private static void InitLogging()
         {
             var env = ConfigurationManager.AppSettings["Environment"];
             var dsn = ConfigurationManager.AppSettings["SentryDsn"];

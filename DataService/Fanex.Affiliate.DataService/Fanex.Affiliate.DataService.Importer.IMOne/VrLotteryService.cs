@@ -92,7 +92,9 @@ namespace Fanex.Affiliate.DataService.Importer
             var xml = XmlHelper.ParseToXDocumentFromJson(rawData);
             var pageProportion = xml.Root.Element("Pagination");
             if (pageProportion == null)
+            {
                 return false;
+            }
 
             var currentPage = int.Parse(pageProportion.Element("CurrentPage").Value);
             var totalPage = int.Parse(pageProportion.Element("TotalPage").Value);
@@ -143,7 +145,9 @@ namespace Fanex.Affiliate.DataService.Importer
 
             IMoneResponseStatus status;
             if (!Enum.TryParse<IMoneResponseStatus>(codeElem.Value, out status))
+            {
                 throw new ThirdPartyProductException($"VRLottery - Can't convert {codeElem.Value} response code");
+            }
 
             if (status == IMoneResponseStatus.SUCCESS)
                 return true;
