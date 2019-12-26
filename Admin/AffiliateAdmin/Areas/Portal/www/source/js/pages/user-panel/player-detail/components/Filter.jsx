@@ -39,7 +39,7 @@ export class Filter extends PureComponent {
         if (param.isClickLink && param !== prevProps.param) {
             const newMonthDate = new Date(param.monthDate);
 
-            this.setState({ monthDate: newMonthDate });
+            this.setState({ monthDate: newMonthDate, selectedProduct: selectedAllProduct });
             this.handleSearch(newMonthDate);
         }
     }
@@ -123,7 +123,7 @@ export class Filter extends PureComponent {
                             <option value="0">{resource.All}</option>
                             {
                                 productList.map(p => {
-                                    return (<option value={p.ProductId}>{htmlDecode(p.ProductName)}</option>)
+                                    return (<option value={p.ProductId} key={p.ProductId}>{htmlDecode(p.ProductName)}</option>)
                                 })
                             }
                         </Input>

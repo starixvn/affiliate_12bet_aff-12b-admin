@@ -38,7 +38,7 @@ export class Content extends PureComponent {
         const postData = { ...param, affId };
         const data = await this.props.fetchData(postData);
 
-        this.setState({ data: { gridData: data ? data.MainData : null } });
+        this.setState({ data: data ? data.MainData : null });
         this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
 
         this.props.toggleLoaderUserPanel(false);
@@ -143,13 +143,13 @@ export class Content extends PureComponent {
         const { pagingOption } = this.props;
         const { data } = this.state;
 
-        return data && data.gridData && (
+        return data && (
             <div className="table-responsive table-striped my-2 player-detail">
                 <Table
                     maxWidth={maxWidth}
                     bodyHeight={300}
                     header={this._renderHeader()}
-                    body={this._renderDataSection(data.gridData)}
+                    body={this._renderDataSection(data)}
                     containerPadding={10}
                     isPaging={true}
                     pageOption={pagingOption}
