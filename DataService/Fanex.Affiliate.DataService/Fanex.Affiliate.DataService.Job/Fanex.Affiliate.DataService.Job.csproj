@@ -93,13 +93,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\JobSystem.cs" />
-    <Compile Include="ILogWrapper.cs" />
-    <Compile Include="LogProvider.cs" />
+    <Compile Include="Constants\ServiceMapping.cs" />
+    <Compile Include="Log\ILogWrapper.cs" />
+    <Compile Include="Log\LoggerFactory.cs" />
+    <Compile Include="Log\LogLevel.cs" />
+    <Compile Include="Log\LogWrapperManager.cs" />
+    <Compile Include="QuartzLogProvider.cs" />
     <Compile Include="IJobScheduler.cs" />
     <Compile Include="IJobSchedulerFactory.cs" />
     <Compile Include="JobBase.cs" />
     <Compile Include="JobSchedulerFactory.cs" />
-    <Compile Include="LogWrapper.cs" />
+    <Compile Include="Log\LogWrapper.cs" />
     <Compile Include="MetaModels\TimeTracker\InsertTimeTrackerParam.cs" />
     <Compile Include="MetaModels\TimeTracker\TimeTrackerBaseParam.cs" />
     <Compile Include="Model\ScheduleInfo.cs" />

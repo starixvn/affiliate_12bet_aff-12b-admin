@@ -4,7 +4,7 @@ using System;
 
 namespace Fanex.Affiliate.DataService.Job
 {
-    public class LogProvider : ILogProvider
+    public class QuartzLogProvider : ILogProvider
     {
         public Quartz.Logging.Logger GetLogger(string name)
         {

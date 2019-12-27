@@ -1,4 +1,4 @@
-﻿using Fanex.Logging;
+﻿using Fanex.Affiliate.DataService.Job.Log;
 using ONEbook.UM.NonWebApp;
 using Quartz;
 using System;
@@ -9,7 +9,13 @@ namespace Fanex.Affiliate.DataService.Job
 {
     public abstract class JobBase : IJob
     {
-        internal static ILogWrapper Logger => LogWrapper.Logger;
+        protected JobBase()
+        {
+            var type = this.GetType();
+            Logger = LoggerFactory.CreateLogger(type.FullName);
+        }
+
+        protected ILogWrapper Logger { get; set; }
 
         public abstract string ServiceName { get; }
 

@@ -1,20 +1,20 @@
 ﻿using Fanex.Logging;
 using System;
 
-namespace Fanex.Affiliate.DataService.Job
+namespace Fanex.Affiliate.DataService.Job.Log
 {
     public class LogWrapper : ILogWrapper
     {
         protected ILogger _logger;
         protected LogLevel _logLevel;
 
-        private LogWrapper(ILogger logger = null, LogLevel logLevel = LogLevel.Error)
+        public LogWrapper(ILogger logger = null, LogLevel logLevel = LogLevel.Error)
         {
             _logger = logger ?? Fanex.Logging.Logger.Log;
             _logLevel = logLevel;
         }
 
-        private static LogLevel LogLevel = LogLevel.Error;
+        private LogLevel LogLevel = LogLevel.Error;
 
         public static ILogWrapper Logger => new LogWrapper();
 
@@ -86,14 +86,5 @@ namespace Fanex.Affiliate.DataService.Job
         {
             LogLevel = level;
         }
-    }
-
-
-    public enum LogLevel
-    {
-        Debug,
-        Info,
-        Warning,
-        Error
     }
 }

@@ -9,6 +9,8 @@ using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
+using Fanex.Affiliate.DataService.Job.Log;
+using Fanex.Affiliate.DataService.Job.Constants;
 
 namespace Fanex.Affiliate.DataService.WinService
 {
@@ -26,7 +28,7 @@ namespace Fanex.Affiliate.DataService.WinService
 
         }
 
-        private void InitDbConnect()
+        private static void InitDbConnect()
         {
             try
             {
@@ -44,12 +46,39 @@ namespace Fanex.Affiliate.DataService.WinService
 
         private static void InitLogging()
         {
+            try
+            {
+                SetupFanexLogging();
+                SetupJobLogging();
+            }
+            catch (Exception ex)
+            {
+                LogService.Error("Error when innit logger", ex);
+            }
+
+        }
+
+        private static void SetupJobLogging()
+        {
+            var defaultLogLevel = (LogLevel)Enum.Parse(typeof(LogLevel), ConfigurationManager.AppSettings["LogLevel"]);
+            var trackers = ConfigurationManager.AppSettings["LogTrackerProduct"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var logManager = LogWrapperManager.StartNewLogTracker();
+            logManager.DefaultLogLevel = defaultLogLevel;
+            foreach (var tracker in trackers)
+            {
+                if (!string.IsNullOrWhiteSpace(tracker))
+                {
+                    var category = ServiceMapping.ServiceFullName[tracker];
+                    logManager.AddLogConfig(category, LogLevel.Debug);
+                }
+            }
+        }
+
+        private static void SetupFanexLogging()
+        {
             var env = ConfigurationManager.AppSettings["Environment"];
             var dsn = ConfigurationManager.AppSettings["SentryDsn"];
             var category = ConfigurationManager.AppSettings["LoggingCategory"];
-            var logLevel = (LogLevel)Enum.Parse(typeof(LogLevel), ConfigurationManager.AppSettings["LogLevel"]);
-            LogWrapper.Logger.SetLogLevel(logLevel);
-
             if (!string.IsNullOrEmpty(dsn))
             {
                 LogManager.SetDefaultLogCategory(category)
@@ -60,7 +89,7 @@ namespace Fanex.Affiliate.DataService.WinService
                             Dsn = new Dsn(dsn),
                             Environment = env
                         })
-                        
+
                     });
             }
         }

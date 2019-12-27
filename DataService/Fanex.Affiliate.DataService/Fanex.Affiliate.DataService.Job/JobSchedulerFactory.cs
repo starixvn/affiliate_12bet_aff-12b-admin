@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.DataService.Job
 #if DEBUG
             Quartz.Logging.LogProvider.IsDisabled = false;
 
-            Quartz.Logging.LogProvider.SetCurrentLogProvider(new LogProvider());
+            Quartz.Logging.LogProvider.SetCurrentLogProvider(new QuartzLogProvider());
 #endif
 
             var appSetting = new AppSettings();

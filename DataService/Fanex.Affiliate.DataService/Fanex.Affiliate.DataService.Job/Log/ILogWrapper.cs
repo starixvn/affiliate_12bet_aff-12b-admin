@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fanex.Affiliate.DataService.Job
+namespace Fanex.Affiliate.DataService.Job.Log
 {
     public interface ILogWrapper
     {
