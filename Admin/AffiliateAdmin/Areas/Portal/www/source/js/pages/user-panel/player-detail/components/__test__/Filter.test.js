@@ -60,10 +60,9 @@ describe('players detail - components - Filter', () => {
         const props = Object.assign({}, defaultProps, { param: newParam });
         const wrapper = shallow(<Filter {...props} />);
         const instance = wrapper.instance();
-        instance.setState({ productList });
+        instance.setState({ productList, monthDate: new Date('11/26/2019') });
         instance.handleGetProductList = jest.fn();
         instance.handleSearch = jest.fn();
-        instance.setState({ monthDate: new Date('11/26/2019') });
 
         instance.componentDidMount();
 

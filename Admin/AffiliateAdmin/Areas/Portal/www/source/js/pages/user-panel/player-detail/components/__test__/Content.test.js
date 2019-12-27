@@ -61,7 +61,7 @@ describe('players detail - components - Content', () => {
     it('render correctly with have data is empty', () => {
         const result = shallow(<Content {...defaultProps} />);
         
-        result.setState({ data: {} });
+        result.setState({ data: [] });
 
         expect(result).toMatchSnapshot();
     });

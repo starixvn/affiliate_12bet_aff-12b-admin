@@ -935,6 +935,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\Detail.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\redux\Detail.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\redux\Filter.redux.test.js" />

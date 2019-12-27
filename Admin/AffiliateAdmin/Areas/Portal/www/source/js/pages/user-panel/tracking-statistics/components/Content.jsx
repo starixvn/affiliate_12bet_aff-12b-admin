@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText, maxWidth } from '../modules/constants';
+import { headerText, maxWidth, globalResource } from '../modules/constants';
 import { setSelectedMonth, fetchData, toggleLoaderUserPanel } from '../actions';
 
 export class Content extends PureComponent {
@@ -48,10 +48,16 @@ export class Content extends PureComponent {
 
     _renderDataSection(dataList) {
         const dataRows = [];
-
-        for (let i = 0; i < dataList.length; i++) {
-            const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, i + 1));
+        if (dataList && dataList.length) {
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
+                dataRows.push(this._buildDataRow(dataItem, i + 1));
+            }
+        }
+        else {
+            dataRows.push(<Row>
+                <Cell className="text-center" colSpan="4">{globalResource.NoInfo}</Cell>
+            </Row>);
         }
 
         return dataRows;
