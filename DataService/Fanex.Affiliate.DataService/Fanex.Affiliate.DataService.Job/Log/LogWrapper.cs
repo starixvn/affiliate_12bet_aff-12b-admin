@@ -14,13 +14,17 @@ namespace Fanex.Affiliate.DataService.Job.Log
             _logLevel = logLevel;
         }
 
-        private LogLevel LogLevel = LogLevel.Error;
+        private LogLevel LogLevel
+        {
+            get { return _logLevel; }
+            set { _logLevel = value; }
+        }
 
         public static ILogWrapper Logger => new LogWrapper();
 
         public void Error(string message)
         {
-            if (LogLevel >= LogLevel.Error)
+            if (LogLevel <= LogLevel.Error)
             {
                 _logger.Error(message);
             }
@@ -28,7 +32,7 @@ namespace Fanex.Affiliate.DataService.Job.Log
 
         public void Error(string message, string category)
         {
-            if (LogLevel >= LogLevel.Error)
+            if (LogLevel <= LogLevel.Error)
             {
                 _logger.Error(message,category);
             }
@@ -36,7 +40,7 @@ namespace Fanex.Affiliate.DataService.Job.Log
 
         public void Error(string message, Exception exception)
         {
-            if (LogLevel >= LogLevel.Error)
+            if (LogLevel <= LogLevel.Error)
             {
                 _logger.Error(message, exception);
             }
@@ -44,7 +48,7 @@ namespace Fanex.Affiliate.DataService.Job.Log
 
         public void Error(string message, string category, Exception exception)
         {
-            if (LogLevel >= LogLevel.Error)
+            if (LogLevel <= LogLevel.Error)
             {
                 _logger.Error(message, category, exception);
             }
@@ -52,7 +56,7 @@ namespace Fanex.Affiliate.DataService.Job.Log
 
         public void Info(string message)
         {
-            if (LogLevel >= LogLevel.Info)
+            if (LogLevel <= LogLevel.Info)
             {
                 _logger.Info(message);
             }
@@ -60,7 +64,7 @@ namespace Fanex.Affiliate.DataService.Job.Log
 
         public void Info(string message, string category)
         {
-            if (LogLevel >= LogLevel.Info)
+            if (LogLevel <= LogLevel.Info)
             {
                 _logger.Info(message,category);
             }
@@ -68,7 +72,7 @@ namespace Fanex.Affiliate.DataService.Job.Log
 
         public void Info(string format, params object[] args)
         {
-            if (LogLevel >= LogLevel.Info)
+            if (LogLevel <= LogLevel.Info)
             {
                 _logger.Info(format, args);
             }
@@ -76,7 +80,7 @@ namespace Fanex.Affiliate.DataService.Job.Log
 
         public void Info(string format, string category, params object[] args)
         {
-            if (LogLevel >= LogLevel.Info)
+            if (LogLevel <= LogLevel.Info)
             {
                 _logger.Info(format, category, args);
             }
