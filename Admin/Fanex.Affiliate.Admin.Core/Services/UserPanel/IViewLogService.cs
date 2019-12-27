@@ -2,9 +2,9 @@
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
+namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public interface IViewLogRepository
+    public interface IViewLogService
     {
         EntityResult<ViewLog> GetViewLogList(ViewLogParam param);
     }

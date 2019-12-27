@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Repository;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.Constants;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
+namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class ViewLogRepository : BaseRepository, IViewLogRepository
+    public class ViewLogService : BaseRepository, IViewLogService
     {
         public EntityResult<ViewLog> GetViewLogList(ViewLogParam param)
         {
@@ -31,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        dataList.Add( new ViewLog
+                        dataList.Add(new ViewLog
                         {
                             Id = Convert.ToInt32(reader["LogId"]),
                             Date = Convert.ToDateTime(reader["Date"]),
