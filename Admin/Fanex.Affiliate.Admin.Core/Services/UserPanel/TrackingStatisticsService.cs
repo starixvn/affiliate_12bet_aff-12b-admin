@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
-using System.Data;
+﻿using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
+namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class TrackingStatisticsRepository : BaseRepository, ITrackingStatisticsRepository
+    public class TrackingStatisticsService : BaseRepository, ITrackingStatisticsService
     {
         public IEnumerable<string> GetTrackingCodeList(int affId)
         {
@@ -66,8 +67,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
-                objectDb.AddInParameter("month", DbType.Int32, param.SelectedMonth.Value.Month);
-                objectDb.AddInParameter("year", DbType.Int32, param.SelectedMonth.Value.Year);
+                objectDb.AddInParameter("month", DbType.Int32, param.SelectedMonth.Month);
+                objectDb.AddInParameter("year", DbType.Int32, param.SelectedMonth.Year);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -92,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             return new TrackingStatistics
             {
                 TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
-                UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 :  Convert.ToInt32(reader["UniqueClick"]),
+                UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"]),
                 Date = Convert.ToDateTime(reader["Date"])
             };
         }

@@ -2,9 +2,9 @@
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using System.Collections.Generic;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
+namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public interface ITrackingStatisticsRepository
+    public interface ITrackingStatisticsService
     {
         IEnumerable<string> GetTrackingCodeList(int affId);
 

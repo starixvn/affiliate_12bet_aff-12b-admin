@@ -399,12 +399,10 @@
     <Compile Include="Repository\UserPanel\ILandingPageStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\IReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />
-    <Compile Include="Repository\UserPanel\ITrackingStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\IUserAccountRepository.cs" />
     <Compile Include="Repository\UserPanel\LandingPageStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\ReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\StatementHistoryRepository.cs" />
-    <Compile Include="Repository\UserPanel\TrackingStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\UserAccountRepository.cs" />
     <Compile Include="Resources\Lang.zh-TW.Designer.cs">
       <DependentUpon>Lang.zh-TW.resx</DependentUpon>
@@ -522,11 +520,13 @@
     <Compile Include="Services\UserPanel\INoteService.cs" />
     <Compile Include="Services\UserPanel\IPlayerDetailService.cs" />
     <Compile Include="Services\UserPanel\IStatementHistoryService.cs" />
+    <Compile Include="Services\UserPanel\ITrackingStatisticsService.cs" />
     <Compile Include="Services\UserPanel\IUserAccountService.cs" />
     <Compile Include="Services\UserPanel\IViewLogService.cs" />
     <Compile Include="Services\UserPanel\NoteService.cs" />
     <Compile Include="Services\UserPanel\PlayerDetailService.cs" />
     <Compile Include="Services\UserPanel\StatementHistoryService.cs" />
+    <Compile Include="Services\UserPanel\TrackingStatisticsService.cs" />
     <Compile Include="Services\UserPanel\UserAccountService.cs" />
     <Compile Include="Services\UserPanel\ViewLogService.cs" />
     <Compile Include="Utilities\CommGroup\CommGroupValidationHelper.cs" />

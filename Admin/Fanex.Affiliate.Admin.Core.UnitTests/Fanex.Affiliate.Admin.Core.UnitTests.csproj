@@ -169,6 +169,7 @@
     <Compile Include="Controllers\Customer\NoteControllerTest.cs" />
     <Compile Include="Controllers\Customer\PlayerDetailControllerTest.cs" />
     <Compile Include="Controllers\Customer\StatementHistoryControllerTest.cs" />
+    <Compile Include="Controllers\Customer\TrackingStatisticsControllerTest.cs" />
     <Compile Include="Controllers\Customer\UserAccountControllerTest.cs" />
     <Compile Include="Controllers\Customer\ViewLogControllerTest.cs" />
     <Compile Include="Controllers\Domain\DomainControlControllerTest.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Services\Customer\NoteServiceTest.cs" />
     <Compile Include="Services\Customer\PlayerDetailServiceTest.cs" />
     <Compile Include="Services\Customer\StatementHistoryServiceTest.cs" />
+    <Compile Include="Services\Customer\TrackingStatisticsServiceTest.cs" />
     <Compile Include="Services\Customer\UserAccountServiceTest.cs" />
     <Compile Include="Services\Customer\ViewLogServiceTest.cs" />
     <Compile Include="Services\Domain\DomainControlServiceTest.cs" />
