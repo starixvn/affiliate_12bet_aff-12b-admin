@@ -106,6 +106,16 @@ describe('players detail - components - Filter', () => {
         expect(instance.setState).toHaveBeenCalledWith({ monthDate: new Date(2019, 11) });
     });
 
+    it('handleChangeProduct - should call setState', () => {
+        const wrapper = shallow(<Filter {...defaultProps} />);
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
+
+        instance.handleChangeProduct({ target: { value: 1 }});
+
+        expect(instance.setState).toHaveBeenCalledWith({ selectedProduct: 1 });
+    });
+
     it('handleFormatMonthPicker - should return correctly', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
 

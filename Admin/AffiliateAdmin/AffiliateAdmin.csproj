@@ -904,6 +904,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\__test__\SortingCell.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\reportExcel.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\actions\index.js" />
@@ -958,7 +959,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\reducers\index.js" />

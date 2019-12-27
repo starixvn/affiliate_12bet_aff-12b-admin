@@ -48,6 +48,16 @@ describe('players detail - components - Content', () => {
         expect(result).toMatchSnapshot();
     });
 
+    it('render correctly with not selected All Product', () => {
+        const newParam = Object.assign({}, defaultProps.param, { productId: 1 });
+        const props = Object.assign({}, defaultProps, { param: newParam });
+        const result = shallow(<Content {...props} />);
+        
+        result.setState({ data: gridData });
+
+        expect(result).toMatchSnapshot();
+    });
+
     it('render correctly with have data is empty', () => {
         const result = shallow(<Content {...defaultProps} />);
         
@@ -57,27 +67,27 @@ describe('players detail - components - Content', () => {
     });
 
     it('componentDidUpdate - should call fetchData if param change', () => {
-        const param = Object.assign({}, defaultProps.param, { monthDate: "12/1/2019" });
-        const props = Object.assign({}, defaultProps, { param });
+        const newParam = Object.assign({}, defaultProps.param, { monthDate: "12/1/2019" });
+        const props = Object.assign({}, defaultProps, { param: newParam });
         const wrapper = shallow(<Content {...props} />);
         const instance = wrapper.instance();
         instance._fetchData = jest.fn();
 
         instance.componentDidUpdate(defaultProps);
 
-        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, pageIndex: 1, pageSize: 20 });
+        expect(instance._fetchData).toHaveBeenCalledWith({ ...newParam, pageIndex: 1, pageSize: 20 });
     });
 
     it('componentDidUpdate - should call fetchData and setState if param change isClickLink is true', () => {
-        const param = Object.assign({}, defaultProps.param, { isClickLink: true });
-        const props = Object.assign({}, defaultProps, { param });
+        const newParam = Object.assign({}, defaultProps.param, { isClickLink: true });
+        const props = Object.assign({}, defaultProps, { param: newParam });
         const wrapper = shallow(<Content {...props} />);
         const instance = wrapper.instance();
         instance.setState = jest.fn();
         instance._fetchData = jest.fn();
         instance.componentDidUpdate(defaultProps);
 
-        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, pageIndex: 1, pageSize: 20 });
+        expect(instance._fetchData).toHaveBeenCalledWith({ ...newParam, pageIndex: 1, pageSize: 20 });
         expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: false, sortingColumn: 'Turnover' });
     });
 
@@ -123,6 +133,30 @@ describe('players detail - components - Content', () => {
         expect(props.fetchData).toHaveBeenCalledWith({ ...param, affId: 1271808 });
         expect(instance.setState).toHaveBeenCalledWith({ data: null });
         expect(props.setPagingOption).toHaveBeenCalledWith({ TotalItem: 0, PageIndex: 1, PageSize: 20 });
+    });
+
+    it('handleClickHeader - should call setState and _fetchData when sortingColumn === selectedColumn', async () => {
+        const wrapper = shallow(<Content {...defaultProps} />);
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
+        instance._fetchData = jest.fn();
+
+        instance.handleClickHeader('Turnover');
+
+        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: true, sortById: 5, pageIndex: 1, pageSize: 20 });
+        expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: true });
+    });
+
+    it('handleClickHeader - should call setState and _fetchData when sortingColumn !== selectedColumn', async () => {
+        const wrapper = shallow(<Content {...defaultProps} />);
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
+        instance._fetchData = jest.fn();
+
+        instance.handleClickHeader('Username');
+
+        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: false, sortById: 1, pageIndex: 1, pageSize: 20 });
+        expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: false, sortingColumn: 'Username' });
     });
 
     it('handlePaging - should call fetchData with correct parameters', () => {

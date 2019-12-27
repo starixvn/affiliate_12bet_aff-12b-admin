@@ -47,7 +47,7 @@ export class Content extends PureComponent {
     handleClickHeader = (selectedColumn) => {
         const { isSortAsc, sortingColumn } = this.state;
         const { param, pagingOption } = this.props;
-        const postParam = { ...param, pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize, SortById: SortByIdList[selectedColumn] };
+        const postParam = { ...param, pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize, sortById: SortByIdList[selectedColumn] };
 
         if (sortingColumn === selectedColumn) {
             this.setState({ isSortAsc: !isSortAsc });
@@ -78,8 +78,8 @@ export class Content extends PureComponent {
     }
 
     _renderDataSection(dataList) {
-        const { productId } = this.props;
-        const productColumnClassName = productId === selectedAllProduct ? 'text-right' : 'text-right highlight';
+        const { param } = this.props;
+        const productColumnClassName = param.productId === selectedAllProduct ? 'text-right' : 'text-right highlight';
         const dataRows = [];
 
         if (dataList && dataList.length) {
