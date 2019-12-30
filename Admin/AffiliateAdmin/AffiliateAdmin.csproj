@@ -471,6 +471,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\changePassword.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\paymentRequestUpdate.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\ChangePasswordForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\CommissionGroupPopup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\NotificationPopup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\PaymentRequestUpdateForm.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\redux\ChangePasswordForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\redux\PaymentRequestUpdateForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\UserPanelBreadcrumb.test.js" />
