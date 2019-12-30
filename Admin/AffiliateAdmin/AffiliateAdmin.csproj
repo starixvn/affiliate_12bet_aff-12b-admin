@@ -473,6 +473,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\paymentRequestUpdate.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\redux\ChangePasswordForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\redux\PaymentRequestUpdateForm.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\UserPanelBreadcrumb.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\UserPanelSubMenu.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\changePassword.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\commissionGroup.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\constants\paymentRequestUpdate.js" />
@@ -947,12 +949,19 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\Additional.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\EmailFormat.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\Payment.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\Personal.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\redux\WebSite.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\redux\Personal.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\redux\Payment.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\redux\EmailFormat.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\redux\Additional.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\sections\__test__\WebSite.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\components\__test__\Section.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\validation.js" />
@@ -1364,6 +1373,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\" />
+    <Folder Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\__test__\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

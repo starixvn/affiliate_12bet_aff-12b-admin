@@ -68,7 +68,7 @@ export class WebSite extends PureComponent {
                     moreSiteUrlsList.map((value, index) => {
                         return (
                             <FormGroup row key={`siteUrl${index}`}>
-                                <Label for={index} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
+                                <Label for={`${index}`} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
                                 <Col sm={5} xl={6}>
                                     <input className="form-control" name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
                                 </Col>

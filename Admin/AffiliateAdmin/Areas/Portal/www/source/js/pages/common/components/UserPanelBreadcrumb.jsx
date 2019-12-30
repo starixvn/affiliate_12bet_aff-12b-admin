@@ -8,10 +8,10 @@ const UserPanelBreadcrumb = (props) => {
         const lastIndex = breadcrumbList.length - 1;
 
         for (let i = 0; i < lastIndex; i++) {
-            arrayItem.push(<BreadcrumbItem><a href="javascript:;" onClick={breadcrumbList[i].handleClick}>{breadcrumbList[i].title}</a></BreadcrumbItem>);
+            arrayItem.push(<BreadcrumbItem key={breadcrumbList[i].title}><a href="javascript:;" onClick={breadcrumbList[i].handleClick}>{breadcrumbList[i].title}</a></BreadcrumbItem>);
         }
 
-        arrayItem.push(<BreadcrumbItem active>{breadcrumbList[lastIndex].title}</BreadcrumbItem>)
+        arrayItem.push(<BreadcrumbItem active key={breadcrumbList[lastIndex].title}>{breadcrumbList[lastIndex].title}</BreadcrumbItem>)
 
         return arrayItem;
     }
