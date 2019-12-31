@@ -574,7 +574,7 @@ exports[`message - components - MessageDetailForm  render correctly with current
           >
             Edit
           </Button>
-          <Memo(ButtonDeleteItems)
+          <ButtonDeleteItems
             checkedItems={
               Object {
                 "0": true,
@@ -1770,7 +1770,7 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
           >
             Edit
           </Button>
-          <Memo(ButtonDeleteItems)
+          <ButtonDeleteItems
             checkedItems={
               Object {
                 "0": true,
@@ -2377,7 +2377,7 @@ exports[`message - components - MessageDetailForm  render correctly with update 
           >
             Edit
           </Button>
-          <Memo(ButtonDeleteItems)
+          <ButtonDeleteItems
             checkedItems={
               Object {
                 "0": true,
@@ -2984,7 +2984,7 @@ exports[`message - components - MessageDetailForm  render correctly with update 
           >
             Update
           </Button>
-          <Memo(ButtonDeleteItems)
+          <ButtonDeleteItems
             checkedItems={
               Object {
                 "0": true,

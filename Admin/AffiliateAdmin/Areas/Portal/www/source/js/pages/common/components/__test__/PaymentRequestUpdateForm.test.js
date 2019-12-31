@@ -30,7 +30,7 @@ describe('common - components - PaymentRequestUpdateForm', () => {
 
     it('render correctly with not pending', () => {
         const result = shallow(<PaymentRequestUpdateForm />);
-        result.setState({ paymentRequestInfo, originalStatus: 'approved', isSuccess: true });
+        result.setState({ paymentRequestInfo, originalStatus: 'approved', isSuccess: false });
 
         expect(result).toMatchSnapshot();
     });

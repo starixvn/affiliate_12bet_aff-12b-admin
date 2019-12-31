@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { DeleteEmail } from '../DeleteEmail';
 import { shallow } from 'enzyme';
-import * as ajaxRequest from '../../../../modules/ajaxRequest';
 
 describe('email history - components - DeleteEmail ', () => {
     const defaultProps = {
@@ -82,7 +81,6 @@ describe('email history - components - DeleteEmail ', () => {
     });
 
     it('_deleteEmails - should call toggleLoader and deleteEmailHistory but not call alert and fetchData with response is error', async () => {
-        ajaxRequest.post = jest.fn();
         const toggleLoader = jest.fn();
         const deleteEmailHistory = jest.fn();
         const fetchData = jest.fn();

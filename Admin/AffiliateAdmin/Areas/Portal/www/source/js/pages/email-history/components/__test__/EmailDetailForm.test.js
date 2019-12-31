@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { EmailDetailForm } from '../EmailDetailForm';
 import { shallow } from 'enzyme';
-import * as ajaxRequest from '../../../../modules/ajaxRequest';
 
 describe('email history - components - EmailDetailForm ', () => {
     const defaultProps = {

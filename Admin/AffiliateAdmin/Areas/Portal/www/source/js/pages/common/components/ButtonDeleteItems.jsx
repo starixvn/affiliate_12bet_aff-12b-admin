@@ -1,71 +1,75 @@
-﻿import React, { useState } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { Button } from 'reactstrap';
 import NotificationPopup from './NotificationPopup';
 
-export const ButtonDeleteItems = (props) => {
-    const [message, setMessage] = useState('');
-    const [isConfirmPopup, setConfirmPopup] = useState(false);
-    const itemIdList = _getCheckedItemIdList();
+export default class ButtonDeleteItems extends PureComponent {
+    constructor(props) {
+        super(props);
 
-    function _getCheckedItemIdList() {
-        const { checkedItems } = props;
+        this.state = {
+            itemIdList: '',
+            message: '',
+            isConfirmPopup: false
+        }
+    }
+
+    _getCheckedItemIdList = () => {
+        const { checkedItems } = this.props;
 
         return Object.keys(checkedItems).filter(key => checkedItems[key]);
     }
 
-    function _handleOpenNotificationPopup(message, isConfirmPopup) {
-        setMessage(message);
-        setConfirmPopup(isConfirmPopup);
+    _handleOpenNotificationPopup = (message, isConfirmPopup, itemIdList) => {
+        this.setState({ message, isConfirmPopup: isConfirmPopup || false, itemIdList: itemIdList || '' });
     }
 
-    function _handleCloseNotificationPopup(confirmResult) {
-        setMessage('');
+    _handleCloseNotificationPopup = (confirmResult) => {
+        this.setState({ message: '' });
 
-        if (confirmResult) {
-            _deleteExcute();
+        const { itemIdList } = this.state;
+        if (confirmResult && itemIdList) {
+            this._deleteExcute(itemIdList);
         }
     }
 
-    function _handleDelete() {
-        if (itemIdList.length === 0) {
-            _handleOpenNotificationPopup(props.messages.PleaseSelect);
-            return;
-        }
-
-        _handleOpenNotificationPopup(props.messages.AreYouSureDeleteItems, true);
+    _handleDelete = () => {
+        const itemIdList = this._getCheckedItemIdList();
+        itemIdList.length === 0 ? this._handleOpenNotificationPopup(this.props.messages.PleaseSelect) : this._handleOpenNotificationPopup(this.props.messages.AreYouSureDeleteItems, true, itemIdList);
     }
 
-    async function _deleteExcute() {
-        props.toggleLoader(true);
+    _deleteExcute = async (itemIdList) => {
+        this.props.toggleLoader(true);
 
-        const result = await props.deleteItems(itemIdList.join(','));
+        const result = await this.props.deleteItems(itemIdList.join(','));
 
         if (result) {
             if (result.IsSuccessful) {
-                props.isOpenNotification && _handleOpenNotificationPopup(props.messages.DeleteItemsSuccessfully);
+                this.props.isOpenNotification && this._handleOpenNotificationPopup(this.props.messages.DeleteItemsSuccessfully);
 
-                props.fetchData();
+                this.props.fetchData();
             }
             else {
-                _handleOpenNotificationPopup(result.Message);
+                this._handleOpenNotificationPopup(result.Message);
             }
         }
 
-        props.toggleLoader(false);
+        this.props.toggleLoader(false);
     }
 
-    return (
-        <React.Fragment>
-            {
-                !!message && <NotificationPopup
-                    message={message}
-                    isConfirmPopup={isConfirmPopup}
-                    onClose={_handleCloseNotificationPopup}
-                />
-            }
-            <Button outline type="button" color="danger" onClick={_handleDelete}>Delete<span className={props.hasIcon ? "oi oi-x ml-2" : ""}></span></Button>
-        </React.Fragment>
-    );
-}
+    render() {
+        const { message, isConfirmPopup } = this.state;
 
-export default React.memo(ButtonDeleteItems);
+        return (
+            <React.Fragment>
+                {
+                    !!message && <NotificationPopup
+                        message={message}
+                        isConfirmPopup={isConfirmPopup}
+                        onClose={this._handleCloseNotificationPopup}
+                    />
+                }
+                <Button outline type="button" color="danger" onClick={this._handleDelete}>Delete<span className={this.props.hasIcon ? "oi oi-x ml-2" : ""}></span></Button>
+            </React.Fragment>
+        );
+    }
+}
