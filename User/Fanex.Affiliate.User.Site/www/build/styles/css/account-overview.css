@@ -345,3 +345,31 @@
         flex-basis: 100%;
         align-self: center;
         position: static !important; } }
+
+.banner-control {
+  display: flex;
+  align-items: center;
+  background: #F9FBFF;
+  border: 1px solid #D7E4FF;
+  box-sizing: border-box;
+  border-radius: 3px; }
+  .banner-control .padding {
+    padding: 5px 10px; }
+  .banner-control span {
+    display: block; }
+  .banner-control a {
+    text-decoration: none; }
+    .banner-control a:focus {
+      outline: none; }
+  .banner-control .banner-size {
+    font-size: 15px;
+    line-height: 18px; }
+  .banner-control .banner-code, .banner-control .social-media-list {
+    height: 65px; }
+  .banner-control .copy-banner-code {
+    background: #D7E4FF;
+    border: 1px solid #A0B0D0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 3px;
+    margin-top: 5px; }

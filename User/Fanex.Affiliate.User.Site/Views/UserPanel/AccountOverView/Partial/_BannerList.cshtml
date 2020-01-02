@@ -17,12 +17,28 @@
             {
                 var width = banner.Width > 0 ? banner.Width.ToString() : string.Empty;
                 var height = banner.Height > 0 ? banner.Height.ToString() : string.Empty;
-                <li>
-                    <a class="banner-link" onclick='window.open("@(banner.RedirectLink + "?ref=")" + encodeURIComponent(window.location.href),"_blank"); return false;' href="javascript:;">
+                <li class="banner-control">
+                    @*<input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>" type="text" />*@
+                    <a class="banner-link padding" onclick='window.open("@(banner.RedirectLink + "?ref=")" + encodeURIComponent(window.location.href),"_blank"); return false;' href="javascript:;">
                         <img width="@width" height="@height" src="@banner.FileName" alt="Affiliate 12Bet Banner" />
                     </a>
-
-                    <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>" type="text" />
+                    <div class="banner-code padding">
+                        <p>Dimension: <strong class="banner-size">@banner.Size</strong></p>
+                        <a href="javascript:;" class="copy-banner-code" data-name="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>">Copy Banner Code</a>
+                    </div>
+                    <div class="social-media-list padding">
+                        <span>Share banner to your friends</span>
+                        <div class="zalo-share-button" data-href="http://localhost:56555/" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
+                        <div class="zalo-share-button" data-href="http://localhost:56555/" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
+                        <div class="zalo-share-button" data-href="http://localhost:56555/" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
+                        <div class="zalo-share-button" data-href="http://localhost:56555/" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
+                        <div class="zalo-share-button" data-href="http://localhost:56555/" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
+                        <div class="zalo-share-button" data-href="http://localhost:56555/" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
+                        <div class="zalo-share-button" data-href="http://localhost:56555/" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
+                        <div class="zalo-share-button" data-href="http://localhost:56555/" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
+                        <div class="zalo-share-button" data-href="http://localhost:56555/" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
+                        <div class="zalo-share-button" data-href="http://localhost:56555/" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
+                    </div>
                 </li>
             }
         }

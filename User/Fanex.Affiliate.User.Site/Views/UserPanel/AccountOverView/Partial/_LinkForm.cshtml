@@ -13,11 +13,11 @@
         <span class="text">@Lang.TextLink</span>
     </div>
 
-    <div class="link-container">
-        <div class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">@Lang.AvailableDomains</label>
-                <div class="col-sm-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-5 form-group">
+                <label class="col-sm-4 control-label">@Lang.AvailableDomains</label>
+                <div class="col-sm-7">
                     @if (hasDomainList)
                     {
                         <select class="form-control" id="Domain">
@@ -34,9 +34,9 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="col-sm-7 form-group">
                 <label class="col-sm-2 control-label">@Lang.LinkTo</label>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <select class="form-control" id="MemberSitePage">
                         @foreach (var item in Model.MemberSitePageList)
                         {

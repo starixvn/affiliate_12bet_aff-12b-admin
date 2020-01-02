@@ -5,16 +5,23 @@
 
 @Html.InlineStyles("~/www/build/styles/css/marketing.css")
 
-<div id="searchForm">
-    @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_SearchForm.cshtml", Model.SearchForm); }
-</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <div id="searchForm">
+                @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_SearchForm.cshtml", Model.SearchForm); }
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div id="linkForm">
+                @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_LinkForm.cshtml", Model.LinkForm); }
+            </div>
 
-<div id="linkForm">
-    @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_LinkForm.cshtml", Model.LinkForm); }
-</div>
-
-<div id="textLinkList">
-    @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", Model.TextLinkList); }
+            <div id="textLinkList">
+                @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", Model.TextLinkList); }
+            </div>
+        </div>
+    </div>
 </div>
 
 <div id="dataContainerList">
@@ -22,8 +29,6 @@
         <div class="title">
             <span class="text">@Lang.Text</span>
         </div>
-
-        @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_BannerFilter.cshtml"); }
 
         <div id="marketingDataList">
             @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_TextList.cshtml", Model.MarketingDataList); }
