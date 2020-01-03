@@ -329,6 +329,19 @@ var MediaGallery = (function ($) {
             $("#btnGenerateLink").on("click", function () {
                 _me.submitSearch();
             });
+
+            $("#marketingDataList").on("click", ".copy-banner-code", function () {
+                console.log(123);
+                const el = document.createElement('textarea');
+                el.value = $(this).data("name");
+                el.setAttribute('readonly', '');
+                el.style.position = 'absolute';
+                el.style.left = '-9999px';
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+            });
         },
 
         togglePager: function () {
