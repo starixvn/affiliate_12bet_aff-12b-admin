@@ -10,9 +10,7 @@
 }
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:og="http://ogp.me/ns#"
-      xmlns:fb="https://www.facebook.com/2008/fbml">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,11 +23,10 @@
     <meta name="keywords" content="12BET, 12BET Affiliate Program, Sports Betting Affiliate, Casino Affiliate, betting affiliate programs, earn extra cash, top affiliate programs, asian casino affiliate programs, Asian betting affiliate programs, high payout affiliate programs" />
     <meta name="robots" content="index,follow,archive" />
     <meta name="title" content="@Lang.MetaTitle" />
-    <meta property="og:title" content="Site Title" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="abc.com" />
-    <meta property="og:image" content="~/www/build/styles/Images/logo.png" />
-    <meta property="og:description" content="Site description" />
+
+    <meta property="og:image" content="@(Request.Url.GetLeftPart(UriPartial.Authority) + @Url.Content("~/www/build/styles/Images/logo.png"))" />
+    <meta property="og:image:width" content="197">
+    <meta property="og:image:height" content="54">
 
     <link href="~/www/build/styles/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet" crossorigin="anonymous">
@@ -224,6 +221,8 @@
     {
         <script src="@Url.RenderLink("~/www/build/js/recheckin.js")"></script>
     }
+
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 
     @RenderSection("scripts", required: false)
 </body>
