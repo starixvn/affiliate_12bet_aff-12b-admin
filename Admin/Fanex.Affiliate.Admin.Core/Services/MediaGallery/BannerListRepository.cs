@@ -120,6 +120,36 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             }
         }
 
+        public IEnumerable<MediaGalleryFilterItem> GetSizeList(SizeParam param)
+        {
+            const string SpKey = "Aff_Admin_MediaSize_Sel";
+            var result = new List<MediaGalleryFilterItem>();
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("Category", DbType.String, param.Category);
+                objectDb.AddInParameter("Language", DbType.String, param.Language);
+                objectDb.AddInParameter("Currency", DbType.String, param.Currency);
+                objectDb.AddInParameter("ImageType", DbType.String, param.ImageType);
+                objectDb.AddInParameter("AffType", DbType.String, param.AffType);
+                objectDb.AddInParameter("DeviceType", DbType.String, param.DeviceType);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new MediaGalleryFilterItem
+                        {
+                            Id = Convert.ToInt32(reader["SizeId"]),
+                            Name = Convert.ToString(reader["Size"])
+                        });
+                    }
+                }
+            }
+
+            return result;
+        }
+
         private static void AssignParam(IObjectDb objectDb, InsertUpdateBannerParam param)
         {
             objectDb.AddInParameter("filename", DbType.String, param.FilePath);

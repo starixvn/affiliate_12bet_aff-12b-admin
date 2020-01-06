@@ -331,6 +331,7 @@
     <Compile Include="MetaModels\ExchangeRate\ExchangeRateParam.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\SizeParam.cs" />
     <Compile Include="MetaModels\MediaGallery\TextParam.cs" />
     <Compile Include="MetaModels\Member\ActiveMemberParam.cs" />
     <Compile Include="MetaModels\Member\DeleteMemberParam.cs" />

@@ -79,28 +79,5 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             return result;
         }
-
-        public IEnumerable<MediaGalleryFilterItem> GetSizeList()
-        {
-            const string SpKey = "Aff_Admin_MediaSize_Sel";
-            var result = new List<MediaGalleryFilterItem>();
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new MediaGalleryFilterItem
-                        {
-                            Id = Convert.ToInt32(reader["SizeId"]),
-                            Name = Convert.ToString(reader["Size"])
-                        });
-                    }
-                }
-            }
-
-            return result;
-        }
     }
 }
