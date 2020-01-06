@@ -9,7 +9,6 @@ using Fanex.Affiliate.Admin.Core.UnitTests.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Moq;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using Xunit;
 
@@ -17,7 +16,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 {
     public class BannerListServiceTest
     {
-        private const string SpKeyBannerSel = "Aff_Admin_Banner_Sel";
         private const string ErrorMessage = "Sorry! We just support these file types : .jpg, .gif, .png, .jpeg";
 
         [Fact]
@@ -386,6 +384,54 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Assert
             Assert.False(result.IsSuccessful);
             Assert.Equal("Delete is failed", result.Message);
+        }
+
+        [Fact]
+        public void GetSizeList_WhenCallWithNotSubCategory_ReturnCorrectData()
+        {
+            // Arrange
+            var param = new SizeParam();
+            var bannerListRepository = new Mock<IBannerListRepository>();
+            bannerListRepository.Setup(t => t.GetSizeList(It.IsAny<SizeParam>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
+            var service = CreateBannerListService(bannerListRepository.Object);
+
+            // Action
+            var result = service.GetSizeList(param);
+
+            // Assert
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetSizeList_WhenCallWithHaveSubCategory_ReturnCorrectData()
+        {
+            // Arrange
+            var param = new SizeParam { Category = "Casino", SubCategory = "Casino Bonus" };
+            var bannerListRepository = new Mock<IBannerListRepository>();
+            bannerListRepository.Setup(t => t.GetSizeList(It.IsAny<SizeParam>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
+            var service = CreateBannerListService(bannerListRepository.Object);
+
+            // Action
+            var result = service.GetSizeList(param);
+
+            // Assert
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetSizeList_WhenCallWithHaveEmptySubCategory_ReturnCorrectData()
+        {
+            // Arrange
+            var param = new SizeParam { Category = "Casino" };
+            var bannerListRepository = new Mock<IBannerListRepository>();
+            bannerListRepository.Setup(t => t.GetSizeList(It.IsAny<SizeParam>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
+            var service = CreateBannerListService(bannerListRepository.Object);
+
+            // Action
+            var result = service.GetSizeList(param);
+
+            // Assert
+            Assert.Single(result);
         }
 
         private static BannerListService CreateBannerListService(

@@ -26,7 +26,8 @@ const actionList = [
     { name: 'setSelectedBannerId', type: types.SET_SELECTED_BANNER_ID, data: 123456 },
     { name: 'setCheckedBanners', type: types.SET_CHECKED_BANNERS, data: { 123456: false } },
     { name: 'setShouldResetScrollPosition', type: types.SHOULD_RESET_SCROLL_POSITION, data: false },
-    { name: 'setGridData', type: types.SET_GRID_DATA, data: 'setGridData' }
+    { name: 'setGridData', type: types.SET_GRID_DATA, data: 'setGridData' },
+    { name: 'setSizeList', type: types.SET_SIZE_LIST, data: [{ id: 234, name: '320x50' }] },
 ];
 
 describe('banner list actions', () => {
@@ -117,6 +118,57 @@ describe('banner list actions', () => {
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getSubCategorySportsbookList']()).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetSubCategorySportsbookList');
+            expect(store.getActions()).toEqual(expectedAction);
+        })
+    })
+
+    it('should create action to getSizeList', async () => {
+        const expectedResponse = { data: [{ Id: 123, Name: '320x50' }], status: 200 };
+        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
+
+        const expectedAction = [
+            { type: 'SET_SIZE_LIST', data: [{ Id: 123, Name: '320x50' }] }
+        ];
+
+        const param = {
+            AffType: 2,
+            Category: "",
+            Currency: "",
+            DeviceType: 0,
+            ImageType: "",
+            Language: "",
+            Size: "",
+            SubCategory: ""
+        }
+
+        const store = mockStore({ todos: [] });
+        return store.dispatch(actions['getSizeList'](param)).then(() => {
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetSizeList', param);
+            expect(store.getActions()).toEqual(expectedAction);
+        })
+    })
+
+    it('should create action to getSizeList', async () => {
+        ajaxRequest.post = jest.fn();
+
+        const expectedAction = [
+            { type: 'SET_SIZE_LIST', data: null }
+        ];
+
+        const param = {
+            AffType: 5,
+            Category: "",
+            Currency: "",
+            DeviceType: 0,
+            ImageType: "",
+            Language: "",
+            Size: "",
+            SubCategory: ""
+        }
+
+        const store = mockStore({ todos: [] });
+        return store.dispatch(actions['getSizeList'](param)).then(() => {
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetSizeList', param);
             expect(store.getActions()).toEqual(expectedAction);
         })
     })

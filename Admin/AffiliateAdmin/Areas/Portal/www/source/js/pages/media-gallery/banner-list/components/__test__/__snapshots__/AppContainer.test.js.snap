@@ -5,7 +5,7 @@ exports[`banner list - components - AppContainer render correctly 1`] = `
   <Loader
     show={true}
   />
-  <Connect(Component) />
+  <Connect(Filter) />
   <Memo(ControlButtons)
     fetchData={[Function]}
     messages={

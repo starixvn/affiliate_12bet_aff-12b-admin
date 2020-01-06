@@ -57,7 +57,8 @@ describe('banner list - Filter - connect', () => {
             setParam: actions['setParam'],
             setParamFromHome: actions['setParamFromHome'],
             getSubCategoryCasinoList: actions['getSubCategoryCasinoList'],
-            getSubCategorySportsbookList: actions['getSubCategorySportsbookList']
+            getSubCategorySportsbookList: actions['getSubCategorySportsbookList'],
+            getSizeList: actions['getSizeList']
         }
 
         const dispatch = {};
@@ -69,6 +70,6 @@ describe('banner list - Filter - connect', () => {
     it('returned function of connect should be called with correct parameter', () => {
         const Filter = require('../../Filter').Filter;
 
-        expect(connectMock).toHaveBeenCalledWith(React.memo(Filter));
+        expect(connectMock).toHaveBeenCalledWith(Filter);
     })
 })

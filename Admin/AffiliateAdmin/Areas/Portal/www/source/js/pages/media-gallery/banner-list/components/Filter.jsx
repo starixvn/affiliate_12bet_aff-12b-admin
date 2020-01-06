@@ -28,7 +28,7 @@ export class Filter extends PureComponent {
         const { paramFromHome } = this.props;
 
         if (paramFromHome && paramFromHome.IsFromHome) {
-            this._handleSearch;
+            this._handleSearch();
             this.props.setParamFromHome({ IsFromHome: false });
         }
     }
