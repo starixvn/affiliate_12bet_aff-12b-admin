@@ -14,11 +14,13 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div id="linkForm">
-                @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_LinkForm.cshtml", Model.LinkForm); }
-            </div>
-            <div id="textLinkList">
-                @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", Model.TextLinkList); }
+            <div class="row">
+                <div class="col-lg-6" id="linkForm">
+                    @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_LinkForm.cshtml", Model.LinkForm); }
+                </div>
+                <div class="col-lg-6" id="textLinkList">
+                    @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", Model.TextLinkList); }
+                </div>
             </div>
         </div>
     </div>

@@ -65,3 +65,33 @@
 
 #marketingPager {
   margin-top: 15px; }
+
+#textLinkList {
+  padding-top: 7px; }
+  #textLinkList .control-group {
+    padding-top: 5px; }
+    #textLinkList .control-group a {
+      text-decoration: none; }
+      #textLinkList .control-group a:focus {
+        outline: none; }
+    #textLinkList .control-group .copy-link {
+      padding-left: 15px; }
+    #textLinkList .control-group .copy-qr-code {
+      padding: 0 10px; }
+
+@media (min-width: 1200px) {
+  #linkForm {
+    padding-right: 0; }
+  #textLinkList {
+    margin-top: 35px;
+    border-top: 3px solid #dbdbdb; } }
+
+@media (max-width: 350px) {
+  .control-group {
+    text-align: center; }
+    .control-group .copy-link {
+      padding-left: 0 !important; } }
+
+@media (max-width: 767px) {
+  .control-group {
+    padding-top: 0 !important; } }

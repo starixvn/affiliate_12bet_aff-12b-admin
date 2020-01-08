@@ -28,3 +28,54 @@
 #marketingPager {
     margin-top: 15px;
 }
+
+#textLinkList {
+    padding-top: 7px;
+
+    .control-group {
+        padding-top: 5px;
+
+        a {
+            text-decoration: none;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .copy-link {
+            padding-left: 15px;
+        }
+
+        .copy-qr-code {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    #linkForm {
+        padding-right: 0;
+    }
+
+    #textLinkList {
+        margin-top: 35px;
+        border-top: 3px solid #dbdbdb;
+    }
+}
+
+@media (max-width: 350px) {
+    .control-group {
+        text-align: center;
+
+        .copy-link {
+            padding-left: 0 !important;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .control-group {
+        padding-top: 0 !important;
+    }
+}

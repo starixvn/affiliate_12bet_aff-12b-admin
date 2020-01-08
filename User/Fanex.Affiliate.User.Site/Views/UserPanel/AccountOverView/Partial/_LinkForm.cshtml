@@ -43,15 +43,16 @@
                             <option value="@item.PageCode">@item.PageName</option>
                         }
                     </select>
-                </div>
-
-                @if (hasDomainList)
-                {
+                </div>             
+            </div>
+            @if (hasDomainList)
+            {
+                <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-1">
                         <button type="button" class="btn btn-submit" id="btnGenerateLink">@Lang.GenerateLink</button>
                     </div>
-                }               
-            </div>
+                </div>
+            }
         </div>
     </div>
 </div>
