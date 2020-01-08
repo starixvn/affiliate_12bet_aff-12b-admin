@@ -8,7 +8,6 @@
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
@@ -31,11 +30,20 @@
         [AjaxOnly]
         public ActionResult GetSubCategory(string category)
         {
-            var type = "CategoryMedia" + category;
-            var subCategoryList = _marketingService.GetBannerTypeList(SessionService.IsInternal)
-                                                    .Where(t => t.Type.MatchWith(type));
+            var subCategoryList = _marketingService.GetCategoryList(true, SessionService.IsInternal)
+                                                    .Where(c => c.ParentCategory.MatchWith(category) && !c.Category.MatchWith(c.ParentCategory));
 
             return Json(subCategoryList, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult GetSize(SizeParam param)
+        {
+            param.Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(param.Language))?.EnglishName;
+            var sizeList = _marketingService.GetSizeList(param, SessionService.IsInternal);
+
+            return Json(sizeList, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -93,9 +101,8 @@
             var userSession = SessionService.UserSession;
             var selectedDomain = _marketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
                                                     .FirstOrDefault(d => d.DomainId == selectedDomainId);
-            var bannerTypeList = _marketingService.GetBannerTypeList(SessionService.IsInternal);
             var languageList = string.IsNullOrEmpty(selectedLanguage) ?
-                MarketingHelper.GetLanguageList(bannerTypeList, userSession.PreferredLanguage) : null;
+                MarketingHelper.GetLanguageList(_marketingService.GetLanguageList(SessionService.IsInternal), userSession.PreferredLanguage) : null;
 
             var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);
 

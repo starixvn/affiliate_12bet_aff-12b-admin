@@ -294,6 +294,10 @@
     <Compile Include="DTO\RsaKeyPair.cs" />
     <Compile Include="DTO\SecurityQuestion.cs" />
     <Compile Include="DTO\UserPanel\LastLoginInfo.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\CategoryType.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\CurrencyType.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\LanguageType.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\SizeType.cs" />
     <Compile Include="DTO\UserPanel\OverviewDetail.cs" />
     <Compile Include="DTO\UserPanel\OverviewSummary.cs" />
     <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
@@ -311,7 +315,7 @@
     <Compile Include="DTO\UserPanel\LandingPage.cs" />
     <Compile Include="DTO\UserPanel\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MarketingItem.cs" />
-    <Compile Include="DTO\UserPanel\BannerType.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\BannerType.cs" />
     <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
     <Compile Include="DTO\UserPanel\Domain.cs" />
     <Compile Include="DTO\UserPanel\Member.cs" />
@@ -372,6 +376,7 @@
     <Compile Include="MetalModels\UserPanel\DailyEarningParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentCancelParam.cs" />
     <Compile Include="MetalModels\UserPanel\PlayerDetailParam.cs" />
+    <Compile Include="MetalModels\UserPanel\SizeParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatementHistoryParam.cs" />
     <Compile Include="MetalModels\UpdateAccountParam.cs" />
     <Compile Include="MetalModels\BaseParam.cs" />

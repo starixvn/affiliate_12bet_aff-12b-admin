@@ -314,6 +314,28 @@ var MediaGallery = (function ($) {
                     $("#SubCategory").html(optionAll);
                     $subCategoryContainer.addClass("hide");
                 }
+
+                _me.getSize();
+            });
+
+            $("#SubCategory").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#Language").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#Currency").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#ImageType").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#DeviceType").on("change", function () {
+                _me.getSize();
             });
 
             $("#btnMarketingSearch").on("click", function () {
@@ -330,17 +352,17 @@ var MediaGallery = (function ($) {
                 _me.submitSearch();
             });
 
-            $("#marketingDataList").on("click", ".copy-banner-code", function () {
+            $("#marketingDataList").on("click", function () {
                 console.log(123);
-                const el = document.createElement('textarea');
-                el.value = $(this).data("name");
-                el.setAttribute('readonly', '');
-                el.style.position = 'absolute';
-                el.style.left = '-9999px';
-                document.body.appendChild(el);
-                el.select();
-                document.execCommand('copy');
-                document.body.removeChild(el);
+                //const el = document.createElement('textarea');
+                //el.value = $(this).data("name");
+                //el.setAttribute('readonly', '');
+                //el.style.position = 'absolute';
+                //el.style.left = '-9999px';
+                //document.body.appendChild(el);
+                //el.select();
+                //document.execCommand('copy');
+                //document.body.removeChild(el);
             });
         },
 
@@ -367,6 +389,35 @@ var MediaGallery = (function ($) {
                 success: function (response) {
                     var html = _me.buildOptionList(response, "Value", "Value", true);
                     $("#SubCategory").html(html);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
+
+        getSize: function () {
+            let param = {
+                category: $("#Category").val(),
+                subCategory: $("#SubCategory").val(),
+                language: $("#Language").val(),
+                currency: $("#Currency").val(),
+                imageType: $("#ImageType").val(),
+                deviceType: $("#DeviceType").val()
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: param,
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetSize"),
+                success: function (response) {
+                    var html = _me.buildOptionList(response, "Size", "Size", true);
+                    $("#Size").html(html);
                 },
                 beforeSend: function () {
                     Site.showLoader();

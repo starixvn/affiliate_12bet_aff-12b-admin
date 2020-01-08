@@ -219,7 +219,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             return result;
             {
-                category = subCategory;
+                return subCategory;
             }
 
             return category;

@@ -43,6 +43,28 @@
                     $("#SubCategory").html(optionAll);
                     $subCategoryContainer.addClass("hide");
                 }
+
+                _me.getSize();
+            });
+
+            $("#SubCategory").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#Language").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#Currency").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#ImageType").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#DeviceType").on("change", function () {
+                _me.getSize();
             });
 
             $("#btnMarketingSearch").on("click", function () {
@@ -96,6 +118,35 @@
                 success: function (response) {
                     var html = _me.buildOptionList(response, "Value", "Value", true);
                     $("#SubCategory").html(html);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
+
+        getSize: function () {
+            let param = {
+                category: $("#Category").val(),
+                subCategory: $("#SubCategory").val(),
+                language: $("#Language").val(),
+                currency: $("#Currency").val(),
+                imageType: $("#ImageType").val(),
+                deviceType: $("#DeviceType").val()
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: param,
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetSize"),
+                success: function (response) {
+                    var html = _me.buildOptionList(response, "Size", "Size", true);
+                    $("#Size").html(html);
                 },
                 beforeSend: function () {
                     Site.showLoader();

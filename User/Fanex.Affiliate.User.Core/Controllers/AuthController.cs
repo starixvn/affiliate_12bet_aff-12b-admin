@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [ChildActionOnly]
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult AuthenticationForm(string v)
+        public ActionResult AuthenticationForm()
         {
             var viewModel = new AuthenticationFormViewModel
             {

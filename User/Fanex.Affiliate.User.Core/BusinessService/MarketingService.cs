@@ -9,6 +9,7 @@ using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -22,6 +23,58 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             _marketingRepository = marketingRepository;
             _cacheService = cacheService;
+        }
+
+        public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal)
+        {
+            var categoryList = _cacheService.Get<IEnumerable<CategoryType>>(CacheKey.CategoryList);
+            if (categoryList == null)
+            {
+                categoryList = _marketingRepository.GetCategoryList(isMediaPage, isInternal);
+
+                _cacheService.Set(CacheKey.CategoryList, categoryList);
+            }
+
+            return categoryList ?? new List<CategoryType>();
+        }
+
+        public IEnumerable<LanguageType> GetLanguageList(bool isInternal)
+        {
+            var languageList = _cacheService.Get<IEnumerable<LanguageType>>(CacheKey.LanguageList);
+            if (languageList == null)
+            {
+                languageList = _marketingRepository.GetLanguageList(isInternal);
+            }
+
+            if (languageList != null)
+            {
+                _cacheService.Set(CacheKey.LanguageList, languageList);
+            }
+
+            return languageList ?? new List<LanguageType>();
+        }
+
+        public IEnumerable<CurrencyType> GetCurrencyList(bool isInternal)
+        {
+            var currencyList = _cacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList);
+            if (currencyList == null)
+            {
+                currencyList = _marketingRepository.GetCurrencyList(isInternal);
+            }
+
+            if (currencyList != null)
+            {
+                _cacheService.Set(CacheKey.CurrencyList, currencyList);
+            }
+
+            return currencyList ?? new List<CurrencyType>();
+        }
+
+        public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal)
+        {
+            param.Category = GetCategory(param.Category, param.SubCategory);
+
+            return _marketingRepository.GetSizeList(param, isInternal);
         }
 
         public IEnumerable<BannerType> GetBannerTypeList(bool isInternal)
@@ -82,8 +135,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
         {
             const int LengthOfSplittingSize = 2;
-            var uSpKey = IsSearchByCategory(bannerParam.Category, bannerParam.SubCategory) ? "Aff_BannerSelByParentCate" : "Aff_BannerSel_1";
-            var bannerList = _marketingRepository.GetBannerList(bannerParam, uSpKey);
+            bannerParam.Category = GetCategory(bannerParam.Category, bannerParam.SubCategory);
+            var bannerList = _marketingRepository.GetBannerList(bannerParam);
 
             foreach (var banner in bannerList)
             {
@@ -149,10 +202,15 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return result;
         }
 
-        private static bool IsSearchByCategory(string category, string subCategory)
+        private static string GetCategory(string category, string subCategory)
         {
-            return (category.MatchWith("sportsbook") || category.MatchWith("casino")) &&
-                    string.IsNullOrEmpty(subCategory);
+            if((category.MatchWith("sportsbook") || category.MatchWith("casino")) &&
+                    string.IsNullOrEmpty(subCategory))
+            {
+                return category;
+            }
+
+            return subCategory;
         }
     }
 }
