@@ -631,6 +631,17 @@
       <DependentUpon>font.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\Images\account-overview\commission.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-copy.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-facebook.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-line.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-qq.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-talk.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-telegram.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-twitter.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-wechat.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-weiboi.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-whatsapp.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-zalo.png" />
     <Content Include="www\build\styles\Images\account-overview\new-sign-up.png" />
     <Content Include="www\build\styles\Images\account-overview\total-deposit.png" />
     <Content Include="www\build\styles\Images\ads-1.jpg" />
@@ -883,6 +894,17 @@
     <Content Include="www\source\styles\fonts\Montserrat\font.css" />
     <Content Include="www\source\styles\fonts\myriadPro\font.css" />
     <Content Include="www\source\styles\Images\account-overview\commission.png" />
+    <Content Include="www\source\styles\Images\account-overview\icon-copy.png" />
+    <Content Include="www\source\styles\Images\account-overview\icon-facebook.png" />
+    <Content Include="www\source\styles\Images\account-overview\icon-line.png" />
+    <Content Include="www\source\styles\Images\account-overview\icon-qq.png" />
+    <Content Include="www\source\styles\Images\account-overview\icon-talk.png" />
+    <Content Include="www\source\styles\Images\account-overview\icon-telegram.png" />
+    <Content Include="www\source\styles\Images\account-overview\icon-twitter.png" />
+    <Content Include="www\source\styles\Images\account-overview\icon-wechat.png" />
+    <Content Include="www\source\styles\Images\account-overview\icon-weiboi.png" />
+    <Content Include="www\source\styles\Images\account-overview\icon-whatsapp.png" />
+    <Content Include="www\source\styles\Images\account-overview\icon-zalo.png" />
     <Content Include="www\source\styles\Images\account-overview\new-sign-up.png" />
     <Content Include="www\source\styles\Images\account-overview\total-deposit.png" />
     <Content Include="www\source\styles\Images\ads-1.jpg" />

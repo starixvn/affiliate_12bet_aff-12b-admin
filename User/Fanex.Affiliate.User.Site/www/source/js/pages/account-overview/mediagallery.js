@@ -181,7 +181,8 @@
                 selectedDomainId: $("#Domain").val(),
                 selectedPage: $("#MemberSitePage").val(),
                 pageIndex: _pageIndex + 1,
-                pageSize: _pageSize
+                pageSize: _pageSize,
+                screenWidth: screen.availWidth
             }
         },
 

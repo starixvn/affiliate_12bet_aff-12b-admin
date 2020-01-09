@@ -114,12 +114,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             {
                 new LanguageType
                 {
-                    MarketId = 1,
+                    MarketId = "en-US",
                     MarketName = "English",
                 },
                 new LanguageType
                 {
-                    MarketId = 2,
+                    MarketId = "vi-VN",
                     MarketName = "Vietnamese",
                 }
             };

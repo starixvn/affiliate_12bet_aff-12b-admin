@@ -14,8 +14,8 @@
         </ul>
     </div>
     <div class="bg-orange">
-        <span class="text"><strong>Last Login:</strong> @Model.LastLoginDate.ToString("dd-MMM-yyyy hh:mm tt")</span>
-        <span class="text"><strong>Last Login IP Address:</strong> @Model.LastLoginIP</span>
+        <span class="text"><strong>Last Login:</strong> @(Model?.LastLoginDate.ToString("dd-MMM-yyyy hh:mm tt"))</span>
+        <span class="text"><strong>Last Login IP Address:</strong> @(Model?.LastLoginIP)</span>
     </div>
     <div id="account-overview-content"></div>
 </div>

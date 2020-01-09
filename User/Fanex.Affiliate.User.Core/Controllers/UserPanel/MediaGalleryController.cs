@@ -24,7 +24,7 @@
 
         [HttpGet]
         [AjaxOnly]
-        public ActionResult Index()
+        public ActionResult Index(int screenWidth)
         {
             var userSession = SessionService.UserSession;
             var searchForm = GetSearchFormViewModel(true);
@@ -43,7 +43,8 @@
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,
                 TextLinkTemplate = AppSetting.TextLinkTemplate,
-                BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain
+                BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain,
+                ScreenWidth = screenWidth
             };
 
             var viewModel = new MarketingViewModel

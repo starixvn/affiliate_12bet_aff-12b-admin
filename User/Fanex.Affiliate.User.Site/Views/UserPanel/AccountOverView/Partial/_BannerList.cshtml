@@ -1,13 +1,14 @@
 ﻿@{ 
     Layout = null;
     var totalItem = ViewBag.TotalItem;
+    //var screenWidth = ViewBag.ScreenWidth - 500;
 }
 
 @model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.MarketingItem>
 
 <div class="list-container">
     <ul class="list-unstyled list-content">
-        @if(totalItem < 1)
+        @if (totalItem < 1)
         {
             <li><p class="text-center">@Lang.NoInfo</p></li>
         }
@@ -15,25 +16,56 @@
         {
             foreach (var banner in Model)
             {
-                var width = banner.Width > 0 ? banner.Width.ToString() : string.Empty;
-                var height = banner.Height > 0 ? banner.Height.ToString() : string.Empty;
+                //var availWidth = banner.Width > screenWidth ? screenWidth : banner.Width;
+                //var width = banner.Width > 0 ? banner.Width.ToString() : string.Empty;
+                //var height = banner.Height > 0 ? banner.Height.ToString() : string.Empty;
                 <li class="banner-control">
                     @*<input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>" type="text" />*@
                     <a class="banner-link padding" onclick='window.open("@(banner.RedirectLink + "?ref=")" + encodeURIComponent(window.location.href),"_blank"); return false;' href="javascript:;">
-                        <img width="@width" height="@height" src="@banner.FileName" alt="Affiliate 12Bet Banner" />
+                        <img width="@banner.AvailWidth" height="@banner.AvailHeight" src="@banner.FileName" alt="Affiliate 12Bet Banner" />
                     </a>
-                    <div class="banner-code padding">
-                        <p>Dimension: <strong class="banner-size">@banner.Size</strong></p>
-                        <a href="javascript:;" class="copy-banner-code" data-name="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>">Copy Banner Code</a>
-                    </div>
-                    <div class="social-media-list padding">
-                        <span>Share banner to your friends</span>
-                        <div class="zalo-share-button" data-href="@(Request.Url.GetLeftPart(UriPartial.Authority) + @Url.Content("~"))" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
-                        <div class="zalo-share-button" data-href="@Request.Url.AbsoluteUri" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
-                        <div class="zalo-share-button" data-href="@Request.Url.Scheme" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
-                        <div class="zalo-share-button" data-href="@Request.Url" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
-                        <div class="zalo-share-button" data-href="http://affiliate.12ying.com" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
-                        <div class="fb-share-button" data-href="http://affiliate.12ying.com"></div>
+                    <div class="banner-control-button">
+                        <div class="banner-code padding">
+                            <p>Dimension: <strong class="banner-size">@banner.Size</strong></p>
+                            <a href="javascript:;" class="copy-banner-code" data-name="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@banner.Width' height='@banner.Height' /></a>">
+                                <img src="~/www/build/styles/Images/account-overview/icon-copy.png" /> Copy Banner Code
+                            </a>
+                        </div>
+                        <div class="social-media-list padding">
+                            <span>Share banner to your friends</span>
+                            <a href="javascript:;">
+                                <img src="~/www/build/styles/Images/account-overview/icon-facebook.png" />
+                            </a>
+                            <a href="javascript:;">
+                                <img src="~/www/build/styles/Images/account-overview/icon-twitter.png" />
+                            </a>
+                            <a href="javascript:;">
+                                <img src="~/www/build/styles/Images/account-overview/icon-whatsapp.png" />
+                            </a>
+                            <a href="javascript:;">
+                                <img src="~/www/build/styles/Images/account-overview/icon-wechat.png" />
+                            </a>
+                            <a href="javascript:;">
+                                <img src="~/www/build/styles/Images/account-overview/icon-line.png" />
+                            </a>
+                            <a href="javascript:;">
+                                <img src="~/www/build/styles/Images/account-overview/icon-weiboi.png" />
+                            </a>
+                            <a href="javascript:;">
+                                <img src="~/www/build/styles/Images/account-overview/icon-qq.png" />
+                            </a>
+                            <a href="javascript:;">
+                                <img src="~/www/build/styles/Images/account-overview/icon-zalo.png" />
+                            </a>
+                            <a href="javascript:;">
+                                <img src="~/www/build/styles/Images/account-overview/icon-telegram.png" />
+                            </a>
+                            <a href="javascript:;">
+                                <img src="~/www/build/styles/Images/account-overview/icon-talk.png" />
+                            </a>
+                            @*<div class="zalo-share-button" data-href="@(Request.Url.GetLeftPart(UriPartial.Authority) + @Url.Content("~"))" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
+                            <div class="fb-share-button" data-href="http://affiliate.12ying.com"></div>*@
+                        </div>
                     </div>
                 </li>
             }

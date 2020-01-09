@@ -79,7 +79,7 @@
     #textLinkList .control-group .copy-qr-code {
       padding: 0 10px; }
 
-@media (min-width: 1200px) {
+@media (min-width: 1211px) {
   #linkForm {
     padding-right: 0; }
   #textLinkList {
@@ -94,4 +94,39 @@
 
 @media (max-width: 767px) {
   .control-group {
-    padding-top: 0 !important; } }
+    padding-top: 0 !important; }
+  .banner-control-button {
+    display: block !important; } }
+
+.banner-control {
+  display: flex;
+  align-items: center;
+  background: #F9FBFF;
+  border: 1px solid #D7E4FF;
+  box-sizing: border-box;
+  border-radius: 3px; }
+  .banner-control .padding {
+    padding: 5px 10px; }
+  .banner-control span {
+    display: block; }
+  .banner-control a {
+    text-decoration: none; }
+    .banner-control a:focus {
+      outline: none; }
+  .banner-control .banner-size {
+    font-size: 15px;
+    line-height: 18px; }
+  .banner-control-button {
+    display: flex; }
+    .banner-control-button .copy-banner-code {
+      background: #D7E4FF;
+      border: 1px solid #A0B0D0;
+      border-radius: 3px;
+      padding: 5px 10px; }
+      .banner-control-button .copy-banner-code img {
+        padding-bottom: 3px; }
+
+@media (max-width: 1024px) {
+  .banner-control {
+    display: inline-block;
+    width: 100%; } }
