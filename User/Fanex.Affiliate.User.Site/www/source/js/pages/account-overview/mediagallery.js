@@ -81,17 +81,22 @@
                 _me.submitSearch();
             });
 
-            $("#marketingDataList").on("click", function () {
-                console.log(123);
-                //const el = document.createElement('textarea');
-                //el.value = $(this).data("name");
-                //el.setAttribute('readonly', '');
-                //el.style.position = 'absolute';
-                //el.style.left = '-9999px';
-                //document.body.appendChild(el);
-                //el.select();
-                //document.execCommand('copy');
-                //document.body.removeChild(el);
+            $("#marketingDataList").on("click", ".copy-banner-code", function () {
+                const el = document.createElement('textarea');
+                el.value = $(this).data("name");
+                el.setAttribute('readonly', '');
+                el.style.position = 'absolute';
+                el.style.left = '-9999px';
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+            });
+
+            $("#marketingDataList").on("click", ".facebook-share", function () {
+                var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600');
+                if (facebookWindow.focus) { facebookWindow.focus(); }
+                return false;
             });
         },
 
