@@ -98,7 +98,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         protected virtual async void btnImport_Click(object sender, EventArgs e)
         {
-            var confirmResult = MessageBox.Show("Are you sure to Import Directly ??",
+            var confirmResult = MessageBox.Show("Are you sure to Import from converted data ??",
                      "Confirm Import!!",
                      MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
@@ -123,6 +123,46 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             }
         }
 
+        private async void btnImportDirectly_Click(object sender, EventArgs e)
+        {
+            Logger.Log("Start import data");
+            RawDatas.Clear();
+            var startTime = startTimePicker.Value;
+            var endTime = endTimePicker.Value;
+            ToggleButton(false);
+            try
+            {
+                var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, _pullRange);
+                foreach (var range in timeRanges)
+                {
+                    Logger.Log($"Import from {range.Item1} to {range.Item2}");
+                    var rawDatas =  await Service.GetRawDataListAsync(range.Item1, range.Item2);
+                    DisplayRawData(rawDatas);
+                    var xmlDatas = await ConvertToXmlAsync(rawDatas);
+                    DisplayXmlData(xmlDatas);
+                    await Service.ImportAsync(xmlDatas.Select(xml => xml.ToString()));
+                    
+                }
+                DisplayXmlData();
+                Logger.Log("Finished import");
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"Exception when get raw data - {ex.Message}\n{ex.StackTrace}");
+            }
+            ToggleButton(true);
+        }
+
+        private async Task<IEnumerable<XDocument>> ConvertToXmlAsync(IEnumerable<string> rawDatas)
+        {
+            var xmlDatas = new List<XDocument>();
+            foreach (var data in rawDatas)
+            {
+                xmlDatas.Add(await Service.ConvertRawDataToXmlAsync(data));
+            }
+            return xmlDatas;
+        }
+
         private void datePickerLocalStartTime_ValueChanged(object sender, EventArgs e)
         {
             var timeOffSet = new DateTimeOffset(datePickerLocalStartTime.Value);
@@ -137,13 +177,18 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         private void DisplayXmlData()
         {
+            DisplayXmlData(XmlDatas);
+        }
+
+        private void DisplayXmlData(IEnumerable<XDocument> xmls)
+        {
             if (richTextConvertedData.InvokeRequired)
             {
                 richTextConvertedData.Invoke(new MethodInvoker(() => DisplayXmlData()));
                 return;
             }
             richTextConvertedData.Clear();
-            foreach (var xml in XmlDatas)
+            foreach (var xml in xmls)
             {
                 richTextConvertedData.AppendText($"{xml.ToString()}\n");
             }
@@ -151,13 +196,18 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         private void DisplayRawData()
         {
+            DisplayRawData(RawDatas);
+        }
+
+        private void DisplayRawData(IEnumerable<string> datas)
+        {
             if (richTextRawData.InvokeRequired)
             {
                 richTextRawData.Invoke(new MethodInvoker(() => DisplayRawData()));
                 return;
             }
             richTextRawData.Clear();
-            foreach (var data in RawDatas)
+            foreach (var data in datas)
             {
                 richTextRawData.AppendText($"{data}\n");
             }
@@ -174,8 +224,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             btnGetRawData.Enabled = toggle;
             btnCovert.Enabled = toggle;
             btnImport.Enabled = toggle;
+            btnImportDirectly.Enabled = toggle;
         }
-
     }
     public class Logger
     {

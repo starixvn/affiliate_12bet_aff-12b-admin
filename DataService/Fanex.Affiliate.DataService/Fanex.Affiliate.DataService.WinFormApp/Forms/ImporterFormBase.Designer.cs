@@ -52,6 +52,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.chkBoxConvertDirectFromTxtField = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnImportDirectly = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -219,6 +220,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnImportDirectly);
             this.groupBox1.Controls.Add(this.lbServiceTime);
             this.groupBox1.Controls.Add(this.lbLocalTime);
             this.groupBox1.Controls.Add(this.datePickerLocalEndTime);
@@ -318,6 +320,16 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Server Start Time:";
             // 
+            // btnImportDirectly
+            // 
+            this.btnImportDirectly.Location = new System.Drawing.Point(470, 105);
+            this.btnImportDirectly.Name = "btnImportDirectly";
+            this.btnImportDirectly.Size = new System.Drawing.Size(132, 23);
+            this.btnImportDirectly.TabIndex = 26;
+            this.btnImportDirectly.Text = "Import Directly";
+            this.btnImportDirectly.UseVisualStyleBackColor = true;
+            this.btnImportDirectly.Click += new System.EventHandler(this.btnImportDirectly_Click);
+            // 
             // ImporterFormBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,5 +379,6 @@
         public System.Windows.Forms.DateTimePicker datePickerLocalStartTime;
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Button btnImportDirectly;
     }
 }
