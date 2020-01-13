@@ -1,0 +1,40 @@
+﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+
+namespace Fanex.Affiliate.User.Core.Utilities
+{
+    public interface IImageFileWriter
+    {
+        void Write(Image img, string path, bool isOverWrite = false);
+        void Write(string base64Img, string path, bool isOverWrite = false);
+    }
+
+    public class PngImageFileWriter : IImageFileWriter
+    {
+        public void Write(Image img, string path, bool isOverWrite = false)
+        {
+            var bitmap = new Bitmap(img);
+            if (File.Exists(path))
+            {
+                if (isOverWrite)
+                {
+                    bitmap.Save(path, ImageFormat.Png);
+                }
+            }
+            else
+            {
+                bitmap.Save(path, ImageFormat.Png);
+            }
+        }
+
+        public void Write(string base64Img, string path, bool isOverWrite = false)
+        {
+            Byte[] bitmapData = Convert.FromBase64String(base64Img);
+            System.IO.MemoryStream streamBitmap = new System.IO.MemoryStream(bitmapData);
+            var img = new Bitmap((Bitmap)Image.FromStream(streamBitmap));
+            Write(img, path, isOverWrite);
+        }
+    }
+}

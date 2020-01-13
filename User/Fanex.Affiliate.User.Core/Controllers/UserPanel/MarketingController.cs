@@ -11,19 +11,24 @@
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
+    using System.Drawing;
 
     [CustomAuthorize]
     public class MarketingController : BaseController
     {
         private readonly IMarketingService _marketingService;
         private readonly IAppSetting _appSetting;
+        private readonly IQrCodeGeneratorService _qrCodeGeneratorService;
+
         public MarketingController(ISessionService sessionService, IAppSetting appSetting,
             ILanguageService languageService,
-            IMarketingService marketingService) : base(sessionService, languageService)
+            IMarketingService marketingService,
+            IQrCodeGeneratorService QrCodeGeneratorService) : base(sessionService, languageService)
         {
 
             _marketingService = marketingService;
             _appSetting = appSetting;
+            _qrCodeGeneratorService = QrCodeGeneratorService;
         }
 
         [HttpGet]
@@ -151,5 +156,21 @@
 
             return _marketingService.GenerateLinkList(linkGenerationParam);
         }
+
+        //private IDictionary<string, QrCodeLinkParam> GetQrCodes(IDictionary<string,string> txtLinkList)
+        //{
+        //    var icon = GetQrCodeIcon();
+        //    foreach (var language in txtLinkList.Keys)
+        //    {
+        //        var link = txtLinkList[language];
+        //        var qrCode = _qrCodeGeneratorService.GenerateBase64QrCode(link, icon);
+
+        //    }
+        //}
+
+        //private static Image GetQrCodeIcon()
+        //{
+        //    var path = 
+        //}
     }
 }
