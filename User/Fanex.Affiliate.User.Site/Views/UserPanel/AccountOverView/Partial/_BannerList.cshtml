@@ -33,38 +33,37 @@
                         </div>
                         <div class="social-media-list padding">
                             <span>Share banner to your friends</span>
-                            <a href="javascript:;" class="facebook-share">
+                            <a href="javascript:;" class="facebook-share" data-url="@banner.RedirectLink">
                                 <img src="~/www/build/styles/Images/account-overview/icon-facebook.png" />
                             </a>
-                            <a href="javascript:;">
+                            <a href="javascript:;" class="twitter-share" data-url="@banner.RedirectLink">
                                 <img src="~/www/build/styles/Images/account-overview/icon-twitter.png" />
                             </a>
-                            <a href="javascript:;">
+                            <a href="javascript:;" class="whatsapp-share" data-url="@banner.RedirectLink">
                                 <img src="~/www/build/styles/Images/account-overview/icon-whatsapp.png" />
                             </a>
-                            <a href="javascript:;">
+                            <a href="javascript:;" class="wechat-share" data-url="@banner.RedirectLink">
                                 <img src="~/www/build/styles/Images/account-overview/icon-wechat.png" />
                             </a>
-                            <a href="javascript:;">
+                            <a href="javascript:;" class="line-share" data-url="@banner.RedirectLink">
                                 <img src="~/www/build/styles/Images/account-overview/icon-line.png" />
                             </a>
-                            <a href="javascript:;">
+                            <a href="javascript:;" class="weiboi-share" data-url="@banner.RedirectLink">
                                 <img src="~/www/build/styles/Images/account-overview/icon-weiboi.png" />
                             </a>
-                            <a href="javascript:;">
+                            <a href="javascript:;" class="qq-share" data-url="@banner.RedirectLink">
                                 <img src="~/www/build/styles/Images/account-overview/icon-qq.png" />
                             </a>
-                            <a href="javascript:;">
+                            <a href="javascript:;" class="zalo-share" data-url="@banner.RedirectLink">
                                 <img src="~/www/build/styles/Images/account-overview/icon-zalo.png" />
                             </a>
-                            <a href="javascript:;">
+                            <a class="zalo-share-button" data-href="@banner.RedirectLink" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></a>
+                            <a href="javascript:;" class="telegram-share" data-url="@banner.RedirectLink">
                                 <img src="~/www/build/styles/Images/account-overview/icon-telegram.png" />
                             </a>
-                            <a href="javascript:;">
+                            <a href="javascript:;" class="talk-share" data-url="@banner.RedirectLink">
                                 <img src="~/www/build/styles/Images/account-overview/icon-talk.png" />
                             </a>
-                            <div class="zalo-share-button" data-href="@(Request.Url.GetLeftPart(UriPartial.Authority) + @Url.Content("~"))" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></div>
-                            <div class="fb-share-button" data-href="http://affiliate.12ying.com"></div>
                         </div>
                     </div>
                 </li>
@@ -74,3 +73,5 @@
 
     <input type="hidden" id="TotalItem" value="@ViewBag.TotalItem" />
 </div>
+
+<script src="https://sp.zalo.me/plugins/sdk.js"></script>

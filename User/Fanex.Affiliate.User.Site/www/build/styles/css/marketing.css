@@ -79,7 +79,7 @@
     #textLinkList .control-group .copy-qr-code {
       padding: 0 10px; }
 
-@media (min-width: 1211px) {
+@media (min-width: 1200px) {
   #linkForm {
     padding-right: 0; }
   #textLinkList {

@@ -6,7 +6,7 @@
 
         public int DepositMembers { get; set; }
 
-        public decimal BalanceBroughtFoward { get; set; }
+        public decimal BalanceBroughtForward { get; set; }
 
         public int ActivePlayers { get; set; }
 

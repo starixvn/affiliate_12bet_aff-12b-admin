@@ -365,8 +365,62 @@ var MediaGallery = (function ($) {
             });
 
             $("#marketingDataList").on("click", ".facebook-share", function () {
-                var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600');
+                var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + $(this).data("url"), 'facebook-popup', 'height=350,width=600');
                 if (facebookWindow.focus) { facebookWindow.focus(); }
+                return false;
+            });
+
+            $("#marketingDataList").on("click", ".twitter-share", function () {
+                var twiterWindow = window.open('https://twitter.com/share?url=' + $(this).data("url"), 'twiter-popup', 'height=350,width=600');
+                if (twiterWindow.focus) { twiterWindow.focus(); }
+                return false;
+            });
+
+            $("#marketingDataList").on("click", ".whatsapp-share", function () {
+                var whatsappWindow = window.open('https://api.whatsapp.com/send?text=' + $(this).data("url"), 'whatsapp-popup', 'height=350,width=600');
+                if (whatsappWindow.focus) { whatsappWindow.focus(); }
+                return false;
+            });
+
+            $("#marketingDataList").on("click", ".wechat-share", function () {
+                var wechatWindow = window.open('' + $(this).data("url"), 'wechat-popup', 'height=350,width=600');
+                if (wechatWindow.focus) { wechatWindow.focus(); }
+                return false;
+            });
+
+            $("#marketingDataList").on("click", ".line-share", function () {
+                var lineWindow = window.open('https://social-plugins.line.me/lineit/share?url=' + $(this).data("url"), 'line-popup', 'height=350,width=600');
+                if (lineWindow.focus) { lineWindow.focus(); }
+                return false;
+            });
+
+            $("#marketingDataList").on("click", ".weiboi-share", function () {
+                var weiboiWindow = window.open('http://service.weibo.com/share/share.php?url=' + $(this).data("url"), 'weiboi-popup', 'height=350,width=600');
+                if (weiboiWindow.focus) { weiboiWindow.focus(); }
+                return false;
+            });
+
+            $("#marketingDataList").on("click", ".qq-share", function () {
+                var qqWindow = window.open('' + $(this).data("url"), 'qq-popup', 'height=350,width=600');
+                if (qqWindow.focus) { qqWindow.focus(); }
+                return false;
+            });
+
+            $("#marketingDataList").on("click", ".zalo-share", function () {
+                var zaloWindow = window.open('' + $(this).data("url"), 'zalo-popup', 'height=350,width=600');
+                if (zaloWindow.focus) { zaloWindow.focus(); }
+                return false;
+            });
+
+            $("#marketingDataList").on("click", ".telegram-share", function () {
+                var telegramWindow = window.open('https://telegram.me/share/url?url=' + $(this).data("url") + '&amp;text=text', 'telegram-popup', 'height=350,width=600');
+                if (telegramWindow.focus) { telegramWindow.focus(); }
+                return false;
+            });
+
+            $("#marketingDataList").on("click", ".talk-share", function () {
+                var talkWindow = window.open('' + $(this).data("url"), 'talk-popup', 'height=350,width=600');
+                if (talkWindow.focus) { talkWindow.focus(); }
                 return false;
             });
         },
