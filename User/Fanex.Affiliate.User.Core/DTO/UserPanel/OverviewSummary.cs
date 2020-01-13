@@ -4,7 +4,7 @@
     {
         public int Signups { get; set; }
 
-        public int DepositMembers { get; set; }
+        public int DepositedMembers { get; set; }
 
         public decimal BalanceBroughtForward { get; set; }
 
