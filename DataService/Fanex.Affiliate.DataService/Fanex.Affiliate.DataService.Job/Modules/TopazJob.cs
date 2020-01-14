@@ -33,13 +33,14 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var param = new TimeTrackerBaseParam { ProductId = Products.TopazId };
             var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
             var minuteToRun = int.Parse(_appSetting.GetValue("TopazIntervalTime"));
+            var delayTime = int.Parse(_appSetting.GetValue("TopazDelayTime"));
 
-            var now = DateTime.Now;
+            var now = DateTime.Now.AddMinutes(-delayTime);
 
             if (DateTime.Compare(lastQueryTime, now) < 0)
             {
                 var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
-                var endTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).AddMinutes(-15);
+                var endTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
 
                 var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, TimeSpan.FromMinutes(minuteToRun));
                 foreach (var range in timeRanges)

@@ -40,7 +40,13 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
 
         public static IApiClient GetSuccessResponseClient()
         {
-            var successResponse = "<game_transaction_detail>  <status_code>00</status_code> </game_transaction_detail>";
+            var successResponse = @"<game_transaction_detail>
+                                      <status_code>00</status_code>
+                                      <status_text>OK</status_text>
+                                      <bet>
+                                        <item  bet_time=""2019-11-06 22:47:05"" trans_time=""2019-11-06 22:47:00""/>                                      
+                                      </bet >
+                                   </game_transaction_detail>";
             var client = NSubstitute.Substitute.For<IApiClient>();
             client.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
                 .Returns(successResponse);
