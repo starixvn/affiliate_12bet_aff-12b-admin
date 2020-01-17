@@ -1,4 +1,4 @@
-﻿import { Casino, Sportsbook, maxLenght } from './constants';
+﻿import { Casino, Sportsbook, maxLength } from './constants';
 
 export const validateFileExtension = (fileName) => {
     const result = {
@@ -23,7 +23,7 @@ export const validateFileExtension = (fileName) => {
 export const validateInputFile = (inputFileName) => {
     const result = validateFileExtension(inputFileName);
 
-    if (!!inputFileName && inputFileName.length > maxLenght) {
+    if (!!inputFileName && inputFileName.length > maxLength) {
         result.isOK = false;
         result.message = 'The maximum length of file name is 50. Please choose another name.';
     }

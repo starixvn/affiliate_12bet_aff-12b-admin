@@ -1,4 +1,7 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
+﻿using Newtonsoft.Json;
+using System;
+
+namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 {
     public class BannerInfo
     {
@@ -19,5 +22,10 @@
         public byte AffType { get; set; }
 
         public string Size { get; set; }
+
+        [JsonIgnore]
+        public DateTime? LastUpdate { get; set; }
+
+        public string LastUpdateText => LastUpdate?.ToString("MM/dd/yyyy HH:mm:ss");
     }
 }

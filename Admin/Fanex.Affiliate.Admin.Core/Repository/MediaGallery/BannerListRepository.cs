@@ -36,7 +36,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildBannerInfoItem(reader));
+                        var bannerInfo = BuildBannerInfoItem(reader);
+                        bannerInfo.LastUpdate = reader["LastUpdate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["LastUpdate"]);
+
+                        dataList.Add(bannerInfo);
                     }
                 }
 
@@ -144,7 +147,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                 Currency = Convert.ToString(reader["Currency"]),
                 ImageType = Convert.ToString(reader["ImageType"]),
                 Size = Convert.ToString(reader["Size"]),
-                DeviceType = reader.GetVal<byte>("DeviceType"),
+                DeviceType = reader.GetVal<byte>("DeviceType")
             };
         }
     }

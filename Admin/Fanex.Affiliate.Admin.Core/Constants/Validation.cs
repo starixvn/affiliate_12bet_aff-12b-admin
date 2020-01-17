@@ -17,7 +17,7 @@
         public const int MinAffType = 2;
         public const int MaxAffType = 4;
 
-        public const int MaxLenghtCommGroupDescription = 100;
-        public const int MaxLenghtLandingPage = 100;
+        public const int MaxLengthCommGroupDescription = 100;
+        public const int MaxLengthLandingPage = 100;
     }
 }

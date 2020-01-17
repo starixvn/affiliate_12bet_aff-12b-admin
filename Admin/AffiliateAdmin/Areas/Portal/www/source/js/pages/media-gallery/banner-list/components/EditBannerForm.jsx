@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader } from '../actions/index';
-import { headerText, globalResource, deviceTypes, defaultState, Casino, Sportsbook, Baccarat, maxLenght } from '../libs/constants';
+import { headerText, globalResource, deviceTypes, defaultState, Casino, Sportsbook, Baccarat } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
+import NotificationPopup from '../../../common/components/NotificationPopup';
 import { validateFileExtension, validateInputFile, getSubCategory } from '../libs/utils';
 
 export class EditBannerForm extends PureComponent {
@@ -29,8 +30,9 @@ export class EditBannerForm extends PureComponent {
 
     _handleGetBannerDetail = async (selectedBannerId) => {
         const bannerInfo = await this.props.getBannerDetail(selectedBannerId);
+        console.log(bannerInfo);
 
-        if(bannerInfo) {
+        if (bannerInfo) {
             const { subCategoryCasinoList, subCategorySportsbookList } = this.props;
             const result = getSubCategory(bannerInfo.Category, subCategoryCasinoList, subCategorySportsbookList);
 
@@ -45,9 +47,13 @@ export class EditBannerForm extends PureComponent {
                 currency: bannerInfo.Currency,
                 imageType: bannerInfo.ImageType,
                 affType: bannerInfo.AffType,
-                deviceType: bannerInfo.DeviceType
+                deviceType: bannerInfo.DeviceType,
+                iniatalFileName: shortFileName,
+                iniatalCategory: result.category,
+                iniatalSubcategory: result.subCategory
             });
         }
+        console.log(this.state);
     }
 
     _handleChange = (event) => {
@@ -88,17 +94,31 @@ export class EditBannerForm extends PureComponent {
     }
 
     _save = async () => {
-        const { file, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType, isInsert } = this.state;
-        const { selectedBannerId } = this.props;
-        const bannerInfo = Object.assign({}, { bannerId: selectedBannerId, file, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType });
+        const { inputFileName, category, subCategory, isInsert, iniatalFileName, iniatalCategory, iniatalSubcategory } = this.state;
+        const bannerInfo = this._getParam();
 
         if (isInsert) {
             const result = await this.props.insertBanner(bannerInfo);
             this._handleAfterSave(isInsert, result);
         } else {
-            const result = await this.props.updateBanner(bannerInfo);
-            this._handleAfterSave(isInsert, result);
+            if (inputFileName === iniatalFileName && category === iniatalCategory && subCategory === iniatalSubcategory) {
+                this.setState({ messageNotificationPopup: 'This file name exists already. Do you want to overwrite the current file?' });
+            } else {
+                this._updateBanner(bannerInfo);
+            }
         };
+    }
+
+    _getParam = () => {
+        const { file, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType } = this.state;
+        const { selectedBannerId } = this.props;
+
+        return Object.assign({}, { bannerId: selectedBannerId, file, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType });
+    }
+
+    _updateBanner = async (bannerInfo) => {
+        const result = await this.props.updateBanner(bannerInfo);
+        this._handleAfterSave(this.state.isInsert, result);
     }
 
     _validateInputFile = (inputFileName) => {
@@ -153,9 +173,26 @@ export class EditBannerForm extends PureComponent {
         this.setState({ ...defaultState });
     }
 
+    handleCloseNotificationPopup = (confirmResult) => {
+        this.setState({ messageNotificationPopup: '' });
+
+        if (confirmResult) {
+            const bannerInfo = this._getParam();
+
+            this._updateBanner(bannerInfo);
+        }
+    }
+
+    _handlePressEnter = (event) => {
+        if (event.charCode === 13) {
+            event.preventDefault()
+            this._handleSubmit();
+        }
+    }
+
     render() {
         const { selectedBannerId, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, affTypeList } = this.props;
-        const { inputFileName, category, subCategory, language, currency, imageType, affType, deviceType, isShowMessage, isSuccess, message, isInsert, isDisabled } = this.state;
+        const { inputFileName, category, subCategory, language, currency, imageType, affType, deviceType, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup } = this.state;
         const isShowPopup = selectedBannerId !== null;
         const title = isInsert ? "Add Banner" : "Update Banner";
         const buttonLabel = isInsert ? "Upload" : "Update";
@@ -163,126 +200,135 @@ export class EditBannerForm extends PureComponent {
         const subCategoryList = (isCategoryCasino || category === Sportsbook) ? (isCategoryCasino ? subCategoryCasinoList : subCategorySportsbookList) : null;
 
         return (
-            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
-                <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
-                <ModalBody>
-                    <div className="modal-body-wrapper">
-                        <div className="banner-list-form-container">
-                            <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
-                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
-                            </Alert>
-                            <Form tag="form" className="mb-2 p-1 border" autocomplete="off">
-                                <Label>[Valid Types: .gif, .jpg, .png, .jpeg]</Label>
-                                <Label className="d-block">[File Size Limit: 3MB]</Label>
-                                <br />
-                                <FormGroup row className="mb-2">
-                                    <Label sm={3} for="file">File</Label>
-                                    <Col sm={9}>
-                                        <Input type="file" name="file" id="file" className={`border ${isInsert && isDisabled ? "text-danger" : "text-success"}`} onChange={this._handleFile} />
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="mb-2">
-                                    <Label sm={3} for="category">{headerText.Category}</Label>
-                                    <Col sm={5}>
-                                        <Input type="select" name="category" id="category" value={category} onChange={this._handleChange}>
-                                            {
-                                                categoryList.map(item => {
-                                                    return (<option key={`category-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
-                                                })
-                                            }
-                                        </Input>
-                                    </Col>
-                                </FormGroup>
-                                {
-                                    subCategoryList && (
-                                        <FormGroup row className="mb-2">
-                                            <Label sm={3} for="subCategory">{headerText.SubCategory}</Label>
-                                            <Col sm={5}>
-                                                <Input type="select" name="subCategory" id="subCategory" value={subCategory} onChange={this._handleChange}>
-                                                    {
-                                                        subCategoryList.map(item => {
-                                                            return (<option key={`subCategory-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
-                                                        })
-                                                    }
-                                                </Input>
-                                            </Col>
-                                        </FormGroup>
-                                    )
-                                }
-                                <FormGroup row className="mb-2">
-                                    <Label sm={3} for="language">{headerText.Language}</Label>
-                                    <Col sm={5}>
-                                        <Input type="select" name="language" id="language" value={language} onChange={this._handleChange}>
-                                            {
-                                                languageList.map(item => {
-                                                    return (<option key={`language-${item.LanguageName}`} value={item.LanguageName}>{item.LanguageName}</option>)
-                                                })
-                                            }
-                                        </Input>
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="mb-2">
-                                    <Label sm={3} for="currency">{headerText.Currency}</Label>
-                                    <Col sm={5}>
-                                        <Input type="select" name="currency" id="currency" value={currency} onChange={this._handleChange}>
-                                            {
-                                                currencyList.map(item => {
-                                                    return (<option key={`currency-${item.Name}`} value={item.Name}>{item.Name}</option>)
-                                                })
-                                            }
-                                        </Input>
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="mb-2">
-                                    <Label sm={3} for="imageType">{headerText.Type}</Label>
-                                    <Col sm={5}>
-                                        <Input type="select" name="imageType" id="imageType" value={imageType} onChange={this._handleChange}>
-                                            {
-                                                imageTypeList.map(item => {
-                                                    return (<option key={`imageType-${item.Name}`} value={item.Name}>{item.Name}</option>)
-                                                })
-                                            }
-                                        </Input>
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="mb-2">
-                                    <Label sm={3} for="affType">{headerText.AffType}</Label>
-                                    <Col sm={5}>
-                                        <Input type="select" name="affType" id="affType" value={affType} onChange={this._handleChange}>
-                                            {
-                                                affTypeList.map(item => {
-                                                    return (<option key={`affType-${item.AffTypeId}`} value={item.AffTypeId}>{item.AffTypeName}</option>)
-                                                })
-                                            }
-                                        </Input>
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="mb-2">
-                                    <Label sm={3} for="deviceType">{headerText.Device}</Label>
-                                    <Col sm={5}>
-                                        <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this._handleChange}>
-                                            {
-                                                Object.keys(deviceTypes).map(key => {
-                                                    return (<option key={`deviceType-${deviceTypes[key]}`} value={deviceTypes[key]}>{key}</option>)
-                                                })
-                                            }
-                                        </Input>
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="mb-2">
-                                    <Label sm={3} for="inputFileName">File Name</Label>
-                                    <Col sm={7}>
-                                        <Input type="text" name="inputFileName" id="inputFileName" value={inputFileName} onChange={this._handleChange} />
-                                    </Col>
-                                </FormGroup>
-                            </Form>
+            <React.Fragment>
+                {
+                    !!messageNotificationPopup && <NotificationPopup
+                        message={messageNotificationPopup}
+                        isConfirmPopup={true}
+                        onClose={this.handleCloseNotificationPopup}
+                    />
+                }
+                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
+                    <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
+                    <ModalBody>
+                        <div className="modal-body-wrapper">
+                            <div className="banner-list-form-container">
+                                <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                                </Alert>
+                                <Form tag="form" className="mb-2 p-1 border" autocomplete="off">
+                                    <Label>[Valid Types: .gif, .jpg, .png, .jpeg]</Label>
+                                    <Label className="d-block">[File Size Limit: 3MB]</Label>
+                                    <br />
+                                    <FormGroup row className="mb-2">
+                                        <Label sm={3} for="file">File</Label>
+                                        <Col sm={9}>
+                                            <Input type="file" name="file" id="file" className={`border ${isInsert && isDisabled ? "text-danger" : "text-success"}`} onChange={this._handleFile} />
+                                        </Col>
+                                    </FormGroup>
+                                    <FormGroup row className="mb-2">
+                                        <Label sm={3} for="category">{headerText.Category}</Label>
+                                        <Col sm={5}>
+                                            <Input type="select" name="category" id="category" value={category} onChange={this._handleChange}>
+                                                {
+                                                    categoryList.map(item => {
+                                                        return (<option key={`category-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
+                                                    })
+                                                }
+                                            </Input>
+                                        </Col>
+                                    </FormGroup>
+                                    {
+                                        subCategoryList && (
+                                            <FormGroup row className="mb-2">
+                                                <Label sm={3} for="subCategory">{headerText.SubCategory}</Label>
+                                                <Col sm={5}>
+                                                    <Input type="select" name="subCategory" id="subCategory" value={subCategory} onChange={this._handleChange}>
+                                                        {
+                                                            subCategoryList.map(item => {
+                                                                return (<option key={`subCategory-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
+                                                            })
+                                                        }
+                                                    </Input>
+                                                </Col>
+                                            </FormGroup>
+                                        )
+                                    }
+                                    <FormGroup row className="mb-2">
+                                        <Label sm={3} for="language">{headerText.Language}</Label>
+                                        <Col sm={5}>
+                                            <Input type="select" name="language" id="language" value={language} onChange={this._handleChange}>
+                                                {
+                                                    languageList.map(item => {
+                                                        return (<option key={`language-${item.LanguageName}`} value={item.LanguageName}>{item.LanguageName}</option>)
+                                                    })
+                                                }
+                                            </Input>
+                                        </Col>
+                                    </FormGroup>
+                                    <FormGroup row className="mb-2">
+                                        <Label sm={3} for="currency">{headerText.Currency}</Label>
+                                        <Col sm={5}>
+                                            <Input type="select" name="currency" id="currency" value={currency} onChange={this._handleChange}>
+                                                {
+                                                    currencyList.map(item => {
+                                                        return (<option key={`currency-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                                    })
+                                                }
+                                            </Input>
+                                        </Col>
+                                    </FormGroup>
+                                    <FormGroup row className="mb-2">
+                                        <Label sm={3} for="imageType">{headerText.Type}</Label>
+                                        <Col sm={5}>
+                                            <Input type="select" name="imageType" id="imageType" value={imageType} onChange={this._handleChange}>
+                                                {
+                                                    imageTypeList.map(item => {
+                                                        return (<option key={`imageType-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                                    })
+                                                }
+                                            </Input>
+                                        </Col>
+                                    </FormGroup>
+                                    <FormGroup row className="mb-2">
+                                        <Label sm={3} for="affType">{headerText.AffType}</Label>
+                                        <Col sm={5}>
+                                            <Input type="select" name="affType" id="affType" value={affType} onChange={this._handleChange}>
+                                                {
+                                                    affTypeList.map(item => {
+                                                        return (<option key={`affType-${item.AffTypeId}`} value={item.AffTypeId}>{item.AffTypeName}</option>)
+                                                    })
+                                                }
+                                            </Input>
+                                        </Col>
+                                    </FormGroup>
+                                    <FormGroup row className="mb-2">
+                                        <Label sm={3} for="deviceType">{headerText.Device}</Label>
+                                        <Col sm={5}>
+                                            <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this._handleChange}>
+                                                {
+                                                    Object.keys(deviceTypes).map(key => {
+                                                        return (<option key={`deviceType-${deviceTypes[key]}`} value={deviceTypes[key]}>{key}</option>)
+                                                    })
+                                                }
+                                            </Input>
+                                        </Col>
+                                    </FormGroup>
+                                    <FormGroup row className="mb-2">
+                                        <Label sm={3} for="inputFileName">File Name</Label>
+                                        <Col sm={7}>
+                                            <Input type="text" name="inputFileName" id="inputFileName" value={inputFileName} onChange={this._handleChange} onKeyPress={this._handlePressEnter}/>
+                                        </Col>
+                                    </FormGroup>
+                                </Form>
 
-                            <Button type="button" color="success" className="mr-3" disabled={(isInsert || !inputFileName) ? isDisabled : false} onClick={this._handleSubmit}>{buttonLabel}</Button>
-                            <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
+                                <Button type="button" color="success" className="mr-3" disabled={(isInsert || !inputFileName) ? isDisabled : false} onClick={this._handleSubmit}>{buttonLabel}</Button>
+                                <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
+                            </div>
                         </div>
-                    </div>
-                </ModalBody>
-            </Modal>
+                    </ModalBody>
+                </Modal>
+            </React.Fragment>
         );
     }
 }

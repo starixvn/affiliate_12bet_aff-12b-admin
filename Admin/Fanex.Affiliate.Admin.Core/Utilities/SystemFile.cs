@@ -95,7 +95,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             {
                 return new ResultInfo
                 {
-                    Code = Code.GeneralErrorCode,
+                    Code = Code.ErrTheFileNameAlreadyExists,
                     Message = "The file name already exists."
                 };
             }

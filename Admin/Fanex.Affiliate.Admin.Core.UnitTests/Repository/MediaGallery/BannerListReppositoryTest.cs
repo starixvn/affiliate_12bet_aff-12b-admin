@@ -223,7 +223,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
                 ["ImageType"] = "Image",
                 ["AffType"] = 2,
                 ["Size"] = "320x250",
-                ["DeviceType"] = 1
+                ["DeviceType"] = 1,
+                ["LastUpdate"] = new DateTime(2020,01,20)
             };
         }
     }
