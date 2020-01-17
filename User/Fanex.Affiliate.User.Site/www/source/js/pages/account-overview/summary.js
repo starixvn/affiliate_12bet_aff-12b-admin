@@ -4,8 +4,12 @@
     }
 
     function initMonthPicker() {
+        let today = $("#ToDay").val();
+        const sixMonthAgo = new Date(today);
+        sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
+
         $("#MonthDate").monthPicker({
-            range: [new Date(2009, 11, 1), new Date($("#ToDay").val())],
+            range: [new Date(sixMonthAgo.getFullYear(), sixMonthAgo.getMonth() + 1, 1), new Date(today)],
             triggerSelector: "#monthPickerTrigger",
             onSelect: function (month, year) {
                 var date = formatDateUnit(month) + "/01/" + year;
