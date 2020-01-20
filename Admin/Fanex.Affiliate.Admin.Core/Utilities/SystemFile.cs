@@ -96,7 +96,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                 return new ResultInfo
                 {
                     Code = Code.ErrTheFileNameAlreadyExists,
-                    Message = "The file name already exists."
+                    Message = "This file name belong to an existing banner. Please change the file name."
                 };
             }
 
