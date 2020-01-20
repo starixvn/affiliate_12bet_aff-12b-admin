@@ -16,7 +16,7 @@ export const BannerDetailPopup = (props) => {
         props.setBannerDetailUrl({ src: null })
     }
 
-    const resizeResult = bannerDetailUrl && resizeWidthHeight(bannerDetailUrl.width, bannerDetailUrl.height, bannerDetailUrl.width > maxWidthModal ? maxWidthModal : bannerDetailUrl.width);
+    const resizeResult = bannerDetailUrl && resizeWidthHeight(bannerDetailUrl.width, bannerDetailUrl.height, maxWidthModal);
 
     return bannerDetailUrl && bannerDetailUrl.src && (
          <Modal isOpen={!!bannerDetailUrl.src} toggle={_handleClosePopup} size="xl" backdrop='static'>

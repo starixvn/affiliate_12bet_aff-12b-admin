@@ -59,12 +59,15 @@ export const resizeWidthHeight = (realWidth, realHeight, size = 500) => {
     let width = Number(realWidth);
     let height = Number(realHeight);
 
-    if (width > height) {
-        height = size * height / width;
-        width = size;
+    if(width < size && height < size) {
+        return { width, height }
     }
-    else {
-        width = size * width / height;
+
+    if (width > height) {
+        height = (size * height) / width;
+        width = size;
+    } else {
+        width = (size * width) / height;
         height = size;
     }
 
