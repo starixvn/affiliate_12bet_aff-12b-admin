@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
         public BaseMarketingController(ISessionService sessionService, IAppSetting appSetting,
             ILanguageService languageService,
-             IMarketingService marketingService)
+            IMarketingService marketingService)
             : base(sessionService, languageService)
         {
             MarketingService = marketingService;

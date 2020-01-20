@@ -2,19 +2,19 @@
     Layout = null;
 }
 
-@model IDictionary<string, string>
-
+@model IDictionary<string, Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.QrCodeLinkModel>
+<link rel="stylesheet" type="text/css" href="~/www/build/styles/css/"/>
 <div class="form-horizontal">
-    @foreach (var item in Model)
+    @foreach (var key in Model.Keys)
     {
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@item.Key</label>
+        <div class="form-group col-lg-6">
+            <label class="col-sm-3 control-label">@Model[key].Language</label>
             <div class="control-group">
-                <a href="javascript:;" class="copy-link" data-url="@item.Value" id="copy-link">Copy Link</a>
-                <a href="javascript:;" class="copy-qr-code" id="copy-qr-code">Copy QR Code</a>
-                <a href="javascript:;" class="save-qr-code" id="save-qr-code">Save QR Code</a>
+                <a href="javascript:;" class="copy-link" data-url="@Model[key].Link">Copy Link</a>
+                <a href="javascript:;" class="copy-qr-code">Copy QR Code</a>
+                <a href="javascript:;" class="save-qr-code">Save QR Code</a>
             </div>
         </div>
     }
 </div>
-<script src="@Url.RenderLink("~/www/build/js/account-overview.js")"></script>
+@*<script src="@Url.RenderLink("~/www/build/js/account-overview.js")"></script>*@

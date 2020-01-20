@@ -50,8 +50,6 @@
             var viewModel = new MarketingViewModel
             {
                 SearchForm = searchForm,
-                LinkForm = linkForm,
-                TextLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, searchForm.LanguageList),
                 MarketingDataList = GetBannerList(bannerParam)
             };
 

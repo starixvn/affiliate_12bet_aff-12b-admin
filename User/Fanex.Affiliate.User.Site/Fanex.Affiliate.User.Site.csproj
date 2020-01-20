@@ -461,7 +461,9 @@
     <Content Include="Views\UserPanel\Member\Index.cshtml" />
     <Content Include="Views\UserPanel\Member\_DataContent.cshtml" />
     <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -701,6 +703,7 @@
     <Content Include="www\build\styles\Images\icon-1.png" />
     <Content Include="www\build\styles\Images\icon-2.png" />
     <Content Include="www\build\styles\Images\icon-3.png" />
+    <Content Include="www\build\styles\Images\qr-icon.png" />
     <Content Include="www\build\styles\Images\logo.png" />
     <Content Include="www\build\styles\Images\notify\bgMain.jpg" />
     <Content Include="www\build\styles\Images\notify\icon.png" />
@@ -1249,6 +1252,7 @@
     <Content Include="Views\UserPanel\AccountOverView\Partial\_TextLink.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Partial\_TextList.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\MediaGallery\Index.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Partial\_GeneratedQrCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1259,7 +1263,9 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="ConnectionString.config" />
+    <Content Include="ConnectionString.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\Web\Web.12betuser-asian.backupmnl.config">
       <DependentUpon>Web.tt</DependentUpon>
     </Content>

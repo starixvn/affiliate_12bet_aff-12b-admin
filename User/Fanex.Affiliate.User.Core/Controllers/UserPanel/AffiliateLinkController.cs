@@ -55,7 +55,6 @@
             {
                 SearchForm = searchForm,
                 LinkForm = linkForm,
-                TextLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, searchForm.LanguageList),
                 MarketingDataList = GetTextList(textParam)
             };
 

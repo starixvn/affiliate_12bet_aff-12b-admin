@@ -8,20 +8,15 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 col-lg-3">
             <div id="searchForm">
                 @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_SearchForm.cshtml", Model.SearchForm); }
             </div>
         </div>
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col-lg-6" id="linkForm">
-                    @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_LinkForm.cshtml", Model.LinkForm); }
-                </div>
-                <div class="col-lg-6" id="textLinkList">
-                    @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", Model.TextLinkList); }
-                </div>
-            </div>
+        <div class="col-md-8 col-lg-9">
+            @{
+                Html.RenderAction("Index", "Marketing");
+            }
         </div>
     </div>
 </div>

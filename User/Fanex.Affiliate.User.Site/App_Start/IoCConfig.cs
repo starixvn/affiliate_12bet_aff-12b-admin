@@ -99,6 +99,9 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<SecurityQuestionRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SecurityQuestionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountOverviewRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            builder.RegisterType<QrCodeUrlGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<PngImageFileWriter>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
