@@ -1,0 +1,39 @@
+﻿@{ 
+    Layout = null;
+}
+
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.SearchFormViewModel
+
+<div class="info-group" id="searchForm">
+    <div class="title">
+        <span class="text">@Lang.Search</span>
+    </div>
+
+    <div class="search-container">
+        <form class="form-horizontal">
+            @RazorHelper.RenderDropdownForOldMarketing("Category", Lang.Category, Model.CategoryList)
+
+            @RazorHelper.RenderDropdownForOldMarketing("SubCategory", Lang.SubCategory, new List<SelectListItem>(), true, false)
+
+            @RazorHelper.RenderDropdownForOldMarketing("Language", Lang.Language, Model.LanguageList)
+
+            @RazorHelper.RenderDropdownForOldMarketing("Currency", Lang.Currency, Model.CurrencyList)
+
+            @if (Model.ImageTypeList != null)
+            {
+                @RazorHelper.RenderDropdownForOldMarketing("ImageType", Lang.Type, Model.ImageTypeList)
+            }
+
+            @if (Model.SizeList != null)
+            {
+                @RazorHelper.RenderDropdownForOldMarketing("Size", Lang.Size, Model.SizeList)
+            }
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-5">
+                    <button type="button" class="btn btn-submit" id="btnMarketingSearch">@Lang.Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

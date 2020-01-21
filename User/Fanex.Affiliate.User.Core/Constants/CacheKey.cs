@@ -10,6 +10,8 @@
 
         public const string BannerTypeList = "Affiliate.12Bet.BannerTypeList";
 
+        public const string OldBannerTypeList = "Affiliate.12Bet.OldBannerTypeList";
+
         public const string LatestHotNews = "Affiliate.12Bet.LatestHotNews";
     }
 }
