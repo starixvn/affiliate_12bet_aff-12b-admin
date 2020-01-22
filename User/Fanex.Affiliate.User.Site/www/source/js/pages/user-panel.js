@@ -1,5 +1,6 @@
 ﻿var SUPPORT_MIN_WITDH = 716;
 var SUB_MENU_HEIGHT = 43;
+var DETAILS_SECTION_MENU_HEIGHT = 33;
 
 function handleSetTop() {
     let headerHeight = $('#overview-table-header').height();
@@ -14,7 +15,8 @@ function handleScroll() {
 
         if (window.pageYOffset >= stickyPoint) {
             $("#details-section-menu").addClass("details-section-sticky");
-        } else {
+        }
+        if (window.pageYOffset < stickyPoint - DETAILS_SECTION_MENU_HEIGHT) {
             $("#details-section-menu").removeClass("details-section-sticky");
         }
     }
