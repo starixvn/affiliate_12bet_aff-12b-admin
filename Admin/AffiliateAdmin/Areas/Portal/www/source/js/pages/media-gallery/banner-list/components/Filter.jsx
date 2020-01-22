@@ -25,25 +25,24 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
-        const { paramFromHome } = this.props;
+        const { paramFromHome, subCategoryCasinoList, subCategorySportsbookList } = this.props;
 
         if (paramFromHome && paramFromHome.IsFromHome) {
             this._handleSearch();
             this.props.setParamFromHome({ IsFromHome: false });
         }
+
+        if(!subCategoryCasinoList) {
+            this.props.getSubCategoryCasinoList();
+        }
+
+        if(!subCategorySportsbookList) {
+            this.props.getSubCategorySportsbookList();
+        }
     }
 
     _handleChangeCategory = (event) => {
         const selectedCategory = event.target.value;
-        const { subCategoryCasinoList, subCategorySportsbookList } = this.state;
-
-        if(selectedCategory === Casino && !subCategoryCasinoList) {
-            this.props.getSubCategoryCasinoList();
-        }
-
-        if(selectedCategory === Sportsbook && !subCategorySportsbookList) {
-            this.props.getSubCategorySportsbookList();
-        }
 
         const param = Object.assign({}, this.state, { category: selectedCategory, subCategory: '' });
 

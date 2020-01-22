@@ -30,10 +30,10 @@ export class EditBannerForm extends PureComponent {
 
     _handleGetBannerDetail = async (selectedBannerId) => {
         const bannerInfo = await this.props.getBannerDetail(selectedBannerId);
-        console.log(bannerInfo);
 
         if (bannerInfo) {
             const { subCategoryCasinoList, subCategorySportsbookList } = this.props;
+
             const result = getSubCategory(bannerInfo.Category, subCategoryCasinoList, subCategorySportsbookList);
 
             const fileName = htmlDecode(bannerInfo.FileName);
@@ -53,7 +53,6 @@ export class EditBannerForm extends PureComponent {
                 iniatalSubcategory: result.subCategory
             });
         }
-        console.log(this.state);
     }
 
     _handleChange = (event) => {

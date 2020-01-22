@@ -148,13 +148,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return result;
         }
 
-        private void UploadFile(Bitmap bitmap, string fileName)
+        public IEnumerable<MediaGalleryFilterItem> GetSizeList(SizeParam param)
         {
             param.Category = GetCategory(param.Category, param.SubCategory);
 
             return _bannerListRepository.GetSizeList(param);
         }
 
+    private void UploadFile(Bitmap bitmap, string fileName)
         {
             foreach (var serverPath in _appSetting.BannerFolders)
             {
@@ -218,11 +219,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
 
             return result;
+        }
+
+        private static string GetCategory(string category, string subCategory)
+        {
+            if(string.IsNullOrEmpty(subCategory))
             {
-                return subCategory;
+                return category;
             }
 
-            return category;
+            return subCategory;
         }
     }
 }
