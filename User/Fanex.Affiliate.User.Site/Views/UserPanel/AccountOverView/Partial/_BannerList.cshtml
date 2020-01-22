@@ -1,7 +1,6 @@
 ﻿@{ 
     Layout = null;
     var totalItem = ViewBag.TotalItem;
-    //var screenWidth = ViewBag.ScreenWidth - 500;
 }
 
 @model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.MarketingItem>
@@ -16,11 +15,7 @@
         {
             foreach (var banner in Model)
             {
-                //var availWidth = banner.Width > screenWidth ? screenWidth : banner.Width;
-                //var width = banner.Width > 0 ? banner.Width.ToString() : string.Empty;
-                //var height = banner.Height > 0 ? banner.Height.ToString() : string.Empty;
                 <li class="banner-control">
-                    @*<input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>" type="text" />*@
                     <a class="banner-link padding" onclick='window.open("@(banner.RedirectLink + "?ref=")" + encodeURIComponent(window.location.href),"_blank"); return false;' href="javascript:;">
                         <img width="@banner.AvailWidth" height="@banner.AvailHeight" src="@banner.FileName" alt="Affiliate 12Bet Banner" />
                     </a>
@@ -33,38 +28,36 @@
                         </div>
                         <div class="social-media-list padding">
                             <span>Share banner to your friends</span>
-                            <a href="javascript:;" class="facebook-share" data-url="@banner.RedirectLink">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.strava.com/activities/3015222626" target="_blank">
                                 <img src="~/www/build/styles/Images/account-overview/icon-facebook.png" />
                             </a>
-                            <a href="javascript:;" class="twitter-share" data-url="@banner.RedirectLink">
+                            <a href="https://twitter.com/share?url=https://www.strava.com/activities/3015222626" target="_blank">
                                 <img src="~/www/build/styles/Images/account-overview/icon-twitter.png" />
                             </a>
-                            <a href="javascript:;" class="whatsapp-share" data-url="@banner.RedirectLink">
+                            <a href="https://api.whatsapp.com/send?text=https://www.strava.com/activities/3015222626" target="_blank">
                                 <img src="~/www/build/styles/Images/account-overview/icon-whatsapp.png" />
                             </a>
-                            <a href="javascript:;" class="wechat-share" data-url="@banner.RedirectLink">
+                            <a href="https://www.strava.com/activities/3015222626" target="_blank">
                                 <img src="~/www/build/styles/Images/account-overview/icon-wechat.png" />
                             </a>
-                            <a href="javascript:;" class="line-share" data-url="@banner.RedirectLink">
+                            <a href="https://social-plugins.line.me/lineit/share?url=https://www.strava.com/activities/3015222626" target="_blank">
                                 <img src="~/www/build/styles/Images/account-overview/icon-line.png" />
                             </a>
-                            <a href="javascript:;" class="weiboi-share" data-url="@banner.RedirectLink">
+                            <a href="http://service.weibo.com/share/share.php?url=https://www.strava.com/activities/3015222626" target="_blank">
                                 <img src="~/www/build/styles/Images/account-overview/icon-weiboi.png" />
                             </a>
-                            <a href="javascript:;" class="qq-share" data-url="@banner.RedirectLink">
+                            <a href="https://www.strava.com/activities/3015222626" target="_blank">
                                 <img src="~/www/build/styles/Images/account-overview/icon-qq.png" />
                             </a>
-                            <a href="javascript:;" class="zalo-share" data-url="@banner.RedirectLink">
+                            <a href="https://www.strava.com/activities/3015222626" target="_blank">
                                 <img src="~/www/build/styles/Images/account-overview/icon-zalo.png" />
                             </a>
-                            <a class="zalo-share-button" data-href="@banner.RedirectLink" data-oaid="579745863508352884" data-layout="3" data-color="blue" data-customize=false></a>
-                            <a href="javascript:;" class="telegram-share" data-url="@banner.RedirectLink">
+                            <a href="https://telegram.me/share/url?url=https://www.strava.com/activities/3015222626" target="_blank">
                                 <img src="~/www/build/styles/Images/account-overview/icon-telegram.png" />
                             </a>
-                            <a href="javascript:;" class="talk-share" data-url="@banner.RedirectLink">
+                            <a href="https://story.kakao.com/s/share?url=https://www.strava.com/activities/3015222626" target="_blank">
                                 <img src="~/www/build/styles/Images/account-overview/icon-talk.png" />
                             </a>
-                            <div class="fb-share-button" data-href="https://ha.nexdev.net:7613/12BetUserAsianNew" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fha.nexdev.net%3A7613%2F12BetUserAsianNew&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><img src="~/www/build/styles/Images/account-overview/icon-facebook.png" /></a></div>
                         </div>
                     </div>
                 </li>
