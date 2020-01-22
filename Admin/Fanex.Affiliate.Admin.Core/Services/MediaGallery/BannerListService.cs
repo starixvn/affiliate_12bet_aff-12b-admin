@@ -11,6 +11,7 @@ using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Drawing;
 using System.Web;
 using System.IO;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
@@ -71,7 +72,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 }
             }
 
-            result = CheckFileInFolder(param);
+            result = CheckFileInFolder(param, string.Empty);
 
             if (result.IsSuccessful)
             {
@@ -82,7 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
                     if (result.IsSuccessful)
                     {
-                        uploadFile(bitmap, param.FilePath);
+                        UploadFile(bitmap, param.FilePath);
                     }
                 }
             }
@@ -101,15 +102,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             var oldFilePath = oldBannerInfo.FileName;
             param.Size = oldBannerInfo.Size;
 
-            var result = CheckFileInFolder(param);
+            var result = CheckFileInFolder(param, oldFilePath);
 
-            if (!result.IsSuccessful)
+            if(!result.IsSuccessful)
             {
-                if (string.Compare(param.FilePath, oldFilePath, StringComparison.CurrentCultureIgnoreCase) == 0)
-                {
-                    result = _bannerListRepository.UpdateBanner(param);
-                }
-
                 return result;
             }
 
@@ -122,11 +118,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                     using (var bitmap = new Bitmap(file.InputStream))
                     {
                         param.Size = BannerHelper.GetSize(bitmap.Width, bitmap.Height);
-
-                        uploadFile(bitmap, param.FilePath);
                         result = _bannerListRepository.UpdateBanner(param);
 
-                        DeleteFile(result.IsSuccessful ? oldFilePath : param.FilePath);
+                        if (result.IsSuccessful)
+                        {
+                            DeleteFile(oldFilePath);
+                            UploadFile(bitmap, param.FilePath);
+                        }
                     }
                 }
             }
@@ -134,7 +132,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             {
                 result = _bannerListRepository.UpdateBanner(param);
 
-                if (result.IsSuccessful)
+                if (result.IsSuccessful && string.Compare(param.FilePath, oldFilePath, StringComparison.CurrentCultureIgnoreCase) != 0)
                 {
                     MoveFile(param.FilePath, oldFilePath);
                 }
@@ -155,7 +153,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return result;
         }
 
-        private void uploadFile(Bitmap bitmap, string fileName)
+        private void UploadFile(Bitmap bitmap, string fileName)
         {
             foreach (var serverPath in _appSetting.BannerFolders)
             {
@@ -202,7 +200,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return fileNameList;
         }
 
-        private ResultInfo CheckFileInFolder(InsertUpdateBannerParam param)
+        private ResultInfo CheckFileInFolder(InsertUpdateBannerParam param, string oldFilePath)
         {
             var folder = BannerHelper.GeneralFolder(param.Category, param.SubCategory);
             param.FilePath = folder + param.InputFileName;
@@ -211,7 +209,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 param.Category = param.SubCategory;
             }
 
-            return _bannerValidationService.CheckFileInFolder(folder, param.FilePath);
+            var result = _bannerValidationService.CheckFileInFolder(folder, param.FilePath);
+
+            if (result.Code == Code.ErrTheFileNameAlreadyExists && string.Compare(param.FilePath, oldFilePath, StringComparison.CurrentCultureIgnoreCase) == 0)
+            {
+                return new ResultInfo();
+            }
+
+            return result;
         }
     }
 }

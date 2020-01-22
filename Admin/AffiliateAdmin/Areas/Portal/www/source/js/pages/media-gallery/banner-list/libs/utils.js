@@ -1,4 +1,4 @@
-﻿import { Casino, Sportsbook, maxLenght } from './constants';
+﻿import { Casino, Sportsbook, maxLength } from './constants';
 
 export const validateFileExtension = (fileName) => {
     const result = {
@@ -23,7 +23,7 @@ export const validateFileExtension = (fileName) => {
 export const validateInputFile = (inputFileName) => {
     const result = validateFileExtension(inputFileName);
 
-    if (!!inputFileName && inputFileName.length > maxLenght) {
+    if (!!inputFileName && inputFileName.length > maxLength) {
         result.isOK = false;
         result.message = 'The maximum length of file name is 50. Please choose another name.';
     }
@@ -59,12 +59,15 @@ export const resizeWidthHeight = (realWidth, realHeight, size = 500) => {
     let width = Number(realWidth);
     let height = Number(realHeight);
 
-    if (width > height) {
-        height = size * height / width;
-        width = size;
+    if(width < size && height < size) {
+        return { width, height }
     }
-    else {
-        width = size * width / height;
+
+    if (width > height) {
+        height = (size * height) / width;
+        width = size;
+    } else {
+        width = (size * width) / height;
         height = size;
     }
 

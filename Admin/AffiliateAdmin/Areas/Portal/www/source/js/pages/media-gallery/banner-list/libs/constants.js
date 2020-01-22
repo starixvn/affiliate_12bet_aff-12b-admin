@@ -12,7 +12,7 @@ const defaultCurrency = 'EURO';
 const defaultImageType = 'Image';
 export const Asian = 2;
 export const maxWidthHeight = 501;
-export const maxLenght = 50;
+export const maxLength = 50;
 
 export const headerText = {
     Index: '#',
@@ -49,5 +49,6 @@ export const defaultState = {
     isShowMessage: false,
     isSuccess: true,
     message: '',
-    isDisabled: true
+    isDisabled: true,
+    messageNotificationPopup: ''
 }

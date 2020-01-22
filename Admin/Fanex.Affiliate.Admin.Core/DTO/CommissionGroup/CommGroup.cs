@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 
         public string Creator { get; set; }
 
-        [MaxLength(Validation.MaxLenghtCommGroupDescription, ErrorMessage = "Description should shorter than 100 characters!")]
+        [MaxLength(Validation.MaxLengthCommGroupDescription, ErrorMessage = "Description should shorter than 100 characters!")]
         public string Description { get; set; }
 
         [Range(0, (double)Money.MaxValue, ErrorMessage = "QmTurnover not valid!")]

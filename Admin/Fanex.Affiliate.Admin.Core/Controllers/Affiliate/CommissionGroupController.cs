@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [FunctionAuthorize(FunctionName = Function.CommissionGroup)]
     public class CommissionGroupController : BaseController
     {
-        private const int MaxLenght = 100;
+        private const int MaxLength = 100;
 
         private readonly ICommGroupCommonService _commGroupCommonService;
 
@@ -235,7 +235,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         private static ResultInfo ValidateGroupName(string groupName)
         {
             var result = new ResultInfo();
-            if (string.IsNullOrEmpty(groupName) || groupName.Length > MaxLenght)
+            if (string.IsNullOrEmpty(groupName) || groupName.Length > MaxLength)
             {
                 result.Code = Code.GeneralErrorCode;
                 result.Message = CommGroupErrorMessage.InvalidGroupName;
