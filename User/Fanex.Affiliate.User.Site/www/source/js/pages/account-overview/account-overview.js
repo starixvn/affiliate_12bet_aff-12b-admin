@@ -6,7 +6,7 @@
         },
 
         initEvent: function () {
-            $('#account-overview-menu').on('click', '.account-overview-menu', function () {
+            $('#account-overview-menu').on('click', '.account-overview-menu-item', function () {
                 var name = $(this).data('name');
                 _me.renderView(name);
             });
@@ -14,7 +14,7 @@
 
         activeMenu: function (actionName) {
             var activeClassName = "active";
-            $(".account-overview-menu").removeClass(activeClassName);
+            $(".account-overview-menu-item").removeClass(activeClassName);
             $("#menu" + actionName).addClass(activeClassName);
         },
 

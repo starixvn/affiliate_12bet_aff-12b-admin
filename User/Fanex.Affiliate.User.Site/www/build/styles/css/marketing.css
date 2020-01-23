@@ -130,3 +130,16 @@
   .banner-control {
     display: inline-block;
     width: 100%; } }
+
+.social-media-button-group {
+  display: flex; }
+  .social-media-button-group .img-button img {
+    width: 31px;
+    height: 31px;
+    margin-bottom: 3px; }
+  .social-media-button-group > a {
+    margin-right: 3px; }
+
+@media (max-width: 1024px) {
+  .social-media-button-group {
+    flex-wrap: wrap; } }

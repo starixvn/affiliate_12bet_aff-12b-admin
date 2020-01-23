@@ -15,9 +15,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class MarketingService : IMarketingService
     {
-        private const int GroupButtonWidth = 623;
+        private const int GroupButtonWidth = 611;
         private const int MinWidth = 401;
         private const int PaddingWidth = 52;
+        private const int LaptopMinWidth = 1024;
 
         private readonly IMarketingRepository _marketingRepository;
 
@@ -141,7 +142,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             const int LengthOfSplittingSize = 2;
             bannerParam.Category = GetCategory(bannerParam.Category, bannerParam.SubCategory);
             var bannerList = _marketingRepository.GetBannerList(bannerParam);
-            var minWidth = bannerParam.ScreenWidth - GroupButtonWidth;
+            var minWidth = bannerParam.ScreenWidth > LaptopMinWidth ? bannerParam.ScreenWidth - GroupButtonWidth : bannerParam.ScreenWidth - PaddingWidth;
             var screenWidth = minWidth > MinWidth ? minWidth : bannerParam.ScreenWidth - PaddingWidth;
 
             foreach (var banner in bannerList)

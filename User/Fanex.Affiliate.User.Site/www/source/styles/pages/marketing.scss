@@ -135,3 +135,25 @@
         width: 100%;
     }
 }
+
+.social-media-button-group {
+    display: flex;
+
+    .img-button {
+        img {
+            width: 31px;
+            height: 31px;
+            margin-bottom: 3px;
+        }
+    }
+
+    & > a {
+        margin-right: 3px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .social-media-button-group {
+        flex-wrap: wrap;
+    }
+}
