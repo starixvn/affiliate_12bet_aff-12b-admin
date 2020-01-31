@@ -22,11 +22,14 @@ export class Content extends PureComponent {
 
     componentDidUpdate(prevProps) {
         const { param, pagingOption } = this.props;
-        if (param !== prevProps.param) {
+        const isDifferent = param !== prevProps.param;
+
+        if (isDifferent) {
             const postParam = { ...param, pageIndex: 1, pageSize: pagingOption.PageSize };
             this._fetchData(postParam);
         }
-        if (param.isClickLink) {
+
+        if (param.isClickLink || isDifferent) {
             this.setState({ isSortAsc: false, sortingColumn: 'Turnover' });
         }
     }
