@@ -232,43 +232,6 @@
         }
     };
 })(jQuery)
-var MarketingBase = (function ($) {
-    var _me = {
-        generateTextLink: function () {
-            var params = _me.getLinkGenerationParam();
-            _me.getTextLink(params);
-        },
-
-        getLinkGenerationParam: function () {
-            return {
-                selectedLanguage: $("#Language").val(),
-                selectedDomainId: $("#Domain").val(),
-                selectedPage: $("#MemberSitePage").val()
-            }
-        },
-
-        getTextLink: function (params) {
-            $.ajax({
-                type: "GET",
-                dataType: "html",
-                cache: false,
-                data: params,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GenerateLink"),
-                success: function (response) {
-                    $("#textLinkList").html(response);
-                },
-                beforeSend: function () {
-                    Site.showLoader();
-                },
-                complete: function () {
-                    Site.hideLoader();
-                }
-            });
-        },
-    };
-
-    return _me;
-})(jQuery);
 var MediaGallery = (function ($) {
     var CATEGORY_CASINO = "casino";
     var CATEGORY_SPORTSBOOK = "sportsbook";
@@ -374,8 +337,6 @@ var MediaGallery = (function ($) {
             _pageIndex = 0;
             var searchParams = _me.getSearchParam();
             _me.getBannerList(searchParams, _me.updatePager);
-
-            MarketingBase.generateTextLink();
         },
 
         getSubcategory: function (category) {

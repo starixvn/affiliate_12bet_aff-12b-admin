@@ -5,13 +5,14 @@ using System.IO;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
-    public interface IImageFileWriter
+    public interface IImageHandler
     {
         void Write(Image img, string path, bool isOverWrite = false);
         void Write(string base64Img, string path, bool isOverWrite = false);
+        string Base64Prefix { get; }
     }
 
-    public class PngImageFileWriter : IImageFileWriter
+    public class PngImageHandler : IImageHandler
     {
         public void Write(Image img, string path, bool isOverWrite = false)
         {
@@ -36,5 +37,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
             var img = new Bitmap((Bitmap)Image.FromStream(streamBitmap));
             Write(img, path, isOverWrite);
         }
+
+        public string Base64Prefix => "data:image/png;base64,";
     }
 }

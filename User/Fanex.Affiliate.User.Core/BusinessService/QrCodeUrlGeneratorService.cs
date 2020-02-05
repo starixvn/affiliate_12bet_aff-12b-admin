@@ -7,26 +7,26 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class QrCodeUrlGeneratorService : IQrCodeGeneratorService
     {
-        private readonly IImageFileWriter _fileWriter;
+        private readonly IImageHandler _imgHandler;
 
-        public int Size { get; set; } = 10;
+        public int Size { get; set; } = 7;
 
-        public QrCodeUrlGeneratorService(IImageFileWriter imgWriter)
+        public QrCodeUrlGeneratorService(IImageHandler imgHandler)
         {
-            _fileWriter = imgWriter ?? new PngImageFileWriter();
+            _imgHandler = imgHandler ?? new PngImageHandler();
         }
 
-        public string GenerateBase64QrCode(string content, Image icon = null)
+        public string GenerateBase64QrCode(string content, Image icon = null, bool includePrefix = false)
         {
             Bitmap bitmap = null;
             if (icon != null)
             {
                  bitmap = new Bitmap(icon);
             }
-            return GenerateBase64QrCode(content, bitmap);
+            return GenerateBase64QrCode(content, bitmap, includePrefix);
         }
 
-        public string GenerateBase64QrCode(string content, string icon = null)
+        public string GenerateBase64QrCode(string content, string icon = null, bool includePrefix = false)
         {
             Bitmap bitmap = null;
             if (icon != null)
@@ -35,21 +35,25 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 System.IO.MemoryStream streamBitmap = new System.IO.MemoryStream(bitmapData);
                 bitmap = new Bitmap((Bitmap)Image.FromStream(streamBitmap));
             }
-            return GenerateBase64QrCode(content, bitmap);
+            return GenerateBase64QrCode(content, bitmap, includePrefix);
         }
 
-        private string GenerateBase64QrCode(string content, Bitmap icon = null)
+        private string GenerateBase64QrCode(string content, Bitmap icon = null, bool includePrefix = false)
         {
             var urlPayload = new QRCoder.PayloadGenerator.Url(content);
             var qrCoderData = QRCodeGenerator.GenerateQrCode(urlPayload, QRCodeGenerator.ECCLevel.H);
             var qrCode = new Base64QRCode(qrCoderData);
-            var base64Img = icon == null ? qrCode.GetGraphic(Size) : qrCode.GetGraphic(Size, Color.Black, Color.White, icon);
+            var base64Img = icon == null ? qrCode.GetGraphic(Size) : qrCode.GetGraphic(Size, Color.Black, Color.White, icon, 30);
+            if (includePrefix)
+            {
+                base64Img = $"{_imgHandler.Base64Prefix}{base64Img}";
+            }
             return base64Img;
         }
 
         public void SaveImage(string base64Img, string path)
         {
-            _fileWriter.Write(base64Img, path);
+            _imgHandler.Write(base64Img, path);
         }
     }
 }

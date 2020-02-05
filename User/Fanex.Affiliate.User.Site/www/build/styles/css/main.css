@@ -248,6 +248,46 @@ input[type="checkbox"], input[type="radio"] {
   .chevron.left:before {
     transform: rotate(-135deg); }
 
+.flex {
+  display: flex; }
+  .flex .flex-0 {
+    width: 100%; }
+  .flex .flex-3 {
+    width: 25%; }
+  .flex .flex-6 {
+    width: 50%; }
+  .flex .flex-9 {
+    width: 75%; }
+  .flex .flex-middle {
+    align-self: center; }
+
+.flex.flex-wrap {
+  flex-wrap: wrap; }
+
+@media (min-width: 1280px) {
+  .flex .flex-lg-3 {
+    width: 25%; }
+  .flex .flex-lg-6 {
+    width: 50%; }
+  .flex .flex-lg-9 {
+    width: 75%; } }
+
+@media (min-width: 1024px) {
+  .flex .flex-md-3 {
+    width: 25%; }
+  .flex .flex-md-6 {
+    width: 50%; }
+  .flex .flex-md-9 {
+    width: 75%; } }
+
+@media (min-width: 768px) {
+  .flex .flex-sm-3 {
+    width: 25%; }
+  .flex .flex-sm-6 {
+    width: 50%; }
+  .flex .flex-sm-9 {
+    width: 75%; } }
+
 .flag {
   width: 16px;
   height: 14px;

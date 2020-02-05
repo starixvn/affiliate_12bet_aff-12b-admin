@@ -103,8 +103,6 @@
             _pageIndex = 0;
             var searchParams = _me.getSearchParam();
             _me.getBannerList(searchParams, _me.updatePager);
-
-            MarketingBase.generateTextLink();
         },
 
         getSubcategory: function (category) {

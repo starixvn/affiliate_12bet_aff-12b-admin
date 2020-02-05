@@ -207,6 +207,7 @@
     <input type="hidden" id="RootUrl" value="@Url.Content("~")" />
     <input type="hidden" id="Language" value="@sessionService.CurrentLanguage" />
     @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
+    <script src="https://cdn.ravenjs.com/3.27.0/raven.min.js" crossorigin="anonymous"></script>
     <script>
         window.Lang = {
             ServerError: '@Lang.ServerError'

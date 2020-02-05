@@ -171,7 +171,7 @@
             var icon = GetQrCodeIcon();
             var language = link.Key;
             var textLink = link.Value;
-            var qrCode = _qrCodeGeneratorService.GenerateBase64QrCode(textLink, icon);
+            var qrCode = _qrCodeGeneratorService.GenerateBase64QrCode(textLink, icon, true);
             return new QrCodeLinkModel
             {
                 Language = language,

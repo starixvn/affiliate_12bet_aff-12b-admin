@@ -18,6 +18,15 @@
         });
     }
 
+    function initCopyEvent() {
+        new ClipboardJS('.btn-marketing-copy', {
+            text: function (trigger) {
+                let copyText = $(trigger).parent().next().text();
+                return copyText;
+            }
+        })
+    }
+
     var _me = {
         initialize: function () {
             _me.initEvent();
@@ -38,6 +47,8 @@
             $("#btnGenerateLink").on("click", function () {
                 _me.submitSearch();
             });
+
+            initCopyEvent();
         },
 
         togglePager: function () {
@@ -49,8 +60,6 @@
             _pageIndex = 0;
             var searchParams = _me.getSearchParam();
             _me.getTextList(searchParams, _me.updatePager);
-
-            MarketingBase.generateTextLink();
         },
 
         getSearchParam: function () {

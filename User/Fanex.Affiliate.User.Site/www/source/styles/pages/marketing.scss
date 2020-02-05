@@ -25,6 +25,33 @@
     padding: 4px 0;
 }
 
+.marketing-action{
+    background: #F9F9F9;
+    border: 1px solid #DBDBDB;
+    box-sizing: border-box;
+    border-radius: 1px;
+    padding: 8px 0px;
+    font-size: 13px;
+    line-height: 16px;
+    >*{
+        margin: 0px 6px;
+    }
+    button{
+        background: #D7E4FF;
+        border: 1px solid #A0B0D0;
+        box-sizing: border-box;
+        border-radius: 2px;
+        padding: 2px 10px;
+    }
+    .aff-link{
+        overflow:hidden;
+    }
+}
+
+img.qr-code{
+    display: none;
+}
+
 #marketingPager {
     margin-top: 15px;
 }
@@ -56,11 +83,6 @@
 @media (min-width: 1200px) {
     #linkForm {
         padding-right: 0;
-    }
-
-    #textLinkList {
-        margin-top: 35px;
-        border-top: 3px solid #dbdbdb;
     }
 }
 

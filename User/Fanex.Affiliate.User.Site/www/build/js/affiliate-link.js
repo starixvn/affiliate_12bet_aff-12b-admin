@@ -232,43 +232,6 @@
         }
     };
 })(jQuery)
-var MarketingBase = (function ($) {
-    var _me = {
-        generateTextLink: function () {
-            var params = _me.getLinkGenerationParam();
-            _me.getTextLink(params);
-        },
-
-        getLinkGenerationParam: function () {
-            return {
-                selectedLanguage: $("#Language").val(),
-                selectedDomainId: $("#Domain").val(),
-                selectedPage: $("#MemberSitePage").val()
-            }
-        },
-
-        getTextLink: function (params) {
-            $.ajax({
-                type: "GET",
-                dataType: "html",
-                cache: false,
-                data: params,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GenerateLink"),
-                success: function (response) {
-                    $("#textLinkList").html(response);
-                },
-                beforeSend: function () {
-                    Site.showLoader();
-                },
-                complete: function () {
-                    Site.hideLoader();
-                }
-            });
-        },
-    };
-
-    return _me;
-})(jQuery);
 var AffiliateLink = (function ($) {
     var _pageSize = 20;
     var _pageIndex = 0;
@@ -287,6 +250,15 @@ var AffiliateLink = (function ($) {
                 _me.getTextList(searchParams);
             }
         });
+    }
+
+    function initCopyEvent() {
+        new ClipboardJS('.btn-marketing-copy', {
+            text: function (trigger) {
+                let copyText = $(trigger).parent().next().text();
+                return copyText;
+            }
+        })
     }
 
     var _me = {
@@ -309,6 +281,8 @@ var AffiliateLink = (function ($) {
             $("#btnGenerateLink").on("click", function () {
                 _me.submitSearch();
             });
+
+            initCopyEvent();
         },
 
         togglePager: function () {
@@ -320,8 +294,6 @@ var AffiliateLink = (function ($) {
             _pageIndex = 0;
             var searchParams = _me.getSearchParam();
             _me.getTextList(searchParams, _me.updatePager);
-
-            MarketingBase.generateTextLink();
         },
 
         getSearchParam: function () {
