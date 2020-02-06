@@ -42,6 +42,7 @@
         box-sizing: border-box;
         border-radius: 2px;
         padding: 2px 10px;
+        color: #58698A;
     }
     .aff-link{
         overflow:hidden;
@@ -76,6 +77,18 @@ img.qr-code{
 
         .copy-qr-code {
             padding: 0 10px;
+        }
+    }
+    button{
+        background-color: transparent;
+        border: none;
+        color: #2268D1;
+        margin-bottom: 15px;
+    }
+    .marketing-qrcode{
+        label{
+            text-align: right;
+            margin-right: 5px;
         }
     }
 }
@@ -150,6 +163,7 @@ img.qr-code{
         }
     }
 }
+
 
 @media (max-width: 1024px) {
     .banner-control {

@@ -2,12 +2,13 @@
     Layout = null;
 }
 
-@model IDictionary<string, Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.QrCodeLinkModel><div class="form-horizontal">
+@model IDictionary<string, Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.QrCodeLinkModel>
+<div class="flex flex-wrap marketing-qrcode">
     @foreach (var key in Model.Keys)
     {
-        <div class="form-group col-lg-6">
-            <label class="col-sm-3 control-label">@Model[key].Language</label>
-            <div class="control-group">
+        <div class="flex flex-0 flex-lg-6">
+            <label class="flex-3 control-label">@Model[key].Language</label>
+            <div class="flex-9">
                 <button class="btn-copy-link" data-clipboard-text="@Model[key].Link">Copy Link</button>
                 <button class="btn-copy-qr">Copy QR Code</button>
                 <button class="btn-save-img">Save QR Code</button>
