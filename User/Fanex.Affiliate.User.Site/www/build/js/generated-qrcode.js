@@ -1,11 +1,13 @@
 var MarketingBase = (function ($) {
     var _me = {
         initialize: function () {
-
             $("#btnGenerateLink").on("click", function () {
                 MarketingBase.generateTextLink();
             })
-            new ClipboardJS('.btn-copy-link');
+            registerQrcodeEvent();
+        },
+        resiterQrcodeEvent: function() {
+        new ClipboardJS('.btn-copy-link');
 
             new ClipboardJS('.btn-copy-qr', {
                 text: function (trigger) {
@@ -17,12 +19,12 @@ var MarketingBase = (function ($) {
             $('.btn-save-img').click(function () {
                 let base64Img = $(this).nextAll("img").attr("src");
                 let downloadTag = document.createElement("a");
+                let downloadName = $(this).data("image-name");
                 downloadTag.href = base64Img;
-                downloadTag.download = "qr-code.png";
+                downloadTag.download = downloadName;
                 downloadTag.click();
             })
         },
-
         generateTextLink: function () {
             var params = _me.getLinkGenerationParam();
             _me.getTextLink(params);
@@ -37,6 +39,7 @@ var MarketingBase = (function ($) {
         },
 
         getTextLink: function (params) {
+            var that = this;
             $.ajax({
                 type: "GET",
                 dataType: "html",
@@ -45,6 +48,7 @@ var MarketingBase = (function ($) {
                 url: Site.resolveRelativeUrl("UserPanel/Marketing/GenerateLink"),
                 success: function (response) {
                     $("#textLinkList").html(response);
+                    that.resiterQrcodeEvent();
                 },
                 beforeSend: function () {
                     Site.showLoader();
