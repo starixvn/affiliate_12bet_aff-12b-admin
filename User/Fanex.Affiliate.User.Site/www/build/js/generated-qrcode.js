@@ -1,13 +1,7 @@
 var MarketingBase = (function ($) {
     var _me = {
-        initialize: function () {
-            $("#btnGenerateLink").on("click", function () {
-                MarketingBase.generateTextLink();
-            })
-            registerQrcodeEvent();
-        },
         resiterQrcodeEvent: function() {
-        new ClipboardJS('.btn-copy-link');
+            new ClipboardJS('.btn-copy-link');
 
             new ClipboardJS('.btn-copy-qr', {
                 text: function (trigger) {
@@ -57,6 +51,13 @@ var MarketingBase = (function ($) {
                     Site.hideLoader();
                 }
             });
+        },
+
+        initialize: function () {
+            $("#btnGenerateLink").on("click", function () {
+                MarketingBase.generateTextLink();
+            })
+            this.resiterQrcodeEvent();
         },
     };
 
