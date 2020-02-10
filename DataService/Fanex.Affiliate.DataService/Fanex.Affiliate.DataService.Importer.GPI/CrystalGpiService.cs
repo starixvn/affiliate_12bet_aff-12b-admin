@@ -8,6 +8,7 @@ using Fanex.Affiliate.DataService.Importer.Gpi.MetaModels;
 using Fanex.Affiliate.DataService.Importer.Core.Repository;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Newtonsoft.Json;
+using Polly;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
@@ -17,6 +18,19 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private readonly IAppSettings _appSetting;
         private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
+
+        private static ISyncPolicy<string> _requestPolicy;
+        private static ISyncPolicy<string> RequestPolicy
+        {
+            get
+            {
+                if (_requestPolicy == null)
+                {
+                    _requestPolicy = GetPolicy();
+                }
+                return _requestPolicy;
+            }
+        }
 
         public CrystalGpiService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
         {
@@ -154,7 +168,6 @@ namespace Fanex.Affiliate.DataService.Importer
             {
                 throw new ThirdPartyProductException($"Error: Crystal(Gpi)\nParam:{JsonConvert.SerializeObject(paramByPaging)}\nResult:{rawData}");
             }
-
             var hasError = string.Equals("error", xDocument.Root.Name.LocalName, StringComparison.InvariantCultureIgnoreCase);
             if (hasError)
             {
@@ -207,10 +220,27 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private string GetDataString(string url)
         {
-            using (var client = new WebClient())
+            var result = RequestPolicy.Execute(() =>
             {
-                return client.DownloadString(url);
-            }
+                using (var client = new WebClient())
+                {
+                    return client.DownloadString(url);
+                }
+            });
+            return result;
+
+        }
+
+        private static ISyncPolicy<string> GetPolicy()
+        {
+            var retryPolicy = Policy.HandleResult<string>(response => response.Contains("Request too often"))
+                .WaitAndRetryForever(retryCount => TimeSpan.FromMilliseconds(DelayTimeMillisecond));
+
+            var policy = Policy.Bulkhead<string>(1, 5)
+                .Wrap(retryPolicy)
+                .WithPolicyKey("CrystalGpi");
+
+            return policy;
         }
     }
 }
