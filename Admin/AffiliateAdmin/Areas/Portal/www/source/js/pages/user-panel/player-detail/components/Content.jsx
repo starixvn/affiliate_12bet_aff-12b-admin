@@ -121,9 +121,9 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={dataItem.RegisteredDateText}>{dataItem.RegisteredDateText}</Cell>
                 <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>
                 <Cell className={productColumnClassName} title={winloss}>{winloss}</Cell>
-                <Cell className="text-right" title={bonus}>{bonus}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
+                <Cell className="text-right" title={bonus}>{bonus}</Cell>
                 <Cell className="text-right" title={bankingFee}>{bankingFee}</Cell>
             </Row>
         )
