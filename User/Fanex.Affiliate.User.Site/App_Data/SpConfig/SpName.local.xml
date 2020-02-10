@@ -93,13 +93,13 @@
     <Setting Key="Aff_User_StatementHistory_Sel_view" SpName="Aff_User_StatementHistory_Sel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_ProductList_Sel_view" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DailyEarning_Sel_view" SpName="Aff_DailyEarning_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DailyEarning_Sel_view" SpName="Aff_DailyEarning_Sel_xtest" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel_view" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="affiliate_12bet_view" />
 
-    <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DailyEarning_Detail_Sel_view" SpName="Aff_DailyEarning_Detail_Sel" DbName="affiliate_12bet_view" />   
+    <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DailyEarning_Detail_Sel_view" SpName="Aff_DailyEarning_Detail_Sel_xtest" DbName="affiliate_12bet_view" />   
   </Function>
 
   <Function Name="Commission">
