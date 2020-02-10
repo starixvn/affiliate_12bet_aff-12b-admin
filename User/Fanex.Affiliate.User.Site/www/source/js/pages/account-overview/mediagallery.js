@@ -69,6 +69,8 @@
 
             $("#btnMarketingSearch").on("click", function () {
                 _me.submitSearch();
+
+                MarketingBase.generateTextLink();
             });
 
             $("#dataContainerList").on("change", "#DeviceType", function () {
@@ -79,19 +81,11 @@
 
             $("#btnGenerateLink").on("click", function () {
                 _me.submitSearch();
+
+                MarketingBase.generateTextLink();
             });
 
-            $("#marketingDataList").on("click", ".copy-banner-code", function () {
-                const el = document.createElement('textarea');
-                el.value = $(this).data("name");
-                el.setAttribute('readonly', '');
-                el.style.position = 'absolute';
-                el.style.left = '-9999px';
-                document.body.appendChild(el);
-                el.select();
-                document.execCommand('copy');
-                document.body.removeChild(el);
-            });
+            new ClipboardJS('.copy-banner-code');
         },
 
         togglePager: function () {

@@ -12,8 +12,6 @@
     using Filters;
     using MetalModels.UserPanel;
     using System.Drawing;
-    using System.IO;
-    using System;
     using ViewModels.UserPanel.Marketing;
 
     [CustomAuthorize]

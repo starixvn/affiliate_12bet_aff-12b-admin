@@ -54,9 +54,6 @@
         },
 
         initialize: function () {
-            $("#btnGenerateLink").on("click", function () {
-                MarketingBase.generateTextLink();
-            })
             this.resiterQrcodeEvent();
         },
     };

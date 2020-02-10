@@ -37,6 +37,8 @@
         initEvent: function () {
             $("#btnMarketingSearch").on("click", function () {
                 _me.submitSearch();
+
+                MarketingBase.generateTextLink();
             });
 
             $("#dataContainerList").on("change", "#DeviceType", function () {
@@ -46,6 +48,8 @@
 
             $("#btnGenerateLink").on("click", function () {
                 _me.submitSearch();
+
+                MarketingBase.generateTextLink();
             });
 
             initCopyEvent();

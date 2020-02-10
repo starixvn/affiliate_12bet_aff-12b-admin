@@ -7,9 +7,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class QrCodeUrlGeneratorService : IQrCodeGeneratorService
     {
+        private const int SizeDefault = 7;
+        private const int IconSizePercentDefault = 30;
+
         private readonly IImageHandler _imgHandler;
 
-        public int Size { get; set; } = 7;
+        public int Size { get; set; } = SizeDefault;
 
         public QrCodeUrlGeneratorService(IImageHandler imgHandler)
         {
@@ -43,7 +46,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var urlPayload = new QRCoder.PayloadGenerator.Url(content);
             var qrCoderData = QRCodeGenerator.GenerateQrCode(urlPayload, QRCodeGenerator.ECCLevel.H);
             var qrCode = new Base64QRCode(qrCoderData);
-            var base64Img = icon == null ? qrCode.GetGraphic(Size) : qrCode.GetGraphic(Size, Color.Black, Color.White, icon, 30);
+            var base64Img = icon == null ? qrCode.GetGraphic(Size) : qrCode.GetGraphic(Size, Color.Black, Color.White, icon, IconSizePercentDefault);
+            icon?.Dispose();
             if (includePrefix)
             {
                 base64Img = $"{_imgHandler.Base64Prefix}{base64Img}";

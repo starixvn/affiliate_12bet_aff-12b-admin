@@ -271,6 +271,8 @@ var AffiliateLink = (function ($) {
         initEvent: function () {
             $("#btnMarketingSearch").on("click", function () {
                 _me.submitSearch();
+
+                MarketingBase.generateTextLink();
             });
 
             $("#dataContainerList").on("change", "#DeviceType", function () {
@@ -280,6 +282,8 @@ var AffiliateLink = (function ($) {
 
             $("#btnGenerateLink").on("click", function () {
                 _me.submitSearch();
+
+                MarketingBase.generateTextLink();
             });
 
             initCopyEvent();

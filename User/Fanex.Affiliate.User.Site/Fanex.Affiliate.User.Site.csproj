@@ -1273,7 +1273,8 @@
     <Content Include="Views\UserPanel\AccountOverView\Partial\_TextList.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\MediaGallery\Index.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Partial\_GeneratedQrCode.cshtml" />
-    <Content Include="www\source\styles\scss\base\_flex.scss" />    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_BannerFilter.cshtml" />
+    <Content Include="www\source\styles\scss\base\_flex.scss" />
+    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_BannerFilter.cshtml" />
     <Content Include="Views\UserPanel\Marketing\MarketingPartial\_BannerList.cshtml" />
     <Content Include="Views\UserPanel\Marketing\MarketingPartial\_LinkForm.cshtml" />
     <Content Include="Views\UserPanel\Marketing\MarketingPartial\_SearchForm.cshtml" />
@@ -1281,7 +1282,8 @@
     <Content Include="Views\UserPanel\Marketing\MarketingPartial\_TextList.cshtml" />
     <Content Include="Views\UserPanel\Marketing\MediaGallery\Index.cshtml" />
     <Content Include="Views\UserPanel\Marketing\TextBox\Index.cshtml" />
-    <Content Include="www\source\styles\pages\oldmarketing.scss" />  </ItemGroup>
+    <Content Include="www\source\styles\pages\oldmarketing.scss" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
