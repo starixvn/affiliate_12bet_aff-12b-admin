@@ -8,11 +8,12 @@ using Quartz;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
     [DisallowConcurrentExecution]
-    public class ImOneVrLotteryJob : JobBase
+    public class ImOneVrLotteryJob : NewApiJobBase
     {
         private readonly IAppSettings _appSetting;
         private readonly IImporterService _service;
@@ -26,37 +27,44 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             _timeTracker = new TimeTracker();
         }
 
-        protected override async Task ImportDataToSystem(IJobExecutionContext context = null)
+        protected override DateTime GetStartTimeRequest()
         {
-            var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("VrLotteryStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
             var param = new TimeTrackerBaseParam { ProductId = Products.VRLotteryId };
+            var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("VrLotteryStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
             var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
-            var delayTime = int.Parse(_appSetting.GetValue("VrLotteryDelayTime"));
-            var intervalTime = int.Parse(_appSetting.GetValue("VrLotteryIntervalTime"));
+            return lastQueryTime;
+        }
+
+        protected override DateTime GetEndTimeRequest()
+        {
+            var ajustHour = int.Parse(_appSetting.GetValue("VrLotteryHourAdjustment"));
             var now = DateTime.Now;
-            var previousTime = now.AddMinutes(-delayTime);
+            var ajustTime = now.AddHours(ajustHour);
+            return ajustTime;
+        }
 
-            var timeRanges = DateTimeHelper.GetProportionTimeRange(lastQueryTime, previousTime, TimeSpan.FromMinutes(intervalTime));
+        protected override IEnumerable<Tuple<DateTime, DateTime>> GetTimeRange(DateTime startTime, DateTime endTime)
+        {
+            var intervalTime = int.Parse(_appSetting.GetValue("VrLotteryIntervalTime"));
+            var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, TimeSpan.FromMinutes(intervalTime));
+            return timeRanges;
+        }
 
-            foreach (var range in timeRanges)
+        protected override async Task ImportDataAndTrackImportTime(DateTime startTime, DateTime endTime)
+        {
+            var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
+            var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
+
+            Logger.Info($"{ServiceName} - Get data from {startTimeServer} to {endTimeServer}");
+            await _service.ImportAsync(startTimeServer, endTimeServer);
+
+            var saveTimeTrackerParam = new InsertTimeTrackerParam
             {
-                var startTime = range.Item1;
-                var endTime = range.Item2;
-
-                var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
-                var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
-
-                Logger.Info($"{ServiceName} - Get data from {startTimeServer} to {endTimeServer}");
-                await _service.ImportAsync(startTimeServer, endTimeServer);
-
-                var saveTimeTrackerParam = new InsertTimeTrackerParam
-                {
-                    ProductId = Products.VRLotteryId,
-                    CallTime = endTime
-                };
-                _timeTracker.SaveTime(saveTimeTrackerParam);
-                Logger.Info($"{ServiceName} - Finish get data");
-            }
+                ProductId = Products.VRLotteryId,
+                CallTime = endTime
+            };
+            _timeTracker.SaveTime(saveTimeTrackerParam);
+            Logger.Info($"{ServiceName} - Finish get data");
         }
     }
 }

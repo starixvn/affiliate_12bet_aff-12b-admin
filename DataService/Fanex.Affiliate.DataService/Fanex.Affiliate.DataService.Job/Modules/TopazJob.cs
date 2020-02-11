@@ -8,11 +8,12 @@ using Quartz;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
     [DisallowConcurrentExecution]
-    public class TopazJob : JobBase
+    public class TopazJob : NewApiJobBase
     {
         private readonly IAppSettings _appSetting;
         private readonly IImporterService _service;
@@ -26,42 +27,44 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             _timeTracker = new TimeTracker();
         }
 
-        protected override async Task ImportDataToSystem(IJobExecutionContext context = null)
+        protected override DateTime GetStartTimeRequest()
         {
             var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("TopazStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
             var param = new TimeTrackerBaseParam { ProductId = Products.TopazId };
             var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
+            var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
+            return startTime;
+        }
+
+        protected override DateTime GetEndTimeRequest()
+        {
+            var ajustHour = int.Parse(_appSetting.GetValue("TopazHourAdjustment"));
+            var ajustTime = DateTime.Now.AddHours(ajustHour);
+            var endTime = new DateTime(ajustTime.Year, ajustTime.Month, ajustTime.Day, ajustTime.Hour, ajustTime.Minute, ajustTime.Second);
+            return endTime;
+        }
+
+        protected override IEnumerable<Tuple<DateTime, DateTime>> GetTimeRange(DateTime startTime, DateTime endTime)
+        {
             var minuteToRun = int.Parse(_appSetting.GetValue("TopazIntervalTime"));
-            var delayTime = int.Parse(_appSetting.GetValue("TopazDelayTime"));
+            return DateTimeHelper.GetProportionTimeRange(startTime, endTime, TimeSpan.FromMinutes(minuteToRun));
+        }
 
-            var now = DateTime.Now.AddMinutes(-delayTime);
+        protected override async Task ImportDataAndTrackImportTime(DateTime startTime, DateTime endTime)
+        {
+            var startUtcTime = startTime.ToUniversalTime();
+            var endUtcTime = endTime.ToUniversalTime();
+            Logger.Info($"{ServiceName} - Get data from {startUtcTime} to {endUtcTime}");
 
-            if (DateTime.Compare(lastQueryTime, now) < 0)
+            await _service.ImportAsync(startUtcTime, endUtcTime);
+
+            var saveTimeTrackerParam = new InsertTimeTrackerParam
             {
-                var startTime = new DateTime(lastQueryTime.Year, lastQueryTime.Month, lastQueryTime.Day, lastQueryTime.Hour, lastQueryTime.Minute, lastQueryTime.Second);
-                var endTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
-
-                var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, TimeSpan.FromMinutes(minuteToRun));
-                foreach (var range in timeRanges)
-                {
-                    var start = range.Item1;
-                    var nextStartTime = range.Item2;
-
-                    var startUtcTime = start.ToUniversalTime();
-                    var endUtcTime = nextStartTime.ToUniversalTime();
-                    Logger.Info($"{ServiceName} - Get data from {startUtcTime} to {endUtcTime}");
-
-                    await _service.ImportAsync(startUtcTime, endUtcTime);
-
-                    var saveTimeTrackerParam = new InsertTimeTrackerParam
-                    {
-                        ProductId = Products.TopazId,
-                        CallTime = nextStartTime
-                    };
-                    _timeTracker.SaveTime(saveTimeTrackerParam);
-                    Logger.Info($"{ServiceName} - Finished get data");
-                }
-            }
+                ProductId = Products.TopazId,
+                CallTime = endTime
+            };
+            _timeTracker.SaveTime(saveTimeTrackerParam);
+            Logger.Info($"{ServiceName} - Finished get data");
         }
     }
 }

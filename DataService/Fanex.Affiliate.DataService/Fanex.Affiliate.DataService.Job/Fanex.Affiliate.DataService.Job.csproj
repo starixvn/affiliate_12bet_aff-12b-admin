@@ -98,6 +98,7 @@
     <Compile Include="Log\LoggerFactory.cs" />
     <Compile Include="Log\LogLevel.cs" />
     <Compile Include="Log\LogWrapperManager.cs" />
+    <Compile Include="NewApiJobBase.cs" />
     <Compile Include="QuartzLogProvider.cs" />
     <Compile Include="IJobScheduler.cs" />
     <Compile Include="IJobSchedulerFactory.cs" />

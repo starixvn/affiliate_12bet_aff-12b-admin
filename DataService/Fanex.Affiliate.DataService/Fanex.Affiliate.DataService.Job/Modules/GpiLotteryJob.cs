@@ -4,17 +4,16 @@ using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
-
 using Quartz;
-
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
     [DisallowConcurrentExecution]
-    public class GpiLotteryJob : JobBase
+    public class GpiLotteryJob : NewApiJobBase
     {
         private readonly IAppSettings _appSetting;
         private readonly IImporterService _gpiLotteryService;
@@ -29,35 +28,43 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             _timeTracker = new TimeTracker();
         }
 
-        protected override async Task ImportDataToSystem(IJobExecutionContext context = null)
+        protected override DateTime GetStartTimeRequest()
         {
             var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("GpiLotteryStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
-            var intervalTime = int.Parse(_appSetting.GetValue("GpiLotteryIntervalTime"));
             var param = new TimeTrackerBaseParam { ProductId = Products.GPILotteryId };
             var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
+            return lastQueryTime;
+        }
+
+        protected override DateTime GetEndTimeRequest()
+        {
+            var ajustHour = int.Parse(_appSetting.GetValue("GpiLotteryHourAdjustment"));
             var now = DateTime.Now;
-            var previousHour = now.AddHours(-1);
+            var ajustTime = now.AddHours(ajustHour);
+            return ajustTime;
+        }
 
-            var timeRanges = DateTimeHelper.GetProportionTimeRange(lastQueryTime, previousHour, TimeSpan.FromMinutes(intervalTime));
-            foreach (var range in timeRanges)
+        protected override IEnumerable<Tuple<DateTime, DateTime>> GetTimeRange(DateTime startTime, DateTime endTime)
+        {
+            var intervalTime = int.Parse(_appSetting.GetValue("GpiLotteryIntervalTime"));
+            return DateTimeHelper.GetProportionTimeRange(startTime, endTime, TimeSpan.FromMinutes(intervalTime));
+        }
+
+        protected override async Task ImportDataAndTrackImportTime(DateTime startTime, DateTime endTime)
+        {
+            var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
+            var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
+
+            Logger.Info($"{ServiceName} - Get data from {startTimeServer} to {endTimeServer}");
+            await _gpiLotteryService.ImportAsync(startTimeServer, endTimeServer);
+
+            var saveTimeTrackerParam = new InsertTimeTrackerParam
             {
-                var startTime = range.Item1;
-                var endTime = range.Item2;
-
-                var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
-                var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
-
-                Logger.Info($"{ServiceName} - Get data from {startTimeServer} to {endTimeServer}");
-                await _gpiLotteryService.ImportAsync(startTimeServer, endTimeServer);
-
-                var saveTimeTrackerParam = new InsertTimeTrackerParam
-                {
-                    ProductId = Products.GPILotteryId,
-                    CallTime = endTime
-                };
-                _timeTracker.SaveTime(saveTimeTrackerParam);
-                Logger.Info($"{ServiceName} - Finished get data");
-            }
+                ProductId = Products.GPILotteryId,
+                CallTime = endTime
+            };
+            _timeTracker.SaveTime(saveTimeTrackerParam);
+            Logger.Info($"{ServiceName} - Finished get data");
         }
     }
 }
