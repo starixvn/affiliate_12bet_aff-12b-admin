@@ -32,10 +32,6 @@
     "inputFile": "www/source/styles/pages/marketing.scss"
   },
   {
-    "outputFile": "www/build/styles/css/oldmarketing.css",
-    "inputFile": "www/source/styles/pages/oldmarketing.scss"
-  },
-  {
     "outputFile": "www/build/styles/css/products.css",
     "inputFile": "www/source/styles/pages/products.scss"
   },
