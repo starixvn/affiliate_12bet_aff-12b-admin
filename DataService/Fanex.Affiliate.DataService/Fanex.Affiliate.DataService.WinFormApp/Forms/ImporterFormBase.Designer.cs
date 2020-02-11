@@ -44,6 +44,7 @@
             this.btnGetRawData = new System.Windows.Forms.Button();
             this.startTimePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnImportDirectly = new System.Windows.Forms.Button();
             this.lbServiceTime = new System.Windows.Forms.Label();
             this.lbLocalTime = new System.Windows.Forms.Label();
             this.datePickerLocalEndTime = new System.Windows.Forms.DateTimePicker();
@@ -52,7 +53,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.chkBoxConvertDirectFromTxtField = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnImportDirectly = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -245,6 +245,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input Param";
             // 
+            // btnImportDirectly
+            // 
+            this.btnImportDirectly.Location = new System.Drawing.Point(470, 105);
+            this.btnImportDirectly.Name = "btnImportDirectly";
+            this.btnImportDirectly.Size = new System.Drawing.Size(132, 23);
+            this.btnImportDirectly.TabIndex = 26;
+            this.btnImportDirectly.Text = "Import Directly";
+            this.btnImportDirectly.UseVisualStyleBackColor = true;
+            this.btnImportDirectly.Click += new System.EventHandler(this.btnImportDirectly_Click);
+            // 
             // lbServiceTime
             // 
             this.lbServiceTime.AutoSize = true;
@@ -320,16 +330,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Server Start Time:";
             // 
-            // btnImportDirectly
-            // 
-            this.btnImportDirectly.Location = new System.Drawing.Point(470, 105);
-            this.btnImportDirectly.Name = "btnImportDirectly";
-            this.btnImportDirectly.Size = new System.Drawing.Size(132, 23);
-            this.btnImportDirectly.TabIndex = 26;
-            this.btnImportDirectly.Text = "Import Directly";
-            this.btnImportDirectly.UseVisualStyleBackColor = true;
-            this.btnImportDirectly.Click += new System.EventHandler(this.btnImportDirectly_Click);
-            // 
             // ImporterFormBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,6 +340,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ImporterFormBase";
             this.Text = "ImporterFormBase";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImporterFormBase_FormClosing);
             this.groupBox3.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

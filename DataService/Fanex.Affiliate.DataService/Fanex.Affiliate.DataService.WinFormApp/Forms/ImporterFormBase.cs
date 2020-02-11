@@ -201,6 +201,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         private void DisplayRawData(IEnumerable<string> datas)
         {
+
             if (richTextRawData.InvokeRequired)
             {
                 richTextRawData.Invoke(new MethodInvoker(() => DisplayRawData()));
@@ -226,6 +227,10 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             btnImport.Enabled = toggle;
             btnImportDirectly.Enabled = toggle;
         }
+
+        private void ImporterFormBase_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        }
     }
     public class Logger
     {
@@ -242,6 +247,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         public void Log(string msg, Color color)
         {
+            if (_txtBox.IsDisposed)
+                return;
             _txtBox.Invoke(new MethodInvoker(() => _txtBox.AppendText($"{msg}\n")));
         }
 

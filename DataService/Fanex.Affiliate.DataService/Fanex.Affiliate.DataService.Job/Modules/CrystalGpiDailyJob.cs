@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Logging;
 using Quartz;
 using Fanex.Affiliate.DataService.Importer.Gpi.MetaModels;
 using System.Threading.Tasks;
