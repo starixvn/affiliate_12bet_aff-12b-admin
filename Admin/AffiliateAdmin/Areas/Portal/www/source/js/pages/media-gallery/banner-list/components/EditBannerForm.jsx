@@ -4,11 +4,21 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader } from '../actions/index';
-import { headerText, globalResource, deviceTypes, defaultState, Casino, Sportsbook, Baccarat } from '../libs/constants';
+import { headerText, globalResource, defaultState, Casino, Sportsbook, Baccarat } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 import { validateFileExtension, validateInputFile, getSubCategory } from '../libs/utils';
+import MultipleSelect from '../../../../components/multiple-select';
+
+const deviceList = [
+    {
+        columnKey: 0, columnName: "PC / Laptop", checked: false
+    },
+    {
+        columnKey: 1, columnName: "Mobile", checked: false
+    }
+]
 
 export class EditBannerForm extends PureComponent {
     constructor(props) {
@@ -41,7 +51,7 @@ export class EditBannerForm extends PureComponent {
             const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
 
             this.setState({
-                inputFileName: shortFileName,
+                inputFileNames: [shortFileName],
                 ...result,
                 language: bannerInfo.Language,
                 currency: bannerInfo.Currency,
@@ -72,11 +82,23 @@ export class EditBannerForm extends PureComponent {
         const { files } = event.target;
 
         if (files && files.length > 0) {
-            const fileName = files[0].name;
-            const result = validateFileExtension(fileName);
+            let inputFileNames = [];
+            let allResults = {
+                isOK: true,
+                message: ''
+            };
 
-            this.setState({ file: files[0], inputFileName: fileName, isDisabled: !result.isOK });
-            !result.isOK && this._handleShowAlert(false, result.message);
+            for (let i = 0; i < files.length; i++) {
+                let fileName = files[i].name;
+                inputFileNames.push(fileName);
+                let result = validateFileExtension(fileName);
+
+                if (!result.isOK) {
+                    allResults = result;
+                }
+            }
+            this.setState({ files, inputFileNames, isDisabled: !allResults.isOK });
+            !allResults.isOK && this._handleShowAlert(false, allResults.message);
         } else {
             this.setState({ isDisabled: true, file: null, inputFileName: '' });
         }
@@ -189,14 +211,17 @@ export class EditBannerForm extends PureComponent {
         }
     }
 
+    handleChangeColumn = (item, selectedColumn) => {
+    }
+
     render() {
-        const { selectedBannerId, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, affTypeList } = this.props;
-        const { inputFileName, category, subCategory, language, currency, imageType, affType, deviceType, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup } = this.state;
+        const { selectedBannerId, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, affTypeList, subCategoryList } = this.props;
+        const { inputFileNames, category, subCategory, language, currency, imageType, affType, deviceType, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup } = this.state;
         const isShowPopup = selectedBannerId !== null;
         const title = isInsert ? "Add Banner" : "Update Banner";
         const buttonLabel = isInsert ? "Upload" : "Update";
         const isCategoryCasino = category === Casino;
-        const subCategoryList = (isCategoryCasino || category === Sportsbook) ? (isCategoryCasino ? subCategoryCasinoList : subCategorySportsbookList) : null;
+        //const subCategoryList = (isCategoryCasino || category === Sportsbook) ? (isCategoryCasino ? subCategoryCasinoList : subCategorySportsbookList) : null;
 
         return (
             <React.Fragment>
@@ -222,19 +247,20 @@ export class EditBannerForm extends PureComponent {
                                     <FormGroup row className="mb-2">
                                         <Label sm={3} for="file">File</Label>
                                         <Col sm={9}>
-                                            <Input type="file" name="file" id="file" className={`border ${isInsert && isDisabled ? "text-danger" : "text-success"}`} onChange={this._handleFile} />
+                                            <Input type="file" name="file" id="file" multiple={isInsert} className={`border ${isInsert && isDisabled ? "text-danger" : "text-success"}`} onChange={this._handleFile} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
                                         <Label sm={3} for="category">{headerText.Category}</Label>
                                         <Col sm={5}>
-                                            <Input type="select" name="category" id="category" value={category} onChange={this._handleChange}>
-                                                {
-                                                    categoryList.map(item => {
-                                                        return (<option key={`category-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
-                                                    })
-                                                }
-                                            </Input>
+                                            <MultipleSelect
+                                                dataSource={categoryList}
+                                                keyField="columnKey"
+                                                valueField="columnName"
+                                                statusField="checked"
+                                                maxDisplayItemCount={1}
+                                                noneSelectedLabel="Please Select"
+                                                onChange={this.handleChangeColumn} />
                                         </Col>
                                     </FormGroup>
                                     {
@@ -242,13 +268,14 @@ export class EditBannerForm extends PureComponent {
                                             <FormGroup row className="mb-2">
                                                 <Label sm={3} for="subCategory">{headerText.SubCategory}</Label>
                                                 <Col sm={5}>
-                                                    <Input type="select" name="subCategory" id="subCategory" value={subCategory} onChange={this._handleChange}>
-                                                        {
-                                                            subCategoryList.map(item => {
-                                                                return (<option key={`subCategory-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
-                                                            })
-                                                        }
-                                                    </Input>
+                                                    <MultipleSelect
+                                                        dataSource={subCategoryList}
+                                                        keyField="columnKey"
+                                                        valueField="columnName"
+                                                        statusField="checked"
+                                                        maxDisplayItemCount={1}
+                                                        noneSelectedLabel="Please Select"
+                                                        onChange={this.handleChangeColumn} />
                                                 </Col>
                                             </FormGroup>
                                         )
@@ -268,60 +295,75 @@ export class EditBannerForm extends PureComponent {
                                     <FormGroup row className="mb-2">
                                         <Label sm={3} for="currency">{headerText.Currency}</Label>
                                         <Col sm={5}>
-                                            <Input type="select" name="currency" id="currency" value={currency} onChange={this._handleChange}>
-                                                {
-                                                    currencyList.map(item => {
-                                                        return (<option key={`currency-${item.Name}`} value={item.Name}>{item.Name}</option>)
-                                                    })
-                                                }
-                                            </Input>
+                                            <MultipleSelect
+                                                dataSource={currencyList}
+                                                keyField="columnKey"
+                                                valueField="columnName"
+                                                statusField="checked"
+                                                maxDisplayItemCount={1}
+                                                noneSelectedLabel="Please Select"
+                                                onChange={this.handleChangeColumn} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
                                         <Label sm={3} for="imageType">{headerText.Type}</Label>
                                         <Col sm={5}>
-                                            <Input type="select" name="imageType" id="imageType" value={imageType} onChange={this._handleChange}>
-                                                {
-                                                    imageTypeList.map(item => {
-                                                        return (<option key={`imageType-${item.Name}`} value={item.Name}>{item.Name}</option>)
-                                                    })
-                                                }
-                                            </Input>
+                                            <MultipleSelect
+                                                dataSource={imageTypeList}
+                                                keyField="columnKey"
+                                                valueField="columnName"
+                                                statusField="checked"
+                                                maxDisplayItemCount={1}
+                                                noneSelectedLabel="Please Select"
+                                                onChange={this.handleChangeColumn} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
                                         <Label sm={3} for="affType">{headerText.AffType}</Label>
                                         <Col sm={5}>
-                                            <Input type="select" name="affType" id="affType" value={affType} onChange={this._handleChange}>
-                                                {
-                                                    affTypeList.map(item => {
-                                                        return (<option key={`affType-${item.AffTypeId}`} value={item.AffTypeId}>{item.AffTypeName}</option>)
-                                                    })
-                                                }
-                                            </Input>
+                                            <MultipleSelect
+                                                dataSource={affTypeList}
+                                                keyField="columnKey"
+                                                valueField="columnName"
+                                                statusField="checked"
+                                                maxDisplayItemCount={1}
+                                                noneSelectedLabel="Please Select"
+                                                onChange={this.handleChangeColumn} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
                                         <Label sm={3} for="deviceType">{headerText.Device}</Label>
                                         <Col sm={5}>
-                                            <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this._handleChange}>
-                                                {
-                                                    Object.keys(deviceTypes).map(key => {
-                                                        return (<option key={`deviceType-${deviceTypes[key]}`} value={deviceTypes[key]}>{key}</option>)
-                                                    })
-                                                }
-                                            </Input>
+                                            <MultipleSelect
+                                                dataSource={deviceList}
+                                                keyField="columnKey"
+                                                valueField="columnName"
+                                                statusField="checked"
+                                                maxDisplayItemCount={1}
+                                                noneSelectedLabel="Please Select"
+                                                onChange={this.handleChangeColumn} />
                                         </Col>
                                     </FormGroup>
-                                    <FormGroup row className="mb-2">
-                                        <Label sm={3} for="inputFileName">File Name</Label>
-                                        <Col sm={7}>
-                                            <Input type="text" name="inputFileName" id="inputFileName" value={inputFileName} onChange={this._handleChange} onKeyPress={this._handlePressEnter}/>
-                                        </Col>
-                                    </FormGroup>
+                                    {
+                                        isInsert ? inputFileNames.map((value, index) => {
+                                            return (<FormGroup row className="mb-2">
+                                                <Label sm={3} for="inputFileName">{`File Name ${index + 1}`}</Label>
+                                                <Col sm={7}>
+                                                    <Input type="text" name="inputFileName" id="inputFileName" value={value} onChange={this._handleChange} onKeyPress={this._handlePressEnter} />
+                                                </Col>
+                                            </FormGroup>)
+                                        }) : (
+                                            <FormGroup row className="mb-2">
+                                                <Label sm={3} for="inputFileName">File Name</Label>
+                                                <Col sm={7}>
+                                                    <Input type="text" name="inputFileName" id="inputFileName" value={inputFileNames && inputFileNames[0]} onChange={this._handleChange} onKeyPress={this._handlePressEnter} />
+                                                </Col>
+                                            </FormGroup>
+                                        )
+                                    }
                                 </Form>
 
-                                <Button type="button" color="success" className="mr-3" disabled={(isInsert || !inputFileName) ? isDisabled : false} onClick={this._handleSubmit}>{buttonLabel}</Button>
+                                <Button type="button" color="success" className="mr-3" disabled={(isInsert || !inputFileNames) ? isDisabled : false} onClick={this._handleSubmit}>{buttonLabel}</Button>
                                 <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
                             </div>
                         </div>
@@ -332,8 +374,8 @@ export class EditBannerForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedBannerId, param, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList }) {
-    return Object.assign({}, { selectedBannerId, param, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList });
+function mapStateToProps({ selectedBannerId, param, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, subCategoryList }) {
+    return Object.assign({}, { selectedBannerId, param, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, subCategoryList });
 }
 
 function mapDispatchToProps(dispatch) {

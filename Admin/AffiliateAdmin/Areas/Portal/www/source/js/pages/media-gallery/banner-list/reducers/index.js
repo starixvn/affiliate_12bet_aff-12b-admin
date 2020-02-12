@@ -9,6 +9,7 @@ import {
 } from '../actions/types';
 
 export const categoryList = createReducer(null, {});
+export const subCategoryList = createReducer(null, {});
 export const languageList = createReducer(null, {});
 export const currencyList = createReducer(null, {});
 export const imageTypeList = createReducer(null, {});
@@ -82,6 +83,7 @@ export const gridData = createReducer(null, {
 
 export default combineReducers({
     categoryList,
+    subCategoryList,
     subCategoryCasinoList,
     subCategorySportsbookList,
     languageList,

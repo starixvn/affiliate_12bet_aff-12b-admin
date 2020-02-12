@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, PureComponent } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
@@ -32,11 +32,11 @@ export class Filter extends PureComponent {
             this.props.setParamFromHome({ IsFromHome: false });
         }
 
-        if(!subCategoryCasinoList) {
+        if (!subCategoryCasinoList) {
             this.props.getSubCategoryCasinoList();
         }
 
-        if(!subCategorySportsbookList) {
+        if (!subCategorySportsbookList) {
             this.props.getSubCategorySportsbookList();
         }
     }
@@ -75,7 +75,7 @@ export class Filter extends PureComponent {
         const hasSubCategory = isCategoryCasino || category === Sportsbook;
         const subCategoryList = hasSubCategory ? (isCategoryCasino ? subCategoryCasinoList : subCategorySportsbookList) : null;
 
-        return categoryList && languageList && currencyList && sizeList && affTypeList && imageTypeList && (
+        return (
             <div className="filter-container my-2 pb-0">
                 <Form inline tag="div">
                     <FormGroup className="mr-sm-3 pb-2">
@@ -83,8 +83,8 @@ export class Filter extends PureComponent {
                         <Input type="select" name="category" id="category" value={category} onChange={this._handleChangeCategory}>
                             <option key={'category-all'} value={''}>{globalResource.All}</option>
                             {
-                                categoryList.map(item => {
-                                    return (<option key={`category-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
+                                categoryList && categoryList.map(item => {
+                                    return (<option key={`category-${item.columnName}`} value={item.columnName}>{item.columnName}</option>)
                                 })
                             }
                         </Input>
@@ -97,7 +97,7 @@ export class Filter extends PureComponent {
                                     <option key={'subCategory-all'} value={''}>{globalResource.All}</option>
                                     {
                                         subCategoryList.map(item => {
-                                            return (<option key={`subCategory-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
+                                            return (<option key={`subCategory-${item.columnName}`} value={item.columnName}>{item.columnName}</option>)
                                         })
                                     }
                                 </Input>
@@ -109,7 +109,7 @@ export class Filter extends PureComponent {
                         <Input type="select" name="language" id="language" value={language} onChange={this._handleChange}>
                             <option key={'language-all'} value={''}>{globalResource.All}</option>
                             {
-                                languageList.map(item => {
+                                languageList && languageList.map(item => {
                                     return (<option key={`language-${item.LanguageName}`} value={item.LanguageName}>{item.LanguageName}</option>)
                                 })
                             }
@@ -120,8 +120,8 @@ export class Filter extends PureComponent {
                         <Input type="select" name="currency" id="currency" value={currency} onChange={this._handleChange}>
                             <option key={'currency-all'} value={''}>{globalResource.All}</option>
                             {
-                                currencyList.map(item => {
-                                    return (<option key={`currency-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                currencyList && currencyList.map(item => {
+                                    return (<option key={`currency-${item.columnName}`} value={item.columnName}>{item.columnName}</option>)
                                 })
                             }
                         </Input>
@@ -131,22 +131,26 @@ export class Filter extends PureComponent {
                         <Input type="select" name="imageType" id="imageType" value={imageType} onChange={this._handleChange}>
                             <option key={'imageType-all'} value={''}>{globalResource.All}</option>
                             {
-                                imageTypeList.map(item => {
-                                    return (<option key={`imageType-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                imageTypeList && imageTypeList.map(item => {
+                                    return (<option key={`imageType-${item.columnName}`} value={item.columnName}>{item.columnName}</option>)
                                 })
                             }
                         </Input>
                     </FormGroup>
-                    <FormGroup className="mr-sm-3 pb-2">
-                        <Label for="affType" className="mr-sm-2">{headerText.AffType}</Label>
-                        <Input type="select" name="affType" id="affType" value={affType} onChange={this._handleChange}>
-                            {
-                                affTypeList.map(item => {
-                                    return (<option key={`affType-${item.AffTypeId}`} value={item.AffTypeId}>{item.AffTypeName}</option>)
-                                })
-                            }
-                        </Input>
-                    </FormGroup>
+                    {
+                        affTypeList && (
+                            <FormGroup className="mr-sm-3 pb-2">
+                                <Label for="affType" className="mr-sm-2">{headerText.AffType}</Label>
+                                <Input type="select" name="affType" id="affType" value={affType} onChange={this._handleChange}>
+                                    {
+                                        affTypeList.map(item => {
+                                            return (<option key={`affType-${item.columnKey}`} value={item.columnKey}>{item.columnName}</option>)
+                                        })
+                                    }
+                                </Input>
+                            </FormGroup>
+                        )
+                    }
                     <FormGroup className="mr-sm-3 pb-2">
                         <Label for="deviceType" className="mr-sm-2">{headerText.Device}</Label>
                         <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this._handleChange}>
@@ -162,8 +166,8 @@ export class Filter extends PureComponent {
                         <Input type="select" name="size" id="size" value={size} onChange={(e) => this.setState({ size: e.target.value })}>
                             <option key={'size-all'} value={''}>{globalResource.All}</option>
                             {
-                                sizeList.map(item => {
-                                    return (<option key={`size-${item.Name}`} value={item.Name}>{item.Name}</option>)
+                                sizeList && sizeList.map(item => {
+                                    return (<option key={`size-${item.columnName}`} value={item.columnName}>{item.columnName}</option>)
                                 })
                             }
                         </Input>

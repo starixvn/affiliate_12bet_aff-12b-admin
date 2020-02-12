@@ -57,10 +57,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 ImageType = param.ImageType
             };
+            var bannerListCategory = _commonMediaGalleryService.GetCategoryList(BannerListCategory);
 
             var model = new BannerListViewModel
             {
-                CategoryList = _commonMediaGalleryService.GetCategoryList(BannerListCategory).Where(c => c.CategoryId == c.ParentCategoryId),
+                CategoryList = bannerListCategory.Where(c => c.CategoryId == c.ParentCategoryId),
+                SubCategoryList = bannerListCategory.Where(c => c.CategoryId != c.ParentCategoryId),
                 LanguageList = _languageService.GetLanguageList(),
                 CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
                 ImageTypeList = _commonMediaGalleryService.GetImageTypeList(),

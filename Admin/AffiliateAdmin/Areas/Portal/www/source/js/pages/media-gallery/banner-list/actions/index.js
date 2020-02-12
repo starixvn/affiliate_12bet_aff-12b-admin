@@ -117,7 +117,13 @@ export const getSizeList = (param) => async (dispatch) => {
     const url = 'Portal/MediaGallery/GetSizeList';
     const response = await post(url, param);
 
-    const data = response && response.status === 200 ? response.data : null;
+    const data = response && response.status === 200 ? response.data.map(item => {
+        return {
+            columnKey: item.Id,
+            columnName: item.Name,
+            checked: false
+        };
+    }) : null;
 
     dispatch(setSizeList(data));
 }

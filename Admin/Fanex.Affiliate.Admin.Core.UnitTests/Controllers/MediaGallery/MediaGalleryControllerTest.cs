@@ -167,7 +167,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var bannerListService = new Mock<IBannerListService>();
-            bannerListService.Setup(s => s.InsertBanner(It.IsAny<HttpPostedFileBase>(), It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo ());
+            bannerListService.Setup(s => s.InsertBanner(It.IsAny<HttpPostedFileBase>(), It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo());
             var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
 
             // Action
