@@ -12,15 +12,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.FlowGaming.ResponseChecker;
+using Polly;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public class TopazService : XmlImpoterlServiceBase
+    public sealed class TopazService : XmlImpoterlServiceBase
     {
         private const string CALL_LIMIT_EXCEEDED = "CALL_LIMIT_EXCEEDED";
         //60s to request next data for same brand_id request
         private const int TIME_BETWEEN_TWO_REQUEST = 60000;
         private const int MAX_TIME_RANGE_TRANSACTION = 15;
+
+        private static Dictionary<string, IAsyncPolicy<string>> _policies = new Dictionary<string, IAsyncPolicy<string>>();
 
         public bool IsTestMode { get; set; } = false;
         public int NextRequestWaitTime => IsTestMode ? 1 : TIME_BETWEEN_TWO_REQUEST;
@@ -29,7 +32,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         protected override int ProductId => Products.TopazId;
 
-        public TopazService(IApiClient client = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyRepository = null) : base(appSetting, thirdPartyRepository)
+        public TopazService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyRepository = null) : base(appSetting, thirdPartyRepository)
         {
             _client = client ?? new TopazClient();
         }
@@ -57,7 +60,7 @@ namespace Fanex.Affiliate.DataService.Importer
             return datas;
         }
 
-        private static IEnumerable<Tuple<DateTime,DateTime>> GetTimeRangeRequest(DateTime startTime, DateTime endTime)
+        private static IEnumerable<Tuple<DateTime, DateTime>> GetTimeRangeRequest(DateTime startTime, DateTime endTime)
         {
             var span = new TimeSpan(0, MAX_TIME_RANGE_TRANSACTION, 0);
             return DateTimeHelper.GetProportionTimeRange(startTime, endTime, span);
@@ -72,7 +75,9 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var param = GetQueryParam(startRequestDate, endRequestDate);
             var baseUrl = _appSetting.GetValue("TopazApiUrl");
-            return await _client.GetResponseAsync(baseUrl, param).ConfigureAwait(false);
+            var policy = GetRequestPolicy(baseUrl);
+
+            return await policy.ExecuteAsync(() => _client.GetResponseAsync(baseUrl, param)).ConfigureAwait(false);
         }
 
         private NameValueCollection GetQueryParam(DateTime startTime, DateTime endTime)
@@ -100,6 +105,38 @@ namespace Fanex.Affiliate.DataService.Importer
                 throw new ThirdPartyProductException($"FlowGaming - Cant convert json response to xml - {raw}");
             }
             return Task.FromResult(xml);
+        }
+
+        public static void SetRequestPolicy(string url, IAsyncPolicy<string> policy)
+        {
+            if (_policies.Keys.Any(k => k.Equals(url, StringComparison.InvariantCultureIgnoreCase)))
+            {
+                _policies[url] = policy;
+            }
+            else
+            {
+                _policies.Add(url, GetDefaultPolicy());
+            }
+        }
+
+        private static IAsyncPolicy<string> GetRequestPolicy(string url)
+        {
+            var policy = _policies.Keys.Any(k => k.Equals(url, StringComparison.InvariantCultureIgnoreCase))
+                ? _policies[url]
+                : GetDefaultPolicy();
+            _policies[url] = policy;
+            return policy;
+        }
+
+        private static IAsyncPolicy<String> GetDefaultPolicy()
+        {
+            var retryPolicy = Policy.HandleResult<String>(s => s.Contains(CALL_LIMIT_EXCEEDED))
+                .WaitAndRetryAsync(2, retryAttempt => TimeSpan.FromMilliseconds(TIME_BETWEEN_TWO_REQUEST));
+
+            var bulkHeadPolicy = Policy.BulkheadAsync<String>(1, 10)
+                .WrapAsync(retryPolicy);
+
+            return bulkHeadPolicy.WithPolicyKey("TopazPolicy");
         }
     }
 }

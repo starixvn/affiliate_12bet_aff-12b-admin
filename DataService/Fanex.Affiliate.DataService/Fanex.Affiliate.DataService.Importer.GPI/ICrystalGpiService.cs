@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fanex.Affiliate.DataService.Importer.Gpi.MetaModels;
+using Polly;
 
 namespace Fanex.Affiliate.DataService.Importer
 {

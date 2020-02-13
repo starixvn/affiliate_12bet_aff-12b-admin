@@ -20,16 +20,17 @@ namespace Fanex.Affiliate.DataService.Importer
         private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
 
         private static ISyncPolicy<string> _requestPolicy;
-        private static ISyncPolicy<string> RequestPolicy
+        public static ISyncPolicy<string> CurrentPolicy
         {
             get
             {
                 if (_requestPolicy == null)
                 {
-                    _requestPolicy = GetPolicy();
+                    _requestPolicy = GetDefaultPolicy();
                 }
                 return _requestPolicy;
             }
+            set { _requestPolicy = value; }
         }
 
         public CrystalGpiService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
@@ -218,9 +219,9 @@ namespace Fanex.Affiliate.DataService.Importer
             return _appSetting.GetValue("CrystalGpiApiUrl") + $"?opCode={param.Code}&s={startTime}&e={endTime}&pageNum={param.PageNumber}&pageSize={param.PageSize}&pwd={param.Password}&type={param.Type}";
         }
 
-        private string GetDataString(string url)
+        private static string GetDataString(string url)
         {
-            var result = RequestPolicy.Execute(() =>
+            var result = CurrentPolicy.Execute(() =>
             {
                 using (var client = new WebClient())
                 {
@@ -231,10 +232,10 @@ namespace Fanex.Affiliate.DataService.Importer
 
         }
 
-        private static ISyncPolicy<string> GetPolicy()
+        private static ISyncPolicy<string> GetDefaultPolicy()
         {
             var retryPolicy = Policy.HandleResult<string>(response => response.Contains("Request too often"))
-                .WaitAndRetryForever(retryCount => TimeSpan.FromMilliseconds(DelayTimeMillisecond));
+                .WaitAndRetry(2, retryCount => TimeSpan.FromMilliseconds(DelayTimeMillisecond));
 
             var policy = Policy.Bulkhead<string>(1, 5)
                 .Wrap(retryPolicy)

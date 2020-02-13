@@ -44,6 +44,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, _pullRange);
                 foreach (var range in timeRanges)
                 {
+                    Logger.Log($"Get raw data from {range.Item1} to {range.Item2}");
                     RawDatas.AddRange(await Service.GetRawDataListAsync(range.Item1, range.Item2));
                     DisplayRawData();
                 }
