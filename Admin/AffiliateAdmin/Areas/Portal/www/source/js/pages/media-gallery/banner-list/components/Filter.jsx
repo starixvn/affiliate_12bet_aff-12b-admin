@@ -84,7 +84,7 @@ export class Filter extends PureComponent {
                             <option key={'category-all'} value={''}>{globalResource.All}</option>
                             {
                                 categoryList && categoryList.map(item => {
-                                    return (<option key={`category-${item.columnName}`} value={item.columnName}>{item.columnName}</option>)
+                                    return (<option key={`category-${item.name}`} value={item.name}>{item.name}</option>)
                                 })
                             }
                         </Input>
@@ -97,7 +97,7 @@ export class Filter extends PureComponent {
                                     <option key={'subCategory-all'} value={''}>{globalResource.All}</option>
                                     {
                                         subCategoryList.map(item => {
-                                            return (<option key={`subCategory-${item.columnName}`} value={item.columnName}>{item.columnName}</option>)
+                                            return (<option key={`subCategory-${item.name}`} value={item.name}>{item.name}</option>)
                                         })
                                     }
                                 </Input>
@@ -121,7 +121,7 @@ export class Filter extends PureComponent {
                             <option key={'currency-all'} value={''}>{globalResource.All}</option>
                             {
                                 currencyList && currencyList.map(item => {
-                                    return (<option key={`currency-${item.columnName}`} value={item.columnName}>{item.columnName}</option>)
+                                    return (<option key={`currency-${item.name}`} value={item.name}>{item.name}</option>)
                                 })
                             }
                         </Input>
@@ -132,7 +132,7 @@ export class Filter extends PureComponent {
                             <option key={'imageType-all'} value={''}>{globalResource.All}</option>
                             {
                                 imageTypeList && imageTypeList.map(item => {
-                                    return (<option key={`imageType-${item.columnName}`} value={item.columnName}>{item.columnName}</option>)
+                                    return (<option key={`imageType-${item.name}`} value={item.name}>{item.name}</option>)
                                 })
                             }
                         </Input>
@@ -144,7 +144,7 @@ export class Filter extends PureComponent {
                                 <Input type="select" name="affType" id="affType" value={affType} onChange={this._handleChange}>
                                     {
                                         affTypeList.map(item => {
-                                            return (<option key={`affType-${item.columnKey}`} value={item.columnKey}>{item.columnName}</option>)
+                                            return (<option key={`affType-${item.key}`} value={item.key}>{item.name}</option>)
                                         })
                                     }
                                 </Input>
@@ -167,7 +167,7 @@ export class Filter extends PureComponent {
                             <option key={'size-all'} value={''}>{globalResource.All}</option>
                             {
                                 sizeList && sizeList.map(item => {
-                                    return (<option key={`size-${item.columnName}`} value={item.columnName}>{item.columnName}</option>)
+                                    return (<option key={`size-${item.name}`} value={item.name}>{item.name}</option>)
                                 })
                             }
                         </Input>

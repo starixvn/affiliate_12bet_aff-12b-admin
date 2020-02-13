@@ -11,16 +11,18 @@ const { categoryList, subCategoryList, languageList, currencyList, imageTypeList
 
 const newCategoryList = categoryList.map(item => {
     return {
-        columnKey: item.CategoryId,
-        columnName: item.CategoryName,
+        categoryId: item.CategoryId,
+        key: item.CategoryName,
+        name: item.CategoryName,
         checked: false
     };
 });
 
 const newSubCategoryList = subCategoryList.map(item => {
     return {
-        columnKey: item.CategoryId,
-        columnName: item.CategoryName,
+        key: item.CategoryName,
+        name: item.CategoryName,
+        categoryId: item.CategoryId,
         parentCategoryId: item.ParentCategoryId,
         checked: false
     };
@@ -28,32 +30,32 @@ const newSubCategoryList = subCategoryList.map(item => {
 
 const newCurrencyList = currencyList.map(item => {
     return {
-        columnKey: item.Id,
-        columnName: item.Name,
+        key: item.Name,
+        name: item.Name,
         checked: false
     };
 });
 
 const newImageTypeList = imageTypeList.map(item => {
     return {
-        columnKey: item.Id,
-        columnName: item.Name,
+        key: item.Name,
+        name: item.Name,
         checked: false
     };
 });
 
 const newSizeList = sizeList.map(item => {
     return {
-        columnKey: item.Id,
-        columnName: item.Name,
+        key: item.Name,
+        name: item.Name,
         checked: false
     };
 });
 
 const newAffTypeList = affTypeList.map(item => {
     return {
-        columnKey: item.AffTypeId,
-        columnName: item.AffTypeName,
+        key: item.AffTypeId,
+        name: item.AffTypeName,
         checked: false
     };
 });
