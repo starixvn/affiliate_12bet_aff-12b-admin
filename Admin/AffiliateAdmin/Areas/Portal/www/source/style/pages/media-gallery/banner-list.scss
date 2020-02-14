@@ -1,2 +1,8 @@
 ﻿@import "../../components/modal";
 @import "../../components/multiple-select";
+
+.banner-list-form-container {
+    .col-form-label.required:after {
+        font-size: unset;
+    }
+}

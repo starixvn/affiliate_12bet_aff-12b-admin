@@ -8,7 +8,7 @@ import { headerText, globalResource, defaultState, Casino, Sportsbook } from '..
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import NotificationPopup from '../../../common/components/NotificationPopup';
-import { validateFileExtension, validateInputFile, getSubCategory } from '../libs/utils';
+import { validateFileExtension, validateInputFile } from '../libs/utils';
 import MultipleSelect from '../../../../components/multiple-select';
 
 export class EditBannerForm extends PureComponent {
@@ -39,20 +39,17 @@ export class EditBannerForm extends PureComponent {
 
     _handleGetBannerDetail = async (selectedBannerId) => {
         const bannerInfo = await this.props.getBannerDetail(selectedBannerId);
-        console.log(bannerInfo);
-        if (bannerInfo) {
-            const { subCategoryCasinoList, subCategorySportsbookList } = this.props;
-            const { categoryList, subCategoryList, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.state;
 
-            //const result = getSubCategory(bannerInfo.Category, categoryList, subCategoryList);
+        if (bannerInfo) {
+            const { categoryList, subCategoryList, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.props;
 
             const fileName = htmlDecode(bannerInfo.FileName);
             const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
             const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
-            console.log(this.handleChangeMultipleSelected(categoryList, bannerInfo.Category, ';'));
+
             this.setState({
                 inputFileNames: [shortFileName],
-                categoryList: this.handleChangeMultipleSelected(categoryList, bannerInfo.Category, ';'),
+                categoryList: this.handleChangeMultipleSelected(categoryList, bannerInfo.Category, ';', true),
                 subCategoryList: this.handleChangeMultipleSelected(subCategoryList, bannerInfo.Category, ';'),
                 language: bannerInfo.Language,
                 currencyList: this.handleChangeMultipleSelected(currencyList, bannerInfo.Currency, ';'),
@@ -60,8 +57,7 @@ export class EditBannerForm extends PureComponent {
                 affTypeList: this.handleChangeMultipleSelected(affTypeList, bannerInfo.AffType.toString(), ';'),
                 deviceTypeList: this.handleChangeMultipleSelected(deviceTypeList, bannerInfo.DeviceType.toString(), ';'),
                 iniatalFileName: shortFileName,
-                iniatalCategory: this.handleChangeMultipleSelected(categoryList, bannerInfo.Category, ';'),
-                iniatalSubcategory: this.handleChangeMultipleSelected(subCategoryList, bannerInfo.Category, ';')
+                isDisabled: false
             });
         }
     }
@@ -71,13 +67,16 @@ export class EditBannerForm extends PureComponent {
         const name = event.target.name;
 
         this.setState({ [name]: value });
-
-        if (name === 'category') {
-            const isCategoryCasino = value === Casino;
-            (isCategoryCasino || value === Sportsbook) ? this.setState({ subCategory: isCategoryCasino ? Baccarat : 'Basketball' }) : this.setState({ subCategory: '' });
-        }
     }
 
+    _handleChangeInputFileName = (event, index) => {
+        const value = event.target.value;
+        let inputFileNames = [...this.state.inputFileNames];
+
+        inputFileNames[index] = value;
+
+        this.setState({ inputFileNames });
+    }
 
     _handleFile = (event) => {
         const { files } = event.target;
@@ -116,15 +115,15 @@ export class EditBannerForm extends PureComponent {
         }
     }
 
-    _save = async () => {
-        const { inputFileName, category, subCategory, isInsert, iniatalFileName, iniatalCategory, iniatalSubcategory } = this.state;
-        const bannerInfo = this._getParam();
-
+    _save = async (hasSubCategory) => {
+        const { inputFileNames, isInsert, iniatalFileName } = this.state;
+        const bannerInfo = this._getParam(hasSubCategory);
+        
         if (isInsert) {
             const result = await this.props.insertBanner(bannerInfo);
             this._handleAfterSave(isInsert, result);
         } else {
-            if (inputFileName === iniatalFileName && category === iniatalCategory && subCategory === iniatalSubcategory) {
+            if (inputFileNames[0] === iniatalFileName) {
                 this.setState({ messageNotificationPopup: 'This file name exists already. Do you want to overwrite the current file?' });
             } else {
                 this._updateBanner(bannerInfo);
@@ -132,11 +131,18 @@ export class EditBannerForm extends PureComponent {
         };
     }
 
-    _getParam = () => {
-        const { file, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType } = this.state;
+    _getParam = (hasSubCategory) => {
+        const { files, inputFileNames, categoryList, subCategoryList, language, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.state;
+
+        const categories = categoryList.filter(item => item.checked).map(item => item.key).join(';');
+        const subCategories = hasSubCategory ? subCategoryList.filter(item => item.checked).map(item => item.key).join(';') : '';
+        const currencies = currencyList.filter(item => item.checked).map(item => item.key).join(';');
+        const imageTypes = imageTypeList.filter(item => item.checked).map(item => item.key).join(';');
+        const affTypes = affTypeList.filter(item => item.checked).map(item => item.key).join(';');
+        const deviceTypes = deviceTypeList.filter(item => item.checked).map(item => item.key).join(';');
         const { selectedBannerId } = this.props;
 
-        return Object.assign({}, { bannerId: selectedBannerId, file, inputFileName, category, subCategory, language, currency, imageType, affType, deviceType });
+        return Object.assign({}, { bannerId: selectedBannerId, files, inputFileNames: inputFileNames.map(item => item).join(';'), categories, subCategories, language, currencies, imageTypes, affTypes, deviceTypes });
     }
 
     _updateBanner = async (bannerInfo) => {
@@ -144,71 +150,97 @@ export class EditBannerForm extends PureComponent {
         this._handleAfterSave(this.state.isInsert, result);
     }
 
-    _validateInputFile = (inputFileName) => {
-        const validFileName = validateInputFile(inputFileName);
+    _validateInputFileName = () => {
+        const { inputFileNames, isInsert, files } = this.state;
 
-        validFileName.isOK ? this._save() : this._handleShowAlert(false, validFileName.message);
-    }
-    
-    _validateData = () => {
-        const { categoryList, subCategoryList, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.state;
+        let validInputFileNames = {
+            isOK: true,
+            message: ''
+        };
 
-        const category = categorylist.filter(item => item.checked);
-        const subCategory = subCategoryList.filter(item => item.checked);
-        const currency = currencyList.filter(item => item.checked);
-        const imageType = imageTypeList.filter(item => item.checked);
-        const affType = affTypeList.filter(item => item.checked);
-        const deviceType = deviceTypeList.filter(item => item.checked);
+        if (isInsert) {
+            for (let i = 0; i < inputFileNames.length; i++) {
+                let inputFileName = inputFileNames[i].name;
+
+                if (inputFileName) {
+                    let result = validateInputFile(inputFileName);
+
+                    if (!result.isOK) {
+                        validInputFileNames = result;
+                    }
+                } else {
+                    if (files && files.length > 0) {
+                        let result = validateInputFile(files[i].name);
+
+                        if (!result.isOK) {
+                            validInputFileNames = result;
+                        }
+                    }
+                }
+            }
+        } else {
+            const inputFileName = inputFileNames[0];
+            if (inputFileName) {
+                let result = validateInputFile(inputFileNames[0]);
+
+                if (!result.isOK) {
+                    validInputFileNames = result;
+                }
+            } else {
+                validInputFileNames = {
+                    isOK: false,
+                    message: 'You must enter a file name for banner.'
+                };
+            }
+
+        }
+
+        return validInputFileNames;
     }
 
     _handleSubmit = (hasSubCategory) => {
         this.props.toggleLoader(true);
 
-        const { files, inputFileNames, isInsert, categoryList, subCategoryList, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.state;
+        const { inputFileNames, categoryList, subCategoryList, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.state;
 
         const category = categoryList.filter(item => item.checked).map(item => item.key);
-        const subCategory = subCategoryList.filter(item => item.checked);
+        const subCategory = hasSubCategory && subCategoryList.filter(item => item.checked);
         const currency = currencyList.filter(item => item.checked);
         const imageType = imageTypeList.filter(item => item.checked);
         const affType = affTypeList.filter(item => item.checked);
         const deviceType = deviceTypeList.filter(item => item.checked);
 
-        if(!category.length) {
+        if (!category.length) {
             this._handleShowAlert(false, "Please select Category.");
             return;
         }
-        if(hasSubCategory && (category.indexOf(Casino) !== -1 || category.indexOf(Sportsbook) !== -1) && !subCategory.length) {
+        if (hasSubCategory && (category.indexOf(Casino) !== -1 || category.indexOf(Sportsbook) !== -1) && !subCategory.length) {
             this._handleShowAlert(false, "Please select Sub Category.");
             return;
         }
-        if(!currency.length) {
+        if (!currency.length) {
             this._handleShowAlert(false, "Please select Currency.");
             return;
         }
-        if(!imageType.length) {
+        if (!imageType.length) {
             this._handleShowAlert(false, "Please select Type.");
             return;
         }
-        if(!affType.length) {
+        if (!affType.length) {
             this._handleShowAlert(false, "Please select Affiliate Type.");
             return;
         }
-        if(!deviceType.length) {
+        if (!deviceType.length) {
             this._handleShowAlert(false, "Please select Device.");
             return;
         }
 
-        //if (fileName) {
-        //    const validInputFileName = validateFileExtension(fileName);
+        if (inputFileNames && inputFileNames.length > 0) {
 
-        //    if (validInputFileName.isOK) {
-        //        inputFileName ? this._validateInputFile(inputFileName) : this._save();
-        //    } else {
-        //        this._handleShowAlert(false, validInputFileName.message);
-        //    }
-        //} else {
-        //    (!isInsert && inputFileName) ? this._validateInputFile(inputFileName) : this._handleShowAlert(false, isInsert ? 'Please select banner to upload.' : "You must enter a file name for banner.");
-        //}
+            const validInputFileNames = this._validateInputFileName();
+
+            validInputFileNames.isOK ? this._save(hasSubCategory) : this._handleShowAlert(false, validInputFileNames.message)
+        }
 
         this.props.toggleLoader(false);
     }
@@ -258,26 +290,32 @@ export class EditBannerForm extends PureComponent {
         }
     }
 
-    handleChangeMultipleSelected = (initialList, selectedKey, character) => {
+    handleChangeMultipleSelected = (initialList, selectedKey, character, isCategory) => {
         const selectedList = selectedKey.split(character || ',').filter(p => !!p);
 
         return initialList && initialList.map(item => {
-            const { key, name } = item;
+            const { key, name, categoryId } = item;
             const checked = selectedList.indexOf(key.toString()) !== -1;
 
-            return {
+            return isCategory ? {
+                categoryId,
                 key,
                 name,
                 checked
-            };
+            } : {
+                    key,
+                    name,
+                    checked
+                };
         })
     }
 
     handleChangeCategory = (item, selectedKey) => {
         const { categoryList, subCategoryList } = this.props;
-        const newCategoryList = this.handleChangeMultipleSelected(this.state.categoryList, selectedKey);
-        const categoryId = categoryList.filter(category => category.name == item.name).map(category => category.categoryId);
-        const newSubCategoryList = subCategoryList.filter(sub => sub.parentCategoryId == categoryId);
+
+        const newCategoryList = this.handleChangeMultipleSelected(categoryList, selectedKey, ',', true);
+        const categoryIds = newCategoryList.filter(category => category.checked).map(category => category.categoryId);
+        let newSubCategoryList = categoryIds.map(id => subCategoryList.filter(sub => sub.parentCategoryId == id)).reduce((accumulator, field) => accumulator.concat(field), []);
 
         this.setState({ categoryList: newCategoryList, subCategoryList: newSubCategoryList });
     }
@@ -313,7 +351,7 @@ export class EditBannerForm extends PureComponent {
     }
 
     render() {
-        const { selectedBannerId, subCategoryCasinoList, subCategorySportsbookList, languageList } = this.props;
+        const { selectedBannerId, languageList } = this.props;
         const { inputFileNames, language, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, categoryList,
             subCategoryList, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.state;
         const isShowPopup = selectedBannerId !== null;
@@ -321,8 +359,6 @@ export class EditBannerForm extends PureComponent {
         const buttonLabel = isInsert ? "Upload" : "Update";
         const selectedCategory = categoryList.filter(item => item.checked).map(item => item.key);
         const hasSubCategory = selectedCategory.indexOf(Casino) !== -1 || selectedCategory.indexOf(Sportsbook) !== -1;
-        //const isCategoryCasino = category === Casino;
-        //const subCategoryList = (isCategoryCasino || category === Sportsbook) ? (isCategoryCasino ? subCategoryCasinoList : subCategorySportsbookList) : null;
 
         return (
             <React.Fragment>
@@ -346,7 +382,7 @@ export class EditBannerForm extends PureComponent {
                                     <Label className="d-block">[File Size Limit: 3MB]</Label>
                                     <br />
                                     <FormGroup row className="mb-2">
-                                        <Label sm={3} for="file">File</Label>
+                                        <Label sm={3} for="file" className={isInsert ? "required" : ""}>File</Label>
                                         <Col sm={9}>
                                             <Input type="file" name="file" id="file" multiple={isInsert} className={`border ${isInsert && isDisabled ? "text-danger" : "text-success"}`} onChange={this._handleFile} accept="image/jpg, image/gif, image/png, image/jpeg" />
                                         </Col>
@@ -367,7 +403,7 @@ export class EditBannerForm extends PureComponent {
                                     {
                                         hasSubCategory && subCategoryList && (
                                             <FormGroup row className="mb-2">
-                                                <Label sm={3} for="subCategory">{headerText.SubCategory}</Label>
+                                                <Label sm={3} for="subCategory" className="required">{headerText.SubCategory}</Label>
                                                 <Col sm={5}>
                                                     <MultipleSelect
                                                         dataSource={subCategoryList}
@@ -394,7 +430,7 @@ export class EditBannerForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
-                                        <Label sm={3} for="currency">{headerText.Currency}</Label>
+                                        <Label sm={3} for="currency" className="required">{headerText.Currency}</Label>
                                         <Col sm={5}>
                                             <MultipleSelect
                                                 dataSource={currencyList}
@@ -407,7 +443,7 @@ export class EditBannerForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
-                                        <Label sm={3} for="imageType">{headerText.Type}</Label>
+                                        <Label sm={3} for="imageType" className="required">{headerText.Type}</Label>
                                         <Col sm={5}>
                                             <MultipleSelect
                                                 dataSource={imageTypeList}
@@ -420,7 +456,7 @@ export class EditBannerForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
-                                        <Label sm={3} for="affType">{headerText.AffType}</Label>
+                                        <Label sm={3} for="affType" className="required">{headerText.AffType}</Label>
                                         <Col sm={5}>
                                             <MultipleSelect
                                                 dataSource={affTypeList}
@@ -433,7 +469,7 @@ export class EditBannerForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
-                                        <Label sm={3} for="deviceType">{headerText.Device}</Label>
+                                        <Label sm={3} for="deviceType" className="required">{headerText.Device}</Label>
                                         <Col sm={5}>
                                             <MultipleSelect
                                                 dataSource={deviceTypeList}
@@ -450,21 +486,21 @@ export class EditBannerForm extends PureComponent {
                                             return (<FormGroup row className="mb-2">
                                                 <Label sm={3} for="inputFileName">{`File Name ${index + 1}`}</Label>
                                                 <Col sm={7}>
-                                                    <Input type="text" name="inputFileName" id="inputFileName" value={value} onChange={this._handleChange} onKeyPress={this._handlePressEnter} />
+                                                    <Input type="text" name="inputFileName" id={`inputFileName${index}`} value={value} onChange={(e) => this._handleChangeInputFileName(e, index)} onKeyPress={this._handlePressEnter} />
                                                 </Col>
                                             </FormGroup>)
                                         }) : (
                                                 <FormGroup row className="mb-2">
                                                     <Label sm={3} for="inputFileName">File Name</Label>
                                                     <Col sm={7}>
-                                                        <Input type="text" name="inputFileName" id="inputFileName" value={inputFileNames && inputFileNames[0]} onChange={this._handleChange} onKeyPress={this._handlePressEnter} />
+                                                        <Input type="text" name="inputFileName" id="inputFileName" value={inputFileNames && inputFileNames[0]} onChange={(e) => this._handleChangeInputFileName(e, 0)} onKeyPress={this._handlePressEnter} />
                                                     </Col>
                                                 </FormGroup>
                                             )
                                     }
                                 </Form>
 
-                                <Button type="button" color="success" className="mr-3" disabled={(isInsert || !inputFileNames) ? isDisabled : false} onClick={() => this._handleSubmit(hasSubCategory)}>{buttonLabel}</Button>
+                                <Button type="button" color="success" className="mr-3" disabled={((isInsert || (inputFileNames && !!inputFileNames[0]))) ? isDisabled : false} onClick={() => this._handleSubmit(hasSubCategory)}>{buttonLabel}</Button>
                                 <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
                             </div>
                         </div>
