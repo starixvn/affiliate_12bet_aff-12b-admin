@@ -6,11 +6,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.Constants;
-using Fanex.Affiliate.DataService.Importer.Exceptions;
-using Fanex.Affiliate.DataService.Importer.MetaModels.ISoftbet;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
+using Fanex.Affiliate.DataService.Importer.ISoftbet.MetaModels;
+using Fanex.Affiliate.DataService.Importer.ISoftbet.Utilities;
 using Newtonsoft.Json.Linq;
+
 
 namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {

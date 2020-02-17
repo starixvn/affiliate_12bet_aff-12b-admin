@@ -19,7 +19,11 @@ namespace Fanex.Affiliate.DataService.Job.Constants
                     { "CrystalGpiDaily", new Lazy<IJobScheduler>(() => new CrystalGpiDailyScheduler()) },
                     { "ISoftbet", new Lazy<IJobScheduler>(() => new ISoftbetScheduler()) },
                     { "ISoftbetDaily", new Lazy<IJobScheduler>(() => new ISoftbetDailyScheduler()) },
-                    { "Opus", new Lazy<IJobScheduler>(() => new OpusScheduler()) }
+                    { "Opus", new Lazy<IJobScheduler>(() => new OpusScheduler()) },
+                    { "Topaz", new Lazy<IJobScheduler>(() => new TopazScheduler()) },
+                    { "VrLottery", new Lazy<IJobScheduler>(() => new ImOneVrLotteryScheduler()) },
+                    { "GpiLottery", new Lazy<IJobScheduler>(() => new GpiLotteryScheduler()) },
+                    { "LBKeno", new Lazy<IJobScheduler>(() => new LBKenoScheduler()) }
                 };
             }
         }

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.WinFormApp.Forms;
-using Fanex.Data.Configuration;
+using Fanex.Data;
+using Fanex.Data.SqlServer;
 
 namespace Fanex.Affiliate.DataService.WinFormApp
 {
@@ -9,7 +10,10 @@ namespace Fanex.Affiliate.DataService.WinFormApp
     {
         public MainForm()
         {
-            DbSettingProviderManager.Current.Start();
+            DbSettingProviderManager
+                .StartNewSession()
+                .WithSqlServer("~/App_Data")
+                .Run();
             InitializeComponent();
         }
 
@@ -64,6 +68,43 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             opusForm.FormClosing += FormClosingHandler;
             opusForm.Show();
             this.Hide();
+        }
+
+        private void btnTopaz_Click(object sender, EventArgs e)
+        {
+            var topazForm = new TopazForm();
+            SetUpServiceForm(topazForm);
+        }
+
+        private void btnGpiLottery_Click(object sender, EventArgs e)
+        {
+            var gpiForm = new GpiLotteryForm();
+            SetUpServiceForm(gpiForm);
+        }
+
+        private void btnVrLottery_Click(object sender, EventArgs e)
+        {
+            var form = new VrLotteryForm();
+            SetUpServiceForm(form);
+        }
+
+        private void btLBKeno_Click(object sender, EventArgs e)
+        {
+            var form = new LBKenoForm();
+            SetUpServiceForm(form);
+        }
+
+        private void SetUpServiceForm(Form form)
+        {
+            form.FormClosing += FormClosingHandler;
+            form.Show();
+            this.Hide();
+        }
+
+        private void importFromFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FileImportForm();
+            SetUpServiceForm(form);
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
+using Fanex.Affiliate.DataService.Importer.Gpi.MetaModels;
 
 namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
@@ -133,7 +133,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                                     PageSize = param.PageSize
                                 };
                                 _crystalGpiService.Import(crystalGpiParam);
-                                _logBuilder.AppendLine($"Done - Start:{crystalGpiParam.StartTime.ToString()} - End:{crystalGpiParam.EndTime.ToString()}");
+                                _logBuilder.AppendLine($"Done - Start:{crystalGpiParam.StartTime} - End:{crystalGpiParam.EndTime}");
                                 synchronizationContext.Post(new SendOrPostCallback((state) =>
                                 {
                                     richTextLog.Text = _logBuilder.ToString();

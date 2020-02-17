@@ -7,14 +7,15 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.ThirdPartyProduct.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
-    public sealed class FunctionAuthorizeAttribute : ActionFilterAttribute
+    public sealed class FunctionAuthorizeAttribute : AuthorizeAttribute
     {
         private const int ErrdCodeAccessDenied = 403;
 
         public bool IsHost { get; set; }
 
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        public override void OnAuthorization(AuthorizationContext filterContext)
         {
+            base.OnAuthorization(filterContext);
             var context = filterContext.HttpContext;
             var allowedUser = ConfigurationManager.AppSettings["AllowedUser"] ?? string.Empty;
 
@@ -23,7 +24,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Attributes
                 var currentUser = context.User.Identity.Name;
                 var userList = allowedUser.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 var hasPerimission = userList.Any(i => string.Equals(currentUser, i, StringComparison.InvariantCultureIgnoreCase));
-
 
                 if (!hasPerimission)
                 {
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Attributes
                 context.Response.Redirect("~/Portal/AccessDenied");
             }
 
-            base.OnActionExecuting(filterContext);
         }
+
     }
 }

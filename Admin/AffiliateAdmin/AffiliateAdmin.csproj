@@ -331,8 +331,11 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\crystal-gpi.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\ebet.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\exchange-summary-transaction.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\gpi-lottery.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\imone-vrlottery.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\importqueue.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\isoftbet.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\lb-keno.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\timetracker.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\under-maintenance.js" />
@@ -1353,22 +1356,17 @@
       <Project>{c1c3e2f9-cc94-41a2-96e5-776b9f67e840}</Project>
       <Name>Fanex.Affiliate.Admin.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fanex.Affiliate.ThirdPartyProduct\Fanex.Affiliate.ThirdPartyProduct.csproj">
-      <Project>{118a9aa1-c33a-413a-a685-3495cf30c15f}</Project>
-      <Name>Fanex.Affiliate.ThirdPartyProduct</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Portal\www\source\js\pages\customer\mainpage\modules\" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1394,6 +1392,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
+      <UserProperties App_3Data_4EBetConfig_1json__JSONSchema="http://json.schemastore.org/apple-app-site-association" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

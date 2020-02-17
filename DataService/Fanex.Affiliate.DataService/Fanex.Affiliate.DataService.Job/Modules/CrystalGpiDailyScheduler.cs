@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         public ScheduleInfo BuildSchedule()
         {
             const string groupName = "CrystalGpiDailyJobGroup";
-            var jobName = nameof(CrystalGpiDailyJob);
+            const string jobName = nameof(CrystalGpiDailyJob);
             var job = JobBuilder.Create<CrystalGpiDailyJob>()
                .WithIdentity(jobName, groupName)
                .Build();

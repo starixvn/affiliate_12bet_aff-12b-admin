@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Fanex.Affiliate.DataService.WinFormApp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,47 +32,41 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Fanex.Affiliate.DataService.WinFormApp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
+    <Reference Include="Fanex.Data, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Data.4.2.0\lib\net461\Fanex.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    <Reference Include="Fanex.Data.SqlServer, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Data.SqlServer.4.2.0\lib\net461\Fanex.Data.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\EnterpriseLibrary.Logging.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.ServiceLocation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Polly.7.2.0\lib\net461\Polly.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,6 +78,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter\IFileImporter.cs" />
+    <Compile Include="Converter\LBKenoFileImporter.cs" />
+    <Compile Include="Converter\VRLotteryFileImporter.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,11 +105,35 @@
     <Compile Include="Forms\EbetForm.Designer.cs">
       <DependentUpon>EbetForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FileImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FileImportForm.Designer.cs">
+      <DependentUpon>FileImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GpiLotteryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GpiLotteryForm.Designer.cs">
+      <DependentUpon>GpiLotteryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ImporterFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ImporterFormBase.Designer.cs">
+      <DependentUpon>ImporterFormBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ISoftbetForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ISoftbetForm.Designer.cs">
       <DependentUpon>ISoftbetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LBKenoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LBKenoForm.Designer.cs">
+      <DependentUpon>LBKenoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\OpusForm.cs">
       <SubType>Form</SubType>
@@ -119,12 +141,26 @@
     <Compile Include="Forms\OpusForm.Designer.cs">
       <DependentUpon>OpusForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TopazForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TopazForm.Designer.cs">
+      <DependentUpon>TopazForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VrLotteryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VrLotteryForm.Designer.cs">
+      <DependentUpon>VrLotteryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Converter\IDataSpliter.cs" />
+    <Compile Include="Converter\WebApiSpliter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -139,11 +175,29 @@
     <EmbeddedResource Include="Forms\EbetForm.resx">
       <DependentUpon>EbetForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FileImportForm.resx">
+      <DependentUpon>FileImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GpiLotteryForm.resx">
+      <DependentUpon>GpiLotteryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ImporterFormBase.resx">
+      <DependentUpon>ImporterFormBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ISoftbetForm.resx">
       <DependentUpon>ISoftbetForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LBKenoForm.resx">
+      <DependentUpon>LBKenoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\OpusForm.resx">
       <DependentUpon>OpusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TopazForm.resx">
+      <DependentUpon>TopazForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VrLotteryForm.resx">
+      <DependentUpon>VrLotteryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -265,6 +319,7 @@
     <None Include="Fanex.Affiliate.DataService.WinFormApp.exe.PRO.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Fanex.Affiliate.DataService.WinFormApp.ruleset" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -302,6 +357,46 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.AgCasino\Fanex.Affiliate.DataService.Importer.AgCasino.csproj">
+      <Project>{e1fea403-e07c-4d0b-8d9c-4a79ff356b18}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.AgCasino</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.BetSoft\Fanex.Affiliate.DataService.Importer.BetSoft.csproj">
+      <Project>{bffceb05-ad21-4881-b38c-612996966c0d}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.BetSoft</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
+      <Project>{410276E1-1E99-4662-809C-25F0F1777C08}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Ebet\Fanex.Affiliate.DataService.Importer.Ebet.csproj">
+      <Project>{7ffaaeaa-14b8-4bbd-af2a-b23142dd230b}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Ebet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.GPI\Fanex.Affiliate.DataService.Importer.Gpi.csproj">
+      <Project>{7e74c2b1-80bd-4d88-8c30-7f02d2e038a1}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Gpi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.IMOne\Fanex.Affiliate.DataService.Importer.IMOne.csproj">
+      <Project>{7C3E0E3A-A71E-4D43-9D77-491EE5214E8A}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.IMOne</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.ISoftBet\Fanex.Affiliate.DataService.Importer.ISoftbet.csproj">
+      <Project>{1ff263f2-9c86-416d-af14-699a28beaca6}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.ISoftbet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
+      <Project>{B04723A2-C292-4104-8061-6A54F890B094}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.LBKeno</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Opus\Fanex.Affiliate.DataService.Importer.Opus.csproj">
+      <Project>{07b4e979-023d-4b6f-8caf-ce6919ade584}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Opus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Topaz\Fanex.Affiliate.DataService.Importer.FlowGaming.csproj">
+      <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.FlowGaming</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
       <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>
       <Name>Fanex.Affiliate.DataService.Importer</Name>
@@ -311,6 +406,11 @@
     <Content Include="App_Data\SpName.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Opus;
+using Fanex.Affiliate.DataService.Importer.Opus.MetaModels;
 
 namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
@@ -113,7 +113,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     {
                         ToggleButton(false);
 
-                        await Task.Run(() =>
+                        await Task.Run(async () =>
                         {
                             for (var start = startTimePicker.Value; DateTime.Compare(start, endTimePicker.Value) < 0; start = start.AddMinutes(15))
                             {
@@ -124,12 +124,12 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                                 };
                                 _opusService.Import(opusParam);
 
-                                _logBuilder.AppendLine($"Done - Start:{opusParam.StartTime.ToString()} - End:{opusParam.EndTime.ToString()}");
+                                _logBuilder.AppendLine($"Done - Start:{opusParam.StartTime} - End:{opusParam.EndTime}");
                                 synchronizationContext.Post(new SendOrPostCallback((state) =>
                                 {
                                     richTextLog.Text = _logBuilder.ToString();
                                 }), null);
-                                Thread.Sleep(16000);
+                                await Task.Delay(16000);
                             }
                         });
                     }

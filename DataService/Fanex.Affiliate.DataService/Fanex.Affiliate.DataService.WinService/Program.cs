@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
-using Fanex.Data.Configuration;
+﻿using System.ServiceProcess;
 
 namespace Fanex.Affiliate.DataService.WinService
 {
@@ -15,7 +9,6 @@ namespace Fanex.Affiliate.DataService.WinService
         /// </summary>
         private static void Main()
         {
-            DbSettingProviderManager.Current.Start();
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {

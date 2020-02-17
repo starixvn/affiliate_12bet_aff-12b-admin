@@ -1,5 +1,5 @@
 ﻿using System;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.Model;
 using Quartz;
 
@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         public ScheduleInfo BuildSchedule()
         {
             const string groupName = "OpusJobGroup";
-            var jobName = nameof(OpusJob);
+            const string jobName = nameof(OpusJob);
             var job = JobBuilder.Create<OpusJob>()
                .WithIdentity(jobName, groupName)
                .Build();

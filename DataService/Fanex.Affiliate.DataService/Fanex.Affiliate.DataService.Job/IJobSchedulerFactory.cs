@@ -1,13 +1,15 @@
-﻿namespace Fanex.Affiliate.DataService.Job
+﻿using System.Threading.Tasks;
+
+namespace Fanex.Affiliate.DataService.Job
 {
     public interface IJobSchedulerFactory
     {
-        void SetUp();
+        Task SetUpAsync();
 
-        void Shutdown();
+        Task ShutdownAsync();
 
-        void Pause();
+        Task PauseAsync();
 
-        void Resume();
+        Task ResumeAsync();
     }
 }

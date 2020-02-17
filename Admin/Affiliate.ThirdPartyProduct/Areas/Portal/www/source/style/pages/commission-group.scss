@@ -1,0 +1,111 @@
+﻿@import "../components/modal";
+@import "../components/multiple-select";
+
+.comm-popup-container {
+    font-size: 12px;
+
+    .required {
+        margin: 0 0 0 -1.5rem;
+        font-size: 1rem;
+    }
+
+    .platformfee-group {
+        margin-bottom: 0.5rem;
+
+        .bullet {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .btn-action {
+            font-weight: bold;
+            width: 20px;
+            padding: 4px;
+            font-size: 14px;
+            margin-top: 0.375rem;
+            margin-bottom: 0.375rem;
+            border: 1px solid #7b7c7d;
+            background-color: #ecf6ff;
+
+            &:hover {
+                background-color: #d8d8d8;
+            }
+        }
+
+        .select-product {
+            margin-left: 20px;
+
+            &::before {
+                content: '•';
+                display: inline-block;
+                position: absolute;
+                left: 20px;
+                top: -3px;
+                font-size: 20px;
+            }
+
+            &.is-invalid {
+                .multiple-select-label {
+                    border-color: #dc3545;
+                }
+
+                .invalid-feedback {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .select-comm {
+        &::after {
+            content: 'x';
+            display: inline-block;
+            position: absolute;
+            right: -5px;
+            top: 7px;
+        }
+    }
+
+    .form-max {
+        width: calc(100% - 32px);
+    }
+
+    .btn-save {
+        width: 4rem;
+        padding: 0.4rem;
+    }
+}
+
+.action-wrapper {
+    margin: 10px 0;
+}
+
+.filter-container {
+    .search-box {
+        width: 15rem;
+    }
+}
+
+.table-group-setting {
+    tr {
+        .cell-tier {
+            background: #fff4ed;
+        }
+
+        .cell-platform {
+            background: #def6fc;
+        }
+    }
+}
+
+.table > tbody tr:hover {
+    td {
+        &.cell-tier {
+            background: #fff4ed;
+        }
+
+        &.cell-platform {
+            background: #def6fc;
+        }
+    }
+}

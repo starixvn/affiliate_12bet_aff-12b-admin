@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Functions SiteId="32" SiteName="12Bet Admin">
+  <Function Name="Language">
+    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="affiliate_12bet" />
+  </Function>
+  <Function Name="ThirdPartyProduct">
+    <Setting Key="Aff_3rdProduct_ImportQueueSel" SpName="Aff_3rdProduct_ImportQueueSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_3rdProduct_XmlDataByQueueIdSel" SpName="Aff_3rdProduct_XmlDataByQueueIdSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_3rdProduct_TimeTrackerSel" SpName="Aff_3rdProduct_TimeTrackerSel" DbName="affiliate_12bet" />
+  </Function>
+  <Function Name="EmailHistory">
+    <Setting Key="Aff_Admin_EmailHistory_Sel" SpName="Aff_Admin_EmailHistory_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_EmailHistory_Detail_Sel" SpName="Aff_Admin_EmailHistory_Detail_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_EmailHistory_Del" SpName="Aff_Admin_EmailHistory_Del" DbName="affiliate_12bet" />
+  </Function>
+</Functions>

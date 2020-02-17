@@ -2,10 +2,19 @@
 using System.Globalization;
 using System.Threading;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Opus;
-using Fanex.Affiliate.DataService.Importer.Utilities;
 using Fanex.Affiliate.DataService.Job;
-using Fanex.Data.Configuration;
+using Fanex.Affiliate.DataService.Importer.Opus.MetaModels;
+using Fanex.Data;
+using Fanex.Data.SqlServer;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using System.Threading.Tasks;
+using System.Configuration;
+using Fanex.Logging;
+using System.Collections.Generic;
+using Fanex.Logging.Sentry.RavenClient;
+using SharpRaven;
+using Fanex.Affiliate.DataService.Job.Log;
+using Fanex.Affiliate.DataService.Job.Constants;
 
 namespace Fanex.Affiliate.DataService.ConsoleHostService
 {
@@ -13,67 +22,79 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
     {
         private static void Main(string[] args)
         {
-            DbSettingProviderManager.Current.Start();
 
-            //RunOpusService();
-            //var _ebetConfigHelper = new EbetConfigHelper();
-            //var _timeTracker = new TimeTracker();
-            //var now = DateTime.Now;
-            //var nowByHour = new DateTime(now.Year, now.Month, now.Day, 5, 0, 0, DateTimeKind.Local);
-            //var configList = _ebetConfigHelper.GetConfigList();
-            //foreach (var config in configList)
-            //{
-            //    var currency = Convert.ToInt32(config.CurrencyID);
-            //    var saveTimeTrackerParam = new InsertTimeTrackerParam
-            //    {
-            //        ProductId = Products.EbetProductId,
-            //        CallTime = nowByHour,
-            //        Currency = currency
-            //    };
-            //    _timeTracker.SaveTime(saveTimeTrackerParam);
-            //}
+            DbSettingProviderManager
+             .StartNewSession()
+             .WithSqlServer("~/App_Data")
+             .Run();
 
-            Console.WriteLine("Done");
+            InitLogging();
+            RunJobs().GetAwaiter().GetResult();
+            LogService.Info("Done");
+
             Console.ReadLine();
         }
 
-        private static void RunJobs()
+        private static async Task RunJobs()
         {
             var schedulerFactory = new JobSchedulerFactory();
-            schedulerFactory.SetUp();
-            Console.WriteLine("Done!!!");
+            await schedulerFactory.SetUpAsync();
+            LogService.Info("StartService!!!");
+            await schedulerFactory.PauseAsync();
+            await schedulerFactory.ResumeAsync();
         }
 
-        private static void RunOpusService()
+        private static void InitLogging()
         {
-            Console.WriteLine("Start");
             try
             {
-                var appSetting = new AppSettings();
-                var opusService = new OpusService();
+                SetupFanexLogging();
+                SetupJobLogging();
+            }
+            catch (Exception ex)
+            {
+                LogService.Error("Error when innit logger", ex);
+            }
 
-                var startTime = DateTime.ParseExact(appSetting.GetValue("OpusStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
-                var endTime = new DateTime(2019, 1, 31, 12, 0, 0);
-                for (var start = startTime; DateTime.Compare(start, endTime) < 0; start = start.AddMinutes(15))
-                {
-                    var opusParam = new OpusParam
+        }
+
+        private static void SetupFanexLogging()
+        {
+            var env = ConfigurationManager.AppSettings["Environment"];
+            var dsn = ConfigurationManager.AppSettings["SentryDsn"];
+            var category = ConfigurationManager.AppSettings["LoggingCategory"];
+            if (!string.IsNullOrEmpty(dsn))
+            {
+                LogManager.SetDefaultLogCategory(category)
+                    .Use(new List<ILogEngine>
                     {
-                        StartTime = start,
-                        EndTime = start.AddMinutes(15)
-                    };
-                    opusService.Import(opusParam);
+                        new SentryLogging(new SentryEngineOptions
+                        {
+                            Dsn = new Dsn(dsn),
+                            Environment = env
+                        }),
+                        new ConsoleLoggerEngine()
+                    });
+            }
+        }
 
-                    Console.WriteLine($"Done - Start:{opusParam.StartTime.ToString()} - End:{opusParam.EndTime.ToString()}");
-                    Thread.Sleep(16000);
+
+        private static void SetupJobLogging()
+        {
+            var defaultLogLevel = (LogLevel)Enum.Parse(typeof(LogLevel), ConfigurationManager.AppSettings["LogLevel"]);
+            var trackers = ConfigurationManager.AppSettings["LogTrackerProduct"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var logManager = LogWrapperManager.StartNewLogTracker();
+            logManager.DefaultLogLevel = defaultLogLevel;
+            foreach (var tracker in trackers)
+            {
+                if (!string.IsNullOrWhiteSpace(tracker))
+                {
+                    var category = ServiceMapping.ServiceFullName[tracker];
+                    logManager.AddLogConfig(category, LogLevel.Debug);
                 }
             }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-                Console.WriteLine(exception.StackTrace);
-                Console.WriteLine(exception.Source);
-            }
-            Console.WriteLine("Finish");
         }
+
+
     }
 }

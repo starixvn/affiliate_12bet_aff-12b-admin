@@ -1,66 +1,51 @@
 ﻿using System;
 using System.Globalization;
 using System.Text;
-using Fanex.Affiliate.DataService.CheckSum.Utilities;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.MetaModels.ISoftbet;
 using Fanex.Logging;
 using Quartz;
-using Sunplus.UMControllerLibrary;
+using System.Threading.Tasks;
+using Fanex.Affiliate.DataService.Importer.ISoftbet.MetaModels;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
     [DisallowConcurrentExecution]
-    public class ISoftbetDailyJob : IJob
+    public class ISoftbetDailyJob : JobBase
     {
         private readonly IAppSettings _appSetting;
-        private readonly UMBusiness _umBusiness;
         private readonly IISoftbetService _isoftbetService;
 
+        public override string ServiceName => "ISoftbetDaily Service";
         public ISoftbetDailyJob()
         {
             _appSetting = new AppSettings();
-            _umBusiness = new UMBusiness();
             _isoftbetService = new ISoftbetService();
         }
 
-        public void Execute(IJobExecutionContext context)
+        protected override Task ImportDataToSystem(IJobExecutionContext context = null)
         {
-            var logBuilder = new StringBuilder();
-            try
-            {
-                var umUrl = _appSetting.GetValue("LBUrl");
-                var isUm = !string.IsNullOrEmpty(umUrl) && _umBusiness.isUnderMaintainence(Sites.Aff12Bet, umUrl);
+            var now = DateTime.Now;
+            var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
+            var minTime = DateTime.ParseExact(_appSetting.GetValue("ISoftbetStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
 
-                if (!isUm)
+            if (DateTime.Compare(minTime, nowByHour) < 0)
+            {
+                var param = new ISoftbetEntryParam
                 {
-                    var now = DateTime.Now;
-                    var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
-                    var minTime = DateTime.ParseExact(_appSetting.GetValue("ISoftbetStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
+                    StartTime = nowByHour.AddDays(-1).Date,
+                    EndTime = nowByHour,
+                    PageNumber = 1,
+                    JobType = 1
+                };
 
-                    if (DateTime.Compare(minTime, nowByHour) < 0)
-                    {
-                        var param = new ISoftbetEntryParam
-                        {
-                            StartTime = nowByHour.AddDays(-1).Date,
-                            EndTime = nowByHour,
-                            PageNumber = 1,
-                            JobType = 1
-                        };
+                Logger.Info($"{ServiceName} - Get data from {param.StartTime} to {param.EndTime}");
 
-                        logBuilder.AppendLine($"ISoftbet Daily Job is starting. Request time {param.StartTime.ToString()} - {param.EndTime.ToString()}");
+                _isoftbetService.Import(param);
 
-                        _isoftbetService.Import(param);
-
-                        logBuilder.AppendLine("ISoftbet Daily Job Done");
-                    }
-                }
+                Logger.Info($"{ServiceName} - Finished get data");
             }
-            catch (Exception exception)
-            {
-                logBuilder.AppendLine(exception.Message);
-                LogService.Error(logBuilder.ToString(), exception);
-            }
+            return Task.CompletedTask;
         }
     }
 }

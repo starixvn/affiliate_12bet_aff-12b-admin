@@ -1,67 +1,51 @@
 ﻿using System;
 using System.Globalization;
-using System.Text;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
-using Fanex.Affiliate.DataService.Importer.Utilities;
-using Fanex.Logging;
 using Quartz;
-using Sunplus.UMControllerLibrary;
+using Fanex.Affiliate.DataService.Importer.Gpi.MetaModels;
+using System.Threading.Tasks;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
     [DisallowConcurrentExecution]
-    public class CrystalGpiDailyJob : IJob
+    public class CrystalGpiDailyJob : JobBase
     {
         private readonly IAppSettings _appSetting;
-        private readonly UMBusiness _umBusiness;
         private readonly ICrystalGpiService _crystalGpiService;
+
+        public override string ServiceName => "Crystal GPI Daily Service";
 
         public CrystalGpiDailyJob()
         {
             _appSetting = new AppSettings();
-            _umBusiness = new UMBusiness();
             _crystalGpiService = new CrystalGpiService();
         }
 
-        public void Execute(IJobExecutionContext context)
+        protected override Task ImportDataToSystem(IJobExecutionContext context = null)
         {
-            var logBuilder = new StringBuilder();
-            try
-            {
-                var umUrl = _appSetting.GetValue("LBUrl");
-                var isUm = !string.IsNullOrEmpty(umUrl) && _umBusiness.isUnderMaintainence(Sites.Aff12Bet, umUrl);
+            var now = DateTime.Now;
+            var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
+            var minTime = DateTime.ParseExact(_appSetting.GetValue("CrystalGpiStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
 
-                if (!isUm)
+            if (DateTime.Compare(minTime, nowByHour) < 0)
+            {
+                var param = new CrystalGpiParam
                 {
-                    var now = DateTime.Now;
-                    var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
-                    var minTime = DateTime.ParseExact(_appSetting.GetValue("CrystalGpiStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
+                    StartTime = nowByHour.AddDays(-1).Date,
+                    EndTime = nowByHour,
+                    PageNumber = 1,
+                    PageSize = Convert.ToInt32(_appSetting.GetValue("CrystalGpiPageSize")),
+                    JobType = 1
+                };
 
-                    if (DateTime.Compare(minTime, nowByHour) < 0)
-                    {
-                        var param = new CrystalGpiParam
-                        {
-                            StartTime = nowByHour.AddDays(-1).Date,
-                            EndTime = nowByHour,
-                            PageNumber = 1,
-                            PageSize = Convert.ToInt32(_appSetting.GetValue("CrystalGpiPageSize")),
-                            JobType = 1
-                        };
+                Logger.Info($"{ServiceName} - Get data from {param.StartTime} to {param.EndTime}");
 
-                        logBuilder.AppendLine($"Crystal Gpi Daily Job is starting. Request time {param.StartTime.ToString()} - {param.EndTime.ToString()}");
+                _crystalGpiService.Import(param);
 
-                        _crystalGpiService.Import(param);
-
-                        logBuilder.AppendLine("Crystal Gpi Daily Job Done");
-                    }
-                }
+                Logger.Info($"{ServiceName} - Finished get data");
             }
-            catch (Exception exception)
-            {
-                logBuilder.AppendLine(exception.Message);
-                LogService.Error(logBuilder.ToString(), exception);
-            }
+            return Task.CompletedTask;
         }
     }
 }

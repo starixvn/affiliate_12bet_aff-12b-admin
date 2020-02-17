@@ -5,9 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.DTO.Ebet;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
-using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Importer.Ebet.DTO;
+using Fanex.Affiliate.DataService.Importer.Ebet.MetaModels;
+using Fanex.Affiliate.DataService.Importer.Ebet.Utilities;
 
 namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 var configList = _ebetConfigHelper.GetConfigList();
                 await Task.Run(() =>
                 {
-                    _logBuilder.AppendLine("Start:" + DateTime.Now.ToString());
+                    _logBuilder.AppendLine("Start:" + DateTime.Now);
 
                     var resultList = new List<EbetApiResult>();
                     foreach (var config in configList)
@@ -214,7 +214,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                                 };
 
                                 _ebetService.Import(param);
-                                _logBuilder.AppendLine($"Done - Currency: {param.CurrencyId} - Start:{param.StartTime.ToString()} - End:{param.EndTime.ToString()}");
+                                _logBuilder.AppendLine($"Done - Currency: {param.CurrencyId} - Start:{param.StartTime} - End:{param.EndTime}");
                                 synchronizationContext.Post(new SendOrPostCallback((state) =>
                                 {
                                     richTextLog.Text = _logBuilder.ToString();

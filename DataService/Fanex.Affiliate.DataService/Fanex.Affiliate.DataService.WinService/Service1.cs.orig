@@ -1,0 +1,116 @@
+﻿using System;
+using System.IO;
+using System.ServiceProcess;
+using Fanex.Affiliate.DataService.Job;
+using Fanex.Logging;
+using System.Configuration;
+using System.Collections.Generic;
+using Fanex.Logging.Sentry.RavenClient;
+using SharpRaven;
+using Fanex.Data;
+using Fanex.Data.SqlServer;
+
+namespace Fanex.Affiliate.DataService.WinService
+{
+    public partial class Service1 : ServiceBase
+    {
+        private readonly IJobSchedulerFactory _schedulerFactory;
+
+        public Service1()
+        {
+            InitializeComponent();
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+            InitLogging();
+            InitDbConnect();
+            _schedulerFactory = new JobSchedulerFactory();
+
+        }
+
+<<<<<<< HEAD
+        private static void InitLogging()
+=======
+        private void InitDbConnect()
+        {
+            try
+            {
+                DbSettingProviderManager
+                 .StartNewSession()
+                 .WithSqlServer("~/App_Data")
+                 .Run();
+            }
+            catch (Exception ex)
+            {
+                LogService.Error($"Connect db error {ex.Message}", ex.InnerException);
+            }
+
+        }
+
+        private void InitLogging()
+>>>>>>> 117197 - Add check exception for db connect
+        {
+            var env = ConfigurationManager.AppSettings["Environment"];
+            var dsn = ConfigurationManager.AppSettings["SentryDsn"];
+            var category = ConfigurationManager.AppSettings["LoggingCategory"];
+
+            if (!string.IsNullOrEmpty(dsn))
+            {
+                LogManager.SetDefaultLogCategory(category)
+                    .Use(new List<ILogEngine>
+                    {
+                        new SentryLogging(new SentryEngineOptions
+                        {
+                            Dsn = new Dsn(dsn),
+                            Environment = env
+                        })
+                        
+                    });
+            }
+        }
+
+        protected override void OnStart(string[] args)
+        {
+            try
+            {
+                LogService.Info("Start 12bet AFF service");
+                _schedulerFactory.SetUpAsync();
+            }
+            catch (Exception exception)
+            {
+                LogService.Error(exception.Message, exception.InnerException);
+            }
+        }
+
+        protected override void OnStop()
+        {
+            try
+            {
+                LogService.Info("Stop 12bet AFF service");
+                _schedulerFactory.ShutdownAsync();
+            }
+            catch (Exception exception)
+            {
+                LogService.Error(exception.Message, exception.InnerException);
+            }
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            this._schedulerFactory.PauseAsync();
+        }
+
+        protected override void OnContinue()
+        {
+            base.OnContinue();
+
+            this._schedulerFactory.ResumeAsync();
+        }
+
+        protected override void OnShutdown()
+        {
+            base.OnShutdown();
+            this._schedulerFactory.ShutdownAsync();
+        }
+    }
+}
