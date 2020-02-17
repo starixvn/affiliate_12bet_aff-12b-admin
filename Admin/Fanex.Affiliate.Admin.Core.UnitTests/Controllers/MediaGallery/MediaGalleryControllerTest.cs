@@ -162,52 +162,52 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             Assert.Equal(selectedBannerId, passedParam);
         }
 
-        [Fact]
-        public void InsertBanner_WhenCallWithValidParam_InsertSuccessful()
-        {
-            // Arrange
-            var bannerListService = new Mock<IBannerListService>();
-            bannerListService.Setup(s => s.InsertBanner(It.IsAny<HttpPostedFileBase>(), It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo());
-            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
+        //[Fact]
+        //public void InsertBanner_WhenCallWithValidParam_InsertSuccessful()
+        //{
+        //    // Arrange
+        //    var bannerListService = new Mock<IBannerListService>();
+        //    bannerListService.Setup(s => s.InsertBanner(It.IsAny<HttpPostedFileBase>(), It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo());
+        //    var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
 
-            // Action
-            var result = controller.InsertBanner(new MockFile(), new InsertUpdateBannerParam()) as JsonNetResult;
-            var resultInfo = result.Data as ResultInfo;
+        //    // Action
+        //    var result = controller.InsertBanner(new MockFile(), new InsertUpdateBannerParam()) as JsonNetResult;
+        //    var resultInfo = result.Data as ResultInfo;
 
-            // Assert
-            Assert.True(resultInfo.IsSuccessful);
-        }
+        //    // Assert
+        //    Assert.True(resultInfo.IsSuccessful);
+        //}
 
-        [Fact]
-        public void InsertBanner_WhenCallWithInvalidParam_ReturnError()
-        {
-            // Arrange
-            var controller = CreateMediaGalleryController();
-            controller.ModelState.AddModelError("Error01", string.Empty);
+        //[Fact]
+        //public void InsertBanner_WhenCallWithInvalidParam_ReturnError()
+        //{
+        //    // Arrange
+        //    var controller = CreateMediaGalleryController();
+        //    controller.ModelState.AddModelError("Error01", string.Empty);
 
-            // Action
-            var result = controller.InsertBanner(new MockFile(), new InsertUpdateBannerParam()) as JsonNetResult;
-            var resultInfo = result.Data as ResultInfo;
+        //    // Action
+        //    var result = controller.InsertBanner(new MockFile(), new InsertUpdateBannerParam()) as JsonNetResult;
+        //    var resultInfo = result.Data as ResultInfo;
 
-            // Assert
-            Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("You must browse banner to upload.", resultInfo.Message);
-        }
+        //    // Assert
+        //    Assert.False(resultInfo.IsSuccessful);
+        //    Assert.Equal("You must browse banner to upload.", resultInfo.Message);
+        //}
 
-        [Fact]
-        public void InsertBanner_WhenCallWithInvalidFile_ReturnError()
-        {
-            // Arrange
-            var controller = CreateMediaGalleryController();
+        //[Fact]
+        //public void InsertBanner_WhenCallWithInvalidFile_ReturnError()
+        //{
+        //    // Arrange
+        //    var controller = CreateMediaGalleryController();
 
-            // Action
-            var result = controller.InsertBanner(null, new InsertUpdateBannerParam()) as JsonNetResult;
-            var resultInfo = result.Data as ResultInfo;
+        //    // Action
+        //    var result = controller.InsertBanner(null, new InsertUpdateBannerParam()) as JsonNetResult;
+        //    var resultInfo = result.Data as ResultInfo;
 
-            // Assert
-            Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("You must browse banner to upload.", resultInfo.Message);
-        }
+        //    // Assert
+        //    Assert.False(resultInfo.IsSuccessful);
+        //    Assert.Equal("You must browse banner to upload.", resultInfo.Message);
+        //}
 
         [Fact]
         public void UpdateBanner_WhenCallWithValidParam_UpdateSuccessful()

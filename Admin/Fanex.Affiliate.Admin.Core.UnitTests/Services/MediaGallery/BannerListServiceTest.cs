@@ -86,59 +86,59 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             Assert.Equal(selectedBannerId, passedParam);
         }
 
-        [Fact]
-        public void InsertBanner_WhenCallWithInvalidFile_ReturnError()
-        {
-            // Arrange
-            var bannerValidationService = new Mock<IBannerValidationService>();
-            bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = ErrorMessage });
-            var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object);
+        //[Fact]
+        //public void InsertBanner_WhenCallWithInvalidFile_ReturnError()
+        //{
+        //    // Arrange
+        //    var bannerValidationService = new Mock<IBannerValidationService>();
+        //    bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = ErrorMessage });
+        //    var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object);
 
-            // Action
-            var result = service.InsertBanner(new MockFile(stream: new MemoryStream()), new InsertUpdateBannerParam());
+        //    // Action
+        //    var result = service.InsertBanner(new MockFile(stream: new MemoryStream()), new InsertUpdateBannerParam());
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(ErrorMessage, result.Message);
-        }
+        //    // Assert
+        //    Assert.False(result.IsSuccessful);
+        //    Assert.Equal(ErrorMessage, result.Message);
+        //}
 
-        [Fact]
-        public void InsertBanner_WhenCallWithInvalidInputFileName_ReturnError()
-        {
-            // Arrange
-            var param = new InsertUpdateBannerParam { InputFileName = "test.pdf" };
-            var bannerValidationService = new Mock<IBannerValidationService>();
-            bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
-            var systemFile = new Mock<ISystemFile>();
-            systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".pdf");
-            var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
+        //[Fact]
+        //public void InsertBanner_WhenCallWithInvalidInputFileName_ReturnError()
+        //{
+        //    // Arrange
+        //    var param = new InsertUpdateBannerParam { InputFileName = "test.pdf" };
+        //    var bannerValidationService = new Mock<IBannerValidationService>();
+        //    bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
+        //    var systemFile = new Mock<ISystemFile>();
+        //    systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".pdf");
+        //    var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
 
-            // Action
-            var result = service.InsertBanner(new MockFile(stream: new MemoryStream()), param);
+        //    // Action
+        //    var result = service.InsertBanner(new MockFile(stream: new MemoryStream()), param);
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(ErrorMessage, result.Message);
-        }
+        //    // Assert
+        //    Assert.False(result.IsSuccessful);
+        //    Assert.Equal(ErrorMessage, result.Message);
+        //}
 
-        [Fact]
-        public void InsertBanner_WhenCallWithExistedFile_ReturnError()
-        {
-            // Arrange
-            var bannerValidationService = new Mock<IBannerValidationService>();
-            bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
-            bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "The file name already exists." });
-            var systemFile = new Mock<ISystemFile>();
-            systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".gif");
-            var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
+        //[Fact]
+        //public void InsertBanner_WhenCallWithExistedFile_ReturnError()
+        //{
+        //    // Arrange
+        //    var bannerValidationService = new Mock<IBannerValidationService>();
+        //    bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
+        //    bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "The file name already exists." });
+        //    var systemFile = new Mock<ISystemFile>();
+        //    systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".gif");
+        //    var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
 
-            // Action
-            var result = service.InsertBanner(new MockFile(stream: new MemoryStream()), new InsertUpdateBannerParam { InputFileName = "abc.gif"});
+        //    // Action
+        //    var result = service.InsertBanner(new MockFile(stream: new MemoryStream()), new InsertUpdateBannerParam { InputFileName = "abc.gif" });
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("The file name already exists.", result.Message);
-        }
+        //    // Assert
+        //    Assert.False(result.IsSuccessful);
+        //    Assert.Equal("The file name already exists.", result.Message);
+        //}
 
         //[Fact]
         //public void InsertBanner_WhenCallWithValidParam_InsertSuccessfully()

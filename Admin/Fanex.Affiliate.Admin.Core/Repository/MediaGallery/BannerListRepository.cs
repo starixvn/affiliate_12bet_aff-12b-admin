@@ -73,13 +73,24 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             return item;
         }
 
-        public ResultInfo InsertBanner(InsertUpdateBannerParam param)
+        public ResultInfo InsertBanner(InsertMultipleBannersParam param)
         {
             const string SpKey = "Aff_Admin_Banner_Ins";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                AssignParam(objectDb, param);
+                objectDb.AddInParameter("filename", DbType.String, param.FilePath);
+                objectDb.AddInParameter("categories", DbType.String, param.Categories);
+                objectDb.AddInParameter("language", DbType.String, param.Language);
+                objectDb.AddInParameter("currencies", DbType.String, param.Currencies);
+                objectDb.AddInParameter("size", DbType.String, param.Size);
+                objectDb.AddInParameter("afftypes", DbType.String, param.AffTypes);
+                objectDb.AddInParameter("devicetypes", DbType.String, param.DeviceTypes);
+                objectDb.AddInParameter("imagetypes", DbType.String, param.ImageTypes);
+                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+
+                AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
 

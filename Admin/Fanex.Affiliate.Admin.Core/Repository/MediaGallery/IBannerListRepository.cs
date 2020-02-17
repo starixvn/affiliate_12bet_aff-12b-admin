@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         BannerInfo GetBannerDetail(int selectedBannerId);
 
-        ResultInfo InsertBanner(InsertUpdateBannerParam param);
+        ResultInfo InsertBanner(InsertMultipleBannersParam param);
 
         ResultInfo UpdateBanner(InsertUpdateBannerParam param);
 

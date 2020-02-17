@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Web;
 using System.IO;
 using Fanex.Affiliate.Admin.Core.Constants;
+using System.Text;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
@@ -45,40 +46,128 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return _bannerListRepository.GetBannerDetail(selectedBannerId);
         }
 
-        public ResultInfo InsertBanner(HttpPostedFileBase file, InsertUpdateBannerParam param)
+        private ResultInfo ValidateAllFiles(HttpPostedFileBase[] files)
         {
-            var fileName = file.FileName;
-            var result = _bannerValidationService.ValidateFile(fileName, file.ContentLength);
+            var resultValidateAllFiles = new ResultInfo();
+            var message = new StringBuilder();
+            foreach (var file in files)
+            {
+                var fileName = file.FileName;
+                var result = _bannerValidationService.ValidateFile(fileName, file.ContentLength);
 
+                if (!result.IsSuccessful)
+                {
+                    resultValidateAllFiles.Code = result.Code;
+                    result.Message = $"File {fileName} is incorrect.<br />" + result.Message;
+                    message.Append(result.Message);
+                }
+            }
+
+            resultValidateAllFiles.Message = message.ToString();
+            return resultValidateAllFiles;
+        }
+
+        private ResultInfo ValidateAllInputFileNames(string[] inputFileNames, HttpPostedFileBase[] files)
+        {
+            var resultValidateAllInputFileNames = new ResultInfo();
+            var message = new StringBuilder();
+            for (int i = 0; i < inputFileNames.Length; i ++)
+            {
+                var inputFileName = inputFileNames[i];
+
+                if (string.IsNullOrEmpty(inputFileNames[i]))
+                {
+                    var file = files[i];
+                    resultValidateAllInputFileNames.Code = file.FileName.Length > 50 ? Code.GeneralErrorCode : resultValidateAllInputFileNames.Code;
+                    message.Append($"The maximum length of file name is 50. Please choose another name for File Name {i + 1} or select another File.<br />");
+                } else
+                {
+                    if (!BannerHelper.IsValidExtension(_systemFile.GetExtension(inputFileName)))
+                    {
+                        resultValidateAllInputFileNames.Code = Code.GeneralErrorCode;
+                        message.Append($"File Name {i + 1} is incorrect.<br />" + Lang.InvalidBannerExtensionFile);
+                    }
+
+                    if (inputFileName.Length > 50)
+                    {
+                        resultValidateAllInputFileNames.Code = Code.GeneralErrorCode;
+                        message.Append($"The maximum length of file name is 50. Please choose another name File Name {i + 1}.<br />");
+                    }
+                }
+            }
+
+            resultValidateAllInputFileNames.Message = message.ToString();
+            return resultValidateAllInputFileNames;
+        }
+
+        public ResultInfo CheckMultipleFilesInFolder(string[] inputFileNames)
+        {
+            var resultCheckMultipleFilesInFolder = new ResultInfo();
+            var message = new StringBuilder();
+
+            for (int i = 0; i < inputFileNames.Length; i++)
+            {
+                var inputFileName = inputFileNames[i];
+                var filePath = $"CategoryMedia/{inputFileName}";
+                var result = _bannerValidationService.CheckFileInFolder("CategoryMedia/", filePath);
+
+                if(!result.IsSuccessful)
+                {
+                    message.Append($"{inputFileName}, ");
+
+                    if (result.Code != Code.GeneralErrorCode)
+                    {
+                        return result;
+                    }
+                }
+            }
+
+            resultCheckMultipleFilesInFolder.Message = message.Append("This file name(s) belong to existing banner(s). Please change the file name.").ToString();
+            return resultCheckMultipleFilesInFolder;
+        }
+
+        public ResultInfo InsertBanner(HttpPostedFileBase[] files, InsertMultipleBannersParam param)
+        {
+            var result = ValidateAllFiles(files);
             if (!result.IsSuccessful)
             {
                 return result;
             }
 
-            if (string.IsNullOrEmpty(param.InputFileName))
+            var inputFileNames = param.InputFileNames.Split(';');
+            result = ValidateAllInputFileNames(inputFileNames, files);
+            if (!result.IsSuccessful)
             {
-                param.InputFileName = fileName;
-            }
-            else
-            {
-                if (!BannerHelper.IsValidExtension(_systemFile.GetExtension(param.InputFileName)))
-                {
-                    return BannerHelper.CreateErrorResult();
-                }
+                return result;
             }
 
-            result = CheckFileInFolder(param, string.Empty);
-
-            if (result.IsSuccessful)
+            result = CheckMultipleFilesInFolder(inputFileNames);
+            if (!result.IsSuccessful)
             {
+                return result;
+            }
+
+            var message = new StringBuilder();
+
+            for (var i = 0; i < files.Length; i++)
+            {
+                var file = files[i];
+                    
                 using (var bitmap = new Bitmap(file.InputStream))
                 {
+                    var inputFileName = inputFileNames[i];
+                    param.FilePath = string.IsNullOrEmpty(inputFileName) ? $"CategoryMedia/{file.FileName}" : $"CategoryMedia/{inputFileName}";
                     param.Size = BannerHelper.GetSize(bitmap.Width, bitmap.Height);
-                    result = _bannerListRepository.InsertBanner(param);
+                    var resultInsert = _bannerListRepository.InsertBanner(param);
 
-                    if (result.IsSuccessful)
+                    if (resultInsert.IsSuccessful)
                     {
+                        message.Append($"File Name {i + 1} insert succesfully!");
                         UploadFile(bitmap, param.FilePath);
+                    } else
+                    {
+                        result.Code = resultInsert.Code;
+                        message.Append($"File Name {i + 1} insert failed!");
                     }
                 }
             }

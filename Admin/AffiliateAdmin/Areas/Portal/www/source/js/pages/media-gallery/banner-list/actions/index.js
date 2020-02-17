@@ -176,7 +176,15 @@ export const updateBanner = (param) => async () => {
 const handleExcute = async (url, param) => {
     const formData = new FormData();
     for (let key in param ) {
-        formData.append(key, param[key]);
+        key !== 'files' && formData.append(key, param[key]);
+    }
+
+    const files = param['files'];
+
+    if(files) {
+        for (let i = 0; i < files.length; i++) {
+            formData.append('files', files[i]);
+        }
     }
 
     const response = await post(url, formData);

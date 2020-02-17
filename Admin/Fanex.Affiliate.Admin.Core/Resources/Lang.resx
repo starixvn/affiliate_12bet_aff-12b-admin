@@ -373,16 +373,16 @@
     <value>Landing Page List</value>
   </data>
   <data name="InvalidBannerExtensionFile" xml:space="preserve">
-    <value>Sorry! We just support these file types : .jpg, .gif, .png, .jpeg</value>
+    <value>Sorry! We just support these file types : .jpg, .gif, .png, .jpeg&lt;br /&gt;</value>
   </data>
   <data name="InvalidBannerBrowser" xml:space="preserve">
     <value>You must browse banner to upload.</value>
   </data>
   <data name="InvalidBannerSize" xml:space="preserve">
-    <value>Your upload file size must be &lt;= 3 MB.</value>
+    <value>Your upload file size must be &lt;= 3 MB.&lt;br /&gt;</value>
   </data>
   <data name="InvalidBannerAlready" xml:space="preserve">
-    <value>The file name already exists.</value>
+    <value>The file name already exists.&lt;br /&gt;</value>
   </data>
   <data name="Casino" xml:space="preserve">
     <value>Casino</value>

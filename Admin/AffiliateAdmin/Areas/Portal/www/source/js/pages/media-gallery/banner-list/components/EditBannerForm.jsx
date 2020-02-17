@@ -142,7 +142,7 @@ export class EditBannerForm extends PureComponent {
         const deviceTypes = deviceTypeList.filter(item => item.checked).map(item => item.key).join(';');
         const { selectedBannerId } = this.props;
 
-        return Object.assign({}, { bannerId: selectedBannerId, files, inputFileNames: inputFileNames.map(item => item).join(';'), categories, subCategories, language, currencies, imageTypes, affTypes, deviceTypes });
+        return Object.assign({}, { bannerId: selectedBannerId, files, inputFileNames: inputFileNames.map(item => item ? item.trim() : '').join(';'), categories, subCategories, language, currencies, imageTypes, affTypes, deviceTypes });
     }
 
     _updateBanner = async (bannerInfo) => {
@@ -160,12 +160,13 @@ export class EditBannerForm extends PureComponent {
 
         if (isInsert) {
             for (let i = 0; i < inputFileNames.length; i++) {
-                let inputFileName = inputFileNames[i].name;
+                let inputFileName = inputFileNames[i];
 
                 if (inputFileName) {
-                    let result = validateInputFile(inputFileName);
+                    let result = validateInputFile(inputFileName.trim());
 
                     if (!result.isOK) {
+                        result.message = `File Name ${i + 1} incorrect.<br />` + result.message;
                         validInputFileNames = result;
                     }
                 } else {
@@ -192,7 +193,6 @@ export class EditBannerForm extends PureComponent {
                     message: 'You must enter a file name for banner.'
                 };
             }
-
         }
 
         return validInputFileNames;
