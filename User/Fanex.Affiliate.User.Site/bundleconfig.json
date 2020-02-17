@@ -181,12 +181,5 @@
       "www/source/js/components/authhelper.js",
       "www/source/js/pages/changepassword.js"
     ]
-  },
-  {
-    "outputFileName": "www/build/js/lib/require.js",
-    "inputFiles": [
-      "www/source/js/lib/require-2.3.6.min.js",
-      "www/source/js/config-require.js"
-    ]
   }
 ]

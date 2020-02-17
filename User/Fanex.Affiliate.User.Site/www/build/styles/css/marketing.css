@@ -47,10 +47,17 @@
     padding: 3px; }
 
 .list-content > li {
-  margin-top: 10px; }
+  padding-top: 8px;
+  padding-bottom: 12px;
+  border-top: 1px solid #DBDBDB; }
   .list-content > li .link-text {
     width: 100%;
     margin-top: 5px; }
+  .list-content > li :first-child {
+    border-top: none; }
+
+.list-content li:first-child {
+  border: none; }
 
 .banner-link {
   display: inline-block; }

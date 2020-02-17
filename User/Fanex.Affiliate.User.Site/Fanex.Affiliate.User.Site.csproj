@@ -524,7 +524,6 @@
     <Content Include="www\build\js\lib\modernizr-webp.min.js">
       <DependentUpon>modernizr-webp.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\lib\require.min.js" />
     <Content Include="www\build\js\login.js" />
     <Content Include="www\build\js\login.min.js">
       <DependentUpon>login.js</DependentUpon>
@@ -739,12 +738,10 @@
     <Content Include="www\source\js\components\pagetracking.js" />
     <Content Include="www\source\js\components\validation.custom.js" />
     <Content Include="www\source\js\components\website.js" />
-    <Content Include="www\source\js\config-require.js" />
     <Content Include="www\source\js\lib\hmac-sha256.js" />
     <Content Include="www\source\js\lib\jquery.validate.min.js" />
     <Content Include="www\source\js\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="www\source\js\lib\modernizr-webp.js" />
-    <Content Include="www\source\js\lib\require-2.3.6.min.js" />
     <Content Include="www\source\js\pages\account-overview\overview.js" />
     <Content Include="www\source\js\pages\account-overview\player-detail.js" />
     <Content Include="www\source\js\pages\account-overview\summary.js" />
