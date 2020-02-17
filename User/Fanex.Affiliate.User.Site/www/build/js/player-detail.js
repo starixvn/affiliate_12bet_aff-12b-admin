@@ -213,7 +213,7 @@
             var newPageInfo = $.extend({}, oldPageInfo, pageInfo);
             newPageInfo.totalPage = calculateTotalPage(newPageInfo.totalItems, newPageInfo.pageSize);
 
-            var $pagerContainer = $self.find('.page-container');
+            var $pagerContainer = $self.find('.pager-container');
             updatePageInfo($pagerContainer, newPageInfo.pageIndex + 1, newPageInfo.totalPage);
             var disableNextButton = isDisableNextButton(newPageInfo.pageIndex, newPageInfo.totalPage);
             resetToInitialState($pagerContainer, disableNextButton);
