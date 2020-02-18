@@ -211,6 +211,46 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             Assert.False(result.IsSuccessful);
             Assert.Equal(message, result.Message);
         }
+
+        [Fact]
+        public void GetSizeList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetSizeList());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            repository.Setup(r => r.GetObjectDb("Aff_Admin_MediaSize_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetSizeList(new SizeParam());
+
+            // Assert
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetSizeList_WhenCall_ReturnNullData()
+        {
+            // Arrange
+            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(false);
+
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            repository.Setup(r => r.GetObjectDb("Aff_Admin_MediaSize_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetSizeList(new SizeParam());
+
+            // Assert
+            Assert.Empty(result);
+        }
+
         private IDictionary<string, object> GetBannerList()
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
@@ -225,6 +265,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
                 ["Size"] = "320x250",
                 ["DeviceType"] = 1,
                 ["LastUpdate"] = new DateTime(2020,01,20)
+            };
+        }
+
+        private IDictionary<string, object> GetSizeList()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["SizeId"] = 123,
+                ["Size"] = "320x20"
             };
         }
     }

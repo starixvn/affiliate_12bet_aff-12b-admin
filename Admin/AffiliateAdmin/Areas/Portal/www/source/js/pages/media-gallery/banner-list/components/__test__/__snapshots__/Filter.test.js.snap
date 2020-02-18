@@ -202,53 +202,6 @@ exports[`banner list - components - Filter  render correctly 1`] = `
     >
       <Label
         className="mr-sm-2"
-        for="size"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
-        Size
-      </Label>
-      <Input
-        id="size"
-        name="size"
-        onChange={[Function]}
-        type="select"
-        value=""
-      >
-        <option
-          key="size-all"
-          value=""
-        >
-          All
-        </option>
-        <option
-          key="size-300x250"
-          value="300x250"
-        >
-          300x250
-        </option>
-        <option
-          key="size-500x350"
-          value="500x350"
-        >
-          500x350
-        </option>
-      </Input>
-    </FormGroup>
-    <FormGroup
-      className="mr-sm-3 pb-2"
-      tag="div"
-    >
-      <Label
-        className="mr-sm-2"
         for="affType"
         tag="label"
         widths={
@@ -322,6 +275,53 @@ exports[`banner list - components - Filter  render correctly 1`] = `
           value={1}
         >
           Mobile
+        </option>
+      </Input>
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-3 pb-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        for="size"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Size
+      </Label>
+      <Input
+        id="size"
+        name="size"
+        onChange={[Function]}
+        type="select"
+        value=""
+      >
+        <option
+          key="size-all"
+          value=""
+        >
+          All
+        </option>
+        <option
+          key="size-300x250"
+          value="300x250"
+        >
+          300x250
+        </option>
+        <option
+          key="size-500x350"
+          value="500x350"
+        >
+          500x350
         </option>
       </Input>
     </FormGroup>
@@ -592,53 +592,6 @@ exports[`banner list - components - Filter  render correctly with Casino's subca
     >
       <Label
         className="mr-sm-2"
-        for="size"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
-        Size
-      </Label>
-      <Input
-        id="size"
-        name="size"
-        onChange={[Function]}
-        type="select"
-        value=""
-      >
-        <option
-          key="size-all"
-          value=""
-        >
-          All
-        </option>
-        <option
-          key="size-300x250"
-          value="300x250"
-        >
-          300x250
-        </option>
-        <option
-          key="size-500x350"
-          value="500x350"
-        >
-          500x350
-        </option>
-      </Input>
-    </FormGroup>
-    <FormGroup
-      className="mr-sm-3 pb-2"
-      tag="div"
-    >
-      <Label
-        className="mr-sm-2"
         for="affType"
         tag="label"
         widths={
@@ -712,6 +665,53 @@ exports[`banner list - components - Filter  render correctly with Casino's subca
           value={1}
         >
           Mobile
+        </option>
+      </Input>
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-3 pb-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        for="size"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Size
+      </Label>
+      <Input
+        id="size"
+        name="size"
+        onChange={[Function]}
+        type="select"
+        value=""
+      >
+        <option
+          key="size-all"
+          value=""
+        >
+          All
+        </option>
+        <option
+          key="size-300x250"
+          value="300x250"
+        >
+          300x250
+        </option>
+        <option
+          key="size-500x350"
+          value="500x350"
+        >
+          500x350
         </option>
       </Input>
     </FormGroup>
@@ -982,53 +982,6 @@ exports[`banner list - components - Filter  render correctly with Sportbook's su
     >
       <Label
         className="mr-sm-2"
-        for="size"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
-        Size
-      </Label>
-      <Input
-        id="size"
-        name="size"
-        onChange={[Function]}
-        type="select"
-        value=""
-      >
-        <option
-          key="size-all"
-          value=""
-        >
-          All
-        </option>
-        <option
-          key="size-300x250"
-          value="300x250"
-        >
-          300x250
-        </option>
-        <option
-          key="size-500x350"
-          value="500x350"
-        >
-          500x350
-        </option>
-      </Input>
-    </FormGroup>
-    <FormGroup
-      className="mr-sm-3 pb-2"
-      tag="div"
-    >
-      <Label
-        className="mr-sm-2"
         for="affType"
         tag="label"
         widths={
@@ -1102,6 +1055,53 @@ exports[`banner list - components - Filter  render correctly with Sportbook's su
           value={1}
         >
           Mobile
+        </option>
+      </Input>
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-3 pb-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        for="size"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Size
+      </Label>
+      <Input
+        id="size"
+        name="size"
+        onChange={[Function]}
+        type="select"
+        value=""
+      >
+        <option
+          key="size-all"
+          value=""
+        >
+          All
+        </option>
+        <option
+          key="size-300x250"
+          value="300x250"
+        >
+          300x250
+        </option>
+        <option
+          key="size-500x350"
+          value="500x350"
+        >
+          500x350
         </option>
       </Input>
     </FormGroup>

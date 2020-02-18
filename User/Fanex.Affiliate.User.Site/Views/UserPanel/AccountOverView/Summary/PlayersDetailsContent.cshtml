@@ -1,0 +1,38 @@
+﻿@model List<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
+
+@{
+    var hasScroll = Model.Count() > 10;
+    var totalItem = ViewBag.TotalItem;
+    var startRowNumber = ViewBag.StartRowNumber;
+}
+
+@{
+    if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">@startRowNumber</td>
+                <td class="text-center break-all">@item.Username</td>
+                <td class="text-center">@item.RegisteredDate.ToString("dd-MMM-yyyy hh:mm tt")</td>
+                <td class="text-center">@item.Turnover.FormatDecimal()</td>
+                <td class="text-center">@item.Winloss.FormatDecimal()</td>
+                <td class="text-center">@item.Deposit.FormatDecimal()</td>
+                <td class="text-center">@item.Withdrawal.FormatDecimal()</td>
+                <td class="text-center">@item.Bonus.FormatDecimal()</td>
+                <td class="text-center">@item.BankingFee.FormatDecimal()</td>
+            </tr>
+
+            startRowNumber++;
+        }
+    }
+    else
+    {
+        <tr>
+            <td class="text-center" colspan="9">@Lang.NoInfo</td>
+        </tr>
+    }
+}
+
+<input type="hidden" id="HasScroll" value="@(hasScroll ? "has-scroll" : string.Empty)" />
+<input type="hidden" id="TotalItem" value="@totalItem" />

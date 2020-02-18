@@ -10,7 +10,7 @@ const UserPanelSubMenu = (props) => {
                 {
                     subMenuList.map(item => {
                         return (
-                            <NavItem>
+                            <NavItem key={item.title}>
                                 <NavLink active={item.isActive} href="javascript:;" onClick={item.handleClick}>{item.title}</NavLink>
                             </NavItem>
                         )

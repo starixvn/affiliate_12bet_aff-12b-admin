@@ -8,6 +8,7 @@ import * as utils from '../../../../modules/utils';
 describe('Login - components - AppContainer', () => {
     it('render correctly', () => {
         const result = shallow(<AppContainer />);
+        result.setState({ year: '2019' });
 
         expect(result).toMatchSnapshot();
     });

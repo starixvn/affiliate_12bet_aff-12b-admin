@@ -4,7 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
@@ -51,9 +51,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             // Arrange
             var param = 1271808;
             var passedParam = 0;
-            var trackingStatisticsRepository = new Mock<ITrackingStatisticsRepository>();
-            trackingStatisticsRepository.Setup(s => s.GetTrackingCodeList(param)).Returns(new List<string> { "Sportbook" }).Callback<int>(p => passedParam = p);
-            var controller = CreateCommonSettingController(trackingStatisticsRepository: trackingStatisticsRepository.Object);
+            var trackingStatisticsService = new Mock<ITrackingStatisticsService>();
+            trackingStatisticsService.Setup(s => s.GetTrackingCodeList(param)).Returns(new List<string> { "Sportbook" }).Callback<int>(p => passedParam = p);
+            var controller = CreateCommonSettingController(trackingStatisticsService: trackingStatisticsService.Object);
 
             // Action
             var result = controller.GetTrackingCodeList(param) as JsonNetResult;
@@ -67,14 +67,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         private CommonSettingController CreateCommonSettingController(
             IProductRepository productRepository = null,
             ILandingPageRepository landingPageRepository = null,
-            ITrackingStatisticsRepository trackingStatisticsRepository = null
+            ITrackingStatisticsService trackingStatisticsService = null
             )
         {
             var fakeProductRepository = productRepository ?? Mock.Of<IProductRepository>();
             var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
-            var fakeTrackingStatisticsRepository = trackingStatisticsRepository ?? Mock.Of<ITrackingStatisticsRepository>();
+            var faketrackingStatisticsService = trackingStatisticsService ?? Mock.Of<ITrackingStatisticsService>();
 
-            return new CommonSettingController(fakeProductRepository, fakeLandingPageRepository, fakeTrackingStatisticsRepository);
+            return new CommonSettingController(fakeProductRepository, fakeLandingPageRepository, faketrackingStatisticsService);
         }
     }
 }

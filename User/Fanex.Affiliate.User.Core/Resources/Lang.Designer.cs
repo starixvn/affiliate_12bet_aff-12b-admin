@@ -5084,7 +5084,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Size.
+        ///   Looks up a localized string similar to Media Size.
         /// </summary>
         public static string Size {
             get {
@@ -5796,7 +5796,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type.
+        ///   Looks up a localized string similar to Media Type.
         /// </summary>
         public static string Type {
             get {

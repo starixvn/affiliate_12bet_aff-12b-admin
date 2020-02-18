@@ -1515,7 +1515,7 @@
     <value>Website URL</value>
   </data>
   <data name="Size" xml:space="preserve">
-    <value>Size</value>
+    <value>Media Size</value>
   </data>
   <data name="Slot" xml:space="preserve">
     <value>Slot</value>
@@ -1707,7 +1707,7 @@
     <comment>87923</comment>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Type</value>
+    <value>Media Type</value>
   </data>
   <data name="Uganda" xml:space="preserve">
     <value>Uganda </value>

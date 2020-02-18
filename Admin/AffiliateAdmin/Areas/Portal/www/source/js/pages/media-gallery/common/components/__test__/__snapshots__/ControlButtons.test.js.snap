@@ -5,7 +5,7 @@ exports[`message - components - ControlButtons  render correctly 1`] = `
   <div
     className="my-2"
   >
-    <Memo(ButtonDeleteItems)
+    <ButtonDeleteItems
       fetchData={[Function]}
       hasIcon={true}
       isOpenNotification={true}

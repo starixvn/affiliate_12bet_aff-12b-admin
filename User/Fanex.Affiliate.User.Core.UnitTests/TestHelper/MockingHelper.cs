@@ -36,6 +36,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             var request = GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();
             server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");
+            server.Setup(s => s.HtmlDecode(It.IsAny<string>())).Returns<string>(s => $"{s}");
 
             controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
                 ctx.HttpContext.Request == request &&

@@ -232,43 +232,6 @@
         }
     };
 })(jQuery)
-var MarketingBase = (function ($) {
-    var _me = {
-        generateTextLink: function () {
-            var params = _me.getLinkGenerationParam();
-            _me.getTextLink(params);
-        },
-
-        getLinkGenerationParam: function () {
-            return {
-                selectedLanguage: $("#Language").val(),
-                selectedDomainId: $("#Domain").val(),
-                selectedPage: $("#MemberSitePage").val()
-            }
-        },
-
-        getTextLink: function (params) {
-            $.ajax({
-                type: "GET",
-                dataType: "html",
-                cache: false,
-                data: params,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GenerateLink"),
-                success: function (response) {
-                    $("#textLinkList").html(response);
-                },
-                beforeSend: function () {
-                    Site.showLoader();
-                },
-                complete: function () {
-                    Site.hideLoader();
-                }
-            });
-        },
-    };
-
-    return _me;
-})(jQuery);
 var MediaGallery = (function ($) {
     var CATEGORY_CASINO = "casino";
     var CATEGORY_SPORTSBOOK = "sportsbook";
@@ -298,6 +261,7 @@ var MediaGallery = (function ($) {
         initialize: function () {
             _me.initEvent();
             initPager();
+            _me.togglePager();
         },
 
         initEvent: function () {
@@ -313,10 +277,34 @@ var MediaGallery = (function ($) {
                     $("#SubCategory").html(optionAll);
                     $subCategoryContainer.addClass("hide");
                 }
+
+                _me.getSize();
+            });
+
+            $("#SubCategory").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#Language").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#Currency").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#ImageType").on("change", function () {
+                _me.getSize();
+            });
+
+            $("#DeviceType").on("change", function () {
+                _me.getSize();
             });
 
             $("#btnMarketingSearch").on("click", function () {
                 _me.submitSearch();
+
+                MarketingBase.generateTextLink();
             });
 
             $("#dataContainerList").on("change", "#DeviceType", function () {
@@ -327,15 +315,22 @@ var MediaGallery = (function ($) {
 
             $("#btnGenerateLink").on("click", function () {
                 _me.submitSearch();
+
+                MarketingBase.generateTextLink();
             });
+
+            new ClipboardJS('.copy-banner-code');
+        },
+
+        togglePager: function () {
+            var totalItem = parseInt($("#TotalItem").val());
+            $("#marketingPager").toggle(totalItem !== 0);
         },
 
         submitSearch: function(){
             _pageIndex = 0;
             var searchParams = _me.getSearchParam();
             _me.getBannerList(searchParams, _me.updatePager);
-
-            MarketingBase.generateTextLink();
         },
 
         getSubcategory: function (category) {
@@ -348,6 +343,35 @@ var MediaGallery = (function ($) {
                 success: function (response) {
                     var html = _me.buildOptionList(response, "Value", "Value", true);
                     $("#SubCategory").html(html);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
+
+        getSize: function () {
+            let param = {
+                category: $("#Category").val(),
+                subCategory: $("#SubCategory").val(),
+                language: $("#Language").val(),
+                currency: $("#Currency").val(),
+                imageType: $("#ImageType").val(),
+                deviceType: $("#DeviceType").val()
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: param,
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetSize"),
+                success: function (response) {
+                    var html = _me.buildOptionList(response, "Size", "Size", true);
+                    $("#Size").html(html);
                 },
                 beforeSend: function () {
                     Site.showLoader();
@@ -382,7 +406,8 @@ var MediaGallery = (function ($) {
                 selectedDomainId: $("#Domain").val(),
                 selectedPage: $("#MemberSitePage").val(),
                 pageIndex: _pageIndex + 1,
-                pageSize: _pageSize
+                pageSize: _pageSize,
+                screenWidth: screen.availWidth
             }
         },
 
@@ -397,8 +422,7 @@ var MediaGallery = (function ($) {
                     $("#marketingDataList").html(response);
                     onSuccess && onSuccess();
 
-                    var totalItem = parseInt($("#TotalItem").val());
-                    $("#marketingPager").toggle(totalItem !== 0);
+                    _me.togglePager();
                 }
             });
         },

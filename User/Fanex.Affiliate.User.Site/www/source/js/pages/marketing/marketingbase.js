@@ -19,7 +19,7 @@
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GenerateLink"),
+                url: Site.resolveRelativeUrl("UserPanel/OldMarketing/GenerateLink"),
                 success: function (response) {
                     $("#textLinkList").html(response);
                 },

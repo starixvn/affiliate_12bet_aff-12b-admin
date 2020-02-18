@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [ChildActionOnly]
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult AuthenticationForm(string v)
+        public ActionResult AuthenticationForm()
         {
             var viewModel = new AuthenticationFormViewModel
             {
@@ -71,6 +71,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             userParam.Language = SessionService.CurrentLanguage;
             userParam.UserAgent = Request.UserAgent;
             userParam.IsVerifyingAccount = false;
+            userParam.LoginInfo = Uri.UnescapeDataString(userParam.LoginInfo);
             var loginResult = AuthService.GetLoginResult(userParam, false);
 
             if (loginResult.Result.ShouldVerifyAccount)

@@ -3,7 +3,7 @@ using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using ONEbook.UM.Filters;
 using Fanex.Affiliate.Admin.Core.Constants;
 
@@ -16,17 +16,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly ILandingPageRepository _landingPageRepository;
-        private readonly ITrackingStatisticsRepository _trackingStatisticsRepository;
+        private readonly ITrackingStatisticsService _trackingStatisticsService;
 
         public CommonSettingController(
             IProductRepository productRepository,
             ILandingPageRepository landingPageRepository,
-            ITrackingStatisticsRepository trackingStatisticsRepository
+            ITrackingStatisticsService trackingStatisticsService
             )
         {
             _productRepository = productRepository;
             _landingPageRepository = landingPageRepository;
-            _trackingStatisticsRepository = trackingStatisticsRepository;
+            _trackingStatisticsService = trackingStatisticsService;
         }
 
         [HttpPost]
@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             return new JsonNetResult
             {
-                Data = _trackingStatisticsRepository.GetTrackingCodeList(affId)
+                Data = _trackingStatisticsService.GetTrackingCodeList(affId)
             };
         }
     }

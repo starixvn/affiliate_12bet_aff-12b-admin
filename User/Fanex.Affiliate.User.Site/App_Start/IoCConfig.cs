@@ -70,8 +70,10 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<AuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MarketingRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<OldMarketingRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemoryCacheService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MarketingService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<OldMarketingService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CryptographyService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<NewsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -98,6 +100,10 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<VerificationRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SecurityQuestionRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SecurityQuestionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AccountOverviewRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            builder.RegisterType<QrCodeUrlGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<PngImageHandler>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

@@ -1,0 +1,29 @@
+﻿
+<div class="summary">
+    <div class="form-group">
+        <div id="monthPicker" class="form-wrapper d-inline-block">
+            <input readonly id="MonthDate" data-original-date="@DateTime.Now.ToString("MM/dd/yyyy")" class="form-control d-inline-block" type="text" value="@DateTime.Now.ToString("MMM-yyyy")" />
+            <span class="glyphicon glyphicon-calendar" id="monthPickerTrigger"></span>
+        </div>
+        <div class="d-inline-block">
+            <button class="btn btn-submit" id="statisticsSubmit" type="button">@Lang.Submit</button>
+        </div>
+    </div>
+    <div class="summary-content">
+        <div class="dashboard-section" id="dashboard-section"></div>
+
+        <div class="details-section" id="details-section">
+            <div class="tab-menu details-section-menu" id="details-section-menu">
+                <ul class="menu list-unstyled">
+                    <li><a href="javascript:;" data-name="Overview" class="menu-item details-section-menu-item" id="menuOverview">Overview</a></li>
+                    <li><a href="javascript:;" data-name="PlayersDetails" class="menu-item details-section-menu-item" id="menuPlayersDetails">Players Details</a></li>
+                </ul>
+            </div>
+            <div class="details-section-content" id="details-section-content"></div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="ToDay" value="@DateTime.Now.ToString("MM/dd/yyyy")" />
+
+<script src="@Url.RenderLink("~/www/build/js/summary.js")"></script>

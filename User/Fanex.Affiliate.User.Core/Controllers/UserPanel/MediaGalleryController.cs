@@ -24,7 +24,7 @@
 
         [HttpGet]
         [AjaxOnly]
-        public ActionResult Index()
+        public ActionResult Index(int screenWidth)
         {
             var userSession = SessionService.UserSession;
             var searchForm = GetSearchFormViewModel(true);
@@ -43,20 +43,19 @@
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,
                 TextLinkTemplate = AppSetting.TextLinkTemplate,
-                BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain
+                BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain,
+                ScreenWidth = screenWidth
             };
 
             var viewModel = new MarketingViewModel
             {
                 SearchForm = searchForm,
-                LinkForm = linkForm,
-                TextLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, searchForm.LanguageList),
                 MarketingDataList = GetBannerList(bannerParam)
             };
 
             ViewBag.TotalItem = bannerParam.Nrows;
 
-            return View("~/Views/UserPanel/Marketing/MediaGallery/Index.cshtml", viewModel);
+            return View("~/Views/UserPanel/AccountOverview/MediaGallery/Index.cshtml", viewModel);
         }
 
         private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)

@@ -1,48 +1,30 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System;
     using System.Web.Mvc;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
-    using MetalModels.UserPanel;
-    using ViewModels.UserPanel;
+    using Repository.UserPanel;
 
     [CustomAuthorize]
     public class AccountOverviewController : BaseController
     {
-        private readonly IStatisticsRepository _statisticsRepository;
-        private readonly IAccountRepository _accountRepository;
+        private readonly IAccountOverviewRepository _accountOverviewRepository;
         public AccountOverviewController(ISessionService sessionService,
             ILanguageService languageService,
-            IStatisticsRepository statisticsRepository,
-            IAccountRepository accountRepository
+            IAccountOverviewRepository accountOverviewRepository
             ) : base(sessionService, languageService)
         {
-            _statisticsRepository = statisticsRepository;
-            _accountRepository = accountRepository;
+            _accountOverviewRepository = accountOverviewRepository;
         }
 
         [HttpGet]
         [AjaxOnly]
-        public ActionResult Index(DateTime? monthDate)
+        public ActionResult Index()
         {
-            var param = new StatisticsOverviewParam
-            {
-                AffId = SessionService.UserSession.AffId,
-                MonthDate = monthDate.HasValue ? monthDate.Value : DateTime.Now.Date,
-                IsInternal = SessionService.IsInternal
-            };
+            var model = _accountOverviewRepository.GetLastLoginInfo(SessionService.UserSession.AffId);
 
-            var viewModel = new AccountOverviewViewModel
-            {
-                Statistics = _statisticsRepository.GetStatisticsOverview(param),
-                CommissionSettingList = _accountRepository.GetCommissionSettingList(param.AffId, param.IsInternal),
-                SelectedMonth = param.MonthDate
-            };
-
-            return View("~/Views/UserPanel/AccountOverView/Index.cshtml", viewModel);
+            return View("~/Views/UserPanel/AccountOverView/Index.cshtml", model);
         }
     }
 }

@@ -11,22 +11,22 @@
 
     <div class="search-container">
         <form class="form-horizontal">
-            @RazorHelper.RenderDropdownForMarketing("Category", Lang.Category, Model.CategoryList)
+            @RazorHelper.RenderDropdownForOldMarketing("Category", Lang.Category, Model.CategoryList)
 
-            @RazorHelper.RenderDropdownForMarketing("SubCategory", Lang.SubCategory, new List<SelectListItem>(), true, false)
+            @RazorHelper.RenderDropdownForOldMarketing("SubCategory", Lang.SubCategory, new List<SelectListItem>(), true, false)
 
-            @RazorHelper.RenderDropdownForMarketing("Language", Lang.Language, Model.LanguageList)
+            @RazorHelper.RenderDropdownForOldMarketing("Language", Lang.Language, Model.LanguageList)
 
-            @RazorHelper.RenderDropdownForMarketing("Currency", Lang.Currency, Model.CurrencyList)
+            @RazorHelper.RenderDropdownForOldMarketing("Currency", Lang.Currency, Model.CurrencyList)
 
             @if (Model.ImageTypeList != null)
             {
-                @RazorHelper.RenderDropdownForMarketing("ImageType", Lang.Type, Model.ImageTypeList)
+                @RazorHelper.RenderDropdownForOldMarketing("ImageType", Lang.Type, Model.ImageTypeList)
             }
 
             @if (Model.SizeList != null)
             {
-                @RazorHelper.RenderDropdownForMarketing("Size", Lang.Size, Model.SizeList)
+                @RazorHelper.RenderDropdownForOldMarketing("Size", Lang.Size, Model.SizeList)
             }
 
             <div class="form-group">

@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.MarketingViewModel
+
+<div class="row">
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.TextLink</span>
+        </div>
+        <div class="col-lg-4" id="linkForm">
+            @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_LinkForm.cshtml", Model.LinkForm); }
+        </div>
+        <div class="col-lg-8" id="textLinkList">
+            @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", Model.QrCodeList); }
+        </div>
+    </div>
+
+</div>
+<script src="~/www/source/js/components/clipboard.min.js"></script>
+<script src="@Url.RenderLink("~/www/build/js/generated-qrcode.js")"></script>

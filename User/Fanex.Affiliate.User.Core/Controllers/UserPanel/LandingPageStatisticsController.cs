@@ -23,7 +23,6 @@
         public LandingPageStatisticsController(ISessionService sessionService,
             ILanguageService languageService,
             IStatisticsRepository statisticsRepository,
-            IAccountRepository accountRepository,
             IMarketingService marketingService
             ) : base(sessionService, languageService)
         {
@@ -48,11 +47,9 @@
                 ToDate = now
             };
 
-            var bennerTypeList = _marketingService.GetBannerTypeList(SessionService.IsInternal);
-
             var viewModel = new LandingPageStatisticsViewModel
             {
-                LanguageList = MarketingHelper.GetLanguageList(bennerTypeList, userSession.PreferredLanguage),
+                LanguageList = MarketingHelper.GetLanguageList(_marketingService.GetLanguageList(SessionService.IsInternal), userSession.PreferredLanguage),
                 MemberSitePageList = _marketingService.GetLandingPageList(isInternal),
                 FromDate = landingPageParam.FromDate,
                 ToDate = landingPageParam.ToDate,

@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
         public BaseMarketingController(ISessionService sessionService, IAppSetting appSetting,
             ILanguageService languageService,
-             IMarketingService marketingService)
+            IMarketingService marketingService)
             : base(sessionService, languageService)
         {
             MarketingService = marketingService;
@@ -30,20 +30,23 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         }
         protected SearchFormViewModel GetSearchFormViewModel(bool isMediaPage)
         {
-            var bannerTypeList = MarketingService.GetBannerTypeList(SessionService.IsInternal);
-
-            var categoryType = isMediaPage ? BannerTypeName.CategoryMedia : BannerTypeName.Category;
+            var categoryList = MarketingService.GetCategoryList(isMediaPage, SessionService.IsInternal).Where(c => c.CategoryId == c.ParentCategoryId);
+            var languageList = MarketingService.GetLanguageList(SessionService.IsInternal);
+            var currencyList = MarketingService.GetCurrencyList(SessionService.IsInternal);
             var viewModel = new SearchFormViewModel
             {
-                CategoryList = GetDataByType(bannerTypeList, categoryType),
-                LanguageList = MarketingHelper.GetLanguageList(bannerTypeList, SessionService.UserSession.PreferredLanguage),
-                CurrencyList = GetDataByType(bannerTypeList, BannerTypeName.Currency)
+                CategoryList = categoryList.Select(i => new SelectListItem { Value = i.Category, Text = Lang.ResourceManager.GetString(i.Category.Trim()) ?? i.Category }),
+                LanguageList = MarketingHelper.GetLanguageList(languageList, SessionService.UserSession.PreferredLanguage),
+                CurrencyList = currencyList.Select(i => new SelectListItem { Value = i.Currency, Text = Lang.ResourceManager.GetString(i.Currency.Trim()) ?? i.Currency })
             };
 
             if (isMediaPage)
             {
-                viewModel.ImageTypeList = GetDataByType(bannerTypeList, BannerTypeName.ImageType);
-                viewModel.SizeList = GetDataByType(bannerTypeList, BannerTypeName.Size);
+                var sizeList = MarketingService.GetSizeList(new SizeParam(), SessionService.IsInternal);
+                var bannerTypeList = MarketingService.GetBannerTypeList(SessionService.IsInternal);
+
+                viewModel.ImageTypeList = bannerTypeList.Select(i => new SelectListItem { Value = i.Type, Text = Lang.ResourceManager.GetString(i.Type.Trim()) ?? i.Type });
+                viewModel.SizeList = sizeList.Select(i => new SelectListItem { Value = i.Size, Text = Lang.ResourceManager.GetString(i.Size.Trim()) ?? i.Size });
             }
 
             return viewModel;
@@ -61,12 +64,6 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             };
 
             return viewModel;
-        }
-
-        protected IEnumerable<SelectListItem> GetDataByType(IEnumerable<BannerType> bannerTypeList, string type)
-        {
-            return bannerTypeList.Where(p => p.Type.MatchWith(type))
-                .Select(i => new SelectListItem { Value = i.Value, Text = Lang.ResourceManager.GetString(i.Value.Trim()) ?? i.Value });
         }
 
         protected IDictionary<string, string> GetTextLinkList(string selectedLanguage, string selectedPage,

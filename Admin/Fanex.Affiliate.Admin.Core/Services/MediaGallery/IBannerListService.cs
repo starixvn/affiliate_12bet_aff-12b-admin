@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using System.Collections.Generic;
 using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
@@ -16,5 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         ResultInfo UpdateBanner(HttpPostedFileBase file, InsertUpdateBannerParam param);
 
         ResultInfo DeleteBanners(DeleteBannerParam param);
+
+        IEnumerable<MediaGalleryFilterItem> GetSizeList(SizeParam param);
     }
 }

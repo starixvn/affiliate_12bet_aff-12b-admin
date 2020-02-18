@@ -139,6 +139,10 @@
       <HintPath>..\..\packages\Otp.NET.1.2.1\lib\net45\Otp.NET.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="QRCoder, Version=1.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\QRCoder.1.3.6\lib\net40\QRCoder.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
       <Private>True</Private>
@@ -205,6 +209,8 @@
     <Compile Include="BusinessService\ContactService.cs" />
     <Compile Include="BusinessService\ICaptchaService.cs" />
     <Compile Include="BusinessService\ICommissionReportService.cs" />
+    <Compile Include="BusinessService\IOldMarketingService.cs" />
+    <Compile Include="BusinessService\IQrCodeGeneratorService.cs" />
     <Compile Include="BusinessService\ISecurityQuestionService.cs" />
     <Compile Include="BusinessService\ITwoFactorAuthService.cs" />
     <Compile Include="BusinessService\IVerificationService.cs" />
@@ -219,7 +225,9 @@
     <Compile Include="BusinessService\IAccountService.cs" />
     <Compile Include="BusinessService\IEmailService.cs" />
     <Compile Include="BusinessService\INewsService.cs" />
+    <Compile Include="BusinessService\OldMarketingService.cs" />
     <Compile Include="BusinessService\PaymentService.cs" />
+    <Compile Include="BusinessService\QrCodeUrlGeneratorService.cs" />
     <Compile Include="BusinessService\SecurityQuestionService.cs" />
     <Compile Include="BusinessService\TwoFactorAuthService.cs" />
     <Compile Include="BusinessService\VerificationService.cs" />
@@ -229,6 +237,7 @@
     <Compile Include="Constants\ControllerName.cs" />
     <Compile Include="Constants\DbParam.cs" />
     <Compile Include="Constants\Number.cs" />
+    <Compile Include="Constants\Page.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\Product.cs" />
     <Compile Include="Constants\TransType.cs" />
@@ -241,11 +250,16 @@
     <Compile Include="Controllers\UserPanel\BaseMarketingController.cs" />
     <Compile Include="Controllers\UserPanel\CommissionReportController.cs" />
     <Compile Include="Controllers\UserPanel\DailyEarningController.cs" />
+    <Compile Include="Controllers\UserPanel\OldBaseMarketingController.cs" />
+    <Compile Include="Controllers\UserPanel\OldMarketingController.cs" />
+    <Compile Include="Controllers\UserPanel\OldMediaGalleryController.cs" />
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
     <Compile Include="Controllers\UserPanel\ReferrersStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsController.cs" />
-    <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
+    <Compile Include="Controllers\UserPanel\SummaryController.cs" />
     <Compile Include="Controllers\UserPanel\TextBoxController.cs" />
+    <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
+    <Compile Include="Controllers\UserPanel\AffiliateLinkController.cs" />
     <Compile Include="Controllers\UserPanel\MediaGalleryController.cs" />
     <Compile Include="Controllers\UserPanel\MarketingController.cs" />
     <Compile Include="Controllers\VerificationAccountController.cs" />
@@ -291,6 +305,22 @@
     <Compile Include="DTO\ProductItem.cs" />
     <Compile Include="DTO\RsaKeyPair.cs" />
     <Compile Include="DTO\SecurityQuestion.cs" />
+    <Compile Include="DTO\UserPanel\OldBannerType.cs" />
+    <Compile Include="DTO\UserPanel\LastLoginInfo.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\CategoryType.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\CurrencyType.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\LanguageType.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\SizeType.cs" />
+    <Compile Include="DTO\UserPanel\OverviewDetail.cs" />
+    <Compile Include="DTO\UserPanel\OverviewSummary.cs" />
+    <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
+    <Compile Include="MetalModels\UserPanel\OldMarketingBannerParam.cs" />
+    <Compile Include="MetalModels\UserPanel\OldMarketingTextParam.cs" />
+    <Compile Include="Repository\UserPanel\IOldMarketingRepository.cs" />
+    <Compile Include="Repository\UserPanel\OldMarketingRepository.cs" />
+    <Compile Include="Utilities\OldMarketingHelper.cs" />
+    <Compile Include="ViewModels\UserPanel\Marketing\OldMarketingViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\Marketing\QrCodeLinkModel.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResult.cs" />
     <Compile Include="DTO\Transaction.cs" />
@@ -305,7 +335,7 @@
     <Compile Include="DTO\UserPanel\LandingPage.cs" />
     <Compile Include="DTO\UserPanel\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MarketingItem.cs" />
-    <Compile Include="DTO\UserPanel\BannerType.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\BannerType.cs" />
     <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
     <Compile Include="DTO\UserPanel\Domain.cs" />
     <Compile Include="DTO\UserPanel\Member.cs" />
@@ -327,6 +357,7 @@
     <Compile Include="Enum\MemberType.cs" />
     <Compile Include="Enum\PaymentRequestType.cs" />
     <Compile Include="Enum\TransType.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
@@ -364,6 +395,8 @@
     <Compile Include="MetalModels\UserPanel\PaymentParam.cs" />
     <Compile Include="MetalModels\UserPanel\DailyEarningParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentCancelParam.cs" />
+    <Compile Include="MetalModels\UserPanel\PlayerDetailParam.cs" />
+    <Compile Include="MetalModels\UserPanel\SizeParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatementHistoryParam.cs" />
     <Compile Include="MetalModels\UpdateAccountParam.cs" />
     <Compile Include="MetalModels\BaseParam.cs" />
@@ -394,7 +427,9 @@
     <Compile Include="Repository\ISecurityQuestionRepository.cs" />
     <Compile Include="Repository\IVerificationRepository.cs" />
     <Compile Include="Repository\SecurityQuestionRepository.cs" />
+    <Compile Include="Repository\UserPanel\AccountOverviewRepository.cs" />
     <Compile Include="Repository\UserPanel\CommissionReportRepository.cs" />
+    <Compile Include="Repository\UserPanel\IAccountOverviewRepository.cs" />
     <Compile Include="Repository\UserPanel\ICommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\MemberRepository.cs" />
     <Compile Include="Repository\UserPanel\IMemberRepository.cs" />
@@ -512,6 +547,7 @@
     <Compile Include="Utilities\EmailHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="CoreService\IMemoryCacheService.cs" />
+    <Compile Include="Utilities\IImageHandler.cs" />
     <Compile Include="Utilities\IWrapperUtility.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\IAppSetting.cs" />

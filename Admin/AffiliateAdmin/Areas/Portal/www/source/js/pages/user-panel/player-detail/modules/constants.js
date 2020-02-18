@@ -9,11 +9,12 @@ export const headerText = {
     Index: '#',
     UserName: 'User Name',
     IbcUserName: 'IBC User Name',
-    RegisteredDateText: 'Registered Date',
+    RegisteredDate: 'Registered Date',
     Turnover: 'Turnover',
-    Winlost: 'Winlost',
-    Deposit: 'Deposit',
+    Winloss: 'Winlost',
     Bonus: 'Bonus',
+    Deposit: 'Deposit',
+    Withdrawal: 'Withdrawal',
     BankingFee: 'Banking Fee'
 }
 
@@ -23,3 +24,15 @@ export const resource = {
     Product: globalResource.Product,
     Month: 'Month'
 }
+
+export const SortByIdList = {
+    Username: 1,
+    RegisteredDate: 2,
+    Deposit: 3,
+    Withdrawal: 4,
+    Turnover: 5,
+    Winloss: 6,
+    Bonus: 7,
+    BankingFee: 8,
+    IbcUsername: 9
+};

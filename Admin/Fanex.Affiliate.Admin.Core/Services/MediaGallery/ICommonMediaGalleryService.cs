@@ -10,7 +10,5 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         IEnumerable<MediaGalleryFilterItem> GetCurrencyList();
 
         IEnumerable<MediaGalleryFilterItem> GetImageTypeList();
-
-        IEnumerable<MediaGalleryFilterItem> GetSizeList();
     }
 }

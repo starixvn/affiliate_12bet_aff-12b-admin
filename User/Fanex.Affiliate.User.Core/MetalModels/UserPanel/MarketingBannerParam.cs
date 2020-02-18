@@ -22,6 +22,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public byte? DeviceType { get; set; }
 
+        [SpParam(Ignored = true)]
         public int TotalPages { get; set; }
 
         public int Nrows { get; set; }
@@ -31,5 +32,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         [SpParam(Ignored = true)]
         public string SubCategory { get; set; }
+
+        [SpParam(Ignored = true)]
+        public int ScreenWidth { get; set; }
     }
 }

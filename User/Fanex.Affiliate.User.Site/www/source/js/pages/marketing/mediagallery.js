@@ -73,7 +73,7 @@
                 dataType: "json",
                 cache: false,
                 data: { category: category },
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetSubCategory"),
+                url: Site.resolveRelativeUrl("UserPanel/OldMarketing/GetSubCategory"),
                 success: function (response) {
                     var html = _me.buildOptionList(response, "Value", "Value", true);
                     $("#SubCategory").html(html);
@@ -121,7 +121,7 @@
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetBanner"),
+                url: Site.resolveRelativeUrl("UserPanel/OldMarketing/GetBanner"),
                 success: function (response) {
                     $("#marketingDataList").html(response);
                     onSuccess && onSuccess();

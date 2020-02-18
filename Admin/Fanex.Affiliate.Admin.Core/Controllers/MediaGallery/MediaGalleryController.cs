@@ -12,7 +12,6 @@ using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using System.Web;
 using System.Linq;
 
@@ -54,13 +53,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 new SubMenu { Name = Lang.LandingPageList, Url = Url.Content("~/Portal/LandingPageList") }
             };
 
+            var sizeParam = new SizeParam
+            {
+                ImageType = param.ImageType
+            };
+
             var model = new BannerListViewModel
             {
                 CategoryList = _commonMediaGalleryService.GetCategoryList(BannerListCategory).Where(c => c.CategoryId == c.ParentCategoryId),
                 LanguageList = _languageService.GetLanguageList(),
                 CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
                 ImageTypeList = _commonMediaGalleryService.GetImageTypeList(),
-                SizeList = _commonMediaGalleryService.GetSizeList(),
+                SizeList = _bannerListService.GetSizeList(sizeParam),
                 AffTypeList = _affTypeService.GetAffTypeList(),
                 SubMenuList = subMenu,
                 Param = param
@@ -101,23 +105,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetBannerList(BannerParam param)
+        public ActionResult GetSizeList(SizeParam param)
         {
-            if (ModelState.IsValid)
-            {
-                return new JsonNetResult
-                {
-                    Data = _bannerListService.GetBannerList(param)
-                };
-            }
-
             return new JsonNetResult
             {
-                Data = new EntityResult<BannerInfo>
-                {
-                    MainData = new List<BannerInfo>(),
-                    TotalItem = 0
-                }
+                Data = _bannerListService.GetSizeList(param)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetBannerList(BannerParam param)
+        {
+            return new JsonNetResult
+            {
+                Data = _bannerListService.GetBannerList(param)
             };
         }
 

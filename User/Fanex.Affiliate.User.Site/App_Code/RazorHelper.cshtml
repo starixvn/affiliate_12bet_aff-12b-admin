@@ -20,6 +20,26 @@
 @helper RenderDropdownForMarketing(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAllOption = true, bool isVisible = true)
 {
     <div class="form-group @(isVisible ? string.Empty : "hide")">
+        <label class="col-sm-3 control-label">@label</label>
+        <div class="col-sm-9">
+            <select class="form-control" id="@id">
+                @if (hasAllOption)
+                {
+                    <option value="">@Fanex.Affiliate.User.Core.Resources.Lang.All</option>
+                }
+
+                @foreach (var item in dataList)
+                {
+                    <option value="@item.Value" @(item.Selected ? "selected" : string.Empty)>@item.Text</option>
+                }
+            </select>
+        </div>
+    </div>
+}
+
+@helper RenderDropdownForOldMarketing(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAllOption = true, bool isVisible = true)
+{
+    <div class="form-group @(isVisible ? string.Empty : "hide")">
         <label class="col-sm-2 control-label">@label</label>
         <div class="col-sm-4">
             <select class="form-control" id="@id">

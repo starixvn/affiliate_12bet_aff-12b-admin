@@ -35,12 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public EntityResult<BannerInfo> GetBannerList(BannerParam param)
         {
-            if ((string.Compare(param.Category, Lang.Casino, StringComparison.CurrentCultureIgnoreCase) == 0
-                || string.Compare(param.Category, Lang.Sportsbook, StringComparison.CurrentCultureIgnoreCase) == 0)
-                && !string.IsNullOrEmpty(param.SubCategory))
-            {
-                param.Category = param.SubCategory;
-            }
+            param.Category = GetCategory(param.Category, param.SubCategory);
 
             return _bannerListRepository.GetBannerList(param);
         }
@@ -153,7 +148,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return result;
         }
 
-        private void UploadFile(Bitmap bitmap, string fileName)
+        public IEnumerable<MediaGalleryFilterItem> GetSizeList(SizeParam param)
+        {
+            param.Category = GetCategory(param.Category, param.SubCategory);
+
+            return _bannerListRepository.GetSizeList(param);
+        }
+
+    private void UploadFile(Bitmap bitmap, string fileName)
         {
             foreach (var serverPath in _appSetting.BannerFolders)
             {
@@ -217,6 +219,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
 
             return result;
+        }
+
+        private static string GetCategory(string category, string subCategory)
+        {
+            if(string.IsNullOrEmpty(subCategory))
+            {
+                return category;
+            }
+
+            return subCategory;
         }
     }
 }

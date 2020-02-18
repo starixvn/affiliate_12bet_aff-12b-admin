@@ -32,6 +32,10 @@
     "inputFile": "www/source/styles/pages/marketing.scss"
   },
   {
+    "outputFile": "www/build/styles/css/oldmarketing.css",
+    "inputFile": "www/source/styles/pages/oldmarketing.scss"
+  },
+  {
     "outputFile": "www/build/styles/css/products.css",
     "inputFile": "www/source/styles/pages/products.scss"
   },
@@ -143,10 +147,10 @@
     "outputFile": "www/build/js/pagetracking.js",
     "inputFile": "www/source/js/components/pagetracking.js"
   },
-  {
-    "outputFile": "www/build/js/changepassword.js",
-    "inputFile": "www/source/js/changepassword.js"
-  },
+  //{
+  //  "outputFile": "www/build/js/changepassword.js",
+  //  "inputFile": "www/source/js/changepassword.js"
+  //},
   {
     "outputFile": "www/build/styles/css/verification-account.css",
     "inputFile": "www/source/styles/pages/verification-account.scss"

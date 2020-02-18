@@ -1,0 +1,89 @@
+﻿@model List<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
+
+<div class="table player-detail-table">
+    <table id="player-detail-table">
+        <thead>
+            <tr class="player-detail-table-header">
+                <th width="8%">No.</th>
+                <th width="16%" class="th" data-name="Username">
+                    <div class="th-wrapper">
+                        <span>User Name</span>
+                        <div class="icon-container">
+                            <span class="caret asc"></span>
+                            <span class="caret desc"></span>
+                        </div>
+                    </div>
+                </th>
+                <th width="16%" class="th" data-name="RegisteredDate">
+                    <div class="th-wrapper">
+                        <span>Registered Date</span>
+                        <div class="icon-container">
+                            <span class="caret asc"></span>
+                            <span class="caret desc"></span>
+                        </div>
+                    </div>
+                </th>
+                <th width="10%" class="th" data-name="Turnover">
+                    <div class="th-wrapper">
+                        <span>@Lang.Turnover</span>
+                        <div class="icon-container">
+                            <span class="caret asc"></span>
+                            <span id="defaultSorting" class="caret desc"></span>
+                        </div>
+                    </div>
+                </th>
+                <th width="10%" class="th" data-name="Winloss">
+                    <div class="th-wrapper">
+                        <span>Win/Loss</span>
+                        <div class="icon-container">
+                            <span class="caret asc"></span>
+                            <span class="caret desc"></span>
+                        </div>
+                    </div>
+                </th>
+                <th width="10%" class="th" data-name="Deposit">
+                    <div class="th-wrapper">
+                        <span>Deposit</span>
+                        <div class="icon-container">
+                            <span class="caret asc"></span>
+                            <span class="caret desc"></span>
+                        </div>
+                    </div>
+                </th>
+                <th width="10%" class="th" data-name="Withdrawal">
+                    <div class="th-wrapper">
+                        <span>Withdrawal</span>
+                        <div class="icon-container">
+                            <span class="caret asc"></span>
+                            <span class="caret desc"></span>
+                        </div>
+                    </div>
+                </th>
+                <th width="10%" class="th" data-name="Bonus">
+                    <div class="th-wrapper">
+                        <span>Bonus</span>
+                        <div class="icon-container">
+                            <span class="caret asc"></span>
+                            <span class="caret desc"></span>
+                        </div>
+                    </div>
+                </th>
+                <th width="10%" class="th" data-name="BankingFee">
+                    <div class="th-wrapper">
+                        <span>Banking Fee</span>
+                        <div class="icon-container">
+                            <span class="caret asc"></span>
+                            <span class="caret desc"></span>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="player-detail-content">
+            @{ Html.RenderPartial("~/Views/UserPanel/AccountOverView/Summary/PlayersDetailsContent.cshtml", Model); }
+        </tbody>
+    </table>
+</div>
+<div class="player-detail-pager" id="player-detail-pager"></div>
+
+<script src="@Url.RenderLink("~/www/build/js/player-detail.js")"></script>

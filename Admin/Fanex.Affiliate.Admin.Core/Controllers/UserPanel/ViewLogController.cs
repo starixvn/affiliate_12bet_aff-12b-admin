@@ -2,8 +2,8 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
@@ -11,12 +11,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class ViewLogController : BaseController
     {
-        private readonly IViewLogRepository _viewLogRepository;
+        private readonly IViewLogService _viewLogService;
         public ViewLogController(
             ISessionService sessionService,
-            IViewLogRepository viewLogRepository) : base(sessionService)
+            IViewLogService viewLogService) : base(sessionService)
         {
-            _viewLogRepository = viewLogRepository;
+            _viewLogService = viewLogService;
         }
 
         [HttpPost]
@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 return new JsonNetResult
                 {
-                    Data = _viewLogRepository.GetViewLogList(param)
+                    Data = _viewLogService.GetViewLogList(param)
                 };
             }
 

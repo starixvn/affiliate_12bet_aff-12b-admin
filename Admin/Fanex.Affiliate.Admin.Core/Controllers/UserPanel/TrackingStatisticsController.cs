@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
@@ -11,13 +11,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class TrackingStatisticsController : BaseController
     {
-        private readonly ITrackingStatisticsRepository _trackingStatisticsRepository;
+        private readonly ITrackingStatisticsService _trackingStatisticsService;
 
         public TrackingStatisticsController(
             ISessionService sessionService,
-            ITrackingStatisticsRepository trackingStatisticsRepository) : base(sessionService)
+            ITrackingStatisticsService trackingStatisticsService) : base(sessionService)
         {
-            _trackingStatisticsRepository = trackingStatisticsRepository;
+            _trackingStatisticsService = trackingStatisticsService;
         }
 
         [HttpPost]
@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 return new JsonNetResult
                 {
-                    Data = _trackingStatisticsRepository.GetTrackingStatisticsList(param)
+                    Data = _trackingStatisticsService.GetTrackingStatisticsList(param)
                 };
             }
 
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 return new JsonNetResult
                 {
-                    Data = _trackingStatisticsRepository.GetTrackingStatisticsDetailList(param)
+                    Data = _trackingStatisticsService.GetTrackingStatisticsDetailList(param)
                 };
             }
 

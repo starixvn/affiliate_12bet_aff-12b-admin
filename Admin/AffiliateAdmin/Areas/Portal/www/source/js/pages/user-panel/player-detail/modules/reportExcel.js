@@ -11,7 +11,7 @@ import {
 const HEADER_ROW_INDEX = 0;
 const DATA_ROW_INDEX = 1;
 
-const TOTAL_COLUMN = 9;
+const TOTAL_COLUMN = 10;
 
 const MAIN_SECTION_STYLE = 'mainSectionStyle';
 
@@ -19,11 +19,12 @@ const fields = {
     Index: 'Index',
     UserName: 'UserName',
     IbcUserName: 'IbcUserName',
-    RegisteredDateText: 'RegisteredDateText',
+    RegisteredDate: 'RegisteredDate',
     Turnover: 'Turnover',
-    Winlost: 'Winlost',
-    Deposit: 'Deposit',
+    Winloss: 'Winloss',
     Bonus: 'Bonus',
+    Deposit: 'Deposit',
+    Withdrawal: 'Withdrawal',
     BankingFee: 'BankingFee'
 }
 
@@ -38,7 +39,7 @@ export default class ReportExcel {
         this.columnConfigs = this._getcolumnConfigs();
     }
 
-    export () {
+    export() {
         Excel.process(() => {
             this._createHeader();
             this._createBodyData();
@@ -122,6 +123,8 @@ export default class ReportExcel {
             wpx: 150
         }, {
             wpx: 150
+        }, {
+            wpx: 150
         }];
     }
 
@@ -136,19 +139,22 @@ export default class ReportExcel {
             field: fields.IbcUserName,
             [MAIN_SECTION_STYLE]: bodyCellStyle.left
         }, {
-            field: fields.RegisteredDateText,
+            field: fields.RegisteredDate,
             [MAIN_SECTION_STYLE]: bodyCellStyle.center
         }, {
             field: fields.Turnover,
             [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
         }, {
-            field: fields.Winlost,
+            field: fields.Winloss,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
+        }, {
+            field: fields.Bonus,
             [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
         }, {
             field: fields.Deposit,
             [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
         }, {
-            field: fields.Bonus,
+            field: fields.Withdrawal,
             [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
         }, {
             field: fields.BankingFee,

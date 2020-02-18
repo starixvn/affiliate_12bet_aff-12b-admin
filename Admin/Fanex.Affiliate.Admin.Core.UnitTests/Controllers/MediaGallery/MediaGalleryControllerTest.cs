@@ -29,13 +29,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             commonMediaGalleryService.Setup(c => c.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryId = 123, CategoryName = "Category", ParentCategoryId = 123 } });
             commonMediaGalleryService.Setup(c => c.GetCurrencyList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
             commonMediaGalleryService.Setup(c => c.GetImageTypeList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 345, Name = "Image" } });
-            commonMediaGalleryService.Setup(c => c.GetSizeList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
             var languageService = new Mock<ILanguageService>();
             languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
             var affTypeService = new Mock<IAffTypeService>();
             affTypeService.Setup(a => a.GetAffTypeList()).Returns(new List<AffTypeInfo> { new AffTypeInfo { AffTypeId = 2, AffTypeName = "Asian" } });
 
-            var controller = CreateMediaGalleryController(languageService: languageService.Object, commonMediaGalleryService: commonMediaGalleryService.Object, affTypeService: affTypeService.Object);
+            SizeParam passedSizeParam = null;
+            var bannerListService = new Mock<IBannerListService>();
+            bannerListService.Setup(t => t.GetSizeList(It.IsAny<SizeParam>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } }).Callback<SizeParam>(p => passedSizeParam = p);
+            var controller = CreateMediaGalleryController(languageService: languageService.Object, commonMediaGalleryService: commonMediaGalleryService.Object, bannerListService: bannerListService.Object, affTypeService: affTypeService.Object);
 
             var urlHelperMock = new Mock<UrlHelper>();
             urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/MediaGallery");
@@ -55,10 +57,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             Assert.Single(model.SizeList);
             Assert.Single(model.AffTypeList);
             Assert.Equal(param, model.Param);
+            Assert.Equal(param.ImageType, passedSizeParam.ImageType);
         }
 
         [Fact]
-        public void GetSubCategoryCasinoList_WhenCallWithValidParam_ExcuteWithCorrectData()
+        public void GetSubCategoryCasinoList_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
@@ -73,7 +76,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         }
 
         [Fact]
-        public void GetSubCategorySportsbookList_WhenCallWithValidParam_ExcuteWithCorrectData()
+        public void GetSubCategorySportsbookList_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
@@ -88,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         }
 
         [Fact]
-        public void GetBannerRootUrl_WhenCallWithValidParam_ExcuteWithCorrectData()
+        public void GetBannerRootUrl_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
@@ -103,7 +106,25 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         }
 
         [Fact]
-        public void GetBannerList_WhenCallWithValidParam_ExcuteWithCorrectData()
+        public void GetSizeList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var param = new SizeParam();
+            SizeParam passedSizeParam = null;
+            var bannerListService = new Mock<IBannerListService>();
+            bannerListService.Setup(t => t.GetSizeList(param)).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } }).Callback<SizeParam>(p => passedSizeParam = p);
+            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
+
+            // Action
+            var result = controller.GetSizeList(param) as JsonNetResult;
+
+            // Assert
+            Assert.Single(result.Data as IEnumerable<MediaGalleryFilterItem>);
+            Assert.Equal(param, passedSizeParam);
+        }
+
+        [Fact]
+        public void GetBannerList_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var param = new BannerParam();
@@ -120,22 +141,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             Assert.Single(entityResult.MainData);
             Assert.Equal(1, entityResult.TotalItem);
             Assert.Equal(param, passedParam);
-        }
-
-        [Fact]
-        public void GetBannerList_WhenCallWithInvalidParam_ReturnEmptyData()
-        {
-            // Arrange
-            var controller = CreateMediaGalleryController();
-            controller.ModelState.AddModelError("Error01", string.Empty);
-
-            // Action
-            var result = controller.GetBannerList(new BannerParam()) as JsonNetResult;
-            var entityResult = result.Data as EntityResult<BannerInfo>;
-
-            // Assert
-            Assert.Empty(entityResult.MainData);
-            Assert.Equal(0, entityResult.TotalItem);
         }
 
         [Fact]

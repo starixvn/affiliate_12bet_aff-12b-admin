@@ -1,7 +1,36 @@
-﻿var UserPanel = (function ($) {
+﻿var SUPPORT_MIN_WITDH = 716;
+var SUB_MENU_HEIGHT = 43;
+var DETAILS_SECTION_MENU_HEIGHT = 33;
+
+function handleSetTop() {
+    let headerHeight = $('#overview-table-header').height();
+    $('#overview-table-total > th').css({ top: `${SUB_MENU_HEIGHT + headerHeight}px` });
+}
+
+function handleScroll() {
+    if (window.innerWidth < SUPPORT_MIN_WITDH) {
+        $("#details-section-menu").removeClass("details-section-sticky");
+    } else {
+        let stickyPoint = $("#details-section").offset().top;
+
+        if (window.pageYOffset >= stickyPoint) {
+            $("#details-section-menu").addClass("details-section-sticky");
+        }
+        if (window.pageYOffset < stickyPoint - DETAILS_SECTION_MENU_HEIGHT) {
+            $("#details-section-menu").removeClass("details-section-sticky");
+        }
+    }
+}
+
+function handleResize() {
+    handleScroll();
+    handleSetTop()
+}
+
+var UserPanel = (function ($) {
     var DEFAULT_ACTION = 'AccountOverView';
     var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest",
-        "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics",
+        "OldMediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics",
         "DailyEarning", "DailyEarningDetail", "BetList", "MessageHistory", "CommissionReport"];
 
     var _ajaxRequest = null;
@@ -66,6 +95,9 @@
                 }
                 _me.datepicker = [];
             }
+
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleResize);
         },
 
         getActionUrl: function (onlyAction) {

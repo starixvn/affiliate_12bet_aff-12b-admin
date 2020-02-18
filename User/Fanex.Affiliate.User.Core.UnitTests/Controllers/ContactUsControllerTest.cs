@@ -23,7 +23,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void Index_WhenCallWithGet_ReturnCorrectView()
         {
             // Arrange
-            var controller = CreateController();
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(ac => ac.GetUserInfoById(Constant.DefaultAffId, false)).Returns(new UserInfo());
+            var controller = CreateController(accountRepository: accountRepository.Object);
 
             // Action
             var actionResult = controller.Index() as ViewResult;
@@ -62,6 +64,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             // Arrange
             var userInfo = new UserInfo
             {
+                AffId = 1271808,
                 UserName = Constant.DefaultUserName,
                 FirstName = "FirstName",
                 LastName = "LastName",
@@ -73,10 +76,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
             // Action
             var actionResult = controller.Index() as ViewResult;
-            var result = actionResult.Model;
+            var result = actionResult.Model as UserInfo;
 
             // Assert
-            Assert.Equal(userInfo, result);
+            Assert.Equal(userInfo.AffId, result.AffId);
         }
 
         [Fact]

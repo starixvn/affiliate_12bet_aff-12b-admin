@@ -66,7 +66,7 @@
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetText"),
+                url: Site.resolveRelativeUrl("UserPanel/OldMarketing/GetText"),
                 success: function (response) {
                     $("#marketingDataList").html(response);
                     onSuccess && onSuccess();

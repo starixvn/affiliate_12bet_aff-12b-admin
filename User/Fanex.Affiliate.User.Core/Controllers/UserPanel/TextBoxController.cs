@@ -51,7 +51,7 @@
                 TextLinkTemplate = AppSetting.TextLinkTemplate
             };
 
-            var viewModel = new MarketingViewModel
+            var viewModel = new OldMarketingViewModel
             {
                 SearchForm = searchForm,
                 LinkForm = linkForm,

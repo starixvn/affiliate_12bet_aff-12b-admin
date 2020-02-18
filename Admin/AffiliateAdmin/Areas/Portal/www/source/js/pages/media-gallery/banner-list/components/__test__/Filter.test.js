@@ -51,22 +51,15 @@ describe('banner list - components - Filter ', () => {
     });
 
     it("render correctly with Casino's subcategory", () => {
-        const event = {
-            target: { value: 'Casino' }
-        };
-
         const wrapper = shallow(<Filter {...defaultProps} />);
-        wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
+        wrapper.setState({ category: 'Casino' });
 
         expect(wrapper).toMatchSnapshot();
     });
 
     it("render correctly with Sportbook's subcategory", () => {
-        const event = {
-            target: { value: 'Sportsbook' }
-        };
         const wrapper = shallow(<Filter {...defaultProps} />);
-        wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
+        wrapper.setState({ category: 'Sportsbook' });
 
         expect(wrapper).toMatchSnapshot();
     });
@@ -78,64 +71,48 @@ describe('banner list - components - Filter ', () => {
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ "AffType": 2, "Category": "", "Currency": "", "DeviceType": 0, "ImageType": "", "Language": "", "PageIndex": 1, "PageSize": 20, "Size": "", "SubCategory": "" });
+        expect(props.setParam).toHaveBeenCalledWith({"PageIndex": 1, "PageSize": 20, "affType": 2, "category": "", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 
-    it('setCategory - should change category when change category select', () => {
-        const event = {
-            target: { value: 'category' }
-        };
-        const wrapper = shallow(<Filter {...defaultProps} />);
-
-        wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
-
-        expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('category');
-    });
-
-    it("setSubCategory - should change category when change subCategory select", () => {
+    it('_handleChangeCategory - should change category when change category select', () => {
         const event = {
             target: { value: 'Casino' }
         };
-        const wrapper = shallow(<Filter {...defaultProps} />);
-        wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
-
-        wrapper.find('Input[type="select"][id="subCategory"]').simulate('change', { target: { value: 'Casino Bonus' } });
-
-        expect(wrapper.find('Input[type="select"][id="subCategory"]').prop('value')).toEqual('Casino Bonus');
-    });
-
-    it('setLanguage - should change category when change language select', () => {
-        const event = {
-            target: { value: 'language' }
-        };
-        const wrapper = shallow(<Filter {...defaultProps} />);
-
-        wrapper.find('Input[type="select"][id="language"]').simulate('change', event);
-
-        expect(wrapper.find('Input[type="select"][id="language"]').prop('value')).toEqual('language');
-    });
-
-    it('setCurrency - should change category when change currency select', () => {
-        const event = {
-            target: { value: 'currency' }
-        };
-        const wrapper = shallow(<Filter {...defaultProps} />);
-
-        wrapper.find('Input[type="select"][id="currency"]').simulate('change', event);
-
-        expect(wrapper.find('Input[type="select"][id="currency"]').prop('value')).toEqual('currency');
-    });
-
-    it('setImageType - should change category when change image select', () => {
-        const event = {
-            target: { value: 'Image' }
-        };
-        const props = Object.assign({}, defaultProps, { paramFromHome: { IsFromHome: true, ImageType: 'Flash' } })
+        const props = Object.assign({}, defaultProps, { getSizeList: jest.fn(), getSubCategoryCasinoList: jest.fn(), subCategoryCasinoList: null });
         const wrapper = shallow(<Filter {...props} />);
 
-        wrapper.find('Input[type="select"][id="imageType"]').simulate('change', event);
+        wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
 
-        expect(wrapper.find('Input[type="select"][id="imageType"]').prop('value')).toEqual('Image');
+        expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Casino');
+        expect(props.getSubCategoryCasinoList).toHaveBeenCalled();
+        expect(props.getSizeList).toHaveBeenCalledWith({"affType": 2, "category": "Casino", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
+    });
+
+    it('_handleChangeCategory - should change category when change category select', () => {
+        const event = {
+            target: { value: 'Sportsbook' }
+        };
+        const props = Object.assign({}, defaultProps, { getSizeList: jest.fn(), getSubCategorySportsbookList: jest.fn(), subCategorySportsbookList: null });
+        const wrapper = shallow(<Filter {...props} />);
+
+        wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
+
+        expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Sportsbook');
+        expect(props.getSubCategorySportsbookList).toHaveBeenCalled();
+        expect(props.getSizeList).toHaveBeenCalledWith({"affType": 2, "category": "Sportsbook", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
+    });
+
+    it("_handleChange - should call getSizeList and setState", () => {
+        const event = {
+            target: { name: 'currency', value: 'USD' }
+        };
+        const props = Object.assign({}, defaultProps, { getSizeList: jest.fn() });
+        const wrapper = shallow(<Filter {...props} />);
+        wrapper.setState = jest.fn();
+        
+        wrapper.instance()._handleChange(event)
+        expect(wrapper.setState).toHaveBeenCalledWith({"currency": "USD"});
+        expect(props.getSizeList).toHaveBeenCalledWith({"affType": 2, "category": "", "currency": "USD", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 
     it('setSize - should change category when change size select', () => {
@@ -143,54 +120,33 @@ describe('banner list - components - Filter ', () => {
             target: { value: '300x250' }
         };
         const wrapper = shallow(<Filter {...defaultProps} />);
+        wrapper.setState = jest.fn();
 
         wrapper.find('Input[type="select"][id="size"]').simulate('change', event);
 
-        expect(wrapper.find('Input[type="select"][id="size"]').prop('value')).toEqual('300x250');
+        expect(wrapper.setState).toHaveBeenCalledWith({"size": "300x250"});
     });
 
-    it('setAffType - should change category when change affType select', () => {
-        const event = {
-            target: { value: '2' }
-        };
-        const wrapper = shallow(<Filter {...defaultProps} />);
-
-        wrapper.find('Input[type="select"][id="affType"]').simulate('change', event);
-
-        expect(wrapper.find('Input[type="select"][id="affType"]').prop('value')).toEqual('2');
-    });
-
-    it('setDeviceType - should change category when change deviceType select', () => {
-        const event = {
-            target: { value: 'mobile' }
-        };
-        const wrapper = shallow(<Filter {...defaultProps} />);
-
-        wrapper.find('Input[type="select"][id="deviceType"]').simulate('change', event);
-
-        expect(wrapper.find('Input[type="select"][id="deviceType"]').prop('value')).toEqual('mobile');
-    });
-
-    it('useEffect - should call getSubCategoryCasinoList, getSubCategorySportsbookList, setParamFromHome and setParam', () => {
-        const props = Object.assign({}, defaultProps, { paramFromHome: { IsFromHome: true }, subCategoryCasinoList: null, subCategorySportsbookList : null,
-            setParamFromHome: jest.fn(), setParam: jest.fn(), getSubCategoryCasinoList: jest.fn(), getSubCategorySportsbookList: jest.fn()});
+    it('componentDidMount - should call setParamFromHome amd _handleSearch', () => {
+        const props = Object.assign({}, defaultProps, { paramFromHome: { IsFromHome: true, ImageType: 'Flash' }, setParamFromHome: jest.fn(), setParam: jest.fn() });
         
-        mount(<Filter {...props} />);
+        const wrapper = shallow(<Filter {...props} />);
+        const instance = wrapper.instance();
 
-        expect(props.getSubCategoryCasinoList).toHaveBeenCalled();
-        expect(props.getSubCategorySportsbookList).toHaveBeenCalled();
+        instance.componentDidMount();
+
         expect(props.setParamFromHome).toHaveBeenCalledWith({ IsFromHome: false });
-        expect(props.setParam).toHaveBeenCalledWith({"AffType": 2, "Category": "", "Currency": "", "DeviceType": 0, "ImageType": "", "Language": "", "PageIndex": 1, "PageSize": 20, "Size": "", "SubCategory": ""});
+        expect(props.setParam).toHaveBeenCalledWith({"PageIndex": 1, "PageSize": 20, "affType": 2, "category": "", "currency": "", "deviceType": 0, "imageType": "Flash", "language": "", "size": "", "subCategory": ""});
     });
 
-    it('useEffect - should call getSubCategoryCasinoList, getSubCategorySportsbookList and not call setParamFromHome and setParam', () => {
-        const props = Object.assign({}, defaultProps, { subCategoryCasinoList: null, subCategorySportsbookList : null,
-            setParamFromHome: jest.fn(), setParam: jest.fn(), getSubCategoryCasinoList: jest.fn(), getSubCategorySportsbookList: jest.fn()});
+    it('componentDidMount - should not call setParamFromHome and _handleSearch', () => {
+        const props = Object.assign({}, defaultProps, { setParamFromHome: jest.fn(), setParam: jest.fn() });
         
-        mount(<Filter {...props} />);
+        const wrapper = shallow(<Filter {...props} />);
+        const instance = wrapper.instance();
 
-        expect(props.getSubCategoryCasinoList).toHaveBeenCalled();
-        expect(props.getSubCategorySportsbookList).toHaveBeenCalled();
+        instance.componentDidMount();
+
         expect(props.setParamFromHome).not.toHaveBeenCalled();
         expect(props.setParam).not.toHaveBeenCalled();
     });

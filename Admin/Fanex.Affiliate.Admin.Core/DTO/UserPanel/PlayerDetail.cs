@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public decimal Turnover { get; set; }
 
-        public decimal Winlost { get; set; }
+        public decimal Winloss { get; set; }
 
         public string RegisteredDateText => RegisteredDate.ToString("MM/dd/yyyy HH:mm:ss");
     }
