@@ -75,60 +75,66 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public ResultInfo InsertBanner(InsertMultipleBannersParam param)
         {
-            const string SpKey = "Aff_Admin_Banner_Ins";
+            //const string SpKey = "Aff_Admin_Banner_Ins";
 
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.AddInParameter("filename", DbType.String, param.FilePath);
-                objectDb.AddInParameter("categories", DbType.String, param.Categories);
-                objectDb.AddInParameter("language", DbType.String, param.Language);
-                objectDb.AddInParameter("currencies", DbType.String, param.Currencies);
-                objectDb.AddInParameter("size", DbType.String, param.Size);
-                objectDb.AddInParameter("afftypes", DbType.String, param.AffTypes);
-                objectDb.AddInParameter("devicetypes", DbType.String, param.DeviceTypes);
-                objectDb.AddInParameter("imagetypes", DbType.String, param.ImageTypes);
-                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+            //using (var objectDb = GetObjectDb(SpKey))
+            //{
+            //    objectDb.AddInParameter("filename", DbType.String, param.FilePath);
+            //    objectDb.AddInParameter("categories", DbType.String, param.Categories);
+            //    objectDb.AddInParameter("language", DbType.String, param.Language);
+            //    objectDb.AddInParameter("currencies", DbType.String, param.Currencies);
+            //    objectDb.AddInParameter("size", DbType.String, param.Size);
+            //    objectDb.AddInParameter("afftypes", DbType.String, param.AffTypes);
+            //    objectDb.AddInParameter("devicetypes", DbType.String, param.DeviceTypes);
+            //    objectDb.AddInParameter("imagetypes", DbType.String, param.ImageTypes);
+            //    objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
+            //    objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
-                AssignResultOutputParam(objectDb);
+            //    AssignResultOutputParam(objectDb);
 
-                objectDb.ExecuteNonQuery();
+            //    objectDb.ExecuteNonQuery();
 
-                return GetResultInfo(objectDb);
-            }
+            //    return GetResultInfo(objectDb);
+            //}
+
+            return new ResultInfo();
         }
 
-        public ResultInfo UpdateBanner(InsertUpdateBannerParam param)
+        public ResultInfo UpdateBanner(InsertMultipleBannersParam param)
         {
-            const string SpKey = "Aff_Admin_Banner_Upd";
+            //const string SpKey = "Aff_Admin_Banner_Upd";
 
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.AddInParameter("bannerid", DbType.Int32, param.BannerId);
-                AssignParam(objectDb, param);
+            //using (var objectDb = GetObjectDb(SpKey))
+            //{
+            //    objectDb.AddInParameter("bannerid", DbType.Int32, param.BannerId);
+            //    AssignParam(objectDb, param);
 
-                objectDb.ExecuteNonQuery();
+            //    objectDb.ExecuteNonQuery();
 
-                return GetResultInfo(objectDb);
-            }
+            //    return GetResultInfo(objectDb);
+            //}
+
+            return new ResultInfo();
         }
 
         public ResultInfo DeleteBanners(DeleteBannerParam param)
         {
-            const string SpKey = "Aff_Admin_Banner_Del";
+            //const string SpKey = "Aff_Admin_Banner_Del";
 
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.AddInParameter("BannerIds", DbType.String, param.BannerIdList);
-                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+            //using (var objectDb = GetObjectDb(SpKey))
+            //{
+            //    objectDb.AddInParameter("BannerIds", DbType.String, param.BannerIdList);
+            //    objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
+            //    objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
-                AssignResultOutputParam(objectDb);
+            //    AssignResultOutputParam(objectDb);
 
-                objectDb.ExecuteNonQuery();
+            //    objectDb.ExecuteNonQuery();
 
-                return GetResultInfo(objectDb);
-            }
+            //    return GetResultInfo(objectDb);
+            //}
+
+            return new ResultInfo();
         }
 
         public IEnumerable<MediaGalleryFilterItem> GetSizeList(SizeParam param)

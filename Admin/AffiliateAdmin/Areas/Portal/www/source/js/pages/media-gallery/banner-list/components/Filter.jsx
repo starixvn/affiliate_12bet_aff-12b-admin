@@ -97,7 +97,7 @@ export class Filter extends PureComponent {
                                     <option key={'subCategory-all'} value={''}>{globalResource.All}</option>
                                     {
                                         subCategoryList.map(item => {
-                                            return (<option key={`subCategory-${item.name}`} value={item.name}>{item.name}</option>)
+                                            return (<option key={`subCategory-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
                                         })
                                     }
                                 </Input>

@@ -209,71 +209,71 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         //    Assert.Equal("You must browse banner to upload.", resultInfo.Message);
         //}
 
-        [Fact]
-        public void UpdateBanner_WhenCallWithValidParam_UpdateSuccessful()
-        {
-            // Arrange
-            var param = new InsertUpdateBannerParam { BannerId = 123, InputFileName = "abc.gif" };
-            var bannerListService = new Mock<IBannerListService>();
-            bannerListService.Setup(s => s.UpdateBanner(null, It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo());
-            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
+        //[Fact]
+        //public void UpdateBanner_WhenCallWithValidParam_UpdateSuccessful()
+        //{
+        //    // Arrange
+        //    var param = new InsertUpdateBannerParam { BannerId = 123, InputFileName = "abc.gif" };
+        //    var bannerListService = new Mock<IBannerListService>();
+        //    bannerListService.Setup(s => s.UpdateBanner(null, It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo());
+        //    var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
 
-            // Action
-            var result = controller.UpdateBanner(null, param) as JsonNetResult;
-            var resultInfo = result.Data as ResultInfo;
+        //    // Action
+        //    var result = controller.UpdateBanner(null, param) as JsonNetResult;
+        //    var resultInfo = result.Data as ResultInfo;
 
-            // Assert
-            Assert.True(resultInfo.IsSuccessful);
-        }
+        //    // Assert
+        //    Assert.True(resultInfo.IsSuccessful);
+        //}
 
-        [Fact]
-        public void UpdateBanner_WhenCallWithInValidParam_ReturnError()
-        {
-            // Arrange
-            var param = new InsertUpdateBannerParam { BannerId = 123, InputFileName = "abc.gif" };
-            var controller = CreateMediaGalleryController();
-            controller.ModelState.AddModelError("Error01", string.Empty);
+        //[Fact]
+        //public void UpdateBanner_WhenCallWithInValidParam_ReturnError()
+        //{
+        //    // Arrange
+        //    var param = new InsertUpdateBannerParam { BannerId = 123, InputFileName = "abc.gif" };
+        //    var controller = CreateMediaGalleryController();
+        //    controller.ModelState.AddModelError("Error01", string.Empty);
 
-            // Action
-            var result = controller.UpdateBanner(null, param) as JsonNetResult;
-            var resultInfo = result.Data as ResultInfo;
+        //    // Action
+        //    var result = controller.UpdateBanner(null, param) as JsonNetResult;
+        //    var resultInfo = result.Data as ResultInfo;
 
-            // Assert
-            Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("You must enter a file name for banner.", resultInfo.Message);
-        }
+        //    // Assert
+        //    Assert.False(resultInfo.IsSuccessful);
+        //    Assert.Equal("You must enter a file name for banner.", resultInfo.Message);
+        //}
 
-        [Fact]
-        public void UpdateBanner_WhenCallWithInValidBannerId_ReturnError()
-        {
-            // Arrange
-            var param = new InsertUpdateBannerParam { InputFileName = "abc.gif" };
-            var controller = CreateMediaGalleryController();
+        //[Fact]
+        //public void UpdateBanner_WhenCallWithInValidBannerId_ReturnError()
+        //{
+        //    // Arrange
+        //    var param = new InsertUpdateBannerParam { InputFileName = "abc.gif" };
+        //    var controller = CreateMediaGalleryController();
 
-            // Action
-            var result = controller.UpdateBanner(null, param) as JsonNetResult;
-            var resultInfo = result.Data as ResultInfo;
+        //    // Action
+        //    var result = controller.UpdateBanner(null, param) as JsonNetResult;
+        //    var resultInfo = result.Data as ResultInfo;
 
-            // Assert
-            Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("BannerId is invalid.", resultInfo.Message);
-        }
+        //    // Assert
+        //    Assert.False(resultInfo.IsSuccessful);
+        //    Assert.Equal("BannerId is invalid.", resultInfo.Message);
+        //}
 
-        [Fact]
-        public void UpdateBanner_WhenCallWithInValidInputFileName_ReturnError()
-        {
-            // Arrange
-            var param = new InsertUpdateBannerParam { BannerId = 123 };
-            var controller = CreateMediaGalleryController();
+        //[Fact]
+        //public void UpdateBanner_WhenCallWithInValidInputFileName_ReturnError()
+        //{
+        //    // Arrange
+        //    var param = new InsertUpdateBannerParam { BannerId = 123 };
+        //    var controller = CreateMediaGalleryController();
 
-            // Action
-            var result = controller.UpdateBanner(null, param) as JsonNetResult;
-            var resultInfo = result.Data as ResultInfo;
+        //    // Action
+        //    var result = controller.UpdateBanner(null, param) as JsonNetResult;
+        //    var resultInfo = result.Data as ResultInfo;
 
-            // Assert
-            Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("You must enter a file name for banner.", resultInfo.Message);
-        }
+        //    // Assert
+        //    Assert.False(resultInfo.IsSuccessful);
+        //    Assert.Equal("You must enter a file name for banner.", resultInfo.Message);
+        //}
 
         [Fact]
         public void DeleteBanners_WhenCallWithValidParam_DeleteSuccessful()

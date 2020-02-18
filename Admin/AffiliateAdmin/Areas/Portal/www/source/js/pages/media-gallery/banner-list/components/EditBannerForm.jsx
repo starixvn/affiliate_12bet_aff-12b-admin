@@ -132,7 +132,7 @@ export class EditBannerForm extends PureComponent {
     }
 
     _getParam = (hasSubCategory) => {
-        const { files, inputFileNames, categoryList, subCategoryList, language, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.state;
+        const { files, inputFileNames, categoryList, subCategoryList, language, currencyList, imageTypeList, affTypeList, deviceTypeList, isInsert } = this.state;
 
         const categories = categoryList.filter(item => item.checked).map(item => item.key).join(';');
         const subCategories = hasSubCategory ? subCategoryList.filter(item => item.checked).map(item => item.key).join(';') : '';
@@ -142,7 +142,7 @@ export class EditBannerForm extends PureComponent {
         const deviceTypes = deviceTypeList.filter(item => item.checked).map(item => item.key).join(';');
         const { selectedBannerId } = this.props;
 
-        return Object.assign({}, { bannerId: selectedBannerId, files, inputFileNames: inputFileNames.map(item => item ? item.trim() : '').join(';'), categories, subCategories, language, currencies, imageTypes, affTypes, deviceTypes });
+        return Object.assign({}, { bannerId: selectedBannerId, files, inputFileNames: isInsert ? inputFileNames.map(item => item ? item.trim() : '').join(';') : inputFileNames[0], categories, subCategories, language, currencies, imageTypes, affTypes, deviceTypes });
     }
 
     _updateBanner = async (bannerInfo) => {

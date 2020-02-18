@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         ResultInfo InsertBanner(HttpPostedFileBase[] files, InsertMultipleBannersParam param);
 
-        ResultInfo UpdateBanner(HttpPostedFileBase file, InsertUpdateBannerParam param);
+        ResultInfo UpdateBanner(HttpPostedFileBase file, InsertMultipleBannersParam param);
 
         ResultInfo DeleteBanners(DeleteBannerParam param);
 

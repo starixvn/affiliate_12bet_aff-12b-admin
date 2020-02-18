@@ -4,6 +4,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 {
     public class InsertMultipleBannersParam : UserInfoParam
     {
+        public int BannerId { get; set; }
+
         public string FilePath { get; set; }
 
         public string InputFileNames { get; set; }

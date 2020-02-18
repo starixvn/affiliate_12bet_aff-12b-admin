@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         ResultInfo InsertBanner(InsertMultipleBannersParam param);
 
-        ResultInfo UpdateBanner(InsertUpdateBannerParam param);
+        ResultInfo UpdateBanner(InsertMultipleBannersParam param);
 
         ResultInfo DeleteBanners(DeleteBannerParam param);
 

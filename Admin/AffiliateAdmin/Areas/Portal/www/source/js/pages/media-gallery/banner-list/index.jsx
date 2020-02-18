@@ -22,7 +22,6 @@ const newSubCategoryList = subCategoryList.map(item => {
     return {
         key: item.CategoryName,
         name: item.CategoryName,
-        categoryId: item.CategoryId,
         parentCategoryId: item.ParentCategoryId,
         checked: false
     };

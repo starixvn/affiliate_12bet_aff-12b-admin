@@ -174,17 +174,28 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
-        public ActionResult UpdateBanner(HttpPostedFileBase file, InsertUpdateBannerParam param)
+        public ActionResult UpdateBanner(HttpPostedFileBase files, InsertMultipleBannersParam param)
         {
             var isValidBannerId = param.BannerId >= Validation.MinId;
-            if (ModelState.IsValid && isValidBannerId && !string.IsNullOrEmpty(param.InputFileName))
+            if (ModelState.IsValid && isValidBannerId && !string.IsNullOrEmpty(param.InputFileNames))
             {
-                var encodeParam = EncodeParam(param);
+                var encodeParam = new InsertMultipleBannersParam
+                {
+                    BannerId = param.BannerId,
+                    InputFileNames = Server.HtmlEncode(param.InputFileNames),
+                    Categories = Server.HtmlEncode(param.Categories),
+                    SubCategories = Server.HtmlEncode(param.SubCategories),
+                    Language = Server.HtmlEncode(param.Language),
+                    Currencies = Server.HtmlEncode(param.Currencies),
+                    ImageTypes = Server.HtmlEncode(param.ImageTypes),
+                    AffTypes = Server.HtmlEncode(param.AffTypes),
+                    DeviceTypes = Server.HtmlEncode(param.DeviceTypes)
+                };
                 GetUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
-                    Data = _bannerListService.UpdateBanner(file, encodeParam)
+                    Data = _bannerListService.UpdateBanner(files, encodeParam)
                 };
             }
 
