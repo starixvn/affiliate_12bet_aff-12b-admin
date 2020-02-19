@@ -9,7 +9,5 @@ namespace Fanex.Affiliate.Admin.Core.Repository
         AffiliateBasicInfo GetAffiliateBasicInfo(int? affId, string affName = null);
 
         ResultInfo ApproveAffiliate(ApproveAffiliateParam param);
-
-        DepositAccountInfo GetDepositPlayerAccount(string playerUserName);
     }
 }
