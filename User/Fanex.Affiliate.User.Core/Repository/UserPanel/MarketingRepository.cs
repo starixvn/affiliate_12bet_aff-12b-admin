@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public IEnumerable<LanguageType> GetLanguageList(bool isInternal)
         {
-            const string uSpKey = "Aff_Market_Sel";
+            const string uSpKey = "Aff_Market_Sel_xtest";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
             using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
