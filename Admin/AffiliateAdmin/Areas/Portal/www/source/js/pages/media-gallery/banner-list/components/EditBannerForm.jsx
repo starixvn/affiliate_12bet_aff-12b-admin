@@ -56,8 +56,7 @@ export class EditBannerForm extends PureComponent {
                 imageTypeList: this.handleChangeMultipleSelected(imageTypeList, bannerInfo.ImageType, ';'),
                 affTypeList: this.handleChangeMultipleSelected(affTypeList, bannerInfo.AffType.toString(), ';'),
                 deviceTypeList: this.handleChangeMultipleSelected(deviceTypeList, bannerInfo.DeviceType.toString(), ';'),
-                iniatalFileName: shortFileName,
-                isDisabled: false
+                iniatalFileName: shortFileName
             });
         }
     }
@@ -235,12 +234,8 @@ export class EditBannerForm extends PureComponent {
             return;
         }
 
-        if (inputFileNames && inputFileNames.length > 0) {
-
-            const validInputFileNames = this._validateInputFileName();
-
-            validInputFileNames.isOK ? this._save(hasSubCategory) : this._handleShowAlert(false, validInputFileNames.message)
-        }
+        const validInputFileNames = this._validateInputFileName();
+        validInputFileNames.isOK ? this._save(hasSubCategory) : this._handleShowAlert(false, validInputFileNames.message)
 
         this.props.toggleLoader(false);
     }
@@ -500,7 +495,7 @@ export class EditBannerForm extends PureComponent {
                                     }
                                 </Form>
 
-                                <Button type="button" color="success" className="mr-3" disabled={((isInsert || (inputFileNames && !!inputFileNames[0]))) ? isDisabled : false} onClick={() => this._handleSubmit(hasSubCategory)}>{buttonLabel}</Button>
+                                <Button type="button" color="success" className="mr-3" disabled={((isInsert || (inputFileNames && !inputFileNames[0]))) ? isDisabled : false} onClick={() => this._handleSubmit(hasSubCategory)}>{buttonLabel}</Button>
                                 <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
                             </div>
                         </div>

@@ -98,81 +98,81 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             Assert.Null(result);
         }
 
-        [Fact]
-        public void InsertBanner_WhenCallWithValidParam_InsertSuccessfully()
-        {
-            // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            repository.Setup(re => re.GetObjectDb(SpKeyBannerMediaIns, 120)).Returns(objectDb.Object);
+        //[Fact]
+        //public void InsertBanner_WhenCallWithValidParam_InsertSuccessfully()
+        //{
+        //    // Arrange
+        //    var repository = new Mock<BannerListRepository> { CallBase = true };
+        //    var objectDb = new Mock<IObjectDb>();
+        //    objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+        //    objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
+        //    objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+        //    repository.Setup(re => re.GetObjectDb(SpKeyBannerMediaIns, 120)).Returns(objectDb.Object);
 
-            // Action
-            var result = repository.Object.InsertBanner(new InsertUpdateBannerParam());
+        //    // Action
+        //    var result = repository.Object.InsertBanner(new InsertUpdateBannerParam());
 
-            // Assert
-            Assert.True(result.IsSuccessful);
-        }
+        //    // Assert
+        //    Assert.True(result.IsSuccessful);
+        //}
 
-        [Fact]
-        public void InsertBanner_WhenCallWithInvalidParam_UpdateIsFailed()
-        {
-            // Arrange
-            var message = "Insert Banner is failed.";
-            var repository = new Mock<BannerListRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            repository.Setup(re => re.GetObjectDb(SpKeyBannerMediaIns, 120)).Returns(objectDb.Object);
+        //[Fact]
+        //public void InsertBanner_WhenCallWithInvalidParam_UpdateIsFailed()
+        //{
+        //    // Arrange
+        //    var message = "Insert Banner is failed.";
+        //    var repository = new Mock<BannerListRepository> { CallBase = true };
+        //    var objectDb = new Mock<IObjectDb>();
+        //    objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+        //    objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
+        //    objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
+        //    repository.Setup(re => re.GetObjectDb(SpKeyBannerMediaIns, 120)).Returns(objectDb.Object);
 
-            // Action
-            var result = repository.Object.InsertBanner(new InsertUpdateBannerParam());
+        //    // Action
+        //    var result = repository.Object.InsertBanner(new InsertUpdateBannerParam());
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
-        }
+        //    // Assert
+        //    Assert.False(result.IsSuccessful);
+        //    Assert.Equal(message, result.Message);
+        //}
 
-        [Fact]
-        public void UpdateBanner_WhenCallWithValidParam_InsertSuccessfully()
-        {
-            // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            repository.Setup(re => re.GetObjectDb(SpKeyBannerUpd, 120)).Returns(objectDb.Object);
+        //[Fact]
+        //public void UpdateBanner_WhenCallWithValidParam_InsertSuccessfully()
+        //{
+        //    // Arrange
+        //    var repository = new Mock<BannerListRepository> { CallBase = true };
+        //    var objectDb = new Mock<IObjectDb>();
+        //    objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+        //    objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
+        //    objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+        //    repository.Setup(re => re.GetObjectDb(SpKeyBannerUpd, 120)).Returns(objectDb.Object);
 
-            // Action
-            var result = repository.Object.UpdateBanner(new InsertUpdateBannerParam());
+        //    // Action
+        //    var result = repository.Object.UpdateBanner(new InsertUpdateBannerParam());
 
-            // Assert
-            Assert.True(result.IsSuccessful);
-        }
+        //    // Assert
+        //    Assert.True(result.IsSuccessful);
+        //}
 
-        [Fact]
-        public void UpdateBanner_WhenCallWithInvalidParam_UpdateIsFailed()
-        {
-            // Arrange
-            var message = "Update Banner is failed.";
-            var repository = new Mock<BannerListRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            repository.Setup(re => re.GetObjectDb(SpKeyBannerUpd, 120)).Returns(objectDb.Object);
+        //[Fact]
+        //public void UpdateBanner_WhenCallWithInvalidParam_UpdateIsFailed()
+        //{
+        //    // Arrange
+        //    var message = "Update Banner is failed.";
+        //    var repository = new Mock<BannerListRepository> { CallBase = true };
+        //    var objectDb = new Mock<IObjectDb>();
+        //    objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+        //    objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
+        //    objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
+        //    repository.Setup(re => re.GetObjectDb(SpKeyBannerUpd, 120)).Returns(objectDb.Object);
 
-            // Action
-            var result = repository.Object.UpdateBanner(new InsertUpdateBannerParam());
+        //    // Action
+        //    var result = repository.Object.UpdateBanner(new InsertUpdateBannerParam());
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
-        }
+        //    // Assert
+        //    Assert.False(result.IsSuccessful);
+        //    Assert.Equal(message, result.Message);
+        //}
 
         [Fact]
         public void DeleteBanners_WhenCallWithValidParam_DeleteSuccessfully()

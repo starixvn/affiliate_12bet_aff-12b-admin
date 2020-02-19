@@ -119,8 +119,8 @@ export const getSizeList = (param) => async (dispatch) => {
 
     const data = response && response.status === 200 ? response.data.map(item => {
         return {
-            columnKey: item.Id,
-            columnName: item.Name,
+            key: item.Id,
+            name: item.Name,
             checked: false
         };
     }) : null;
