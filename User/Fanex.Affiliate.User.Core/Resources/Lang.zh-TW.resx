@@ -2176,4 +2176,8 @@
   <data name="SuffixProduct12AMBER" xml:space="preserve">
     <value>(BETSOFT)</value>
   </data>
+  <data name="_12BetExchange" xml:space="preserve">
+    <value>12BET EXCHANGE &lt;br /&gt;
+(仅适用于INR和IN.USD会员）</value>
+  </data>
 </root>

@@ -1673,4 +1673,8 @@
   <data name="EmailSignup" xml:space="preserve">
     <value>Dirección de correo electrónico</value>
   </data>
+  <data name="_12BetExchange" xml:space="preserve">
+    <value>12BET EXCHANGE &lt;br /&gt;
+(FOR INR &amp; IN.USD MEMBERS ONLY)</value>
+  </data>
 </root>

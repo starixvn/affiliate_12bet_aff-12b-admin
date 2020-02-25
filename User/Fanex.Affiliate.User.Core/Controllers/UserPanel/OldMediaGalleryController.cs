@@ -13,11 +13,11 @@
     using MetalModels.UserPanel;
     using ViewModels.UserPanel.Marketing;
 
-    public class OldMediaGalleryController : BaseMarketingController
+    public class OldMediaGalleryController : OldBaseMarketingController
     {
         public OldMediaGalleryController(ISessionService sessionService, IAppSetting appSetting,
             ILanguageService languageService,
-            IMarketingService marketingService) :
+            IOldMarketingService marketingService) :
             base(sessionService, appSetting, languageService, marketingService)
         {
         }
@@ -35,15 +35,15 @@
             var selectedPage = linkForm.MemberSitePageList.FirstOrDefault()?.PageCode ?? string.Empty;
             var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 
-            var bannerParam = new MarketingBannerParam
+            var bannerParam = new OldMarketingBannerParam
             {
                 AffId = userSession.AffId,
                 Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(selectedLanguage))?.EnglishName,
                 AffType = userSession.AffType,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,
-                TextLinkTemplate = AppSetting.TextLinkTemplate,
-                BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain
+                TextLinkTemplate = _appSetting.TextLinkTemplate,
+                BannerDomain = _appSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? _appSetting.BannerDomain
             };
 
             var viewModel = new OldMarketingViewModel
@@ -59,14 +59,14 @@
             return View("~/Views/UserPanel/Marketing/MediaGallery/Index.cshtml", viewModel);
         }
 
-        private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
+        private IEnumerable<MarketingItem> GetBannerList(OldMarketingBannerParam bannerParam)
         {
             if (bannerParam.SelectedDomain == null)
             {
                 return new List<MarketingItem>();
             }
 
-            return MarketingService.GetBannerList(bannerParam);
+            return _oldMarketingService.GetBannerList(bannerParam);
         }
     }
 }
