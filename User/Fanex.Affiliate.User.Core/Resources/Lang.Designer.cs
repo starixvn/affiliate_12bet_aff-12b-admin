@@ -70,6 +70,16 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12BET EXCHANGE &lt;br /&gt;
+        ///(FOR INR &amp; IN.USD MEMBERS ONLY).
+        /// </summary>
+        public static string _12BetExchange {
+            get {
+                return ResourceManager.GetString("_12BetExchange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 12BET Player Account.
         /// </summary>
         public static string _12BETPlayerAcc {

@@ -2164,4 +2164,8 @@
   <data name="SuffixProduct12AMBER" xml:space="preserve">
     <value>(벳소프트)</value>
   </data>
+  <data name="_12BetExchange" xml:space="preserve">
+    <value>12BET익스체인지 &lt;br /&gt;
+(INR &amp; IN.USD 회원전용)</value>
+  </data>
 </root>
