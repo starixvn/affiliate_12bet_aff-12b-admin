@@ -308,9 +308,7 @@ var MediaGallery = (function ($) {
             });
 
             $("#dataContainerList").on("change", "#DeviceType", function () {
-                _pageIndex = 0;
-                var params = _me.getSearchParam();
-                _me.getBannerList(params, _me.updatePager);
+                _me.submitSearch();
             });
 
             $("#btnGenerateLink").on("click", function () {
@@ -406,8 +404,7 @@ var MediaGallery = (function ($) {
                 selectedDomainId: $("#Domain").val(),
                 selectedPage: $("#MemberSitePage").val(),
                 pageIndex: _pageIndex + 1,
-                pageSize: _pageSize,
-                screenWidth: screen.availWidth
+                pageSize: _pageSize
             }
         },
 

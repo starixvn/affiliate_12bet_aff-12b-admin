@@ -60,7 +60,10 @@
   border: none; }
 
 .banner-link {
-  display: inline-block; }
+  display: inline-block;
+  max-width: calc(100% - 542px); }
+  .banner-link-img {
+    width: 100%; }
 
 .text-link {
   color: #0b6da5;
@@ -164,7 +167,9 @@ img.qr-code {
 @media (max-width: 1024px) {
   .banner-control {
     display: inline-block;
-    width: 100%; } }
+    width: 100%; }
+  .banner-link {
+    max-width: 100%; } }
 
 .social-media-button-group {
   display: flex; }

@@ -32,8 +32,5 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         [SpParam(Ignored = true)]
         public string SubCategory { get; set; }
-
-        [SpParam(Ignored = true)]
-        public int ScreenWidth { get; set; }
     }
 }

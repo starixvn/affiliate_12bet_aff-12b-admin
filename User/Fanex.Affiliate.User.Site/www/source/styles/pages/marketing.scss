@@ -22,6 +22,11 @@
 
 .banner-link {
     display: inline-block;
+    max-width: calc(100% - 542px);
+    
+    &-img {
+        width: 100%;
+    }
 }
 
 .text-link {
@@ -178,6 +183,10 @@ img.qr-code{
     .banner-control {
         display: inline-block;
         width: 100%;
+    }
+
+    .banner-link {
+        max-width: 100%;
     }
 }
 
