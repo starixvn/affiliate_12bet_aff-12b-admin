@@ -12,9 +12,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         BannerInfo GetBannerDetail(int selectedBannerId);
 
-        ResultInfo InsertBanner(HttpPostedFileBase[] files, InsertMultipleBannersParam param);
+        ResultInfo InsertBanner(HttpPostedFileBase[] files, InsertUpdateMultipleBannersParam param);
 
-        ResultInfo UpdateBanner(HttpPostedFileBase file, InsertMultipleBannersParam param);
+        ResultInfo UpdateBanner(HttpPostedFileBase file, InsertUpdateMultipleBannersParam param);
 
         ResultInfo DeleteBanners(DeleteBannerParam param);
 

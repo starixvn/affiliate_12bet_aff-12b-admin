@@ -138,22 +138,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
-        public ActionResult InsertBanner(HttpPostedFileBase[] files, InsertMultipleBannersParam param)
+        public ActionResult InsertBanner(HttpPostedFileBase[] files, InsertUpdateMultipleBannersParam param)
         {
             if (ModelState.IsValid && files != null)
             {
-                var encodeParam = new InsertMultipleBannersParam
-                {
-                    InputFileNames = Server.HtmlEncode(param.InputFileNames),
-                    Categories = Server.HtmlEncode(param.Categories),
-                    SubCategories = Server.HtmlEncode(param.SubCategories),
-                    Language = Server.HtmlEncode(param.Language),
-                    Currencies = Server.HtmlEncode(param.Currencies),
-                    ImageTypes = Server.HtmlEncode(param.ImageTypes),
-                    AffTypes = Server.HtmlEncode(param.AffTypes),
-                    DeviceTypes = Server.HtmlEncode(param.DeviceTypes)
-                };
-                GetUserInfoParam(encodeParam);
+                var encodeParam = EncodeParam(param);
 
                 return new JsonNetResult
                 {
@@ -174,23 +163,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
-        public ActionResult UpdateBanner(HttpPostedFileBase files, InsertMultipleBannersParam param)
+        public ActionResult UpdateBanner(HttpPostedFileBase files, InsertUpdateMultipleBannersParam param)
         {
             var isValidBannerId = param.BannerId >= Validation.MinId;
-            if (ModelState.IsValid && isValidBannerId && !string.IsNullOrEmpty(param.InputFileNames))
+            if (!ModelState.IsValid && isValidBannerId && !string.IsNullOrEmpty(param.InputFileNames))
             {
-                var encodeParam = new InsertMultipleBannersParam
-                {
-                    BannerId = param.BannerId,
-                    InputFileNames = Server.HtmlEncode(param.InputFileNames),
-                    Categories = Server.HtmlEncode(param.Categories),
-                    SubCategories = Server.HtmlEncode(param.SubCategories),
-                    Language = Server.HtmlEncode(param.Language),
-                    Currencies = Server.HtmlEncode(param.Currencies),
-                    ImageTypes = Server.HtmlEncode(param.ImageTypes),
-                    AffTypes = Server.HtmlEncode(param.AffTypes),
-                    DeviceTypes = Server.HtmlEncode(param.DeviceTypes)
-                };
+                var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
 
                 return new JsonNetResult
@@ -234,20 +212,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             };
         }
 
-        private InsertUpdateBannerParam EncodeParam(InsertUpdateBannerParam param)
+        private InsertUpdateMultipleBannersParam EncodeParam(InsertUpdateMultipleBannersParam param)
         {
-            return new InsertUpdateBannerParam
+            return new InsertUpdateMultipleBannersParam
             {
                 BannerId = param.BannerId,
-                InputFileName = Server.HtmlEncode(param.InputFileName?.Trim()),
-                Category = Server.HtmlEncode(param.Category),
-                SubCategory = Server.HtmlEncode(param.SubCategory),
+                InputFileNames = Server.HtmlEncode(param.InputFileNames),
+                Categories = Server.HtmlEncode(param.Categories),
+                SubCategories = Server.HtmlEncode(param.SubCategories),
                 Language = Server.HtmlEncode(param.Language),
-                Currency = Server.HtmlEncode(param.Currency),
+                Currencies = Server.HtmlEncode(param.Currencies),
                 Size = Server.HtmlEncode(param.Size),
-                ImageType = Server.HtmlEncode(param.ImageType),
-                AffType = param.AffType,
-                DeviceType = param.DeviceType
+                AffTypes = param.AffTypes,
+                DeviceTypes = param.DeviceTypes
             };
         }
 

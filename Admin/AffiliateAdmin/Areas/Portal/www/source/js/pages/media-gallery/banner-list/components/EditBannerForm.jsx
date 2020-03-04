@@ -15,14 +15,13 @@ export class EditBannerForm extends PureComponent {
     constructor(props) {
         super(props)
 
-        const { categoryList, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.props;
+        const { categoryList, currencyList, affTypeList, deviceTypeList } = this.props;
 
         this.state = {
             ...defaultState,
             categoryList,
             subCategoryList: null,
             currencyList,
-            imageTypeList,
             affTypeList,
             deviceTypeList
         }
@@ -41,7 +40,7 @@ export class EditBannerForm extends PureComponent {
         const bannerInfo = await this.props.getBannerDetail(selectedBannerId);
 
         if (bannerInfo) {
-            const { categoryList, subCategoryList, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.props;
+            const { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList } = this.props;
 
             const fileName = htmlDecode(bannerInfo.FileName);
             const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
@@ -53,7 +52,6 @@ export class EditBannerForm extends PureComponent {
                 subCategoryList: this.handleChangeMultipleSelected(subCategoryList, bannerInfo.Category, ';'),
                 language: bannerInfo.Language,
                 currencyList: this.handleChangeMultipleSelected(currencyList, bannerInfo.Currency, ';'),
-                imageTypeList: this.handleChangeMultipleSelected(imageTypeList, bannerInfo.ImageType, ';'),
                 affTypeList: this.handleChangeMultipleSelected(affTypeList, bannerInfo.AffType.toString(), ';'),
                 deviceTypeList: this.handleChangeMultipleSelected(deviceTypeList, bannerInfo.DeviceType.toString(), ';'),
                 iniatalFileName: shortFileName
@@ -131,12 +129,11 @@ export class EditBannerForm extends PureComponent {
     }
 
     _getParam = (hasSubCategory) => {
-        const { files, inputFileNames, categoryList, subCategoryList, language, currencyList, imageTypeList, affTypeList, deviceTypeList, isInsert } = this.state;
+        const { files, inputFileNames, categoryList, subCategoryList, language, currencyList, affTypeList, deviceTypeList, isInsert } = this.state;
 
         const categories = categoryList.filter(item => item.checked).map(item => item.key).join(';');
         const subCategories = hasSubCategory ? subCategoryList.filter(item => item.checked).map(item => item.key).join(';') : '';
         const currencies = currencyList.filter(item => item.checked).map(item => item.key).join(';');
-        const imageTypes = imageTypeList.filter(item => item.checked).map(item => item.key).join(';');
         const affTypes = affTypeList.filter(item => item.checked).map(item => item.key).join(';');
         const deviceTypes = deviceTypeList.filter(item => item.checked).map(item => item.key).join(';');
         const { selectedBannerId } = this.props;
@@ -200,12 +197,11 @@ export class EditBannerForm extends PureComponent {
     _handleSubmit = (hasSubCategory) => {
         this.props.toggleLoader(true);
 
-        const { inputFileNames, categoryList, subCategoryList, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.state;
+        const { inputFileNames, categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList } = this.state;
 
         const category = categoryList.filter(item => item.checked).map(item => item.key);
         const subCategory = hasSubCategory && subCategoryList.filter(item => item.checked);
         const currency = currencyList.filter(item => item.checked);
-        const imageType = imageTypeList.filter(item => item.checked);
         const affType = affTypeList.filter(item => item.checked);
         const deviceType = deviceTypeList.filter(item => item.checked);
 
@@ -219,10 +215,6 @@ export class EditBannerForm extends PureComponent {
         }
         if (!currency.length) {
             this._handleShowAlert(false, "Please select Currency.");
-            return;
-        }
-        if (!imageType.length) {
-            this._handleShowAlert(false, "Please select Type.");
             return;
         }
         if (!affType.length) {
@@ -262,10 +254,10 @@ export class EditBannerForm extends PureComponent {
     }
 
     _handleClosePopup = () => {
-        const { categoryList, subCategoryList, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.props;
+        const { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList } = this.props;
 
         this.props.setSelectedBannerId(null);
-        this.setState({ ...defaultState, categoryList, subCategoryList, currencyList, imageTypeList, affTypeList, deviceTypeList });
+        this.setState({ ...defaultState, categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList });
     }
 
     handleCloseNotificationPopup = (confirmResult) => {
@@ -327,12 +319,6 @@ export class EditBannerForm extends PureComponent {
         this.setState({ currencyList: this.handleChangeMultipleSelected(currencyList, selectedKey) });
     }
 
-    handleChangeImageType = (item, selectedKey) => {
-        const { imageTypeList } = this.state;
-
-        this.setState({ imageTypeList: this.handleChangeMultipleSelected(imageTypeList, selectedKey) });
-    }
-
     handleChangeAffType = (item, selectedKey) => {
         const { affTypeList } = this.state;
 
@@ -348,7 +334,7 @@ export class EditBannerForm extends PureComponent {
     render() {
         const { selectedBannerId, languageList } = this.props;
         const { inputFileNames, language, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, categoryList,
-            subCategoryList, currencyList, imageTypeList, affTypeList, deviceTypeList } = this.state;
+            subCategoryList, currencyList, affTypeList, deviceTypeList } = this.state;
         const isShowPopup = selectedBannerId !== null;
         const title = isInsert ? "Add Banner" : "Update Banner";
         const buttonLabel = isInsert ? "Upload" : "Update";
@@ -438,19 +424,6 @@ export class EditBannerForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
-                                        <Label sm={3} for="imageType" className="required">{headerText.Type}</Label>
-                                        <Col sm={5}>
-                                            <MultipleSelect
-                                                dataSource={imageTypeList}
-                                                keyField="key"
-                                                valueField="name"
-                                                statusField="checked"
-                                                maxDisplayItemCount={1}
-                                                noneSelectedLabel="Please Select"
-                                                onChange={this.handleChangeImageType} />
-                                        </Col>
-                                    </FormGroup>
-                                    <FormGroup row className="mb-2">
                                         <Label sm={3} for="affType" className="required">{headerText.AffType}</Label>
                                         <Col sm={5}>
                                             <MultipleSelect
@@ -506,8 +479,8 @@ export class EditBannerForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedBannerId, param, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, deviceTypeList, subCategoryList }) {
-    return Object.assign({}, { selectedBannerId, param, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, deviceTypeList, subCategoryList });
+function mapStateToProps({ selectedBannerId, param, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, sizeList, affTypeList, deviceTypeList, subCategoryList }) {
+    return Object.assign({}, { selectedBannerId, param, categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, sizeList, affTypeList, deviceTypeList, subCategoryList });
 }
 
 function mapDispatchToProps(dispatch) {

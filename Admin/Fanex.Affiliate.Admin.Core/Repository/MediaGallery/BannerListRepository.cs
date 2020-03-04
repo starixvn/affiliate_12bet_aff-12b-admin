@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             return item;
         }
 
-        public ResultInfo InsertBanner(InsertMultipleBannersParam param)
+        public ResultInfo InsertBanner(InsertUpdateMultipleBannersParam param)
         {
             //const string SpKey = "Aff_Admin_Banner_Ins";
 
@@ -100,7 +100,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             return new ResultInfo();
         }
 
-        public ResultInfo UpdateBanner(InsertMultipleBannersParam param)
+        public ResultInfo UpdateBanner(InsertUpdateMultipleBannersParam param)
         {
             //const string SpKey = "Aff_Admin_Banner_Upd";
 
