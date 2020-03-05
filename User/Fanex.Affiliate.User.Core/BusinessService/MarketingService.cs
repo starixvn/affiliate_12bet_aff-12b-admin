@@ -206,12 +206,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private static string GetCategory(string category, string subCategory)
         {
             if((category.MatchWith("sportsbook") || category.MatchWith("casino")) &&
-                    string.IsNullOrEmpty(subCategory))
+                    !string.IsNullOrEmpty(subCategory))
             {
-                return category;
+                return subCategory;
             }
 
-            return subCategory;
+            return category;
         }
     }
 }

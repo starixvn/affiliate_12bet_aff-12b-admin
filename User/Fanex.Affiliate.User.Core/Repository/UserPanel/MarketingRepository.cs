@@ -9,8 +9,8 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public class MarketingRepository : IMarketingRepository
     {
-        private const int MediaGallery = 1;
-        private const int AffiliateLink = 2;
+        private const int AffiliateLink = 1;
+        private const int MediaGallery = 2;
 
         public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal)
         {
@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
             {
-                return objectDb.DB.Query<CategoryType>(new { TypeId = isMediaPage ? MediaGallery : AffiliateLink });
+                return objectDb.DB.Query<CategoryType>(new { TypeId = isMediaPage ? AffiliateLink : MediaGallery });
             }
         }
 

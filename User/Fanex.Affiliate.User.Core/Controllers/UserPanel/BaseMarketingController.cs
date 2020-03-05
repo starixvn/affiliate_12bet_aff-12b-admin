@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         }
         protected SearchFormViewModel GetSearchFormViewModel(bool isMediaPage)
         {
-            var categoryList = MarketingService.GetCategoryList(isMediaPage, SessionService.IsInternal).Where(c => string.IsNullOrEmpty(c.SubCategory));
+            var categoryList = MarketingService.GetCategoryList(isMediaPage, SessionService.IsInternal).Where(c => c.CategoryId == c.ParentCategoryId);
             var languageList = MarketingService.GetLanguageList(SessionService.IsInternal);
             var currencyList = MarketingService.GetCurrencyList(SessionService.IsInternal);
             var viewModel = new SearchFormViewModel
