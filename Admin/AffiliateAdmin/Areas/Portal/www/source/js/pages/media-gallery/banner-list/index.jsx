@@ -11,7 +11,7 @@ const { categoryList, subCategoryList, languageList, currencyList, imageTypeList
 
 const newCategoryList = categoryList.map(item => {
     return {
-        categoryId: item.CategoryId,
+        categoryName: item.CategoryName,
         key: item.CategoryName,
         name: item.CategoryName,
         checked: false
@@ -20,9 +20,9 @@ const newCategoryList = categoryList.map(item => {
 
 const newSubCategoryList = subCategoryList.map(item => {
     return {
-        key: item.CategoryName,
-        name: item.CategoryName,
-        parentCategoryId: item.ParentCategoryId,
+        key: item.SubCategoryName,
+        name: item.SubCategoryName,
+        parentCategoryName: item.CategoryName,
         checked: false
     };
 });

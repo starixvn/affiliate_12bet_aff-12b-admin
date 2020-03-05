@@ -19,7 +19,7 @@ export class Filter extends PureComponent {
             currency: '',
             imageType: paramFromHome && paramFromHome.ImageType ? paramFromHome.ImageType : '',
             affType: Asian,
-            deviceType: deviceTypes[pcLaptop],
+            deviceType: pcLaptop,
             size: ''
         }
     }
@@ -97,7 +97,7 @@ export class Filter extends PureComponent {
                                     <option key={'subCategory-all'} value={''}>{globalResource.All}</option>
                                     {
                                         subCategoryList.map(item => {
-                                            return (<option key={`subCategory-${item.CategoryName}`} value={item.CategoryName}>{item.CategoryName}</option>)
+                                            return (<option key={`subCategory-${item.SubCategoryName}`} value={item.SubCategoryName}>{item.SubCategoryName}</option>)
                                         })
                                     }
                                 </Input>
@@ -156,7 +156,7 @@ export class Filter extends PureComponent {
                         <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this._handleChange}>
                             {
                                 Object.keys(deviceTypes).map(key => {
-                                    return (<option key={`deviceType-${deviceTypes[key]}`} value={deviceTypes[key]}>{key}</option>)
+                                    return (<option key={`deviceType-${key}`} value={key}>{key}</option>)
                                 })
                             }
                         </Input>

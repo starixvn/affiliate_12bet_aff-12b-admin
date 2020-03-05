@@ -41,19 +41,19 @@ export class EditBannerForm extends PureComponent {
 
         if (bannerInfo) {
             const { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList } = this.props;
-
+            
             const fileName = htmlDecode(bannerInfo.FileName);
             const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
             const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
 
             this.setState({
                 inputFileNames: [shortFileName],
-                categoryList: this.handleChangeMultipleSelected(categoryList, bannerInfo.Category, ';', true),
-                subCategoryList: this.handleChangeMultipleSelected(subCategoryList, bannerInfo.Category, ';'),
+                categoryList: this.handleChangeMultipleSelected(categoryList, bannerInfo.Categories, true),
+                subCategoryList: this.handleChangeMultipleSelected(subCategoryList.filter(s => s.parentCategoryName === bannerInfo.Categories), bannerInfo.SubCategories),
                 language: bannerInfo.Language,
-                currencyList: this.handleChangeMultipleSelected(currencyList, bannerInfo.Currency, ';'),
-                affTypeList: this.handleChangeMultipleSelected(affTypeList, bannerInfo.AffType.toString(), ';'),
-                deviceTypeList: this.handleChangeMultipleSelected(deviceTypeList, bannerInfo.DeviceType.toString(), ';'),
+                currencyList: this.handleChangeMultipleSelected(currencyList, bannerInfo.Currencies),
+                affTypeList: this.handleChangeMultipleSelected(affTypeList, bannerInfo.AffTypes.toString()),
+                deviceTypeList: this.handleChangeMultipleSelected(deviceTypeList, bannerInfo.DeviceTypes.toString()),
                 iniatalFileName: shortFileName
             });
         }
@@ -257,7 +257,7 @@ export class EditBannerForm extends PureComponent {
         const { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList } = this.props;
 
         this.props.setSelectedBannerId(null);
-        this.setState({ ...defaultState, categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList });
+        this.setState({ ...defaultState, categoryList, subCategoryList: null, currencyList, affTypeList, deviceTypeList });
     }
 
     handleCloseNotificationPopup = (confirmResult) => {
@@ -277,15 +277,15 @@ export class EditBannerForm extends PureComponent {
         }
     }
 
-    handleChangeMultipleSelected = (initialList, selectedKey, character, isCategory) => {
-        const selectedList = selectedKey.split(character || ',').filter(p => !!p);
+    handleChangeMultipleSelected = (initialList, selectedKey, isCategory) => {
+        const selectedList = selectedKey.split(',').filter(p => !!p);
 
         return initialList && initialList.map(item => {
-            const { key, name, categoryId } = item;
+            const { key, name, categoryName } = item;
             const checked = selectedList.indexOf(key.toString()) !== -1;
 
             return isCategory ? {
-                categoryId,
+                categoryName,
                 key,
                 name,
                 checked
@@ -300,9 +300,9 @@ export class EditBannerForm extends PureComponent {
     handleChangeCategory = (item, selectedKey) => {
         const { categoryList, subCategoryList } = this.props;
 
-        const newCategoryList = this.handleChangeMultipleSelected(categoryList, selectedKey, ',', true);
-        const categoryIds = newCategoryList.filter(category => category.checked).map(category => category.categoryId);
-        let newSubCategoryList = categoryIds.map(id => subCategoryList.filter(sub => sub.parentCategoryId == id)).reduce((accumulator, field) => accumulator.concat(field), []);
+        const newCategoryList = this.handleChangeMultipleSelected(categoryList, selectedKey, true);
+        const categoryNames = newCategoryList.filter(category => category.checked).map(category => category.categoryName);
+        let newSubCategoryList = categoryNames.map(c => subCategoryList.filter(sub => sub.parentCategoryName == c)).reduce((accumulator, field) => accumulator.concat(field), []);
 
         this.setState({ categoryList: newCategoryList, subCategoryList: newSubCategoryList });
     }

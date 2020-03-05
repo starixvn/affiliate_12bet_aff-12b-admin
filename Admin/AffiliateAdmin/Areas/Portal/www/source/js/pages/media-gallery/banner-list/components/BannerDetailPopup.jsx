@@ -23,7 +23,7 @@ export const BannerDetailPopup = (props) => {
              <ModalHeader toggle={_handleClosePopup}><span className="iconpopup"></span>{bannerDetailUrl.bannerId}</ModalHeader>
              <ModalBody>
                  <div className="modal-body-wrapper embed-responsive overflow-auto text-center">
-                     <img src={bannerDetailUrl.src} alt="" width={resizeResult.width} height={resizeResult.height}/>
+                     <img src={bannerDetailUrl.src} alt="12Bet banner" width={resizeResult.width} height={resizeResult.height}/>
                  </div>
              </ModalBody>
          </Modal>

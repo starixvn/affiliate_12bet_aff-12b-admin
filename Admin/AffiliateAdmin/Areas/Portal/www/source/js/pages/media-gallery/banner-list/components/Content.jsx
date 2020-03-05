@@ -44,6 +44,7 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={415} title={headerText.Images}>{headerText.Images}</Cell>
                 <Cell header={true} colWidth={190} title={headerText.FileName}>{headerText.FileName}</Cell>
                 <Cell header={true} colWidth={55} title={headerText.Category}>{headerText.Category}</Cell>
+                <Cell header={true} colWidth={55} title={headerText.SubCategory}>{headerText.SubCategory}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Language}>{headerText.Language}</Cell>
                 <Cell header={true} colWidth={55} title={headerText.Currency}>{headerText.Currency}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.Device}>{headerText.Device}</Cell>
@@ -85,7 +86,7 @@ export const Content = (props) => {
         const realHeight = strSize[1];
         const isValidWithHeight = realWidth < maxWidthHeight && realHeight < maxWidthHeight;
         const resizeResult = !isValidWithHeight && resizeWidthHeight(realWidth, realHeight);
-        const deviceType = dataItem.DeviceType === 0 ? pcLaptop : mobile;
+        const deviceType = dataItem.DeviceTypes == 0 ? pcLaptop : mobile;
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -99,16 +100,17 @@ export const Content = (props) => {
                         isValidWithHeight ? (
                             <img id={`img${bannerId}`} src={src} alt="" height={realHeight} width={realWidth} />
                         ) : (
-                                <a href="javascript:;" id={`link${bannerId}`} onClick={() => props.setBannerDetailUrl({ src, height: realHeight, width: realWidth, bannerId })}>
-                                    <img id={`img${bannerId}`} src={src} alt="" height={resizeResult.height} width={resizeResult.width} />
+                                <a href="javascript:;" id={`link${bannerId}`} onClick={() => props.setBannerDetailUrl({ src, bannerId })}>
+                                    <img id={`img${bannerId}`} src={src} alt="12Bet banner" height={resizeResult.height} width={resizeResult.width} />
                                 </a>
                             )
                     }
                 </Cell>
                 <Cell className="text-center text-break" title={fileName}>{fileName}</Cell>
-                <Cell className="text-center text-break" title={dataItem.Category}>{dataItem.Category}</Cell>
+                <Cell className="text-center text-break" title={dataItem.Categories}>{dataItem.Categories}</Cell>
+                <Cell className="text-center text-break" title={dataItem.SubCategories}>{dataItem.SubCategories}</Cell>
                 <Cell className="text-center text-break" title={dataItem.Language}>{dataItem.Language}</Cell>
-                <Cell className="text-center text-break" title={dataItem.Currency}>{dataItem.Currency}</Cell>
+                <Cell className="text-center text-break" title={dataItem.Currencies}>{dataItem.Currencies}</Cell>
                 <Cell className="text-center text-break" title={deviceType}>{deviceType}</Cell>
                 <Cell className="text-center text-break" title={dataItem.ImageType}>{dataItem.ImageType}</Cell>
                 <Cell className="text-center text-break" title={size}>{size}</Cell>

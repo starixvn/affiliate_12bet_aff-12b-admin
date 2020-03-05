@@ -7,7 +7,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
-using Fanex.Affiliate.Admin.Core.UnitTests.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
 using Moq;
@@ -26,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             // Arrange
             var param = new BannerParamFromHome { ImageType = "Image", IsFromHome = true };
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
-            commonMediaGalleryService.Setup(c => c.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryId = 123, CategoryName = "Category", ParentCategoryId = 123 } });
+            commonMediaGalleryService.Setup(c => c.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryName = "Category" } });
             commonMediaGalleryService.Setup(c => c.GetCurrencyList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
             commonMediaGalleryService.Setup(c => c.GetImageTypeList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 345, Name = "Image" } });
             var languageService = new Mock<ILanguageService>();
@@ -65,7 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
-            commonMediaGalleryService.Setup(t => t.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryId = 123, CategoryName = "Casino Bonus", ParentCategoryId = 51 } });
+            commonMediaGalleryService.Setup(t => t.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryName = "Casino Bonus" } });
             var controller = CreateMediaGalleryController(commonMediaGalleryService: commonMediaGalleryService.Object);
 
             // Action
@@ -80,7 +79,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
-            commonMediaGalleryService.Setup(t => t.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryId = 123, CategoryName = "SB Bonus", ParentCategoryId = 1 } });
+            commonMediaGalleryService.Setup(t => t.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryName = "SB Bonus" } });
             var controller = CreateMediaGalleryController(commonMediaGalleryService: commonMediaGalleryService.Object);
 
             // Action

@@ -23,9 +23,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                     {
                         result.Add(new Category
                         {
-                            CategoryId = Convert.ToInt32(reader["CategoryId"]),
                             CategoryName = Convert.ToString(reader["Category"]),
-                            ParentCategoryId = Convert.ToInt32(reader["ParentCategoryId"])
+                            SubCategoryName = Convert.ToString(reader["SubCategory"])
                         });
                     }
                 }

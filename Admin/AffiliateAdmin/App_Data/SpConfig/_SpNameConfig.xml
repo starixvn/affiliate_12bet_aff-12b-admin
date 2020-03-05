@@ -3,6 +3,16 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
   
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_MediaSize_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_MediaCategory_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Banner_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Banner_Ins" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Banner_Upd" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Banner_Del" Suffix="_xtest"></item>
+
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Text_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Text_Ins" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Text_Upd" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Text_Del" Suffix="_xtest"></item>
+
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_GeneralInfo_Sel" Suffix="_xtest"></item>
 </Root>

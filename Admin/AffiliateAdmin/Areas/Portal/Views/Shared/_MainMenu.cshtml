@@ -51,9 +51,34 @@
     {
         var active = "nav-link " + (controllerName == item ? "active" : string.Empty);
         <li class="nav-item">
-            <a class="@active" href="@Url.Content("~/Portal/"+item)">
+            <a class="@active" id="@item" href="@Url.Content("~/Portal/"+item)">
                 @GetMenuName(item)
             </a>
         </li>
     }
 </ul>
+
+<script type="text/javascript">
+    var controllerName = '@controllerName';
+    let element;
+
+    if (controllerName == 'PaymentRequest' || controllerName == 'CommissionGroup' || controllerName == 'EmailHistory') {
+        element = document.getElementById('Affiliate');
+    }
+
+    if (controllerName == 'ActiveMember') {
+        element = document.getElementById('Member');
+    }
+    if (controllerName == 'TextList' || controllerName == 'LandingPageList') {
+        element = document.getElementById('MediaGallery');
+    }
+    if (controllerName == 'Department') {
+        element = document.getElementById('Administrator');
+    }
+
+    if (controllerName == 'Domain' || controllerName == 'DomainControl') {
+        element = document.getElementById('Domain');
+    }
+
+    element && element.classList.add("active");
+</script>

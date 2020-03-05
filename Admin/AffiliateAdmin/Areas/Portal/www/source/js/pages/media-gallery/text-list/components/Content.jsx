@@ -71,7 +71,7 @@ export const Content = (props) => {
 
     function _buildDataRow(dataItem, index) {
         const content = htmlDecode(dataItem.TextContent);
-        const deviceType = dataItem.DeviceType === 0 ? defaultDevice : mobile;
+        const deviceType = dataItem.DeviceType == 0 ? defaultDevice : mobile;
 
         return (
             <Row key={`dataRow-${index}`}>
