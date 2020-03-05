@@ -2,7 +2,9 @@
 {
     public static class CacheKey
     {
-        public const string CategoryList = "Affiliate.12Bet.CategoryList";
+        public const string TextCategoryList = "Affiliate.12Bet.TextCategoryList";
+
+        public const string BannerCategoryList = "Affiliate.12Bet.BannerCategoryList";
 
         public const string LanguageList = "Affiliate.12Bet.LanguageList";
 

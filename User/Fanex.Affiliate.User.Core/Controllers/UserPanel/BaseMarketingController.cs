@@ -2,10 +2,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
@@ -30,7 +28,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         }
         protected SearchFormViewModel GetSearchFormViewModel(bool isMediaPage)
         {
-            var categoryList = MarketingService.GetCategoryList(isMediaPage, SessionService.IsInternal).Where(c => c.CategoryId == c.ParentCategoryId);
+            var categoryList = MarketingService.GetCategoryList(isMediaPage, SessionService.IsInternal).Where(c => string.IsNullOrEmpty(c.SubCategory));
             var languageList = MarketingService.GetLanguageList(SessionService.IsInternal);
             var currencyList = MarketingService.GetCurrencyList(SessionService.IsInternal);
             var viewModel = new SearchFormViewModel

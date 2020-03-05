@@ -27,12 +27,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal)
         {
-            var categoryList = _cacheService.Get<IEnumerable<CategoryType>>(CacheKey.CategoryList);
+            var cacheKey = isMediaPage ? CacheKey.BannerCategoryList : CacheKey.TextCategoryList;
+            var categoryList = _cacheService.Get<IEnumerable<CategoryType>>(cacheKey);
             if (categoryList == null)
             {
                 categoryList = _marketingRepository.GetCategoryList(isMediaPage, isInternal);
 
-                _cacheService.Set(CacheKey.CategoryList, categoryList);
+                _cacheService.Set(cacheKey, categoryList);
             }
 
             return categoryList ?? new List<CategoryType>();

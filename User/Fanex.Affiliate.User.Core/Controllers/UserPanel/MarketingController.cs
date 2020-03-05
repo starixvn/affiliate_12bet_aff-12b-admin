@@ -6,6 +6,7 @@
     using Constants;
     using DTO.UserPanel;
     using Extensions;
+    using Fanex.Affiliate.User.Core.Resources;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Utilities;
@@ -58,9 +59,10 @@
         public ActionResult GetSubCategory(string category)
         {
             var subCategoryList = MarketingService.GetCategoryList(true, SessionService.IsInternal)
-                                                    .Where(c => c.ParentCategory.MatchWith(category) && !c.Category.MatchWith(c.ParentCategory));
+                                                    .Where(c => c.Category.MatchWith(category) && !string.IsNullOrEmpty(c.SubCategory));
 
-            return Json(subCategoryList, JsonRequestBehavior.AllowGet);
+            return Json(subCategoryList.Select(i => new SelectListItem { Value = i.SubCategory, Text = Lang.ResourceManager.GetString(i.SubCategory.Trim()) ?? i.SubCategory }),
+                JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
