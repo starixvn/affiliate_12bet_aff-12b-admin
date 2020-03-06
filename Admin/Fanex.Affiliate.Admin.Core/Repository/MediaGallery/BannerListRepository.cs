@@ -20,8 +20,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("category", DbType.String, param.Category);
                 objectDb.AddInParameter("language", DbType.String, param.Language);
+                objectDb.AddInParameter("category", DbType.String, param.Category);
+                objectDb.AddInParameter("subcategory", DbType.String, param.SubCategory);
                 objectDb.AddInParameter("currency", DbType.String, param.Currency);
                 objectDb.AddInParameter("ImageType", DbType.String, param.ImageType);
                 objectDb.AddInParameter("Size", DbType.String, param.Size);
@@ -65,7 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     if (reader.Read())
                     {
                         item = BuildBannerInfoItem(reader);
-                        item.AffTypes = reader.GetVal<string>("AffTypes");
+                        item.AffTypes = reader.GetVal<string>("AffTypes")?.Split(',');
                     }
                 }
             }
@@ -75,66 +76,49 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public ResultInfo InsertBanner(InsertUpdateMultipleBannersParam param)
         {
-            //const string SpKey = "Aff_Admin_Banner_Ins";
+            const string SpKey = "Aff_Admin_Banner_Ins";
 
-            //using (var objectDb = GetObjectDb(SpKey))
-            //{
-            //    objectDb.AddInParameter("filename", DbType.String, param.FilePath);
-            //    objectDb.AddInParameter("categories", DbType.String, param.Categories);
-            //    objectDb.AddInParameter("language", DbType.String, param.Language);
-            //    objectDb.AddInParameter("currencies", DbType.String, param.Currencies);
-            //    objectDb.AddInParameter("size", DbType.String, param.Size);
-            //    objectDb.AddInParameter("afftypes", DbType.String, param.AffTypes);
-            //    objectDb.AddInParameter("devicetypes", DbType.String, param.DeviceTypes);
-            //    objectDb.AddInParameter("imagetypes", DbType.String, param.ImageTypes);
-            //    objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-            //    objectDb.AddInParameter("IP", DbType.String, param.Ip);
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                AssignParam(objectDb, param);
 
-            //    AssignResultOutputParam(objectDb);
+                objectDb.ExecuteNonQuery();
 
-            //    objectDb.ExecuteNonQuery();
-
-            //    return GetResultInfo(objectDb);
-            //}
-
-            return new ResultInfo();
+                return GetResultInfo(objectDb);
+            }
         }
 
         public ResultInfo UpdateBanner(InsertUpdateMultipleBannersParam param)
         {
-            //const string SpKey = "Aff_Admin_Banner_Upd";
+            const string SpKey = "Aff_Admin_Banner_Upd";
 
-            //using (var objectDb = GetObjectDb(SpKey))
-            //{
-            //    objectDb.AddInParameter("bannerid", DbType.Int32, param.BannerId);
-            //    AssignParam(objectDb, param);
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("bannerid", DbType.Int32, param.BannerId);
+                AssignParam(objectDb, param);
 
-            //    objectDb.ExecuteNonQuery();
+                objectDb.ExecuteNonQuery();
 
-            //    return GetResultInfo(objectDb);
-            //}
-
-            return new ResultInfo();
+                return GetResultInfo(objectDb);
+            }
         }
 
         public ResultInfo DeleteBanners(DeleteBannerParam param)
         {
-            //const string SpKey = "Aff_Admin_Banner_Del";
+            const string SpKey = "Aff_Admin_Banner_Del";
 
-            //using (var objectDb = GetObjectDb(SpKey))
-            //{
-            //    objectDb.AddInParameter("BannerIds", DbType.String, param.BannerIdList);
-            //    objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-            //    objectDb.AddInParameter("IP", DbType.String, param.Ip);
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("BannerIds", DbType.String, param.BannerIdList);
+                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
-            //    AssignResultOutputParam(objectDb);
+                AssignResultOutputParam(objectDb);
 
-            //    objectDb.ExecuteNonQuery();
+                objectDb.ExecuteNonQuery();
 
-            //    return GetResultInfo(objectDb);
-            //}
-
-            return new ResultInfo();
+                return GetResultInfo(objectDb);
+            }
         }
 
         public IEnumerable<MediaGalleryFilterItem> GetSizeList(SizeParam param)
@@ -167,16 +151,15 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             return result;
         }
 
-        private static void AssignParam(IObjectDb objectDb, InsertUpdateBannerParam param)
+        private static void AssignParam(IObjectDb objectDb, InsertUpdateMultipleBannersParam param)
         {
-            objectDb.AddInParameter("filename", DbType.String, param.FilePath);
-            objectDb.AddInParameter("category", DbType.String, param.Category);
-            objectDb.AddInParameter("language", DbType.String, param.Language);
-            objectDb.AddInParameter("currency", DbType.String, param.Currency);
-            objectDb.AddInParameter("size", DbType.String, param.Size);
-            objectDb.AddInParameter("afftype", DbType.Byte, param.AffType);
-            objectDb.AddInParameter("devicetype", DbType.Byte, param.DeviceType);
-            objectDb.AddInParameter("imagetype", DbType.String, param.ImageType);
+            objectDb.AddInParameter("Files", DbType.String, param.Files);
+            objectDb.AddInParameter("Categories", DbType.String, param.Categories);
+            objectDb.AddInParameter("SubCategories", DbType.String, param.SubCategories);
+            objectDb.AddInParameter("Language", DbType.String, param.Language);
+            objectDb.AddInParameter("Currencies", DbType.String, param.Currencies);
+            objectDb.AddInParameter("AffTypes", DbType.String, param.AffTypes);
+            objectDb.AddInParameter("DeviceTypes", DbType.String, param.DeviceTypes);
             objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
             objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
@@ -189,13 +172,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             {
                 BannerId = Convert.ToInt32(reader["BannerID"]),
                 FileName = Convert.ToString(reader["FileName"]),
-                Categories = Convert.ToString(reader["Categories"]),
-                SubCategories = Convert.ToString(reader["SubCategories"]),
+                Categories = Convert.ToString(reader["Categories"]).Split(','),
+                SubCategories = Convert.ToString(reader["SubCategories"]).Split(','),
                 Language = Convert.ToString(reader["Language"]),
-                Currencies = Convert.ToString(reader["Currencies"]),
+                Currencies = Convert.ToString(reader["Currencies"]).Split(','),
                 ImageType = Convert.ToString(reader["ImageType"]),
                 Size = Convert.ToString(reader["Size"]),
-                DeviceTypes = reader.GetVal<string>("DeviceTypes")
+                DeviceTypes = reader.GetVal<string>("DeviceTypes").Split(',')
             };
         }
     }

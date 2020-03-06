@@ -37,8 +37,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public EntityResult<BannerInfo> GetBannerList(BannerParam param)
         {
-            param.Category = GetCategory(param.Category, param.SubCategory);
-
             return _bannerListRepository.GetBannerList(param);
         }
 
@@ -59,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 if (!result.IsSuccessful)
                 {
                     resultValidateAllFiles.Code = result.Code;
-                    result.Message = $"File {fileName} is incorrect.<br />" + result.Message;
+                    result.Message = $"File {fileName} is incorrect. " + result.Message + " <br />";
                     message.Append(result.Message);
                 }
             }
@@ -143,7 +141,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             for (var i = 0; i < inputFileNames.Length; i++)
             {
-                var row = $"<row FileName=\"{param.FilePaths[i]}\" Size=\"{param.Sizes[i]}\" />";
+                var row = $"<row FileName=\"{param.FilePaths[i]}\" ImageType=\"Image\"  Size=\"{param.Sizes[i]}\" />";
                 result.Append(row);
             }
 
@@ -160,7 +158,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 return result;
             }
 
-            var inputFileNames = param.InputFileNames.Split(';');
+            var inputFileNames = param.InputFileNames.Split('|');
             result = ValidateAllInputFileNames(inputFileNames, files);
             if (!result.IsSuccessful)
             {
@@ -187,6 +185,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 }
             }
 
+            BuildFilesXml(param, inputFileNames);
             var resultInsert = _bannerListRepository.InsertBanner(param);
 
             if (!resultInsert.IsSuccessful)
@@ -271,7 +270,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                     using (var bitmap = new Bitmap(file.InputStream))
                     {
                         param.Sizes.Add(BannerHelper.GetSize(bitmap.Width, bitmap.Height));
-                        BuildFilesXml(param, param.InputFileNames.Split(';'));
+                        BuildFilesXml(param, param.InputFileNames.Split('|'));
                         result = _bannerListRepository.UpdateBanner(param);
 
                         if (result.IsSuccessful)
@@ -285,7 +284,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             else
             {
                 param.Sizes.Add(oldBannerInfo.Size);
-                BuildFilesXml(param, param.InputFileNames.Split(';'));
+                BuildFilesXml(param, param.InputFileNames.Split('|'));
                 result = _bannerListRepository.UpdateBanner(param);
 
                 if (result.IsSuccessful && string.Compare(param.FilePaths[0], oldFilePath, StringComparison.CurrentCultureIgnoreCase) != 0)
@@ -311,8 +310,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public IEnumerable<MediaGalleryFilterItem> GetSizeList(SizeParam param)
         {
-            param.Category = GetCategory(param.Category, param.SubCategory);
-
             return _bannerListRepository.GetSizeList(param);
         }
 
@@ -375,16 +372,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
 
             return result;
-        }
-
-        private static string GetCategory(string category, string subCategory)
-        {
-            if(string.IsNullOrEmpty(subCategory))
-            {
-                return category;
-            }
-
-            return subCategory;
         }
     }
 }

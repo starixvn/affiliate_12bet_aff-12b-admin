@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 
         public string Files { get; set; }
 
-        public List<string> FilePaths { get; set; }
+        public List<string> FilePaths { get; set; } = new List<string>();
 
         public string InputFileNames { get; set; }
 
@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
         [Required]
         public string Currencies { get; set; }
 
-        public List<string> Sizes { get; set; }
+        public List<string> Sizes { get; set; } = new List<string>();
 
         [Required]
         public string AffTypes { get; set; }

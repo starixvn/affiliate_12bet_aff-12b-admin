@@ -4,12 +4,14 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader } from '../actions/index';
-import { headerText, globalResource, defaultState, Casino, Sportsbook } from '../libs/constants';
+import { headerText, globalResource, defaultState, Casino, Sportsbook, regSpecialCharacters } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 import { validateFileExtension, validateInputFile } from '../libs/utils';
 import MultipleSelect from '../../../../components/multiple-select';
+
+const regexSpecialCharacters = new RegExp(regSpecialCharacters);
 
 export class EditBannerForm extends PureComponent {
     constructor(props) {
@@ -49,11 +51,11 @@ export class EditBannerForm extends PureComponent {
             this.setState({
                 inputFileNames: [shortFileName],
                 categoryList: this.handleChangeMultipleSelected(categoryList, bannerInfo.Categories, true),
-                subCategoryList: this.handleChangeMultipleSelected(subCategoryList.filter(s => s.parentCategoryName === bannerInfo.Categories), bannerInfo.SubCategories),
+                subCategoryList: this.handleChangeMultipleSelected(subCategoryList.filter(s => bannerInfo.Categories.includes(s.parentCategoryName)), bannerInfo.SubCategories),
                 language: bannerInfo.Language,
                 currencyList: this.handleChangeMultipleSelected(currencyList, bannerInfo.Currencies),
-                affTypeList: this.handleChangeMultipleSelected(affTypeList, bannerInfo.AffTypes.toString()),
-                deviceTypeList: this.handleChangeMultipleSelected(deviceTypeList, bannerInfo.DeviceTypes.toString()),
+                affTypeList: this.handleChangeMultipleSelected(affTypeList, bannerInfo.AffTypes),
+                deviceTypeList: this.handleChangeMultipleSelected(deviceTypeList, bannerInfo.DeviceTypes),
                 iniatalFileName: shortFileName
             });
         }
@@ -68,11 +70,16 @@ export class EditBannerForm extends PureComponent {
 
     _handleChangeInputFileName = (event, index) => {
         const value = event.target.value;
-        let inputFileNames = [...this.state.inputFileNames];
 
-        inputFileNames[index] = value;
+        if(regexSpecialCharacters.test(value) || value.includes('\\')) {
+            this._handleShowAlert(false, `A File Name can't contain any of the following characters: \\/:*?"<>|`);
+        } else {
+            let inputFileNames = [...this.state.inputFileNames];
 
-        this.setState({ inputFileNames });
+            inputFileNames[index] = value;
+
+            this.setState({ inputFileNames });
+        }
     }
 
     _handleFile = (event) => {
@@ -131,14 +138,14 @@ export class EditBannerForm extends PureComponent {
     _getParam = (hasSubCategory) => {
         const { files, inputFileNames, categoryList, subCategoryList, language, currencyList, affTypeList, deviceTypeList, isInsert } = this.state;
 
-        const categories = categoryList.filter(item => item.checked).map(item => item.key).join(';');
-        const subCategories = hasSubCategory ? subCategoryList.filter(item => item.checked).map(item => item.key).join(';') : '';
-        const currencies = currencyList.filter(item => item.checked).map(item => item.key).join(';');
-        const affTypes = affTypeList.filter(item => item.checked).map(item => item.key).join(';');
-        const deviceTypes = deviceTypeList.filter(item => item.checked).map(item => item.key).join(';');
+        const categories = categoryList.filter(item => item.checked).map(item => item.key).join(',');
+        const subCategories = hasSubCategory ? subCategoryList.filter(item => item.checked).map(item => item.key).join(',') : '';
+        const currencies = currencyList.filter(item => item.checked).map(item => item.key).join(',');
+        const affTypes = affTypeList.filter(item => item.checked).map(item => item.key).join(',');
+        const deviceTypes = deviceTypeList.filter(item => item.checked).map(item => item.key).join(',');
         const { selectedBannerId } = this.props;
 
-        return Object.assign({}, { bannerId: selectedBannerId, files, inputFileNames: isInsert ? inputFileNames.map(item => item ? item.trim() : '').join(';') : inputFileNames[0], categories, subCategories, language, currencies, imageTypes, affTypes, deviceTypes });
+        return Object.assign({}, { bannerId: selectedBannerId, files, inputFileNames: isInsert ? inputFileNames.map(item => item ? item.trim() : '').join('|') : inputFileNames[0], categories, subCategories, language, currencies, affTypes, deviceTypes });
     }
 
     _updateBanner = async (bannerInfo) => {
@@ -278,7 +285,7 @@ export class EditBannerForm extends PureComponent {
     }
 
     handleChangeMultipleSelected = (initialList, selectedKey, isCategory) => {
-        const selectedList = selectedKey.split(',').filter(p => !!p);
+        const selectedList = typeof(selectedKey) == String ? selectedKey.split(',').filter(p => !!p) : selectedKey;
 
         return initialList && initialList.map(item => {
             const { key, name, categoryName } = item;
@@ -298,11 +305,19 @@ export class EditBannerForm extends PureComponent {
     }
 
     handleChangeCategory = (item, selectedKey) => {
-        const { categoryList, subCategoryList } = this.props;
+        const { categoryList } = this.props;
+        const { subCategoryList } = this.state;
 
         const newCategoryList = this.handleChangeMultipleSelected(categoryList, selectedKey, true);
         const categoryNames = newCategoryList.filter(category => category.checked).map(category => category.categoryName);
-        let newSubCategoryList = categoryNames.map(c => subCategoryList.filter(sub => sub.parentCategoryName == c)).reduce((accumulator, field) => accumulator.concat(field), []);
+        let newSubCategoryList = categoryNames.map(c => this.props.subCategoryList.filter(sub => sub.parentCategoryName == c)).reduce((accumulator, field) => {
+            var newField = field.reduce((acc, item) => {
+                var newItem = subCategoryList && subCategoryList.filter(sub => sub.key === item.key);
+
+                return acc.concat((!!newItem && !!newItem[0]) ? newItem : item);
+            }, []);
+            return accumulator.concat(newField);
+        }, []);
 
         this.setState({ categoryList: newCategoryList, subCategoryList: newSubCategoryList });
     }

@@ -62,22 +62,22 @@
     var controllerName = '@controllerName';
     let element;
 
-    if (controllerName == 'PaymentRequest' || controllerName == 'CommissionGroup' || controllerName == 'EmailHistory') {
-        element = document.getElementById('Affiliate');
-    }
-
-    if (controllerName == 'ActiveMember') {
-        element = document.getElementById('Member');
-    }
-    if (controllerName == 'TextList' || controllerName == 'LandingPageList') {
-        element = document.getElementById('MediaGallery');
-    }
-    if (controllerName == 'Department') {
-        element = document.getElementById('Administrator');
-    }
-
-    if (controllerName == 'Domain' || controllerName == 'DomainControl') {
-        element = document.getElementById('Domain');
+    switch(controllerName) {
+        case 'PaymentRequest': case 'CommissionGroup': case 'EmailHistory':
+            element = document.getElementById('Affiliate');
+            break;
+        case 'ActiveMember':
+            element = document.getElementById('Member');
+            break;
+        case 'TextList': case 'LandingPageList':
+            element = document.getElementById('MediaGallery');
+            break;
+        case 'Department':
+            element = document.getElementById('Administrator');
+            break;
+        case 'Domain': case 'DomainControl':
+            element = document.getElementById('Domain');
+            break;
     }
 
     element && element.classList.add("active");

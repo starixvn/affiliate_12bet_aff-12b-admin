@@ -146,6 +146,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             if (ModelState.IsValid && files != null)
             {
                 var encodeParam = EncodeParam(param);
+                GetUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
