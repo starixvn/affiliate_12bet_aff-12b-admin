@@ -179,6 +179,11 @@ export class EditBannerForm extends PureComponent {
                         if (!result.isOK) {
                             validInputFileNames = result;
                         }
+                    }else {
+                        validInputFileNames = {
+                            isOK: false,
+                            message: 'You must browse a banner.'
+                        };
                     }
                 }
             }
@@ -191,10 +196,18 @@ export class EditBannerForm extends PureComponent {
                     validInputFileNames = result;
                 }
             } else {
-                validInputFileNames = {
-                    isOK: false,
-                    message: 'You must enter a file name for banner.'
-                };
+                if(files && files.length > 0) {
+                    let result = validateInputFile(files[0].name);
+
+                    if (!result.isOK) {
+                        validInputFileNames = result;
+                    }
+                } else {
+                    validInputFileNames = {
+                        isOK: false,
+                        message: 'You must either enter a file name for banner or browse other banner.'
+                    };
+                }
             }
         }
 

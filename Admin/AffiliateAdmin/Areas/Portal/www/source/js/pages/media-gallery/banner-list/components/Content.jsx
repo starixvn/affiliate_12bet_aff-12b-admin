@@ -99,7 +99,7 @@ export const Content = (props) => {
                         isValidWithHeight ? (
                             <img id={`img${bannerId}`} src={src} alt="" height={realHeight} width={realWidth} />
                         ) : (
-                                <a href="javascript:;" id={`link${bannerId}`} onClick={() => props.setBannerDetailUrl({ src, bannerId })}>
+                                <a href="javascript:;" id={`link${bannerId}`} onClick={() => props.setBannerDetailUrl({ src, bannerId, width: realWidth, height: realHeight })}>
                                     <img id={`img${bannerId}`} src={src} alt="12Bet banner" height={resizeResult.height} width={resizeResult.width} />
                                 </a>
                             )

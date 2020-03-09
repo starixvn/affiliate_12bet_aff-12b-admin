@@ -170,7 +170,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         public ActionResult UpdateBanner(HttpPostedFileBase files, InsertUpdateMultipleBannersParam param)
         {
             var isValidBannerId = param.BannerId >= Validation.MinId;
-            if (!ModelState.IsValid && isValidBannerId && !string.IsNullOrEmpty(param.InputFileNames))
+            if (ModelState.IsValid && isValidBannerId && (!string.IsNullOrEmpty(param.InputFileNames) || files != null))
             {
                 var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
@@ -186,7 +186,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = !isValidBannerId ? "BannerId is invalid." : "You must enter a file name for banner."
+                    Message = !isValidBannerId ? "Banner Id is invalid." : Lang.PleaseEnterFileName
                 }
             };
         }
@@ -211,7 +211,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Please select Banners to delete."
+                    Message = "Please select Banner(s) to delete."
                 }
             };
         }

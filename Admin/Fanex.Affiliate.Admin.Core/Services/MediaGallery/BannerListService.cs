@@ -158,7 +158,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 return result;
             }
 
-            var inputFileNames = param.InputFileNames.Split('|');
+            var inputFileNames = param.InputFileNames?.Split('|') ?? new string[files.Length];
             result = ValidateAllInputFileNames(inputFileNames, files);
             if (!result.IsSuccessful)
             {
@@ -201,46 +201,23 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public ResultInfo ValidationInputFileName(HttpPostedFileBase file, InsertUpdateMultipleBannersParam param)
         {
-            if (file == null && string.IsNullOrEmpty(param.InputFileNames))
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "You must enter a file name for banner or choose a file."
-                };
-            }
-
             if (!string.IsNullOrEmpty(param.InputFileNames))
             {
                 if (!BannerHelper.IsValidExtension(_systemFile.GetExtension(param.InputFileNames)))
                 {
                     return BannerHelper.CreateErrorResult();
                 }
-
-                if (param.InputFileNames.Length > MaxLength)
-                {
-                    return new ResultInfo
-                    {
-                        Code = Code.GeneralErrorCode,
-                        Message = "The maximum length of file name is 50. Please choose another file name or select another file."
-                    };
-                }
             }
             else
             {
                 param.InputFileNames = file?.FileName;
-
-                if (param.InputFileNames.Length > MaxLength)
-                {
-                    return new ResultInfo
-                    {
-                        Code = Code.GeneralErrorCode,
-                        Message = "The maximum length of file name is 50. Please choose another file name or select another file."
-                    };
-                }
             }
 
-            return new ResultInfo();
+            return param.InputFileNames.Length > MaxLength ? new ResultInfo
+            {
+                Code = Code.GeneralErrorCode,
+                Message = Lang.MaxLenghtOfFileName
+            } : new ResultInfo();
         }
 
         public ResultInfo UpdateBanner(HttpPostedFileBase file, InsertUpdateMultipleBannersParam param)

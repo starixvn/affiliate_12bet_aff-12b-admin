@@ -340,7 +340,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file name already exists..
+        ///   Looks up a localized string similar to The file name already exists.&lt;br /&gt;.
         /// </summary>
         public static string InvalidBannerAlready {
             get {
@@ -358,7 +358,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry! We just support these file types : .jpg, .gif, .png, .jpeg.
+        ///   Looks up a localized string similar to Sorry! We just support these file types : .jpg, .gif, .png, .jpeg&lt;br /&gt;.
         /// </summary>
         public static string InvalidBannerExtensionFile {
             get {
@@ -367,7 +367,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your upload file size must be &lt;= 3 MB..
+        ///   Looks up a localized string similar to Your upload file size must be &lt;= 3 MB.&lt;br /&gt;.
         /// </summary>
         public static string InvalidBannerSize {
             get {
@@ -390,6 +390,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string LandingPages {
             get {
                 return ResourceManager.GetString("LandingPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The maximum length of file name is 50. Please either choose another file name or select another file..
+        /// </summary>
+        public static string MaxLenghtOfFileName {
+            get {
+                return ResourceManager.GetString("MaxLenghtOfFileName", resourceCulture);
             }
         }
         
@@ -466,6 +475,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must either enter a file name for banner or browse other banner..
+        /// </summary>
+        public static string PleaseEnterFileName {
+            get {
+                return ResourceManager.GetString("PleaseEnterFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select messages to delete..
         /// </summary>
         public static string PleaseSelectMessage {
@@ -498,15 +516,6 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string Sportsbook {
             get {
                 return ResourceManager.GetString("Sportsbook", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

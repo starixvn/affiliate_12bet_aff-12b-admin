@@ -348,8 +348,8 @@
   <data name="UpdatePaymentErr999" xml:space="preserve">
     <value>Create Affiliate Info failed. Please try again</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="MaxLenghtOfFileName" xml:space="preserve">
+    <value>The maximum length of file name is 50. Please either choose another file name or select another file.</value>
   </data>
   <data name="UpdateIsFailed" xml:space="preserve">
     <value>Update is failed!</value>
@@ -391,5 +391,8 @@
   <data name="Sportsbook" xml:space="preserve">
     <value>Sportsbook</value>
     
+  </data>
+  <data name="PleaseEnterFileName" xml:space="preserve">
+    <value>You must either enter a file name for banner or browse other banner.</value>
   </data>
 </root>
