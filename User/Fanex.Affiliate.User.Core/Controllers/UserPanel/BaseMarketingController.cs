@@ -31,20 +31,21 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             var categoryList = MarketingService.GetCategoryList(isMediaPage, SessionService.IsInternal).Where(c => c.CategoryId == c.ParentCategoryId);
             var languageList = MarketingService.GetLanguageList(SessionService.IsInternal);
             var currencyList = MarketingService.GetCurrencyList(SessionService.IsInternal);
+            var userSession = SessionService.UserSession;
             var viewModel = new SearchFormViewModel
             {
                 CategoryList = categoryList.Select(i => new SelectListItem { Value = i.Category, Text = Lang.ResourceManager.GetString(i.Category.Trim()) ?? i.Category }),
-                LanguageList = MarketingHelper.GetLanguageList(languageList, SessionService.UserSession.PreferredLanguage),
+                LanguageList = MarketingHelper.GetLanguageList(languageList, userSession.PreferredLanguage),
                 CurrencyList = currencyList.Select(i => new SelectListItem { Value = i.Currency, Text = Lang.ResourceManager.GetString(i.Currency.Trim()) ?? i.Currency })
             };
 
             if (isMediaPage)
             {
-                var sizeList = MarketingService.GetSizeList(new SizeParam(), SessionService.IsInternal);
+                var sizeList = MarketingService.GetSizeList(new SizeParam { AffType = userSession.AffType, Language = userSession.PreferredLanguage }, SessionService.IsInternal);
                 var bannerTypeList = MarketingService.GetBannerTypeList(SessionService.IsInternal);
 
                 viewModel.ImageTypeList = bannerTypeList.Select(i => new SelectListItem { Value = i.Type, Text = Lang.ResourceManager.GetString(i.Type.Trim()) ?? i.Type });
-                viewModel.SizeList = sizeList.Select(i => new SelectListItem { Value = i.Size, Text = Lang.ResourceManager.GetString(i.Size.Trim()) ?? i.Size });
+                viewModel.SizeList = sizeList.Select(i => new SelectListItem { Value = i.Size, Text = i.Size });
             }
 
             return viewModel;
