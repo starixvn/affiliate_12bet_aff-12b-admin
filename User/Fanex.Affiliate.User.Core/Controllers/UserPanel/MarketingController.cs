@@ -69,6 +69,7 @@
         [AjaxOnly]
         public ActionResult GetSize(SizeParam param)
         {
+            param.AffType = SessionService.UserSession.AffType;
             param.Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(param.Language))?.EnglishName;
             var sizeList = MarketingService.GetSizeList(param, SessionService.IsInternal);
 
