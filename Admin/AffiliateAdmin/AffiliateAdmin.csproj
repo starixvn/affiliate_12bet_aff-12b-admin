@@ -659,7 +659,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\reducers\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\__test__\ControlButtons.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\index.js" />

@@ -132,7 +132,7 @@ export class Filter extends PureComponent {
                             <option key={'imageType-all'} value={''}>{globalResource.All}</option>
                             {
                                 imageTypeList && imageTypeList.map(item => {
-                                    return (<option key={`imageType-${item.name}`} value={item.name}>{item.name}</option>)
+                                    return (<option key={`imageType-${item.Name}`} value={item.Name}>{item.Name}</option>)
                                 })
                             }
                         </Input>

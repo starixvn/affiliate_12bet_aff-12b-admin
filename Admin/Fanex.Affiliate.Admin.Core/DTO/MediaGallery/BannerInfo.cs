@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 {

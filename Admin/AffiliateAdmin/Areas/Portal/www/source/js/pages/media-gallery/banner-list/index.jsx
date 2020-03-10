@@ -35,14 +35,6 @@ const newCurrencyList = currencyList.map(item => {
     };
 });
 
-const newImageTypeList = imageTypeList.map(item => {
-    return {
-        key: item.Name,
-        name: item.Name,
-        checked: false
-    };
-});
-
 const newSizeList = sizeList.map(item => {
     return {
         key: item.Name,
@@ -61,7 +53,7 @@ const newAffTypeList = affTypeList.map(item => {
 
 const store = configureStore({
     languageList, paramFromHome, categoryList: newCategoryList, subCategoryList: newSubCategoryList,
-    currencyList: newCurrencyList, imageTypeList: newImageTypeList, sizeList: newSizeList, affTypeList: newAffTypeList
+    currencyList: newCurrencyList, imageTypeList, sizeList: newSizeList, affTypeList: newAffTypeList
 }, reducer);
 
 export default class App extends React.PureComponent {

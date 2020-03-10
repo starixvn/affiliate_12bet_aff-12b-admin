@@ -127,7 +127,7 @@ describe('banner list actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const expectedAction = [
-            { type: 'SET_SIZE_LIST', data: [{ Id: 123, Name: '320x50' }] }
+            { type: 'SET_SIZE_LIST', data: [{ "checked": false, "key": 123, "name": "320x50", }] }
         ];
 
         const param = {
@@ -179,20 +179,22 @@ describe('banner list actions', () => {
                 MainData: [
                     {
                         BannerId: 2485,
-                        Category: "Baccarat",
-                        Currency: "EURO",
-                        DeviceType: 1,
-                        FileName: "CategoryMedia/Casino/Baccarat/giphy.gif",
+                        Categories: ["Casino"],
+                        SubCategories: ["Baccarat"],
+                        Currencies: ["EURO"],
+                        DeviceTypes: ["1"],
+                        FileName: "CategoryMedia/giphy.gif",
                         ImageType: "Image",
                         Language: "Chinese Simplified",
                         Size: "500x500"
                     },
                     {
                         BannerId: 2448,
-                        Category: "Number Game",
-                        Currency: "EURO",
-                        DeviceType: 1,
-                        FileName: "CategoryMedia/Number Game/step1.jpg",
+                        Categories: ["Number Game"],
+                        SubCategories: [""],
+                        Currencies: ["EURO"],
+                        DeviceTypes: ["1"],
+                        FileName: "CategoryMedia/step1.jpg",
                         ImageType: "Image",
                         Language: "Chinese Simplified",
                         Size: "1655x438"
@@ -300,7 +302,8 @@ describe('banner list actions', () => {
         const expectedResponse = { data: { IsSuccessful: true, Message: '' }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
-            BannerId: 2485
+            BannerId: 0,
+            files: [{ name: 'abc.png' }]
         };
 
         const result = await actions['insertBanner'](param)();

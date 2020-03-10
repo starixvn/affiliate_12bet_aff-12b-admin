@@ -1,18 +1,20 @@
 ﻿import React from 'react';
 import { EditBannerForm } from '../EditBannerForm';
 import { shallow } from 'enzyme';
+import MultipleSelect from '../../../../../components/multiple-select';
 
 describe('banner list - components - EditBannerForm ', () => {
-    const bannerInfo = {
+    const bannerInfo =         {
         BannerId: 2485,
-        Category: "Baccarat",
-        Currency: "EURO",
-        DeviceType: 1,
-        FileName: "CategoryMedia/Casino/Baccarat/giphy.gif",
+        Categories: ["Casino"],
+        SubCategories: ["Baccarat"],
+        Currencies: ["EURO"],
+        DeviceTypes: ["1"],
+        AffTypes: ["2"],
+        FileName: "CategoryMedia/giphy.gif",
         ImageType: "Image",
         Language: "Chinese Simplified",
-        Size: "500x500",
-        AffType: 2
+        Size: "500x500"
     };
 
     const param = {
@@ -27,13 +29,25 @@ describe('banner list - components - EditBannerForm ', () => {
         Size: "",
         SubCategory: ""
     };
+    const deviceTypeList = [
+        {
+            key: 0, name: "PC / Laptop", checked: false
+        },
+        {
+            key: 1, name: "Mobile", checked: false
+        }
+    ];
 
     const defaultProps = {
         selectedBannerId: 0,
         param,
         categoryList: [
-            { CategoryName: "Casino" },
-            { CategoryName: "Sportsbook" }
+            { categoryName: "Casino", key: "Casino", name: "Casino", checked: false },
+            { categoryName: "Sportsbook", key: "Sportsbook", name: "Sportsbook", checked: false }
+        ],
+        subCategoryList: [
+            { parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false },
+            { parentCategoryName: "Sportsbook", key: "Basketball", name: "Basketball", checked: false }
         ],
         subCategoryCasinoList: [
             { CategoryName: "Casino Bonus" },
@@ -48,21 +62,18 @@ describe('banner list - components - EditBannerForm ', () => {
             { LanguageName: "Vietnamese" }
         ],
         currencyList: [
-            { Name: "EURO" },
-            { Name: "VND" }
-        ],
-        imageTypeList: [
-            { Name: "Image" },
-            { Name: "Flash" }
+            { key: "EURO", name: "EURO", checked: false },
+            { key: "VND", name: "VND", checked: false }
         ],
         sizeList: [
-            { Name: "300x250" },
-            { Name: "500x350" }
+            { key: "300x250", name: "300x250", checked: false },
+            { key: "500x350", name: "500x350", checked: false }
         ],
         affTypeList: [
-            { AffTypeId: 2, AffTypeName: 'Asian' },
-            { AffTypeId: 3, AffTypeName: 'Media' }
-        ]
+            { key: "Asian", name: "Asian", checked: false },
+            { key: "Media", name: "Media", checked: false }
+        ],
+        deviceTypeList
     };
 
     it('render correctly with insert', () => {
@@ -74,7 +85,8 @@ describe('banner list - components - EditBannerForm ', () => {
     it('render correctly with update', () => {
         const props = Object.assign({}, defaultProps, { selectedBannerId: 2485, getBannerDetail: jest.fn() });
         const result = shallow(<EditBannerForm {...props} />);
-        result.setState({ isInsert: false, category: "Sportsbook", isSuccess: false, inputFileName: "test.gif" });
+        result.setState({ isInsert: false, messageNotificationPopup: 'abc', categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false }], isSuccess: false, inputFileNames: ["test.gif"] });
 
         expect(result).toMatchSnapshot();
     });
@@ -135,7 +147,7 @@ describe('banner list - components - EditBannerForm ', () => {
         await result.instance()._handleGetBannerDetail(selectedBannerId);
 
         expect(props.getBannerDetail).toHaveBeenCalledWith(selectedBannerId);
-        expect(result.setState).toHaveBeenCalledWith({ "affType": 2, "category": "Baccarat", "currency": "EURO", "deviceType": 1, "imageType": "Image", "inputFileName": "giphy.gif", "language": "Chinese Simplified", "subCategory": "" });
+        expect(result.setState).toHaveBeenCalledWith({"affTypeList": [{"checked": false, "key": "Asian", "name": "Asian"}, {"checked": false, "key": "Media", "name": "Media"}], "categoryList": [{"categoryName": "Casino", "checked": true, "key": "Casino", "name": "Casino"}, {"categoryName": "Sportsbook", "checked": false, "key": "Sportsbook", "name": "Sportsbook"}], "currencyList": [{"checked": true, "key": "EURO", "name": "EURO"}, {"checked": false, "key": "VND", "name": "VND"}], "deviceTypeList": [{"checked": false, "key": 0, "name": "PC / Laptop"}, {"checked": true, "key": 1, "name": "Mobile"}], "iniatalFileName": "giphy.gif", "inputFileNames": ["giphy.gif"], "language": "Chinese Simplified", "subCategoryList": [{"checked": false, "key": "Slot", "name": "Slot"}]});
     });
 
     it('_handleGetBannerDetail should call getBannerDetail and not call setState', async () => {
@@ -162,7 +174,7 @@ describe('banner list - components - EditBannerForm ', () => {
         await result.instance()._handleGetBannerDetail(selectedBannerId);
 
         expect(props.getBannerDetail).toHaveBeenCalledWith(selectedBannerId);
-        expect(result.setState).toHaveBeenCalledWith({ "affType": 2, "category": "Casino", "currency": "EURO", "deviceType": 1, "imageType": "Image", "inputFileName": "giphy.gif", "language": "Chinese Simplified", "subCategory": "Slot" });
+        expect(result.setState).toHaveBeenCalledWith({"affTypeList": [{"checked": false, "key": "Asian", "name": "Asian"}, {"checked": false, "key": "Media", "name": "Media"}], "categoryList": [{"categoryName": "Casino", "checked": true, "key": "Casino", "name": "Casino"}, {"categoryName": "Sportsbook", "checked": false, "key": "Sportsbook", "name": "Sportsbook"}], "currencyList": [{"checked": true, "key": "EURO", "name": "EURO"}, {"checked": false, "key": "VND", "name": "VND"}], "deviceTypeList": [{"checked": false, "key": 0, "name": "PC / Laptop"}, {"checked": true, "key": 1, "name": "Mobile"}], "iniatalFileName": "giphy.gif", "inputFileNames": ["giphy.gif"], "language": "Chinese Simplified", "subCategoryList": [{"checked": false, "key": "Slot", "name": "Slot"}]});
     });
 
     it('_handleGetBannerDetail should call getBannerDetail and setState with sportsbook category', async () => {
@@ -176,7 +188,7 @@ describe('banner list - components - EditBannerForm ', () => {
         await result.instance()._handleGetBannerDetail(selectedBannerId);
 
         expect(props.getBannerDetail).toHaveBeenCalledWith(selectedBannerId);
-        expect(result.setState).toHaveBeenCalledWith({ "affType": 2, "category": "Sportsbook", "currency": "EURO", "deviceType": 1, "imageType": "Image", "inputFileName": "giphy.gif", "language": "Chinese Simplified", "subCategory": "Basketball" });
+        expect(result.setState).toHaveBeenCalledWith({"affTypeList": [{"checked": false, "key": "Asian", "name": "Asian"}, {"checked": false, "key": "Media", "name": "Media"}], "categoryList": [{"categoryName": "Casino", "checked": true, "key": "Casino", "name": "Casino"}, {"categoryName": "Sportsbook", "checked": false, "key": "Sportsbook", "name": "Sportsbook"}], "currencyList": [{"checked": true, "key": "EURO", "name": "EURO"}, {"checked": false, "key": "VND", "name": "VND"}], "deviceTypeList": [{"checked": false, "key": 0, "name": "PC / Laptop"}, {"checked": true, "key": 1, "name": "Mobile"}], "iniatalFileName": "giphy.gif", "inputFileNames": ["giphy.gif"], "language": "Chinese Simplified", "subCategoryList": [{"checked": false, "key": "Slot", "name": "Slot"}]});
     });
 
     it('_handleFile should be called when change file', () => {
@@ -192,7 +204,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
         result.find('Input[type="file"][id="file"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({"file": {"name": "test.jpg"}, "inputFileName": "test.jpg", "isDisabled": false});
+        expect(result.setState).toHaveBeenCalledWith({"files": [{"name": "test.jpg"}], "inputFileNames": ["test.jpg"], "isDisabled": false});
     });
 
     it('_handleFile should be called when change file but not chose', () => {
@@ -225,7 +237,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
         result.find('Input[type="file"][id="file"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({"file": {"name": "abc.pdf"}, "inputFileName": "abc.pdf", "isDisabled": true});
+        expect(result.setState).toHaveBeenCalledWith({"files": [{"name": "abc.pdf"}], "inputFileNames": ["abc.pdf"], "isDisabled": true});
         expect(result.instance()._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'" );
     });
 
@@ -243,61 +255,8 @@ describe('banner list - components - EditBannerForm ', () => {
 
         result.find('Input[type="file"][id="file"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({"file": {"name": ""}, "inputFileName": "", "isDisabled": true});
+        expect(result.setState).toHaveBeenCalledWith({"files": [{"name": ""}], "inputFileNames": [""], "isDisabled": true});
         expect(result.instance()._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'" );
-    });
-
-    it('_handleChange should be called when change category select to Casino', () => {
-        const event = {
-            target: {
-                name: 'category',
-                value: 'Casino'
-            }
-        };
-
-        const result = shallow(<EditBannerForm {...defaultProps} />);
-
-        result.setState = jest.fn();
-
-        result.find('Input[type="select"][id="category"]').simulate('change', event);
-
-        expect(result.setState).toHaveBeenCalledWith({ category: 'Casino' });
-    });
-
-    it('_handleChange should be called when change category select to Sportsbook', () => {
-        const event = {
-            target: {
-                name: 'category',
-                value: 'Sportsbook'
-            }
-        };
-
-        const result = shallow(<EditBannerForm {...defaultProps} />);
-
-        result.setState = jest.fn();
-
-        result.find('Input[type="select"][id="category"]').simulate('change', event);
-
-        expect(result.setState).toHaveBeenCalledWith({ category: 'Sportsbook' });
-    });
-
-    it('_handleChange should be called when change category select to others', () => {
-        const event = {
-            target: {
-                name: 'category',
-                value: 'Number Game'
-            }
-        };
-
-        const result = shallow(<EditBannerForm {...defaultProps} />);
-
-        result.setState = jest.fn();
-
-        result.find('Input[type="select"][id="category"]').simulate('change', event);
-
-        expect(result.setState).toHaveBeenCalledTimes(2);
-        expect(result.setState.mock.calls[0][0]).toEqual({ category: 'Number Game' });
-        expect(result.setState.mock.calls[1][0]).toEqual({ subCategory: '' });
     });
 
     it('_handleChange should be called when change language select', () => {
@@ -317,188 +276,351 @@ describe('banner list - components - EditBannerForm ', () => {
         expect(result.setState).toHaveBeenCalledWith({ language: 'English' });
     });
 
-    it('_handleChange should be called when change currency select', () => {
+    it('_handleChangeInputFileName should be called when insert', () => {
         const event = {
             target: {
-                name: 'currency',
-                value: 'VND'
+                value: 'Casino***'
             }
         };
 
         const result = shallow(<EditBannerForm {...defaultProps} />);
-
+        result.setState({ inputFileNames: ["Casino"] });
+        result.instance()._handleChangeInputFileName = jest.fn();
         result.setState = jest.fn();
 
-        result.find('Input[type="select"][id="currency"]').simulate('change', event);
+        result.find('Input[type="text"][id="inputFileName0"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({ currency: 'VND' });
+        expect(result.instance()._handleChangeInputFileName).toHaveBeenCalledWith(event, 0);
     });
 
-    it('_handleChange should be called when change deviceType select', () => {
+    it('_handleChangeInputFileName should be called when update', () => {
         const event = {
             target: {
-                name: 'deviceType',
-                value: 1
+                value: 'Casino***'
             }
         };
 
         const result = shallow(<EditBannerForm {...defaultProps} />);
-
-        result.setState = jest.fn();
-
-        result.find('Input[type="select"][id="deviceType"]').simulate('change', event);
-
-        expect(result.setState).toHaveBeenCalledWith({ deviceType: 1 });
-    });
-
-    it('_handleChange should be not called when change input file name', () => {
-        const event = {
-            target: {
-                name: 'inputFileName',
-                value: 'should_call_handleShowAlert_with_invalid_lenght_test.png'
-            }
-        };
-
-        const result = shallow(<EditBannerForm {...defaultProps} />);
-
+        result.setState({ isInsert: false, inputFileNames: ["Casino"] });
+        result.instance()._handleChangeInputFileName = jest.fn();
         result.setState = jest.fn();
 
         result.find('Input[type="text"][id="inputFileName"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({ inputFileName: 'should_call_handleShowAlert_with_invalid_lenght_test.png' });
+        expect(result.instance()._handleChangeInputFileName).toHaveBeenCalledWith(event, 0);
     });
 
-    it('_handleSubmit - should call toggleLoader and _handleShowAlert when insert not has file', async () => {
+    it('_handleChangeInputFileName - should call _handleShowAlert', () => {
+        const event = {
+            target: {
+                value: 'Casino\\**'
+            }
+        };
+
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        const instance = result.instance();
+        instance._handleShowAlert = jest.fn();
+
+        instance._handleChangeInputFileName(event, 0);
+
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, `A File Name can't contain any of the following characters: \\/:*?"<>|`);
+    });
+
+    it('_handleChangeInputFileName - should call setState', () => {
+        const event = {
+            target: {
+                value: 'Casino123'
+            }
+        };
+
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        result.setState({ inputFileNames: ["Casino"] });
+        const instance = result.instance();
+        instance.setState = jest.fn()
+
+        instance._handleChangeInputFileName(event, 0);
+
+        expect(instance.setState).toHaveBeenCalledWith({ inputFileNames: ["Casino123"] });
+    });
+
+    it('_handleSubmit - should be called', () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+
+        const instance = wrapper.instance();
+
+        instance._handleSubmit = jest.fn();
+
+        wrapper.find('Button').at(0).simulate('click');
+
+        expect(instance._handleSubmit).toHaveBeenCalledWith(false);
+    });
+
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select category', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: false }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }]
+        });
         const instance = wrapper.instance();
 
         instance._handleShowAlert = jest.fn();
-        instance.setState = jest.fn();
 
-        await instance._handleSubmit();
+        await instance._handleSubmit(false);
 
-        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
+        expect(props.toggleLoader).toHaveBeenCalledTimes(1);
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
-        expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
-        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Please select banner to upload.");
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Please select Category.");
     });
 
-    it('_handleSubmit - should call toggleLoader and _handleShowAlert when update not has input file name', async () => {
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select casino sub category', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ isInsert: false });
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }]
+        });
         const instance = wrapper.instance();
 
         instance._handleShowAlert = jest.fn();
-        instance.setState = jest.fn();
 
-        await instance._handleSubmit();
+        await instance._handleSubmit(true);
 
-        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
+        expect(props.toggleLoader).toHaveBeenCalledTimes(1);
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
-        expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
-        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "You must enter a file name for banner.");
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Please select Sub Category.");
     });
 
-    it('_handleSubmit - should call toggleLoader and _handleShowAlert when update not has file but has input file name', async () => {
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select sportsbook sub category', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ isInsert: false, inputFileName: "test.gif" });
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Sportsbook", key: "Sportsbook", name: "Sportsbook", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }]
+        });
         const instance = wrapper.instance();
 
-        instance.setState = jest.fn();
-        instance._validateInputFile = jest.fn();
-
-        await instance._handleSubmit();
-
-        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
-        expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
-        expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
-        expect(instance._validateInputFile).toHaveBeenCalledWith("test.gif");
-    });
-
-    it('_handleSubmit - should call toggleLoader and _handleShowAlert', async () => {
-        const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
-        const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ file: { name: "test.pdf" } });
-        const instance = wrapper.instance();
-
-        instance.setState = jest.fn();
         instance._handleShowAlert = jest.fn();
 
-        await instance._handleSubmit();
+        await instance._handleSubmit(true);
 
-        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
+        expect(props.toggleLoader).toHaveBeenCalledTimes(1);
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
-        expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
-        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'");
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Please select Sub Category.");
+    });
+
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select currency', async () => {
+        const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
+        const wrapper = shallow(<EditBannerForm {...props} />);
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: false }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }]
+        });
+        const instance = wrapper.instance();
+
+        instance._handleShowAlert = jest.fn();
+
+        await instance._handleSubmit(false);
+
+        expect(props.toggleLoader).toHaveBeenCalledTimes(1);
+        expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Please select Currency.");
+    });
+
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select Affiliate Type', async () => {
+        const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
+        const wrapper = shallow(<EditBannerForm {...props} />);
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: false }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }]
+        });
+        const instance = wrapper.instance();
+
+        instance._handleShowAlert = jest.fn();
+
+        await instance._handleSubmit(false);
+
+        expect(props.toggleLoader).toHaveBeenCalledTimes(1);
+        expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Please select Affiliate Type.");
+    });
+
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select Device', async () => {
+        const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
+        const wrapper = shallow(<EditBannerForm {...props} />);
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: false }]
+        });
+        const instance = wrapper.instance();
+
+        instance._handleShowAlert = jest.fn();
+
+        await instance._handleSubmit(false);
+
+        expect(props.toggleLoader).toHaveBeenCalledTimes(1);
+        expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Please select Device.");
     });
 
     it('_handleSubmit - should call toggleLoader and _save', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ file: { name: "test.gif" } });
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }]
+        });
         const instance = wrapper.instance();
-
-        instance.setState = jest.fn();
+        const resultValidateInputFileName = {
+            isOK: true,
+            message: ''
+        }
+        instance._validateInputFileName = jest.fn(() => resultValidateInputFileName);
         instance._save = jest.fn();
 
-        await instance._handleSubmit();
+        await instance._handleSubmit(false);
 
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
-        expect(instance._save).toHaveBeenCalled();
+        expect(instance._save).toHaveBeenCalledWith(false);
     });
 
-    it('_handleSubmit - should call toggleLoader and _validateInputFile', async () => {
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert when invalid input file name', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ file: { name: "test.gif" }, inputFileName: 'test.png' });
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }]
+        });
         const instance = wrapper.instance();
+        const resultValidateInputFileName = {
+            isOK: false,
+            message: 'Input file name is invalid'
+        }
+        instance._validateInputFileName = jest.fn(() => resultValidateInputFileName);
+        instance._handleShowAlert = jest.fn();
 
-        instance._validateInputFile = jest.fn();
-
-        await instance._handleSubmit();
+        await instance._handleSubmit(false);
 
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
-        expect(instance._validateInputFile).toHaveBeenCalledWith('test.png');
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, resultValidateInputFileName.message);
     });
 
-    it('_validateInputFile - should call _save', async () => {
+    it('_validateInputFileName - should valid input file name when insert', () => {
         const wrapper = shallow(<EditBannerForm {...defaultProps} />);
-        const instance = wrapper.instance();
+        wrapper.setState({ inputFileNames: ['abc.png'] })
 
-        instance._save = jest.fn();
+        const result = wrapper.instance()._validateInputFileName();
 
-        await instance._validateInputFile('test.png');
-
-        expect(instance._save).toHaveBeenCalled();
+        expect(result).toEqual({ isOK: true, message: '' });
     });
 
-    it('_validateInputFile - should call _handleShowAlert', async () => {
+    it('_validateInputFileName - should valid input file name when insert', () => {
         const wrapper = shallow(<EditBannerForm {...defaultProps} />);
-        const instance = wrapper.instance();
+        wrapper.setState({ inputFileNames: ['abc.123'] })
 
-        instance._handleShowAlert = jest.fn();
+        const result = wrapper.instance()._validateInputFileName();
 
-        await instance._validateInputFile('test.pdf');
-
-        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'");
+        expect(result).toEqual({ isOK: false, message: "File Name 1 incorrect.<br />Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'" });
     });
 
-    it('_validateInputFile - should call _handleShowAlert with invalid lenght', async () => {
+    it('_validateInputFileName - should valid file when insert', async () => {
         const wrapper = shallow(<EditBannerForm {...defaultProps} />);
-        const instance = wrapper.instance();
+        wrapper.setState({ inputFileNames: [''], files: [{ name: 'abc123.jpg' }] })
 
-        instance._handleShowAlert = jest.fn();
+        const result = wrapper.instance()._validateInputFileName();
 
-        await instance._validateInputFile('should_call_handleShowAlert_with_invalid_lenght_test.png');
+        expect(result).toEqual({ isOK: true, message: '' });
+    });
 
-        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "The maximum length of file name is 50. Please choose another name.");
+    it('_validateInputFileName - should invalid file when insert', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ inputFileNames: [''], files: [{ name: 'abc123abc123abc123abc123abc123abc123abc123abc123abc123abc123.jpg' }] })
+
+        const result = wrapper.instance()._validateInputFileName();
+
+        expect(result).toEqual({ isOK: false, message: 'The maximum length of file name is 50. Please choose another name.' });
+    });
+
+    it('_validateInputFileName - should return error when insert', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ inputFileNames: [''], files: [] })
+
+        const result = wrapper.instance()._validateInputFileName();
+
+        expect(result).toEqual({ isOK: false, message: 'You must browse a banner.' });
+    });
+
+    it('_validateInputFileName - should valid input file name when update', () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ isInsert: false, inputFileNames: ['abc.png'] })
+
+        const result = wrapper.instance()._validateInputFileName();
+
+        expect(result).toEqual({ isOK: true, message: '' });
+    });
+
+    it('_validateInputFileName - should valid input file name when update', () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ isInsert: false, inputFileNames: ['abc.123'] })
+
+        const result = wrapper.instance()._validateInputFileName();
+
+        expect(result).toEqual({ isOK: false, message: "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'" });
+    });
+
+    it('_validateInputFileName - should valid file when update', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ isInsert: false, inputFileNames: [''], files: [{ name: 'abc123.jpg' }] })
+
+        const result = wrapper.instance()._validateInputFileName();
+
+        expect(result).toEqual({ isOK: true, message: '' });
+    });
+
+    it('_validateInputFileName - should invalid file when update', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ isInsert: false, inputFileNames: [''], files: [{ name: 'abc123abc123abc123abc123abc123abc123abc123abc123abc123abc123.jpg' }] })
+
+        const result = wrapper.instance()._validateInputFileName();
+
+        expect(result).toEqual({ isOK: false, message: 'The maximum length of file name is 50. Please choose another name.' });
+    });
+
+    it('_validateInputFileName - should return error when update', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ isInsert: false, inputFileNames: [''], files: [] })
+
+        const result = wrapper.instance()._validateInputFileName();
+
+        expect(result).toEqual({ isOK: false, message: 'You must either enter a file name for banner or browse other banner.' });
     });
 
     it('_save - should call insertBanner and _handleAfterSave', async () => {
@@ -506,12 +628,11 @@ describe('banner list - components - EditBannerForm ', () => {
         const props = Object.assign({}, defaultProps, { insertBanner: jest.fn(() => expectedResult) });
         const wrapper = shallow(<EditBannerForm {...props} />);
         const instance = wrapper.instance();
-
         instance._handleAfterSave = jest.fn();
 
         await instance._save();
 
-        expect(props.insertBanner).toHaveBeenCalledWith({"affType": 2, "bannerId": 0, "category": "Casino", "currency": "EURO", "deviceType": 0, "file": null, "imageType": "Image", "inputFileName": "", "language": "Chinese Simplified", "subCategory": "Baccarat"});
+        expect(props.insertBanner).toHaveBeenCalledWith({"affTypes": "", "bannerId": 0, "categories": "", "currencies": "", "deviceTypes": "", "files": null, "inputFileNames": "", "language": "Chinese Simplified", "subCategories": ""});
         expect(instance._handleAfterSave).toHaveBeenCalledWith(true, expectedResult);
     });
 
@@ -521,13 +642,145 @@ describe('banner list - components - EditBannerForm ', () => {
         const wrapper = shallow(<EditBannerForm {...props} />);
         wrapper.setState({ isInsert: false });
         const instance = wrapper.instance();
-
         instance._handleAfterSave = jest.fn();
 
         await instance._save();
 
-        expect(props.updateBanner).toHaveBeenCalledWith({"affType": 2, "bannerId": 0, "category": "Casino", "currency": "EURO", "deviceType": 0, "file": null, "imageType": "Image", "inputFileName": "", "language": "Chinese Simplified", "subCategory": "Baccarat"});
+        expect(props.updateBanner).toHaveBeenCalledWith({"affTypes": "", "bannerId": 0, "categories": "", "currencies": "", "deviceTypes": "", "files": null, "inputFileNames": "", "language": "Chinese Simplified", "subCategories": ""});
         expect(instance._handleAfterSave).toHaveBeenCalledWith(false, expectedResult);
+    });
+
+    it('_save - should call setState', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ isInsert: false, inputFileNames: ["abc.png"], iniatalFileName: "abc.png" });
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
+
+        await instance._save();
+
+        expect(instance.setState).toHaveBeenCalledWith({ messageNotificationPopup: 'This file name exists already. Do you want to overwrite the current file?' });
+    });
+
+    it('_getParam - should return correct data', () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }]
+        });
+
+        const result = wrapper.instance()._getParam(false);
+
+        expect(result).toEqual({ bannerId: 0, files: null, inputFileNames: '', categories: 'Casino', subCategories: '', language: 'Chinese Simplified', currencies: 'EURO', affTypes: 'Asian', deviceTypes: '0' });
+    });
+
+    it('_getParam - should return correct data with has SubCategory', () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }],
+            inputFileNames: ["abc  "]
+        });
+
+        const result = wrapper.instance()._getParam(true);
+
+        expect(result).toEqual({ bannerId: 0, files: null, inputFileNames: 'abc', categories: 'Casino', subCategories: 'Slot', language: 'Chinese Simplified', currencies: 'EURO', affTypes: 'Asian', deviceTypes: '0' });
+    });
+
+    it('_getParam - should return correct data with update', () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }],
+            inputFileNames: ["abc  "]
+        });
+
+        const result = wrapper.instance()._getParam(true);
+
+        expect(result).toEqual({ bannerId: 0, files: null, inputFileNames: 'abc', categories: 'Casino', subCategories: 'Slot', language: 'Chinese Simplified', currencies: 'EURO', affTypes: 'Asian', deviceTypes: '0' });
+    });
+
+    it('handleChangeCategory - should call setState', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ 
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }]
+        });
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
+
+        await instance.handleChangeCategory(null, 'Casino');
+
+        expect(instance.setState).toHaveBeenCalledWith({"categoryList": [{"categoryName": "Casino", "checked": true, "key": "Casino", "name": "Casino"}, {"categoryName": "Sportsbook", "checked": false, "key": "Sportsbook", "name": "Sportsbook"}], "subCategoryList": [{"checked": true, "key": "Slot", "name": "Slot", "parentCategoryName": "Casino"}]});
+    });
+
+    it('handleChangeCategory - should call setState without sub category', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
+
+        await instance.handleChangeCategory(null, 'Casino, Number Game');
+
+        expect(instance.setState).toHaveBeenCalledWith({"categoryList": [{"categoryName": "Casino", "checked": true, "key": "Casino", "name": "Casino"}, {"categoryName": "Sportsbook", "checked": false, "key": "Sportsbook", "name": "Sportsbook"}], "subCategoryList": [{"checked": false, "key": "Slot", "name": "Slot", "parentCategoryName": "Casino"}]});
+    });
+
+    it('handleChangeSubCategory - should call setState', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ 
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }]
+        });
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
+
+        await instance.handleChangeSubCategory(null, 'Slot');
+
+        expect(instance.setState).toHaveBeenCalledWith({"subCategoryList": [{"checked": true, "key": "Slot", "name": "Slot"}]});
+    });
+
+    it('handleChangeCurrency - should call setState', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ 
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }]
+        });
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
+
+        await instance.handleChangeCurrency(null, 'EURO');
+
+        expect(instance.setState).toHaveBeenCalledWith({"currencyList": [{"checked": true, "key": "EURO", "name": "EURO"}]});
+    });
+
+    it('handleChangeAffType - should call setState', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ 
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }]
+        });
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
+
+        await instance.handleChangeAffType(null, 'Asian');
+
+        expect(instance.setState).toHaveBeenCalledWith({"affTypeList": [{"checked": true, "key": "Asian", "name": "Asian"}]});
+    });
+
+    it('handleChangeDevice - should call setState', async () => {
+        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        wrapper.setState({ 
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }]
+        });
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
+
+        await instance.handleChangeDevice(null, 'PC / Laptop');
+
+        expect(instance.setState).toHaveBeenCalledWith({"deviceTypeList": [{"checked": false, "key": 0, "name": "PC / Laptop"}]});
     });
 
     it('_handleAfterSave - should call _handleShowAlert with the add is error', async () => {
@@ -605,7 +858,8 @@ describe('banner list - components - EditBannerForm ', () => {
     });
 
     it('_handleShowAlert - should call setState, setTimeout and _hideMessage', async () => {
-        const wrapper = shallow(<EditBannerForm {...defaultProps} />);
+        const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
+        const wrapper = shallow(<EditBannerForm {...props} />);
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
         window.setTimeout = jest.fn((fn, val) => fn && fn());
 
@@ -656,6 +910,57 @@ describe('banner list - components - EditBannerForm ', () => {
         instance._handleClosePopup();
 
         expect(props.setSelectedBannerId).toHaveBeenCalledWith(null);
-        expect(instance.setState).toHaveBeenCalledWith({ "affType": 2, "category": "Casino", "currency": "EURO", "deviceType": 0, "file": null, "imageType": "Image", "inputFileName": "", "isDisabled": true, "isInsert": true, "isShowMessage": false, "isSuccess": true, "language": "Chinese Simplified", "message": "", "subCategory": "Baccarat" });
+        expect(instance.setState).toHaveBeenCalledWith({"affTypeList": [{"checked": false, "key": "Asian", "name": "Asian"}, {"checked": false, "key": "Media", "name": "Media"}], "categoryList": [{"categoryName": "Casino", "checked": false, "key": "Casino", "name": "Casino"}, {"categoryName": "Sportsbook", "checked": false, "key": "Sportsbook", "name": "Sportsbook"}], "currencyList": [{"checked": false, "key": "EURO", "name": "EURO"}, {"checked": false, "key": "VND", "name": "VND"}], "deviceTypeList": [{"checked": false, "key": 0, "name": "PC / Laptop"}, {"checked": false, "key": 1, "name": "Mobile"}], "files": null, "inputFileNames": [""], "isDisabled": true, "isInsert": true, "isShowMessage": false, "isSuccess": true, "language": "Chinese Simplified", "message": "", "messageNotificationPopup": "", "subCategoryList": null});
+    });
+
+    it('_handleCloseNotificationPopup - should call setState, _getParam and _updateBanner', () => {
+        const bannerInfo = { bannerId: 123 };
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        const instance = result.instance();
+        instance.setState = jest.fn();
+        instance._getParam = jest.fn(() => bannerInfo);
+        instance._updateBanner = jest.fn();
+
+        instance.handleCloseNotificationPopup(true)
+
+        expect(instance.setState).toHaveBeenCalledWith({ messageNotificationPopup: '' });
+        expect(instance._getParam).toHaveBeenCalled();
+        expect(instance._updateBanner).toHaveBeenCalledWith(bannerInfo);
+    });
+
+    it('_handleCloseNotificationPopup - - should call setState and not call _getParam and _updateBanner', () => {
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        const instance = result.instance();
+        instance.setState = jest.fn();
+        instance._getParam = jest.fn();
+        instance._updateBanner = jest.fn();
+
+        instance.handleCloseNotificationPopup(false)
+
+        expect(instance.setState).toHaveBeenCalledWith({ messageNotificationPopup: '' });
+        expect(instance._getParam).not.toHaveBeenCalled();
+        expect(instance._updateBanner).not.toHaveBeenCalled();
+    });
+
+    it('_handlePressEnter - should call _handleSubmit', () => {
+        const event = { charCode: 13, preventDefault: jest.fn() };
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        const instance = result.instance();
+        instance._handleSubmit = jest.fn();
+
+        instance._handlePressEnter(event)
+
+        expect(instance._handleSubmit).toHaveBeenCalled();
+    });
+
+    it('_handlePressEnter - should not call _handleSubmit', () => {
+        const event = { charCode: 123, preventDefault: jest.fn() };
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        const instance = result.instance();
+        instance._handleSubmit = jest.fn();
+
+        instance._handlePressEnter(event)
+
+        expect(instance._handleSubmit).not.toHaveBeenCalled();
     });
 })

@@ -15,7 +15,9 @@ describe('banner list - components - BannerDetailPopup ', () => {
     };
 
     it('render correctly', () => {
-        const result = shallow(<BannerDetailPopup {...defaultProps} />);
+        const bannerDetailUrl = Object.assign({}, defaultProps.bannerDetailUrl, { width: 1000, height: 1000 })
+        const props = Object.assign({}, defaultProps, { setBannerDetailUrl: jest.fn(), bannerDetailUrl })
+        const result = shallow(<BannerDetailPopup {...props} />);
 
         expect(result).toMatchSnapshot();
     });

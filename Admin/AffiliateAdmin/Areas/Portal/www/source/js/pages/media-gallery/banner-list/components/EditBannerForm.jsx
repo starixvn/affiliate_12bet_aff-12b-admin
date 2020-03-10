@@ -145,7 +145,8 @@ export class EditBannerForm extends PureComponent {
         const deviceTypes = deviceTypeList.filter(item => item.checked).map(item => item.key).join(',');
         const { selectedBannerId } = this.props;
 
-        return Object.assign({}, { bannerId: selectedBannerId, files, inputFileNames: isInsert ? inputFileNames.map(item => item ? item.trim() : '').join('|') : inputFileNames[0], categories, subCategories, language, currencies, affTypes, deviceTypes });
+        return Object.assign({}, { bannerId: selectedBannerId, files, inputFileNames: isInsert ? inputFileNames.map(item => item ? item.trim() : '').join('|') : inputFileNames[0] && inputFileNames[0].trim(),
+            categories, subCategories, language, currencies, affTypes, deviceTypes });
     }
 
     _updateBanner = async (bannerInfo) => {
@@ -217,7 +218,7 @@ export class EditBannerForm extends PureComponent {
     _handleSubmit = (hasSubCategory) => {
         this.props.toggleLoader(true);
 
-        const { inputFileNames, categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList } = this.state;
+        const { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList } = this.state;
 
         const category = categoryList.filter(item => item.checked).map(item => item.key);
         const subCategory = hasSubCategory && subCategoryList.filter(item => item.checked);
@@ -274,7 +275,7 @@ export class EditBannerForm extends PureComponent {
     }
 
     _handleClosePopup = () => {
-        const { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList } = this.props;
+        const { categoryList, currencyList, affTypeList, deviceTypeList } = this.props;
 
         this.props.setSelectedBannerId(null);
         this.setState({ ...defaultState, categoryList, subCategoryList: null, currencyList, affTypeList, deviceTypeList });
@@ -298,7 +299,7 @@ export class EditBannerForm extends PureComponent {
     }
 
     handleChangeMultipleSelected = (initialList, selectedKey, isCategory) => {
-        const selectedList = typeof(selectedKey) == String ? selectedKey.split(',').filter(p => !!p) : selectedKey;
+        const selectedList = typeof(selectedKey) === "string" ? selectedKey.split(',').filter(p => !!p) : selectedKey;
 
         return initialList && initialList.map(item => {
             const { key, name, categoryName } = item;
@@ -479,7 +480,7 @@ export class EditBannerForm extends PureComponent {
                                     </FormGroup>
                                     {
                                         isInsert ? inputFileNames && inputFileNames.map((value, index) => {
-                                            return (<FormGroup row className="mb-2">
+                                            return (<FormGroup row className="mb-2" key={`FileName${index + 1}`}>
                                                 <Label sm={3} for="inputFileName">{`File Name ${index + 1}`}</Label>
                                                 <Col sm={7}>
                                                     <Input type="text" name="inputFileName" id={`inputFileName${index}`} value={value} onChange={(e) => this._handleChangeInputFileName(e, index)} onKeyPress={this._handlePressEnter} />

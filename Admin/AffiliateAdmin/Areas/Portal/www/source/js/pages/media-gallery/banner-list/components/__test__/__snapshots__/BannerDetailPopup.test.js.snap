@@ -47,10 +47,10 @@ exports[`banner list - components - BannerDetailPopup  render correctly 1`] = `
       className="modal-body-wrapper embed-responsive overflow-auto text-center"
     >
       <img
-        alt=""
-        height={1108}
+        alt="12Bet banner"
+        height={1000}
         src="CategoryMedia/Casino/Baccarat/SBNG_2.gif"
-        width={988.5390835579515}
+        width={1000}
       />
     </div>
   </ModalBody>

@@ -65,8 +65,6 @@ export class Filter extends Component {
     }
 
     handleChangeColumn = (item, selectedColumn) => {
-        console.log(item);
-        console.log(selectedColumn);
         const { columnList } = this.props;
         const selectedColumnList = selectedColumn.split(',').filter(p => !!p);
 

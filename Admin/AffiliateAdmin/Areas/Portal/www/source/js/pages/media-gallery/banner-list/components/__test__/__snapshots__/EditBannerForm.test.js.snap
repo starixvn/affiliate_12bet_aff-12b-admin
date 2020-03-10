@@ -1,132 +1,96 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`banner list - components - EditBannerForm  render correctly with insert 1`] = `
-<Modal
-  autoFocus={true}
-  backdrop="static"
-  backdropTransition={
-    Object {
-      "mountOnEnter": true,
-      "timeout": 150,
+<Fragment>
+  <Modal
+    autoFocus={true}
+    backdrop="static"
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
     }
-  }
-  centered={false}
-  fade={true}
-  isOpen={true}
-  keyboard={true}
-  modalTransition={
-    Object {
-      "timeout": 300,
+    centered={false}
+    fade={true}
+    isOpen={true}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
     }
-  }
-  onClosed={[Function]}
-  onOpened={[Function]}
-  returnFocusAfterClose={true}
-  role="dialog"
-  scrollable={false}
-  toggle={[Function]}
-  unmountOnClose={true}
-  zIndex={1050}
->
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
     toggle={[Function]}
-    wrapTag="div"
+    unmountOnClose={true}
+    zIndex={1050}
   >
-    <span
-      className="iconpopup"
-    />
-    Add Banner
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
-    <div
-      className="modal-body-wrapper"
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      <span
+        className="iconpopup"
+      />
+      Add Banner
+    </ModalHeader>
+    <ModalBody
+      tag="div"
     >
       <div
-        className="banner-list-form-container"
+        className="modal-body-wrapper"
       >
-        <Alert
-          closeAriaLabel="Close"
-          color="success"
-          fade={true}
-          isOpen={false}
-          tag="div"
-          transition={
-            Object {
-              "appear": true,
-              "baseClass": "fade",
-              "baseClassActive": "show",
-              "enter": true,
-              "exit": true,
-              "in": true,
-              "mountOnEnter": false,
-              "onEnter": [Function],
-              "onEntered": [Function],
-              "onEntering": [Function],
-              "onExit": [Function],
-              "onExited": [Function],
-              "onExiting": [Function],
-              "tag": "div",
-              "timeout": 150,
-              "unmountOnExit": true,
-            }
-          }
+        <div
+          className="banner-list-form-container"
         >
-          <div
-            dangerouslySetInnerHTML={
+          <Alert
+            closeAriaLabel="Close"
+            color="success"
+            fade={true}
+            isOpen={false}
+            tag="div"
+            transition={
               Object {
-                "__html": "",
+                "appear": true,
+                "baseClass": "fade",
+                "baseClassActive": "show",
+                "enter": true,
+                "exit": true,
+                "in": true,
+                "mountOnEnter": false,
+                "onEnter": [Function],
+                "onEntered": [Function],
+                "onEntering": [Function],
+                "onExit": [Function],
+                "onExited": [Function],
+                "onExiting": [Function],
+                "tag": "div",
+                "timeout": 150,
+                "unmountOnExit": true,
               }
             }
-          />
-        </Alert>
-        <Form
-          autocomplete="off"
-          className="mb-2 p-1 border"
-          tag="form"
-        >
-          <Label
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
           >
-            [Valid Types: .gif, .jpg, .png, .jpeg]
-          </Label>
-          <Label
-            className="d-block"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            [File Size Limit: 3MB]
-          </Label>
-          <br />
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "",
+                }
+              }
+            />
+          </Alert>
+          <Form
+            autocomplete="off"
+            className="mb-2 p-1 border"
+            tag="form"
           >
             <Label
-              for="file"
-              sm={3}
               tag="label"
               widths={
                 Array [
@@ -138,38 +102,10 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                 ]
               }
             >
-              File
+              [Valid Types: .gif, .jpg, .png, .jpeg]
             </Label>
-            <Col
-              sm={9}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                className="border text-danger"
-                id="file"
-                name="file"
-                onChange={[Function]}
-                type="file"
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
             <Label
-              for="category"
-              sm={3}
+              className="d-block"
               tag="label"
               widths={
                 Array [
@@ -181,574 +117,515 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                 ]
               }
             >
-              Category
+              [File Size Limit: 3MB]
             </Label>
-            <Col
-              sm={5}
+            <br />
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="category"
-                name="category"
-                onChange={[Function]}
-                type="select"
-                value="Casino"
+              <Label
+                className="required"
+                for="file"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="category-Casino"
-                  value="Casino"
-                >
-                  Casino
-                </option>
-                <option
-                  key="category-Sportsbook"
-                  value="Sportsbook"
-                >
-                  Sportsbook
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="subCategory"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Sub Category
-            </Label>
-            <Col
-              sm={5}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                id="subCategory"
-                name="subCategory"
-                onChange={[Function]}
-                type="select"
-                value="Baccarat"
+                File
+              </Label>
+              <Col
+                sm={9}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="subCategory-Casino Bonus"
-                  value="Casino Bonus"
-                >
-                  Casino Bonus
-                </option>
-                <option
-                  key="subCategory-Slot"
-                  value="Slot"
-                >
-                  Slot
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="language"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Language
-            </Label>
-            <Col
-              sm={5}
+                <Input
+                  accept="image/jpg, image/gif, image/png, image/jpeg"
+                  className="border text-danger"
+                  id="file"
+                  multiple={true}
+                  name="file"
+                  onChange={[Function]}
+                  type="file"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="language"
-                name="language"
-                onChange={[Function]}
-                type="select"
-                value="Chinese Simplified"
+              <Label
+                className="required"
+                for="category"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="language-English"
-                  value="English"
-                >
-                  English
-                </option>
-                <option
-                  key="language-Vietnamese"
-                  value="Vietnamese"
-                >
-                  Vietnamese
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="currency"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Currency
-            </Label>
-            <Col
-              sm={5}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                id="currency"
-                name="currency"
-                onChange={[Function]}
-                type="select"
-                value="EURO"
+                Category
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="currency-EURO"
-                  value="EURO"
-                >
-                  EURO
-                </option>
-                <option
-                  key="currency-VND"
-                  value="VND"
-                >
-                  VND
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="imageType"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Type
-            </Label>
-            <Col
-              sm={5}
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "categoryName": "Casino",
+                        "checked": false,
+                        "key": "Casino",
+                        "name": "Casino",
+                      },
+                      Object {
+                        "categoryName": "Sportsbook",
+                        "checked": false,
+                        "key": "Sportsbook",
+                        "name": "Sportsbook",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="imageType"
-                name="imageType"
-                onChange={[Function]}
-                type="select"
-                value="Image"
+              <Label
+                for="language"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="imageType-Image"
-                  value="Image"
-                >
-                  Image
-                </option>
-                <option
-                  key="imageType-Flash"
-                  value="Flash"
-                >
-                  Flash
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="affType"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Affiliate Type
-            </Label>
-            <Col
-              sm={5}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                id="affType"
-                name="affType"
-                onChange={[Function]}
-                type="select"
-                value={2}
+                Language
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="affType-2"
-                  value={2}
+                <Input
+                  id="language"
+                  name="language"
+                  onChange={[Function]}
+                  type="select"
+                  value="Chinese Simplified"
                 >
-                  Asian
-                </option>
-                <option
-                  key="affType-3"
-                  value={3}
-                >
-                  Media
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="deviceType"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Device
-            </Label>
-            <Col
-              sm={5}
+                  <option
+                    key="language-English"
+                    value="English"
+                  >
+                    English
+                  </option>
+                  <option
+                    key="language-Vietnamese"
+                    value="Vietnamese"
+                  >
+                    Vietnamese
+                  </option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="deviceType"
-                name="deviceType"
-                onChange={[Function]}
-                type="select"
-                value={0}
+              <Label
+                className="required"
+                for="currency"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="deviceType-0"
-                  value={0}
-                >
-                  PC / Laptop
-                </option>
-                <option
-                  key="deviceType-1"
-                  value={1}
-                >
-                  Mobile
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="inputFileName"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              File Name
-            </Label>
-            <Col
-              sm={7}
+                Currency
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": false,
+                        "key": "EURO",
+                        "name": "EURO",
+                      },
+                      Object {
+                        "checked": false,
+                        "key": "VND",
+                        "name": "VND",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="inputFileName"
-                name="inputFileName"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
-            </Col>
-          </FormGroup>
-        </Form>
-        <Button
-          className="mr-3"
-          color="success"
-          disabled={true}
-          onClick={[Function]}
-          tag="button"
-          type="button"
-        >
-          Upload
-        </Button>
-        <Button
-          color="info"
-          onClick={[Function]}
-          tag="button"
-          type="button"
-        >
-          Cancel
-        </Button>
+              <Label
+                className="required"
+                for="affType"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Affiliate Type
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": false,
+                        "key": "Asian",
+                        "name": "Asian",
+                      },
+                      Object {
+                        "checked": false,
+                        "key": "Media",
+                        "name": "Media",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="deviceType"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Device
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": false,
+                        "key": 0,
+                        "name": "PC / Laptop",
+                      },
+                      Object {
+                        "checked": false,
+                        "key": 1,
+                        "name": "Mobile",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              key="FileName1"
+              row={true}
+              tag="div"
+            >
+              <Label
+                for="inputFileName"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                File Name 1
+              </Label>
+              <Col
+                sm={7}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  id="inputFileName0"
+                  name="inputFileName"
+                  onChange={[Function]}
+                  onKeyPress={[Function]}
+                  type="text"
+                  value=""
+                />
+              </Col>
+            </FormGroup>
+          </Form>
+          <Button
+            className="mr-3"
+            color="success"
+            disabled={true}
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Upload
+          </Button>
+          <Button
+            color="info"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Cancel
+          </Button>
+        </div>
       </div>
-    </div>
-  </ModalBody>
-</Modal>
+    </ModalBody>
+  </Modal>
+</Fragment>
 `;
 
 exports[`banner list - components - EditBannerForm  render correctly with not show popup 1`] = `
-<Modal
-  autoFocus={true}
-  backdrop="static"
-  backdropTransition={
-    Object {
-      "mountOnEnter": true,
-      "timeout": 150,
+<Fragment>
+  <Modal
+    autoFocus={true}
+    backdrop="static"
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
     }
-  }
-  centered={false}
-  fade={true}
-  isOpen={false}
-  keyboard={true}
-  modalTransition={
-    Object {
-      "timeout": 300,
+    centered={false}
+    fade={true}
+    isOpen={false}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
     }
-  }
-  onClosed={[Function]}
-  onOpened={[Function]}
-  returnFocusAfterClose={true}
-  role="dialog"
-  scrollable={false}
-  toggle={[Function]}
-  unmountOnClose={true}
-  zIndex={1050}
->
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
     toggle={[Function]}
-    wrapTag="div"
+    unmountOnClose={true}
+    zIndex={1050}
   >
-    <span
-      className="iconpopup"
-    />
-    Add Banner
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
-    <div
-      className="modal-body-wrapper"
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      <span
+        className="iconpopup"
+      />
+      Add Banner
+    </ModalHeader>
+    <ModalBody
+      tag="div"
     >
       <div
-        className="banner-list-form-container"
+        className="modal-body-wrapper"
       >
-        <Alert
-          closeAriaLabel="Close"
-          color="success"
-          fade={true}
-          isOpen={false}
-          tag="div"
-          transition={
-            Object {
-              "appear": true,
-              "baseClass": "fade",
-              "baseClassActive": "show",
-              "enter": true,
-              "exit": true,
-              "in": true,
-              "mountOnEnter": false,
-              "onEnter": [Function],
-              "onEntered": [Function],
-              "onEntering": [Function],
-              "onExit": [Function],
-              "onExited": [Function],
-              "onExiting": [Function],
-              "tag": "div",
-              "timeout": 150,
-              "unmountOnExit": true,
-            }
-          }
+        <div
+          className="banner-list-form-container"
         >
-          <div
-            dangerouslySetInnerHTML={
+          <Alert
+            closeAriaLabel="Close"
+            color="success"
+            fade={true}
+            isOpen={false}
+            tag="div"
+            transition={
               Object {
-                "__html": "",
+                "appear": true,
+                "baseClass": "fade",
+                "baseClassActive": "show",
+                "enter": true,
+                "exit": true,
+                "in": true,
+                "mountOnEnter": false,
+                "onEnter": [Function],
+                "onEntered": [Function],
+                "onEntering": [Function],
+                "onExit": [Function],
+                "onExited": [Function],
+                "onExiting": [Function],
+                "tag": "div",
+                "timeout": 150,
+                "unmountOnExit": true,
               }
             }
-          />
-        </Alert>
-        <Form
-          autocomplete="off"
-          className="mb-2 p-1 border"
-          tag="form"
-        >
-          <Label
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
           >
-            [Valid Types: .gif, .jpg, .png, .jpeg]
-          </Label>
-          <Label
-            className="d-block"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            [File Size Limit: 3MB]
-          </Label>
-          <br />
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "",
+                }
+              }
+            />
+          </Alert>
+          <Form
+            autocomplete="off"
+            className="mb-2 p-1 border"
+            tag="form"
           >
             <Label
-              for="file"
-              sm={3}
               tag="label"
               widths={
                 Array [
@@ -760,38 +637,10 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                 ]
               }
             >
-              File
+              [Valid Types: .gif, .jpg, .png, .jpeg]
             </Label>
-            <Col
-              sm={9}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                className="border text-danger"
-                id="file"
-                name="file"
-                onChange={[Function]}
-                type="file"
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
             <Label
-              for="category"
-              sm={3}
+              className="d-block"
               tag="label"
               widths={
                 Array [
@@ -803,518 +652,520 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                 ]
               }
             >
-              Category
+              [File Size Limit: 3MB]
             </Label>
-            <Col
-              sm={5}
+            <br />
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="category"
-                name="category"
-                onChange={[Function]}
-                type="select"
-                value=""
+              <Label
+                className="required"
+                for="file"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="category-Casino"
-                  value="Casino"
-                >
-                  Casino
-                </option>
-                <option
-                  key="category-Sportsbook"
-                  value="Sportsbook"
-                >
-                  Sportsbook
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="language"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Language
-            </Label>
-            <Col
-              sm={5}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                id="language"
-                name="language"
-                onChange={[Function]}
-                type="select"
-                value="Chinese Simplified"
+                File
+              </Label>
+              <Col
+                sm={9}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="language-English"
-                  value="English"
-                >
-                  English
-                </option>
-                <option
-                  key="language-Vietnamese"
-                  value="Vietnamese"
-                >
-                  Vietnamese
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="currency"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Currency
-            </Label>
-            <Col
-              sm={5}
+                <Input
+                  accept="image/jpg, image/gif, image/png, image/jpeg"
+                  className="border text-danger"
+                  id="file"
+                  multiple={true}
+                  name="file"
+                  onChange={[Function]}
+                  type="file"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="currency"
-                name="currency"
-                onChange={[Function]}
-                type="select"
-                value="EURO"
+              <Label
+                className="required"
+                for="category"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="currency-EURO"
-                  value="EURO"
-                >
-                  EURO
-                </option>
-                <option
-                  key="currency-VND"
-                  value="VND"
-                >
-                  VND
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="imageType"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Type
-            </Label>
-            <Col
-              sm={5}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                id="imageType"
-                name="imageType"
-                onChange={[Function]}
-                type="select"
-                value="Image"
+                Category
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="imageType-Image"
-                  value="Image"
-                >
-                  Image
-                </option>
-                <option
-                  key="imageType-Flash"
-                  value="Flash"
-                >
-                  Flash
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="affType"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Affiliate Type
-            </Label>
-            <Col
-              sm={5}
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "categoryName": "Casino",
+                        "checked": false,
+                        "key": "Casino",
+                        "name": "Casino",
+                      },
+                      Object {
+                        "categoryName": "Sportsbook",
+                        "checked": false,
+                        "key": "Sportsbook",
+                        "name": "Sportsbook",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="affType"
-                name="affType"
-                onChange={[Function]}
-                type="select"
-                value={2}
+              <Label
+                for="language"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="affType-2"
-                  value={2}
-                >
-                  Asian
-                </option>
-                <option
-                  key="affType-3"
-                  value={3}
-                >
-                  Media
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="deviceType"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Device
-            </Label>
-            <Col
-              sm={5}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                id="deviceType"
-                name="deviceType"
-                onChange={[Function]}
-                type="select"
-                value={0}
+                Language
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="deviceType-0"
-                  value={0}
+                <Input
+                  id="language"
+                  name="language"
+                  onChange={[Function]}
+                  type="select"
+                  value="Chinese Simplified"
                 >
-                  PC / Laptop
-                </option>
-                <option
-                  key="deviceType-1"
-                  value={1}
-                >
-                  Mobile
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="inputFileName"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              File Name
-            </Label>
-            <Col
-              sm={7}
+                  <option
+                    key="language-English"
+                    value="English"
+                  >
+                    English
+                  </option>
+                  <option
+                    key="language-Vietnamese"
+                    value="Vietnamese"
+                  >
+                    Vietnamese
+                  </option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="inputFileName"
-                name="inputFileName"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
-            </Col>
-          </FormGroup>
-        </Form>
-        <Button
-          className="mr-3"
-          color="success"
-          disabled={true}
-          onClick={[Function]}
-          tag="button"
-          type="button"
-        >
-          Upload
-        </Button>
-        <Button
-          color="info"
-          onClick={[Function]}
-          tag="button"
-          type="button"
-        >
-          Cancel
-        </Button>
+              <Label
+                className="required"
+                for="currency"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Currency
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": false,
+                        "key": "EURO",
+                        "name": "EURO",
+                      },
+                      Object {
+                        "checked": false,
+                        "key": "VND",
+                        "name": "VND",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="affType"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Affiliate Type
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": false,
+                        "key": "Asian",
+                        "name": "Asian",
+                      },
+                      Object {
+                        "checked": false,
+                        "key": "Media",
+                        "name": "Media",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="deviceType"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Device
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": false,
+                        "key": 0,
+                        "name": "PC / Laptop",
+                      },
+                      Object {
+                        "checked": false,
+                        "key": 1,
+                        "name": "Mobile",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              key="FileName1"
+              row={true}
+              tag="div"
+            >
+              <Label
+                for="inputFileName"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                File Name 1
+              </Label>
+              <Col
+                sm={7}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  id="inputFileName0"
+                  name="inputFileName"
+                  onChange={[Function]}
+                  onKeyPress={[Function]}
+                  type="text"
+                  value=""
+                />
+              </Col>
+            </FormGroup>
+          </Form>
+          <Button
+            className="mr-3"
+            color="success"
+            disabled={true}
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Upload
+          </Button>
+          <Button
+            color="info"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Cancel
+          </Button>
+        </div>
       </div>
-    </div>
-  </ModalBody>
-</Modal>
+    </ModalBody>
+  </Modal>
+</Fragment>
 `;
 
 exports[`banner list - components - EditBannerForm  render correctly with update 1`] = `
-<Modal
-  autoFocus={true}
-  backdrop="static"
-  backdropTransition={
-    Object {
-      "mountOnEnter": true,
-      "timeout": 150,
+<Fragment>
+  <Memo(NotificationPopup)
+    isConfirmPopup={true}
+    message="abc"
+    onClose={[Function]}
+  />
+  <Modal
+    autoFocus={true}
+    backdrop="static"
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
     }
-  }
-  centered={false}
-  fade={true}
-  isOpen={true}
-  keyboard={true}
-  modalTransition={
-    Object {
-      "timeout": 300,
+    centered={false}
+    fade={true}
+    isOpen={true}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
     }
-  }
-  onClosed={[Function]}
-  onOpened={[Function]}
-  returnFocusAfterClose={true}
-  role="dialog"
-  scrollable={false}
-  toggle={[Function]}
-  unmountOnClose={true}
-  zIndex={1050}
->
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
     toggle={[Function]}
-    wrapTag="div"
+    unmountOnClose={true}
+    zIndex={1050}
   >
-    <span
-      className="iconpopup"
-    />
-    Update Banner
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
-    <div
-      className="modal-body-wrapper"
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      <span
+        className="iconpopup"
+      />
+      Update Banner
+    </ModalHeader>
+    <ModalBody
+      tag="div"
     >
       <div
-        className="banner-list-form-container"
+        className="modal-body-wrapper"
       >
-        <Alert
-          closeAriaLabel="Close"
-          color="danger"
-          fade={true}
-          isOpen={false}
-          tag="div"
-          transition={
-            Object {
-              "appear": true,
-              "baseClass": "fade",
-              "baseClassActive": "show",
-              "enter": true,
-              "exit": true,
-              "in": true,
-              "mountOnEnter": false,
-              "onEnter": [Function],
-              "onEntered": [Function],
-              "onEntering": [Function],
-              "onExit": [Function],
-              "onExited": [Function],
-              "onExiting": [Function],
-              "tag": "div",
-              "timeout": 150,
-              "unmountOnExit": true,
-            }
-          }
+        <div
+          className="banner-list-form-container"
         >
-          <div
-            dangerouslySetInnerHTML={
+          <Alert
+            closeAriaLabel="Close"
+            color="danger"
+            fade={true}
+            isOpen={false}
+            tag="div"
+            transition={
               Object {
-                "__html": "",
+                "appear": true,
+                "baseClass": "fade",
+                "baseClassActive": "show",
+                "enter": true,
+                "exit": true,
+                "in": true,
+                "mountOnEnter": false,
+                "onEnter": [Function],
+                "onEntered": [Function],
+                "onEntering": [Function],
+                "onExit": [Function],
+                "onExited": [Function],
+                "onExiting": [Function],
+                "tag": "div",
+                "timeout": 150,
+                "unmountOnExit": true,
               }
             }
-          />
-        </Alert>
-        <Form
-          autocomplete="off"
-          className="mb-2 p-1 border"
-          tag="form"
-        >
-          <Label
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
           >
-            [Valid Types: .gif, .jpg, .png, .jpeg]
-          </Label>
-          <Label
-            className="d-block"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            [File Size Limit: 3MB]
-          </Label>
-          <br />
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "",
+                }
+              }
+            />
+          </Alert>
+          <Form
+            autocomplete="off"
+            className="mb-2 p-1 border"
+            tag="form"
           >
             <Label
-              for="file"
-              sm={3}
               tag="label"
               widths={
                 Array [
@@ -1326,38 +1177,10 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                 ]
               }
             >
-              File
+              [Valid Types: .gif, .jpg, .png, .jpeg]
             </Label>
-            <Col
-              sm={9}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                className="border text-success"
-                id="file"
-                name="file"
-                onChange={[Function]}
-                type="file"
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
             <Label
-              for="category"
-              sm={3}
+              className="d-block"
               tag="label"
               widths={
                 Array [
@@ -1369,443 +1192,469 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                 ]
               }
             >
-              Category
+              [File Size Limit: 3MB]
             </Label>
-            <Col
-              sm={5}
+            <br />
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="category"
-                name="category"
-                onChange={[Function]}
-                type="select"
-                value="Sportsbook"
+              <Label
+                className=""
+                for="file"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="category-Casino"
-                  value="Casino"
-                >
-                  Casino
-                </option>
-                <option
-                  key="category-Sportsbook"
-                  value="Sportsbook"
-                >
-                  Sportsbook
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="subCategory"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Sub Category
-            </Label>
-            <Col
-              sm={5}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                id="subCategory"
-                name="subCategory"
-                onChange={[Function]}
-                type="select"
-                value="Baccarat"
+                File
+              </Label>
+              <Col
+                sm={9}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="subCategory-Basketball"
-                  value="Basketball"
-                >
-                  Basketball
-                </option>
-                <option
-                  key="subCategory-SB Bonus"
-                  value="SB Bonus"
-                >
-                  SB Bonus
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="language"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Language
-            </Label>
-            <Col
-              sm={5}
+                <Input
+                  accept="image/jpg, image/gif, image/png, image/jpeg"
+                  className="border text-success"
+                  id="file"
+                  multiple={false}
+                  name="file"
+                  onChange={[Function]}
+                  type="file"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="language"
-                name="language"
-                onChange={[Function]}
-                type="select"
-                value="Chinese Simplified"
+              <Label
+                className="required"
+                for="category"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="language-English"
-                  value="English"
-                >
-                  English
-                </option>
-                <option
-                  key="language-Vietnamese"
-                  value="Vietnamese"
-                >
-                  Vietnamese
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="currency"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Currency
-            </Label>
-            <Col
-              sm={5}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                id="currency"
-                name="currency"
-                onChange={[Function]}
-                type="select"
-                value="EURO"
+                Category
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="currency-EURO"
-                  value="EURO"
-                >
-                  EURO
-                </option>
-                <option
-                  key="currency-VND"
-                  value="VND"
-                >
-                  VND
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="imageType"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Type
-            </Label>
-            <Col
-              sm={5}
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "categoryName": "Casino",
+                        "checked": true,
+                        "key": "Casino",
+                        "name": "Casino",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="imageType"
-                name="imageType"
-                onChange={[Function]}
-                type="select"
-                value="Image"
+              <Label
+                className="required"
+                for="subCategory"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="imageType-Image"
-                  value="Image"
-                >
-                  Image
-                </option>
-                <option
-                  key="imageType-Flash"
-                  value="Flash"
-                >
-                  Flash
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="affType"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Affiliate Type
-            </Label>
-            <Col
-              sm={5}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                id="affType"
-                name="affType"
-                onChange={[Function]}
-                type="select"
-                value={2}
+                Sub Category
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="affType-2"
-                  value={2}
-                >
-                  Asian
-                </option>
-                <option
-                  key="affType-3"
-                  value={3}
-                >
-                  Media
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="deviceType"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Device
-            </Label>
-            <Col
-              sm={5}
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": false,
+                        "key": "Slot",
+                        "name": "Slot",
+                        "parentCategoryName": "Casino",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="deviceType"
-                name="deviceType"
-                onChange={[Function]}
-                type="select"
-                value={0}
+              <Label
+                for="language"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <option
-                  key="deviceType-0"
-                  value={0}
+                Language
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  id="language"
+                  name="language"
+                  onChange={[Function]}
+                  type="select"
+                  value="Chinese Simplified"
                 >
-                  PC / Laptop
-                </option>
-                <option
-                  key="deviceType-1"
-                  value={1}
-                >
-                  Mobile
-                </option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              for="inputFileName"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              File Name
-            </Label>
-            <Col
-              sm={7}
+                  <option
+                    key="language-English"
+                    value="English"
+                  >
+                    English
+                  </option>
+                  <option
+                    key="language-Vietnamese"
+                    value="Vietnamese"
+                  >
+                    Vietnamese
+                  </option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <Input
-                id="inputFileName"
-                name="inputFileName"
-                onChange={[Function]}
-                type="text"
-                value="test.gif"
-              />
-            </Col>
-          </FormGroup>
-        </Form>
-        <Button
-          className="mr-3"
-          color="success"
-          disabled={false}
-          onClick={[Function]}
-          tag="button"
-          type="button"
-        >
-          Update
-        </Button>
-        <Button
-          color="info"
-          onClick={[Function]}
-          tag="button"
-          type="button"
-        >
-          Cancel
-        </Button>
+              <Label
+                className="required"
+                for="currency"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Currency
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": false,
+                        "key": "EURO",
+                        "name": "EURO",
+                      },
+                      Object {
+                        "checked": false,
+                        "key": "VND",
+                        "name": "VND",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="affType"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Affiliate Type
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": false,
+                        "key": "Asian",
+                        "name": "Asian",
+                      },
+                      Object {
+                        "checked": false,
+                        "key": "Media",
+                        "name": "Media",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="deviceType"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Device
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": false,
+                        "key": 0,
+                        "name": "PC / Laptop",
+                      },
+                      Object {
+                        "checked": false,
+                        "key": 1,
+                        "name": "Mobile",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                for="inputFileName"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                File Name
+              </Label>
+              <Col
+                sm={7}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  id="inputFileName"
+                  name="inputFileName"
+                  onChange={[Function]}
+                  onKeyPress={[Function]}
+                  type="text"
+                  value="test.gif"
+                />
+              </Col>
+            </FormGroup>
+          </Form>
+          <Button
+            className="mr-3"
+            color="success"
+            disabled={false}
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Update
+          </Button>
+          <Button
+            color="info"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Cancel
+          </Button>
+        </div>
       </div>
-    </div>
-  </ModalBody>
-</Modal>
+    </ModalBody>
+  </Modal>
+</Fragment>
 `;

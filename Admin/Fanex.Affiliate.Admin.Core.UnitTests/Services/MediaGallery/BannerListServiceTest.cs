@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 {
     public class BannerListServiceTest
     {
-        private const string ErrorMessage = "Sorry! We just support these file types : .jpg, .gif, .png, .jpeg";
+        private const string ErrorMessage = "File  is incorrect. Sorry! We just support these file types : .jpg, .gif, .png, .jpeg <br />";
 
         [Fact]
         public void GetBannerList_WhenCallWithNotSubCategory_ReturnCorrectData()
@@ -86,40 +86,40 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             Assert.Equal(selectedBannerId, passedParam);
         }
 
-        //[Fact]
-        //public void InsertBanner_WhenCallWithInvalidFile_ReturnError()
-        //{
-        //    // Arrange
-        //    var bannerValidationService = new Mock<IBannerValidationService>();
-        //    bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = ErrorMessage });
-        //    var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object);
+        [Fact]
+        public void InsertBanner_WhenCallWithInvalidFile_ReturnError()
+        {
+            // Arrange
+            var bannerValidationService = new Mock<IBannerValidationService>();
+            bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = ErrorMessage });
+            var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object);
 
-        //    // Action
-        //    var result = service.InsertBanner(new MockFile(stream: new MemoryStream()), new InsertUpdateBannerParam());
+            // Action
+            var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream()))}, new InsertUpdateMultipleBannersParam());
 
-        //    // Assert
-        //    Assert.False(result.IsSuccessful);
-        //    Assert.Equal(ErrorMessage, result.Message);
-        //}
+            // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.Equal(ErrorMessage, result.Message);
+        }
 
-        //[Fact]
-        //public void InsertBanner_WhenCallWithInvalidInputFileName_ReturnError()
-        //{
-        //    // Arrange
-        //    var param = new InsertUpdateBannerParam { InputFileName = "test.pdf" };
-        //    var bannerValidationService = new Mock<IBannerValidationService>();
-        //    bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
-        //    var systemFile = new Mock<ISystemFile>();
-        //    systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".pdf");
-        //    var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
+        [Fact]
+        public void InsertBanner_WhenCallWithInvalidInputFileName_ReturnError()
+        {
+            // Arrange
+            var param = new InsertUpdateMultipleBannersParam { InputFileNames = "test.pdf" };
+            var bannerValidationService = new Mock<IBannerValidationService>();
+            bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
+            var systemFile = new Mock<ISystemFile>();
+            systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".pdf");
+            var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
 
-        //    // Action
-        //    var result = service.InsertBanner(new MockFile(stream: new MemoryStream()), param);
+            // Action
+            var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream())) }, param);
 
-        //    // Assert
-        //    Assert.False(result.IsSuccessful);
-        //    Assert.Equal(ErrorMessage, result.Message);
-        //}
+            // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.Equal(ErrorMessage, result.Message);
+        }
 
         //[Fact]
         //public void InsertBanner_WhenCallWithExistedFile_ReturnError()
@@ -133,7 +133,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
 
         //    // Action
-        //    var result = service.InsertBanner(new MockFile(stream: new MemoryStream()), new InsertUpdateBannerParam { InputFileName = "abc.gif" });
+        //    var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream())) }, new InsertUpdateMultipleBannersParam { InputFileNames = "abc.gif" });
 
         //    // Assert
         //    Assert.False(result.IsSuccessful);
@@ -149,7 +149,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
         //    bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
         //    var bannerListRepository = new Mock<IBannerListRepository>();
-        //    bannerListRepository.Setup(b => b.InsertBanner(It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo());
+        //    bannerListRepository.Setup(b => b.InsertBanner(It.IsAny<InsertUpdateMultipleBannersParam>())).Returns(new ResultInfo());
         //    var appSetting = new Mock<IAppSetting>();
         //    appSetting.Setup(a => a.BannerFolders).Returns(bannerFolders);
         //    var systemFile = new Mock<ISystemFile>();
@@ -157,7 +157,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    var service = CreateBannerListService(bannerListRepository.Object, appSetting.Object, systemFile.Object, bannerValidationService.Object);
 
         //    // Action
-        //    var result = service.InsertBanner(new MockFile(stream: new MemoryStream()), new InsertUpdateBannerParam());
+        //    var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream())) }, new InsertUpdateMultipleBannersParam());
 
         //    // Assert
         //    Assert.True(result.IsSuccessful);
@@ -172,13 +172,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
         //    bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
         //    var bannerListRepository = new Mock<IBannerListRepository>();
-        //    bannerListRepository.Setup(s => s.InsertBanner(It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo { Code = 999, Message = "Insert is failed!" });
+        //    bannerListRepository.Setup(s => s.InsertBanner(It.IsAny<InsertUpdateMultipleBannersParam>())).Returns(new ResultInfo { Code = 999, Message = "Insert is failed!" });
         //    var appSetting = new Mock<IAppSetting>();
         //    appSetting.Setup(a => a.BannerFolders).Returns(bannerFolders);
         //    var service = CreateBannerListService(bannerListRepository.Object, appSetting.Object, bannerValidationService: bannerValidationService.Object);
 
         //    // Action
-        //    var result = service.InsertBanner(new MockFile(stream: new MemoryStream()), new InsertUpdateBannerParam());
+        //    var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream())) }, new InsertUpdateMultipleBannersParam());
 
         //    // Assert
         //    Assert.False(result.IsSuccessful);
@@ -189,7 +189,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //public void UpdateBanner_WhenCallWithInvalidInputFileName_ReturnError()
         //{
         //    // Arrange
-        //    var param = new InsertUpdateBannerParam { InputFileName = "test.pdf" };
+        //    var param = new InsertUpdateMultipleBannersParam { InputFileNames = "test.pdf" };
         //    var systemFile = new Mock<ISystemFile>();
         //    systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".pdf");
         //    var service = CreateBannerListService(systemFile: systemFile.Object);
@@ -215,7 +215,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    var service = CreateBannerListService(bannerListRepository.Object, null, systemFile.Object, bannerValidationService.Object);
 
         //    // Action
-        //    var result = service.UpdateBanner(new MockFile(), new InsertUpdateBannerParam());
+        //    var result = service.UpdateBanner(new MockFile(), new InsertUpdateMultipleBannersParam());
 
         //    // Assert
         //    Assert.False(result.IsSuccessful);
@@ -231,14 +231,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 
         //    var bannerValidationService = new Mock<IBannerValidationService>();
         //    bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
-        //    bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = ErrorMessage});
+        //    bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = ErrorMessage });
 
         //    var bannerListRepository = new Mock<IBannerListRepository>();
         //    bannerListRepository.Setup(s => s.GetBannerDetail(It.IsAny<int>())).Returns(new BannerInfo { FileName = "abc.gif" });
         //    var service = CreateBannerListService(bannerListRepository.Object, null, systemFile.Object, bannerValidationService.Object);
 
         //    // Action
-        //    var result = service.UpdateBanner(new MockFile(stream: new MemoryStream()), new InsertUpdateBannerParam { SubCategory = "Slot", Category = "Casino" });
+        //    var result = service.UpdateBanner(new MockFile(stream: new MemoryStream()), new InsertUpdateMultipleBannersParam { SubCategories = "Slot", Categories = "Casino" });
 
         //    // Assert
         //    Assert.False(result.IsSuccessful);
@@ -255,7 +255,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
         //    var bannerListRepository = new Mock<IBannerListRepository>();
         //    bannerListRepository.Setup(s => s.GetBannerDetail(It.IsAny<int>())).Returns(new BannerInfo { FileName = "abc.gif" });
-        //    bannerListRepository.Setup(b => b.UpdateBanner(It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo());
+        //    bannerListRepository.Setup(b => b.UpdateBanner(It.IsAny<InsertUpdateMultipleBannersParam>())).Returns(new ResultInfo());
         //    var appSetting = new Mock<IAppSetting>();
         //    appSetting.Setup(a => a.BannerFolders).Returns(bannerFolders);
         //    var systemFile = new Mock<ISystemFile>();
@@ -265,7 +265,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    var service = CreateBannerListService(bannerListRepository.Object, appSetting.Object, systemFile.Object, bannerValidationService.Object);
 
         //    // Action
-        //    var result = service.UpdateBanner(new MockFile(), new InsertUpdateBannerParam());
+        //    var result = service.UpdateBanner(new MockFile(), new InsertUpdateMultipleBannersParam());
 
         //    // Assert
         //    Assert.True(result.IsSuccessful);
@@ -281,7 +281,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
         //    var bannerListRepository = new Mock<IBannerListRepository>();
         //    bannerListRepository.Setup(s => s.GetBannerDetail(It.IsAny<int>())).Returns(new BannerInfo { FileName = "abc.gif" });
-        //    bannerListRepository.Setup(b => b.UpdateBanner(It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "Update is failed" });
+        //    bannerListRepository.Setup(b => b.UpdateBanner(It.IsAny<InsertUpdateMultipleBannersParam>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "Update is failed" });
         //    var appSetting = new Mock<IAppSetting>();
         //    appSetting.Setup(a => a.BannerFolders).Returns(bannerFolders);
         //    var systemFile = new Mock<ISystemFile>();
@@ -291,7 +291,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    var service = CreateBannerListService(bannerListRepository.Object, appSetting.Object, systemFile.Object, bannerValidationService.Object);
 
         //    // Action
-        //    var result = service.UpdateBanner(new MockFile(), new InsertUpdateBannerParam());
+        //    var result = service.UpdateBanner(new MockFile(), new InsertUpdateMultipleBannersParam());
 
         //    // Assert
         //    Assert.False(result.IsSuccessful);
@@ -307,7 +307,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
         //    var bannerListRepository = new Mock<IBannerListRepository>();
         //    bannerListRepository.Setup(s => s.GetBannerDetail(It.IsAny<int>())).Returns(new BannerInfo { FileName = "abc.gif" });
-        //    bannerListRepository.Setup(b => b.UpdateBanner(It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo());
+        //    bannerListRepository.Setup(b => b.UpdateBanner(It.IsAny<InsertUpdateMultipleBannersParam>())).Returns(new ResultInfo());
         //    var appSetting = new Mock<IAppSetting>();
         //    appSetting.Setup(a => a.BannerFolders).Returns(bannerFolders);
         //    var systemFile = new Mock<ISystemFile>();
@@ -316,7 +316,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    var service = CreateBannerListService(bannerListRepository.Object, appSetting.Object, systemFile.Object, bannerValidationService.Object);
 
         //    // Action
-        //    var result = service.UpdateBanner(null, new InsertUpdateBannerParam());
+        //    var result = service.UpdateBanner(null, new InsertUpdateMultipleBannersParam());
 
         //    // Assert
         //    Assert.True(result.IsSuccessful);
@@ -331,7 +331,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
         //    var bannerListRepository = new Mock<IBannerListRepository>();
         //    bannerListRepository.Setup(s => s.GetBannerDetail(It.IsAny<int>())).Returns(new BannerInfo { FileName = "abc.gif" });
-        //    bannerListRepository.Setup(b => b.UpdateBanner(It.IsAny<InsertUpdateBannerParam>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "Update is failed" });
+        //    bannerListRepository.Setup(b => b.UpdateBanner(It.IsAny<InsertUpdateMultipleBannersParam>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "Update is failed" });
         //    var appSetting = new Mock<IAppSetting>();
         //    appSetting.Setup(a => a.BannerFolders).Returns(bannerFolders);
         //    var systemFile = new Mock<ISystemFile>();
@@ -339,7 +339,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         //    var service = CreateBannerListService(bannerListRepository.Object, appSetting.Object, systemFile.Object, bannerValidationService.Object);
 
         //    // Action
-        //    var result = service.UpdateBanner(null, new InsertUpdateBannerParam());
+        //    var result = service.UpdateBanner(null, new InsertUpdateMultipleBannersParam());
 
         //    // Assert
         //    Assert.False(result.IsSuccessful);

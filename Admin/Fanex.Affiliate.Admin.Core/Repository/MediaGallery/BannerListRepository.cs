@@ -66,7 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     if (reader.Read())
                     {
                         item = BuildBannerInfoItem(reader);
-                        item.AffTypes = reader.GetVal<string>("AffTypes")?.Split(',');
+                        item.AffTypes = reader.GetVal<string>("AffTypes").Split(',');
                     }
                 }
             }

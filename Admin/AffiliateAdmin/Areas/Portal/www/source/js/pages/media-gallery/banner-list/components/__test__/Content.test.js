@@ -9,20 +9,22 @@ describe('banner list - components - Content ', () => {
     const gridData = [
         {
             BannerId: 2485,
-            Category: "Baccarat",
-            Currency: "EURO",
-            DeviceType: 1,
-            FileName: "CategoryMedia/Casino/Baccarat/giphy.gif",
+            Categories: ["Casino"],
+            SubCategories: ["Baccarat"],
+            Currencies: ["EURO"],
+            DeviceTypes: ["1"],
+            FileName: "CategoryMedia/giphy.gif",
             ImageType: "Image",
             Language: "Chinese Simplified",
             Size: "500x500"
         },
         {
             BannerId: 2448,
-            Category: "Number Game",
-            Currency: "EURO",
-            DeviceType: 0,
-            FileName: "CategoryMedia/Number Game/step1.jpg",
+            Categories: ["Number Game"],
+            SubCategories: [""],
+            Currencies: ["EURO"],
+            DeviceTypes: ["1"],
+            FileName: "CategoryMedia/step1.jpg",
             ImageType: "Image",
             Language: "Chinese Simplified",
             Size: "1655x438"
@@ -42,13 +44,35 @@ describe('banner list - components - Content ', () => {
         SubCategory: ""
     };
 
+    const deviceTypeList = [
+        {
+            key: 0, name: "PC / Laptop", checked: false
+        },
+        {
+            key: 1, name: "Mobile", checked: false
+        }
+    ];
+
     const defaultProps = {
         pagingOption: defaultPagingOption,
         checkedBanners: { 2485: false, 2448: false },
         bannerRootUrl: null,
         shouldResetScrollPosition: true,
         param,
-        gridData
+        gridData,
+        categoryList: [
+            { categoryName: "Casino", key: "Casino", name: "Casino", checked: false },
+            { categoryName: "Sportsbook", key: "Sportsbook", name: "Sportsbook", checked: false }
+        ],
+        subCategoryList: [
+            { parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false },
+            { parentCategoryName: "Sportsbook", key: "Basketball", name: "Basketball", checked: false }
+        ],
+        currencyList: [
+            { key: "EURO", name: "EURO", checked: false },
+            { key: "VND", name: "VND", checked: false }
+        ],
+        deviceTypeList
     };
 
     it('render correctly', () => {
@@ -97,7 +121,7 @@ describe('banner list - components - Content ', () => {
 
         result.find('a[id="link2448"]').simulate('click');
 
-        expect(props.setBannerDetailUrl).toHaveBeenCalledWith({ "bannerId": 2448, "height": "438", "src": "null/CategoryMedia/Number Game/step1.jpg", "width": "1655" });
+        expect(props.setBannerDetailUrl).toHaveBeenCalledWith({ "bannerId": 2448, "height": "438", "src": "null/CategoryMedia/step1.jpg?id=undefined", "width": "1655" });
         expect(props.fetchData).toHaveBeenCalledWith({ "AffType": 2, "Category": "", "Currency": "", "DeviceType": 0, "ImageType": "", "Language": "", "PageIndex": 1, "PageSize": 20, "Size": "", "SubCategory": "" });
     });
 
