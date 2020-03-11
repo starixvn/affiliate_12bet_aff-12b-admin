@@ -11,7 +11,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 
         public List<string> FilePaths { get; set; } = new List<string>();
 
-        public string InputFileNames { get; set; }
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public string InputFileNames { get; set; } = string.Empty;
 
         [Required]
         public string Categories { get; set; }

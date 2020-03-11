@@ -57,8 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 if (!result.IsSuccessful)
                 {
                     resultValidateAllFiles.Code = result.Code;
-                    result.Message = $"File {fileName} is incorrect. " + result.Message + " <br />";
-                    message.Append(result.Message);
+                    message.Append($"File {fileName} is incorrect.<br />" + result.Message);
                 }
             }
 
@@ -158,7 +157,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 return result;
             }
 
-            var inputFileNames = param.InputFileNames?.Split('|') ?? new string[files.Length];
+            var inputFileNames = param.InputFileNames.Split('|');
             result = ValidateAllInputFileNames(inputFileNames, files);
             if (!result.IsSuccessful)
             {
@@ -210,7 +209,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
             else
             {
-                param.InputFileNames = file?.FileName;
+                param.InputFileNames = file.FileName;
             }
 
             return param.InputFileNames.Length > MaxLength ? new ResultInfo
@@ -270,7 +269,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 }
             }
 
-            return new ResultInfo();
+            return result;
         }
 
         public ResultInfo DeleteBanners(DeleteBannerParam param)

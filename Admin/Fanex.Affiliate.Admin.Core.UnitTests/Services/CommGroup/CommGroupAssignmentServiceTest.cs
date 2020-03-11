@@ -20,8 +20,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
 {
     public class CommGroupAssignmentServiceTest
     {
-        private IDependencyResolver _originalResolver = null;
-        private ILifetimeScopeProvider _scopeProvider = null;
+        private IDependencyResolver _originalResolver;
+        private ILifetimeScopeProvider _scopeProvider;
 
         [Fact]
         public void GetNormalCommGroupList_WhenCall_ReturnCorrectData()
@@ -132,7 +132,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         }
 
         [Theory]
-        [MemberData("TestData", MemberType = typeof(TestCase))]
+        [MemberData(nameof(TestCase.TestData), MemberType = typeof(TestCase))]
         public void AssignPrivateGroup_WhenCall_ExcuteWithIncorrectParam(List<TierSetting> tierSettingList)
         {
             // Arrange

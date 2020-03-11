@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         }
 
         [Theory]
-        [MemberData("TestData", MemberType = typeof(TestCase))]
+        [MemberData(nameof(TestCase.TestData), MemberType = typeof(TestCase))]
         public void CreateCommissionGroup_WhenCall_ExcuteUncorrectWithInvalidTierSettingList(List<TierSetting> tierSettingList)
         {
             // Arrange
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         }
 
         [Theory]
-        [MemberData("TestData", MemberType = typeof(TestCase))]
+        [MemberData(nameof(TestCase.TestData), MemberType = typeof(TestCase))]
         public void UpdateCommissionGroup_WhenCall_ExcuteUncorrectWithInvalidTierSettingList(List<TierSetting> tierSettingList)
         {
             // Arrange

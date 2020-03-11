@@ -25,8 +25,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 {
     public class CommGroupAssignmentControllerTest
     {
-        private IDependencyResolver _originalResolver = null;
-        private ILifetimeScopeProvider _scopeProvider = null;
+        private IDependencyResolver _originalResolver;
+        private ILifetimeScopeProvider _scopeProvider;
 
         [Fact]
         public void AssignGroup_WhenCallWithInvalidAffId_ReturnViewWithEmptyModel()
@@ -150,7 +150,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             // Action
             var viewResult = controller.AssignPrivateGroup(0) as ViewResult;
-            var model = viewResult.Model as AssignPrivateGroupViewModel;
 
             // Assert
             Assert.Equal("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewResult.ViewName);
@@ -209,7 +208,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         }
 
         [Theory]
-        [MemberData("TestData", MemberType = typeof(TestCase))]
+        [MemberData(nameof(TestCase.TestData), MemberType = typeof(TestCase))]
         public void AssignPrivateGroup_WhenCallWithInvalidPlatformFee_ExcuteIncorrect(List<DeductionSetting> platformFeeList)
         {
             // Arrange
