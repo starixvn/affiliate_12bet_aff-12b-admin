@@ -15,11 +15,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class MarketingService : IMarketingService
     {
-        private const int GroupButtonWidth = 611;
-        private const int MinWidth = 401;
-        private const int PaddingWidth = 52;
-        private const int LaptopMinWidth = 1024;
-
         private readonly IMarketingRepository _marketingRepository;
 
         private readonly IMemoryCacheService _cacheService;
@@ -32,12 +27,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal)
         {
-            var categoryList = _cacheService.Get<IEnumerable<CategoryType>>(CacheKey.CategoryList);
+            var cacheKey = isMediaPage ? CacheKey.BannerCategoryList : CacheKey.TextCategoryList;
+            var categoryList = _cacheService.Get<IEnumerable<CategoryType>>(cacheKey);
             if (categoryList == null)
             {
                 categoryList = _marketingRepository.GetCategoryList(isMediaPage, isInternal);
 
-                _cacheService.Set(CacheKey.CategoryList, categoryList);
+                _cacheService.Set(cacheKey, categoryList);
             }
 
             return categoryList ?? new List<CategoryType>();
@@ -142,8 +138,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             const int LengthOfSplittingSize = 2;
             bannerParam.Category = GetCategory(bannerParam.Category, bannerParam.SubCategory);
             var bannerList = _marketingRepository.GetBannerList(bannerParam);
-            var minWidth = bannerParam.ScreenWidth > LaptopMinWidth ? bannerParam.ScreenWidth - GroupButtonWidth : bannerParam.ScreenWidth - PaddingWidth;
-            var screenWidth = minWidth > MinWidth ? minWidth : bannerParam.ScreenWidth - PaddingWidth;
 
             foreach (var banner in bannerList)
             {
@@ -155,13 +149,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 {
                     banner.Width = Convert.ToInt32(sizes[0]);
                     banner.Height = Convert.ToInt32(sizes[1]);
-                    banner.AvailWidth = banner.Width;
-                    banner.AvailHeight = banner.Height;
-
-                    if (banner.Width > screenWidth || banner.Height > screenWidth)
-                    {
-                        ResizeWidthHeight(banner, screenWidth);
-                    }
                 }
 
                 var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.EnglishName.MatchWith(banner.Language));
@@ -219,29 +206,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private static string GetCategory(string category, string subCategory)
         {
             if((category.MatchWith("sportsbook") || category.MatchWith("casino")) &&
-                    string.IsNullOrEmpty(subCategory))
+                    !string.IsNullOrEmpty(subCategory))
             {
-                return category;
+                return subCategory;
             }
 
-            return subCategory;
-        }
-
-        private static void ResizeWidthHeight(MarketingItem item, int size)
-        {
-            var width = item.Width;
-            var height = item.Height;
-
-            if (width > height)
-            {
-                item.AvailHeight = size * height / width;
-                item.AvailWidth = size;
-            }
-            else
-            {
-                item.AvailWidth = size * width / height;
-                item.AvailHeight = size;
-            }
+            return category;
         }
     }
 }

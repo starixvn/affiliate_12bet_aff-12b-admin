@@ -16,5 +16,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         public string ImageType { get; set; }
 
         public byte DeviceType { get; set; }
+
+        public string AffType { get; set; }
     }
 }

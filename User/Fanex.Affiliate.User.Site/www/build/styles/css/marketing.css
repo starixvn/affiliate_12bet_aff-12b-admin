@@ -47,13 +47,23 @@
     padding: 3px; }
 
 .list-content > li {
-  margin-top: 10px; }
+  padding-top: 8px;
+  padding-bottom: 12px;
+  border-top: 1px solid #DBDBDB; }
   .list-content > li .link-text {
     width: 100%;
     margin-top: 5px; }
+  .list-content > li :first-child {
+    border-top: none; }
+
+.list-content li:first-child {
+  border: none; }
 
 .banner-link {
-  display: inline-block; }
+  display: inline-block;
+  max-width: calc(100% - 542px); }
+  .banner-link-img {
+    width: 100%; }
 
 .text-link {
   color: #0b6da5;
@@ -157,7 +167,9 @@ img.qr-code {
 @media (max-width: 1024px) {
   .banner-control {
     display: inline-block;
-    width: 100%; } }
+    width: 100%; }
+  .banner-link {
+    max-width: 100%; } }
 
 .social-media-button-group {
   display: flex; }

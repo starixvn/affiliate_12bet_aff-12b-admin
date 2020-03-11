@@ -213,7 +213,7 @@
             var newPageInfo = $.extend({}, oldPageInfo, pageInfo);
             newPageInfo.totalPage = calculateTotalPage(newPageInfo.totalItems, newPageInfo.pageSize);
 
-            var $pagerContainer = $self.find('.page-container');
+            var $pagerContainer = $self.find('.pager-container');
             updatePageInfo($pagerContainer, newPageInfo.pageIndex + 1, newPageInfo.totalPage);
             var disableNextButton = isDisableNextButton(newPageInfo.pageIndex, newPageInfo.totalPage);
             resetToInitialState($pagerContainer, disableNextButton);
@@ -308,9 +308,7 @@ var MediaGallery = (function ($) {
             });
 
             $("#dataContainerList").on("change", "#DeviceType", function () {
-                _pageIndex = 0;
-                var params = _me.getSearchParam();
-                _me.getBannerList(params, _me.updatePager);
+                _me.submitSearch();
             });
 
             $("#btnGenerateLink").on("click", function () {
@@ -406,8 +404,7 @@ var MediaGallery = (function ($) {
                 selectedDomainId: $("#Domain").val(),
                 selectedPage: $("#MemberSitePage").val(),
                 pageIndex: _pageIndex + 1,
-                pageSize: _pageSize,
-                screenWidth: screen.availWidth
+                pageSize: _pageSize
             }
         },
 

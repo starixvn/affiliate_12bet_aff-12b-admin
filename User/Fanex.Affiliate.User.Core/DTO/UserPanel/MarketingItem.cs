@@ -30,10 +30,6 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 
         public int Height { get; set; }
 
-        public int AvailWidth { get; set; }
-
-        public int AvailHeight { get; set; }
-
         public string Message { get; set; }
 
         public string ScriptSrc { get; set; }

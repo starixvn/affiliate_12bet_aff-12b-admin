@@ -286,7 +286,13 @@ input[type="checkbox"], input[type="radio"] {
   .flex .flex-sm-6 {
     width: 50%; }
   .flex .flex-sm-9 {
-    width: 75%; } }
+    width: 75%; }
+  .flex-sm-boostrap {
+    display: flex; }
+    .flex-sm-boostrap.flex-center {
+      align-items: center; }
+      .flex-sm-boostrap.flex-center label {
+        padding-bottom: 10px; } }
 
 .flag {
   width: 16px;

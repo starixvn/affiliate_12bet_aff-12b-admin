@@ -27,7 +27,6 @@
                 type: "GET",
                 dataType: "html",
                 cache: false,
-                data: { screenWidth: screen.availWidth },
                 url: Site.resolveRelativeUrl("UserPanel/" + actionName),
                 success: function (response) {
                     $("#account-overview-content").html(response);

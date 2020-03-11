@@ -71,4 +71,15 @@
             width: 75%;
         }
     }
+
+    .flex-sm-boostrap{
+        display:flex;
+        &.flex-center{
+            align-items: center;
+            label{
+                padding-bottom: 10px;
+            }
+        }
+    }
 }
+

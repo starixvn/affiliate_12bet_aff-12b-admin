@@ -524,7 +524,6 @@
     <Content Include="www\build\js\lib\modernizr-webp.min.js">
       <DependentUpon>modernizr-webp.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\lib\require.min.js" />
     <Content Include="www\build\js\login.js" />
     <Content Include="www\build\js\login.min.js">
       <DependentUpon>login.js</DependentUpon>
@@ -545,8 +544,6 @@
     <Content Include="www\build\js\myaccount.min.js">
       <DependentUpon>myaccount.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\oldmediagallery.js" />
-    <Content Include="www\build\js\oldmediagallery.min.js" />
     <Content Include="www\build\js\overview.js" />
     <Content Include="www\build\js\overview.min.js" />
     <Content Include="www\build\js\pages\changepassword.js" />
@@ -608,10 +605,6 @@
     <Content Include="www\build\styles\css\notify.css" />
     <Content Include="www\build\styles\css\notify.min.css">
       <DependentUpon>notify.css</DependentUpon>
-    </Content>
-    <Content Include="www\build\styles\css\oldmarketing.css" />
-    <Content Include="www\build\styles\css\oldmarketing.min.css">
-      <DependentUpon>oldmarketing.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\css\pages\commissionreport.css" />
     <Content Include="www\build\styles\css\pages\commissionreport.min.css">
@@ -745,21 +738,16 @@
     <Content Include="www\source\js\components\pagetracking.js" />
     <Content Include="www\source\js\components\validation.custom.js" />
     <Content Include="www\source\js\components\website.js" />
-    <Content Include="www\source\js\config-require.js" />
     <Content Include="www\source\js\lib\hmac-sha256.js" />
     <Content Include="www\source\js\lib\jquery.validate.min.js" />
     <Content Include="www\source\js\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="www\source\js\lib\modernizr-webp.js" />
-    <Content Include="www\source\js\lib\require-2.3.6.min.js" />
     <Content Include="www\source\js\pages\account-overview\overview.js" />
     <Content Include="www\source\js\pages\account-overview\player-detail.js" />
     <Content Include="www\source\js\pages\account-overview\summary.js" />
     <Content Include="www\source\js\pages\commission-report.js" />
     <Content Include="www\source\js\pages\contactus.js" />
     <Content Include="www\source\js\pages\forgotpassword.js" />
-    <Content Include="www\source\js\pages\marketing\marketingbase.js" />
-    <Content Include="www\source\js\pages\marketing\mediagallery.js" />
-    <Content Include="www\source\js\pages\marketing\textbox.js" />
     <Content Include="www\source\js\pages\member.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />
     <Content Include="www\source\js\pages\payment-request.js" />
@@ -782,10 +770,6 @@
     <Content Include="www\build\js\test.js" />
     <Content Include="www\build\js\test.min.js">
       <DependentUpon>test.js</DependentUpon>
-    </Content>
-    <Content Include="www\build\js\textbox.js" />
-    <Content Include="www\build\js\textbox.min.js">
-      <DependentUpon>textbox.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\trackingstatistics.js" />
     <Content Include="www\build\js\trackingstatistics.min.js">
@@ -1274,15 +1258,6 @@
     <Content Include="Views\UserPanel\AccountOverView\MediaGallery\Index.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Partial\_GeneratedQrCode.cshtml" />
     <Content Include="www\source\styles\scss\base\_flex.scss" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_BannerFilter.cshtml" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_BannerList.cshtml" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_LinkForm.cshtml" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_SearchForm.cshtml" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_TextLink.cshtml" />
-    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_TextList.cshtml" />
-    <Content Include="Views\UserPanel\Marketing\MediaGallery\Index.cshtml" />
-    <Content Include="Views\UserPanel\Marketing\TextBox\Index.cshtml" />
-    <Content Include="www\source\styles\pages\oldmarketing.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

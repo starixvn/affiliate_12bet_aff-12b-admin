@@ -6,6 +6,7 @@
     using Constants;
     using DTO.UserPanel;
     using Extensions;
+    using Fanex.Affiliate.User.Core.Resources;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Utilities;
@@ -60,13 +61,15 @@
             var subCategoryList = MarketingService.GetCategoryList(true, SessionService.IsInternal)
                                                     .Where(c => c.ParentCategory.MatchWith(category) && !c.Category.MatchWith(c.ParentCategory));
 
-            return Json(subCategoryList, JsonRequestBehavior.AllowGet);
+            return Json(subCategoryList.Select(i => new SelectListItem { Value = i.Category, Text = Lang.ResourceManager.GetString(i.Category.Trim()) ?? i.Category }),
+                JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult GetSize(SizeParam param)
         {
+            param.AffType = SessionService.UserSession.AffType;
             param.Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(param.Language))?.EnglishName;
             var sizeList = MarketingService.GetSizeList(param, SessionService.IsInternal);
 
