@@ -2,8 +2,4 @@
 <Root>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
 
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_MediaSize_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_Domain_Sel" Suffix="_xtest"></item>
-
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Market_Sel" Suffix="_xtest"></item>
 </Root>
