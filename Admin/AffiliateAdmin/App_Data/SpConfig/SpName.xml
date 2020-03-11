@@ -81,7 +81,7 @@
     <Setting Key="Aff_Admin_Text_Upd" SpName="Aff_Admin_Text_Upd_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Text_Del" SpName="Aff_Admin_Text_Del_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_MediaType_Sel" SpName="Aff_Admin_MediaType_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Banner_Ins" SpName="Aff_Admin_Banner_Ins_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Banner_Upd" SpName="Aff_Admin_Banner_Upd_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Banner_Del" SpName="Aff_Admin_Banner_Del_xtest" DbName="affiliate_12bet" />
