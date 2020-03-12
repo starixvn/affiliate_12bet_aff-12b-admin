@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Site
 {
-    public static class FilterConfig
+    public class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
