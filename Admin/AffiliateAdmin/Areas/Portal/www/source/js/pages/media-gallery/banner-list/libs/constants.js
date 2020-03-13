@@ -34,7 +34,7 @@ export const messages = {
 }
 
 export const defaultState = {
-    files: null,
+    files: [],
     inputFileNames: [''],
     language: defaultLanguage,
     isInsert: true,
