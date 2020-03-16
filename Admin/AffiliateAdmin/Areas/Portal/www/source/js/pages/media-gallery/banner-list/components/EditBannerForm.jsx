@@ -28,6 +28,8 @@ export class EditBannerForm extends PureComponent {
             affTypeList,
             deviceTypeList
         }
+
+        this.modalRef = React.createRef();
     }
 
     componentDidMount() {
@@ -246,7 +248,6 @@ export class EditBannerForm extends PureComponent {
         this.props.toggleLoader(true);
 
         const { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList, inputFileNames } = this.state;
-
         const category = categoryList.filter(item => item.checked).map(item => item.key);
         const subCategory = hasSubCategory && subCategoryList.filter(item => item.checked);
         const currency = currencyList.filter(item => item.checked);
@@ -285,6 +286,8 @@ export class EditBannerForm extends PureComponent {
     }
 
     _handleShowAlert = (isSuccess, message) => {
+        this.modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
+
         this.setState({
             message,
             isSuccess,
@@ -444,7 +447,7 @@ export class EditBannerForm extends PureComponent {
                         onClose={(confirmResult) => this.handleCloseNotificationPopup(confirmResult, hasSubCategory)}
                     />
                 }
-                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
+                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static' innerRef={this.modalRef}>
                     <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">
@@ -455,6 +458,7 @@ export class EditBannerForm extends PureComponent {
                                 <Form tag="form" className="mb-2 p-1 border" autocomplete="off">
                                     <Label>[Valid Types: .gif, .jpg, .png, .jpeg]</Label>
                                     <Label className="d-block">[File Size Limit: 3MB]</Label>
+                                    <Label className="d-block">[Maximum files: 10]</Label>
                                     <br />
                                     <FormGroup row className="mb-2">
                                         <Label sm={3} for="file" className={isInsert ? "required" : ""}>File</Label>
