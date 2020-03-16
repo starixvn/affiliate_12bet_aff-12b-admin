@@ -31,21 +31,20 @@ export class EditBannerForm extends PureComponent {
     }
 
     componentDidMount() {
-        const categoryList = this.selectedAll(this.state.categoryList);
-        const subCategoryList = this.selectedAll(this.getSubCategories(categoryList));
-        const currencyList = this.selectedAll(this.state.currencyList);
-        const affTypeList = this.selectedAll(this.state.affTypeList);
-        const deviceTypeList = this.selectedAll(this.state.deviceTypeList);
-
-        this.setState({ categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList });
+        this.resetToDefault();
     }
 
     componentDidUpdate(prevProps) {
         const { selectedBannerId } = this.props;
         if (prevProps.selectedBannerId !== selectedBannerId) {
             this.setState({ isInsert: selectedBannerId === defaultInsertId });
-
-            selectedBannerId && this._handleGetBannerDetail(selectedBannerId);
+            if (selectedBannerId)
+            {
+                 this._handleGetBannerDetail(selectedBannerId);
+            }
+            else {
+                this.resetToDefault();
+            }
         }
     }
 
@@ -326,6 +325,16 @@ export class EditBannerForm extends PureComponent {
             event.preventDefault()
             this._handleSubmit();
         }
+    }
+
+    resetToDefault = () => {
+        const categoryList = this.selectedAll(this.state.categoryList);
+        const subCategoryList = this.selectedAll(this.getSubCategories(categoryList));
+        const currencyList = this.selectedAll(this.state.currencyList);
+        const affTypeList = this.selectedAll(this.state.affTypeList);
+        const deviceTypeList = this.selectedAll(this.state.deviceTypeList);
+
+        this.setState({ categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList });
     }
 
     getSubCategories = (categories) => {
