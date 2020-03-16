@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Label, Input, Col} from 'reactstrap';
+import { Button, Label, Input} from 'reactstrap';
 import { globalResource } from '../../../../modules/globalResource';
-import {messages} from '../libs/constants';
+import { messages } from '../libs/constants';
 
 export const InputFile = (props) => {
     const { handleOnChangeFiles, files, isMultiple, className, id} = props;
@@ -20,17 +20,20 @@ export const InputFile = (props) => {
     }
 
     return (
-        <div className={className} onClick={handleOnClick}>
-            <Button type="button">{globalResource.ChooseFile}</Button>
-            <Label className="ml-1">{text}</Label>
-            <Input type="file"
-                name="file" 
-                id={id}
-                hidden
-                files={files}
-                multiple={isMultiple}
-                onChange={handleOnChangeFiles} accept="image/jpg, image/gif, image/png, image/jpeg" />
-        </div>
+        <React.Fragment>
+            <div className={className} onClick={handleOnClick}>
+                <Button type="button">{globalResource.ChooseFile}</Button>
+                <Label className="ml-1">{text}</Label>
+                <Input type="file"
+                    name="file" 
+                    id={id}
+                    hidden
+                    files={files}
+                    multiple={isMultiple}
+                    onChange={handleOnChangeFiles} accept="image/jpg, image/gif, image/png, image/jpeg" />
+            </div>
+        </React.Fragment>
+
     )
 }
 export default (React.memo(InputFile));
