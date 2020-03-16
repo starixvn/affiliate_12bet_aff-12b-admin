@@ -104,7 +104,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return resultValidateAllInputFileNames;
         }
 
-        public ResultInfo CheckMultipleFilesInFolder(string[] inputFileNames)
+        private ResultInfo CheckMultipleFilesInFolder(string[] inputFileNames)
         {
             var resultCheckMultipleFilesInFolder = new ResultInfo();
             var message = new StringBuilder();
@@ -133,7 +133,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return resultCheckMultipleFilesInFolder;
         }
 
-        public static void BuildFilesXml(InsertUpdateMultipleBannersParam param, string[] inputFileNames)
+        private static void BuildFilesXml(InsertUpdateMultipleBannersParam param, string[] inputFileNames)
         {
             var result = new StringBuilder();
             result.Append("<root>");
@@ -198,7 +198,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return result;
         }
 
-        public ResultInfo ValidationInputFileName(HttpPostedFileBase file, InsertUpdateMultipleBannersParam param)
+        private ResultInfo ValidationInputFileName(HttpPostedFileBase file, InsertUpdateMultipleBannersParam param)
         {
             if (!string.IsNullOrEmpty(param.InputFileNames))
             {

@@ -38,9 +38,8 @@ export class EditBannerForm extends PureComponent {
         const { selectedBannerId } = this.props;
         if (prevProps.selectedBannerId !== selectedBannerId) {
             this.setState({ isInsert: selectedBannerId === defaultInsertId });
-            if (selectedBannerId)
-            {
-                 this._handleGetBannerDetail(selectedBannerId);
+            if (selectedBannerId) {
+                this._handleGetBannerDetail(selectedBannerId);
             }
             else {
                 this.resetToDefault();
@@ -128,8 +127,11 @@ export class EditBannerForm extends PureComponent {
 
         inputFileNames = [...inputFileNames.slice(0, index), ...inputFileNames.slice(index + 1, inputFileNames.length)];
         files = [...files.slice(0, index), ...files.slice(index + 1, files.length)];
-
-        this.setState({ inputFileNames, files });
+        if (files && files.length) {
+            this.setState({ inputFileNames, files });
+        } else {
+            this.setState({ inputFileNames: [''], files, isDisabled: true });
+        }
     }
 
     _handleAfterSave = (isInsert, result) => {
@@ -310,11 +312,11 @@ export class EditBannerForm extends PureComponent {
         this.setState({ ...defaultState, categoryList, subCategoryList: null, currencyList, affTypeList, deviceTypeList });
     }
 
-    handleCloseNotificationPopup = (confirmResult) => {
+    handleCloseNotificationPopup = (confirmResult, hasSubCategory) => {
         this.setState({ messageNotificationPopup: '' });
 
         if (confirmResult) {
-            const bannerInfo = this._getParam();
+            const bannerInfo = this._getParam(hasSubCategory);
 
             this._updateBanner(bannerInfo);
         }
@@ -358,8 +360,7 @@ export class EditBannerForm extends PureComponent {
             currentFiles.forEach((value, index) => {
                 files.index = value;
             });
-        console.log(currentFiles);
-        console.log(files)
+
         return files;
 
     }
@@ -433,14 +434,14 @@ export class EditBannerForm extends PureComponent {
         const buttonLabel = isInsert ? "Upload" : "Update";
         const selectedCategory = categoryList.filter(item => item.checked).map(item => item.key);
         const hasSubCategory = selectedCategory.indexOf(Casino) !== -1 || selectedCategory.indexOf(Sportsbook) !== -1;
-        console.log(files);
+
         return (
             <React.Fragment>
                 {
                     !!messageNotificationPopup && <NotificationPopup
                         message={messageNotificationPopup}
                         isConfirmPopup={true}
-                        onClose={this.handleCloseNotificationPopup}
+                        onClose={(confirmResult) => this.handleCloseNotificationPopup(confirmResult, hasSubCategory)}
                     />
                 }
                 <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
@@ -560,6 +561,7 @@ export class EditBannerForm extends PureComponent {
                                                         type="button"
                                                         color="danger"
                                                         for="inputFileName"
+                                                        disabled={files && !files.length}
                                                         onClick={() => this._handleRemoveImageAt(index)}>
                                                         {globalResource.Remove}
                                                     </Button>
