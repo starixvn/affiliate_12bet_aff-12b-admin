@@ -65,9 +65,36 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return resultValidateAllFiles;
         }
 
+        private ResultInfo CheckDuplicateFileNames(string[] inputFileNames)
+        {
+            var length = inputFileNames.Length;
+            for (var i = 0; i <= length - 1; i++)
+            {
+                var fileName = inputFileNames[i].Trim();
+
+                for (var j = i + 1; j < length; j++)
+                {
+                    if (string.Equals(fileName, inputFileNames[j].Trim(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        return new ResultInfo {
+                            Code = Code.GeneralErrorCode,
+                            Message = "File Name is unique, please enter other file name!"
+                        };
+                    }
+                }
+            }
+
+            return new ResultInfo();
+        }
+
         private ResultInfo ValidateAllInputFileNames(string[] inputFileNames, HttpPostedFileBase[] files)
         {
-            var resultValidateAllInputFileNames = new ResultInfo();
+            var result = CheckDuplicateFileNames(inputFileNames);
+            if(!result.IsSuccessful)
+            {
+                return result;
+            }
+
             var message = new StringBuilder();
             for (int i = 0; i < inputFileNames.Length; i ++)
             {
@@ -81,27 +108,27 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
                     if (file.FileName.Length > MaxLength)
                     {
-                        resultValidateAllInputFileNames.Code = Code.GeneralErrorCode;
+                        result.Code = Code.GeneralErrorCode;
                         message.Append($"The maximum length of file name is 50. Please choose another name for File Name {i + 1} or select another File.<br />");
                     }                    
                 } else
                 {
                     if (!BannerHelper.IsValidExtension(_systemFile.GetExtension(inputFileName)))
                     {
-                        resultValidateAllInputFileNames.Code = Code.GeneralErrorCode;
+                        result.Code = Code.GeneralErrorCode;
                         message.Append($"File Name {i + 1} is incorrect.<br />" + Lang.InvalidBannerExtensionFile);
                     }
 
                     if (inputFileName.Length > MaxLength)
                     {
-                        resultValidateAllInputFileNames.Code = Code.GeneralErrorCode;
+                        result.Code = Code.GeneralErrorCode;
                         message.Append($"The maximum length of file name is 50. Please choose another name File Name {i + 1}.<br />");
                     }
                 }
             }
 
-            resultValidateAllInputFileNames.Message = message.ToString();
-            return resultValidateAllInputFileNames;
+            result.Message = message.ToString();
+            return result;
         }
 
         private ResultInfo CheckMultipleFilesInFolder(string[] inputFileNames)

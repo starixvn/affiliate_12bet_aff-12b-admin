@@ -115,8 +115,6 @@ export class EditBannerForm extends PureComponent {
 
             this.setState({ files: Array.from(files), inputFileNames, isDisabled: !allResults.isOK });
             !allResults.isOK && this._handleShowAlert(false, allResults.message);
-        } else {
-            this.setState({ isDisabled: true, file: null, inputFileName: '' });
         }
     }
 
@@ -173,7 +171,7 @@ export class EditBannerForm extends PureComponent {
         const { selectedBannerId } = this.props;
 
         return Object.assign({}, {
-            bannerId: selectedBannerId, files, inputFileNames: isInsert ? inputFileNames.map(item => item ? item.trim() : '').join('|') : inputFileNames[0] && inputFileNames[0].trim(),
+            bannerId: selectedBannerId, files, inputFileNames: isInsert ? inputFileNames.map(item => item.trim()).join('|') : inputFileNames[0] && inputFileNames[0].trim(),
             categories, subCategories, language, currencies, affTypes, deviceTypes
         });
     }
@@ -244,6 +242,21 @@ export class EditBannerForm extends PureComponent {
         return validInputFileNames;
     }
 
+    _hasDuplicateFileNames = (inputFileNames) => {
+        const length = inputFileNames.length;
+        for(let i = 0; i <= length - 1; i++) {
+            let fileName = inputFileNames[i].trim().toLowerCase();
+
+            for(let j = i + 1; j < length; j++) {
+                if(fileName == inputFileNames[j].trim().toLowerCase()) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     _handleSubmit = (hasSubCategory) => {
         this.props.toggleLoader(true);
 
@@ -278,6 +291,10 @@ export class EditBannerForm extends PureComponent {
             this._handleShowAlert(false, "Can't upload exceed 10 images one time");
             return;
         }
+        if (this._hasDuplicateFileNames(inputFileNames)) {
+            this._handleShowAlert(false, "File Name is unique, please enter other file name!");
+            return;
+        }
 
         const validInputFileNames = this._validateInputFileName();
         validInputFileNames.isOK ? this._save(hasSubCategory) : this._handleShowAlert(false, validInputFileNames.message)
@@ -309,10 +326,9 @@ export class EditBannerForm extends PureComponent {
     }
 
     _handleClosePopup = () => {
-        const { categoryList, currencyList, affTypeList, deviceTypeList } = this.props;
-
         this.props.setSelectedBannerId(null);
-        this.setState({ ...defaultState, categoryList, subCategoryList: null, currencyList, affTypeList, deviceTypeList });
+        this.setState({ ...defaultState });
+        this.resetToDefault();
     }
 
     handleCloseNotificationPopup = (confirmResult, hasSubCategory) => {
