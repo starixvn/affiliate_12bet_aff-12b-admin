@@ -13,6 +13,11 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
     }
     centered={false}
     fade={true}
+    innerRef={
+      Object {
+        "current": null,
+      }
+    }
     isOpen={true}
     keyboard={true}
     modalTransition={
@@ -119,6 +124,21 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
             >
               [File Size Limit: 3MB]
             </Label>
+            <Label
+              className="d-block"
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [Maximum files: 10]
+            </Label>
             <br />
             <FormGroup
               className="mb-2"
@@ -155,14 +175,12 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                   ]
                 }
               >
-                <Input
-                  accept="image/jpg, image/gif, image/png, image/jpeg"
+                <Memo(InputFile)
                   className="border text-danger"
+                  files={Array []}
+                  handleOnChangeFiles={[Function]}
                   id="file"
-                  multiple={true}
-                  name="file"
-                  onChange={[Function]}
-                  type="file"
+                  isMultiple={true}
                 />
               </Col>
             </FormGroup>
@@ -206,15 +224,77 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                     Array [
                       Object {
                         "categoryName": "Casino",
-                        "checked": false,
+                        "checked": true,
                         "key": "Casino",
                         "name": "Casino",
                       },
                       Object {
                         "categoryName": "Sportsbook",
-                        "checked": false,
+                        "checked": true,
                         "key": "Sportsbook",
                         "name": "Sportsbook",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="subCategory"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Sub Category
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": true,
+                        "key": "Slot",
+                        "name": "Slot",
+                        "parentCategoryName": "Casino",
+                      },
+                      Object {
+                        "checked": true,
+                        "key": "Basketball",
+                        "name": "Basketball",
+                        "parentCategoryName": "Sportsbook",
                       },
                     ]
                   }
@@ -323,12 +403,12 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                   dataSource={
                     Array [
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "EURO",
                         "name": "EURO",
                       },
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "VND",
                         "name": "VND",
                       },
@@ -383,12 +463,12 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                   dataSource={
                     Array [
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "Asian",
                         "name": "Asian",
                       },
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "Media",
                         "name": "Media",
                       },
@@ -443,12 +523,12 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                   dataSource={
                     Array [
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": 0,
                         "name": "PC / Laptop",
                       },
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": 1,
                         "name": "Mobile",
                       },
@@ -508,6 +588,19 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                   value=""
                 />
               </Col>
+              <div>
+                <Button
+                  className="mr-3"
+                  color="danger"
+                  disabled={true}
+                  for="inputFileName"
+                  onClick={[Function]}
+                  tag="button"
+                  type="button"
+                >
+                  Remove
+                </Button>
+              </div>
             </FormGroup>
           </Form>
           <Button
@@ -548,6 +641,11 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
     }
     centered={false}
     fade={true}
+    innerRef={
+      Object {
+        "current": null,
+      }
+    }
     isOpen={false}
     keyboard={true}
     modalTransition={
@@ -654,6 +752,21 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
             >
               [File Size Limit: 3MB]
             </Label>
+            <Label
+              className="d-block"
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [Maximum files: 10]
+            </Label>
             <br />
             <FormGroup
               className="mb-2"
@@ -690,14 +803,12 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   ]
                 }
               >
-                <Input
-                  accept="image/jpg, image/gif, image/png, image/jpeg"
+                <Memo(InputFile)
                   className="border text-danger"
+                  files={Array []}
+                  handleOnChangeFiles={[Function]}
                   id="file"
-                  multiple={true}
-                  name="file"
-                  onChange={[Function]}
-                  type="file"
+                  isMultiple={true}
                 />
               </Col>
             </FormGroup>
@@ -741,15 +852,77 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                     Array [
                       Object {
                         "categoryName": "Casino",
-                        "checked": false,
+                        "checked": true,
                         "key": "Casino",
                         "name": "Casino",
                       },
                       Object {
                         "categoryName": "Sportsbook",
-                        "checked": false,
+                        "checked": true,
                         "key": "Sportsbook",
                         "name": "Sportsbook",
+                      },
+                    ]
+                  }
+                  hasAllOption={true}
+                  keyField="key"
+                  maxDisplayItemCount={1}
+                  noneSelectedLabel="Please Select"
+                  onChange={[Function]}
+                  statusField="checked"
+                  valueField="name"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="subCategory"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Sub Category
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <MultipleSelect
+                  dataSource={
+                    Array [
+                      Object {
+                        "checked": true,
+                        "key": "Slot",
+                        "name": "Slot",
+                        "parentCategoryName": "Casino",
+                      },
+                      Object {
+                        "checked": true,
+                        "key": "Basketball",
+                        "name": "Basketball",
+                        "parentCategoryName": "Sportsbook",
                       },
                     ]
                   }
@@ -858,12 +1031,12 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   dataSource={
                     Array [
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "EURO",
                         "name": "EURO",
                       },
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "VND",
                         "name": "VND",
                       },
@@ -918,12 +1091,12 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   dataSource={
                     Array [
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "Asian",
                         "name": "Asian",
                       },
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "Media",
                         "name": "Media",
                       },
@@ -978,12 +1151,12 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   dataSource={
                     Array [
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": 0,
                         "name": "PC / Laptop",
                       },
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": 1,
                         "name": "Mobile",
                       },
@@ -1043,6 +1216,19 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   value=""
                 />
               </Col>
+              <div>
+                <Button
+                  className="mr-3"
+                  color="danger"
+                  disabled={true}
+                  for="inputFileName"
+                  onClick={[Function]}
+                  tag="button"
+                  type="button"
+                >
+                  Remove
+                </Button>
+              </div>
             </FormGroup>
           </Form>
           <Button
@@ -1088,6 +1274,11 @@ exports[`banner list - components - EditBannerForm  render correctly with update
     }
     centered={false}
     fade={true}
+    innerRef={
+      Object {
+        "current": null,
+      }
+    }
     isOpen={true}
     keyboard={true}
     modalTransition={
@@ -1194,6 +1385,21 @@ exports[`banner list - components - EditBannerForm  render correctly with update
             >
               [File Size Limit: 3MB]
             </Label>
+            <Label
+              className="d-block"
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [Maximum files: 10]
+            </Label>
             <br />
             <FormGroup
               className="mb-2"
@@ -1230,14 +1436,12 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                   ]
                 }
               >
-                <Input
-                  accept="image/jpg, image/gif, image/png, image/jpeg"
-                  className="border text-success"
+                <Memo(InputFile)
+                  className="border text-danger"
+                  files={Array []}
+                  handleOnChangeFiles={[Function]}
                   id="file"
-                  multiple={false}
-                  name="file"
-                  onChange={[Function]}
-                  type="file"
+                  isMultiple={false}
                 />
               </Col>
             </FormGroup>
@@ -1448,12 +1652,12 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                   dataSource={
                     Array [
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "EURO",
                         "name": "EURO",
                       },
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "VND",
                         "name": "VND",
                       },
@@ -1508,12 +1712,12 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                   dataSource={
                     Array [
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "Asian",
                         "name": "Asian",
                       },
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": "Media",
                         "name": "Media",
                       },
@@ -1568,12 +1772,12 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                   dataSource={
                     Array [
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": 0,
                         "name": "PC / Laptop",
                       },
                       Object {
-                        "checked": false,
+                        "checked": true,
                         "key": 1,
                         "name": "Mobile",
                       },

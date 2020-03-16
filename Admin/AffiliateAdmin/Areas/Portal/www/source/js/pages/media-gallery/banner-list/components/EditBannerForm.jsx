@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader } from '../actions/index';
+import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader, getSizeList } from '../actions/index';
 import { headerText, globalResource, defaultState, Casino, Sportsbook, regSpecialCharacters } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
@@ -136,6 +136,8 @@ export class EditBannerForm extends PureComponent {
 
     _handleAfterSave = (isInsert, result) => {
         if (result) {
+            result.IsSuccessful && this.props.getSizeList(this.props.param);
+
             const message = isInsert ? "Your banner has been added successfully!" : "Your banner has been updated successfully!";
 
             this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
@@ -244,11 +246,11 @@ export class EditBannerForm extends PureComponent {
 
     _hasDuplicateFileNames = (inputFileNames) => {
         const length = inputFileNames.length;
-        for(let i = 0; i <= length - 1; i++) {
+        for (let i = 0; i <= length - 1; i++) {
             let fileName = inputFileNames[i].trim().toLowerCase();
 
-            for(let j = i + 1; j < length; j++) {
-                if(fileName == inputFileNames[j].trim().toLowerCase()) {
+            for (let j = i + 1; j < length; j++) {
+                if (fileName == inputFileNames[j].trim().toLowerCase()) {
                     return true;
                 }
             }
@@ -630,7 +632,7 @@ function mapStateToProps({ selectedBannerId, param, categoryList, subCategoryCas
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader }, dispatch);
+    return bindActionCreators({ setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader, getSizeList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditBannerForm);

@@ -67,6 +67,7 @@ describe('banner list - EditBannerForm - connect', () => {
             setSelectedBannerId: actions['setSelectedBannerId'],
             fetchData: actions['fetchData'],
             getBannerDetail: actions['getBannerDetail'],
+            getSizeList:  actions['getSizeList'],
             insertBanner: actions['insertBanner'],
             updateBanner: actions['updateBanner'],
             toggleLoader: actions['toggleLoader']

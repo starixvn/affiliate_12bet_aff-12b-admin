@@ -90,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         private ResultInfo ValidateAllInputFileNames(string[] inputFileNames, HttpPostedFileBase[] files)
         {
             var result = CheckDuplicateFileNames(inputFileNames);
-            if(!result.IsSuccessful)
+            if (!result.IsSuccessful)
             {
                 return result;
             }
@@ -142,7 +142,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 var filePath = $"CategoryMedia/{inputFileName}";
                 var result = _bannerValidationService.CheckFileInFolder("CategoryMedia/", filePath);
 
-                if(!result.IsSuccessful)
+                if (!result.IsSuccessful)
                 {
                     if (result.Code == Code.ErrCanNotAccessFolder)
                     {
