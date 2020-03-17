@@ -62,7 +62,7 @@
             var subCategoryList = MarketingService.GetCategoryList(true, SessionService.IsInternal)
                                                     .Where(c => c.Category.MatchWith(category) && !string.IsNullOrEmpty(c.SubCategory));
 
-            return Json(subCategoryList.Select(i => new SelectListItem { Value = i.Category, Text = Lang.ResourceManager.GetString(i.Category.Trim()) ?? i.Category }),
+            return Json(subCategoryList.Select(i => new SelectListItem { Value = i.SubCategory, Text = Lang.ResourceManager.GetString(i.SubCategory.Trim()) ?? i.SubCategory }),
                 JsonRequestBehavior.AllowGet);
         }
 
