@@ -83,10 +83,6 @@
             var userSession = SessionService.UserSession;
             var selectedDomain = MarketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
                                                     .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
-            if (!string.IsNullOrEmpty(bannerParam.SubCategory))
-            {
-                bannerParam.Category = bannerParam.SubCategory;
-            }
 
             var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 

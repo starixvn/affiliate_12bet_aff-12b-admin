@@ -73,8 +73,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal)
         {
-            param.Category = GetCategory(param.Category, param.SubCategory);
-
             return _marketingRepository.GetSizeList(param, isInternal);
         }
 
@@ -136,7 +134,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
         {
             const int LengthOfSplittingSize = 2;
-            bannerParam.Category = GetCategory(bannerParam.Category, bannerParam.SubCategory);
             var bannerList = _marketingRepository.GetBannerList(bannerParam);
 
             foreach (var banner in bannerList)
@@ -201,17 +198,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                                 .Replace("{lang}", shortedLanguageCode);
 
             return result;
-        }
-
-        private static string GetCategory(string category, string subCategory)
-        {
-            if((category.MatchWith("sportsbook") || category.MatchWith("casino")) &&
-                    !string.IsNullOrEmpty(subCategory))
-            {
-                return subCategory;
-            }
-
-            return category;
         }
     }
 }
