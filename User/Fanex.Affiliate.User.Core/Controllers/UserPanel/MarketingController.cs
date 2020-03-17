@@ -14,7 +14,6 @@
     using MetalModels.UserPanel;
     using System.Drawing;
     using ViewModels.UserPanel.Marketing;
-    using Resources;
 
     [CustomAuthorize]
     public class MarketingController : BaseMarketingController
