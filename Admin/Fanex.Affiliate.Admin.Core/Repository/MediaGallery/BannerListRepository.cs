@@ -129,6 +129,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("Category", DbType.String, param.Category);
+                objectDb.AddInParameter("SubCategory", DbType.String, param.SubCategory);
                 objectDb.AddInParameter("Language", DbType.String, param.Language);
                 objectDb.AddInParameter("Currency", DbType.String, param.Currency);
                 objectDb.AddInParameter("ImageType", DbType.String, param.ImageType);
