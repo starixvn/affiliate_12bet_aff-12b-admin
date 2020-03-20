@@ -13,6 +13,7 @@ using System.Web;
 using System.IO;
 using Fanex.Affiliate.Admin.Core.Constants;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
@@ -183,7 +184,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             {
                 return result;
             }
-
+            var regex = new Regex("[\\\\/:*?\"<>]");
+            if (regex.IsMatch(param.InputFileNames))
+            {
+                return new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "A File Name can't contain any of the following characters: \\/:*?\" <>|"
+                };
+            }
             var inputFileNames = param.InputFileNames.Split('|');
             result = ValidateAllInputFileNames(inputFileNames, files);
             if (!result.IsSuccessful)
@@ -229,6 +238,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         {
             if (!string.IsNullOrEmpty(param.InputFileNames))
             {
+                var regex = new Regex("[\\\\/:*?\"<>|]");
+                if (regex.IsMatch(param.InputFileNames))
+                {
+                    return new ResultInfo
+                    {
+                        Code = Code.GeneralErrorCode,
+                        Message = "A File Name can't contain any of the following characters: \\/:*?\" <>|"
+                    };
+                }
+
                 if (!BannerHelper.IsValidExtension(_systemFile.GetExtension(param.InputFileNames)))
                 {
                     return BannerHelper.CreateErrorResult();

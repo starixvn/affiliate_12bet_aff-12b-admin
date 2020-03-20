@@ -82,7 +82,7 @@ export class EditBannerForm extends PureComponent {
     _handleChangeInputFileName = (event, index) => {
         const value = event.target.value;
 
-        if (regexSpecialCharacters.test(value) || value.includes('\\')) {
+        if (regexSpecialCharacters.test(value)) {
             this._handleShowAlert(false, `A File Name can't contain any of the following characters: \\/:*?"<>|`);
         } else {
             let inputFileNames = [...this.state.inputFileNames];
