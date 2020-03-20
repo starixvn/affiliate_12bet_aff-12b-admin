@@ -78,8 +78,8 @@ export const Content = (props) => {
 
     function _buildDataRow(dataItem, index) {
         const bannerId = dataItem.BannerId;
-        const fileName = htmlDecode(dataItem.FileName);
-        const src = `${props.bannerRootUrl}/${dataItem.FileName}?id=${dataItem.LastUpdateText}`;
+        const fileName = dataItem.FileName;
+        const src = `${props.bannerRootUrl}/${fileName}?id=${dataItem.LastUpdateText}`;
         const size = dataItem.Size;
         const strSize = size.split('x');
         const realWidth = strSize[0];

@@ -160,12 +160,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return resultCheckMultipleFilesInFolder;
         }
 
-        private static void BuildFilesXml(InsertUpdateMultipleBannersParam param, string[] inputFileNames)
+        private static void BuildFilesXml(InsertUpdateMultipleBannersParam param)
         {
             var result = new StringBuilder();
             result.Append("<root>");
 
-            for (var i = 0; i < inputFileNames.Length; i++)
+            for (var i = 0; i < param.FilePaths.Count; i++)
             {
                 var row = $"<row FileName=\"{param.FilePaths[i]}\" ImageType=\"Image\"  Size=\"{param.Sizes[i]}\" />";
                 result.Append(row);
@@ -211,7 +211,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 }
             }
 
-            BuildFilesXml(param, inputFileNames);
+            BuildFilesXml(param);
             var resultInsert = _bannerListRepository.InsertBanner(param);
 
             if (!resultInsert.IsSuccessful)
@@ -273,7 +273,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                     using (var bitmap = new Bitmap(file.InputStream))
                     {
                         param.Sizes.Add(BannerHelper.GetSize(bitmap.Width, bitmap.Height));
-                        BuildFilesXml(param, param.InputFileNames.Split('|'));
+                        BuildFilesXml(param);
                         result = _bannerListRepository.UpdateBanner(param);
 
                         if (result.IsSuccessful)
@@ -287,7 +287,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             else
             {
                 param.Sizes.Add(oldBannerInfo.Size);
-                BuildFilesXml(param, param.InputFileNames.Split('|'));
+                BuildFilesXml(param);
                 result = _bannerListRepository.UpdateBanner(param);
 
                 if (result.IsSuccessful && string.Compare(param.FilePaths[0], oldFilePath, StringComparison.CurrentCultureIgnoreCase) != 0)

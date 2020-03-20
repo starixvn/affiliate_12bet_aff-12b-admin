@@ -221,7 +221,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             return new InsertUpdateMultipleBannersParam
             {
                 BannerId = param.BannerId,
-                InputFileNames = Server.HtmlEncode(param.InputFileNames),
+                InputFileNames = param.InputFileNames,
                 Categories = Server.HtmlEncode(param.Categories),
                 SubCategories = Server.HtmlEncode(param.SubCategories),
                 Language = Server.HtmlEncode(param.Language),

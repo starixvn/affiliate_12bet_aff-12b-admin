@@ -311,7 +311,7 @@ export class EditBannerForm extends PureComponent {
             message,
             isSuccess,
             isShowMessage: true,
-        }, () => window.setTimeout(() => this._hideMessage(isSuccess), 3000));
+        }, () => window.setTimeout(() => this._hideMessage(isSuccess), 4000));
 
         this.props.toggleLoader(false);
     }
@@ -476,7 +476,9 @@ export class EditBannerForm extends PureComponent {
                                 <Form tag="form" className="mb-2 p-1 border" autocomplete="off">
                                     <Label>[Valid Types: .gif, .jpg, .png, .jpeg]</Label>
                                     <Label className="d-block">[File Size Limit: 3MB]</Label>
-                                    <Label className="d-block">[Maximum files: 10]</Label>
+                                    {
+                                        isInsert && <Label className="d-block">[Maximum files: 10]</Label>
+                                    }
                                     <br />
                                     <FormGroup row className="mb-2">
                                         <Label sm={3} for="file" className={isInsert ? "required" : ""}>File</Label>
