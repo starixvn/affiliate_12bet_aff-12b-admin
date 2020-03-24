@@ -6,6 +6,8 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
     {
         public int BannerId { get; set; }
 
+        public int TextId { get; set; }
+
         public string FileName { get; set; }
 
         public string Category { get; set; }

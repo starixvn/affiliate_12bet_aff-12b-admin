@@ -170,7 +170,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             foreach (var text in textList)
             {
                 text.Message = HttpContext.Current.Server.HtmlDecode(text.Message.Replace("\r\n", "<br/>"));
-                text.ScriptSrc = textParam.ScriptUrl + text.BannerId;
+                text.ScriptSrc = textParam.ScriptUrl + text.TextId;
                 var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.EnglishName.MatchWith(text.Language));
 
                 if (language != null)
