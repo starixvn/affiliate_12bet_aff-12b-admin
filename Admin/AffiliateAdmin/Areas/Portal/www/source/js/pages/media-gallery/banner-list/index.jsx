@@ -7,7 +7,8 @@ import AppContainer from './components/AppContainer';
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 
-const { categoryList, subCategoryList, languageList, currencyList, imageTypeList, sizeList, affTypeList, paramFromHome } = window.initialState;
+const { categoryList, subCategoryList, languageList, currencyList, imageTypeList, sizeList, affTypeList,
+    paramFromHome, subCategoryCasinoList, subCategorySportsbookList, bannerRootUrl } = window.initialState;
 
 const newCategoryList = categoryList.map(item => {
     return {
@@ -53,7 +54,8 @@ const newAffTypeList = affTypeList.map(item => {
 
 const store = configureStore({
     languageList, paramFromHome, categoryList: newCategoryList, subCategoryList: newSubCategoryList,
-    currencyList: newCurrencyList, imageTypeList, sizeList: newSizeList, affTypeList: newAffTypeList
+    currencyList: newCurrencyList, imageTypeList, sizeList: newSizeList, affTypeList: newAffTypeList,
+    subCategoryCasinoList, subCategorySportsbookList, bannerRootUrl
 }, reducer);
 
 export default class App extends React.PureComponent {

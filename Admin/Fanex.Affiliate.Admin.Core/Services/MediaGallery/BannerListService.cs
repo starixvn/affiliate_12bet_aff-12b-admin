@@ -221,9 +221,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
 
             BuildFilesXml(param);
-            var resultInsert = _bannerListRepository.InsertBanner(param);
+            result = _bannerListRepository.InsertBanner(param);
 
-            if (!resultInsert.IsSuccessful)
+            if (!result.IsSuccessful)
             {
                 foreach(var path in param.FilePaths)
                 {
@@ -309,7 +309,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 BuildFilesXml(param);
                 result = _bannerListRepository.UpdateBanner(param);
 
-                if (result.IsSuccessful && string.Compare(param.FilePaths[0], oldFilePath, StringComparison.CurrentCultureIgnoreCase) != 0)
+                if (result.IsSuccessful && !string.Equals(param.FilePaths[0], oldFilePath, StringComparison.CurrentCultureIgnoreCase))
                 {
                     MoveFile(param.FilePaths[0], oldFilePath);
                 }

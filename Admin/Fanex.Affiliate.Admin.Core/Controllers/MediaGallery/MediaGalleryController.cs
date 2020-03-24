@@ -64,6 +64,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 CategoryList = bannerListCategory.Where(c => string.IsNullOrEmpty(c.SubCategoryName)),
                 SubCategoryList = bannerListCategory.Where(c => !string.IsNullOrEmpty(c.SubCategoryName)),
+                SubCategoryCasinoList = bannerListCategory.Where(c => string.Equals(c.CategoryName, CasinoCategory, StringComparison.CurrentCultureIgnoreCase)
+                                        && !string.IsNullOrEmpty(c.SubCategoryName)),
+                SubCategorySportsbookList = bannerListCategory.Where(c => string.Equals(c.CategoryName, SportsbookCategory, StringComparison.CurrentCultureIgnoreCase)
+                                        && !string.IsNullOrEmpty(c.SubCategoryName)),
+                BannerRootUrl = _appSetting.BannerRootUrl,
                 LanguageList = _languageService.GetLanguageList(),
                 CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
                 ImageTypeList = _commonMediaGalleryService.GetImageTypeList(),
@@ -74,38 +79,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             };
 
             return View(model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetSubCategoryCasinoList()
-        {
-            return new JsonNetResult
-            {
-                Data = _commonMediaGalleryService.GetCategoryList(BannerListCategory).Where(c => string.Equals(c.CategoryName, CasinoCategory, StringComparison.CurrentCultureIgnoreCase) &&
-                        !string.IsNullOrEmpty(c.SubCategoryName))
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetSubCategorySportsbookList()
-        {
-            return new JsonNetResult
-            {
-                Data = _commonMediaGalleryService.GetCategoryList(BannerListCategory).Where(c => string.Equals(c.CategoryName, SportsbookCategory, StringComparison.CurrentCultureIgnoreCase) &&
-                        !string.IsNullOrEmpty(c.SubCategoryName))
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetBannerRootUrl()
-        {
-            return new JsonNetResult
-            {
-                Data = _appSetting.BannerRootUrl
-            };
         }
 
         [HttpPost]

@@ -5,7 +5,7 @@ import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import {
     SET_PARAM, SET_PARAM_FROM_HOME, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID, SET_BANNER_ROOT_URL,
-    SET_SUBCATEGORY_CASINO_LIST, SET_SUBCATEGORY_SPORTSBOOK_LIST, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_SIZE_LIST
+    SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_SIZE_LIST
 } from '../actions/types';
 
 export const categoryList = createReducer(null, {});
@@ -23,23 +23,11 @@ export const deviceTypeList = createReducer([
     }
 ], {});
 
-export const bannerRootUrl = createReducer(null, {
-    [SET_BANNER_ROOT_URL](prevState, action) {
-        return action.data;
-    }
-});
+export const bannerRootUrl = createReducer(null, {});
 
-export const subCategoryCasinoList = createReducer(null, {
-    [SET_SUBCATEGORY_CASINO_LIST](prevState, action) {
-        return action.data;
-    }
-});
+export const subCategoryCasinoList = createReducer(null, {});
 
-export const subCategorySportsbookList = createReducer(null, {
-    [SET_SUBCATEGORY_SPORTSBOOK_LIST](prevState, action) {
-        return action.data;
-    }
-});
+export const subCategorySportsbookList = createReducer(null, {});
 
 export const sizeList = createReducer(null, {
     [SET_SIZE_LIST](prevState, action) {
