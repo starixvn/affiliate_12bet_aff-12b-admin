@@ -37,7 +37,7 @@
 
         private static string GetMessageContent(int textId)
         {
-            using (var objectDb = new ObjectDb("Aff_TextSelDetail"))
+            using (var objectDb = new ObjectDb("Aff_Admin_Text_Sel"))
             {
                 var param = new Hashtable()
                 {
