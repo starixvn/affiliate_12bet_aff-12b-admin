@@ -94,7 +94,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<Domain> GetDomainList(int affId, bool isInternal)
         {
-            return _marketingRepository.GetDomainList(affId, isInternal);
+            var domainList = _cacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList);
+            if (domainList == null)
+            {
+                domainList = _marketingRepository.GetDomainList(affId, isInternal);
+            }
+
+            if (domainList != null)
+            {
+                _cacheService.Set(CacheKey.DomainList, domainList, Number.Ten);
+            }
+
+            return domainList ?? new List<Domain>();
         }
 
         public IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam)
