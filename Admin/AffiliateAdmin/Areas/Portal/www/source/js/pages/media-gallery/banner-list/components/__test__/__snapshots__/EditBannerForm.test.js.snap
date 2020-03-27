@@ -1385,21 +1385,6 @@ exports[`banner list - components - EditBannerForm  render correctly with update
             >
               [File Size Limit: 3MB]
             </Label>
-            <Label
-              className="d-block"
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              [Maximum files: 10]
-            </Label>
             <br />
             <FormGroup
               className="mb-2"

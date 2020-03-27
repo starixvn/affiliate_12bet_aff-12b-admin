@@ -85,35 +85,33 @@ describe('banner list - components - Filter ', () => {
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({"PageIndex": 1, "PageSize": 20, "affType": 2, "category": "", "currency": "", "deviceType": "PC / Laptop", "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.setParam).toHaveBeenCalledWith({"PageIndex": 1, "PageSize": 20, "affType": 2, "category": "", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 
     it('_handleChangeCategory - should change category when change category select', () => {
         const event = {
             target: { value: 'Casino' }
         };
-        const props = Object.assign({}, defaultProps, { getSizeList: jest.fn(), getSubCategoryCasinoList: jest.fn(), subCategoryCasinoList: null });
+        const props = Object.assign({}, defaultProps, { getSizeList: jest.fn(), subCategoryCasinoList: null });
         const wrapper = shallow(<Filter {...props} />);
 
         wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
 
         expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Casino');
-        expect(props.getSubCategoryCasinoList).toHaveBeenCalled();
-        expect(props.getSizeList).toHaveBeenCalledWith({"affType": 2, "category": "Casino", "currency": "", "deviceType": "PC / Laptop", "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.getSizeList).toHaveBeenCalledWith({"affType": 2, "category": "Casino", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 
     it('_handleChangeCategory - should change category when change category select', () => {
         const event = {
             target: { value: 'Sportsbook' }
         };
-        const props = Object.assign({}, defaultProps, { getSizeList: jest.fn(), getSubCategorySportsbookList: jest.fn(), subCategorySportsbookList: null });
+        const props = Object.assign({}, defaultProps, { getSizeList: jest.fn(), subCategorySportsbookList: null });
         const wrapper = shallow(<Filter {...props} />);
 
         wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
 
         expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Sportsbook');
-        expect(props.getSubCategorySportsbookList).toHaveBeenCalled();
-        expect(props.getSizeList).toHaveBeenCalledWith({"affType": 2, "category": "Sportsbook", "currency": "", "deviceType": "PC / Laptop", "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.getSizeList).toHaveBeenCalledWith({"affType": 2, "category": "Sportsbook", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 
     it("_handleChange - should call getSizeList and setState", () => {
@@ -126,7 +124,7 @@ describe('banner list - components - Filter ', () => {
         
         wrapper.instance()._handleChange(event)
         expect(wrapper.setState).toHaveBeenCalledWith({"currency": "USD"});
-        expect(props.getSizeList).toHaveBeenCalledWith({"affType": 2, "category": "", "currency": "USD", "deviceType": "PC / Laptop", "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.getSizeList).toHaveBeenCalledWith({"affType": 2, "category": "", "currency": "USD", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 
     it('setSize - should change category when change size select', () => {
@@ -150,7 +148,7 @@ describe('banner list - components - Filter ', () => {
         instance.componentDidMount();
 
         expect(props.setParamFromHome).toHaveBeenCalledWith({ IsFromHome: false });
-        expect(props.setParam).toHaveBeenCalledWith({"PageIndex": 1, "PageSize": 20, "affType": 2, "category": "", "currency": "", "deviceType": "PC / Laptop", "imageType": "Flash", "language": "", "size": "", "subCategory": ""});
+        expect(props.setParam).toHaveBeenCalledWith({"PageIndex": 1, "PageSize": 20, "affType": 2, "category": "", "currency": "", "deviceType": 0, "imageType": "Flash", "language": "", "size": "", "subCategory": ""});
     });
 
     it('componentDidMount - should not call setParamFromHome and _handleSearch', () => {

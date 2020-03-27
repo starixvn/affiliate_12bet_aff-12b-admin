@@ -857,7 +857,7 @@ describe('banner list - components - EditBannerForm ', () => {
         instance._handleShowAlert(false, 'Updated failed!');
 
         expect(wrapper.setState.mock.calls[0]).toEqual([{ isShowMessage: true, isSuccess: false, message: 'Updated failed!' }, expect.any(Function)]);
-        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
+        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 4000);
         expect(instance._hideMessage).toHaveBeenCalled();
     });
 

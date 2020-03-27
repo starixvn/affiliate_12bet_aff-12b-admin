@@ -262,17 +262,17 @@ exports[`banner list - components - Filter  render correctly 1`] = `
         name="deviceType"
         onChange={[Function]}
         type="select"
-        value="PC / Laptop"
+        value={0}
       >
         <option
           key="deviceType-PC / Laptop"
-          value="PC / Laptop"
+          value={0}
         >
           PC / Laptop
         </option>
         <option
           key="deviceType-Mobile"
-          value="Mobile"
+          value={1}
         >
           Mobile
         </option>
@@ -646,17 +646,17 @@ exports[`banner list - components - Filter  render correctly with Casino's subca
         name="deviceType"
         onChange={[Function]}
         type="select"
-        value="PC / Laptop"
+        value={0}
       >
         <option
           key="deviceType-PC / Laptop"
-          value="PC / Laptop"
+          value={0}
         >
           PC / Laptop
         </option>
         <option
           key="deviceType-Mobile"
-          value="Mobile"
+          value={1}
         >
           Mobile
         </option>
@@ -1030,17 +1030,17 @@ exports[`banner list - components - Filter  render correctly with Sportbook's su
         name="deviceType"
         onChange={[Function]}
         type="select"
-        value="PC / Laptop"
+        value={0}
       >
         <option
           key="deviceType-PC / Laptop"
-          value="PC / Laptop"
+          value={0}
         >
           PC / Laptop
         </option>
         <option
           key="deviceType-Mobile"
-          value="Mobile"
+          value={1}
         >
           Mobile
         </option>
