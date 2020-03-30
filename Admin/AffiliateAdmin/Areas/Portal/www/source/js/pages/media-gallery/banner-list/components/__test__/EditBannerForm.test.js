@@ -2,6 +2,7 @@
 import { EditBannerForm } from '../EditBannerForm';
 import { shallow } from 'enzyme';
 import InputFile from '../../../common/components/InputFile';
+import NotificationPopup from '../../../../common/components/NotificationPopup';
 
 describe('banner list - components - EditBannerForm ', () => {
     const bannerInfo =         {
@@ -99,15 +100,17 @@ describe('banner list - components - EditBannerForm ', () => {
         expect(result).toMatchSnapshot();
     });
 
-    it('componentDidUpdate should call setState', () => {
+    it('componentDidUpdate should call setState and resetToDefault', () => {
         const props = Object.assign({}, defaultProps, { selectedBannerId: 2485, getBannerDetail: jest.fn(() => bannerInfo) });
-        const result = shallow(<EditBannerForm {...props} />);
-
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        const instance = result.instance();
         result.setState = jest.fn();
+        instance.resetToDefault = jest.fn();
 
-        result.instance().componentDidUpdate(defaultProps);
+        instance.componentDidUpdate(props);
 
-        expect(result.setState).toHaveBeenCalledWith({ isInsert: false });
+        expect(result.setState).toHaveBeenCalledWith({ isInsert: true });
+        expect(instance.resetToDefault).toHaveBeenCalled();
     });
 
     it('componentDidUpdate should call setState and _handleGetBannerDetail', () => {
@@ -205,6 +208,19 @@ describe('banner list - components - EditBannerForm ', () => {
         result.find(InputFile).props().handleOnChangeFiles(event);
 
         expect(result.setState).toHaveBeenCalledWith({"files": [{"name": "test.jpg"}], "inputFileNames": ["test.jpg"], "isDisabled": false});
+    });
+
+    it('_handleFile - should not call setState when not choose file', () => {
+        const event = {
+            target: {}
+        };
+
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        result.setState = jest.fn();
+
+        result.find(InputFile).props().handleOnChangeFiles(event);
+
+        expect(result.setState).not.toHaveBeenCalled();
     });
 
     it('_handleFile should be called when change file but chose invalid file', () => {
@@ -463,6 +479,50 @@ describe('banner list - components - EditBannerForm ', () => {
         expect(props.toggleLoader).toHaveBeenCalledTimes(1);
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Please select Device.");
+    });
+
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert when max input file', async () => {
+        const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
+        const wrapper = shallow(<EditBannerForm {...props} />);
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }],
+            inputFileNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
+        });
+        const instance = wrapper.instance();
+
+        instance._handleShowAlert = jest.fn();
+
+        await instance._handleSubmit(false);
+
+        expect(props.toggleLoader).toHaveBeenCalledTimes(1);
+        expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Can't upload exceed 10 images one time");
+    });
+
+    it('_handleSubmit - should call toggleLoader and _handleShowAlert when duplicate input file', async () => {
+        const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
+        const wrapper = shallow(<EditBannerForm {...props} />);
+        wrapper.setState({ 
+            categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
+            currencyList: [{ key: "EURO", name: "EURO", checked: true }],
+            affTypeList: [{ key: "Asian", name: "Asian", checked: true }],
+            deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }],
+            inputFileNames: ['1', '2', '2']
+        });
+        const instance = wrapper.instance();
+        instance._hasDuplicateFileNames = jest.fn((arr) => true);
+        instance._handleShowAlert = jest.fn();
+
+        await instance._handleSubmit(false);
+
+        expect(props.toggleLoader).toHaveBeenCalledTimes(1);
+        expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "File Name is unique, please enter other file name!");
     });
 
     it('_handleSubmit - should call toggleLoader and _save', async () => {
@@ -889,6 +949,16 @@ describe('banner list - components - EditBannerForm ', () => {
         expect(instance._handleClosePopup).not.toHaveBeenCalled();
     });
 
+    it('handleCloseNotificationPopup should be called when closed notice', () => {
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        result.setState({ messageNotificationPopup: "abc" });
+        result.instance().handleCloseNotificationPopup = jest.fn();
+
+        result.find(NotificationPopup).props().onClose(true);
+
+        expect(result.instance().handleCloseNotificationPopup).toHaveBeenCalledWith(true, true);
+    });
+
     it('_handleClosePopup - should call setSelectedBannerId and setState', async () => {
         const props = Object.assign({}, defaultProps, { setSelectedBannerId: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
@@ -950,5 +1020,65 @@ describe('banner list - components - EditBannerForm ', () => {
         instance._handlePressEnter(event)
 
         expect(instance._handleSubmit).not.toHaveBeenCalled();
+    });
+
+    it('_hasDuplicateFileNames - should return true', () => {
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        const value = result.instance()._hasDuplicateFileNames(["abc.png", "abc.png"]);
+
+        expect(value).toBeTruthy;
+    });
+
+    it('_hasDuplicateFileNames - should return false', () => {
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        const value = result.instance()._hasDuplicateFileNames(["abc.png", "abc123.png"]);
+
+        expect(value).toBeFalsy;
+    });
+
+    it('_handleRemoveImageAt - should return when file is empty', () => {
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        result.setState = jest.fn();
+
+        result.instance()._handleRemoveImageAt(1);
+
+        expect(result.setState).not.toHaveBeenCalled();
+    });
+
+
+    it('_handleRemoveImageAt - should call setState when has one file', () => {
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+    result.setState({ files: [{name : "file1.png"}], inputFileNames: ["file1.png"] });
+        result.setState = jest.fn();
+
+        result.instance()._handleRemoveImageAt(0);
+
+        expect(result.setState).toHaveBeenCalledWith({"files": [], "inputFileNames": [""], "isDisabled": true});
+    });
+
+    it('_handleRemoveImageAt - should call setState when file invalid', () => {
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        const instance = result.instance();
+        result.setState({ files: [{name : "file1.png"}, {name: "file2.pdf"}], inputFileNames: ["file1.png", "file2.pdf"] });
+        result.setState = jest.fn();
+        instance._handleShowAlert = jest.fn();
+
+        instance._handleRemoveImageAt(0);
+
+        expect(result.setState).toHaveBeenCalledWith({"files": [{name: "file2.pdf"}], "inputFileNames": ["file2.pdf"], "isDisabled": true});
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'");
+    });
+
+    it('_handleRemoveImageAt - should call setState when success', () => {
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        const instance = result.instance();
+        result.setState({ files: [{name : "file1.png"}, {name: "file2.png"}], inputFileNames: ["file1.png", "file2.png"] });
+        result.setState = jest.fn();
+        instance._handleShowAlert = jest.fn();
+
+        instance._handleRemoveImageAt(0);
+
+        expect(result.setState).toHaveBeenCalledWith({"files": [{name: "file2.png"}], "inputFileNames": ["file2.png"], "isDisabled": false});
+        expect(instance._handleShowAlert).not.toHaveBeenCalled();
     });
 })

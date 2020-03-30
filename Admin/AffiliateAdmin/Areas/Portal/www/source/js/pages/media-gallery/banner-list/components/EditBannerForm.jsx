@@ -389,18 +389,6 @@ export class EditBannerForm extends PureComponent {
         return newSubCategoryList;
     }
 
-    removeFileAtIndex = (index) => {
-        let currentFiles = Array.from(this.state.files);
-        currentFiles.splice(index, 1);
-        let files =
-            currentFiles.forEach((value, index) => {
-                files.index = value;
-            });
-
-        return files;
-
-    }
-
     selectedAll = (selectedArray) => {
         return selectedArray.map(item => {
             item.checked = true;
