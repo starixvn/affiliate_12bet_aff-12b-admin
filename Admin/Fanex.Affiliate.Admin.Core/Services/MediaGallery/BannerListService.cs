@@ -103,11 +103,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
                 if (string.IsNullOrEmpty(inputFileNames[i]))
                 {
-                    var file = files[i];
+                    var fileName = HttpUtility.UrlEncode(files[i].FileName, Encoding.UTF8);
 
-                    inputFileNames[i] = file.FileName;
+                    inputFileNames[i] = fileName;
 
-                    if (file.FileName.Length > MaxLength)
+                    if (fileName.Length > MaxLength)
                     {
                         result.Code = Code.GeneralErrorCode;
                         message.Append($"The maximum length of file name is 50. Please choose another name for File Name {i + 1} or select another File.<br />");
@@ -120,7 +120,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                         message.Append($"File Name {i + 1} is incorrect.<br />" + Lang.InvalidBannerExtensionFile);
                     }
 
-                    if (inputFileName.Length > MaxLength)
+                    var fileName = HttpUtility.UrlEncode(inputFileName, Encoding.UTF8);
+                    inputFileNames[i] = fileName;
+
+                    if (fileName.Length > MaxLength)
                     {
                         result.Code = Code.GeneralErrorCode;
                         message.Append($"The maximum length of file name is 50. Please choose another name File Name {i + 1}.<br />");
@@ -225,7 +228,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             if (!result.IsSuccessful)
             {
-                foreach(var path in param.FilePaths)
+                foreach (var path in param.FilePaths)
                 {
                     DeleteFile(path);
                 }
@@ -257,6 +260,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             {
                 param.InputFileNames = file.FileName;
             }
+
+            param.InputFileNames = HttpUtility.UrlEncode(param.InputFileNames, Encoding.UTF8);
 
             return param.InputFileNames.Length > MaxLength ? new ResultInfo
             {

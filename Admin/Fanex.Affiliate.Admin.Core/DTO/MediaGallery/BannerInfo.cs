@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Text;
+using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 {
@@ -8,6 +10,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
         public int BannerId { get; set; }
 
         public string FileName { get; set; }
+
+        public string FileNameDecode => HttpUtility.UrlDecode(FileName, Encoding.UTF8);
 
         public string[] Categories { get; set; }
 
