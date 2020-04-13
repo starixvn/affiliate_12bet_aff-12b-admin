@@ -11,8 +11,8 @@
 @{ 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var shortedLangCode = SystemLanguage.GetShortedCodeForTracking(sessionService.CurrentLanguage);
-    var sportBannerFileName = Url.Content("~/www/build/styles/Images/sports-banners/AFF-Home-banner-SB." + Model.Language);
-    var casinoBannerFileName = Url.Content("~/www/build/styles/Images/casino-banners/AFF-Home-banner-Casino." + Model.Language);
+    var sportBannerFileName = Url.Content("~/www/build/styles/Images/sports-banners/Sports-Banner." + Model.Language);
+    var casinoBannerFileName = Url.Content("~/www/build/styles/Images/casino-banners/Casino-Banner." + Model.Language);
     var advFileName = Url.Content("~/www/build/styles/Images/apply12bet/3step." + Model.Language);
 }
 
