@@ -103,11 +103,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
                 if (string.IsNullOrEmpty(inputFileNames[i]))
                 {
-                    var fileName = HttpUtility.UrlEncode(files[i].FileName, Encoding.UTF8);
+                    var file = files[i];
 
-                    inputFileNames[i] = fileName;
+                    inputFileNames[i] = file.FileName;
 
-                    if (fileName.Length > MaxLength)
+                    if (file.FileName.Length > MaxLength)
                     {
                         result.Code = Code.GeneralErrorCode;
                         message.Append($"The maximum length of file name is 50. Please choose another name for File Name {i + 1} or select another File.<br />");
@@ -120,10 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                         message.Append($"File Name {i + 1} is incorrect.<br />" + Lang.InvalidBannerExtensionFile);
                     }
 
-                    var fileName = HttpUtility.UrlEncode(inputFileName, Encoding.UTF8);
-                    inputFileNames[i] = fileName;
-
-                    if (fileName.Length > MaxLength)
+                    if (inputFileName.Length > MaxLength)
                     {
                         result.Code = Code.GeneralErrorCode;
                         message.Append($"The maximum length of file name is 50. Please choose another name File Name {i + 1}.<br />");
@@ -187,13 +184,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             {
                 return result;
             }
-            var regex = new Regex("[\\\\/:*?\"<>]");
+            var regex = new Regex("[\\\\/:*?\"<>#%&+]");
             if (regex.IsMatch(param.InputFileNames))
             {
                 return new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "A File Name can't contain any of the following characters: \\/:*?\" <>|"
+                    Message = Lang.FileNameCanNotContain
                 };
             }
             var inputFileNames = param.InputFileNames.Split('|');
@@ -228,7 +225,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             if (!result.IsSuccessful)
             {
-                foreach (var path in param.FilePaths)
+                foreach(var path in param.FilePaths)
                 {
                     DeleteFile(path);
                 }
@@ -241,13 +238,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         {
             if (!string.IsNullOrEmpty(param.InputFileNames))
             {
-                var regex = new Regex("[\\\\/:*?\"<>|]");
+                var regex = new Regex("[\\\\/:*?\"<>|#%&+]");
                 if (regex.IsMatch(param.InputFileNames))
                 {
                     return new ResultInfo
                     {
                         Code = Code.GeneralErrorCode,
-                        Message = "A File Name can't contain any of the following characters: \\/:*?\" <>|"
+                        Message = Lang.FileNameCanNotContain
                     };
                 }
 
@@ -260,8 +257,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             {
                 param.InputFileNames = file.FileName;
             }
-
-            param.InputFileNames = HttpUtility.UrlEncode(param.InputFileNames, Encoding.UTF8);
 
             return param.InputFileNames.Length > MaxLength ? new ResultInfo
             {

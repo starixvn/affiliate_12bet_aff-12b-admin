@@ -104,7 +104,7 @@ export const Content = (props) => {
                             )
                     }
                 </Cell>
-                <Cell className="text-center text-break" title={dataItem.FileNameDecode}>{dataItem.FileNameDecode}</Cell>
+                <Cell className="text-center text-break" title={fileName}>{fileName}</Cell>
                 <Cell className="text-center text-break">
                     {
                         dataItem.Categories && dataItem.Categories.map(value => {

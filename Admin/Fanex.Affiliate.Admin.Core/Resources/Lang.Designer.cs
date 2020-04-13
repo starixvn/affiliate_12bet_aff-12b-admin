@@ -331,6 +331,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A File Name can&apos;t contain any of the following characters: \/:*?&quot;&lt;&gt;|#%&amp;+.
+        /// </summary>
+        public static string FileNameCanNotContain {
+            get {
+                return ResourceManager.GetString("FileNameCanNotContain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
