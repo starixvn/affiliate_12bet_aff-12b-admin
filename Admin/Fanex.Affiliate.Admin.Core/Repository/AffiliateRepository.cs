@@ -42,16 +42,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 objectDb.AddInParameter("Password", DbType.String, param.Password);
                 objectDb.AddInParameter("Status", DbType.String, param.Status);
                 objectDb.AddInParameter("Ip", DbType.String, param.Ip);
-                objectDb.AddOutParameter("ErrCode", DbType.Int32, Size.SizeOfInt);
-                objectDb.AddOutParameter("ErrMsg", DbType.String, Size.SizeOfString);
+
+                AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
 
-                return new ResultInfo
-                {
-                    Code = Convert.ToInt32(objectDb.GetParameterValue("ErrCode")),
-                    Message = objectDb.GetParameterValue("ErrMsg").ToString()
-                };
+                return GetResultInfo(objectDb);
             }
         }
 

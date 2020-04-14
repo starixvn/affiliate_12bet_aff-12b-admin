@@ -138,7 +138,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal("A File Name can't contain any of the following characters: \\/:*?\" <>|", result.Message);
+            Assert.Equal("A File Name can't contain any of the following characters: \\/:*?\"<>|#%&+", result.Message);
         }
 
         [Fact]
@@ -250,7 +250,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal("A File Name can't contain any of the following characters: \\/:*?\" <>|", result.Message);
+            Assert.Equal("A File Name can't contain any of the following characters: \\/:*?\"<>|#%&+", result.Message);
         }
 
         [Fact]
