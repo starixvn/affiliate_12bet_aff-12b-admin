@@ -3,7 +3,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 
-namespace Fanex.Affiliate.Admin.Core.Repository
+namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
     public interface ICommissionGroupRepository
     {

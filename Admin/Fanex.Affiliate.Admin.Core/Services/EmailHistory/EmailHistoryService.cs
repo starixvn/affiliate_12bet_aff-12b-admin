@@ -1,6 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.EmailHistory;
 using Fanex.Affiliate.Admin.Core.MetaModels.EmailHistory;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO;
 
 namespace Fanex.Affiliate.Admin.Core.Services.EmailHistory

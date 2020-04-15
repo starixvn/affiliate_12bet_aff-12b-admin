@@ -7,7 +7,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Data;
 
-namespace Fanex.Affiliate.Admin.Core.Repository
+namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
     public class CommissionGroupRepository : BaseRepository, ICommissionGroupRepository
     {

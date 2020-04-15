@@ -2,7 +2,7 @@
 using Fanex.Affiliate.Admin.Core.DTO.EmailHistory;
 using Fanex.Affiliate.Admin.Core.MetaModels.EmailHistory;
 
-namespace Fanex.Affiliate.Admin.Core.Repository
+namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
     public interface IEmailHistoryRepository
     {

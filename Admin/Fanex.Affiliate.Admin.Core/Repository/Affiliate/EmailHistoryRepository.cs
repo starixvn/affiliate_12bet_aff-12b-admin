@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.Constants;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.EmailHistory
+namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
-    class EmailHistoryRepository : BaseRepository, IEmailHistoryRepository
+    public class EmailHistoryRepository : BaseRepository, IEmailHistoryRepository
     {
         public ResultInfo DeleteEmailHistory(DeleteEmailHistoryParam param)
         {
