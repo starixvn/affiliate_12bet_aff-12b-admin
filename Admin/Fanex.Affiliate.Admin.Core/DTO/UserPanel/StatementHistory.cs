@@ -23,5 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         public string Description { get; set; }
 
         public string DateText => (TransType == Code.MonthlyWinlost || TransType == Code.Transaction) ? Date.ToString("MMM-yyyy") : Date.ToString("dd-MMM-yyyy");
+
+        public string NormalizeDateText => Date.ToString("yyyy-MM-dd");
     }
 }

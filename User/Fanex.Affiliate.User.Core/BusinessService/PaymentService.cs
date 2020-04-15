@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 resultInfo.Message = Lang.CancelPayoutSucc;
 
-                var userInfo = _accountRepository.GetUserInfoById(cancelParam.AffId, cancelParam.IsInternal);
+                var userInfo = _accountRepository.GetUserInfoById(cancelParam.UserId, cancelParam.IsInternal);
 
                 if (userInfo != null)
                 {

@@ -235,7 +235,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             PaymentEmailParam emailParam = null;
             var param = new PaymentCancelParam
             {
-                AffId = Constant.DefaultAffId,
+                UserId = Constant.DefaultAffId,
                 TransId = TransId,
                 Amount = 100m,
                 RequestDate = new DateTime(2018, 6, 12)

@@ -82,7 +82,7 @@ export class Content extends PureComponent {
         const { affId } = this.props;
         const dailyEarningParam = {
             affId,
-            monthDate: dataItem.DateText,
+            monthDate: dataItem.NormalizeDateText,
             productId: selectedAllProduct
         }
 

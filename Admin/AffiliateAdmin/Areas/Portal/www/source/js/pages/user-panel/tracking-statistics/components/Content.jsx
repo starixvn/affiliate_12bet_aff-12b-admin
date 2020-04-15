@@ -68,7 +68,7 @@ export class Content extends PureComponent {
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.MonthText} className="text-center">
-                    <Button color="link" className="p-0" onClick={() => this.props.setSelectedMonth(dataItem.MonthText)}>
+                    <Button color="link" className="p-0" onClick={() => this.props.setSelectedMonth(dataItem.Date)}>
                         {dataItem.MonthText}
                     </Button>
                 </Cell>
