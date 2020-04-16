@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             // Arrange
             var param = new AssignGroupParam();
             var affInfo = new AffiliateBasicInfo { GroupId = 123 };
-            var emailParam = new AffInformationEmail();
+            var emailParam = new AffInformationEmail { MailContact = "abc@gmail.com" };
 
             var expectedResult = new ResultInfo();
             var commGroupRepository = new Mock<ICommissionGroupRepository>();

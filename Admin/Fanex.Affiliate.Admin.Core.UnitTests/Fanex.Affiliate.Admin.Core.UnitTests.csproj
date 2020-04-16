@@ -189,9 +189,13 @@
     <Compile Include="Repository\AffiliateRepositoryTest.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepositoryTest.cs" />
     <Compile Include="Repository\Affiliate\EmailHistoryRepositoryTest.cs" />
+    <Compile Include="Repository\Affiliate\PaymentRequestRepositoryTest.cs" />
     <Compile Include="Repository\AuthRepositoryTest.cs" />
     <Compile Include="Repository\CommissionGroupRepositoryTest.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepositoryTest.cs" />
+    <Compile Include="Repository\Customer\CustomerMemberRepositoryTest.cs" />
+    <Compile Include="Repository\Customer\LandingPageStatisticsRepositoryTest.cs" />
+    <Compile Include="Repository\Customer\ReferrersRepositoryTest.cs" />
     <Compile Include="Repository\Customer\StatementHistoryRepositoryTest.cs" />
     <Compile Include="Repository\Customer\UserAccountRepositoryTest.cs" />
     <Compile Include="Repository\LanguageRepositoryTest.cs" />

@@ -7,8 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
@@ -16,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
     public class EmailHistoryRepositoryTest
     {
         [Fact]
-        public void GetEmailHistoryList_WhenCall_ReturnCorrectAfilliateInfo()
+        public void GetEmailHistoryList_WhenCall_ReturnCorrectEmailInfoList()
         {
             // Arrange
             var repository = new Mock<EmailHistoryRepository> { CallBase = true };
@@ -58,6 +56,64 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             Assert.Empty(result.MainData);
         }
 
+        [Fact]
+        public void GetEmailHistoryDetail_WhenCall_ReturnCorrectEmailInfo()
+        {
+            // Arrange
+            var repository = new Mock<EmailHistoryRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetExpectedEmailList());
+            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            repository.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Detail_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetEmailHistoryDetail(123);
+
+            // Assert
+            Assert.Equal(123, result.EmailId);
+        }
+
+        [Fact]
+        public void GetEmailHistoryDetail_WhenCall_ReturnNull()
+        {
+            // Arrange
+            var repository = new Mock<EmailHistoryRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
+
+            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            repository.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Detail_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetEmailHistoryDetail(123);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void DeleteEmailHistory_WhenCall_ExcuteSucceed()
+        {
+            // Arrange
+            var repository = new Mock<EmailHistoryRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+
+            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+            repository.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Del", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.DeleteEmailHistory(new DeleteEmailHistoryParam());
+
+            // Assert
+            Assert.True(result.IsSuccessful);
+        }
+
         private IDictionary<string, object> GetExpectedEmailList()
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
@@ -67,7 +123,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
                 ["Sender"] = "123",
                 ["Subject"] = "vi-VN",
                 ["Email"] = "abc@gmail.com",
-                ["CreatedDate"] = new DateTime(2020, 04, 15)
+                ["CreatedDate"] = new DateTime(2020, 04, 15),
+                ["Content"] = "abc"
             };
         }
     }
