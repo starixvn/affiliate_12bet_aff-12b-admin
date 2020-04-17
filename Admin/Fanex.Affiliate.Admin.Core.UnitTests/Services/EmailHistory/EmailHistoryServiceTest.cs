@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.MetaModels.EmailHistory;
-using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
+using Fanex.Affiliate.Admin.Core.Services.EmailHistory;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;
 using Moq;
@@ -9,15 +9,15 @@ using System.Data;
 using System.Linq;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.EmailHistory
 {
-    public class EmailHistoryRepositoryTest
+    public class EmailHistoryServiceTest
     {
         [Fact]
         public void GetEmailHistoryList_WhenCall_ReturnCorrectEmailInfoList()
         {
             // Arrange
-            var repository = new Mock<EmailHistoryRepository> { CallBase = true };
+            var service = new Mock<EmailHistoryService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
             var dataReader = new Mock<IDataReader>();
@@ -25,10 +25,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedEmailList());
             objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Sel", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetEmailHistoryList(new EmailHistoryParam());
+            var result = service.Object.GetEmailHistoryList(new EmailHistoryParam());
             var item = result.MainData.SingleOrDefault();
 
             // Assert
@@ -40,17 +40,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
         public void GetEmailHistoryList_WhenCall_ReturnNull()
         {
             // Arrange
-            var repository = new Mock<EmailHistoryRepository> { CallBase = true };
+            var service = new Mock<EmailHistoryService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
             objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Sel", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetEmailHistoryList(new EmailHistoryParam());
+            var result = service.Object.GetEmailHistoryList(new EmailHistoryParam());
 
             // Assert
             Assert.Empty(result.MainData);
@@ -60,17 +60,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
         public void GetEmailHistoryDetail_WhenCall_ReturnCorrectEmailInfo()
         {
             // Arrange
-            var repository = new Mock<EmailHistoryRepository> { CallBase = true };
+            var service = new Mock<EmailHistoryService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedEmailList());
             objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Detail_Sel", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Detail_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetEmailHistoryDetail(123);
+            var result = service.Object.GetEmailHistoryDetail(123);
 
             // Assert
             Assert.Equal(123, result.EmailId);
@@ -80,16 +80,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
         public void GetEmailHistoryDetail_WhenCall_ReturnNull()
         {
             // Arrange
-            var repository = new Mock<EmailHistoryRepository> { CallBase = true };
+            var service = new Mock<EmailHistoryService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
             objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Detail_Sel", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Detail_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetEmailHistoryDetail(123);
+            var result = service.Object.GetEmailHistoryDetail(123);
 
             // Assert
             Assert.Null(result);
@@ -99,16 +99,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
         public void DeleteEmailHistory_WhenCall_ExcuteSucceed()
         {
             // Arrange
-            var repository = new Mock<EmailHistoryRepository> { CallBase = true };
+            var service = new Mock<EmailHistoryService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
 
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Del", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_EmailHistory_Del", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.DeleteEmailHistory(new DeleteEmailHistoryParam());
+            var result = service.Object.DeleteEmailHistory(new DeleteEmailHistoryParam());
 
             // Assert
             Assert.True(result.IsSuccessful);

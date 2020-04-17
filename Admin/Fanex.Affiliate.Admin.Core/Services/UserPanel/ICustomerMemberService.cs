@@ -6,6 +6,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
     public interface ICustomerMemberService
     {
-        EntityResult<CustomerMember> GetCustomerMember(CustomerMemberParam param);
+        EntityResult<CustomerMember> GetCustomerMemberList(CustomerMemberParam param);
     }
 }

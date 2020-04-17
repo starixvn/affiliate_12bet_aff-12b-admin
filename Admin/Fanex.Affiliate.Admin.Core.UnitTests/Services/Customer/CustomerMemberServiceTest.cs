@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;
 using Moq;
@@ -9,15 +9,15 @@ using System.Data;
 using System.Linq;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 {
-    public class CustomerMemberRepositoryTest
+    public class CustomerMemberServiceTest
     {
         [Fact]
         public void GetCustomerMemberList_WhenCall_ReturnCorrectEmailInfoList()
         {
             // Arrange
-            var repository = new Mock<CustomerMemberRepository> { CallBase = true };
+            var service = new Mock<CustomerMemberService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
             var dataReader = new Mock<IDataReader>();
@@ -25,10 +25,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedMemberList());
             objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_Member_Sel", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_Member_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetCustomerMemberList(new CustomerMemberParam());
+            var result = service.Object.GetCustomerMemberList(new CustomerMemberParam());
             var item = result.MainData.SingleOrDefault();
 
             // Assert
@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         public void GetCustomerMemberList_WhenCallWithCanViewMemberEmail_ReturnCorrectEmailInfoList()
         {
             // Arrange
-            var repository = new Mock<CustomerMemberRepository> { CallBase = true };
+            var service = new Mock<CustomerMemberService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
             var dataReader = new Mock<IDataReader>();
@@ -48,10 +48,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedMemberList());
             objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_Member_Sel", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_Member_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetCustomerMemberList(new CustomerMemberParam { CanViewMemberEmail = true });
+            var result = service.Object.GetCustomerMemberList(new CustomerMemberParam { CanViewMemberEmail = true });
             var item = result.MainData.SingleOrDefault();
 
             // Assert
@@ -63,17 +63,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         public void GetCustomerMemberList_WhenCall_ReturnNull()
         {
             // Arrange
-            var repository = new Mock<CustomerMemberRepository> { CallBase = true };
+            var service = new Mock<CustomerMemberService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
             objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_Member_Sel", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_Member_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetCustomerMemberList(new CustomerMemberParam());
+            var result = service.Object.GetCustomerMemberList(new CustomerMemberParam());
 
             // Assert
             Assert.Empty(result.MainData);

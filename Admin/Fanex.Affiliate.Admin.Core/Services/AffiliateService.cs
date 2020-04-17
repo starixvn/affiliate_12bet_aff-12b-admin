@@ -2,28 +2,69 @@
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.Repository;
+using System;
+using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services
 {
-    public class AffiliateService : IAffiliateService
+    public class AffiliateService : BaseRepository, IAffiliateService
     {
-        private readonly IAffiliateRepository _affRepository;
-
-        public AffiliateService(IAffiliateRepository affRepository)
-        {
-            _affRepository = affRepository;
-        }
-
         public AffiliateBasicInfo GetAffiliateBasicInfo(int? affId, string affName = null)
         {
-            return _affRepository.GetAffiliateBasicInfo(affId, affName);
+            const string SpKey = "Aff_Admin_AffiliateInfo_Sel";
+            AffiliateBasicInfo result = null;
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("AffId", DbType.Int32, affId);
+                objectDb.AddInParameter("Username", DbType.String, affName);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        result = BuildAffiliateBasicInfo(reader);
+                    }
+                }
+            }
+
+            return result;
         }
 
         public ResultInfo ApproveAffiliate(ApproveAffiliateParam param)
         {
-            param.Status = "Approved";
+            const string SpKey = "Aff_Admin_Affiliate_Approved";
 
-            return _affRepository.ApproveAffiliate(param);
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+                objectDb.AddInParameter("Password", DbType.String, param.Password);
+                objectDb.AddInParameter("Status", DbType.String, param.Status);
+                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        private static AffiliateBasicInfo BuildAffiliateBasicInfo(IDataReader reader)
+        {
+            return new AffiliateBasicInfo
+            {
+                AffId = Convert.ToInt32(reader["AffId"]),
+                GroupId = Convert.ToInt32(reader["GroupId"]),
+                UserName = Convert.ToString(reader["UserName"]),
+                FirstName = Convert.ToString(reader["FirstName"]),
+                Email = Convert.ToString(reader["Email"]),
+                MailOption = Convert.ToBoolean(reader["MailOption"]),
+                PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),
+                PlayerUsername = Convert.ToString(reader["PlayerUsername"]),
+                AffType = Convert.ToByte(reader["AffType"])
+            };
         }
     }
 }

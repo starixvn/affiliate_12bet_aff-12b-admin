@@ -105,7 +105,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                 UserId = userId,
                 AffId = affId,
                 Password = CryptographyHelper.Encrypt(password),
-                Ip = ip
+                Ip = ip,
+                Status = "Approved"
             };
 
             return _affiliateService.ApproveAffiliate(approveParam);

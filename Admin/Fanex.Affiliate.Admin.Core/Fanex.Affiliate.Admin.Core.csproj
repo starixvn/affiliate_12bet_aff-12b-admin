@@ -369,8 +369,6 @@
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerLeftPanelRepository.cs" />
-    <Compile Include="Repository\Affiliate\EmailHistoryRepository.cs" />
-    <Compile Include="Repository\Affiliate\IEmailHistoryRepository.cs" />
     <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
     <Compile Include="Repository\MediaGallery\IBannerListRepository.cs" />
     <Compile Include="Repository\Member\ActiveMemberRepository.cs" />
@@ -380,12 +378,10 @@
     <Compile Include="Repository\Affiliate\IPaymentRequestRepository.cs" />
     <Compile Include="Repository\Affiliate\PaymentRequestRepository.cs" />
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />
-    <Compile Include="Repository\AffiliateRepository.cs" />
     <Compile Include="Repository\AuthRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\Affiliate\CommissionGroupRepository.cs" />
     <Compile Include="Repository\Report\IAffiliateReportRepository.cs" />
-    <Compile Include="Repository\IAffiliateRepository.cs" />
     <Compile Include="Repository\IAuthRepository.cs" />
     <Compile Include="Repository\Affiliate\ICommissionGroupRepository.cs" />
     <Compile Include="Configurations\IoCConfig.cs" />
@@ -395,8 +391,6 @@
     <Compile Include="Repository\MediaGallery\ILandingPageRepository.cs" />
     <Compile Include="Repository\MediaGallery\LandingPageRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
-    <Compile Include="Repository\UserPanel\CustomerMemberRepository.cs" />
-    <Compile Include="Repository\UserPanel\ICustomerMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\ILandingPageStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\IReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />

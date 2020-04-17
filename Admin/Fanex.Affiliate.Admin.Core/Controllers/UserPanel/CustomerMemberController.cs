@@ -5,16 +5,20 @@ using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using System.Linq;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class CustomerMemberController : BaseController
     {
+        private readonly ISessionService _sessionService;
         private readonly ICustomerMemberService _customerMemberService;
 
         public CustomerMemberController(ISessionService sessionService, ICustomerMemberService customerMemberService) : base(sessionService)
         {
+            _sessionService = sessionService;
             _customerMemberService = customerMemberService;
         }
 
@@ -24,9 +28,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (ModelState.IsValid)
             {
+                param.CanViewMemberEmail = _sessionService.UserPermissionList.Any(i => i.FunctionName.Equals(Function.MemberEmail, StringComparison.OrdinalIgnoreCase));
+
                 return new JsonNetResult
                 {
-                    Data = _customerMemberService.GetCustomerMember(param)
+                    Data = _customerMemberService.GetCustomerMemberList(param)
                 };
             }
 

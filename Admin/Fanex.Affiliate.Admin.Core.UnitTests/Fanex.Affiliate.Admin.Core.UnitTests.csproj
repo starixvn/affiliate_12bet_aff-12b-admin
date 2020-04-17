@@ -186,14 +186,13 @@
     <Compile Include="Controllers\ReportControllerTest.cs" />
     <Compile Include="Controllers\UnderMaintenanceControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\AffiliateRepositoryTest.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepositoryTest.cs" />
-    <Compile Include="Repository\Affiliate\EmailHistoryRepositoryTest.cs" />
+    <Compile Include="Services\EmailHistory\EmailHistoryServiceTest.cs" />
     <Compile Include="Repository\Affiliate\PaymentRequestRepositoryTest.cs" />
     <Compile Include="Repository\AuthRepositoryTest.cs" />
     <Compile Include="Repository\CommissionGroupRepositoryTest.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepositoryTest.cs" />
-    <Compile Include="Repository\Customer\CustomerMemberRepositoryTest.cs" />
+    <Compile Include="Services\Customer\CustomerMemberServiceTest.cs" />
     <Compile Include="Repository\Customer\LandingPageStatisticsRepositoryTest.cs" />
     <Compile Include="Repository\Customer\ReferrersRepositoryTest.cs" />
     <Compile Include="Repository\Customer\StatementHistoryRepositoryTest.cs" />
@@ -207,6 +206,7 @@
     <Compile Include="Repository\Report\ReportRepositoryTest.cs" />
     <Compile Include="Services\Administrator\AdministratorServiceTest.cs" />
     <Compile Include="Services\Administrator\DepartmentServiceTest.cs" />
+    <Compile Include="Services\AffilateServiceTest.cs" />
     <Compile Include="Services\AffTypeServiceTest.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordServiceTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupAssignmentServiceTest.cs" />
@@ -234,6 +234,7 @@
     <Compile Include="Services\Member\ActiveMemberServiceTest.cs" />
     <Compile Include="Services\Member\MemberServiceTest.cs" />
     <Compile Include="Services\Message\MessageServiceTest.cs" />
+    <Compile Include="Services\Payment\PaymentRequestServiceTest.cs" />
     <Compile Include="Services\Report\ReportServiceTest.cs" />
     <Compile Include="Services\UnderMaintenance\UnderMaintenanceServiceTest.cs" />
     <Compile Include="TestHelper\Constant.cs" />
