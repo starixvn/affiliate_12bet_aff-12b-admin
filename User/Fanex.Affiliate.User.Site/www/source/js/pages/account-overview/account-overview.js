@@ -2,7 +2,7 @@
     var _me = {
         initialize: function () {
             _me.initEvent();
-            _me.renderView("Summary");
+            _me.renderView($("#SelectedSubMenu").val());
         },
 
         initEvent: function () {

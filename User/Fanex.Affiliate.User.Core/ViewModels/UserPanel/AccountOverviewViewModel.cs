@@ -6,10 +6,8 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
 {
     public class AccountOverviewViewModel
     {
-        public AccountOverviewStatistics Statistics { get; set; }
+        public LastLoginInfo LastLoginInfo { get; set; }
 
-        public IEnumerable<CommissionSetting> CommissionSettingList { get; set; }
-
-        public DateTime SelectedMonth { get; set; }
+        public string SelectedSubMenu { get; set; }
     }
 }

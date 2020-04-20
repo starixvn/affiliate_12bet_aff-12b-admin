@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
 }
-@model Fanex.Affiliate.User.Core.DTO.UserPanel.LastLoginInfo
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.AccountOverviewViewModel
 
 @Html.InlineStyles("~/www/build/styles/css/account-overview.min.css")
 
@@ -14,10 +14,11 @@
         </ul>
     </div>
     <div class="bg-orange">
-        <span class="text"><strong>Last Login:</strong> @(Model?.LastLoginDate.ToString("dd-MMM-yyyy hh:mm tt"))</span>
-        <span class="text"><strong>Last Login IP Address:</strong> @(Model?.LastLoginIP)</span>
+        <span class="text"><strong>Last Login:</strong> @(Model.LastLoginInfo?.LastLoginDate.ToString("dd-MMM-yyyy hh:mm tt"))</span>
+        <span class="text"><strong>Last Login IP Address:</strong> @(Model.LastLoginInfo?.LastLoginIP)</span>
     </div>
     <div id="account-overview-content"></div>
+    <input type="hidden" id="SelectedSubMenu" value="@Model.SelectedSubMenu" />
 </div>
 
 <script src="@Url.RenderLink("~/www/build/js/account-overview.js")"></script>

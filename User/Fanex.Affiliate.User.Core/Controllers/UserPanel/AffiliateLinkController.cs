@@ -32,6 +32,7 @@
         [AjaxOnly]
         public ActionResult Index()
         {
+            SessionService.SelectedSubMenu = "AffiliateLink";
             var userSession = SessionService.UserSession;
 
             var searchForm = GetSearchFormViewModel(false);

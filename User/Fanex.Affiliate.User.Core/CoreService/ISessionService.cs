@@ -20,5 +20,7 @@ namespace Fanex.Affiliate.User.Core.CoreService
         void AssignSessions(AuthorizedUserInfo authorizedUser);
 
         VerificationSession VerificationSession { get; set; }
+
+        string SelectedSubMenu { get; set; }
     }
 }

@@ -16,6 +16,9 @@ namespace Fanex.Affiliate.User.Core.CoreService
 
         private const string RsaKeyPairKey = "Affiliate12Bet.RsaKeyPairKey";
         private const string VerificationSessionKey = "Affiliate12Bet.VerificationSessionKey";
+
+        private const string SelectedSubMenuKey = "Affiliate12Bet.SelectedSubMenu";
+
         public string CaptchaCode
         {
             get { return HttpContext.Current.Session[CaptchaCodeKey] as string; }
@@ -96,6 +99,12 @@ namespace Fanex.Affiliate.User.Core.CoreService
         {
             get { return HttpContext.Current.Session[VerificationSessionKey] as VerificationSession; }
             set { HttpContext.Current.Session[VerificationSessionKey] = value; }
+        }
+
+        public string SelectedSubMenu
+        {
+            get { return HttpContext.Current.Session[SelectedSubMenuKey] as string; }
+            set { HttpContext.Current.Session[SelectedSubMenuKey] = value; }
         }
     }
 }

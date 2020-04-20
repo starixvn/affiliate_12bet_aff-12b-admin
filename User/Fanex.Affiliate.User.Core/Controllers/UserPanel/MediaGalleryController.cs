@@ -26,6 +26,7 @@
         [AjaxOnly]
         public ActionResult Index()
         {
+            SessionService.SelectedSubMenu = "MediaGallery";
             var userSession = SessionService.UserSession;
             var searchForm = GetSearchFormViewModel(true);
             var linkForm = GetLinkFormViewModel();
