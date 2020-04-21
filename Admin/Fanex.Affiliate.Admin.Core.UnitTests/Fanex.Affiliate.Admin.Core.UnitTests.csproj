@@ -157,23 +157,30 @@
     <Compile Include="Controllers\AccessDeniedControllerTest.cs" />
     <Compile Include="Controllers\Administrator\AdministratorControllerTest.cs" />
     <Compile Include="Controllers\Administrator\DepartmentControllerTest.cs" />
+    <Compile Include="Controllers\Affiliate\AffiliateControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommissionGroupControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />
+    <Compile Include="Controllers\Affiliate\EmailHistoryControllerTest.cs" />
+    <Compile Include="Controllers\Affiliate\PaymentRequestControllerTest.cs" />
     <Compile Include="Controllers\AuthControllerTest.cs" />
     <Compile Include="Controllers\ChangeAdminPasswordControllerTest.cs" />
     <Compile Include="Controllers\CommonSettingControllerTest.cs" />
     <Compile Include="Controllers\Customer\AdjustmentControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerLeftPanelControllerTest.cs" />
+    <Compile Include="Controllers\Customer\CustomerMemberControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerStatisticsControllerTest.cs" />
+    <Compile Include="Controllers\Customer\LandingPageStatisticsControllerTest.cs" />
     <Compile Include="Controllers\Customer\NoteControllerTest.cs" />
     <Compile Include="Controllers\Customer\PlayerDetailControllerTest.cs" />
+    <Compile Include="Controllers\Customer\ReferrersControllerTest.cs" />
     <Compile Include="Controllers\Customer\StatementHistoryControllerTest.cs" />
     <Compile Include="Controllers\Customer\TrackingStatisticsControllerTest.cs" />
     <Compile Include="Controllers\Customer\UserAccountControllerTest.cs" />
     <Compile Include="Controllers\Customer\ViewLogControllerTest.cs" />
     <Compile Include="Controllers\Domain\DomainControlControllerTest.cs" />
     <Compile Include="Controllers\Domain\DomainControllerTest.cs" />
+    <Compile Include="Controllers\EmailTestingControllerTest.cs" />
     <Compile Include="Controllers\ExchangeRate\ExchangeRateControllerTest.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\LoginControllerTest.cs" />
@@ -185,6 +192,8 @@
     <Compile Include="Controllers\Message\MessageControllerTest.cs" />
     <Compile Include="Controllers\ReportControllerTest.cs" />
     <Compile Include="Controllers\UnderMaintenanceControllerTest.cs" />
+    <Compile Include="Extensions\DataReaderExtensionTest.cs" />
+    <Compile Include="Extensions\UrlHelperExtensionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepositoryTest.cs" />
     <Compile Include="Services\EmailHistory\EmailHistoryServiceTest.cs" />
@@ -241,6 +250,7 @@
     <Compile Include="TestHelper\MockingHelper.cs" />
     <Compile Include="TestHelper\ReaderHelper.cs" />
     <Compile Include="TestHelper\SimpleLifetimeScopeProvider.cs" />
+    <Compile Include="Utilities\BannerHelperTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

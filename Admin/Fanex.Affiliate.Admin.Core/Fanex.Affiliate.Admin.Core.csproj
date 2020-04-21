@@ -181,7 +181,6 @@
     <Compile Include="Constants\PaymentMethod.cs" />
     <Compile Include="Constants\Size.cs" />
     <Compile Include="Constants\TemplateString.cs" />
-    <Compile Include="Constants\UserPanelConstant.cs" />
     <Compile Include="Constants\Validation.cs" />
     <Compile Include="Controllers\AccessDeniedController.cs" />
     <Compile Include="Controllers\Administrator\AdministratorController.cs" />
@@ -243,7 +242,6 @@
     <Compile Include="DTO\Customer\AffiliateInfoOnLeftPanel.cs" />
     <Compile Include="DTO\Customer\CustomerStatistics.cs" />
     <Compile Include="DTO\Customer\OnlineList.cs" />
-    <Compile Include="DTO\DepositAccountInfo.cs" />
     <Compile Include="DTO\EmailHistory\EmailHistoryDetailInfo.cs" />
     <Compile Include="DTO\EmailHistory\EmailHistoryInfo.cs" />
     <Compile Include="DTO\Email\AffInformationEmail.cs" />

@@ -1,9 +1,14 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Controllers;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels.Login;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
+using System.Collections.Generic;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -70,6 +75,40 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
             // Assert
             Assert.Equal(expectedResult.ToString(), jsonResult.Data.ToString());
+        }
+
+        [Fact]
+        public void Login_WhenCall_ReturnFalse()
+        {
+            // Arrange
+            var authRepository = new Mock<IAuthRepository>();
+            authRepository.Setup(a => a.Login(It.IsAny<LoginParam>())).Returns(new ResultInfo { Code = 999 });
+            var controller = CreateAuthController(authRepository: authRepository.Object);
+
+            // Action
+            var jsonNetResult = controller.Login(new LoginParam()) as JsonNetResult;
+            var resultInfo = jsonNetResult.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+        }
+
+        [Fact]
+        public void Login_WhenCall_ReturnNotAccess()
+        {
+            // Arrange
+            var authRepository = new Mock<IAuthRepository>();
+            authRepository.Setup(a => a.Login(It.IsAny<LoginParam>())).Returns(new ResultInfo());
+            authRepository.Setup(a => a.GetPermissionList(It.IsAny<int>())).Returns(new List<UserPermission>());
+            var controller = CreateAuthController(authRepository: authRepository.Object);
+
+            // Action
+            var jsonNetResult = controller.Login(new LoginParam { UserId = 123 }) as JsonNetResult;
+            var resultInfo = jsonNetResult.Data as ResultInfo;
+
+            // Assert
+            Assert.True(resultInfo.IsSuccessful);
+            Assert.Equal("Your account is not configured to access any functions! Please contact your administrator", resultInfo.Message);
         }
 
         private AuthController CreateAuthController(
