@@ -8,7 +8,7 @@
     @if (Model.IsAuthenticated)
     {
         <div class="login-after user-login">
-            <a href="@Url.Content("~/UserPanel/Main#AccountOverview")" class="btn btn-signup"><span class="icon glyphicon glyphicon-user"></span>@Lang.MyAcc @Model.UserName</a>
+            <a href="@Url.Content("~/UserPanel/Main/#AccountOverview")" class="btn btn-signup"><span class="icon glyphicon glyphicon-user"></span>@Lang.MyAcc @Model.UserName</a>
                             <a href="@Url.Content("~/Auth/SignOut/")" class="btn btn-login">@Lang.Logout</a>
         </div>
         

@@ -107,11 +107,6 @@
                 var encryptedQueryString = AuthHelper.encrypt(queryString, publicKey);
                 $password.val(encryptedQueryString);
 
-                console.log(publicKey);
-                console.log(queryString);
-                console.log(encryptedQueryString);
-                console.log(encodeURIComponent(encryptedQueryString));
-
                 var postData = {
                     __RequestVerificationToken: token,
                     LoginInfo: encodeURIComponent(encryptedQueryString),
@@ -132,7 +127,7 @@
                                 PageTracking.addTrackingForMediaPage();
 
                                 setTimeout(function () {
-                                    Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#MediaGallery"));
+                                    Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview#MediaGallery"));
                                 }, 10);
                             }
                             else {

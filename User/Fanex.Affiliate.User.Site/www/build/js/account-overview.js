@@ -1,13 +1,23 @@
 var AccountOverview = (function ($) {
+    var DEFAULT_ACTION_OF_ACCOUNT_OVERVIEW = 'Summary';
+    var allowedActionListOfAccountOverview = ["Summary", "AffiliateLink", "MediaGallery"];
+
     var _me = {
         initialize: function () {
+            var hash = window.location.hash;
+            var actionUrl = hash.split('#')[2];
+
             _me.initEvent();
-            _me.renderView($("#SelectedSubMenu").val());
+            _me.renderView(actionUrl);
         },
 
         initEvent: function () {
             $('#account-overview-menu').on('click', '.account-overview-menu-item', function () {
                 var name = $(this).data('name');
+                history.pushState({
+                    actionName: name
+                }, null, '#AccountOverview#' + name);
+
                 _me.renderView(name);
             });
         },
@@ -19,6 +29,10 @@ var AccountOverview = (function ($) {
         },
 
         renderView: function (actionName) {
+            if (allowedActionListOfAccountOverview.indexOf(actionName) === -1) {
+                actionName = DEFAULT_ACTION_OF_ACCOUNT_OVERVIEW;
+            }
+
             _me.activeMenu(actionName);
             window.removeEventListener("scroll", handleScroll);
             window.removeEventListener("resize", handleResize);
