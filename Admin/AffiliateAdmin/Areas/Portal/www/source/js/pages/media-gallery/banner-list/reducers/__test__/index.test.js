@@ -9,9 +9,6 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 }
 
 const testCaseList = [
-    { name: 'bannerRootUrl', value: null, action: { type: types.SET_BANNER_ROOT_URL, data: 'abc/123' }, expectedResult: 'abc/123' },
-    { name: 'subCategoryCasinoList', value: null, action: { type: types.SET_SUBCATEGORY_CASINO_LIST, data: [{ Id: 123, Name: "Slot" }] }, expectedResult: [{ Id: 123, Name: "Slot" }] },
-    { name: 'subCategorySportsbookList', value: null, action: { type: types.SET_SUBCATEGORY_SPORTSBOOK_LIST, data: [{ Id: 123, Name: "SP Bonus" }] }, expectedResult: [{ Id: 123, Name: "SP Bonus" }] },
     { name: 'param', value: null, action: { type: types.SET_PARAM, data: { AffType: 2 } }, expectedResult: { AffType: 2 } },
     { name: 'paramFromHome', value: null, action: { type: types.SET_PARAM_FROM_HOME, data: { IsFromHome: true } }, expectedResult: { IsFromHome: true } },
     { name: 'bannerDetailUrl', value: null, action: { type: types.SET_BANNER_DETAIL_URL, data: { bannerUrl: "abc/123/test.jpg" } }, expectedResult: { bannerUrl: "abc/123/test.jpg" } },

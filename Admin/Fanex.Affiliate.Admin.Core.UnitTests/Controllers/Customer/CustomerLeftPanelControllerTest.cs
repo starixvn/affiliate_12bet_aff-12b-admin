@@ -20,8 +20,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 {
     public class CustomerLeftPanelControllerTest
     {
-        private IDependencyResolver _originalResolver = null;
-        private ILifetimeScopeProvider _scopeProvider = null;
+        private IDependencyResolver _originalResolver;
+        private ILifetimeScopeProvider _scopeProvider;
 
         [Fact]
         public void GetAffiliateInfo_WhenCallWithValidParam_ExcuteWithCorrectData()

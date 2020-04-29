@@ -1,0 +1,191 @@
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Controllers.Affiliate;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
+using Fanex.Affiliate.Admin.Core.DTO.Payment;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.Payment;
+using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
+using Moq;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.Mvc;
+using Xunit;
+
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
+{
+    public class PaymentRequestControllerTest
+    {
+        private IDependencyResolver _originalResolver;
+        private ILifetimeScopeProvider _scopeProvider;
+
+        [Fact]
+        public void Index_WhenCall_ReturnView()
+        {
+            // Arrange
+            var controller = CreatePaymentRequestController();
+
+            var urlHelperMock = new Mock<UrlHelper>();
+            urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/PaymentRequest");
+
+            controller.Url = urlHelperMock.Object;
+            // Action
+            var viewResult = controller.Index(new PaymentRequestParamFromHome { SearchBy = 1, FromDate = "21/04/2020", Status = "Approved", IsFromHome = true }) as ViewResult;
+            var viewName = viewResult.ViewName;
+
+            // Assert
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/PaymentRequest.cshtml", viewName);
+        }
+
+        [Fact]
+        public void GetPaymentRequestList_WhenCallWithValidParam_ExcuteWithCorrectData()
+        {
+            // Arrange
+            var param = new PaymentRequestParam();
+            PaymentRequestParam passedParam = null;
+            var PaymentRequestService = new Mock<IPaymentRequestService>();
+            PaymentRequestService.Setup(t => t.GetPaymentRequestList(param)).Returns(new EntityResult<PaymentRequest> { MainData = new List<PaymentRequest> { new PaymentRequest() }, TotalItem = 1 }).Callback<PaymentRequestParam>(p => passedParam = p);
+            var controller = CreatePaymentRequestController(PaymentRequestService: PaymentRequestService.Object);
+
+            // Action
+            var result = controller.GetPaymentRequestList(param) as JsonNetResult;
+            var entityResult = result.Data as EntityResult<PaymentRequest>;
+
+            // Assert
+            Assert.Single(entityResult.MainData);
+            Assert.Equal(1, entityResult.TotalItem);
+            Assert.Equal(param, passedParam);
+        }
+
+        [Fact]
+        public void GetPaymentRequestList_WhenCallWithInvalidParam_ReturnEmptyData()
+        {
+            // Arrange
+            var controller = CreatePaymentRequestController();
+            controller.ModelState.AddModelError("Error01", string.Empty);
+
+            // Action
+            var result = controller.GetPaymentRequestList(new PaymentRequestParam()) as JsonNetResult;
+            var entityResult = result.Data as EntityResult<PaymentRequest>;
+
+            // Assert
+            Assert.Null(result.Data);
+        }
+
+        [Fact]
+        public void GetPaymentRequestDetail_WhenCallWithValidParam_ExcuteWithCorrectData()
+        {
+            // Arrange
+            var param = 123L;
+            var passedParam = 0L;
+            var PaymentRequestService = new Mock<IPaymentRequestService>();
+            PaymentRequestService.Setup(t => t.GetPaymentRequestDetail(param)).Returns(new PaymentRequestDetail { TransId = 123 }).Callback<long>(p => passedParam = p);
+            var controller = CreatePaymentRequestController(PaymentRequestService: PaymentRequestService.Object);
+
+            // Action
+            var result = controller.GetPaymentRequestDetail(param) as JsonNetResult;
+            var entityResult = result.Data as PaymentRequestDetail;
+
+            // Assert
+            Assert.Equal(param, entityResult.TransId);
+            Assert.Equal(param, passedParam);
+        }
+
+        [Fact]
+        public void GetPaymentRequestDetail_WhenCallWithInvalidParam_ReturnEmptyData()
+        {
+            // Arrange
+            var controller = CreatePaymentRequestController();
+
+            // Action
+            var result = controller.GetPaymentRequestDetail(0) as JsonNetResult;
+
+            // Assert
+            Assert.Null(result.Data);
+        }
+
+        [Fact]
+        public void UpdatePaymentRequest_WhenCallWithValidParam_InsertSuccessful()
+        {
+            // Arrange
+            var appSetting = new Mock<IAppSetting>();
+            appSetting.Setup(a => a.Environment).Returns("UAT");
+            appSetting.Setup(a => a.IsProduction).Returns(true);
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
+            var container = builder.Build();
+
+            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
+            this._originalResolver = DependencyResolver.Current;
+            DependencyResolver.SetResolver(resolver);
+
+            var param = new PaymentRequestUpdateParam { TransId = 123 };
+            PaymentRequestUpdateParam passedParam = null;
+            var PaymentRequestService = new Mock<IPaymentRequestService>();
+            PaymentRequestService.Setup(s => s.UpdatePaymentRequest(It.IsAny<PaymentRequestUpdateParam>(), It.IsAny<PaymentRequestUpdateEmail>())).Returns(new ResultInfo()).Callback<PaymentRequestUpdateParam, PaymentRequestUpdateEmail> ((a, b) => passedParam = a); ;
+            var controller = CreatePaymentRequestController(PaymentRequestService: PaymentRequestService.Object);
+
+            // Action
+            var result = controller.UpdatePaymentRequest(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.True(resultInfo.IsSuccessful);
+            Assert.Equal(param.TransId, passedParam.TransId);
+        }
+
+        [Fact]
+        public void UpdatePaymentRequest_WhenCallWithInvalidParam_ReturnError()
+        {
+            // Arrange
+            var controller = CreatePaymentRequestController();
+            controller.ModelState.AddModelError("Error01", "Failed!");
+
+            // Action
+            var result = controller.UpdatePaymentRequest(new PaymentRequestUpdateParam()) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+            Assert.Equal("Transaction not exists!", resultInfo.Message);
+        }
+
+        private PaymentRequestController CreatePaymentRequestController(
+            ISessionService sessionService = null,
+            IPaymentRequestService PaymentRequestService = null
+            )
+        {
+            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakePaymentRequestService = PaymentRequestService ?? Mock.Of<IPaymentRequestService>();
+
+            var controller = new PaymentRequestController(fakeSessionService, PaymentRequestService);
+
+            var request = MockingHelper.GetHttpRequest();
+            var server = new Mock<HttpServerUtilityBase>();
+            server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");
+
+            controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
+                ctx.HttpContext.Request == request &&
+                ctx.HttpContext.Server == server.Object &&
+                ctx.HttpContext.Session.SessionID == "SessionId"
+            );
+
+            var expectedPath = "~/";
+            var expectedContent = "/";
+            var urlHelperMock = new Mock<UrlHelper>();
+            urlHelperMock
+                .Setup(m => m.Content(expectedPath))
+                .Returns(expectedContent);
+
+            controller.Url = urlHelperMock.Object;
+
+            return controller;
+        }
+    }
+}

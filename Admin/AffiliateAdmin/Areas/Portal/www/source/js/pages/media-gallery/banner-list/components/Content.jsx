@@ -7,16 +7,15 @@ import { Button } from 'reactstrap';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resizeWidthHeight } from '../libs/utils';
 import { headerText, globalResource, maxWidthHeight, pcLaptop, mobile } from '../libs/constants';
-import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl, getBannerRootUrl } from '../actions';
+import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl } from '../actions';
 
 export const Content = (props) => {
 
     useEffect(() => {
-        const { param, bannerRootUrl } = props;
+        const { param } = props;
 
         param && props.fetchData(param);
-        !bannerRootUrl && props.getBannerRootUrl();
-    }, [props.param, props.bannerRootUrl]);
+    }, [props.param]);
 
     const _onCheckItem = (isChecked, BannerId) => {
         const newCheckedBanners = Object.assign({}, props.checkedBanners, { [BannerId]: isChecked });
@@ -43,13 +42,14 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={415} title={headerText.Images}>{headerText.Images}</Cell>
                 <Cell header={true} colWidth={190} title={headerText.FileName}>{headerText.FileName}</Cell>
-                <Cell header={true} colWidth={55} title={headerText.Category}>{headerText.Category}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Category}>{headerText.Category}</Cell>
+                <Cell header={true} colWidth={55} title={headerText.SubCategory}>{headerText.SubCategory}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Language}>{headerText.Language}</Cell>
                 <Cell header={true} colWidth={55} title={headerText.Currency}>{headerText.Currency}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.Device}>{headerText.Device}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.ImageType}>{headerText.ImageType}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.Size}>{headerText.Size}</Cell>
-                <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>
+                <Cell header={true} colWidth={25} title={globalResource.Edit}>{globalResource.Edit}</Cell>
             </Row>
         );
     }
@@ -77,15 +77,14 @@ export const Content = (props) => {
 
     function _buildDataRow(dataItem, index) {
         const bannerId = dataItem.BannerId;
-        const fileName = htmlDecode(dataItem.FileName);
-        const src = `${props.bannerRootUrl}/${dataItem.FileName}?id=${dataItem.LastUpdateText}`;
+        const fileName = dataItem.FileName;
+        const src = `${props.bannerRootUrl}/${fileName}?id=${dataItem.LastUpdateText}`;
         const size = dataItem.Size;
         const strSize = size.split('x');
         const realWidth = strSize[0];
         const realHeight = strSize[1];
         const isValidWithHeight = realWidth < maxWidthHeight && realHeight < maxWidthHeight;
         const resizeResult = !isValidWithHeight && resizeWidthHeight(realWidth, realHeight);
-        const deviceType = dataItem.DeviceType === 0 ? pcLaptop : mobile;
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -99,17 +98,42 @@ export const Content = (props) => {
                         isValidWithHeight ? (
                             <img id={`img${bannerId}`} src={src} alt="" height={realHeight} width={realWidth} />
                         ) : (
-                                <a href="javascript:;" id={`link${bannerId}`} onClick={() => props.setBannerDetailUrl({ src, height: realHeight, width: realWidth, bannerId })}>
-                                    <img id={`img${bannerId}`} src={src} alt="" height={resizeResult.height} width={resizeResult.width} />
+                                <a href="javascript:;" id={`link${bannerId}`} onClick={() => props.setBannerDetailUrl({ src, bannerId, width: realWidth, height: realHeight })}>
+                                    <img id={`img${bannerId}`} src={src} alt="12Bet banner" height={resizeResult.height} width={resizeResult.width} />
                                 </a>
                             )
                     }
                 </Cell>
                 <Cell className="text-center text-break" title={fileName}>{fileName}</Cell>
-                <Cell className="text-center text-break" title={dataItem.Category}>{dataItem.Category}</Cell>
+                <Cell className="text-center text-break">
+                    {
+                        dataItem.Categories && dataItem.Categories.map(value => {
+                            return (<p key={`category-${value}`} value={value}>{value}</p>)
+                        })
+                    }
+                </Cell>
+                <Cell className="text-center text-break">
+                    {
+                        dataItem.SubCategories && dataItem.SubCategories.map(value => {
+                            return (<p key={`subCategory-${value}`}>{value}</p>)
+                        })
+                    }
+                </Cell>
                 <Cell className="text-center text-break" title={dataItem.Language}>{dataItem.Language}</Cell>
-                <Cell className="text-center text-break" title={dataItem.Currency}>{dataItem.Currency}</Cell>
-                <Cell className="text-center text-break" title={deviceType}>{deviceType}</Cell>
+                <Cell className="text-center text-break">
+                    {
+                        dataItem.Currencies && dataItem.Currencies.map(value => {
+                            return (<p key={`currency-${value}`}>{value}</p>)
+                        })
+                    }
+                </Cell>
+                <Cell className="text-center text-break">
+                    {
+                        dataItem.DeviceTypes && dataItem.DeviceTypes.map(value => {
+                            return (<p key={`deviceType-${value}`}>{value == 0 ? pcLaptop : mobile}</p>)
+                        })
+                    }
+                </Cell>
                 <Cell className="text-center text-break" title={dataItem.ImageType}>{dataItem.ImageType}</Cell>
                 <Cell className="text-center text-break" title={size}>{size}</Cell>
                 <Cell className="text-center" title="Edit Banner">
@@ -146,7 +170,7 @@ function mapStateToProps({ pagingOption, param, checkedBanners, bannerRootUrl, s
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedBannerId, fetchData, setPagingOption, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl, getBannerRootUrl }, dispatch);
+    return bindActionCreators({ setSelectedBannerId, fetchData, setPagingOption, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

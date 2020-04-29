@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void CancelPaymentRequest_WhenCall_AssignValueForParamCorrectly()
         {
             // Arrange
-            var paymentParam = new PaymentCancelParam { AffId = Constant.DefaultAffId, IsInternal = false };
+            var paymentParam = new PaymentCancelParam { UserId = Constant.DefaultAffId, IsInternal = false };
             var emailParam = new PaymentEmailParam();
             PaymentEmailParam passedEmailParam = null;
 
@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 Email = Constant.DefaultMailUser
             };
             var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.AffId, paymentParam.IsInternal)).Returns(userInfo);
+            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.UserId, paymentParam.IsInternal)).Returns(userInfo);
 
             var emailService = new Mock<IEmailService>();
             emailService.Setup(e => e.SendPaymentEmail(It.IsAny<PaymentEmailParam>())).Callback<PaymentEmailParam>(p => passedEmailParam = p);
@@ -75,7 +75,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void CancelPaymentRequest_WhenCall_ReturnCorrectResult(bool isSuccessful, string message)
         {
             // Arrange
-            var paymentParam = new PaymentCancelParam { AffId = Constant.DefaultAffId, IsInternal = false };
+            var paymentParam = new PaymentCancelParam { UserId = Constant.DefaultAffId, IsInternal = false };
             var emailParam = new PaymentEmailParam();
 
             var paymentRepository = new Mock<IPaymentRepository>();
@@ -83,7 +83,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             UserInfo userInfo = null;
             var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.AffId, paymentParam.IsInternal)).Returns(userInfo);
+            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.UserId, paymentParam.IsInternal)).Returns(userInfo);
 
             var service = CreatePaymentService(
                 paymentRepository: paymentRepository.Object,
@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             // Arrange
             // Arrange
-            var paymentParam = new PaymentCancelParam { AffId = Constant.DefaultAffId, IsInternal = false };
+            var paymentParam = new PaymentCancelParam { UserId = Constant.DefaultAffId, IsInternal = false };
             var emailParam = new PaymentEmailParam();
 
             var paymentRepository = new Mock<IPaymentRepository>();
@@ -110,7 +110,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             UserInfo userInfo = null;
             var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.AffId, paymentParam.IsInternal)).Returns(userInfo);
+            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.UserId, paymentParam.IsInternal)).Returns(userInfo);
 
             var emailService = new Mock<IEmailService>();
 

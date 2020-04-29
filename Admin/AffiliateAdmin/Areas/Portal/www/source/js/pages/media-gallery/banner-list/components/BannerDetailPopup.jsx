@@ -19,14 +19,14 @@ export const BannerDetailPopup = (props) => {
     const resizeResult = bannerDetailUrl && resizeWidthHeight(bannerDetailUrl.width, bannerDetailUrl.height, maxWidthModal);
 
     return bannerDetailUrl && bannerDetailUrl.src && (
-         <Modal isOpen={!!bannerDetailUrl.src} toggle={_handleClosePopup} size="xl" backdrop='static'>
-             <ModalHeader toggle={_handleClosePopup}><span className="iconpopup"></span>{bannerDetailUrl.bannerId}</ModalHeader>
-             <ModalBody>
-                 <div className="modal-body-wrapper embed-responsive overflow-auto text-center">
-                     <img src={bannerDetailUrl.src} alt="" width={resizeResult.width} height={resizeResult.height}/>
-                 </div>
-             </ModalBody>
-         </Modal>
+        <Modal isOpen={!!bannerDetailUrl.src} toggle={_handleClosePopup} size="xl" backdrop='static'>
+            <ModalHeader toggle={_handleClosePopup}><span className="iconpopup"></span>{bannerDetailUrl.bannerId}</ModalHeader>
+            <ModalBody>
+                <div className="modal-body-wrapper embed-responsive overflow-auto text-center">
+                    <img src={bannerDetailUrl.src} alt="12Bet banner" width={resizeResult.width} height={resizeResult.height} />
+                </div>
+            </ModalBody>
+        </Modal>
     );
 }
 

@@ -59,9 +59,9 @@
         public ActionResult GetSubCategory(string category)
         {
             var subCategoryList = MarketingService.GetCategoryList(true, SessionService.IsInternal)
-                                                    .Where(c => c.ParentCategory.MatchWith(category) && !c.Category.MatchWith(c.ParentCategory));
+                                                    .Where(c => c.Category.MatchWith(category) && !string.IsNullOrEmpty(c.SubCategory));
 
-            return Json(subCategoryList.Select(i => new SelectListItem { Value = i.Category, Text = Lang.ResourceManager.GetString(i.Category.Trim()) ?? i.Category }),
+            return Json(subCategoryList.Select(i => new SelectListItem { Value = i.SubCategory, Text = Lang.ResourceManager.GetString(i.SubCategory.Trim()) ?? i.SubCategory }),
                 JsonRequestBehavior.AllowGet);
         }
 
@@ -83,10 +83,6 @@
             var userSession = SessionService.UserSession;
             var selectedDomain = MarketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
                                                     .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
-            if (!string.IsNullOrEmpty(bannerParam.SubCategory))
-            {
-                bannerParam.Category = bannerParam.SubCategory;
-            }
 
             var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 

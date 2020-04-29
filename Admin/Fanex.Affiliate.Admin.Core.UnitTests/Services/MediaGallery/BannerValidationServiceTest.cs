@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal("Sorry! We just support these file types : .jpg, .gif, .png, .jpeg", result.Message);
+            Assert.Equal("Sorry! We just support these file types : .jpg, .gif, .png, .jpeg<br />", result.Message);
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal("Your upload file size must be <= 3 MB.", result.Message);
+            Assert.Equal("Your upload file size must be <= 3 MB.<br />", result.Message);
         }
 
         [Fact]

@@ -7,7 +7,7 @@ using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -20,8 +20,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
 {
     public class CommGroupAssignmentServiceTest
     {
-        private IDependencyResolver _originalResolver = null;
-        private ILifetimeScopeProvider _scopeProvider = null;
+        private IDependencyResolver _originalResolver;
+        private ILifetimeScopeProvider _scopeProvider;
 
         [Fact]
         public void GetNormalCommGroupList_WhenCall_ReturnCorrectData()
@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             // Arrange
             var param = new AssignGroupParam();
             var affInfo = new AffiliateBasicInfo { GroupId = 123 };
-            var emailParam = new AffInformationEmail();
+            var emailParam = new AffInformationEmail { MailContact = "abc@gmail.com" };
 
             var expectedResult = new ResultInfo();
             var commGroupRepository = new Mock<ICommissionGroupRepository>();
@@ -132,7 +132,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         }
 
         [Theory]
-        [MemberData("TestData", MemberType = typeof(TestCase))]
+        [MemberData(nameof(TestCase.TestData), MemberType = typeof(TestCase))]
         public void AssignPrivateGroup_WhenCall_ExcuteWithIncorrectParam(List<TierSetting> tierSettingList)
         {
             // Arrange

@@ -35,6 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             // Assert
             Assert.Single(result.MainData);
             Assert.Equal("22-Nov-2019", item.DateText);
+            Assert.Equal("2019-11-22", item.NormalizeDateText);
         }
 
         [Fact]
@@ -58,6 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             // Assert
             Assert.Single(result.MainData);
             Assert.Equal("Nov-2019", item.DateText);
+            Assert.Equal("2019-11-22", item.NormalizeDateText);
         }
 
         [Fact]

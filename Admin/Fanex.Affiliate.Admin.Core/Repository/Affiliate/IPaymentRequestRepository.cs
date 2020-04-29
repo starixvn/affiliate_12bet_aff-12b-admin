@@ -2,7 +2,7 @@
 using Fanex.Affiliate.Admin.Core.DTO.Payment;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.Payment
+namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
     public interface IPaymentRequestRepository
     {

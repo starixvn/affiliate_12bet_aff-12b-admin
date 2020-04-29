@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Moq;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         }
 
         [Theory]
-        [MemberData("TestData", MemberType = typeof(TestCase))]
+        [MemberData(nameof(TestCase.TestData), MemberType = typeof(TestCase))]
         public void CreateCommissionGroup_WhenCall_ExcuteUncorrectWithInvalidTierSettingList(List<TierSetting> tierSettingList)
         {
             // Arrange
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         }
 
         [Theory]
-        [MemberData("TestData", MemberType = typeof(TestCase))]
+        [MemberData(nameof(TestCase.TestData), MemberType = typeof(TestCase))]
         public void UpdateCommissionGroup_WhenCall_ExcuteUncorrectWithInvalidTierSettingList(List<TierSetting> tierSettingList)
         {
             // Arrange

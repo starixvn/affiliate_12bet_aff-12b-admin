@@ -9,5 +9,6 @@
         public const int ErrCodeAccessDenied = 401;
         public const int ErrCodeUserAlreadyHasIBCAccount = 102;
         public const int ErrTheFileNameAlreadyExists = 9999;
+        public const int ErrCanNotAccessFolder = -9999;
     }
 }

@@ -48,10 +48,10 @@ exports[`banner list - components - Filter  render correctly 1`] = `
           Casino
         </option>
         <option
-          key="category-Sportbook"
-          value="Sportbook"
+          key="category-Sportsbook"
+          value="Sportsbook"
         >
-          Sportbook
+          Sportsbook
         </option>
       </Input>
     </FormGroup>
@@ -224,14 +224,14 @@ exports[`banner list - components - Filter  render correctly 1`] = `
         value={2}
       >
         <option
-          key="affType-2"
-          value={2}
+          key="affType-Asian"
+          value="Asian"
         >
           Asian
         </option>
         <option
-          key="affType-3"
-          value={3}
+          key="affType-Media"
+          value="Media"
         >
           Media
         </option>
@@ -265,13 +265,13 @@ exports[`banner list - components - Filter  render correctly 1`] = `
         value={0}
       >
         <option
-          key="deviceType-0"
+          key="deviceType-PC / Laptop"
           value={0}
         >
           PC / Laptop
         </option>
         <option
-          key="deviceType-1"
+          key="deviceType-Mobile"
           value={1}
         >
           Mobile
@@ -391,10 +391,10 @@ exports[`banner list - components - Filter  render correctly with Casino's subca
           Casino
         </option>
         <option
-          key="category-Sportbook"
-          value="Sportbook"
+          key="category-Sportsbook"
+          value="Sportsbook"
         >
-          Sportbook
+          Sportsbook
         </option>
       </Input>
     </FormGroup>
@@ -432,17 +432,11 @@ exports[`banner list - components - Filter  render correctly with Casino's subca
           All
         </option>
         <option
-          key="subCategory-Casino Bonus"
-          value="Casino Bonus"
-        >
-          Casino Bonus
-        </option>
+          key="subCategory-undefined"
+        />
         <option
-          key="subCategory-Slot"
-          value="Slot"
-        >
-          Slot
-        </option>
+          key="subCategory-undefined"
+        />
       </Input>
     </FormGroup>
     <FormGroup
@@ -614,14 +608,14 @@ exports[`banner list - components - Filter  render correctly with Casino's subca
         value={2}
       >
         <option
-          key="affType-2"
-          value={2}
+          key="affType-Asian"
+          value="Asian"
         >
           Asian
         </option>
         <option
-          key="affType-3"
-          value={3}
+          key="affType-Media"
+          value="Media"
         >
           Media
         </option>
@@ -655,13 +649,13 @@ exports[`banner list - components - Filter  render correctly with Casino's subca
         value={0}
       >
         <option
-          key="deviceType-0"
+          key="deviceType-PC / Laptop"
           value={0}
         >
           PC / Laptop
         </option>
         <option
-          key="deviceType-1"
+          key="deviceType-Mobile"
           value={1}
         >
           Mobile
@@ -781,10 +775,10 @@ exports[`banner list - components - Filter  render correctly with Sportbook's su
           Casino
         </option>
         <option
-          key="category-Sportbook"
-          value="Sportbook"
+          key="category-Sportsbook"
+          value="Sportsbook"
         >
-          Sportbook
+          Sportsbook
         </option>
       </Input>
     </FormGroup>
@@ -822,17 +816,11 @@ exports[`banner list - components - Filter  render correctly with Sportbook's su
           All
         </option>
         <option
-          key="subCategory-Basketball"
-          value="Basketball"
-        >
-          Basketball
-        </option>
+          key="subCategory-undefined"
+        />
         <option
-          key="subCategory-SB Bonus"
-          value="SB Bonus"
-        >
-          SB Bonus
-        </option>
+          key="subCategory-undefined"
+        />
       </Input>
     </FormGroup>
     <FormGroup
@@ -1004,14 +992,14 @@ exports[`banner list - components - Filter  render correctly with Sportbook's su
         value={2}
       >
         <option
-          key="affType-2"
-          value={2}
+          key="affType-Asian"
+          value="Asian"
         >
           Asian
         </option>
         <option
-          key="affType-3"
-          value={3}
+          key="affType-Media"
+          value="Media"
         >
           Media
         </option>
@@ -1045,13 +1033,13 @@ exports[`banner list - components - Filter  render correctly with Sportbook's su
         value={0}
       >
         <option
-          key="deviceType-0"
+          key="deviceType-PC / Laptop"
           value={0}
         >
           PC / Laptop
         </option>
         <option
-          key="deviceType-1"
+          key="deviceType-Mobile"
           value={1}
         >
           Mobile

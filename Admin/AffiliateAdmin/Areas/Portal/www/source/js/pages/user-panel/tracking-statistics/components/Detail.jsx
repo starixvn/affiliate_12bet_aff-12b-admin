@@ -19,8 +19,7 @@ export class Detail extends PureComponent {
         const { selectedMonth } = this.props;
 
         if (selectedMonth && selectedMonth !== prevProps.selectedMonth) {
-            const dateTime = new Date(selectedMonth);
-            const newParam = { ...this.props.param, selectedMonth: dateTime };
+            const newParam = { ...this.props.param, selectedMonth };
             this.fetchData(newParam);
         }
     }

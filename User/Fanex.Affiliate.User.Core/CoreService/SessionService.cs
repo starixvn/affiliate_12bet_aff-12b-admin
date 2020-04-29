@@ -16,6 +16,7 @@ namespace Fanex.Affiliate.User.Core.CoreService
 
         private const string RsaKeyPairKey = "Affiliate12Bet.RsaKeyPairKey";
         private const string VerificationSessionKey = "Affiliate12Bet.VerificationSessionKey";
+
         public string CaptchaCode
         {
             get { return HttpContext.Current.Session[CaptchaCodeKey] as string; }

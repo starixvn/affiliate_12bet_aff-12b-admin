@@ -5,7 +5,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 
@@ -105,7 +105,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                 UserId = userId,
                 AffId = affId,
                 Password = CryptographyHelper.Encrypt(password),
-                Ip = ip
+                Ip = ip,
+                Status = "Approved"
             };
 
             return _affiliateService.ApproveAffiliate(approveParam);

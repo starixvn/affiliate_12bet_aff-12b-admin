@@ -20,7 +20,7 @@
     @RazorHelper.RenderHotNews()
     <div class="content-menu">
         <ul class="menu list-unstyled" id="mainMenu">
-            <li><a class="menu-item" id="menuAccountOverView" href="@Url.Content("~/UserPanel/Main/#AccountOverView")">@Lang.AccOverview</a></li>
+            <li><a class="menu-item" id="menuAccountOverview" href="@Url.Content("~/UserPanel/Main/#AccountOverview")">@Lang.AccOverview</a></li>
             @if (string.Equals(groupName, CommGroupName.KoreanAgentComm))
             {
                 <li><a class="menu-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Member" ? "active" : string.Empty)" id="menuYourCustomer" href="@(Url.Content("~/UserPanel/Member/Index"))">@Lang.YourCustomers</a></li>

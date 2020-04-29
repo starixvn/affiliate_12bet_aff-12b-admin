@@ -28,8 +28,8 @@ function handleResize() {
 }
 
 var UserPanel = (function ($) {
-    var DEFAULT_ACTION = 'AccountOverView';
-    var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest",
+    var DEFAULT_ACTION = 'AccountOverview';
+    var allowedActionList = ["AccountOverview", "StatementHistory", "MyAccount", "PaymentRequest",
         "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics",
         "DailyEarning", "DailyEarningDetail", "BetList", "MessageHistory", "CommissionReport"];
 
@@ -103,6 +103,7 @@ var UserPanel = (function ($) {
         getActionUrl: function (onlyAction) {
             var hash = window.location.hash;
             var actionUrl = hash.split('#')[1];
+
             if (!actionUrl) {
                 return DEFAULT_ACTION;
             }

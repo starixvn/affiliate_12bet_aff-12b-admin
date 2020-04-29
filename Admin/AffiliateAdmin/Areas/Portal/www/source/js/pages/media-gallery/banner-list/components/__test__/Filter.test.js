@@ -5,11 +5,24 @@ import { shallow, mount } from 'enzyme';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('banner list - components - Filter ', () => {
+    const deviceTypeList = [
+        {
+            key: 0, name: "PC / Laptop", checked: false
+        },
+        {
+            key: 1, name: "Mobile", checked: false
+        }
+    ];
+
     const defaultProps = {
         pagingOption: defaultPagingOption,
         categoryList: [
-            { CategoryName: "Casino" },
-            { CategoryName: "Sportbook" }
+            { categoryName: "Casino", key: "Casino", name: "Casino", checked: false },
+            { categoryName: "Sportsbook", key: "Sportsbook", name: "Sportsbook", checked: false }
+        ],
+        subCategoryList: [
+            { parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false },
+            { parentCategoryName: "Sportsbook", key: "Basketball", name: "Basketball", checked: false }
         ],
         subCategoryCasinoList: [
             { CategoryName: "Casino Bonus" },
@@ -24,21 +37,22 @@ describe('banner list - components - Filter ', () => {
             { LanguageName: "Vietnamese" }
         ],
         currencyList: [
-            { Name: "EURO" },
-            { Name: "VND" }
+            { key: "EURO", name: "EURO", checked: false },
+            { key: "VND", name: "VND", checked: false }
         ],
         imageTypeList: [
-            { Name: "Image" },
-            { Name: "Flash" }
+            { Id: 0, Name: "Image"},
+            { Id: 1, Name: "Flash"}
         ],
         sizeList: [
-            { Name: "300x250" },
-            { Name: "500x350" }
+            { key: "300x250", name: "300x250", checked: false },
+            { key: "500x350", name: "500x350", checked: false }
         ],
         affTypeList: [
-            { AffTypeId: 2, AffTypeName: 'Asian' },
-            { AffTypeId: 3, AffTypeName: 'Media' }
+            { key: "Asian", name: "Asian", checked: false },
+            { key: "Media", name: "Media", checked: false }
         ],
+        deviceTypeList,
         paramFromHome: {
             IsFromHome: false
         }
@@ -78,13 +92,12 @@ describe('banner list - components - Filter ', () => {
         const event = {
             target: { value: 'Casino' }
         };
-        const props = Object.assign({}, defaultProps, { getSizeList: jest.fn(), getSubCategoryCasinoList: jest.fn(), subCategoryCasinoList: null });
+        const props = Object.assign({}, defaultProps, { getSizeList: jest.fn(), subCategoryCasinoList: null });
         const wrapper = shallow(<Filter {...props} />);
 
         wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
 
         expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Casino');
-        expect(props.getSubCategoryCasinoList).toHaveBeenCalled();
         expect(props.getSizeList).toHaveBeenCalledWith({"affType": 2, "category": "Casino", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 
@@ -92,13 +105,12 @@ describe('banner list - components - Filter ', () => {
         const event = {
             target: { value: 'Sportsbook' }
         };
-        const props = Object.assign({}, defaultProps, { getSizeList: jest.fn(), getSubCategorySportsbookList: jest.fn(), subCategorySportsbookList: null });
+        const props = Object.assign({}, defaultProps, { getSizeList: jest.fn(), subCategorySportsbookList: null });
         const wrapper = shallow(<Filter {...props} />);
 
         wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
 
         expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Sportsbook');
-        expect(props.getSubCategorySportsbookList).toHaveBeenCalled();
         expect(props.getSizeList).toHaveBeenCalledWith({"affType": 2, "category": "Sportsbook", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 

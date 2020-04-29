@@ -4,10 +4,9 @@ using Fanex.Affiliate.Admin.Core.DTO.Payment;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using System.Collections.Generic;
 using System.Data;
-using Fanex.Data;
 using Fanex.Affiliate.Admin.Core.Constants;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.Payment
+namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
     public class PaymentRequestRepository : BaseRepository, IPaymentRequestRepository
     {

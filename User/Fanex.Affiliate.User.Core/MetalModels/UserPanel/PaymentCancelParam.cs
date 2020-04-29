@@ -24,8 +24,5 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         [SpParam(Ignored = true)]
         public DateTime RequestDate { get; set; }
-
-        [SpParam(Ignored = true)]
-        public int AffId { get; set; }
     }
 }

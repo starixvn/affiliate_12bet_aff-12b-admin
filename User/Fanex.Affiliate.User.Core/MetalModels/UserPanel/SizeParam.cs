@@ -6,7 +6,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
     {
         public string Category { get; set; }
 
-        [SpParam(Ignored = true)]
         public string SubCategory { get; set; }
 
         public string Language { get; set; }

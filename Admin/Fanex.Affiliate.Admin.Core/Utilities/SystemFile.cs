@@ -79,7 +79,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                     Logger.Log.Error(ex.Message, ex);
                     return new ResultInfo
                     {
-                        Code = Code.GeneralErrorCode,
+                        Code = Code.ErrCanNotAccessFolder,
                         Message = "Can not access folder."
                     };
                 }

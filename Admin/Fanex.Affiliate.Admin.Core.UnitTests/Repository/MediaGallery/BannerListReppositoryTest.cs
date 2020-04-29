@@ -6,6 +6,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
@@ -33,10 +34,34 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
 
             // Action
             var result = repository.Object.GetBannerList(new BannerParam());
+            var item = result.MainData.FirstOrDefault();
 
             // Assert
             Assert.Single(result.MainData);
-            Assert.Equal(1, result.TotalItem);
+            Assert.Equal("01/20/2020 00:00:00", item.LastUpdateText);
+        }
+
+        [Fact]
+        public void GetBannerList_WhenCall_ReturnCorrectDataWithNull()
+        {
+            // Arrange
+            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetBannerListWithNull());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
+            repository.Setup(r => r.GetObjectDb(SpKeyBannerSel, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetBannerList(new BannerParam());
+            var item = result.MainData.FirstOrDefault();
+
+            // Assert
+            Assert.Single(result.MainData);
+            Assert.Null(item.LastUpdateText);
         }
 
         [Fact]
@@ -110,7 +135,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             repository.Setup(re => re.GetObjectDb(SpKeyBannerMediaIns, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.InsertBanner(new InsertUpdateBannerParam());
+            var result = repository.Object.InsertBanner(new InsertUpdateMultipleBannersParam());
 
             // Assert
             Assert.True(result.IsSuccessful);
@@ -129,7 +154,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             repository.Setup(re => re.GetObjectDb(SpKeyBannerMediaIns, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.InsertBanner(new InsertUpdateBannerParam());
+            var result = repository.Object.InsertBanner(new InsertUpdateMultipleBannersParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -148,7 +173,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             repository.Setup(re => re.GetObjectDb(SpKeyBannerUpd, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.UpdateBanner(new InsertUpdateBannerParam());
+            var result = repository.Object.UpdateBanner(new InsertUpdateMultipleBannersParam());
 
             // Assert
             Assert.True(result.IsSuccessful);
@@ -167,7 +192,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             repository.Setup(re => re.GetObjectDb(SpKeyBannerUpd, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.UpdateBanner(new InsertUpdateBannerParam());
+            var result = repository.Object.UpdateBanner(new InsertUpdateMultipleBannersParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -257,14 +282,33 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             {
                 ["BannerID"] = 123,
                 ["FileName"] = "test/abc.gìf",
-                ["Category"] = "Basketball",
+                ["Categories"] = "Casino",
+                ["SubCategories"] = "Baccarat",
                 ["Language"] = "English",
-                ["Currency"] = "EURO",
+                ["Currencies"] = "EURO",
                 ["ImageType"] = "Image",
-                ["AffType"] = 2,
+                ["AffTypes"] = "2",
                 ["Size"] = "320x250",
-                ["DeviceType"] = 1,
-                ["LastUpdate"] = new DateTime(2020,01,20)
+                ["DeviceTypes"] = "1",
+                ["UpdatedDate"] = new DateTime(2020,01,20)
+            };
+        }
+
+        private IDictionary<string, object> GetBannerListWithNull()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["BannerID"] = 123,
+                ["FileName"] = "test/abc.gìf",
+                ["Categories"] = "Casino",
+                ["SubCategories"] = "Baccarat",
+                ["Language"] = "English",
+                ["Currencies"] = "EURO",
+                ["ImageType"] = "Image",
+                ["AffTypes"] = "2",
+                ["Size"] = "320x250",
+                ["DeviceTypes"] = "1",
+                ["UpdatedDate"] = DBNull.Value
             };
         }
 

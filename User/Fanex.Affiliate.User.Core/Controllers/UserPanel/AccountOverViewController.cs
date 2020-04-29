@@ -5,6 +5,7 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using Filters;
     using Repository.UserPanel;
+    using ViewModels.UserPanel;
 
     [CustomAuthorize]
     public class AccountOverviewController : BaseController
@@ -23,7 +24,7 @@
         public ActionResult Index()
         {
             var model = _accountOverviewRepository.GetLastLoginInfo(SessionService.UserSession.AffId);
-
+                
             return View("~/Views/UserPanel/AccountOverView/Index.cshtml", model);
         }
     }
