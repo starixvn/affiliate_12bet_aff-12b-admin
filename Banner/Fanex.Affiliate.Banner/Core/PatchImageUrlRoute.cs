@@ -69,9 +69,7 @@ namespace Fanex.Affiliate.Banner.Core
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-            requestContext.HttpContext.RewritePath(Path);
-            var path = requestContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath.Replace("~", "");
-            HttpContext.Current.Server.Transfer(path);
+            HttpContext.Current.Response.Redirect(Path);
             return null;
         }
     }
