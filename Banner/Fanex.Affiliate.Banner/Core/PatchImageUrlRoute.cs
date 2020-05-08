@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Banner.Core
         private bool IsNeedToChangePath(HttpContextBase httpContext)
         {
             var isNeedChangeFilePath = false;
-            var path = httpContext.Request.CurrentExecutionFilePath;
+            var path = httpContext.Request.AppRelativeCurrentExecutionFilePath.Replace("~", "");
             var extension = httpContext.Request.CurrentExecutionFilePathExtension;
             var fileAndFolders = path.Split(new[] { '/', '\\' }, StringSplitOptions.RemoveEmptyEntries);
             if (!string.IsNullOrWhiteSpace(extension)
@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.Banner.Core
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
             requestContext.HttpContext.RewritePath(Path);
-            var path = requestContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath.Remove(0,1);
+            var path = requestContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath.Replace("~", "");
             HttpContext.Current.Server.Transfer(path);
             return null;
         }
