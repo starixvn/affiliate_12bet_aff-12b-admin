@@ -70,8 +70,8 @@ namespace Fanex.Affiliate.Banner.Core
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
             requestContext.HttpContext.RewritePath(Path);
-            var path = HttpContext.Current.Server.MapPath(Path);
-            HttpContext.Current.Server.Transfer(requestContext.HttpContext.Request.CurrentExecutionFilePath);
+            var path = requestContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath.Remove(0,1);
+            HttpContext.Current.Server.Transfer(path);
             return null;
         }
     }
