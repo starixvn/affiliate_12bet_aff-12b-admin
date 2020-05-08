@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Banner.Core
         private bool IsNeedToChangePath(HttpContextBase httpContext)
         {
             var isNeedChangeFilePath = false;
-            var path = httpContext.Request.Path;
+            var path = httpContext.Request.CurrentExecutionFilePath;
             var extension = httpContext.Request.CurrentExecutionFilePathExtension;
             var fileAndFolders = path.Split(new[] { '/', '\\' }, StringSplitOptions.RemoveEmptyEntries);
             if (!string.IsNullOrWhiteSpace(extension)
