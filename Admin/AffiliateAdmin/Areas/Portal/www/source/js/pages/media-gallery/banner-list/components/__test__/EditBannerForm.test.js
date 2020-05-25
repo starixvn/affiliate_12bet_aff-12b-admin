@@ -323,7 +323,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
         instance._handleChangeInputFileName(event, 0);
 
-        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, `A File Name can't contain any of the following characters: \\/:*?"<>|`);
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, `A File Name can't contain any of the following characters: \\/:*?"<>|#%&+`);
     });
 
     it('_handleChangeInputFileName - should call setState', () => {

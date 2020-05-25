@@ -40,7 +40,7 @@ describe('tracking statistics - components - Detail', () => {
 
         instance.componentDidUpdate(defaultProps);
 
-        expect(instance.fetchData).toHaveBeenCalledWith({ trackingCode: "", selectedMonth: new Date('December-2019') });
+        expect(instance.fetchData).toHaveBeenCalledWith({ trackingCode: "", selectedMonth: 'December-2019' });
     });
 
     it('fetchData - should call toggleLoaderUserPanel, setState and setPagingOption', async () => {

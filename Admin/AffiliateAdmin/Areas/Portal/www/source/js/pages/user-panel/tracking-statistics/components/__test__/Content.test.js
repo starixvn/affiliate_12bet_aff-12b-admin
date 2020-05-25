@@ -4,9 +4,9 @@ import { shallow } from 'enzyme';
 
 describe('tracking statistics - components - Content', () => {
     const gridData = [
-        {TotalClick: 0, UniqueClick: 0, MonthText: "December-2019", DateText: "12/01/2019"},
-        {TotalClick: 487, UniqueClick: 342, MonthText: "January-2017", DateText: "01/01/2017"},
-        {TotalClick: 414, UniqueClick: 291, MonthText: "December-2016", DateText: "12/01/2016"}
+        {TotalClick: 0, UniqueClick: 0, MonthText: "December-2019", Date: "12/01/2019"},
+        {TotalClick: 487, UniqueClick: 342, MonthText: "January-2017", Date: "01/01/2017"},
+        {TotalClick: 414, UniqueClick: 291, MonthText: "December-2016", Date: "12/01/2016"}
     ];
     const defaultProps = {
         affId: 1271808,
@@ -67,6 +67,6 @@ describe('tracking statistics - components - Content', () => {
 
         dataRow.find('Button').at(0).simulate('click');
 
-        expect(defaultProps.setSelectedMonth).toHaveBeenCalledWith("January-2017");
+        expect(defaultProps.setSelectedMonth).toHaveBeenCalledWith("01/01/2017");
     });
 });
