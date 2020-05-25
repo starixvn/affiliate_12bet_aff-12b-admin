@@ -270,7 +270,6 @@
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\UserPanel\BetListController.cs" />
     <Compile Include="Controllers\CommissionStructureController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
@@ -518,11 +517,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.zh-TW.resx</DependentUpon>
     </Compile>
-    <Compile Include="Service References\BetListWebService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\MemberInfoWebService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -645,30 +639,13 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Xml.XmlNode.datasource" />
-    <None Include="Service References\BetListWebService\AffiliateAPI.wsdl" />
     <None Include="Service References\MemberInfoWebService\Service.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\BetListWebService\" />
     <WCFMetadataStorage Include="Service References\MemberInfoWebService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\BetListWebService\AffiliateAPI.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\BetListWebService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\BetListWebService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\BetListWebService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\MemberInfoWebService\configuration91.svcinfo" />
