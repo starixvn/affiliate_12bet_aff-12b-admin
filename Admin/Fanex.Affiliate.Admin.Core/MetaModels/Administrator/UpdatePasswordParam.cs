@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
 {
-    public class UpdatePasswordParam: UserInfoParam
+    public class UpdatePasswordParam : UserInfoParam
     {
         [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "Account Id is invalid!")]
         public int AccountId { get; set; }

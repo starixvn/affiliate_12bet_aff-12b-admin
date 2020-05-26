@@ -38,10 +38,11 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Utilities
                 var xdoc = XDocument.Parse(rawData);
                 var betHistoryList = isOpus ? xdoc.Root.Element("bets").Elements("row") : xdoc.Root.Elements("history");
 
-                if(isOpus)
+                if (isOpus)
                 {
                     betHistoryList.Where(x => !string.Equals(x.Element("member_code").Value, userName, StringComparison.InvariantCultureIgnoreCase)).Remove();
-                } else
+                }
+                else
                 {
                     betHistoryList.Where(x => !string.Equals(x.Attribute("userId").Value, userName, StringComparison.InvariantCultureIgnoreCase)).Remove();
                 }

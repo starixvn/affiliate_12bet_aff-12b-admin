@@ -1,15 +1,15 @@
-﻿using System;
-using System.Globalization;
-using System.Web.Mvc;
-using CitiXchangeLibrary;
+﻿using CitiXchangeLibrary;
+using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.Constants;
 using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
 using Fanex.ThirdParty.Importing.Model;
 using Fanex.ThirdParty.Importing.Service;
 using Newtonsoft.Json;
-using Fanex.Affiliate.DataService.Importer.Core.Utilities;
-using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using System;
+using System.Globalization;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {

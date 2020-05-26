@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
+using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {

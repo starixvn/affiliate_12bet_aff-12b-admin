@@ -1,8 +1,8 @@
-﻿using System;
-using System.Data;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Data;
-using Fanex.Affiliate.Admin.Core.Constants;
+using System;
+using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {

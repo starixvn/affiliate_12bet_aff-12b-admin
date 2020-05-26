@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DNAide.Core;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Member;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Extensions;
-using DNAide.Core;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Member
 {
@@ -32,11 +31,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(new MemberInfo {
+                        dataList.Add(new MemberInfo
+                        {
                             MemberId = Convert.ToInt32(reader["IBCCustID"]),
                             UserName = Convert.ToString(reader["UserName"]),
                             IbcUserName = Convert.ToString(reader["IBCUserName"]),
-                            FirstName =  Convert.ToString(reader["FirstName"]),
+                            FirstName = Convert.ToString(reader["FirstName"]),
                             LastName = Convert.ToString(reader["LastName"]),
                             CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"]),
                             AffName = Convert.ToString(reader["AffUserName"]),

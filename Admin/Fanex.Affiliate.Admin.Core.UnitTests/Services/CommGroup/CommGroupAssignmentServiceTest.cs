@@ -123,7 +123,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             emailService.Setup(e => e.SendApprovedEmail(It.IsAny<AffInformationEmail>()));
 
             var service = CreateCommGroupAssignmentService(commGroupRepository.Object, affiliateService.Object, emailService.Object);
-            
+
             // Action
             var result = service.AssignGroup(param, affInfo, emailParam);
 
@@ -293,7 +293,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var emailService = new Mock<IEmailService>();
             emailService.Setup(e => e.SendApprovedEmail(It.IsAny<AffInformationEmail>()));
 
-            var service = CreateCommGroupAssignmentService(commGroupRepository.Object, affiliateService.Object , commGroupCommonService: commGroupCommonService.Object);
+            var service = CreateCommGroupAssignmentService(commGroupRepository.Object, affiliateService.Object, commGroupCommonService: commGroupCommonService.Object);
 
             // Action
             var result = service.AssignPrivateGroup(param, affInfo, emailParam);

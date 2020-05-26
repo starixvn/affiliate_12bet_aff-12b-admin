@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using Fanex.Affiliate.DataService.Importer;
+﻿using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using Fanex.Affiliate.DataService.Importer.Ebet.DTO;
+using Fanex.Affiliate.DataService.Importer.Ebet.MetaModels;
+using Fanex.Affiliate.DataService.Importer.Ebet.Utilities;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.Constants;
 using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
 using Fanex.Affiliate.ThirdPartyProduct.ViewModels;
 using Newtonsoft.Json;
-using Fanex.Affiliate.DataService.Importer.Ebet.Utilities;
-using Fanex.Affiliate.DataService.Importer.Ebet.DTO;
-using Fanex.Affiliate.DataService.Importer.Core.Utilities;
-using Fanex.Affiliate.DataService.Importer.Core.Constants;
-using Fanex.Affiliate.DataService.Importer.Ebet.MetaModels;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {

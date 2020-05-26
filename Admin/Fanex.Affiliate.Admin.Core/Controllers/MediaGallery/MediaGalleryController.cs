@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Services;
-using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using System.Web;
-using System.Linq;
+using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {

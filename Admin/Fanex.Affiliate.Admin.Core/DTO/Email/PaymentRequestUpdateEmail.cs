@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Fanex.Affiliate.Admin.Core.DTO.Email
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.Email
 {
     public class PaymentRequestUpdateEmail : EmailBase
     {

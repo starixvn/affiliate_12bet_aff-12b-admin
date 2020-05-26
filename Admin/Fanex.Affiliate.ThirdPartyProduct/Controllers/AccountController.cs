@@ -1,6 +1,4 @@
 ﻿using Fanex.Affiliate.ThirdPartyProduct.Site.Services;
-
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
 

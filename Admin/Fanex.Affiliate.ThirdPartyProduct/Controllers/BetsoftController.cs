@@ -1,4 +1,12 @@
-﻿using System;
+﻿using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.Betsoft.MetaModels;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using Fanex.Affiliate.ThirdPartyProduct.Attributes;
+using Fanex.Affiliate.ThirdPartyProduct.Constants;
+using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
+using Fanex.Affiliate.ThirdPartyProduct.ViewModels;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -6,14 +14,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Xml.Linq;
-using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.ThirdPartyProduct.Attributes;
-using Fanex.Affiliate.ThirdPartyProduct.Constants;
-using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
-using Fanex.Affiliate.ThirdPartyProduct.ViewModels;
-using Newtonsoft.Json;
-using Fanex.Affiliate.DataService.Importer.Core.Utilities;
-using Fanex.Affiliate.DataService.Importer.Betsoft.MetaModels;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {

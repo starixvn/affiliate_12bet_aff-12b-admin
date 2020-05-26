@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Payment;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {

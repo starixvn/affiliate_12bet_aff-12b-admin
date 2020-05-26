@@ -30,6 +30,6 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             AntiForgery.Validate(serverTokenCookie.Value, clientToken);
         }
 
-       
+
     }
 }

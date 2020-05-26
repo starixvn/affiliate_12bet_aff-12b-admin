@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate
 {
-    public class ExchangeRateParam: UserInfoParam
+    public class ExchangeRateParam : UserInfoParam
     {
         [Range(Validation.MinId, Validation.MaxId)]
         public int ExchangeId { get; set; }

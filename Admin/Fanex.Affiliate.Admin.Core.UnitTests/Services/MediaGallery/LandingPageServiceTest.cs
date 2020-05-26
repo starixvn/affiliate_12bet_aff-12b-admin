@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             // Arrange
             var landingPageRepository = new Mock<ILandingPageRepository>();
-            landingPageRepository.Setup(l => l.GetLandingPageList()).Returns( new List<LandingPage> { new LandingPage() });
+            landingPageRepository.Setup(l => l.GetLandingPageList()).Returns(new List<LandingPage> { new LandingPage() });
             var service = CreateLandingPageService(landingPageRepository.Object);
 
             // Action

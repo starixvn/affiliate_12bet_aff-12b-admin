@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [CheckUMFilter]
     [CustomAuthorize]
-    public class AccessDeniedController: Controller
+    public class AccessDeniedController : Controller
     {
         [HttpGet]
         public ActionResult Index()

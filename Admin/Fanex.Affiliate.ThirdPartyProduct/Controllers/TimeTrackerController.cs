@@ -1,8 +1,8 @@
-﻿using System.Web.Mvc;
-using Fanex.Affiliate.ThirdPartyProduct.Attributes;
+﻿using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
 using Fanex.Affiliate.ThirdPartyProduct.Repository;
 using Newtonsoft.Json;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {

@@ -1,19 +1,19 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Utilities.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Configurations;
-using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Affiliate.Admin.Core.Utilities.MediaGallery;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Web;
 using System.IO;
-using Fanex.Affiliate.Admin.Core.Constants;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
@@ -77,7 +77,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 {
                     if (string.Equals(fileName, inputFileNames[j].Trim(), StringComparison.OrdinalIgnoreCase))
                     {
-                        return new ResultInfo {
+                        return new ResultInfo
+                        {
                             Code = Code.GeneralErrorCode,
                             Message = "File Name is unique, please enter other file name!"
                         };
@@ -97,7 +98,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
 
             var message = new StringBuilder();
-            for (int i = 0; i < inputFileNames.Length; i ++)
+            for (int i = 0; i < inputFileNames.Length; i++)
             {
                 var inputFileName = inputFileNames[i];
 
@@ -111,8 +112,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                     {
                         result.Code = Code.GeneralErrorCode;
                         message.Append($"The maximum length of file name is 50. Please choose another name for File Name {i + 1} or select another File.<br />");
-                    }                    
-                } else
+                    }
+                }
+                else
                 {
                     if (!BannerHelper.IsValidExtension(_systemFile.GetExtension(inputFileName)))
                     {
@@ -209,7 +211,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             for (var i = 0; i < files.Length; i++)
             {
                 var file = files[i];
-                    
+
                 using (var bitmap = new Bitmap(file.InputStream))
                 {
                     var inputFileName = inputFileNames[i];
@@ -225,7 +227,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             if (!result.IsSuccessful)
             {
-                foreach(var path in param.FilePaths)
+                foreach (var path in param.FilePaths)
                 {
                     DeleteFile(path);
                 }

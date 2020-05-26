@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         {
             // Arrange
             var productRepository = new Mock<IProductRepository>();
-            productRepository.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product()});
+            productRepository.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
             var languageService = new Mock<ILanguageService>();
             languageService.Setup(s => s.GetLanguageList()).Returns(new List<Language> { new Language() });
             var controller = CreateReportController(productRepository: productRepository.Object, languageService: languageService.Object);

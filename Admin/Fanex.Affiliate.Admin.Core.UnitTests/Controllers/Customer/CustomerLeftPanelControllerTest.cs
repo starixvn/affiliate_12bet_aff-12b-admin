@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var param = "12BETAFF226";
             var passedParam = string.Empty;
             var customerLeftPanelService = new Mock<ICustomerLeftPanelService>();
-            customerLeftPanelService.Setup(s => s.GetOnlineList(param)).Returns(new List<OnlineList> { new OnlineList()}).Callback<string>(p => passedParam = p);
+            customerLeftPanelService.Setup(s => s.GetOnlineList(param)).Returns(new List<OnlineList> { new OnlineList() }).Callback<string>(p => passedParam = p);
             var controller = CreateCustomerLeftPanelController(customerLeftPanelService: customerLeftPanelService.Object);
 
             // Action

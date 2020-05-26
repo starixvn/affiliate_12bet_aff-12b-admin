@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
-using System.Data;
-using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using System;
+using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {

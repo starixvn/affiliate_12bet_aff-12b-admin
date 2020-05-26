@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
 {
-    public class InsertUpdateDepartmentParam: UserInfoParam
+    public class InsertUpdateDepartmentParam : UserInfoParam
     {
         public int DepartmentId { get; set; }
 

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Web;
-using Fanex.Affiliate.Admin.Core.Configurations;
+﻿using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels;
+using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Services
 {

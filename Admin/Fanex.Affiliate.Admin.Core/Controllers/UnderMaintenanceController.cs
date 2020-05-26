@@ -3,11 +3,11 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    public class UnderMaintenanceController: Controller
+    public class UnderMaintenanceController : Controller
     {
         private readonly IUnderMaintenanceService _underMaintenanceService;
 
-        public UnderMaintenanceController (IUnderMaintenanceService underMaintenanceService)
+        public UnderMaintenanceController(IUnderMaintenanceService underMaintenanceService)
         {
             _underMaintenanceService = underMaintenanceService;
         }

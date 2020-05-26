@@ -1,7 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.ComponentModel.DataAnnotations;
+﻿using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using System.Collections.Generic;
-using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {

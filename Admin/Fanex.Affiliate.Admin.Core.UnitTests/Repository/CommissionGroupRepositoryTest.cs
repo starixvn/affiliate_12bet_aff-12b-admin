@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;
 using Moq;
-using Xunit;
-using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
 {

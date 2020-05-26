@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Administrator;
-using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
-using System.Data;
-using Fanex.Data;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
+using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 {

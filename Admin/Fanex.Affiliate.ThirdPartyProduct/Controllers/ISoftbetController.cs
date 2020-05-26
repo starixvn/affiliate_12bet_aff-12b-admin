@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using Fanex.Affiliate.DataService.Importer;
+﻿using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using Fanex.Affiliate.DataService.Importer.ISoftbet.DTO;
+using Fanex.Affiliate.DataService.Importer.ISoftbet.MetaModels;
+using Fanex.Affiliate.DataService.Importer.ISoftbet.Utilities;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.Constants;
 using Fanex.Affiliate.ThirdPartyProduct.DTO;
@@ -12,10 +10,12 @@ using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
 using Fanex.Affiliate.ThirdPartyProduct.ViewModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Fanex.Affiliate.DataService.Importer.ISoftbet.Utilities;
-using Fanex.Affiliate.DataService.Importer.ISoftbet.DTO;
-using Fanex.Affiliate.DataService.Importer.Core.Utilities;
-using Fanex.Affiliate.DataService.Importer.ISoftbet.MetaModels;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {

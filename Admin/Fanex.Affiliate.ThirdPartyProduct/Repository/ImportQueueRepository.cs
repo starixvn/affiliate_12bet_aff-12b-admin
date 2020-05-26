@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Fanex.Affiliate.ThirdPartyProduct.DTO;
+﻿using Fanex.Affiliate.ThirdPartyProduct.DTO;
 using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
 using Fanex.Data;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Repository
 {

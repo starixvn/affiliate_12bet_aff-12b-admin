@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var param = new DailyEarningParam();
             var repository = new Mock<IStatementHistoryRepository>();
-            repository.Setup(comm => comm.GetDailyEarning(param)).Returns(new DailyEarningResult{ MainData = new List<DailyEarning> { new DailyEarning() }, Total = new DailyEarning() });
+            repository.Setup(comm => comm.GetDailyEarning(param)).Returns(new DailyEarningResult { MainData = new List<DailyEarning> { new DailyEarning() }, Total = new DailyEarning() });
             var service = CreateStatementHistoryService(repository.Object);
 
             // Action

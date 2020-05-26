@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {

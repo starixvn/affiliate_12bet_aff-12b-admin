@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Utilities;
+using System;
 using System.Web;
 using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.Utilities;
 
 namespace AffiliateAdmin
 {
@@ -14,7 +13,7 @@ namespace AffiliateAdmin
             MvcHandler.DisableMvcResponseHeader = true;
 
             IoCConfig.Register();
-       
+
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
 
             AreaRegistration.RegisterAllAreas();

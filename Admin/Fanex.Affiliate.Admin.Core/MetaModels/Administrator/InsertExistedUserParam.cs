@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
 {
-    public class InsertExistedUserParam: UserInfoParam
+    public class InsertExistedUserParam : UserInfoParam
     {
         [Required(ErrorMessage = "Please input user name!")]
         public string UserName { get; set; }

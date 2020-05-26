@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Member
 {
-    public class DeleteMemberParam: UserInfoParam
+    public class DeleteMemberParam : UserInfoParam
     {
         [Range(Validation.MinId, Validation.MaxId)]
         public int MemberId { get; set; }

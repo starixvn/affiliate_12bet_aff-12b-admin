@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -168,7 +166,7 @@ namespace Affiliate.Infrastructure.Helpers
         {
             var length = 0;
 
-            while(initialValue <= str.Length && str.ToString(initialValue, 1) != "=")
+            while (initialValue <= str.Length && str.ToString(initialValue, 1) != "=")
             {
                 length++;
                 initialValue++;

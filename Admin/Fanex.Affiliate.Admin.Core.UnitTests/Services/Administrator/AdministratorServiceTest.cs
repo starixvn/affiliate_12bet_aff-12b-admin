@@ -377,7 +377,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
                 ["GroupId"] = 234,
                 ["GroupName"] = "abc",
                 ["username"] = "abc",
-                ["CreateDate"] = new DateTime(2019,11,6),
+                ["CreateDate"] = new DateTime(2019, 11, 6),
                 ["closed"] = false
             };
         }

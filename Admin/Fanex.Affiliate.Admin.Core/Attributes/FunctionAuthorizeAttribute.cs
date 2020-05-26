@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using System;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
 {
