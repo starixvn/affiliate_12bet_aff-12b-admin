@@ -48,5 +48,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
         string SymmetricPassword { get; }
 
         string SymmetricSalt { get; }
+
+        string QrCodeIcon { get; }
     }
 }

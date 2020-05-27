@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var sessionService = Substitute.For<ISessionService>();
             var appSetting = Substitute.For<IAppSetting>();
             var languageService = Substitute.For<ILanguageService>();
-            var marketingService = MockingHelper.FakeMarkengtingService();
+            var marketingService = NSubtituteMockingHelper.FakeMarkengtingService();
             var controller = new AffiliateLinkController(sessionService, appSetting, languageService, marketingService);
 
             sessionService.UserSession.Returns(Constant.Session);

@@ -50,6 +50,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string SymmetricSalt => GetValue("SymmetricSalt");
 
+        public string QrCodeIcon => GetValue("QrCodeIcon");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

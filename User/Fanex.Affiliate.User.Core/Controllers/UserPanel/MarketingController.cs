@@ -16,7 +16,7 @@
     using ViewModels.UserPanel.Marketing;
 
     [CustomAuthorize]
-    public class MarketingController : BaseMarketingController
+    public sealed class MarketingController : BaseMarketingController
     {
 
         private readonly IQrCodeGeneratorService _qrCodeGeneratorService;
@@ -61,7 +61,12 @@
             var subCategoryList = MarketingService.GetCategoryList(true, SessionService.IsInternal)
                                                     .Where(c => c.Category.MatchWith(category) && !string.IsNullOrEmpty(c.SubCategory));
 
-            return Json(subCategoryList.Select(i => new SelectListItem { Value = i.SubCategory, Text = Lang.ResourceManager.GetString(i.SubCategory.Trim()) ?? i.SubCategory }),
+            return Json(subCategoryList.Select(i => 
+                new SelectListItem
+                    {
+                        Value = i.SubCategory,
+                        Text = Lang.ResourceManager.GetString(i.SubCategory.Trim()) ?? i.SubCategory
+                    }),
                 JsonRequestBehavior.AllowGet);
         }
 
@@ -169,6 +174,7 @@
             var language = link.Key;
             var textLink = link.Value;
             var qrCode = _qrCodeGeneratorService.GenerateBase64QrCode(textLink, icon, true);
+            icon.Dispose();
             return new QrCodeLinkModel
             {
                 Language = language,
@@ -179,10 +185,9 @@
 
         private Image GetQrCodeIcon()
         {
-            var qrIconFileName = AppSetting.GetValue("QrCodeIcon");
+            var qrIconFileName = AppSetting.QrCodeIcon;
             var path = HttpContext.Server.MapPath($"~/www/build/styles/Images/{qrIconFileName}");
-            var img = new Bitmap(path);
-            return img;
+            return _qrCodeGeneratorService.GetImage(path);
         }
     }
 }

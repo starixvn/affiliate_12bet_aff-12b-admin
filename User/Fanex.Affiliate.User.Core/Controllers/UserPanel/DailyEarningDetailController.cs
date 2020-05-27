@@ -17,9 +17,8 @@
 
         public DailyEarningDetailController(ISessionService sessionService, 
             ILanguageService languageService,
-            IStatementHistoryRepository statementHistoryRepository
-
-            ) : base(sessionService, languageService)
+            IStatementHistoryRepository statementHistoryRepository) 
+            : base(sessionService, languageService)
         {
             _statementHistoryRepository = statementHistoryRepository;
         }
@@ -36,16 +35,17 @@
             var viewModel = new DailyEarningDetailViewModel
             {
                 MainData = _statementHistoryRepository.GetDailyEarningDetail(param),
-                ProductList = param.IsOnlyContent ? null :
-                _statementHistoryRepository.GetProductList(param.IsInternal),
+                ProductList = param.IsOnlyContent 
+                    ? null 
+                    : _statementHistoryRepository.GetProductList(param.IsInternal),
                 SelectedDate = param.MonthDate.HasValue ? param.MonthDate.Value : DateTime.Now.Date,
                 SelectedProduct = param.ProductId.HasValue ? param.ProductId.Value : Product.Sportsbook,
                 HasDailyDetail = extraUserInfo.HasDailyDetail
             };
 
-            return param.IsOnlyContent ?
-                                    View("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningDetailContent.cshtml", viewModel)
-                                    : View("~/Views/UserPanel/StatementHistory/DailyEarningDetail.cshtml", viewModel);
+            return param.IsOnlyContent
+                ? View("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningDetailContent.cshtml", viewModel)
+                : View("~/Views/UserPanel/StatementHistory/DailyEarningDetail.cshtml", viewModel);
         }
     }
 }

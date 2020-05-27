@@ -241,6 +241,9 @@
     <Compile Include="Constants\Product.cs" />
     <Compile Include="Constants\TransType.cs" />
     <Compile Include="Controllers\AuthBaseController.cs" />
+    <Compile Include="Controllers\TestController.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionController.cs" />
     <Compile Include="Controllers\UserPanel\MemberController.cs" />
@@ -278,7 +281,6 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\TermAndConditionController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserPanel\MyAccountController.cs" />
     <Compile Include="Controllers\UserPanel\DailyEarningDetailController.cs" />
     <Compile Include="Controllers\UserPanel\PaymentRequestController.cs" />

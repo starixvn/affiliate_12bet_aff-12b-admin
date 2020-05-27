@@ -6,11 +6,6 @@ using System.Web.Routing;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Moq;
-using Fanex.Affiliate.User.Core.BusinessService;
-using NSubstitute;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 {
@@ -32,9 +27,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
                 }
             );
         }
-
-
-
 
         public static Controller FakeController(Controller controller)
         {
@@ -65,22 +57,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             mockHttpRequest.Setup(p => p.Browser.Browser).Returns(Constant.Browser);
 
             return mockHttpRequest.Object;
-        }
-
-        public static IMarketingService FakeMarkengtingService()
-        {
-            var marketingService = Substitute.For<IMarketingService>();
-            marketingService.GetTextList(Arg.Compat.Any<MarketingTextParam>()).Returns(new List<MarketingItem>
-            {
-                new MarketingItem { BannerId = 1, TextId = 1 }
-            });
-            marketingService.GetCategoryList(Arg.Compat.Any<bool>(), Arg.Compat.Any<bool>()).Returns(Constant.CategoryList);
-            marketingService.GetLanguageList(Arg.Compat.Any<bool>()).Returns(Constant.LanguageTypeList);
-            marketingService.GetCurrencyList(Arg.Compat.Any<bool>()).Returns(Constant.CurrencyType);
-            marketingService.GetDomainList(Arg.Compat.Any<int>(), Arg.Compat.Any<bool>()).Returns(Constant.DomainList);
-            marketingService.GetLandingPageList(Arg.Compat.Any<bool>()).Returns(Constant.LandingPageList);
-
-            return marketingService;
         }
     }
 }

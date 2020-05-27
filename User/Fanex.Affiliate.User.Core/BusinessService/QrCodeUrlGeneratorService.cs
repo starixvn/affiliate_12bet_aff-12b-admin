@@ -27,7 +27,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                  bitmap = new Bitmap(icon);
             }
             var base64Img = GenerateBase64QrCode(content, bitmap, includePrefix);
-            bitmap?.Dispose();
             return base64Img;
         }
 
@@ -43,7 +42,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 }
             }    
             var base64Img =  GenerateBase64QrCode(content, bitmap, includePrefix);
-            bitmap?.Dispose();
             return base64Img;
         }
 
@@ -63,6 +61,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public void SaveImage(string base64Img, string path)
         {
             _imgHandler.Write(base64Img, path);
+        }
+
+        public Image GetImage(string path)
+        {
+            return new Bitmap(path);
         }
     }
 }

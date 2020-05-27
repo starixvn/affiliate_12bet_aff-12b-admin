@@ -119,7 +119,7 @@
     <Compile Include="Controllers\UserPanel\AffiliateLinkControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\CommissionReportControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\DailyEarningControllerTest.cs" />
-    <Compile Include="Controllers\UserPanel\ICommissionService.cs" />
+    <Compile Include="Controllers\UserPanel\DailyEarningDetailControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MemberControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionControllerTest.cs" />
@@ -131,6 +131,7 @@
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestHelper\NSubtituteMockingHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\UserPanel\AccountOverViewControllerTest.cs" />
