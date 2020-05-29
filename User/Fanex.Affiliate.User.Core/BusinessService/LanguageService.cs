@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
 using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.DTO;
+
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class LanguageService : ILanguageService
@@ -24,6 +27,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return SystemLanguage.IsValid(langCookie) ? langCookie : SystemLanguage.DefaultLanguageCode;
         }
 
+        public IEnumerable<Language> GetSystemLanguages()
+            => SystemLanguage.LanguageList;
 
         public void SetCulture(string languageCode)
         {

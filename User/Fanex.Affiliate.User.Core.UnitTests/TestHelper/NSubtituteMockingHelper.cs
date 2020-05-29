@@ -5,9 +5,13 @@ using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 {
@@ -25,6 +29,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             marketingService.GetCurrencyList(Arg.Compat.Any<bool>()).Returns(Constant.CurrencyType);
             marketingService.GetDomainList(Arg.Compat.Any<int>(), Arg.Compat.Any<bool>()).Returns(Constant.DomainList);
             marketingService.GetLandingPageList(Arg.Compat.Any<bool>()).Returns(Constant.LandingPageList);
+            marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
 
             return marketingService;
         }
@@ -44,6 +49,39 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             var service = Substitute.For<ILanguageService>();
             service.GetFavoriteLanguage().Returns(Constant.DefaultLanguage);
             return service;
+        }
+
+        public static Controller FakeController(Controller controller, RouteData routeData = null)
+        {
+            var request = GetHttpRequest();
+            var server = Substitute.For<HttpServerUtilityBase>();
+            server.HtmlEncode(Arg.Compat.Any<string>()).Returns(s => $"Encoded{s}");
+            server.HtmlDecode(Arg.Compat.Any<string>()).Returns(s => $"{s}");
+
+            var context = Substitute.For<HttpContextBase>();
+            context.Request.Returns(request);
+            context.Server.Returns(server);
+            var routData = routeData ?? new RouteData();
+
+            context.Request.Returns(request);
+            controller.ControllerContext = Substitute.For<ControllerContext>(context, routData, controller);
+
+            var requestContext = new RequestContext(context, routData);
+            controller.Url = new UrlHelper(requestContext);
+
+            return controller;
+        }
+
+        public static HttpRequestBase GetHttpRequest()
+        {
+            var mockHttpRequest = Substitute.For<HttpRequestBase>();
+            mockHttpRequest.ApplicationPath.Returns("/");
+            mockHttpRequest.UserHostAddress.Returns("::1");
+            mockHttpRequest.Url.Returns(new Uri(Constant.DefaultRootDomain));
+            mockHttpRequest.ServerVariables.Returns(new NameValueCollection());
+            mockHttpRequest.Browser.Browser.Returns(Constant.Browser);
+
+            return mockHttpRequest;
         }
     }
 }

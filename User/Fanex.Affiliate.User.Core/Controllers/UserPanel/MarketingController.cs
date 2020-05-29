@@ -75,7 +75,7 @@
         public ActionResult GetSize(SizeParam param)
         {
             param.AffType = SessionService.UserSession.AffType;
-            param.Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(param.Language))?.EnglishName;
+            param.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(param.Language))?.EnglishName;
             var sizeList = MarketingService.GetSizeList(param, SessionService.IsInternal);
 
             return Json(sizeList, JsonRequestBehavior.AllowGet);
@@ -86,8 +86,9 @@
         public ActionResult GetBanner(MarketingBannerParam bannerParam)
         {
             var userSession = SessionService.UserSession;
-            var selectedDomain = MarketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
-                                                    .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
+            var selectedDomain = MarketingService
+                .GetDomainList(userSession.AffId, SessionService.IsInternal)
+                .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
 
             var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 
@@ -95,9 +96,10 @@
             bannerParam.AffType = userSession.AffType;
             bannerParam.SelectedDomain = selectedDomain;
             bannerParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
-            bannerParam.BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ??
-                AppSetting.BannerDomain;
-            bannerParam.Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(bannerParam.Language))?.EnglishName;
+            bannerParam.BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain;
+            bannerParam.Language = LanguageService
+                .GetSystemLanguages()
+                .FirstOrDefault(l => l.Code.MatchWith(bannerParam.Language))?.EnglishName;
 
             var bannerList = GetBannerList(bannerParam);
             ViewBag.TotalItem = bannerParam.Nrows;
@@ -117,7 +119,7 @@
             textParam.SelectedDomain = selectedDomain;
             textParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
             textParam.ScriptUrl = AppSetting.MediaScriptUrl;
-            textParam.Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(textParam.Language))?.EnglishName;
+            textParam.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(textParam.Language))?.EnglishName;
 
             var textList = GetTextList(textParam);
             ViewBag.TotalItem = textParam.Nrows;
@@ -130,10 +132,12 @@
         public ActionResult GenerateLink(string selectedLanguage, int selectedDomainId, string selectedPage)
         {
             var userSession = SessionService.UserSession;
-            var selectedDomain = MarketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
-                                                    .FirstOrDefault(d => d.DomainId == selectedDomainId);
-            var languageList = string.IsNullOrEmpty(selectedLanguage) ?
-                MarketingHelper.GetLanguageList(MarketingService.GetLanguageList(SessionService.IsInternal), userSession.PreferredLanguage) : null;
+            var selectedDomain = MarketingService
+                .GetDomainList(userSession.AffId, SessionService.IsInternal)
+                .FirstOrDefault(d => d.DomainId == selectedDomainId);
+            var languageList = string.IsNullOrEmpty(selectedLanguage) 
+                ? MarketingHelper.GetLanguageList(MarketingService.GetLanguageList(SessionService.IsInternal), userSession.PreferredLanguage) 
+                : null;
 
             var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);
 
