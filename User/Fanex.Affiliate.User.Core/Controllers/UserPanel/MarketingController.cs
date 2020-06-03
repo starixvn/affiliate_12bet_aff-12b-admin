@@ -146,16 +146,6 @@
             return View("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", qrCodeParamsDic);
         }
 
-        private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
-        {
-            if (bannerParam.SelectedDomain == null)
-            {
-                return new List<MarketingItem>();
-            }
-
-            return MarketingService.GetBannerList(bannerParam);
-        }
-
         private IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
         {
             if (textParam.SelectedDomain == null)
@@ -174,17 +164,18 @@
 
         private QrCodeLinkModel GetQrCodeParam(KeyValuePair<string, string> link)
         {
-            var icon = GetQrCodeIcon();
-            var language = link.Key;
-            var textLink = link.Value;
-            var qrCode = _qrCodeGeneratorService.GenerateBase64QrCode(textLink, icon, true);
-            icon.Dispose();
-            return new QrCodeLinkModel
+            using (var icon = GetQrCodeIcon())
             {
-                Language = language,
-                Link = textLink,
-                QrCode = qrCode
-            };
+                var language = link.Key;
+                var textLink = link.Value;
+                var qrCode = _qrCodeGeneratorService.GenerateBase64QrCode(textLink, icon, true);
+                return new QrCodeLinkModel
+                {
+                    Language = language,
+                    Link = textLink,
+                    QrCode = qrCode
+                };
+            }
         }
 
         private Image GetQrCodeIcon()

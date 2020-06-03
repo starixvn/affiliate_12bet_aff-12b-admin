@@ -67,6 +67,16 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             return viewModel;
         }
 
+        protected IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
+        {
+            if (bannerParam.SelectedDomain == null)
+            {
+                return new List<MarketingItem>();
+            }
+
+            return MarketingService.GetBannerList(bannerParam);
+        }
+
         protected IDictionary<string, string> GetTextLinkList(string selectedLanguage, string selectedPage,
             Domain selectedDomain, IEnumerable<SelectListItem> languageList)
         {

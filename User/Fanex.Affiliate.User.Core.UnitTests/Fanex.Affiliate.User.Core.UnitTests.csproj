@@ -124,10 +124,12 @@
     <Compile Include="Controllers\UserPanel\DailyEarningDetailControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MarketingControllerTest.cs" />
+    <Compile Include="Controllers\UserPanel\MediaGalleryControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MemberControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionControllerTest.cs" />
     <Compile Include="Controllers\SignupControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\ReferrersStatisticsControllerTest.cs" />
+    <Compile Include="Controllers\UserPanel\StatementHistoryControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\StatisticsControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\SummaryControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\TrackingStatisticsControllerTest.cs" />
