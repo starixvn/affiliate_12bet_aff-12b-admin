@@ -50,6 +50,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _appSetting = appSetting;
         }
 
+        public string GenerateCaptcha()
+            => new Random().Next(1000, 9999).ToString();
+
         public bool IsValid(string inputCaptcha, string sessionCaptcha, string userHostAddress)
         {
             return inputCaptcha == sessionCaptcha || IsValidSecretCaptcha(inputCaptcha, userHostAddress);

@@ -9,6 +9,7 @@ using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
+using System.Web.Security;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -193,6 +194,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var utcNow = DateTime.Now.ToUniversalTime();
 
             return DateTime.Compare(utcDateTimeRequest, utcNow.AddMinutes(timeout * -1)) >= 0;
+        }
+
+        public void SignIn(string userName, bool createPersistentCookie)
+        {
+            FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
+        }
+
+        public void SignOut()
+        {
+            FormsAuthentication.SignOut();
         }
     }
 }

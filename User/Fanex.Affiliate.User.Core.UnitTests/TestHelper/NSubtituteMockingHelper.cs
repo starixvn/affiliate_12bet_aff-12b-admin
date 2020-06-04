@@ -6,9 +6,6 @@ using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -64,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             var routData = routeData ?? new RouteData();
 
             context.Request.Returns(request);
-            controller.ControllerContext = Substitute.For<ControllerContext>(context, routData, controller);
+            controller.ControllerContext = new ControllerContext(context, routData, controller);
 
             var requestContext = new RequestContext(context, routData);
             controller.Url = new UrlHelper(requestContext);
@@ -80,8 +77,15 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             mockHttpRequest.Url.Returns(new Uri(Constant.DefaultRootDomain));
             mockHttpRequest.ServerVariables.Returns(new NameValueCollection());
             mockHttpRequest.Browser.Browser.Returns(Constant.Browser);
+            mockHttpRequest[Arg.Compat.Any<string>()].Returns("");
+            mockHttpRequest.ServerVariables.Returns(new NameValueCollection());
 
             return mockHttpRequest;
+        }
+
+        public static void FakeAjaxRequest(HttpRequestBase request)
+        {
+            request["X-Requested-With"].Returns("XMLHttpRequest");
         }
     }
 }
