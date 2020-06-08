@@ -239,6 +239,7 @@
     <Compile Include="Constants\Page.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\Product.cs" />
+    <Compile Include="Constants\RouteName.cs" />
     <Compile Include="Constants\TransType.cs" />
     <Compile Include="Controllers\AuthBaseController.cs" />
     <Compile Include="Controllers\TestController.cs">
@@ -545,7 +546,6 @@
     <Compile Include="Utilities\SymmetricEncryptionUtility.cs" />
     <Compile Include="Utilities\WrapperUtility.cs" />
     <Compile Include="ViewModels\AuthenticationFormViewModel.cs" />
-    <Compile Include="ViewModels\BetList\MainBetListViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginResultViewModel.cs" />

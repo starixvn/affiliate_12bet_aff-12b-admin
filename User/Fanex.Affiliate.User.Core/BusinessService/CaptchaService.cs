@@ -14,6 +14,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         private readonly IAppSetting _appSetting;
 
+        private const int RANDOM_BEGIN_NUMBER = 1000;
+        private const int RANDOM_END_NUMBER = 9999;
+
         private readonly string[] fontNameList = new[] {
          "Comic Sans MS",
          "Arial",
@@ -51,7 +54,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         }
 
         public string GenerateCaptcha()
-            => new Random().Next(1000, 9999).ToString();
+            => new Random().Next(RANDOM_BEGIN_NUMBER, RANDOM_END_NUMBER).ToString();
 
         public bool IsValid(string inputCaptcha, string sessionCaptcha, string userHostAddress)
         {
