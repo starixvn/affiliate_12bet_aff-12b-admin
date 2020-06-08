@@ -129,11 +129,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);
             NSubtituteMockingHelper.FakeAjaxRequest(controller.Request);
+            controller.ModelState.AddModelError("Error", "Need add field error");
 
             var result = controller.SignIn(new UserLoginParam()) as JsonResult;
             var model = result.Data as ResultInfo;
 
             Assert.False(model.IsOk);
+            Assert.Contains("Need add field error", model.Message);
         }
 
         [Fact]
@@ -224,7 +226,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);
-            controller.ModelState.AddModelError("abc", "Need field abc");            
+            controller.ModelState.AddModelError("abc", "Need field abc");          
 
             var result = controller.AdminLogin(new InternalLoginParam()) as RedirectResult;
 

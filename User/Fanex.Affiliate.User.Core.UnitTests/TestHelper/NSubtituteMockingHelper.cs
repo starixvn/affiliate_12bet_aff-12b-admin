@@ -60,7 +60,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             context.Server.Returns(server);
             var routData = routeData ?? new RouteData();
 
-            context.Request.Returns(request);
             controller.ControllerContext = new ControllerContext(context, routData, controller);
 
             var requestContext = new RequestContext(context, routData);
@@ -75,7 +74,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             mockHttpRequest.ApplicationPath.Returns("/");
             mockHttpRequest.UserHostAddress.Returns("::1");
             mockHttpRequest.Url.Returns(new Uri(Constant.DefaultRootDomain));
-            mockHttpRequest.ServerVariables.Returns(new NameValueCollection());
             mockHttpRequest.Browser.Browser.Returns(Constant.Browser);
             mockHttpRequest[Arg.Compat.Any<string>()].Returns("");
             mockHttpRequest.ServerVariables.Returns(new NameValueCollection());
