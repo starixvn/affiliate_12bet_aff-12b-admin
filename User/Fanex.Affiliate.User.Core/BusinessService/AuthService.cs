@@ -55,6 +55,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _authRepository.Recheckin(onUserId, isInternal);
         }
 
+        public void SignIn(string userName, bool createPersistentCookie)
+        {
+            FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
+        }
+
+        public void SignOut()
+        {
+            FormsAuthentication.SignOut();
+        }
+
         private LoginResultViewModel GetLoginResultForInternalAdmin(UserLoginParam userParam)
         {
             var user = _authRepository.GetUserInfo(userParam.UserName, true);
@@ -194,16 +204,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var utcNow = DateTime.Now.ToUniversalTime();
 
             return DateTime.Compare(utcDateTimeRequest, utcNow.AddMinutes(timeout * -1)) >= 0;
-        }
-
-        public void SignIn(string userName, bool createPersistentCookie)
-        {
-            FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
-        }
-
-        public void SignOut()
-        {
-            FormsAuthentication.SignOut();
         }
     }
 }

@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessService\AccountServiceTest.cs" />
+    <Compile Include="BusinessService\AuthServiceTest.cs" />
     <Compile Include="BusinessService\ContactServiceTest.cs" />
     <Compile Include="BusinessService\MainControllerTest.cs" />
     <Compile Include="BusinessService\MemberInfoServiceWrapperTest.cs" />
