@@ -5,7 +5,7 @@ using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using System.Web.Mvc;
 using Xunit;
 
-namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
+namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
     public class MainControllerTest
     {

@@ -95,6 +95,38 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
+        public void GetLogin_WhenQueryStringHaveEmptyUserName_ReturnFailResult()
+        {
+            var nowTick = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            var queryString = $"u={String.Empty}&p={Password}&t={nowTick}";
+            var service = CreateService();
+            SetUpLoginNormaiUserPassedAllCheckCondition();
+            var param = CreateLoginParam();
+            CryptographyService.RsaDecrypt(null, null).ReturnsForAnyArgs(queryString);
+
+            var result = service.GetLoginResult(param, false);
+
+            Assert.False(result.Result.IsOk);
+            Assert.Contains(Lang.ErrmsgEntryUsername, result.Result.Message);
+        }
+
+        [Fact]
+        public void GetLogin_WhenQueryStringHaveEmptyPassword_ReturnFailResult()
+        {
+            var nowTick = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            var queryString = $"u={UserName}&p={String.Empty}&t={nowTick}";
+            var service = CreateService();
+            SetUpLoginNormaiUserPassedAllCheckCondition();
+            var param = CreateLoginParam();
+            CryptographyService.RsaDecrypt(null, null).ReturnsForAnyArgs(queryString);
+
+            var result = service.GetLoginResult(param, false);
+
+            Assert.False(result.Result.IsOk);
+            Assert.Contains(Lang.ErrmsgEntryPassword, result.Result.Message);
+        }
+
+        [Fact]
         public void GetLogin_WhenUserIsClosed_ReturnFailResult()
         {
             var service = CreateService();
@@ -111,18 +143,48 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLogin_WhenUserIsNotVerified_ReturnFailResult()
+        public void GetLogin_WhenUserVerifiedInfoNotExist_ReturnFailResult()
         {
             var service = CreateService();
             SetUpLoginNormaiUserPassedAllCheckCondition();
             var param = CreateLoginParam();
             param.IsVerifyingAccount = false;
-            VerificationRepo.GetLoginInfoByUserDevice(0, null, null).Returns(CreateVerficationInfo());
+            VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsNullForAnyArgs();
 
             var result = service.GetLoginResult(param, false);
 
             Assert.False(result.Result.IsOk);
             Assert.True(result.Result.ShouldVerifyAccount);
+        }
+
+        [Fact]
+        public void GetLogin_WhenUserVerifyFail_ReturnFailResult()
+        {
+            var service = CreateService();
+            SetUpLoginNormaiUserPassedAllCheckCondition();
+            var param = CreateLoginParam();
+            param.IsVerifyingAccount = false;
+            VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsForAnyArgs(CreateFailVerficationInfo());
+
+            var result = service.GetLoginResult(param, false);
+
+            Assert.False(result.Result.IsOk);
+            Assert.True(result.Result.ShouldVerifyAccount);
+        }
+
+        [Fact]
+        public void GetLogin_WhenPasswordIsEmpty_ReturnFailResult()
+        {
+            var service = CreateService();
+            SetUpLoginNormaiUserPassedAllCheckCondition();
+            var param = CreateLoginParam();
+            param.Password = String.Empty;
+            CryptographyService.EncryptPassword(null).ReturnsForAnyArgs("abc");
+
+            var result = service.GetLoginResult(param, false);
+
+            Assert.False(result.Result.IsOk);
+            Assert.Contains(Error.LoginWrongInfo, result.Result.Message);
         }
 
         [Fact]
@@ -196,7 +258,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             });
         }
 
-        private static VerificationInfo CreateVerficationInfo()
+        private static VerificationInfo CreateFailVerficationInfo()
             => new VerificationInfo
             {
                 DeviceCount = 11,
