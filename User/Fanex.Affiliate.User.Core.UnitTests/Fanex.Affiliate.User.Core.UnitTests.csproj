@@ -148,6 +148,7 @@
     <Compile Include="BusinessService\CommissionReportServiceTest.cs" />
     <Compile Include="BusinessService\ContactServiceTest.cs" />
     <Compile Include="BusinessService\CryptographyServiceTest.cs" />
+    <Compile Include="BusinessService\EmailServiceTest.cs" />
     <Compile Include="Controllers\UserPanel\MainControllerTest.cs" />
     <Compile Include="BusinessService\MemberInfoServiceWrapperTest.cs" />
     <Compile Include="BusinessService\MemberTransactionServiceTest.cs" />
