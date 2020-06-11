@@ -33,13 +33,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 
         public static IEnumerable<Language> LanguageList = new List<Language>
         {
-            new Language {Code = "en-US", DisplayName="English", EnglishName="English", NativeName="English", ShortedCode="en" },
-            new Language {Code ="vi-vn", DisplayName="VietNam", EnglishName= "VietNamese", NativeName="Tieng viet", ShortedCode = "vn" }
+            new Language {Code = "en-UK", DisplayName="English", EnglishName="English", NativeName="English", ShortedCode="en" },
+            new Language {Code ="vi-VN", DisplayName="VietNam", EnglishName= "VietNamese", NativeName="Tieng viet", ShortedCode = "vn" }
         };
 
         public static IEnumerable<LanguageType> LanguageTypeList = new List<LanguageType>
         {
-            new LanguageType {DisplayName = "English", MarketId = "england", MarketName = "England", MarketNativeName = "England", ShortedCode = "en" }
+            new LanguageType {DisplayName = "English", MarketId = "en-UK", MarketName = "England", MarketNativeName = "England", ShortedCode = "en" }
         };
 
         public static IEnumerable<CategoryType> CategoryList = new List<CategoryType>
@@ -66,6 +66,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
         {
             new LandingPage { PageCode = "SignUp", PageName = "SingUp" },
             new LandingPage { PageCode = "Index", PageName = "Index" }
+        };
+
+        public static IEnumerable<BannerType> BannerTypeList = new List<BannerType>
+        {
+            new BannerType {Type = "Image", TypeId =1 }
         };
 
         public static UserSession Session = new UserSession
