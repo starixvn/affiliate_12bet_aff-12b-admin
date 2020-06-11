@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     Ip = emailParam.Ip
                 };
 
-                var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
+                var userLang = _languageService.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
                 _languageService.SetCulture(userLang);
                 _mailService.SendVerificationEmail(verificationAccountEmailParam);
                 _languageService.SetCulture(param.CurrentLanguage);

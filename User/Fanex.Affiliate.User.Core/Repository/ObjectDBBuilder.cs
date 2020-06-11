@@ -8,10 +8,15 @@ namespace Fanex.Affiliate.User.Core.Repository
     {
         public IObjectDb DB { get; private set; }
 
+        public ObjectDBBuilder() { }
+
         public ObjectDBBuilder(string spKey, string dbMode = DBMode.Main)
         {
             DB = new ObjectDb(spKey + dbMode);
         }
+
+        public IObjectDb Build(string spKey, string dbMode = DBMode.Main)
+            => DB = new ObjectDb(spKey + dbMode);
 
         public void Dispose()
         {
@@ -26,5 +31,6 @@ namespace Fanex.Affiliate.User.Core.Repository
                 DB.Dispose();
             }
         }
+
     }
 }

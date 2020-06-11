@@ -44,7 +44,7 @@
             var textParam = new MarketingTextParam
             {
                 AffId = userSession.AffId,
-                Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(selectedLanguage))?.EnglishName,
+                Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(selectedLanguage))?.EnglishName,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,
                 ScriptUrl = AppSetting.MediaScriptUrl,

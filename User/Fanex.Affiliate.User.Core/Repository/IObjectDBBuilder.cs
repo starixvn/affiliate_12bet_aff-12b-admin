@@ -1,9 +1,12 @@
-﻿using Fanex.Data;
+﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
     public interface IObjectDBBuilder
     {
         IObjectDb DB { get; }
+
+        IObjectDb Build(string spKey, string dbMode = DBMode.Main);
     }
 }
