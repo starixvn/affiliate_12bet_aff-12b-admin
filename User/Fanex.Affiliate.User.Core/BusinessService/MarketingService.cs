@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         }
 
         public IEnumerable<LanguageType> GetLanguageList(bool isInternal)
-            => _languageService.GetSystemLanguages()
+            => _languageService.GetSystemLanguages(isInternal)
             .Select(l => new LanguageType
             {
                 DisplayName = l.DisplayName,
@@ -110,10 +110,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam)
         {
             var linkList = new Dictionary<string, string>();
+            var selectedLanguage = linkGenerationParam.SelectedLanguage;
+            if (string.IsNullOrEmpty(selectedLanguage))
+            {
+                return linkList;
+            }
 
             var languageList = linkGenerationParam.LanguageList;
-            if (string.IsNullOrEmpty(linkGenerationParam.SelectedLanguage) &&
-                languageList != null && languageList.Any())
+            if (languageList != null && languageList.Any())
             {
                 foreach (var item in languageList)
                 {
@@ -130,7 +134,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
             else
             {
-                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(linkGenerationParam.SelectedLanguage));
+                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(selectedLanguage));
 
                 if (language != null)
                 {

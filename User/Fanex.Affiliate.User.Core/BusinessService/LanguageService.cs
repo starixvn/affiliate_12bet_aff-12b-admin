@@ -35,18 +35,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 return preferedLang;
             }
 
-
             var langCookie = HttpContext.Current.Request.Cookies["afffavoritelang"]?.Value;
 
             return IsValid(langCookie) ? langCookie : SystemLanguage.DefaultLanguageCode;
         }
 
-        public IEnumerable<Language> GetSystemLanguages()
+        public IEnumerable<Language> GetSystemLanguages(bool? isInternal = null)
         {
+            var isForInternal = isInternal ?? _sessionService.IsInternal;
             var languageList = _cacheService.Get<IEnumerable<LanguageType>>(CacheKey.LanguageList);
             if (languageList == null)
             {
-                languageList = _languageRepository.GetLanguageList(_sessionService.IsInternal);
+                languageList = _languageRepository.GetLanguageList(isForInternal);
             }
 
             if (languageList != null)
@@ -67,7 +67,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         }
 
         public bool IsValid(string langCode)
-            => !string.IsNullOrEmpty(langCode) && GetSystemLanguages().Any(l => Equals(l.Code, langCode));
+            => !string.IsNullOrWhiteSpace(langCode) && GetSystemLanguages().Any(l => Equals(l.Code, langCode));
 
 
         public void SetCulture(string languageCode)
