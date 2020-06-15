@@ -18,16 +18,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.CoreService
     public class SessionServiceTest
     {
         private const string UserSessionKey = "Affiliate12Bet.UserSessionKey";
-        private const string CaptchaCodeKey = "Affiliate12Bet.CaptchaCodeKey";
-        private const string SingUpCaptchaCodeKey = "Affiliate12Bet.SingUpCaptchaCodeKey";
 
-        private const string CurrentLanguageKey = "Affiliate12Bet.CurrentLanguageKey";
-        private const string IsInternalKey = "Affiliate12Bet.IsInternalKey";
-
-        private const string RsaKeyPairKey = "Affiliate12Bet.RsaKeyPairKey";
-        private const string VerificationSessionKey = "Affiliate12Bet.VerificationSessionKey";
-
-        private HttpSessionState Session => HttpContext.Current.Session;
+        private static HttpSessionState Session => HttpContext.Current.Session;
 
         [Fact]
         public void PropertyCatchaCode_WhenCall_PropertyStoreCorrectly()

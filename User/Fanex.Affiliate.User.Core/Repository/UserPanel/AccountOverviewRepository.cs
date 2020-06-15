@@ -7,13 +7,20 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public class AccountOverviewRepository : IAccountOverviewRepository
     {
+        private readonly IObjectDBBuilder _builder;
+
+        public AccountOverviewRepository(IObjectDBBuilder builder)
+        {
+            _builder = builder;
+        }
+
         public LastLoginInfo GetLastLoginInfo(int affId)
         {
             const string uSpKey = "Aff_User_LoginInfo_Sel";
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            using (var db = _builder.Build(uSpKey))
             {
-                return objectDb.DB.QueryEntity<LastLoginInfo>(new { affId });
+                return db.QueryEntity<LastLoginInfo>(new { affId });
             }
         }
 
@@ -21,9 +28,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             const string uSpKey = "Aff_User_Overview_PlayersDetail_Sel";
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            using (var db = _builder.Build(uSpKey))
             {
-                return objectDb.DB.Query<PlayerDetail>(param);
+                return db.Query<PlayerDetail>(param);
             }
         }
 
@@ -31,9 +38,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             const string uSpKey = "Aff_User_Overview_Detail_Sel";
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            using (var db = _builder.Build(uSpKey))
             {
-                return objectDb.DB.Query<OverviewDetail>(new { affId, monthDate });
+                return db.Query<OverviewDetail>(new { affId, monthDate });
             }
         }
 
@@ -41,9 +48,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             const string uSpKey = "Aff_User_Overview_Summary_Sel";
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            using (var db = _builder.Build(uSpKey))
             {
-                return objectDb.DB.QueryEntity<OverviewSummary>(new { affId, monthDate });
+                return db.QueryEntity<OverviewSummary>(new { affId, monthDate });
             }
         }
     }

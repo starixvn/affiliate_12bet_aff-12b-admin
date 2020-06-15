@@ -8,15 +8,22 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public class StatementHistoryRepository : IStatementHistoryRepository
     {
+        private readonly IObjectDBBuilder _builder;
+
+        public StatementHistoryRepository(IObjectDBBuilder builder)
+        {
+            _builder = builder;
+        }
+
         public IEnumerable<StatementHistory> GetStatementHistory(StatementHistoryParam statementHistoryParam)
         {
             const string uSpKey = "Aff_User_StatementHistory_Sel";
             var dbMode = statementHistoryParam.IsInternal ? DBMode.View : DBMode.Main;
             var dataList = new List<StatementHistory>();
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                using (var reader = objectDb.DB.ExecuteReader(statementHistoryParam))
+                using (var reader = db.ExecuteReader(statementHistoryParam))
                 {
                     while (reader.Read())
                     {
@@ -43,9 +50,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             const string uSpKey = "Aff_ProductList_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return objectDb.DB.Query<ProductItem>();
+                return db.Query<ProductItem>();
             }
         }
 
@@ -57,9 +64,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             var dailyEarningResult = new DailyEarningResult();
             var dataList = new List<DailyEarning>();
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                using (var reader = objectDb.DB.ExecuteReader(dailyEarningParam))
+                using (var reader = db.ExecuteReader(dailyEarningParam))
                 {
                     while (reader.Read())
                     {
@@ -98,11 +105,11 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             var mode = isInternal ? DBMode.View : DBMode.Main;
             var result = new ExtraUserInfo();
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
+            using (var db = _builder.Build(uSpKey, mode))
             {
-                objectDb.DB.AddInParameter("AffId", System.Data.SqlDbType.Int, affId);
+                db.AddInParameter("AffId", System.Data.SqlDbType.Int, affId);
 
-                using (var reader = objectDb.DB.ExecuteReader())
+                using (var reader = db.ExecuteReader())
                 {
                     if (reader.Read())
                     {
@@ -121,9 +128,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             var mode = earningDetailParam.IsInternal ? DBMode.View : DBMode.Main;
             var result = new List<DailyEarningDetail>();
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
+            using (var db = _builder.Build(uSpKey, mode))
             {
-                using (var reader = objectDb.DB.ExecuteReader(earningDetailParam))
+                using (var reader = db.ExecuteReader(earningDetailParam))
                 {
                     while (reader.Read())
                     {

@@ -7,14 +7,21 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public class MemberRepository : IMemberRepository
     {
+        private readonly IObjectDBBuilder _builder;
+
+        public MemberRepository(IObjectDBBuilder builder)
+        {
+            _builder = builder;
+        }
+
         public IEnumerable<Member> GetMemberList(MemberParam customerParam)
         {
             const string uSpKey = "Aff_MemberList_Sel";
             var mode = customerParam.IsInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
+            using (var db = _builder.Build(uSpKey, mode))
             {
-                return objectDb.DB.Query<Member>(customerParam);
+                return db.Query<Member>(customerParam);
             }
         }
     }

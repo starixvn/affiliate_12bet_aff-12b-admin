@@ -9,17 +9,24 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public class MarketingRepository : IMarketingRepository
     {
+        private readonly IObjectDBBuilder _builder;
+
         private const int AffiliateLink = 1;
         private const int MediaGallery = 2;
+
+        public MarketingRepository(IObjectDBBuilder builder)
+        {
+            _builder = builder;
+        }
 
         public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal)
         {
             const string uSpKey = "Aff_Admin_MediaCategory_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return objectDb.DB.Query<CategoryType>(new { TypeId = isMediaPage ? AffiliateLink : MediaGallery });
+                return db.Query<CategoryType>(new { TypeId = isMediaPage ? AffiliateLink : MediaGallery });
             }
         }
 
@@ -28,9 +35,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             const string uSpKey = "Aff_Admin_MediaCurrency_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return objectDb.DB.Query<CurrencyType>();
+                return db.Query<CurrencyType>();
             }
         }
 
@@ -39,9 +46,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             const string uSpKey = "Aff_Admin_MediaType_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return objectDb.DB.Query<BannerType>();
+                return db.Query<BannerType>();
             }
         }
 
@@ -50,9 +57,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             const string uSpKey = "Aff_Admin_MediaSize_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return objectDb.DB.Query<SizeType>(param);
+                return db.Query<SizeType>(param);
             }
         }
 
@@ -62,9 +69,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return objectDb.DB.Query<Domain>(new { AffId = affId });
+                return db.Query<Domain>(new { AffId = affId });
             }
         }
 
@@ -74,9 +81,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             var dbMode = bannerParam.IsInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return objectDb.DB.Query<MarketingItem>(bannerParam);
+                return db.Query<MarketingItem>(bannerParam);
             }
         }
 
@@ -85,9 +92,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             const string uSpKey = "Aff_Admin_Text_Sel";
             var dbMode = textParam.IsInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return objectDb.DB.Query<MarketingItem>(textParam);
+                return db.Query<MarketingItem>(textParam);
             }
         }
 
@@ -97,9 +104,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
             var result = new List<LandingPage>();
 
-            using (var objectDb = new ObjectDBBuilder(SpKey, dbMode))
+            using (var db = _builder.Build(SpKey, dbMode))
             {
-                using (var reader = objectDb.DB.ExecuteReader())
+                using (var reader = db.ExecuteReader())
                 {
                     while (reader.Read())
                     {

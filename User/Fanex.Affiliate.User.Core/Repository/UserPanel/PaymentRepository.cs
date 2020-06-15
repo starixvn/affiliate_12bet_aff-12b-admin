@@ -10,6 +10,13 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public class PaymentRepository : IPaymentRepository
     {
+        private readonly IObjectDBBuilder _builder;
+
+        public PaymentRepository(IObjectDBBuilder builder)
+        {
+            _builder = builder;
+        }
+
         public IEnumerable<Payment> GetPaymentList(PaymentParam paymentParam)
         {
             const string uSpKey = "Aff_User_PaymentRequest_Sel";
@@ -17,11 +24,11 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             var paymentList = new List<Payment>();
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                AssignPaymentParam(objectDb.DB, paymentParam);
+                AssignPaymentParam(db, paymentParam);
 
-                using (var reader = objectDb.DB.ExecuteReader())
+                using (var reader = db.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -29,9 +36,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                     }
                 }
 
-                var balBroughtForward = objectDb.DB.GetParameterValue("BalBroughtForward");
-                var preferredPayment = objectDb.DB.GetParameterValue("PreferredPayment");
-                var minAmount = objectDb.DB.GetParameterValue("MinAmount");
+                var balBroughtForward = db.GetParameterValue("BalBroughtForward");
+                var preferredPayment = db.GetParameterValue("PreferredPayment");
+                var minAmount = db.GetParameterValue("MinAmount");
 
                 paymentParam.PreferredPayment = preferredPayment == DBNull.Value ? string.Empty : Convert.ToString(preferredPayment);
                 paymentParam.BalBroughtForward = balBroughtForward == DBNull.Value ? 0m : Convert.ToDecimal(balBroughtForward);
@@ -45,9 +52,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             const string uSpKey = "Aff_User_PaymentRequest_Upd";
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            using (var db = _builder.Build(uSpKey))
             {
-                objectDb.DB.ExecuteNonQuery(cancelParam);
+                db.ExecuteNonQuery(cancelParam);
             }
 
             return new ResultInfo
@@ -61,9 +68,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             const string uSpKey = "Aff_PaymentRequestIns";
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            using (var db = _builder.Build(uSpKey))
             {
-                objectDb.DB.ExecuteNonQuery(paymentCreationParam);
+                db.ExecuteNonQuery(paymentCreationParam);
             }
 
             return new ResultInfo
@@ -73,14 +80,14 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             };
         }
 
-        private static void AssignPaymentParam(IObjectDb objectDb, PaymentParam param)
+        private static void AssignPaymentParam(IObjectDb db, PaymentParam param)
         {
-            objectDb.AddInParameter("AffID", SqlDbType.Int, param.AffId);
-            objectDb.AddInParameter("Year", SqlDbType.Int, param.Year);
+            db.AddInParameter("AffID", SqlDbType.Int, param.AffId);
+            db.AddInParameter("Year", SqlDbType.Int, param.Year);
 
-            objectDb.AddOutParameter("PreferredPayment", SqlDbType.VarChar, DbParam.PreferPaymentSize);
-            objectDb.AddOutParameter("BalBroughtForward", SqlDbType.Money, DbParam.MoneySize);
-            objectDb.AddOutParameter("MinAmount", SqlDbType.Money, DbParam.MoneySize);
+            db.AddOutParameter("PreferredPayment", SqlDbType.VarChar, DbParam.PreferPaymentSize);
+            db.AddOutParameter("BalBroughtForward", SqlDbType.Money, DbParam.MoneySize);
+            db.AddOutParameter("MinAmount", SqlDbType.Money, DbParam.MoneySize);
         }
 
         private static Payment BuildPaymentItem(IDataReader reader)
