@@ -225,7 +225,7 @@
     <Compile Include="BusinessService\IEmailService.cs" />
     <Compile Include="BusinessService\INewsService.cs" />
     <Compile Include="BusinessService\PaymentService.cs" />
-    <Compile Include="BusinessService\QrCodeUrlGeneratorService.cs" />
+    <Compile Include="BusinessService\QrCodeGeneratorService.cs" />
     <Compile Include="BusinessService\SecurityQuestionService.cs" />
     <Compile Include="BusinessService\TwoFactorAuthService.cs" />
     <Compile Include="BusinessService\VerificationService.cs" />
@@ -534,7 +534,6 @@
     <Compile Include="Utilities\EmailHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="CoreService\IMemoryCacheService.cs" />
-    <Compile Include="Utilities\IImageHandler.cs" />
     <Compile Include="Utilities\IWrapperUtility.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\IAppSetting.cs" />

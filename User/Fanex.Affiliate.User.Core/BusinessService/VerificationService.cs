@@ -170,18 +170,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         }
 
         private static string CreateHashMessage(string message, string secret)
-        {
-            var secretKey = secret ?? string.Empty;
-            var encoding = new ASCIIEncoding();
-            var keyByte = encoding.GetBytes(secretKey);
-            var messageBytes = encoding.GetBytes(message);
-            using (var hmacsha256 = new HMACSHA256(keyByte))
-            {
-                var hashmessage = hmacsha256.ComputeHash(messageBytes);
-
-                return ConverterUtils.ToHex(hashmessage).ToLowerInvariant();
-            }
-        }
+            => CryptographyHelper.SHA256Hash(message, secret);
 
         private string TryCreateSecretKey(int affId)
         {
