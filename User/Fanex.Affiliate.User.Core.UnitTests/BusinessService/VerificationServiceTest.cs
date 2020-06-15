@@ -8,10 +8,7 @@ using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
@@ -146,6 +143,23 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             VerificationRepo.ReceivedWithAnyArgs().InsertUserDeviceInfo(null);
             Assert.True(result);
+        }
+
+        [Fact]
+        public void CreateActionLink_WhenCall_ReturnCorrectValue()
+        {
+            var service = CreateService();
+            var nowTick = 10000000;
+            var expirationMin = 10;
+            var queryString = "controller=VerificationAccount&action=VerifyAccount&t=" + nowTick + "&e=" + expirationMin;
+            var link = ConverterUtils.Base64Encode(SymmetricEncryptionUtility.Encrypt<AesManaged>(queryString, "abc", "12233333"));
+            WrapperUtility.GetNowDateTime().ReturnsForAnyArgs(new DateTime(nowTick));
+
+            var result = service.CreateActionLink("abc", "12233333", expirationMin);
+
+            Assert.Equal(link, result.Link);
+            Assert.Equal(nowTick.ToString(), result.TimeToken);
+
         }
 
         private static VerificationOtpParam CreateVerificationOtpParam()
