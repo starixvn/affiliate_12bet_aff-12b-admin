@@ -34,7 +34,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
         public static IEnumerable<Language> LanguageList = new List<Language>
         {
             new Language {Code = "en-UK", DisplayName="English", EnglishName="English", NativeName="English", ShortedCode="en" },
-            new Language {Code ="vi-VN", DisplayName="VietNam", EnglishName= "VietNamese", NativeName="Tieng viet", ShortedCode = "vn" }
+            new Language {Code ="vi-VN", DisplayName="VietNam", EnglishName= "VietNamese", NativeName="Tieng viet", ShortedCode = "vn" },
+            new Language {Code = "en-US",  DisplayName="English", EnglishName="English", NativeName="English", ShortedCode="us"}
         };
 
         public static IEnumerable<LanguageType> LanguageTypeList = new List<LanguageType>
