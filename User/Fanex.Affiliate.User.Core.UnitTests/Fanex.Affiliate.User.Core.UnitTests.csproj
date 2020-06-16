@@ -215,6 +215,9 @@
     <Compile Include="Repository\LanguageRepositoryTest.cs" />
     <Compile Include="Repository\ObjectDBBuilderTest.cs" />
     <Compile Include="Repository\RepositoryTestBase.cs" />
+    <Compile Include="Repository\UserPanel\AccountOverviewRepositoryTest.cs" />
+    <Compile Include="Repository\UserPanel\AccountRepositoryTest.cs" />
+    <Compile Include="Repository\UserPanel\CommissionReportRepositoryTest.cs" />
     <Compile Include="Repository\VerificationRepositoryTest.cs" />
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />
@@ -246,9 +249,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.13.0.8313\analyzers\SonarAnalyzer.dll" />
     <Analyzer Include="..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repository\BetList\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
