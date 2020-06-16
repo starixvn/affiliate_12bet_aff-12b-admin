@@ -111,13 +111,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             var linkList = new Dictionary<string, string>();
             var selectedLanguage = linkGenerationParam.SelectedLanguage;
-            if (string.IsNullOrEmpty(selectedLanguage))
-            {
-                return linkList;
-            }
-
             var languageList = linkGenerationParam.LanguageList;
-            if (languageList != null && languageList.Any())
+
+            if (IsSelectedAllLanguages(selectedLanguage) && languageList != null && languageList.Any())
             {
                 foreach (var item in languageList)
                 {
@@ -213,5 +209,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             return result;
         }
+
+        private static bool IsSelectedAllLanguages(string selectedLang)
+            => string.IsNullOrWhiteSpace(selectedLang);
     }
 }
