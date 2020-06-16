@@ -5,8 +5,6 @@ namespace Fanex.Affiliate.User.Core.Repository
 {
     public interface IObjectDBBuilder
     {
-        IObjectDb DB { get; }
-
         IObjectDb Build(string spKey, string dbMode = DBMode.Main);
     }
 }

@@ -364,12 +364,6 @@
     <Compile Include="Infrastructure\UrlSchema.cs" />
     <Compile Include="MetalModels\Attributes\RequiredByCheckedAttribute.cs" />
     <Compile Include="MetalModels\AuthResultBaseParam.cs" />
-    <Compile Include="MetalModels\BetList\BetListCashoutDetailParam.cs" />
-    <Compile Include="MetalModels\BetList\BetListNewParlayParam.cs" />
-    <Compile Include="MetalModels\BetList\BetListParam.cs" />
-    <Compile Include="MetalModels\BetList\BetListParlayDetailParam.cs" />
-    <Compile Include="MetalModels\BetList\BetListResultParam.cs" />
-    <Compile Include="MetalModels\BetList\BetListValidationParam.cs" />
     <Compile Include="MetalModels\ContactUsParam.cs" />
     <Compile Include="MetalModels\Email\VerificationAccountEmailParam.cs" />
     <Compile Include="MetalModels\MemberTransactionParam.cs" />
@@ -412,8 +406,6 @@
     <Compile Include="MetalModels\VerificationAccountParam.cs" />
     <Compile Include="MetalModels\VerificationOtpParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\BetList\BetListRepository.cs" />
-    <Compile Include="Repository\BetList\IBetListRepository.cs" />
     <Compile Include="Repository\EmailHistoryRepository.cs" />
     <Compile Include="Repository\IEmailHistoryRepository.cs" />
     <Compile Include="Repository\ISecurityQuestionRepository.cs" />
