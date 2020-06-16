@@ -173,7 +173,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GenerateLinkList_WhenNotHaveSelectedLanguage_ReturnEmptyList()
+        public void GenerateLinkList_WhenSelectAllLanguagesAndLanguagesInSystemNotEmpty_ReturnNotEmptyList()
         {
             var service = CreateService();
             var param = CreateLinkGenerationParam();
@@ -181,7 +181,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             var result = service.GenerateLinkList(param);
 
-            Assert.Empty(result);
+            Assert.NotEmpty(result);
         }
 
         [Fact]

@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.CoreService
             var result = service.Get<TestModel>("aabc");
 
             Assert.NotNull(result);
-            Assert.NotEqual(model, result);
+            Assert.NotSame(model, result);
         }
 
         [Fact]
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.CoreService
             service.Set("abc", model, 120);
 
             Assert.NotNull(cacheValue);
-            Assert.NotEqual(cacheValue, model);
+            Assert.NotSame(cacheValue, model);
         }
 
         [Fact]
