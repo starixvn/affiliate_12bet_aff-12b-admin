@@ -9,7 +9,6 @@ using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.MemberInfoWebService;
 using Fanex.Affiliate.User.Core.Repository;
-using Fanex.Affiliate.User.Core.Repository.BetList;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Caching;
