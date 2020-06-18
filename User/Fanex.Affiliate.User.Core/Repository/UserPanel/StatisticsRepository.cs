@@ -38,19 +38,11 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var db = _builder.Build(uSpkey, dbMode))
             {
-                using (var reader = db.ExecuteReader(new { affId, trackingCode }))
+                using (var multipleReader = db.QueryMultiple(new { affId, trackingCode }))
                 {
-                    while (reader.Read())
+                    while (!multipleReader.IsEmptyOrClosed)
                     {
-                        dataList.Add(BuildTrackingStatisticsItem(reader));
-                    }
-
-                    if (reader.NextResult())
-                    {
-                        while (reader.Read())
-                        {
-                            dataList.Add(BuildTrackingStatisticsItem(reader));
-                        }
+                        dataList.AddRange(multipleReader.Read<TrackingStatistics>());
                     }
                 }
             }
@@ -94,7 +86,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                     {
                         dataList.Add(new ReferrerStatistics
                         {
-                            DomainReferrer = reader["UrlReferrer"].ToString(),
+                            DomainReferrer = Convert.ToString(reader["UrlReferrer"]),
                             TotalClick = reader[TotalClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[TotalClickColumn]),
                             UniqueClick = reader[UniqueClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[UniqueClickColumn]),
                             SignUps = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),
@@ -127,18 +119,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             {
                 return db.QueryEntity<AccountOverviewStatistics>(overviewParam);
             }
-        }
-
-        private TrackingStatistics BuildTrackingStatisticsItem(IDataReader reader)
-        {
-            var date = Convert.ToDateTime(reader["Date"]);
-
-            return new TrackingStatistics
-            {
-                Date = date,
-                TotalClick = reader[TotalClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[TotalClickColumn]),
-                UniqueClick = reader[UniqueClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[UniqueClickColumn])
-            };
         }
     }
 }

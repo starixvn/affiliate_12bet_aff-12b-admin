@@ -102,24 +102,11 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             const string SpKey = "Aff_Admin_LandingPage_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
-            var result = new List<LandingPage>();
 
             using (var db = _builder.Build(SpKey, dbMode))
             {
-                using (var reader = db.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new LandingPage
-                        {
-                            PageName = Convert.ToString(reader["PageName"]),
-                            PageCode = Convert.ToString(reader["PageCode"])
-                        });
-                    }
-                }
+                return db.Query<LandingPage>();
             }
-
-            return result;
         }
     }
 }
