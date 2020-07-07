@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.DataService.Importer.KYGaming.Utilities
 {
-    public static class KYHelper
+    public static class KYGamingHelper
     {
         public static int GetAgent(string Currency)
         {

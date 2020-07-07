@@ -47,14 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\Agent.cs" />
-    <Compile Include="Constants\Deskey.cs" />
-    <Compile Include="Constants\Md5Key.cs" />
-    <Compile Include="KYService.cs" />
-    <Compile Include="IKYService.cs" />
-    <Compile Include="MetaModels\KYApiParam.cs" />
+    <Compile Include="Client\KYGamingClient.cs" />
+    <Compile Include="KYGamingService.cs" />
+    <Compile Include="MetaModels\KYGamingApiParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\KYHelper.cs" />
+    <Compile Include="Utilities\KYGamingHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -68,6 +65,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
       <Project>{410276E1-1E99-4662-809C-25F0F1777C08}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.IMOne\Fanex.Affiliate.DataService.Importer.IMOne.csproj">
+      <Project>{7C3E0E3A-A71E-4D43-9D77-491EE5214E8A}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.IMOne</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
