@@ -106,5 +106,11 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             var form = new FileImportForm();
             SetUpServiceForm(form);
         }
+
+        private void btnKYGaming_Click(object sender, EventArgs e)
+        {
+            var form = new KYGamingForm();
+            SetUpServiceForm(form);
+        }
     }
 }

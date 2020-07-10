@@ -9,18 +9,14 @@ using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.IMOne.Extension;
 using Fanex.Affiliate.DataService.Importer.KYGaming.MetaModels;
 using Fanex.Affiliate.DataService.Importer.KYGaming.Utilities;
-using System.Text;
-using System.Security.Cryptography;
-using System.IO;
 using System.Collections.Specialized;
 
 namespace Fanex.Affiliate.DataService.Importer.KYGaming
 {
     public class KYGamingService : XmlImpoterlServiceBase, IDataRequestByCurrency
     {
-        private const int DelayTimeMillisecond = 30000;
-
         protected readonly IApiClient _client;
+        private const string _operateSubType = "6";
 
         protected override int ProductId => throw new NotImplementedException();
 
@@ -58,7 +54,7 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
             return datas;
         }
 
-        private async Task<string> GetRawDataAsync(KYGamingApiParam param)
+        public async Task<string> GetRawDataAsync(KYGamingApiParam param)
         {
             var url = _appSetting.GetValue("KYGamingApiUrl");
             var queryValue = BuildQuery(param);
@@ -66,75 +62,40 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
             return await _client.GetResponseAsync(url, queryValue);
         }
 
-        private NameValueCollection BuildQuery(KYGamingApiParam param)
+        public NameValueCollection BuildQuery(KYGamingApiParam param)
         {
             var queryValue = new NameValueCollection();
 
             queryValue.Add("agent", param.Agent.ToString());
-            queryValue.Add("timestamp", param.TimeStamp);
+            queryValue.Add("timestamp", param.TimeStamp.ToString());
             queryValue.Add("param", param.EncryptedParam);
-            queryValue.Add("key", param.Key);
+            queryValue.Add("key", param.EncryptedKey);
 
             return queryValue;
         }
 
-        private KYGamingApiParam BuildParam(DateTime startTime, DateTime endTime, string currency)
+        public KYGamingApiParam BuildParam(DateTime startTime, DateTime endTime, string currency)
         {
+            var agent = KYGamingHelper.GetAgent(currency);
+            var deskey = KYGamingHelper.GetDESKey(currency);
+            var md5Key = KYGamingHelper.GetMd5Key(currency);
+            var timeStamp = DateTimeConverter.GetMilliseconds(DateTime.Now);
+            var operateSubType = _appSetting.GetValue("KYGamingOperateSubType") ?? _operateSubType;
+            var startTimeMilliseconds = DateTimeConverter.GetMilliseconds(startTime);
+            var endTimeMilliseconds = DateTimeConverter.GetMilliseconds(endTime);
+
+            var paramText = $"s={operateSubType}&startTime={startTimeMilliseconds}&endTime={endTimeMilliseconds}";
+            var keyText = $"{agent}{timeStamp}{md5Key}";
+
             var apiParam = new KYGamingApiParam
             {
-                StartTime = startTime,
-                EndTime = endTime,
-                Agent = KYGamingHelper.GetAgent(currency),
-                Deskey = KYGamingHelper.GetDESKey(currency),
-                Md5Key = KYGamingHelper.GetMd5Key(currency),
-                OperateSubType = Convert.ToInt32(_appSetting.GetValue("KYGamingOperateSubType"))
+                Agent = agent,
+                TimeStamp = timeStamp,
+                EncryptedKey = Encrypt.MD5Encrypt(keyText),
+                EncryptedParam = Encrypt.AESEncrypt(paramText, deskey)
             };
 
-            apiParam.EncryptedParam = AESEncrypt(apiParam);
-            apiParam.Key = MD5Encrypt(apiParam);
-
             return apiParam;
-        }
-
-        private string AESEncrypt(KYGamingApiParam param)
-        {
-            byte[] encrypted;
-            var deskey = Encoding.ASCII.GetBytes(param.Deskey);
-            var originalText = $"s={param.OperateSubType}&startTime={param.StartTimeString}&endTime={param.EndTimeString}";
-
-            using (var provider = new AesCryptoServiceProvider() { Key = deskey })
-            {
-                using (var encryptor = provider.CreateEncryptor())
-                {
-                    using (var msEncrypt = new MemoryStream())
-                    {
-                        using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                        {
-                            using (var swEncrypt = new StreamWriter(csEncrypt))
-                            {
-                                //Write all data to the stream.
-                                swEncrypt.Write(originalText);
-                            }
-                            encrypted = msEncrypt.ToArray();
-                        }
-                    }
-                }
-            }
-
-            return BitConverter.ToString(encrypted).Replace("-", string.Empty).ToLowerInvariant();
-        }
-
-        private string MD5Encrypt(KYGamingApiParam param)
-        {
-            byte[] encrypted;
-            var originalText = param.Agent + param.TimeStamp + param.Md5Key;
-
-            using (var md5provider = new MD5CryptoServiceProvider())
-            {
-                encrypted = md5provider.ComputeHash(Encoding.UTF8.GetBytes(originalText));
-            }
-
-            return BitConverter.ToString(encrypted).Replace("-", string.Empty).ToLowerInvariant();
         }
 
         protected override void CheckXmlResponseData(XDocument xml)

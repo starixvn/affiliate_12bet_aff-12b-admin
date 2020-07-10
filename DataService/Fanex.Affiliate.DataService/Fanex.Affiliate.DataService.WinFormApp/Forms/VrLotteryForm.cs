@@ -4,7 +4,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
     public partial class VrLotteryForm : ImporterFormBase
     {
-        public VrLotteryForm() 
+        public VrLotteryForm()
         {
             InitializeComponent();
             Service = new VrLotteryService();

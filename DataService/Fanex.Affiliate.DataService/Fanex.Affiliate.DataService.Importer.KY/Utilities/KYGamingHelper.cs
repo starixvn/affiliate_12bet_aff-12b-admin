@@ -6,8 +6,8 @@
         {
             switch (Currency)
             {
-                case "RMB":
-                    return 120127;
+                case "MYR":
+                    return 120213;
 
                 case "IDR":
                     return 120216;
@@ -22,7 +22,7 @@
                     return 120217;
 
                 default: //RMB
-                    return 120213;
+                    return 120127;
             }
         }
 
@@ -30,8 +30,8 @@
         {
             switch (Currency)
             {
-                case "RMB":
-                    return "CD90BDB64D035297";
+                case "MYR":
+                    return "767B94CF179B84ED";
 
                 case "IDR":
                     return "3A54CC398BB76550";
@@ -46,7 +46,7 @@
                     return "503F4DBE2B316E09";
 
                 default: //RMB
-                    return "767B94CF179B84ED";
+                    return "CD90BDB64D035297";
             }
         }
 
@@ -54,8 +54,8 @@
         {
             switch (Currency)
             {
-                case "RMB":
-                    return "628EA93FDD1035F3";
+                case "MYR":
+                    return "AD085B09D9CC8880";
 
                 case "IDR":
                     return "E7E5D15B73245B8D";

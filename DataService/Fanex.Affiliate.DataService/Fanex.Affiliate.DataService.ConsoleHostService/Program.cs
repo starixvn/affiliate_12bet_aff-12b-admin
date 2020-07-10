@@ -18,7 +18,7 @@ using Fanex.Affiliate.DataService.Job.Constants;
 
 namespace Fanex.Affiliate.DataService.ConsoleHostService
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main(string[] args)
         {
@@ -94,7 +94,5 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
                 }
             }
         }
-
-
     }
 }

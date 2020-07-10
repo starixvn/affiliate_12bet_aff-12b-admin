@@ -142,7 +142,6 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     var xmlDatas = await ConvertToXmlAsync(rawDatas);
                     DisplayXmlData(xmlDatas);
                     await Service.ImportAsync(xmlDatas.Select(xml => xml.ToString()));
-                    
                 }
                 DisplayXmlData();
                 Logger.Log("Finished import");

@@ -149,6 +149,12 @@
     <Compile Include="Forms\TopazForm.Designer.cs">
       <DependentUpon>TopazForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\KYGamingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KYGamingForm.Designer.cs">
+      <DependentUpon>KYGamingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\VrLotteryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TopazForm.resx">
       <DependentUpon>TopazForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KYGamingForm.resx">
+      <DependentUpon>KYGamingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VrLotteryForm.resx">
       <DependentUpon>VrLotteryForm.cs</DependentUpon>
@@ -385,6 +394,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.ISoftBet\Fanex.Affiliate.DataService.Importer.ISoftbet.csproj">
       <Project>{1ff263f2-9c86-416d-af14-699a28beaca6}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.ISoftbet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.KY\Fanex.Affiliate.DataService.Importer.KYGaming.csproj">
+      <Project>{83A4F55D-1521-4BC3-8A1E-AE9AE607B41C}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.KYGaming</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
       <Project>{B04723A2-C292-4104-8061-6A54F890B094}</Project>
