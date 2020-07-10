@@ -209,6 +209,7 @@
     <Compile Include="Controllers\VerificationAccountControllerTest.cs" />
     <Compile Include="CoreService\MemoryCacheServiceTest.cs" />
     <Compile Include="CoreService\SessionServiceTest.cs" />
+    <Compile Include="Infrastructure\EncryptedHandlerTest.cs" />
     <Compile Include="Repository\AuthRepositoryTest.cs" />
     <Compile Include="Repository\EmailHistoryRepositoryTest.cs" />
     <Compile Include="Repository\GetSecurityQuestionsTest.cs" />
