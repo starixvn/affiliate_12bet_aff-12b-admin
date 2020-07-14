@@ -290,16 +290,6 @@
     <Content Include="Areas\Portal\www\source\js\actions\actionTypes.js" />
     <Content Include="Areas\Portal\www\source\js\actions\loaderAction.js" />
     <Content Include="Areas\Portal\www\source\js\actions\pagingAction.js" />
-    <Content Include="Areas\Portal\www\source\js\actions\__test__\loaderAction.test.js" />
-    <Content Include="Areas\Portal\www\source\js\actions\__test__\pagingAction.test.js" />
-    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelect.test.js" />
-    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelectLabel.test.js" />
-    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelectOptionList.test.js" />
-    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\Option.test.js" />
-    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\OptionAll.test.js" />
-    <Content Include="Areas\Portal\www\source\js\components\__test__\loader.test.js" />
-    <Content Include="Areas\Portal\www\source\js\components\__test__\ReportTitle.test.js" />
-    <Content Include="Areas\Portal\www\source\js\layouts\__test__\AppLayout.test.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
     <Content Include="Areas\Portal\www\source\js\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
@@ -315,8 +305,6 @@
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\loaderReducer.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\pagingReducer.js" />
-    <Content Include="Areas\Portal\www\source\js\reducers\__test__\loaderReducer.test.js" />
-    <Content Include="Areas\Portal\www\source\js\reducers\__test__\pagingReducer.test.js" />
     <Content Include="Areas\Portal\www\source\js\setupTests.js" />
     <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
