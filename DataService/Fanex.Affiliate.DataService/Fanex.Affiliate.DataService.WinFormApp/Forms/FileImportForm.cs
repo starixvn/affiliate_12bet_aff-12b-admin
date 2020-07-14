@@ -33,7 +33,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             {
                 {"----Select one-----", null },
                 {"VR Lottery", new VRLotteryFileImporter() },
-                {"LB Keno", new LBKenoFileImporter() },          
+                {"LB Keno", new LBKenoFileImporter() },
+                {"Ky Gaming", new KYGamingFileImporter() },
             };
             return dic;
         }

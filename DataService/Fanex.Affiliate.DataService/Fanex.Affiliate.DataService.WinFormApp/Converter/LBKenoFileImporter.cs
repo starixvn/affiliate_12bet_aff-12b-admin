@@ -9,8 +9,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Converter
 {
     public class LBKenoFileImporter :IFileImporter
     {
-        private IImporterService Service;
-        private IDataSpliter Spliter;
+        private readonly IImporterService Service;
+        private readonly IDataSpliter Spliter;
         public LBKenoFileImporter(IImporterService service = null, IDataSpliter spliter = null)
         {
             Service = service ?? new LBKenoService();

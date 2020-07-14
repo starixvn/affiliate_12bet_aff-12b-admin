@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
     {
         protected readonly IApiClient _client;
         private const string _operateSubType = "6";
-        private const int TIME_BETWEEN_TWO_REQUEST = 10000;
+        private const int TIME_BETWEEN_TWO_REQUEST = 1000;
         private const int MAX_TIME_RANGE_TRANSACTION = 5;
 
         protected override int ProductId => throw new NotImplementedException();
@@ -28,8 +28,9 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
         private static Func<IAsyncPolicy<string>> GetDefaultRetryPolicy = () =>
         {
             const string tooFrequestPullRequest = "\"code\":43";
+            const int numberOfRetries = 4;
             return Policy.HandleResult<String>(s => s.Contains(tooFrequestPullRequest))
-                .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromMilliseconds(TIME_BETWEEN_TWO_REQUEST));
+                .WaitAndRetryAsync(numberOfRetries, retryAttempt => TimeSpan.FromMilliseconds(TIME_BETWEEN_TWO_REQUEST));
         };
 
         public KYGamingService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
