@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
         protected readonly IApiClient _client;
         private const string _operateSubType = "6";
         private const int TIME_BETWEEN_TWO_REQUEST = 10000;
-        private const int MAX_TIME_RANGE_TRANSACTION = 5;
+        private const int MAX_TIME_RANGE_TRANSACTION = 30;
 
         protected override int ProductId => throw new NotImplementedException();
 
