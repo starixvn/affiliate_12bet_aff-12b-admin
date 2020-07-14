@@ -21,11 +21,13 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
             return TimeZoneInfo.ConvertTime(dateValue, fromTimeZoneInfo, toTimeZoneInfo);
         }
 
-        public static long GetMilliseconds(DateTime utcValue, string timeZoneId = TimeZoneId.GmtPlus8)
+        public static long GetUnixTimeMilisecond(DateTime value, string timeZoneId = TimeZoneId.GmtPlus8)
         {
-            //var toGMT = ToGMT(utcValue, timeZoneId);
+            TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+            TimeSpan offset = timeZone.GetUtcOffset(value);
 
-            return new DateTimeOffset(utcValue).ToUnixTimeMilliseconds();
+            var timeOffSet = new DateTimeOffset(value.Ticks, offset);
+            return timeOffSet.ToUnixTimeMilliseconds();
         }
     }
 }

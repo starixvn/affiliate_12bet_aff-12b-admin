@@ -3,6 +3,7 @@ using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System;
 using System.Collections.Specialized;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Importer.KY.Client
@@ -16,7 +17,8 @@ namespace Fanex.Affiliate.DataService.Importer.KY.Client
             using (var response = await client.GetAsync(uri).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
+                var byteResult = await response.Content.ReadAsByteArrayAsync();
+                return Encoding.UTF8.GetString(byteResult);
             }
         }
     }

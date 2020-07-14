@@ -6,10 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Fanex.Affiliate.DataService.Importer.IMOne.Extension;
 using Fanex.Affiliate.DataService.Importer.KYGaming.MetaModels;
 using Fanex.Affiliate.DataService.Importer.KYGaming.Utilities;
 using System.Collections.Specialized;
+using Polly;
+using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
+using Fanex.Affiliate.DataService.Importer.Core.ResponseChecker;
+using Fanex.Affiliate.DataService.Importer.KYGaming.ResponseChecker;
 
 namespace Fanex.Affiliate.DataService.Importer.KYGaming
 {
@@ -17,8 +20,17 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
     {
         protected readonly IApiClient _client;
         private const string _operateSubType = "6";
+        private const int TIME_BETWEEN_TWO_REQUEST = 10000;
+        private const int MAX_TIME_RANGE_TRANSACTION = 5;
 
         protected override int ProductId => throw new NotImplementedException();
+
+        private static Func<IAsyncPolicy<string>> GetDefaultRetryPolicy = () =>
+        {
+            const string tooFrequestPullRequest = "\"code\":43";
+            return Policy.HandleResult<String>(s => s.Contains(tooFrequestPullRequest))
+                .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromMilliseconds(TIME_BETWEEN_TWO_REQUEST));
+        };
 
         public KYGamingService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
             : base(appSetting, thirdPartyProductRepository)
@@ -37,7 +49,12 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
             var datas = new List<string>();
             foreach (var currency in currencies)
             {
-                datas.AddRange(await GetRawDataListByCurrencyAsync(startTime, endTime, currency).ConfigureAwait(false));
+                var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, TimeSpan.FromMinutes(MAX_TIME_RANGE_TRANSACTION));
+                foreach (var range in timeRanges)
+                {
+                    datas.AddRange(await GetRawDataListByCurrencyAsync(range.Item1, range.Item2, currency).ConfigureAwait(false));
+                }
+
             }
             return datas;
         }
@@ -59,7 +76,7 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
             var url = _appSetting.GetValue("KYGamingApiUrl");
             var queryValue = BuildQuery(param);
 
-            return await _client.GetResponseAsync(url, queryValue);
+            return await GetDefaultRetryPolicy().ExecuteAsync(async () => await _client.GetResponseAsync(url, queryValue));          
         }
 
         public NameValueCollection BuildQuery(KYGamingApiParam param)
@@ -79,10 +96,10 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
             var agent = KYGamingHelper.GetAgent(currency);
             var deskey = KYGamingHelper.GetDESKey(currency);
             var md5Key = KYGamingHelper.GetMd5Key(currency);
-            var timeStamp = DateTimeConverter.GetMilliseconds(DateTime.Now);
+            var timeStamp = DateTimeConverter.GetUnixTimeMilisecond(DateTime.Now);
             var operateSubType = _appSetting.GetValue("KYGamingOperateSubType") ?? _operateSubType;
-            var startTimeMilliseconds = DateTimeConverter.GetMilliseconds(startTime);
-            var endTimeMilliseconds = DateTimeConverter.GetMilliseconds(endTime);
+            var startTimeMilliseconds = DateTimeConverter.GetUnixTimeMilisecond(startTime);
+            var endTimeMilliseconds = DateTimeConverter.GetUnixTimeMilisecond(endTime);
 
             var paramText = $"s={operateSubType}&startTime={startTimeMilliseconds}&endTime={endTimeMilliseconds}";
             var keyText = $"{agent}{timeStamp}{md5Key}";
@@ -100,12 +117,18 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
 
         protected override void CheckXmlResponseData(XDocument xml)
         {
-            throw new NotImplementedException();
+            IThirdPartyResponseChecker checker = new KyGamingResponseChecker();
+            checker.CheckXml(xml);
         }
 
         public override Task<XDocument> ConvertRawDataToXmlAsync(string raw)
         {
-            throw new NotImplementedException();
+            var xml = XmlHelper.ParseToXDocumentFromJson(raw);
+            if (xml == null)
+            {
+                throw new ThirdPartyProductException($"FlowGaming - Cant convert json response to xml - {raw}");
+            }
+            return Task.FromResult(xml);
         }
     }
 }

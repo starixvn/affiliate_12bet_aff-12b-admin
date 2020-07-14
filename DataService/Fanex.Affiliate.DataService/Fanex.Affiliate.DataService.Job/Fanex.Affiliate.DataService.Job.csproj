@@ -20,7 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Team Tools\Static Analysis Tools\Rule Sets\MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -179,10 +180,6 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Topaz\Fanex.Affiliate.DataService.Importer.FlowGaming.csproj">
       <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.FlowGaming</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
-      <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>
-      <Name>Fanex.Affiliate.DataService.Importer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
