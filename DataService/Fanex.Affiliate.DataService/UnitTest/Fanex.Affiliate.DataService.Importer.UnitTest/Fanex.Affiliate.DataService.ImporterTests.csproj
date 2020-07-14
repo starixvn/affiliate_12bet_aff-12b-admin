@@ -118,10 +118,6 @@
       <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.FlowGaming</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
-      <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>
-      <Name>Fanex.Affiliate.DataService.Importer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
