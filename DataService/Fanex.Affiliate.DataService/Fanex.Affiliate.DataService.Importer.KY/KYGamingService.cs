@@ -13,6 +13,8 @@ using Polly;
 using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Affiliate.DataService.Importer.Core.ResponseChecker;
 using Fanex.Affiliate.DataService.Importer.KYGaming.ResponseChecker;
+using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using Newtonsoft.Json.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer.KYGaming
 {
@@ -21,9 +23,9 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
         protected readonly IApiClient _client;
         private const string _operateSubType = "6";
         private const int TIME_BETWEEN_TWO_REQUEST = 10000;
-        private const int MAX_TIME_RANGE_TRANSACTION = 30;
+        private const int MAX_TIME_RANGE_TRANSACTION = 10;
 
-        protected override int ProductId => throw new NotImplementedException();
+        protected override int ProductId => Products.KyGamingId;
 
         private static Func<IAsyncPolicy<string>> GetDefaultRetryPolicy = () =>
         {
@@ -124,12 +126,64 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
 
         public override Task<XDocument> ConvertRawDataToXmlAsync(string raw)
         {
-            var xml = XmlHelper.ParseToXDocumentFromJson(raw);
+            var formatedJson = ReFormatJson(raw);
+            var xml = XmlHelper.ParseToXDocumentFromJson(formatedJson);
             if (xml == null)
             {
                 throw new ThirdPartyProductException($"FlowGaming - Cant convert json response to xml - {raw}");
             }
             return Task.FromResult(xml);
         }
+
+        private static string ReFormatJson(string raw)
+        {
+            const string noDataCode = "16";
+            const string successCode = "0";
+            var rawJsonOject = JObject.Parse(raw);
+            var code = rawJsonOject.SelectToken("$.d.code");
+            if((string)code == noDataCode)
+            {
+                return raw;
+            } 
+
+            if((string)code == successCode)
+            {
+                var count = (int)rawJsonOject.SelectToken("$.d.count");
+                var dataList = rawJsonOject.SelectToken("$.d.list");
+                var items = ReArrangeDataToListItems(dataList, count);
+                dataList.Replace(items);
+            }
+            
+            return rawJsonOject.ToString();
+        }
+
+        private static JToken ReArrangeDataToListItems(JToken dataList, int count)
+        {
+            var items = new JArray();
+            for (int i = 0; i < count; i++)
+            {
+                var item = new JObject();
+                FillDataToItem(item, dataList, i);
+                items.Add(item);
+            }
+            return items;
+        }
+
+        private static void FillDataToItem(JObject item, JToken dataSource, int rowNumber)
+        {
+            foreach (var pro in GetDataFieldNames())
+            {
+                item.Add(pro, dataSource.SelectToken($"$.{pro}[{rowNumber}]"));
+            }
+        }
+
+        private static string[] GetDataFieldNames()
+            => new[]
+            {
+                "GameID", "Accounts", "ServerID", "KindID",
+                "TableID", "ChairID", "UserCount", "CardValue",
+                "CellScore", "AllBet", "Profit", "Revenue",
+                "GameStartTime", "GameEndTime", "ChannelID", "LineCode",
+            };
     }
 }

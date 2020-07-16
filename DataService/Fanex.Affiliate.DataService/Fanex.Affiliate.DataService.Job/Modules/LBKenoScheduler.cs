@@ -2,7 +2,6 @@
 using Quartz;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System;
-using System.Globalization;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {

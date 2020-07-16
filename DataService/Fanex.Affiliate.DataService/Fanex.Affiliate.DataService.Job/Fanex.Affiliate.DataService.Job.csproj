@@ -100,6 +100,8 @@
     <Compile Include="Log\LoggerFactory.cs" />
     <Compile Include="Log\LogLevel.cs" />
     <Compile Include="Log\LogWrapperManager.cs" />
+    <Compile Include="Modules\KYGamingJob.cs" />
+    <Compile Include="Modules\KYGamingScheduler.cs" />
     <Compile Include="NewApiJobBase.cs" />
     <Compile Include="QuartzLogProvider.cs" />
     <Compile Include="IJobScheduler.cs" />
@@ -168,6 +170,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.ISoftBet\Fanex.Affiliate.DataService.Importer.ISoftbet.csproj">
       <Project>{1ff263f2-9c86-416d-af14-699a28beaca6}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.ISoftbet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.KY\Fanex.Affiliate.DataService.Importer.KYGaming.csproj">
+      <Project>{83A4F55D-1521-4BC3-8A1E-AE9AE607B41C}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.KYGaming</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
       <Project>{b04723a2-c292-4104-8061-6a54f890b094}</Project>
