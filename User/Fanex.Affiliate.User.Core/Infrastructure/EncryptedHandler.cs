@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Net;
-using System.Security.Cryptography;
+using System.Reflection.Emit;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.SessionState;
-using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.Infrastructure
 {
@@ -14,6 +12,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
     {
         private readonly RequestContext _requestContext;
         private readonly IHttpRequestParserHandler _httpRequestParserHandle;
+        private const int DeniedByFilterSubStatus = 5;
 
         public EncryptedHandler(RequestContext requestContext)
             : this(requestContext, new HttpRequestParserHandler(requestContext.HttpContext.Request))
@@ -54,14 +53,14 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
                     }
                     else
                     {
-                        response.Redirect(VirtualPathUtility.ToAbsolute("~/Notify/Error"));
+                        response.Redirect(ToAbsolutePath("~/Notify/Error"));
                     }
 
                     return;
                 }
                 else if (!parseQueryResult.IsValid)
                 {
-                    SetNotFoundResponse();
+                    SetNotFoundResponse(DeniedByFilterSubStatus);
                 }
                 else
                 {
@@ -80,12 +79,16 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
             }
         }
 
-        private void SetNotFoundResponse()
+        private void SetNotFoundResponse(int subStatus = 0)
         {
             _requestContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+            _requestContext.HttpContext.Response.SubStatusCode = subStatus;
         }
 
         protected virtual HttpRequestBase WrapRequest(HttpRequest request)
             => new HttpRequestWrapper(request);
+
+        protected virtual string ToAbsolutePath(string virtualPath)
+            => VirtualPathUtility.ToAbsolute(virtualPath);
     }
 }
