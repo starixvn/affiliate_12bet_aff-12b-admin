@@ -20,9 +20,11 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
 
         public IAppSetting AppSetting { get; set; }
 
+        public IDateTimeProvider DateTimeProvider { get; set; }
+
         public QueryStringResult TryParseQueryString(string encryptedQuery)
         {
-            if (string.IsNullOrEmpty(encryptedQuery))
+            if (string.IsNullOrWhiteSpace(encryptedQuery))
             {
                 return new QueryStringResult { IsValid = false };
             }
@@ -64,9 +66,9 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
             return !string.Equals(timeQuery, timeToken) || IsExpired(timeToken, expirationByMinute);
         }
 
-        private static bool IsExpired(string timeTickString, int expirationByMinute)
+        private bool IsExpired(string timeTickString, int expirationByMinute)
         {
-            var minDateTime = DateTime.Now.AddMinutes(expirationByMinute * -1);
+            var minDateTime = DateTimeProvider.Now.AddMinutes(expirationByMinute * -1);
             var timeTicks = Convert.ToInt64(timeTickString);
             var dateTimeRequest = new DateTime(timeTicks, DateTimeKind.Local);
 

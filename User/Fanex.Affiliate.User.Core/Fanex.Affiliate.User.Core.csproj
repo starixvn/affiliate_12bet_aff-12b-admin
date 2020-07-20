@@ -309,7 +309,9 @@
     <Compile Include="DTO\UserPanel\OverviewDetail.cs" />
     <Compile Include="DTO\UserPanel\OverviewSummary.cs" />
     <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
+    <Compile Include="Infrastructure\DateTimeProvider.cs" />
     <Compile Include="Infrastructure\HttpRequestParserHandler.cs" />
+    <Compile Include="Infrastructure\IDateTimeProvider.cs" />
     <Compile Include="Infrastructure\IHttpRequestParserHandler.cs" />
     <Compile Include="Repository\ILanguageRepository.cs" />
     <Compile Include="Repository\LanguageRepository.cs" />
