@@ -396,4 +396,13 @@
   <data name="FileNameCanNotContain" xml:space="preserve">
     <value>A File Name can't contain any of the following characters: \/:*?"&lt;&gt;|#%&amp;+</value>
   </data>
+  <data name="AdminInfo" xml:space="preserve">
+    <value>Admin Info</value>
+  </data>
+  <data name="AdminUsers" xml:space="preserve">
+    <value>Admin Users</value>
+  </data>
+  <data name="PermissionRole" xml:space="preserve">
+    <value>Permission Role</value>
+  </data>
 </root>

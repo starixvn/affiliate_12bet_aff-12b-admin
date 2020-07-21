@@ -188,6 +188,9 @@
     <Compile Include="Controllers\AccessDeniedController.cs" />
     <Compile Include="Controllers\Administrator\AdministratorController.cs" />
     <Compile Include="Controllers\Administrator\DepartmentController.cs" />
+    <Compile Include="Controllers\AdminRole\AdminRoleController.cs" />
+    <Compile Include="Controllers\AdminRole\AdminInfoController.cs" />
+    <Compile Include="Controllers\AdminRole\PermissionRoleController.cs" />
     <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />

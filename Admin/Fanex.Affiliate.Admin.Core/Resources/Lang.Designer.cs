@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -70,11 +70,29 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin Info.
+        /// </summary>
+        public static string AdminInfo {
+            get {
+                return ResourceManager.GetString("AdminInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Admin List.
         /// </summary>
         public static string AdminList {
             get {
                 return ResourceManager.GetString("AdminList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin Users.
+        /// </summary>
+        public static string AdminUsers {
+            get {
+                return ResourceManager.GetString("AdminUsers", resourceCulture);
             }
         }
         
@@ -471,6 +489,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string Pending {
             get {
                 return ResourceManager.GetString("Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permission Role.
+        /// </summary>
+        public static string PermissionRole {
+            get {
+                return ResourceManager.GetString("PermissionRole", resourceCulture);
             }
         }
         

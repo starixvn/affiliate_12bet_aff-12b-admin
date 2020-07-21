@@ -29,5 +29,7 @@
         public const string MemberEmail = "[MemberEmail]";
 
         public const string Turnover = "[Turnover]";
+        
+        public const string AdminRole = "[Affiliate]";
     }
 }

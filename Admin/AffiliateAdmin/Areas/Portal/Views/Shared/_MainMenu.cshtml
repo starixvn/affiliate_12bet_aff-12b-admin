@@ -18,6 +18,7 @@
         {"Message",Function.HotNews },
         {"ExchangeRate",Function.AffExRate },
         {"Administrator",Function.UserControl },
+        {"AdminRole",Function.UserControl },
         {"Domain",Function.Domain }
     };
     var result = from n in menus
@@ -33,9 +34,9 @@
         {
             return "Media Gallery";
         }
-        else if (menuKey == "ExchangeRate")
+        else if (menuKey == "AdminRole")
         {
-            return "Ex.Rate";
+            return "Admin Role";
         }
         else
         {

@@ -29,6 +29,9 @@ module.exports = {
     [`${jsDist}/pages/administrator/administrator`]: clientRoot + "/js/pages/administrator/administrator/index.jsx",
     [`${jsDist}/pages/administrator/department`]: clientRoot + "/js/pages/administrator/department/index.jsx",
     [`${jsDist}/pages/home`]: clientRoot + "/js/pages/home/index.jsx",
+    [`${jsDist}/pages/admin-role/admin-users`]: clientRoot + "/js/pages/admin-role/admin-users/index.jsx",
+    [`${jsDist}/pages/admin-role/admin-info`]: clientRoot + "/js/pages/admin-role/admin-info/index.jsx",
+    [`${jsDist}/pages/admin-role/permission-role`]: clientRoot + "/js/pages/admin-role/permission-role/index.jsx",
 
     [`${styleDist}/portalmain`]: clientRoot + "/style/main.scss",
     [`${styleDist}/layout`]: clientRoot + "/style/layout/main-layout.scss",
