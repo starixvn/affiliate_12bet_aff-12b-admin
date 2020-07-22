@@ -1,7 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.Administrator;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -11,7 +13,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
     [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class AdminRoleController : BaseController
     {
-        public AdminRoleController(ISessionService sessionService) : base(sessionService){}
+        private readonly IAdministratorService _administratorService;
+        public AdminRoleController(
+            ISessionService sessionService,
+            IAdministratorService administratorService) : base(sessionService)
+        {
+            _administratorService = administratorService;
+        }
 
         [HttpGet]
         public ActionResult Index()
@@ -22,6 +30,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             };
 
             return View(subMenu);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetUserList(string userName)
+        {
+            return new JsonNetResult
+            {
+                Data = _administratorService.GetUserList(0, userName, string.Empty)
+            };
         }
     }
 }

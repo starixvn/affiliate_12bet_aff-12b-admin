@@ -393,6 +393,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\libs\constants.js" />
@@ -1055,6 +1056,7 @@
     <Content Include="Areas\Portal\www\webpack.config.js" />
     <Content Include="Areas\Portal\www\webpack.config.vendor.js" />
     <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Release Note.txt" />
     <Content Include="SpNames.xml">

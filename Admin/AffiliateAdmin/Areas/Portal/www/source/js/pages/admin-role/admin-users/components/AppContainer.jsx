@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
-import { resolveClientUrl } from '../../../../modules/utils';
+import Filter from './Filter';
+import ControlButtons from './ControlButtons';
+import Content from './Content';
 
 export class AppContainer extends Component {
     constructor(props) {
@@ -15,10 +17,9 @@ export class AppContainer extends Component {
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
-                <h1>Admin Users</h1>
-                <a href={resolveClientUrl(`Portal/AdminInfo`)} target="_top">
-                    Go to Admin Info
-                </a>
+                <Filter />
+                <ControlButtons />
+                <Content />
             </AppLayout>
         );
     }
