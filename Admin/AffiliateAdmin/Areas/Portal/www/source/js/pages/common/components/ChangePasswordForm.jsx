@@ -81,7 +81,7 @@ export class ChangePasswordForm extends PureComponent {
     _validatePassword(password) {
         const result = {
             isValid: false,
-            message: messages.RequiredPassword
+            message: messages.RequiredNewPassword
         }
 
         if (password) {
@@ -89,7 +89,7 @@ export class ChangePasswordForm extends PureComponent {
             const isValid = regexCheckPassword.test(password);
 
             result.isValid = isValid;
-            result.message = isValid ? "" : messages.PasswordErrorMessage;
+            result.message = isValid ? "" : messages.PasswordIncorrect;
         }
 
         return result;
@@ -105,7 +105,7 @@ export class ChangePasswordForm extends PureComponent {
             const isValid = confirmPassword === password;
 
             result.isValid = isValid;
-            result.message = isValid ? "" : messages.ConfirmPasswordErrorMessage;
+            result.message = isValid ? "" : messages.ConfirmPasswordIncorrect;
         }
 
         return result;

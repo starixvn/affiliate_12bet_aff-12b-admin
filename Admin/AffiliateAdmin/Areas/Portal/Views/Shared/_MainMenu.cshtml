@@ -83,6 +83,9 @@
         case 'Domain': case 'DomainControl':
             element = document.getElementById('Domain');
             break;
+        case 'AdminInfo': case 'PermissionRole':
+            element = document.getElementById('AdminRole');
+            break;
     }
 
     element && element.classList.add("active");

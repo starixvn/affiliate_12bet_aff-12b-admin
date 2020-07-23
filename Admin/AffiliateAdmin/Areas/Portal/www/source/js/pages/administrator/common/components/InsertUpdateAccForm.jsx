@@ -207,7 +207,7 @@ export class InsertUpdateAccForm extends PureComponent {
                                     </React.Fragment>)
                                 }
                                 <FormGroup row>
-                                    <Label for="department" sm={4}>{headerText.Department}</Label>
+                                    <Label for="department" sm={4} className="required">{headerText.Department}</Label>
                                     <Col sm={8}>
                                         <Input type="select" name="department" className="mt-2" value={department} onChange={this._handleChange}>
                                             {
