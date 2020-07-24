@@ -1,12 +1,9 @@
 ﻿using Fanex.Affiliate.User.Core.Infrastructure;
-using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Utilities;
-using Fanex.Common.Extensions;
 using NSubstitute;
 using System;
 using System.Security.Cryptography;
 using System.Web;
-using System.Web.Management;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
