@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Globalization;
-using System.Threading;
-using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Job;
-using Fanex.Affiliate.DataService.Importer.Opus.MetaModels;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
-using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System.Threading.Tasks;
 using System.Configuration;
 using Fanex.Logging;
