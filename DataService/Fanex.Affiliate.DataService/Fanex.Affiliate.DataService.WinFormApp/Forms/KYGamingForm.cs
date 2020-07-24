@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
     public partial class KYGamingForm : ImporterFormBase
     {
-        protected override TimeSpan _pullRange => new TimeSpan(0, 5, 0);
+        protected override TimeSpan _pullRange => new TimeSpan(0, 10, 0);
 
         public KYGamingForm()
         {
