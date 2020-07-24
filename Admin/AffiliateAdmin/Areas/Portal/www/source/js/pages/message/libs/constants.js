@@ -72,7 +72,7 @@ export const resource = {
 }
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     Creator: 'Creator',
     PostedDate: 'Posted Date',
     Message: 'Message',

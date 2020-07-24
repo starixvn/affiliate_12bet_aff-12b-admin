@@ -5,7 +5,7 @@ export { globalResource };
 export const headerText = {
     DepositUserName: 'Deposit User Name',
     CheckStatus: 'Check Status',
-    Index: '#',
+    Index: globalResource.Index,
     UserName: 'User Name',
     IbcUserName: 'IBC User Name',
     FirstName: 'First Name',

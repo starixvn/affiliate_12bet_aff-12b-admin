@@ -29,7 +29,7 @@ export const resource = {
 }
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     Sender: 'Sender',
     Affiliate: 'Affiliate',
     Subject: 'Subject',

@@ -23,7 +23,7 @@ export const sortByList = {
 }
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     UserName: 'Username',
     Status: 'Status',
     FirstName: 'First Name',

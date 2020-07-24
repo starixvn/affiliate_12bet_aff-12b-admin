@@ -4,7 +4,7 @@ import { selectedAllProduct, maxWidth } from '../../../../modules/constants';
 export { globalResource, selectedAllProduct, maxWidth }
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     Date: 'Date',
     Type: 'Type',
     Amount: 'Amount',

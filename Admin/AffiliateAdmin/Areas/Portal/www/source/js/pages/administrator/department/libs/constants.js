@@ -3,7 +3,7 @@
 export { globalResource };
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     Department: 'Department',
     NoOfUser: 'No of User',
     Description: 'Description',

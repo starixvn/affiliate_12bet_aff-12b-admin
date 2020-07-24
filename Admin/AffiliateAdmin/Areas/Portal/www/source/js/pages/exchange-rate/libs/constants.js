@@ -15,7 +15,7 @@ export const resource = {
 }
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     Currency: 'Currency',
     Selling: 'Selling',
     Buying: 'Buying'

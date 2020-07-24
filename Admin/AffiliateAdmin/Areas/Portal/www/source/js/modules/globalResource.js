@@ -1,4 +1,5 @@
 export const globalResource = {
+    Index: '#',
     From: 'From',
     To: 'To',
     GetAll: 'Get All',

@@ -3,7 +3,7 @@
 export { globalResource };
 
 export const resource = {
-    Index: '#',
+    Index: globalResource.Index,
     UserName: 'User Name',
     LoggedIn: 'Logged In',
     LastRequest: 'Last Request',

@@ -6,7 +6,7 @@ import { shortedMonthNames, minMonthDate } from '../../../../modules/constants';
 export { globalResource, maxWidth, selectedAllProduct, shortedMonthNames, minMonthDate };
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     UserName: 'User Name',
     IbcUserName: 'IBC User Name',
     RegisteredDate: 'Registered Date',

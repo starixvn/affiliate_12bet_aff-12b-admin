@@ -8,7 +8,7 @@ export const listAlPhabet = ['0-9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
     'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     UserName: 'User Name',
     FirstName: 'First Name',
     LastName: 'Last Name',

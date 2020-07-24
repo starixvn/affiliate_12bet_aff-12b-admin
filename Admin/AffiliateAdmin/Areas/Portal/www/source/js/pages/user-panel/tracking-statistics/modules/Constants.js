@@ -4,7 +4,7 @@ import { maxWidth } from '../../../../modules/constants';
 export { globalResource, maxWidth }
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     Month: 'Month',
     TotalClicks: 'Total Clicks',
     UniqueClicks: 'Unique Clicks',
