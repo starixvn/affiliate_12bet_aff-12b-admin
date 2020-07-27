@@ -3,7 +3,7 @@
 import createReducer from '../../../../modules/createReducer';
 import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
-import { SET_PARAM, SET_CHECKED_FUNCTIONS, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from '../actions/types';
+import { SET_PARAM, SET_CHECKED_ITEMS, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_IS_GENERAL } from '../actions/types';
 
 export const param = createReducer({ PageIndex: 1, PageSize: 20 }, {
     [SET_PARAM](prevState, action) {
@@ -11,8 +11,8 @@ export const param = createReducer({ PageIndex: 1, PageSize: 20 }, {
     }
 })
 
-export const checkedFunctions = createReducer({}, {
-    [SET_CHECKED_FUNCTIONS](prevState, action) {
+export const checkedItems = createReducer({}, {
+    [SET_CHECKED_ITEMS](prevState, action) {
         return action.data;
     }
 })
@@ -29,11 +29,18 @@ export const gridData = createReducer(null, {
     }
 })
 
+export const isGeneral = createReducer(true, {
+    [SET_IS_GENERAL](prevState, action) {
+        return action.data;
+    }
+})
+
 export default combineReducers({
     pagingOption,
     isShowLoader,
-    checkedFunctions,
+    checkedItems,
     shouldResetScrollPosition,
     gridData,
-    param
+    param,
+    isGeneral
 });

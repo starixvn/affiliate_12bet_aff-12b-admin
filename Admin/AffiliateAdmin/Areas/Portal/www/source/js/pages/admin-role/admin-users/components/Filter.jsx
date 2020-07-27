@@ -31,7 +31,6 @@ export class Filter extends PureComponent {
         const param = Object.assign({}, this.state, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize })
 
         this.props.setParam(param);
-        this.props.fetchData(param);
     }
 
     render() {
