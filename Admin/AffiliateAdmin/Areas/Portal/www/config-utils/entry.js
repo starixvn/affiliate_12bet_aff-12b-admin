@@ -56,4 +56,5 @@ module.exports = {
     [`${styleDist}/pages/administrator/administrator`]: clientRoot + "/style/pages/administrator/administrator.scss",
     [`${styleDist}/pages/administrator/department`]: clientRoot + "/style/pages/administrator/department.scss",
     [`${styleDist}/home`]: clientRoot + "/style/pages/home.scss",
+    [`${styleDist}/pages/admin-role/admin-users`]: clientRoot + "/style/pages/admin-role/admin-users.scss",
 };

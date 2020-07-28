@@ -49,7 +49,7 @@ export class Content extends PureComponent {
 
     _handleDeleteMember = (selectedMemberId) => {
         this.props.setShouldResetScrollPosition(false);
-        this.setState({ message: 'Are you sure you want to remove this member from his affiliate?', isConfirmPopup: true, selectedMemberId });
+        this.setState({ message: 'Are you sure you want to remove this member from this affiliate?', isConfirmPopup: true, selectedMemberId });
     }
 
     _deleteMember = async (selectedMemberId) => {
@@ -59,7 +59,7 @@ export class Content extends PureComponent {
 
         if (result) {
             if (result.IsSuccessful) {
-                this.setState({ message: 'Member has been removed suseccfully!', isConfirmPopup: false });
+                this.setState({ message: 'Member has been removed successfully!', isConfirmPopup: false });
 
                 this.props.fetchData(this.props.param);
             }

@@ -1,0 +1,12 @@
+﻿.admin-role-menu {
+    display: flex;
+    align-items: center;
+    padding-top: 6px;
+
+    .icon-admin-role {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background: transparent url(../../assets/admin-role/icon_menu.png) no-repeat scroll 0 0;
+    }
+}

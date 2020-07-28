@@ -17,6 +17,10 @@ export class AppContainer extends Component {
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
+                <div className="admin-role-menu">
+                    <span class="icon-admin-role"></span>
+                    <strong>Admin Users</strong>
+                </div>
                 <Filter />
                 <ControlButtons />
                 <Content />

@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 
-import SelectAll from '../../../common/components/SelectAll';
 import ButtonDeleteItems from '../../../common/components/ButtonDeleteItems';
 import { resource, messages } from '../libs/constants';
 import { resolveClientUrl } from '../../../../modules/utils';
-import { fetchData, deleteUsers, toggleLoader, setCheckedUsers, setShouldResetScrollPosition } from '../actions';
+import { fetchData, deleteUsers, toggleLoader } from '../actions';
 
 export const ControlButtons = (props) => {
 
@@ -34,11 +33,6 @@ export const ControlButtons = (props) => {
                             />
                             <Button outline type="button" className="mx-2" onClick={_handleClickButton}>{resource.Add} <span className="oi oi-plus ml-2"></span></Button>
                         </div>
-                        <SelectAll
-                            checkedList={props.checkedUsers}
-                            setCheckedList={props.setCheckedUsers}
-                            setShouldResetScrollPosition={props.setShouldResetScrollPosition}
-                        />
                     </React.Fragment>
                 ) : (
                         <div className="my-2">
@@ -56,7 +50,7 @@ function mapStateToProps({ checkedUsers, param, gridData }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, deleteUsers, toggleLoader, setCheckedUsers, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ fetchData, deleteUsers, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ControlButtons));

@@ -489,6 +489,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\changePassword.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\paymentRequestUpdate.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\CheckboxSelectAll.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\ButtonDeleteItems.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\ChangePasswordForm.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\CommissionGroupPopup.test.js" />
@@ -827,6 +828,7 @@
     <Content Include="Areas\Portal\Views\AdminRole\AdminInfo.cshtml" />
     <Content Include="Areas\Portal\Views\AdminRole\Index.cshtml" />
     <Content Include="Areas\Portal\Views\AdminRole\PermissionRole.cshtml" />
+    <Content Include="Areas\Portal\Views\AdminRole\_AdminRoleSubMenu.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1043,6 +1045,7 @@
     <Content Include="Areas\Portal\www\source\style\assets\login\lgRight.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\login\lgRp.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\under-maintenance\UnderMaintenance.gif" />
+    <Content Include="Areas\Portal\www\source\style\assets\admin-role\icon_menu.png" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\a_bg.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_box_tab.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_button2.jpg" />
@@ -1359,6 +1362,7 @@
     <Content Include="Areas\Portal\www\source\style\components\_department-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\home.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\SortingCell.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-users.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -11,7 +11,6 @@ export const resource = {
     Role: 'Role',
     Select: 'Select:',
     None: 'None',
-    All: globalResource.All,
     Add: globalResource.Add,
     Search: globalResource.Search,
     Delete: globalResource.Delete

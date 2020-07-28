@@ -5,8 +5,8 @@
 
 @model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
 
-@{
-    Html.RenderPartial("~/Areas/Portal/Views/Administrator/_AdministratorSubMenu.cshtml", Model);
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/admin-role/admin-users.css")" rel="stylesheet" />
 }
 
 @section pagejs{
