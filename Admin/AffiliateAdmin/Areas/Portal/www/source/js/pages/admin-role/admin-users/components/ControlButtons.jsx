@@ -31,12 +31,12 @@ export const ControlButtons = (props) => {
                                 hasIcon={true}
                                 isOpenNotification={true}
                             />
-                            <Button outline type="button" className="mx-2" onClick={_handleClickButton}>{resource.Add} <span className="oi oi-plus ml-2"></span></Button>
+                            <Button outline type="button" className="mx-2" onClick={_handleClickButton}>{resource.CreateNew} <span className="oi oi-plus ml-2"></span></Button>
                         </div>
                     </React.Fragment>
                 ) : (
                         <div className="my-2">
-                            <Button outline type="button" onClick={_handleClickButton}>{resource.Add} <span className="oi oi-plus ml-2"></span></Button>
+                            <Button outline type="button" onClick={_handleClickButton}>{resource.CreateNew} <span className="oi oi-plus ml-2"></span></Button>
                         </div>
                     )
             }

@@ -341,6 +341,9 @@
     <Content Include="Areas\Portal\www\dist\style\home.css" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\login.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\admin-role\admin-info.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\admin-role\admin-users.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\admin-role\permission-role.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\administrator\administrator.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\administrator\department.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-info.css" />
@@ -1363,6 +1366,9 @@
     <Content Include="Areas\Portal\www\source\style\pages\home.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\SortingCell.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-users.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-role-menu.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-info.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\permission-role.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

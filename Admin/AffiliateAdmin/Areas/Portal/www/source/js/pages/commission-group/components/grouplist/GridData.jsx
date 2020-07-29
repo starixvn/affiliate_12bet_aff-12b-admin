@@ -159,7 +159,7 @@ export class GridData extends Component {
                                     {
                                         group.NoAffs === 0 && (
                                             <button className="btn btn-link" onClick={() => this._handleDeleteCommGroup(item.GroupId, item.GroupName)}>
-                                                <span className="oi oi-x text-danger"></span>
+                                                <span className="oi oi-trash text-danger"></span>
                                             </button>)
                                     }
                                 </Cell>)

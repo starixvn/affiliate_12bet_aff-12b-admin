@@ -68,7 +68,7 @@ export default class ButtonDeleteItems extends PureComponent {
                         onClose={this._handleCloseNotificationPopup}
                     />
                 }
-                <Button outline type="button" color="danger" onClick={this._handleDelete}>Delete<span className={this.props.hasIcon ? "oi oi-x ml-2" : ""}></span></Button>
+                <Button outline type="button" color="danger" onClick={this._handleDelete}>Delete<span className={this.props.hasIcon ? "oi oi-trash ml-2" : ""}></span></Button>
             </React.Fragment>
         );
     }

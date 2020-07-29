@@ -115,7 +115,7 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title="Delete Domain">
                     <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
-                        <span className="oi oi-x text-danger"></span>
+                        <span className="oi oi-trash text-danger"></span>
                     </Button>
                 </Cell>
             </Row>

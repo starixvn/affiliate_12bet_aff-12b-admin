@@ -11,7 +11,7 @@ export const resource = {
     Role: 'Role',
     Select: 'Select:',
     None: 'None',
-    Add: globalResource.Add,
+    CreateNew: 'Create New',
     Search: globalResource.Search,
     Delete: globalResource.Delete
 }
@@ -20,5 +20,4 @@ export const messages = {
     PleaseSelect: 'Please select items to delete',
     AreYouSureDeleteItems: 'Are you sure to delete the selected user(s)?',
     DeleteItemsSuccessfully: 'Delete User(s) Successfully',
-    AreYouWant: 'Are you sure you want to update this user?'
 }

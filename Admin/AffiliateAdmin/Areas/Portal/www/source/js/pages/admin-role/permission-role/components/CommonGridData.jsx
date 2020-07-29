@@ -100,7 +100,7 @@ export class CommonGridData extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={headerText.Edit}>
                     <Button color="link p-0" onClick={() => this._handleEdit(dataItem.Id)}>
-                        <span className="oi oi-x text-danger"></span>
+                        <span className="oi oi-trash text-danger"></span>
                     </Button>
                 </Cell>
             </Row>

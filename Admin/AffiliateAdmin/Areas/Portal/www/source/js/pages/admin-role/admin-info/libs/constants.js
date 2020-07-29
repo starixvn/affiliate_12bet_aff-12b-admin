@@ -16,21 +16,17 @@ export const roleList = {
     [AsstMarketing]: 'Asst. Marketing'
 }
 
-const Active = 1
-export const accountStatusList = {
-    [Active]: 'Active',
-    0: 'Closed'
-}
-
 export const initialState = {
     isClickedSubmit: false,
-    userName: '',
+    newUserName: '',
     newPassword: '',
     confirmPassword: '',
     role: 0,
-    accountStatus: Active,
+    isActive: true,
     isShowMessage: false,
     isSuccess: true,
     message: '',
-    isInsert: true
+    isEdit: false,
+    messagePopup: '',
+    isConfirmPopup: true
 };

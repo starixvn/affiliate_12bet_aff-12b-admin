@@ -9,6 +9,10 @@
     Html.RenderPartial("~/Areas/Portal/Views/AdminRole/_AdminRoleSubMenu.cshtml", Model);
 }
 
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/admin-role/permission-role.css")" rel="stylesheet" />
+}
+
 @section pagejs{
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/admin-role/permission-role.js")"></script>
 }

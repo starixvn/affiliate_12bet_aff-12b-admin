@@ -127,7 +127,7 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={dataItem.AffName}>{dataItem.AffName}</Cell>
                 <Cell className="text-center" title="Remove Member">
                     <Button color="link p-0" onClick={() => this._handleDeleteMember(dataItem.MemberId)}>
-                        <span className="oi oi-x text-danger"></span>
+                        <span className="oi oi-trash text-danger"></span>
                     </Button>
                 </Cell>
             </Row>

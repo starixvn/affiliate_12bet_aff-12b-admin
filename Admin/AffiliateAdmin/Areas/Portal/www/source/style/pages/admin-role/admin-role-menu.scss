@@ -1,0 +1,15 @@
+﻿.admin-role-menu {
+    &-back {
+        text-decoration: none;
+        color: black;
+        padding-right: 15px;
+
+        &:hover {
+            text-decoration: none !important;
+        }
+    }
+
+    .nav-link {
+        padding: 5px;
+    }
+}

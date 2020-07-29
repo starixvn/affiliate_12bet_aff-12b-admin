@@ -131,7 +131,7 @@ export class Content extends PureComponent {
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
                     <input type="checkbox" checked={this.props.checkedUsers[dataItem.UserId]}
-                        onChange={(e) => _onCheckItem(e.target.checked, dataItem.UserId)} />
+                        onChange={(e) => this._onCheckItem(e.target.checked, dataItem.UserId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={resource.userName}>
@@ -149,7 +149,7 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={dataItem.GroupName}>{dataItem.GroupName}</Cell>
                 <Cell className="text-center" title="Delete User">
                     <Button color="link p-0" onClick={() => this._handleDeleteUser(dataItem.UserId)}>
-                        <span className="oi oi-x text-danger"></span>
+                        <span className="oi oi-trash text-danger"></span>
                     </Button>
                 </Cell>
             </Row>
