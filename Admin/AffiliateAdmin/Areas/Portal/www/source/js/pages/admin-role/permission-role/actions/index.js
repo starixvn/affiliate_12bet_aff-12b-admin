@@ -1,30 +1,8 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { setPagingOption } from '../../../../actions/pagingAction';
-import { SET_PARAM, SET_CHECKED_ITEMS, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_IS_GENERAL } from './types';
+import { SET_GRID_DATA, SET_IS_GENERAL } from './types';
 
-export { toggleLoader, setPagingOption };
-
-export const setParam = (data) => {
-    return {
-        type: SET_PARAM,
-        data
-    }
-}
-
-export const setCheckedItems = (data) => {
-    return {
-        type: SET_CHECKED_ITEMS,
-        data
-    }
-}
-
-export const setShouldResetScrollPosition = (data) => {
-    return {
-        type: SHOULD_RESET_SCROLL_POSITION,
-        data
-    }
-}
+export { toggleLoader };
 
 export const setGridData = (data) => {
     return {
@@ -67,36 +45,19 @@ const languageData = [
     { Id: 9, Name: 'Korean', isView: true, isEdit: false }
 ]
 
-export const fetchData = (isGeneral, param) => (dispatch) => {
+export const fetchData = (isGeneral, userName) => (dispatch) => {
     dispatch(toggleLoader(true));
 
     const url = 'Portal/PermissionRole/GetFunctionList';
-    //const response = await post(url, param);
+    //const response = await post(url, { userName });
 
     const response = {
         status: 200,
-        data: {
-            MainData: isGeneral ? generalData : languageData,
-            TotalItem: isGeneral ? 12 : 9
-        }
+        data: isGeneral ? generalData : languageData
     }
 
     const data = response && response.status === 200 ? response.data : null;
-    const checkedItems = data ? _convertCheckedItems(data.MainData) : {};
 
-    dispatch(setGridData(data ? data.MainData : null));
-    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
-    dispatch(setShouldResetScrollPosition(true));
-    dispatch(setCheckedItems(checkedItems));
+    dispatch(setGridData(data));
     dispatch(toggleLoader(false));
-}
-
-function _convertCheckedItems(dataList) {
-    const checkedItems = {};
-    for (let i = 0; i < dataList.length; i++) {
-        const itemId = dataList[i].Id;
-        checkedItems[itemId] = false;
-    }
-
-    return checkedItems;
 }

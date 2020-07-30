@@ -3,10 +3,10 @@
     Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
 }
 
-@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+@model Fanex.Affiliate.Admin.Core.ViewModels.AdminRole.PermissionRoleViewModel
 
 @{
-    Html.RenderPartial("~/Areas/Portal/Views/AdminRole/_AdminRoleSubMenu.cshtml", Model);
+    Html.RenderPartial("~/Areas/Portal/Views/AdminRole/_AdminRoleSubMenu.cshtml", Model.SubMenuList);
 }
 
 @section pagecss{
@@ -14,5 +14,10 @@
 }
 
 @section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            userName: '@Model.UserName',
+        }
+    </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/admin-role/permission-role.js")"></script>
 }

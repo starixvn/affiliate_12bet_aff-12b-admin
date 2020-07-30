@@ -7,6 +7,7 @@ using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Administrator;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.ViewModels.AdminRole;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -29,14 +30,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(bool isBack = false)
         {
             var subMenu = new List<SubMenu>
             {
                 new SubMenu { Name = Lang.AdminUsers, Url = Url.Content("~/Portal/AdminRole"), IsActive = true }
             };
 
-            return View(subMenu);
+            var model = new AdminRoleViewModel
+            {
+                SubMenuList = subMenu,
+                IsBack = isBack
+            };
+
+            return View(model);
         }
 
         [HttpPost]

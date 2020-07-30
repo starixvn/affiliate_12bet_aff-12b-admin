@@ -3,13 +3,15 @@
         text-decoration: none;
         color: black;
         padding-right: 15px;
-
-        &:hover {
-            text-decoration: none !important;
-        }
     }
 
     .nav-link {
-        padding: 5px;
+        padding: 3px 10px;
     }
+}
+
+.header-container {
+    background: #ecf3fb;
+    border: 1px solid #e8dfdf;
+    padding: .5rem;
 }

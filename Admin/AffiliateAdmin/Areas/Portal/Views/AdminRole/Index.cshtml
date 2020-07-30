@@ -3,12 +3,18 @@
     Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
 }
 
-@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+@model Fanex.Affiliate.Admin.Core.ViewModels.AdminRole.AdminRoleViewModel
 
 @section pagecss{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/admin-role/admin-users.css")" rel="stylesheet" />
 }
 
 @section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            isBack: '@Model.IsBack'.toLowerCase() === 'true',
+        }
+    </script>
+
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/admin-role/admin-users.js")"></script>
 }

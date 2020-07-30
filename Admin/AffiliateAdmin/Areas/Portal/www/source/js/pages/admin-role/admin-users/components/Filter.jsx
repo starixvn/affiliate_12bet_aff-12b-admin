@@ -15,18 +15,26 @@ export class Filter extends PureComponent {
         }
     }
 
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
-    }
+    componentDidMount() {
+        console.log(this.props.isBack);
 
-    handlePressEnter = (event) => {
-        if (event.charCode === 13) {
-            event.preventDefault()
-            this.handleSearch();
+        if (this.props.isBack) {
+            this._handleSearch();
         }
     }
 
-    handleSearch = () => {
+    _handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+    _handlePressEnter = (event) => {
+        if (event.charCode === 13) {
+            event.preventDefault()
+            this._handleSearch();
+        }
+    }
+
+    _handleSearch = () => {
         const { pagingOption } = this.props;
         const param = Object.assign({}, this.state, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize })
 
@@ -41,9 +49,9 @@ export class Filter extends PureComponent {
                 <Form inline tag="div">
                     <FormGroup className="mr-sm-3">
                         <Label className="mr-2">User Name</Label>
-                        <Input type="text" name="userName" placeholder="Keyword" value={userName} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />
+                        <Input type="text" name="userName" placeholder="Keyword" value={userName} onKeyPress={this._handlePressEnter} onChange={this._handleChange} />
                     </FormGroup>
-                    <Button outline color="primary" type="button" onClick={this.handleSearch}>
+                    <Button outline color="primary" type="button" onClick={this._handleSearch}>
                         <span className="oi oi-magnifying-glass"></span> {globalResource.Search}
                     </Button>
                 </Form>
@@ -52,8 +60,8 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ pagingOption }) {
-    return Object.assign({}, { pagingOption });
+function mapStateToProps({ pagingOption, isBack }) {
+    return Object.assign({}, { pagingOption, isBack });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -9,7 +9,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resource } from '../libs/constants';
 import { resolveClientUrl } from '../../../../modules/utils';
-import { setPagingOption, fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader } from '../actions';
+import { setPagingOption, fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers } from '../actions';
 
 export class Content extends PureComponent {
 
@@ -53,7 +53,7 @@ export class Content extends PureComponent {
     _deleteUser = async (selectedUserId) => {
         this.props.toggleLoader(true);
 
-        const result = await this.props.deleteUser(selectedUserId);
+        const result = await this.props.deleteUsers(selectedUserId);
 
         if (result) {
             if (result.IsSuccessful) {
@@ -135,7 +135,7 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={resource.userName}>
-                    <a href={resolveClientUrl(`Portal/AdminInfo`)} target="_top">
+                    <a href={resolveClientUrl(`Portal/AdminInfo?userName=${userName}`)} target="_top">
                         {userName}
                     </a>
                 </Cell>
@@ -194,7 +194,7 @@ function mapStateToProps({ pagingOption, param, checkedUsers, gridData, shouldRe
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, setPagingOption, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader }, dispatch);
+    return bindActionCreators({ fetchData, setPagingOption, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

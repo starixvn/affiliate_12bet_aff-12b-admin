@@ -550,6 +550,9 @@
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="Utilities\SystemFile.cs" />
+    <Compile Include="ViewModels\AdminRole\AdminRoleViewModel.cs" />
+    <Compile Include="ViewModels\AdminRole\AdminInfoViewModel.cs" />
+    <Compile Include="ViewModels\AdminRole\PermissionRoleViewModel.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />

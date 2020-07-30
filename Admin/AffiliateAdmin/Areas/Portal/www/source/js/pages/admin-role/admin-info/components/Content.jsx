@@ -5,7 +5,7 @@ import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormFeedbac
 import { regExp, messages, initialState, roleList } from '../libs/constants';
 import { post } from '../../../../modules/ajaxRequest';
 import { resolveClientUrl } from '../../../../modules/utils';
-import { fetchData, createUser, updateUser, deleteUser, toggleLoader } from '../actions';
+import { fetchData, createUser, updateUser, toggleLoader } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -69,6 +69,14 @@ export class Content extends PureComponent {
             this._handleSubmit(isValid);
         }
     }
+
+    _handleCancel = (isCreateNew) => {
+        if (isCreateNew) {
+            window.location = resolveClientUrl("Portal/AdminRole");
+        } else {
+            this.setState({ isEdit: false });
+        }
+    }
     _validateNewPassword(newPassword) {
         const result = {
             isValid: false,
@@ -114,18 +122,15 @@ export class Content extends PureComponent {
 
         return (
             <Fragment>
-                <div className="my-2">
+                <div className="mb-2">
                     {
                         isCreateNew || isEdit ? (
                             <Fragment>
-                                <Button outline type="button" color="danger" onClick={() => this.setState({ isEdit: false })}>Cancel<span className="oi oi-x ml-2"></span></Button>
+                                <Button outline type="button" color="danger" onClick={() => this._handleCancel(isCreateNew)}>Cancel<span className="oi oi-x ml-2"></span></Button>
                                 <Button outline type="button" className="ml-2" onClick={() => this.setState({ isEdit: false })}>Save<span className="oi oi-task ml-2"></span></Button>
                             </Fragment>
                         ) : (
-                                <Fragment>
-                                    <Button outline type="button" color="danger">Delete<span className="oi oi-trash ml-2"></span></Button>
-                                    <Button outline type="button" className="ml-2" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
-                                </Fragment>
+                                <Button outline type="button" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
                             )
                     }
                 </div>
@@ -228,7 +233,7 @@ function mapStateToProps({ userName, userInfo }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, createUser, updateUser, deleteUser, toggleLoader }, dispatch);
+    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
