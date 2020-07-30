@@ -6,6 +6,7 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import ControlButtons from './ControlButtons';
 import Content from './Content';
+import { resolveClientUrl } from '../../../../modules/utils';
 
 export class AppContainer extends Component {
     constructor(props) {
@@ -17,10 +18,10 @@ export class AppContainer extends Component {
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
-                <div className="admin-users-menu">
+                <a className="admin-users-menu" href={resolveClientUrl("Portal/AdminRole")}>
                     <span class="icon-admin-users"></span>
                     <strong>Admin Users</strong>
-                </div>
+                </a>
                 <Filter />
                 <ControlButtons />
                 <Content />

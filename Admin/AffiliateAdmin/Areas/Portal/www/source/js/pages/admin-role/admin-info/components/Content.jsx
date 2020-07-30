@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap';
 import { regExp, messages, initialState, roleList } from '../libs/constants';
 import { post } from '../../../../modules/ajaxRequest';
-import { resolveClientUrl } from '../../../../modules/utils';
+import { resolveClientUrl, validateUserName } from '../../../../modules/utils';
 import { fetchData, createUser, updateUser, toggleLoader } from '../actions';
 
 export class Content extends PureComponent {
@@ -74,7 +74,7 @@ export class Content extends PureComponent {
         if (isCreateNew) {
             window.location = resolveClientUrl("Portal/AdminRole");
         } else {
-            this.setState({ isEdit: false });
+            this.setState({ isEdit: false, isClickedSubmit: false });
         }
     }
     _validateNewPassword(newPassword) {
@@ -110,121 +110,128 @@ export class Content extends PureComponent {
         return result;
     }
 
-    render() {
-        const { userName } = this.props;
-        const isCreateNew = !userName;
-        const { isClickedSubmit, newUserName, newPassword, confirmPassword, role, isActive, isShowMessage, isSuccess, message, isEdit } = this.state;
-
-        const newPasswordValidation = this._validateNewPassword(newPassword);
-        const confirmPasswordValidation = this._validateConfirmPassword(newPassword, confirmPassword);
-        const isValid = newPasswordValidation.isValid && confirmPasswordValidation.isValid;
-        const isValidUserName = false;
+    _renderWhenView() {
+        const { newUserName, role, isActive } = this.state;
 
         return (
             <Fragment>
                 <div className="mb-2">
-                    {
-                        isCreateNew || isEdit ? (
-                            <Fragment>
-                                <Button outline type="button" color="danger" onClick={() => this._handleCancel(isCreateNew)}>Cancel<span className="oi oi-x ml-2"></span></Button>
-                                <Button outline type="button" className="ml-2" onClick={() => this.setState({ isEdit: false })}>Save<span className="oi oi-task ml-2"></span></Button>
-                            </Fragment>
-                        ) : (
-                                <Button outline type="button" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
-                            )
-                    }
+                    <Button outline type="button" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
+                </div>
+                <Container fluid={true} className="admin-info-container">
+                    <Form tag="form" className="my-4">
+                        <FormGroup row className="mb-1">
+                            <Label sm="auto" className="required">User Name</Label>
+                            <Col sm={2}>
+                                <Input type="text" className="input-required mt-2" disabled value={newUserName} />
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row className="mb-1">
+                            <Label sm="auto" className="required">Role</Label>
+                            <Col sm={2}>
+                                <Input type="text" className="input-required mt-2" disabled value={roleList[role]} />
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row className="mb-1">
+                            <Label sm="auto" className="pt-2">Account Status</Label>
+                            <Col sm={2}>
+                                <Label className="pt-2">{isActive ? 'Active' : 'Closed'}</Label>
+                            </Col>
+                        </FormGroup>
+                    </Form >
+                </Container>
+            </Fragment>
+        )
+    }
+
+    _renderWhenCreateAndEdit() {
+        const { userName } = this.props;
+        const isCreateNew = !userName;
+        const { isClickedSubmit, newUserName, newPassword, confirmPassword, role, isActive, isShowMessage, isSuccess, message } = this.state;
+
+        const newPasswordValidation = isClickedSubmit && this._validateNewPassword(newPassword);
+        const confirmPasswordValidation = isClickedSubmit && this._validateConfirmPassword(newPassword, confirmPassword);
+        const isValid = newPasswordValidation.isValid && confirmPasswordValidation.isValid;
+        const validUserNameResult = isClickedSubmit && validateUserName(newUserName);
+
+        return (
+            <Fragment>
+                <div className="mb-2">
+                    <Fragment>
+                        <Button outline type="button" color="danger" onClick={() => this._handleCancel(isCreateNew)}>Cancel<span className="oi oi-x ml-2"></span></Button>
+                        <Button outline type="button" className="ml-2" disabled={isClickedSubmit ? !isValid : false} onClick={() => this._handleSubmit(isValid)}>Save<span className="oi oi-task ml-2"></span></Button>
+                    </Fragment>
                 </div>
                 <Container fluid={true} className="admin-info-container">
                     <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                         <div dangerouslySetInnerHTML={{ __html: message }}></div>
                     </Alert>
-                    {
-                        isEdit || isCreateNew ? (
-                            <Form tag="form" className="my-4" autocomplete="off">
-                                <FormGroup row className="mb-1">
-                                    <Label for="newUserName" sm="auto" className="required">User Name</Label>
-                                    <Col sm={2}>
-                                        <Input type="text" className="input-required mt-1" name="newUserName" id="newUserName"
-                                            value={newUserName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !isValidUserName} />
-                                        {!isValidUserName &&
-                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: messages.RequiredUserName }} /></FormFeedback>}
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="mb-1">
-                                    <Label for="newPassword" sm="auto" className="required">New Password</Label>
-                                    <Col sm={2}>
-                                        <Input type="password" className="input-required mt-1" name="newPassword" id="newPassword" autocomplete="false"
-                                            value={newPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !newPasswordValidation.isValid} />
-                                        {newPasswordValidation.message &&
-                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: newPasswordValidation.message }} /></FormFeedback>}
-                                    </Col>
-                                </FormGroup>
+                    <Form tag="form" className="my-4" autocomplete="off">
+                        <FormGroup row className="mb-1">
+                            <Label for="newUserName" sm="auto" className="required">User Name</Label>
+                            <Col sm={2}>
+                                <Input type="text" className="input-required mt-1" name="newUserName" id="newUserName"
+                                    value={newUserName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validUserNameResult.IsValid} />
+                                {!validUserNameResult.IsValid &&
+                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row className="mb-1">
+                            <Label for="newPassword" sm="auto" className="required">New Password</Label>
+                            <Col sm={2}>
+                                <Input type="password" className="input-required mt-1" name="newPassword" id="newPassword" autocomplete="false"
+                                    value={newPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !newPasswordValidation.isValid} />
+                                {newPasswordValidation.message &&
+                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: newPasswordValidation.message }} /></FormFeedback>}
+                            </Col>
+                        </FormGroup>
 
-                                <FormGroup row className="mb-1">
-                                    <Label for="confirmPassword" sm="auto" className="required">Confirm Password</Label>
-                                    <Col sm={2}>
-                                        <Input type="password" className="input-required mt-1" name="confirmPassword" id="confirmPassword" autocomplete="false"
-                                            value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
-                                        {confirmPasswordValidation.message &&
-                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="mb-1">
-                                    <Label for="role" sm="auto" className="required">Role</Label>
-                                    <Col sm={2}>
-                                        {
-                                            <Input type="select" name="role" className="mt-1" value={role} onChange={this._handleChange}>
-                                                {
-                                                    isCreateNew && <option key={'role-0'} value="0">[Select Role]</option>
-                                                }
-                                                {
-                                                    Object.keys(roleList).map(key => {
-                                                        return (<option key={'role-' + key} value={key}>{roleList[key]}</option>)
-                                                    })
-                                                }
-                                            </Input>
-                                        }
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="mb-1">
-                                    <Label for="isActive" sm="auto" className="pt-2">Account Status</Label>
-                                    <Col sm={2}>
-                                        <input type="checkbox" name="isActive" className="mt-2" checked={isActive} onChange={() => this.setState({ isActive: !isActive })} />
-                                    </Col>
-                                </FormGroup>
-                            </Form>
-                        ) : (
-                                <Form tag="form" className="my-4">
-                                    <FormGroup row className="mb-1">
-                                        <Label sm="auto" className="required">User Name</Label>
-                                        <Col sm={2}>
-                                            <Input type="text" className="input-required mt-2" disabled value={newUserName} />
-                                        </Col>
-                                    </FormGroup>
-                                    <FormGroup row className="mb-1">
-                                        <Label sm="auto" className="required">Role</Label>
-                                        <Col sm={2}>
-                                            <Input type="text" className="input-required mt-2" disabled value={role} />
-                                        </Col>
-                                    </FormGroup>
-                                    <FormGroup row className="mb-1">
-                                        <Label sm="auto" className="pt-2">Account Status</Label>
-                                        <Col sm={2}>
-                                            <Label className="pt-2">{isActive ? 'Active' : 'Closed'}</Label>
-                                        </Col>
-                                    </FormGroup>
-                                </Form >
-                            )
-                    }
-                    {/* <Row>
-                        <Col sm={{ size: 'auto', offset: 2 }}>
-                            <Button type="button" color="success" className="mr-3" disabled={isClickedSubmit ? !isValid : false} onClick={() => this._handleSubmit(isValid)}>Save</Button>
-                            <Button type="button" color="info" onClick={this._handleCancel}>Cancel</Button>
-                        </Col>
-                    </Row> */}
+                        <FormGroup row className="mb-1">
+                            <Label for="confirmPassword" sm="auto" className="required">Confirm Password</Label>
+                            <Col sm={2}>
+                                <Input type="password" className="input-required mt-1" name="confirmPassword" id="confirmPassword" autocomplete="false"
+                                    value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
+                                {confirmPasswordValidation.message &&
+                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row className="mb-1">
+                            <Label for="role" sm="auto" className="required">Role</Label>
+                            <Col sm={2}>
+                                <Input type="select" name="role" className="mt-1" value={role} onChange={this._handleChange} invalid={isClickedSubmit && !role}>
+                                    {
+                                        isCreateNew && <option key={'role-0'} value="0">[Select Role]</option>
+                                    }
+                                    {
+                                        Object.keys(roleList).map(key => {
+                                            return (<option key={'role-' + key} value={key}>{roleList[key]}</option>)
+                                        })
+                                    }
+                                </Input>
+                                {
+                                    !role &&
+                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: messages.RequiredRole }} /></FormFeedback>
+                                }
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row className="mb-1">
+                            <Label for="isActive" sm="auto" className="pt-2">Account Status</Label>
+                            <Col sm={2}>
+                                <input type="checkbox" name="isActive" className="mt-2" checked={isActive} onChange={() => this.setState({ isActive: !isActive })} />
+                            </Col>
+                        </FormGroup>
+                    </Form>
                 </Container>
             </Fragment>
         )
+    }
+
+    render() {
+        const { userName } = this.props;
+        const isCreateNew = !userName;
+        const { isEdit } = this.state;
+
+        return (isCreateNew || isEdit ? this._renderWhenCreateAndEdit() : this._renderWhenView())
     }
 }
 

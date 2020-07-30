@@ -8,7 +8,7 @@ export const CheckboxSelectAll = (props) => {
         const { checkedList } = props;
         const uncheckedItems = checkedList && Object.keys(checkedList).filter(item => !checkedList[item]);
 
-        setCheckedAll(uncheckedItems.length === 0);
+        setCheckedAll(!uncheckedItems.length && !!Object.keys(checkedList).length);
     }, [props.checkedList]);
 
     function _onCheckAll(isCheckAll) {

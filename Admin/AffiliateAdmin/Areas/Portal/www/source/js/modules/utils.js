@@ -77,3 +77,25 @@ export const isValidNumber = (inputValue) => {
     const regex = /^\d*$/;
     return regex.test(inputValue);
 }
+
+export const validateUserName = (userName) => {
+    if (!userName) {
+        return {
+            IsValid: false,
+            Message: 'User Name is required!'
+        };
+    }
+
+    const regexCheckSpecialChar = new RegExp("^[a-zA-Z0-9]{5,20}$");
+    if (!regexCheckSpecialChar.test(userName)) {
+        return {
+            IsValid: false,
+            Message: 'User Name must has at least 5 characters and can not be contained the special characters. Please try again!'
+        };
+    }
+
+    return {
+        IsValid: true,
+        Message: ''
+    }
+}

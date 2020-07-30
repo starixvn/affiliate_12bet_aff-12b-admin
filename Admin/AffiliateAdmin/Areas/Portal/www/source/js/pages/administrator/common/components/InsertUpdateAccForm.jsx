@@ -6,7 +6,7 @@ import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBo
 import { headerText, globalResource, MaxLength } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { getDepartmentList } from '../../department/actions/index';
-import { validateUserName } from '../libs/services';
+import { validateUserName } from '../../../../modules/utils';
 import { getUserDetail, insertUser, insertExistedUser, updateUser } from '../actions/index';
 
 const defaultState = {
@@ -75,9 +75,10 @@ export class InsertUpdateAccForm extends PureComponent {
     _handleSubmit = async () => {
         const { selectedUserId, isInsertExistedAcc } = this.props;
         const { userName, password, firstName, lastName, department, isInsert } = this.state;
+        const validateUserNameResult = validateUserName(userName)
 
-        if (!userName) {
-            this._handleShowAlert(false, 'Please input user name!');
+        if (!validateUserNameResult.IsValid) {
+            this._handleShowAlert(false, validateUserNameResult.Message);
             return;
         }
 
@@ -91,20 +92,14 @@ export class InsertUpdateAccForm extends PureComponent {
             return;
         }
 
-        const isValidUserName = validateUserName(userName);
+        const message = isInsert ? "Administrator has been added successfully!" : `The ${userName} has been updated successfully!`;
+        const userInfo = Object.assign({}, { AccountId: selectedUserId, userName, password, firstName, lastName, groupId: department });
+        const result = isInsert ? (isInsertExistedAcc ? await this.props.insertExistedUser(userInfo) : await this.props.insertUser(userInfo)) : await this.props.updateUser(userInfo);
 
-        if (isValidUserName) {
-            const message = isInsert ? "Administrator has been added successfully!" : `The ${userName} has been updated successfully!`;
-            const userInfo = Object.assign({}, { AccountId: selectedUserId, userName, password, firstName, lastName, groupId: department });
-            const result = isInsert ? (isInsertExistedAcc ? await this.props.insertExistedUser(userInfo) : await this.props.insertUser(userInfo)) : await this.props.updateUser(userInfo);
-
-            if (result) {
-                this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
-            } else {
-                this._handleShowAlert(false, isInsert ? "Adding the administrator was failed!" : `Updating the ${userName} was failed!`);
-            }
+        if (result) {
+            this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
         } else {
-            this._handleShowAlert(false, 'User Name can not be contained the special characters. Please try again!');
+            this._handleShowAlert(false, isInsert ? "Adding the administrator was failed!" : `Updating the ${userName} was failed!`);
         }
     }
 

@@ -28,9 +28,3 @@ const getStringConvertCheckedPolicies = (checkedPolicies, selectedId, isAccountP
         return accumulator = accumulator + policy + ',0;';
     }, '');
 }
-
-export const validateUserName = (userName) => {
-    const regexCheckSpecialChar = new RegExp("^[a-zA-Z0-9]{1,20}$");
-
-    return regexCheckSpecialChar.test(userName);
-}

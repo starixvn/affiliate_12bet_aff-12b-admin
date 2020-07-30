@@ -4,7 +4,7 @@ export { regExp };
 
 export const messages = {
     ...changePasswordMessages,
-    RequiredUserName: "User Name is required!"
+    RequiredRole: "Role is required!"
 }
 
 const AsstMarketing = 5;
@@ -21,7 +21,7 @@ export const initialState = {
     newUserName: '',
     newPassword: '',
     confirmPassword: '',
-    role: 0,
+    role: 1,
     isActive: true,
     isShowMessage: false,
     isSuccess: true,
