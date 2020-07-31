@@ -1,8 +1,8 @@
-﻿using System;
-using System.Data;
-using Fanex.Affiliate.Admin.Core.DTO.Customer;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Repository;
+using System;
+using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Fanex.Logging;
+﻿using Fanex.Logging;
 using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Configurations
 {

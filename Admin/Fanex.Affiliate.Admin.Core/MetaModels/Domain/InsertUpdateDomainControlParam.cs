@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
 {
-    public class InsertUpdateDomainControlParam: UserInfoParam
+    public class InsertUpdateDomainControlParam : UserInfoParam
     {
         public int DomainId { get; set; }
 

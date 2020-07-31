@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Data;
-using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
-using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.MetaModels;
-using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {

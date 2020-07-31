@@ -4,27 +4,9 @@ using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
-    public class ObjectDBBuilder : IObjectDBBuilder, IDisposable
+    public class ObjectDBBuilder : IObjectDBBuilder
     {
-        public IObjectDb DB { get; private set; }
-
-        public ObjectDBBuilder(string spKey, string dbMode = DBMode.Main)
-        {
-            DB = new ObjectDb(spKey + dbMode);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing && DB != null)
-            {
-                DB.Dispose();
-            }
-        }
+        public IObjectDb Build(string spKey, string dbMode = DBMode.Main)
+            =>  new ObjectDb(spKey + dbMode);
     }
 }

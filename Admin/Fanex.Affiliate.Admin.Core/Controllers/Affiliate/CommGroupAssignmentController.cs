@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
@@ -15,6 +13,8 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using Fanex.Affiliate.Admin.Core.ViewModels;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {

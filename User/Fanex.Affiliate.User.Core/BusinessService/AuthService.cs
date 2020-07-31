@@ -9,6 +9,7 @@ using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
+using System.Web.Security;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -52,6 +53,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public bool Recheckin(int onUserId, bool isInternal)
         {
             return _authRepository.Recheckin(onUserId, isInternal);
+        }
+
+        public void SignIn(string userName, bool createPersistentCookie)
+        {
+            FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
+        }
+
+        public void SignOut()
+        {
+            FormsAuthentication.SignOut();
         }
 
         private LoginResultViewModel GetLoginResultForInternalAdmin(UserLoginParam userParam)

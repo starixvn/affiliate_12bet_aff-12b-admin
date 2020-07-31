@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
+﻿using DNAide.Utils;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels.Login;
-using DNAide.Utils;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {

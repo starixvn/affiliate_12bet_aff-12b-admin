@@ -66,7 +66,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             user.OnUserId = _authService.GetOnUserId(onUserIdParam);
 
             SessionService.AssignSessions(user);
-            FormsAuthentication.SetAuthCookie(user.UserName, false);
+            AuthService.SignIn(user.UserName, false);
         }
 
         protected ResultInfo GetErrorResult(string message)

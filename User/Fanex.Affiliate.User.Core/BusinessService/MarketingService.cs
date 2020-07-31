@@ -18,11 +18,15 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private readonly IMarketingRepository _marketingRepository;
 
         private readonly IMemoryCacheService _cacheService;
+        private readonly ILanguageService _languageService;
 
-        public MarketingService(IMarketingRepository marketingRepository, IMemoryCacheService cacheService)
+        public MarketingService(IMarketingRepository marketingRepository
+            , IMemoryCacheService cacheService
+            , ILanguageService languageService)
         {
             _marketingRepository = marketingRepository;
             _cacheService = cacheService;
+            _languageService = languageService;
         }
 
         public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal)
@@ -40,20 +44,15 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         }
 
         public IEnumerable<LanguageType> GetLanguageList(bool isInternal)
-        {
-            var languageList = _cacheService.Get<IEnumerable<LanguageType>>(CacheKey.LanguageList);
-            if (languageList == null)
+            => _languageService.GetSystemLanguages(isInternal)
+            .Select(l => new LanguageType
             {
-                languageList = _marketingRepository.GetLanguageList(isInternal);
-            }
-
-            if (languageList != null)
-            {
-                _cacheService.Set(CacheKey.LanguageList, languageList);
-            }
-
-            return languageList ?? new List<LanguageType>();
-        }
+                DisplayName = l.DisplayName,
+                MarketId = l.Code,
+                MarketName = l.EnglishName,
+                MarketNativeName = l.NativeName,
+                ShortedCode = l.ShortedCode
+            });
 
         public IEnumerable<CurrencyType> GetCurrencyList(bool isInternal)
         {
@@ -111,14 +110,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam)
         {
             var linkList = new Dictionary<string, string>();
-
+            var selectedLanguage = linkGenerationParam.SelectedLanguage;
             var languageList = linkGenerationParam.LanguageList;
-            if (string.IsNullOrEmpty(linkGenerationParam.SelectedLanguage) &&
-                languageList != null && languageList.Any())
+
+            if (IsSelectedAllLanguages(selectedLanguage) && languageList != null && languageList.Any())
             {
                 foreach (var item in languageList)
                 {
-                    var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(item.Value));
+                    var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(item.Value));
 
                     if (language != null)
                     {
@@ -126,12 +125,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     }
                 }
 
-                var preferredLanguage = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(linkGenerationParam.PreferredLanguage));
+                var preferredLanguage = _languageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(linkGenerationParam.PreferredLanguage));
                 linkList.Add(Lang.Default, GenerateLink(linkGenerationParam, preferredLanguage.ShortedCode));
             }
             else
             {
-                var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(linkGenerationParam.SelectedLanguage));
+                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(selectedLanguage));
 
                 if (language != null)
                 {
@@ -159,7 +158,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     banner.Height = Convert.ToInt32(sizes[1]);
                 }
 
-                var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.EnglishName.MatchWith(banner.Language));
+                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.EnglishName.MatchWith(banner.Language));
 
                 if (language != null)
                 {
@@ -179,7 +178,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 text.Message = HttpContext.Current.Server.HtmlDecode(text.Message.Replace("\r\n", "<br/>"));
                 text.ScriptSrc = textParam.ScriptUrl + text.TextId;
-                var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.EnglishName.MatchWith(text.Language));
+                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.EnglishName.MatchWith(text.Language));
 
                 if (language != null)
                 {
@@ -210,5 +209,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             return result;
         }
+
+        private static bool IsSelectedAllLanguages(string selectedLang)
+            => string.IsNullOrWhiteSpace(selectedLang);
     }
 }

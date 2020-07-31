@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using System;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
 {
@@ -35,7 +35,8 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                     Data = new { ErrCode = Code.ErrCodeSessionExpired, ErrMsg = "Your session was expired! Please login again." },
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
-            }else
+            }
+            else
             {
                 filterContext.Result = new RedirectResult("~/Portal/Login");
             }

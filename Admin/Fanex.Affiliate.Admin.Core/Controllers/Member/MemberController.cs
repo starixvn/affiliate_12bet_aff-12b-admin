@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels.Member;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.ViewModels.Member;
 using Fanex.Affiliate.Admin.Core.Services.Member;
-using Fanex.Affiliate.Admin.Core.MetaModels.Member;
-using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.ViewModels.Member;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 {

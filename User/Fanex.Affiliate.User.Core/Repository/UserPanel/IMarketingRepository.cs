@@ -9,8 +9,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal);
 
-        IEnumerable<LanguageType> GetLanguageList(bool isInternal);
-
         IEnumerable<CurrencyType> GetCurrencyList(bool isInternal);
 
         IEnumerable<BannerType> GetBannerTypeList(bool isInternal);

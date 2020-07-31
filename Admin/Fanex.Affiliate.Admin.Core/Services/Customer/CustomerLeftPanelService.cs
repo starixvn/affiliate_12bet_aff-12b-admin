@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DNAide.Utils;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Repository.Customer;
-using DNAide.Utils;
-using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Utilities;
-using Fanex.Affiliate.Admin.Core.DTO.Email;
-using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+using System;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {

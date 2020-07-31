@@ -173,7 +173,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [OutputCache(NoStore = true, Duration = 0, Location = OutputCacheLocation.None, VaryByParam = "*")]
         public ActionResult CaptchaImage(byte type = 0)
         {
-            var captcha = new Random().Next(1000, 9999).ToString();
+            var captcha = CaptchaService.GenerateCaptcha();
             if (type == 0)
             {
                 SessionService.CaptchaCode = captcha;
@@ -189,7 +189,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private void DoSignOut()
         {
             Session.Clear();
-            FormsAuthentication.SignOut();
+            AuthService.SignOut();
         }
     }
 }

@@ -1,18 +1,18 @@
-﻿using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Services.Common;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.ChangeAdminPassword;
 using Fanex.Affiliate.Admin.Core.Services.ChangeAdminPassword;
-using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.Constants;
-using System.Linq;
-using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class ChangeAdminPasswordController: BaseController
+    public class ChangeAdminPasswordController : BaseController
     {
         private readonly IChangeAdminPasswordService _changeAdminPasswordService;
 
@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
         public ActionResult ChangePassword(ChangeAdminPasswordParam param)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 param.OldPassword = CryptographyHelper.Encrypt(param.OldPassword.Trim());
                 param.NewPassword = CryptographyHelper.Encrypt(param.NewPassword.Trim());

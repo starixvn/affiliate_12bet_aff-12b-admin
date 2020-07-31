@@ -15,8 +15,8 @@
         public CommissionReportController(
             ISessionService sessionService,
             ILanguageService languageService,
-            ICommissionReportService commissionReportService
-          ) : base(sessionService, languageService)
+            ICommissionReportService commissionReportService) 
+            : base(sessionService, languageService)
         {
             _commissionReportService = commissionReportService;
         }
@@ -35,9 +35,9 @@
         {
             var viewModel = year >= 2009 && year <= DateTime.Now.Year
                 ? _commissionReportService.GenerateCommissionReportData(
-                SessionService.UserSession.AffId,
-                new DateTime(year, 1, 1)
-                ) : new CommissionReportDataViewModel();
+                    SessionService.UserSession.AffId,
+                    new DateTime(year, 1, 1)) 
+                : new CommissionReportDataViewModel();
 
             return Json(viewModel);
         }

@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         public void InsertAdjustment_WhenCallWithValidParam_ExcuteCorrect()
         {
             // Arrange
-            var param = new AdjustmentParam { AffId = 1271808, Amount = 123};
+            var param = new AdjustmentParam { AffId = 1271808, Amount = 123 };
             AdjustmentParam passedParam = null;
             var adjustmentService = new Mock<IAdjustmentService>();
             adjustmentService.Setup(s => s.GetBalanceBroughtForward(param.AffId)).Returns(1234);

@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Configurations;
+﻿using Fanex.Affiliate.Admin.Core.Configurations;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Extensions
 {

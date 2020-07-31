@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using System;
 
 namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
 {
@@ -18,6 +19,15 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
             var toTimeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(toTimeZoneId);
 
             return TimeZoneInfo.ConvertTime(dateValue, fromTimeZoneInfo, toTimeZoneInfo);
+        }
+
+        public static long GetUnixTimeMilisecond(DateTime value, string timeZoneId = TimeZoneId.GmtPlus8)
+        {
+            TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+            TimeSpan offset = timeZone.GetUtcOffset(value);
+
+            var timeOffSet = new DateTimeOffset(value.Ticks, offset);
+            return timeOffSet.ToUnixTimeMilliseconds();
         }
     }
 }

@@ -1,11 +1,10 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Member;
-using Fanex.Affiliate.Admin.Core.Repository.Member;
-using System.Collections.Generic;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using System.Text;
+using Fanex.Affiliate.Admin.Core.DTO.Member;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
-using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Repository.Member;
 using System.Linq;
+using System.Text;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Member
 {
@@ -31,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
             {
                 var result = _activeMemberRepository.Add12BetPlayerAccountToIBC(depositCustomer);
 
-                if(result.IsSuccessful)
+                if (result.IsSuccessful)
                 {
                     _activeMemberRepository.WriteLogAfterAdd12BetPlayerAccountToIBCSuccefully(param, depositCustomer.DepositUserId);
 
@@ -40,11 +39,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
                     if (result.IsSuccessful)
                     {
                         _activeMemberRepository.WriteLogAfterUpdate12BetPlayerStatusToDepositSuccefully(param, depositCustomer.UserId);
-                    } else
+                    }
+                    else
                     {
                         errorUserNames.Append("\n" + depositCustomer.DepositUserName + " " + (result.Code == Code.ErrCodeUserAlreadyHasIBCAccount ? "user already has IBC account" : "user not found"));
                     }
-                } else
+                }
+                else
                 {
                     errorUserNames.Append("\n" + depositCustomer.DepositUserName + " " + result.Message);
                 }

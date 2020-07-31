@@ -11,9 +11,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public string EncryptPassword(string privateKey, string cipherText)
         {
-            var plainPassword = Decrypt(DecodeUtfBase64(privateKey), cipherText);
+            var plainPassword = RsaDecrypt(privateKey, cipherText);
 
-            return CryptographyHelper.Encrypt(plainPassword);
+            return EncryptPassword(plainPassword);
         }
 
         public string EncryptPassword(string password)

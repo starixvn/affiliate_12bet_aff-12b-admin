@@ -39,7 +39,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Fanex.Affiliate.DataService.ConsoleHostService.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,30 +50,31 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Fanex.Affiliate.DataService.ConsoleHostService.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
+      <HintPath>..\..\..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Data, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Data.4.2.0\lib\net461\Fanex.Data.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.Data.4.2.0\lib\net461\Fanex.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Data.SqlServer, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Data.SqlServer.4.2.0\lib\net461\Fanex.Data.SqlServer.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.Data.SqlServer.4.2.0\lib\net461\Fanex.Data.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Logging.Sentry.RavenClient, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Logging.Sentry.RavenClient.1.0.1\lib\net461\Fanex.Logging.Sentry.RavenClient.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.Logging.Sentry.RavenClient.1.0.1\lib\net461\Fanex.Logging.Sentry.RavenClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="IBCCrypt">
@@ -83,29 +85,29 @@
       <HintPath>..\Ref\IBCFile.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ONEbook.UM, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ONEbook.UM.3.0.0-beta7\lib\net461\ONEbook.UM.dll</HintPath>
+      <HintPath>..\..\..\packages\ONEbook.UM.3.0.0-beta7\lib\net461\ONEbook.UM.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ONEbook.UM.NonWebApp, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ONEbook.UM.NonWebApp.1.0.2-beta1\lib\net461\ONEbook.UM.NonWebApp.dll</HintPath>
+      <HintPath>..\..\..\packages\ONEbook.UM.NonWebApp.1.0.2-beta1\lib\net461\ONEbook.UM.NonWebApp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Quartz, Version=3.0.7.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Quartz.3.0.7\lib\net452\Quartz.dll</HintPath>
+      <HintPath>..\..\..\packages\Quartz.3.0.7\lib\net452\Quartz.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RemotingRef">
       <HintPath>..\Ref\RemotingRef.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=106.6.10.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.106.6.10\lib\net452\RestSharp.dll</HintPath>
+      <HintPath>..\..\..\packages\RestSharp.106.6.10\lib\net452\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpRaven, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpRaven.2.4.0\lib\net45\SharpRaven.dll</HintPath>
+      <HintPath>..\..\..\packages\SharpRaven.2.4.0\lib\net45\SharpRaven.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -117,7 +119,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <HintPath>..\..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Remoting" />
@@ -207,7 +209,6 @@
     <Content Include="App_Data\ISoftbetData\isoftbet_6.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Fanex.Affiliate.DataService.ConsoleHostService.ruleset" />
     <None Include="packages.config" />
     <None Include="sampled_data.csv" />
     <Content Include="Template\DailyMemberEmail.cshtml">
@@ -246,6 +247,10 @@
       <Project>{1ff263f2-9c86-416d-af14-699a28beaca6}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.ISoftbet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.KY\Fanex.Affiliate.DataService.Importer.KYGaming.csproj">
+      <Project>{83a4f55d-1521-4bc3-8a1e-ae9ae607b41c}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.KYGaming</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
       <Project>{b04723a2-c292-4104-8061-6a54f890b094}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.LBKeno</Name>
@@ -257,10 +262,6 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Topaz\Fanex.Affiliate.DataService.Importer.FlowGaming.csproj">
       <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.FlowGaming</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
-      <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>
-      <Name>Fanex.Affiliate.DataService.Importer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Job\Fanex.Affiliate.DataService.Job.csproj">
       <Project>{8df4e9c0-19e3-4722-9cb1-252c087270fb}</Project>
@@ -283,6 +284,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

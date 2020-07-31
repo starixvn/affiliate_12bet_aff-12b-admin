@@ -19,6 +19,8 @@
         public const int LBKenoId = 22;
 
         public const int TopazId = 23;
+
+        public const int KyGamingId = 24;
     }
 
     public static class RespositoryResponse

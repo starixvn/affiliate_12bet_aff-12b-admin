@@ -1,12 +1,12 @@
-﻿using System;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Data;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using Fanex.Data;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {

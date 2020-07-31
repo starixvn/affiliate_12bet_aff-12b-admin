@@ -79,7 +79,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         {
             // Arrange
             var homeService = new Mock<IHomeService>();
-            homeService.Setup(t => t.GetOnlineList(1, 20)).Returns(new EntityResult<OnlineListInfo> { MainData = new List<OnlineListInfo> { new OnlineListInfo() }});
+            homeService.Setup(t => t.GetOnlineList(1, 20)).Returns(new EntityResult<OnlineListInfo> { MainData = new List<OnlineListInfo> { new OnlineListInfo() } });
             var controller = CreateHomeController(homeService: homeService.Object);
 
             // Action

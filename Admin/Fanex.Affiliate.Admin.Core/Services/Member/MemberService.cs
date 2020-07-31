@@ -23,11 +23,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
         {
             var result = _memberRepository.DeleteMember(param);
 
-            if(result.IsSuccessful)
+            if (result.IsSuccessful)
             {
                 result = _memberRepository.DeleteMemberInDepositDB(param.DepositMemberId);
 
-                if(result.IsSuccessful)
+                if (result.IsSuccessful)
                 {
                     _memberRepository.WriteAfterDeleteSuccefully(param);
                 }

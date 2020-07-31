@@ -1,13 +1,13 @@
-﻿using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Extensions;
-using System;
-using Fanex.Affiliate.Admin.Core.Services.ExchangeRate;
-using Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.ExchangeRate;
+using System;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -35,7 +35,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult GetExchangeRateList(DateTime date)
         {
-            return new JsonNetResult {
+            return new JsonNetResult
+            {
                 Data = _exchangeRateService.GetExchangeRateList(date)
             };
         }

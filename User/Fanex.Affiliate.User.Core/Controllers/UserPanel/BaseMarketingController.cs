@@ -28,7 +28,9 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         }
         protected SearchFormViewModel GetSearchFormViewModel(bool isMediaPage)
         {
-            var categoryList = MarketingService.GetCategoryList(isMediaPage, SessionService.IsInternal).Where(c => string.IsNullOrEmpty(c.SubCategory));
+            var categoryList = MarketingService
+                .GetCategoryList(isMediaPage, SessionService.IsInternal)
+                .Where(c => string.IsNullOrEmpty(c.SubCategory));
             var languageList = MarketingService.GetLanguageList(SessionService.IsInternal);
             var currencyList = MarketingService.GetCurrencyList(SessionService.IsInternal);
             var userSession = SessionService.UserSession;
@@ -63,6 +65,16 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             };
 
             return viewModel;
+        }
+
+        protected IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
+        {
+            if (bannerParam.SelectedDomain == null)
+            {
+                return new List<MarketingItem>();
+            }
+
+            return MarketingService.GetBannerList(bannerParam);
         }
 
         protected IDictionary<string, string> GetTextLinkList(string selectedLanguage, string selectedPage,

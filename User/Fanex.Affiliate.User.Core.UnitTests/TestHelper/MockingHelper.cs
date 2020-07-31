@@ -28,9 +28,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             );
         }
 
-
-
-
         public static Controller FakeController(Controller controller)
         {
             var request = GetHttpRequest();

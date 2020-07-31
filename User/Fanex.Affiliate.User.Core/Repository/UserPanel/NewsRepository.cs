@@ -9,7 +9,14 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public class NewsRepository : INewsRepository
     {
+        private readonly IObjectDBBuilder _builder;
+
         private const string MessagePrefix = "message_";
+
+        public NewsRepository(IObjectDBBuilder builder)
+        {
+            _builder = builder; 
+        }
 
         public LatestHotNews GetLastestHotNews(bool isInternal)
         {
@@ -18,9 +25,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             var result = new LatestHotNews();
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                using (var reader = objectDb.DB.ExecuteReader())
+                using (var reader = db.ExecuteReader())
                 {
                     if (reader.Read())
                     {
@@ -39,9 +46,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             const string uSpKey = "Aff_HotNewsSel";
             var mode = param.IsInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
+            using (var db = _builder.Build(uSpKey, mode))
             {
-                return objectDb.DB.Query<MessageHistory>(param);
+                return db.Query<MessageHistory>(param);
             }
         }
 

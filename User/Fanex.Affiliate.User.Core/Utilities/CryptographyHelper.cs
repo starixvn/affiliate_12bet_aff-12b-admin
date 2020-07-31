@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text;
 using Fanex.Affiliate.User.Core.Constants;
+using System.Security.Cryptography;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
@@ -10,6 +11,20 @@ namespace Fanex.Affiliate.User.Core.Utilities
         public static string Encrypt(string inputString)
         {
             return CfsEnCode(inputString);
+        }
+
+        public static string SHA256Hash(string input, string secret)
+        {
+            var secretKey = secret ?? string.Empty;
+            var encoding = new ASCIIEncoding();
+            var keyByte = encoding.GetBytes(secretKey);
+            var messageBytes = encoding.GetBytes(input);
+            using (var hmacsha256 = new HMACSHA256(keyByte))
+            {
+                var hashmessage = hmacsha256.ComputeHash(messageBytes);
+
+                return ConverterUtils.ToHex(hashmessage).ToLowerInvariant();
+            }
         }
 
         private static string CfsEnCode(string codeStr)

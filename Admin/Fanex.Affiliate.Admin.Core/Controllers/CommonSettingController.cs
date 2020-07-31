@@ -1,11 +1,11 @@
-﻿using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using ONEbook.UM.Filters;
-using Fanex.Affiliate.Admin.Core.Constants;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {

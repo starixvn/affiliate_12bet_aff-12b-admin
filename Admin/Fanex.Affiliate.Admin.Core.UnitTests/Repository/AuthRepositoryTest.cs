@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
-using Fanex.Affiliate.Admin.Core.MetaModels.Login;
+﻿using Fanex.Affiliate.Admin.Core.MetaModels.Login;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;

@@ -9,7 +9,6 @@ using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.MemberInfoWebService;
 using Fanex.Affiliate.User.Core.Repository;
-using Fanex.Affiliate.User.Core.Repository.BetList;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Caching;
@@ -79,7 +78,6 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<EmailService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MailProcessor>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatementHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<BetListRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PaymentRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PaymentService>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -100,8 +98,10 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<SecurityQuestionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountOverviewRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
 
-            builder.RegisterType<QrCodeUrlGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<PngImageHandler>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<QrCodeGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            builder.RegisterType<ObjectDBBuilder>().AsImplementedInterfaces().UsingConstructor().InstancePerLifetimeScope();
+            builder.RegisterType<LanguageRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

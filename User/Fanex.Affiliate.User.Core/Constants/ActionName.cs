@@ -3,5 +3,7 @@
     public static class ActionName
     {
         public const string Default = "Index";
+
+        public const string RecoverPassword = "RecoverPassword";
     }
 }

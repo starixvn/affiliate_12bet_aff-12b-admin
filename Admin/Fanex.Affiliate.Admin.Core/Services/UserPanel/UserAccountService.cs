@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
         {
             var isValidPaymentMethod = ValidatePaymentMethod(param);
 
-            if(isValidPaymentMethod)
+            if (isValidPaymentMethod)
             {
                 return _userAccountRepository.UpdateUserAccount(param);
             }

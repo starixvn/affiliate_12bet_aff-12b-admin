@@ -34,47 +34,6 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string ShortedEuroCode = "eneuro";
 
-        public static IEnumerable<Language> LanguageList
-        {
-            get
-            {
-                IEnumerable<Language> languageList = null;
-                var service = DependencyResolver.Current.GetService<IMarketingService>();
-                var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-
-                if (service == null)
-                {
-                    languageList = new List<Language>
-                        {
-                            new Language { Code = "en-US", NativeName = "English", DisplayName = "English", EnglishName = "English", ShortedCode = "en"},
-                            new Language { Code = "zh-CN", NativeName = "中文简体", DisplayName = "Chinese Simplified", EnglishName = "Chinese Simplified", ShortedCode = "cs"},
-                            new Language { Code = "zh-TW", NativeName = "中文繁体", DisplayName = "Chinese Traditional", EnglishName = "Chinese Traditional", ShortedCode = "ch"},
-                            new Language { Code = "id-ID", NativeName = "Indonesia", DisplayName = "Bahasa Indonesia", EnglishName = "Indonesian", ShortedCode = "id"},
-                            new Language { Code = "vi-VN", NativeName = "Tiếng Việt", DisplayName = "Vietnamese", EnglishName = "Vietnamese", ShortedCode = "vn"},
-                            new Language { Code = "th-TH", NativeName = "ภาษาไทย", DisplayName = "Thai", EnglishName = "Thai", ShortedCode = "th"},
-                            new Language { Code = "ko-KR", NativeName = "한국어", DisplayName = "Korean", EnglishName = "Korean", ShortedCode = "ko"},
-                            new Language { Code = "es-ES", NativeName = "Español", DisplayName = "Spanish", EnglishName = "Spanish", ShortedCode = "es"},
-                            new Language { Code = "ja-JP", NativeName = "日本", DisplayName = "Japanese", EnglishName = "Japanese", ShortedCode = "jp"},
-                            new Language { Code = "hi-IN", NativeName = "English (India)", DisplayName = "English (India)", EnglishName = "English (India)", ShortedCode = "hien"},
-                            new Language { Code = "en-GB", NativeName = "English (Europe)", DisplayName = "English (Europe)", EnglishName = "English (Europe)", ShortedCode = "eneuro"}
-                        };
-                }
-                else
-                {
-                    languageList = service.GetLanguageList(sessionService.IsInternal).Select(l => new Language
-                    {
-                        Code = l.MarketId,
-                        DisplayName = l.DisplayName,
-                        EnglishName = l.MarketName,
-                        NativeName = l.MarketNativeName,
-                        ShortedCode = l.ShortedCode
-                    });
-                }
-                return languageList;
-            }
-        }
-
-
         public static string GetShortedCodeForTracking(string currentLanguage)
         {
             string result = string.Empty;
@@ -92,12 +51,5 @@ namespace Fanex.Affiliate.User.Core.Constants
                   : Lang.ResourceManager.GetString(value.Replace(" ", "")) ?? value;
 
         }
-
-        public static bool IsValid(string languageCode)
-        {
-            return !string.IsNullOrEmpty(languageCode) && LanguageList.Any(l => Equals(l.Code, languageCode));
-        }
-
-
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
@@ -8,6 +7,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 {

@@ -9,8 +9,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Converter
 {
     class VRLotteryFileImporter : IFileImporter
     {
-        private IImporterService Service;
-        private IDataSpliter Spliter;
+        private readonly IImporterService Service;
+        private readonly IDataSpliter Spliter;
         public VRLotteryFileImporter(IImporterService service = null, IDataSpliter spliter = null)
         {
             Service = service ?? new VrLotteryService();

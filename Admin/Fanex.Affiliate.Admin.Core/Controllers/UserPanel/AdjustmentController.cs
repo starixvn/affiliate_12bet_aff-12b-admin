@@ -1,13 +1,13 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Resources;
-using System;
-using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using System;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [ValidateAntiForgeryHeader]
         public ActionResult GetBalanceBroughtForward(int affId)
         {
-            if(affId >= Validation.MinId)
+            if (affId >= Validation.MinId)
             {
                 return new JsonNetResult
                 {
@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 var absBalanceBf = Math.Abs(_adjustmentService.GetBalanceBroughtForward(param.AffId));
 
-                if(ModelState.IsValid && param.IsValid(absBalanceBf))
+                if (ModelState.IsValid && param.IsValid(absBalanceBf))
                 {
                     var adjustmentParam = new AdjustmentParam
                     {

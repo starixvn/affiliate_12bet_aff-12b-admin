@@ -1,9 +1,9 @@
-﻿using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.ViewModels.Customer;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {

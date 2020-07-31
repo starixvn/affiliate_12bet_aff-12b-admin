@@ -1,22 +1,28 @@
 ﻿using System;
 using System.Net;
-using System.Security.Cryptography;
+using System.Reflection.Emit;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.SessionState;
-using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.Infrastructure
 {
     public class EncryptedHandler : IHttpHandler, IRequiresSessionState
     {
         private readonly RequestContext _requestContext;
+        private readonly IHttpRequestParserHandler _httpRequestParserHandle;
+        private const int DeniedByFilterSubStatus = 5;
 
         public EncryptedHandler(RequestContext requestContext)
+            : this(requestContext, new HttpRequestParserHandler(requestContext.HttpContext.Request))
+        {
+        }
+
+        public EncryptedHandler(RequestContext requestContext, IHttpRequestParserHandler parserHanlder)
         {
             _requestContext = requestContext;
+            _httpRequestParserHandle = parserHanlder;
         }
 
         public bool IsReusable
@@ -27,19 +33,17 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
             }
         }
 
-        public IAppSetting AppSetting { get; set; }
-
         public void ProcessRequest(HttpContext context)
         {
             try
             {
                 var encryptedQuery = _requestContext.HttpContext.Request.QueryString["callInfo"]?.Trim();
-                var parseQueryResult = TryParseQueryString(encryptedQuery);
+                var parseQueryResult = _httpRequestParserHandle.TryParseQueryString(encryptedQuery);
 
                 if (!parseQueryResult.IsValid && parseQueryResult.IsExpired)
                 {
                     var response = _requestContext.HttpContext.Response;
-                    var request = new HttpRequestWrapper(context.Request);
+                    var request = WrapRequest(context.Request);
                     if (request.IsAjaxRequest())
                     {
                         var controller = ControllerBuilder.Current.GetControllerFactory()
@@ -49,14 +53,14 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
                     }
                     else
                     {
-                        response.Redirect(VirtualPathUtility.ToAbsolute("~/Notify/Error"));
+                        response.Redirect(ToAbsolutePath("~/Notify/Error"));
                     }
 
                     return;
                 }
                 else if (!parseQueryResult.IsValid)
                 {
-                    SetNotFoundResponse();
+                    SetNotFoundResponse(DeniedByFilterSubStatus);
                 }
                 else
                 {
@@ -75,57 +79,16 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
             }
         }
 
-        private void SetNotFoundResponse()
+        private void SetNotFoundResponse(int subStatus = 0)
         {
             _requestContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+            _requestContext.HttpContext.Response.SubStatusCode = subStatus;
         }
 
-        private QueryStringResult TryParseQueryString(string encryptedQuery)
-        {
-            if (string.IsNullOrEmpty(encryptedQuery))
-            {
-                return new QueryStringResult { IsValid = false };
-            }
+        protected virtual HttpRequestBase WrapRequest(HttpRequest request)
+            => new HttpRequestWrapper(request);
 
-            var queryString = DecryptQueryString(encryptedQuery);
-            var paramValues = HttpUtility.ParseQueryString(queryString);
-
-            var timeQuery = _requestContext.HttpContext.Request.Params["t"]?.Trim();
-            var timeToken = paramValues["t"]?.Trim();
-            var expirationByMinute = int.Parse(paramValues["e"]?.Trim());
-
-            if (!string.Equals(timeQuery, timeToken) || IsExpired(timeToken, expirationByMinute))
-            {
-                return new QueryStringResult { IsValid = false, IsExpired = true };
-            }
-
-            var controllerName = paramValues["controller"]?.Trim();
-            var actionName = paramValues["action"]?.Trim();
-
-            return new QueryStringResult
-            {
-                IsValid = !string.IsNullOrEmpty(controllerName) && !string.IsNullOrEmpty(actionName),
-                ControllerName = controllerName,
-                ActionName = actionName
-            };
-        }
-
-        private string DecryptQueryString(string encryptedQuery)
-        {
-            var appSetting = AppSetting ?? DependencyResolver.Current.GetService<IAppSetting>();
-
-            var decodedString = ConverterUtils.Base64Decode(encryptedQuery);
-
-            return SymmetricEncryptionUtility.Decrypt<AesManaged>(decodedString, appSetting.SymmetricPassword, appSetting.SymmetricSalt);
-        }
-
-        private static bool IsExpired(string timeTickString, int expirationByMinute)
-        {
-            var minDateTime = DateTime.Now.AddMinutes(expirationByMinute * -1);
-            var timeTicks = Convert.ToInt64(timeTickString);
-            var dateTimeRequest = new DateTime(timeTicks, DateTimeKind.Local);
-
-            return DateTime.Compare(dateTimeRequest, minDateTime) < 0;
-        }
+        protected virtual string ToAbsolutePath(string virtualPath)
+            => VirtualPathUtility.ToAbsolute(virtualPath);
     }
 }

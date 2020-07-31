@@ -10,6 +10,13 @@ namespace Fanex.Affiliate.User.Core.Repository
 {
     public class VerificationRepository : IVerificationRepository
     {
+        private readonly IObjectDBBuilder _builder;
+
+        public VerificationRepository(IObjectDBBuilder builder)
+        {
+            _builder = builder;
+        }
+
         public ResultInfo UpdateVerificationInfo(AuthResultBaseParam param)
         {
             const string SpKey = "Aff_User_VerificationUpd";
@@ -22,13 +29,13 @@ namespace Fanex.Affiliate.User.Core.Repository
             const string SpKey = "Aff_User_VerificationInfoSel";
             VerificationInfo result = null;
 
-            using (var objectDb = new ObjectDBBuilder(SpKey))
+            using (var db = _builder.Build(SpKey))
             {
-                objectDb.DB.AddInParameter("AffId", SqlDbType.Int, affId);
-                objectDb.DB.AddInParameter("IpAddress", SqlDbType.NVarChar, ipAddress);
-                objectDb.DB.AddInParameter("DeviceInfo", SqlDbType.NVarChar, deviceInfo);
+                db.AddInParameter("AffId", SqlDbType.Int, affId);
+                db.AddInParameter("IpAddress", SqlDbType.NVarChar, ipAddress);
+                db.AddInParameter("DeviceInfo", SqlDbType.NVarChar, deviceInfo);
 
-                using (var reader = objectDb.DB.ExecuteReader())
+                using (var reader = db.ExecuteReader())
                 {
                     if (reader.Read())
                     {
@@ -53,18 +60,17 @@ namespace Fanex.Affiliate.User.Core.Repository
 
         private ResultInfo Execute(string spKey, AuthResultBaseParam param)
         {
-            using (var objectDbBuilder = new ObjectDBBuilder(spKey))
+            using (var db = _builder.Build(spKey))
             {
-                var objectDb = objectDbBuilder.DB;
-                AssignUpdateLoginResultParam(objectDb, param);
-                objectDb.ExecuteNonQuery();
+                AssignUpdateLoginResultParam(db, param);
+                db.ExecuteNonQuery();
 
-                var code = objectDb.GetParameterValue("ErrCode");
+                var code = db.GetParameterValue("ErrCode");
 
                 return new ResultInfo
                 {
                     IsOk = code == null || Convert.ToInt32(code) == 0,
-                    Message = Convert.ToString(objectDb.GetParameterValue("ErrMsg"))
+                    Message = Convert.ToString(db.GetParameterValue("ErrMsg"))
                 };
             }
         }

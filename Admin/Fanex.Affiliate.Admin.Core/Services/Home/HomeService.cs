@@ -1,15 +1,15 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Home;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using System;
+using Fanex.Affiliate.Admin.Core.DTO.Home;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Repository;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Home
 {
-    public class HomeService: BaseRepository, IHomeService
+    public class HomeService : BaseRepository, IHomeService
     {
         public EntityResult<OnlineListInfo> GetOnlineList(int pageIndex, int pageSize)
         {

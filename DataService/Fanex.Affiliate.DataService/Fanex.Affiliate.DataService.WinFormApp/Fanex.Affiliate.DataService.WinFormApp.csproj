@@ -22,7 +22,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Fanex.Affiliate.DataService.WinFormApp.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,30 +33,31 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Fanex.Affiliate.DataService.WinFormApp.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
+      <HintPath>..\..\..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Data, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Data.4.2.0\lib\net461\Fanex.Data.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.Data.4.2.0\lib\net461\Fanex.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Data.SqlServer, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Data.SqlServer.4.2.0\lib\net461\Fanex.Data.SqlServer.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.Data.SqlServer.4.2.0\lib\net461\Fanex.Data.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Polly.7.2.0\lib\net461\Polly.dll</HintPath>
+      <HintPath>..\..\..\packages\Polly.7.2.0\lib\net461\Polly.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -64,7 +66,7 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <HintPath>..\..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -79,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\IFileImporter.cs" />
+    <Compile Include="Converter\KYGamingFileImporter.cs" />
     <Compile Include="Converter\LBKenoFileImporter.cs" />
     <Compile Include="Converter\VRLotteryFileImporter.cs" />
     <Compile Include="Form1.cs">
@@ -147,6 +150,12 @@
     <Compile Include="Forms\TopazForm.Designer.cs">
       <DependentUpon>TopazForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\KYGamingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KYGamingForm.Designer.cs">
+      <DependentUpon>KYGamingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\VrLotteryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TopazForm.resx">
       <DependentUpon>TopazForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KYGamingForm.resx">
+      <DependentUpon>KYGamingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VrLotteryForm.resx">
       <DependentUpon>VrLotteryForm.cs</DependentUpon>
@@ -319,7 +331,6 @@
     <None Include="Fanex.Affiliate.DataService.WinFormApp.exe.PRO.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Fanex.Affiliate.DataService.WinFormApp.ruleset" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -385,6 +396,10 @@
       <Project>{1ff263f2-9c86-416d-af14-699a28beaca6}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.ISoftbet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.KY\Fanex.Affiliate.DataService.Importer.KYGaming.csproj">
+      <Project>{83A4F55D-1521-4BC3-8A1E-AE9AE607B41C}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.KYGaming</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.LBKeno\Fanex.Affiliate.DataService.Importer.LBKeno.csproj">
       <Project>{B04723A2-C292-4104-8061-6A54F890B094}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.LBKeno</Name>
@@ -397,10 +412,6 @@
       <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.FlowGaming</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer\Fanex.Affiliate.DataService.Importer.csproj">
-      <Project>{8278f547-cd9e-48ec-8184-e10f273683f7}</Project>
-      <Name>Fanex.Affiliate.DataService.Importer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SpName.xml">
@@ -408,9 +419,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\SonarAnalyzer.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.17.0.9346\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

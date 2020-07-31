@@ -12,6 +12,7 @@
     using Repository.UserPanel;
     using Resources;
     using Utilities;
+    using System.Web.Routing;
 
     public class PasswordController : BaseController
     {
@@ -77,7 +78,7 @@
             {
                 result.IsOk = false;
                 result.Message = Common.GetErrorMessage("ForgotPassword", param.ErrCode)
-                                    .Replace("{0}", Url.Content($"~/{ControllerName.ContactUs}"));
+                    ?.Replace("{0}", Url.Content($"~/{ControllerName.ContactUs}"));
             }
             else
             {
@@ -86,11 +87,11 @@
                     User = userInfo,
                     MailContact = _appSetting.MailContact,
                     MailTo = param.Email,
-                    RootDomain = SiteDomainHelper.GetRootUrl(this),
+                    RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
                     Code = code
                 };
 
-                var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
+                var userLang = LanguageService.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
                 LanguageService.SetCulture(userLang);
                 _mailService.SendRecoverPasswordEmail(recoverEmailParam);
                 LanguageService.SetCulture(SessionService.CurrentLanguage);
@@ -104,7 +105,7 @@
         {
             if (uid == 0 || string.IsNullOrEmpty(vid))
             {
-                return Redirect(Url.Content("~/Password/RecoverPasswordResult?isSuccessful=false"));
+                return RedirectToFixedAction("RecoverPasswordResult", new { isSuccessful=false });
             }
             var newPassword = Generator.GetRandomString(10);
             var param = new PasswordRecoveryParam
@@ -125,30 +126,29 @@
                 var recoverEmailParam = new NewPasswordEmailParam
                 {
                     User = userInfo,
-                    RootDomain = SiteDomainHelper.GetRootUrl(this),
+                    RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
                     NewPassword = newPassword,
                     MailTo = userInfo.Email,
                     MailContact = _appSetting.MailContact
                 };
 
-                var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
+                var userLang = LanguageService.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
                 LanguageService.SetCulture(userLang);
                 _mailService.SendNewPasswordEmail(recoverEmailParam);
                 LanguageService.SetCulture(SessionService.CurrentLanguage);
-
-                return Redirect(Url.Content("~/Password/RecoverPasswordResult?isSuccessful=true"));
             }
 
-            return Redirect(Url.Content($"~/Password/RecoverPasswordResult?isSuccessful={isSuccessful}&errCode={param.ErrCode}"));
+            return RedirectToFixedAction("RecoverPasswordResult", new { isSuccessful, errCode = param.ErrCode });
         }
 
         public ActionResult RecoverPasswordResult(bool isSuccessful = false, int errCode = 0)
         {
+            var errorMsg = Common.GetErrorMessage("RecoverPassword", errCode == RecoverPasswordFailed ? RecoverPasswordFailed : InvalidUrlAddress);
+            var msg = errorMsg?.Replace("{0}", Url.Content("~/ContactUs"));
             var result = new ResultInfo
             {
                 IsOk = false,
-                Message = Common.GetErrorMessage("RecoverPassword", errCode == RecoverPasswordFailed ? RecoverPasswordFailed : InvalidUrlAddress)
-                                    .Replace("{0}", Url.Content("~/ContactUs"))
+                Message = msg
             };
 
             if (isSuccessful)
@@ -211,5 +211,6 @@
 
             return Json(resultInfo);
         }
+
     }
 }

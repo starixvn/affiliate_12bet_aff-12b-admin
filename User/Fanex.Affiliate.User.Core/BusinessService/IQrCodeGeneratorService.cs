@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         string GenerateBase64QrCode(string content, Image icon = null, bool includePrefix = false);
 
-        void SaveImage(string base64Img, string path); 
+        Image GetImage(string path);
 
         int Size { get; set; }
     }

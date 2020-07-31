@@ -6,8 +6,6 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
     public class EncryptedRouteHandler : IRouteHandler
     {
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
-        {
-            return new EncryptedHandler(requestContext);
-        }
+            => new EncryptedHandler(requestContext);
     }
 }

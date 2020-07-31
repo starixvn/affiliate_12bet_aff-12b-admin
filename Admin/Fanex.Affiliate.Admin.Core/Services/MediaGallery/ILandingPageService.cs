@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {

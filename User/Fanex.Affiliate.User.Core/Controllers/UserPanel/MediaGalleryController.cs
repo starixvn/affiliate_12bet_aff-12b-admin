@@ -3,8 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Constants;
-    using DTO.UserPanel;
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
@@ -13,7 +11,7 @@
     using MetalModels.UserPanel;
     using ViewModels.UserPanel.Marketing;
 
-    public class MediaGalleryController : BaseMarketingController
+    public sealed class MediaGalleryController : BaseMarketingController
     {
         public MediaGalleryController(ISessionService sessionService, IAppSetting appSetting,
             ILanguageService languageService,
@@ -38,7 +36,7 @@
             var bannerParam = new MarketingBannerParam
             {
                 AffId = userSession.AffId,
-                Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(selectedLanguage))?.EnglishName,
+                Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(selectedLanguage))?.EnglishName,
                 AffType = userSession.AffType,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,
@@ -55,16 +53,6 @@
             ViewBag.TotalItem = bannerParam.Nrows;
 
             return View("~/Views/UserPanel/AccountOverview/MediaGallery/Index.cshtml", viewModel);
-        }
-
-        private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
-        {
-            if (bannerParam.SelectedDomain == null)
-            {
-                return new List<MarketingItem>();
-            }
-
-            return MarketingService.GetBannerList(bannerParam);
         }
     }
 }

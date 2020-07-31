@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     Ip = emailParam.Ip
                 };
 
-                var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
+                var userLang = _languageService.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
                 _languageService.SetCulture(userLang);
                 _mailService.SendVerificationEmail(verificationAccountEmailParam);
                 _languageService.SetCulture(param.CurrentLanguage);
@@ -170,18 +170,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         }
 
         private static string CreateHashMessage(string message, string secret)
-        {
-            var secretKey = secret ?? string.Empty;
-            var encoding = new ASCIIEncoding();
-            var keyByte = encoding.GetBytes(secretKey);
-            var messageBytes = encoding.GetBytes(message);
-            using (var hmacsha256 = new HMACSHA256(keyByte))
-            {
-                var hashmessage = hmacsha256.ComputeHash(messageBytes);
-
-                return ConverterUtils.ToHex(hashmessage).ToLowerInvariant();
-            }
-        }
+            => CryptographyHelper.SHA256Hash(message, secret);
 
         private string TryCreateSecretKey(int affId)
         {

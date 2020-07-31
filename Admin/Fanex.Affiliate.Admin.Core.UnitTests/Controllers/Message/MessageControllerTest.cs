@@ -16,7 +16,7 @@ using Xunit;
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
 {
     public class MessageControllerTest
-    { 
+    {
 
         [Fact]
         public void Index_WhenCall_ReturnView()

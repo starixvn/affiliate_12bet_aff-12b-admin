@@ -16,6 +16,7 @@ namespace Fanex.Affiliate.DataService.Job.Constants
             {"VrLottery", "Fanex.Affiliate.DataService.Job.Modules.ImOneVrLotteryJob" },
             {"GpiLottery", "Fanex.Affiliate.DataService.Job.Modules.GpiLotteryJob" },
             {"LBKeno", "Fanex.Affiliate.DataService.Job.Modules.LBKenoJob" },
+            {"KYGaming", "Fanex.Affiliate.DataService.Job.Modules.KYGamingJob" },
             {"CrystalGpiDaily", "Fanex.Affiliate.DataService.Job.Modules.CrystalGpiDailyJob" },
             {"ISoftbetDaily", "Fanex.Affiliate.DataService.Job.Modules.ISoftbetDailyJob" },
         };

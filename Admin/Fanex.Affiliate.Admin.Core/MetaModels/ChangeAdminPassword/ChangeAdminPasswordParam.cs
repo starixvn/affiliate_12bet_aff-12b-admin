@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.ChangeAdminPassword
 {
-    public class ChangeAdminPasswordParam: UserInfoParam
+    public class ChangeAdminPasswordParam : UserInfoParam
     {
         [Required(ErrorMessage = "Old password is required.")]
         public string OldPassword { get; set; }

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities
 {
@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         {
             var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
 
-            if(appSetting != null && appSetting.IsProduction)
+            if (appSetting != null && appSetting.IsProduction)
             {
                 return request.Url.Scheme;
             }

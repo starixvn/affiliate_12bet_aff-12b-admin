@@ -1,8 +1,8 @@
-﻿using System.Web.Mvc;
-using System.Web.SessionState;
-using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using ONEbook.UM.Filters;
+using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {

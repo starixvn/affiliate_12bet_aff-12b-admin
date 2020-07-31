@@ -116,7 +116,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             repository.Setup(re => re.GetObjectDb("Aff_Admin_Affiliate_Password_Upd", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.ChangePassword(new PasswordParam { Password = "123abc", ConfirmPassword = "123abc"});
+            var result = repository.Object.ChangePassword(new PasswordParam { Password = "123abc", ConfirmPassword = "123abc" });
 
             // Assert
             Assert.True(result.IsSuccessful);

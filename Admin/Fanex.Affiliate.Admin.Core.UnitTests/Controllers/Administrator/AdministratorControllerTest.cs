@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Administrator
         {
             // Arrange
             var administratorService = new Mock<IAdministratorService>();
-            administratorService.Setup(t => t.GetUserList(0,"","")).Returns(new List<AdministratorInfo> { new AdministratorInfo() });
+            administratorService.Setup(t => t.GetUserList(0, "", "")).Returns(new List<AdministratorInfo> { new AdministratorInfo() });
             var controller = CreateAdministratorController(administratorService: administratorService.Object);
 
             // Action

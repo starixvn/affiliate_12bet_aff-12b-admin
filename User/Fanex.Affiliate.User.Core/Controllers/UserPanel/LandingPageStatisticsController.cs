@@ -70,7 +70,7 @@
             var selectedLanguage = landingPageParam.LanguageCode;
             if (!string.IsNullOrEmpty(selectedLanguage))
             {
-                landingPageParam.LanguageCode = SystemLanguage.LanguageList
+                landingPageParam.LanguageCode = LanguageService.GetSystemLanguages()
                                                 .FirstOrDefault(l => l.Code.Equals(selectedLanguage))
                                                 ?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
             }
@@ -90,7 +90,7 @@
 
             foreach (var item in dataList)
             {
-                var language = SystemLanguage.LanguageList.FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
+                var language = LanguageService.GetSystemLanguages().FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
 
                 item.LanguageName = language == null ? item.LanguageCode : language.NativeName;
             }

@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
     {
         public DateTime MonthDate { get; set; }
 
-        public byte TransType { get; set; }
+        public int TransType { get; set; }
 
         public decimal Amount { get; set; }
 
@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         {
             get
             {
-                return TransType == (byte)Enum.TransType.Payment || TransType == (byte)Enum.TransType.Adjustment ?
+                return TransType == (int)Enum.TransType.Payment || TransType == (int)Enum.TransType.Adjustment ?
                     MonthDate.ToString("MM-dd-yyyy") :
                     MonthDate.ToString("MMMM-yyyy");
             }

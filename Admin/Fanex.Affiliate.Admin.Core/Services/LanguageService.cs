@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Repository;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.Repository;
 
 namespace Fanex.Affiliate.Admin.Core.Services
 {

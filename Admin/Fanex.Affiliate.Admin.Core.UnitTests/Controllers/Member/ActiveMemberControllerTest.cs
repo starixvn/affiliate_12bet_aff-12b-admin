@@ -41,7 +41,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Member
             var userNames = "abc";
             string passedParam = null;
             var activeMemberService = new Mock<IActiveMemberService>();
-            activeMemberService.Setup(t => t.GetAllMembers(userNames)).Returns(new AllMemberEntities {
+            activeMemberService.Setup(t => t.GetAllMembers(userNames)).Returns(new AllMemberEntities
+            {
                 ActivedMemeberList = new List<ActiveMemberInfo> { new ActiveMemberInfo() },
                 InactiveMemberList = new List<InactiveMemberInfo> { new InactiveMemberInfo() },
                 MemberNotExist = ""

@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {

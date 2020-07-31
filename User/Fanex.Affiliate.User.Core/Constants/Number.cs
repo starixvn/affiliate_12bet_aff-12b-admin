@@ -25,5 +25,6 @@
         public const int OneFiveZero = 150;
 
         public const int TwoDoubleFive = 255;
+
     }
 }

@@ -12,5 +12,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         string GetSessionId(int onUserId);
 
         bool Recheckin(int onUserId, bool isInternal);
+
+        void SignIn(string userName, bool createPersistentCookie);
+
+        void SignOut();
     }
 }
