@@ -18,15 +18,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
     public class AdminRoleController : BaseController
     {
         private readonly IAdminUsersService _adminUsersService;
-        private readonly IAdministratorService _administratorService;
 
         public AdminRoleController(
             ISessionService sessionService,
-            IAdministratorService administratorService,
             IAdminUsersService adminUsersService) : base(sessionService)
         {
             _adminUsersService = adminUsersService;
-            _administratorService = administratorService;
         }
 
         [HttpGet]
@@ -52,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         {
             return new JsonNetResult
             {
-                Data = _administratorService.GetUserList(0, param.UserName, string.Empty)
+                Data = _adminUsersService.GetUserList(param)
             };
         }
 

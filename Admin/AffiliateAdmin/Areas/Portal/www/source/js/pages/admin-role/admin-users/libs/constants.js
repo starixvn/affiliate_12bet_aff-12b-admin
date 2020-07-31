@@ -5,9 +5,9 @@ export { globalResource };
 export const resource = {
     Index: globalResource.Index,
     UserName: 'User Name',
-    LoggedIn: 'Logged In',
-    LastRequest: 'Last Request',
-    IP: 'IP',
+    CreatedDate: 'Created Date',
+    LastLoginDate: 'Last Login Date',
+    LastLoginIp: 'Last Login Ip',
     Role: 'Role',
     Select: 'Select:',
     None: 'None',

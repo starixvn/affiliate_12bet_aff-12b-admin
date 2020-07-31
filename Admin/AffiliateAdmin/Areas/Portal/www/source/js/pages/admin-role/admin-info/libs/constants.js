@@ -7,13 +7,12 @@ export const messages = {
     RequiredRole: "Role is required!"
 }
 
-const AsstMarketing = 5;
 export const roleList = {
-    1: 'Management',
-    2: 'Exe. Settlement',
-    3: 'Exe. Risk Team',
-    4: 'Exe. Marketing',
-    [AsstMarketing]: 'Asst. Marketing'
+    Management: 'Management',
+    ExeSettlement: 'Exe. Settlement',
+    ExeRiskTeam: 'Exe. Risk Team',
+    ExeMarketing: 'Exe. Marketing',
+    AsstMarketing: 'Asst. Marketing'
 }
 
 export const initialState = {
@@ -21,7 +20,7 @@ export const initialState = {
     newUserName: '',
     newPassword: '',
     confirmPassword: '',
-    role: 1,
+    role: '',
     isActive: true,
     isShowMessage: false,
     isSuccess: true,

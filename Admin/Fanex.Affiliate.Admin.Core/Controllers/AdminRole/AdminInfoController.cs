@@ -30,6 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         public ActionResult Index(string userName)
         {
             var userNameAfterTrim = userName?.Trim();
+            var userInfo = new AdminInfo();
             var subMenu = new List<SubMenu>
             {
                 new SubMenu { Name = Lang.AdminInfo, Url = Url.Content($"~/Portal/AdminInfo?userName={userNameAfterTrim}"), IsActive = true }
@@ -39,14 +40,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             {
                 subMenu.Add(new SubMenu { Name = Lang.PermissionRole, Url = Url.Content($"~/Portal/PermissionRole?userName={userNameAfterTrim}") });
 
-                //Get User Info
+                userInfo = _adminInfoService.GetUserInfo(userName);
             }
 
             var model = new AdminInfoViewModel
             {
                 UserName = userNameAfterTrim,
                 SubMenuList = subMenu,
-                UserInfo = new AdminInfo()
+                UserInfo = userInfo
             };
 
             return View("~/Areas/Portal/Views/AdminRole/AdminInfo.cshtml", model);
@@ -54,11 +55,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetUserInfo(int userId)
+        public ActionResult GetUserInfo(string userName)
         {
             return new JsonNetResult
             {
-                Data = _adminInfoService.GetUserInfo(userId)
+                Data = _adminInfoService.GetUserInfo(userName)
             };
         }
 

@@ -11,9 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.AdminRole
 
         public string ConfirmPassword { get; set; }
 
-        public int Role { get; set; }
-
-        public string MarketIds { get; set; }
+        public int RoleId { get; set; }
 
         public bool IsActive { get; set; }
     }

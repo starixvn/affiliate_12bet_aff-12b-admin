@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
     {
         public ResultInfo CreateUser(AdminInfoParam param)
         {
-            const string SpKey = "";
+            const string SpKey = "Aff_Admin_AdminUser_Ins";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -25,13 +25,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             }
         }
 
-        public AdminInfo GetUserInfo(int userId)
+        public AdminInfo GetUserInfo(string userName)
         {
-            const string SpKey = "";
+            const string SpKey = "Aff_Admin_AdminUser_Sel";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.UserId, DbType.Int32, userId);
+                objectDb.AddInParameter("userName", DbType.String, userName);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -39,12 +39,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
                     {
                         return new AdminInfo
                         {
-                            UserId = Convert.ToInt32(reader[Field.UserId]),
+                            UserId = Convert.ToInt32(reader["CustId"]),
                             UserName = Convert.ToString(reader["UserName"]),
                             Password = Convert.ToString(reader["Password"]),
-                            Role = Convert.ToInt32(reader["Role"]),
-                            MarketIds = Convert.ToString(reader["MarketIds"]),
-                            IsActive = Convert.ToBoolean(reader["IsActive"])
+                            RoleId = Convert.ToString(reader["RoleId"]),
+                            IsActive = !Convert.ToBoolean(reader["Closed"])
                         };
                     }
                 }
@@ -55,7 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
         public ResultInfo UpdateUser(AdminInfoParam param)
         {
-            const string SpKey = "";
+            const string SpKey = "Aff_Admin_AdminUser_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {

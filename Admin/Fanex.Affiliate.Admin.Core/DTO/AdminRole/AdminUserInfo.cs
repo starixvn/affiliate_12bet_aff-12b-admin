@@ -8,16 +8,16 @@ namespace Fanex.Affiliate.Admin.Core.DTO.AdminRole
 
         public string UserName { get; set; }
 
-        public DateTime? LoggedIn { get; set; }
+        public DateTime CreatedDate { get; set; }
 
-        public string LoggedInText => LoggedIn?.ToString("MM/dd/yyyy HH:mm:ss");
+        public string CreatedDateText => CreatedDate.ToString("MM/dd/yyyy HH:mm:ss");
 
-        public DateTime? LastRequest { get; set; }
+        public DateTime? LastLoginDate { get; set; }
 
-        public string LastRequestText => LastRequest?.ToString("MM/dd/yyyy HH:mm:ss");
+        public string LastLoginDateText => LastLoginDate?.ToString("MM/dd/yyyy HH:mm:ss");
 
-        public string Ip { get; set; }
+        public string LastLoginIp { get; set; }
 
-        public int Role { get; set; }
+        public string RoleName { get; set; }
     }
 }

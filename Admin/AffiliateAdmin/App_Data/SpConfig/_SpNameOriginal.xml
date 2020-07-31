@@ -157,4 +157,14 @@
     <Setting Key="Aff_UserOnlineList" SpName="Aff_UserOnlineList" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_GeneralInfo_Sel" SpName="Aff_Admin_GeneralInfo_Sel" DbName="affiliate_12bet" />
   </Function>
+
+  <Function Name="AdminRole">
+    <Setting Key="Aff_Admin_AdminUser_Sel" SpName="Aff_Admin_AdminUser_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AdminUser_Ins" SpName="Aff_Admin_AdminUser_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AdminUser_Upd" SpName="Aff_Admin_AdminUser_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AdminUser_Role_Sel" SpName="Aff_Admin_AdminUser_Role_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AdminUser_Detail_Sel" SpName="Aff_Admin_AdminUser_Detail_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AdminUser_FunctionPermission_Sel" SpName="Aff_Admin_AdminUser_FunctionPermission_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AdminUser_UserMarket_Sel" SpName="Aff_Admin_AdminUser_UserMarket_Sel" DbName="affiliate_12bet" />
+  </Function>
 </Functions>

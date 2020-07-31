@@ -9,7 +9,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resource } from '../libs/constants';
 import { resolveClientUrl } from '../../../../modules/utils';
-import { setPagingOption, fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers } from '../actions';
+import { fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers } from '../actions';
 
 export class Content extends PureComponent {
 
@@ -69,17 +69,6 @@ export class Content extends PureComponent {
         this.props.toggleLoader(false);
     }
 
-    _handlePaging = (pageIndex, pageSize) => {
-        const newPaging = {
-            PageIndex: pageIndex,
-            PageSize: pageSize
-        };
-        const newParam = Object.assign({}, this.props.param, newPaging);
-
-        this.props.setPagingOption(newPaging);
-        this.props.setParam(newParam);
-    };
-
     _renderHeader() {
         return (
             <Row key="thead">
@@ -92,9 +81,9 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell header={true} colWidth={40} title={resource.Index}>{resource.Index}</Cell>
                 <Cell header={true} colWidth={250} title={resource.UserName}>{resource.UserName}</Cell>
-                <Cell header={true} colWidth={250} title={resource.LoggedIn}>{resource.LoggedIn}</Cell>
-                <Cell header={true} colWidth={250} title={resource.LastRequest}>{resource.LastRequest}</Cell>
-                <Cell header={true} colWidth={250} title={resource.IP}>{resource.IP}</Cell>
+                <Cell header={true} colWidth={250} title={resource.CreatedDate}>{resource.CreatedDate}</Cell>
+                <Cell header={true} colWidth={250} title={resource.LastLoginDate}>{resource.LastLoginDate}</Cell>
+                <Cell header={true} colWidth={250} title={resource.LastLoginIp}>{resource.LastLoginIp}</Cell>
                 <Cell header={true} colWidth={250} title={resource.Role}>{resource.Role}</Cell>
                 <Cell header={true} colWidth={50} title={resource.Delete}>{resource.Delete}</Cell>
             </Row>
@@ -105,12 +94,9 @@ export class Content extends PureComponent {
         const dataRows = [];
 
         if (dataList && dataList.length) {
-            const { pagingOption } = this.props;
-            const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
-
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, i + startIndex));
+                dataRows.push(this._buildDataRow(dataItem, i + 1));
             }
         }
         else {
@@ -124,7 +110,7 @@ export class Content extends PureComponent {
 
     _buildDataRow(dataItem, index) {
         const userName = htmlDecode(dataItem.UserName);
-        const ipAddress = '122.53.154.194';
+        const ipAddress = dataItem.LastLoginIp;
         const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${ipAddress}&j=1`;
 
         return (
@@ -140,13 +126,15 @@ export class Content extends PureComponent {
                     </a>
                 </Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
-                <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
+                <Cell className="text-center" title={dataItem.LastRequestDateText}>{dataItem.LastRequestDateText}</Cell>
                 <Cell className="text-center" title={ipAddress}>
-                    <a href={url} target="_tagert">
-                        {ipAddress}
-                    </a>
+                    {
+                        ipAddress && <a href={url} target="_tagert">
+                            {ipAddress}
+                        </a>
+                    }
                 </Cell>
-                <Cell className="text-center" title={dataItem.GroupName}>{dataItem.GroupName}</Cell>
+                <Cell className="text-center" title={dataItem.RoleName}>{dataItem.RoleName}</Cell>
                 <Cell className="text-center" title="Delete User">
                     <Button color="link p-0" onClick={() => this._handleDeleteUser(dataItem.UserId)}>
                         <span className="oi oi-trash text-danger"></span>
@@ -170,9 +158,6 @@ export class Content extends PureComponent {
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}
                         containerPadding={20}
-                        isPaging={true}
-                        pageOption={pagingOption}
-                        onPaging={this._handlePaging}
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
@@ -194,7 +179,7 @@ function mapStateToProps({ pagingOption, param, checkedUsers, gridData, shouldRe
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, setPagingOption, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers }, dispatch);
+    return bindActionCreators({ fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

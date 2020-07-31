@@ -1,5 +1,4 @@
 ﻿import { combineReducers } from 'redux';
-import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import createReducer from '../../../../modules/createReducer';
 import { SET_PARAM, SET_CHECKED_USERS, SET_GRID_DATA, SHOULD_RESET_SCROLL_POSITION } from '../actions/types';
@@ -32,7 +31,6 @@ export const shouldResetScrollPosition = createReducer(true, {
 
 export default combineReducers({
     isBack,
-    pagingOption,
     isShowLoader,
     param,
     gridData,

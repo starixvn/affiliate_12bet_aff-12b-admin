@@ -18,11 +18,10 @@ export const setUserInfo = (data) => {
     }
 }
 
-export const fetchData = (param) => async (dispatch) => {
+export const fetchData = (userName) => async (dispatch) => {
     dispatch(toggleLoader(true));
     const url = 'Portal/AdminInfo/GetUserInfo';
-    //const response = await post(url, param);
-    const response = await {};
+    const response = await post(url, { userName });
 
     const data = response && response.status === 200 ? response.data : {};
 

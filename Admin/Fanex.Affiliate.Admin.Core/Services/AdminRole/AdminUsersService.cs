@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
     {
         public ResultInfo DeleteUsers(DeleteAdminUsersParam param)
         {
-            const string SpKey = "";
+            const string SpKey = "Aff_Admin_AdminUser_Sel";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -29,30 +29,22 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             }
         }
 
-        public EntityResult<AdminUserInfo> GetUserList(AdminUsersParam param)
+        public IEnumerable<AdminUserInfo> GetUserList(AdminUsersParam param)
         {
-            const string SpKey = "";
-            var result = new EntityResult<AdminUserInfo>();
-            var dataList = new List<AdminUserInfo>();
+            const string SpKey = "Aff_Admin_AdminUser_Sel";
+            var result = new List<AdminUserInfo>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("UserName", DbType.String, param.UserName);
-                objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
-                objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
-
-                objectDb.AddOutParameter("Nrows", DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildItem(reader));
+                        result.Add(BuildItem(reader));
                     }
                 }
-                result.MainData = dataList;
-                var totalRow = objectDb.GetParameterValue("NRows");
-                result.TotalItem = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
             }
 
             return result;
@@ -62,12 +54,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
         {
             return new AdminUserInfo
             {
-                UserId = Convert.ToInt32(reader["UserId"]),
+                UserId = Convert.ToInt32(reader["CustId"]),
                 UserName = Convert.ToString(reader["UserName"]),
-                LoggedIn = reader["LoggedIn"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["LoggedIn"]),
-                LastRequest = reader["LastRequest"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["LastRequest"]),
-                Ip = Convert.ToString(reader["Ip"]),
-                Role = Convert.ToInt32(reader["Role"])
+                CreatedDate = Convert.ToDateTime(reader["CreatedDate"]),
+                LastLoginDate = reader["LastLoginDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["LastLoginDate"]),
+                LastLoginIp = Convert.ToString(reader["LastLoginIp"]),
+                RoleName = Convert.ToString(reader["RoleName"])
             };
         }
     }

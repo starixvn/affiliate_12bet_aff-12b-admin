@@ -17,14 +17,20 @@ export class Content extends PureComponent {
     componentDidMount() {
         const { userName } = this.props;
 
-        userName && this.props.fetchData(userName);
+        userName && this._handleFetchData(userName);
     }
 
     componentDidUpdate(prevProps) {
         const { userName } = this.props;
         if (userName && userName !== prevProps.userName) {
-            this.props.fetchData(userName);
+            this._handleFetchData(userName);
         }
+    }
+
+    _handleFetchData = async (userName) => {
+        const userInfo = await this.props.fetchData(userName);
+
+
     }
 
     _handleChange = (event) => {
