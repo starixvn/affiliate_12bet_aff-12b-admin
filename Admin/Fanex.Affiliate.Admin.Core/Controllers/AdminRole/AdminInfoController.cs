@@ -27,27 +27,29 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         }
 
         [HttpGet]
-        public ActionResult Index(string userName)
+        public ActionResult Index(int userId = 0)
         {
-            var userNameAfterTrim = userName?.Trim();
             var userInfo = new AdminInfo();
             var subMenu = new List<SubMenu>
             {
-                new SubMenu { Name = Lang.AdminInfo, Url = Url.Content($"~/Portal/AdminInfo?userName={userNameAfterTrim}"), IsActive = true }
+                new SubMenu { Name = Lang.AdminInfo, Url = Url.Content($"~/Portal/AdminInfo?userId={userId}"), IsActive = true }
             };
+            var roleList = _adminInfoService.GetRoleList();
 
-            if (!string.IsNullOrEmpty(userNameAfterTrim))
+            if (userId >= Validation.MinId)
             {
-                subMenu.Add(new SubMenu { Name = Lang.PermissionRole, Url = Url.Content($"~/Portal/PermissionRole?userName={userNameAfterTrim}") });
+                subMenu.Add(new SubMenu { Name = Lang.PermissionRole, Url = Url.Content($"~/Portal/PermissionRole?userId={userId}") });
 
-                userInfo = _adminInfoService.GetUserInfo(userName);
+                userInfo = _adminInfoService.GetUserInfo(userId);
             }
 
             var model = new AdminInfoViewModel
             {
-                UserName = userNameAfterTrim,
+                UserId = userId,
+                UserName = userInfo?.UserName ?? string.Empty,
                 SubMenuList = subMenu,
-                UserInfo = userInfo
+                UserInfo = userInfo,
+                RoleList = roleList
             };
 
             return View("~/Areas/Portal/Views/AdminRole/AdminInfo.cshtml", model);
@@ -55,11 +57,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetUserInfo(string userName)
+        public ActionResult GetUserInfo(int userId)
         {
             return new JsonNetResult
             {
-                Data = _adminInfoService.GetUserInfo(userName)
+                Data = _adminInfoService.GetUserInfo(userId)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetRoleList()
+        {
+            return new JsonNetResult
+            {
+                Data = _adminInfoService.GetRoleList()
             };
         }
 

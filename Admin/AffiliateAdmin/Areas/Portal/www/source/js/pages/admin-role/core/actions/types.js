@@ -1,0 +1,2 @@
+﻿export const SET_SELECTED_MENU = 'SET_SELECTED_MENU';
+export const RESET_REDUCER = 'RESET_REDUCER';

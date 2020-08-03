@@ -1,8 +1,15 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_USER_NAME, SET_USER_INFO } from './types';
+import { SET_USER_NAME, SET_USER_INFO, SET_USER_ID } from './types';
 
 export { toggleLoader };
+
+export const setUserId = (data) => {
+    return {
+        type: SET_USER_ID,
+        data
+    }
+}
 
 export const setUserName = (data) => {
     return {
@@ -18,10 +25,10 @@ export const setUserInfo = (data) => {
     }
 }
 
-export const fetchData = (userName) => async (dispatch) => {
+export const fetchData = (userId) => async (dispatch) => {
     dispatch(toggleLoader(true));
     const url = 'Portal/AdminInfo/GetUserInfo';
-    const response = await post(url, { userName });
+    const response = await post(url, { userId });
 
     const data = response && response.status === 200 ? response.data : {};
 

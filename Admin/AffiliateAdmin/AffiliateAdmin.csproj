@@ -397,6 +397,14 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\menu.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\resetAllProps.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\reducer-children.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\components\CommonGridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\libs\constants.js" />
@@ -405,7 +413,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\admin-role\Common\components\Header.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\Header.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\reducers\index.js" />
@@ -1398,6 +1406,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Portal\www\source\js\pages\admin-role\core\components\" />
     <Folder Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\__test__\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,8 @@
 ﻿import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap';
-import { regExp, messages, initialState, roleList } from '../libs/constants';
+import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap';
+import { regExp, messages, initialState } from '../libs/constants';
 import { post } from '../../../../modules/ajaxRequest';
 import { resolveClientUrl, validateUserName } from '../../../../modules/utils';
 import { fetchData, createUser, updateUser, toggleLoader } from '../actions';
@@ -15,20 +15,20 @@ export class Content extends PureComponent {
     }
 
     componentDidMount() {
-        const { userName } = this.props;
+        const { userId } = this.props;
 
-        userName && this._handleFetchData(userName);
+        userId && this._handleFetchData(userId);
     }
 
     componentDidUpdate(prevProps) {
-        const { userName } = this.props;
-        if (userName && userName !== prevProps.userName) {
-            this._handleFetchData(userName);
+        const { userId } = this.props;
+        if (userId && userId !== prevProps.userId) {
+            this._handleFetchData(userId);
         }
     }
 
-    _handleFetchData = async (userName) => {
-        const userInfo = await this.props.fetchData(userName);
+    _handleFetchData = async (userId) => {
+        const userInfo = await this.props.fetchData(userId);
 
 
     }
@@ -117,6 +117,7 @@ export class Content extends PureComponent {
     }
 
     _renderWhenView() {
+        const { roleList } = this.props;
         const { newUserName, role, isActive } = this.state;
 
         return (
@@ -151,7 +152,7 @@ export class Content extends PureComponent {
     }
 
     _renderWhenCreateAndEdit() {
-        const { userName } = this.props;
+        const { userName, roleList } = this.props;
         const isCreateNew = !userName;
         const { isClickedSubmit, newUserName, newPassword, confirmPassword, role, isActive, isShowMessage, isSuccess, message } = this.state;
 
@@ -241,8 +242,8 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ userName, userInfo }) {
-    return Object.assign({}, { userName, userInfo });
+function mapStateToProps({ userId, userName, userInfo, roleList }) {
+    return Object.assign({}, { userId, userName, userInfo, roleList });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -15,56 +15,61 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
     [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class PermissionRoleController : BaseController
     {
+        private readonly IAdminInfoService _adminInfoService;
         private readonly IPermissionRoleService _permissionRoleService;
         public PermissionRoleController(
             ISessionService sessionService,
+            IAdminInfoService adminInfoService,
             IPermissionRoleService permissionRoleService) : base(sessionService)
         {
+            _adminInfoService = adminInfoService;
             _permissionRoleService = permissionRoleService;
         }
 
         [HttpGet]
-        public ActionResult Index(string userName)
+        public ActionResult Index(int userId)
         {
-            var userNameAfterTrim = userName?.Trim();
-            var subMenu = new List<SubMenu>
+            if (userId >= Validation.MinId)
             {
-                new SubMenu { Name = Lang.AdminInfo, Url = Url.Content($"~/Portal/AdminInfo?userName={userNameAfterTrim}") },
-                new SubMenu { Name = Lang.PermissionRole, Url = Url.Content($"~/Portal/PermissionRole?userName={userNameAfterTrim}"), IsActive = true }
-            };
+                var subMenu = new List<SubMenu>
+                {
+                    new SubMenu { Name = Lang.AdminInfo, Url = Url.Content($"~/Portal/AdminInfo?userId={userId}") },
+                    new SubMenu { Name = Lang.PermissionRole, Url = Url.Content($"~/Portal/PermissionRole?userId={userId}"), IsActive = true }
+                };
 
-            if (string.IsNullOrEmpty(userNameAfterTrim)) //Or User Name is invalid
-            {
-                return Redirect("~/Portal/AdminInfo");
+                var userInfo = _adminInfoService.GetUserInfo(userId);
+
+                var model = new PermissionRoleViewModel
+                {
+                    UserId = userId,
+                    SubMenuList = subMenu,
+                    UserName = userInfo?.UserName ?? string.Empty,
+                    PermissionRoleInfoList = new List<PermissionRoleInfo>()
+                };
+
+                return View("~/Areas/Portal/Views/AdminRole/PermissionRole.cshtml", model);
             }
 
-            var model = new PermissionRoleViewModel
-            {
-                SubMenuList = subMenu,
-                UserName = userNameAfterTrim,
-                PermissionRoleInfoList = new List<PermissionRoleInfo>()
-            };
-
-            return View("~/Areas/Portal/Views/AdminRole/PermissionRole.cshtml", model);
+            return Redirect("~/Portal/AdminInfo");
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetFunctionList(string userName)
+        public ActionResult GetFunctionList(int userId)
         {
             return new JsonNetResult
             {
-                Data = _permissionRoleService.GetPermissionRoleList(userName)
+                Data = _permissionRoleService.GetPermissionRoleList(userId)
             };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetLanguageList(string userName)
+        public ActionResult GetLanguageList(int userId)
         {
             return new JsonNetResult
             {
-                Data = _permissionRoleService.GetPermissionRoleList(userName, false)
+                Data = _permissionRoleService.GetPermissionRoleList(userId, false)
             };
         }
     }

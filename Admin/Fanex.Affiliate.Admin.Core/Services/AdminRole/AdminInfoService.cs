@@ -3,8 +3,10 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Common.Extensions;
 using Fanex.Data;
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
@@ -25,13 +27,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             }
         }
 
-        public AdminInfo GetUserInfo(string userName)
+        public AdminInfo GetUserInfo(int userId)
         {
-            const string SpKey = "Aff_Admin_AdminUser_Sel";
+            const string SpKey = "Aff_Admin_AdminUser_Detail_Sel";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("userName", DbType.String, userName);
+                objectDb.AddInParameter("CustId", DbType.Int32, userId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -41,8 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
                         {
                             UserId = Convert.ToInt32(reader["CustId"]),
                             UserName = Convert.ToString(reader["UserName"]),
-                            Password = Convert.ToString(reader["Password"]),
-                            RoleId = Convert.ToString(reader["RoleId"]),
+                            RoleId = Convert.ToInt32(reader["RoleId"]),
                             IsActive = !Convert.ToBoolean(reader["Closed"])
                         };
                     }
@@ -65,6 +66,29 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
                 return GetResultInfo(objectDb);
             }
+        }
+
+        public IEnumerable<RoleInfo> GetRoleList()
+        {
+            const string SpKey = "Aff_Admin_AdminUser_Role_Sel";
+            var result = new List<RoleInfo>();
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while(reader.Read())
+                    {
+                        result.Add(new RoleInfo
+                        {
+                            RoleId = reader.ToInt("RoleId"),
+                            RoleName = reader.ToString("RoleName")
+                        });
+                    }
+                }
+            }
+
+            return result;
         }
 
         private static void AssignParam(AdminInfoParam param, IObjectDb objectDb)

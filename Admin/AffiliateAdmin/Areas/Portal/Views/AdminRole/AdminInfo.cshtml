@@ -16,7 +16,9 @@
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {
+            userId: @Model.UserId,
             userName: '@Model.UserName',
+            roleList: @Html.Raw(Json.Encode(Model.RoleList)),
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/admin-role/admin-info.js")"></script>

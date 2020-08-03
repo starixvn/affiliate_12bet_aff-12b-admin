@@ -7,6 +7,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.AdminRole
 
         public string Name { get; set; }
 
+        public int Policy { get; set; }
+
         public bool IsView { get; set; }
 
         public bool IsEdit { get; set; }

@@ -109,6 +109,7 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
+        const userId = dataItem.UserId;
         const userName = htmlDecode(dataItem.UserName);
         const ipAddress = dataItem.LastLoginIp;
         const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${ipAddress}&j=1`;
@@ -116,12 +117,12 @@ export class Content extends PureComponent {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={this.props.checkedUsers[dataItem.UserId]}
-                        onChange={(e) => this._onCheckItem(e.target.checked, dataItem.UserId)} />
+                    <input type="checkbox" checked={this.props.checkedUsers[userId]}
+                        onChange={(e) => this._onCheckItem(e.target.checked, userId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={resource.userName}>
-                    <a href={resolveClientUrl(`Portal/AdminInfo?userName=${userName}`)} target="_top">
+                    <a href={resolveClientUrl(`Portal/AdminInfo?userId=${userId}`)} target="_top">
                         {userName}
                     </a>
                 </Cell>
