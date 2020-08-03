@@ -330,6 +330,7 @@
     </Content>
     <None Include="Fanex.Affiliate.DataService.WinFormApp.exe.PRO.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
