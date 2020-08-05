@@ -16,8 +16,6 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
-        console.log(this.props.isBack);
-
         if (this.props.isBack) {
             this._handleSearch();
         }
@@ -59,7 +57,8 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ pagingOption, isBack }) {
+function mapStateToProps({ adminUsers }) {
+    const { pagingOption, isBack } = adminUsers;
     return Object.assign({}, { pagingOption, isBack });
 }
 

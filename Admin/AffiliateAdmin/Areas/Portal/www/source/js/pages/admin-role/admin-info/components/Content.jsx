@@ -5,7 +5,7 @@ import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Al
 import { regExp, messages, initialState } from '../libs/constants';
 import { post } from '../../../../modules/ajaxRequest';
 import { resolveClientUrl, validateUserName } from '../../../../modules/utils';
-import { fetchData, createUser, updateUser, toggleLoader } from '../actions';
+import { fetchData, createUser, updateUser, toggleLoader, getRoleList } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -15,16 +15,19 @@ export class Content extends PureComponent {
     }
 
     componentDidMount() {
-        const { userId } = this.props;
-
+        const { userId, roleList } = this.props;
         userId && this._handleFetchData(userId);
+
+        !roleList && this.props.getRoleList();
     }
 
     componentDidUpdate(prevProps) {
-        const { userId } = this.props;
+        const { userId, roleList } = this.props;
         if (userId && userId !== prevProps.userId) {
             this._handleFetchData(userId);
         }
+
+        !roleList && this.props.getRoleList();
     }
 
     _handleFetchData = async (userId) => {
@@ -210,7 +213,7 @@ export class Content extends PureComponent {
                                         isCreateNew && <option key={'role-0'} value="0">[Select Role]</option>
                                     }
                                     {
-                                        Object.keys(roleList).map(key => {
+                                        roleList && Object.keys(roleList).map(key => {
                                             return (<option key={'role-' + key} value={key}>{roleList[key]}</option>)
                                         })
                                     }
@@ -242,12 +245,13 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ userId, userName, userInfo, roleList }) {
+function mapStateToProps({ userId, userName, adminInfo }) {
+    const { userInfo, roleList } = adminInfo;
     return Object.assign({}, { userId, userName, userInfo, roleList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader }, dispatch);
+    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

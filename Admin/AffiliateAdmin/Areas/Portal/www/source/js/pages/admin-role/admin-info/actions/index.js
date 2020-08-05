@@ -1,26 +1,19 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_USER_NAME, SET_USER_INFO, SET_USER_ID } from './types';
+import { SET_USER_INFO, SET_ROLE_LIST } from './types';
 
 export { toggleLoader };
-
-export const setUserId = (data) => {
-    return {
-        type: SET_USER_ID,
-        data
-    }
-}
-
-export const setUserName = (data) => {
-    return {
-        type: SET_USER_NAME,
-        data
-    }
-}
 
 export const setUserInfo = (data) => {
     return {
         type: SET_USER_INFO,
+        data
+    }
+}
+
+export const setRoleList = (data) => {
+    return {
+        type: SET_ROLE_LIST,
         data
     }
 }
@@ -36,6 +29,24 @@ export const fetchData = (userId) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
+export const getRoleList = () => async (dispatch) => {
+    const url = 'Portal/AdminInfo/GetRoleList';
+    const response = await post(url);
+
+    const data = response && response.status === 200 ? convertRoleList(response.data) : null;
+
+    dispatch(setRoleList(data));
+}
+
+const convertRoleList = (roleList) => {
+    const newRoleList = {};
+    for (let i = 0; i < roleList.length; i++) {
+        const item = roleList[i];
+        newRoleList[item.RoleId] = item.RoleName;
+    }
+
+    return newRoleList;
+}
 export const createUser = (userInfo) => async (dispatch) => {
     const url = 'Portal/AdminInfo/CreateUser';
     const response = await post(url, userInfo);

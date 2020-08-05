@@ -32,7 +32,8 @@ export const Content = (props) => {
     )
 }
 
-function mapStateToProps({ isGeneral }) {
+function mapStateToProps({ permissionRole }) {
+    const { isGeneral } = permissionRole;
     return Object.assign({}, { isGeneral });
 }
 

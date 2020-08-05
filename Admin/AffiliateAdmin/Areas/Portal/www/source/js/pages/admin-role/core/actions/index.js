@@ -1,4 +1,4 @@
-﻿import { SET_SELECTED_MENU, RESET_REDUCER } from './types';
+﻿import { SET_SELECTED_MENU, RESET_REDUCER, SET_USER_ID, SET_USER_NAME } from './types';
 
 export const setSelectedMenu = (data) => {
     return {
@@ -10,6 +10,20 @@ export const setSelectedMenu = (data) => {
 export const resetReducer = (data) => {
     return {
         type: RESET_REDUCER,
+        data
+    }
+}
+
+export const setUserId = (data) => {
+    return {
+        type: SET_USER_ID,
+        data
+    }
+}
+
+export const setUserName = (data) => {
+    return {
+        type: SET_USER_NAME,
         data
     }
 }

@@ -102,7 +102,8 @@ export class CommonGridData extends PureComponent {
 }
 
 
-function mapStateToProps({ userName, gridData, isGeneral }) {
+function mapStateToProps({ userName, permissionRole }) {
+    const { gridData, isGeneral } = permissionRole;
     return Object.assign({}, { userName, gridData, isGeneral });
 }
 

@@ -5,13 +5,12 @@ import { Button } from 'reactstrap';
 
 import ButtonDeleteItems from '../../../common/components/ButtonDeleteItems';
 import { resource, messages } from '../libs/constants';
-import { resolveClientUrl } from '../../../../modules/utils';
-import { fetchData, deleteUsers, toggleLoader } from '../actions';
+import { fetchData, deleteUsers, toggleLoader, redirectToCreateNew } from '../actions';
 
 export const ControlButtons = (props) => {
 
     function _handleClickButton() {
-        window.location = resolveClientUrl("Portal/AdminInfo");
+        props.redirectToCreateNew();
     }
 
     const hasData = props.gridData && props.gridData.length;
@@ -45,12 +44,13 @@ export const ControlButtons = (props) => {
 }
 
 
-function mapStateToProps({ checkedUsers, param, gridData }) {
+function mapStateToProps({ adminUsers }) {
+    const { checkedUsers, param, gridData } = adminUsers
     return Object.assign({}, { checkedUsers, param, gridData });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, deleteUsers, toggleLoader }, dispatch);
+    return bindActionCreators({ fetchData, deleteUsers, toggleLoader, redirectToCreateNew }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ControlButtons));

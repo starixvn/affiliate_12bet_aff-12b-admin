@@ -288,25 +288,28 @@
     <Content Include="Areas\Portal\www\dist\imgs\i_report.png" />
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adjustment.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminInfo.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminUsers.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\customer-statistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarning.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarningDetail.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\landingPageStatistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\member.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\note.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\permissionRole.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\playerDetail.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\referrerStatistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\statementHistory.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\trackingStatistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\userAccount.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~adminInfo~adminUsers.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~adminInfo~adminUsers~permissionRole.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~landingPageStatistics~member~referrerStatistics~statementHistory~viewLog.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~playerDetail.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\viewLog.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\xlsx-style.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\admin-role\admin-info.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\admin-role\admin-users.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\admin-role\permission-role.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\admin-role.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\administrator\administrator.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\administrator\department.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\affiliate\affiliate-info.js" />
@@ -397,16 +400,19 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\SubMenu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\menu.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\resetAllProps.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\reducer-children.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\common-reducers.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\children-reducers.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\components\CommonGridData.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\actions\index.js" />
@@ -1377,6 +1383,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-role-menu.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-info.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\permission-role.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\core.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1406,7 +1413,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Portal\www\source\js\pages\admin-role\core\components\" />
     <Folder Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\__test__\" />
   </ItemGroup>
   <ItemGroup>

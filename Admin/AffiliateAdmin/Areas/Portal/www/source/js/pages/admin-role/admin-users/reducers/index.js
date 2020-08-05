@@ -1,9 +1,12 @@
 ﻿import { combineReducers } from 'redux';
-import { isShowLoader } from '../../../../reducers/loaderReducer';
 import createReducer from '../../../../modules/createReducer';
-import { SET_PARAM, SET_CHECKED_USERS, SET_GRID_DATA, SHOULD_RESET_SCROLL_POSITION } from '../actions/types';
+import { SET_PARAM, SET_CHECKED_USERS, SET_IS_BACK, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from '../actions/types';
 
-export const isBack = createReducer(false, {})
+export const isBack = createReducer(false, {
+    [SET_IS_BACK](prevState, action) {
+        return action.data;
+    }
+})
 
 export const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
@@ -31,9 +34,8 @@ export const shouldResetScrollPosition = createReducer(true, {
 
 export default combineReducers({
     isBack,
-    isShowLoader,
     param,
-    gridData,
     checkedUsers,
+    gridData,
     shouldResetScrollPosition
 });

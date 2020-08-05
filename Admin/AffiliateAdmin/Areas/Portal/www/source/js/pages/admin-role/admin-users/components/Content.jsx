@@ -175,7 +175,8 @@ export class Content extends PureComponent {
 }
 
 
-function mapStateToProps({ pagingOption, param, checkedUsers, gridData, shouldResetScrollPosition }) {
+function mapStateToProps({ adminUsers }) {
+    const { pagingOption, param, checkedUsers, shouldResetScrollPosition, gridData } = adminUsers;
     return Object.assign({}, { pagingOption, param, checkedUsers, gridData, shouldResetScrollPosition });
 }
 
