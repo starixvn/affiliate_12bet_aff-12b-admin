@@ -20,12 +20,11 @@ export const initialState = {
     newUserName: '',
     newPassword: '',
     confirmPassword: '',
-    role: '',
+    role: 0,
     isActive: true,
     isShowMessage: false,
     isSuccess: true,
     message: '',
     isEdit: false,
-    messagePopup: '',
-    isConfirmPopup: true
+    userInfo: null,
 };

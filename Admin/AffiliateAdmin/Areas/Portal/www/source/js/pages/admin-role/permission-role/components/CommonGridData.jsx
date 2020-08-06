@@ -13,16 +13,16 @@ export class CommonGridData extends PureComponent {
     }
 
     componentDidMount() {
-        const { isGeneral, userName } = this.props;
+        const { isGeneral, userId } = this.props;
 
-        this.props.fetchData(isGeneral, userName);
+        this.props.fetchData(isGeneral, userId);
     }
 
     componentDidUpdate(prevProps) {
-        const { isGeneral, userName } = this.props;
+        const { isGeneral, userId } = this.props;
 
         if (isGeneral !== prevProps.isGeneral) {
-            this.props.fetchData(isGeneral, userName);
+            this.props.fetchData(isGeneral, userId);
         }
     }
 
@@ -102,9 +102,9 @@ export class CommonGridData extends PureComponent {
 }
 
 
-function mapStateToProps({ userName, permissionRole }) {
+function mapStateToProps({ userId, permissionRole }) {
     const { gridData, isGeneral } = permissionRole;
-    return Object.assign({}, { userName, gridData, isGeneral });
+    return Object.assign({}, { userId, gridData, isGeneral });
 }
 
 function mapDispatchToProps(dispatch) {

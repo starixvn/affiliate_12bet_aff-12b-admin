@@ -391,7 +391,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\actions\index.js" />
@@ -420,7 +419,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\Header.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\index.js" />

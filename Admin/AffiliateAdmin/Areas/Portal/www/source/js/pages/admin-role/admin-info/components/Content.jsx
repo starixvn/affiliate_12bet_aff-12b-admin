@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap';
 import { regExp, messages, initialState } from '../libs/constants';
 import { post } from '../../../../modules/ajaxRequest';
-import { resolveClientUrl, validateUserName } from '../../../../modules/utils';
-import { fetchData, createUser, updateUser, toggleLoader, getRoleList } from '../actions';
+import { validateUserName } from '../../../../modules/utils';
+import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -22,18 +22,30 @@ export class Content extends PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        const { userId, roleList } = this.props;
+        const { userId } = this.props;
         if (userId && userId !== prevProps.userId) {
             this._handleFetchData(userId);
         }
-
-        !roleList && this.props.getRoleList();
     }
 
     _handleFetchData = async (userId) => {
+        this.props.toggleLoader(true);
+
         const userInfo = await this.props.fetchData(userId);
 
+        if (userInfo) {
+            this.setState({
+                newUserName: userInfo.UserName,
+                role: userInfo.RoleId,
+                isActive: userInfo.IsActive,
+                userInfo
+            });
+        } else {
+            this.props.redirectToCreateNew();
+            this._handleShowAlert(false, "An error occurred, please try again later!");
+        }
 
+        this.props.toggleLoader(false);
     }
 
     _handleChange = (event) => {
@@ -81,8 +93,9 @@ export class Content extends PureComponent {
 
     _handleCancel = (isCreateNew) => {
         if (isCreateNew) {
-            window.location = resolveClientUrl("Portal/AdminRole");
+            this.props.redirectToAdminUsers();
         } else {
+            const { userInfo } = this.setState
             this.setState({ isEdit: false, isClickedSubmit: false });
         }
     }
@@ -121,14 +134,17 @@ export class Content extends PureComponent {
 
     _renderWhenView() {
         const { roleList } = this.props;
-        const { newUserName, role, isActive } = this.state;
+        const { newUserName, role, isActive, isShowMessage, isSuccess, message } = this.state;
 
-        return (
+        return roleList && (
             <Fragment>
                 <div className="mb-2">
                     <Button outline type="button" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
                 </div>
-                <Container fluid={true} className="admin-info-container">
+                <Container fluid={true} className="admin-info-container pt-2">
+                    <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                        <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                    </Alert>
                     <Form tag="form" className="my-4">
                         <FormGroup row className="mb-1">
                             <Label sm="auto" className="required">User Name</Label>
@@ -172,7 +188,7 @@ export class Content extends PureComponent {
                         <Button outline type="button" className="ml-2" disabled={isClickedSubmit ? !isValid : false} onClick={() => this._handleSubmit(isValid)}>Save<span className="oi oi-task ml-2"></span></Button>
                     </Fragment>
                 </div>
-                <Container fluid={true} className="admin-info-container">
+                <Container fluid={true} className="admin-info-container pt-2">
                     <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                         <div dangerouslySetInnerHTML={{ __html: message }}></div>
                     </Alert>
@@ -246,12 +262,12 @@ export class Content extends PureComponent {
 }
 
 function mapStateToProps({ userId, userName, adminInfo }) {
-    const { userInfo, roleList } = adminInfo;
-    return Object.assign({}, { userId, userName, userInfo, roleList });
+    const { roleList } = adminInfo;
+    return Object.assign({}, { userId, userName, roleList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList }, dispatch);
+    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

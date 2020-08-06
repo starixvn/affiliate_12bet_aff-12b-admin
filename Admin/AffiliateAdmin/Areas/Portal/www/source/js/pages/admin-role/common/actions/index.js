@@ -23,3 +23,19 @@ export const redirectToPermissionRole = () => (dispatch) => {
     dispatch(setSelectedMenu(adminRoleMenuKey.permissionRole));
     dispatch(toggleLoader(false));
 }
+
+export const redirectToCreateNew = () => (dispatch) => {
+    dispatch(toggleLoader(true));
+    dispatch(setUserId(null));
+    dispatch(setUserName(null));
+    dispatch(setSelectedMenu(adminRoleMenuKey.adminInfo));
+    dispatch(toggleLoader(false));
+}
+
+export const redirectToUserDetail = (userId, userName) => (dispatch) => {
+    dispatch(toggleLoader(true));
+    dispatch(setUserId(userId));
+    dispatch(setUserName(userName));
+    dispatch(setSelectedMenu(adminRoleMenuKey.adminInfo));
+    dispatch(toggleLoader(false));
+}

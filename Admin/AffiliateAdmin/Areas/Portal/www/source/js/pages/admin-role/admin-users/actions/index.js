@@ -1,10 +1,9 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { setSelectedMenu, setUserId, setUserName } from '../../core/actions';
+import { redirectToCreateNew, redirectToUserDetail } from '../../common/actions';
 import { SET_PARAM, SET_CHECKED_USERS, SET_IS_BACK, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from './types';
-import { adminRoleMenuKey } from '../../core/libs/constants';
 
-export { toggleLoader };
+export { toggleLoader, redirectToCreateNew, redirectToUserDetail };
 
 export const setParam = (data) => {
     return {
@@ -39,14 +38,6 @@ export const setShouldResetScrollPosition = (data) => {
         type: SHOULD_RESET_SCROLL_POSITION,
         data
     }
-}
-
-export const redirectToCreateNew = () => (dispatch) => {
-    dispatch(toggleLoader(true));
-    dispatch(setUserId(null));
-    dispatch(setUserName(null));
-    dispatch(setSelectedMenu(adminRoleMenuKey.adminInfo));
-    dispatch(toggleLoader(false));
 }
 
 export const fetchData = (param) => async (dispatch) => {

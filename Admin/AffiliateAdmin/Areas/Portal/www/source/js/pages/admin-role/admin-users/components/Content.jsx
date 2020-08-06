@@ -9,7 +9,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resource } from '../libs/constants';
 import { resolveClientUrl } from '../../../../modules/utils';
-import { fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers } from '../actions';
+import { fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail } from '../actions';
 
 export class Content extends PureComponent {
 
@@ -69,6 +69,10 @@ export class Content extends PureComponent {
         this.props.toggleLoader(false);
     }
 
+    _handleRedirectToUserDetail = (userId, userName) => {
+        this.props.redirectToUserDetail(userId, userName);
+    }
+
     _renderHeader() {
         return (
             <Row key="thead">
@@ -122,7 +126,7 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={resource.userName}>
-                    <a href={resolveClientUrl(`Portal/AdminInfo?userId=${userId}`)} target="_top">
+                    <a href="javascript:;" onClick={() => this._handleRedirectToUserDetail(userId, userName)}>
                         {userName}
                     </a>
                 </Cell>
@@ -181,7 +185,7 @@ function mapStateToProps({ adminUsers }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers }, dispatch);
+    return bindActionCreators({ fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -1,15 +1,9 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_USER_INFO, SET_ROLE_LIST } from './types';
+import { redirectToCreateNew, redirectToAdminUsers } from '../../common/actions';
+import { SET_ROLE_LIST } from './types';
 
-export { toggleLoader };
-
-export const setUserInfo = (data) => {
-    return {
-        type: SET_USER_INFO,
-        data
-    }
-}
+export { toggleLoader, redirectToCreateNew, redirectToAdminUsers };
 
 export const setRoleList = (data) => {
     return {
@@ -18,15 +12,11 @@ export const setRoleList = (data) => {
     }
 }
 
-export const fetchData = (userId) => async (dispatch) => {
-    dispatch(toggleLoader(true));
+export const fetchData = (userId) => async () => {
     const url = 'Portal/AdminInfo/GetUserInfo';
     const response = await post(url, { userId });
 
-    const data = response && response.status === 200 ? response.data : {};
-
-    dispatch(setUserInfo(data));
-    dispatch(toggleLoader(false));
+    return response && response.status === 200 ? response.data : null;
 }
 
 export const getRoleList = () => async (dispatch) => {

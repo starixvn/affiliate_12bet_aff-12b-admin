@@ -16,7 +16,7 @@ export const rootReducer = (state, action) => {
     const newState = { ...state };
     if (action.type === RESET_REDUCER) {
         const children = action.data;
-        newState[children] = undefined;
+        newState[children] = {};
     }
 
     return allReducers(newState, action);
