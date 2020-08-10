@@ -8,7 +8,6 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resource } from '../libs/constants';
-import { resolveClientUrl } from '../../../../modules/utils';
 import { fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail } from '../actions';
 
 export class Content extends PureComponent {
@@ -24,8 +23,8 @@ export class Content extends PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        const { param } = this.props;
-        if (param && param !== prevProps.param) {
+        const { param, isBack } = this.props;
+        if (param && param !== prevProps.param || isBack && isBack != prevProps.isBack) {
             this.props.fetchData(param);
         }
     }
@@ -180,8 +179,8 @@ export class Content extends PureComponent {
 
 
 function mapStateToProps({ adminUsers }) {
-    const { pagingOption, param, checkedUsers, shouldResetScrollPosition, gridData } = adminUsers;
-    return Object.assign({}, { pagingOption, param, checkedUsers, gridData, shouldResetScrollPosition });
+    const { isBack, param, checkedUsers, shouldResetScrollPosition, gridData } = adminUsers;
+    return Object.assign({}, { isBack, param, checkedUsers, gridData, shouldResetScrollPosition });
 }
 
 function mapDispatchToProps(dispatch) {

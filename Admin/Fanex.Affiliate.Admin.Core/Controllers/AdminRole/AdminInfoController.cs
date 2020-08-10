@@ -104,7 +104,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         [ValidateAntiForgeryHeader]
         public ActionResult UpdateUser(AdminInfoParam param)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && param.UserId >= Validation.MinId)
             {
                 param.ByUserId = SessionService.UserId;
                 param.Ip = Request.UserHostAddress;

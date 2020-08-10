@@ -9,8 +9,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.AdminRole
 
         public int Policy { get; set; }
 
-        public bool IsView { get; set; }
+        public bool IsView => Policy == Constants.Policy.ViewButNotEdit || Policy == Constants.Policy.ViewAndEdit;
 
-        public bool IsEdit { get; set; }
+        public bool IsEdit => Policy == Constants.Policy.ViewAndEdit;
     }
 }

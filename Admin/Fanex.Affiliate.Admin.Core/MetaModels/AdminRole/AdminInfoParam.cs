@@ -5,7 +5,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.AdminRole
 {
     public class AdminInfoParam
     {
-        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "User Id is invalid!")]
         public int UserId { get; set; }
 
         [Required(ErrorMessage = "User Name is required!")]

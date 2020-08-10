@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
                         return new AdminInfo
                         {
                             UserId = Convert.ToInt32(reader["CustId"]),
-                            UserName = Convert.ToString(reader["UserName"]),
+                            UserName = Convert.ToString(reader["UserName"]).Substring(2),
                             RoleId = Convert.ToInt32(reader["RoleId"]),
                             IsActive = !Convert.ToBoolean(reader["Closed"])
                         };
@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
+                objectDb.AddInParameter("CustId", DbType.Int32, param.UserId);
                 AssignParam(param, objectDb);
 
                 objectDb.ExecuteNonQuery();
@@ -93,13 +93,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
         private static void AssignParam(AdminInfoParam param, IObjectDb objectDb)
         {
-            objectDb.AddInParameter("UserName", DbType.String, param.UserName);
-            objectDb.AddInParameter("Password", DbType.String, param.Password);
-            objectDb.AddInParameter("Role", DbType.Int32, param.Role);
-            objectDb.AddInParameter("MarketIds", DbType.String, param.MarketIds);
-            objectDb.AddInParameter("IsActive", DbType.Boolean, param.IsActive);
+            objectDb.AddInParameter("UserName", DbType.String, "AA" + param.UserName);
+            objectDb.AddInParameter("UserPwd", DbType.String, param.Password);
+            objectDb.AddInParameter("RoleId", DbType.Int32, param.Role);
+            objectDb.AddInParameter("Closed", DbType.Boolean, !param.IsActive);
             objectDb.AddInParameter(Field.UserId, DbType.Int32, param.ByUserId);
-            objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+            //objectDb.AddInParameter("Ip", DbType.String, param.Ip);
 
             AssignResultOutputParam(objectDb);
         }

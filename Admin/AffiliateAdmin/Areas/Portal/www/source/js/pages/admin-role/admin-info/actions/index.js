@@ -37,17 +37,19 @@ const convertRoleList = (roleList) => {
 
     return newRoleList;
 }
-export const createUser = (userInfo) => async (dispatch) => {
+export const createUser = (userInfo) => async () => {
     const url = 'Portal/AdminInfo/CreateUser';
     const response = await post(url, userInfo);
 
-    if (response && response.status === 200) {
-        dispatch(setUserName(userInfo.UserName));
+    return response && response.status === 200 ? response.data : null;
 
-        return response.data;
-    }
+    //if (response && response.status === 200) {
+    //    dispatch(setUserName(userInfo.UserName));
 
-    return null;
+    //    return response.data;
+    //}
+
+    //return null;
 }
 
 export const updateUser = (userInfo) => async () => {

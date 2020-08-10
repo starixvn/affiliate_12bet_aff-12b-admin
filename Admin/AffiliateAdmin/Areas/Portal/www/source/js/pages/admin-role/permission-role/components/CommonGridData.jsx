@@ -66,14 +66,14 @@ export class CommonGridData extends PureComponent {
                 <Cell title={dataItem.Name}>{dataItem.Name}</Cell>
                 <Cell className="text-center" title={headerText.View}>
                     <Button color="link p-0" onClick={() => this._handleEdit(dataItem.Id)}>
-                        <span className="oi oi-check text-success"></span>
+                        <span className={`oi ${dataItem.IsView ? "oi-check text-success" : "oi-x text-danger"}`}></span>
                     </Button>
                 </Cell>
                 {
                     isGeneral && (
                         <Cell className="text-center" title={headerText.Edit}>
                             <Button color="link p-0" onClick={() => this._handleEdit(dataItem.Id)}>
-                                <span className="oi oi-x text-danger"></span>
+                                <span className={`oi ${dataItem.IsEdit ? "oi-check text-success" : "oi-x text-danger"}`}></span>
                             </Button>
                         </Cell>
                     )

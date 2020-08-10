@@ -185,6 +185,7 @@
     <Compile Include="Constants\Money.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />
     <Compile Include="Constants\SessionKey.cs" />
+    <Compile Include="Constants\Policy.cs" />
     <Compile Include="Constants\Size.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Constants\Validation.cs" />

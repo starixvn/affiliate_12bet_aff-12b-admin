@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
     {
         public IEnumerable<PermissionRoleInfo> GetPermissionRoleList(int userId, bool isGeneral = true)
         {
-            string SpKey = isGeneral ? "Aff_Admin_AdminUser_Market_Sel" : "Aff_Admin_AdminUser_FunctionPermission_Sel";
+            string SpKey = isGeneral ? "Aff_Admin_AdminUser_FunctionPermission_Sel" : "Aff_Admin_AdminUser_Market_Sel";
             var result = new List<PermissionRoleInfo>();
 
             using (var objectDb = GetObjectDb(SpKey))
@@ -35,16 +35,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             {
                 return new PermissionRoleInfo
                 {
-                    Id = reader.ToInt("MarketId"),
-                    Name = reader.ToString("MarketName"),
+                    Id = reader.ToInt("FuncId"),
+                    Name = reader.ToString("FuncName"),
                     Policy = reader.ToInt("Policy")
                 };
             }
 
             return new PermissionRoleInfo
             {
-                Id = reader.ToInt("FuncId"),
-                Name = reader.ToString("FuncName"),
+                Id = reader.ToInt("MarketId"),
+                Name = reader.ToString("MarketName"),
                 Policy = reader.ToInt("Policy")
             };
         }

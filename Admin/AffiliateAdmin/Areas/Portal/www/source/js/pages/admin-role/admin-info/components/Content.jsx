@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap';
 import { regExp, messages, initialState } from '../libs/constants';
-import { post } from '../../../../modules/ajaxRequest';
 import { validateUserName } from '../../../../modules/utils';
 import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew } from '../actions';
 
@@ -56,16 +55,15 @@ export class Content extends PureComponent {
         this.setState({ isClickedSubmit: true });
 
         if (isValid) {
-            const { oldPassword, newPassword, confirmPassword } = this.state;
-            const param = { oldPassword, newPassword, confirmPassword };
-            const response = await post('Portal/ChangeAdminPassword/ChangePassword', param);
+            const { userId } = this.props;
+            const { newUserName, newPassword, confirmPassword, role, isActive } = this.state;
+            const param = { userId: userId || 0, userName: newUserName, password: newPassword, confirmPassword, role, isActive };
+            const data = userId ? await this.props.updateUser(param) : await this.props.createUser(param);
 
-            if (response) {
-                const { data } = response;
-
-                this._handleShowAlert(data.IsSuccessful, data.IsSuccessful ? messages.ChangePasswordSuccess : data.Message);
+            if (data) {
+                this._handleShowAlert(data.IsSuccessful, data.IsSuccessful ? (userId ? "Update user is successfully!" : "Create new user is successfully!") : data.Message);
             } else {
-                this._handleShowAlert(false, messages.ChangePasswordFailed);
+                this._handleShowAlert(false, userId ? "Update user is failed!" : "Create new user is failed!");
             }
         }
     }
@@ -75,13 +73,15 @@ export class Content extends PureComponent {
             message,
             isSuccess,
             isShowMessage: true,
-        }, () => window.setTimeout(() => this._hideMessage(), 3000));
+        }, () => window.setTimeout(() => this._hideMessage(isSuccess), 3000));
     }
 
-    _hideMessage = () => {
+    _hideMessage = (isSuccess) => {
         this.setState({
             isShowMessage: false
         });
+
+        isSuccess && this.props.redirectToAdminUsers();
     }
 
     _handlePressEnter = (isValid, event) => {
@@ -95,8 +95,15 @@ export class Content extends PureComponent {
         if (isCreateNew) {
             this.props.redirectToAdminUsers();
         } else {
-            const { userInfo } = this.setState
-            this.setState({ isEdit: false, isClickedSubmit: false });
+            const { userInfo } = this.state;
+
+            this.setState({
+                isEdit: false,
+                isClickedSubmit: false,
+                newUserName: userInfo.UserName,
+                role: userInfo.RoleId,
+                isActive: userInfo.IsActive,
+            });
         }
     }
     _validateNewPassword(newPassword) {
@@ -148,8 +155,8 @@ export class Content extends PureComponent {
                     <Form tag="form" className="my-4">
                         <FormGroup row className="mb-1">
                             <Label sm="auto" className="required">User Name</Label>
-                            <Col sm={2}>
-                                <Input type="text" className="input-required mt-2" disabled value={newUserName} />
+                            <Col sm={2} className="row-user">
+                                <Input type="text" className="newUserName" disabled value={"AA" + newUserName} />
                             </Col>
                         </FormGroup>
                         <FormGroup row className="mb-1">
@@ -175,8 +182,8 @@ export class Content extends PureComponent {
         const isCreateNew = !userName;
         const { isClickedSubmit, newUserName, newPassword, confirmPassword, role, isActive, isShowMessage, isSuccess, message } = this.state;
 
-        const newPasswordValidation = isClickedSubmit && this._validateNewPassword(newPassword);
-        const confirmPasswordValidation = isClickedSubmit && this._validateConfirmPassword(newPassword, confirmPassword);
+        const newPasswordValidation = this._validateNewPassword(newPassword);
+        const confirmPasswordValidation = this._validateConfirmPassword(newPassword, confirmPassword);
         const isValid = newPasswordValidation.isValid && confirmPasswordValidation.isValid;
         const validUserNameResult = isClickedSubmit && validateUserName(newUserName);
 
@@ -195,17 +202,20 @@ export class Content extends PureComponent {
                     <Form tag="form" className="my-4" autocomplete="off">
                         <FormGroup row className="mb-1">
                             <Label for="newUserName" sm="auto" className="required">User Name</Label>
-                            <Col sm={2}>
-                                <Input type="text" className="input-required mt-1" name="newUserName" id="newUserName"
-                                    value={newUserName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validUserNameResult.IsValid} />
-                                {!validUserNameResult.IsValid &&
-                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
+                            <Col sm={2} className="row-user">
+                                <Input type="text" className="refix" disabled value="AA" />
+                                <div className="user-name-group">
+                                    <Input type="text" className="input-required user-name" name="newUserName" id="newUserName"
+                                        value={newUserName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validUserNameResult.IsValid} />
+                                    {!validUserNameResult.IsValid &&
+                                        <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
+                                </div>
                             </Col>
                         </FormGroup>
                         <FormGroup row className="mb-1">
                             <Label for="newPassword" sm="auto" className="required">New Password</Label>
                             <Col sm={2}>
-                                <Input type="password" className="input-required mt-1" name="newPassword" id="newPassword" autocomplete="false"
+                                <Input type="password" className="input-required mt-2" name="newPassword" id="newPassword" autocomplete="false"
                                     value={newPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !newPasswordValidation.isValid} />
                                 {newPasswordValidation.message &&
                                     <FormFeedback><div dangerouslySetInnerHTML={{ __html: newPasswordValidation.message }} /></FormFeedback>}
@@ -215,7 +225,7 @@ export class Content extends PureComponent {
                         <FormGroup row className="mb-1">
                             <Label for="confirmPassword" sm="auto" className="required">Confirm Password</Label>
                             <Col sm={2}>
-                                <Input type="password" className="input-required mt-1" name="confirmPassword" id="confirmPassword" autocomplete="false"
+                                <Input type="password" className="input-required mt-2" name="confirmPassword" id="confirmPassword" autocomplete="false"
                                     value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
                                 {confirmPasswordValidation.message &&
                                     <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
@@ -224,7 +234,7 @@ export class Content extends PureComponent {
                         <FormGroup row className="mb-1">
                             <Label for="role" sm="auto" className="required">Role</Label>
                             <Col sm={2}>
-                                <Input type="select" name="role" className="mt-1" value={role} onChange={this._handleChange} invalid={isClickedSubmit && !role}>
+                                <Input type="select" name="role" className="mt-2" value={role} onChange={this._handleChange} invalid={isClickedSubmit && !role}>
                                     {
                                         isCreateNew && <option key={'role-0'} value="0">[Select Role]</option>
                                     }

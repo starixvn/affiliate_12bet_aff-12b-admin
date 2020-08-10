@@ -4,4 +4,28 @@
     .col-sm-auto {
         width: 140px;
     }
+
+    .row-user {
+        display: inherit;
+        margin-top: 8px;
+
+        .refix {
+            width: 26px;
+            border-right: none;
+            border-radius: .15rem 0 0 .15rem;
+        }
+
+        .user-name-group {
+            width: 100%;
+
+            .user-name {
+                border-left: none;
+                border-radius: 0 .15rem .15rem 0;
+            }
+
+            .invalid-user-name {
+                margin-left: -25px;
+            }
+        }
+    }
 }
