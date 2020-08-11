@@ -840,10 +840,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\home\components\Panel.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\Filter.jsx" />
     <Content Include=".babelrc" />
-    <Content Include="Areas\Portal\Views\AdminRole\AdminInfo.cshtml" />
     <Content Include="Areas\Portal\Views\AdminRole\Index.cshtml" />
-    <Content Include="Areas\Portal\Views\AdminRole\PermissionRole.cshtml" />
-    <Content Include="Areas\Portal\Views\AdminRole\_AdminRoleSubMenu.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />

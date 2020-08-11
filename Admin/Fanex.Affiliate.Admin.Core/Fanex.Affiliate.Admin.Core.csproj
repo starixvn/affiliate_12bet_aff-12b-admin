@@ -281,7 +281,6 @@
     <Compile Include="MetaModels\Administrator\UpdatePolicyParam.cs" />
     <Compile Include="MetaModels\Administrator\UpdateUserParam.cs" />
     <Compile Include="MetaModels\AdminRole\AdminInfoParam.cs" />
-    <Compile Include="MetaModels\AdminRole\AdminUsersParam.cs" />
     <Compile Include="MetaModels\AdminRole\DeleteAdminUsersParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />

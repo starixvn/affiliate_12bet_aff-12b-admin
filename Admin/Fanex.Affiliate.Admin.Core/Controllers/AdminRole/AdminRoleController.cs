@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services.Administrator;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.ViewModels.AdminRole;
@@ -27,29 +26,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         }
 
         [HttpGet]
-        public ActionResult Index(bool isBack = false)
+        public ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.AdminUsers, Url = Url.Content("~/Portal/AdminRole"), IsActive = true }
-            };
-
-            var model = new AdminRoleViewModel
-            {
-                SubMenuList = subMenu,
-                IsBack = isBack
-            };
-
-            return View(model);
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetUserList(AdminUsersParam param)
+        public ActionResult GetUserList(string userName)
         {
             return new JsonNetResult
             {
-                Data = _adminUsersService.GetUserList(param)
+                Data = _adminUsersService.GetUserList(userName)
             };
         }
 

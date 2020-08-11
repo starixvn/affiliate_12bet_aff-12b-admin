@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 {
     public interface IAdminUsersService
     {
-        IEnumerable<AdminUserInfo> GetUserList(AdminUsersParam param);
+        IEnumerable<AdminUserInfo> GetUserList(string userName);
 
         ResultInfo DeleteUsers(DeleteAdminUsersParam param);
     }

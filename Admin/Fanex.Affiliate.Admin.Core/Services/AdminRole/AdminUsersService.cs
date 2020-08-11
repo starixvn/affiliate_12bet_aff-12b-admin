@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using Fanex.Affiliate.Admin.Core.Repository;
@@ -13,7 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
     {
         public ResultInfo DeleteUsers(DeleteAdminUsersParam param)
         {
-            const string SpKey = "Aff_Admin_AdminUser_Sel";
+            const string SpKey = "";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -29,14 +28,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             }
         }
 
-        public IEnumerable<AdminUserInfo> GetUserList(AdminUsersParam param)
+        public IEnumerable<AdminUserInfo> GetUserList(string userName)
         {
             const string SpKey = "Aff_Admin_AdminUser_Sel";
             var result = new List<AdminUserInfo>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("UserName", DbType.String, param.UserName);
+                objectDb.AddInParameter("UserName", DbType.String, userName);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

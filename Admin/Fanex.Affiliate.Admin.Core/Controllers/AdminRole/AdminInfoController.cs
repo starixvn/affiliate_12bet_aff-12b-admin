@@ -1,14 +1,10 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.ViewModels.AdminRole;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -24,35 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             IAdminInfoService adminInfoService) : base(sessionService)
         {
             _adminInfoService = adminInfoService;
-        }
-
-        [HttpGet]
-        public ActionResult Index(int userId = 0)
-        {
-            var userInfo = new AdminInfo();
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.AdminInfo, Url = Url.Content($"~/Portal/AdminInfo?userId={userId}"), IsActive = true }
-            };
-            var roleList = _adminInfoService.GetRoleList();
-
-            if (userId >= Validation.MinId)
-            {
-                subMenu.Add(new SubMenu { Name = Lang.PermissionRole, Url = Url.Content($"~/Portal/PermissionRole?userId={userId}") });
-
-                userInfo = _adminInfoService.GetUserInfo(userId);
-            }
-
-            var model = new AdminInfoViewModel
-            {
-                UserId = userId,
-                UserName = userInfo?.UserName ?? string.Empty,
-                SubMenuList = subMenu,
-                UserInfo = userInfo,
-                RoleList = roleList
-            };
-
-            return View("~/Areas/Portal/Views/AdminRole/AdminInfo.cshtml", model);
         }
 
         [HttpPost]
