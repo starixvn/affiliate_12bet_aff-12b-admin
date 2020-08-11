@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             Headers = headers;
         }
 
-        public virtual Task<string> GetResponseAsync(NameValueCollection query, CancellationToken cancellationToken = default)
+        public virtual Task<string> GetResponseAsync(NameValueCollection query, CancellationToken cancellationToken = default(CancellationToken))
         {
             if(string.IsNullOrWhiteSpace(Url))
             {
@@ -67,7 +67,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             return GetDataAsync(request, cancellationToken);
         }
 
-        private async Task<string> GetDataAsync(HttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
+        private async Task<string> GetDataAsync(HttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
         {
             SetUpRequestHeaders(requestMessage, Headers);
             using (var response = await HttpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false))

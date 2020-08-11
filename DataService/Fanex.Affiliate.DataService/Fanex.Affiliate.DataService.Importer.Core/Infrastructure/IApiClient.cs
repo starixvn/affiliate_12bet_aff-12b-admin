@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
 {
     public interface IApiClient
     {
-        Task<string> GetResponseAsync(NameValueCollection query, CancellationToken cancellationToken = default);
+        Task<string> GetResponseAsync(NameValueCollection query, CancellationToken cancellationToken = default(CancellationToken));
 
         void SetUrl(string url);
     }
