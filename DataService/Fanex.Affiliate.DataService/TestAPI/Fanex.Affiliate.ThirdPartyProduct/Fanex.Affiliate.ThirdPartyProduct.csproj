@@ -238,10 +238,6 @@
       <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.FlowGaming</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UnitTest\Fanex.Affiliate.DataService.Importer.IntegrateTest\Fanex.Affiliate.DataService.Importer.IntegratedTest.csproj">
-      <Project>{1b10278e-c480-4797-9567-098692a40563}</Project>
-      <Name>Fanex.Affiliate.DataService.Importer.IntegratedTest</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

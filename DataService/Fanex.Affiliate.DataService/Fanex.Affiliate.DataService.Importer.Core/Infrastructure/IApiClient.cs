@@ -1,10 +1,13 @@
 ﻿using System.Collections.Specialized;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
 {
-    public interface IApiClient 
+    public interface IApiClient
     {
-        Task<string> GetResponseAsync(string url, NameValueCollection query);
+        Task<string> GetResponseAsync(NameValueCollection query, CancellationToken cancellationToken = default);
+
+        void SetUrl(string url);
     }
 }

@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.DataService.Importer.FlowGaming.Client;
-using Fanex.Affiliate.DataService.Importer.Core.Constants;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Constants;
 using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Affiliate.DataService.Importer.Core.Repository;
@@ -13,6 +12,9 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.FlowGaming.ResponseChecker;
 using Polly;
+using System.Net.Http;
+using System.Text;
+using System.Net.Http.Headers;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
@@ -22,62 +24,103 @@ namespace Fanex.Affiliate.DataService.Importer
         //60s to request next data for same brand_id request
         private const int TIME_BETWEEN_TWO_REQUEST = 60000;
         private const int MAX_TIME_RANGE_TRANSACTION = 15;
+        private const string DEFAULT_CURRENCY = "USD";
+        private const string DEFAULT_TIME_ZONE = "UTC";
+        private const string DEFAULT_LANGUAGE = "en";
+        private const string AUTH_PATH = "/oauth/token";
+
+        private string CompanyId => _appSetting.GetValue("TopazCompanyId");
+        private string AuthUserName => _appSetting.GetValue("TopazAuthUserName");
+        private string AuthSecret => _appSetting.GetValue("TopazAuthSecret");
+        private string ApiUserName => _appSetting.GetValue("TopazApiUserName");
+        private string ApiPassword => _appSetting.GetValue("TopazPassword");
+        private string ApiUrl => _appSetting.GetValue("TopazApiUrl");
 
         private static Dictionary<string, IAsyncPolicy<string>> _policies = new Dictionary<string, IAsyncPolicy<string>>();
 
         public bool IsTestMode { get; set; } = false;
         public int NextRequestWaitTime => IsTestMode ? 1 : TIME_BETWEEN_TWO_REQUEST;
 
-        private readonly IApiClient _client;
+        private readonly IApiClientFactory _apiClientFactory;
 
         protected override int ProductId => Products.TopazId;
 
-        public TopazService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyRepository = null) : base(appSetting, thirdPartyRepository)
+        public TopazService(IApiClientFactory apiClientFactory = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyRepository = null) : base(appSetting, thirdPartyRepository)
         {
-            _client = client ?? new TopazClient();
+            _apiClientFactory = apiClientFactory ?? new ApiClientFactory();
         }
 
         public override async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
         {
-            if (DateTime.Compare(startTime, endTime) >= 0)
-            {
-                throw new ThirdPartyProductException($"Flow Gaming - startDate {startTime} later or equal than endDate {endTime}");
-            }
+            var authenResponse = await SendAuthenRequestAsync();
+            //if (DateTime.Compare(startTime, endTime) >= 0)
+            //{
+            //    throw new ThirdPartyProductException($"Flow Gaming - startDate {startTime} later or equal than endDate {endTime}");
+            //}
 
-            var timeRanges = GetTimeRangeRequest(startTime, endTime);
-            var datas = new List<string>(timeRanges.Count());
+            //var timeRanges = GetTimeRangeRequest(startTime, endTime);
+            //var datas = new List<string>(timeRanges.Count());
 
-            foreach (var time in timeRanges)
-            {
-                var data = await GetRawDataAsync(time.Item1, time.Item2);
-                if (IsExceedCallLimit(data))
-                {
-                    await Task.Delay(NextRequestWaitTime);
-                    data = await GetRawDataAsync(time.Item1, time.Item2);
-                }
-                datas.Add(data);
-            }
-            return datas;
+            //foreach (var time in timeRanges)
+            //{
+            //    var data = await GetRawDataAsync(time.Item1, time.Item2);
+            //    if (IsExceedCallLimit(data))
+            //    {
+            //        await Task.Delay(NextRequestWaitTime);
+            //        data = await GetRawDataAsync(time.Item1, time.Item2);
+            //    }
+            //    datas.Add(data);
+            //}
+            return new List<string> { authenResponse };
         }
+
+        private async Task<string> SendAuthenRequestAsync()
+        {
+            var header = GetAuthHeader();
+            var query = GetAuthParam();
+            var authUrl = $"{ApiUrl}{AUTH_PATH}";
+            var client = _apiClientFactory.CreateApiClient(authUrl, HttpMethod.Post, header);
+            return await client.GetResponseAsync(query);
+        }
+
+        private HttpClientHeaderOption GetAuthHeader()
+        {
+            const string authScheme = "Basic";
+            var authRaw = $"{AuthUserName}:{AuthSecret}";
+            var plainAuthByte = Encoding.UTF8.GetBytes(authRaw);
+            var base64AuthIdentity = Convert.ToBase64String(plainAuthByte);
+            var authHeader = new AuthenticationHeaderValue(authScheme, base64AuthIdentity);
+
+            var header = GetBasicHeader();
+            header.AuthenHeader = authHeader;
+            return header;
+        }
+
+        private HttpClientHeaderOption GetBasicHeader()
+            => new HttpClientHeaderOption
+            {
+                AcceptContent = "application/json;charset=UTF-8",
+                Headers = new List<NameValueHeaderValue>
+                {
+                    new NameValueHeaderValue("X-DAS-TX-ID", Guid.NewGuid().ToString()),
+                    new NameValueHeaderValue("X-DAS-TZ", DEFAULT_TIME_ZONE),
+                    new NameValueHeaderValue("X-DAS-CURRENCY", DEFAULT_CURRENCY),
+                    new NameValueHeaderValue("X-DAS-LANG", DEFAULT_LANGUAGE)
+                }
+            };
+
+        private NameValueCollection GetAuthParam()
+            => new NameValueCollection
+            {
+                { "password", string.Empty },
+                { "username", ApiUserName },
+                { "password", ApiPassword }
+            };
 
         private static IEnumerable<Tuple<DateTime, DateTime>> GetTimeRangeRequest(DateTime startTime, DateTime endTime)
         {
             var span = new TimeSpan(0, MAX_TIME_RANGE_TRANSACTION, 0);
             return DateTimeHelper.GetProportionTimeRange(startTime, endTime, span);
-        }
-
-        private static bool IsExceedCallLimit(string data)
-        {
-            return data.Contains(CALL_LIMIT_EXCEEDED);
-        }
-
-        private async Task<string> GetRawDataAsync(DateTime startRequestDate, DateTime endRequestDate)
-        {
-            var param = GetQueryParam(startRequestDate, endRequestDate);
-            var baseUrl = _appSetting.GetValue("TopazApiUrl");
-            var policy = GetRequestPolicy(baseUrl);
-
-            return await policy.ExecuteAsync(() => _client.GetResponseAsync(baseUrl, param)).ConfigureAwait(false);
         }
 
         private NameValueCollection GetQueryParam(DateTime startTime, DateTime endTime)
@@ -93,8 +136,6 @@ namespace Fanex.Affiliate.DataService.Importer
 
         protected override void CheckXmlResponseData(XDocument xml)
         {
-            IThirdPartyResponseChecker checker = new TopazResponseChecker();
-            checker.CheckXml(xml);
         }
 
         public override Task<XDocument> ConvertRawDataToXmlAsync(string raw)
@@ -105,38 +146,6 @@ namespace Fanex.Affiliate.DataService.Importer
                 throw new ThirdPartyProductException($"FlowGaming - Cant convert json response to xml - {raw}");
             }
             return Task.FromResult(xml);
-        }
-
-        public static void SetRequestPolicy(string url, IAsyncPolicy<string> policy)
-        {
-            if (_policies.Keys.Any(k => k.Equals(url, StringComparison.InvariantCultureIgnoreCase)))
-            {
-                _policies[url] = policy;
-            }
-            else
-            {
-                _policies.Add(url, GetDefaultPolicy());
-            }
-        }
-
-        private static IAsyncPolicy<string> GetRequestPolicy(string url)
-        {
-            var policy = _policies.Keys.Any(k => k.Equals(url, StringComparison.InvariantCultureIgnoreCase))
-                ? _policies[url]
-                : GetDefaultPolicy();
-            _policies[url] = policy;
-            return policy;
-        }
-
-        private static IAsyncPolicy<String> GetDefaultPolicy()
-        {
-            var retryPolicy = Policy.HandleResult<String>(s => s.Contains(CALL_LIMIT_EXCEEDED))
-                .WaitAndRetryAsync(2, retryAttempt => TimeSpan.FromMilliseconds(TIME_BETWEEN_TWO_REQUEST));
-
-            var bulkHeadPolicy = Policy.BulkheadAsync<String>(1, 10)
-                .WrapAsync(retryPolicy);
-
-            return bulkHeadPolicy.WithPolicyKey("TopazPolicy");
         }
     }
 }

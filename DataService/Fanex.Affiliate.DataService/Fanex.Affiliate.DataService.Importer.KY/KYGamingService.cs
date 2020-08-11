@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Repository;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
-using Fanex.Affiliate.DataService.Importer.KY.Client;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,6 +14,7 @@ using Fanex.Affiliate.DataService.Importer.Core.ResponseChecker;
 using Fanex.Affiliate.DataService.Importer.KYGaming.ResponseChecker;
 using Fanex.Affiliate.DataService.Importer.Core.Constants;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
 
 namespace Fanex.Affiliate.DataService.Importer.KYGaming
 {
@@ -35,10 +35,11 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
                 .WaitAndRetryAsync(numberOfRetries, retryAttempt => TimeSpan.FromMilliseconds(TIME_BETWEEN_TWO_REQUEST));
         };
 
-        public KYGamingService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
+        public KYGamingService(IApiClientFactory apiClientFactory = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
             : base(appSetting, thirdPartyProductRepository)
         {
-            _client = client ?? new KYGamingClient();
+            var factory = apiClientFactory ?? new ApiClientFactory();
+            _client = factory.CreateApiClient(_appSetting.GetValue("KYGamingApiUrl"), HttpMethod.Get);
         }
 
         public override async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
@@ -76,10 +77,9 @@ namespace Fanex.Affiliate.DataService.Importer.KYGaming
 
         public async Task<string> GetRawDataAsync(KYGamingApiParam param)
         {
-            var url = _appSetting.GetValue("KYGamingApiUrl");
             var queryValue = BuildQuery(param);
 
-            return await GetDefaultRetryPolicy().ExecuteAsync(async () => await _client.GetResponseAsync(url, queryValue));          
+            return await GetDefaultRetryPolicy().ExecuteAsync(async () => await _client.GetResponseAsync(queryValue));          
         }
 
         public NameValueCollection BuildQuery(KYGamingApiParam param)

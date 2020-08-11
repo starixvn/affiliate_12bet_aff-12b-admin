@@ -84,10 +84,12 @@
     <Compile Include="Enum\TransactionStatus.cs" />
     <Compile Include="Exceptions\ThirdPartyProductException.cs" />
     <Compile Include="Extension\NameValueCollectionExtension.cs" />
-    <Compile Include="Infrastructure\ApiClientBase.cs" />
+    <Compile Include="Infrastructure\ApiClient.cs" />
+    <Compile Include="Infrastructure\ApiClientFactory.cs" />
     <Compile Include="Infrastructure\Encrypt.cs" />
+    <Compile Include="Infrastructure\HttpClientHeaderOption.cs" />
     <Compile Include="Infrastructure\IApiClient.cs" />
-    <Compile Include="Infrastructure\IConnectionCountable.cs" />
+    <Compile Include="Infrastructure\IApiClientFactory.cs" />
     <Compile Include="Infrastructure\IDataRequestByCurrency.cs" />
     <Compile Include="Infrastructure\IGetDataByGameType.cs" />
     <Compile Include="Infrastructure\IImporterService.cs" />

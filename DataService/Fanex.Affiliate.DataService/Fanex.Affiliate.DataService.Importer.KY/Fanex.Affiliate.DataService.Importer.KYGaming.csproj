@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettingExtention.cs" />
-    <Compile Include="Client\KYGamingClient.cs" />
     <Compile Include="KYGamingService.cs" />
     <Compile Include="MetaModels\KYGamingApiParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
