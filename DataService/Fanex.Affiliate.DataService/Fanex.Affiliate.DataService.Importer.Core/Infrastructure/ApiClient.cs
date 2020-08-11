@@ -12,10 +12,13 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
 {
     public class ApiClient : IApiClient
     {
+        protected HttpClient HttpClient => HttpClientPooling.GetHttpClient(Url);
+
         public string Url { get; private set; }
         public HttpMethod HttpMethod { get; private set; }
         public HttpClientHeaderOption Headers { get; private set; }
-        protected HttpClient HttpClient => HttpClientPooling.GetHttpClient(Url);
+        public IHttpContentProvider ContentProvider { get; set; } = new JsonContentProvider();
+
 
         public ApiClient(string url, HttpMethod httpMethod = null, HttpClientHeaderOption headers = null)
         {
@@ -60,9 +63,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
 
         protected virtual Task<string> PostAsync(NameValueCollection query, CancellationToken cancellationToken)
         {
-            var dic = query.ToDictionary();
-            var json = JsonConvert.SerializeObject(dic);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var content = ContentProvider.GetHttpContent(query);
             var request = new HttpRequestMessage(HttpMethod.Post, Url) { Content = content };
             return GetDataAsync(request, cancellationToken);
         }
@@ -85,7 +86,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             {
                 return;
             }
-
+ 
             var defaultHeaders = request.Headers;
             defaultHeaders.Authorization = headers.AuthenHeader ?? defaultHeaders.Authorization;
             if (!string.IsNullOrWhiteSpace(headers.AcceptContent))
@@ -98,5 +99,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
                 defaultHeaders.Add(header.Name, header.Value);
             }
         }
+
+
     }
 }

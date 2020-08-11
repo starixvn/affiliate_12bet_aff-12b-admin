@@ -38,6 +38,8 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private static Dictionary<string, IAsyncPolicy<string>> _policies = new Dictionary<string, IAsyncPolicy<string>>();
 
+        private readonly IHttpContentProvider ContentProvider = new FormUrlEncodedContentProvider();
+
         public bool IsTestMode { get; set; } = false;
         public int NextRequestWaitTime => IsTestMode ? 1 : TIME_BETWEEN_TWO_REQUEST;
 
@@ -80,6 +82,7 @@ namespace Fanex.Affiliate.DataService.Importer
             var query = GetAuthParam();
             var authUrl = $"{ApiUrl}{AUTH_PATH}";
             var client = _apiClientFactory.CreateApiClient(authUrl, HttpMethod.Post, header);
+            client.ContentProvider = ContentProvider;
             return await client.GetResponseAsync(query);
         }
 
@@ -112,7 +115,7 @@ namespace Fanex.Affiliate.DataService.Importer
         private NameValueCollection GetAuthParam()
             => new NameValueCollection
             {
-                { "password", string.Empty },
+                { "grant_type", "password" },
                 { "username", ApiUserName },
                 { "password", ApiPassword }
             };

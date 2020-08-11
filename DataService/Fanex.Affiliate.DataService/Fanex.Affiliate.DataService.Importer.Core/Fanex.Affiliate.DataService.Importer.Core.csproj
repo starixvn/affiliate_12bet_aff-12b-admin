@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="Constants\Products.cs" />
     <Compile Include="Constants\TimeZoneId.cs" />
+    <Compile Include="DTO\ApiParam.cs" />
     <Compile Include="DTO\ColumnName.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="Enum\SystemType.cs" />
@@ -87,12 +88,15 @@
     <Compile Include="Infrastructure\ApiClient.cs" />
     <Compile Include="Infrastructure\ApiClientFactory.cs" />
     <Compile Include="Infrastructure\Encrypt.cs" />
+    <Compile Include="Infrastructure\FormUrlEncodedContentProvider.cs" />
     <Compile Include="Infrastructure\HttpClientHeaderOption.cs" />
     <Compile Include="Infrastructure\IApiClient.cs" />
     <Compile Include="Infrastructure\IApiClientFactory.cs" />
+    <Compile Include="Infrastructure\IHttpContentProvider.cs" />
     <Compile Include="Infrastructure\IDataRequestByCurrency.cs" />
     <Compile Include="Infrastructure\IGetDataByGameType.cs" />
     <Compile Include="Infrastructure\IImporterService.cs" />
+    <Compile Include="Infrastructure\JsonContentProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IThirdPartyProductRepository.cs" />
