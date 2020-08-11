@@ -15,6 +15,7 @@ using Polly;
 using System.Net.Http;
 using System.Text;
 using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
@@ -54,7 +55,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public override async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
         {
-            var authenResponse = await SendAuthenRequestAsync();
+            var token = await GetAuthTokenAsync();
             //if (DateTime.Compare(startTime, endTime) >= 0)
             //{
             //    throw new ThirdPartyProductException($"Flow Gaming - startDate {startTime} later or equal than endDate {endTime}");
@@ -73,7 +74,15 @@ namespace Fanex.Affiliate.DataService.Importer
             //    }
             //    datas.Add(data);
             //}
-            return new List<string> { authenResponse };
+            return new List<string> { token };
+        }
+
+        private async Task<string> GetAuthTokenAsync()
+        {
+            var authResponse = await SendAuthenRequestAsync();
+            var jsonObject = JObject.Parse(authResponse);
+            var token = jsonObject.SelectToken("$.access_token");
+            return token.ToString();
         }
 
         private async Task<string> SendAuthenRequestAsync()
