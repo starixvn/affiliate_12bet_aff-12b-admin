@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
         public static IApiClient GetApiClient(string value, params string[] values)
         {
             var client = NSubstitute.Substitute.For<IApiClient>();
-            client.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            client.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
                 .Returns(value, values);
             return client;
         }

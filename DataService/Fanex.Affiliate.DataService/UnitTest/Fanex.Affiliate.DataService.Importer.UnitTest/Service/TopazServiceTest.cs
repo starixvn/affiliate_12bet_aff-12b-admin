@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
         {
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
-            stubClient.GetResponseAsync(default(string), default(NameValueCollection))
+            stubClient.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_SUCCESS);
 
             var service = CreateService(stubClient, stubSetting);
@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
         {
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
-            stubClient.GetResponseAsync(default(string), default(NameValueCollection))
+            stubClient.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL, TopazTestHelper.RESPONSE_SUCCESS);
 
             var service = CreateService(stubClient, stubSetting);
@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
 
             await service.GetRawDataListAsync(startTime, endTime);
 
-            await stubClient.ReceivedWithAnyArgs(2).GetResponseAsync(default(string), default(NameValueCollection));
+            await stubClient.ReceivedWithAnyArgs(2).GetAsync(default(string), default(NameValueCollection));
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
         {
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
-            stubClient.GetResponseAsync(default(string), default(NameValueCollection))
+            stubClient.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_SUCCESS);
 
             var service = CreateService(stubClient, stubSetting);
@@ -72,7 +72,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
 
             await service.GetRawDataListAsync(startTime, endTime);
 
-            await stubClient.ReceivedWithAnyArgs(2).GetResponseAsync(default(string), default(NameValueCollection));
+            await stubClient.ReceivedWithAnyArgs(2).GetAsync(default(string), default(NameValueCollection));
         }
 
         [Fact]
@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
         {
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
-            stubClient.GetResponseAsync(default(string), default(NameValueCollection))
+            stubClient.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL, TopazTestHelper.RESPONSE_SUCCESS);
 
             var service = CreateService(stubClient, stubSetting);
@@ -97,7 +97,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
         {
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
-            stubClient.GetResponseAsync(default(string), default(NameValueCollection))
+            stubClient.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL
                 , TopazTestHelper.RESPONSE_SUCCESS
                 , TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL
@@ -118,7 +118,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
             var stubRepo = TopazTestHelper.GetStubRepo();
-            stubClient.GetResponseAsync(default(string), default(NameValueCollection))
+            stubClient.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_INVALID_VALUE);
 
             var service = CreateService(stubClient, stubSetting, stubRepo);
@@ -134,7 +134,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
             var stubRepo = TopazTestHelper.GetStubRepo();
-            stubClient.GetResponseAsync(default(string), default(NameValueCollection))
+            stubClient.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL, TopazTestHelper.RESPONSE_SUCCESS);
 
             var service = CreateService(stubClient, stubSetting, stubRepo);
@@ -152,7 +152,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
             var stubRepo = TopazTestHelper.GetStubRepo();
-            stubClient.GetResponseAsync(default(string), default(NameValueCollection))
+            stubClient.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL, TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL);
 
             var service = CreateService(stubClient, stubSetting, stubRepo);
