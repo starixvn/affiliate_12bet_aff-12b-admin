@@ -1,7 +1,5 @@
 ﻿using Fanex.Affiliate.DataService.Importer;
-using Polly;
 using System;
-using System.Configuration;
 
 namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
@@ -16,32 +14,9 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         {
             InitializeComponent();
             Service = new TopazService();
-            Init();
         }
 
         protected override TimeSpan _serverTimeOffset => new TimeSpan(0, 0, 0);
         protected override TimeSpan _pullRange => new TimeSpan(0, 15, 0);
-
-        private static void Init()
-        {
-            if (!_isSetUpPolicy)
-            {
-                var url = ConfigurationManager.AppSettings.Get("TopazApiUrl");
-                var policy = GetForeverRetryPolicy();
-                TopazService.SetRequestPolicy(url, policy);
-            }
-            _isSetUpPolicy = true;
-        }
-
-        private static IAsyncPolicy<String> GetForeverRetryPolicy()
-        {
-            var retryPolicy = Policy.HandleResult<String>(s => s.Contains(CALL_LIMIT_EXCEEDED))
-                .WaitAndRetryForeverAsync(retryAttempt => TimeSpan.FromMilliseconds(TIME_BETWEEN_TWO_REQUEST));
-
-            var bulkHeadPolicy = Policy.BulkheadAsync<String>(1, 10)
-                .WrapAsync(retryPolicy);
-
-            return bulkHeadPolicy;
-        }
     }
 }
