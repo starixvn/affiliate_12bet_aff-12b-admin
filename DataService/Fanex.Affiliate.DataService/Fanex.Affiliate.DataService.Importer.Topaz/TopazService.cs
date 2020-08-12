@@ -9,12 +9,10 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Polly;
 using System.Net.Http;
 using System.Text;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
-using System.CodeDom;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
@@ -34,8 +32,6 @@ namespace Fanex.Affiliate.DataService.Importer
         private string ApiUrl => _appSetting.GetValue("TopazApiUrl");
         private int IntervalTime => 60;
         private string DateTimeFormat => _appSetting.GetValue("TopazFormatDateTime");
-
-        private static Dictionary<string, IAsyncPolicy<string>> _policies = new Dictionary<string, IAsyncPolicy<string>>();
 
         private readonly IHttpContentProvider ContentProvider = new FormUrlEncodedContentProvider();
 

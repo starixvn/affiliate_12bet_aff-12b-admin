@@ -100,6 +100,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -173,6 +174,7 @@
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Utilities\Helpers.cs" />
+    <Compile Include="Utilities\ParallelForeachAsync.cs" />
     <Compile Include="Utilities\UrlHelperExtension.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ThirdPartyProductViewModel.cs" />
