@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -35,6 +36,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 {"VR Lottery", new VRLotteryFileImporter() },
                 {"LB Keno", new LBKenoFileImporter() },
                 {"Ky Gaming", new KYGamingFileImporter() },
+                {"Topaz", new TopazFileImporter() }
             };
             return dic;
         }
@@ -102,19 +104,55 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 MessageBox.Show("Not exist file path");
                 return;
             }
-
-            var data = File.ReadAllText(path);
-            var xmls = await FileImporter.ConvertToXml(data);
-            var importData = xmls.Select(xml => xml.ToString());
             try
             {
-                await FileImporter.ImportAsync(importData);
+                await ImportFromFileAsync(path);
                 MessageBox.Show("Import success");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error when import data {ex.Message}");
             }
+
+        }
+
+        private async void btnImportFolder_Click(object sender, EventArgs e)
+        {
+            if (FileImporter == null)
+            {
+                MessageBox.Show("Not set up IFileImporter");
+                return;
+            }
+            var result = folderBrowserDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                var directory = folderBrowserDialog.SelectedPath;
+                txtBoxFilePath.Text = directory;
+                var files = Directory.GetFiles(directory);
+                try
+                {
+                    foreach (var file in files)
+                    {
+                        await ImportFromFileAsync(file);
+                    }
+                    MessageBox.Show("Import success");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error when import data {ex.Message}");
+                }
+
+            }
+        }
+
+        private async Task ImportFromFileAsync(string path)
+        {
+            var data = File.ReadAllText(path);
+            var xmls = await FileImporter.ConvertToXml(data);
+            ShowXml(xmls);
+            var importData = xmls.Select(xml => xml.ToString());
+            await FileImporter.ImportAsync(importData);
+
         }
     }
 }
