@@ -8,6 +8,12 @@ namespace Fanex.Affiliate.Admin.Core.DTO.AdminRole
 
         public string UserName { get; set; }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Creator { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public string CreatedDateText => CreatedDate.ToString("MM/dd/yyyy HH:mm:ss");
@@ -19,5 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.AdminRole
         public string LastLoginIp { get; set; }
 
         public string RoleName { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

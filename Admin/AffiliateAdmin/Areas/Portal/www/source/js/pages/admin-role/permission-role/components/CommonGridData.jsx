@@ -1,4 +1,4 @@
-﻿import React, { PureComponent } from 'react';
+﻿import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
@@ -28,16 +28,28 @@ export class CommonGridData extends PureComponent {
 
     _renderHeader() {
         const { isGeneral } = this.props;
-        const title = isGeneral ? headerText.ViewAffiliate : headerText.Language;
+        const title = isGeneral ? headerText.Function : headerText.Language;
 
-        return (
-            <Row key="thead">
-                <Cell header={true} colWidth={50} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={500} title={title}>{title}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.View}>{headerText.View}</Cell>
-                {isGeneral && <Cell header={true} colWidth={100} title={headerText.Edit}>{headerText.Edit}</Cell>}
-            </Row>
-        );
+        return isGeneral ? [
+                <Row key="theard">
+                    <Cell header={true} colWidth={50} rowSpan="2" title={headerText.Index}>{headerText.Index}</Cell>
+                    <Cell header={true} colWidth={300} rowSpan="2" title={title}>{title}</Cell>
+                    <Cell header={true} colWidth={200} colSpan="2" title={headerText.IndividualPermission}>{headerText.IndividualPermission}</Cell>
+                    <Cell header={true} colWidth={200} colSpan="2" title={headerText.RolePermission}>{headerText.RolePermission}</Cell>
+                </Row>,
+                <Row key="sub-theard">
+                    <Cell header={true} colWidth={100} title={headerText.Read}>{headerText.Read}</Cell>
+                    <Cell header={true} colWidth={100} title={headerText.Host}>{headerText.Host}</Cell>
+                    <Cell header={true} colWidth={100} title={headerText.Read}>{headerText.Read}</Cell>
+                    <Cell header={true} colWidth={100} title={headerText.Host}>{headerText.Host}</Cell>
+                </Row>
+        ] : [
+                <Row key="theard">
+                    <Cell header={true} colWidth={50} title={headerText.Index}>{headerText.Index}</Cell>
+                    <Cell header={true} colWidth={700} title={title}>{title}</Cell>
+                    <Cell header={true} colWidth={250} title={headerText.View}>{headerText.View}</Cell>
+                </Row>
+            ];
     }
 
     _renderDataSection(dataList) {
@@ -71,11 +83,23 @@ export class CommonGridData extends PureComponent {
                 </Cell>
                 {
                     isGeneral && (
-                        <Cell className="text-center" title={headerText.Edit}>
-                            <Button color="link p-0" onClick={() => this._handleEdit(dataItem.Id)}>
-                                <span className={`oi ${dataItem.IsEdit ? "oi-check text-success" : "oi-x text-danger"}`}></span>
-                            </Button>
-                        </Cell>
+                        <Fragment>
+                            <Cell className="text-center" title={headerText.View}>
+                                <Button color="link p-0" onClick={() => this._handleEdit(dataItem.Id)}>
+                                    <span className={`oi ${dataItem.IsView ? "oi-check text-success" : "oi-x text-danger"}`}></span>
+                                </Button>
+                            </Cell>
+                            <Cell className="text-center" title={headerText.Edit}>
+                                <Button color="link p-0" onClick={() => this._handleEdit(dataItem.Id)}>
+                                    <span className={`oi ${dataItem.IsEdit ? "oi-check text-success" : "oi-x text-danger"}`}></span>
+                                </Button>
+                            </Cell>
+                            <Cell className="text-center" title={headerText.Edit}>
+                                <Button color="link p-0" onClick={() => this._handleEdit(dataItem.Id)}>
+                                    <span className={`oi ${dataItem.IsEdit ? "oi-check text-success" : "oi-x text-danger"}`}></span>
+                                </Button>
+                            </Cell>
+                        </Fragment>
                     )
                 }
             </Row>

@@ -2,6 +2,7 @@
 using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Common.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -53,12 +54,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
         {
             return new AdminUserInfo
             {
-                UserId = Convert.ToInt32(reader["CustId"]),
-                UserName = Convert.ToString(reader["UserName"]),
-                CreatedDate = Convert.ToDateTime(reader["CreatedDate"]),
-                LastLoginDate = reader["LastLoginDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["LastLoginDate"]),
-                LastLoginIp = Convert.ToString(reader["LastLoginIp"]),
-                RoleName = Convert.ToString(reader["RoleName"])
+                UserId = reader.ToInt("CustId"),
+                UserName = reader.ToString("UserName"),
+                FirstName = reader.ToString("FirstName"),
+                LastName = reader.ToString("LastName"),
+                CreatedDate = reader.ToDateTime("CreatedDate"),
+                LastLoginDate = reader.ToDateTime("LastLoginDate"),
+                LastLoginIp = reader.ToString("LastLoginIp"),
+                RoleName = reader.ToString("RoleName"),
+                IsActive = !reader.ToBool("Closed")
             };
         }
     }

@@ -302,7 +302,6 @@
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\statementHistory.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\trackingStatistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\userAccount.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~adminInfo~adminUsers.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~adminInfo~adminUsers~permissionRole.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~landingPageStatistics~member~referrerStatistics~statementHistory~viewLog.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~playerDetail.chunk.js" />

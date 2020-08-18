@@ -13,6 +13,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 {
     public class AdminInfoService : BaseRepository, IAdminInfoService
     {
+        private const int aaLenght = 2;
+
         public ResultInfo CreateUser(AdminInfoParam param)
         {
             const string SpKey = "Aff_Admin_AdminUser_Ins";
@@ -41,10 +43,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
                     {
                         return new AdminInfo
                         {
-                            UserId = Convert.ToInt32(reader["CustId"]),
-                            UserName = Convert.ToString(reader["UserName"]).Substring(2),
-                            RoleId = Convert.ToInt32(reader["RoleId"]),
-                            IsActive = !Convert.ToBoolean(reader["Closed"])
+                            UserId = reader.ToInt("CustId"),
+                            UserName = reader.ToString("UserName").Substring(aaLenght),
+                            FirstName = reader.ToString("FirstName"),
+                            LastName = reader.ToString("LastName"),
+                            RoleId = reader.ToInt("RoleId"),
+                            IsActive = !reader.ToBool("Closed")
                         };
                     }
                 }

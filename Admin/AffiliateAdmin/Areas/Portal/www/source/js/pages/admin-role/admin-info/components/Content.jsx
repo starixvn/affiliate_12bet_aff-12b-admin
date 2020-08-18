@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap';
-import { regExp, messages, initialState } from '../libs/constants';
+import { regExp, messages, initialState, resources } from '../libs/constants';
 import { validateUserName } from '../../../../modules/utils';
 import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew } from '../actions';
 
@@ -35,6 +35,8 @@ export class Content extends PureComponent {
         if (userInfo) {
             this.setState({
                 newUserName: userInfo.UserName,
+                firstName: userInfo.FirstName,
+                lastName: userInfo.LastName,
                 role: userInfo.RoleId,
                 isActive: userInfo.IsActive,
                 userInfo
@@ -101,6 +103,8 @@ export class Content extends PureComponent {
                 isEdit: false,
                 isClickedSubmit: false,
                 newUserName: userInfo.UserName,
+                firstName: userInfo.FirstName,
+                lastName: userInfo.LastName,
                 role: userInfo.RoleId,
                 isActive: userInfo.IsActive,
             });
@@ -141,7 +145,7 @@ export class Content extends PureComponent {
 
     _renderWhenView() {
         const { roleList } = this.props;
-        const { newUserName, role, isActive, isShowMessage, isSuccess, message } = this.state;
+        const { newUserName, firstName, lastName, role, isActive, isShowMessage, isSuccess, message } = this.state;
 
         return roleList && (
             <Fragment>
@@ -154,9 +158,21 @@ export class Content extends PureComponent {
                     </Alert>
                     <Form tag="form" className="my-4">
                         <FormGroup row className="mb-1">
-                            <Label sm="auto" className="required">User Name</Label>
+                            <Label sm="auto" className="required">{resources.UserName}</Label>
                             <Col sm={2} className="row-user">
                                 <Input type="text" className="newUserName" disabled value={"AA" + newUserName} />
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row className="mb-1">
+                            <Label sm="auto" className="required">{resources.FirstName}</Label>
+                            <Col sm={2} className="row-user">
+                                <Input type="text" className="firstName" disabled value={firstName} />
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row className="mb-1">
+                            <Label sm="auto" className="required">{resources.LastName}</Label>
+                            <Col sm={2} className="row-user">
+                                <Input type="text" className="lastName" disabled value={lastName} />
                             </Col>
                         </FormGroup>
                         <FormGroup row className="mb-1">
@@ -180,7 +196,7 @@ export class Content extends PureComponent {
     _renderWhenCreateAndEdit() {
         const { userName, roleList } = this.props;
         const isCreateNew = !userName;
-        const { isClickedSubmit, newUserName, newPassword, confirmPassword, role, isActive, isShowMessage, isSuccess, message } = this.state;
+        const { isClickedSubmit, newUserName, firstName, lastName, newPassword, confirmPassword, role, isActive, isShowMessage, isSuccess, message } = this.state;
 
         const newPasswordValidation = this._validateNewPassword(newPassword);
         const confirmPasswordValidation = this._validateConfirmPassword(newPassword, confirmPassword);
@@ -210,6 +226,24 @@ export class Content extends PureComponent {
                                     {!validUserNameResult.IsValid &&
                                         <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
                                 </div>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row className="mb-1">
+                            <Label for="firstName" sm="auto" className="required">First Name</Label>
+                            <Col sm={2}>
+                                <Input type="text" className="input-required" name="firstName" id="firstName"
+                                    value={firstName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validUserNameResult.IsValid} />
+                                {!validUserNameResult.IsValid &&
+                                    <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row className="mb-1">
+                            <Label for="lastName" sm="auto" className="required">Last Name</Label>
+                            <Col sm={2}>
+                                <Input type="text" className="input-required" name="lastName" id="lastName"
+                                    value={lastName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validUserNameResult.IsValid} />
+                                {!validUserNameResult.IsValid &&
+                                    <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
                             </Col>
                         </FormGroup>
                         <FormGroup row className="mb-1">

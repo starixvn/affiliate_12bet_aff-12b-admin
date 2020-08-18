@@ -4,7 +4,11 @@ export { globalResource };
 
 export const headerText = {
     Index: globalResource.Index,
-    ViewAffiliate: 'View Affiliate Personal Infomation',
+    Function: 'Function',
+    IndividualPermission: 'Individual Permission',
+    RolePermission: 'Role Permission',
+    Read: 'Read',
+    Host: 'Host',
     View: 'View',
     Edit: globalResource.Edit,
     Language: 'Language'

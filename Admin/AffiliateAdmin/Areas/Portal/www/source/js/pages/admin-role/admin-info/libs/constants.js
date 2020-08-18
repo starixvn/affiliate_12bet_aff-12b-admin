@@ -7,17 +7,20 @@ export const messages = {
     RequiredRole: "Role is required!"
 }
 
-export const roleList = {
-    Management: 'Management',
-    ExeSettlement: 'Exe. Settlement',
-    ExeRiskTeam: 'Exe. Risk Team',
-    ExeMarketing: 'Exe. Marketing',
-    AsstMarketing: 'Asst. Marketing'
+export const resources = {
+    UserName: 'User Name',
+    FirstName: 'First Name',
+    LastName: 'Last Name',
+    Password: 'Password',
+    Role: 'Role',
+    AccountStatus: 'Account Status'
 }
 
 export const initialState = {
     isClickedSubmit: false,
     newUserName: '',
+    firstName: '',
+    lastName: '',
     newPassword: '',
     confirmPassword: '',
     role: 0,

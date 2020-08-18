@@ -75,20 +75,23 @@ export class Content extends PureComponent {
     _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={40}>
+                <Cell header={true} colWidth={50}>
                     <CheckboxSelectAll
                         checkedList={this.props.checkedUsers}
                         setCheckedList={this.props.setCheckedUsers}
                         setShouldResetScrollPosition={this.props.setShouldResetScrollPosition}
                     />
                 </Cell>
-                <Cell header={true} colWidth={40} title={resource.Index}>{resource.Index}</Cell>
-                <Cell header={true} colWidth={250} title={resource.UserName}>{resource.UserName}</Cell>
-                <Cell header={true} colWidth={250} title={resource.CreatedDate}>{resource.CreatedDate}</Cell>
-                <Cell header={true} colWidth={250} title={resource.LastLoginDate}>{resource.LastLoginDate}</Cell>
-                <Cell header={true} colWidth={250} title={resource.LastLoginIp}>{resource.LastLoginIp}</Cell>
-                <Cell header={true} colWidth={250} title={resource.Role}>{resource.Role}</Cell>
-                <Cell header={true} colWidth={50} title={resource.Delete}>{resource.Delete}</Cell>
+                <Cell header={true} colWidth={50} title={resource.Index}>{resource.Index}</Cell>
+                <Cell header={true} colWidth={200} title={resource.UserName}>{resource.UserName}</Cell>
+                <Cell header={true} colWidth={200} title={resource.FirstName}>{resource.FirstName}</Cell>
+                <Cell header={true} colWidth={200} title={resource.LastName}>{resource.LastName}</Cell>
+                <Cell header={true} colWidth={200} title={resource.Creator}>{resource.Creator}</Cell>
+                <Cell header={true} colWidth={200} title={resource.CreatedDate}>{resource.CreatedDate}</Cell>
+                <Cell header={true} colWidth={200} title={resource.LastLoginDate}>{resource.LastLoginDate}</Cell>
+                <Cell header={true} colWidth={200} title={resource.LastLoginIp}>{resource.LastLoginIp}</Cell>
+                <Cell header={true} colWidth={200} title={resource.Role}>{resource.Role}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Action}>{resource.Action}</Cell>
             </Row>
         );
     }
@@ -129,6 +132,9 @@ export class Content extends PureComponent {
                         {userName}
                     </a>
                 </Cell>
+                <Cell className="text-center" title={dataItem.FirstName}>{dataItem.FirstName}</Cell>
+                <Cell className="text-center" title={dataItem.LastName}>{dataItem.LastName}</Cell>
+                <Cell className="text-center" title={dataItem.Creator}>{dataItem.Creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
                 <Cell className="text-center" title={dataItem.LastRequestDateText}>{dataItem.LastRequestDateText}</Cell>
                 <Cell className="text-center" title={ipAddress}>
@@ -140,6 +146,9 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={dataItem.RoleName}>{dataItem.RoleName}</Cell>
                 <Cell className="text-center" title="Delete User">
+                    <Button color="link p-0" onClick={() => this._handleDeleteUser(dataItem.UserId)}>
+                        <span className="oi oi-magnifying-glass pr-3"></span>
+                    </Button>
                     <Button color="link p-0" onClick={() => this._handleDeleteUser(dataItem.UserId)}>
                         <span className="oi oi-trash text-danger"></span>
                     </Button>
