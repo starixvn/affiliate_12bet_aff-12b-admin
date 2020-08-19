@@ -33,7 +33,8 @@ export class Filter extends PureComponent {
     }
 
     _handleSearch = () => {
-        const param = Object.assign({}, this.state);
+        const { pagingOption } = this.props;
+        const param = Object.assign({}, this.state, { pageIndex: 1, pageSize: pagingOption.PageSize });
 
         this.props.setParam(param);
     }

@@ -8,7 +8,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resource } from '../libs/constants';
-import { fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail } from '../actions';
+import { fetchData, setUserInfo, setCheckedUsers, setParam, setPagingOption, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail } from '../actions';
 
 export class Content extends PureComponent {
 
@@ -71,6 +71,21 @@ export class Content extends PureComponent {
     _handleRedirectToUserDetail = (userId, userName) => {
         this.props.redirectToUserDetail(userId, userName);
     }
+
+    _handleShowPermission = (userId, userName) => {
+        this.props.setUserInfo({ UserId: userId, UserName: userName });
+    }
+
+    handlePaging = (pageIndex, pageSize) => {
+        const newPaging = {
+            PageIndex: pageIndex,
+            PageSize: pageSize
+        };
+        const newParam = Object.assign({}, this.props.param, newPaging);
+
+        this.props.setPagingOption(newPaging);
+        this.props.setParam(newParam);
+    };
 
     _renderHeader() {
         return (
@@ -146,7 +161,7 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={dataItem.RoleName}>{dataItem.RoleName}</Cell>
                 <Cell className="text-center" title="Delete User">
-                    <Button color="link p-0" onClick={() => this._handleDeleteUser(dataItem.UserId)}>
+                    <Button color="link p-0" onClick={() => this._handleShowPermission(dataItem.UserId, dataItem.UserName)}>
                         <span className="oi oi-magnifying-glass pr-3"></span>
                     </Button>
                     <Button color="link p-0" onClick={() => this._handleDeleteUser(dataItem.UserId)}>
@@ -171,6 +186,9 @@ export class Content extends PureComponent {
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}
                         containerPadding={20}
+                        isPaging={true}
+                        pageOption={pagingOption}
+                        onPaging={this.handlePaging}
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
@@ -193,7 +211,7 @@ function mapStateToProps({ adminUsers }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail }, dispatch);
+    return bindActionCreators({ fetchData, setUserInfo, setCheckedUsers, setParam, setPagingOption, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -1,6 +1,7 @@
 ﻿import { combineReducers } from 'redux';
 import createReducer from '../../../../modules/createReducer';
-import { SET_PARAM, SET_CHECKED_USERS, SET_IS_BACK, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from '../actions/types';
+import { pagingOption } from '../../../../reducers/pagingReducer';
+import { SET_PARAM, SET_CHECKED_USERS, SET_IS_BACK, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_USER_INFO } from '../actions/types';
 
 export const isBack = createReducer(false, {
     [SET_IS_BACK](prevState, action) {
@@ -26,6 +27,12 @@ export const gridData = createReducer(null, {
     }
 })
 
+export const userInfo = createReducer(null, {
+    [SET_USER_INFO](prevState, action) {
+        return action.data;
+    }
+})
+
 export const shouldResetScrollPosition = createReducer(true, {
     [SHOULD_RESET_SCROLL_POSITION](prevState, action) {
         return action.data;
@@ -37,5 +44,7 @@ export default combineReducers({
     param,
     checkedUsers,
     gridData,
+    userInfo,
+    pagingOption,
     shouldResetScrollPosition
 });

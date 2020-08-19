@@ -1,5 +1,6 @@
 ﻿export const SET_PARAM = 'SET_PARAM';
 export const SET_IS_BACK = 'SET_IS_BACK';
+export const SET_USER_INFO = 'SET_USER_INFO';
 export const SET_GRID_DATA = 'SET_GRID_DATA';
 export const SET_CHECKED_USERS = 'SET_CHECKED_USERS';
 export const SHOULD_RESET_SCROLL_POSITION = 'SHOULD_RESET_SCROLL_POSITION';

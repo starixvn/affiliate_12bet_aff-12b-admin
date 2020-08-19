@@ -6,6 +6,7 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import ControlButtons from './ControlButtons';
 import Content from './Content';
+import PermissionPopup from './PermissionPopup';
 import { resolveClientUrl } from '../../../../modules/utils';
 
 export class AppContainer extends Component {
@@ -25,6 +26,7 @@ export class AppContainer extends Component {
                 <Filter />
                 <ControlButtons />
                 <Content />
+                <PermissionPopup />
             </AppLayout>
         );
     }
