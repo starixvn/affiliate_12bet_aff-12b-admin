@@ -12,6 +12,7 @@ export const resources = {
     FirstName: 'First Name',
     LastName: 'Last Name',
     Password: 'Password',
+    ConfirmPassword: 'Confirm Password',
     Role: 'Role',
     AccountStatus: 'Account Status'
 }

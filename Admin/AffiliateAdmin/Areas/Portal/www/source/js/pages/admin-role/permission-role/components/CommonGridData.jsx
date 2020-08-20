@@ -10,6 +10,10 @@ import { fetchData } from '../actions';
 export class CommonGridData extends PureComponent {
     constructor(props) {
         super(props);
+
+        this.state = {
+            isEdit: false,
+        }
     }
 
     componentDidMount() {
@@ -57,9 +61,11 @@ export class CommonGridData extends PureComponent {
         const { isGeneral } = this.props;
 
         if (dataList && dataList.length) {
+            const { isEdit } = this.state;
+
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, i + 1, isGeneral));
+                dataRows.push(isEdit ? this._buildDataRowEdit(dataItem, i + 1, isGeneral, isEdit) : this._buildDataRowView(dataItem, i + 1, isGeneral, isEdit));
             }
         }
         else {
@@ -71,33 +77,52 @@ export class CommonGridData extends PureComponent {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index, isGeneral) {
+    _buildDataRowView(dataItem, index, isGeneral) {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.Name}>{dataItem.Name}</Cell>
                 <Cell className="text-center" title={headerText.View}>
-                    <Button color="link p-0" onClick={() => this._handleEdit(dataItem.Id)}>
-                        <span className={`oi ${dataItem.IsView ? "oi-check text-success" : "oi-x text-danger"}`}></span>
-                    </Button>
+                    <span className={`oi ${dataItem.IsView ? "oi-check text-success" : "oi-x text-danger"}`}></span>
                 </Cell>
                 {
                     isGeneral && (
                         <Fragment>
                             <Cell className="text-center" title={headerText.View}>
-                                <Button color="link p-0" onClick={() => this._handleEdit(dataItem.Id)}>
-                                    <span className={`oi ${dataItem.IsView ? "oi-check text-success" : "oi-x text-danger"}`}></span>
-                                </Button>
+                                <span className={`oi ${dataItem.IsView ? "oi-check text-success" : "oi-x text-danger"}`}></span>
                             </Cell>
                             <Cell className="text-center" title={headerText.Edit}>
-                                <Button color="link p-0" onClick={() => this._handleEdit(dataItem.Id)}>
-                                    <span className={`oi ${dataItem.IsEdit ? "oi-check text-success" : "oi-x text-danger"}`}></span>
-                                </Button>
+                                <span className={`oi ${dataItem.IsEdit ? "oi-check text-success" : "oi-x text-danger"}`}></span>
                             </Cell>
                             <Cell className="text-center" title={headerText.Edit}>
-                                <Button color="link p-0" onClick={() => this._handleEdit(dataItem.Id)}>
-                                    <span className={`oi ${dataItem.IsEdit ? "oi-check text-success" : "oi-x text-danger"}`}></span>
-                                </Button>
+                                <span className={`oi ${dataItem.IsEdit ? "oi-check text-success" : "oi-x text-danger"}`}></span>
+                            </Cell>
+                        </Fragment>
+                    )
+                }
+            </Row>
+        )
+    }
+
+    _buildDataRowEdit(dataItem, index, isGeneral) {
+        return (
+            <Row key={`dataRow-${index}`}>
+                <Cell title={index} className="text-center">{index}</Cell>
+                <Cell title={dataItem.Name}>{dataItem.Name}</Cell>
+                <Cell className="text-center" title={headerText.View}>
+                    <input type="checkbox" checked={dataItem.IsView} onChange={this._handleChange} />
+                </Cell>
+                {
+                    isGeneral && (
+                        <Fragment>
+                            <Cell className="text-center" title={headerText.View}>
+                                <input type="checkbox" color="success" checked={dataItem.IsEdit} onChange={this._handleChange} />
+                            </Cell>
+                            <Cell className="text-center" title={headerText.Edit}>
+                                <input type="checkbox" checked={dataItem.IsView} onChange={this._handleChange} />
+                            </Cell>
+                            <Cell className="text-center" title={headerText.Edit}>
+                                <input type="checkbox" checked={dataItem.IsEdit} onChange={this._handleChange} />
                             </Cell>
                         </Fragment>
                     )
@@ -108,9 +133,22 @@ export class CommonGridData extends PureComponent {
 
     render() {
         const { gridData } = this.props;
+        const { isEdit } = this.state;
 
         return gridData && (
             <div className="data-content">
+                <div className="my-2">
+                    {
+                        isEdit ? (
+                            <Fragment>
+                                <Button outline type="button" color="danger" onClick={() => this.setState({ isEdit: false })}>Cancel<span className="oi oi-x ml-2"></span></Button>
+                                <Button outline type="button" className="ml-2" onClick={this._handleSubmit}>Save<span className="oi oi-task ml-2"></span></Button>
+                            </Fragment>
+                        ): (
+                            <Button outline type = "button" onClick = {() => this.setState({isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
+                        )
+                    }
+                </div>
                 <div className="table-responsive table-striped my-2">
                     <Table
                         maxWidth={1000}

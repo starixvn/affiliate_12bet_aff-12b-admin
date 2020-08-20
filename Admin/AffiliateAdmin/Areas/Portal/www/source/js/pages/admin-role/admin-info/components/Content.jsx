@@ -308,11 +308,11 @@ export class Content extends PureComponent {
                     </Alert>
                     <Form tag="form" className="my-4" autocomplete="off">
                         <FormGroup row className="mb-1">
-                            <Label for="newUserName" sm="auto" className="required">User Name</Label>
+                            <Label for="newUserName" sm="auto" className="required">{resources.UserName}</Label>
                             <Col sm={2} className="row-user">
                                 <Input type="text" className="refix" disabled value="AA" />
                                 <div className="user-name-group">
-                                    <Input type="text" className="input-required user-name" name="newUserName" id="newUserName"
+                                    <Input type="text" className="input-required user-name" placeholder="Enter User Name" name="newUserName" id="newUserName"
                                         value={newUserName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validUserNameResult.IsValid} />
                                     {!validUserNameResult.IsValid &&
                                         <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
@@ -320,18 +320,18 @@ export class Content extends PureComponent {
                             </Col>
                         </FormGroup>
                         <FormGroup row className="mb-1">
-                            <Label for="firstName" sm="auto" className="required">First Name</Label>
+                            <Label for="firstName" sm="auto" className="required">{resources.FirstName}</Label>
                             <Col sm={2}>
-                                <Input type="text" className="input-required" name="firstName" id="firstName"
+                                <Input type="text" className="input-required mt-2" placeholder="Enter First Name" name="firstName" id="firstName"
                                     value={firstName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validUserNameResult.IsValid} />
                                 {!validUserNameResult.IsValid &&
                                     <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
                             </Col>
                         </FormGroup>
                         <FormGroup row className="mb-1">
-                            <Label for="lastName" sm="auto" className="required">Last Name</Label>
+                            <Label for="lastName" sm="auto" className="required">{resources.LastName}</Label>
                             <Col sm={2}>
-                                <Input type="text" className="input-required" name="lastName" id="lastName"
+                                <Input type="text" className="input-required mt-2" placeholder="Enter Last Name" name="lastName" id="lastName"
                                     value={lastName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validUserNameResult.IsValid} />
                                 {!validUserNameResult.IsValid &&
                                     <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
@@ -341,9 +341,9 @@ export class Content extends PureComponent {
                             isCreateNew && (
                                 <Fragment>
                                     <FormGroup row className="mb-1">
-                                        <Label for="newPassword" sm="auto" className="required">New Password</Label>
+                                        <Label for="newPassword" sm="auto" className="required">{resources.Password}</Label>
                                         <Col sm={2}>
-                                            <Input type="password" className="input-required mt-2" name="newPassword" id="newPassword" autocomplete="false"
+                                            <Input type="password" className="input-required mt-2" placeholder="Enter Default Password" name="newPassword" id="newPassword" autocomplete="false"
                                                 value={newPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !newPasswordValidation.isValid} />
                                             {newPasswordValidation.message &&
                                                 <FormFeedback><div dangerouslySetInnerHTML={{ __html: newPasswordValidation.message }} /></FormFeedback>}
@@ -351,9 +351,9 @@ export class Content extends PureComponent {
                                     </FormGroup>
 
                                     <FormGroup row className="mb-1">
-                                        <Label for="confirmPassword" sm="auto" className="required">Confirm Password</Label>
+                                        <Label for="confirmPassword" sm="auto" className="required">{resources.ConfirmPassword}</Label>
                                         <Col sm={2}>
-                                            <Input type="password" className="input-required mt-2" name="confirmPassword" id="confirmPassword" autocomplete="false"
+                                            <Input type="password" className="input-required mt-2" placeholder="Enter Confirm Password" name="confirmPassword" id="confirmPassword" autocomplete="false"
                                                 value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
                                             {confirmPasswordValidation.message &&
                                                 <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
