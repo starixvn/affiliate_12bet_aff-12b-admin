@@ -14,5 +14,6 @@ export const globalResource = {
     Cancel: 'Cancel',
     Remove: 'Remove',
     NoInfo: 'There is no information available',
-    ChooseFile: "Choose File"
+    ChooseFile: "Choose File",
+    AnError: "An error occurred, please try again later!"
 }

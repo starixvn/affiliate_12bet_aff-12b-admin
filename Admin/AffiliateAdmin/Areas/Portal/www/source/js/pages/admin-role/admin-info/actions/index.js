@@ -1,9 +1,10 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { redirectToCreateNew, redirectToAdminUsers } from '../../common/actions';
+import { deleteUsers } from '../../admin-users/actions';
 import { SET_ROLE_LIST } from './types';
 
-export { toggleLoader, redirectToCreateNew, redirectToAdminUsers };
+export { toggleLoader, redirectToCreateNew, redirectToAdminUsers, deleteUsers };
 
 export const setRoleList = (data) => {
     return {
@@ -42,19 +43,18 @@ export const createUser = (userInfo) => async () => {
     const response = await post(url, userInfo);
 
     return response && response.status === 200 ? response.data : null;
-
-    //if (response && response.status === 200) {
-    //    dispatch(setUserName(userInfo.UserName));
-
-    //    return response.data;
-    //}
-
-    //return null;
 }
 
 export const updateUser = (userInfo) => async () => {
     const url = 'Portal/AdminInfo/UpdateUser';
     const response = await post(url, userInfo);
+
+    return response && response.status === 200 ? response.data : null;
+}
+
+export const updateStatus = (param) => async () => {
+    const url = 'Portal/AdminInfo/UpdateStatus';
+    const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }

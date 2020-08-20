@@ -4,7 +4,10 @@ import { bindActionCreators } from 'redux';
 import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap';
 import { regExp, messages, initialState, resources } from '../libs/constants';
 import { validateUserName } from '../../../../modules/utils';
-import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew } from '../actions';
+import { globalResource } from '../../../../modules/globalResource';
+import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew, deleteUsers, updateStatus } from '../actions';
+import ChangePasswordForm from '../../../common/components/ChangePasswordForm';
+import { NotificationPopup } from '../../../common/components/NotificationPopup';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -43,7 +46,7 @@ export class Content extends PureComponent {
             });
         } else {
             this.props.redirectToCreateNew();
-            this._handleShowAlert(false, "An error occurred, please try again later!");
+            this._handleShowAlert(false, globalResource.AnError);
         }
 
         this.props.toggleLoader(false);
@@ -110,6 +113,69 @@ export class Content extends PureComponent {
             });
         }
     }
+
+    _toggleChangingPassword = (isChanging) => {
+        this.setState({ isChangingPassword: isChanging });
+    }
+
+    _handleDeleteUser = () => {
+        this.setState({ messagePopup: 'Are you sure you want to delete this user?', isConfirmPopup: true });
+    }
+
+    _handleChangeStatus = (isActive) => {
+        this.setState({ messagePopup: 'Are you sure you want to update the status of this user?', isConfirmPopup: true, isActive });
+    }
+
+    _handleCloseNotificationPopup = (confirmResult) => {
+        this.setState({ messagePopup: '' });
+
+        const { userId } = this.props;
+        const { isDeleteUser, isActive } = this.setState;
+        if (confirmResult && userId && isDeleteUser) {
+            this._deleteUser(userId);
+        }
+        if (confirmResult && userId && !isDeleteUser) {
+            this._updateStatus(userId, !isActive);
+        }
+
+        if (!confirmResult && isDeleteUser) {
+            this.props.redirectToAdminUsers();
+        }
+    }
+
+    _deleteUser = async (userId) => {
+        this.props.toggleLoader(true);
+
+        const result = await this.props.deleteUsers(userId);
+
+        if (result) {
+            const messagePopup = result.IsSuccessful ? 'User has been deleted successfully!' : result.Message;
+
+            this.setState({ messagePopup, isConfirmPopup: false });
+        } else {
+            this.setState({ isDeleteUser: false, messagePopup: globalResource.AnError, isConfirmPopup: false });
+        }
+
+        this.props.toggleLoader(false);
+    }
+
+    _updateStatus = async (userId, isActive) => {
+        this.props.toggleLoader(true);
+
+        const result = await this.props.updateStatus({ userId, isActive });
+
+        if (result) {
+            const messagePopup = result.IsSuccessful ? "User's status has been update successfully!" : result.Message;
+
+            result.IsSuccessful && this.setState({ isActive });
+            this.setState({ messagePopup, isConfirmPopup: false });
+        } else {
+            this.setState({ messagePopup: globalResource.AnError, isConfirmPopup: false });
+        }
+
+        this.props.toggleLoader(false);
+    }
+
     _validateNewPassword(newPassword) {
         const result = {
             isValid: false,
@@ -144,13 +210,15 @@ export class Content extends PureComponent {
     }
 
     _renderWhenView() {
-        const { roleList } = this.props;
-        const { newUserName, firstName, lastName, role, isActive, isShowMessage, isSuccess, message } = this.state;
+        const { roleList, userId } = this.props;
+        const { newUserName, firstName, lastName, role, isActive, isShowMessage, isSuccess, message,
+                isChangingPassword, messagePopup, isConfirmPopup } = this.state;
 
-        return roleList && (
+        return (
             <Fragment>
                 <div className="mb-2">
-                    <Button outline type="button" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
+                    <Button outline type="button" color="danger" onClick={this._handleDeleteUser}> Delete < span className="oi oi-trash ml-2"></span></Button>
+                    <Button outline type="button" className="ml-2" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
                 </div>
                 <Container fluid={true} className="admin-info-container pt-2">
                     <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
@@ -158,37 +226,60 @@ export class Content extends PureComponent {
                     </Alert>
                     <Form tag="form" className="my-4">
                         <FormGroup row className="mb-1">
-                            <Label sm="auto" className="required">{resources.UserName}</Label>
-                            <Col sm={2} className="row-user">
-                                <Input type="text" className="newUserName" disabled value={"AA" + newUserName} />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className="mb-1">
-                            <Label sm="auto" className="required">{resources.FirstName}</Label>
-                            <Col sm={2} className="row-user">
-                                <Input type="text" className="firstName" disabled value={firstName} />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className="mb-1">
-                            <Label sm="auto" className="required">{resources.LastName}</Label>
-                            <Col sm={2} className="row-user">
-                                <Input type="text" className="lastName" disabled value={lastName} />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className="mb-1">
-                            <Label sm="auto" className="required">Role</Label>
+                            <Label sm="auto">{resources.UserName}</Label>
                             <Col sm={2}>
-                                <Input type="text" className="input-required mt-2" disabled value={roleList[role]} />
+                                <Label sm="auto">{"AA" + newUserName}</Label>
                             </Col>
                         </FormGroup>
                         <FormGroup row className="mb-1">
-                            <Label sm="auto" className="pt-2">Account Status</Label>
+                            <Label sm="auto">{resources.FirstName}</Label>
                             <Col sm={2}>
-                                <Label className="pt-2">{isActive ? 'Active' : 'Closed'}</Label>
+                                <Label sm="auto">{firstName}</Label>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row className="mb-1">
+                            <Label sm="auto">{resources.LastName}</Label>
+                            <Col sm={2}>
+                                <Label sm="auto">{lastName}</Label>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row className="mb-1">
+                            <Label sm="auto">{resources.Password}</Label>
+                            <Col sm={2}>
+                                <Button color="link" className="btn-password" onClick={() => this._toggleChangingPassword(true)}>
+                                    <span sm="auto">Change</span>
+                                </Button>
+                                {isChangingPassword && <ChangePasswordForm
+                                    showPopupPassword={isChangingPassword}
+                                    selectedId={userId}
+                                    isAdmin={true}
+                                    setShowPopupPassword={this._toggleChangingPassword}
+                                />}
+                            </Col>
+                        </FormGroup>
+                        {
+                            roleList && <FormGroup row className="mb-1">
+                                <Label sm="auto">Role</Label>
+                                <Col sm={2}>
+                                    <Label sm="auto">{roleList[role]}</Label>
+                                </Col>
+                            </FormGroup>
+                        }
+                        <FormGroup row className="mb-1">
+                            <Label sm="auto">Account Status</Label>
+                            <Col sm={2}>
+                                <input type="checkbox" name="isActive" className="account-status" checked={isActive} onChange={this._handleChangeStatus} />
                             </Col>
                         </FormGroup>
                     </Form >
                 </Container>
+                {
+                    !!messagePopup && <NotificationPopup
+                        message={messagePopup}
+                        isConfirmPopup={isConfirmPopup}
+                        onClose={this._handleCloseNotificationPopup}
+                    />
+                }
             </Fragment>
         )
     }
@@ -246,25 +337,31 @@ export class Content extends PureComponent {
                                     <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
                             </Col>
                         </FormGroup>
-                        <FormGroup row className="mb-1">
-                            <Label for="newPassword" sm="auto" className="required">New Password</Label>
-                            <Col sm={2}>
-                                <Input type="password" className="input-required mt-2" name="newPassword" id="newPassword" autocomplete="false"
-                                    value={newPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !newPasswordValidation.isValid} />
-                                {newPasswordValidation.message &&
-                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: newPasswordValidation.message }} /></FormFeedback>}
-                            </Col>
-                        </FormGroup>
+                        {
+                            isCreateNew && (
+                                <Fragment>
+                                    <FormGroup row className="mb-1">
+                                        <Label for="newPassword" sm="auto" className="required">New Password</Label>
+                                        <Col sm={2}>
+                                            <Input type="password" className="input-required mt-2" name="newPassword" id="newPassword" autocomplete="false"
+                                                value={newPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !newPasswordValidation.isValid} />
+                                            {newPasswordValidation.message &&
+                                                <FormFeedback><div dangerouslySetInnerHTML={{ __html: newPasswordValidation.message }} /></FormFeedback>}
+                                        </Col>
+                                    </FormGroup>
 
-                        <FormGroup row className="mb-1">
-                            <Label for="confirmPassword" sm="auto" className="required">Confirm Password</Label>
-                            <Col sm={2}>
-                                <Input type="password" className="input-required mt-2" name="confirmPassword" id="confirmPassword" autocomplete="false"
-                                    value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
-                                {confirmPasswordValidation.message &&
-                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
-                            </Col>
-                        </FormGroup>
+                                    <FormGroup row className="mb-1">
+                                        <Label for="confirmPassword" sm="auto" className="required">Confirm Password</Label>
+                                        <Col sm={2}>
+                                            <Input type="password" className="input-required mt-2" name="confirmPassword" id="confirmPassword" autocomplete="false"
+                                                value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
+                                            {confirmPasswordValidation.message &&
+                                                <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
+                                        </Col>
+                                    </FormGroup>
+                                </Fragment>
+                            )
+                        }
                         <FormGroup row className="mb-1">
                             <Label for="role" sm="auto" className="required">Role</Label>
                             <Col sm={2}>
@@ -284,12 +381,14 @@ export class Content extends PureComponent {
                                 }
                             </Col>
                         </FormGroup>
-                        <FormGroup row className="mb-1">
-                            <Label for="isActive" sm="auto" className="pt-2">Account Status</Label>
-                            <Col sm={2}>
-                                <input type="checkbox" name="isActive" className="mt-2" checked={isActive} onChange={() => this.setState({ isActive: !isActive })} />
-                            </Col>
-                        </FormGroup>
+                        {
+                            isCreateNew && <FormGroup row className="mb-1">
+                                <Label sm="auto" className="pt-2">Account Status</Label>
+                                <Col sm={2}>
+                                    <input type="checkbox" className="mt-2" checked disabled/>
+                                </Col>
+                            </FormGroup>
+                        }
                     </Form>
                 </Container>
             </Fragment>
@@ -311,7 +410,7 @@ function mapStateToProps({ userId, userName, adminInfo }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew }, dispatch);
+    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew, deleteUsers, updateStatus }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
