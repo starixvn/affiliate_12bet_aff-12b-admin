@@ -1,10 +1,22 @@
-﻿.admin-role-menu {
+﻿.admin-role-sub-menu {
     &-back {
         text-decoration: none;
         color: black;
-        padding-right: 15px;
+        padding-right: 20px;
     }
+}
 
+.admin-role-menu {
+    .icon-admin-role {
+        display: block;
+        width: 50px;
+        height: 50px;
+        margin: 6px 15px 0 0;
+        background: transparent url(../../assets/admin-role/icon_menu.png) no-repeat scroll 0 0;
+    }
+}
+
+.admin-role-menu, .admin-role-sub-menu {
     .nav-link {
         padding: 3px 10px;
     }

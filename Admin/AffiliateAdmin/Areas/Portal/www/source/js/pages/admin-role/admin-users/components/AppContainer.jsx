@@ -7,7 +7,7 @@ import Filter from './Filter';
 import ControlButtons from './ControlButtons';
 import Content from './Content';
 import PermissionPopup from './PermissionPopup';
-import { resolveClientUrl } from '../../../../modules/utils';
+import Menu from '../../common/components/Menu';
 
 export class AppContainer extends Component {
     constructor(props) {
@@ -19,10 +19,7 @@ export class AppContainer extends Component {
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
-                <a className="admin-users-menu" href={resolveClientUrl("Portal/AdminRole")}>
-                    <span class="icon-admin-users"></span>
-                    <strong>Admin Users</strong>
-                </a>
+                <Menu />
                 <Filter />
                 <ControlButtons />
                 <Content />

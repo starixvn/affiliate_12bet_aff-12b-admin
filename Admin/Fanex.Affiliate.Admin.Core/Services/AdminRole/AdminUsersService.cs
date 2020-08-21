@@ -58,8 +58,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
                 UserName = reader.ToString("UserName"),
                 FirstName = reader.ToString("FirstName"),
                 LastName = reader.ToString("LastName"),
-                CreatedDate = reader.ToDateTime("CreatedDate"),
-                LastLoginDate = reader.ToDateTime("LastLoginDate"),
+                Creator = reader.ToString("Creator"),
+                LastLoginDate = reader["LastLoginDate"] == DBNull.Value ? (DateTime?)null : reader.ToDateTime("LastLoginDate"),
                 LastLoginIp = reader.ToString("LastLoginIp"),
                 RoleName = reader.ToString("RoleName"),
                 IsActive = !reader.ToBool("Closed")

@@ -5,7 +5,7 @@ import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Al
 import { regExp, messages, initialState, resources } from '../libs/constants';
 import { validateUserName } from '../../../../modules/utils';
 import { globalResource } from '../../../../modules/globalResource';
-import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew, deleteUsers, updateStatus } from '../actions';
+import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew, deleteUsers, updateStatus, setIsInfomation } from '../actions';
 import ChangePasswordForm from '../../../common/components/ChangePasswordForm';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
 
@@ -212,7 +212,7 @@ export class Content extends PureComponent {
     _renderWhenView() {
         const { roleList, userId } = this.props;
         const { newUserName, firstName, lastName, role, isActive, isShowMessage, isSuccess, message,
-                isChangingPassword, messagePopup, isConfirmPopup } = this.state;
+            isChangingPassword, messagePopup, isConfirmPopup } = this.state;
 
         return (
             <Fragment>
@@ -284,8 +284,137 @@ export class Content extends PureComponent {
         )
     }
 
-    _renderWhenCreateAndEdit() {
+    _renderCreateAndEditUserForm() {
         const { userName, roleList } = this.props;
+        const isCreateNew = !userName;
+        const { isClickedSubmit, newUserName, firstName, lastName, newPassword, confirmPassword, role, isShowMessage, isSuccess, message } = this.state;
+
+        const newPasswordValidation = this._validateNewPassword(newPassword);
+        //const confirmPasswordValidation = this._validateConfirmPassword(newPassword, confirmPassword);
+        const isValid = newPasswordValidation.isValid; //&& confirmPasswordValidation.isValid;
+        const validatedUserNameResult = validateUserName(newUserName);
+
+        return (
+            <Fragment>
+                <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                </Alert>
+                <Form tag="form" className="my-4" autocomplete="off">
+                    <FormGroup row className="mb-1">
+                        <Label for="newUserName" sm="auto" className="required">{resources.UserName}</Label>
+                        <Col sm={2} className="row-user">
+                            <Input type="text" className="refix" disabled value="AA" />
+                            <div className="user-name-group">
+                                <Input type="text" className="input-required user-name" placeholder="Enter User Name" name="newUserName" id="newUserName"
+                                    value={newUserName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validatedUserNameResult.IsValid} />
+                                {!validatedUserNameResult.IsValid &&
+                                    <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validatedUserNameResult.Message }} /></FormFeedback>}
+                            </div>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row className="mb-1">
+                        <Label for="firstName" sm="auto" className="required">{resources.FirstName}</Label>
+                        <Col sm={2}>
+                            <Input type="text" className="input-required mt-2" placeholder="Enter First Name" name="firstName" id="firstName"
+                                value={firstName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !firstName} />
+                            {!firstName &&
+                                <FormFeedback><div dangerouslySetInnerHTML={{ __html: "First Name is required!" }} /></FormFeedback>}
+                        </Col>
+                    </FormGroup>
+                    <FormGroup row className="mb-1">
+                        <Label for="lastName" sm="auto" className="required">{resources.LastName}</Label>
+                        <Col sm={2}>
+                            <Input type="text" className="input-required mt-2" placeholder="Enter Last Name" name="lastName" id="lastName"
+                                value={lastName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !lastName} />
+                            {!lastName &&
+                                <FormFeedback><div dangerouslySetInnerHTML={{ __html: "Last Name is required!" }} /></FormFeedback>}
+                        </Col>
+                    </FormGroup>
+                    {
+                        isCreateNew && (
+                            <Fragment>
+                                <FormGroup row className="mb-1">
+                                    <Label for="newPassword" sm="auto" className="required">{resources.Password}</Label>
+                                    <Col sm={2}>
+                                        <Input type="password" className="input-required mt-2" placeholder="Enter Default Password" name="newPassword" id="newPassword" autocomplete="false"
+                                            value={newPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !newPasswordValidation.isValid} />
+                                        {newPasswordValidation.message &&
+                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: newPasswordValidation.message }} /></FormFeedback>}
+                                    </Col>
+                                </FormGroup>
+
+                                {/* <FormGroup row className="mb-1">
+                                    <Label for="confirmPassword" sm="auto" className="required">{resources.ConfirmPassword}</Label>
+                                    <Col sm={2}>
+                                        <Input type="password" className="input-required mt-2" placeholder="Enter Confirm Password" name="confirmPassword" id="confirmPassword" autocomplete="false"
+                                            value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
+                                        {confirmPasswordValidation.message &&
+                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
+                                    </Col>
+                                </FormGroup> */}
+                            </Fragment>
+                        )
+                    }
+                    <FormGroup row className="mb-1">
+                        <Label for="role" sm="auto" className="required">Role</Label>
+                        <Col sm={2}>
+                            <Input type="select" name="role" className="mt-2" value={role} onChange={this._handleChange} invalid={isClickedSubmit && !role}>
+                                {
+                                    isCreateNew && <option key={'role-0'} value="0">[Select Role]</option>
+                                }
+                                {
+                                    roleList && Object.keys(roleList).map(key => {
+                                        return (<option key={'role-' + key} value={key}>{roleList[key]}</option>)
+                                    })
+                                }
+                            </Input>
+                            {
+                                !role &&
+                                <FormFeedback><div dangerouslySetInnerHTML={{ __html: messages.RequiredRole }} /></FormFeedback>
+                            }
+                        </Col>
+                    </FormGroup>
+                    {
+                        isCreateNew && <FormGroup row className="mb-1">
+                            <Label sm="auto" className="pt-2">Account Status</Label>
+                            <Col sm={2}>
+                                <input type="checkbox" className="mt-2" checked disabled />
+                            </Col>
+                        </FormGroup>
+                    }
+                </Form>
+            </Fragment>
+        )
+    }
+
+    _renderWhenEditUser() {
+        return (
+            <Fragment>
+                <div className="mb-2">
+                    <Fragment>
+                        <Button outline type="button" color="danger" onClick={() => this._handleCancel(false)}>Cancel<span className="oi oi-x ml-2"></span></Button>
+                        <Button outline type="button" className="ml-2" onClick={() => this._handleSubmit(isValid)}>Save<span className="oi oi-task ml-2"></span></Button>
+                    </Fragment>
+                </div>
+                <Container fluid={true} className="admin-info-container pt-2">
+                    {
+                        this._renderCreateAndEditUserForm()
+                    }
+                </Container>
+            </Fragment>
+        )
+    }
+
+    _renderViewLanguage() {
+        return (
+            <Fragment>
+                <h3>Set markets for Role Permision</h3>
+            </Fragment>
+        )
+    }
+
+    _renderWhenCreateNewUser() {
+        const { userName, roleList, isInformation } = this.props;
         const isCreateNew = !userName;
         const { isClickedSubmit, newUserName, firstName, lastName, newPassword, confirmPassword, role, isActive, isShowMessage, isSuccess, message } = this.state;
 
@@ -296,121 +425,64 @@ export class Content extends PureComponent {
 
         return (
             <Fragment>
-                <div className="mb-2">
+                <Container fluid={true} className="admin-info-container permission-role-container pt-2">
+                    <div className="permission-role-sub-menu-container py-2">
+                        <ul class="nav">
+                            <li className="nav-item">
+                                <a href="javascript:;" className={`sub-nav-link ${isInformation ? 'active' : ''}`}
+                                    onClick={() => this.props.setIsInfomation(true)}>
+                                    <span class="menu-text">General</span>
+                                </a>
+                            </li>
+                            <li className="nav-item pl-3">
+                                <a href="javascript:;" className={`sub-nav-link ${isInformation ? '' : 'active'}`}
+                                    onClick={() => this.props.setIsInfomation(false)}>
+                                    <span class="menu-text">Language</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    {
+                        isInformation ? this._renderCreateAndEditUserForm() : this._renderViewLanguage()
+                    }
+                </Container>
+                <div className="mt-2">
                     <Fragment>
-                        <Button outline type="button" color="danger" onClick={() => this._handleCancel(isCreateNew)}>Cancel<span className="oi oi-x ml-2"></span></Button>
-                        <Button outline type="button" className="ml-2" disabled={isClickedSubmit ? !isValid : false} onClick={() => this._handleSubmit(isValid)}>Save<span className="oi oi-task ml-2"></span></Button>
+                        <Button outline type="button" color="danger" onClick={() => this._handleCancel(true)}>Cancel<span className="oi oi-x ml-2"></span></Button>
+                        <Button outline type="button" className="ml-2" onClick={() => this._handleSubmit(isValid)}>
+                            {
+                                isInformation ? (
+                                    <Fragment>
+                                        Next<span className="oi oi-chevron-right ml-2"></span>
+                                    </Fragment>
+                                ) : (
+                                        <Fragment>
+                                            Save<span className="oi oi-task ml-2"></span>
+                                        </Fragment>)
+                            }
+                        </Button>
                     </Fragment>
                 </div>
-                <Container fluid={true} className="admin-info-container pt-2">
-                    <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
-                        <div dangerouslySetInnerHTML={{ __html: message }}></div>
-                    </Alert>
-                    <Form tag="form" className="my-4" autocomplete="off">
-                        <FormGroup row className="mb-1">
-                            <Label for="newUserName" sm="auto" className="required">{resources.UserName}</Label>
-                            <Col sm={2} className="row-user">
-                                <Input type="text" className="refix" disabled value="AA" />
-                                <div className="user-name-group">
-                                    <Input type="text" className="input-required user-name" placeholder="Enter User Name" name="newUserName" id="newUserName"
-                                        value={newUserName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validUserNameResult.IsValid} />
-                                    {!validUserNameResult.IsValid &&
-                                        <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
-                                </div>
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className="mb-1">
-                            <Label for="firstName" sm="auto" className="required">{resources.FirstName}</Label>
-                            <Col sm={2}>
-                                <Input type="text" className="input-required mt-2" placeholder="Enter First Name" name="firstName" id="firstName"
-                                    value={firstName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validUserNameResult.IsValid} />
-                                {!validUserNameResult.IsValid &&
-                                    <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className="mb-1">
-                            <Label for="lastName" sm="auto" className="required">{resources.LastName}</Label>
-                            <Col sm={2}>
-                                <Input type="text" className="input-required mt-2" placeholder="Enter Last Name" name="lastName" id="lastName"
-                                    value={lastName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validUserNameResult.IsValid} />
-                                {!validUserNameResult.IsValid &&
-                                    <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validUserNameResult.Message }} /></FormFeedback>}
-                            </Col>
-                        </FormGroup>
-                        {
-                            isCreateNew && (
-                                <Fragment>
-                                    <FormGroup row className="mb-1">
-                                        <Label for="newPassword" sm="auto" className="required">{resources.Password}</Label>
-                                        <Col sm={2}>
-                                            <Input type="password" className="input-required mt-2" placeholder="Enter Default Password" name="newPassword" id="newPassword" autocomplete="false"
-                                                value={newPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !newPasswordValidation.isValid} />
-                                            {newPasswordValidation.message &&
-                                                <FormFeedback><div dangerouslySetInnerHTML={{ __html: newPasswordValidation.message }} /></FormFeedback>}
-                                        </Col>
-                                    </FormGroup>
-
-                                    <FormGroup row className="mb-1">
-                                        <Label for="confirmPassword" sm="auto" className="required">{resources.ConfirmPassword}</Label>
-                                        <Col sm={2}>
-                                            <Input type="password" className="input-required mt-2" placeholder="Enter Confirm Password" name="confirmPassword" id="confirmPassword" autocomplete="false"
-                                                value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
-                                            {confirmPasswordValidation.message &&
-                                                <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
-                                        </Col>
-                                    </FormGroup>
-                                </Fragment>
-                            )
-                        }
-                        <FormGroup row className="mb-1">
-                            <Label for="role" sm="auto" className="required">Role</Label>
-                            <Col sm={2}>
-                                <Input type="select" name="role" className="mt-2" value={role} onChange={this._handleChange} invalid={isClickedSubmit && !role}>
-                                    {
-                                        isCreateNew && <option key={'role-0'} value="0">[Select Role]</option>
-                                    }
-                                    {
-                                        roleList && Object.keys(roleList).map(key => {
-                                            return (<option key={'role-' + key} value={key}>{roleList[key]}</option>)
-                                        })
-                                    }
-                                </Input>
-                                {
-                                    !role &&
-                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: messages.RequiredRole }} /></FormFeedback>
-                                }
-                            </Col>
-                        </FormGroup>
-                        {
-                            isCreateNew && <FormGroup row className="mb-1">
-                                <Label sm="auto" className="pt-2">Account Status</Label>
-                                <Col sm={2}>
-                                    <input type="checkbox" className="mt-2" checked disabled/>
-                                </Col>
-                            </FormGroup>
-                        }
-                    </Form>
-                </Container>
             </Fragment>
         )
     }
 
     render() {
-        const { userName } = this.props;
-        const isCreateNew = !userName;
+        const { userId } = this.props;
+        const isCreateNew = !userId;
         const { isEdit } = this.state;
 
-        return (isCreateNew || isEdit ? this._renderWhenCreateAndEdit() : this._renderWhenView())
+        return isCreateNew ? this._renderWhenCreateNewUser() : (isEdit ? this._renderWhenEditUser() : this._renderWhenView())
     }
 }
 
 function mapStateToProps({ userId, userName, adminInfo }) {
-    const { roleList } = adminInfo;
-    return Object.assign({}, { userId, userName, roleList });
+    const { roleList, isInformation } = adminInfo;
+    return Object.assign({}, { userId, userName, roleList, isInformation });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew, deleteUsers, updateStatus }, dispatch);
+    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminUsers, redirectToCreateNew, deleteUsers, updateStatus, setIsInfomation }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

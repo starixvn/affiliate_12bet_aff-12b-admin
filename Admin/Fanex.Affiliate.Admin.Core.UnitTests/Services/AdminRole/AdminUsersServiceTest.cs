@@ -69,7 +69,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.AdminRole
 
             // Assert
             Assert.Single(result);
-            Assert.Equal("08/11/2020 00:00:00", item.CreatedDateText);
             Assert.Equal("08/11/2020 00:00:00", item.LastLoginDateText);
         }
 
@@ -92,7 +91,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.AdminRole
 
             // Assert
             Assert.Single(result);
-            Assert.Equal("08/11/2020 00:00:00", item.CreatedDateText);
             Assert.Null(item.LastLoginDateText);
         }
 

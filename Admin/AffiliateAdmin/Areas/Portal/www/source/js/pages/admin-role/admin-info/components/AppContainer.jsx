@@ -1,11 +1,13 @@
-﻿import React, { Component } from 'react';
+﻿import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
 import SubMenu from '../../common/components/SubMenu';
 import Header from '../../common/components/Header';
 import Content from './Content';
+import { redirectToAdminUsers } from '../actions';
 
 export class AppContainer extends Component {
     constructor(props) {
@@ -13,20 +15,35 @@ export class AppContainer extends Component {
     }
 
     render() {
-        const { isShowLoader } = this.props;
+        const { isShowLoader, userId } = this.props;
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
-                <SubMenu/>
-                <Header />
+                {
+                    !userId ? (
+                        <div class="d-inline-flex p-3">
+                            <a class="admin-role-sub-menu-back" href="javascript:;" onClick={() => this.props.redirectToAdminUsers()}><span class="oi oi-chevron-left"></span></a>
+                            <strong>Create User</strong>
+                        </div>
+                    ) : (
+                            <Fragment>
+                                <SubMenu />
+                                <Header />
+                            </Fragment>
+                        )
+                }
                 <Content />
             </AppLayout>
         );
     }
 }
 
-function mapStateToProps({ isShowLoader }) {
-    return Object.assign({}, { isShowLoader });
+function mapStateToProps({ isShowLoader, userId }) {
+    return Object.assign({}, { isShowLoader, userId });
 }
 
-export default connect(mapStateToProps)(AppContainer);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ redirectToAdminUsers }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

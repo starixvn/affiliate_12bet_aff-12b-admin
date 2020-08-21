@@ -8,7 +8,6 @@ export const resource = {
     FirstName: 'First Name',
     LastName: 'Last Name',
     Creator: 'Creator',
-    CreatedDate: 'Created Date',
     LastLoginDate: 'Last Login Date',
     LastLoginIp: 'Last Login Ip',
     Role: 'Role',

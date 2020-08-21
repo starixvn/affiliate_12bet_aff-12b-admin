@@ -1,5 +1,6 @@
 ﻿export const adminRoleMenuKey = {
     adminUsers: 'adminUsers',
     adminInfo: 'adminInfo',
-    permissionRole: 'permissionRole'
+    permissionRole: 'permissionRole',
+    generalPermissionRole: 'generalPermissionRole',
 }

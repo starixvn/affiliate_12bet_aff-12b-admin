@@ -402,6 +402,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\PermissionPopup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\Menu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\SubMenu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\types.js" />
@@ -412,6 +413,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\common-reducers.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\children-reducers.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\permission-role\components\CommonGridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\libs\constants.js" />

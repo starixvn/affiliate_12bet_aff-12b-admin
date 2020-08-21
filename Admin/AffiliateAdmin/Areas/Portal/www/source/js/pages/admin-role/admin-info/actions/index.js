@@ -2,13 +2,20 @@
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { redirectToCreateNew, redirectToAdminUsers } from '../../common/actions';
 import { deleteUsers } from '../../admin-users/actions';
-import { SET_ROLE_LIST } from './types';
+import { SET_ROLE_LIST, SET_IS_INFORMATION } from './types';
 
 export { toggleLoader, redirectToCreateNew, redirectToAdminUsers, deleteUsers };
 
 export const setRoleList = (data) => {
     return {
         type: SET_ROLE_LIST,
+        data
+    }
+}
+
+export const setIsInfomation = (data) => {
+    return {
+        type: SET_IS_INFORMATION,
         data
     }
 }

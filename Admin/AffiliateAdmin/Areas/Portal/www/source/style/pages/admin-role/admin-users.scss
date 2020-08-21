@@ -1,20 +1,4 @@
-﻿.admin-users-menu {
-    display: flex;
-    align-items: center;
-    padding-top: 6px;
-    text-decoration: none !important;
-    color: black;
-    max-width: 130px;
-
-    .icon-admin-users {
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        background: transparent url(../../assets/admin-role/icon_menu.png) no-repeat scroll 0 0;
-    }
-}
-
-.permission-data-table {
+﻿.permission-data-table {
     background-color: #FFF !important;
 
     td {

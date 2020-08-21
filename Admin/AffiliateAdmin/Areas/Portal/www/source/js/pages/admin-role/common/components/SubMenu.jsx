@@ -21,9 +21,9 @@ export const SubMenu = (props) => {
     }
 
     return (
-        <div class="sub-menu-container admin-role-menu">
+        <div class="sub-menu-container admin-role-sub-menu">
             <div class="d-inline-block">
-                <a class="admin-role-menu-back" href="javascript:;" onClick={_redirectToAdminUsers}><span class="oi oi-chevron-left"></span></a>
+                <a class="admin-role-sub-menu-back" href="javascript:;" onClick={_redirectToAdminUsers}><span class="oi oi-chevron-left"></span></a>
             </div>
             <div class="d-inline-block">
                 <ul class="nav">

@@ -8,9 +8,13 @@ const AdminInfo = React.lazy(() =>
     import( /* webpackChunkName: "adminInfo" */ '../../admin-info/components/AppContainer'));
 const PermissionRole = React.lazy(() =>
     import( /* webpackChunkName: "permissionRole" */ '../../permission-role/components/AppContainer'));
+const GeneralPermissionRole = React.lazy(() =>
+    import( /* webpackChunkName: "generalPermissionRole" */ '../../general-permission-role/components/AppContainer'));
+
 
 export const adminRoleMenuList = [
     { key: menuKey.adminUsers, component: resetAllProps(AdminUsers, menuKey.adminUsers) },
     { key: menuKey.adminInfo, component: resetAllProps(AdminInfo, menuKey.adminInfo) },
-    { key: menuKey.permissionRole, component: resetAllProps(PermissionRole, menuKey.permissionRole) }
+    { key: menuKey.permissionRole, component: resetAllProps(PermissionRole, menuKey.permissionRole) },
+    { key: menuKey.generalPermissionRole, component: resetAllProps(GeneralPermissionRole, menuKey.generalPermissionRole) }
 ]

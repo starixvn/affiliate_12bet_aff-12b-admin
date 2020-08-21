@@ -9,6 +9,10 @@ export const redirectToAdminUsers = () => (dispatch) => {
     dispatch(setIsBack(true));
 }
 
+export const redirectToGeneralPermissionRole = () => (dispatch) => {
+    dispatch(setSelectedMenu(adminRoleMenuKey.generalPermissionRole));
+}
+
 export const redirectToAdminInfo = () => (dispatch) => {
     dispatch(setSelectedMenu(adminRoleMenuKey.adminInfo));
 }

@@ -15,5 +15,5 @@ export const globalResource = {
     Remove: 'Remove',
     NoInfo: 'There is no information available',
     ChooseFile: "Choose File",
-    AnError: "An error occurred, please try again later!"
+    AnError: "An error occurred while processing your request, please try again later!"
 }
