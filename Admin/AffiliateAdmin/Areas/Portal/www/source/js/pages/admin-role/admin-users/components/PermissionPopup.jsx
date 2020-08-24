@@ -41,7 +41,7 @@ export class PermissionPopup extends PureComponent {
                 <tr>
                     <th rowSpan="2" colSpan="2">Function</th>
                     <th colSpan="2">Individual Permission</th>
-                    <th colSpan="2">Group Permision</th>
+                    <th colSpan="2">Role Permision</th>
                 </tr>
                 <tr>
                     <th>Read</th>
@@ -114,9 +114,9 @@ export class PermissionPopup extends PureComponent {
                 </ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
-                        <div className="permission-form-container">
-                            <div className="permission-list-content table-responsive mb-2">
-                                <Table className="permission-data-table">
+                        <div className="permission-popup-form-container">
+                            <div className="permission-popup-list-content table-responsive mb-2">
+                                <Table className="permission-popup-data-table">
                                     {this._renderHeader()}
                                     {this._renderDataSection(data)}
                                 </Table>

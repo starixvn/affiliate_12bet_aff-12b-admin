@@ -4,29 +4,32 @@ import { bindActionCreators } from 'redux';
 import { Container } from 'reactstrap';
 
 import { setIsGeneral } from '../actions';
+import LanguageComponent from './LanguageComponent';
 
 export const Content = (props) => {
     const { isGeneral } = props;
 
     return (
-        < Container fluid={true} className="permission-role-container">
-            <div className="permission-role-sub-menu-container py-2">
+        < Container fluid={true} className="tab-container">
+            <div className="tab-menu-container py-2">
                 <ul class="nav">
                     <li className="nav-item">
-                        <a href="javascript:;" className={`sub-nav-link ${isGeneral ? 'active' : ''}`}
+                        <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? 'active' : ''}`}
                             onClick={() => props.setIsGeneral(true)}>
                             <span class="menu-text">General</span>
                         </a>
                     </li>
                     <li className="nav-item pl-3">
-                        <a href="javascript:;" className={`sub-nav-link ${isGeneral ? '' : 'active'}`}
+                        <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? '' : 'active'}`}
                             onClick={() => props.setIsGeneral(false)}>
                             <span class="menu-text">Language</span>
                         </a>
                     </li>
                 </ul>
             </div>
-            <h3>General Permission Role</h3>
+            {
+                isGeneral ? <h3>General Permission Role</h3> : <LanguageComponent />
+            }
         </Container>
     )
 }

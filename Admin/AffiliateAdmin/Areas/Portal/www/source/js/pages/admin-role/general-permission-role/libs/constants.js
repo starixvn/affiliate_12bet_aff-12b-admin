@@ -11,5 +11,6 @@ export const headerText = {
     Host: 'Host',
     View: 'View',
     Edit: globalResource.Edit,
-    Language: 'Language'
+    Language: 'Language',
+    Role: 'Role'
 }

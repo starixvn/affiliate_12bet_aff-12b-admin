@@ -194,6 +194,7 @@
     <Compile Include="Controllers\Administrator\DepartmentController.cs" />
     <Compile Include="Controllers\AdminRole\AdminRoleController.cs" />
     <Compile Include="Controllers\AdminRole\AdminInfoController.cs" />
+    <Compile Include="Controllers\AdminRole\GeneralPermissionRoleController.cs" />
     <Compile Include="Controllers\AdminRole\PermissionRoleController.cs" />
     <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -236,6 +237,8 @@
     <Compile Include="DTO\Administrator\PolicyInfo.cs" />
     <Compile Include="DTO\AdminRole\AdminInfo.cs" />
     <Compile Include="DTO\AdminRole\AdminUserInfo.cs" />
+    <Compile Include="DTO\AdminRole\GeneralFunctionInfo.cs" />
+    <Compile Include="DTO\AdminRole\GeneralPermissionRoleInfo.cs" />
     <Compile Include="DTO\AdminRole\PermissionRoleInfo.cs" />
     <Compile Include="DTO\AdminRole\RoleInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />

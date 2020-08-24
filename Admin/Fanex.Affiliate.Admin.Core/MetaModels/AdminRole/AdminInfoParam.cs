@@ -14,9 +14,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.AdminRole
         [RegularExpression("^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$", ErrorMessage = "Password is invalid!")]
         public string Password { get; set; }
 
-        [Compare(nameof(Password), ErrorMessage = "Confirm password is incorrect!")]
-        public string ConfirmPassword { get; set; }
-
         [Range(Validation.MinId, Validation.MaxRoleId, ErrorMessage = "Role is invalid!")]
         public int Role { get; set; }
 

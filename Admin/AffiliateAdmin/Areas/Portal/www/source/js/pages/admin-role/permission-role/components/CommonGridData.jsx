@@ -65,7 +65,7 @@ export class CommonGridData extends PureComponent {
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(isEdit ? this._buildDataRowEdit(dataItem, i + 1, isGeneral, isEdit) : this._buildDataRowView(dataItem, i + 1, isGeneral, isEdit));
+                dataRows.push(isEdit ? this._buildDataRowEdit(dataItem, i + 1, isGeneral) : this._buildDataRowView(dataItem, i + 1, isGeneral));
             }
         }
         else {

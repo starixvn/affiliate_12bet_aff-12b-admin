@@ -56,10 +56,21 @@ export class Content extends PureComponent {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    _handleSubmit = async (isValid) => {
+    _handleClickNext = () => {
+        const isValidUserInfo = this._validateUserInfo();
+
         this.setState({ isClickedSubmit: true });
 
-        if (isValid) {
+        isValidUserInfo && this.props.setIsInfomation(false);
+
+    }
+
+    _handleSubmit = async () => {
+        const isValidUserInfo = this._validateUserInfo();
+
+        this.setState({ isClickedSubmit: true });
+
+        if (isValidUserInfo) {
             const { userId } = this.props;
             const { newUserName, newPassword, confirmPassword, role, isActive } = this.state;
             const param = { userId: userId || 0, userName: newUserName, password: newPassword, confirmPassword, role, isActive };
@@ -89,7 +100,7 @@ export class Content extends PureComponent {
         isSuccess && this.props.redirectToAdminUsers();
     }
 
-    _handlePressEnter = (isValid, event) => {
+    _handlePressEnter = (event) => {
         if (event.charCode === 13) {
             event.preventDefault()
             this._handleSubmit(isValid);
@@ -178,35 +189,45 @@ export class Content extends PureComponent {
 
     _validateNewPassword(newPassword) {
         const result = {
-            isValid: false,
-            message: messages.RequiredNewPassword
+            IsValid: false,
+            Message: messages.RequiredNewPassword
         }
 
         if (newPassword) {
             const regexCheckPassword = new RegExp(regExp.CheckPassword);
             const isValid = regexCheckPassword.test(newPassword);
 
-            result.isValid = isValid;
-            result.message = isValid ? "" : messages.PasswordIncorrect;
+            result.IsValid = isValid;
+            result.Message = isValid ? "" : messages.PasswordIncorrect;
         }
 
         return result;
     }
 
-    _validateConfirmPassword(newPassword, confirmPassword) {
-        const result = {
-            isValid: false,
-            message: messages.RequiredConfirmPassword
-        }
+    // _validateConfirmPassword(newPassword, confirmPassword) {
+    //     const result = {
+    //         IsValid: false,
+    //         Message: messages.RequiredConfirmPassword
+    //     }
 
-        if (confirmPassword) {
-            const isValid = confirmPassword === newPassword;
+    //     if (confirmPassword) {
+    //         const isValid = confirmPassword === newPassword;
 
-            result.isValid = isValid;
-            result.message = isValid ? "" : messages.ConfirmPasswordIncorrect;
-        }
+    //         result.IsValid = isValid;
+    //         result.Message = isValid ? "" : messages.ConfirmPasswordIncorrect;
+    //     }
 
-        return result;
+    //     return result;
+    // }
+
+    _validateUserInfo(){
+        const { userId } = this.props;
+        const { newUserName, firstName, lastName, newPassword, role } = this.state;
+
+        const validatedPasswordResult = this._validateNewPassword(newPassword);
+        const validatedUserNameResult = validateUserName(newUserName);
+
+        return validatedUserNameResult.IsValid && !!firstName && !!lastName && (!userId ? (validatedPasswordResult.IsValid && !!role) : true);
     }
 
     _renderWhenView() {
@@ -285,13 +306,12 @@ export class Content extends PureComponent {
     }
 
     _renderCreateAndEditUserForm() {
-        const { userName, roleList } = this.props;
-        const isCreateNew = !userName;
-        const { isClickedSubmit, newUserName, firstName, lastName, newPassword, confirmPassword, role, isShowMessage, isSuccess, message } = this.state;
+        const { userId, roleList } = this.props;
+        const isCreateNew = !userId;
+        const { isClickedSubmit, newUserName, firstName, lastName, newPassword, role, isShowMessage, isSuccess, message } = this.state;
 
-        const newPasswordValidation = this._validateNewPassword(newPassword);
-        //const confirmPasswordValidation = this._validateConfirmPassword(newPassword, confirmPassword);
-        const isValid = newPasswordValidation.isValid; //&& confirmPasswordValidation.isValid;
+        const validatedPasswordResult = this._validateNewPassword(newPassword);
+        //const validatedConfirmPasswordResult = this._validateConfirmPassword(newPassword, confirmPassword);
         const validatedUserNameResult = validateUserName(newUserName);
 
         return (
@@ -306,7 +326,7 @@ export class Content extends PureComponent {
                             <Input type="text" className="refix" disabled value="AA" />
                             <div className="user-name-group">
                                 <Input type="text" className="input-required user-name" placeholder="Enter User Name" name="newUserName" id="newUserName"
-                                    value={newUserName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !validatedUserNameResult.IsValid} />
+                                    value={newUserName} onKeyPress={this._handlePressEnter} onChange={this._handleChange} invalid={isClickedSubmit && !validatedUserNameResult.IsValid} />
                                 {!validatedUserNameResult.IsValid &&
                                     <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validatedUserNameResult.Message }} /></FormFeedback>}
                             </div>
@@ -316,7 +336,7 @@ export class Content extends PureComponent {
                         <Label for="firstName" sm="auto" className="required">{resources.FirstName}</Label>
                         <Col sm={2}>
                             <Input type="text" className="input-required mt-2" placeholder="Enter First Name" name="firstName" id="firstName"
-                                value={firstName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !firstName} />
+                                value={firstName} onKeyPress={this._handlePressEnter} onChange={this._handleChange} invalid={isClickedSubmit && !firstName} />
                             {!firstName &&
                                 <FormFeedback><div dangerouslySetInnerHTML={{ __html: "First Name is required!" }} /></FormFeedback>}
                         </Col>
@@ -325,7 +345,7 @@ export class Content extends PureComponent {
                         <Label for="lastName" sm="auto" className="required">{resources.LastName}</Label>
                         <Col sm={2}>
                             <Input type="text" className="input-required mt-2" placeholder="Enter Last Name" name="lastName" id="lastName"
-                                value={lastName} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !lastName} />
+                                value={lastName} onKeyPress={this._handlePressEnter} onChange={this._handleChange} invalid={isClickedSubmit && !lastName} />
                             {!lastName &&
                                 <FormFeedback><div dangerouslySetInnerHTML={{ __html: "Last Name is required!" }} /></FormFeedback>}
                         </Col>
@@ -337,9 +357,9 @@ export class Content extends PureComponent {
                                     <Label for="newPassword" sm="auto" className="required">{resources.Password}</Label>
                                     <Col sm={2}>
                                         <Input type="password" className="input-required mt-2" placeholder="Enter Default Password" name="newPassword" id="newPassword" autocomplete="false"
-                                            value={newPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !newPasswordValidation.isValid} />
-                                        {newPasswordValidation.message &&
-                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: newPasswordValidation.message }} /></FormFeedback>}
+                                            value={newPassword} onKeyPress={this._handlePressEnter} onChange={this._handleChange} invalid={isClickedSubmit && !validatedPasswordResult.IsValid} />
+                                        {validatedPasswordResult.Message &&
+                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: validatedPasswordResult.Message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
 
@@ -347,9 +367,9 @@ export class Content extends PureComponent {
                                     <Label for="confirmPassword" sm="auto" className="required">{resources.ConfirmPassword}</Label>
                                     <Col sm={2}>
                                         <Input type="password" className="input-required mt-2" placeholder="Enter Confirm Password" name="confirmPassword" id="confirmPassword" autocomplete="false"
-                                            value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
-                                        {confirmPasswordValidation.message &&
-                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
+                                            value={confirmPassword} onKeyPress={this._handlePressEnter} onChange={this._handleChange} invalid={isClickedSubmit && !validatedConfirmPasswordResult.IsValid} />
+                                        {validatedConfirmPasswordResult.Message &&
+                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: validatedConfirmPasswordResult.Message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup> */}
                             </Fragment>
@@ -358,7 +378,7 @@ export class Content extends PureComponent {
                     <FormGroup row className="mb-1">
                         <Label for="role" sm="auto" className="required">Role</Label>
                         <Col sm={2}>
-                            <Input type="select" name="role" className="mt-2" value={role} onChange={this._handleChange} invalid={isClickedSubmit && !role}>
+                            <Input type="select" name="role" className="mt-2 select-role" value={role} onChange={this._handleChange} invalid={isClickedSubmit && !role}>
                                 {
                                     isCreateNew && <option key={'role-0'} value="0">[Select Role]</option>
                                 }
@@ -393,7 +413,7 @@ export class Content extends PureComponent {
                 <div className="mb-2">
                     <Fragment>
                         <Button outline type="button" color="danger" onClick={() => this._handleCancel(false)}>Cancel<span className="oi oi-x ml-2"></span></Button>
-                        <Button outline type="button" className="ml-2" onClick={() => this._handleSubmit(isValid)}>Save<span className="oi oi-task ml-2"></span></Button>
+                        <Button outline type="button" className="ml-2" onClick={this._handleSubmit}>Save<span className="oi oi-task ml-2"></span></Button>
                     </Fragment>
                 </div>
                 <Container fluid={true} className="admin-info-container pt-2">
@@ -414,29 +434,20 @@ export class Content extends PureComponent {
     }
 
     _renderWhenCreateNewUser() {
-        const { userName, roleList, isInformation } = this.props;
-        const isCreateNew = !userName;
-        const { isClickedSubmit, newUserName, firstName, lastName, newPassword, confirmPassword, role, isActive, isShowMessage, isSuccess, message } = this.state;
-
-        const newPasswordValidation = this._validateNewPassword(newPassword);
-        const confirmPasswordValidation = this._validateConfirmPassword(newPassword, confirmPassword);
-        const isValid = newPasswordValidation.isValid && confirmPasswordValidation.isValid;
-        const validUserNameResult = isClickedSubmit && validateUserName(newUserName);
+        const { isInformation } = this.props;
 
         return (
             <Fragment>
-                <Container fluid={true} className="admin-info-container permission-role-container pt-2">
-                    <div className="permission-role-sub-menu-container py-2">
+                <Container fluid={true} className="admin-info-container tab-container pt-2">
+                    <div className="tab-menu-container py-2">
                         <ul class="nav">
                             <li className="nav-item">
-                                <a href="javascript:;" className={`sub-nav-link ${isInformation ? 'active' : ''}`}
-                                    onClick={() => this.props.setIsInfomation(true)}>
+                                <a href="javascript:;" className={`sub-nav-link not-tab-link ${isInformation ? 'active' : ''}`}>
                                     <span class="menu-text">General</span>
                                 </a>
                             </li>
                             <li className="nav-item pl-3">
-                                <a href="javascript:;" className={`sub-nav-link ${isInformation ? '' : 'active'}`}
-                                    onClick={() => this.props.setIsInfomation(false)}>
+                                <a href="javascript:;" className={`sub-nav-link not-tab-link ${isInformation ? '' : 'active'}`}>
                                     <span class="menu-text">Language</span>
                                 </a>
                             </li>
@@ -449,18 +460,22 @@ export class Content extends PureComponent {
                 <div className="mt-2">
                     <Fragment>
                         <Button outline type="button" color="danger" onClick={() => this._handleCancel(true)}>Cancel<span className="oi oi-x ml-2"></span></Button>
-                        <Button outline type="button" className="ml-2" onClick={() => this._handleSubmit(isValid)}>
-                            {
-                                isInformation ? (
+                        {
+                            isInformation ? (
+                                <Button outline type="button" className="ml-2" onClick={this._handleClickNext}>
+                                    Next<span className="oi oi-chevron-right ml-2"></span>
+                                </Button>
+                            ) : (
                                     <Fragment>
-                                        Next<span className="oi oi-chevron-right ml-2"></span>
-                                    </Fragment>
-                                ) : (
-                                        <Fragment>
+                                        <Button outline type="button" className="ml-2" onClick={() => this.props.setIsInfomation(true)}>
+                                            Back<span className="oi oi-chevron-left ml-2"></span>
+                                        </Button>
+                                        <Button outline type="button" className="ml-2" onClick={this._handleSubmit}>
                                             Save<span className="oi oi-task ml-2"></span>
-                                        </Fragment>)
-                            }
-                        </Button>
+                                        </Button>
+                                    </Fragment>
+                                )
+                        }
                     </Fragment>
                 </div>
             </Fragment>
