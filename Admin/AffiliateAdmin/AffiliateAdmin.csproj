@@ -417,6 +417,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\components\GeneralComponent.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\components\LanguageComponent.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\general-permission-role\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\index.jsx" />

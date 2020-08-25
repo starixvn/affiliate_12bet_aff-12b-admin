@@ -5,6 +5,7 @@ import { Container } from 'reactstrap';
 
 import { setIsGeneral } from '../actions';
 import LanguageComponent from './LanguageComponent';
+import GeneralComponent from './GeneralComponent';
 
 export const Content = (props) => {
     const { isGeneral } = props;
@@ -28,7 +29,7 @@ export const Content = (props) => {
                 </ul>
             </div>
             {
-                isGeneral ? <h3>General Permission Role</h3> : <LanguageComponent />
+                isGeneral ? <GeneralComponent /> : <LanguageComponent />
             }
         </Container>
     )

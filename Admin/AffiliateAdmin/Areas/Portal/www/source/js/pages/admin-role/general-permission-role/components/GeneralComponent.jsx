@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { headerText, globalResource } from '../libs/constants';
-import { fetchData } from '../actions';
+import { fetchData, roleList, fakeFunctionList } from '../actions';
 
 export class GeneralComponent extends PureComponent {
     constructor(props) {
@@ -18,8 +18,8 @@ export class GeneralComponent extends PureComponent {
 
     componentDidMount() {
         const { isGeneral, userId } = this.props;
-
-        this.props.fetchData(isGeneral, userId);
+        
+        //this.props.fetchData(isGeneral, userId);
     }
 
     componentDidUpdate(prevProps) {
@@ -60,41 +60,98 @@ export class GeneralComponent extends PureComponent {
         return dataRows;
     }
 
-    _renderChildren(dataItem) {
-        return (
-            <Row key={`dataRow-${dataItem.FuncId}`}>
-                <Cell title={dataItem.FuncName}>{dataItem.FuncName}</Cell>
-                <Cell className="text-center" title={headerText.Read}>
-                    {
-                        dataItem.IsRead ? <span className="oi oi-check text-success"></span> : null
-                    }
-                </Cell>
+    _buildDataRowView(dataItem) {
+        const children = fakeFunctionList.filter(f => f.RoleId === dataItem.RoleId);
 
-                <Cell className="text-center" title={headerText.Host}>
-                    {
-                        dataItem.IsHost ? <span className="oi oi-check text-success"></span> : null
-                    }
-                </Cell>
-            </Row>
+        return (
+            <Fragment>
+                <Row key={`dataRow-${dataItem.RoleId}`}>
+                    <Cell title={dataItem.FuncName} colSpan="3">{dataItem.RoleName}</Cell>
+                </Row>
+                {
+                    children.length ? this._renderChildrenDataSection(children) : null
+                }
+            </Fragment>
         )
     }
 
-    _buildDataRowView(dataItem) {
-        return (
-            <Row key={`dataRow-${dataItem.RoleId}`}>
-                <Cell title={dataItem.RoleName}>{dataItem.RoleName}</Cell>
-                <Cell className="text-center" title={headerText.Read}>
-                    {
-                        dataItem.IsRead ? <span className="oi oi-check text-success"></span> : null
-                    }
-                </Cell>
+    _renderChildrenDataSection(dataList) {
+        const dataRows = [];
+        const { isEdit } = this.state;
 
-                <Cell className="text-center" title={headerText.Host}>
-                    {
-                        dataItem.IsHost ? <span className="oi oi-check text-success"></span> : null
-                    }
-                </Cell>
-            </Row>
+        const parentFunction = dataList.filter(s => s.FuncId === s.ParentId);
+        const subFunction = dataList.filter(s => s.FuncId !== s.ParentId);
+
+        for (let i = 0; i < parentFunction.length; i++) {
+            const dataItem = parentFunction[i];
+            dataRows.push(isEdit ? this._buildDataRowEdit(dataItem) : this._buildDataRowChildrenView(dataItem, subFunction));
+        }
+
+        return dataRows;
+    }
+
+    _buildDataRowChildrenView(dataItem, dataList) {
+
+        return (
+            <Fragment>
+                <Row key={`dataRow-${dataItem.FuncId}`}>
+                    <Cell className="pl-2" title={dataItem.FuncName}>{dataItem.FuncName}</Cell>
+                    <Cell className="text-center" title={headerText.Read}>
+                        {
+                            dataItem.IsRead ? <span className="oi oi-check text-success"></span> : null
+                        }
+                    </Cell>
+
+                    <Cell className="text-center" title={headerText.Host}>
+                        {
+                            dataItem.IsHost ? <span className="oi oi-check text-success"></span> : null
+                        }
+                    </Cell>
+                </Row>
+                {
+                    dataList.length ? this._renderSubChildrenDataSection(dataItem, dataList) : null
+                }
+            </Fragment>
+        )
+    }
+
+    _renderSubChildrenDataSection(dataItem, dataList, isRecursive) {
+        const dataRows = [];
+        const { isEdit } = this.state;
+
+        const parentFunction = dataList.filter(s => s.ParentId === dataItem.FuncId);
+        const subFunction = dataList.filter(s => s.ParentId !== dataItem.FuncId);
+
+        for (let i = 0; i < parentFunction.length; i++) {
+            const dataItem = parentFunction[i];
+            dataRows.push(isEdit ? this._buildDataRowEdit(dataItem) : this._buildDataRowSubChildrenView(dataItem, subFunction, isRecursive));
+        }
+
+        return dataRows;
+    }
+
+    _buildDataRowSubChildrenView(dataItem, dataList, isRecursive) {
+
+        return (
+            <Fragment>
+                <Row key={`dataRow-${dataItem.FuncId}`}>
+                    <Cell className={isRecursive ? "pl-5" : "pl-4"} title={dataItem.FuncName}>{dataItem.FuncName}</Cell>
+                    <Cell className="text-center" title={headerText.Read}>
+                        {
+                            dataItem.IsRead ? <span className="oi oi-check text-success"></span> : null
+                        }
+                    </Cell>
+
+                    <Cell className="text-center" title={headerText.Host}>
+                        {
+                            dataItem.IsHost ? <span className="oi oi-check text-success"></span> : null
+                        }
+                    </Cell>
+                </Row>
+                {
+                    dataList.length ? this._renderSubChildrenDataSection(dataItem, dataList, true) : null
+                }
+            </Fragment>
         )
     }
 
@@ -113,7 +170,8 @@ export class GeneralComponent extends PureComponent {
     }
 
     render() {
-        const { gridData } = this.props;
+        //const { gridData } = this.props;
+        const gridData = roleList;
         const { isEdit } = this.state;
 
         return gridData && (
