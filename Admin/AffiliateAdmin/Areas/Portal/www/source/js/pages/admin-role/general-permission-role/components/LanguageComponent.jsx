@@ -81,47 +81,47 @@ export class CommonGridData extends PureComponent {
                 <Cell title={dataItem.RoleName}>{dataItem.RoleName}</Cell>
                 <Cell className="text-center">
                     {
-                        dataItem.IsES ? <span className="oi oi-check text-success"></span> : null
+                        dataItem.IsES && <span className="oi oi-check text-primary"></span>
                     }
                 </Cell>
                 <Cell className="text-center">
                     {
-                        dataItem.IsEU ? <span className="oi oi-check text-success"></span> : null
+                        dataItem.IsEU && <span className="oi oi-check text-primary"></span>
                     }
                 </Cell>
                 <Cell className="text-center">
                     {
-                        dataItem.IsEI ? <span className="oi oi-check text-success"></span> : null
+                        dataItem.IsEI && <span className="oi oi-check text-primary"></span>
                     }
                 </Cell>
                 <Cell className="text-center">
                     {
-                        dataItem.IsCS ? <span className="oi oi-check text-success"></span> : null
+                        dataItem.IsCS && <span className="oi oi-check text-primary"></span>
                     }
                 </Cell>
                 <Cell className="text-center">
                     {
-                        dataItem.IsCH ? <span className="oi oi-check text-success"></span> : null
+                        dataItem.IsCH && <span className="oi oi-check text-primary"></span>
                     }
                 </Cell>
                 <Cell className="text-center">
                     {
-                        dataItem.IsVN ? <span className="oi oi-check text-success"></span> : null
+                        dataItem.IsVN && <span className="oi oi-check text-primary"></span>
                     }
                 </Cell>
                 <Cell className="text-center">
                     {
-                        dataItem.IsTH ? <span className="oi oi-check text-success"></span> : null
+                        dataItem.IsTH && <span className="oi oi-check text-primary"></span>
                     }
                 </Cell>
                 <Cell className="text-center">
                     {
-                        dataItem.IsID ? <span className="oi oi-check text-success"></span> : null
+                        dataItem.IsID && <span className="oi oi-check text-primary"></span>
                     }
                 </Cell>
                 <Cell className="text-center">
                     {
-                        dataItem.IsKO ? <span className="oi oi-check text-success"></span> : null
+                        dataItem.IsKO && <span className="oi oi-check text-primary"></span>
                     }
                 </Cell>
             </Row>

@@ -290,9 +290,11 @@
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adjustment.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminInfo.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminUsers.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminUsers~generalPermissionRole.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\customer-statistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarning.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarningDetail.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\generalPermissionRole.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\landingPageStatistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\member.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\note.chunk.js" />
@@ -302,7 +304,7 @@
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\statementHistory.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\trackingStatistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\userAccount.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~adminInfo~adminUsers~permissionRole.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~adminInfo~adminUsers~generalPermissionRole~permissionRole.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~landingPageStatistics~member~referrerStatistics~statementHistory~viewLog.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~playerDetail.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
@@ -1390,6 +1392,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-info.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\permission-role.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\core.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\general-permisison-role.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

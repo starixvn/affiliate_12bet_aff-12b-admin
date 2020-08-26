@@ -2,6 +2,8 @@
 
 export { globalResource };
 
+export const management = 1;
+
 export const headerText = {
     Index: globalResource.Index,
     Function: 'Function',

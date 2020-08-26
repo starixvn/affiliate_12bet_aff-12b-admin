@@ -79,22 +79,22 @@ export class PermissionPopup extends PureComponent {
                 <td className="text-center" title={funcDescription} colSpan="2">{funcDescription}</td>
                 <td className="text-center">
                     {
-                        !dataItem.IndividualPermission ? null : <span className="oi oi-check text-success"></span>
+                        !dataItem.IndividualPermission ? null : <span className="oi oi-check text-primary"></span>
                     }
                 </td>
                 <td className="text-center">
                     {
-                        dataItem.IndividualPermission === 3 ? <span className="oi oi-check text-success"></span> : null
+                        dataItem.IndividualPermission === 3 ? <span className="oi oi-check text-primary"></span> : null
                     }
                 </td>
                 <td className="text-center">
                     {
-                        !dataItem.RolePermission ? null : <span className="oi oi-check text-success"></span>
+                        !dataItem.RolePermission ? null : <span className="oi oi-check text-primary"></span>
                     }
                 </td>
                 <td className="text-center">
                     {
-                        dataItem.RolePermission === 3 ? <span className="oi oi-check text-success"></span> : null
+                        dataItem.RolePermission === 3 ? <span className="oi oi-check text-primary"></span> : null
                     }
                 </td>
             </tr>

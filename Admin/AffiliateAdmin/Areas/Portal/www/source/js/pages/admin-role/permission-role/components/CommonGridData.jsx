@@ -83,19 +83,27 @@ export class CommonGridData extends PureComponent {
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.Name}>{dataItem.Name}</Cell>
                 <Cell className="text-center" title={headerText.View}>
-                    <span className={`oi ${dataItem.IsView ? "oi-check text-success" : "oi-x text-danger"}`}></span>
+                    {
+                        dataItem.IsView && <span className="oi oi-check text-primary"></span>
+                    }
                 </Cell>
                 {
                     isGeneral && (
                         <Fragment>
                             <Cell className="text-center" title={headerText.View}>
-                                <span className={`oi ${dataItem.IsView ? "oi-check text-success" : "oi-x text-danger"}`}></span>
+                                {
+                                    dataItem.IsEdit && <span className="oi oi-check text-primary"></span>
+                                }
                             </Cell>
                             <Cell className="text-center" title={headerText.Edit}>
-                                <span className={`oi ${dataItem.IsEdit ? "oi-check text-success" : "oi-x text-danger"}`}></span>
+                                {
+                                    dataItem.IsView && <span className="oi oi-check text-primary"></span>
+                                }
                             </Cell>
                             <Cell className="text-center" title={headerText.Edit}>
-                                <span className={`oi ${dataItem.IsEdit ? "oi-check text-success" : "oi-x text-danger"}`}></span>
+                                {
+                                    dataItem.IsEdit && <span className="oi oi-check text-primary"></span>
+                                }
                             </Cell>
                         </Fragment>
                     )

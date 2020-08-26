@@ -290,7 +290,7 @@ export class Filter extends Component {
                                     onChange={this.handleChangeAffiliate}
                                     value={userName} />) :
                                 (
-                                    <AutoComplete url={resolveClientUrl('Portal/AffiliateReport/GetAffiliateList')}
+                                    <AutoComplete url={resolveClientUrl('Portal/Report/GetAffiliateList')}
                                         onSelect={(value) => this.setState({ userName: value })}
                                         onInput={(value) => this.setState({ userName: value })}
                                         value={userName}
