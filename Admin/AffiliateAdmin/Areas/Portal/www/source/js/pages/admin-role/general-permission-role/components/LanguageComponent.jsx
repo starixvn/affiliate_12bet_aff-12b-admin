@@ -2,57 +2,103 @@ import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
-import { Button } from 'reactstrap';
 
 import { headerText, globalResource } from '../libs/constants';
-import { fetchLanguageData } from '../actions';
+import { getMarketList, toggleLoader, setGridData } from '../actions';
+import { ControlButtons } from '../../common/components/ControlButtons';
 
-export class CommonGridData extends PureComponent {
+const languageList = [
+    { MarketId: "en-GB", MarketName: 'English' },
+    { MarketId: "vi-VN", MarketName: 'English (Europe)' }
+];
+
+const sortLanguages = {
+    "en-GB": "en-GB",
+    "vi-VN": "vi-VN"
+};
+
+const roleList = [
+    { RoleId: 1, RoleName: 'Management', "en-GB": true },
+    { RoleId: 2, RoleName: 'Exe. Settlement', "en-GB": true },
+    { RoleId: 3, RoleName: 'Exe. Risk Team', "en-GB": true },
+    { RoleId: 4, RoleName: 'Exe. Marketing', "en-GB": true },
+    { RoleId: 5, RoleName: 'Asst. Marketing', "en-GB": true }
+]
+
+export class LanguageComponent extends PureComponent {
     constructor(props) {
         super(props);
 
         this.state = {
             isEdit: false,
+            gridData: null,
         }
     }
 
     componentDidMount() {
-        this.props.fetchLanguageData();
+        
+    }
+
+    _handleGetMarketList = () => {
+        this.props.toggleLoader(true);
+
+        const marketList = this.props.getMarketList();
+        const newMarketList = this._convertMarketList(marketList, roleList);
+
+        this.setGridData(newMarketList);
+        this.setState({ gridData: newMarketList });
+
+        this.props.toggleLoader(false);
+    }
+
+    _convertMarketList = (marketList, roleList) => {
+
+        return roleList.map(item => {
+            const marketOfRoleList = marketList.filter(m => m.RoleId === item.RoleId);
+            const newMarketItem = { ...item };
+    
+            for(let i = 0; i < marketOfRoleList.length; i ++) {
+                const marketItem = marketOfRoleList[i];
+
+                if(sortLanguages[marketItem.MarketId]) {
+                    newMarketItem = Object.assign({}, newMarketItem, { [marketItem.MarketId]: marketItem.HasPermission });
+                }
+            }
+    
+            return newMarketItem;
+        })
+    }
+
+    _handleChange = (roleId, marketId, isChecked) => {
+        const { gridData } = this.state;
+        const indexItem = gridData.findIndex(item => item.RoleId === roleId);
+        const updateItem = Object.assign({}, gridData[indexItem], { [marketId]: isChecked });
+        const gridDataUpdate = updateObjectInArray(gridData, indexItem, updateItem)
+
+        this.setState({ gridData: gridDataUpdate });
     }
 
     _renderHeader() {
-        const languageList = [
-            { MarketId: 1, MarketName: 'English' },
-            { MarketId: 2, MarketName: 'English (Europe)' },
-            { MarketId: 3, MarketName: 'English (India)' },
-            { MarketId: 4, MarketName: 'Chinese (Simplified)' },
-            { MarketId: 5, MarketName: 'Chinese (Traditional)' },
-            { MarketId: 6, MarketName: 'Vietnamese' },
-            { MarketId: 7, MarketName: 'Thai' },
-            { MarketId: 8, MarketName: 'Indonesian' },
-            { MarketId: 9, MarketName: 'Korean' },
-        ];
-
         return (
             <Row key="theard">
-                <Cell header={true} colWidth={250} title={headerText.Role}>{headerText.Role}</Cell>
-                {/* {
-                    languageList.map((item) => {
-                        return
-                        (<Cell header={true} colWidth={80} title={'English'}>{'English'}</Cell>)
-                    })
-                } */}
-                <Cell header={true} colWidth={80} title={'English'}>{'English'}</Cell>
-                <Cell header={true} colWidth={80} title={'English (Europe)'}>{'English (Europe)'}</Cell>
-                <Cell header={true} colWidth={80} title={'English (India)'}>{'English (India)'}</Cell>
-                <Cell header={true} colWidth={80} title={'Chinese (Simplified)'}>{'Chinese (Simplified)'}</Cell>
-                <Cell header={true} colWidth={80} title={'Chinese (Traditional)'}>{'Chinese (Traditional)'}</Cell>
-                <Cell header={true} colWidth={80} title={'Vietnamese'}>{'Vietnamese'}</Cell>
-                <Cell header={true} colWidth={80} title={'Thai'}>{'Thai'}</Cell>
-                <Cell header={true} colWidth={80} title={'Indonesian'}>{'Indonesian'}</Cell>
-                <Cell header={true} colWidth={80} title={'Korean'}>{'Korean'}</Cell>
+                {
+                    this._renderColumnHeader(languageList)
+                }
             </Row>
         );
+    }
+
+    _renderColumnHeader(dataList) {
+        const dataRows = [<Cell header={true} colWidth={250} title={headerText.Role}>{headerText.Role}</Cell>];
+
+        if (dataList && dataList.length) {
+
+            for (let i = 0; i < dataList.length; i++) {
+                dataRows.push(<Cell header={true} colWidth={80}>{dataList[i].MarketName}</Cell>);
+            }
+        }
+
+        return dataRows;
     }
 
     _renderDataSection(dataList) {
@@ -63,104 +109,49 @@ export class CommonGridData extends PureComponent {
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(isEdit ? this._buildDataRowEdit(dataItem) : this._buildDataRowView(dataItem));
+                dataRows.push(this._buildDataRow(dataItem, isEdit));
             }
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="11">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={languageList.length}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
         return dataRows;
     }
 
-    _buildDataRowView(dataItem, index) {
+    _buildDataRow(dataItem, isEdit) {
         return (
             <Row key={`dataRow-${dataItem.RoleId}`}>
-                <Cell title={dataItem.RoleName}>{dataItem.RoleName}</Cell>
-                <Cell className="text-center">
-                    {
-                        dataItem.IsES && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
-                <Cell className="text-center">
-                    {
-                        dataItem.IsEU && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
-                <Cell className="text-center">
-                    {
-                        dataItem.IsEI && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
-                <Cell className="text-center">
-                    {
-                        dataItem.IsCS && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
-                <Cell className="text-center">
-                    {
-                        dataItem.IsCH && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
-                <Cell className="text-center">
-                    {
-                        dataItem.IsVN && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
-                <Cell className="text-center">
-                    {
-                        dataItem.IsTH && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
-                <Cell className="text-center">
-                    {
-                        dataItem.IsID && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
-                <Cell className="text-center">
-                    {
-                        dataItem.IsKO && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
+                {
+                    this._renderColumnBody(dataItem, isEdit)
+                }
             </Row>
         )
     }
 
-    _buildDataRowEdit(dataItem) {
-        return (
-            <Row key={`dataRow-${dataItem.RoleId}`}>
-                <Cell title={dataItem.RoleName}>{dataItem.RoleName}</Cell>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsES} onChange={this._handleChange} />
-                </Cell>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsEU} onChange={this._handleChange} />
-                </Cell>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsEI} onChange={this._handleChange} />
-                </Cell>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsCS} onChange={this._handleChange} />
-                </Cell>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsCH} onChange={this._handleChange} />
-                </Cell>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsVN} onChange={this._handleChange} />
-                </Cell>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsTH} onChange={this._handleChange} />
-                </Cell>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsID} onChange={this._handleChange} />
-                </Cell>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsKO} onChange={this._handleChange} />
-                </Cell>
-            </Row>
-        )
+    _renderColumnBody(dataItem, isEdit) {
+        const dataRows = [<Cell title={dataItem.RoleName}>{dataItem.RoleName}</Cell>];
+
+        if (languageList && languageList.length) {
+
+            for (let i = 0; i < languageList.length; i++) {
+                const item = languageList[i];
+                const isChecked = dataItem[item.MarketId];
+
+                dataRows.push(
+                    <Cell className="text-center">
+                        {
+                            isEdit ? <input type="checkbox" checked={isChecked} onChange={() => this._handleChange(dataItem.RoleId, item.MarketId, !isChecked)} />
+                                : (isChecked && <span className="oi oi-check text-primary"></span>)
+                        }
+                    </Cell>
+                );
+            }
+        }
+
+        return dataRows;
     }
 
     render() {
@@ -170,16 +161,12 @@ export class CommonGridData extends PureComponent {
         return gridData && (
             <div className="data-content">
                 <div className="my-2">
-                    {
-                        isEdit ? (
-                            <Fragment>
-                                <Button outline type="button" color="danger" onClick={() => this.setState({ isEdit: false })}>Cancel<span className="oi oi-x ml-2"></span></Button>
-                                <Button outline type="button" className="ml-2" onClick={this._handleSubmit}>Save<span className="oi oi-task ml-2"></span></Button>
-                            </Fragment>
-                        ) : (
-                                <Button outline type="button" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
-                            )
-                    }
+                    <ControlButtons
+                        isEdit={isEdit}
+                        handleEdit={() => this.setState({ isEdit: true })}
+                        handleCancel={() => this.setState({ isEdit: false })}
+                        handleSave={this._handleSubmit}
+                    />
                 </div>
                 <div className="table-responsive table-striped my-2">
                     <Table
@@ -187,7 +174,7 @@ export class CommonGridData extends PureComponent {
                         autoWidth={true}
                         bodyHeight={300}
                         header={this._renderHeader()}
-                        body={this._renderDataSection(gridData)}
+                        body={this._renderDataSection(roleList)}
                         containerPadding={52}
                     />
                 </div>
@@ -197,13 +184,13 @@ export class CommonGridData extends PureComponent {
 }
 
 
-function mapStateToProps({ userId, generalPermissionRole }) {
+function mapStateToProps({ generalPermissionRole }) {
     const { gridData } = generalPermissionRole;
-    return Object.assign({}, { userId, gridData });
+    return Object.assign({}, { gridData });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchLanguageData }, dispatch);
+    return bindActionCreators({ getMarketList, toggleLoader, setGridData }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommonGridData);
+export default connect(mapStateToProps, mapDispatchToProps)(LanguageComponent);

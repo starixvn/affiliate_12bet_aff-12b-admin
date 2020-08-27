@@ -404,6 +404,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-users\components\PermissionPopup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\Menu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\SubMenu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\index.js" />

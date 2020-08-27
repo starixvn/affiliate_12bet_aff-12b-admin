@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
                 {
                     while (reader.Read())
                     {
-                        result.Add(BuildItem(reader, isGeneral));
+                        result.Add(BuildItem(reader));
                     }
                 }
             }
@@ -29,23 +29,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             return result;
         }
 
-        private PermissionRoleInfo BuildItem(IDataReader reader, bool isGeneral = true)
+        private PermissionRoleInfo BuildItem(IDataReader reader)
         {
-            if (isGeneral)
-            {
-                return new PermissionRoleInfo
-                {
-                    Id = reader.ToInt("FuncId"),
-                    Name = reader.ToString("FuncName"),
-                    Policy = reader.ToInt("Policy")
-                };
-            }
-
             return new PermissionRoleInfo
             {
-                Id = reader.ToInt("MarketId"),
-                Name = reader.ToString("MarketName"),
-                Policy = reader.ToInt("Policy")
+                FuncId = reader.ToInt("FuncId"),
+                FuncName = reader.ToString("FuncName")
             };
         }
     }

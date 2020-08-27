@@ -3,15 +3,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.AdminRole
 {
     public class PermissionRoleInfo
     {
-        public int Id { get; set; }
+        public int FuncId { get; set; }
 
-        public string Name { get; set; }
-
-        public int Policy { get; set; }
-
-        public int RoleId { get; set; }
-
-        public string RoleName { get; set; }
+        public string FuncName { get; set; }
 
         public int IndividualPermission { get; set; }
 
