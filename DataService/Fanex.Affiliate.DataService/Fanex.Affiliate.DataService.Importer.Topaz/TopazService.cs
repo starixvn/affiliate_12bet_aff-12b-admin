@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.DataService.Importer
     public sealed class TopazService : XmlImpoterlServiceBase
     {
         private const string DEFAULT_CURRENCY = "USD";
-        private const string DEFAULT_TIME_ZONE = "UTC";
+        private const string DEFAULT_TIME_ZONE = "UTC+8";
         private const string DEFAULT_LANGUAGE = "en";
         private const string AUTH_PATH = "/oauth/token";
         private const int PAGE_SIZE = 2000;
