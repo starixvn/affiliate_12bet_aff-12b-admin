@@ -22,6 +22,7 @@ namespace Fanex.Affiliate.DataService.Importer
         private const string DEFAULT_TIME_ZONE = "UTC+8";
         private const string DEFAULT_LANGUAGE = "en";
         private const string AUTH_PATH = "/oauth/token";
+        private const string FEED_DATA_PATH = "/v1/feed/transaction";
         private const int PAGE_SIZE = 2000;
 
         private string CompanyId => _appSetting.GetValue("TopazCompanyId");
@@ -66,7 +67,7 @@ namespace Fanex.Affiliate.DataService.Importer
         private async Task<IEnumerable<string>> GetRawDataAsync(DateTime startTime, DateTime endTime, string token)
         {
             var datas = new List<string>();
-            const string feedDataPath = "/v1/feed/transaction";
+            const string feedDataPath = FEED_DATA_PATH;
             var url = $"{ApiUrl}{feedDataPath}";
             var header = GetDataHeader(token);
             var api = _apiClientFactory.CreateApiClient(url, HttpMethod.Get, header);
