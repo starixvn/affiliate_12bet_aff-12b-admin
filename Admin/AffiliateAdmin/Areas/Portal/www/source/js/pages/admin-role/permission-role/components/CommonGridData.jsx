@@ -35,18 +35,18 @@ export class CommonGridData extends PureComponent {
         const title = isGeneral ? headerText.Function : headerText.Language;
 
         return isGeneral ? [
-                <Row key="theard">
-                    <Cell header={true} colWidth={50} rowSpan="2" title={headerText.Index}>{headerText.Index}</Cell>
-                    <Cell header={true} colWidth={300} rowSpan="2" title={title}>{title}</Cell>
-                    <Cell header={true} colWidth={200} colSpan="2" title={headerText.IndividualPermission}>{headerText.IndividualPermission}</Cell>
-                    <Cell header={true} colWidth={200} colSpan="2" title={headerText.RolePermission}>{headerText.RolePermission}</Cell>
-                </Row>,
-                <Row key="sub-theard">
-                    <Cell header={true} colWidth={100} title={headerText.Read}>{headerText.Read}</Cell>
-                    <Cell header={true} colWidth={100} title={headerText.Host}>{headerText.Host}</Cell>
-                    <Cell header={true} colWidth={100} title={headerText.Read}>{headerText.Read}</Cell>
-                    <Cell header={true} colWidth={100} title={headerText.Host}>{headerText.Host}</Cell>
-                </Row>
+            <Row key="theard">
+                <Cell header={true} colWidth={50} rowSpan="2" title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={300} rowSpan="2" title={title}>{title}</Cell>
+                <Cell header={true} colWidth={200} colSpan="2" title={headerText.IndividualPermission}>{headerText.IndividualPermission}</Cell>
+                <Cell header={true} colWidth={200} colSpan="2" title={headerText.RolePermission}>{headerText.RolePermission}</Cell>
+            </Row>,
+            <Row key="sub-theard">
+                <Cell header={true} colWidth={100} title={headerText.Read}>{headerText.Read}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Host}>{headerText.Host}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Read}>{headerText.Read}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Host}>{headerText.Host}</Cell>
+            </Row>
         ] : [
                 <Row key="theard">
                     <Cell header={true} colWidth={50} title={headerText.Index}>{headerText.Index}</Cell>
@@ -152,9 +152,9 @@ export class CommonGridData extends PureComponent {
                                 <Button outline type="button" color="danger" onClick={() => this.setState({ isEdit: false })}>Cancel<span className="oi oi-x ml-2"></span></Button>
                                 <Button outline type="button" className="ml-2" onClick={this._handleSubmit}>Save<span className="oi oi-task ml-2"></span></Button>
                             </Fragment>
-                        ): (
-                            <Button outline type = "button" onClick = {() => this.setState({isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
-                        )
+                        ) : (
+                                <Button outline type="button" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
+                            )
                     }
                 </div>
                 <div className="table-responsive table-striped my-2">

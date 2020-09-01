@@ -220,7 +220,7 @@ export class Content extends PureComponent {
     //     return result;
     // }
 
-    _validateUserInfo(){
+    _validateUserInfo() {
         const { userId } = this.props;
         const { newUserName, firstName, lastName, newPassword, role } = this.state;
 

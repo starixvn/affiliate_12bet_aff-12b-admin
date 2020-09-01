@@ -36,7 +36,7 @@ export class LanguageComponent extends PureComponent {
     }
 
     componentDidMount() {
-        
+
     }
 
     _handleGetMarketList = () => {
@@ -56,15 +56,15 @@ export class LanguageComponent extends PureComponent {
         return roleList.map(item => {
             const marketOfRoleList = marketList.filter(m => m.RoleId === item.RoleId);
             const newMarketItem = { ...item };
-    
-            for(let i = 0; i < marketOfRoleList.length; i ++) {
+
+            for (let i = 0; i < marketOfRoleList.length; i++) {
                 const marketItem = marketOfRoleList[i];
 
-                if(sortLanguages[marketItem.MarketId]) {
+                if (sortLanguages[marketItem.MarketId]) {
                     newMarketItem = Object.assign({}, newMarketItem, { [marketItem.MarketId]: marketItem.HasPermission });
                 }
             }
-    
+
             return newMarketItem;
         })
     }
