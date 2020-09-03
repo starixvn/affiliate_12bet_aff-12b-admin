@@ -8,10 +8,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 {
     public class PermissionRoleService : BaseRepository, IPermissionRoleService
     {
-        public IEnumerable<PermissionRoleInfo> GetPermissionRoleList(int userId, bool isGeneral = true)
+        public IEnumerable<UserPermissionInfo> GetPermissionRoleList(int userId, bool isGeneral = true)
         {
             string SpKey = isGeneral ? "Aff_Admin_AdminUser_FunctionPermission_Sel" : "Aff_Admin_AdminUser_Market_Sel";
-            var result = new List<PermissionRoleInfo>();
+            var result = new List<UserPermissionInfo>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -29,9 +29,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             return result;
         }
 
-        private PermissionRoleInfo BuildItem(IDataReader reader)
+        private UserPermissionInfo BuildItem(IDataReader reader)
         {
-            return new PermissionRoleInfo
+            return new UserPermissionInfo
             {
                 FuncId = reader.ToInt("FuncId"),
                 FuncName = reader.ToString("FuncName")

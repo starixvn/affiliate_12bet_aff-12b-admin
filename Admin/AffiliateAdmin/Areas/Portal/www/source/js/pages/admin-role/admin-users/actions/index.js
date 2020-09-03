@@ -63,27 +63,16 @@ export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
-export const getRoleByUser = (userId) => () => {
-    //const url = 'Portal/AdminRole/GetRoleByUser';
-    //const response = await post(url, { userId });
+export const getUserPermissionList = (userId) => async () => {
+    const url = 'Portal/AdminRole/GetUserPermissionList';
+    const response = await post(url, { userId });
 
-    //return response && response.status === 200 ? response.data : null;
-
-    return [
-        { FunctionDescription: 'User Control', IndividualPermission: 1, RolePermission: 3 },
-        { FunctionDescription: 'Affiliate', IndividualPermission: 3, RolePermission: 0 },
-        { FunctionDescription: 'Payment', IndividualPermission: 3, RolePermission: 0 },
-        { FunctionDescription: 'Media', IndividualPermission: 0, RolePermission: 0 },
-        { FunctionDescription: 'Affiliate Exchange', IndividualPermission: 1, RolePermission: 1 },
-        { FunctionDescription: 'Hot News', IndividualPermission: 0, RolePermission: 0 },
-        { FunctionDescription: 'Revenue Share Group', IndividualPermission: 0, RolePermission: 1 },
-        { FunctionDescription: 'Affiliate Report', IndividualPermission: 3, RolePermission: 3 }
-    ]
+    return response && response.status === 200 ? response.data : null;
 }
 
-export const deleteUsers = (userIdList) => async () => {
+export const deleteUsers = (userIds) => async () => {
     const url = 'Portal/AdminRole/DeleteUsers';
-    const response = await post(url, { userIdList });
+    const response = await post(url, { userIds });
 
     return response && response.status === 200 ? response.data : null;
 }

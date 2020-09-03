@@ -3,11 +3,8 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.ViewModels.AdminRole;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -17,12 +14,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
     public class AdminRoleController : BaseController
     {
         private readonly IAdminUsersService _adminUsersService;
+        private readonly IAdminInfoService _adminInfoService;
 
         public AdminRoleController(
             ISessionService sessionService,
-            IAdminUsersService adminUsersService) : base(sessionService)
+            IAdminUsersService adminUsersService,
+            IAdminInfoService adminInfoService) : base(sessionService)
         {
             _adminUsersService = adminUsersService;
+            _adminInfoService = adminInfoService;
         }
 
         [HttpGet]
@@ -38,6 +38,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             return new JsonNetResult
             {
                 Data = _adminUsersService.GetUserList(userName)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetUserPermissionList(int userId)
+        {
+            return new JsonNetResult
+            {
+                Data = _adminInfoService.GetUserInfo(userId).UserPermissionList
             };
         }
 

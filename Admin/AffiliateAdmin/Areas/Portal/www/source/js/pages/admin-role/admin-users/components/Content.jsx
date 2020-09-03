@@ -44,9 +44,9 @@ export class Content extends PureComponent {
         }
     }
 
-    _handleDeleteUser = (selectedUserId) => {
+    _handleDeleteUser = (selectedUserId, selectedUserName) => {
         this.props.setShouldResetScrollPosition(false);
-        this.setState({ message: 'Are you sure you want to delete this user?', isConfirmPopup: true, selectedUserId });
+        this.setState({ message: `Are you sure? <br /> By confirm this action, user <strong class="text-danger">${selectedUserName}</strong> will be deleted?`, isConfirmPopup: true, selectedUserId });
     }
 
     _deleteUser = async (selectedUserId) => {
@@ -162,7 +162,7 @@ export class Content extends PureComponent {
                     <Button color="link p-0" title="View Permission" onClick={() => this._handleShowPermission(dataItem.UserId, dataItem.UserName)}>
                         <span className="oi oi-eye pr-3"></span>
                     </Button>
-                    <Button color="link p-0" title="Delete User" onClick={() => this._handleDeleteUser(dataItem.UserId)}>
+                    <Button color="link p-0" title="Delete User" onClick={() => this._handleDeleteUser(dataItem.UserId, userName)}>
                         <span className="oi oi-trash text-danger"></span>
                     </Button>
                 </Cell>

@@ -29,9 +29,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             }
         }
 
-        public AdminInfo GetUserInfo(int userId)
+        public AdminInforResultEntity GetUserInfo(int userId)
         {
             const string SpKey = "Aff_Admin_AdminUser_Detail_Sel";
+
+            var result = new AdminInforResultEntity();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -39,22 +41,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
                 using (var reader = objectDb.ExecuteReader())
                 {
-                    if (reader.Read())
-                    {
-                        return new AdminInfo
-                        {
-                            UserId = reader.ToInt("CustId"),
-                            UserName = reader.ToString("UserName").Substring(aaLenght),
-                            FirstName = reader.ToString("FirstName"),
-                            LastName = reader.ToString("LastName"),
-                            RoleId = reader.ToInt("RoleId"),
-                            IsActive = !reader.ToBool("Closed")
-                        };
-                    }
+                    result.AdminInfo = GetAdminInfo(reader);
+                    result.MarketList = GetMarketList(reader);
+                    result.UserPermissionList = GetUserPermissionList(reader);
                 }
             }
 
-            return new AdminInfo();
+            return result;
         }
 
         public ResultInfo UpdateUser(AdminInfoParam param)
@@ -105,6 +98,66 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             //objectDb.AddInParameter("Ip", DbType.String, param.Ip);
 
             AssignResultOutputParam(objectDb);
+        }
+
+
+        private static AdminInfo GetAdminInfo(IDataReader reader)
+        {
+            if (reader.Read())
+            {
+                return new AdminInfo
+                {
+                    UserId = reader.ToInt("CustId"),
+                    UserName = reader.ToString("UserName").Substring(aaLenght),
+                    FirstName = reader.ToString("FirstName"),
+                    LastName = reader.ToString("LastName"),
+                    RoleId = reader.ToInt("RoleId"),
+                    IsActive = !reader.ToBool("Closed")
+                };
+            }
+
+            return new AdminInfo();
+        }
+
+        private static IEnumerable<MarketInfo> GetMarketList(IDataReader reader)
+        {
+            var marketList = new List<MarketInfo>();
+
+            if (reader.NextResult())
+            {
+                while (reader.Read())
+                {
+                    marketList.Add(new MarketInfo
+                    {
+                        MarketId = reader.ToString("MarketId"),
+                        MarketName = reader.ToString("DisplayName"),
+                        HasPermission = reader.ToBool("Status")
+                    });
+                }
+            }
+
+            return marketList;
+        }
+
+        private static IEnumerable<UserPermissionInfo> GetUserPermissionList(IDataReader reader)
+        {
+            var userPermissionList = new List<UserPermissionInfo>();
+
+            if (reader.NextResult())
+            {
+                while (reader.Read())
+                {
+                    userPermissionList.Add(new UserPermissionInfo
+                    {
+                        FuncId = reader.ToInt("FuncId"),
+                        FuncName = reader.ToString("FuncName"),
+                        UserPolicy = reader.ToInt("UserPolicy"),
+                        RolePolicy = reader.ToInt("RolePolicy")
+                    });
+                }
+            }
+
+            return userPermissionList;
         }
     }
 }

@@ -13,13 +13,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
     {
         public ResultInfo DeleteUsers(DeleteAdminUsersParam param)
         {
-            const string SpKey = "";
+            const string SpKey = "Aff_Admin_AdminUser_Del";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("UserIds", DbType.String, param.UserIds);
+                objectDb.AddInParameter("CustIds", DbType.String, param.UserIds);
                 objectDb.AddInParameter("UserId", DbType.Int32, param.ByUserId);
-                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+                //objectDb.AddInParameter("Ip", DbType.String, param.Ip);
 
                 AssignResultOutputParam(objectDb);
 

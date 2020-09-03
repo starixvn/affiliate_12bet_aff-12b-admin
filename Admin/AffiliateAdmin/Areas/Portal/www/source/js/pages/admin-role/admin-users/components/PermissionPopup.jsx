@@ -6,7 +6,7 @@ import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import { globalResource } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { getRoleByUser, setUserInfo } from '../actions/index';
+import { getUserPermissionList, setUserInfo } from '../actions/index';
 
 export class PermissionPopup extends PureComponent {
     constructor(props) {
@@ -19,12 +19,12 @@ export class PermissionPopup extends PureComponent {
     componentDidUpdate(prevProps) {
         const { userInfo } = this.props;
         if (userInfo && (userInfo !== prevProps.userInfo)) {
-            this._handleGetRoleByUser(userInfo.UserId);
+            this._handleGetUserPermissionList(userInfo.UserId);
         }
     }
 
-    _handleGetRoleByUser = async (userId) => {
-        var data = await this.props.getRoleByUser({ userId });
+    _handleGetUserPermissionList = async (userId) => {
+        var data = await this.props.getUserPermissionList(userId);
 
         this.setState({ data });
     }
@@ -72,29 +72,29 @@ export class PermissionPopup extends PureComponent {
     }
 
     _buildDataRow(dataItem) {
-        const funcDescription = htmlDecode(dataItem.FunctionDescription);
+        const funcName = htmlDecode(dataItem.FuncName);
 
         return (
-            <tr key={`dataRow-${funcDescription}`}>
-                <td className="text-center" title={funcDescription} colSpan="2">{funcDescription}</td>
+            <tr key={`dataRow-${funcName}`}>
+                <td className="text-center" title={funcName} colSpan="2">{funcName}</td>
                 <td className="text-center">
                     {
-                        !dataItem.IndividualPermission ? null : <span className="oi oi-check text-primary"></span>
+                        dataItem.IsUserRead && <span className="oi oi-check text-primary"></span>
                     }
                 </td>
                 <td className="text-center">
                     {
-                        dataItem.IndividualPermission === 3 ? <span className="oi oi-check text-primary"></span> : null
+                        dataItem.IsUserHost && <span className="oi oi-check text-primary"></span>
                     }
                 </td>
                 <td className="text-center">
                     {
-                        !dataItem.RolePermission ? null : <span className="oi oi-check text-primary"></span>
+                        dataItem.IsRoleRead && <span className="oi oi-check text-primary"></span>
                     }
                 </td>
                 <td className="text-center">
                     {
-                        dataItem.RolePermission === 3 ? <span className="oi oi-check text-primary"></span> : null
+                        dataItem.IsRoleHost && <span className="oi oi-check text-primary"></span>
                     }
                 </td>
             </tr>
@@ -138,7 +138,7 @@ function mapStateToProps({ adminUsers }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getRoleByUser, setUserInfo }, dispatch);
+    return bindActionCreators({ getUserPermissionList, setUserInfo }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PermissionPopup);

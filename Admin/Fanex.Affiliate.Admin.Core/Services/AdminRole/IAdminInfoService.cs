@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 {
     public interface IAdminInfoService
     {
-        AdminInfo GetUserInfo(int userId);
+        AdminInforResultEntity GetUserInfo(int userId);
 
         ResultInfo CreateUser(AdminInfoParam param);
 

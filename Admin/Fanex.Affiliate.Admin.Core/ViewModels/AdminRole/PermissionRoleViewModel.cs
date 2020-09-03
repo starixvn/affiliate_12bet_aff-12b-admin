@@ -12,6 +12,6 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.AdminRole
 
         public IEnumerable<SubMenu> SubMenuList { get; set; }
 
-        public IEnumerable<PermissionRoleInfo> PermissionRoleInfoList { get; set; }
+        public IEnumerable<UserPermissionInfo> PermissionRoleInfoList { get; set; }
     }
 }

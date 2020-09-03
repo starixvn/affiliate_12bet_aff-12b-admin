@@ -236,11 +236,12 @@
     <Compile Include="DTO\Administrator\DepartmentInfo.cs" />
     <Compile Include="DTO\Administrator\PolicyInfo.cs" />
     <Compile Include="DTO\AdminRole\AdminInfo.cs" />
+    <Compile Include="DTO\AdminRole\AdminInforResultEntity.cs" />
     <Compile Include="DTO\AdminRole\AdminUserInfo.cs" />
     <Compile Include="DTO\AdminRole\GeneralFunctionInfo.cs" />
     <Compile Include="DTO\AdminRole\GeneralPermissionRoleInfo.cs" />
     <Compile Include="DTO\AdminRole\MarketInfo.cs" />
-    <Compile Include="DTO\AdminRole\PermissionRoleInfo.cs" />
+    <Compile Include="DTO\AdminRole\UserPermissionInfo.cs" />
     <Compile Include="DTO\AdminRole\RoleInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />

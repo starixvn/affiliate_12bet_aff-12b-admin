@@ -5,6 +5,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 {
     public interface IPermissionRoleService
     {
-        IEnumerable<PermissionRoleInfo> GetPermissionRoleList(int userId, bool isGeneral = true);
+        IEnumerable<UserPermissionInfo> GetPermissionRoleList(int userId, bool isGeneral = true);
     }
 }
