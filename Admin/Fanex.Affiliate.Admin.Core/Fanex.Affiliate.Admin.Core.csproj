@@ -238,8 +238,7 @@
     <Compile Include="DTO\AdminRole\AdminInfo.cs" />
     <Compile Include="DTO\AdminRole\AdminInforResultEntity.cs" />
     <Compile Include="DTO\AdminRole\AdminUserInfo.cs" />
-    <Compile Include="DTO\AdminRole\GeneralFunctionInfo.cs" />
-    <Compile Include="DTO\AdminRole\GeneralPermissionRoleInfo.cs" />
+    <Compile Include="DTO\AdminRole\PermissionInfo.cs" />
     <Compile Include="DTO\AdminRole\MarketInfo.cs" />
     <Compile Include="DTO\AdminRole\UserPermissionInfo.cs" />
     <Compile Include="DTO\AdminRole\RoleInfo.cs" />
@@ -475,9 +474,11 @@
     <Compile Include="Services\AdminRole\AdminInfoService.cs" />
     <Compile Include="Services\AdminRole\AdminRoleCommonService.cs" />
     <Compile Include="Services\AdminRole\AdminUsersService.cs" />
+    <Compile Include="Services\AdminRole\GeneralPermissionRoleService.cs" />
     <Compile Include="Services\AdminRole\IAdminInfoService.cs" />
     <Compile Include="Services\AdminRole\IAdminRoleCommonService.cs" />
     <Compile Include="Services\AdminRole\IAdminUsersService.cs" />
+    <Compile Include="Services\AdminRole\IGeneralPermissionRoleService.cs" />
     <Compile Include="Services\AdminRole\IPermissionRoleService.cs" />
     <Compile Include="Services\AdminRole\PermissionRoleService.cs" />
     <Compile Include="Services\AffiliateService.cs" />

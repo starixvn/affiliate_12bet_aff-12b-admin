@@ -1,6 +1,6 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_GRID_DATA, SET_IS_GENERAL } from './types';
+import { SET_GRID_DATA, SET_IS_GENERAL, SET_ROLE_LIST, SET_MARKET_ID_LIST } from './types';
 
 export { toggleLoader };
 
@@ -18,10 +18,24 @@ export const setIsGeneral = (data) => {
     }
 }
 
+export const setRoleList = (data) => {
+    return {
+        type: SET_ROLE_LIST,
+        data
+    }
+}
+
+export const setMarketIdList = (data) => {
+    return {
+        type: SET_MARKET_ID_LIST,
+        data
+    }
+}
+
 export const fetchData = () => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const url = `Portal/PermissionRole/GetLanguageList`;
+    const url = `Portal/GeneralPermissionRole/GetPermissionInfoList`;
     const response = await post(url);
 
     const data = response && response.status === 200 ? response.data : null;
@@ -30,18 +44,36 @@ export const fetchData = () => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
-export const getMarketList = () => async () => {
+export const getRoleList = () => async (dispatch) => {
+    const url = `Portal/GeneralPermissionRole/GetRoleList`;
+    const response = await post(url);
 
-     const url = `Portal/GeneralPermissionRole/GetMarketList`;
-     const response = await post(url);
+    const data = response && response.status === 200 ? response.data : null;
 
-     return response && response.status === 200 ? response.data : null;
+    dispatch(setRoleList(data));
 }
 
-export const roleList = [
-    { RoleId: 1, RoleName: 'Management' },
-    { RoleId: 2, RoleName: 'Exe. Settlement' },
-]
+export const getMarketList = () => async (dispatch) => {
+    const url = `Portal/GeneralPermissionRole/GetMarketList`;
+    const response = await post(url);
+    
+    const data = response && response.status === 200 ? response.data : null;
+    const makertIdList = data ? _getMarketIdList(data) : {};
+
+    dispatch(setRoleList(makertIdList));
+
+    return data;
+}
+
+const _getMarketIdList = (marketList) => {
+    const makertIds = {};
+    for (let i = 0; i < marketList.length; i++) {
+        const makertItem = marketList[i];
+        makertIds[makertItem.MakertId] = makertItem.MakertName;
+    }
+
+    return makertIds
+}
 
 export const fakeFunctionList = [
     { RoleId: 1, RoleName: 'Management', ParentId: 1, FuncId: 1, FuncName: 'Home', Policy: 3, IsRead: true, IsHost: true },
@@ -57,7 +89,7 @@ export const fakeFunctionList = [
     { RoleId: 1, RoleName: 'Management', ParentId: 10, FuncId: 11, FuncName: 'Admin List', Policy: 3, IsRead: true, IsHost: true },
     { RoleId: 1, RoleName: 'Management', ParentId: 10, FuncId: 12, FuncName: 'General Permission Role', Policy: 3, IsRead: true, IsHost: true },
     { RoleId: 1, RoleName: 'Management', ParentId: 12, FuncId: 13, FuncName: 'General', Policy: 3, IsRead: true, IsHost: true },
-    { RoleId: 1, RoleName: 'Management', ParentId: 12, FuncId: 14, FuncName: 'Language', Policy: 3, IsRead: true, IsHost: true },
+    { RoleId: 1, RoleName: 'Management', ParentId: 12, FuncId: 14, FuncName: 'makert', Policy: 3, IsRead: true, IsHost: true },
     { RoleId: 1, RoleName: 'Management', ParentId: 10, FuncId: 15, FuncName: 'Admin Info', Policy: 3, IsRead: true, IsHost: true },
 
     { RoleId: 2, RoleName: 'Exe. Settlement', ParentId: 1, FuncId: 1, FuncName: 'Home', Policy: 3, IsRead: true, IsHost: true },
@@ -73,6 +105,6 @@ export const fakeFunctionList = [
     { RoleId: 2, RoleName: 'Exe. Settlement', ParentId: 10, FuncId: 11, FuncName: 'Admin List', Policy: 3, IsRead: true, IsHost: true },
     { RoleId: 2, RoleName: 'Exe. Settlement', ParentId: 10, FuncId: 12, FuncName: 'General Permission Role', Policy: 3, IsRead: true, IsHost: true },
     { RoleId: 2, RoleName: 'Exe. Settlement', ParentId: 12, FuncId: 13, FuncName: 'General', Policy: 3, IsRead: true, IsHost: true },
-    { RoleId: 2, RoleName: 'Exe. Settlement', ParentId: 12, FuncId: 14, FuncName: 'Language', Policy: 3, IsRead: true, IsHost: true },
+    { RoleId: 2, RoleName: 'Exe. Settlement', ParentId: 12, FuncId: 14, FuncName: 'makert', Policy: 3, IsRead: true, IsHost: true },
     { RoleId: 2, RoleName: 'Exe. Settlement', ParentId: 10, FuncId: 15, FuncName: 'Admin Info', Policy: 3, IsRead: true, IsHost: true },
 ]

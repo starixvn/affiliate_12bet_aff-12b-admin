@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             {
                 objectDb.AddInParameter("CustIds", DbType.String, param.UserIds);
                 objectDb.AddInParameter("UserId", DbType.Int32, param.ByUserId);
-                //objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
 
                 AssignResultOutputParam(objectDb);
 

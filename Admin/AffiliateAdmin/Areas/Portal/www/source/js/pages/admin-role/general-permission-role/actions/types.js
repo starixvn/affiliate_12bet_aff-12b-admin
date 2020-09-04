@@ -1,2 +1,4 @@
 ﻿export const SET_GRID_DATA = 'SET_GRID_DATA';
 export const SET_IS_GENERAL = 'SET_IS_GENERAL';
+export const SET_ROLE_LIST = 'SET_ROLE_LIST';
+export const SET_MARKET_ID_LIST = 'SET_MARKET_ID_LIST';

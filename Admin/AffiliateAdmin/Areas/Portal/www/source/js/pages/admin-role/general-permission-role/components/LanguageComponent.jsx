@@ -7,23 +7,23 @@ import { headerText, globalResource } from '../libs/constants';
 import { getMarketList, toggleLoader, setGridData } from '../actions';
 import { ControlButtons } from '../../common/components/ControlButtons';
 
-const languageList = [
-    { MarketId: "en-GB", MarketName: 'English' },
-    { MarketId: "vi-VN", MarketName: 'English (Europe)' }
-];
+// const languageList = [
+//     { MarketId: "en-GB", MarketName: 'English' },
+//     { MarketId: "vi-VN", MarketName: 'English (Europe)' }
+// ];
 
 const sortLanguages = {
     "en-GB": "en-GB",
     "vi-VN": "vi-VN"
 };
 
-const roleList = [
-    { RoleId: 1, RoleName: 'Management', "en-GB": true },
-    { RoleId: 2, RoleName: 'Exe. Settlement', "en-GB": true },
-    { RoleId: 3, RoleName: 'Exe. Risk Team', "en-GB": true },
-    { RoleId: 4, RoleName: 'Exe. Marketing', "en-GB": true },
-    { RoleId: 5, RoleName: 'Asst. Marketing', "en-GB": true }
-]
+// const roleList = [
+//     { RoleId: 1, RoleName: 'Management', "en-GB": true },
+//     { RoleId: 2, RoleName: 'Exe. Settlement', "en-GB": true },
+//     { RoleId: 3, RoleName: 'Exe. Risk Team', "en-GB": true },
+//     { RoleId: 4, RoleName: 'Exe. Marketing', "en-GB": true },
+//     { RoleId: 5, RoleName: 'Asst. Marketing', "en-GB": true }
+// ]
 
 export class LanguageComponent extends PureComponent {
     constructor(props) {
@@ -36,16 +36,16 @@ export class LanguageComponent extends PureComponent {
     }
 
     componentDidMount() {
-
+        this._handleGetMarketList();
     }
 
-    _handleGetMarketList = () => {
+    _handleGetMarketList = async () => {
         this.props.toggleLoader(true);
 
-        const marketList = this.props.getMarketList();
-        const newMarketList = this._convertMarketList(marketList, roleList);
+        const marketList = await this.props.getMarketList();
+        const newMarketList = this._convertMarketList(marketList, this.props.roleList);
 
-        this.setGridData(newMarketList);
+        this.props.setGridData(newMarketList);
         this.setState({ gridData: newMarketList });
 
         this.props.toggleLoader(false);
@@ -53,7 +53,7 @@ export class LanguageComponent extends PureComponent {
 
     _convertMarketList = (marketList, roleList) => {
 
-        return roleList.map(item => {
+        return roleList ? roleList.map(item => {
             const marketOfRoleList = marketList.filter(m => m.RoleId === item.RoleId);
             const newMarketItem = { ...item };
 
@@ -66,7 +66,7 @@ export class LanguageComponent extends PureComponent {
             }
 
             return newMarketItem;
-        })
+        }) : [];
     }
 
     _handleChange = (roleId, marketId, isChecked) => {
@@ -82,7 +82,7 @@ export class LanguageComponent extends PureComponent {
         return (
             <Row key="theard">
                 {
-                    this._renderColumnHeader(languageList)
+                    this._renderColumnHeader(this.props.gridData)
                 }
             </Row>
         );
@@ -114,7 +114,7 @@ export class LanguageComponent extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan={languageList.length}>{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="1">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -155,10 +155,10 @@ export class LanguageComponent extends PureComponent {
     }
 
     render() {
-        const { gridData } = this.props;
+        const { roleList } = this.props;
         const { isEdit } = this.state;
 
-        return gridData && (
+        return roleList && (
             <div className="data-content">
                 <div className="my-2">
                     <ControlButtons
@@ -185,8 +185,8 @@ export class LanguageComponent extends PureComponent {
 
 
 function mapStateToProps({ generalPermissionRole }) {
-    const { gridData } = generalPermissionRole;
-    return Object.assign({}, { gridData });
+    const { gridData, roleList, marketIdList } = generalPermissionRole;
+    return Object.assign({}, { gridData, roleList, marketIdList });
 }
 
 function mapDispatchToProps(dispatch) {

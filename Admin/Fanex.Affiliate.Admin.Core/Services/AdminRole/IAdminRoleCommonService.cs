@@ -6,6 +6,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 {
     public interface IAdminRoleCommonService
     {
-        IEnumerable<MarketInfo> GetMarketList(int? userId = null);
+        IEnumerable<RoleInfo> GetRoleList();
+
+        IEnumerable<MarketInfo> GetMarketList(int userId);
     }
 }

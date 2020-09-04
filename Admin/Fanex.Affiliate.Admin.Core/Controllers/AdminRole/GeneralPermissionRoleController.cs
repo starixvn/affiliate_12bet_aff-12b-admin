@@ -1,14 +1,8 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
@@ -16,33 +10,35 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
     [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class GeneralPermissionRoleController : BaseController
     {
-        private readonly ILanguageService _languageService;
         private readonly IAdminRoleCommonService _adminRoleCommonService;
+        private readonly IGeneralPermissionRoleService _generalPermissionRoleService;
+
         public GeneralPermissionRoleController(
             ISessionService sessionService,
-            ILanguageService languageService,
-            IAdminRoleCommonService adminRoleCommonService) : base(sessionService)
+            IAdminRoleCommonService adminRoleCommonService,
+            IGeneralPermissionRoleService generalPermissionRoleService) : base(sessionService)
         {
-            _languageService = languageService;
             _adminRoleCommonService = adminRoleCommonService;
+            _generalPermissionRoleService = generalPermissionRoleService;
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetFunctionListOfAllRoles()
+        public ActionResult GetPermissionInfoList()
         {
             return new JsonNetResult
             {
+                Data = _generalPermissionRoleService.GetPermissionInfoList()
             };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetLanguageList()
+        public ActionResult GetRoleList()
         {
             return new JsonNetResult
             {
-                Data = _languageService.GetLanguageList()
+                Data = _adminRoleCommonService.GetRoleList()
             };
         }
 
@@ -52,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         {
             return new JsonNetResult
             {
-                Data = _adminRoleCommonService.GetMarketList()
+                Data = _adminRoleCommonService.GetMarketList(SessionService.UserId)
             };
         }
     }

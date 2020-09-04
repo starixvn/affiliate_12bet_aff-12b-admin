@@ -24,7 +24,7 @@ export const initialState = {
     lastName: '',
     newPassword: '',
     confirmPassword: '',
-    role: 0,
+    role: 1,
     isActive: true,
     isShowMessage: false,
     isSuccess: true,

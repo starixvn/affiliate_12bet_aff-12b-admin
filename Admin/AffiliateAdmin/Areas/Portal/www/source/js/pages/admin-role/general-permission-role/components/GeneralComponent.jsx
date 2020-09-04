@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { headerText, globalResource, management } from '../libs/constants';
-import { fetchData, roleList, fakeFunctionList } from '../actions';
+import { fetchData, getRoleList, fakeFunctionList } from '../actions';
 
 export class GeneralComponent extends PureComponent {
     constructor(props) {
@@ -13,22 +13,13 @@ export class GeneralComponent extends PureComponent {
 
         this.state = {
             isEdit: false,
-            expandedRole: 0
+            expandedRoleId: 0
         }
     }
 
     componentDidMount() {
-        const { isGeneral, userId } = this.props;
-
-        //this.props.fetchData(isGeneral, userId);
-    }
-
-    componentDidUpdate(prevProps) {
-        const { isGeneral, userId } = this.props;
-
-        if (isGeneral !== prevProps.isGeneral) {
-            this.props.fetchData(isGeneral, userId);
-        }
+        this.props.getRoleList();
+        this.props.fetchData();
     }
 
     _renderHeader() {
@@ -45,11 +36,12 @@ export class GeneralComponent extends PureComponent {
         const dataRows = [];
 
         if (dataList && dataList.length) {
-            const { isEdit, expandedRole } = this.state;
+            const { gridData } = this.props;
+            const { isEdit, expandedRoleId } = this.state;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRowView(dataItem, expandedRole, isEdit));
+                dataRows.push(this._buildDataRowView(dataItem, fakeFunctionList, expandedRoleId, isEdit));
             }
         }
         else {
@@ -61,16 +53,16 @@ export class GeneralComponent extends PureComponent {
         return dataRows;
     }
 
-    _buildDataRowView(dataItem, expandedRole, isEdit) {
-        const children = fakeFunctionList.filter(f => f.RoleId === dataItem.RoleId);
-        const isExpand = expandedRole === dataItem.RoleId;
+    _buildDataRowView(dataItem, gridData, expandedRoleId, isEdit) {
+        const children = gridData && gridData.filter(f => f.RoleId === dataItem.RoleId);
+        const isExpand = expandedRoleId === dataItem.RoleId;
 
         return (
             <Fragment>
                 <Row key={`dataRow-${dataItem.RoleId}`}>
                     <Cell colSpan="3">
                         <div className="d-flex">
-                            <Button className="py-0 th-wrapper" color="link" onClick={() => this.setState({ expandedRole: isExpand ? 0 : dataItem.RoleId })}>
+                            <Button className="py-0 th-wrapper" color="link" onClick={() => this.setState({ expandedRoleId: isExpand ? 0 : dataItem.RoleId, isEdit: false })}>
                                 <div className="icon-container">
                                     <span className={`caret ${isExpand ? 'expand current' : 'collapsed'}`}></span>
                                 </div>
@@ -78,13 +70,13 @@ export class GeneralComponent extends PureComponent {
                             </Button>
                             {
                                 dataItem.RoleId !== management && (
-                                    isEdit ? (
+                                    isEdit && isExpand ? (
                                         <Fragment>
                                             <a href="javascript:;" onClick={() => this.setState({ isEdit: false })}>< span className="oi oi-x text-danger"></span></a>
                                             <a href="javascript:;" onClick={() => this.setState({ isEdit: false })}>< span className="oi oi-check text-success ml-2"></span></a>
                                         </Fragment>
                                     ) : (
-                                            <a href="javascript:;" onClick={() => this.setState({ expandedRole: dataItem.RoleId, isEdit: true })}>< span className="oi oi-pencil"></span></a>
+                                            children && children.length ? <a href="javascript:;" onClick={() => this.setState({ expandedRoleId: dataItem.RoleId, isEdit: true })}>< span className="oi oi-pencil"></span></a> : null
                                         )
                                 )
                             }
@@ -92,26 +84,28 @@ export class GeneralComponent extends PureComponent {
                     </Cell>
                 </Row>
                 {
-                    children.length && isExpand && this._renderChildrenDataSection(children, isEdit)
+                    isExpand && this._renderChildrenDataSection(children, isEdit, isExpand)
                 }
             </Fragment >
         )
     }
 
-    _renderChildrenDataSection(dataList, isEdit) {
+    _renderChildrenDataSection(dataList, isEdit, isExpand) {
         const dataRows = [];
-        const parentFunction = dataList.filter(s => s.FuncId === s.ParentId);
-        const subFunction = dataList.filter(s => s.FuncId !== s.ParentId);
+        if (dataList && dataList.length) {
+            const parentFunction = dataList.filter(s => s.FuncId === s.ParentId);
+            const subFunction = dataList.filter(s => s.FuncId !== s.ParentId);
 
-        for (let i = 0; i < parentFunction.length; i++) {
-            const dataItem = parentFunction[i];
-            dataRows.push(this._buildDataRowChildren(dataItem, subFunction, isEdit));
+            for (let i = 0; i < parentFunction.length; i++) {
+                const dataItem = parentFunction[i];
+                dataRows.push(this._buildDataRowChildren(dataItem, subFunction, isEdit, isExpand));
+            }
         }
 
         return dataRows;
     }
 
-    _buildDataRowChildren(dataItem, dataList, isEdit) {
+    _buildDataRowChildren(dataItem, dataList, isEdit, isExpand) {
 
         return (
             <Fragment>
@@ -119,37 +113,40 @@ export class GeneralComponent extends PureComponent {
                     <Cell className="pl-2" title={dataItem.FuncName}>{dataItem.FuncName}</Cell>
                     <Cell className="text-center">
                         {
-                            isEdit ? <input type="checkbox" checked={dataItem.IsRead} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
+                            isEdit && isExpand ? <input type="checkbox" checked={dataItem.IsRead} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
                         }
                     </Cell>
 
                     <Cell className="text-center">
                         {
-                            isEdit ? <input type="checkbox" checked={dataItem.IsHost} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
+                            isEdit && isExpand ? <input type="checkbox" checked={dataItem.IsHost} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
                         }
                     </Cell>
                 </Row>
                 {
-                    dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, isEdit)
+                    this._renderSubChildrenDataSection(dataItem, dataList, isEdit, isExpand)
                 }
             </Fragment>
         )
     }
 
-    _renderSubChildrenDataSection(dataItem, dataList, isEdit, isRecursive) {
+    _renderSubChildrenDataSection(dataItem, dataList, isEdit, isExpand, isRecursive) {
         const dataRows = [];
-        const parentFunction = dataList.filter(s => s.ParentId === dataItem.FuncId);
-        const subFunction = dataList.filter(s => s.ParentId !== dataItem.FuncId);
 
-        for (let i = 0; i < parentFunction.length; i++) {
-            const dataItem = parentFunction[i];
-            dataRows.push(this._buildDataRowSubChildren(dataItem, subFunction, isEdit, isRecursive));
+        if (dataList && dataList.length) {
+            const parentFunction = dataList.filter(s => s.ParentId === dataItem.FuncId);
+            const subFunction = dataList.filter(s => s.ParentId !== dataItem.FuncId);
+
+            for (let i = 0; i < parentFunction.length; i++) {
+                const dataItem = parentFunction[i];
+                dataRows.push(this._buildDataRowSubChildren(dataItem, subFunction, isEdit, isExpand, isRecursive));
+            }
         }
 
         return dataRows;
     }
 
-    _buildDataRowSubChildren(dataItem, dataList, isEdit, isRecursive) {
+    _buildDataRowSubChildren(dataItem, dataList, isEdit, isExpand, isRecursive) {
 
         return (
             <Fragment>
@@ -157,49 +154,34 @@ export class GeneralComponent extends PureComponent {
                     <Cell className={isRecursive ? "pl-5" : "pl-4"} title={dataItem.FuncName}>{dataItem.FuncName}</Cell>
                     <Cell className="text-center">
                         {
-                            isEdit ? <input type="checkbox" checked={dataItem.IsRead} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
+                            isEdit && isExpand ? <input type="checkbox" checked={dataItem.IsRead} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
                         }
                     </Cell>
 
                     <Cell className="text-center">
                         {
-                            isEdit ? <input type="checkbox" checked={dataItem.IsHost} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
+                            isEdit && isExpand ? <input type="checkbox" checked={dataItem.IsHost} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
                         }
                     </Cell>
                 </Row>
                 {
-                    dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, isEdit, true)
+                    dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, isEdit, isExpand, true)
                 }
             </Fragment>
         )
     }
 
     render() {
-        //const { gridData } = this.props;
-        const gridData = roleList;
-        const { isEdit } = this.state;
+        const { roleList } = this.props;
 
-        return gridData && (
+        return roleList && (
             <div className="data-content general-permission-role">
-                <div className="my-2">
-                    {
-                        isEdit ? (
-                            <Fragment>
-                                <Button outline type="button" color="danger" onClick={() => this.setState({ isEdit: false })}>Cancel<span className="oi oi-x ml-2"></span></Button>
-                                <Button outline type="button" className="ml-2" onClick={this._handleSubmit}>Save<span className="oi oi-task ml-2"></span></Button>
-                            </Fragment>
-                        ) : (
-                                <Button outline type="button" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
-                            )
-                    }
-                </div>
-                <div className="table-responsive table-striped my-2">
+                <div className="table-responsive table-striped">
                     <Table
                         maxWidth={1000}
                         bodyHeight={300}
                         header={this._renderHeader()}
-                        body={this._renderDataSection(gridData)}
-                        containerPadding={20}
+                        body={this._renderDataSection(roleList)}
                     />
                 </div>
             </div>
@@ -209,12 +191,12 @@ export class GeneralComponent extends PureComponent {
 
 
 function mapStateToProps({ generalPermissionRole }) {
-    const { gridData } = generalPermissionRole;
-    return Object.assign({}, { gridData });
+    const { gridData, roleList } = generalPermissionRole;
+    return Object.assign({}, { gridData, roleList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData }, dispatch);
+    return bindActionCreators({ fetchData, getRoleList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneralComponent);

@@ -12,7 +12,5 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
         ResultInfo CreateUser(AdminInfoParam param);
 
         ResultInfo UpdateUser(AdminInfoParam param);
-
-        IEnumerable<RoleInfo> GetRoleList();
     }
 }

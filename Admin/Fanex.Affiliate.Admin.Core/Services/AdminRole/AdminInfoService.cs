@@ -65,29 +65,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             }
         }
 
-        public IEnumerable<RoleInfo> GetRoleList()
-        {
-            const string SpKey = "Aff_Admin_AdminUser_Role_Sel";
-            var result = new List<RoleInfo>();
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while(reader.Read())
-                    {
-                        result.Add(new RoleInfo
-                        {
-                            RoleId = reader.ToInt("RoleId"),
-                            RoleName = reader.ToString("RoleName")
-                        });
-                    }
-                }
-            }
-
-            return result;
-        }
-
         private static void AssignParam(AdminInfoParam param, IObjectDb objectDb)
         {
             objectDb.AddInParameter("UserName", DbType.String, "AA" + param.UserName);
@@ -95,7 +72,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             objectDb.AddInParameter("RoleId", DbType.Int32, param.Role);
             objectDb.AddInParameter("Closed", DbType.Boolean, !param.IsActive);
             objectDb.AddInParameter(Field.UserId, DbType.Int32, param.ByUserId);
-            //objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+            objectDb.AddInParameter("Ip", DbType.String, param.Ip);
 
             AssignResultOutputParam(objectDb);
         }
