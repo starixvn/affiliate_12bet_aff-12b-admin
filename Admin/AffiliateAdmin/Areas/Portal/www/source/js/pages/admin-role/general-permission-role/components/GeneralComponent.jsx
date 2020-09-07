@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { headerText, globalResource, management } from '../libs/constants';
-import { fetchData, getRoleList, fakeFunctionList } from '../actions';
+import { getPermissionInfoList, fakeFunctionList } from '../actions';
 
 export class GeneralComponent extends PureComponent {
     constructor(props) {
@@ -18,8 +18,7 @@ export class GeneralComponent extends PureComponent {
     }
 
     componentDidMount() {
-        this.props.getRoleList();
-        this.props.fetchData();
+        this.props.getPermissionInfoList();
     }
 
     _renderHeader() {
@@ -196,7 +195,7 @@ function mapStateToProps({ generalPermissionRole }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, getRoleList }, dispatch);
+    return bindActionCreators({ getPermissionInfoList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneralComponent);

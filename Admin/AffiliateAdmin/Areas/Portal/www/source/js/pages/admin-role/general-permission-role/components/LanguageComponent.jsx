@@ -1,29 +1,12 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { headerText, globalResource } from '../libs/constants';
-import { getMarketList, toggleLoader, setGridData } from '../actions';
+import { headerText, globalResource, management } from '../libs/constants';
+import { getMarketByRoleList, getMarketByUserList, toggleLoader, setGridData, updateMarketInfoList } from '../actions';
 import { ControlButtons } from '../../common/components/ControlButtons';
-
-// const languageList = [
-//     { MarketId: "en-GB", MarketName: 'English' },
-//     { MarketId: "vi-VN", MarketName: 'English (Europe)' }
-// ];
-
-const sortLanguages = {
-    "en-GB": "en-GB",
-    "vi-VN": "vi-VN"
-};
-
-// const roleList = [
-//     { RoleId: 1, RoleName: 'Management', "en-GB": true },
-//     { RoleId: 2, RoleName: 'Exe. Settlement', "en-GB": true },
-//     { RoleId: 3, RoleName: 'Exe. Risk Team', "en-GB": true },
-//     { RoleId: 4, RoleName: 'Exe. Marketing', "en-GB": true },
-//     { RoleId: 5, RoleName: 'Asst. Marketing', "en-GB": true }
-// ]
+import { updateObjectInArray } from '../../../../modules/dataHandler';
 
 export class LanguageComponent extends PureComponent {
     constructor(props) {
@@ -36,14 +19,16 @@ export class LanguageComponent extends PureComponent {
     }
 
     componentDidMount() {
+        this.props.getMarketByUserList();
+
         this._handleGetMarketList();
     }
 
     _handleGetMarketList = async () => {
         this.props.toggleLoader(true);
 
-        const marketList = await this.props.getMarketList();
-        const newMarketList = this._convertMarketList(marketList, this.props.roleList);
+        const marketList = await this.props.getMarketByRoleList();
+        const newMarketList = this._convertMarketList(marketList);
 
         this.props.setGridData(newMarketList);
         this.setState({ gridData: newMarketList });
@@ -51,22 +36,24 @@ export class LanguageComponent extends PureComponent {
         this.props.toggleLoader(false);
     }
 
-    _convertMarketList = (marketList, roleList) => {
+    _convertMarketList = (marketList) => {
+        const { marketIdByUserList, roleList } = this.props;
 
-        return roleList ? roleList.map(item => {
+        return marketIdByUserList && roleList.map(item => {
             const marketOfRoleList = marketList.filter(m => m.RoleId === item.RoleId);
-            const newMarketItem = { ...item };
+
+            let newMarketItem = { ...item };
 
             for (let i = 0; i < marketOfRoleList.length; i++) {
                 const marketItem = marketOfRoleList[i];
 
-                if (sortLanguages[marketItem.MarketId]) {
+                if (marketIdByUserList[marketItem.MarketId]) {
                     newMarketItem = Object.assign({}, newMarketItem, { [marketItem.MarketId]: marketItem.HasPermission });
                 }
             }
 
             return newMarketItem;
-        }) : [];
+        }) || [];
     }
 
     _handleChange = (roleId, marketId, isChecked) => {
@@ -78,23 +65,42 @@ export class LanguageComponent extends PureComponent {
         this.setState({ gridData: gridDataUpdate });
     }
 
+    _handleCancel = () => {
+        this.setState({
+            isEdit: false,
+            gridData: this.props.gridData
+        });
+    }
+
+    _handleSubmit = () => {
+        this.setState({ isEdit: false });
+
+        this.save();
+    }
+
+    save = async () => {
+        const result = this.props.updateMarketInfoList(this.state.gridData);
+    }
+
     _renderHeader() {
         return (
             <Row key="theard">
                 {
-                    this._renderColumnHeader(this.props.gridData)
+                    this._renderColumnHeader()
                 }
             </Row>
         );
     }
 
-    _renderColumnHeader(dataList) {
+    _renderColumnHeader() {
         const dataRows = [<Cell header={true} colWidth={250} title={headerText.Role}>{headerText.Role}</Cell>];
 
-        if (dataList && dataList.length) {
+        const { marketByUserList } = this.props;
 
-            for (let i = 0; i < dataList.length; i++) {
-                dataRows.push(<Cell header={true} colWidth={80}>{dataList[i].MarketName}</Cell>);
+        if (marketByUserList && marketByUserList.length) {
+
+            for (let i = 0; i < marketByUserList.length; i++) {
+                dataRows.push(<Cell header={true} colWidth={80}>{marketByUserList[i].MarketName}</Cell>);
             }
         }
 
@@ -106,10 +112,11 @@ export class LanguageComponent extends PureComponent {
 
         if (dataList && dataList.length) {
             const { isEdit } = this.state;
+            const { marketByUserList } = this.props;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, isEdit));
+                dataRows.push(this._buildDataRow(dataItem, marketByUserList, isEdit));
             }
         }
         else {
@@ -121,30 +128,32 @@ export class LanguageComponent extends PureComponent {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, isEdit) {
+    _buildDataRow(dataItem, marketByUserList, isEdit) {
         return (
             <Row key={`dataRow-${dataItem.RoleId}`}>
                 {
-                    this._renderColumnBody(dataItem, isEdit)
+                    this._renderColumnBody(dataItem, marketByUserList, isEdit)
                 }
             </Row>
         )
     }
 
-    _renderColumnBody(dataItem, isEdit) {
+    _renderColumnBody(dataItem, marketByUserList, isEdit) {
         const dataRows = [<Cell title={dataItem.RoleName}>{dataItem.RoleName}</Cell>];
 
-        if (languageList && languageList.length) {
+        if (marketByUserList && marketByUserList.length) {
 
-            for (let i = 0; i < languageList.length; i++) {
-                const item = languageList[i];
+            const isManagement = dataItem.RoleId === management;
+
+            for (let i = 0; i < marketByUserList.length; i++) {
+                const item = marketByUserList[i];
                 const isChecked = dataItem[item.MarketId];
 
                 dataRows.push(
                     <Cell className="text-center">
                         {
-                            isEdit ? <input type="checkbox" checked={isChecked} onChange={() => this._handleChange(dataItem.RoleId, item.MarketId, !isChecked)} />
-                                : (isChecked && <span className="oi oi-check text-primary"></span>)
+                            isEdit ? <input type="checkbox" checked={isChecked} disabled={isManagement} onChange={() => this._handleChange(dataItem.RoleId, item.MarketId, !isChecked)} />
+                                : (dataItem[item.MarketId] && <span className="oi oi-check text-primary"></span>)
                         }
                     </Cell>
                 );
@@ -155,16 +164,15 @@ export class LanguageComponent extends PureComponent {
     }
 
     render() {
-        const { roleList } = this.props;
-        const { isEdit } = this.state;
+        const { isEdit, gridData } = this.state;
 
-        return roleList && (
+        return gridData && (
             <div className="data-content">
                 <div className="my-2">
                     <ControlButtons
                         isEdit={isEdit}
                         handleEdit={() => this.setState({ isEdit: true })}
-                        handleCancel={() => this.setState({ isEdit: false })}
+                        handleCancel={this._handleCancel}
                         handleSave={this._handleSubmit}
                     />
                 </div>
@@ -174,7 +182,7 @@ export class LanguageComponent extends PureComponent {
                         autoWidth={true}
                         bodyHeight={300}
                         header={this._renderHeader()}
-                        body={this._renderDataSection(roleList)}
+                        body={this._renderDataSection(gridData)}
                         containerPadding={52}
                     />
                 </div>
@@ -185,12 +193,13 @@ export class LanguageComponent extends PureComponent {
 
 
 function mapStateToProps({ generalPermissionRole }) {
-    const { gridData, roleList, marketIdList } = generalPermissionRole;
-    return Object.assign({}, { gridData, roleList, marketIdList });
+    const { gridData, roleList, marketIdByUserList, marketByUserList } = generalPermissionRole;
+
+    return Object.assign({}, { gridData, roleList, marketIdByUserList, marketByUserList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getMarketList, toggleLoader, setGridData }, dispatch);
+    return bindActionCreators({ getMarketByRoleList, getMarketByUserList, toggleLoader, setGridData, updateMarketInfoList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LanguageComponent);

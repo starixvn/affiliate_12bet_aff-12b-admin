@@ -1,65 +1,52 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Common.Extensions;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
+using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
+using Fanex.Affiliate.Admin.Core.Repository.AdminRole;
+using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Text;
 
 namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 {
-    public class GeneralPermissionRoleService : BaseRepository, IGeneralPermissionRoleService
+    public class GeneralPermissionRoleService : IGeneralPermissionRoleService
     {
-        public IEnumerable<MarketInfo> GetMarketByRoleList(int roleId)
+        private readonly IGeneralPermissionRoleRepository _generalPermissionRoleRepository;
+        public GeneralPermissionRoleService(
+            IGeneralPermissionRoleRepository generalPermissionRoleRepository)
         {
-            const string SpKey = "Aff_Admin_AdminUser_RoleMarket_Sel";
-            var result = new List<MarketInfo>();
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.AddInParameter("RoleId", DbType.String, roleId);
-
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new MarketInfo
-                        {
-                            RoleId = reader.ToInt("RoleId"),
-                            MarketId = reader.ToString("MarketId"),
-                            MarketName = reader.ToString("DisplayName"),
-                            HasPermission = reader.ToBool("Status")
-                        });
-                    }
-                }
-            }
-
-            return result;
+            _generalPermissionRoleRepository = generalPermissionRoleRepository;
+        }
+        public IEnumerable<MarketInfo> GetMarketByRoleList()
+        {
+            return _generalPermissionRoleRepository.GetMarketByRoleList();
         }
 
         public IEnumerable<PermissionInfo> GetPermissionInfoList()
         {
-            const string SpKey = "Aff_Admin_AdminUser_RolePermission_Sel";
-            var result = new List<PermissionInfo>();
+            return _generalPermissionRoleRepository.GetPermissionInfoList();
+        }
 
-            using (var objectDb = GetObjectDb(SpKey))
+        public ResultInfo UpdatePermissiontInfoList(UpdateMarketInfoParam param)
+        {
+            param.MarketInfoXml = BuildMarketInfoXml(param.MarketInfoList);
+
+            return _generalPermissionRoleRepository.UpdatePermissiontInfoList(param);
+        }
+
+        private static string BuildMarketInfoXml(IEnumerable<MarketInfo> marketInfoList)
+        {
+            var result = new StringBuilder();
+            result.Append("<root>");
+
+            foreach (var item in marketInfoList)
             {
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new PermissionInfo
-                        {
-                            RoleId = reader.ToInt("RoleId"),
-                            RoleName = reader.ToString("RoleName"),
-                            ParentId = reader.ToInt("ParentId"),
-                            FuncId = reader.ToInt("FuncId"),
-                            FuncName = reader.ToString("FuncName"),
-                            Policy = reader.ToInt("Policy")
-                        });
-                    }
-                }
+                var row = $"<r RoleId=\"{item.RoleId}\" MarketId=\"{item.MarketId}\" Status=\"{item.HasPermission}\" />";
+                result.Append(row);
             }
 
-            return result;
+            result.Append("</root>");
+
+            return result.ToString();
         }
     }
 }

@@ -83,13 +83,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
 
         private AdminRoleController CreateAdminRoleController(
         ISessionService sessionService = null,
-        IAdminUsersService adminUsersService = null
+        IAdminUsersService adminUsersService = null,
+        IAdminInfoService adminInfoService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeAdminUsersService = adminUsersService ?? Mock.Of<IAdminUsersService>();
+            var fakeAdminInfoService = adminInfoService ?? Mock.Of<IAdminInfoService>();
 
-            var controller = new AdminRoleController(fakeSessionService, fakeAdminUsersService);
+            var controller = new AdminRoleController(fakeSessionService, fakeAdminUsersService, fakeAdminInfoService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

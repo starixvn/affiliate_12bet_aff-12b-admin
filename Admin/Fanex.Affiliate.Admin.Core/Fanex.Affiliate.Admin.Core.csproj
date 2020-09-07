@@ -286,6 +286,8 @@
     <Compile Include="MetaModels\Administrator\UpdateUserParam.cs" />
     <Compile Include="MetaModels\AdminRole\AdminInfoParam.cs" />
     <Compile Include="MetaModels\AdminRole\DeleteAdminUsersParam.cs" />
+    <Compile Include="MetaModels\AdminRole\MarketInfoParam.cs" />
+    <Compile Include="MetaModels\AdminRole\UpdateMarketInfoParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />
@@ -383,6 +385,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repository\AdminRole\GeneralPermissionRoleRepository.cs" />
+    <Compile Include="Repository\AdminRole\IGeneralPermissionRoleRepository.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />

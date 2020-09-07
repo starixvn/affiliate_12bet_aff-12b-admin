@@ -1,38 +1,54 @@
-﻿import React from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container } from 'reactstrap';
 
-import { setIsGeneral } from '../actions';
 import LanguageComponent from './LanguageComponent';
 import GeneralComponent from './GeneralComponent';
+import { setIsGeneral, getRoleList, setGridData } from '../actions';
 
-export const Content = (props) => {
-    const { isGeneral } = props;
+export class Content extends PureComponent {
+    constructor(props) {
+        super(props);
 
-    return (
-        < Container fluid={true} className="tab-container">
-            <div className="tab-menu-container py-2">
-                <ul class="nav">
-                    <li className="nav-item">
-                        <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? 'active' : ''}`}
-                            onClick={() => props.setIsGeneral(true)}>
-                            <span class="menu-text">General</span>
-                        </a>
-                    </li>
-                    <li className="nav-item pl-3">
-                        <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? '' : 'active'}`}
-                            onClick={() => props.setIsGeneral(false)}>
-                            <span class="menu-text">Language</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            {
-                isGeneral ? <GeneralComponent /> : <LanguageComponent />
-            }
-        </Container>
-    )
+    }
+
+    componentDidMount() {
+        this.props.getRoleList();
+    }
+
+    _handleChangeTab = (isGeneral) => {
+        this.props.setIsGeneral(isGeneral)
+        this.props.setGridData(null);
+    }
+
+    render() {
+        const { isGeneral } = this.props;
+
+        return (
+            < Container fluid={true} className="tab-container">
+                <div className="tab-menu-container py-2">
+                    <ul class="nav">
+                        <li className="nav-item">
+                            <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? 'active' : ''}`}
+                                onClick={() => this._handleChangeTab(true)}>
+                                <span class="menu-text">General</span>
+                            </a>
+                        </li>
+                        <li className="nav-item pl-3">
+                            <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? '' : 'active'}`}
+                                onClick={() => this._handleChangeTab(false)}>
+                                <span class="menu-text">Language</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                {
+                    isGeneral ? <GeneralComponent /> : <LanguageComponent />
+                }
+            </Container>
+        )
+    }
 }
 
 function mapStateToProps({ generalPermissionRole }) {
@@ -41,7 +57,7 @@ function mapStateToProps({ generalPermissionRole }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setIsGeneral }, dispatch);
+    return bindActionCreators({ setIsGeneral, getRoleList, setGridData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

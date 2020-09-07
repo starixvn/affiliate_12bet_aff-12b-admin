@@ -1,4 +1,6 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
+using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
@@ -7,6 +9,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
     {
         IEnumerable<PermissionInfo> GetPermissionInfoList();
 
-        IEnumerable<MarketInfo> GetMarketByRoleList(int roleId);
+        IEnumerable<MarketInfo> GetMarketByRoleList();
+
+        ResultInfo UpdatePermissiontInfoList(UpdateMarketInfoParam param);
     }
 }

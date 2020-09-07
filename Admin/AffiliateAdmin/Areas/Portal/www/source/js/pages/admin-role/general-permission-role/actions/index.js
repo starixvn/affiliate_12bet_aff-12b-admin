@@ -1,6 +1,6 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_GRID_DATA, SET_IS_GENERAL, SET_ROLE_LIST, SET_MARKET_ID_LIST } from './types';
+import { SET_GRID_DATA, SET_IS_GENERAL, SET_ROLE_LIST, SET_MARKET_ID_BY_USER_LIST, SET_MARKET_BY_USER_LIST } from './types';
 
 export { toggleLoader };
 
@@ -25,14 +25,21 @@ export const setRoleList = (data) => {
     }
 }
 
-export const setMarketIdList = (data) => {
+export const setMarketIdByUserList = (data) => {
     return {
-        type: SET_MARKET_ID_LIST,
+        type: SET_MARKET_ID_BY_USER_LIST,
         data
     }
 }
 
-export const fetchData = () => async (dispatch) => {
+export const setMarketByUserList = (data) => {
+    return {
+        type: SET_MARKET_BY_USER_LIST,
+        data
+    }
+}
+
+export const getPermissionInfoList = () => async (dispatch) => {
     dispatch(toggleLoader(true));
 
     const url = `Portal/GeneralPermissionRole/GetPermissionInfoList`;
@@ -53,23 +60,38 @@ export const getRoleList = () => async (dispatch) => {
     dispatch(setRoleList(data));
 }
 
-export const getMarketList = () => async (dispatch) => {
-    const url = `Portal/GeneralPermissionRole/GetMarketList`;
+export const getMarketByRoleList = () => async (dispatch) => {
+    const url = `Portal/GeneralPermissionRole/GetMarketByRoleList`;
+    const response = await post(url);
+    
+    const data = response && response.status === 200 ? response.data : null;
+
+    return data;
+}
+
+export const getMarketByUserList = () => async (dispatch) => {
+    const url = `Portal/GeneralPermissionRole/GetMarketByUserList`;
     const response = await post(url);
     
     const data = response && response.status === 200 ? response.data : null;
     const makertIdList = data ? _getMarketIdList(data) : {};
 
-    dispatch(setRoleList(makertIdList));
+    dispatch(setMarketByUserList(data));
+    dispatch(setMarketIdByUserList(makertIdList));
+}
 
-    return data;
+export const updateMarketInfoList = (marketInfoList) => async () => {
+    const url = 'Portal/AdminInfo/UpdateMarketInfoList';
+    const response = await post(url, { marketInfoList });
+
+    return response && response.status === 200 ? response.data : null;
 }
 
 const _getMarketIdList = (marketList) => {
     const makertIds = {};
     for (let i = 0; i < marketList.length; i++) {
         const makertItem = marketList[i];
-        makertIds[makertItem.MakertId] = makertItem.MakertName;
+        makertIds[makertItem.MarketId] = makertItem.MarketId;
     }
 
     return makertIds
