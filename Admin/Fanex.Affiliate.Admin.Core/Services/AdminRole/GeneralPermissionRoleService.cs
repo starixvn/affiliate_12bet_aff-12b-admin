@@ -2,7 +2,6 @@
 using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using Fanex.Affiliate.Admin.Core.Repository.AdminRole;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -26,14 +25,37 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             return _generalPermissionRoleRepository.GetPermissionInfoList();
         }
 
-        public ResultInfo UpdatePermissiontInfoList(UpdateMarketInfoParam param)
+        public ResultInfo UpdatePermissionInfo(UpdatePermissionInfoParam param)
+        {
+            param.PermissionInfoXml = BuildPermissionInfoXml(param.PermissionInfo);
+
+            return _generalPermissionRoleRepository.UpdatePermissionInfo(param);
+        }
+
+        public ResultInfo UpdateMarketInfoList(UpdateMarketInfoParam param)
         {
             param.MarketInfoXml = BuildMarketInfoXml(param.MarketInfoList);
 
-            return _generalPermissionRoleRepository.UpdatePermissiontInfoList(param);
+            return _generalPermissionRoleRepository.UpdateMarketInfoList(param);
         }
 
-        private static string BuildMarketInfoXml(IEnumerable<MarketInfo> marketInfoList)
+        private static string BuildPermissionInfoXml(IEnumerable<PermissionInfoParam> permissionInfo)
+        {
+            var result = new StringBuilder();
+            result.Append("<root>");
+
+            foreach (var item in permissionInfo)
+            {
+                var row = $"<r FuncId=\"{item.FuncId}\" Policy=\"{item.Policy}\" />";
+                result.Append(row);
+            }
+
+            result.Append("</root>");
+
+            return result.ToString();
+        }
+
+        private static string BuildMarketInfoXml(IEnumerable<MarketInfoParam> marketInfoList)
         {
             var result = new StringBuilder();
             result.Append("<root>");

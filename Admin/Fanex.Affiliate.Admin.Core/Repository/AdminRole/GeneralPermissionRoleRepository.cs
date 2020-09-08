@@ -62,9 +62,29 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
             return result;
         }
 
-        public ResultInfo UpdatePermissiontInfoList(UpdateMarketInfoParam param)
+        public ResultInfo UpdatePermissionInfo(UpdatePermissionInfoParam param)
         {
-            const string SpKey = "Aff_Admin_AdminUser_RolePermission_Sel";
+            const string SpKey = "Aff_Admin_AdminUser_RolePermission_Upd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("RoleId", DbType.Int32, param.RoleId);
+                objectDb.AddInParameter("Permission", DbType.Xml, param.PermissionInfoXml);
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+
+                AssignResultOutputParam(objectDb);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    return GetResultInfo(objectDb);
+                }
+            }
+        }
+
+        public ResultInfo UpdateMarketInfoList(UpdateMarketInfoParam param)
+        {
+            const string SpKey = "Aff_Admin_AdminUser_RoleMarket_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {

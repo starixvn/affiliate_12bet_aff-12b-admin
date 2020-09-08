@@ -7,7 +7,7 @@ import CheckboxSelectAll from '../../../common/components/CheckboxSelectAll';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { resource } from '../libs/constants';
+import { resource, globalResource } from '../libs/constants';
 import { fetchData, setUserInfo, setCheckedUsers, setParam, setPagingOption, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail } from '../actions';
 
 export class Content extends PureComponent {
@@ -63,6 +63,8 @@ export class Content extends PureComponent {
             else {
                 this.setState({ message: result.Message, isConfirmPopup: false });
             }
+        } else {
+            this.setState({ messagePopup: globalResource.AnError, isConfirmPopup: false });
         }
 
         this.props.toggleLoader(false);

@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
+import { updateObjectInArray } from '../../../../modules/dataHandler';
 import { headerText, globalResource, management } from '../libs/constants';
-import { getPermissionInfoList, fakeFunctionList } from '../actions';
+import { getPermissionInfoList, toggleLoader, setGridData, updatePermissionInfo, fakeFunctionList, setMessagePopup } from '../actions';
 
 export class GeneralComponent extends PureComponent {
     constructor(props) {
@@ -13,12 +14,64 @@ export class GeneralComponent extends PureComponent {
 
         this.state = {
             isEdit: false,
-            expandedRoleId: 0
+            expandedRoleId: 0,
+            gridData: null
         }
     }
 
     componentDidMount() {
-        this.props.getPermissionInfoList();
+        this._handleGetPermissionInfoList();
+    }
+
+    _handleGetPermissionInfoList = async () => {
+        this.props.toggleLoader(true);
+
+        const permissionInfoList = await this.props.getPermissionInfoList();
+
+        this.props.setGridData(fakeFunctionList);
+        this.setState({ gridData: fakeFunctionList });
+
+        this.props.toggleLoader(false);
+    }
+
+    _handleChange = (roleId, funcId, isChecked, isHost) => {
+        const { gridData } = this.state;
+        const indexItem = gridData.findIndex(item => item.RoleId === roleId && item.FuncId === funcId);
+        const updateItem = Object.assign({}, gridData[indexItem], isHost ? { IsRead: !isChecked, IsHost: !isChecked } : { IsRead: !isChecked });
+        const gridDataUpdate = updateObjectInArray(gridData, indexItem, updateItem);
+
+        this.setState({ gridData: gridDataUpdate });
+    }
+
+    _handleCancel = () => {
+        this.setState({
+            isEdit: false,
+            gridData: this.props.gridData
+        });
+    }
+
+    _handleSubmit = async () => {
+        this.props.toggleLoader(true);
+
+        const { gridData, expandedRoleId } = this.state;
+        const permissionInfo = gridData.filter(item => item.RoleId === expandedRoleId);
+
+        const result = await this.props.updatePermissionInfo(permissionInfo);
+
+        if (result) {
+            if (result.IsSuccessful) {
+                this.props.setMessagePopup("Update Permission is successfully!");
+
+                this.setState({ isEdit: false });
+            }
+            else {
+                this.props.setMessagePopup(result.Message);
+            }
+        } else {
+            this.props.setMessagePopup(globalResource.AnError);
+        }
+
+        this.props.toggleLoader(false);
     }
 
     _renderHeader() {
@@ -35,12 +88,11 @@ export class GeneralComponent extends PureComponent {
         const dataRows = [];
 
         if (dataList && dataList.length) {
-            const { gridData } = this.props;
-            const { isEdit, expandedRoleId } = this.state;
+            const { isEdit, expandedRoleId, gridData } = this.state;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRowView(dataItem, fakeFunctionList, expandedRoleId, isEdit));
+                dataRows.push(this._buildDataRowView(dataItem, gridData, expandedRoleId, isEdit));
             }
         }
         else {
@@ -71,8 +123,8 @@ export class GeneralComponent extends PureComponent {
                                 dataItem.RoleId !== management && (
                                     isEdit && isExpand ? (
                                         <Fragment>
-                                            <a href="javascript:;" onClick={() => this.setState({ isEdit: false })}>< span className="oi oi-x text-danger"></span></a>
-                                            <a href="javascript:;" onClick={() => this.setState({ isEdit: false })}>< span className="oi oi-check text-success ml-2"></span></a>
+                                            <a href="javascript:;" onClick={this._handleCancel}>< span className="oi oi-x text-danger"></span></a>
+                                            <a href="javascript:;" onClick={this._handleSubmit}>< span className="oi oi-check text-success ml-2"></span></a>
                                         </Fragment>
                                     ) : (
                                             children && children.length ? <a href="javascript:;" onClick={() => this.setState({ expandedRoleId: dataItem.RoleId, isEdit: true })}>< span className="oi oi-pencil"></span></a> : null
@@ -104,23 +156,43 @@ export class GeneralComponent extends PureComponent {
         return dataRows;
     }
 
+    _renderCells(dataItem, isEdit, isExpand) {
+
+        return isEdit && isExpand ? (
+            <Fragment>
+                <Cell className="text-center">
+                    <input type="checkbox" checked={dataItem.IsRead} onChange={() => this._handleChange(dataItem.RoleId, dataItem.FuncId, dataItem.IsRead, false)} />
+                </Cell>
+                <Cell className="text-center">
+                    <input type="checkbox" checked={dataItem.IsHost} onChange={() => this._handleChange(dataItem.RoleId, dataItem.FuncId, dataItem.IsHost, true)} />
+                </Cell>
+            </Fragment>
+        ) : (
+                <Fragment>
+                    <Cell className="text-center">
+                        {
+                            dataItem.IsRead && <span className="oi oi-check text-primary"></span>
+                        }
+                    </Cell>
+
+                    <Cell className="text-center">
+                        {
+                            dataItem.IsHost && <span className="oi oi-check text-primary"></span>
+                        }
+                    </Cell>
+                </Fragment>
+            )
+    }
+
     _buildDataRowChildren(dataItem, dataList, isEdit, isExpand) {
 
         return (
             <Fragment>
                 <Row key={`dataRow-${dataItem.FuncId}`} className="current">
                     <Cell className="pl-2" title={dataItem.FuncName}>{dataItem.FuncName}</Cell>
-                    <Cell className="text-center">
-                        {
-                            isEdit && isExpand ? <input type="checkbox" checked={dataItem.IsRead} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
-                        }
-                    </Cell>
-
-                    <Cell className="text-center">
-                        {
-                            isEdit && isExpand ? <input type="checkbox" checked={dataItem.IsHost} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
-                        }
-                    </Cell>
+                    {
+                        this._renderCells(dataItem, isEdit, isExpand)
+                    }
                 </Row>
                 {
                     this._renderSubChildrenDataSection(dataItem, dataList, isEdit, isExpand)
@@ -151,17 +223,9 @@ export class GeneralComponent extends PureComponent {
             <Fragment>
                 <Row key={`dataRow-${dataItem.FuncId}`} className="current">
                     <Cell className={isRecursive ? "pl-5" : "pl-4"} title={dataItem.FuncName}>{dataItem.FuncName}</Cell>
-                    <Cell className="text-center">
-                        {
-                            isEdit && isExpand ? <input type="checkbox" checked={dataItem.IsRead} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
-                        }
-                    </Cell>
-
-                    <Cell className="text-center">
-                        {
-                            isEdit && isExpand ? <input type="checkbox" checked={dataItem.IsHost} onChange={this._handleChange} /> : <span className="oi oi-check text-primary"></span>
-                        }
-                    </Cell>
+                    {
+                        this._renderCells(dataItem, isEdit, isExpand)
+                    }
                 </Row>
                 {
                     dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, isEdit, isExpand, true)
@@ -195,7 +259,7 @@ function mapStateToProps({ generalPermissionRole }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getPermissionInfoList }, dispatch);
+    return bindActionCreators({ getPermissionInfoList, toggleLoader, setGridData, updatePermissionInfo, setMessagePopup }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneralComponent);

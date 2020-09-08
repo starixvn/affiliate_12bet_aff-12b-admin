@@ -287,7 +287,9 @@
     <Compile Include="MetaModels\AdminRole\AdminInfoParam.cs" />
     <Compile Include="MetaModels\AdminRole\DeleteAdminUsersParam.cs" />
     <Compile Include="MetaModels\AdminRole\MarketInfoParam.cs" />
+    <Compile Include="MetaModels\AdminRole\PermissionInfoParam.cs" />
     <Compile Include="MetaModels\AdminRole\UpdateMarketInfoParam.cs" />
+    <Compile Include="MetaModels\AdminRole\UpdatePermissionInfoParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />

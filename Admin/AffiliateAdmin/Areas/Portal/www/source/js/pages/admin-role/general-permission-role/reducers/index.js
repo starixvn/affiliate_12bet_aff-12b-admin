@@ -1,7 +1,7 @@
 ﻿import { combineReducers } from 'redux';
 
 import createReducer from '../../../../modules/createReducer';
-import { SET_GRID_DATA, SET_IS_GENERAL, SET_ROLE_LIST, SET_MARKET_ID_BY_USER_LIST, SET_MARKET_BY_USER_LIST } from '../actions/types';
+import { SET_GRID_DATA, SET_IS_GENERAL, SET_ROLE_LIST, SET_MARKET_ID_BY_USER_LIST, SET_MARKET_BY_USER_LIST, SET_MESSAGE_POPUP } from '../actions/types';
 
 export const gridData = createReducer(null, {
     [SET_GRID_DATA](prevState, action) {
@@ -33,10 +33,17 @@ export const marketByUserList = createReducer(null, {
     }
 })
 
+export const messagePopup = createReducer(null, {
+    [SET_MESSAGE_POPUP](prevState, action) {
+        return action.data;
+    }
+})
+
 export default combineReducers({
     gridData,
     isGeneral,
     roleList,
     marketIdByUserList,
-    marketByUserList
+    marketByUserList,
+    messagePopup
 });

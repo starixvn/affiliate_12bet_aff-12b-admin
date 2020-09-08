@@ -15,6 +15,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
 
         IEnumerable<MarketInfo> GetMarketByRoleList();
 
-        ResultInfo UpdatePermissiontInfoList(UpdateMarketInfoParam param);
+        ResultInfo UpdatePermissionInfo(UpdatePermissionInfoParam param);
+
+        ResultInfo UpdateMarketInfoList(UpdateMarketInfoParam param);
     }
 }

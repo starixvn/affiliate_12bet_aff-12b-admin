@@ -18,42 +18,55 @@ export class Content extends PureComponent {
     }
 
     _handleChangeTab = (isGeneral) => {
-        this.props.setIsGeneral(isGeneral)
         this.props.setGridData(null);
+        this.props.setIsGeneral(isGeneral);
+    }
+
+    _handleCloseNotificationPopup = () => {
+        this.props.setMessagePopup(null);
     }
 
     render() {
-        const { isGeneral } = this.props;
+        const { isGeneral, messagePopup } = this.props;
 
         return (
-            < Container fluid={true} className="tab-container">
-                <div className="tab-menu-container py-2">
-                    <ul class="nav">
-                        <li className="nav-item">
-                            <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? 'active' : ''}`}
-                                onClick={() => this._handleChangeTab(true)}>
-                                <span class="menu-text">General</span>
-                            </a>
-                        </li>
-                        <li className="nav-item pl-3">
-                            <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? '' : 'active'}`}
-                                onClick={() => this._handleChangeTab(false)}>
-                                <span class="menu-text">Language</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <div className="data-content">
+                < Container fluid={true} className="tab-container">
+                    <div className="tab-menu-container py-2">
+                        <ul class="nav">
+                            <li className="nav-item">
+                                <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? 'active' : ''}`}
+                                    onClick={() => this._handleChangeTab(true)}>
+                                    <span class="menu-text">General</span>
+                                </a>
+                            </li>
+                            <li className="nav-item pl-3">
+                                <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? '' : 'active'}`}
+                                    onClick={() => this._handleChangeTab(false)}>
+                                    <span class="menu-text">Language</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    {
+                        isGeneral ? <GeneralComponent /> : <LanguageComponent />
+                    }
+                </Container>
                 {
-                    isGeneral ? <GeneralComponent /> : <LanguageComponent />
+                    !!messagePopup && <NotificationPopup
+                        message={messagePopup}
+                        isConfirmPopup={false}
+                        onClose={this._handleCloseNotificationPopup}
+                    />
                 }
-            </Container>
+            </div>
         )
     }
 }
 
 function mapStateToProps({ generalPermissionRole }) {
-    const { isGeneral } = generalPermissionRole;
-    return Object.assign({}, { isGeneral });
+    const { isGeneral, messagePopup } = generalPermissionRole;
+    return Object.assign({}, { isGeneral, messagePopup });
 }
 
 function mapDispatchToProps(dispatch) {

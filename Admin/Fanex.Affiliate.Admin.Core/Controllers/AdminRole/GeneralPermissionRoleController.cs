@@ -5,7 +5,6 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -69,13 +68,35 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult UpdatePermissiontInfoList(UpdateMarketInfoParam param)
+        public ActionResult UpdatePermissionInfo(UpdatePermissionInfoParam param)
         {
             if (ModelState.IsValid)
             {
                 return new JsonNetResult
                 {
-                    Data = _generalPermissionRoleService.UpdatePermissiontInfoList(param)
+                    Data = _generalPermissionRoleService.UpdatePermissionInfo(param)
+                };
+            }
+
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                }
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult UpdateMarketInfoList(UpdateMarketInfoParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                return new JsonNetResult
+                {
+                    Data = _generalPermissionRoleService.UpdateMarketInfoList(param)
                 };
             }
 

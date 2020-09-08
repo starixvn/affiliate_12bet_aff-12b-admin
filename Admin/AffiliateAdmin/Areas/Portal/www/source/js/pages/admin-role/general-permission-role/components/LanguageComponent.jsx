@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, globalResource, management } from '../libs/constants';
-import { getMarketByRoleList, getMarketByUserList, toggleLoader, setGridData, updateMarketInfoList } from '../actions';
+import { getMarketByRoleList, getMarketByUserList, toggleLoader, setGridData, updateMarketInfoList, setMessagePopup } from '../actions';
 import { ControlButtons } from '../../common/components/ControlButtons';
 import { updateObjectInArray } from '../../../../modules/dataHandler';
 
@@ -59,8 +59,8 @@ export class LanguageComponent extends PureComponent {
     _handleChange = (roleId, marketId, isChecked) => {
         const { gridData } = this.state;
         const indexItem = gridData.findIndex(item => item.RoleId === roleId);
-        const updateItem = Object.assign({}, gridData[indexItem], { [marketId]: isChecked });
-        const gridDataUpdate = updateObjectInArray(gridData, indexItem, updateItem)
+        const updateItem = Object.assign({}, gridData[indexItem], { [marketId]: !isChecked });
+        const gridDataUpdate = updateObjectInArray(gridData, indexItem, updateItem);
 
         this.setState({ gridData: gridDataUpdate });
     }
@@ -72,14 +72,25 @@ export class LanguageComponent extends PureComponent {
         });
     }
 
-    _handleSubmit = () => {
-        this.setState({ isEdit: false });
+    _handleSubmit = async () => {
+        this.props.toggleLoader(true);
 
-        this.save();
-    }
+        const result = await this.props.updateMarketInfoList(this.state.gridData);
 
-    save = async () => {
-        const result = this.props.updateMarketInfoList(this.state.gridData);
+        if (result) {
+            if (result.IsSuccessful) {
+                this.props.setMessagePopup("Update Markets for Roles is successfully!");
+
+                this.setState({ isEdit: false });
+            }
+            else {
+                this.props.setMessagePopup(result.Message);
+            }
+        } else {
+            this.props.setMessagePopup(globalResource.AnError);
+        }
+
+        this.props.toggleLoader(false);
     }
 
     _renderHeader() {
@@ -152,7 +163,7 @@ export class LanguageComponent extends PureComponent {
                 dataRows.push(
                     <Cell className="text-center">
                         {
-                            isEdit ? <input type="checkbox" checked={isChecked} disabled={isManagement} onChange={() => this._handleChange(dataItem.RoleId, item.MarketId, !isChecked)} />
+                            isEdit ? <input type="checkbox" checked={isChecked} disabled={isManagement} onChange={() => this._handleChange(dataItem.RoleId, item.MarketId, isChecked)} />
                                 : (dataItem[item.MarketId] && <span className="oi oi-check text-primary"></span>)
                         }
                     </Cell>
@@ -199,7 +210,7 @@ function mapStateToProps({ generalPermissionRole }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getMarketByRoleList, getMarketByUserList, toggleLoader, setGridData, updateMarketInfoList }, dispatch);
+    return bindActionCreators({ getMarketByRoleList, getMarketByUserList, toggleLoader, setGridData, updateMarketInfoList, setMessagePopup }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LanguageComponent);
