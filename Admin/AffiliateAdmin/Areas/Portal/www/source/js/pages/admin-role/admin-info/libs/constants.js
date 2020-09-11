@@ -1,9 +1,8 @@
-﻿import { regExp, changePasswordMessages } from '../../../../modules/constants';
+﻿import { globalResource } from '../../../../modules/globalResource';
 
-export { regExp };
+export { globalResource };
 
 export const messages = {
-    ...changePasswordMessages,
     RequiredRole: "Role is required!"
 }
 
@@ -14,7 +13,19 @@ export const resources = {
     Password: 'Password',
     ConfirmPassword: 'Confirm Password',
     Role: 'Role',
+    Language: 'Language',
     AccountStatus: 'Account Status'
+}
+
+export const headerText = {
+    Index: globalResource.Index,
+    Function: 'Function',
+    IndividualPermission: 'Individual Permission',
+    RolePermission: 'Role Permission',
+    Read: 'Read',
+    Host: 'Host',
+    View: 'View',
+    Edit: globalResource.Edit
 }
 
 export const initialState = {
@@ -23,13 +34,11 @@ export const initialState = {
     firstName: '',
     lastName: '',
     newPassword: '',
-    confirmPassword: '',
     role: 1,
     isActive: true,
     isShowMessage: false,
     isSuccess: true,
     message: '',
-    isEdit: false,
     userInfo: null,
     isChangingPassword: false,
     messagePopup: '',

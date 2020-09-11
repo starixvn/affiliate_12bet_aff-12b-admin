@@ -1,6 +1,6 @@
-﻿import { regExp, changePasswordMessages } from '../../../../modules/constants';
+﻿import { changePasswordMessages } from '../../../../modules/constants';
 
-export { regExp, changePasswordMessages as messages };
+export { changePasswordMessages as messages };
 
 export const resource = {
     ChangePassword: 'Change Password',

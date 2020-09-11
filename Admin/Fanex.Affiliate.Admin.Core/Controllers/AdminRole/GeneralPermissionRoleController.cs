@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         [ValidateAntiForgeryHeader]
         public ActionResult UpdateMarketInfoList(UpdateMarketInfoParam param)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return new JsonNetResult
                 {

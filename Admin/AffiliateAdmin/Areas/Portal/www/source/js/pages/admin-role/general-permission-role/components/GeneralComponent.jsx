@@ -28,8 +28,8 @@ export class GeneralComponent extends PureComponent {
 
         const permissionInfoList = await this.props.getPermissionInfoList();
 
-        this.props.setGridData(fakeFunctionList);
-        this.setState({ gridData: fakeFunctionList });
+        this.props.setGridData(permissionInfoList);
+        this.setState({ gridData: permissionInfoList });
 
         this.props.toggleLoader(false);
     }

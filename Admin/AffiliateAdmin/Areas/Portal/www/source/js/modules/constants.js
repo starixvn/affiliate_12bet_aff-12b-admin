@@ -44,10 +44,8 @@ export const regExp = {
 }
 
 export const changePasswordMessages = {
-    RequiredNewPassword: "New Password is required!",
     RequiredConfirmPassword: "Confirm Password is required!",
     ChangePasswordSuccess: "Change password is successful!",
-    PasswordIncorrect: 'Password must have at least 6 characters, including at least 2 letters and at least 2 digits.',
     ConfirmPasswordIncorrect: 'Confirm Password is incorrect!',
     ChangePasswordFailed: 'Change password is failed!'
 }

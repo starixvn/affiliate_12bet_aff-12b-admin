@@ -1,2 +1,4 @@
 ﻿export const SET_ROLE_LIST = 'SET_ROLE_LIST';
-export const SET_IS_INFORMATION = 'SET_IS_INFORMATION';
+export const SET_IS_EDIT = 'SET_IS_EDIT';
+export const SET_IS_CREATE_NEW = 'SET_IS_CREATE_NEW';
+export const SET_ROLE_PERMISSION = 'SET_ROLE_PERMISSION';

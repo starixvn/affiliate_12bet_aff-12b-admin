@@ -30,7 +30,7 @@ export const SubMenu = (props) => {
                         <a class={`nav-link ${isSelectedPermissionRole ? '' : 'active'}`} href="javascript:;" onClick={_redirectToAdminUsers}>Admin List</a>
                     </li>
                     <li class="nav-item">
-                        <a class={`nav-link ${isSelectedPermissionRole ? 'active' : ''}`} href="javascript:;" onClick={_redirectToGeneralPermissionRole}>General Permission Role</a>
+                        <a class={`nav-link ${isSelectedPermissionRole ? 'active' : ''}`} href="javascript:;" onClick={_redirectToGeneralPermissionRole}>Role Permission</a>
                     </li>
                 </ul>
             </div>

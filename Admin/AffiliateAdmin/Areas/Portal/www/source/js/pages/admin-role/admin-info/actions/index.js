@@ -2,7 +2,7 @@
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { redirectToCreateNew, redirectToAdminUsers } from '../../common/actions';
 import { deleteUsers } from '../../admin-users/actions';
-import { SET_ROLE_LIST, SET_IS_INFORMATION } from './types';
+import { SET_ROLE_LIST, SET_IS_CREATE_NEW, SET_IS_EDIT } from './types';
 
 export { toggleLoader, redirectToCreateNew, redirectToAdminUsers, deleteUsers };
 
@@ -13,9 +13,23 @@ export const setRoleList = (data) => {
     }
 }
 
-export const setIsInfomation = (data) => {
+export const setIsEdit = (data) => {
     return {
-        type: SET_IS_INFORMATION,
+        type: SET_IS_EDIT,
+        data
+    }
+}
+
+export const setIsCreateNew = (data) => {
+    return {
+        type: SET_IS_CREATE_NEW,
+        data
+    }
+}
+
+export const setRolePermission = (data) => {
+    return {
+        type: SET_ROLE_PERMISSION,
         data
     }
 }
@@ -34,6 +48,15 @@ export const getRoleList = () => async (dispatch) => {
     const data = response && response.status === 200 ? convertRoleList(response.data) : null;
 
     dispatch(setRoleList(data));
+}
+
+export const getRolePermission = () => async (roleId) => {
+    const url = 'Portal/AdminInfo/GetRolePermission';
+    const response = await post(url, { roleId });
+
+    const data = response && response.status === 200 ? response.data : null;
+
+    dispatch(setRolePermission(data));
 }
 
 const convertRoleList = (roleList) => {

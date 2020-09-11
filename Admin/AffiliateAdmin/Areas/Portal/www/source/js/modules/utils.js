@@ -99,3 +99,24 @@ export const validateUserName = (userName) => {
         Message: ''
     }
 }
+
+const regExp = {
+    CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
+}
+
+export const validateNewPassword = (newPassword) => {
+    const result = {
+        IsValid: false,
+        Message: "New Password is required!"
+    }
+
+    if (newPassword) {
+        const regexCheckPassword = new RegExp(regExp.CheckPassword);
+        const isValid = regexCheckPassword.test(newPassword);
+
+        result.IsValid = isValid;
+        result.Message = isValid ? "" : 'Password must have at least 6 characters, including at least 2 letters and at least 2 digits.';
+    }
+
+    return result;
+}

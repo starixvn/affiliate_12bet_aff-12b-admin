@@ -15,31 +15,22 @@ export class AppContainer extends Component {
     }
 
     render() {
-        const { isShowLoader, userId } = this.props;
+        const { isShowLoader, userName } = this.props;
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
-                {
-                    !userId ? (
-                        <div class="d-inline-flex p-3">
-                            <a class="admin-role-sub-menu-back" href="javascript:;" onClick={() => this.props.redirectToAdminUsers()}><span class="oi oi-chevron-left"></span></a>
-                            <strong>Create User</strong>
-                        </div>
-                    ) : (
-                            <Fragment>
-                                <SubMenu />
-                                <Header />
-                            </Fragment>
-                        )
-                }
+                <div class="d-inline-flex p-3">
+                    <a class="admin-role-sub-menu-back" href="javascript:;" onClick={() => this.props.redirectToAdminUsers()}><span class="oi oi-chevron-left"></span></a>
+                    <strong>{ userName || "Create User"}</strong>
+                </div>
                 <Content />
             </AppLayout>
         );
     }
 }
 
-function mapStateToProps({ isShowLoader, userId }) {
-    return Object.assign({}, { isShowLoader, userId });
+function mapStateToProps({ isShowLoader, userName }) {
+    return Object.assign({}, { isShowLoader, userName });
 }
 
 function mapDispatchToProps(dispatch) {

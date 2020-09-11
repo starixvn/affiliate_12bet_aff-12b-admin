@@ -71,11 +71,29 @@ export class LanguageComponent extends PureComponent {
             gridData: this.props.gridData
         });
     }
+    
+    handleConvertData = () => {
+        const { gridData } = this.state;
+        const { marketByUserList } = this.props;
+
+        const data = gridData.map(item => {
+            return marketByUserList.map(market => {
+                return {
+                    RoleId: item.RoleId,
+                    MarketId: market.MarketId,
+                    HasPermission: item[market.MarketId]
+                }
+            })
+        }).reduce((result, arrItem) => [...result, ...arrItem], [])
+
+        return data;
+    }
 
     _handleSubmit = async () => {
         this.props.toggleLoader(true);
 
-        const result = await this.props.updateMarketInfoList(this.state.gridData);
+        const param = this.handleConvertData();
+        const result = await this.props.updateMarketInfoList(param);
 
         if (result) {
             if (result.IsSuccessful) {
@@ -120,10 +138,10 @@ export class LanguageComponent extends PureComponent {
 
     _renderDataSection(dataList) {
         const dataRows = [];
+        const { marketByUserList } = this.props;
 
         if (dataList && dataList.length) {
             const { isEdit } = this.state;
-            const { marketByUserList } = this.props;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
@@ -132,7 +150,7 @@ export class LanguageComponent extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="1">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={ 1 + (marketByUserList && marketByUserList.length)}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
