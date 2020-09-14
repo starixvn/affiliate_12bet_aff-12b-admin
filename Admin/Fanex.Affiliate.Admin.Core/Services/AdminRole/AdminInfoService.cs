@@ -65,6 +65,25 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             }
         }
 
+        public IEnumerable<UserPermissionInfo> GetPermissionListByRole(int roleId)
+        {
+            const string SpKey = "";
+
+            var result = new List<UserPermissionInfo>();
+
+            //using (var objectDb = GetObjectDb(SpKey))
+            //{
+            //    objectDb.AddInParameter("RoleId", DbType.Int32, roleId);
+
+            //    using (var reader = objectDb.ExecuteReader())
+            //    {
+            //        result.Add(BuildUserPermissionInfo(reader));
+            //    }
+            //}
+
+            return result;
+        }
+
         private static void AssignParam(AdminInfoParam param, IObjectDb objectDb)
         {
             objectDb.AddInParameter("UserName", DbType.String, "AA" + param.UserName);
@@ -124,17 +143,23 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             {
                 while (reader.Read())
                 {
-                    userPermissionList.Add(new UserPermissionInfo
-                    {
-                        FuncId = reader.ToInt("FuncId"),
-                        FuncName = reader.ToString("FuncName"),
-                        UserPolicy = reader.ToInt("UserPolicy"),
-                        RolePolicy = reader.ToInt("RolePolicy")
-                    });
+                    userPermissionList.Add(BuildUserPermissionInfo(reader));
                 }
             }
 
             return userPermissionList;
+        }
+
+        private static UserPermissionInfo BuildUserPermissionInfo(IDataReader reader)
+        {
+            return new UserPermissionInfo
+            {
+                //ParentId = reader.ToInt("ParentId"),
+                FuncId = reader.ToInt("FuncId"),
+                FuncName = reader.ToString("FuncName"),
+                UserPolicy = reader.ToInt("UserPolicy"),
+                RolePolicy = reader.ToInt("RolePolicy")
+            };
         }
     }
 }

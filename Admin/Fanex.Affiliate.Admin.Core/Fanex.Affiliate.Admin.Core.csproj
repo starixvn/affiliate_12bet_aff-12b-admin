@@ -194,8 +194,7 @@
     <Compile Include="Controllers\Administrator\DepartmentController.cs" />
     <Compile Include="Controllers\AdminRole\AdminRoleController.cs" />
     <Compile Include="Controllers\AdminRole\AdminInfoController.cs" />
-    <Compile Include="Controllers\AdminRole\GeneralPermissionRoleController.cs" />
-    <Compile Include="Controllers\AdminRole\PermissionRoleController.cs" />
+    <Compile Include="Controllers\AdminRole\RolePermissionController.cs" />
     <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -237,8 +236,8 @@
     <Compile Include="DTO\Administrator\PolicyInfo.cs" />
     <Compile Include="DTO\AdminRole\AdminInfo.cs" />
     <Compile Include="DTO\AdminRole\AdminInforResultEntity.cs" />
-    <Compile Include="DTO\AdminRole\AdminUserInfo.cs" />
-    <Compile Include="DTO\AdminRole\PermissionInfo.cs" />
+    <Compile Include="DTO\AdminRole\AdminListInfo.cs" />
+    <Compile Include="DTO\AdminRole\RolePermissionInfo.cs" />
     <Compile Include="DTO\AdminRole\MarketInfo.cs" />
     <Compile Include="DTO\AdminRole\UserPermissionInfo.cs" />
     <Compile Include="DTO\AdminRole\RoleInfo.cs" />
@@ -387,8 +386,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Repository\AdminRole\GeneralPermissionRoleRepository.cs" />
-    <Compile Include="Repository\AdminRole\IGeneralPermissionRoleRepository.cs" />
+    <Compile Include="Repository\AdminRole\RolePermissionRepository.cs" />
+    <Compile Include="Repository\AdminRole\IRolePermissionRepository.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />
@@ -479,14 +478,12 @@
     <Compile Include="Services\Administrator\IDepartmentService.cs" />
     <Compile Include="Services\AdminRole\AdminInfoService.cs" />
     <Compile Include="Services\AdminRole\AdminRoleCommonService.cs" />
-    <Compile Include="Services\AdminRole\AdminUsersService.cs" />
-    <Compile Include="Services\AdminRole\GeneralPermissionRoleService.cs" />
+    <Compile Include="Services\AdminRole\AdminListService.cs" />
+    <Compile Include="Services\AdminRole\RolePermissionService.cs" />
     <Compile Include="Services\AdminRole\IAdminInfoService.cs" />
     <Compile Include="Services\AdminRole\IAdminRoleCommonService.cs" />
-    <Compile Include="Services\AdminRole\IAdminUsersService.cs" />
-    <Compile Include="Services\AdminRole\IGeneralPermissionRoleService.cs" />
-    <Compile Include="Services\AdminRole\IPermissionRoleService.cs" />
-    <Compile Include="Services\AdminRole\PermissionRoleService.cs" />
+    <Compile Include="Services\AdminRole\IAdminListService.cs" />
+    <Compile Include="Services\AdminRole\IRolePermissionService.cs" />
     <Compile Include="Services\AffiliateService.cs" />
     <Compile Include="Services\AffTypeService.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordService.cs" />

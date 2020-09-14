@@ -2,29 +2,23 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
-import { Button } from 'reactstrap';
 
+import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { setRolePermission } from '../actions';
+import { setRolePermission, getRolePermission } from '../actions';
 
 export class PersonalPermissionTable extends PureComponent {
     constructor(props) {
         super(props);
     }
 
-    // componentDidMount() {
-    //     const { isGeneral, userId } = this.props;
+    componentDidUpdate(prevProps) {
+        const { roleId } = this.props;
 
-    //     this.props.fetchData(isGeneral, userId);
-    // }
-
-    // componentDidUpdate(prevProps) {
-    //     const { isGeneral, userId } = this.props;
-
-    //     if (isGeneral !== prevProps.isGeneral) {
-    //         this.props.fetchData(isGeneral, userId);
-    //     }
-    // }
+        if (roleId && roleId !== prevProps.roleId) {
+            this.props.getRolePermission(roleId);
+        }
+    }
 
     _renderHeader() {
 
@@ -49,9 +43,12 @@ export class PersonalPermissionTable extends PureComponent {
         if (dataList && dataList.length) {
             const { isCreateNew, isEdit } = this.props;
 
-            for (let i = 0; i < dataList.length; i++) {
-                const dataItem = dataList[i];
-                dataRows.push(isCreateNew || isEdit ? this._buildDataRowEdit(dataItem, i + 1) : this._buildDataRowView(dataItem, i + 1));
+            const parentFunction = dataList.filter(s => s.FuncId === s.ParentId);
+            const subFunction = dataList.filter(s => s.FuncId !== s.ParentId);
+
+            for (let i = 0; i < parentFunction.length; i++) {
+                const dataItem = parentFunction[i];
+                dataRows.push(this._buildDataRowChildren(dataItem, subFunction, isCreateNew, isEdit));
             }
         }
         else {
@@ -63,51 +60,99 @@ export class PersonalPermissionTable extends PureComponent {
         return dataRows;
     }
 
-    _buildDataRowView(dataItem, index) {
+    _renderCells(dataItem, isCreateNew, isEdit) {
+
+        return isEdit || isCreateNew ? (
+            <Fragment>
+                <Cell className="text-center">
+                    <input type="checkbox" checked={dataItem.IsUserRead} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsUserRead, false)} />
+                </Cell>
+                <Cell className="text-center">
+                    <input type="checkbox" checked={dataItem.IsUserHost} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsUserHost, true)} />
+                </Cell>
+                <Cell className="text-center">
+                    <input type="checkbox" checked={dataItem.IsRoleRead} disabled />
+                </Cell>
+                <Cell className="text-center">
+                    <input type="checkbox" checked={dataItem.IsRoleHost} disabled />
+                </Cell>
+            </Fragment>
+        ) : (
+                <Fragment>
+                    <Cell className="text-center">
+                        {
+                            dataItem.IsUserRead && <span className="oi oi-check text-primary"></span>
+                        }
+                    </Cell>
+
+                    <Cell className="text-center">
+                        {
+                            dataItem.IsUserHost && <span className="oi oi-check text-primary"></span>
+                        }
+                    </Cell>
+                    <Cell className="text-center">
+                        {
+                            dataItem.IsRoleRead && <span className="oi oi-check text-primary"></span>
+                        }
+                    </Cell>
+
+                    <Cell className="text-center">
+                        {
+                            dataItem.IsRoleHost && <span className="oi oi-check text-primary"></span>
+                        }
+                    </Cell>
+                </Fragment>
+            )
+    }
+
+    _buildDataRowChildren(dataItem, dataList, isCreateNew, isEdit) {
+        const funcName = htmlDecode(dataItem.FuncName);
+
         return (
-            <Row key={`dataRow-${index}`}>
-                <Cell title={dataItem.Name}>{dataItem.Name}</Cell>
-                <Cell className="text-center" title={headerText.View}>
+            <Fragment>
+                <Row key={`dataRow-${dataItem.FuncId}`} className="current">
+                    <Cell className="pl-2" title={funcName}>{funcName}</Cell>
                     {
-                        dataItem.IsView && <span className="oi oi-check text-primary"></span>
+                        this._renderCells(dataItem, isCreateNew, isEdit)
                     }
-                </Cell>
-                <Cell className="text-center" title={headerText.View}>
-                    {
-                        dataItem.IsEdit && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
-                <Cell className="text-center" title={headerText.Edit}>
-                    {
-                        dataItem.IsView && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
-                <Cell className="text-center" title={headerText.Edit}>
-                    {
-                        dataItem.IsEdit && <span className="oi oi-check text-primary"></span>
-                    }
-                </Cell>
-            </Row>
+                </Row>
+                {
+                    this._renderSubChildrenDataSection(dataItem, dataList, isCreateNew, isEdit)
+                }
+            </Fragment>
         )
     }
 
-    _buildDataRowEdit(dataItem, index) {
+    _renderSubChildrenDataSection(dataItem, dataList, isCreateNew, isEdit, isRecursive) {
+        const dataRows = [];
+
+        if (dataList && dataList.length) {
+            const parentFunction = dataList.filter(s => s.ParentId === dataItem.FuncId);
+            const subFunction = dataList.filter(s => s.ParentId !== dataItem.FuncId);
+
+            for (let i = 0; i < parentFunction.length; i++) {
+                const dataItem = parentFunction[i];
+                dataRows.push(this._buildDataRowSubChildren(dataItem, subFunction, isCreateNew, isEdit, isRecursive));
+            }
+        }
+
+        return dataRows;
+    }
+
+    _buildDataRowSubChildren(dataItem, dataList, isCreateNew, isEdit, isRecursive) {
+
         return (
-            <Row key={`dataRow-${index}`}>
-                <Cell title={dataItem.Name}>{dataItem.Name}</Cell>
-                <Cell className="text-center" title={headerText.View}>
-                    <input type="checkbox" checked={dataItem.IsView} onChange={this._handleChange} />
-                </Cell>
-                <Cell className="text-center" title={headerText.View}>
-                    <input type="checkbox" checked={dataItem.IsEdit} onChange={this._handleChange} />
-                </Cell>
-                <Cell className="text-center" title={headerText.Edit}>
-                    <input type="checkbox" checked={dataItem.IsView} onChange={this._handleChange} />
-                </Cell>
-                <Cell className="text-center" title={headerText.Edit}>
-                    <input type="checkbox" checked={dataItem.IsEdit} onChange={this._handleChange} />
-                </Cell>
-            </Row>
+            <Fragment>
+                <Row key={`dataRow-${dataItem.FuncId}`} className="current">
+                    <Cell className={isRecursive ? "pl-5" : "pl-4"} title={dataItem.FuncName}>{dataItem.FuncName}</Cell>
+                    {
+                        this._renderCells(dataItem, isCreateNew, isEdit)
+                    }
+                </Row>
+                {
+                    dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, isCreateNew, isEdit, true)
+                }
+            </Fragment>
         )
     }
 
@@ -118,11 +163,10 @@ export class PersonalPermissionTable extends PureComponent {
             <div className="data-content">
                 <div className="table-responsive table-striped my-2">
                     <Table
-                        maxWidth={1000}
+                        maxWidth={700}
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(rolePermission)}
-                        containerPadding={20}
                     />
                 </div>
             </div>
@@ -137,7 +181,7 @@ function mapStateToProps({ adminInfo }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setRolePermission }, dispatch);
+    return bindActionCreators({ setRolePermission, getRolePermission }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonalPermissionTable);

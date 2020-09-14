@@ -2,20 +2,18 @@
 import { SET_SELECTED_MENU } from '../actions/types';
 import { adminRoleMenuKey as menuKey } from '../libs/constants';
 
-import adminUsersReducer from '../../admin-users/reducers';
+import adminListReducer from '../../admin-list/reducers';
 import adminInfoReducer from '../../admin-info/reducers';
-import permissionRoleReducer from '../../permission-role/reducers';
-import generalPermissionRoleReducer from '../../general-permission-role/reducers';
+import rolePermissionReducer from '../../role-permission/reducers';
 
-export const selectedMenu = createReducer('adminUsers', {
+export const selectedMenu = createReducer('adminList', {
     [SET_SELECTED_MENU](prevState, action) {
         return action.data;
     }
 });
 
 export const adminRoleReducer = {
-    [menuKey.adminUsers]: adminUsersReducer,
+    [menuKey.adminList]: adminListReducer,
     [menuKey.adminInfo]: adminInfoReducer,
-    [menuKey.permissionRole]: permissionRoleReducer,
-    [menuKey.generalPermissionRole]: generalPermissionRoleReducer,
+    [menuKey.rolePermission]: rolePermissionReducer,
 }

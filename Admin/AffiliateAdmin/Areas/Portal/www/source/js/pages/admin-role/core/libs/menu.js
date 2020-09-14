@@ -2,19 +2,16 @@
 import { adminRoleMenuKey as menuKey } from './constants';
 import { resetAllProps } from './resetAllProps';
 
-const AdminUsers = React.lazy(() =>
-    import( /* webpackChunkName: "adminUsers" */ '../../admin-users/components/AppContainer'));
+const AdminList = React.lazy(() =>
+    import( /* webpackChunkName: "adminList" */ '../../admin-list/components/AppContainer'));
 const AdminInfo = React.lazy(() =>
     import( /* webpackChunkName: "adminInfo" */ '../../admin-info/components/AppContainer'));
-const PermissionRole = React.lazy(() =>
-    import( /* webpackChunkName: "permissionRole" */ '../../permission-role/components/AppContainer'));
-const GeneralPermissionRole = React.lazy(() =>
-    import( /* webpackChunkName: "generalPermissionRole" */ '../../general-permission-role/components/AppContainer'));
+const RolePermission = React.lazy(() =>
+    import( /* webpackChunkName: "rolePermission" */ '../../role-permission/components/AppContainer'));
 
 
 export const adminRoleMenuList = [
-    { key: menuKey.adminUsers, component: resetAllProps(AdminUsers, menuKey.adminUsers) },
+    { key: menuKey.adminList, component: resetAllProps(AdminList, menuKey.adminList) },
     { key: menuKey.adminInfo, component: resetAllProps(AdminInfo, menuKey.adminInfo) },
-    { key: menuKey.permissionRole, component: resetAllProps(PermissionRole, menuKey.permissionRole) },
-    { key: menuKey.generalPermissionRole, component: resetAllProps(GeneralPermissionRole, menuKey.generalPermissionRole) }
+    { key: menuKey.rolePermission, component: resetAllProps(RolePermission, menuKey.rolePermission) },
 ]

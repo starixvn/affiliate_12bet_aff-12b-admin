@@ -1,10 +1,10 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { redirectToCreateNew, redirectToAdminUsers } from '../../common/actions';
-import { deleteUsers } from '../../admin-users/actions';
-import { SET_ROLE_LIST, SET_IS_CREATE_NEW, SET_IS_EDIT } from './types';
+import { redirectToCreateNew, redirectToAdminList } from '../../common/actions';
+import { deleteUsers } from '../../admin-list/actions';
+import { SET_ROLE_LIST, SET_IS_CREATE_NEW, SET_IS_EDIT, SET_ROLE_PERMISSION } from './types';
 
-export { toggleLoader, redirectToCreateNew, redirectToAdminUsers, deleteUsers };
+export { toggleLoader, redirectToCreateNew, redirectToAdminList, deleteUsers };
 
 export const setRoleList = (data) => {
     return {
@@ -50,8 +50,8 @@ export const getRoleList = () => async (dispatch) => {
     dispatch(setRoleList(data));
 }
 
-export const getRolePermission = () => async (roleId) => {
-    const url = 'Portal/AdminInfo/GetRolePermission';
+export const getRolePermission = (roleId) => async (dispatch) => {
+    const url = 'Portal/AdminInfo/GetPermissionListByRole';
     const response = await post(url, { roleId });
 
     const data = response && response.status === 200 ? response.data : null;

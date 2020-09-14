@@ -34,7 +34,7 @@ export const initialState = {
     firstName: '',
     lastName: '',
     newPassword: '',
-    role: 1,
+    role: 0,
     isActive: true,
     isShowMessage: false,
     isSuccess: true,

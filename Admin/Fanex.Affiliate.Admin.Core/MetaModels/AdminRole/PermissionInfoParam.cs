@@ -8,9 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.AdminRole
         [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "Func Id is invalid!")]
         public int FuncId { get; set; }
 
-        [Required(ErrorMessage = "Role Id is invalid!")]
-        public string MarketId { get; set; }
-
         public bool IsRead { get; set; }
 
         public bool IsHost { get; set; }

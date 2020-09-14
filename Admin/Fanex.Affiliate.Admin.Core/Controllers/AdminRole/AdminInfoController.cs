@@ -47,6 +47,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        public ActionResult GetPermissionListByRole(int roleId)
+        {
+            return new JsonNetResult
+            {
+                Data = _adminInfoService.GetPermissionListByRole(roleId)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult CreateUser(AdminInfoParam param)
         {
             if (ModelState.IsValid)

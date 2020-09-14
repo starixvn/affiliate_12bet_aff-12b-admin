@@ -201,7 +201,7 @@
     <Compile Include="Extensions\UrlHelperExtensionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepositoryTest.cs" />
-    <Compile Include="Services\AdminRole\AdminUsersServiceTest.cs" />
+    <Compile Include="Services\AdminRole\AdminListServiceTest.cs" />
     <Compile Include="Services\EmailHistory\EmailHistoryServiceTest.cs" />
     <Compile Include="Repository\Affiliate\PaymentRequestRepositoryTest.cs" />
     <Compile Include="Repository\AuthRepositoryTest.cs" />

@@ -13,15 +13,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
     [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class AdminRoleController : BaseController
     {
-        private readonly IAdminUsersService _adminUsersService;
+        private readonly IAdminListService _adminListService;
         private readonly IAdminInfoService _adminInfoService;
 
         public AdminRoleController(
             ISessionService sessionService,
-            IAdminUsersService adminUsersService,
+            IAdminListService adminListService,
             IAdminInfoService adminInfoService) : base(sessionService)
         {
-            _adminUsersService = adminUsersService;
+            _adminListService = adminListService;
             _adminInfoService = adminInfoService;
         }
 
@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         {
             return new JsonNetResult
             {
-                Data = _adminUsersService.GetUserList(userName)
+                Data = _adminListService.GetUserList(userName)
             };
         }
 
@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
                 return new JsonNetResult
                 {
-                    Data = _adminUsersService.DeleteUsers(param)
+                    Data = _adminListService.DeleteUsers(param)
                 };
             }
 

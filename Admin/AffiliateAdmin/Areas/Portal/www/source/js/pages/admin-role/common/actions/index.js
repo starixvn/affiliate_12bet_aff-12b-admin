@@ -1,24 +1,16 @@
 ﻿import { setSelectedMenu, setUserId, setUserName } from '../../core/actions';
-import { setIsBack } from '../../admin-users/actions';
+import { setIsBack } from '../../admin-list/actions';
 import { adminRoleMenuKey } from '../../core/libs/constants';
 
-export const redirectToAdminUsers = () => (dispatch) => {
-    dispatch(setSelectedMenu(adminRoleMenuKey.adminUsers));
+export const redirectToAdminList = () => (dispatch) => {
+    dispatch(setSelectedMenu(adminRoleMenuKey.adminList));
     dispatch(setUserId(null));
     dispatch(setUserName(null));
     dispatch(setIsBack(true));
 }
 
-export const redirectToGeneralPermissionRole = () => (dispatch) => {
-    dispatch(setSelectedMenu(adminRoleMenuKey.generalPermissionRole));
-}
-
-export const redirectToAdminInfo = () => (dispatch) => {
-    dispatch(setSelectedMenu(adminRoleMenuKey.adminInfo));
-}
-
-export const redirectToPermissionRole = () => (dispatch) => {
-    dispatch(setSelectedMenu(adminRoleMenuKey.permissionRole));
+export const redirectToRolePermission = () => (dispatch) => {
+    dispatch(setSelectedMenu(adminRoleMenuKey.rolePermission));
 }
 
 export const redirectToCreateNew = () => (dispatch) => {

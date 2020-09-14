@@ -3,6 +3,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.AdminRole
 {
     public class UserPermissionInfo
     {
+        public int ParentId { get; set; }
+
         public int FuncId { get; set; }
 
         public string FuncName { get; set; }

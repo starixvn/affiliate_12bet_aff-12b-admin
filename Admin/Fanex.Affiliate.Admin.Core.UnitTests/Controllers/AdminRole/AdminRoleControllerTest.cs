@@ -34,13 +34,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
         public void GetUserList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var adminUsersService = new Mock<IAdminUsersService>();
-            adminUsersService.Setup(t => t.GetUserList(It.IsAny<string>())).Returns(new List<AdminUserInfo> { new AdminUserInfo() });
+            var adminUsersService = new Mock<IAdminListService>();
+            adminUsersService.Setup(t => t.GetUserList(It.IsAny<string>())).Returns(new List<AdminListInfo> { new AdminListInfo() });
             var controller = CreateAdminRoleController(adminUsersService: adminUsersService.Object);
 
             // Action
             var result = controller.GetUserList(string.Empty) as JsonNetResult;
-            var data = result.Data as List<AdminUserInfo>;
+            var data = result.Data as List<AdminListInfo>;
 
             // Assert
             Assert.Single(data);
@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             // Arrange
             var param = new DeleteAdminUsersParam { UserIds = "123" };
             DeleteAdminUsersParam passedParam = null;
-            var adminUsersService = new Mock<IAdminUsersService>();
+            var adminUsersService = new Mock<IAdminListService>();
             adminUsersService.Setup(s => s.DeleteUsers(It.IsAny<DeleteAdminUsersParam>())).Returns(new ResultInfo()).Callback<DeleteAdminUsersParam>(p => passedParam = p);
             var controller = CreateAdminRoleController(adminUsersService: adminUsersService.Object);
 
@@ -83,12 +83,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
 
         private AdminRoleController CreateAdminRoleController(
         ISessionService sessionService = null,
-        IAdminUsersService adminUsersService = null,
+        IAdminListService adminUsersService = null,
         IAdminInfoService adminInfoService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeAdminUsersService = adminUsersService ?? Mock.Of<IAdminUsersService>();
+            var fakeAdminUsersService = adminUsersService ?? Mock.Of<IAdminListService>();
             var fakeAdminInfoService = adminInfoService ?? Mock.Of<IAdminInfoService>();
 
             var controller = new AdminRoleController(fakeSessionService, fakeAdminUsersService, fakeAdminInfoService);

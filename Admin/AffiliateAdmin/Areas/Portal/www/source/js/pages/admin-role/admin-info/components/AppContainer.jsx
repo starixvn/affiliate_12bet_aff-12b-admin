@@ -4,10 +4,8 @@ import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
-import SubMenu from '../../common/components/SubMenu';
-import Header from '../../common/components/Header';
 import Content from './Content';
-import { redirectToAdminUsers } from '../actions';
+import { redirectToAdminList } from '../actions';
 
 export class AppContainer extends Component {
     constructor(props) {
@@ -20,7 +18,7 @@ export class AppContainer extends Component {
             <AppLayout>
                 <Loader show={isShowLoader} />
                 <div class="d-inline-flex p-3">
-                    <a class="admin-role-sub-menu-back" href="javascript:;" onClick={() => this.props.redirectToAdminUsers()}><span class="oi oi-chevron-left"></span></a>
+                    <a class="admin-role-sub-menu-back" href="javascript:;" onClick={() => this.props.redirectToAdminList()}><span class="oi oi-chevron-left"></span></a>
                     <strong>{ userName || "Create User"}</strong>
                 </div>
                 <Content />
@@ -34,7 +32,7 @@ function mapStateToProps({ isShowLoader, userName }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ redirectToAdminUsers }, dispatch);
+    return bindActionCreators({ redirectToAdminList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
