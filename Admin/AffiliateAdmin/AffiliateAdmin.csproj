@@ -403,7 +403,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\PermissionPopup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\Menu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\types.js" />

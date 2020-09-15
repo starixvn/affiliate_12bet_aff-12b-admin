@@ -2,7 +2,6 @@
 using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using Fanex.Common.Extensions;
-using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -10,31 +9,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
 {
     public class RolePermissionRepository : BaseRepository, IRolePermissionRepository
     {
-        public IEnumerable<MarketInfo> GetMarketByRoleList()
-        {
-            const string SpKey = "Aff_Admin_AdminUser_RoleMarket_Sel";
-            var result = new List<MarketInfo>();
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new MarketInfo
-                        {
-                            RoleId = reader.ToInt("RoleId"),
-                            MarketId = reader.ToString("MarketId"),
-                            MarketName = reader.ToString("DisplayName"),
-                            HasPermission = Convert.ToBoolean(reader["Status"])
-                        });
-                    }
-                }
-            }
-
-            return result;
-        }
-
         public IEnumerable<RolePermissionInfo> GetPermissionInfoList()
         {
             const string SpKey = "Aff_Admin_AdminUser_RolePermission_Sel";

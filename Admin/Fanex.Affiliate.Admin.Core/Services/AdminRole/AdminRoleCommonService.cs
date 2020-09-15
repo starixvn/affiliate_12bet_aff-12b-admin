@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             return result;
         }
 
-        public IEnumerable<MarketInfo> GetMarketByUserList(int userId)
+        public IEnumerable<MarketInfo> GetMarketListByUser(int userId)
         {
             const string SpKey = "Aff_Admin_AdminUser_Market_Sel";
             var result = new List<MarketInfo>();
@@ -44,17 +44,46 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
                 {
                     while (reader.Read())
                     {
-                        result.Add(new MarketInfo
-                        {
-                            MarketId = reader.ToString("MarketId"),
-                            MarketName = reader.ToString("MarketName"),
-                            HasPermission = reader.ToBool("Status")
-                        });
+                        result.Add(BuildMarketItem(reader));
                     }
                 }
             }
 
             return result;
+        }
+
+        public IEnumerable<MarketInfo> GetMarketListByRole(int? roleId = null)
+        {
+            const string SpKey = "Aff_Admin_AdminUser_RoleMarket_Sel";
+            var result = new List<MarketInfo>();
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("RoleId", DbType.String, roleId);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var item = BuildMarketItem(reader);
+                        item.RoleId = reader.ToInt("RoleId");
+
+                        result.Add(item);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private static MarketInfo BuildMarketItem(IDataReader reader)
+        {
+            return new MarketInfo
+            {
+                MarketId = reader.ToString("MarketId"),
+                MarketName = reader.ToString("MarketName"),
+                HasPermission = reader.ToBool("Status")
+            };
         }
     }
 }

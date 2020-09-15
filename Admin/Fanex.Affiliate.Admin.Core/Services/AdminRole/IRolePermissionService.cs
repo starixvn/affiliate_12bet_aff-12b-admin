@@ -9,8 +9,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
     {
         IEnumerable<RolePermissionInfo> GetPermissionInfoList();
 
-        IEnumerable<MarketInfo> GetMarketByRoleList();
-
         ResultInfo UpdatePermissionInfo(UpdatePermissionInfoParam param);
 
         ResultInfo UpdateMarketInfoList(UpdateMarketInfoParam param);

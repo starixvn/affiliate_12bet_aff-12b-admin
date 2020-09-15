@@ -5,7 +5,7 @@ import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Al
 import { messages, initialState, resources } from '../libs/constants';
 import { validateUserName, validateNewPassword } from '../../../../modules/utils';
 import { globalResource } from '../../../../modules/globalResource';
-import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, redirectToCreateNew, deleteUsers, updateStatus, setIsEdit } from '../actions';
+import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByRole } from '../actions';
 import ChangePasswordForm from '../../../common/components/ChangePasswordForm';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
 import PersonalPermissionTable from './PersonalPermissionTable';
@@ -14,7 +14,12 @@ export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
-        this.state = { ...initialState }
+        const { userId } = this.props;
+
+        this.state = {
+            ...initialState,
+            isCreateNew: !!userId
+        }
     }
 
     componentDidMount() {
@@ -46,7 +51,6 @@ export class Content extends PureComponent {
                 userInfo
             });
         } else {
-            this.props.redirectToCreateNew();
             this._handleShowAlert(false, globalResource.AnError);
         }
 
@@ -375,19 +379,19 @@ export class Content extends PureComponent {
     }
 
     render() {
-        const { isCreateNew, isEdit } = this.props;
+        const { isCreateNew, isEdit } = this.state;
 
         return isCreateNew || isEdit ? this._renderWhenCreateAndEditUser() : this._renderWhenView()
     }
 }
 
 function mapStateToProps({ userId, userName, adminInfo }) {
-    const { roleList, isCreateNew, isEdit } = adminInfo;
-    return Object.assign({}, { userId, userName, roleList, isCreateNew, isEdit });
+    const { roleList } = adminInfo;
+    return Object.assign({}, { userId, userName, roleList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, redirectToCreateNew, deleteUsers, updateStatus, setIsEdit }, dispatch);
+    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByRole }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -9,34 +9,30 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 {
     public class RolePermissionService : IRolePermissionService
     {
-        private readonly IRolePermissionRepository _generalPermissionRoleRepository;
+        private readonly IRolePermissionRepository _rolePermissionRepository;
         public RolePermissionService(
-            IRolePermissionRepository generalPermissionRoleRepository)
+            IRolePermissionRepository rolePermissionRepository)
         {
-            _generalPermissionRoleRepository = generalPermissionRoleRepository;
-        }
-        public IEnumerable<MarketInfo> GetMarketByRoleList()
-        {
-            return _generalPermissionRoleRepository.GetMarketByRoleList();
+            _rolePermissionRepository = rolePermissionRepository;
         }
 
         public IEnumerable<RolePermissionInfo> GetPermissionInfoList()
         {
-            return _generalPermissionRoleRepository.GetPermissionInfoList();
+            return _rolePermissionRepository.GetPermissionInfoList();
         }
 
         public ResultInfo UpdatePermissionInfo(UpdatePermissionInfoParam param)
         {
             param.PermissionInfoXml = BuildPermissionInfoXml(param.PermissionInfo);
 
-            return _generalPermissionRoleRepository.UpdatePermissionInfo(param);
+            return _rolePermissionRepository.UpdatePermissionInfo(param);
         }
 
         public ResultInfo UpdateMarketInfoList(UpdateMarketInfoParam param)
         {
             param.MarketInfoXml = BuildMarketInfoXml(param.MarketInfoList);
 
-            return _generalPermissionRoleRepository.UpdateMarketInfoList(param);
+            return _rolePermissionRepository.UpdateMarketInfoList(param);
         }
 
         private static string BuildPermissionInfoXml(IEnumerable<PermissionInfoParam> permissionInfo)

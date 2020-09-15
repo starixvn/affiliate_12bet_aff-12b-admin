@@ -4,8 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, globalResource, management } from '../libs/constants';
-import { getMarketByRoleList, getMarketByUserList, toggleLoader, setGridData, updateMarketInfoList } from '../actions';
-import { ControlButtons } from '../../common/components/ControlButtons';
+import { getMarketListByRole, getMarketListByUser, toggleLoader, setGridData, updateMarketInfoList } from '../actions';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 import { updateObjectInArray } from '../../../../modules/dataHandler';
 
@@ -22,7 +21,7 @@ export class LanguageComponent extends PureComponent {
     }
 
     componentDidMount() {
-        this.props.getMarketByUserList();
+        this.props.getMarketListByUser();
 
         this._handleGetMarketList();
     }
@@ -30,7 +29,7 @@ export class LanguageComponent extends PureComponent {
     _handleGetMarketList = async () => {
         this.props.toggleLoader(true);
 
-        const marketList = await this.props.getMarketByRoleList();
+        const marketList = await this.props.getMarketListByRole();
         const newMarketList = this._convertMarketList(marketList);
 
         this.props.setGridData(newMarketList);
@@ -95,7 +94,7 @@ export class LanguageComponent extends PureComponent {
     _handleCloseNotificationPopup = (isConfirm) => {
         this.setState({ messagePopup: '' });
 
-        if(isConfirm) {
+        if (isConfirm) {
             this._handleSave();
         }
     }
@@ -162,7 +161,7 @@ export class LanguageComponent extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan={ 1 + (marketByUserList && marketByUserList.length)}>{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={1 + (marketByUserList && marketByUserList.length)}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -210,12 +209,16 @@ export class LanguageComponent extends PureComponent {
         return gridData && (
             <div className="data-content">
                 <div className="my-2">
-                    <ControlButtons
-                        isEdit={isEdit}
-                        handleEdit={() => this.setState({ isEdit: true })}
-                        handleCancel={this._handleCancel}
-                        handleSave={this._handleSubmit}
-                    />
+                    {
+                        isEdit ? (
+                            <Fragment>
+                                <Button outline type="button" color="danger" onClick={this._handleCancel}>Cancel<span className="oi oi-x ml-2"></span></Button>
+                                <Button outline type="button" className="ml-2" onClick={this._handleSubmit}>Save<span className="oi oi-task ml-2"></span></Button>
+                            </Fragment>
+                        ) : (
+                                <Button outline type="button" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
+                            )
+                    }
                 </div>
                 <div className="table-responsive table-striped my-2">
                     <Table
@@ -247,7 +250,7 @@ function mapStateToProps({ rolePermission }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getMarketByRoleList, getMarketByUserList, toggleLoader, setGridData, updateMarketInfoList }, dispatch);
+    return bindActionCreators({ getMarketListByRole, getMarketListByUser, toggleLoader, setGridData, updateMarketInfoList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LanguageComponent);

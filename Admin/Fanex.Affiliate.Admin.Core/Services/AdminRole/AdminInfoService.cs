@@ -67,19 +67,22 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
         public IEnumerable<UserPermissionInfo> GetPermissionListByRole(int roleId)
         {
-            const string SpKey = "";
+            const string SpKey = "Aff_Admin_AdminUser_RolePermission_Sel";
 
             var result = new List<UserPermissionInfo>();
 
-            //using (var objectDb = GetObjectDb(SpKey))
-            //{
-            //    objectDb.AddInParameter("RoleId", DbType.Int32, roleId);
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("RoleId", DbType.Int32, roleId);
 
-            //    using (var reader = objectDb.ExecuteReader())
-            //    {
-            //        result.Add(BuildUserPermissionInfo(reader));
-            //    }
-            //}
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    var item = BuildUserPermissionInfo(reader);
+                    item.RolePolicy = reader.ToInt("Policy");
+
+                    result.Add(item);
+                }
+            }
 
             return result;
         }
@@ -143,7 +146,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             {
                 while (reader.Read())
                 {
-                    userPermissionList.Add(BuildUserPermissionInfo(reader));
+                    var item = BuildUserPermissionInfo(reader);
+                    item.UserPolicy = reader.ToInt("UserPolicy");
+                    item.RolePolicy = reader.ToInt("RolePolicy");
+
+                    userPermissionList.Add(item);
                 }
             }
 
@@ -154,11 +161,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
         {
             return new UserPermissionInfo
             {
-                //ParentId = reader.ToInt("ParentId"),
+                ParentId = reader.ToInt("ParentId"),
                 FuncId = reader.ToInt("FuncId"),
-                FuncName = reader.ToString("FuncName"),
-                UserPolicy = reader.ToInt("UserPolicy"),
-                RolePolicy = reader.ToInt("RolePolicy")
+                FuncName = reader.ToString("FuncName")
             };
         }
     }

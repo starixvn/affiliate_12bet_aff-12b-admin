@@ -52,17 +52,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             const int userId = 1;
             return new JsonNetResult
             {
-                Data = _adminRoleCommonService.GetMarketByUserList(userId)
+                Data = _adminRoleCommonService.GetMarketListByUser(userId)
             };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetMarketByRoleList()
+        public ActionResult GetMarketListByRole()
         {
             return new JsonNetResult
             {
-                Data = _rolePermissionService.GetMarketByRoleList()
+                Data = _adminRoleCommonService.GetMarketListByRole()
             };
         }
 

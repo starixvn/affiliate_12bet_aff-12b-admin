@@ -59,6 +59,13 @@ export const getRolePermission = (roleId) => async (dispatch) => {
     dispatch(setRolePermission(data));
 }
 
+export const getMarketListByRole = (roleId) => async (dispatch) => {
+    const url = 'Portal/AdminInfo/GetMarketListByRole';
+    const response = await post(url, { roleId });
+
+    return response && response.status === 200 ? response.data : null;
+}
+
 const convertRoleList = (roleList) => {
     const newRoleList = {};
     for (let i = 0; i < roleList.length; i++) {

@@ -43,5 +43,6 @@ export const initialState = {
     isChangingPassword: false,
     messagePopup: '',
     isConfirmPopup: true,
-    isDeleteUser: false
+    isDeleteUser: false,
+    isEdit: false
 };

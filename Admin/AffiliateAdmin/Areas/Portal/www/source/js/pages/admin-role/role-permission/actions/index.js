@@ -55,8 +55,8 @@ export const getRoleList = () => async (dispatch) => {
     dispatch(setRoleList(data));
 }
 
-export const getMarketByRoleList = () => async (dispatch) => {
-    const url = `Portal/RolePermission/GetMarketByRoleList`;
+export const getMarketListByRole = () => async (dispatch) => {
+    const url = `Portal/RolePermission/GetMarketListByRole`;
     const response = await post(url);
 
     const data = response && response.status === 200 ? response.data : null;
@@ -64,8 +64,8 @@ export const getMarketByRoleList = () => async (dispatch) => {
     return data;
 }
 
-export const getMarketByUserList = () => async (dispatch) => {
-    const url = `Portal/RolePermission/GetMarketByUserList`;
+export const getMarketListByUser = () => async (dispatch) => {
+    const url = `Portal/RolePermission/getMarketListByUser`;
     const response = await post(url);
 
     const data = response && response.status === 200 ? response.data : null;
