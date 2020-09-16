@@ -2,13 +2,14 @@ import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert, Row } from 'reactstrap';
-import { messages, initialState, resources } from '../libs/constants';
+import { messages, initialState, resources, itemDefault } from '../libs/constants';
 import { validateUserName, validateNewPassword } from '../../../../modules/utils';
 import { globalResource } from '../../../../modules/globalResource';
 import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByRole } from '../actions';
 import ChangePasswordForm from '../../../common/components/ChangePasswordForm';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
 import PersonalPermissionTable from './PersonalPermissionTable';
+import MultipleSelect from '../../../../components/multiple-select';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -18,7 +19,7 @@ export class Content extends PureComponent {
 
         this.state = {
             ...initialState,
-            isCreateNew: !!userId
+            isCreateNew: !userId
         }
     }
 
@@ -61,21 +62,19 @@ export class Content extends PureComponent {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    _handleClickNext = () => {
-        const isValidUserInfo = this._validateUserInfo();
+    _handleChangeRole = async (event) => {
+        const role = event.target.value;
 
-        this.setState({ isClickedSubmit: true });
+        const marketListByRole = await this.props.getMarketListByRole(role);
 
-        isValidUserInfo && this.props.setIsInfomation(false);
-
+        this.setState({ role, marketListByRole });
     }
 
-    _handleSubmit = async () => {
-        const isValidUserInfo = this._validateUserInfo();
+    _handleSubmit = async (isValid) => {
 
         this.setState({ isClickedSubmit: true });
 
-        if (isValidUserInfo) {
+        if (isValid) {
             const { userId } = this.props;
             const { newUserName, newPassword, confirmPassword, role, isActive } = this.state;
             const param = { userId: userId || 0, userName: newUserName, password: newPassword, confirmPassword, role, isActive };
@@ -125,6 +124,7 @@ export class Content extends PureComponent {
                 lastName: userInfo.LastName,
                 role: userInfo.RoleId,
                 isActive: userInfo.IsActive,
+                isEdit: false
             });
         }
     }
@@ -156,6 +156,46 @@ export class Content extends PureComponent {
         if (!confirmResult && isDeleteUser) {
             this.props.redirectToAdminList();
         }
+    }
+
+    _getSelectedItemKey(dataSource) {
+        const selectedItemKey = [];
+
+        for (let i = 0; i < dataSource.length; i++) {
+            const item = dataSource[i];
+
+            if (item.checked) {
+                selectedItemKey.push(item.key)
+            }
+        }
+
+        return selectedItemKey.join(",");
+    }
+
+    _handleChangeMarket = (item, selectedKey, isItemDefault) => {
+        const { marketListByRole } = this.state;
+
+        if (isItemDefault) {
+            const defaultMarketsOfRole = "en-US,vi-VN";
+            this.setState({ itemDefault: item, marketListByRole: this.handleChangeMultipleSelected(marketListByRole, defaultMarketsOfRole), marketIds: defaultMarketsOfRole });
+        } else {
+            this.setState({ marketListByRole: this.handleChangeMultipleSelected(marketListByRole, selectedKey), marketIds: selectedKey });
+        }
+    }
+
+    handleChangeMultipleSelected = (initialList, selectedKey) => {
+        const selectedList = typeof (selectedKey) === "string" ? selectedKey.split(',').filter(p => !!p) : selectedKey;
+
+        return initialList && initialList.map(item => {
+            const { key, name } = item;
+            const checked = selectedList.indexOf(key.toString()) !== -1;
+
+            return {
+                key,
+                name,
+                checked
+            };
+        })
     }
 
     _deleteUser = async (userId) => {
@@ -199,7 +239,7 @@ export class Content extends PureComponent {
             <Fragment>
                 <div className="mb-2">
                     <Button outline type="button" color="danger" onClick={this._handleDeleteUser}> Delete < span className="oi oi-trash ml-2"></span></Button>
-                    <Button outline type="button" className="ml-2" onClick={() => this.props.setIsEdit(true)}> Edit < span className="oi oi-pencil ml-2"></span></Button>
+                    <Button outline type="button" className="ml-2" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
                 </div>
                 <Container fluid={true} className="admin-info-container pt-2">
                     <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
@@ -207,54 +247,54 @@ export class Content extends PureComponent {
                     </Alert>
                     <Row>
                         <Col sm={6}>
-                        <Form tag="form" className="my-4">
-                        <FormGroup row className="mb-1">
-                            <Label sm="auto">{resources.UserName}</Label>
-                            <Col sm={2}>
-                                <Label sm="auto">{"AA" + newUserName}</Label>
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className="mb-1">
-                            <Label sm="auto">{resources.FirstName}</Label>
-                            <Col sm={2}>
-                                <Label sm="auto">{firstName}</Label>
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className="mb-1">
-                            <Label sm="auto">{resources.LastName}</Label>
-                            <Col sm={2}>
-                                <Label sm="auto">{lastName}</Label>
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className="mb-1">
-                            <Label sm="auto">{resources.Password}</Label>
-                            <Col sm={2}>
-                                <Button color="link" className="btn-password" onClick={() => this._toggleChangingPassword(true)}>
-                                    <span sm="auto">Change</span>
-                                </Button>
-                                {isChangingPassword && <ChangePasswordForm
-                                    showPopupPassword={isChangingPassword}
-                                    selectedId={userId}
-                                    isAdmin={true}
-                                    setShowPopupPassword={this._toggleChangingPassword}
-                                />}
-                            </Col>
-                        </FormGroup>
-                        {
-                            roleList && <FormGroup row className="mb-1">
-                                <Label sm="auto">Role</Label>
-                                <Col sm={2}>
-                                    <Label sm="auto">{roleList[role]}</Label>
-                                </Col>
-                            </FormGroup>
-                        }
-                        <FormGroup row className="mb-1">
-                            <Label sm="auto">Account Status</Label>
-                            <Col sm={2}>
-                                <input type="checkbox" name="isActive" className="account-status" checked={isActive} onChange={this._handleChangeStatus} />
-                            </Col>
-                        </FormGroup>
-                    </Form >
+                            <Form tag="form" className="my-4">
+                                <FormGroup row className="mb-1">
+                                    <Label sm="auto">{resources.UserName}</Label>
+                                    <Col sm={2}>
+                                        <Label sm="auto">{"AA" + newUserName}</Label>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="mb-1">
+                                    <Label sm="auto">{resources.FirstName}</Label>
+                                    <Col sm={2}>
+                                        <Label sm="auto">{firstName}</Label>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="mb-1">
+                                    <Label sm="auto">{resources.LastName}</Label>
+                                    <Col sm={2}>
+                                        <Label sm="auto">{lastName}</Label>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="mb-1">
+                                    <Label sm="auto">{resources.Password}</Label>
+                                    <Col sm={2}>
+                                        <Button color="link" className="btn-password" onClick={() => this._toggleChangingPassword(true)}>
+                                            <span sm="auto">Change</span>
+                                        </Button>
+                                        {isChangingPassword && <ChangePasswordForm
+                                            showPopupPassword={isChangingPassword}
+                                            selectedId={userId}
+                                            isAdmin={true}
+                                            setShowPopupPassword={this._toggleChangingPassword}
+                                        />}
+                                    </Col>
+                                </FormGroup>
+                                {
+                                    roleList && <FormGroup row className="mb-1">
+                                        <Label sm="auto">Role</Label>
+                                        <Col sm={2}>
+                                            <Label sm="auto">{roleList[role]}</Label>
+                                        </Col>
+                                    </FormGroup>
+                                }
+                                <FormGroup row className="mb-1">
+                                    <Label sm="auto">Account Status</Label>
+                                    <Col sm={2}>
+                                        <input type="checkbox" name="isActive" className="account-status" checked={isActive} onChange={this._handleChangeStatus} />
+                                    </Col>
+                                </FormGroup>
+                            </Form >
                         </Col>
                         <Col sm={6}>
                             <PersonalPermissionTable roleId={role} />
@@ -266,18 +306,19 @@ export class Content extends PureComponent {
     }
 
     _renderWhenCreateAndEditUser() {
-        const { isCreateNew, roleList } = this.props;
-        const { isClickedSubmit, newUserName, firstName, lastName, newPassword, role, isShowMessage, isSuccess, message, messagePopup, isConfirmPopup } = this.state;
+        const { roleList } = this.props;
+        const { isClickedSubmit, newUserName, firstName, lastName, newPassword, role, marketIds, isShowMessage, isSuccess, message, messagePopup,
+            isConfirmPopup, isCreateNew, isEdit, itemDefault, marketListByRole } = this.state;
 
         const validatedPasswordResult = validateNewPassword(newPassword);
         const validatedUserNameResult = validateUserName(newUserName);
-        const isValid = validatedUserNameResult.IsValid && !!firstName && !!lastName && (isCreateNew ? (validatedPasswordResult.IsValid && !!role) : true);
+        const isValid = validatedUserNameResult.IsValid && !!firstName && !!lastName && !!role && !!marketIds && (isCreateNew ? validatedPasswordResult.IsValid : true);
 
         return (
             <Fragment>
                 <div className="mb-2">
                     <Fragment>
-                        <Button outline type="button" color="danger" onClick={() => this._handleCancel(false)}>Cancel<span className="oi oi-x ml-2"></span></Button>
+                        <Button outline type="button" color="danger" onClick={() => this._handleCancel(isCreateNew)}>Cancel<span className="oi oi-x ml-2"></span></Button>
                         <Button outline type="button" className="ml-2" disabled={isClickedSubmit ? !isValid : false} onClick={() => this._handleSubmit(isValid)}>Save<span className="oi oi-task ml-2"></span></Button>
                     </Fragment>
                 </div>
@@ -336,7 +377,7 @@ export class Content extends PureComponent {
                                 <FormGroup row className="mb-1">
                                     <Label for="role" sm="auto" className="required">Role</Label>
                                     <Col sm={5}>
-                                        <Input type="select" name="role" className="mt-2 select-role" value={role} onChange={this._handleChange} invalid={isClickedSubmit && !role}>
+                                        <Input type="select" name="role" className="mt-2 select-role" value={role} onChange={this._handleChangeRole} invalid={isClickedSubmit && !role}>
                                             {
                                                 isCreateNew && <option key={'role-0'} value="0">[Select Role]</option>
                                             }
@@ -353,17 +394,45 @@ export class Content extends PureComponent {
                                     </Col>
                                 </FormGroup>
                                 {
-                                    isCreateNew && <FormGroup row className="mb-1">
-                                        <Label sm="auto" className="pt-2">Account Status</Label>
-                                        <Col sm={5}>
-                                            <input type="checkbox" className="mt-2" checked disabled />
-                                        </Col>
-                                    </FormGroup>
+                                    marketListByRole && (
+                                        <FormGroup row className={`mb-1 ${!marketIds ? '' : ' multiple-select-wrapper is-invalid'}`}>
+                                            <Label for="market" sm="auto" className="required">Language</Label>
+                                            <Col sm={5} className="mt-2">
+                                                <MultipleSelect
+                                                    dataSource={marketListByRole}
+                                                    keyField="key"
+                                                    valueField="name"
+                                                    statusField="checked"
+                                                    maxDisplayItemCount={1}
+                                                    noneSelectedLabel="Please Select"
+                                                    itemDefaultOption={itemDefault}
+                                                    isDisableOption={itemDefault.checked}
+                                                    onChange={this._handleChangeMarket} />
+                                            </Col>
+                                            {
+                                                !marketIds &&
+                                                <FormFeedback><div dangerouslySetInnerHTML={{ __html: messages.RequiredRole }} /></FormFeedback>
+                                            }
+                                        </FormGroup>
+                                    )
+                                }
+                                {
+                                    isCreateNew && (
+                                        <FormGroup row className="mb-1">
+                                            <Label sm="auto" className="pt-2">Account Status</Label>
+                                            <Col sm={5}>
+                                                <input type="checkbox" className="mt-2" checked disabled />
+                                            </Col>
+                                        </FormGroup>
+                                    )
                                 }
                             </Form>
                         </Col>
                         <Col sm={6}>
-                            <PersonalPermissionTable roleId={role} />
+                            <PersonalPermissionTable
+                                roleId={role}
+                                isCreateNew={isCreateNew}
+                                isEdit={isEdit} />
                         </Col>
                     </Row>
                 </Container>

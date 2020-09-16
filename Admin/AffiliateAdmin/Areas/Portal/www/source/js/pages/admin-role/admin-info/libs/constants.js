@@ -35,6 +35,7 @@ export const initialState = {
     lastName: '',
     newPassword: '',
     role: 0,
+    marketIds: '',
     isActive: true,
     isShowMessage: false,
     isSuccess: true,
@@ -44,5 +45,10 @@ export const initialState = {
     messagePopup: '',
     isConfirmPopup: true,
     isDeleteUser: false,
-    isEdit: false
+    isEdit: false,
+    marketListByRole: null,
+    itemDefault: {
+        name: `Set to Role's Default`,
+        checked: false
+    }
 };

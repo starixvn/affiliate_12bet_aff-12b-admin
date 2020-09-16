@@ -77,10 +77,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
                 using (var reader = objectDb.ExecuteReader())
                 {
-                    var item = BuildUserPermissionInfo(reader);
-                    item.RolePolicy = reader.ToInt("Policy");
+                    while (reader.Read())
+                    {
+                        var item = BuildUserPermissionInfo(reader);
+                        item.RolePolicy = reader.ToInt("Policy");
 
-                    result.Add(item);
+                        result.Add(item);
+                    }
                 }
             }
 
@@ -129,7 +132,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
                     marketList.Add(new MarketInfo
                     {
                         MarketId = reader.ToString("MarketId"),
-                        MarketName = reader.ToString("DisplayName"),
+                        MarketName = reader.ToString("MarketName"),
                         HasPermission = reader.ToBool("Status")
                     });
                 }

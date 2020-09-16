@@ -5,19 +5,44 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { setRolePermission, getRolePermission } from '../actions';
+import { updateObjectInArray } from '../../../../modules/dataHandler';
+import { setPermissionListByRole, getPermissionListByRole } from '../actions';
 
 export class PersonalPermissionTable extends PureComponent {
     constructor(props) {
         super(props);
+
+        this.state = {
+            permissionListByRole: null
+        }
     }
 
     componentDidUpdate(prevProps) {
-        const { roleId } = this.props;
+        const { roleId, isEdit, permissionListByRole } = this.props;
 
         if (roleId && roleId !== prevProps.roleId) {
-            this.props.getRolePermission(roleId);
+            this._handleGetPermissionListByRole(roleId);
         }
+
+        if (isEdit !== prevProps.isEdit && permissionListByRole) {
+            this.setState({ permissionListByRole });
+        }
+    }
+
+    _handleGetPermissionListByRole = async (roleId) => {
+        const permissionListByRole = await this.props.getPermissionListByRole(roleId);
+
+        this.setState({ permissionListByRole });
+    }
+
+    _handleChange = (funcId, isChecked, isUserHost) => {
+        const { permissionListByRole } = this.state;
+        const data = isUserHost ? (isChecked ? { IsUserHost: !isChecked } : { IsUserRead: !isChecked, IsUserHost: !isChecked }) : (isChecked ? { IsUserRead: !isChecked, IsUserHost: !isChecked } : { IsUserRead: !isChecked });
+        const indexItem = permissionListByRole.findIndex(item => item.FuncId === funcId);
+        const updateItem = Object.assign({}, permissionListByRole[indexItem], data);
+        const permissionListByRoleUpdate = updateObjectInArray(permissionListByRole, indexItem, updateItem);
+
+        this.setState({ permissionListByRole: permissionListByRoleUpdate });
     }
 
     _renderHeader() {
@@ -157,16 +182,16 @@ export class PersonalPermissionTable extends PureComponent {
     }
 
     render() {
-        const { rolePermission } = this.props;
+        const { permissionListByRole } = this.state;
 
-        return rolePermission && (
+        return permissionListByRole && (
             <div className="data-content">
                 <div className="table-responsive table-striped my-2">
                     <Table
                         maxWidth={700}
                         bodyHeight={300}
                         header={this._renderHeader()}
-                        body={this._renderDataSection(rolePermission)}
+                        body={this._renderDataSection(permissionListByRole)}
                     />
                 </div>
             </div>
@@ -176,12 +201,12 @@ export class PersonalPermissionTable extends PureComponent {
 
 
 function mapStateToProps({ adminInfo }) {
-    const { rolePermission, isCreateNew, isEdit } = adminInfo;
-    return Object.assign({}, { rolePermission, isCreateNew, isEdit });
+    const { permissionListByRole } = adminInfo;
+    return Object.assign({}, { permissionListByRole });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setRolePermission, getRolePermission }, dispatch);
+    return bindActionCreators({ setPermissionListByRole, getPermissionListByRole }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonalPermissionTable);

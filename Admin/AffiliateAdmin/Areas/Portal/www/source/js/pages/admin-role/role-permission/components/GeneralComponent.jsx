@@ -255,7 +255,7 @@ export class GeneralComponent extends PureComponent {
         const { messagePopup, isConfirmPopup } = this.state;
 
         return roleList && (
-            <div className="data-content general-permission-role">
+            <div className="data-content role-permission">
                 <div className="table-responsive table-striped">
                     <Table
                         maxWidth={1000}

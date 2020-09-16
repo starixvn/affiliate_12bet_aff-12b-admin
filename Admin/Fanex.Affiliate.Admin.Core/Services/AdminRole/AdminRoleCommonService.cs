@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Common.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -82,7 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             {
                 MarketId = reader.ToString("MarketId"),
                 MarketName = reader.ToString("MarketName"),
-                HasPermission = reader.ToBool("Status")
+                HasPermission = Convert.ToBoolean(reader["Status"])
             };
         }
     }

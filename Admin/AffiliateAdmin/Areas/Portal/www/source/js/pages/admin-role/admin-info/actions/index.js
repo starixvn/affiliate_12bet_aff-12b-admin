@@ -2,7 +2,7 @@
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { redirectToCreateNew, redirectToAdminList } from '../../common/actions';
 import { deleteUsers } from '../../admin-list/actions';
-import { SET_ROLE_LIST, SET_IS_CREATE_NEW, SET_IS_EDIT, SET_ROLE_PERMISSION } from './types';
+import { SET_ROLE_LIST, SET_PERMISSION_LIST_BY_ROLE } from './types';
 
 export { toggleLoader, redirectToCreateNew, redirectToAdminList, deleteUsers };
 
@@ -13,23 +13,9 @@ export const setRoleList = (data) => {
     }
 }
 
-export const setIsEdit = (data) => {
+export const setPermissionListByRole = (data) => {
     return {
-        type: SET_IS_EDIT,
-        data
-    }
-}
-
-export const setIsCreateNew = (data) => {
-    return {
-        type: SET_IS_CREATE_NEW,
-        data
-    }
-}
-
-export const setRolePermission = (data) => {
-    return {
-        type: SET_ROLE_PERMISSION,
+        type: SET_PERMISSION_LIST_BY_ROLE,
         data
     }
 }
@@ -42,7 +28,7 @@ export const fetchData = (userId) => async () => {
 }
 
 export const getRoleList = () => async (dispatch) => {
-    const url = 'Portal/AdminInfo/GetRoleList';
+    const url = 'Portal/AdminRoleCommon/GetRoleList';
     const response = await post(url);
 
     const data = response && response.status === 200 ? convertRoleList(response.data) : null;
@@ -50,20 +36,40 @@ export const getRoleList = () => async (dispatch) => {
     dispatch(setRoleList(data));
 }
 
-export const getRolePermission = (roleId) => async (dispatch) => {
+export const getPermissionListByRole = (roleId) => async (dispatch) => {
     const url = 'Portal/AdminInfo/GetPermissionListByRole';
     const response = await post(url, { roleId });
 
     const data = response && response.status === 200 ? response.data : null;
 
-    dispatch(setRolePermission(data));
+    dispatch(setPermissionListByRole(data));
+
+    return data;
 }
 
-export const getMarketListByRole = (roleId) => async (dispatch) => {
-    const url = 'Portal/AdminInfo/GetMarketListByRole';
+export const getMarketListByRole = (roleId) => async () => {
+    const url = 'Portal/AdminRoleCommon/GetMarketListByRole';
     const response = await post(url, { roleId });
 
-    return response && response.status === 200 ? response.data : null;
+    return response && response.status === 200 ? convertMarketListByRole(response.data) : null;
+}
+
+export const getMarketListByUser = (roleId) => async () => {
+    const url = 'Portal/AdminRoleCommon/GetMarketListByUser';
+    const response = await post(url, { roleId });
+
+    return response && response.status === 200 ? convertMarketListByRole(response.data) : null;
+}
+
+const convertMarketListByRole = (marketListByRole) => {
+
+    return marketListByRole.filter(m => m.HasPermission).map(item => {
+        return {
+            key: item.MarketId,
+            name: item.MarketName,
+            checked: false
+        };
+    });
 }
 
 const convertRoleList = (roleList) => {

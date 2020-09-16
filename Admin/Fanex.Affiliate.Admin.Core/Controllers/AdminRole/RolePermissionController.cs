@@ -13,15 +13,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
     [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class RolePermissionController : BaseController
     {
-        private readonly IAdminRoleCommonService _adminRoleCommonService;
         private readonly IRolePermissionService _rolePermissionService;
 
         public RolePermissionController(
             ISessionService sessionService,
-            IAdminRoleCommonService adminRoleCommonService,
             IRolePermissionService rolePermissionService) : base(sessionService)
         {
-            _adminRoleCommonService = adminRoleCommonService;
             _rolePermissionService = rolePermissionService;
         }
 
@@ -32,37 +29,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             return new JsonNetResult
             {
                 Data = _rolePermissionService.GetPermissionInfoList()
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetRoleList()
-        {
-            return new JsonNetResult
-            {
-                Data = _adminRoleCommonService.GetRoleList()
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetMarketByUserList()
-        {
-            const int userId = 1;
-            return new JsonNetResult
-            {
-                Data = _adminRoleCommonService.GetMarketListByUser(userId)
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetMarketListByRole()
-        {
-            return new JsonNetResult
-            {
-                Data = _adminRoleCommonService.GetMarketListByRole()
             };
         }
 

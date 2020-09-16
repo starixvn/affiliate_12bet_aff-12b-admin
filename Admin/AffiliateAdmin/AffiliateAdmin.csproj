@@ -1377,12 +1377,11 @@
     <Content Include="Areas\Portal\www\source\style\components\_department-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\home.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\SortingCell.jsx" />
-    <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-users.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-list.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-role-menu.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-info.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\admin-role\permission-role.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\core.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\admin-role\general-permisison-role.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\role-permisison.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -14,15 +14,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
     public class AdminInfoController : BaseController
     {
         private readonly IAdminInfoService _adminInfoService;
-        private readonly IAdminRoleCommonService _adminRoleCommonService;
 
         public AdminInfoController(
             ISessionService sessionService,
-            IAdminInfoService adminInfoService,
-            IAdminRoleCommonService adminRoleCommonService) : base(sessionService)
+            IAdminInfoService adminInfoService) : base(sessionService)
         {
             _adminInfoService = adminInfoService;
-            _adminRoleCommonService = adminRoleCommonService;
         }
 
         [HttpPost]
@@ -32,16 +29,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             return new JsonNetResult
             {
                 Data = _adminInfoService.GetUserInfo(userId)
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetRoleList()
-        {
-            return new JsonNetResult
-            {
-                Data = _adminRoleCommonService.GetRoleList()
             };
         }
 
