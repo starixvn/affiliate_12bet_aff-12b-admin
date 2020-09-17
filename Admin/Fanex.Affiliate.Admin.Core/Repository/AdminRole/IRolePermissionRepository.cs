@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
     {
         IEnumerable<RolePermissionInfo> GetPermissionInfoList();
 
-        ResultInfo UpdatePermissionInfo(UpdatePermissionInfoParam param);
+        ResultInfo UpdatePermissionInfo(UpdateRolePermissionParam param);
 
         ResultInfo UpdateMarketInfoList(UpdateMarketInfoParam param);
     }

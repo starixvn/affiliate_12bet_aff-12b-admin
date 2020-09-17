@@ -3,171 +3,63 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.AdminRole;
 using Fanex.Common.Extensions;
 using Fanex.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 
 namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 {
-    public class AdminInfoService : BaseRepository, IAdminInfoService
+    public class AdminInfoService: IAdminInfoService
     {
         private const int aaLenght = 2;
 
+        private readonly IAdminInfoRepository _adminInfoRepository;
+        public AdminInfoService(
+            IAdminInfoRepository adminInfoRepository)
+        {
+            _adminInfoRepository = adminInfoRepository;
+        }
+
         public ResultInfo CreateUser(AdminInfoParam param)
         {
-            const string SpKey = "Aff_Admin_AdminUser_Ins";
+            param.PermissionInfoXml = BuildPermissionInfoXml(param.PermissionInfo);
 
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                AssignParam(param, objectDb);
-
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
-        }
-
-        public AdminInforResultEntity GetUserInfo(int userId)
-        {
-            const string SpKey = "Aff_Admin_AdminUser_Detail_Sel";
-
-            var result = new AdminInforResultEntity();
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.AddInParameter("CustId", DbType.Int32, userId);
-
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    result.AdminInfo = GetAdminInfo(reader);
-                    result.MarketList = GetMarketList(reader);
-                    result.UserPermissionList = GetUserPermissionList(reader);
-                }
-            }
-
-            return result;
-        }
-
-        public ResultInfo UpdateUser(AdminInfoParam param)
-        {
-            const string SpKey = "Aff_Admin_AdminUser_Upd";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.AddInParameter("CustId", DbType.Int32, param.UserId);
-                AssignParam(param, objectDb);
-
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
+            return _adminInfoRepository.CreateUser(param);
         }
 
         public IEnumerable<UserPermissionInfo> GetPermissionListByRole(int roleId)
         {
-            const string SpKey = "Aff_Admin_AdminUser_RolePermission_Sel";
+            return _adminInfoRepository.GetPermissionListByRole(roleId);
+        }
 
-            var result = new List<UserPermissionInfo>();
+        public AdminInforResultEntity GetUserInfo(int userId)
+        {
+            return _adminInfoRepository.GetUserInfo(userId);
+        }
 
-            using (var objectDb = GetObjectDb(SpKey))
+        public ResultInfo UpdateUser(AdminInfoParam param)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static string BuildPermissionInfoXml(IEnumerable<RolePermissionParam> permissionInfo)
+        {
+            var result = new StringBuilder();
+            result.Append("<root>");
+
+            foreach (var item in permissionInfo)
             {
-                objectDb.AddInParameter("RoleId", DbType.Int32, roleId);
-
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var item = BuildUserPermissionInfo(reader);
-                        item.RolePolicy = reader.ToInt("Policy");
-
-                        result.Add(item);
-                    }
-                }
+                var row = $"<r FuncId=\"{item.FuncId}\" Policy=\"{item.Policy}\" />";
+                result.Append(row);
             }
 
-            return result;
-        }
+            result.Append("</root>");
 
-        private static void AssignParam(AdminInfoParam param, IObjectDb objectDb)
-        {
-            objectDb.AddInParameter("UserName", DbType.String, "AA" + param.UserName);
-            objectDb.AddInParameter("UserPwd", DbType.String, param.Password);
-            objectDb.AddInParameter("RoleId", DbType.Int32, param.Role);
-            objectDb.AddInParameter("Closed", DbType.Boolean, !param.IsActive);
-            objectDb.AddInParameter(Field.UserId, DbType.Int32, param.ByUserId);
-            objectDb.AddInParameter("Ip", DbType.String, param.Ip);
-
-            AssignResultOutputParam(objectDb);
-        }
-
-
-        private static AdminInfo GetAdminInfo(IDataReader reader)
-        {
-            if (reader.Read())
-            {
-                return new AdminInfo
-                {
-                    UserId = reader.ToInt("CustId"),
-                    UserName = reader.ToString("UserName").Substring(aaLenght),
-                    FirstName = reader.ToString("FirstName"),
-                    LastName = reader.ToString("LastName"),
-                    RoleId = reader.ToInt("RoleId"),
-                    IsActive = !reader.ToBool("Closed")
-                };
-            }
-
-            return new AdminInfo();
-        }
-
-        private static IEnumerable<MarketInfo> GetMarketList(IDataReader reader)
-        {
-            var marketList = new List<MarketInfo>();
-
-            if (reader.NextResult())
-            {
-                while (reader.Read())
-                {
-                    marketList.Add(new MarketInfo
-                    {
-                        MarketId = reader.ToString("MarketId"),
-                        MarketName = reader.ToString("MarketName"),
-                        HasPermission = reader.ToBool("Status")
-                    });
-                }
-            }
-
-            return marketList;
-        }
-
-        private static IEnumerable<UserPermissionInfo> GetUserPermissionList(IDataReader reader)
-        {
-            var userPermissionList = new List<UserPermissionInfo>();
-
-            if (reader.NextResult())
-            {
-                while (reader.Read())
-                {
-                    var item = BuildUserPermissionInfo(reader);
-                    item.UserPolicy = reader.ToInt("UserPolicy");
-                    item.RolePolicy = reader.ToInt("RolePolicy");
-
-                    userPermissionList.Add(item);
-                }
-            }
-
-            return userPermissionList;
-        }
-
-        private static UserPermissionInfo BuildUserPermissionInfo(IDataReader reader)
-        {
-            return new UserPermissionInfo
-            {
-                ParentId = reader.ToInt("ParentId"),
-                FuncId = reader.ToInt("FuncId"),
-                FuncName = reader.ToString("FuncName")
-            };
+            return result.ToString();
         }
     }
 }

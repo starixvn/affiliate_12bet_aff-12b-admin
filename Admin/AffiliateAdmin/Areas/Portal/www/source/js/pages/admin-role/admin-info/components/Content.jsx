@@ -2,10 +2,11 @@ import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert, Row } from 'reactstrap';
-import { messages, initialState, resources, itemDefault } from '../libs/constants';
+import { messages, initialState, resources } from '../libs/constants';
 import { validateUserName, validateNewPassword } from '../../../../modules/utils';
+import { convertMarketListByRole, combineArrayObject } from '../libs/utils';
 import { globalResource } from '../../../../modules/globalResource';
-import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByRole } from '../actions';
+import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByUser, getMarketListByRole, getPermissionListByRole, setPermissionListByRole } from '../actions';
 import ChangePasswordForm from '../../../common/components/ChangePasswordForm';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
 import PersonalPermissionTable from './PersonalPermissionTable';
@@ -24,15 +25,13 @@ export class Content extends PureComponent {
     }
 
     componentDidMount() {
-        const { userId, roleList } = this.props;
-        userId && this._handleFetchData(userId);
-
-        !roleList && this.props.getRoleList();
+        this.props.getRoleList();
+        this.props.getMarketListByUser();
     }
 
     componentDidUpdate(prevProps) {
-        const { userId } = this.props;
-        if (userId && userId !== prevProps.userId) {
+        const { userId, marketListByUser } = this.props;
+        if (userId && !marketListByUser) {
             this._handleFetchData(userId);
         }
     }
@@ -43,14 +42,27 @@ export class Content extends PureComponent {
         const userInfo = await this.props.fetchData(userId);
 
         if (userInfo) {
+
+            const { AdminInfo, MarketList, UserPermissionList } = userInfo;
+
+            const result = convertMarketListByRole(MarketList, true);
+            const marketList = combineArrayObject(this.props.marketListByUser, result.convertMarketList);
+
             this.setState({
-                newUserName: userInfo.UserName,
-                firstName: userInfo.FirstName,
-                lastName: userInfo.LastName,
-                role: userInfo.RoleId,
-                isActive: userInfo.IsActive,
-                userInfo
+                newUserName: AdminInfo.UserName,
+                firstName: AdminInfo.FirstName,
+                lastName: AdminInfo.LastName,
+                role: AdminInfo.RoleId,
+                initialRole: AdminInfo.RoleId,
+                isActive: AdminInfo.IsActive,
+                initialUserInfo: AdminInfo,
+                marketIds: result.selectedItemKey,
+                initialMarketList: marketList,
+                marketListByRole: marketList,
+                initialPermissionList: UserPermissionList
             });
+
+            this.props.setPermissionListByRole(UserPermissionList);
         } else {
             this._handleShowAlert(false, globalResource.AnError);
         }
@@ -62,12 +74,33 @@ export class Content extends PureComponent {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    _handleChangeRole = async (event) => {
+    _handleChangeRole = (event) => {
         const role = event.target.value;
 
-        const marketListByRole = await this.props.getMarketListByRole(role);
+        this.setState({ role });
 
-        this.setState({ role, marketListByRole });
+        const { initialRole } = this.state;
+
+        if (role == initialRole) {
+            const { initialMarketList, initialPermissionList } = this.state;
+
+            this.setState({ marketListByRole: initialMarketList });
+            this.props.setPermissionListByRole(initialPermissionList);
+        } else {
+            this.props.getPermissionListByRole(role);
+            this._handleUpdateMarketList(role);
+        }
+    }
+
+    _handleUpdateMarketList = async (roleId) => {
+        const { itemDefault } = this.state;
+        const result = await this.props.getMarketListByRole(roleId, itemDefault.checked);
+
+        if (result) {
+            const marketList = combineArrayObject(this.props.marketListByUser, result.convertMarketList);
+
+            this.setState({ marketListByRole: marketList, marketIds: result.selectedItemKey });
+        }
     }
 
     _handleSubmit = async (isValid) => {
@@ -75,9 +108,10 @@ export class Content extends PureComponent {
         this.setState({ isClickedSubmit: true });
 
         if (isValid) {
-            const { userId } = this.props;
-            const { newUserName, newPassword, confirmPassword, role, isActive } = this.state;
-            const param = { userId: userId || 0, userName: newUserName, password: newPassword, confirmPassword, role, isActive };
+            const { userId, permissionListByRole } = this.props;
+            const { newUserName, newPassword, role, isActive, marketIds } = this.state;
+            const param = { userId: userId || 0, userName: newUserName, password: newPassword, role, isClosed: !isActive, marketIds, permissionInfo: permissionListByRole };
+
             const data = userId ? await this.props.updateUser(param) : await this.props.createUser(param);
 
             if (data) {
@@ -115,17 +149,20 @@ export class Content extends PureComponent {
         if (isCreateNew) {
             this.props.redirectToAdminList();
         } else {
-            const { userInfo } = this.state;
+            const { initialUserInfo, initialMarketList, initialPermissionList } = this.state;
 
             this.setState({
                 isClickedSubmit: false,
-                newUserName: userInfo.UserName,
-                firstName: userInfo.FirstName,
-                lastName: userInfo.LastName,
-                role: userInfo.RoleId,
-                isActive: userInfo.IsActive,
-                isEdit: false
+                newUserName: initialUserInfo.UserName,
+                firstName: initialUserInfo.FirstName,
+                lastName: initialUserInfo.LastName,
+                role: initialUserInfo.RoleId,
+                isActive: initialUserInfo.IsActive,
+                isEdit: false,
+                marketList: initialMarketList
             });
+
+            this.props.setPermissionListByRole(initialPermissionList);
         }
     }
 
@@ -134,23 +171,25 @@ export class Content extends PureComponent {
     }
 
     _handleDeleteUser = () => {
-        this.setState({ messagePopup: 'Are you sure you want to delete this user?', isConfirmPopup: true });
+        this.setState({ messagePopup: 'Are you sure you want to delete this user?', isConfirmPopup: true, isDeleteUser: true });
     }
 
-    _handleChangeStatus = (isActive) => {
-        this.setState({ messagePopup: 'Are you sure you want to update the status of this user?', isConfirmPopup: true, isActive });
+    _handleChangeStatus = () => {
+        this.setState({ messagePopup: 'Are you sure you want to update the status of this user?', isConfirmPopup: true });
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
         this.setState({ messagePopup: '' });
 
         const { userId } = this.props;
-        const { isDeleteUser, isActive } = this.setState;
+        const { isDeleteUser, isActive } = this.state;
+
         if (confirmResult && userId && isDeleteUser) {
             this._deleteUser(userId);
         }
+
         if (confirmResult && userId && !isDeleteUser) {
-            this._updateStatus(userId, !isActive);
+            this._updateStatus(userId, isActive);
         }
 
         if (!confirmResult && isDeleteUser) {
@@ -158,27 +197,12 @@ export class Content extends PureComponent {
         }
     }
 
-    _getSelectedItemKey(dataSource) {
-        const selectedItemKey = [];
-
-        for (let i = 0; i < dataSource.length; i++) {
-            const item = dataSource[i];
-
-            if (item.checked) {
-                selectedItemKey.push(item.key)
-            }
-        }
-
-        return selectedItemKey.join(",");
-    }
-
     _handleChangeMarket = (item, selectedKey, isItemDefault) => {
-        const { marketListByRole } = this.state;
-
         if (isItemDefault) {
-            const defaultMarketsOfRole = "en-US,vi-VN";
-            this.setState({ itemDefault: item, marketListByRole: this.handleChangeMultipleSelected(marketListByRole, defaultMarketsOfRole), marketIds: defaultMarketsOfRole });
+            this.setState({ itemDefault: item }, () => item.checked && this._handleUpdateMarketList(this.state.role));
         } else {
+            const { marketListByRole } = this.state;
+
             this.setState({ marketListByRole: this.handleChangeMultipleSelected(marketListByRole, selectedKey), marketIds: selectedKey });
         }
     }
@@ -200,15 +224,16 @@ export class Content extends PureComponent {
 
     _deleteUser = async (userId) => {
         this.props.toggleLoader(true);
+        this.setState({ isDeleteUser: false, isConfirmPopup: false });
 
         const result = await this.props.deleteUsers(userId);
 
         if (result) {
             const messagePopup = result.IsSuccessful ? 'User has been deleted successfully!' : result.Message;
 
-            this.setState({ messagePopup, isConfirmPopup: false });
+            this.setState({ messagePopup });
         } else {
-            this.setState({ isDeleteUser: false, messagePopup: globalResource.AnError, isConfirmPopup: false });
+            this.setState({ messagePopup: globalResource.AnError });
         }
 
         this.props.toggleLoader(false);
@@ -217,12 +242,12 @@ export class Content extends PureComponent {
     _updateStatus = async (userId, isActive) => {
         this.props.toggleLoader(true);
 
-        const result = await this.props.updateStatus({ userId, isActive });
+        const result = await this.props.updateStatus({ userId, isClosed: isActive });
 
         if (result) {
             const messagePopup = result.IsSuccessful ? "User's status has been update successfully!" : result.Message;
 
-            result.IsSuccessful && this.setState({ isActive });
+            result.IsSuccessful && this.setState({ isActive: !isActive });
             this.setState({ messagePopup, isConfirmPopup: false });
         } else {
             this.setState({ messagePopup: globalResource.AnError, isConfirmPopup: false });
@@ -297,7 +322,8 @@ export class Content extends PureComponent {
                             </Form >
                         </Col>
                         <Col sm={6}>
-                            <PersonalPermissionTable roleId={role} />
+                            <PersonalPermissionTable
+                                roleId={role} />
                         </Col>
                     </Row>
                 </Container>
@@ -307,8 +333,8 @@ export class Content extends PureComponent {
 
     _renderWhenCreateAndEditUser() {
         const { roleList } = this.props;
-        const { isClickedSubmit, newUserName, firstName, lastName, newPassword, role, marketIds, isShowMessage, isSuccess, message, messagePopup,
-            isConfirmPopup, isCreateNew, isEdit, itemDefault, marketListByRole } = this.state;
+        const { isClickedSubmit, newUserName, firstName, lastName, newPassword, role, marketIds, isShowMessage, isSuccess, message,
+            isCreateNew, isEdit, itemDefault, marketListByRole } = this.state;
 
         const validatedPasswordResult = validateNewPassword(newPassword);
         const validatedUserNameResult = validateUserName(newUserName);
@@ -395,7 +421,7 @@ export class Content extends PureComponent {
                                 </FormGroup>
                                 {
                                     marketListByRole && (
-                                        <FormGroup row className={`mb-1 ${!marketIds ? '' : ' multiple-select-wrapper is-invalid'}`}>
+                                        <FormGroup row className={`mb-1 ${isClickedSubmit && !marketIds ? ' multiple-select-wrapper is-invalid' : ''}`}>
                                             <Label for="market" sm="auto" className="required">Language</Label>
                                             <Col sm={5} className="mt-2">
                                                 <MultipleSelect
@@ -409,10 +435,6 @@ export class Content extends PureComponent {
                                                     isDisableOption={itemDefault.checked}
                                                     onChange={this._handleChangeMarket} />
                                             </Col>
-                                            {
-                                                !marketIds &&
-                                                <FormFeedback><div dangerouslySetInnerHTML={{ __html: messages.RequiredRole }} /></FormFeedback>
-                                            }
                                         </FormGroup>
                                     )
                                 }
@@ -436,6 +458,18 @@ export class Content extends PureComponent {
                         </Col>
                     </Row>
                 </Container>
+            </Fragment>
+        )
+    }
+
+    render() {
+        const { isCreateNew, isEdit, messagePopup, isConfirmPopup } = this.state;
+
+        return (
+            <Fragment>
+                {
+                    isCreateNew || isEdit ? this._renderWhenCreateAndEditUser() : this._renderWhenView()
+                }
                 {
                     !!messagePopup && <NotificationPopup
                         message={messagePopup}
@@ -444,23 +478,17 @@ export class Content extends PureComponent {
                     />
                 }
             </Fragment>
-        )
-    }
-
-    render() {
-        const { isCreateNew, isEdit } = this.state;
-
-        return isCreateNew || isEdit ? this._renderWhenCreateAndEditUser() : this._renderWhenView()
+        );
     }
 }
 
 function mapStateToProps({ userId, userName, adminInfo }) {
-    const { roleList } = adminInfo;
-    return Object.assign({}, { userId, userName, roleList });
+    const { roleList, permissionListByRole, marketListByUser } = adminInfo;
+    return Object.assign({}, { userId, userName, roleList, permissionListByRole, marketListByUser });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByRole }, dispatch);
+    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByUser, getMarketListByRole, getPermissionListByRole, setPermissionListByRole }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -2,9 +2,11 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -48,8 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         {
             if (ModelState.IsValid)
             {
-                param.ByUserId = SessionService.UserId;
-                param.Ip = Request.UserHostAddress;
+                GetUserInfoParam(param);
 
                 return new JsonNetResult
                 {
@@ -71,15 +72,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         [ValidateAntiForgeryHeader]
         public ActionResult UpdateUser(AdminInfoParam param)
         {
-            if (ModelState.IsValid && param.UserId >= Validation.MinId)
+            if (!ModelState.IsValid && param.UserId >= Validation.MinId)
             {
-                param.ByUserId = SessionService.UserId;
-                param.Ip = Request.UserHostAddress;
-
-                return new JsonNetResult
-                {
-                    Data = _adminInfoService.UpdateUser(param)
-                };
+                return Update(param);
             }
 
             return new JsonNetResult
@@ -90,6 +85,66 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
                     Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                 }
             };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult UpdateStatus(AdminInfoParam param)
+        {
+            if (param.UserId >= Validation.MinId)
+            {
+                return Update(param);
+            }
+
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "User is invalid!"
+                }
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult ChangePassword(UpdatePasswordParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                var adminInfoParam = new AdminInfoParam
+                {
+                    UserId = param.AccountId,
+                    Password = CryptographyHelper.Encrypt(param.Password)
+                };
+
+                return Update(adminInfoParam);
+            }
+
+            return new JsonNetResult
+            {
+                Data = new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                }
+            };
+        }
+
+        private JsonNetResult Update(AdminInfoParam param)
+        {
+            GetUserInfoParam(param);
+
+            return new JsonNetResult
+            {
+                Data = _adminInfoService.UpdateUser(param)
+            };
+        }
+
+        private void GetUserInfoParam(AdminInfoParam param)
+        {
+            param.ByUserId = SessionService.UserId;
+            param.Ip = Request.UserHostAddress;
         }
     }
 }

@@ -21,9 +21,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             return _rolePermissionRepository.GetPermissionInfoList();
         }
 
-        public ResultInfo UpdatePermissionInfo(UpdatePermissionInfoParam param)
+        public ResultInfo UpdatePermissionInfo(UpdateRolePermissionParam param)
         {
-            param.PermissionInfoXml = BuildPermissionInfoXml(param.PermissionInfo);
+            param.PermissionInfoXml = BuildPermissionInfoXml(param.PermissionInfo, param.RoleId);
 
             return _rolePermissionRepository.UpdatePermissionInfo(param);
         }
@@ -35,14 +35,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             return _rolePermissionRepository.UpdateMarketInfoList(param);
         }
 
-        private static string BuildPermissionInfoXml(IEnumerable<PermissionInfoParam> permissionInfo)
+        private static string BuildPermissionInfoXml(IEnumerable<RolePermissionParam> permissionInfo, int roleId)
         {
             var result = new StringBuilder();
             result.Append("<root>");
 
             foreach (var item in permissionInfo)
             {
-                var row = $"<r FuncId=\"{item.FuncId}\" Policy=\"{item.Policy}\" />";
+                var row = $"<r RoleId=\"{roleId}\" FuncId=\"{item.FuncId}\" Policy=\"{item.Policy}\" />";
                 result.Append(row);
             }
 

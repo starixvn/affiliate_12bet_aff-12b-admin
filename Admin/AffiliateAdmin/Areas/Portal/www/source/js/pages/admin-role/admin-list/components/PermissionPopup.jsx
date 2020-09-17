@@ -80,13 +80,13 @@ export class PermissionPopup extends PureComponent {
                 <Fragment>
                     <td className="text-center">
                         {
-                            dataItem.IsUserRead && <span className="oi oi-check text-primary"></span>
+                            dataItem.IsRead && <span className="oi oi-check text-primary"></span>
                         }
                     </td>
 
                     <td className="text-center">
                         {
-                            dataItem.IsUserHost && <span className="oi oi-check text-primary"></span>
+                            dataItem.IsHost && <span className="oi oi-check text-primary"></span>
                         }
                     </td>
                     <td className="text-center">

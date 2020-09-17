@@ -2,7 +2,8 @@
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { redirectToCreateNew, redirectToAdminList } from '../../common/actions';
 import { deleteUsers } from '../../admin-list/actions';
-import { SET_ROLE_LIST, SET_PERMISSION_LIST_BY_ROLE } from './types';
+import { SET_ROLE_LIST, SET_PERMISSION_LIST_BY_ROLE, SET_MARKET_LIST_BY_USER } from './types';
+import { convertRoleList, convertMarketListByRole } from '../libs/utils';
 
 export { toggleLoader, redirectToCreateNew, redirectToAdminList, deleteUsers };
 
@@ -16,6 +17,13 @@ export const setRoleList = (data) => {
 export const setPermissionListByRole = (data) => {
     return {
         type: SET_PERMISSION_LIST_BY_ROLE,
+        data
+    }
+}
+
+export const setMarketListByUser = (data) => {
+    return {
+        type: SET_MARKET_LIST_BY_USER,
         data
     }
 }
@@ -43,44 +51,24 @@ export const getPermissionListByRole = (roleId) => async (dispatch) => {
     const data = response && response.status === 200 ? response.data : null;
 
     dispatch(setPermissionListByRole(data));
-
-    return data;
 }
 
-export const getMarketListByRole = (roleId) => async () => {
+export const getMarketListByRole = (roleId, isDefaultByRole) => async () => {
     const url = 'Portal/AdminRoleCommon/GetMarketListByRole';
     const response = await post(url, { roleId });
 
-    return response && response.status === 200 ? convertMarketListByRole(response.data) : null;
+    return response && response.status === 200 ? convertMarketListByRole(response.data, isDefaultByRole) : null;
 }
 
-export const getMarketListByUser = (roleId) => async () => {
+export const getMarketListByUser = (userId) => async (dispatch) => {
     const url = 'Portal/AdminRoleCommon/GetMarketListByUser';
-    const response = await post(url, { roleId });
+    const response = await post(url, { userId });
 
-    return response && response.status === 200 ? convertMarketListByRole(response.data) : null;
+    const data = response && response.status === 200 ? convertMarketListByRole(response.data).convertMarketList : [];
+
+    dispatch(setMarketListByUser(data));
 }
 
-const convertMarketListByRole = (marketListByRole) => {
-
-    return marketListByRole.filter(m => m.HasPermission).map(item => {
-        return {
-            key: item.MarketId,
-            name: item.MarketName,
-            checked: false
-        };
-    });
-}
-
-const convertRoleList = (roleList) => {
-    const newRoleList = {};
-    for (let i = 0; i < roleList.length; i++) {
-        const item = roleList[i];
-        newRoleList[item.RoleId] = item.RoleName;
-    }
-
-    return newRoleList;
-}
 export const createUser = (userInfo) => async () => {
     const url = 'Portal/AdminInfo/CreateUser';
     const response = await post(url, userInfo);

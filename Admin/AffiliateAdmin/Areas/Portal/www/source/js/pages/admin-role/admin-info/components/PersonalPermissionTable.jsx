@@ -6,43 +6,21 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
 import { updateObjectInArray } from '../../../../modules/dataHandler';
-import { setPermissionListByRole, getPermissionListByRole } from '../actions';
+import { setPermissionListByRole } from '../actions';
 
 export class PersonalPermissionTable extends PureComponent {
     constructor(props) {
         super(props);
-
-        this.state = {
-            permissionListByRole: null
-        }
     }
 
-    componentDidUpdate(prevProps) {
-        const { roleId, isEdit, permissionListByRole } = this.props;
-
-        if (roleId && roleId !== prevProps.roleId) {
-            this._handleGetPermissionListByRole(roleId);
-        }
-
-        if (isEdit !== prevProps.isEdit && permissionListByRole) {
-            this.setState({ permissionListByRole });
-        }
-    }
-
-    _handleGetPermissionListByRole = async (roleId) => {
-        const permissionListByRole = await this.props.getPermissionListByRole(roleId);
-
-        this.setState({ permissionListByRole });
-    }
-
-    _handleChange = (funcId, isChecked, isUserHost) => {
-        const { permissionListByRole } = this.state;
-        const data = isUserHost ? (isChecked ? { IsUserHost: !isChecked } : { IsUserRead: !isChecked, IsUserHost: !isChecked }) : (isChecked ? { IsUserRead: !isChecked, IsUserHost: !isChecked } : { IsUserRead: !isChecked });
+    _handleChange = (funcId, isChecked, isHost) => {
+        const { permissionListByRole } = this.props;
+        const data = isHost ? (isChecked ? { IsHost: !isChecked } : { IsRead: !isChecked, IsHost: !isChecked }) : (isChecked ? { IsRead: !isChecked, IsHost: !isChecked } : { IsRead: !isChecked });
         const indexItem = permissionListByRole.findIndex(item => item.FuncId === funcId);
         const updateItem = Object.assign({}, permissionListByRole[indexItem], data);
         const permissionListByRoleUpdate = updateObjectInArray(permissionListByRole, indexItem, updateItem);
 
-        this.setState({ permissionListByRole: permissionListByRoleUpdate });
+        this.props.setPermissionListByRole(permissionListByRoleUpdate);
     }
 
     _renderHeader() {
@@ -90,10 +68,10 @@ export class PersonalPermissionTable extends PureComponent {
         return isEdit || isCreateNew ? (
             <Fragment>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsUserRead} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsUserRead, false)} />
+                    <input type="checkbox" checked={dataItem.IsRead} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsRead, false)} />
                 </Cell>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsUserHost} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsUserHost, true)} />
+                    <input type="checkbox" checked={dataItem.IsHost} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsHost, true)} />
                 </Cell>
                 <Cell className="text-center">
                     <input type="checkbox" checked={dataItem.IsRoleRead} disabled />
@@ -106,13 +84,13 @@ export class PersonalPermissionTable extends PureComponent {
                 <Fragment>
                     <Cell className="text-center">
                         {
-                            dataItem.IsUserRead && <span className="oi oi-check text-primary"></span>
+                            dataItem.IsRead && <span className="oi oi-check text-primary"></span>
                         }
                     </Cell>
 
                     <Cell className="text-center">
                         {
-                            dataItem.IsUserHost && <span className="oi oi-check text-primary"></span>
+                            dataItem.IsHost && <span className="oi oi-check text-primary"></span>
                         }
                     </Cell>
                     <Cell className="text-center">
@@ -182,7 +160,7 @@ export class PersonalPermissionTable extends PureComponent {
     }
 
     render() {
-        const { permissionListByRole } = this.state;
+        const { permissionListByRole } = this.props;
 
         return permissionListByRole && (
             <div className="data-content">
@@ -206,7 +184,7 @@ function mapStateToProps({ adminInfo }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPermissionListByRole, getPermissionListByRole }, dispatch);
+    return bindActionCreators({ setPermissionListByRole }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonalPermissionTable);

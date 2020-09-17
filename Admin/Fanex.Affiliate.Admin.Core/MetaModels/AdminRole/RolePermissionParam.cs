@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.AdminRole
 {
-    public class PermissionInfoParam
+    public class RolePermissionParam
     {
         [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "Func Id is invalid!")]
         public int FuncId { get; set; }

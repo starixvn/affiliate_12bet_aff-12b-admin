@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult UpdatePermissionInfo(UpdatePermissionInfoParam param)
+        public ActionResult UpdatePermissionInfo(UpdateRolePermissionParam param)
         {
             if (ModelState.IsValid)
             {

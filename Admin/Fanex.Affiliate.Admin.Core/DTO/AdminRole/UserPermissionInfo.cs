@@ -9,11 +9,11 @@ namespace Fanex.Affiliate.Admin.Core.DTO.AdminRole
 
         public string FuncName { get; set; }
 
-        public int UserPolicy { get; set; }
+        public int Policy { get; set; }
 
-        public bool IsUserRead => UserPolicy == Constants.Policy.ReadButNotHost || UserPolicy == Constants.Policy.ReadAndHost;
+        public bool IsRead => Policy == Constants.Policy.ReadButNotHost || Policy == Constants.Policy.ReadAndHost;
 
-        public bool IsUserHost => UserPolicy == Constants.Policy.ReadAndHost;
+        public bool IsHost => Policy == Constants.Policy.ReadAndHost;
 
         public int RolePolicy { get; set; }
 
