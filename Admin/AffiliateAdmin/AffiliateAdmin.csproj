@@ -343,9 +343,7 @@
     <Content Include="Areas\Portal\www\dist\style\home.css" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\login.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\admin-role\admin-info.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\admin-role\admin-users.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\admin-role\permission-role.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\admin-role.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\administrator\administrator.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\administrator\department.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-info.css" />
