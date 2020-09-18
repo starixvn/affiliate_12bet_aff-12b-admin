@@ -72,9 +72,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         [ValidateAntiForgeryHeader]
         public ActionResult UpdateUser(AdminInfoParam param)
         {
-            if (!ModelState.IsValid && param.UserId >= Validation.MinId)
+            if (ModelState.IsValid && param.UserId >= Validation.MinId)
             {
-                return Update(param);
+                GetUserInfoParam(param);
+
+                return new JsonNetResult
+                {
+                    Data = _adminInfoService.UpdateUser(param)
+                };
             }
 
             return new JsonNetResult
@@ -93,7 +98,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         {
             if (param.UserId >= Validation.MinId)
             {
-                return Update(param);
+                GetUserInfoParam(param);
+
+                return new JsonNetResult
+                {
+                    Data = _adminInfoService.UpdateStatus(param)
+                };
             }
 
             return new JsonNetResult
@@ -118,7 +128,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
                     Password = CryptographyHelper.Encrypt(param.Password)
                 };
 
-                return Update(adminInfoParam);
+                GetUserInfoParam(adminInfoParam);
+
+                return new JsonNetResult
+                {
+                    Data = _adminInfoService.ChangePassword(adminInfoParam)
+                };
             }
 
             return new JsonNetResult
@@ -128,16 +143,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
                     Code = Code.GeneralErrorCode,
                     Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                 }
-            };
-        }
-
-        private JsonNetResult Update(AdminInfoParam param)
-        {
-            GetUserInfoParam(param);
-
-            return new JsonNetResult
-            {
-                Data = _adminInfoService.UpdateUser(param)
             };
         }
 

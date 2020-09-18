@@ -109,8 +109,8 @@ export class Content extends PureComponent {
 
         if (isValid) {
             const { userId, permissionListByRole } = this.props;
-            const { newUserName, newPassword, role, isActive, marketIds } = this.state;
-            const param = { userId: userId || 0, userName: newUserName, password: newPassword, role, isClosed: !isActive, marketIds, permissionInfo: permissionListByRole };
+            const { newUserName, newPassword, role, isActive, marketIds, marketListByRole } = this.state;
+            const param = { userId: userId || 0, userName: newUserName, password: newPassword, role, isClosed: !isActive, marketIds, permissionInfo: permissionListByRole, marketList: marketListByRole };
 
             const data = userId ? await this.props.updateUser(param) : await this.props.createUser(param);
 

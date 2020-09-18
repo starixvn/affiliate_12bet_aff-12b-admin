@@ -98,7 +98,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
             objectDb.AddInParameter(Field.UserId, DbType.Int32, param.ByUserId);
             objectDb.AddInParameter("Ip", DbType.String, param.Ip);
             objectDb.AddInParameter("Function", DbType.Xml, param.PermissionInfoXml);
-            objectDb.AddInParameter("Market", DbType.String, param.MarketIds);
+            objectDb.AddInParameter("Market", DbType.Xml, param.MarketListXml);
 
             AssignResultOutputParam(objectDb);
         }

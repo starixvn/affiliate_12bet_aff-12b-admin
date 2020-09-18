@@ -14,5 +14,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
         ResultInfo UpdateUser(AdminInfoParam param);
 
         IEnumerable<UserPermissionInfo> GetPermissionListByRole(int roleId);
+
+        ResultInfo ChangePassword(AdminInfoParam param);
+
+        ResultInfo UpdateStatus(AdminInfoParam param);
     }
 }

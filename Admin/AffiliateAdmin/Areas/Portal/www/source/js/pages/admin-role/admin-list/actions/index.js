@@ -57,7 +57,7 @@ export const fetchData = (param) => async (dispatch) => {
     const checkedUsers = data ? _convertCheckedUsers(data) : {};
 
     dispatch(setGridData(data ? data : []));
-    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize }));
+    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0 }));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(setCheckedUsers(checkedUsers));
     dispatch(toggleLoader(false));

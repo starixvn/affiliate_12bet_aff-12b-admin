@@ -27,5 +27,9 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.AdminRole
         public IEnumerable<RolePermissionParam> PermissionInfo { get; set; }
 
         public string PermissionInfoXml { get; set; }
+
+        public IEnumerable<UserMarketParam> MarketList { get; set; }
+
+        public string MarketListXml { get; set; }
     }
 }

@@ -290,6 +290,7 @@
     <Compile Include="MetaModels\AdminRole\RolePermissionParam.cs" />
     <Compile Include="MetaModels\AdminRole\UpdateMarketInfoParam.cs" />
     <Compile Include="MetaModels\AdminRole\UpdateRolePermissionParam.cs" />
+    <Compile Include="MetaModels\AdminRole\UserMarketParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />
