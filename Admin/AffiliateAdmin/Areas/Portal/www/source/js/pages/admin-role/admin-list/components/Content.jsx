@@ -107,6 +107,7 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={200} title={resource.LastLoginDate}>{resource.LastLoginDate}</Cell>
                 <Cell header={true} colWidth={200} title={resource.LastLoginIp}>{resource.LastLoginIp}</Cell>
                 <Cell header={true} colWidth={200} title={resource.Role}>{resource.Role}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Status}>{resource.Status}</Cell>
                 <Cell header={true} colWidth={100} title={resource.Action}>{resource.Action}</Cell>
             </Row>
         );
@@ -123,7 +124,7 @@ export class Content extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="8">{resource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="9">{resource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -160,6 +161,7 @@ export class Content extends PureComponent {
                     }
                 </Cell>
                 <Cell className="text-center" title={dataItem.RoleName}>{dataItem.RoleName}</Cell>
+                <Cell className="text-center" title={dataItem.IsActive}>{dataItem.IsActive ? 'Open' : 'Closed'}</Cell>
                 <Cell className="text-center">
                     <Button color="link p-0" title="View Permission" onClick={() => this._handleShowPermission(dataItem.UserId, dataItem.UserName)}>
                         <span className="oi oi-eye pr-3"></span>

@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
             foreach (var item in marketList)
             {
-                var row = $"<r MarketId=\"{item.Key}\" Status=\"{item.Checked}\" />";
+                var row = $"<r MarketId=\"{item.MarketId}\" Status=\"{item.HasPermission}\" />";
                 result.Append(row);
             }
 

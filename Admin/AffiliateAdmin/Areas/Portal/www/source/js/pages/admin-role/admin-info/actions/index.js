@@ -64,7 +64,7 @@ export const getMarketListByUser = (userId) => async (dispatch) => {
     const url = 'Portal/AdminRoleCommon/GetMarketListByUser';
     const response = await post(url, { userId });
 
-    const data = response && response.status === 200 ? convertMarketListByRole(response.data).convertMarketList : [];
+    const data = response && response.status === 200 ? convertMarketListByRole(response.data) : [];
 
     dispatch(setMarketListByUser(data));
 }

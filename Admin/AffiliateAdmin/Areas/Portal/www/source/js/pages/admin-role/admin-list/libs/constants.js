@@ -11,6 +11,7 @@ export const resource = {
     LastLoginDate: 'Last Login Date',
     LastLoginIp: 'Last Login Ip',
     Role: 'Role',
+    Status: 'Status',
     Action: 'Action',
     Select: 'Select:',
     None: 'None',

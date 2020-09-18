@@ -43,7 +43,11 @@
         background-image: none;
     }
 
-    .table-container {
+    .table-container, .set-default-group{
         float: right;
+    }
+
+    .title-personal {
+        padding-left: 26px;
     }
 }

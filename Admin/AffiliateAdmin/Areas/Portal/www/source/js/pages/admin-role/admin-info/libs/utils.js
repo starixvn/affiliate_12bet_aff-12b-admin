@@ -2,24 +2,12 @@ import { deepClone, updateObjectInArray } from '../../../../modules/dataHandler'
 
 export const convertMarketListByRole = (marketListByRole, isInitial) => {
 
-    const selectedItemKey = [];
-
-    const convertMarketList =  marketListByRole.map(item => {
-        if (item.HasPermission) {
-            selectedItemKey.push(item.MarketId);
-        }
-
+    return  marketListByRole.map(item => {
         return {
-            key: item.MarketId,
-            name: item.MarketName,
-            checked: isInitial ? item.HasPermission : false
+            ...item,
+            HasPermission: isInitial ? item.HasPermission : false
         };
     });
-
-    return {
-        selectedItemKey: selectedItemKey.join(','),
-        convertMarketList
-    }
 }
 
 export const convertRoleList = (roleList) => {
@@ -32,18 +20,18 @@ export const convertRoleList = (roleList) => {
     return newRoleList;
 }
 
-export const getSelectedItemKey = (dataSource) => {
+export const getSelectedMarketName = (dataSource) => {
     const selectedItemKey = [];
 
     for (let i = 0; i < dataSource.length; i++) {
         const item = dataSource[i];
 
-        if (item.checked) {
-            selectedItemKey.push(item.key)
+        if (item.HasPermission) {
+            selectedItemKey.push(item.MarketName)
         }
     }
 
-    return selectedItemKey.join(",");
+    return selectedItemKey.join(", ");
 }
 
 export const combineArrayObject = (initialArray, updatedArray) => {
@@ -51,7 +39,7 @@ export const combineArrayObject = (initialArray, updatedArray) => {
     let newArray = deepClone(initialArray);
 
     initialArray.map((item, index) => {
-        const updatedItem = updatedArray.find(i => i.key === item.key);
+        const updatedItem = updatedArray.find(i => i.MarketId === item.MarketId);
 
         if(updatedItem) {
             newArray = updateObjectInArray(newArray, index, updatedItem);
@@ -59,4 +47,10 @@ export const combineArrayObject = (initialArray, updatedArray) => {
     })
 
     return newArray;
+}
+
+export const validateLanguage = (marketListByRole) => {
+    const selectedMarket = marketListByRole ? marketListByRole.filter(item => item.HasPermission) : [];
+
+    return !!selectedMarket.length;
 }

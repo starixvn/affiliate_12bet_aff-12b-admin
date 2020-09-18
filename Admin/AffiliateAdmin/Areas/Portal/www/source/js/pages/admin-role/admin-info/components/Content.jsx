@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert, Row } from 'reactstrap';
 import { messages, initialState, resources } from '../libs/constants';
 import { validateUserName, validateNewPassword } from '../../../../modules/utils';
-import { convertMarketListByRole, combineArrayObject } from '../libs/utils';
+import { convertMarketListByRole, getSelectedMarketName, validateLanguage } from '../libs/utils';
 import { globalResource } from '../../../../modules/globalResource';
 import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByUser, getMarketListByRole, getPermissionListByRole, setPermissionListByRole } from '../actions';
 import ChangePasswordForm from '../../../common/components/ChangePasswordForm';
@@ -25,15 +25,10 @@ export class Content extends PureComponent {
     }
 
     componentDidMount() {
-        this.props.getRoleList();
-        this.props.getMarketListByUser();
-    }
+        const { userId } = this.props;
 
-    componentDidUpdate(prevProps) {
-        const { userId, marketListByUser } = this.props;
-        if (userId && !marketListByUser) {
-            this._handleFetchData(userId);
-        }
+        this.props.getRoleList();
+        userId && this._handleFetchData(userId);
     }
 
     _handleFetchData = async (userId) => {
@@ -45,20 +40,19 @@ export class Content extends PureComponent {
 
             const { AdminInfo, MarketList, UserPermissionList } = userInfo;
 
-            const result = convertMarketListByRole(MarketList, true);
-            const marketList = combineArrayObject(this.props.marketListByUser, result.convertMarketList);
+            const convertMarket = convertMarketListByRole(MarketList, true);
 
             this.setState({
                 newUserName: AdminInfo.UserName,
                 firstName: AdminInfo.FirstName,
                 lastName: AdminInfo.LastName,
                 role: AdminInfo.RoleId,
+                language: getSelectedMarketName(MarketList),
                 initialRole: AdminInfo.RoleId,
                 isActive: AdminInfo.IsActive,
                 initialUserInfo: AdminInfo,
-                marketIds: result.selectedItemKey,
-                initialMarketList: marketList,
-                marketListByRole: marketList,
+                initialMarketList: convertMarket,
+                marketListByRole: convertMarket,
                 initialPermissionList: UserPermissionList
             });
 
@@ -94,13 +88,9 @@ export class Content extends PureComponent {
 
     _handleUpdateMarketList = async (roleId) => {
         const { itemDefault } = this.state;
-        const result = await this.props.getMarketListByRole(roleId, itemDefault.checked);
+        const marketList = await this.props.getMarketListByRole(roleId, itemDefault.HasPermission);
 
-        if (result) {
-            const marketList = combineArrayObject(this.props.marketListByUser, result.convertMarketList);
-
-            this.setState({ marketListByRole: marketList, marketIds: result.selectedItemKey });
-        }
+        this.setState({ marketListByRole: marketList });
     }
 
     _handleSubmit = async (isValid) => {
@@ -109,8 +99,8 @@ export class Content extends PureComponent {
 
         if (isValid) {
             const { userId, permissionListByRole } = this.props;
-            const { newUserName, newPassword, role, isActive, marketIds, marketListByRole } = this.state;
-            const param = { userId: userId || 0, userName: newUserName, password: newPassword, role, isClosed: !isActive, marketIds, permissionInfo: permissionListByRole, marketList: marketListByRole };
+            const { newUserName, newPassword, role, isActive, marketListByRole } = this.state;
+            const param = { userId: userId || 0, userName: newUserName, password: newPassword, role, isClosed: !isActive, permissionInfo: permissionListByRole, marketList: marketListByRole };
 
             const data = userId ? await this.props.updateUser(param) : await this.props.createUser(param);
 
@@ -175,14 +165,14 @@ export class Content extends PureComponent {
     }
 
     _handleChangeStatus = () => {
-        this.setState({ messagePopup: 'Are you sure you want to update the status of this user?', isConfirmPopup: true });
+        this.setState({ messagePopup: 'Are you sure you want to update the status of this user?', isConfirmPopup: true, isDeleteUser: false });
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
         this.setState({ messagePopup: '' });
 
         const { userId } = this.props;
-        const { isDeleteUser, isActive } = this.state;
+        const { isDeleteUser, isActive, isAfterDeleted } = this.state;
 
         if (confirmResult && userId && isDeleteUser) {
             this._deleteUser(userId);
@@ -192,18 +182,18 @@ export class Content extends PureComponent {
             this._updateStatus(userId, isActive);
         }
 
-        if (!confirmResult && isDeleteUser) {
+        if (isAfterDeleted) {
             this.props.redirectToAdminList();
         }
     }
 
     _handleChangeMarket = (item, selectedKey, isItemDefault) => {
         if (isItemDefault) {
-            this.setState({ itemDefault: item }, () => item.checked && this._handleUpdateMarketList(this.state.role));
+            this.setState({ itemDefault: item }, () => item.HasPermission && this._handleUpdateMarketList(this.state.role));
         } else {
             const { marketListByRole } = this.state;
 
-            this.setState({ marketListByRole: this.handleChangeMultipleSelected(marketListByRole, selectedKey), marketIds: selectedKey });
+            this.setState({ marketListByRole: this.handleChangeMultipleSelected(marketListByRole, selectedKey) });
         }
     }
 
@@ -211,29 +201,28 @@ export class Content extends PureComponent {
         const selectedList = typeof (selectedKey) === "string" ? selectedKey.split(',').filter(p => !!p) : selectedKey;
 
         return initialList && initialList.map(item => {
-            const { key, name } = item;
-            const checked = selectedList.indexOf(key.toString()) !== -1;
+            const { MarketId, MarketName } = item;
+            const HasPermission = selectedList.indexOf(MarketId.toString()) !== -1;
 
             return {
-                key,
-                name,
-                checked
+                MarketId,
+                MarketName,
+                HasPermission
             };
         })
     }
 
     _deleteUser = async (userId) => {
         this.props.toggleLoader(true);
-        this.setState({ isDeleteUser: false, isConfirmPopup: false });
 
         const result = await this.props.deleteUsers(userId);
 
         if (result) {
             const messagePopup = result.IsSuccessful ? 'User has been deleted successfully!' : result.Message;
 
-            this.setState({ messagePopup });
+            this.setState({ messagePopup, isConfirmPopup: false, isAfterDeleted: true });
         } else {
-            this.setState({ messagePopup: globalResource.AnError });
+            this.setState({ messagePopup: globalResource.AnError, isDeleteUser: false, isConfirmPopup: false });
         }
 
         this.props.toggleLoader(false);
@@ -258,7 +247,7 @@ export class Content extends PureComponent {
 
     _renderWhenView() {
         const { roleList, userId } = this.props;
-        const { newUserName, firstName, lastName, role, isActive, isShowMessage, isSuccess, message, isChangingPassword } = this.state;
+        const { newUserName, firstName, lastName, role, language, isActive, isShowMessage, isSuccess, message, isChangingPassword } = this.state;
 
         return (
             <Fragment>
@@ -272,30 +261,31 @@ export class Content extends PureComponent {
                     </Alert>
                     <Row>
                         <Col sm={6}>
-                            <Form tag="form" className="my-4">
+                            <strong>General Information</strong>
+                            <Form tag="form" className="mt-2">
                                 <FormGroup row className="mb-1">
                                     <Label sm="auto">{resources.UserName}</Label>
-                                    <Col sm={2}>
-                                        <Label sm="auto">{"AA" + newUserName}</Label>
+                                    <Col>
+                                        <Label sm={12}>{"AA" + newUserName}</Label>
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-1">
                                     <Label sm="auto">{resources.FirstName}</Label>
-                                    <Col sm={2}>
-                                        <Label sm="auto">{firstName}</Label>
+                                    <Col>
+                                        <Label sm={12}>{firstName}</Label>
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-1">
                                     <Label sm="auto">{resources.LastName}</Label>
-                                    <Col sm={2}>
-                                        <Label sm="auto">{lastName}</Label>
+                                    <Col>
+                                        <Label sm={12}>{lastName}</Label>
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-1">
                                     <Label sm="auto">{resources.Password}</Label>
-                                    <Col sm={2}>
+                                    <Col>
                                         <Button color="link" className="btn-password" onClick={() => this._toggleChangingPassword(true)}>
-                                            <span sm="auto">Change</span>
+                                            <span sm="auto">{resources.Change}</span>
                                         </Button>
                                         {isChangingPassword && <ChangePasswordForm
                                             showPopupPassword={isChangingPassword}
@@ -307,23 +297,28 @@ export class Content extends PureComponent {
                                 </FormGroup>
                                 {
                                     roleList && <FormGroup row className="mb-1">
-                                        <Label sm="auto">Role</Label>
-                                        <Col sm={2}>
-                                            <Label sm="auto">{roleList[role]}</Label>
+                                        <Label sm="auto">{resources.Role}</Label>
+                                        <Col>
+                                            <Label sm={12}>{roleList[role]}</Label>
                                         </Col>
                                     </FormGroup>
                                 }
                                 <FormGroup row className="mb-1">
-                                    <Label sm="auto">Account Status</Label>
-                                    <Col sm={2}>
+                                    <Label sm="auto">{resources.Language}</Label>
+                                    <Col>
+                                        <Label sm={12}>{language}</Label>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="mb-1">
+                                    <Label sm="auto">{resources.AccountStatus}</Label>
+                                    <Col>
                                         <input type="checkbox" name="isActive" className="account-status" checked={isActive} onChange={this._handleChangeStatus} />
                                     </Col>
                                 </FormGroup>
                             </Form >
                         </Col>
                         <Col sm={6}>
-                            <PersonalPermissionTable
-                                roleId={role} />
+                            <PersonalPermissionTable />
                         </Col>
                     </Row>
                 </Container>
@@ -333,12 +328,13 @@ export class Content extends PureComponent {
 
     _renderWhenCreateAndEditUser() {
         const { roleList } = this.props;
-        const { isClickedSubmit, newUserName, firstName, lastName, newPassword, role, marketIds, isShowMessage, isSuccess, message,
+        const { isClickedSubmit, newUserName, firstName, lastName, newPassword, role, isShowMessage, isSuccess, message,
             isCreateNew, isEdit, itemDefault, marketListByRole } = this.state;
 
         const validatedPasswordResult = validateNewPassword(newPassword);
         const validatedUserNameResult = validateUserName(newUserName);
-        const isValid = validatedUserNameResult.IsValid && !!firstName && !!lastName && !!role && !!marketIds && (isCreateNew ? validatedPasswordResult.IsValid : true);
+        const isValidLanguage = validateLanguage(marketListByRole);
+        const isValid = validatedUserNameResult.IsValid && !!firstName && !!lastName && !!role && isValidLanguage && (isCreateNew ? validatedPasswordResult.IsValid : true);
 
         return (
             <Fragment>
@@ -354,7 +350,8 @@ export class Content extends PureComponent {
                     </Alert>
                     <Row>
                         <Col sm={6}>
-                            <Form tag="form" className="my-4" autocomplete="off">
+                            <strong>General Information</strong>
+                            <Form tag="form" autocomplete="off" className="mt-2">
                                 <FormGroup row className="mb-1">
                                     <Label for="newUserName" sm="auto" className="required">{resources.UserName}</Label>
                                     <Col sm={5} className="row-user">
@@ -401,7 +398,7 @@ export class Content extends PureComponent {
                                     )
                                 }
                                 <FormGroup row className="mb-1">
-                                    <Label for="role" sm="auto" className="required">Role</Label>
+                                    <Label for="role" sm="auto" className="required">{resources.Role}</Label>
                                     <Col sm={5}>
                                         <Input type="select" name="role" className="mt-2 select-role" value={role} onChange={this._handleChangeRole} invalid={isClickedSubmit && !role}>
                                             {
@@ -421,18 +418,18 @@ export class Content extends PureComponent {
                                 </FormGroup>
                                 {
                                     marketListByRole && (
-                                        <FormGroup row className={`mb-1 ${isClickedSubmit && !marketIds ? ' multiple-select-wrapper is-invalid' : ''}`}>
-                                            <Label for="market" sm="auto" className="required">Language</Label>
+                                        <FormGroup row className={`mb-1 ${isClickedSubmit && !isValidLanguage ? 'multiple-select-wrapper is-invalid' : ''}`}>
+                                            <Label for="market" sm="auto" className="required">{resources.Language}</Label>
                                             <Col sm={5} className="mt-2">
                                                 <MultipleSelect
                                                     dataSource={marketListByRole}
-                                                    keyField="key"
-                                                    valueField="name"
-                                                    statusField="checked"
+                                                    keyField="MarketId"
+                                                    valueField="MarketName"
+                                                    statusField="HasPermission"
                                                     maxDisplayItemCount={1}
                                                     noneSelectedLabel="Please Select"
                                                     itemDefaultOption={itemDefault}
-                                                    isDisableOption={itemDefault.checked}
+                                                    isDisableOption={itemDefault.HasPermission}
                                                     onChange={this._handleChangeMarket} />
                                             </Col>
                                         </FormGroup>
@@ -441,7 +438,7 @@ export class Content extends PureComponent {
                                 {
                                     isCreateNew && (
                                         <FormGroup row className="mb-1">
-                                            <Label sm="auto" className="pt-2">Account Status</Label>
+                                            <Label sm="auto" className="pt-2">{resources.AccountStatus}</Label>
                                             <Col sm={5}>
                                                 <input type="checkbox" className="mt-2" checked disabled />
                                             </Col>
@@ -452,7 +449,6 @@ export class Content extends PureComponent {
                         </Col>
                         <Col sm={6}>
                             <PersonalPermissionTable
-                                roleId={role}
                                 isCreateNew={isCreateNew}
                                 isEdit={isEdit} />
                         </Col>

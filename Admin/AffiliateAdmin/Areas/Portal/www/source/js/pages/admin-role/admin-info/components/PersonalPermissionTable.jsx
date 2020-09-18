@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
+import { Form, FormGroup, Label } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
@@ -11,6 +12,19 @@ import { setPermissionListByRole } from '../actions';
 export class PersonalPermissionTable extends PureComponent {
     constructor(props) {
         super(props);
+
+        this.state = {
+            isSetByDefault: false
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const { isSetByDefault } = this.state;
+        const { permissionListByRole } = this.props;
+
+        if(isSetByDefault && JSON.stringify(permissionListByRole) !== JSON.stringify(prevProps.permissionListByRole)) {
+            this._updatePermissionListByRole();
+        }
     }
 
     _handleChange = (funcId, isChecked, isHost) => {
@@ -21,6 +35,24 @@ export class PersonalPermissionTable extends PureComponent {
         const permissionListByRoleUpdate = updateObjectInArray(permissionListByRole, indexItem, updateItem);
 
         this.props.setPermissionListByRole(permissionListByRoleUpdate);
+    }
+
+    _handleSetByDefault = (isSetByDefault) => {
+        this.setState({ isSetByDefault });
+
+        if (isSetByDefault) {
+            this._updatePermissionListByRole()
+        }
+    }
+
+    _updatePermissionListByRole = () => {
+        const { permissionListByRole } = this.props;
+
+        const newPermissionListByRole = permissionListByRole.map(item => {
+            return Object.assign({}, item, { IsRead: item.IsRoleRead, IsHost: item.IsRoleHost });
+        });
+
+        this.props.setPermissionListByRole(newPermissionListByRole);
     }
 
     _renderHeader() {
@@ -64,14 +96,15 @@ export class PersonalPermissionTable extends PureComponent {
     }
 
     _renderCells(dataItem, isCreateNew, isEdit) {
+        const { isSetByDefault } = this.state;
 
         return isEdit || isCreateNew ? (
             <Fragment>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsRead} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsRead, false)} />
+                    <input type="checkbox" checked={dataItem.IsRead} disabled={isSetByDefault} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsRead, false)} />
                 </Cell>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsHost} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsHost, true)} />
+                    <input type="checkbox" checked={dataItem.IsHost} disabled={isSetByDefault} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsHost, true)} />
                 </Cell>
                 <Cell className="text-center">
                     <input type="checkbox" checked={dataItem.IsRoleRead} disabled />
@@ -160,13 +193,26 @@ export class PersonalPermissionTable extends PureComponent {
     }
 
     render() {
-        const { permissionListByRole } = this.props;
+        const { isSetByDefault } = this.state;
+        const { permissionListByRole, isEdit, isCreateNew } = this.props;
 
         return permissionListByRole && (
-            <div className="data-content">
-                <div className="table-responsive table-striped my-2">
+            <div className="data-content personal-permission-table">
+                <strong className="title-personal">Personal Permission</strong>
+                {
+                    (isEdit || isCreateNew) && (
+                        <Form inline tag="div" className="set-default-group">
+                            <FormGroup>
+                                <input type="checkbox" checked={isSetByDefault} onChange={() => this._handleSetByDefault(!isSetByDefault)} />
+                                <Label sm="auto" className="pt-2 text-primary">Set to Role's Default</Label>
+                            </FormGroup>
+                        </Form>
+                    )
+                }
+                <div className="table-responsive table-striped my-3">
                     <Table
-                        maxWidth={700}
+                        maxWidth={730}
+                        minWidth={700}
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(permissionListByRole)}

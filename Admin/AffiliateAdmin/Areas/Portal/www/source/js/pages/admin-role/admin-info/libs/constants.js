@@ -13,6 +13,7 @@ export const resources = {
     Password: 'Password',
     ConfirmPassword: 'Confirm Password',
     Role: 'Role',
+    Change: 'Change',
     Language: 'Language',
     AccountStatus: 'Account Status'
 }
@@ -35,8 +36,8 @@ export const initialState = {
     lastName: '',
     newPassword: '',
     role: 0,
+    language: '',
     initialRole: 0,
-    marketIds: '',
     isActive: true,
     isShowMessage: false,
     isSuccess: true,
@@ -48,10 +49,12 @@ export const initialState = {
     messagePopup: '',
     isConfirmPopup: true,
     isDeleteUser: false,
+    isAfterDeleted: false,
     isEdit: false,
     marketListByRole: null,
     itemDefault: {
-        name: `Set to Role's Default`,
-        checked: false
+        MarketId: 'SetByDefault',
+        MarketName: `Set to Role's Default`,
+        HasPermission: false
     }
 };
