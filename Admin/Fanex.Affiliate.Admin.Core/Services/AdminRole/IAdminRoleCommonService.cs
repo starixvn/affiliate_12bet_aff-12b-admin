@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
     {
         IEnumerable<RoleInfo> GetRoleList();
 
-        IEnumerable<MarketInfo> GetMarketListByUser(int userId);
+        IEnumerable<MarketInfo> GetMarketListByUser(int? userId = null);
 
         IEnumerable<MarketInfo> GetMarketListByRole(int? roleId = null);
     }

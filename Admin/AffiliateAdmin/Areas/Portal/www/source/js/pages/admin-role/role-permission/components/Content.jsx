@@ -5,7 +5,7 @@ import { Container } from 'reactstrap';
 
 import LanguageComponent from './LanguageComponent';
 import GeneralComponent from './GeneralComponent';
-import { setIsGeneral, getRoleList, setGridData } from '../actions';
+import { setIsGeneral, getRoleList, getMarketList, getMarketListByRole } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -15,10 +15,10 @@ export class Content extends PureComponent {
 
     componentDidMount() {
         this.props.getRoleList();
+        this.props.getMarketList();
     }
 
     _handleChangeTab = (isGeneral) => {
-        this.props.setGridData(null);
         this.props.setIsGeneral(isGeneral);
     }
 
@@ -59,7 +59,7 @@ function mapStateToProps({ rolePermission }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setIsGeneral, getRoleList, setGridData }, dispatch);
+    return bindActionCreators({ setIsGeneral, getRoleList, getMarketList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

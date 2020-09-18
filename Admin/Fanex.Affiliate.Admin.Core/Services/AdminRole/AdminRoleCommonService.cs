@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
             return result;
         }
 
-        public IEnumerable<MarketInfo> GetMarketListByUser(int userId)
+        public IEnumerable<MarketInfo> GetMarketListByUser(int? userId = null)
         {
             const string SpKey = "Aff_Admin_AdminUser_Market_Sel";
             var result = new List<MarketInfo>();

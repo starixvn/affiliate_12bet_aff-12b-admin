@@ -31,9 +31,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetMarketListByUser()
+        public ActionResult GetMarketListByUser(int? userId = null)
         {
-            const int userId = 1;
             return new JsonNetResult
             {
                 Data = _adminRoleCommonService.GetMarketListByUser(userId)

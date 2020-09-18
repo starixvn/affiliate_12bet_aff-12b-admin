@@ -1,6 +1,6 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_GRID_DATA, SET_IS_GENERAL, SET_ROLE_LIST, SET_MARKET_ID_BY_USER_LIST, SET_MARKET_BY_USER_LIST } from './types';
+import { SET_GRID_DATA, SET_IS_GENERAL, SET_ROLE_LIST, SET_MARKET_ID_LIST, SET_MARKET_LIST } from './types';
 
 export { toggleLoader };
 
@@ -25,16 +25,16 @@ export const setRoleList = (data) => {
     }
 }
 
-export const setMarketIdByUserList = (data) => {
+export const setMarketIdList = (data) => {
     return {
-        type: SET_MARKET_ID_BY_USER_LIST,
+        type: SET_MARKET_ID_LIST,
         data
     }
 }
 
-export const setMarketByUserList = (data) => {
+export const setMarketList = (data) => {
     return {
-        type: SET_MARKET_BY_USER_LIST,
+        type: SET_MARKET_LIST,
         data
     }
 }
@@ -64,15 +64,15 @@ export const getMarketListByRole = () => async (dispatch) => {
     return data;
 }
 
-export const getMarketListByUser = () => async (dispatch) => {
+export const getMarketList = () => async (dispatch) => {
     const url = `Portal/AdminRoleCommon/getMarketListByUser`;
     const response = await post(url);
 
     const data = response && response.status === 200 ? response.data : null;
     const makertIdList = data ? _getMarketIdList(data) : {};
 
-    dispatch(setMarketByUserList(data));
-    dispatch(setMarketIdByUserList(makertIdList));
+    dispatch(setMarketList(data));
+    dispatch(setMarketIdList(makertIdList));
 }
 
 export const updatePermissionInfo = (param) => async () => {

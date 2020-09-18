@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, globalResource, management } from '../libs/constants';
-import { getMarketListByRole, getMarketListByUser, toggleLoader, setGridData, updateMarketInfoList } from '../actions';
+import { getMarketListByRole, toggleLoader, setGridData, updateMarketInfoList } from '../actions';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 import { updateObjectInArray } from '../../../../modules/dataHandler';
 
@@ -22,8 +22,6 @@ export class LanguageComponent extends PureComponent {
     }
 
     componentDidMount() {
-        this.props.getMarketListByUser();
-
         this._handleGetMarketList();
     }
 
@@ -40,9 +38,9 @@ export class LanguageComponent extends PureComponent {
     }
 
     _convertMarketList = (marketList) => {
-        const { marketIdByUserList, roleList } = this.props;
+        const { marketIdList, roleList } = this.props;
 
-        return marketIdByUserList && roleList.map(item => {
+        return marketIdList && roleList.map(item => {
             const marketOfRoleList = marketList.filter(m => m.RoleId === item.RoleId);
 
             let newMarketItem = { ...item };
@@ -50,7 +48,7 @@ export class LanguageComponent extends PureComponent {
             for (let i = 0; i < marketOfRoleList.length; i++) {
                 const marketItem = marketOfRoleList[i];
 
-                if (marketIdByUserList[marketItem.MarketId]) {
+                if (marketIdList[marketItem.MarketId]) {
                     newMarketItem = Object.assign({}, newMarketItem, { [marketItem.MarketId]: marketItem.HasPermission });
                 }
             }
@@ -77,10 +75,10 @@ export class LanguageComponent extends PureComponent {
 
     handleConvertData = () => {
         const { gridData } = this.state;
-        const { marketByUserList } = this.props;
+        const { marketList } = this.props;
 
         const data = gridData.map(item => {
-            return marketByUserList.map(market => {
+            return marketList.map(market => {
                 return {
                     RoleId: item.RoleId,
                     MarketId: market.MarketId,
@@ -136,12 +134,12 @@ export class LanguageComponent extends PureComponent {
     _renderColumnHeader() {
         const dataRows = [<Cell header={true} colWidth={250} title={headerText.Role}>{headerText.Role}</Cell>];
 
-        const { marketByUserList } = this.props;
+        const { marketList } = this.props;
 
-        if (marketByUserList && marketByUserList.length) {
+        if (marketList && marketList.length) {
 
-            for (let i = 0; i < marketByUserList.length; i++) {
-                dataRows.push(<Cell header={true} colWidth={80}>{marketByUserList[i].MarketName}</Cell>);
+            for (let i = 0; i < marketList.length; i++) {
+                dataRows.push(<Cell header={true} colWidth={80}>{marketList[i].MarketName}</Cell>);
             }
         }
 
@@ -150,44 +148,44 @@ export class LanguageComponent extends PureComponent {
 
     _renderDataSection(dataList) {
         const dataRows = [];
-        const { marketByUserList } = this.props;
+        const { marketList } = this.props;
 
         if (dataList && dataList.length) {
             const { isEdit } = this.state;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, marketByUserList, isEdit));
+                dataRows.push(this._buildDataRow(dataItem, marketList, isEdit));
             }
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan={1 + (marketByUserList && marketByUserList.length)}>{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={1 + (marketList && marketList.length)}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
         return dataRows;
     }
 
-    _buildDataRow(dataItem, marketByUserList, isEdit) {
+    _buildDataRow(dataItem, marketList, isEdit) {
         return (
             <Row key={`dataRow-${dataItem.RoleId}`}>
                 {
-                    this._renderColumnBody(dataItem, marketByUserList, isEdit)
+                    this._renderColumnBody(dataItem, marketList, isEdit)
                 }
             </Row>
         )
     }
 
-    _renderColumnBody(dataItem, marketByUserList, isEdit) {
+    _renderColumnBody(dataItem, marketList, isEdit) {
         const dataRows = [<Cell title={dataItem.RoleName}>{dataItem.RoleName}</Cell>];
 
-        if (marketByUserList && marketByUserList.length) {
+        if (marketList && marketList.length) {
 
             const isManagement = dataItem.RoleId === management;
 
-            for (let i = 0; i < marketByUserList.length; i++) {
-                const item = marketByUserList[i];
+            for (let i = 0; i < marketList.length; i++) {
+                const item = marketList[i];
                 const isChecked = dataItem[item.MarketId];
 
                 dataRows.push(
@@ -245,13 +243,13 @@ export class LanguageComponent extends PureComponent {
 
 
 function mapStateToProps({ rolePermission }) {
-    const { gridData, roleList, marketIdByUserList, marketByUserList } = rolePermission;
+    const { gridData, roleList, marketIdList, marketList, isGeneral } = rolePermission;
 
-    return Object.assign({}, { gridData, roleList, marketIdByUserList, marketByUserList });
+    return Object.assign({}, { gridData, roleList, marketIdList, marketList, isGeneral });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getMarketListByRole, getMarketListByUser, toggleLoader, setGridData, updateMarketInfoList }, dispatch);
+    return bindActionCreators({ getMarketListByRole, toggleLoader, setGridData, updateMarketInfoList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LanguageComponent);
