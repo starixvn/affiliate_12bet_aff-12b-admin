@@ -1,8 +1,7 @@
 ﻿import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
-import { Form, FormGroup, Label } from 'reactstrap';
+import { Table, Form, FormGroup, Label } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
@@ -22,7 +21,7 @@ export class PersonalPermissionTable extends PureComponent {
         const { isSetByDefault } = this.state;
         const { permissionListByRole } = this.props;
 
-        if(isSetByDefault && JSON.stringify(permissionListByRole) !== JSON.stringify(prevProps.permissionListByRole)) {
+        if (isSetByDefault && JSON.stringify(permissionListByRole) !== JSON.stringify(prevProps.permissionListByRole)) {
             this._updatePermissionListByRole();
         }
     }
@@ -57,19 +56,21 @@ export class PersonalPermissionTable extends PureComponent {
 
     _renderHeader() {
 
-        return [
-            <Row key="theard">
-                <Cell header={true} colWidth={300} rowSpan="2" title={headerText.Function}>{headerText.Function}</Cell>
-                <Cell header={true} colWidth={200} colSpan="2" title={headerText.IndividualPermission}>{headerText.IndividualPermission}</Cell>
-                <Cell header={true} colWidth={200} colSpan="2" title={headerText.RolePermission}>{headerText.RolePermission}</Cell>
-            </Row>,
-            <Row key="sub-theard">
-                <Cell header={true} colWidth={100} title={headerText.Read}>{headerText.Read}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Host}>{headerText.Host}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Read}>{headerText.Read}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Host}>{headerText.Host}</Cell>
-            </Row>
-        ];
+        return (
+            <thead key="thead">
+                <tr>
+                    <th rowSpan="2" colSpan="3">{headerText.Function}</th>
+                    <th colSpan="2">{headerText.IndividualPermission}</th>
+                    <th colSpan="2">{headerText.RolePermission}</th>
+                </tr>
+                <tr>
+                    <th>{headerText.Read}</th>
+                    <th>{headerText.Host}</th>
+                    <th>{headerText.Read}</th>
+                    <th>{headerText.Host}</th>
+                </tr>
+            </thead>
+        );
     }
 
     _renderDataSection(dataList) {
@@ -87,9 +88,9 @@ export class PersonalPermissionTable extends PureComponent {
             }
         }
         else {
-            dataRows.push(<Row>
-                <Cell className="text-center" colSpan="5">{globalResource.NoInfo}</Cell>
-            </Row>);
+            dataRows.push(<tr key="no-info">
+                <td className="text-center" colSpan="5">{globalResource.NoInfo}</td>
+            </tr>);
         }
 
         return dataRows;
@@ -100,43 +101,43 @@ export class PersonalPermissionTable extends PureComponent {
 
         return isEdit || isCreateNew ? (
             <Fragment>
-                <Cell className="text-center">
+                <td className="text-center">
                     <input type="checkbox" checked={dataItem.IsRead} disabled={isSetByDefault} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsRead, false)} />
-                </Cell>
-                <Cell className="text-center">
+                </td>
+                <td className="text-center">
                     <input type="checkbox" checked={dataItem.IsHost} disabled={isSetByDefault} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsHost, true)} />
-                </Cell>
-                <Cell className="text-center">
+                </td>
+                <td className="text-center">
                     <input type="checkbox" checked={dataItem.IsRoleRead} disabled />
-                </Cell>
-                <Cell className="text-center">
+                </td>
+                <td className="text-center">
                     <input type="checkbox" checked={dataItem.IsRoleHost} disabled />
-                </Cell>
+                </td>
             </Fragment>
         ) : (
                 <Fragment>
-                    <Cell className="text-center">
+                    <td className="text-center">
                         {
                             dataItem.IsRead && <span className="oi oi-check text-primary"></span>
                         }
-                    </Cell>
+                    </td>
 
-                    <Cell className="text-center">
+                    <td className="text-center">
                         {
                             dataItem.IsHost && <span className="oi oi-check text-primary"></span>
                         }
-                    </Cell>
-                    <Cell className="text-center">
+                    </td>
+                    <td className="text-center">
                         {
                             dataItem.IsRoleRead && <span className="oi oi-check text-primary"></span>
                         }
-                    </Cell>
+                    </td>
 
-                    <Cell className="text-center">
+                    <td className="text-center">
                         {
                             dataItem.IsRoleHost && <span className="oi oi-check text-primary"></span>
                         }
-                    </Cell>
+                    </td>
                 </Fragment>
             )
     }
@@ -146,12 +147,12 @@ export class PersonalPermissionTable extends PureComponent {
 
         return (
             <Fragment>
-                <Row key={`dataRow-${dataItem.FuncId}`} className="current">
-                    <Cell className="pl-2" title={funcName}>{funcName}</Cell>
+                <tr key={`dataRow-${dataItem.FuncId}`} className="current">
+                    <td colSpan="3" className="pl-2" title={funcName}>{funcName}</td>
                     {
                         this._renderCells(dataItem, isCreateNew, isEdit)
                     }
-                </Row>
+                </tr>
                 {
                     this._renderSubChildrenDataSection(dataItem, dataList, isCreateNew, isEdit)
                 }
@@ -179,12 +180,12 @@ export class PersonalPermissionTable extends PureComponent {
 
         return (
             <Fragment>
-                <Row key={`dataRow-${dataItem.FuncId}`} className="current">
-                    <Cell className={isRecursive ? "pl-5" : "pl-4"} title={dataItem.FuncName}>{dataItem.FuncName}</Cell>
+                <tr key={`dataRow-${dataItem.FuncId}`} className="current">
+                    <td colSpan="3" className={isRecursive ? "pl-5" : "pl-4"} title={dataItem.FuncName}>{dataItem.FuncName}</td>
                     {
                         this._renderCells(dataItem, isCreateNew, isEdit)
                     }
-                </Row>
+                </tr>
                 {
                     dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, isCreateNew, isEdit, true)
                 }
@@ -201,7 +202,7 @@ export class PersonalPermissionTable extends PureComponent {
                 <strong className="title-personal">Personal Permission</strong>
                 {
                     (isEdit || isCreateNew) && (
-                        <Form inline tag="div" className="set-default-group">
+                        <Form inline tag="div" className="float-right">
                             <FormGroup>
                                 <input type="checkbox" checked={isSetByDefault} onChange={() => this._handleSetByDefault(!isSetByDefault)} />
                                 <Label sm="auto" className="pt-2 text-primary">Set to Role's Default</Label>
@@ -210,13 +211,10 @@ export class PersonalPermissionTable extends PureComponent {
                     )
                 }
                 <div className="table-responsive table-striped my-3">
-                    <Table
-                        maxWidth={730}
-                        minWidth={700}
-                        bodyHeight={300}
-                        header={this._renderHeader()}
-                        body={this._renderDataSection(permissionListByRole)}
-                    />
+                    <Table className="permission-popup-data-table">
+                        {this._renderHeader()}
+                        {this._renderDataSection(permissionListByRole)}
+                    </Table>
                 </div>
             </div>
         );

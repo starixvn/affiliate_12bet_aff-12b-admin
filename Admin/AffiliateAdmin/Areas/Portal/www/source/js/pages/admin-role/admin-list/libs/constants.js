@@ -17,7 +17,10 @@ export const resource = {
     None: 'None',
     CreateNew: 'Create New',
     Search: globalResource.Search,
-    Delete: globalResource.Delete
+    Delete: globalResource.Delete,
+    ViewAccountInfo: 'View Account Info',
+    ViewPermission: 'View Permission',
+    DeleteAccount: 'Delete Account'
 }
 
 export const messages = {

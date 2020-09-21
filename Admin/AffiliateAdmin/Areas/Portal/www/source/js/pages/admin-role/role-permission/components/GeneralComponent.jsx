@@ -9,6 +9,7 @@ import { updateObjectInArray } from '../../../../modules/dataHandler';
 import { headerText, globalResource, management } from '../libs/constants';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 import { getPermissionInfoList, toggleLoader, setGridData, updatePermissionInfo } from '../actions';
+import { resource, messages } from '../libs/constants';
 
 export class GeneralComponent extends PureComponent {
     constructor(props) {
@@ -64,7 +65,7 @@ export class GeneralComponent extends PureComponent {
     }
 
     _handleSubmit = () => {
-        this.setState({ messagePopup: "Do you want to update the permission?", isConfirmPopup: true });
+        this.setState({ messagePopup: messages.AreYouSureUpdateRole, isConfirmPopup: true });
     }
 
     _handleSave = async () => {
@@ -138,11 +139,11 @@ export class GeneralComponent extends PureComponent {
                                 dataItem.RoleId !== management && (
                                     isEdit && isExpand ? (
                                         <Fragment>
-                                            <a href="javascript:;" onClick={this._handleCancel}>< span className="oi oi-x text-danger"></span></a>
-                                            <a href="javascript:;" onClick={this._handleSubmit}>< span className="oi oi-check text-success ml-2"></span></a>
+                                            <a href="javascript:;" onClick={this._handleCancel} title={resource.Cancel} >< span className="oi oi-x text-danger"></span></a>
+                                            <a href="javascript:;" onClick={this._handleSubmit} title={resource.Save} >< span className="oi oi-check text-success ml-2"></span></a>
                                         </Fragment>
                                     ) : (
-                                            children && children.length ? <a href="javascript:;" onClick={() => this.setState({ expandedRoleId: dataItem.RoleId, isEdit: true })}>< span className="oi oi-pencil"></span></a> : null
+                                            children && children.length ? <a href="javascript:;" title={resource.Edit}  onClick={() => this.setState({ expandedRoleId: dataItem.RoleId, isEdit: true })}>< span className="oi oi-pencil"></span></a> : null
                                         )
                                 )
                             }

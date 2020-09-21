@@ -12,7 +12,17 @@ export const headerText = {
     Read: 'Read',
     Host: 'Host',
     View: 'View',
-    Edit: globalResource.Edit,
     Language: 'Language',
     Role: 'Role'
+}
+
+export const resource = {
+    Save: globalResource.Save,
+    Cancel: globalResource.Cancel,
+    Edit: globalResource.Edit
+}
+
+export const messages = {
+    AreYouSureUpdateRole: 'Are you sure? <br /> By confirm this action, <strong class="text-danger">all admin users</strong> under this role will update with new default role setting.',
+    AreYouSureUpdateLanguages: 'Are you sure? <br /> By confirm this action, <strong class="text-danger">all admin users</strong> under this role will update with new default language setting.',
 }

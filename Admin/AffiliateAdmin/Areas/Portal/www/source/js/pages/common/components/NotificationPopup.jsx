@@ -20,7 +20,7 @@ export const NotificationPopup = (props) => {
                         {
                             props.isConfirmPopup ? (
                                 <div className="mt-5">
-                                    <Button style={widthHeight} color="success mr-3" onClick={() => props.onClose(true)}><strong>OK</strong></Button>
+                                    <Button style={widthHeight} color="success mr-3" onClick={() => props.onClose(true)}><strong>Confirm</strong></Button>
                                     <Button style={widthHeight} color="info" onClick={() => props.onClose(false)}><strong>Cancel</strong></Button>
                                 </div>
                             ) : (<Button style={widthHeight} color="success mt-5" onClick={() => props.onClose(false)}><strong>OK</strong></Button>)

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { headerText, globalResource, management } from '../libs/constants';
+import { headerText, globalResource, management, messages } from '../libs/constants';
 import { getMarketListByRole, toggleLoader, setGridData, updateMarketInfoList } from '../actions';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 import { updateObjectInArray } from '../../../../modules/dataHandler';
@@ -99,7 +99,7 @@ export class LanguageComponent extends PureComponent {
     }
 
     _handleSubmit = () => {
-        this.setState({ messagePopup: "Do you want to update markets for roles?", isConfirmPopup: true });
+        this.setState({ messagePopup: messages.AreYouSureUpdateLanguages, isConfirmPopup: true });
     }
 
     _handleSave = async () => {

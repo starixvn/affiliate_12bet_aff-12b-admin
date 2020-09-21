@@ -161,11 +161,11 @@ export class Content extends PureComponent {
     }
 
     _handleDeleteUser = () => {
-        this.setState({ messagePopup: 'Are you sure you want to delete this user?', isConfirmPopup: true, isDeleteUser: true });
+        this.setState({ messagePopup: `Are you sure? <br /> By confirm this action, user <strong class="text-danger">${this.props.userName}</strong> will be deleted?`, isConfirmPopup: true, isDeleteUser: true });
     }
 
     _handleChangeStatus = () => {
-        this.setState({ messagePopup: 'Are you sure you want to update the status of this user?', isConfirmPopup: true, isDeleteUser: false });
+        this.setState({ messagePopup: `Are you sure? <br /> By confirm this action, user <strong class="text-danger">${this.props.userName}</strong> will be deactivated?`, isConfirmPopup: true, isDeleteUser: false });
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
@@ -234,7 +234,7 @@ export class Content extends PureComponent {
         const result = await this.props.updateStatus({ userId, isClosed: isActive });
 
         if (result) {
-            const messagePopup = result.IsSuccessful ? "User's status has been update successfully!" : result.Message;
+            const messagePopup = result.IsSuccessful ? "User's status has been updated successfully!" : result.Message;
 
             result.IsSuccessful && this.setState({ isActive: !isActive });
             this.setState({ messagePopup, isConfirmPopup: false });
@@ -329,7 +329,7 @@ export class Content extends PureComponent {
     _renderWhenCreateAndEditUser() {
         const { roleList } = this.props;
         const { isClickedSubmit, newUserName, firstName, lastName, newPassword, role, isShowMessage, isSuccess, message,
-            isCreateNew, isEdit, itemDefault, marketListByRole } = this.state;
+            isCreateNew, isEdit, isActive, itemDefault, marketListByRole } = this.state;
 
         const validatedPasswordResult = validateNewPassword(newPassword);
         const validatedUserNameResult = validateUserName(newUserName);
@@ -435,16 +435,12 @@ export class Content extends PureComponent {
                                         </FormGroup>
                                     )
                                 }
-                                {
-                                    isCreateNew && (
-                                        <FormGroup row className="mb-1">
-                                            <Label sm="auto" className="pt-2">{resources.AccountStatus}</Label>
-                                            <Col sm={5}>
-                                                <input type="checkbox" className="mt-2" checked disabled />
-                                            </Col>
-                                        </FormGroup>
-                                    )
-                                }
+                                <FormGroup row className="mb-1">
+                                    <Label sm="auto" className="pt-2">{resources.AccountStatus}</Label>
+                                    <Col>
+                                        <input type="checkbox" className="mt-2" checked={isActive} onChange={() => this.setState({ isActive: !isActive })} />
+                                    </Col>
+                                </FormGroup>
                             </Form>
                         </Col>
                         <Col sm={6}>

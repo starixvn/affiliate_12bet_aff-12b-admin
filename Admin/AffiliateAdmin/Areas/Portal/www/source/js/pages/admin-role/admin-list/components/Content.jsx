@@ -115,7 +115,7 @@ export class Content extends PureComponent {
 
     _renderDataSection(dataList) {
         const dataRows = [];
-
+console.log(dataList);
         if (dataList && dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
@@ -124,7 +124,7 @@ export class Content extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="9">{resource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="9">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -144,7 +144,7 @@ export class Content extends PureComponent {
                         onChange={(e) => this._onCheckItem(e.target.checked, userId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-center" title={resource.userName}>
+                <Cell className="text-center" title={resource.ViewAccountInfo}>
                     <a href="javascript:;" onClick={() => this._handleRedirectToUserDetail(userId, userName)}>
                         {userName}
                     </a>
@@ -163,10 +163,10 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={dataItem.RoleName}>{dataItem.RoleName}</Cell>
                 <Cell className="text-center" title={dataItem.IsActive}>{dataItem.IsActive ? 'Open' : 'Closed'}</Cell>
                 <Cell className="text-center">
-                    <Button color="link p-0" title="View Permission" onClick={() => this._handleShowPermission(dataItem.UserId, dataItem.UserName)}>
+                    <Button color="link p-0" title={resource.ViewPermission} onClick={() => this._handleShowPermission(dataItem.UserId, dataItem.UserName)}>
                         <span className="oi oi-eye pr-3"></span>
                     </Button>
-                    <Button color="link p-0" title="Delete User" onClick={() => this._handleDeleteUser(dataItem.UserId, userName)}>
+                    <Button color="link p-0" title={resource.DeleteAccount} onClick={() => this._handleDeleteUser(dataItem.UserId, userName)}>
                         <span className="oi oi-trash text-danger"></span>
                     </Button>
                 </Cell>

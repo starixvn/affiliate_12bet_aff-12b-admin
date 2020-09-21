@@ -290,6 +290,7 @@
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adjustment.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminInfo.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminList.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminList~rolePermission.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\customer-statistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarning.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarningDetail.chunk.js" />
@@ -1376,7 +1377,6 @@
     <Content Include="Areas\Portal\www\source\style\components\_department-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\home.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\SortingCell.jsx" />
-    <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-list.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-role-menu.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-info.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\core.scss" />
