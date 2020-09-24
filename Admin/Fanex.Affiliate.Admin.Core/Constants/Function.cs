@@ -2,6 +2,8 @@
 {
     public static class Function
     {
+        public const string WritePermission = "Write";
+
         public const string UserControl = "[UserControl]";
 
         public const string Affiliate = "[Affiliate]";

@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Web;
 using static Fanex.Affiliate.Admin.Core.Constants.SessionKey;
 
@@ -59,6 +60,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             {
                 HttpContext.Current.Session[AffNameKey] = value;
             }
+        }
+
+        public IEnumerable<ClaimsIdentity> ClaimIdentities
+        { 
+            get => HttpContext.Current.Session[ClaimSessionKey] as IEnumerable<ClaimsIdentity>;
+            set => HttpContext.Current.Session[ClaimSessionKey] = value;
         }
 
         IList<UserPermission> ISessionService.UserPermissionList

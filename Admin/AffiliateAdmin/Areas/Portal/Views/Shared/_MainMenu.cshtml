@@ -6,7 +6,7 @@
 @{
     var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var permission = sessionService.UserPermissionList;
+    var permission = sessionService.ClaimIdentities.SelectMany(i => i.Claims);
     var hasTurnOverPermission = permission.Any(i => i.FunctionName.Equals(Function.Turnover, StringComparison.OrdinalIgnoreCase));
     var menus = new Dictionary<string, string>
     {
@@ -23,7 +23,7 @@
     };
     var result = from n in menus
                  join p in permission
-                 on n.Value equals p.FunctionName
+                 on n.Value equals p.Type
                  select n.Key;
 }
 

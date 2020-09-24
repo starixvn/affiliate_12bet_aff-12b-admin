@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using System;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
@@ -20,12 +21,13 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
 
             if (!string.IsNullOrEmpty(FunctionName))
             {
-                var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-                var permissionList = sessionService.UserPermissionList;
-                var hasPerimission = permissionList.Any(i =>
-                i.FunctionName.Equals(this.FunctionName, StringComparison.OrdinalIgnoreCase)
-                && (i.IsHost || i.IsHost == IsHost)
-                );
+                var claims = filterContext.HttpContext.User as ClaimsPrincipal;
+                var claimValue = IsHost ? "IsHost" : String.Empty;
+                var hasPerimission = false;
+                if (claims != null)
+                {
+                    hasPerimission = IsHost ? claims.HasClaim(FunctionName, claimValue) : claims.HasClaim(c => c.Type == FunctionName);
+                }    
 
                 if (!hasPerimission)
                 {
