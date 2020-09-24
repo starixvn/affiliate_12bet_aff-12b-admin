@@ -165,7 +165,7 @@ describe('common - components - ChangePasswordForm', () => {
 
         expect(props.updateChangeAffPasswword).toHaveBeenCalledWith(param);
         expect(instance.setState).toHaveBeenCalledTimes(1);
-        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: true, message: 'Change password successfully!' });
+        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: true, message: 'Change password is successful!' });
         expect(instance.setState.mock.calls[0][1]).toEqual(expect.any(Function));
         expect(window.setTimeout).toHaveBeenCalledTimes(2);
         expect(instance.hideMessage).toHaveBeenCalled();

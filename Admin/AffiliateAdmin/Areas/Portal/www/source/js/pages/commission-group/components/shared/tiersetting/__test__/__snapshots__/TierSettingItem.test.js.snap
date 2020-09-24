@@ -734,7 +734,7 @@ exports[`commission group - TierSettingItem Should render correctly 1`] = `
       onClick={[MockFunction]}
     >
       <span
-        className="oi oi-x text-danger"
+        className="oi oi-trash text-danger"
       />
     </button>
   </td>
@@ -1475,7 +1475,7 @@ exports[`commission group - TierSettingItem Should render correctly with MaxAmou
       onClick={[MockFunction]}
     >
       <span
-        className="oi oi-x text-danger"
+        className="oi oi-trash text-danger"
       />
     </button>
   </td>

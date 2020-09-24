@@ -131,7 +131,7 @@ exports[`department list - components - Content  render correctly 1`] = `
                   tag="button"
                 >
                   <span
-                    className="oi oi-x text-danger"
+                    className="oi oi-trash text-danger"
                   />
                 </Button>
               </t>
@@ -233,7 +233,7 @@ exports[`department list - components - Content  render correctly 1`] = `
                   tag="button"
                 >
                   <span
-                    className="oi oi-x text-danger"
+                    className="oi oi-trash text-danger"
                   />
                 </Button>
               </t>

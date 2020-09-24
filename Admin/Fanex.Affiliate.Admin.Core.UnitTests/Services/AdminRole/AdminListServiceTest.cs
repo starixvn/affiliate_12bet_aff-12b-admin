@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.AdminRole
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_AdminUser_Del", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.DeleteUsers(new DeleteAdminUsersParam());
@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.AdminRole
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(Code.GeneralErrorCode);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("", 120)).Returns(objectDb.Object);
+            service.Setup(re => re.GetObjectDb("Aff_Admin_AdminUser_Del", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.DeleteUsers(new DeleteAdminUsersParam());
@@ -100,10 +100,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.AdminRole
             {
                 ["CustId"] = 1,
                 ["UserName"] = "AAtests",
-                ["CreatedDate"] = new DateTime(2020, 08, 11),
+                ["FirstName"] = "AAtests",
+                ["LastName"] = "AAtests",
+                ["Creator"] = "Sa",
                 ["LastLoginDate"] = new DateTime(2020, 08, 11),
                 ["LastLoginIp"] = "::1",
-                ["RoleName"] = "Manager"
+                ["RoleName"] = "Manager",
+                ["Closed"] = false
             };
         }
 
@@ -113,10 +116,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.AdminRole
             {
                 ["CustId"] = 1,
                 ["UserName"] = "AAtests",
-                ["CreatedDate"] = new DateTime(2020, 08, 11),
+                ["FirstName"] = "AAtests",
+                ["LastName"] = "AAtests",
+                ["Creator"] = "Sa",
                 ["LastLoginDate"] = DBNull.Value,
                 ["LastLoginIp"] = "::1",
-                ["RoleName"] = "Manager"
+                ["RoleName"] = "Manager",
+                ["Closed"] = false
             };
         }
     }

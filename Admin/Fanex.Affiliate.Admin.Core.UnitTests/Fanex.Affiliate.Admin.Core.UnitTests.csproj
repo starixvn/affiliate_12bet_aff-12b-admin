@@ -161,7 +161,10 @@
     <Compile Include="Controllers\AccessDeniedControllerTest.cs" />
     <Compile Include="Controllers\Administrator\AdministratorControllerTest.cs" />
     <Compile Include="Controllers\Administrator\DepartmentControllerTest.cs" />
+    <Compile Include="Controllers\AdminRole\AdminInfoControllerTest.cs" />
+    <Compile Include="Controllers\AdminRole\AdminRoleCommonControllerTest.cs" />
     <Compile Include="Controllers\AdminRole\AdminRoleControllerTest.cs" />
+    <Compile Include="Controllers\AdminRole\RolePermissionControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\AffiliateControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommissionGroupControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />

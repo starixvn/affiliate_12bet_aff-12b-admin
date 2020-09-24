@@ -187,21 +187,6 @@ exports[`Login - components - AppContainer render correctly 1`] = `
       >
          
       </span>
-      <span
-        className="foot-text"
-      >
-        Best view in
-      </span>
-      <span
-        className="foot-icIE"
-      >
-         
-      </span>
-      <span
-        className="foot-icFirefox"
-      >
-         
-      </span>
     </div>
   </div>
 </div>

@@ -47,6 +47,22 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
         }
 
         [Fact]
+        public void GetUserPermissionList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var service = new Mock<IAdminInfoService>();
+            service.Setup(t => t.GetUserInfo(It.IsAny<int>())).Returns(new AdminInforResultEntity { UserPermissionList = new List<UserPermissionInfo> { new UserPermissionInfo() } });
+            var controller = CreateAdminRoleController(adminInfoService: service.Object);
+
+            // Action
+            var result = controller.GetUserPermissionList(1) as JsonNetResult;
+            var data = result.Data as List<UserPermissionInfo>;
+
+            // Assert
+            Assert.Single(data);
+        }
+
+        [Fact]
         public void DeleteUser_WhenCallWithValidParam_UpdateSuccessful()
         {
             // Arrange

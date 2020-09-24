@@ -13,7 +13,7 @@ exports[`email history - components - DeleteEmail  render correctly 1`] = `
   >
     Delete
     <span
-      className="oi oi-x ml-2"
+      className="oi oi-trash ml-2"
     />
   </Button>
 </div>

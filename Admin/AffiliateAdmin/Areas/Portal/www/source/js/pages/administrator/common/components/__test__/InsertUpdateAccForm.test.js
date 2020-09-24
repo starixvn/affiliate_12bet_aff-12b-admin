@@ -71,7 +71,7 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
     it('_handleGetUserDetail - should call getUserDetail and setState', async () => {
         const expectResult = {
             UserId: 123,
-            UserName: 'abc',
+            UserName: 'abc123',
             FirstName: 'abc',
             LastName: 'abc',
             GroupId: 234
@@ -85,7 +85,7 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
         await instance._handleGetUserDetail(123);
 
         expect(props.getUserDetail).toHaveBeenCalledWith(123);
-        expect(result.setState).toHaveBeenCalledWith({ userName: 'abc', firstName: 'abc', lastName: 'abc', department: 234 });
+        expect(result.setState).toHaveBeenCalledWith({ userName: 'abc123', firstName: 'abc', lastName: 'abc', department: 234 });
     });
 
     it('_handleChange - should call setState with value > Maxlength ', () => {
@@ -130,13 +130,13 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
 
         await instance._handleSubmit();
 
-        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Please input user name!");
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "User Name is required!");
     });
 
     it('_handleSubmit - should call _handleShowAlert with password is empty', async () => {
         const wrapper = shallow(<InsertUpdateAccForm { ...defaultProps } />);
         const instance = wrapper.instance();
-        wrapper.setState({ userName: 'abc', password: '' });
+        wrapper.setState({ userName: 'abc123', password: '' });
 
         instance._handleShowAlert = jest.fn();
 
@@ -148,7 +148,7 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
     it('_handleSubmit - should call _handleShowAlert with department is not choose', async () => {
         const wrapper = shallow(<InsertUpdateAccForm {...defaultProps} />);
         const instance = wrapper.instance();
-        wrapper.setState({ userName: 'abc', password: '123' });
+        wrapper.setState({ userName: 'abc123', password: '123' });
 
         instance._handleShowAlert = jest.fn();
 
@@ -174,14 +174,14 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
         const props = Object.assign({}, defaultProps, { insertUser: jest.fn(() => result) });
         const wrapper = shallow(<InsertUpdateAccForm {...props} />);
         const instance = wrapper.instance();
-        wrapper.setState({ userName: 'abc', password: '123', department: 102, isInsert: true });
+        wrapper.setState({ userName: 'abc123', password: '123', department: 102, isInsert: true });
 
         instance._handleShowAlert = jest.fn();
         instance.setState = jest.fn();
 
         await instance._handleSubmit();
 
-        expect(props.insertUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc', password: '123', firstName: '', lastName: '', groupId: 102 });
+        expect(props.insertUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc123', password: '123', firstName: '', lastName: '', groupId: 102 });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(true, "Administrator has been added successfully!");
     });
 
@@ -190,14 +190,14 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
         const props = Object.assign({}, defaultProps, { insertUser: jest.fn(() => result) });
         const wrapper = shallow(<InsertUpdateAccForm {...props} />);
         const instance = wrapper.instance();
-        wrapper.setState({ userName: 'abc', password: '123', department: 102, isInsert: true });
+        wrapper.setState({ userName: 'abc123', password: '123', department: 102, isInsert: true });
 
         instance._handleShowAlert = jest.fn();
         instance.setState = jest.fn();
 
         await instance._handleSubmit();
 
-        expect(props.insertUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc', password: '123', firstName: '', lastName: '', groupId: 102 });
+        expect(props.insertUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc123', password: '123', firstName: '', lastName: '', groupId: 102 });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "insert user is failed");
     });
 
@@ -205,14 +205,14 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
         const props = Object.assign({}, defaultProps, { insertUser: jest.fn() });
         const wrapper = shallow(<InsertUpdateAccForm {...props} />);
         const instance = wrapper.instance();
-        wrapper.setState({ userName: 'abc', password: '123', department: 102, isInsert: true });
+        wrapper.setState({ userName: 'abc123', password: '123', department: 102, isInsert: true });
 
         instance._handleShowAlert = jest.fn();
         instance.setState = jest.fn();
 
         await instance._handleSubmit();
 
-        expect(props.insertUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc', password: '123', firstName: '', lastName: '', groupId: 102 });
+        expect(props.insertUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc123', password: '123', firstName: '', lastName: '', groupId: 102 });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Adding the administrator was failed!");
     });
 
@@ -221,14 +221,14 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
         const props = Object.assign({}, defaultProps, { insertExistedUser: jest.fn(() => result), isInsertExistedAcc: true });
         const wrapper = shallow(<InsertUpdateAccForm {...props} />);
         const instance = wrapper.instance();
-        wrapper.setState({ userName: 'abc', password: '123', department: 102, isInsert: true });
+        wrapper.setState({ userName: 'abc123', password: '123', department: 102, isInsert: true });
 
         instance._handleShowAlert = jest.fn();
         instance.setState = jest.fn();
 
         await instance._handleSubmit();
 
-        expect(props.insertExistedUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc', password: '123', firstName: '', lastName: '', groupId: 102 });
+        expect(props.insertExistedUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc123', password: '123', firstName: '', lastName: '', groupId: 102 });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(true, "Administrator has been added successfully!");
     });
 
@@ -237,14 +237,14 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
         const props = Object.assign({}, defaultProps, { insertExistedUser: jest.fn(() => result), isInsertExistedAcc: true });
         const wrapper = shallow(<InsertUpdateAccForm {...props} />);
         const instance = wrapper.instance();
-        wrapper.setState({ userName: 'abc', password: '123', department: 102, isInsert: true });
+        wrapper.setState({ userName: 'abc123', password: '123', department: 102, isInsert: true });
 
         instance._handleShowAlert = jest.fn();
         instance.setState = jest.fn();
 
         await instance._handleSubmit();
 
-        expect(props.insertExistedUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc', password: '123', firstName: '', lastName: '', groupId: 102 });
+        expect(props.insertExistedUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc123', password: '123', firstName: '', lastName: '', groupId: 102 });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "insert existed user is failed");
     });
 
@@ -252,14 +252,14 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
         const props = Object.assign({}, defaultProps, { insertExistedUser: jest.fn(), isInsertExistedAcc: true });
         const wrapper = shallow(<InsertUpdateAccForm {...props} />);
         const instance = wrapper.instance();
-        wrapper.setState({ userName: 'abc', password: '123', department: 102, isInsert: true });
+        wrapper.setState({ userName: 'abc123', password: '123', department: 102, isInsert: true });
 
         instance._handleShowAlert = jest.fn();
         instance.setState = jest.fn();
 
         await instance._handleSubmit();
 
-        expect(props.insertExistedUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc', password: '123', firstName: '', lastName: '', groupId: 102 });
+        expect(props.insertExistedUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc123', password: '123', firstName: '', lastName: '', groupId: 102 });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Adding the administrator was failed!");
     });
 
@@ -268,15 +268,15 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
         const props = Object.assign({}, defaultProps, { updateUser: jest.fn(() => result) });
         const wrapper = shallow(<InsertUpdateAccForm {...props} />);
         const instance = wrapper.instance();
-        wrapper.setState({ userName: 'abc', password: '123', department: 102, isInsert: false });
+        wrapper.setState({ userName: 'abc123', password: '123', department: 102, isInsert: false });
 
         instance._handleShowAlert = jest.fn();
         instance.setState = jest.fn();
 
         await instance._handleSubmit();
 
-        expect(props.updateUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc', password: '123', firstName: '', lastName: '', groupId: 102 });
-        expect(instance._handleShowAlert).toHaveBeenCalledWith(true, "The abc has been updated successfully!");
+        expect(props.updateUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc123', password: '123', firstName: '', lastName: '', groupId: 102 });
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(true, "The abc123 has been updated successfully!");
     });
 
     it('_handleSubmit - should call updateUser and _handleShowAlert with update user is failed', async () => {
@@ -284,14 +284,14 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
         const props = Object.assign({}, defaultProps, { updateUser: jest.fn(() => result) });
         const wrapper = shallow(<InsertUpdateAccForm {...props} />);
         const instance = wrapper.instance();
-        wrapper.setState({ userName: 'abc', password: '123', department: 102, isInsert: false });
+        wrapper.setState({ userName: 'abc123', password: '123', department: 102, isInsert: false });
 
         instance._handleShowAlert = jest.fn();
         instance.setState = jest.fn();
 
         await instance._handleSubmit();
 
-        expect(props.updateUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc', password: '123', firstName: '', lastName: '', groupId: 102 });
+        expect(props.updateUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc123', password: '123', firstName: '', lastName: '', groupId: 102 });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "update user is failed");
     });
 
@@ -299,15 +299,15 @@ describe('administrator - common - components - InsertUpdateAccForm ', () => {
         const props = Object.assign({}, defaultProps, { updateUser: jest.fn() });
         const wrapper = shallow(<InsertUpdateAccForm {...props} />);
         const instance = wrapper.instance();
-        wrapper.setState({ userName: 'abc', password: '123', department: 102, isInsert: false });
+        wrapper.setState({ userName: 'abc123', password: '123', department: 102, isInsert: false });
 
         instance._handleShowAlert = jest.fn();
         instance.setState = jest.fn();
 
         await instance._handleSubmit();
 
-        expect(props.updateUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc', password: '123', firstName: '', lastName: '', groupId: 102 });
-        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Updating the abc was failed!");
+        expect(props.updateUser).toHaveBeenCalledWith({ AccountId: 123, userName: 'abc123', password: '123', firstName: '', lastName: '', groupId: 102 });
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Updating the abc123 was failed!");
     });
 
     it('_handleShowAlert - should call setState, setTimeout and _hideMessage', async () => {

@@ -86,11 +86,11 @@ export const validateUserName = (userName) => {
         };
     }
 
-    const regexCheckSpecialChar = new RegExp("^[a-zA-Z0-9]{5,20}$");
+    const regexCheckSpecialChar = new RegExp("^[a-zA-Z0-9]{1,20}$");
     if (!regexCheckSpecialChar.test(userName)) {
         return {
             IsValid: false,
-            Message: 'User Name must has at least 5 characters and can not be contained the special characters. Please try again!'
+            Message: 'User Name can not be contained the special characters. Please try again!'
         };
     }
 
