@@ -115,7 +115,7 @@ export class Content extends PureComponent {
 
     _renderDataSection(dataList) {
         const dataRows = [];
-console.log(dataList);
+
         if (dataList && dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];

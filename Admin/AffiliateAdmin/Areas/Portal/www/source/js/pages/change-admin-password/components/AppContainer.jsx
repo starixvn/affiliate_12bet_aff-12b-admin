@@ -60,6 +60,17 @@ export default class AppContainer extends PureComponent {
         this.setState({ ...initialState });
     }
 
+    _validatePassword(newPassword, oldPassword) {
+        if (newPassword && newPassword == oldPassword) {
+            return {
+                IsValid: false,
+                Message: "New password must be different from old!"
+            }
+        }
+
+        return validateNewPassword(newPassword);
+    }
+
     _validateConfirmPassword(newPassword, confirmPassword) {
         const result = {
             IsValid: false,
@@ -79,7 +90,7 @@ export default class AppContainer extends PureComponent {
     render() {
         const { isClickedSubmit, oldPassword, newPassword, confirmPassword, isShowMessage, isSuccess, message } = this.state;
 
-        const newPasswordValidation = validateNewPassword(newPassword);
+        const newPasswordValidation = this._validatePassword(newPassword, oldPassword);
         const confirmPasswordValidation = this._validateConfirmPassword(newPassword, confirmPassword);
         const isValidOldPassword = !!oldPassword;
         const isValid = isValidOldPassword && newPasswordValidation.IsValid && confirmPasswordValidation.IsValid;
