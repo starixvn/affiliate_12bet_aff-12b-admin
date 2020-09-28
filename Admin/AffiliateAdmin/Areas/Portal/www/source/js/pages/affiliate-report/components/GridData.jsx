@@ -75,7 +75,7 @@ export class GridData extends Component {
 
     _renderHeader() {
         const isMainView = this._isMainView();
-        const { hasTurnoverPermission } = this.props;
+        const { hasTurnOverPermission } = this.props;
         const firstColName = isMainView ? headerText.UserName : headerText.MonthDateString;
 
         return [
@@ -87,14 +87,14 @@ export class GridData extends Component {
                 <Cell header={true} colWidth={50} rowSpan="2" title={headerText.Fdm}>{headerText.Fdm}</Cell>
                 <Cell header={true} colWidth={60} rowSpan="2" title={headerText.ActiveMember}>{headerText.ActiveMember}</Cell>
                 <Cell header={true} colWidth={60} rowSpan="2" title={headerText.QualifiedMember}>{headerText.QualifiedMember}</Cell>
-                <Cell header={true} colSpan={hasTurnoverPermission ? 9 : 8} title={headerText.MemberStatistics}>{headerText.MemberStatistics}</Cell>
+                <Cell header={true} colSpan={hasTurnOverPermission ? 9 : 8} title={headerText.MemberStatistics}>{headerText.MemberStatistics}</Cell>
                 <Cell header={true} colSpan={isMainView ? 5 : 4} title={headerText.AffiliateStatistics}>{headerText.AffiliateStatistics}</Cell>
                 {isMainView && (<Cell header={true} colWidth={50} rowSpan="2" title={headerText.MonthOnMonth}>{headerText.MonthOnMonth}</Cell>)}
             </Row>,
             <Row key="h2">
                 <Cell header={true} colWidth={75} title={headerText.Deposit}>{headerText.Deposit}</Cell>
                 <Cell header={true} colWidth={75} title={headerText.Withdrawal}>{headerText.Withdrawal}</Cell>
-                {hasTurnoverPermission && <Cell header={true} colWidth={95} title={headerText.Turnover}>{headerText.Turnover}</Cell>}
+                {hasTurnOverPermission && <Cell header={true} colWidth={95} title={headerText.Turnover}>{headerText.Turnover}</Cell>}
                 <Cell header={true} colWidth={95} title={headerText.Winlost}>{headerText.Winlost}</Cell>
                 <Cell header={true} colWidth={70} title={headerText.Bonus}>{headerText.Bonus}</Cell>
                 <Cell header={true} colWidth={70} title={headerText.PlatformFee}>{headerText.PlatformFee}</Cell>
@@ -154,7 +154,7 @@ export class GridData extends Component {
     }
 
     _buildCommonCell(dataItem, productColumnClassName, isTotalRow) {
-        const { hasTurnoverPermission } = this.props;
+        const { hasTurnOverPermission } = this.props;
         const totalClick = format(dataItem.TotalClick);
         const uniqueClick = format(dataItem.UniqueClick);
         const signup = format(dataItem.Signup);
@@ -163,7 +163,7 @@ export class GridData extends Component {
         const qualifiedMember = format(dataItem.QualifiedMember);
         const deposit = formatDecimal(dataItem.Deposit);
         const withdrawal = formatDecimal(dataItem.Withdrawal);
-        const turnover = hasTurnoverPermission && formatDecimal(dataItem.Turnover);
+        const turnover = hasTurnOverPermission && formatDecimal(dataItem.Turnover);
         const winlost = formatDecimal(dataItem.Winlost);
         const bonus = formatDecimal(dataItem.Bonus);
         const platformFee = formatDecimal(dataItem.PlatformFee);
@@ -187,7 +187,7 @@ export class GridData extends Component {
                 <Cell className="text-right" title={qualifiedMember}>{qualifiedMember}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
-                {hasTurnoverPermission && <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>}
+                {hasTurnOverPermission && <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>}
                 <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>
                 <Cell className="text-right" title={bonus}>{bonus}</Cell>
                 <Cell className="text-right" title={platformFee}>{platformFee}</Cell>
@@ -251,8 +251,8 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, param, currentViewLevel, hasTurnoverPermission }) {
-    return Object.assign({}, { pagingOption, param, currentViewLevel, hasTurnoverPermission });
+function mapStateToProps({ pagingOption, param, currentViewLevel, hasTurnOverPermission }) {
+    return Object.assign({}, { pagingOption, param, currentViewLevel, hasTurnOverPermission });
 }
 
 function mapDispatchToProps(dispatch) {

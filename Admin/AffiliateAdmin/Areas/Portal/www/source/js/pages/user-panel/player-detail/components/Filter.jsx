@@ -8,19 +8,21 @@ import { resource, selectedAllProduct, shortedMonthNames, minMonthDate } from '.
 import { setParam, getProductList, exportExcel } from '../actions';
 import ReportExcel from '../modules/reportExcel';
 import { htmlDecode } from '../../../../modules/htmlHelper';
+import { SortByIdList } from '../modules/constants';
 
 export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { today, param } = this.props;
+        const { today, param, hasTurnOverPermission } = this.props;
         const monthDate = param.isClickLink ? (param.monthDate || today) : today;
         const newMonthDate = new Date(monthDate);
 
         this.state = {
             selectedProduct: selectedAllProduct,
             monthDate: newMonthDate,
-            productList: null
+            productList: null,
+            defaultSortById: hasTurnOverPermission ? SortByIdList.Turnover : SortByIdList.Winloss
         }
     }
 
@@ -68,18 +70,19 @@ export class Filter extends PureComponent {
     }
 
     handleSearch = (monthDate) => {
-        const { selectedProduct } = this.state;
+        const { selectedProduct, defaultSortById } = this.state;
 
         const param = {
             productId: selectedProduct,
             monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
+            sortById: defaultSortById
         }
         this.props.setParam(param);
     }
 
     handleExportExcel = async () => {
         const { selectedProduct, monthDate } = this.state;
-        const { affId } = this.props;
+        const { affId, hasTurnOverPermission } = this.props;
 
         const param = {
             IsExportExcel: true,
@@ -92,7 +95,7 @@ export class Filter extends PureComponent {
 
         if (data) {
             const title = this._getReportTitle();
-            const reportExcel = new ReportExcel(data, title);
+            const reportExcel = new ReportExcel(data, title, hasTurnOverPermission);
             reportExcel.export();
         }
     }
@@ -152,14 +155,15 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo, playerDetail }) {
+function mapStateToProps({ today, affCommonInfo, hasTurnOverPermission, playerDetail }) {
     const { param } = playerDetail;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {
         param,
         affId,
-        today
+        today,
+        hasTurnOverPermission
     });
 }
 

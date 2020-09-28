@@ -81,7 +81,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
                     _sessionService.UserId = param.UserId;
                     _sessionService.UserPermissionList = permissionList;
-                    _sessionService.HasTurnoverPermission = permissionList.Any(i => i.FunctionName.Equals(Function.Turnover, StringComparison.OrdinalIgnoreCase));
+                    _sessionService.HasTurnOverPermission = permissionList.Any(i => i.FunctionName.Equals(Function.Turnover, StringComparison.OrdinalIgnoreCase));
 
                     var onUserId = _authRepository.LoginOnUser(param, HttpContext.Session.SessionID, _appSetting.ServerId);
                     _sessionService.OnUserId = onUserId;

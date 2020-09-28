@@ -12,16 +12,16 @@ import SortingCell from './SortingCell';
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
-
+        const { hasTurnOverPermission } = this.props;
         this.state = {
             data: null,
             isSortAsc: false,
-            sortingColumn: 'Turnover'
+            sortingColumn: hasTurnOverPermission ? 'Turnover' : 'Winloss'
         }
     }
 
     componentDidUpdate(prevProps) {
-        const { param, pagingOption } = this.props;
+        const { param, pagingOption, hasTurnOverPermission } = this.props;
         const isDifferent = param !== prevProps.param;
 
         if (isDifferent) {
@@ -30,7 +30,7 @@ export class Content extends PureComponent {
         }
 
         if (param.isClickLink || isDifferent) {
-            this.setState({ isSortAsc: false, sortingColumn: 'Turnover' });
+            this.setState({ isSortAsc: false, sortingColumn: hasTurnOverPermission ? 'Turnover' : 'Winloss' });
         }
     }
 
@@ -70,7 +70,7 @@ export class Content extends PureComponent {
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Username'} title={headerText.UserName} handleClickHeader={this.handleClickHeader} />
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'IbcUsername'} title={headerText.IbcUserName} handleClickHeader={this.handleClickHeader} />
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'RegisteredDate'} title={headerText.RegisteredDate} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Turnover'} title={headerText.Turnover} handleClickHeader={this.handleClickHeader} />
+                {this.props.hasTurnOverPermission && <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Turnover'} title={headerText.Turnover} handleClickHeader={this.handleClickHeader} />}
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Winloss'} title={headerText.Winloss} handleClickHeader={this.handleClickHeader} />
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Deposit'} title={headerText.Deposit} handleClickHeader={this.handleClickHeader} />
                 <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Withdrawal'} title={headerText.Withdrawal} handleClickHeader={this.handleClickHeader} />
@@ -86,13 +86,13 @@ export class Content extends PureComponent {
         const dataRows = [];
 
         if (dataList && dataList.length) {
-            const { pagingOption } = this.props;
+            const { pagingOption, hasTurnOverPermission } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
 
-                dataRows.push(this._buildDataRow(dataItem, startIndex + i, productColumnClassName));
+                dataRows.push(this._buildDataRow(dataItem, startIndex + i, productColumnClassName, hasTurnOverPermission));
             }
         }
         else {
@@ -104,8 +104,8 @@ export class Content extends PureComponent {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, rowNumber, productColumnClassName) {
-        const turnover = formatDecimal(dataItem.Turnover);
+    _buildDataRow(dataItem, rowNumber, productColumnClassName, hasTurnOverPermission) {
+        const turnover = hasTurnOverPermission && formatDecimal(dataItem.Turnover);
         const winloss = formatDecimal(dataItem.Winloss);
         const bonus = formatDecimal(dataItem.Bonus);
         const deposit = formatDecimal(dataItem.Deposit);
@@ -119,7 +119,7 @@ export class Content extends PureComponent {
                 <Cell title={userName}>{userName}</Cell>
                 <Cell title={dataItem.IbcUserName}>{dataItem.IbcUserName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateText}>{dataItem.RegisteredDateText}</Cell>
-                <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>
+                {hasTurnOverPermission && <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>}
                 <Cell className={productColumnClassName} title={winloss}>{winloss}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
@@ -163,11 +163,11 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, playerDetail }) {
+function mapStateToProps({ affCommonInfo, hasTurnOverPermission, playerDetail }) {
     const { param, pagingOption } = playerDetail;
     const { affId } = affCommonInfo;
 
-    return Object.assign({}, { param, pagingOption, affId });
+    return Object.assign({}, { param, pagingOption, affId, hasTurnOverPermission });
 }
 
 function mapDispatchToProps(dispatch) {

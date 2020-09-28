@@ -55,17 +55,17 @@ const fields = {
 }
 
 export default class ReportExcel {
-    constructor(data, title, hasTurnoverPermission, isMainView) {
+    constructor(data, title, hasTurnOverPermission, isMainView) {
         this.worksheet = {};
         this.title = isMainView ? title : 'AFFILIATE REPORT > ' + title;
         this.data = data;
         this.isMainView = isMainView;
-        this.hasTurnoverPermission = hasTurnoverPermission;
-        this.turnoverColumn = hasTurnoverPermission ? 1 : 0;
+        this.hasTurnOverPermission = hasTurnOverPermission;
+        this.turnoverColumn = hasTurnOverPermission ? 1 : 0;
 
         this.currentRowIndex = DATA_ROW_INDEX;
         this.mergeConfig = [];
-        this.columnConfigs = this._getcolumnConfigs(hasTurnoverPermission, isMainView);
+        this.columnConfigs = this._getcolumnConfigs(hasTurnOverPermission, isMainView);
         this.totalColumn = isMainView ? (TOTAL_COLUMN + this.turnoverColumn) : (TOTAL_COLUMN + this.turnoverColumn - 1);
     }
 
@@ -271,7 +271,7 @@ export default class ReportExcel {
             }
         ];
 
-        if (this.hasTurnoverPermission) {
+        if (this.hasTurnOverPermission) {
             this.worksheet['!cols'].push({
                 wpx: 120
             });
@@ -311,7 +311,7 @@ export default class ReportExcel {
         });
     }
 
-    _getcolumnConfigs(hasTurnoverPermission, isMainView) {
+    _getcolumnConfigs(hasTurnOverPermission, isMainView) {
         const columnConfigList = [{
                 field: isMainView ? fields.UserName : fields.MonthDateString,
                 [MAIN_SECTION_STYLE]: bodyCellStyle.left,
@@ -359,7 +359,7 @@ export default class ReportExcel {
             }
         ];
 
-        if (hasTurnoverPermission) {
+        if (hasTurnOverPermission) {
             columnConfigList.push({
                 field: fields.Turnover,
                 [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,

@@ -11,7 +11,7 @@ import {
 const HEADER_ROW_INDEX = 0;
 const DATA_ROW_INDEX = 1;
 
-const TOTAL_COLUMN = 10;
+const TOTAL_COLUMN = 9;
 
 const MAIN_SECTION_STYLE = 'mainSectionStyle';
 
@@ -29,14 +29,16 @@ const fields = {
 }
 
 export default class ReportExcel {
-    constructor(data, title) {
+    constructor(data, title, hasTurnOverPermission) {
         this.data = data;
         this.title = title;
+        this.hasTurnOverPermission = hasTurnOverPermission;
+        this.totalColumn = hasTurnOverPermission ? TOTAL_COLUMN + 1 : TOTAL_COLUMN;
 
         this.worksheet = {};
         this.currentRowIndex = DATA_ROW_INDEX;
         this.mergeConfig = [];
-        this.columnConfigs = this._getcolumnConfigs();
+        this.columnConfigs = this._getcolumnConfigs(hasTurnOverPermission);
     }
 
     export() {
@@ -50,7 +52,7 @@ export default class ReportExcel {
     }
 
     _createHeader() {
-        for (let i = 0; i < TOTAL_COLUMN; i++) {
+        for (let i = 0; i < this.totalColumn ; i++) {
             const fieldName = this.columnConfigs[i].field;
             let address = Excel.getCellAddress({
                 c: i,
@@ -69,7 +71,7 @@ export default class ReportExcel {
         for (let i = 0; i < mainData.length; i++) {
             const item = mainData[i];
 
-            for (let j = 0; j < TOTAL_COLUMN; j++) {
+            for (let j = 0; j < this.totalColumn; j++) {
                 const address = Excel.getCellAddress({
                     c: j,
                     r: this.currentRowIndex
@@ -101,7 +103,7 @@ export default class ReportExcel {
         });
         const cellEnd = Excel.getCellAddress({
             r: this.currentRowIndex,
-            c: TOTAL_COLUMN
+            c: this.totalColumn
         });
 
         this.worksheet["!ref"] = `${cellStart}:${cellEnd}`;
@@ -123,13 +125,17 @@ export default class ReportExcel {
             wpx: 150
         }, {
             wpx: 150
-        }, {
-            wpx: 150
         }];
+
+        if (this.hasTurnOverPermission) {
+            this.worksheet['!cols'].push({
+                wpx: 150
+            });
+        }
     }
 
-    _getcolumnConfigs() {
-        return [{
+    _getcolumnConfigs(hasTurnOverPermission) {
+        const columnConfigs = [{
             field: fields.Index,
             [MAIN_SECTION_STYLE]: bodyCellStyle.center
         }, {
@@ -141,24 +147,34 @@ export default class ReportExcel {
         }, {
             field: fields.RegisteredDate,
             [MAIN_SECTION_STYLE]: bodyCellStyle.center
-        }, {
-            field: fields.Turnover,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
-        }, {
-            field: fields.Winloss,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
-        }, {
-            field: fields.Bonus,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
-        }, {
-            field: fields.Deposit,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
-        }, {
-            field: fields.Withdrawal,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
-        }, {
-            field: fields.BankingFee,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
         }]
+
+        if (hasTurnOverPermission) {
+            columnConfigs.push({
+                field: fields.Turnover,
+                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
+            });
+        }
+
+        columnConfigs.push(
+            {
+                field: fields.Winloss,
+                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
+            }, {
+                field: fields.Bonus,
+                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
+            }, {
+                field: fields.Deposit,
+                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
+            }, {
+                field: fields.Withdrawal,
+                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
+            }, {
+                field: fields.BankingFee,
+                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal
+            }
+        );
+
+        return columnConfigs;
     }
 }

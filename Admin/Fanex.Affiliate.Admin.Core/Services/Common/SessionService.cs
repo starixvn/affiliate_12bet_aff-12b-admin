@@ -12,7 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         private const string OnUserIDKey = "__OnUserIDKey";
         private const string AffIdKey = "__AffId";
         private const string AffNameKey = "__AffName";
-        private const string HasTurnoverPermissionKey = "__HasTurnoverPermission";
+        private const string HasTurnOverPermissionKey = "__HasTurnOverPermission";
 
         public int UserId
         {
@@ -68,17 +68,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             }
         }
 
-        public bool HasTurnoverPermission
+        public bool HasTurnOverPermission
         {
             get
             {
-                var temp = HttpContext.Current.Session[HasTurnoverPermissionKey];
+                var temp = HttpContext.Current.Session[HasTurnOverPermissionKey];
 
                 return (temp != null) && (bool)temp;
             }
             set
             {
-                HttpContext.Current.Session[HasTurnoverPermissionKey] = value;
+                HttpContext.Current.Session[HasTurnOverPermissionKey] = value;
             }
         }
 

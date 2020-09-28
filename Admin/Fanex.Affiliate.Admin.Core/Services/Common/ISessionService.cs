@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         string AffName { get; set; }
 
-        bool HasTurnoverPermission { get; set; }
+        bool HasTurnOverPermission { get; set; }
 
         IList<UserPermission> UserPermissionList { get; set; }
     }
