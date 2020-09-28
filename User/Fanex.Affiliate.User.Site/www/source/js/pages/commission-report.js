@@ -116,13 +116,17 @@
             var activeClass = isFirstSumRow ? ' active' : '';
             var toggleIconClass = isFirstSumRow ? 'bottom' : 'left';
             var className = isSummaryRow ? ' class="sumrow' + activeClass + '"' : '';
+            var columnNames = _me.getHeaderColNames();
 
             var iconHtml = '<span class="chevron toggleDetailRow ' + toggleIconClass + '" aria-hidden="true"></span>';
             var rowItems = [];
             rowItems.push('<tr' + className + '>');
             rowItems.push('<td class="text-center">' + (isSummaryRow ? index + 1 : '') + '</td>');
             rowItems.push('<td class="title-cell"><div class="row-wrapper">' + (isSummaryRow ? title + iconHtml : dataRow.ProductName) + '</div></td>');
-            rowItems.push(_me.buildCell(formatDecimal(dataRow.TurnOver)));
+            console.log(columnNames.TurnOver);
+            if (columnNames.TurnOver) {
+                rowItems.push(_me.buildCell(formatDecimal(dataRow.TurnOver)));
+            }
             rowItems.push(_me.buildCell(formatDecimal(dataRow.WinLoss)));
             if (isSummaryRow) {
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.PlatformFee)));
@@ -143,10 +147,11 @@
 
         buildTotalRow: function () {
             var dataRow = _reportData.Total;
+            var columnNames = _me.getHeaderColNames();
             if (dataRow) {
                 return '<tr class="total">' +
                     '<td class="text-right" colspan="2">' + 'Total' + '</td>' +
-                    _me.buildCell(formatDecimal(dataRow.TurnOver)) +
+                    (columnNames.TurnOver ? _me.buildCell(formatDecimal(dataRow.TurnOver)) : '') +
                     _me.buildCell(formatDecimal(dataRow.WinLoss)) +
                     _me.buildCell(formatDecimal(dataRow.PlatformFee)) +
                     _me.buildCell(formatDecimal(dataRow.OperationalFee)) +
@@ -158,6 +163,19 @@
             }
 
             return '';
+        },
+
+        getHeaderColNames: function () {
+            var headerCols = $('#dataTable thead tr th');
+            var rowNames = [];
+            console.log(headerCols);
+            headerCols.each(function () {
+                let name = $(this).data('name');
+                if (name) {
+                    rowNames[name] = name
+                }
+            })
+            return rowNames;
         },
 
         buildCell: function (cellData) {

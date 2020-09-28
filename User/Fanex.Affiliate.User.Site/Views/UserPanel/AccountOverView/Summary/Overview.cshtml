@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.OverviewDetail>
+﻿@using Fanex.Affiliate.User.Core.Utilities
+@using Fanex.Affiliate.User.Core.Constants
+@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.OverviewDetail>
 
 @{
     var rowNum = Model.Count();
@@ -17,7 +19,10 @@
                 <th width="12%">Active members</th>
                 <th width="16%">Qualified Active members</th>
                 <th width="10%">Deposits</th>
-                <th width="10%">Turnover</th>
+                @if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+                {
+                    <th width="10%">Turnover</th>
+                }
                 <th width="10%">Withdrawal</th>
                 <th width="10%">Win/Loss</th>
             </tr>
@@ -31,7 +36,10 @@
                         <th class="text-center">@itemTotal.ActiveMembers</th>
                         <th class="text-center">@itemTotal.QualifiedActiveMembers</th>
                         <th class="text-center">@itemTotal.Deposit.FormatDecimal()</th>
-                        <th class="text-center">@itemTotal.Turnover.FormatDecimal()</th>
+                        @if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+                        {
+                            <th class="text-center">@itemTotal.Turnover.FormatDecimal()</th>
+                        }
                         <th class="text-center">@itemTotal.Withdrawal.FormatDecimal()</th>
                         <th class="text-center">@itemTotal.Winloss.FormatDecimal()</th>
                     </tr>
@@ -52,7 +60,10 @@
                             <td class="text-center">@item.ActiveMembers</td>
                             <td class="text-center">@item.QualifiedActiveMembers</td>
                             <td class="text-center">@item.Deposit.FormatDecimal()</td>
-                            <td class="text-center">@item.Turnover.FormatDecimal()</td>
+                            @if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+                            {
+                                <td class="text-center">@item.Turnover.FormatDecimal()</td>
+                            }
                             <td class="text-center">@item.Withdrawal.FormatDecimal()</td>
                             <td class="text-center">@item.Winloss.FormatDecimal()</td>
                         </tr>

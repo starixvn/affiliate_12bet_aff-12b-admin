@@ -12,7 +12,8 @@
     <Setting Key="Aff_Recheckin_view" SpName="Aff_Recheckin" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_VerificationInfoSel" SpName="Aff_User_VerificationInfoSel" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_VerificationUpd" SpName="Aff_User_VerificationUpd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_VerificationSuccessIns" SpName="Aff_User_VerificationSuccessIns" DbName="affiliate_12bet" />    
+    <Setting Key="Aff_User_VerificationSuccessIns" SpName="Aff_User_VerificationSuccessIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="affiliate_12bet" />
   </Function>
 
   <Function Name="AccountInformation">
