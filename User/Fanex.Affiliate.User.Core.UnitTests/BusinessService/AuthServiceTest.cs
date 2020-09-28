@@ -228,9 +228,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var service = CreateService();
 
-            service.GetSessionId(1);
+            service.GetInternalLoginInfo(1);
 
-            AuthRepo.ReceivedWithAnyArgs().GetSessionId(1);
+            AuthRepo.ReceivedWithAnyArgs().GetInternalLoginInfo(1);
         }
 
         [Fact]
