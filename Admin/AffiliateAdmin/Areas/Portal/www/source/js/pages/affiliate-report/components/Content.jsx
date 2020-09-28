@@ -28,13 +28,13 @@ export class Content extends Component {
 
     handleExportExcel = async () => {
         this.props.toggleLoader(true);
-        const { param, reportTitle, currentViewLevel } = this.props;
+        const { param, reportTitle, currentViewLevel, hasTurnoverPermission } = this.props;
         const isMainView = currentViewLevel === viewLevel.main;
         const url = `Portal/Report/${isMainView ? 'GetMainData' : 'GetDetailData'}`;
         const postData = Object.assign({}, param, { IsExportExcel: true });
         const response = await post(url, postData);
         if (response && response.status === 200) {
-            const reportExcel = new ReportExcel(response.data, reportTitle, isMainView);
+            const reportExcel = new ReportExcel(response.data, reportTitle, hasTurnoverPermission, isMainView);
             reportExcel.export();
         }
         this.props.toggleLoader(false);
@@ -73,8 +73,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ reportTitle, currentViewLevel, param }) {
-    return Object.assign({}, { reportTitle, currentViewLevel, param });
+function mapStateToProps({ reportTitle, currentViewLevel, hasTurnoverPermission, param }) {
+    return Object.assign({}, { reportTitle, currentViewLevel, hasTurnoverPermission, param });
 }
 
 function mapDispatchToProps(dispatch) {

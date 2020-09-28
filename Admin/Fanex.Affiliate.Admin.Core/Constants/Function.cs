@@ -27,5 +27,7 @@
         public const string ActiveMembers = "[ActiveMembers]";
 
         public const string MemberEmail = "[MemberEmail]";
+
+        public const string Turnover = "[Turnover]";
     }
 }

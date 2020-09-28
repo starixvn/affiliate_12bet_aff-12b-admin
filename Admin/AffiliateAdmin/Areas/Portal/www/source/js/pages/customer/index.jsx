@@ -6,7 +6,9 @@ import reducer from './mainpage/reducers';
 import AppContainer from './mainpage/components/AppContainer';
 import { configureStore } from '../../modules/store';
 
-const store = configureStore(window.initialState, reducer);
+const { hasTurnoverPermission } = window.globalVariables;
+
+const store = configureStore({ ...window.initialState, hasTurnoverPermission }, reducer);
 
 export default class App extends React.PureComponent {
     constructor(props) {

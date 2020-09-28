@@ -59,10 +59,13 @@
 </ul>
 
 <script type="text/javascript">
-    var controllerName = '@controllerName';
+    window.globalVariables = {
+        hasTurnoverPermission: false
+    }
+
     let element;
 
-    switch(controllerName) {
+    switch('@controllerName') {
         case 'PaymentRequest': case 'CommissionGroup': case 'EmailHistory':
             element = document.getElementById('Affiliate');
             break;
