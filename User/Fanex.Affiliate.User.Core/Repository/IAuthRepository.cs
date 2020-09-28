@@ -1,6 +1,8 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
@@ -12,7 +14,9 @@ namespace Fanex.Affiliate.User.Core.Repository
 
         int GetOnUserId(OnUserIdParam onUserIdParam);
 
-        string GetSessionId(int onUserId);
+        InternalLoginInfo GetInternalLoginInfo(int onUserId);
+
+        IEnumerable<InternalPermission> GetInternalLoginPermission(int internalLoginUserId);
 
         bool Recheckin(int onUserId, bool isInternal);
     }

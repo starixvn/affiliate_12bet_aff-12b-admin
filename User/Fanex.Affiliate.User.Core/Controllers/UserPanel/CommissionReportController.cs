@@ -3,7 +3,9 @@
     using System;
     using System.Web.Mvc;
     using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.Utilities;
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using Filters;
 
@@ -39,7 +41,26 @@
                     new DateTime(year, 1, 1)) 
                 : new CommissionReportDataViewModel();
 
+            ClearTurnOverDataIfNotHavePermmision(viewModel);
+
             return Json(viewModel);
+        }
+
+        private static void ClearTurnOverDataIfNotHavePermmision(CommissionReportDataViewModel viewModel)
+        {
+            if (!ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+            {
+                foreach (var data in viewModel.Data)
+                {
+                    data.Data.TurnOver = 0;
+                    foreach (var item in data.ProductData)
+                    {
+                        item.TurnOver = 0;
+                    }
+                }
+
+                viewModel.Total.TurnOver = 0;
+            }
         }
     }
 }

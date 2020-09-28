@@ -5,7 +5,6 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using Filters;
     using Repository.UserPanel;
-    using ViewModels.UserPanel;
 
     [CustomAuthorize]
     public class AccountOverviewController : BaseController

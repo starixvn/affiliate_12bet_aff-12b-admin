@@ -1,5 +1,8 @@
-﻿using Fanex.Affiliate.User.Core.MetalModels;
+﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.ViewModels;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -9,7 +12,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         int GetOnUserId(OnUserIdParam onUserIdParam);
 
-        string GetSessionId(int onUserId);
+        InternalLoginInfo GetInternalLoginInfo(int onUserId);
+
+        IEnumerable<Claim> GetInternalLoginClaim(int internalLoginUserId);
 
         bool Recheckin(int onUserId, bool isInternal);
 
