@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Fanex.Affiliate.User.Core.Utilities
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
@@ -13,6 +14,11 @@
 }
 
 @section scripts{
+    <script>
+        window.Permission = {
+            HasTurnOverPermission: '@ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType)'.toLowerCase() === 'true'
+        }
+    </script>
     @RenderSection("scripts", required: false)
 }
 

@@ -123,7 +123,7 @@ var commissionReport = (function ($) {
             rowItems.push('<tr' + className + '>');
             rowItems.push('<td class="text-center">' + (isSummaryRow ? index + 1 : '') + '</td>');
             rowItems.push('<td class="title-cell"><div class="row-wrapper">' + (isSummaryRow ? title + iconHtml : dataRow.ProductName) + '</div></td>');
-            console.log(columnNames.TurnOver);
+
             if (columnNames.TurnOver) {
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.TurnOver)));
             }
@@ -158,7 +158,7 @@ var commissionReport = (function ($) {
         getHeaderColNames: function getHeaderColNames() {
             var headerCols = $('#dataTable thead tr th');
             var rowNames = [];
-            console.log(headerCols);
+
             headerCols.each(function () {
                 var name = $(this).data('name');
                 if (name) {
