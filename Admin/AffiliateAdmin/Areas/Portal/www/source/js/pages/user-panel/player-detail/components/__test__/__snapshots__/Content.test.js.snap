@@ -60,17 +60,6 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="5,367,360.00"
-          >
-            5,367,360.00
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
             title="-26,050.00"
           >
             -26,050.00
@@ -170,17 +159,6 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="23.71"
-          >
-            23.71
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
             title="-11.93"
           >
             -11.93
@@ -250,63 +228,56 @@ exports[`players detail - components - Content render correctly 1`] = `
           columnName="Username"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="User Name"
         />
         <Memo(SortingCell)
           columnName="IbcUsername"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="IBC User Name"
         />
         <Memo(SortingCell)
           columnName="RegisteredDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Registered Date"
-        />
-        <Memo(SortingCell)
-          columnName="Turnover"
-          handleClickHeader={[Function]}
-          isSortAsc={false}
-          sortingColumn="Turnover"
-          title="Turnover"
         />
         <Memo(SortingCell)
           columnName="Winloss"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Winlost"
         />
         <Memo(SortingCell)
           columnName="Deposit"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Deposit"
         />
         <Memo(SortingCell)
           columnName="Withdrawal"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Withdrawal"
         />
         <Memo(SortingCell)
           columnName="Bonus"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Bonus"
         />
         <Memo(SortingCell)
           columnName="BankingFee"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Banking Fee"
         />
       </t>
@@ -378,63 +349,56 @@ exports[`players detail - components - Content render correctly with have data i
           columnName="Username"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="User Name"
         />
         <Memo(SortingCell)
           columnName="IbcUsername"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="IBC User Name"
         />
         <Memo(SortingCell)
           columnName="RegisteredDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Registered Date"
-        />
-        <Memo(SortingCell)
-          columnName="Turnover"
-          handleClickHeader={[Function]}
-          isSortAsc={false}
-          sortingColumn="Turnover"
-          title="Turnover"
         />
         <Memo(SortingCell)
           columnName="Winloss"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Winlost"
         />
         <Memo(SortingCell)
           columnName="Deposit"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Deposit"
         />
         <Memo(SortingCell)
           columnName="Withdrawal"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Withdrawal"
         />
         <Memo(SortingCell)
           columnName="Bonus"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Bonus"
         />
         <Memo(SortingCell)
           columnName="BankingFee"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Banking Fee"
         />
       </t>
@@ -523,17 +487,6 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="5,367,360.00"
-          >
-            5,367,360.00
-          </t>
-          <t
-            asc={true}
-            className="text-right highlight"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
             title="-26,050.00"
           >
             -26,050.00
@@ -633,17 +586,6 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="23.71"
-          >
-            23.71
-          </t>
-          <t
-            asc={true}
-            className="text-right highlight"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
             title="-11.93"
           >
             -11.93
@@ -713,63 +655,56 @@ exports[`players detail - components - Content render correctly with not selecte
           columnName="Username"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="User Name"
         />
         <Memo(SortingCell)
           columnName="IbcUsername"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="IBC User Name"
         />
         <Memo(SortingCell)
           columnName="RegisteredDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Registered Date"
-        />
-        <Memo(SortingCell)
-          columnName="Turnover"
-          handleClickHeader={[Function]}
-          isSortAsc={false}
-          sortingColumn="Turnover"
-          title="Turnover"
         />
         <Memo(SortingCell)
           columnName="Winloss"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Winlost"
         />
         <Memo(SortingCell)
           columnName="Deposit"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Deposit"
         />
         <Memo(SortingCell)
           columnName="Withdrawal"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Withdrawal"
         />
         <Memo(SortingCell)
           columnName="Bonus"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Bonus"
         />
         <Memo(SortingCell)
           columnName="BankingFee"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn="Winloss"
           title="Banking Fee"
         />
       </t>

@@ -134,7 +134,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
                     if (loginResult.Result.IsOk && user != null && IsValidDomain(user.AffType))
                     {
-                        var adminId = loginParam.AccId * -1;
+                        var adminId = admin.UserId * -1;
                         AssignLoginInfoAndSetAuth(loginResult.UserInfo, clientIpAddress, adminId);
                         AssignClaimForInternalLogin(internalClaims);
                     }

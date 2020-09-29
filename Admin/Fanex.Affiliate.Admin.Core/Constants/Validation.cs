@@ -11,8 +11,8 @@
         public const int MinSearchBy = 0;
         public const int MaxSearchBy = int.MaxValue;
 
-        public const decimal InfinityAmount = 100000000000000m;
-        public const int InfinityQualifiedMember = 1000000000;
+        public const decimal InfinityAmount = 100_000_000_000_000m;
+        public const int InfinityQualifiedMember = 1_000_000_000;
 
         public const int MinAffType = 2;
         public const int MaxAffType = 4;

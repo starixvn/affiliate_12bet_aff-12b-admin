@@ -128,25 +128,6 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         </td>
       </tr>
       <tr
-        key="Turnover"
-      >
-        <td
-          className="font-weight-bold"
-        >
-          Turnover
-        </td>
-        <td
-          className="text-right"
-        >
-          $
-        </td>
-        <td
-          className="text-right"
-        >
-          $
-        </td>
-      </tr>
-      <tr
         key="Winlost"
       >
         <td
@@ -371,25 +352,6 @@ exports[`customer statistics - components - Content Should render correctly with
           className="text-right"
         >
           $951.44
-        </td>
-      </tr>
-      <tr
-        key="Turnover"
-      >
-        <td
-          className="font-weight-bold"
-        >
-          Turnover
-        </td>
-        <td
-          className="text-right"
-        >
-          $0.00
-        </td>
-        <td
-          className="text-right"
-        >
-          $1,061,706.98
         </td>
       </tr>
       <tr
@@ -628,25 +590,6 @@ exports[`customer statistics - components - Content Should render correctly with
           className="text-right"
         >
           $951.44
-        </td>
-      </tr>
-      <tr
-        key="Turnover"
-      >
-        <td
-          className="font-weight-bold"
-        >
-          Turnover
-        </td>
-        <td
-          className="text-right"
-        >
-          $0.00
-        </td>
-        <td
-          className="text-right"
-        >
-          $1,061,706.98
         </td>
       </tr>
       <tr

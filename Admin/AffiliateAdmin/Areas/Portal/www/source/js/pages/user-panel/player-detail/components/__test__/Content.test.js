@@ -42,7 +42,7 @@ describe('players detail - components - Content', () => {
 
     it('render correctly', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.setState({ data: gridData });
 
         expect(result).toMatchSnapshot();
@@ -52,7 +52,7 @@ describe('players detail - components - Content', () => {
         const newParam = Object.assign({}, defaultProps.param, { productId: 1 });
         const props = Object.assign({}, defaultProps, { param: newParam });
         const result = shallow(<Content {...props} />);
-        
+
         result.setState({ data: gridData });
 
         expect(result).toMatchSnapshot();
@@ -60,7 +60,7 @@ describe('players detail - components - Content', () => {
 
     it('render correctly with have data is empty', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.setState({ data: [] });
 
         expect(result).toMatchSnapshot();
@@ -88,7 +88,7 @@ describe('players detail - components - Content', () => {
         instance.componentDidUpdate(defaultProps);
 
         expect(instance._fetchData).toHaveBeenCalledWith({ ...newParam, pageIndex: 1, pageSize: 20 });
-        expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: false, sortingColumn: 'Turnover' });
+        expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: false, sortingColumn: 'Winloss' });
     });
 
     it('fetchData - should call toggleLoaderUserPanel, setState and setPagingOption with correct parameter', async () => {
@@ -141,9 +141,9 @@ describe('players detail - components - Content', () => {
         instance.setState = jest.fn();
         instance._fetchData = jest.fn();
 
-        instance.handleClickHeader('Turnover');
+        instance.handleClickHeader('Winloss');
 
-        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: true, sortById: 5, pageIndex: 1, pageSize: 20 });
+        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: true, sortById: 6, pageIndex: 1, pageSize: 20 });
         expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: true });
     });
 
