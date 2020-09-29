@@ -1264,8 +1264,6 @@ label.require:after {
 
 .table {
   font-size: 13px; }
-  .table .numberId {
-    width: 80px; }
   .table table {
     border: 1px solid #c1c1c1;
     border-collapse: collapse;
