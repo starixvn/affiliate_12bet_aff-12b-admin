@@ -6,8 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
@@ -24,9 +22,9 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         }
 
         public override void OnResultExecuting(ResultExecutingContext filterContext)
-        {  
+        {
             var context = filterContext.HttpContext;
-            Permission = context.Session[SessionKey.UserPermissionSessionKey] as IEnumerable<UserPermission>;            
+            Permission = context.Session[SessionKey.UserPermissionSessionKey] as IEnumerable<UserPermission>;
             var data = GetResultData(filterContext.Result);
             if (data != null && Permission != null)
             {
@@ -71,13 +69,11 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                 foreach (var pro in properties)
                 {
                     var attribute = pro.GetCustomAttribute<PermissionCheckAttribute>();
-                    if(attribute != null && attribute.PermissionName == PermissionName)
+                    if(attribute != null && attribute.PermissionName == PermissionName && !Permission.Any(p => p.FunctionName == attribute.PermissionName))
                     {
-                        if (!Permission.Any(p => p.FunctionName == attribute.PermissionName))
-                        {
-                            pro.SetValue(data, null, null);
-                        }
+                        pro.SetValue(data, null, null);
                     }
+
                     var value = pro.GetValue(data, null);
                     ClearData(value);
                 }

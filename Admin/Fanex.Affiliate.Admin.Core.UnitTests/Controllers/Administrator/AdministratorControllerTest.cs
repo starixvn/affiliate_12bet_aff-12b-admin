@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Administrator;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Administrator;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -320,13 +321,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Administrator
 
         private AdministratorController CreateAdministratorController(
         ISessionService sessionService = null,
-        IAdministratorService administratorService = null
+        IAdministratorService administratorService = null,
+        IAuthRepository authRepository = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeAdministratorService = administratorService ?? Mock.Of<IAdministratorService>();
+            var fakeAuthRepository = authRepository ?? Mock.Of<IAuthRepository>();
 
-            var controller = new AdministratorController(fakeSessionService, fakeAdministratorService);
+            var controller = new AdministratorController(fakeSessionService, fakeAdministratorService, fakeAuthRepository);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

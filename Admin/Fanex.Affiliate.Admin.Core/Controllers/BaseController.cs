@@ -17,7 +17,5 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             SessionService = sessionService;
         }
-
-
     }
 }

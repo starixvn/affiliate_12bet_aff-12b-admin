@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
         public AdministratorController(
             ISessionService sessionService,
             IAdministratorService administratorService,
-            IAuthRepository authRepository )
+            IAuthRepository authRepository)
         {
             _administratorService = administratorService;
             _authRepository = authRepository;
