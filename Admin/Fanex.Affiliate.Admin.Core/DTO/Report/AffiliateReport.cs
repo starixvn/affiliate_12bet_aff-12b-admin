@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Newtonsoft.Json;
 using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Report
@@ -32,6 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public decimal Withdrawal { get; set; }
 
+        [PermissionCheck(Function.TurnOver)]
         public decimal Turnover { get; set; }
 
         public decimal Winlost { get; set; }

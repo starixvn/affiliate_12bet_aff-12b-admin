@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
@@ -18,6 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public decimal Bonus { get; set; }
 
+        [PermissionCheck(Function.TurnOver)]
         public decimal Turnover { get; set; }
 
         public decimal Winloss { get; set; }

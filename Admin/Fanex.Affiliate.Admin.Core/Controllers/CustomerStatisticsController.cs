@@ -22,6 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [ResetValueNotHavePermission(Function.TurnOver)]
         public ActionResult GetCustomerStatistics(CustomerStatisticsParam param)
         {
             if (ModelState.IsValid)

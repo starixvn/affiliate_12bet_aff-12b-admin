@@ -47,6 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [ResetValueNotHavePermission(Function.TurnOver)]
         public ActionResult GetMainData(AffiliateReportMainParam param)
         {
             return new JsonNetResult
@@ -57,6 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [ResetValueNotHavePermission(Function.TurnOver)]
         public ActionResult GetDetailData(AffiliateReportMainParam param)
         {
             return new JsonNetResult

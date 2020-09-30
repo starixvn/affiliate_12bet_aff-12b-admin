@@ -1,4 +1,7 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO.Customer
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+
+namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 {
     public class CustomerStatistics
     {
@@ -18,8 +21,10 @@
 
         public decimal DepositTotal { get; set; }
 
+        [PermissionCheck(Function.TurnOver)]
         public decimal TurnoverByMonth { get; set; }
 
+        [PermissionCheck(Function.TurnOver)]
         public decimal TurnoverTotal { get; set; }
 
         public decimal WinlostByMonth { get; set; }

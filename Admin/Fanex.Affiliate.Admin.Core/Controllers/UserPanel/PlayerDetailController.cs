@@ -22,6 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [ResetValueNotHavePermission(Function.TurnOver)]
         public ActionResult GetPlayerDetailList(PlayerDetailParam param)
         {
             if (ModelState.IsValid)

@@ -165,6 +165,8 @@
   <ItemGroup>
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
+    <Compile Include="Attributes\PermissionCheckAttribute.cs" />
+    <Compile Include="Attributes\ResetValueNotHavePermissionAttribute.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryHeaderAttribute.cs" />
     <Compile Include="Configurations\AppSetting.cs" />
     <Compile Include="Configurations\IAppSetting.cs" />
@@ -179,6 +181,7 @@
     <Compile Include="Constants\LanguageSystem.cs" />
     <Compile Include="Constants\Money.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />
+    <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Constants\Size.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Constants\Validation.cs" />
