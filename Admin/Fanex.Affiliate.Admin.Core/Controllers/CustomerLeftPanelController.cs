@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [CustomAuthorize]
     [CheckUMFilter]
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class CustomerLeftPanelController : BaseController
+    public class CustomerLeftPanelController : ReadOnlySessionBaseController
     {
         private readonly ICustomerLeftPanelService _customerLeftPanelService;
         private readonly ISessionService _sessionService;

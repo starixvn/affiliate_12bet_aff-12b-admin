@@ -18,7 +18,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class AffiliateController : BaseController
+    public class AffiliateController : ReadOnlySessionBaseController
     {
         private readonly IAffiliateInfoRepository _affiliateInfoRepository;
 

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class ViewLogController : BaseController
+    public class ViewLogController : ReadOnlySessionBaseController
     {
         private readonly IViewLogService _viewLogService;
         public ViewLogController(

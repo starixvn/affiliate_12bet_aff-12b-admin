@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.UserControl)]
-    public class EmailTestingController : BaseController
+    public class EmailTestingController : ReadOnlySessionBaseController
     {
         private readonly IMailProcessor _mailProcessor;
 

@@ -14,7 +14,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
     [FunctionAuthorize(FunctionName = Function.Payment)]
-    public class PaymentRequestController : BaseController
+    public class PaymentRequestController : ReadOnlySessionBaseController
     {
         private readonly IPaymentRequestService _paymentRequestService;
 

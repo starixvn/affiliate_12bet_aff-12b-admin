@@ -18,7 +18,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.CommissionGroup)]
-    public class CommissionGroupController : BaseController
+    public class CommissionGroupController : ReadOnlySessionBaseController
     {
         private const int MaxLength = 100;
 

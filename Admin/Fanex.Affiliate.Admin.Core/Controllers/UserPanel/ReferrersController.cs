@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class ReferrersController : BaseController
+    public class ReferrersController : ReadOnlySessionBaseController
     {
         private readonly IReferrersRepository _referrersRepository;
         public ReferrersController(

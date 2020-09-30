@@ -19,7 +19,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
     [FunctionAuthorize(FunctionName = Function.Media)]
-    public class MediaGalleryController : BaseController
+    public class MediaGalleryController : ReadOnlySessionBaseController
     {
         private const int BannerListCategory = 1;
         private const string CasinoCategory = "Casino";

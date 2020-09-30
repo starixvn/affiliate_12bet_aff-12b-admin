@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class CustomerStatisticsController : BaseController
+    public class CustomerStatisticsController : ReadOnlySessionBaseController
     {
         private readonly ICustomerStatisticsService _customerStatisticsService;
 

@@ -9,11 +9,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [CustomAuthorize]
     [CheckUMFilter]
     [SessionState(SessionStateBehavior.ReadOnly)]
-    public class BaseController : Controller
+    public class ReadOnlySessionBaseController : Controller
     {
         protected ISessionService SessionService { get; }
 
-        protected BaseController(ISessionService sessionService)
+        protected ReadOnlySessionBaseController(ISessionService sessionService)
         {
             SessionService = sessionService;
         }
