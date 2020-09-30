@@ -1,16 +1,11 @@
-const sortByCommon = {
-    Turnover: 2,
+export const defaultSortBy = 1;
+export const affiliate = 1;
+export const month = 1;
+export const turnover = 2;
+export const sortByCommon = {
     Winloss: 3,
     Earning: 4
 }
-
-export const defaultSortBy = 1;
-export const sortByMainView = Object.assign({}, {
-    Affiliate: 1
-}, sortByCommon);
-export const sortByMonthOnMonthView = Object.assign({}, {
-    Month: 1
-}, sortByCommon);
 
 export const allProduct = '0';
 

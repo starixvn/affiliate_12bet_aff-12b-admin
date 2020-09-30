@@ -9,7 +9,7 @@ import { format, formatDecimal } from '../../../modules/numberFormat';
 import { setPagingOption, setViewLevel, setParam } from '../actions';
 import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
-import { allProduct, viewLevel, sortByMonthOnMonthView, sortDirectionType, totalText, headerText } from '../modules/constants';
+import { allProduct, viewLevel, month, sortDirectionType, totalText, headerText } from '../modules/constants';
 
 export class GridData extends Component {
     constructor(props) {
@@ -208,7 +208,7 @@ export class GridData extends Component {
 
         const postParam = Object.assign({}, param, {
             UserName,
-            SortType: sortByMonthOnMonthView.Month,
+            SortType: month,
             SortDirectionType: sortDirectionType.descending,
             PageIndex: 1,
             PageSize: pagingOption.PageSize

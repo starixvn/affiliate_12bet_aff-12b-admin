@@ -5,32 +5,26 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { headerText, globalResource, selectedAllProduct, maxWidth, SortByIdList } from '../modules/constants';
-import { setPagingOption, toggleLoaderUserPanel, fetchData } from '../actions';
+import { setPagingOption, toggleLoaderUserPanel, fetchData, setSortedParam } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import SortingCell from './SortingCell';
 
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
-        const { hasTurnOverPermission } = this.props;
+
         this.state = {
-            data: null,
-            isSortAsc: false,
-            sortingColumn: hasTurnOverPermission ? 'Turnover' : 'Winloss'
+            data: null
         }
     }
 
     componentDidUpdate(prevProps) {
-        const { param, pagingOption, hasTurnOverPermission } = this.props;
+        const { param, pagingOption } = this.props;
         const isDifferent = param !== prevProps.param;
 
         if (isDifferent) {
             const postParam = { ...param, pageIndex: 1, pageSize: pagingOption.PageSize };
             this._fetchData(postParam);
-        }
-
-        if (param.isClickLink || isDifferent) {
-            this.setState({ isSortAsc: false, sortingColumn: hasTurnOverPermission ? 'Turnover' : 'Winloss' });
         }
     }
 
@@ -47,35 +41,35 @@ export class Content extends PureComponent {
         this.props.toggleLoaderUserPanel(false);
     }
 
-    handleClickHeader = (selectedColumn) => {
-        const { isSortAsc, sortingColumn } = this.state;
-        const { param, pagingOption } = this.props;
-        const postParam = { ...param, pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize, sortById: SortByIdList[selectedColumn] };
+    handleClickHeader = (selectedId) => {
+        const { param, pagingOption, sortedParam } = this.props;
+        const { isSortAsc, sortById } = sortedParam;
+        const postParam = { ...param, pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize, sortById: selectedId };
 
-        if (sortingColumn === selectedColumn) {
-            this.setState({ isSortAsc: !isSortAsc });
+        if (sortById === selectedId) {
             this._fetchData({ ...postParam, isSortAsc: !isSortAsc });
+            this.props.setSortedParam({ sortById: selectedId, isSortAsc: !isSortAsc });
 
         } else {
-            this.setState({ isSortAsc: false, sortingColumn: selectedColumn });
             this._fetchData({ ...postParam, isSortAsc: false });
+            this.props.setSortedParam({ sortById: selectedId, isSortAsc: false });
         }
     }
     _renderHeader() {
-        const { isSortAsc, sortingColumn } = this.state;
+        const { isSortAsc, sortById } = this.props.sortedParam;
 
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Username'} title={headerText.UserName} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'IbcUsername'} title={headerText.IbcUserName} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'RegisteredDate'} title={headerText.RegisteredDate} handleClickHeader={this.handleClickHeader} />
-                {this.props.hasTurnOverPermission && <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Turnover'} title={headerText.Turnover} handleClickHeader={this.handleClickHeader} />}
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Winloss'} title={headerText.Winloss} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Deposit'} title={headerText.Deposit} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Withdrawal'} title={headerText.Withdrawal} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Bonus'} title={headerText.Bonus} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'BankingFee'} title={headerText.BankingFee} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Username} title={headerText.UserName} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.IbcUsername} title={headerText.IbcUserName} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.RegisteredDate} title={headerText.RegisteredDate} handleClickHeader={this.handleClickHeader} />
+                {this.props.hasTurnOverPermission && <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Turnover} title={headerText.Turnover} handleClickHeader={this.handleClickHeader} />}
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Winloss} title={headerText.Winloss} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Deposit} title={headerText.Deposit} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Withdrawal} title={headerText.Withdrawal} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Bonus} title={headerText.Bonus} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.BankingFee} title={headerText.BankingFee} handleClickHeader={this.handleClickHeader} />
             </Row>
         )
     }
@@ -164,14 +158,14 @@ export class Content extends PureComponent {
 }
 
 function mapStateToProps({ affCommonInfo, hasTurnOverPermission, playerDetail }) {
-    const { param, pagingOption } = playerDetail;
+    const { param, pagingOption, sortedParam } = playerDetail;
     const { affId } = affCommonInfo;
 
-    return Object.assign({}, { param, pagingOption, affId, hasTurnOverPermission });
+    return Object.assign({}, { param, pagingOption, affId, hasTurnOverPermission, sortedParam });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoaderUserPanel, fetchData }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoaderUserPanel, fetchData, setSortedParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

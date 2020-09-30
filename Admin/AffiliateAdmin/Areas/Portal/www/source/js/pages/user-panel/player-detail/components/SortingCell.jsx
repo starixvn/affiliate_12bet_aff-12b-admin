@@ -3,12 +3,12 @@ import { Button } from 'reactstrap';
 import { Cell } from '@9softstudio/react-fixed-table-header';
 
 export const SortingCell = (props) => {
-    const { isSortAsc, sortingColumn, columnName, title } = props;
-    const isSelectedColumn = sortingColumn === columnName;
+    const { isSortAsc, sortingColumn, columnValue, title } = props;
+    const isSelectedColumn = sortingColumn === columnValue;
 
     return (
         <Cell header={true} colWidth={100} className="th">
-            <Button className="p-0 th-wrapper" color="link" onClick={() => props.handleClickHeader(columnName)}>
+            <Button className="p-0 th-wrapper" color="link" onClick={() => props.handleClickHeader(columnValue)}>
                 <span>{title}</span>
                 <div className="icon-container">
                     <span className={`caret asc ${isSelectedColumn && isSortAsc ? "current" : ''}`}></span>

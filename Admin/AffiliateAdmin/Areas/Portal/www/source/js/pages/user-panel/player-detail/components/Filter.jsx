@@ -8,21 +8,19 @@ import { resource, selectedAllProduct, shortedMonthNames, minMonthDate } from '.
 import { setParam, getProductList, exportExcel } from '../actions';
 import ReportExcel from '../modules/reportExcel';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { SortByIdList } from '../modules/constants';
 
 export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { today, param, hasTurnOverPermission } = this.props;
+        const { today, param, } = this.props;
         const monthDate = param.isClickLink ? (param.monthDate || today) : today;
         const newMonthDate = new Date(monthDate);
 
         this.state = {
             selectedProduct: selectedAllProduct,
             monthDate: newMonthDate,
-            productList: null,
-            defaultSortById: hasTurnOverPermission ? SortByIdList.Turnover : SortByIdList.Winloss
+            productList: null
         }
     }
 
@@ -70,25 +68,27 @@ export class Filter extends PureComponent {
     }
 
     handleSearch = (monthDate) => {
-        const { selectedProduct, defaultSortById } = this.state;
+        const { selectedProduct } = this.state;
+        const { sortedParam } = this.props;
 
         const param = {
             productId: selectedProduct,
             monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
-            sortById: defaultSortById
+            ...sortedParam
         }
         this.props.setParam(param);
     }
 
     handleExportExcel = async () => {
         const { selectedProduct, monthDate } = this.state;
-        const { affId, hasTurnOverPermission } = this.props;
+        const { affId, hasTurnOverPermission, sortedParam } = this.props;
 
         const param = {
             IsExportExcel: true,
             productId: selectedProduct,
             monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
-            affId
+            affId,
+            ...sortedParam
         }
 
         const data = await this.props.exportExcel(param);
@@ -156,13 +156,14 @@ export class Filter extends PureComponent {
 }
 
 function mapStateToProps({ today, affCommonInfo, hasTurnOverPermission, playerDetail }) {
-    const { param } = playerDetail;
+    const { param, sortedParam } = playerDetail;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {
         param,
         affId,
         today,
+        sortedParam,
         hasTurnOverPermission
     });
 }
