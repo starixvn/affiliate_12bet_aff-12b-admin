@@ -21,10 +21,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public decimal DepositTotal { get; set; }
 
-        [PermissionCheck(Function.TurnOver)]
+        [PermissionCheck(Function.Turnover)]
         public decimal TurnoverByMonth { get; set; }
 
-        [PermissionCheck(Function.TurnOver)]
+        [PermissionCheck(Function.Turnover)]
         public decimal TurnoverTotal { get; set; }
 
         public decimal WinlostByMonth { get; set; }

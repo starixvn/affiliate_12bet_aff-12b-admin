@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public decimal Withdrawal { get; set; }
 
-        [PermissionCheck(Function.TurnOver)]
+        [PermissionCheck(Function.Turnover)]
         public decimal Turnover { get; set; }
 
         public decimal Winlost { get; set; }

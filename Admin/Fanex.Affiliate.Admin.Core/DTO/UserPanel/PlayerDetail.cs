@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public decimal Bonus { get; set; }
 
-        [PermissionCheck(Function.TurnOver)]
+        [PermissionCheck(Function.Turnover)]
         public decimal Turnover { get; set; }
 
         public decimal Winloss { get; set; }
