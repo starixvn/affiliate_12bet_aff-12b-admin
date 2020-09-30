@@ -11,13 +11,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller
     {
-        private readonly ISessionService _sessionService;
+        protected ISessionService SessionService { get; }
 
         protected BaseController(ISessionService sessionService)
         {
-            _sessionService = sessionService;
+            SessionService = sessionService;
         }
 
-        protected ISessionService SessionService => _sessionService;
+
     }
 }

@@ -7,8 +7,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
     public class SessionService : ISessionService
     {
-
-
         public int UserId
         {
             get

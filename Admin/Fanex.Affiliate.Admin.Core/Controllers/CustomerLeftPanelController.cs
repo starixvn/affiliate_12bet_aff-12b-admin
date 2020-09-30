@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [CustomAuthorize]
     [CheckUMFilter]
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class CustomerLeftPanelController : Controller
+    public class CustomerLeftPanelController : BaseController
     {
         private readonly ICustomerLeftPanelService _customerLeftPanelService;
         private readonly ISessionService _sessionService;
@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         public CustomerLeftPanelController(
             ISessionService sessionService,
             ICustomerLeftPanelService customerLeftPanelService
-            )
+            ) : base(sessionService)
         {
             _customerLeftPanelService = customerLeftPanelService;
             _sessionService = sessionService;
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var accOnId = _sessionService.OnUserId.ToString();
             var sessionId = Session.SessionID;
             var affiliateInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, accId, accOnId, sessionId);
-            _sessionService.AffName = affUsername;
+            SessionService.AffName = affUsername;
 
             return new JsonNetResult
             {
