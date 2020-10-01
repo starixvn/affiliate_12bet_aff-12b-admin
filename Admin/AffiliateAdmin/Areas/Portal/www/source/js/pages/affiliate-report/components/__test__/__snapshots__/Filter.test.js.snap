@@ -462,12 +462,6 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
           Month
         </option>
         <option
-          key="sortBy-Turnover"
-          value={2}
-        >
-          Turnover
-        </option>
-        <option
           key="sortBy-Winloss"
           value={3}
         >

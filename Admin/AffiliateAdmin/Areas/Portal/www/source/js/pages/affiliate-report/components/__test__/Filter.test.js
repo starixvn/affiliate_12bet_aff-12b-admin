@@ -12,6 +12,7 @@ describe('affiliate report - Filter ', () => {
     const monthOnMonth = 2;
     const now = new Date('12/24/2018');
     const isCheckedAllProduct = true;
+    const hasTurnOverPermission = true;
     const fromMonth = {
         month: now.getMonth(),
         year: now.getFullYear()
@@ -28,6 +29,7 @@ describe('affiliate report - Filter ', () => {
         languageList: {},
         today: now.getMonth() + '/' + now.getDate() + '/' + now.getFullYear(),
         currentViewLevel: mainView,
+        hasTurnOverPermission,
         param: {}
     };
 
@@ -587,7 +589,7 @@ describe('affiliate report - Filter ', () => {
     });
 
     it('should render correctly when currentMainView is Month on Month view', () => {
-        const props = Object.assign({}, defaultProps, { currentViewLevel: monthOnMonth });
+        const props = Object.assign({}, defaultProps, { currentViewLevel: monthOnMonth, hasTurnOverPermission: false });
         const result = shallow(<Filter {...props} />);
 
         expect(result).toMatchSnapshot();

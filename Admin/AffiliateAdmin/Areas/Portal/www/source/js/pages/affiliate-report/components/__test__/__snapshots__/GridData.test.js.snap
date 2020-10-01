@@ -163,6 +163,17 @@ exports[`affiliate report - GridData  _buildCommonCell - should return correctly
     onClick={[Function]}
     sortable={false}
     sorting={false}
+    title="0.00"
+  >
+    0.00
+  </t>
+  <t
+    asc={true}
+    className="text-right"
+    header={false}
+    onClick={[Function]}
+    sortable={false}
+    sorting={false}
     title="0.00%"
   >
     0.00%
@@ -294,6 +305,17 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
       title="0"
     >
       0
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
     </t>
     <t
       asc={true}
@@ -624,6 +646,17 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
       onClick={[Function]}
       sortable={false}
       sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
       title="0.00%"
     >
       0.00%
@@ -760,6 +793,17 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
     <t
       asc={true}
       className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right highlight"
       header={false}
       onClick={[Function]}
       sortable={false}
@@ -1058,6 +1102,17 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
       onClick={[Function]}
       sortable={false}
       sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
       title="0.00%"
     >
       0.00%
@@ -1100,6 +1155,1071 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
 `;
 
 exports[`affiliate report - GridData  should render correctly 1`] = `
+<div
+  className="table-responsive table-striped"
+>
+  <t
+    adjustedHeight={0}
+    autoHeight={true}
+    autoWidth={true}
+    body={
+      Array [
+        <t>
+          <t
+            asc={true}
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="12BETAFF001"
+          >
+            12BETAFF001
+          </t>
+          <React.Fragment>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0"
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0"
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0"
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0"
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0"
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0"
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right highlight"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right highlight"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00%"
+            >
+              0.00%
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="165.00"
+            >
+              165.00
+            </t>
+          </React.Fragment>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            <Button
+              className="p-0"
+              color="link"
+              onClick={[Function]}
+              tag="button"
+            >
+              View
+            </Button>
+          </t>
+        </t>,
+        <t>
+          <t
+            asc={true}
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="12BETAFF002"
+          >
+            12BETAFF002
+          </t>
+          <React.Fragment>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="1"
+            >
+              1
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="1"
+            >
+              1
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0"
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0"
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0"
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0"
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right highlight"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right highlight"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00%"
+            >
+              0.00%
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="803,935.72"
+            >
+              803,935.72
+            </t>
+          </React.Fragment>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            <Button
+              className="p-0"
+              color="link"
+              onClick={[Function]}
+              tag="button"
+            >
+              View
+            </Button>
+          </t>
+        </t>,
+      ]
+    }
+    bodyHeight={300}
+    containerPadding={20}
+    footer={
+      Array [
+        <t>
+          <t
+            asc={true}
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          />
+          <React.Fragment>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right highlight"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right highlight"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="%"
+            >
+              %
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+          </React.Fragment>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            
+          </t>
+        </t>,
+      ]
+    }
+    header={
+      Array [
+        <t>
+          <t
+            asc={true}
+            colWidth={120}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+            title="Affiliate"
+          >
+            Affiliate
+          </t>
+          <t
+            asc={true}
+            colWidth={70}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+            title="Total Click"
+          >
+            Total Click
+          </t>
+          <t
+            asc={true}
+            colWidth={70}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+            title="Unique Click"
+          >
+            Unique Click
+          </t>
+          <t
+            asc={true}
+            colWidth={65}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+            title="Signup"
+          >
+            Signup
+          </t>
+          <t
+            asc={true}
+            colWidth={50}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+            title="FDM"
+          >
+            FDM
+          </t>
+          <t
+            asc={true}
+            colWidth={60}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+            title="Active Member"
+          >
+            Active Member
+          </t>
+          <t
+            asc={true}
+            colWidth={60}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+            title="Qualified Member"
+          >
+            Qualified Member
+          </t>
+          <t
+            asc={true}
+            colSpan={9}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Member Statistics"
+          >
+            Member Statistics
+          </t>
+          <t
+            asc={true}
+            colSpan={5}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Affiliate Statistics"
+          >
+            Affiliate Statistics
+          </t>
+          <t
+            asc={true}
+            colWidth={50}
+            header={true}
+            onClick={[Function]}
+            rowSpan="2"
+            sortable={false}
+            sorting={false}
+            title="Month on Month"
+          >
+            Month on Month
+          </t>
+        </t>,
+        <t>
+          <t
+            asc={true}
+            colWidth={75}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Deposit"
+          >
+            Deposit
+          </t>
+          <t
+            asc={true}
+            colWidth={75}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Withdrawal"
+          >
+            Withdrawal
+          </t>
+          <t
+            asc={true}
+            colWidth={95}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Turnover"
+          >
+            Turnover
+          </t>
+          <t
+            asc={true}
+            colWidth={95}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Winloss"
+          >
+            Winloss
+          </t>
+          <t
+            asc={true}
+            colWidth={70}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Bonus"
+          >
+            Bonus
+          </t>
+          <t
+            asc={true}
+            colWidth={70}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Platform Fee"
+          >
+            Platform Fee
+          </t>
+          <t
+            asc={true}
+            colWidth={70}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Operational Fee"
+          >
+            Operational Fee
+          </t>
+          <t
+            asc={true}
+            colWidth={70}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Banking Fees"
+          >
+            Banking Fees
+          </t>
+          <t
+            asc={true}
+            colWidth={70}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Total Fee"
+          >
+            Total Fee
+          </t>
+          <t
+            asc={true}
+            colWidth={60}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Comm%"
+          >
+            Comm%
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Earning"
+          >
+            Earning
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Withdrawal"
+          >
+            Withdrawal
+          </t>
+          <t
+            asc={true}
+            colWidth={70}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Adjustment"
+          >
+            Adjustment
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Balance B/F"
+          >
+            Balance B/F
+          </t>
+        </t>,
+      ]
+    }
+    isPaging={true}
+    maxWidth={0}
+    minWidth={1000}
+    onPaging={[Function]}
+    pageOption={
+      Object {
+        "PageIndex": 1,
+        "PageList": Array [
+          10,
+          20,
+          50,
+          100,
+          500,
+        ],
+        "PageSize": 20,
+        "TotalItem": 0,
+      }
+    }
+    shouldResetScrollPosition={true}
+    width={0}
+  />
+</div>
+`;
+
+exports[`affiliate report - GridData  should render correctly when have not turnover permission 1`] = `
 <div
   className="table-responsive table-striped"
 >
@@ -2211,7 +3331,7 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
     </t>
     <t
       asc={true}
-      colSpan={8}
+      colSpan={9}
       header={true}
       onClick={[Function]}
       sortable={false}
@@ -2268,6 +3388,17 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       title="Withdrawal"
     >
       Withdrawal
+    </t>
+    <t
+      asc={true}
+      colWidth={95}
+      header={true}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="Turnover"
+    >
+      Turnover
     </t>
     <t
       asc={true}
@@ -2485,7 +3616,7 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
     </t>
     <t
       asc={true}
-      colSpan={8}
+      colSpan={9}
       header={true}
       onClick={[Function]}
       sortable={false}
@@ -2530,6 +3661,17 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       title="Withdrawal"
     >
       Withdrawal
+    </t>
+    <t
+      asc={true}
+      colWidth={95}
+      header={true}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="Turnover"
+    >
+      Turnover
     </t>
     <t
       asc={true}

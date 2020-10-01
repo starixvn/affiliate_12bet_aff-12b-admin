@@ -45,6 +45,7 @@ describe('player detail - Content - connect', () => {
         const expectedActionCreator = {
             toggleLoaderUserPanel: actions['toggleLoaderUserPanel'],
             setPagingOption: actions['setPagingOption'],
+            setSortedParam: actions['setSortedParam'],
             fetchData: actions['fetchData']
         }
 

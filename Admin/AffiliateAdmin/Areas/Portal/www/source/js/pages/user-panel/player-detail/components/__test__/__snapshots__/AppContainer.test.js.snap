@@ -6,3 +6,5 @@ exports[`player detail - components - AppContainer render correctly 1`] = `
   <Connect(Content) />
 </AppLayout>
 `;
+
+exports[`player detail - components - AppContainer render correctly when sortedParam is null 1`] = `<AppLayout />`;

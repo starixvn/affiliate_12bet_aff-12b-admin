@@ -8,6 +8,7 @@ jest.mock('../../modules/constants');
 describe('affiliate report - GridData ', () => {
     const mainView = 1;
     const monthOnMonth = 2;
+    const hasTurnOverPermission = true;
 
     const defaultProps = {
         pagingOption: {
@@ -17,6 +18,7 @@ describe('affiliate report - GridData ', () => {
             PageList: [10, 20, 50, 100, 500]
         },
         param: {},
+        hasTurnOverPermission,
         currentViewLevel: mainView
     };
 
@@ -494,67 +496,77 @@ describe('affiliate report - GridData ', () => {
         expect(componentInstance.fetchData).toHaveBeenCalledWith(paramExpect);
     });
 
+    const dataListRender = [
+        {
+            ActiveMember: 0,
+            AffAdjustment: 0,
+            AffId: 927841,
+            AffWithdrawal: 0,
+            BalanceBf: 165,
+            BankingFee: 0,
+            Bonus: 0,
+            CommissionRate: 0,
+            Deposit: 0,
+            Description: "",
+            Earning: 0,
+            Fdm: 0,
+            MonthDate: null,
+            MonthDateString: "",
+            OperationalFee: 0,
+            PlatformFee: 0,
+            QualifiedMember: 0,
+            Signup: 0,
+            TotalClick: 0,
+            TotalFee: 0,
+            Turnover: 0,
+            UniqueClick: 0,
+            UserName: "12BETAFF001",
+            Winlost: 0,
+            Withdrawal: 0,
+        },
+        {
+            ActiveMember: 0,
+            AffAdjustment: 0,
+            AffId: 968222,
+            AffWithdrawal: 0,
+            BalanceBf: 803935.7199,
+            BankingFee: 0,
+            Bonus: 0,
+            CommissionRate: 0,
+            Deposit: 0,
+            Description: "",
+            Earning: 0,
+            Fdm: 0,
+            MonthDate: null,
+            MonthDateString: "",
+            OperationalFee: 0,
+            PlatformFee: 0,
+            QualifiedMember: 0,
+            Signup: 0,
+            TotalClick: 1,
+            TotalFee: 0,
+            Turnover: 0,
+            UniqueClick: 1,
+            UserName: "12BETAFF002",
+            Winlost: 0,
+            Withdrawal: 0,
+        }
+    ];
+
     it('should render correctly', () => {
         const total = 2;
-        const dataList = [
-            {
-                ActiveMember: 0,
-                AffAdjustment: 0,
-                AffId: 927841,
-                AffWithdrawal: 0,
-                BalanceBf: 165,
-                BankingFee: 0,
-                Bonus: 0,
-                CommissionRate: 0,
-                Deposit: 0,
-                Description: "",
-                Earning: 0,
-                Fdm: 0,
-                MonthDate: null,
-                MonthDateString: "",
-                OperationalFee: 0,
-                PlatformFee: 0,
-                QualifiedMember: 0,
-                Signup: 0,
-                TotalClick: 0,
-                TotalFee: 0,
-                Turnover: 0,
-                UniqueClick: 0,
-                UserName: "12BETAFF001",
-                Winlost: 0,
-                Withdrawal: 0,
-            },
-            {
-                ActiveMember: 0,
-                AffAdjustment: 0,
-                AffId: 968222,
-                AffWithdrawal: 0,
-                BalanceBf: 803935.7199,
-                BankingFee: 0,
-                Bonus: 0,
-                CommissionRate: 0,
-                Deposit: 0,
-                Description: "",
-                Earning: 0,
-                Fdm: 0,
-                MonthDate: null,
-                MonthDateString: "",
-                OperationalFee: 0,
-                PlatformFee: 0,
-                QualifiedMember: 0,
-                Signup: 0,
-                TotalClick: 1,
-                TotalFee: 0,
-                Turnover: 0,
-                UniqueClick: 1,
-                UserName: "12BETAFF002",
-                Winlost: 0,
-                Withdrawal: 0,
-            }
-        ];
-
         const wrapper = shallow(<GridData {...defaultProps} />);
-        wrapper.instance().setState({ gridData: dataList, total });
+        wrapper.instance().setState({ gridData: dataListRender, total });
+
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should render correctly when have not turnover permission', () => {
+        const total = 2;
+        const props = Object.assign({}, defaultProps, { hasTurnOverPermission: false });
+
+        const wrapper = shallow(<GridData {...props} />);
+        wrapper.instance().setState({ gridData: dataListRender, total });
 
         expect(wrapper).toMatchSnapshot();
     });

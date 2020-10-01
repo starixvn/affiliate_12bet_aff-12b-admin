@@ -4,7 +4,8 @@ import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('players detail - components - Content', () => {
-    const param = {productId: 0, monthDate: "11/1/2019"};
+    const param = { productId: 0, monthDate: "11/1/2019" };
+    const turnover = 5;
     const gridData = [
         {
             IbcUserName: "12BETUS$02002",
@@ -37,7 +38,10 @@ describe('players detail - components - Content', () => {
         param,
         setPagingOption: jest.fn(),
         toggleLoaderUserPanel: jest.fn(),
-        fetchData: jest.fn(() => gridData)
+        setSortedParam: jest.fn(),
+        fetchData: jest.fn(() => gridData),
+        hasTurnOverPermission: true,
+        sortedParam: { sortById: turnover, isSortAsc: false }
     }
 
     it('render correctly', () => {
@@ -88,7 +92,6 @@ describe('players detail - components - Content', () => {
         instance.componentDidUpdate(defaultProps);
 
         expect(instance._fetchData).toHaveBeenCalledWith({ ...newParam, pageIndex: 1, pageSize: 20 });
-        expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: false, sortingColumn: 'Winloss' });
     });
 
     it('fetchData - should call toggleLoaderUserPanel, setState and setPagingOption with correct parameter', async () => {
@@ -141,10 +144,10 @@ describe('players detail - components - Content', () => {
         instance.setState = jest.fn();
         instance._fetchData = jest.fn();
 
-        instance.handleClickHeader('Winloss');
+        instance.handleClickHeader(turnover);
 
-        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: true, sortById: 6, pageIndex: 1, pageSize: 20 });
-        expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: true });
+        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: true, sortById: turnover, pageIndex: 1, pageSize: 20 });
+        expect(defaultProps.setSortedParam).toHaveBeenCalledWith({ isSortAsc: true });
     });
 
     it('handleClickHeader - should call setState and _fetchData when sortingColumn !== selectedColumn', async () => {
@@ -153,10 +156,10 @@ describe('players detail - components - Content', () => {
         instance.setState = jest.fn();
         instance._fetchData = jest.fn();
 
-        instance.handleClickHeader('Username');
+        instance.handleClickHeader(1);
 
         expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: false, sortById: 1, pageIndex: 1, pageSize: 20 });
-        expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: false, sortingColumn: 'Username' });
+        expect(defaultProps.setSortedParam).toHaveBeenCalledWith({ isSortAsc: false, sortById: 1 });
     });
 
     it('handlePaging - should call fetchData with correct parameters', () => {

@@ -27,6 +27,7 @@ describe('customer - mainpage reducer', () => {
             moreSiteUrlsList: null,
             userAccountInfo: null,
         },
+        hasTurnOverPermission: false,
         isShowLoaderUserPanel: false,
         landingPageStatistics: {
             pageList: [],
@@ -60,6 +61,7 @@ describe('customer - mainpage reducer', () => {
             pagingOption: defaultPagingOption,
             param: {},
             productList: [],
+            sortedParam: null,
         },
         selectedUserPanel: null,
         statementHistory: {

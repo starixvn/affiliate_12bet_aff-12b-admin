@@ -6,14 +6,15 @@ describe('affiliate report - Report Excel ', () => {
     const HEADER_ROW_INDEX = 1;
 
     const INDEX_DEPOSIT_COLUMN = 7;
-    const COLSPAN_MEMBER_STATISTICS = 9;
-    const INDEX_COMM_COLUMN = 16;
+    const COLSPAN_MEMBER_STATISTICS = 8;
+    const INDEX_COMM_COLUMN = 15;
     const COLSPAN_AFFILIATE_STATISTICS = 5;
 
     const MAIN_SECTION_STYLE = 'mainSectionStyle';
     const TOTAL_SECTION_STYLE = 'totalSectionStyle';
 
     const isMainView = true;
+    const hasTurnOverPermission = true;
     const itemHaveDescription = {
         ActiveMember: 0,
         AffAdjustment: 0,
@@ -72,25 +73,25 @@ describe('affiliate report - Report Excel ', () => {
     const title = 'Report Excel';
 
     it('contrustor - should call _getcolumnConfigs with Main view', () => {
-        const instance = new ReportExcel(data, title, isMainView);
+        const instance = new ReportExcel(data, title, hasTurnOverPermission, isMainView);
         instance._getcolumnConfigs = jest.fn();
 
-        instance.constructor(data, title, isMainView);
+        instance.constructor(data, title, hasTurnOverPermission, isMainView);
 
-        expect(instance._getcolumnConfigs).toHaveBeenCalledWith(isMainView);
+        expect(instance._getcolumnConfigs).toHaveBeenCalledWith(hasTurnOverPermission, isMainView);
     });
 
     it('contrustor - should call _getcolumnConfigs with Month on Month view', () => {
-        const instance = new ReportExcel(data, title, !isMainView);
+        const instance = new ReportExcel(data, title, !hasTurnOverPermission, !isMainView);
         instance._getcolumnConfigs = jest.fn();
 
-        instance.constructor(data, title, !isMainView);
+        instance.constructor(data, title, !hasTurnOverPermission, !isMainView);
 
-        expect(instance._getcolumnConfigs).toHaveBeenCalledWith(!isMainView);
+        expect(instance._getcolumnConfigs).toHaveBeenCalledWith(!hasTurnOverPermission, !isMainView);
     });
 
     it('export - should call Excel.process', () => {
-        const instance = new ReportExcel(data, title, !isMainView);
+        const instance = new ReportExcel(data, title, !hasTurnOverPermission, !isMainView);
         instance._createTitle = jest.fn();
         instance._createHeader = jest.fn();
         instance._createBodyData = jest.fn();
@@ -113,7 +114,7 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createTitle - should call Excel.getCellAddress', () => {
-        const instance = new ReportExcel(data, title, !isMainView);
+        const instance = new ReportExcel(data, title, !hasTurnOverPermission, !isMainView);
         Excel.getCellAddress = jest.fn();
 
         instance._createTitle();
@@ -122,7 +123,7 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createHeader - should call _buildColspanColumn with Main view', () => {
-        const instance = new ReportExcel(data, title, isMainView);
+        const instance = new ReportExcel(data, title, hasTurnOverPermission, isMainView);
         instance._buildColspanColumn = jest.fn();
         Excel.getCellAddress = jest.fn();
 
@@ -141,17 +142,17 @@ describe('affiliate report - Report Excel ', () => {
         expect(instance._buildColspanColumn).toHaveBeenCalledTimes(2);
         expect(instance._buildColspanColumn.mock.calls[0][0]).toBe(HEADER_ROW_INDEX);
         expect(instance._buildColspanColumn.mock.calls[0][1]).toBe(INDEX_DEPOSIT_COLUMN);
-        expect(instance._buildColspanColumn.mock.calls[0][2]).toBe(COLSPAN_MEMBER_STATISTICS);
+        expect(instance._buildColspanColumn.mock.calls[0][2]).toBe(COLSPAN_MEMBER_STATISTICS + 1);
         expect(instance._buildColspanColumn.mock.calls[0][3]).toEqual('Member Statistics');
 
         expect(instance._buildColspanColumn.mock.calls[1][0]).toBe(HEADER_ROW_INDEX);
-        expect(instance._buildColspanColumn.mock.calls[1][1]).toBe(INDEX_COMM_COLUMN);
+        expect(instance._buildColspanColumn.mock.calls[1][1]).toBe(INDEX_COMM_COLUMN + 1);
         expect(instance._buildColspanColumn.mock.calls[1][2]).toBe(COLSPAN_AFFILIATE_STATISTICS);
         expect(instance._buildColspanColumn.mock.calls[1][3]).toEqual('Affiliate Statistics');
     });
 
     it('_createHeader - should call _buildColspanColumn with Month on Month view', () => {
-        const instance = new ReportExcel(data, title, !isMainView);
+        const instance = new ReportExcel(data, title, !hasTurnOverPermission, !isMainView);
         instance._buildColspanColumn = jest.fn();
         Excel.getCellAddress = jest.fn();
 
@@ -172,7 +173,7 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_buildColspanColumn - should call Excel.getCellAddress with headerText not exist column', () => {
-        const instance = new ReportExcel(data, title, isMainView);
+        const instance = new ReportExcel(data, title, hasTurnOverPermission, isMainView);
         instance.columnConfigs.push({
             field: "abc",
             mainSectionStyle: { numFmt: '#,##0.00' },
@@ -183,7 +184,7 @@ describe('affiliate report - Report Excel ', () => {
 
         instance._buildColspanColumn(HEADER_ROW_INDEX, INDEX_DEPOSIT_COLUMN, COLSPAN_MEMBER_STATISTICS + 6, 'Member Statistics');
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(16);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(15);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN, "r": HEADER_ROW_INDEX + 1 });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN + 1, "r": HEADER_ROW_INDEX + 1 });
@@ -199,16 +200,15 @@ describe('affiliate report - Report Excel ', () => {
         expect(Excel.getCellAddress.mock.calls[12][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN + 11, "r": HEADER_ROW_INDEX + 1 });
         expect(Excel.getCellAddress.mock.calls[13][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN + 12, "r": HEADER_ROW_INDEX + 1 });
         expect(Excel.getCellAddress.mock.calls[14][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN + 13, "r": HEADER_ROW_INDEX + 1 });
-        expect(Excel.getCellAddress.mock.calls[15][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN + 14, "r": HEADER_ROW_INDEX + 1 });
     });
 
     it('_buildColspanColumn - should call Excel.getCellAddress', () => {
-        const instance = new ReportExcel(data, title, isMainView);
+        const instance = new ReportExcel(data, title, hasTurnOverPermission, isMainView);
         Excel.getCellAddress = jest.fn();
 
         instance._buildColspanColumn(HEADER_ROW_INDEX, INDEX_DEPOSIT_COLUMN, COLSPAN_MEMBER_STATISTICS, 'Member Statistics');
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(10);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(9);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN, "r": HEADER_ROW_INDEX + 1 });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN + 1, "r": HEADER_ROW_INDEX + 1 });
@@ -218,11 +218,10 @@ describe('affiliate report - Report Excel ', () => {
         expect(Excel.getCellAddress.mock.calls[6][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN + 5, "r": HEADER_ROW_INDEX + 1 });
         expect(Excel.getCellAddress.mock.calls[7][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN + 6, "r": HEADER_ROW_INDEX + 1 });
         expect(Excel.getCellAddress.mock.calls[8][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN + 7, "r": HEADER_ROW_INDEX + 1 });
-        expect(Excel.getCellAddress.mock.calls[9][0]).toEqual({ "c": INDEX_DEPOSIT_COLUMN + 8, "r": HEADER_ROW_INDEX + 1 });
     });
 
     it('_createBodyData - should call _buildDataRow, Excel.getCellAddress with Main view', () => {
-        const instance = new ReportExcel(data, title, isMainView);
+        const instance = new ReportExcel(data, title, hasTurnOverPermission, isMainView);
 
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
@@ -248,14 +247,14 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createBodyData - should call _buildDataRow, Excel.getCellAddress with Month on Month view', () => {
-        const instance = new ReportExcel(data, title, !isMainView);
+        const instance = new ReportExcel(data, title, !hasTurnOverPermission, !isMainView);
 
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createBodyData();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(40);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(38);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": 2, "r": 3 });
@@ -263,7 +262,7 @@ describe('affiliate report - Report Excel ', () => {
         expect(Excel.getCellAddress.mock.calls[4][0]).toEqual({ "c": 4, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[5][0]).toEqual({ "c": 5, "r": 3 });
 
-        expect(instance._buildDataRow).toHaveBeenCalledTimes(40);
+        expect(instance._buildDataRow).toHaveBeenCalledTimes(38);
         expect(instance._buildDataRow.mock.calls[0][0]).toBe(itemHaveDescription);
         expect(instance._buildDataRow.mock.calls[0][1]).toBe(MAIN_SECTION_STYLE);
         expect(instance._buildDataRow.mock.calls[0][2]).toBe(0);
@@ -275,7 +274,7 @@ describe('affiliate report - Report Excel ', () => {
 
     it('_createTotalRow - should call _buildDataRow, Excel.getCellAddress with Main view', () => {
         const customTotalData = { CommissionRate: "N/A", UserName: "Total (all pages)" };
-        const instance = new ReportExcel(data, title, isMainView);
+        const instance = new ReportExcel(data, title, hasTurnOverPermission, isMainView);
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
@@ -301,13 +300,13 @@ describe('affiliate report - Report Excel ', () => {
 
     it('_createTotalRow - should call _buildDataRow, Excel.getCellAddress with Month on Month view', () => {
         const customTotalData = { CommissionRate: "%", MonthDateString: "Total (all pages)" };
-        const instance = new ReportExcel(data, title, !isMainView);
+        const instance = new ReportExcel(data, title, !hasTurnOverPermission, !isMainView);
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createTotalRow();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(20);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(19);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": 2, "r": 3 });
@@ -315,7 +314,7 @@ describe('affiliate report - Report Excel ', () => {
         expect(Excel.getCellAddress.mock.calls[4][0]).toEqual({ "c": 4, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[5][0]).toEqual({ "c": 5, "r": 3 });
 
-        expect(instance._buildDataRow).toHaveBeenCalledTimes(20);
+        expect(instance._buildDataRow).toHaveBeenCalledTimes(19);
         expect(instance._buildDataRow.mock.calls[0][0]).toEqual(customTotalData);
         expect(instance._buildDataRow.mock.calls[0][1]).toBe(TOTAL_SECTION_STYLE);
         expect(instance._buildDataRow.mock.calls[0][2]).toBe(0);
@@ -326,7 +325,7 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_buildDataRow - should call Excel.getCellType', () => {
-        const instance = new ReportExcel(data, title, isMainView);
+        const instance = new ReportExcel(data, title, hasTurnOverPermission, isMainView);
 
         Excel.getCellType = jest.fn();
 
@@ -337,7 +336,7 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createExcelConfig - should call Excel.getCellAddress', () => {
-        const instance = new ReportExcel(data, title, isMainView);
+        const instance = new ReportExcel(data, title, hasTurnOverPermission, isMainView);
 
         Excel.getCellAddress = jest.fn();
 
@@ -345,7 +344,7 @@ describe('affiliate report - Report Excel ', () => {
 
         expect(Excel.getCellAddress).toHaveBeenCalledTimes(2);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 0 });
-        expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 21, "r": 3 });
+        expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 20, "r": 3 });
     });
 
     it('_getcolumnConfigs - return correct', () => {
@@ -371,9 +370,9 @@ describe('affiliate report - Report Excel ', () => {
             { field: "AffWithdrawal", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
             { field: "AffAdjustment", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } },
             { field: "BalanceBf", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" } }]
-        const instance = new ReportExcel(data, title, isMainView);
+        const instance = new ReportExcel(data, title, hasTurnOverPermission, isMainView);
 
-        const result = instance._getcolumnConfigs(isMainView);
+        const result = instance._getcolumnConfigs(hasTurnOverPermission, isMainView);
 
         expect(result).toEqual(expectResult);
     });

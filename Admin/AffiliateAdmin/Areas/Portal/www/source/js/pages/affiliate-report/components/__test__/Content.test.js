@@ -9,10 +9,12 @@ jest.mock('../../modules/reportExcel');
 describe('affiliate report - Content ', () => {
     const mainView = 1;
     const monthOnMonth = 2;
+    const hasTurnOverPermission = true;
 
     const defaultProps = {
         reportTitle: '',
         currentViewLevel: mainView,
+        hasTurnOverPermission,
         param: {}
     };
 
@@ -141,7 +143,7 @@ describe('affiliate report - Content ', () => {
 
             await componentInstance.handleExportExcel();
 
-            expect(ReportExcel).toHaveBeenCalledWith(expectedResponse.data, reportTitle, isMainView);
+            expect(ReportExcel).toHaveBeenCalledWith(expectedResponse.data, reportTitle, hasTurnOverPermission, isMainView);
         });
     });
 
