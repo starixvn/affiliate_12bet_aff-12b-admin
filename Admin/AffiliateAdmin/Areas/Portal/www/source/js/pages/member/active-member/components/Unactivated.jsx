@@ -27,7 +27,7 @@ export const Unactivated = (props) => {
                 <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>
                 {
-                    unactivatedGridData && unactivatedGridData.length !== 0 && (<Cell header={true} colWidth={50} title={headerText.ActiveAll}>
+                    unactivatedGridData && !!unactivatedGridData.length && (<Cell header={true} colWidth={50} title={headerText.ActiveAll}>
                         <Button color="link p-0" onClick={() => _handleActive(userNames)}>
                             Active All
                     </Button>

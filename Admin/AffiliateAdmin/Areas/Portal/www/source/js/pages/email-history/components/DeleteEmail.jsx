@@ -30,7 +30,7 @@ export class DeleteEmail extends PureComponent {
     _handleDeleteEmails = () => {
         const emailIdList = this._getCheckedEmailIdList();
 
-        emailIdList.length === 0 ? this.setState({ messageNotification: messages.PleaseSelect, isConfirmPopup: false }) : this.setState({ messageNotification: messages.AreYouSureDeleteEmails, isConfirmPopup: true, emailIdList });
+        !emailIdList.length ? this.setState({ messageNotification: messages.PleaseSelect, isConfirmPopup: false }) : this.setState({ messageNotification: messages.AreYouSureDeleteEmails, isConfirmPopup: true, emailIdList });
     }
 
     _deleteEmails = async (emailIdList) => {

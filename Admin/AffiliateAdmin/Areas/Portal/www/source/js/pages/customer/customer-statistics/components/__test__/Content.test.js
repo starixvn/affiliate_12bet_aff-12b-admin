@@ -7,10 +7,11 @@ describe('customer statistics - components - Content', () => {
     const defaultProps = {
         monthDate: '7/1/2019',
         today: '7/1/2019',
-        affId: 1271808
+        affId: 1271808,
+        hasTurnOverPermission: true
     };
 
-    const data = { 
+    const data = {
         ActivePlayerByMonth: 0,
         DepositByMonth: 0,
         DepositTotal: 951.435,
@@ -31,7 +32,7 @@ describe('customer statistics - components - Content', () => {
         WinlostTotal: -42950.0237
     }
 
-    const dataHasPlayerActive = { 
+    const dataHasPlayerActive = {
         ActivePlayerByMonth: 2,
         DepositByMonth: 0,
         DepositTotal: 951.435,

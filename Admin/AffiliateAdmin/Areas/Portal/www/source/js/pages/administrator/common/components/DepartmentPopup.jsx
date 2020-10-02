@@ -121,7 +121,7 @@ export class DepartmentPopup extends PureComponent {
                                 isPopup={true}
                             />
                             {
-                                data && data.length && (
+                                data && !!data.length && (
                                     <React.Fragment>
                                         <div className="my-2">
                                             <Button outline type="button" onClick={this._handleUpdate}>Update</Button>
