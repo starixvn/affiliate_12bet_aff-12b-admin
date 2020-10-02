@@ -269,6 +269,25 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Administrator
         }
 
         [Fact]
+        public void UpdateAccountPolicy_WhenCallWithValidParam_UpdateFailed()
+        {
+            // Arrange
+            var param = new UpdatePolicyParam { GroupPolicies = "100000034,123,0;" };
+            UpdatePolicyParam passedParam = null;
+            var administratorService = new Mock<IAdministratorService>();
+            administratorService.Setup(s => s.UpdateAccountPolicy(It.IsAny<UpdatePolicyParam>())).Returns(new ResultInfo { Code = -999 }).Callback<UpdatePolicyParam>(p => passedParam = p);
+            var controller = CreateAdministratorController(administratorService: administratorService.Object);
+
+            // Action
+            var result = controller.UpdateAccountPolicy(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+            Assert.Equal("Encoded100000034,123,0;", passedParam.GroupPolicies);
+        }
+
+        [Fact]
         public void UpdateAccountPolicy_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange

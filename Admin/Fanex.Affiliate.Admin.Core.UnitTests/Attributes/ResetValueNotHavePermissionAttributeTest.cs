@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,26 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             var attribute = CreateAttribute();
             var filtercontext = new ResultExecutingContext();
             SetUpContext(filtercontext);
+            filtercontext.HttpContext.Session[permissionSessionKey].Returns(null);
             filtercontext.Result = new HttpNotFoundResult();
 
             Assert.Throws<InvalidOperationException>(() => attribute.OnResultExecuting(filtercontext));
+        }
+
+        [Fact]
+        public void OnResultExecuting_WhenPermissionAndDataIsNull()
+        {
+            var attribute = CreateAttribute();
+            var filtercontext = new ResultExecutingContext();
+            SetUpContext(filtercontext);
+            filtercontext.HttpContext.Session[permissionSessionKey].Returns(null);
+            ViewResultBase viewResultBase = new ViewResult();
+            filtercontext.Result = viewResultBase;
+
+            attribute.OnResultExecuting(filtercontext);
+
+            var result = filtercontext.Result as ViewResultBase;
+            Assert.Null(result.Model);
         }
 
         [Fact]
@@ -49,11 +67,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             SetUpContext(filtercontext);
             filtercontext.HttpContext.Session[permissionSessionKey].Returns(new List<UserPermission>());
             var data = new TestResetDecimalPropertyClass { ResetProterty =  10, NotResetPropety = 10 };
-            filtercontext.Result = new JsonResult() { Data = data };
+            filtercontext.Result = new JsonNetResult() { Data = data };
 
             attribute.OnResultExecuting(filtercontext);
 
-            Assert.Equal(default(decimal), data.ResetProterty);
+            Assert.Equal(default, data.ResetProterty);
             Assert.Equal((decimal) 10, data.NotResetPropety);
         }
 
@@ -70,7 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
 
             attribute.OnResultExecuting(filtercontext);
 
-            Assert.Equal(default(DateTime), data.ResetProterty);
+            Assert.Equal(default, data.ResetProterty);
             Assert.Equal(now, data.NotResetPropety);
         }
 
@@ -121,13 +139,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             var filtercontext = new ResultExecutingContext();
             SetUpContext(filtercontext);
             filtercontext.HttpContext.Session[permissionSessionKey].Returns(new List<UserPermission>());
-            var data = new TestResetPropertyInNestedClass();
-            data.ResetProperty = "abc";
-            data.ResetArrayProperty = new TestResetStringPropertyClass[]
+            var data = new TestResetPropertyInNestedClass
             {
-                new TestResetStringPropertyClass { ResetProterty = "abc", NotResetPropety = "123" },
-                new TestResetStringPropertyClass { ResetProterty = "abc", NotResetPropety = "123" },
-                new TestResetStringPropertyClass { ResetProterty = "abc", NotResetPropety = "123" }
+                ResetProperty = "abc",
+                ResetArrayProperty = new TestResetStringPropertyClass[]
+                {
+                    new TestResetStringPropertyClass { ResetProterty = "abc", NotResetPropety = "123" },
+                    new TestResetStringPropertyClass { ResetProterty = "abc", NotResetPropety = "123" },
+                    new TestResetStringPropertyClass { ResetProterty = "abc", NotResetPropety = "123" }
+                }
             };
             filtercontext.Result = new JsonResult() { Data = data };
 

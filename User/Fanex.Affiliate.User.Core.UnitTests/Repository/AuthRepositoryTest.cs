@@ -124,7 +124,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
 
             Assert.Equal(spKey, db.SettingKey);
             db.Received().AddInParameter("OnUserId", System.Data.SqlDbType.Int, 1);
-            Assert.Equal(sessionId, result);
+            Assert.Equal(sessionId, result.SesionId);
         }
 
         [Theory]
