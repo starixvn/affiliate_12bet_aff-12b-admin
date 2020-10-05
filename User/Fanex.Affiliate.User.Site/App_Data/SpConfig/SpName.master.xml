@@ -13,7 +13,7 @@
     <Setting Key="Aff_User_VerificationInfoSel" SpName="Aff_User_VerificationInfoSel" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_VerificationUpd" SpName="Aff_User_VerificationUpd" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_VerificationSuccessIns" SpName="Aff_User_VerificationSuccessIns" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="affiliate_12bet_view" />
   </Function>
 
   <Function Name="AccountInformation">
