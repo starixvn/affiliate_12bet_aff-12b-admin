@@ -2,4 +2,5 @@
 <Root>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
 
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_PolicySel" Suffix="_xtest"></item>
 </Root>
