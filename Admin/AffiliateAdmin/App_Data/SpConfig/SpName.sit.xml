@@ -5,10 +5,10 @@
   </Function>
   <Function Name="AffiliateInformation">
     <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="affiliate_12bet" />  
+    <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateUsername_SearchEx" SpName="Aff_AffiliateUsername_SearchEx" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_AffiliateOnlineList_Sel" SpName="Aff_Admin_AffiliateOnlineList_Sel" DbName="affiliate_12bet" />  
+    <Setting Key="Aff_Admin_AffiliateOnlineList_Sel" SpName="Aff_Admin_AffiliateOnlineList_Sel" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Commission">
     <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet" />
@@ -21,7 +21,6 @@
     <Setting Key="Aff_Admin_CommGroup_Assign" SpName="Aff_Admin_CommGroup_Assign" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Auth">
-    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Login" SpName="Aff_Admin_Login" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel_xtest" DbName="affiliate_12bet" />
@@ -30,7 +29,7 @@
   </Function>
   <Function Name="Report">
     <Setting Key="Aff_Admin_AffiliateReport_Sel" SpName="Aff_Admin_AffiliateReport_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_AffiliateReport_Detail_Sel" SpName="Aff_Admin_AffiliateReport_Detail_Sel" DbName="affiliate_12bet" />  
+    <Setting Key="Aff_Admin_AffiliateReport_Detail_Sel" SpName="Aff_Admin_AffiliateReport_Detail_Sel" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Info">
     <Setting Key="Aff_Admin_Affiliate_Sel" SpName="Aff_Admin_Affiliate_Sel" DbName="affiliate_12bet" />
