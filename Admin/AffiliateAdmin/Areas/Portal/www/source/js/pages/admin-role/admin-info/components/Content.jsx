@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert, Row } from 'reactstrap';
 import { messages, initialState, resources } from '../libs/constants';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 import { validateUserName, validateNewPassword } from '../../../../modules/utils';
 import { convertMarketListByRole, getSelectedMarketName, validateLanguage } from '../libs/utils';
 import { globalResource } from '../../../../modules/globalResource';
@@ -43,9 +44,9 @@ export class Content extends PureComponent {
             const convertMarket = convertMarketListByRole(MarketList, true);
 
             this.setState({
-                newUserName: AdminInfo.UserName,
-                firstName: AdminInfo.FirstName,
-                lastName: AdminInfo.LastName,
+                newUserName: htmlDecode(AdminInfo.UserName),
+                firstName: htmlDecode(AdminInfo.FirstName),
+                lastName: htmlDecode(AdminInfo.LastName),
                 role: AdminInfo.RoleId,
                 language: getSelectedMarketName(MarketList),
                 initialRole: AdminInfo.RoleId,
@@ -99,8 +100,8 @@ export class Content extends PureComponent {
 
         if (isValid) {
             const { userId, permissionListByRole } = this.props;
-            const { newUserName, newPassword, role, isActive, marketListByRole } = this.state;
-            const param = { userId: userId || 0, userName: newUserName, password: newPassword, role, isClosed: !isActive, permissionInfo: permissionListByRole, marketList: marketListByRole };
+            const { newUserName, newPassword, firstName, lastName, role, isActive, marketListByRole } = this.state;
+            const param = { userId: userId || 0, userName: newUserName, firstName, lastName, password: newPassword, role, isClosed: !isActive, permissionInfo: permissionListByRole, marketList: marketListByRole };
 
             const data = userId ? await this.props.updateUser(param) : await this.props.createUser(param);
 
@@ -143,9 +144,9 @@ export class Content extends PureComponent {
 
             this.setState({
                 isClickedSubmit: false,
-                newUserName: initialUserInfo.UserName,
-                firstName: initialUserInfo.FirstName,
-                lastName: initialUserInfo.LastName,
+                newUserName: htmlDecode(initialUserInfo.UserName),
+                firstName: htmlDecode(initialUserInfo.FirstName),
+                lastName: htmlDecode(initialUserInfo.LastName),
                 role: initialUserInfo.RoleId,
                 isActive: initialUserInfo.IsActive,
                 isEdit: false,

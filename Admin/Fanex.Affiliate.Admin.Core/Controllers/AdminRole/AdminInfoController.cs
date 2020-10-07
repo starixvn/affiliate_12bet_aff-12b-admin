@@ -50,11 +50,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         {
             if (ModelState.IsValid)
             {
-                GetUserInfoParam(param);
+                var encodeParam = new AdminInfoParam
+                {
+                    UserName = Server.HtmlEncode(param.UserName.Trim()),
+                    Password = CryptographyHelper.Encrypt(param.Password.Trim()),
+                    FirstName = Server.HtmlEncode(param.FirstName.Trim()),
+                    LastName = Server.HtmlEncode(param.LastName.Trim()),
+                    Role = param.Role,
+                    MarketList = param.MarketList,
+                    PermissionInfo = param.PermissionInfo,
+                    IsClosed = param.IsClosed
+                };
+
+                GetUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
-                    Data = _adminInfoService.CreateUser(param)
+                    Data = _adminInfoService.CreateUser(encodeParam)
                 };
             }
 
@@ -74,11 +86,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         {
             if (ModelState.IsValid && param.UserId >= Validation.MinId)
             {
-                GetUserInfoParam(param);
+                var encodeParam = new AdminInfoParam
+                {
+                    UserName = Server.HtmlEncode(param.UserName.Trim()),
+                    FirstName = Server.HtmlEncode(param.FirstName.Trim()),
+                    LastName = Server.HtmlEncode(param.LastName.Trim()),
+                    Role = param.Role,
+                    PermissionInfo = param.PermissionInfo,
+                    MarketList = param.MarketList
+                };
+
+                GetUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
-                    Data = _adminInfoService.UpdateUser(param)
+                    Data = _adminInfoService.UpdateUser(encodeParam)
                 };
             }
 

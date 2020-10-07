@@ -11,7 +11,15 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.AdminRole
         [Required(ErrorMessage = "User Name is required!")]
         public string UserName { get; set; }
 
+        [Required(ErrorMessage = "First Name is required!")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Last Name is required!")]
+        public string LastName { get; set; }
+
         public string Password { get; set; }
+
+        public string UserSalt { get; set; }
 
         [Range(Validation.MinId, Validation.MaxRoleId, ErrorMessage = "Role is invalid!")]
         public int? Role { get; set; }

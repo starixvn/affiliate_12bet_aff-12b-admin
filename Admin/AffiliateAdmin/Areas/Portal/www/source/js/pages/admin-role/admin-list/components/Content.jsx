@@ -134,6 +134,10 @@ export class Content extends PureComponent {
     _buildDataRow(dataItem, index) {
         const userId = dataItem.UserId;
         const userName = htmlDecode(dataItem.UserName);
+        const firstName = htmlDecode(dataItem.FirstName);
+        const lastName = htmlDecode(dataItem.LastName);
+        const creator = htmlDecode(dataItem.Creator);
+        const roleName = htmlDecode(dataItem.RoleName);
         const ipAddress = dataItem.LastLoginIp;
         const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${ipAddress}&j=1`;
 
@@ -149,9 +153,9 @@ export class Content extends PureComponent {
                         {userName}
                     </a>
                 </Cell>
-                <Cell className="text-center" title={dataItem.FirstName}>{dataItem.FirstName}</Cell>
-                <Cell className="text-center" title={dataItem.LastName}>{dataItem.LastName}</Cell>
-                <Cell className="text-center" title={dataItem.Creator}>{dataItem.Creator}</Cell>
+                <Cell className="text-center" title={firstName}>{firstName}</Cell>
+                <Cell className="text-center" title={lastName}>{lastName}</Cell>
+                <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.LastLoginDateText}>{dataItem.LastLoginDateText}</Cell>
                 <Cell className="text-center" title={ipAddress}>
                     {
@@ -160,7 +164,7 @@ export class Content extends PureComponent {
                         </a>
                     }
                 </Cell>
-                <Cell className="text-center" title={dataItem.RoleName}>{dataItem.RoleName}</Cell>
+                <Cell className="text-center" title={roleName}>{roleName}</Cell>
                 <Cell className="text-center" title={dataItem.IsActive}>{dataItem.IsActive ? 'Open' : 'Closed'}</Cell>
                 <Cell className="text-center">
                     <Button color="link p-0" title={resource.ViewPermission} onClick={() => this._handleShowPermission(dataItem.UserId, dataItem.UserName)}>
