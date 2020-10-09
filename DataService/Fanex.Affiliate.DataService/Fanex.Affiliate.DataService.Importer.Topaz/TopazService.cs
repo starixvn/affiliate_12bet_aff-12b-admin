@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.DataService.Importer
         private const string DEFAULT_LANGUAGE = "en";
         private const string AUTH_PATH = "/oauth/token";
         private const string FEED_DATA_PATH = "/v1/feed/transaction";
-        private const int PAGE_SIZE = 2000;
+        private const int PAGE_SIZE = 500;
 
         private string CompanyId => _appSetting.GetValue("TopazCompanyId");
         private string AuthUserName => _appSetting.GetValue("TopazAuthUserName");
