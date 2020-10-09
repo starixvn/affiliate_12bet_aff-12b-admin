@@ -75,9 +75,36 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 logBuilder.AppendLine(ex.Message);
                 logBuilder.AppendLine(ex.StackTrace);
                 logBuilder.AppendLine(ex.Source);
+                return Content(logBuilder.ToString());
             }
 
             return File(zipFile, "application/zip");
+        }
+
+        [HttpGet]
+        public ActionResult RawData()
+        {
+            return View("~/Areas/Portal/Views/ThirdPartyProduct/Topaz/RawData.cshtml");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> GetRawData(TopazRequestParam param)
+        {
+            var logBuilder = new StringBuilder();
+            var startTime = DateTime.ParseExact(param.StartTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
+            var endTime = DateTime.ParseExact(param.EndTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
+            try
+            {
+                var rawData = await _service.GetRawDataAsync(startTime, endTime, param.PageNumber).ConfigureAwait(false);
+                return Content(rawData);
+            }
+            catch (Exception ex)
+            {
+                logBuilder.AppendLine(ex.Message);
+                logBuilder.AppendLine(ex.StackTrace);
+                logBuilder.AppendLine(ex.Source);
+                return Content(logBuilder.ToString());
+            }
         }
 
         private Func<Tuple<DateTime, DateTime>, Task<string>> GetSaveDataToFileDelegate(TopazService service, string folder)

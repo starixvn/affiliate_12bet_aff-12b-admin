@@ -64,6 +64,18 @@ namespace Fanex.Affiliate.DataService.Importer
             return datas;
         }
 
+        public async Task<string> GetRawDataAsync(DateTime startTime, DateTime endTime, int page)
+        {
+            var token = await GetAuthTokenAsync();
+            const string feedDataPath = FEED_DATA_PATH;
+            var url = $"{ApiUrl}{feedDataPath}";
+            var header = GetDataHeader(token);
+            var api = _apiClientFactory.CreateApiClient(url, HttpMethod.Get, header);
+            
+            var param = GetDataParam(startTime, endTime, page);
+            return  await api.GetResponseAsync(param);
+        }
+
         private async Task<IEnumerable<string>> GetRawDataAsync(DateTime startTime, DateTime endTime, string token)
         {
             var datas = new List<string>();
