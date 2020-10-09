@@ -15,7 +15,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 {
     public class EmailTestingControllerTest
     {
-        private IDependencyResolver _originalResolver;
         private ILifetimeScopeProvider _scopeProvider;
 
         [Fact]
@@ -60,7 +59,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
             this._scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var controller = CreateEmailTestingController();
@@ -87,7 +85,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
             this._scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var controller = CreateEmailTestingController();
@@ -114,7 +111,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
             this._scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var controller = CreateEmailTestingController();
@@ -155,7 +151,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
             this._scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var controller = CreateEmailTestingController();
