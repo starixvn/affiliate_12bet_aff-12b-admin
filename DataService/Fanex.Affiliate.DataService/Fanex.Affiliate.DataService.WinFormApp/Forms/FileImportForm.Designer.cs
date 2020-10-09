@@ -38,6 +38,8 @@
             this.btnConvert = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnImportFolder = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cbProductType
@@ -130,11 +132,22 @@
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
-            // FileImport
+            // btnImportFolder
+            // 
+            this.btnImportFolder.Location = new System.Drawing.Point(263, 90);
+            this.btnImportFolder.Name = "btnImportFolder";
+            this.btnImportFolder.Size = new System.Drawing.Size(103, 23);
+            this.btnImportFolder.TabIndex = 9;
+            this.btnImportFolder.Text = "Import From Folder";
+            this.btnImportFolder.UseVisualStyleBackColor = true;
+            this.btnImportFolder.Click += new System.EventHandler(this.btnImportFolder_Click);
+            // 
+            // FileImportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(476, 461);
+            this.Controls.Add(this.btnImportFolder);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnConvert);
             this.Controls.Add(this.label2);
@@ -144,7 +157,7 @@
             this.Controls.Add(this.txtBoxFilePath);
             this.Controls.Add(this.lbProductType);
             this.Controls.Add(this.cbProductType);
-            this.Name = "FileImport";
+            this.Name = "FileImportForm";
             this.Text = "FileImport";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -163,5 +176,7 @@
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.Button btnImportFolder;
     }
 }

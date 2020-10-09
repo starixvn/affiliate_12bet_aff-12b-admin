@@ -8,25 +8,27 @@ using Fanex.Affiliate.DataService.Importer.Gpi.Enum;
 using Fanex.Affiliate.DataService.Importer.Gpi.Extension;
 using Fanex.Affiliate.DataService.Importer.Gpi.MetaModels;
 using Fanex.Affiliate.DataService.Importer.Gpi.Utilities;
-using Fanex.Affiliate.DataService.Importer.Gpi.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Net.Http;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
     public class GpiLotteryService : XmlImpoterlServiceBase, IGetDataByGameType<GameType>
     {
         private readonly IApiClient _client;
+        private readonly IApiClientFactory _clientFactory;
 
         protected override int ProductId => Products.GPILotteryId;
-        public GpiLotteryService(IApiClient client = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProdutRespository = null) 
+        public GpiLotteryService(IApiClientFactory clientFactory = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProdutRespository = null) 
             :base(appSetting, thirdPartyProdutRespository)
         {
-            _client = client ?? new GpiLotteryClient();
+            _clientFactory = clientFactory ?? new ApiClientFactory();
+            _client = _clientFactory.CreateApiClient(_appSetting.GetValue("GpiLotterApiUrl"), HttpMethod.Post);
         }
 
         public override async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
@@ -110,10 +112,8 @@ namespace Fanex.Affiliate.DataService.Importer
         }
 
         private async Task<string> GetDataStringAsync(NameValueCollection query)
-        {
-            var addressBase = _appSetting.GetValue("GpiLotterApiUrl");
-            return await _client.GetResponseAsync(addressBase, query);
-        }
+            => await _client.GetResponseAsync(query);
+        
 
         private NameValueCollection BuildApiQuery(GpiParam param)
         {

@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
                     numberOfPage = pagesForEachRequest[i];
                 lstResponse.AddRange(VrLotteryTestHelper.GenerateSuccessResponse(numberOfPage));
             }
-            stubApi.GetResponseAsync(default(string), default(NameValueCollection))
+            stubApi.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(lstResponse.First(), lstResponse.Skip(1).ToArray());
             return lstResponse.Count;
         }
@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var endTime = startTime.Add(new TimeSpan(0, 10, 0));
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubAppSetting = VrLotteryTestHelper.GetStubSetting();
-            stubApi.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            stubApi.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.SUCCESS));
             var service = CreateService(stubApi, stubAppSetting);
 
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var endTime = startTime.Add(new TimeSpan(0, 10, 0));
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubAppSetting = VrLotteryTestHelper.GetStubSetting();
-            stubApi.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            stubApi.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.INVALID_CODEWALLET));
 
             var service = CreateService(stubApi, stubAppSetting);
@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubAppSetting = VrLotteryTestHelper.GetStubSetting();
 
-            stubApi.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            stubApi.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.SUCCESS));
             var service = CreateService(stubApi, stubAppSetting);
 
@@ -109,7 +109,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
 
             await service.GetRawDataListByCurrencyAsync(startTime, endTime, "CNY");
 
-            await stubApi.ReceivedWithAnyArgs(numberOfReponse).GetResponseAsync(default(string), default(NameValueCollection));
+            await stubApi.ReceivedWithAnyArgs(numberOfReponse).GetAsync(default(string), default(NameValueCollection));
         }
 
         [Fact]
@@ -119,7 +119,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var endTime = startTime.Add(new TimeSpan(0, 10, 0));
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubSetting = VrLotteryTestHelper.GetStubSetting();
-            stubApi.GetResponseAsync(default(string), default(NameValueCollection))
+            stubApi.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.INVALID_CODEWALLET));
             var service = CreateService(stubApi, stubSetting);
 
@@ -149,12 +149,12 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             query.Add("Page", "1");
             var url = stubSetting.GetValue("VrLotteryApiUrl");
 
-            stubApi.GetResponseAsync(default(string), default(NameValueCollection))
+            stubApi.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.SUCCESS));
 
             await service.GetRawDataListByCurrencyAsync(startTime, endTime, currency);
 
-            await stubApi.Received().GetResponseAsync(url, Arg.Compat.Is<NameValueCollection>(q => q.HasAllValue(query)));
+            await stubApi.Received().GetAsync(url, Arg.Compat.Is<NameValueCollection>(q => q.HasAllValue(query)));
         }
 
         [Fact]
@@ -166,12 +166,12 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var stubSetting = VrLotteryTestHelper.GetStubSetting();
             var service = CreateService(stubApi, stubSetting);
             var currencies = new List<string> { "CNY", "ABC" };
-            stubApi.GetResponseAsync(default(string), default(NameValueCollection))
+            stubApi.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.SUCCESS));
 
             await service.GetRawDataListByCurrenciesAsync(startTime, endTime, currencies);
 
-            await stubApi.ReceivedWithAnyArgs(2).GetResponseAsync(default(string), default(NameValueCollection));
+            await stubApi.ReceivedWithAnyArgs(2).GetAsync(default(string), default(NameValueCollection));
         }
 
         [Theory]
@@ -203,7 +203,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var stubRepo = VrLotteryTestHelper.GetStubRepo();
             var service = CreateService(stubApi, stubSetting, stubRepo);
 
-            stubApi.GetResponseAsync(default(string), default(NameValueCollection))
+            stubApi.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.NO_DATA_FOUND));
 
             await  service.ImportAsync(startTime, endTime);
@@ -221,7 +221,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var stubRepo = VrLotteryTestHelper.GetStubRepo();
             var service = CreateService(stubApi, stubSetting, stubRepo);
 
-            stubApi.GetResponseAsync(default(string), default(NameValueCollection))
+            stubApi.GetAsync(default(string), default(NameValueCollection))
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.INVALID_CODEWALLET));
 
             await Assert.ThrowsAsync<ThirdPartyProductException>(() => service.ImportAsync(startTime,endTime));

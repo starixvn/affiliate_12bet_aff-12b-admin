@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
                                       </bet >
                                    </game_transaction_detail>";
             var client = NSubstitute.Substitute.For<IApiClient>();
-            client.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            client.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
                 .Returns(successResponse);
             return client;
 
@@ -58,7 +58,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
         {
             var successResponse = "<game_transaction_detail>  <status_code>40.01</status_code> </game_transaction_detail>";
             var client = NSubstitute.Substitute.For<IApiClient>();
-            client.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            client.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
                 .Returns(successResponse);
             return client;
         }

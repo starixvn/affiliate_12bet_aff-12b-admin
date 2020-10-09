@@ -3,7 +3,6 @@ using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Enum;
 using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Affiliate.DataService.Importer.LBKeno;
-using Fanex.Affiliate.DataService.Importer.LBKeno.Client;
 using Fanex.Affiliate.DataService.Importer.LBKeno.MetaModels;
 using Fanex.Affiliate.DataService.Importer.Core.Repository;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
@@ -29,10 +28,11 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public override int HoursAjust => -12;
 
-        public LBKenoService(IApiClient client = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
+        public LBKenoService(IApiClientFactory apiClientFactory = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
             : base(appSetting, thirdPartyProductRepository)
         {
-            _client = client ?? new LBKenoClient();
+            var factory = apiClientFactory ?? new ApiClientFactory();
+            _client = factory.CreateApiClient(_appSetting.GetValue("LBKenoApiUrl"));
         }
 
 
@@ -48,8 +48,7 @@ namespace Fanex.Affiliate.DataService.Importer
         private async Task<string> GetRawDataAsync(LBKenoParam paramToRequest)
         {
             var queryValues = BuildQueryParam(paramToRequest);
-            var url = _appSetting.GetValue("LBKenoApiUrl");
-            return await _client.GetResponseAsync(url, queryValues).ConfigureAwait(false);
+            return await _client.GetResponseAsync(queryValues).ConfigureAwait(false);
 
         }
 

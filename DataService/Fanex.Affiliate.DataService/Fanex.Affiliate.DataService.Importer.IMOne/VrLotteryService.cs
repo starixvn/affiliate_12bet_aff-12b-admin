@@ -8,10 +8,10 @@ using Fanex.Affiliate.DataService.Importer.IMOne;
 using Fanex.Affiliate.DataService.Importer.IMOne.Extension;
 using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using System.Collections.Specialized;
-using Fanex.Affiliate.DataService.Importer.IMOne.Client;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using System.Globalization;
+using System.Net.Http;
 
 namespace Fanex.Affiliate.DataService.Importer 
 {
@@ -31,10 +31,11 @@ namespace Fanex.Affiliate.DataService.Importer
 
 
 
-        public VrLotteryService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
+        public VrLotteryService(IApiClientFactory apiClientFactory = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
             : base(appSetting, thirdPartyProductRepository)
         {
-            _client = client ?? new VrLotteryClient();
+            var factory = apiClientFactory ?? new ApiClientFactory();
+            _client = factory.CreateApiClient(_appSetting.GetValue("VrLotteryApiUrl"), HttpMethod.Post);
         }
 
         public override async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
@@ -103,10 +104,8 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private async Task<string> GetRawDataAsync(Tuple<DateTime, DateTime> timeRange, string currency, int page)
         {
-            var url = _appSetting.GetValue("VrLotteryApiUrl");
             var queryValue = BuildQuery(timeRange, currency, page);
-
-            return await _client.GetResponseAsync(url, queryValue);
+            return await _client.GetResponseAsync(queryValue);
         }
 
         private  NameValueCollection BuildQuery(Tuple<DateTime, DateTime> timeRange, string currency, int page)

@@ -100,6 +100,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -173,6 +174,7 @@
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Utilities\Helpers.cs" />
+    <Compile Include="Utilities\ParallelForeachAsync.cs" />
     <Compile Include="Utilities\UrlHelperExtension.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ThirdPartyProductViewModel.cs" />
@@ -237,10 +239,6 @@
     <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer.Topaz\Fanex.Affiliate.DataService.Importer.FlowGaming.csproj">
       <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.FlowGaming</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\UnitTest\Fanex.Affiliate.DataService.Importer.IntegrateTest\Fanex.Affiliate.DataService.Importer.IntegratedTest.csproj">
-      <Project>{1b10278e-c480-4797-9567-098692a40563}</Project>
-      <Name>Fanex.Affiliate.DataService.Importer.IntegratedTest</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

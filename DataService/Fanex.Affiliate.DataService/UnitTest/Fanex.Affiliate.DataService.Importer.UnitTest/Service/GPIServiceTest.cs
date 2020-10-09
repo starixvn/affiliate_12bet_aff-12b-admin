@@ -21,9 +21,9 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
 
     public class GPIServiceTests
     {
-        private GpiLotteryService CreateGpiLotteryService(IApiClient client = null, IAppSettings setting = null, IThirdPartyProductRepository repo = null)
+        private GpiLotteryService CreateGpiLotteryService(IApiClientFactory clientFactory = null, IAppSettings setting = null, IThirdPartyProductRepository repo = null)
         {
-            return new GpiLotteryService(client, setting, repo);
+            return new GpiLotteryService(clientFactory, setting, repo);
         }
 
 
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
 
             await stubClient
                 .Received()
-                .GetResponseAsync(config["GpiLotterApiUrl"], Arg.Compat
+                .GetAsync(config["GpiLotterApiUrl"], Arg.Compat
                     .Is<NameValueCollection>(v => v["game"].Contains(GpiHelper.GetGameTypeName(GameType.RockPaperScissors))));
         }
 
@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
 
             await service.GetRawDataByGameTypeAsync(startTime, endTime, GameType.RockPaperScissors);
 
-            await stubClient.ReceivedWithAnyArgs(2).GetResponseAsync(default(string) , default(NameValueCollection));
+            await stubClient.ReceivedWithAnyArgs(2).GetAsync(default(string) , default(NameValueCollection));
         }
 
         [Fact]
@@ -106,7 +106,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
 
             await service.GetRawDataListAsync(startTime, endTime);
 
-            await stubClient.ReceivedWithAnyArgs(totalCall).GetResponseAsync(default(string), default(NameValueCollection));
+            await stubClient.ReceivedWithAnyArgs(totalCall).GetAsync(default(string), default(NameValueCollection));
         }
 
         [Fact]
