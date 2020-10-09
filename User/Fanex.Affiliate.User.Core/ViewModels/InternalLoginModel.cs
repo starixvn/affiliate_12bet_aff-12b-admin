@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Fanex.Affiliate.User.Core.MetalModels
+namespace Fanex.Affiliate.User.Core.ViewModels
 {
-    public class InternalLoginParam
+    public class InternalLoginModel
     {
         [Required]
         public string ChalengeStr { get; set; }

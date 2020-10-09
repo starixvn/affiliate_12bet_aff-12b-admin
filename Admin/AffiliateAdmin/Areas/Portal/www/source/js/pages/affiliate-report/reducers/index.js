@@ -11,6 +11,8 @@ const productList = createReducer([], {});
 
 const languageList = createReducer({}, {});
 
+const hasTurnOverPermission = createReducer(false, {});
+
 const today = createReducer('', {});
 
 export const reportTitle = createReducer('', {
@@ -39,5 +41,6 @@ export default combineReducers({
     languageList,
     isShowLoader,
     today,
-    currentViewLevel
+    currentViewLevel,
+    hasTurnOverPermission
 });

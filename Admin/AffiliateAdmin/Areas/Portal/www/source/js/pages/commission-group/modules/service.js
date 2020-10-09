@@ -172,10 +172,10 @@ export const validateTierSettingList = (tierSettingList) => {
     let isValid = true;
     const messageList = [];
 
-    if (tierSettingList.length === 0) {
+    if (!tierSettingList.length) {
         isValid = false;
         messageList.push(messages.requireTier);
-    } else if (tierSettingList.filter(item => item.MaxAmount === INFINITY_AM && item.MaxQm === INFINITY_QM).length === 0) {
+    } else if (!tierSettingList.filter(item => item.MaxAmount === INFINITY_AM && item.MaxQm === INFINITY_QM).length) {
         isValid = false;
         messageList.push(messages.requireInfinity);
     } else if (tierSettingList.filter(item => item.MinAmount > item.MaxAmount).length > 0) {

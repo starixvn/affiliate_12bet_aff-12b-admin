@@ -15,7 +15,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class UserAccountController : BaseController
+    public class UserAccountController : ReadOnlySessionBaseController
     {
         private readonly IUserAccountService _userAccountService;
 

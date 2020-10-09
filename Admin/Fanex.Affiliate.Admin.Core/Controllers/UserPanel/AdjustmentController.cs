@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class AdjustmentController : BaseController
+    public class AdjustmentController : ReadOnlySessionBaseController
     {
         private readonly IAdjustmentService _adjustmentService;
         private const int DefaultBalanceBfValue = 0;

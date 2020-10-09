@@ -8,6 +8,7 @@ using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
+using NSubstitute;
 using System.Collections.Generic;
 using System.Security.Principal;
 using System.Web;
@@ -93,6 +94,27 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             Assert.False(resultInfo.IsSuccessful);
         }
 
+        //[Fact]
+        //public void Login_WhenCall_LoginSuccessfully()
+        //{
+        //    // Arrange
+        //    var appSetting = new Mock<IAppSetting>();
+        //    appSetting.Setup(a => a.ServerId).Returns("123");
+
+        //    var authRepository = new Mock<IAuthRepository>();
+        //    authRepository.Setup(a => a.Login(It.IsAny<LoginParam>())).Returns(new ResultInfo());
+        //    authRepository.Setup(a => a.GetPermissionList(It.IsAny<int>())).Returns(new List<UserPermission> { new UserPermission() });
+        //    var controller = CreateAuthController(authRepository: authRepository.Object);
+
+        //    // Action
+        //    var jsonNetResult = controller.Login(new LoginParam { UserId = 123 }) as JsonNetResult;
+        //    var resultInfo = jsonNetResult.Data as ResultInfo;
+
+        //    // Assert
+        //    Assert.True(resultInfo.IsSuccessful);
+        //    Assert.Equal("Your account is not configured to access any functions! Please contact your administrator", resultInfo.Message);
+        //}
+
         [Fact]
         public void Login_WhenCall_ReturnNotAccess()
         {
@@ -127,10 +149,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var server = new Mock<HttpServerUtilityBase>();
             server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");
 
+            var applicationInstance = Substitute.For<HttpApplication>();
+
             controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
                 ctx.HttpContext.Request == request &&
                 ctx.HttpContext.Server == server.Object &&
-                ctx.HttpContext.Session.SessionID == "SessionId"
+                ctx.HttpContext.Session.SessionID == "SessionId" &&
+                ctx.HttpContext.ApplicationInstance == applicationInstance
             );
 
             return controller;

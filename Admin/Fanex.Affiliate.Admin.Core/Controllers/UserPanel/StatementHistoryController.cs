@@ -10,7 +10,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class StatementHistoryController : BaseController
+    public class StatementHistoryController : ReadOnlySessionBaseController
     {
         private readonly IStatementHistoryService _statementHistoryService;
 

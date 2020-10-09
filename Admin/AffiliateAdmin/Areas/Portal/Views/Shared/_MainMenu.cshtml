@@ -7,6 +7,7 @@
     var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var permission = sessionService.UserPermissionList;
+    var hasTurnOverPermission = permission.Any(i => i.FunctionName.Equals(Function.Turnover, StringComparison.OrdinalIgnoreCase));
     var menus = new Dictionary<string, string>
     {
         {"Customer",Function.Affiliate },
@@ -59,10 +60,13 @@
 </ul>
 
 <script type="text/javascript">
-    var controllerName = '@controllerName';
+    window.globalVariables = {
+        hasTurnOverPermission: '@hasTurnOverPermission'.toLowerCase() === 'true'
+    }
+
     let element;
 
-    switch(controllerName) {
+    switch('@controllerName') {
         case 'PaymentRequest': case 'CommissionGroup': case 'EmailHistory':
             element = document.getElementById('Affiliate');
             break;

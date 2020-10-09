@@ -1,4 +1,6 @@
-﻿@model List<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
+﻿@using Fanex.Affiliate.User.Core.Utilities
+@using Fanex.Affiliate.User.Core.Constants
+@model List<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
 
 @{
     var hasScroll = Model.Count() > 10;
@@ -15,7 +17,10 @@
                 <td class="text-center">@startRowNumber</td>
                 <td class="text-center break-all">@item.Username</td>
                 <td class="text-center">@item.RegisteredDate.ToString("dd-MMM-yyyy hh:mm tt")</td>
-                <td class="text-center">@item.Turnover.FormatDecimal()</td>
+                @if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+                {
+                    <td class="text-center">@item.Turnover.FormatDecimal()</td>
+                }
                 <td class="text-center">@item.Winloss.FormatDecimal()</td>
                 <td class="text-center">@item.Deposit.FormatDecimal()</td>
                 <td class="text-center">@item.Withdrawal.FormatDecimal()</td>

@@ -235,7 +235,7 @@
 var PlayersDetails = (function ($) {
     var _pageSize = 20;
     var _pageIndex = 0;
-    var _sortingColumn = 'Turnover';
+    var _sortingColumn = window.Permission.HasTurnOverPermission ? 'Turnover' : 'Winloss';
     var _isSortingAsc = false;
     const SortByIdList = {
         Username: 1,
@@ -258,7 +258,7 @@ var PlayersDetails = (function ($) {
                 _pageIndex = pageIndex;
                 _pageSize = pageSize;
 
-                var params = _me.getPlayersDetailsParam();
+                var params = _me.getPlayersDetailsParam(SortByIdList[_sortingColumn]);
                 _me.renderPlayersDetails(params);
             }
         });
@@ -268,7 +268,7 @@ var PlayersDetails = (function ($) {
         initialize: function () {
             initPager();
             _me.initEvent();
-            _me.activeSortIcon($('#defaultSorting'));
+            _me.activeSortIcon($('#' + _sortingColumn));
             _me.togglePager();
         },
 
@@ -285,11 +285,12 @@ var PlayersDetails = (function ($) {
         },
 
         getPlayersDetailsParam: function (sortById, isSortAsc) {
+
             return {
                 MonthDate: $("#MonthDate").data("original-date"),
                 PageSize: _pageSize,
                 PageIndex: _pageIndex + 1,
-                SortById: sortById || SortByIdList.Turnover,
+                SortById: sortById || SortByIdList.Winloss,
                 IsSortAsc: isSortAsc
             };
         },

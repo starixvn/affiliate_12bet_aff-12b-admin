@@ -13,7 +13,7 @@ export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { today, param } = this.props;
+        const { today, param, } = this.props;
         const monthDate = param.isClickLink ? (param.monthDate || today) : today;
         const newMonthDate = new Date(monthDate);
 
@@ -69,30 +69,33 @@ export class Filter extends PureComponent {
 
     handleSearch = (monthDate) => {
         const { selectedProduct } = this.state;
+        const { sortedParam } = this.props;
 
         const param = {
             productId: selectedProduct,
             monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
+            ...sortedParam
         }
         this.props.setParam(param);
     }
 
     handleExportExcel = async () => {
         const { selectedProduct, monthDate } = this.state;
-        const { affId } = this.props;
+        const { affId, hasTurnOverPermission, sortedParam } = this.props;
 
         const param = {
             IsExportExcel: true,
             productId: selectedProduct,
             monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
-            affId
+            affId,
+            ...sortedParam
         }
 
         const data = await this.props.exportExcel(param);
 
         if (data) {
             const title = this._getReportTitle();
-            const reportExcel = new ReportExcel(data, title);
+            const reportExcel = new ReportExcel(data, title, hasTurnOverPermission);
             reportExcel.export();
         }
     }
@@ -152,14 +155,16 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo, playerDetail }) {
-    const { param } = playerDetail;
+function mapStateToProps({ today, affCommonInfo, hasTurnOverPermission, playerDetail }) {
+    const { param, sortedParam } = playerDetail;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {
         param,
         affId,
-        today
+        today,
+        sortedParam,
+        hasTurnOverPermission
     });
 }
 

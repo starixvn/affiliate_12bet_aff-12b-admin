@@ -1,18 +1,12 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
 using System.Collections.Generic;
 using System.Web;
+using static Fanex.Affiliate.Admin.Core.Constants.SessionKey;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
     public class SessionService : ISessionService
     {
-        private const string UserPermissionSessionKey = "__UserPermissionSessionKey";
-
-        private const string UserIdKey = "__CustID";
-        private const string OnUserIDKey = "__OnUserIDKey";
-        private const string AffIdKey = "AffId";
-        private const string AffNameKey = "AffName";
-
         public int UserId
         {
             get

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
@@ -107,14 +109,15 @@ namespace Fanex.Affiliate.User.Core.Controllers
         }
 
         [HttpGet]
-        public ActionResult AdminLogin(InternalLoginParam loginParam)
+        public ActionResult AdminLogin(InternalLoginModel loginParam)
         {
             if (ModelState.IsValid)
             {
-                var adminSessionId = AuthService.GetSessionId(loginParam.AccOnId);
-                var hashedPassword = Generator.GenerateSHA512String(adminSessionId + loginParam.ChalengeStr);
-                if (string.Equals(loginParam.AccKey, hashedPassword))
+                var admin = AuthService.GetInternalLoginInfo(loginParam.AccOnId);
+                var hashedPassword = Generator.GenerateSHA512String(admin?.SesionId + loginParam.ChalengeStr);
+                if (admin != null && string.Equals(loginParam.AccKey, hashedPassword))
                 {
+                    var internalClaims = AuthService.GetInternalLoginClaim(admin.UserId);
                     var clientIpAddress = RequestHelper.GetClientIPAddress(Request);
                     var userLoginParam = new UserLoginParam
                     {
@@ -131,8 +134,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
                     if (loginResult.Result.IsOk && user != null && IsValidDomain(user.AffType))
                     {
-                        var adminId = loginParam.AccId * -1;
+                        var adminId = admin.UserId * -1;
                         AssignLoginInfoAndSetAuth(loginResult.UserInfo, clientIpAddress, adminId);
+                        AssignClaimForInternalLogin(internalClaims);
                     }
                     else
                     {
@@ -190,6 +194,16 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             Session.Clear();
             AuthService.SignOut();
+        }
+
+        private void AssignClaimForInternalLogin(IEnumerable<Claim> internalClaims)
+        {
+            var claimIdentites = new List<ClaimsIdentity>
+            {
+                new ClaimsIdentity(internalClaims)
+            };
+
+            SessionService.ClaimsIdentities = claimIdentites;
         }
     }
 }

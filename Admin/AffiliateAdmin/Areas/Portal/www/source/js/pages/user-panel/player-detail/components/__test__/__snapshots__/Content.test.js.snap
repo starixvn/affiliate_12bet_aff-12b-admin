@@ -247,66 +247,66 @@ exports[`players detail - components - Content render correctly 1`] = `
           #
         </t>
         <Memo(SortingCell)
-          columnName="Username"
+          columnValue={1}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="User Name"
         />
         <Memo(SortingCell)
-          columnName="IbcUsername"
+          columnValue={9}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="IBC User Name"
         />
         <Memo(SortingCell)
-          columnName="RegisteredDate"
+          columnValue={2}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Registered Date"
         />
         <Memo(SortingCell)
-          columnName="Turnover"
+          columnValue={5}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Turnover"
         />
         <Memo(SortingCell)
-          columnName="Winloss"
+          columnValue={6}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Winlost"
         />
         <Memo(SortingCell)
-          columnName="Deposit"
+          columnValue={3}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Deposit"
         />
         <Memo(SortingCell)
-          columnName="Withdrawal"
+          columnValue={4}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Withdrawal"
         />
         <Memo(SortingCell)
-          columnName="Bonus"
+          columnValue={7}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Bonus"
         />
         <Memo(SortingCell)
-          columnName="BankingFee"
+          columnValue={8}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Banking Fee"
         />
       </t>
@@ -375,66 +375,66 @@ exports[`players detail - components - Content render correctly with have data i
           #
         </t>
         <Memo(SortingCell)
-          columnName="Username"
+          columnValue={1}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="User Name"
         />
         <Memo(SortingCell)
-          columnName="IbcUsername"
+          columnValue={9}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="IBC User Name"
         />
         <Memo(SortingCell)
-          columnName="RegisteredDate"
+          columnValue={2}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Registered Date"
         />
         <Memo(SortingCell)
-          columnName="Turnover"
+          columnValue={5}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Turnover"
         />
         <Memo(SortingCell)
-          columnName="Winloss"
+          columnValue={6}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Winlost"
         />
         <Memo(SortingCell)
-          columnName="Deposit"
+          columnValue={3}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Deposit"
         />
         <Memo(SortingCell)
-          columnName="Withdrawal"
+          columnValue={4}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Withdrawal"
         />
         <Memo(SortingCell)
-          columnName="Bonus"
+          columnValue={7}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Bonus"
         />
         <Memo(SortingCell)
-          columnName="BankingFee"
+          columnValue={8}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Banking Fee"
         />
       </t>
@@ -710,66 +710,66 @@ exports[`players detail - components - Content render correctly with not selecte
           #
         </t>
         <Memo(SortingCell)
-          columnName="Username"
+          columnValue={1}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="User Name"
         />
         <Memo(SortingCell)
-          columnName="IbcUsername"
+          columnValue={9}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="IBC User Name"
         />
         <Memo(SortingCell)
-          columnName="RegisteredDate"
+          columnValue={2}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Registered Date"
         />
         <Memo(SortingCell)
-          columnName="Turnover"
+          columnValue={5}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Turnover"
         />
         <Memo(SortingCell)
-          columnName="Winloss"
+          columnValue={6}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Winlost"
         />
         <Memo(SortingCell)
-          columnName="Deposit"
+          columnValue={3}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Deposit"
         />
         <Memo(SortingCell)
-          columnName="Withdrawal"
+          columnValue={4}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Withdrawal"
         />
         <Memo(SortingCell)
-          columnName="Bonus"
+          columnValue={7}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Bonus"
         />
         <Memo(SortingCell)
-          columnName="BankingFee"
+          columnValue={8}
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn="Turnover"
+          sortingColumn={5}
           title="Banking Fee"
         />
       </t>

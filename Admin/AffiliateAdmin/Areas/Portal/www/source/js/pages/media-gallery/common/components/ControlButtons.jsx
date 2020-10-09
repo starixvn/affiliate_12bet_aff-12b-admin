@@ -13,7 +13,7 @@ export const ControlButtons = (props) => {
         props.setShouldResetScrollPosition(false);
     }
 
-    const hasData = props.gridData && props.gridData.length;
+    const hasData = props.gridData && !!props.gridData.length;
 
     return props.gridData && (
         <React.Fragment>

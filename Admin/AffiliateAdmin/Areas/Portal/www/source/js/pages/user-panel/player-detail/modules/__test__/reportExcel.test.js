@@ -24,7 +24,7 @@ describe('players detail - Report Excel ', () => {
     it('contrustor - should call _getcolumnConfigs', () => {
         const instance = new ReportExcel(data, title);
         instance._getcolumnConfigs = jest.fn();
-        
+
         instance.constructor(data, title);
 
         expect(instance._getcolumnConfigs).toHaveBeenCalled();
@@ -56,7 +56,7 @@ describe('players detail - Report Excel ', () => {
 
         instance._createHeader();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(10);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(9);
 
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": HEADER_ROW_INDEX });
@@ -67,27 +67,26 @@ describe('players detail - Report Excel ', () => {
         expect(Excel.getCellAddress.mock.calls[6][0]).toEqual({ "c": 6, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[7][0]).toEqual({ "c": 7, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[8][0]).toEqual({ "c": 8, "r": HEADER_ROW_INDEX });
-        expect(Excel.getCellAddress.mock.calls[9][0]).toEqual({ "c": 9, "r": HEADER_ROW_INDEX });
     });
 
     it('_createBodyData - should call _buildDataRow, Excel.getCellAddress', () => {
         const instance = new ReportExcel(data, title);
-        
+
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createBodyData();
-        
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(10);
+
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(9);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 1 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 1 });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": 2, "r": 1 });
         expect(Excel.getCellAddress.mock.calls[3][0]).toEqual({ "c": 3, "r": 1 });
         expect(Excel.getCellAddress.mock.calls[4][0]).toEqual({ "c": 4, "r": 1 });
         expect(Excel.getCellAddress.mock.calls[5][0]).toEqual({ "c": 5, "r": 1 });
-        expect(Excel.getCellAddress.mock.calls[9][0]).toEqual({ "c": 9, "r": 1 });
+        expect(Excel.getCellAddress.mock.calls[8][0]).toEqual({ "c": 8, "r": 1 });
 
-        expect(instance._buildDataRow).toHaveBeenCalledTimes(10);
+        expect(instance._buildDataRow).toHaveBeenCalledTimes(9);
         expect(instance._buildDataRow.mock.calls[0][0]).toBe(item);
         expect(instance._buildDataRow.mock.calls[0][1]).toBe(MAIN_SECTION_STYLE);
         expect(instance._buildDataRow.mock.calls[0][2]).toEqual(0);
@@ -98,10 +97,10 @@ describe('players detail - Report Excel ', () => {
         expect(instance._buildDataRow.mock.calls[1][2]).toEqual(0);
         expect(instance._buildDataRow.mock.calls[1][3]).toBe(1);
 
-        expect(instance._buildDataRow.mock.calls[9][0]).toBe(item);
-        expect(instance._buildDataRow.mock.calls[9][1]).toBe(MAIN_SECTION_STYLE);
-        expect(instance._buildDataRow.mock.calls[9][2]).toEqual(0);
-        expect(instance._buildDataRow.mock.calls[9][3]).toBe(9);
+        expect(instance._buildDataRow.mock.calls[8][0]).toBe(item);
+        expect(instance._buildDataRow.mock.calls[8][1]).toBe(MAIN_SECTION_STYLE);
+        expect(instance._buildDataRow.mock.calls[8][2]).toEqual(0);
+        expect(instance._buildDataRow.mock.calls[8][3]).toBe(8);
     });
 
     it('_buildDataRow - should call Excel.getCellType with field Index', () => {
@@ -130,9 +129,9 @@ describe('players detail - Report Excel ', () => {
         Excel.getCellAddress = jest.fn();
 
         instance._createExcelConfig();
-        
+
         expect(Excel.getCellAddress).toHaveBeenCalledTimes(2);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 0 });
-        expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 10, "r": 1 });
+        expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 9, "r": 1 });
     });
 });

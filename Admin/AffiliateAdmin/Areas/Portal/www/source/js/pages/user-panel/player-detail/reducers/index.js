@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SET_PRODUCT_LIST, SET_PARAM } from '../actions/types';
+import { SET_PRODUCT_LIST, SET_PARAM, SET_SORTED_PARAM } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
@@ -16,8 +16,16 @@ export const param = createReducer({}, {
     }
 })
 
+export const sortedParam = createReducer(null, {
+    [SET_SORTED_PARAM]: (prevState, action) => {
+        return action.data;
+    }
+})
+
+
 export default combineReducers({
     productList,
     param,
-    pagingOption
+    pagingOption,
+    sortedParam
 })

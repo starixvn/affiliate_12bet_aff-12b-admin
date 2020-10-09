@@ -14,7 +14,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
     [FunctionAuthorize(FunctionName = Function.Domain)]
-    public class DomainController : BaseController
+    public class DomainController : ReadOnlySessionBaseController
     {
         private readonly IDomainService _domainService;
 

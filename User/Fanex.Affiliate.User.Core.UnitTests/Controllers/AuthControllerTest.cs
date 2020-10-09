@@ -226,9 +226,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);
-            controller.ModelState.AddModelError("abc", "Need field abc");          
+            controller.ModelState.AddModelError("abc", "Need field abc");
 
-            var result = controller.AdminLogin(new InternalLoginParam()) as RedirectResult;
+            var result = controller.AdminLogin(new InternalLoginModel()) as RedirectResult;
 
             Assert.Contains("/UserPanel/Main/#AccountOverView", result.Url);
         }
@@ -237,11 +237,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void AdminLogin_WhenHashingKeyNotEqual_RedirectToPageNotFount()
         {
             var adminSessionId = "sessionId";
-            var chalengeStr = "abc";
             var param = CreateInternalLoginParam();
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);
-            AuthService.GetSessionId(default(int)).ReturnsForAnyArgs(adminSessionId);
+            AuthService.GetInternalLoginInfo(default(int)).ReturnsForAnyArgs(new InternalLoginInfo { SesionId = adminSessionId });
 
             var result = controller.AdminLogin(param) as RedirectResult;
 
@@ -258,7 +257,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             param.AccKey = hashed;
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);
-            AuthService.GetSessionId(default(int)).ReturnsForAnyArgs(adminSessionId);
+            AuthService.GetInternalLoginInfo(default(int)).ReturnsForAnyArgs(new InternalLoginInfo { SesionId = adminSessionId });
             var loginResult = GetValidLoginResultViewModel();
             loginResult.Result.IsOk = false;
             AuthService.GetLoginResult(default(UserLoginParam), true).ReturnsForAnyArgs(loginResult);
@@ -278,7 +277,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             param.AccKey = hashed;
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);
-            AuthService.GetSessionId(default(int)).ReturnsForAnyArgs(adminSessionId);
+            AuthService.GetInternalLoginInfo(default(int)).ReturnsForAnyArgs(new InternalLoginInfo { SesionId = adminSessionId });
             var loginResult = GetValidLoginResultViewModel();
             AuthService.GetLoginResult(default(UserLoginParam), true).ReturnsForAnyArgs(loginResult);
             AppSetting.AllowedAffiliateTypes.Returns(new List<string> { "Asian" });
@@ -358,8 +357,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             };
         }
 
-        private InternalLoginParam CreateInternalLoginParam()
-            => new InternalLoginParam
+        private InternalLoginModel CreateInternalLoginParam()
+            => new InternalLoginModel
             {
                 AccId = 1,
                 AccKey = "",

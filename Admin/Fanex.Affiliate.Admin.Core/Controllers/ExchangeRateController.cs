@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.AffExRate)]
-    public class ExchangeRateController : BaseController
+    public class ExchangeRateController : ReadOnlySessionBaseController
     {
         private readonly IExchangeRateService _exchangeRateService;
         public ExchangeRateController(

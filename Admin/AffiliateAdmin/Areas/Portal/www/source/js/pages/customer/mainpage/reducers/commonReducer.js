@@ -12,9 +12,11 @@ const now = new Date();
 const defaultToday = `${now.getMonth()}/${now.getDate()}/${now.getFullYear()}`;
 const today = createReducer(defaultToday, {});
 const languageList = createReducer(null, {});
+const hasTurnOverPermission = createReducer(false, {});
 
 export {
     affCommonInfo,
     today,
-    languageList
+    languageList,
+    hasTurnOverPermission
 }

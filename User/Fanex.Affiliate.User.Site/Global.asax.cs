@@ -8,6 +8,7 @@ using System.Web.Routing;
 using Fanex.Data;
 using Fanex.Data.OldConnectionStringProvider;
 using Fanex.Affiliate.User.Site.App_Start;
+using Fanex.Affiliate.User.Core.Filters;
 
 namespace Fanex.Affiliate.User.Site
 {
@@ -24,6 +25,7 @@ namespace Fanex.Affiliate.User.Site
             {
                 FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             }
+            GlobalFilters.Filters.Add(new AddOnClaimAuthFilter());
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MvcHandler.DisableMvcResponseHeader = true;

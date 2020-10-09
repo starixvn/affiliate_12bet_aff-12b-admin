@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class ChangeAdminPasswordController : BaseController
+    public class ChangeAdminPasswordController : ReadOnlySessionBaseController
     {
         private readonly IChangeAdminPasswordService _changeAdminPasswordService;
 

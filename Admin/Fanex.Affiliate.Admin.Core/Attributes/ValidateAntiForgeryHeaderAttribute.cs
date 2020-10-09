@@ -12,9 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         public void OnAuthorization(AuthorizationContext filterContext)
         {
             var request = filterContext.RequestContext.HttpContext.Request;
-            string clientToken = null;
-
-            clientToken = request.IsAjaxRequest() ? request.Headers.Get(KEYNAME) : request.Form[KEYNAME];
+            string clientToken = request.IsAjaxRequest() ? request.Headers.Get(KEYNAME) : request.Form[KEYNAME];
 
             if (clientToken == null)
             {
@@ -29,7 +27,5 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
 
             AntiForgery.Validate(serverTokenCookie.Value, clientToken);
         }
-
-
     }
 }

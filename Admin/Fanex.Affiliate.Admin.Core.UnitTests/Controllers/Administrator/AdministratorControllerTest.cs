@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Administrator;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Administrator;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -268,6 +269,25 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Administrator
         }
 
         [Fact]
+        public void UpdateAccountPolicy_WhenCallWithValidParam_UpdateFailed()
+        {
+            // Arrange
+            var param = new UpdatePolicyParam { GroupPolicies = "100000034,123,0;" };
+            UpdatePolicyParam passedParam = null;
+            var administratorService = new Mock<IAdministratorService>();
+            administratorService.Setup(s => s.UpdateAccountPolicy(It.IsAny<UpdatePolicyParam>())).Returns(new ResultInfo { Code = -999 }).Callback<UpdatePolicyParam>(p => passedParam = p);
+            var controller = CreateAdministratorController(administratorService: administratorService.Object);
+
+            // Action
+            var result = controller.UpdateAccountPolicy(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+            Assert.Equal("Encoded100000034,123,0;", passedParam.GroupPolicies);
+        }
+
+        [Fact]
         public void UpdateAccountPolicy_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
@@ -320,13 +340,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Administrator
 
         private AdministratorController CreateAdministratorController(
         ISessionService sessionService = null,
-        IAdministratorService administratorService = null
+        IAdministratorService administratorService = null,
+        IAuthRepository authRepository = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeAdministratorService = administratorService ?? Mock.Of<IAdministratorService>();
+            var fakeAuthRepository = authRepository ?? Mock.Of<IAuthRepository>();
 
-            var controller = new AdministratorController(fakeSessionService, fakeAdministratorService);
+            var controller = new AdministratorController(fakeSessionService, fakeAdministratorService, fakeAuthRepository);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

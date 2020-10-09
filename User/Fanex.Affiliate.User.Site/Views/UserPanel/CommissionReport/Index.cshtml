@@ -2,7 +2,8 @@
     Layout = null;
     var currentYear = DateTime.Now.Year;
 }
-
+@using Fanex.Affiliate.User.Core.Utilities
+@using Fanex.Affiliate.User.Core.Constants
 @Html.InlineStyles("~/www/build/styles/css/pages/commissionreport.css")
 
 <div class="page-title">
@@ -34,8 +35,8 @@
             <table id="dataTable">
                 <thead>
                     <tr>
-                        <th class="th numberId">#</th>
-                        <th class="th" data-name="Month">
+                        <th width="5%" class="th">#</th>
+                        <th width="15%" class="th" data-name="Month">
                             <div class="th-wrapper">
                                 <span>@Lang.Month</span>
                                 <div class="icon-container">
@@ -44,16 +45,19 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="th" data-name="TurnOver">
-                            <div class="th-wrapper">
-                                <span>@Lang.Turnover</span>
-                                <div class="icon-container">
-                                    <span class="caret asc"></span>
-                                    <span class="caret desc"></span>
+                        @if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+                        {
+                            <th width="10%" class="th" data-name="TurnOver" data-type="decimal">
+                                <div class="th-wrapper">
+                                    <span>@Lang.Turnover</span>
+                                    <div class="icon-container">
+                                        <span class="caret asc"></span>
+                                        <span class="caret desc"></span>
+                                    </div>
                                 </div>
-                            </div>
-                        </th>
-                        <th class="th" data-name="WinLoss">
+                            </th>
+                        }
+                        <th width="10%" class="th" data-name="WinLoss"  data-type="decimal">
                             <div class="th-wrapper">
                                 <span>@Lang.GrossWinLoss</span>
                                 <div class="icon-container">
@@ -62,7 +66,7 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="th" data-name="PlatformFee">
+                        <th width="10%" class="th" data-name="PlatformFee"  data-type="decimal">
                             <div class="th-wrapper">
                                 <span>@Lang.PlatformFee</span>
                                 <div class="icon-container">
@@ -71,7 +75,7 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="th" data-name="OperationalFee">
+                        <th width="10%" class="th" data-name="OperationalFee"  data-type="decimal">
                             <div class="th-wrapper">
                                 <span>@Lang.OperationalFee</span>
                                 <div class="icon-container">
@@ -80,7 +84,7 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="th" data-name="BankingFee">
+                        <th width="10%" class="th" data-name="BankingFee"  data-type="decimal">
                             <div class="th-wrapper">
                                 <span>@Lang.BankingFees</span>
                                 <div class="icon-container">
@@ -89,7 +93,7 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="th" data-name="Bonus">
+                        <th width="10%" class="th" data-name="Bonus"  data-type="decimal">
                             <div class="th-wrapper">
                                 <span>@Lang.Bonus</span>
                                 <div class="icon-container">
@@ -98,7 +102,7 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="th" data-name="CommissionRate">
+                        <th width="10%" class="th" data-name="CommissionRate">
                             <div class="th-wrapper">
                                 <span>@Lang.CommRate</span>
                                 <div class="icon-container">
@@ -107,7 +111,7 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="th" data-name="Commission">
+                        <th width="10%" class="th" data-name="Commission"  data-type="decimal">
                             <div class="th-wrapper col-comm">
                                 <span>@(Lang.CommShorted).</span>
                                 <div class="info-container">

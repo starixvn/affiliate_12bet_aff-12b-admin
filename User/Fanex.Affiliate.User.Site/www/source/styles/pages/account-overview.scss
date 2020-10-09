@@ -154,6 +154,10 @@
                     font-size: 2rem;
                     font-weight: 500;
                 }
+
+                &.w-100 {
+                    width: calc(100% - 60px);
+                }
             }
         }
 

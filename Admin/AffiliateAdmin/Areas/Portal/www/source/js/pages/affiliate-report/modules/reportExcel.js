@@ -15,14 +15,14 @@ const TITLE_ROW_INDEX = 0;
 const HEADER_ROW_INDEX = 1;
 const DATA_ROW_INDEX = 3;
 
-const TOTAL_COLUMN = 21;
+const TOTAL_COLUMN = 20;
 
 const INDEX_MEMBER_STATISTICS_COLUMN = 7;
 const INDEX_AFFILIATE_STATISTICS_COLUMN = 8;
 
 const INDEX_DEPOSIT_COLUMN = 7;
-const COLSPAN_MEMBER_STATISTICS = 9;
-const INDEX_COMM_COLUMN = 16;
+const COLSPAN_MEMBER_STATISTICS = 8;
+const INDEX_COMM_COLUMN = 15;
 const COLSPAN_AFFILIATE_STATISTICS = 5;
 
 const MAIN_SECTION_STYLE = 'mainSectionStyle';
@@ -55,16 +55,18 @@ const fields = {
 }
 
 export default class ReportExcel {
-    constructor(data, title, isMainView) {
+    constructor(data, title, hasTurnOverPermission, isMainView) {
         this.worksheet = {};
         this.title = isMainView ? title : 'AFFILIATE REPORT > ' + title;
         this.data = data;
         this.isMainView = isMainView;
+        this.hasTurnOverPermission = hasTurnOverPermission;
+        this.turnoverColumn = hasTurnOverPermission ? 1 : 0;
 
         this.currentRowIndex = DATA_ROW_INDEX;
         this.mergeConfig = [];
-        this.columnConfigs = this._getcolumnConfigs(isMainView);
-        this.totalColumn = isMainView ? TOTAL_COLUMN : TOTAL_COLUMN - 1;
+        this.columnConfigs = this._getcolumnConfigs(hasTurnOverPermission, isMainView);
+        this.totalColumn = isMainView ? (TOTAL_COLUMN + this.turnoverColumn) : (TOTAL_COLUMN + this.turnoverColumn - 1);
     }
 
     export () {
@@ -103,12 +105,14 @@ export default class ReportExcel {
 
     _createHeader() {
         const colSpanAffStatistics = this.isMainView ? COLSPAN_AFFILIATE_STATISTICS : COLSPAN_AFFILIATE_STATISTICS - 1;
-        const length = this.columnConfigs.length - (COLSPAN_MEMBER_STATISTICS - 1) - (colSpanAffStatistics - 1);
+        const colSpanMemberStatistics = COLSPAN_MEMBER_STATISTICS + this.turnoverColumn;
+
+        const length = this.columnConfigs.length - (colSpanMemberStatistics - 1) - (colSpanAffStatistics - 1);
         for (let i = 0; i < length; i++) {
             if (i === INDEX_MEMBER_STATISTICS_COLUMN) {
-                this._buildColspanColumn(HEADER_ROW_INDEX, INDEX_DEPOSIT_COLUMN, COLSPAN_MEMBER_STATISTICS, headerText.MemberStatistics);
+                this._buildColspanColumn(HEADER_ROW_INDEX, INDEX_DEPOSIT_COLUMN, colSpanMemberStatistics, headerText.MemberStatistics);
             } else if (i === INDEX_AFFILIATE_STATISTICS_COLUMN) {
-                this._buildColspanColumn(HEADER_ROW_INDEX, INDEX_COMM_COLUMN, colSpanAffStatistics, headerText.AffiliateStatistics);
+                this._buildColspanColumn(HEADER_ROW_INDEX, INDEX_COMM_COLUMN + this.turnoverColumn, colSpanAffStatistics, headerText.AffiliateStatistics);
             } else {
                 const fieldName = this.columnConfigs[i].field;
                 let address = Excel.getCellAddress({
@@ -264,9 +268,17 @@ export default class ReportExcel {
                 wpx: 120
             }, {
                 wpx: 120
-            }, {
+            }
+        ];
+
+        if (this.hasTurnOverPermission) {
+            this.worksheet['!cols'].push({
                 wpx: 120
-            }, {
+            });
+        }
+
+        this.worksheet['!cols'].push(
+            {
                 wpx: 120
             }, {
                 wpx: 80
@@ -285,15 +297,21 @@ export default class ReportExcel {
                 wpx: 100
             }, {
                 wpx: 100
-            }, {
-                wpx: 100
-            }, {
-                wpx: 120
             }
-        ];
+        );
+
+        if (this.isMainView) {
+            this.worksheet['!cols'].push({
+                wpx: 100
+            });
+        }
+
+        this.worksheet['!cols'].push({
+            wpx: 150
+        });
     }
 
-    _getcolumnConfigs(isMainView) {
+    _getcolumnConfigs(hasTurnOverPermission, isMainView) {
         const columnConfigList = [{
                 field: isMainView ? fields.UserName : fields.MonthDateString,
                 [MAIN_SECTION_STYLE]: bodyCellStyle.left,
@@ -338,12 +356,18 @@ export default class ReportExcel {
                 field: fields.Withdrawal,
                 [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
                 [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
+            }
+        ];
+
+        if (hasTurnOverPermission) {
+            columnConfigList.push({
                 field: fields.Turnover,
                 [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
                 [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
+            })
+        }
+
+        columnConfigList.push(
             {
                 field: fields.Winlost,
                 [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
@@ -389,7 +413,7 @@ export default class ReportExcel {
                 [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
                 [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
             }
-        ];
+        );
 
         if (isMainView) {
             columnConfigList.push({

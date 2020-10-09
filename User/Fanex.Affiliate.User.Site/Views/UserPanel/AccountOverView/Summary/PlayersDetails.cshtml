@@ -1,4 +1,6 @@
-﻿@model List<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
+﻿@using Fanex.Affiliate.User.Core.Utilities
+@using Fanex.Affiliate.User.Core.Constants
+@model List<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
 
 <div class="table player-detail-table">
     <table id="player-detail-table">
@@ -23,21 +25,24 @@
                         </div>
                     </div>
                 </th>
-                <th width="10%" class="th" data-name="Turnover">
-                    <div class="th-wrapper">
-                        <span>@Lang.Turnover</span>
-                        <div class="icon-container">
-                            <span class="caret asc"></span>
-                            <span id="defaultSorting" class="caret desc"></span>
+                @if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+                {
+                    <th width="10%" class="th" data-name="Turnover">
+                        <div class="th-wrapper">
+                            <span>@Lang.Turnover</span>
+                            <div class="icon-container">
+                                <span class="caret asc"></span>
+                                <span id="Turnover" class="caret desc"></span>
+                            </div>
                         </div>
-                    </div>
-                </th>
+                    </th>
+                }
                 <th width="10%" class="th" data-name="Winloss">
                     <div class="th-wrapper">
                         <span>Win/Loss</span>
                         <div class="icon-container">
                             <span class="caret asc"></span>
-                            <span class="caret desc"></span>
+                            <span id="Winloss" class="caret desc"></span>
                         </div>
                     </div>
                 </th>

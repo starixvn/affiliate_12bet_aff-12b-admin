@@ -14,7 +14,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.HotNews)]
-    public class MessageController : BaseController
+    public class MessageController : ReadOnlySessionBaseController
     {
         private const int threeMilliSecond = 3;
         private readonly IMessageService _messageSevice;

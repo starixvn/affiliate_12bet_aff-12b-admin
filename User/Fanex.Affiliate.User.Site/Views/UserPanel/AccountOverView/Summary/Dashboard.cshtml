@@ -1,4 +1,10 @@
-﻿@model Fanex.Affiliate.User.Core.DTO.UserPanel.OverviewSummary
+﻿@using Fanex.Affiliate.User.Core.Utilities
+@using Fanex.Affiliate.User.Core.Constants
+@model Fanex.Affiliate.User.Core.DTO.UserPanel.OverviewSummary
+
+@{
+    var hasTurnOverPermission = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType);
+}
 
 <span class="my-account">My Account</span>
 <div class="group group-one">
@@ -32,12 +38,17 @@
     <div class="img-icon">
         <img class="img-responsive" src="~/www/build/styles/Images/account-overview/total-deposit.png" />
     </div>
-    <div class="info-panel">
+    <div class="info-panel @(hasTurnOverPermission ? "" : "w-100")">
         <span class="info-panel-title">Total Deposits</span>
         <span class="info-panel-content">@Model.Deposit.ToStringMoneyWithSymbol()</span>
     </div>
-    <div class="info-panel">
-        <span class="info-panel-title">Total Turnover</span>
-        <span class="info-panel-content">@Model.Turnover.ToStringMoneyWithSymbol()</span>
-    </div>
+
+    @if (hasTurnOverPermission)
+    {
+        <div class="info-panel">
+            <span class="info-panel-title">Total Turnover</span>
+            <span class="info-panel-content">@Model.Turnover.ToStringMoneyWithSymbol()</span>
+        </div>
+    }
+
 </div>

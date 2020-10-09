@@ -2,13 +2,14 @@ import { combineReducers } from 'redux';
 import { RESET_USER_PANEL } from '../../user-panel/actions/types';
 
 import leftPanel from '../../left-panel/reducers';
-import { affCommonInfo, today, languageList } from './commonReducer';
+import { affCommonInfo, today, languageList, hasTurnOverPermission } from './commonReducer';
 import { userPanelReducer, selectedUserPanel, isShowLoaderUserPanel } from '../../user-panel/reducers';
 import customerStatistics from '../../customer-statistics/reducers';
 
 const allReducers = combineReducers({
     today,
     languageList,
+    hasTurnOverPermission,
     selectedUserPanel,
     isShowLoaderUserPanel,
     affCommonInfo,

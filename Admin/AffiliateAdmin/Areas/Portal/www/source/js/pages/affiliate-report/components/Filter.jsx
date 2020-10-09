@@ -6,7 +6,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import AutoComplete from '../../../components/auto-complete';
-import { defaultSortBy, sortByMainView, sortByMonthOnMonthView, allProduct, viewLevel, sortDirectionType } from '../modules/constants';
+import { defaultSortBy, affiliate, month, turnover, sortByCommon, allProduct, viewLevel, sortDirectionType } from '../modules/constants';
 import { setReportTitle, setParam } from '../actions';
 import { formatUnit, resolveClientUrl } from '../../../modules/utils';
 import { minMonthDate } from '../../../modules/constants';
@@ -15,7 +15,9 @@ export class Filter extends Component {
     constructor(props) {
         super(props);
 
-        this.now = new Date(this.props.today);
+        const { today, hasTurnOverPermission } = this.props;
+
+        this.now = new Date(today);
         const defaultMonth = { month: this.now.getMonth() + 1, year: this.now.getFullYear() };
 
         this.state = {
@@ -30,6 +32,14 @@ export class Filter extends Component {
         }
 
         this.cachedMainReportParam = null;
+        
+        const newSortByCommon = hasTurnOverPermission ? {
+            Turnover: turnover,
+            ...sortByCommon
+        } : sortByCommon
+
+        this.sortByMainView = Object.assign({}, { Affiliate: affiliate }, newSortByCommon);
+        this.sortByMonthOnMonthView = Object.assign({}, { Month: month }, newSortByCommon);
     }
 
     componentDidUpdate(prevProps) {
@@ -70,7 +80,7 @@ export class Filter extends Component {
 
                 this.setState({
                     userName: param.UserName,
-                    sortBy: sortByMonthOnMonthView.Month,
+                    sortBy: month,
                     isSortAscending: false
                 }, callback);
             }
@@ -266,7 +276,7 @@ export class Filter extends Component {
 
         const toMonthRange = this._getToMonthRange(fromMonth);
         const isMainView = this._isMainView();
-        const sortByData = isMainView ? sortByMainView : sortByMonthOnMonthView;
+        const sortByData = isMainView ? this.sortByMainView : this.sortByMonthOnMonthView;
 
         return (
             <div className="filter-container mt-2">
@@ -370,8 +380,8 @@ export class Filter extends Component {
     }
 }
 
-function mapStateToProps({ productList, pagingOption, languageList, today, currentViewLevel, param }) {
-    return Object.assign({}, { productList, pagingOption, languageList, today, currentViewLevel, param });
+function mapStateToProps({ productList, pagingOption, languageList, today, currentViewLevel, param, hasTurnOverPermission }) {
+    return Object.assign({}, { productList, pagingOption, languageList, today, currentViewLevel, param, hasTurnOverPermission });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.AffReport)]
-    public class ReportController : BaseController
+    public class ReportController : ReadOnlySessionBaseController
     {
         private readonly IProductRepository _productRepository;
 
@@ -47,6 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [ResetValueNotHavePermission(Function.Turnover)]
         public ActionResult GetMainData(AffiliateReportMainParam param)
         {
             return new JsonNetResult
@@ -57,6 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [ResetValueNotHavePermission(Function.Turnover)]
         public ActionResult GetDetailData(AffiliateReportMainParam param)
         {
             return new JsonNetResult

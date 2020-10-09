@@ -19,7 +19,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
     [FunctionAuthorize(FunctionName = Function.CommissionGroup)]
-    public class CommGroupAssignmentController : BaseController
+    public class CommGroupAssignmentController : ReadOnlySessionBaseController
     {
         private const string PrivateGroupName = "[None]";
 

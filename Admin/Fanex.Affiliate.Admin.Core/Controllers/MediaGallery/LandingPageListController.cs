@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
     [FunctionAuthorize(FunctionName = Function.Media)]
-    public class LandingPageListController : BaseController
+    public class LandingPageListController : ReadOnlySessionBaseController
     {
         private readonly ILandingPageService _landingPageService;
 

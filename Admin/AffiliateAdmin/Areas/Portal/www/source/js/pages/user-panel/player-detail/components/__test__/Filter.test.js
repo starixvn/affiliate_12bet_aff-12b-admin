@@ -31,7 +31,9 @@ describe('players detail - components - Filter', () => {
         param,
         affId,
         setParam,
-        getProductList
+        getProductList,
+        hasTurnOverPermission: true,
+        sortedParam: { sortById: 5, isSortAsc: false }
     };
 
     it('render correctly', () => {
@@ -129,7 +131,7 @@ describe('players detail - components - Filter', () => {
 
         wrapper.find('Button').at(0).simulate('click');
 
-        expect(defaultProps.setParam).toHaveBeenCalledWith({ monthDate: "12/1/2019", productId: 0});
+        expect(defaultProps.setParam).toHaveBeenCalledWith({ monthDate: "12/1/2019", productId: 0, sortById: 5, isSortAsc: false });
     });
 
     it('handleExportExcel - should call exportExcel', async() => {
@@ -138,7 +140,7 @@ describe('players detail - components - Filter', () => {
 
         await wrapper.instance().handleExportExcel();
 
-        expect(props.exportExcel).toHaveBeenCalledWith({"IsExportExcel": true, "affId": 1271808, "monthDate": "12/1/2019", "productId": 0});
+        expect(props.exportExcel).toHaveBeenCalledWith({ "IsExportExcel": true, "affId": 1271808, "monthDate": "12/1/2019", "productId": 0, sortById: 5, isSortAsc: false });
     });
 
     it('handleExportExcel - should call exportExcel, _getReportTitle and ReportExcel', async() => {
@@ -150,8 +152,8 @@ describe('players detail - components - Filter', () => {
 
         await instance.handleExportExcel();
 
-        expect(props.exportExcel).toHaveBeenCalledWith({"IsExportExcel": true, "affId": 1271808, "monthDate": "12/1/2019", "productId": 0});
-        expect(ReportExcel).toHaveBeenCalledWith(expectedResponse.data, "ABC");
+        expect(props.exportExcel).toHaveBeenCalledWith({ "IsExportExcel": true, "affId": 1271808, "monthDate": "12/1/2019", "productId": 0, sortById: 5, isSortAsc: false });
+        expect(ReportExcel).toHaveBeenCalledWith(expectedResponse.data, "ABC", true);
     });
 
     it('_getReportTitle - should call handleFormatMonthPicker', () => {

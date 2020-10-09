@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Data;
+using Fanex.Common.Extensions;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
@@ -75,15 +78,20 @@ namespace Fanex.Affiliate.User.Core.Repository
             }
         }
 
-        public string GetSessionId(int onUserId)
+        public InternalLoginInfo GetInternalLoginInfo(int onUserId)
         {
             const string spKey = "Aff_SessionIdSel";
-
             using (var db = _builder.Build(spKey))
             {
-                db.AddInParameter("OnUserId", System.Data.SqlDbType.Int, onUserId);
-
-                return db.ExecuteScalar() as string;
+                using (var reader = db.ExecuteReader(new { OnUserId = onUserId }))
+                {
+                    reader.Read();
+                    return new InternalLoginInfo
+                    {
+                        SesionId = reader.ToString("NetSessionID"),
+                        UserId = reader.ToInt("CustId")
+                    };
+                }
             }
         }
 
@@ -103,6 +111,27 @@ namespace Fanex.Affiliate.User.Core.Repository
             }
 
             return parameterSet.IsKickedOut;
+        }
+
+        public IEnumerable<InternalPermission> GetInternalLoginPermission(int internalLoginUserId)
+        {
+            const string spKey = "Aff_Admin_PolicySel";
+            var result = new List<InternalPermission>();
+            using (var db = _builder.Build(spKey))
+            {
+                using(var reader = db.ExecuteReader(new { UserId = internalLoginUserId }))
+                {
+                    while(reader.Read())
+                    {
+                        result.Add(new InternalPermission
+                        {
+                            FunctionName = reader.ToString("FuncName"),
+                            IsHost = reader.ToByte("Host") == 1
+                        });
+                    }
+                }
+            }
+            return result;
         }
 
         private static void AssignUpdateLoginResultParam(IObjectDb objectDb, LoginResultParam param)

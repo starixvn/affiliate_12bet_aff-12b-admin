@@ -10,6 +10,11 @@ using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 using System.Web.Security;
+using System.Collections;
+using System.Security.Claims;
+using System.Collections.Generic;
+using System.Linq;
+using Fanex.Affiliate.User.Core.Constants;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -45,9 +50,20 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _authRepository.GetOnUserId(onUserIdParam);
         }
 
-        public string GetSessionId(int onUserId)
+        public InternalLoginInfo GetInternalLoginInfo(int onUserId)
         {
-            return _authRepository.GetSessionId(onUserId);
+            return _authRepository.GetInternalLoginInfo(onUserId);
+        }
+
+        public IEnumerable<Claim> GetInternalLoginClaim(int internalLoginUserId)
+        {
+            var permissions = _authRepository.GetInternalLoginPermission(internalLoginUserId);
+            return permissions.Select(p =>
+            {
+                var claimType = p.FunctionName;
+                var claimValue = p.IsHost ? ClaimConstant.WriteClaimValue : string.Empty;
+                return new Claim(claimType, claimValue);
+            });
         }
 
         public bool Recheckin(int onUserId, bool isInternal)

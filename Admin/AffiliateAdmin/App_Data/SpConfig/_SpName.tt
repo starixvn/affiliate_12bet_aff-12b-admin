@@ -25,16 +25,16 @@
 		foreach(var element in elements)
 		{
 			var configEnvironments = element.Attribute("Environment").Value.Trim().Split(',');
-			
+
 			if(configEnvironments.Any(e => e.ToLower() == env))
 			{
 				var spName = element.Attribute("SpName").Value.Trim();
 				var suffix = element.Attribute("Suffix").Value.Trim();
 
 				spContent = Regex.Replace(
-						spContent, 
-						string.Format(SpNameTemplate, spName), 
-						string.Format(SpNameTemplate, spName + suffix), 
+						spContent,
+						string.Format(SpNameTemplate, spName),
+						string.Format(SpNameTemplate, spName + suffix),
 						RegexOptions.IgnoreCase);
 			}
 		}

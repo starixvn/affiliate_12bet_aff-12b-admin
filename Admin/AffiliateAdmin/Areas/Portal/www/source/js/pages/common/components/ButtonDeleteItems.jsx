@@ -34,7 +34,7 @@ export default class ButtonDeleteItems extends PureComponent {
 
     _handleDelete = () => {
         const itemIdList = this._getCheckedItemIdList();
-        itemIdList.length === 0 ? this._handleOpenNotificationPopup(this.props.messages.PleaseSelect) : this._handleOpenNotificationPopup(this.props.messages.AreYouSureDeleteItems, true, itemIdList);
+        !itemIdList.length ? this._handleOpenNotificationPopup(this.props.messages.PleaseSelect) : this._handleOpenNotificationPopup(this.props.messages.AreYouSureDeleteItems, true, itemIdList);
     }
 
     _deleteExcute = async (itemIdList) => {

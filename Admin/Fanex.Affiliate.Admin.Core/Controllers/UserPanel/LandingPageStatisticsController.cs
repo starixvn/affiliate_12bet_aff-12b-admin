@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class LandingPageStatisticsController : BaseController
+    public class LandingPageStatisticsController : ReadOnlySessionBaseController
     {
         private readonly ILandingPageStatisticsRepository _landingPageStatisticsRepository;
 

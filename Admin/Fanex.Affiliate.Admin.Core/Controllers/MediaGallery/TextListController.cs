@@ -16,7 +16,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
     [FunctionAuthorize(FunctionName = Function.Media)]
-    public class TextListController : BaseController
+    public class TextListController : ReadOnlySessionBaseController
     {
         private const int TextListCategory = 2;
         private readonly ILanguageService _languageService;

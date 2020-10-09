@@ -120,11 +120,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
             var spKey = "Aff_SessionIdSel";
             db.ExecuteScalar().Returns(sessionId);
 
-            var result = repo.GetSessionId(1);
+            var result = repo.GetInternalLoginInfo(1);
 
             Assert.Equal(spKey, db.SettingKey);
             db.Received().AddInParameter("OnUserId", System.Data.SqlDbType.Int, 1);
-            Assert.Equal(sessionId, result);
+            Assert.Equal(sessionId, result.SesionId);
         }
 
         [Theory]

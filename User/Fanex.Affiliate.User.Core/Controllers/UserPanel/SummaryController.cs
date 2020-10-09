@@ -1,9 +1,11 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
+using Fanex.Affiliate.User.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,8 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
     [CustomAuthorize]
     public class SummaryController : BaseController
     {
+        private const int Turnover = 5;
+        private const int Winloss = 6;
         private readonly IAccountOverviewRepository _accountOverviewRepository;
 
         public SummaryController(ISessionService sessionService,
@@ -64,6 +68,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         [AjaxOnly]
         public ActionResult PlayersDetails(PlayerDetailParam param)
         {
+            param.SortById = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType) ? Turnover : Winloss;
             param.AffId = SessionService.UserSession.AffId;
             var model = _accountOverviewRepository.GetPlayerDetailList(param);
 

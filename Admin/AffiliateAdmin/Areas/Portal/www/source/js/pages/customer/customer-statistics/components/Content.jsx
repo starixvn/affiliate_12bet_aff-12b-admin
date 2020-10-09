@@ -80,10 +80,11 @@ export class Content extends PureComponent {
 
     _renderData(monthDate, data) {
         data = data || {};
+        const { hasTurnOverPermission } = this.props;
         const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
         const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
-        const TurnoverByMonth = formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
-        const TurnoverTotal = formatDecimalWithCurrencySymbol(data.TurnoverTotal);
+        const TurnoverByMonth = hasTurnOverPermission && formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
+        const TurnoverTotal = hasTurnOverPermission && formatDecimalWithCurrencySymbol(data.TurnoverTotal);
         const WinlostByMonth = formatDecimalWithCurrencySymbol(data.WinlostByMonth);
         const WinlostTotal = formatDecimalWithCurrencySymbol(data.WinlostTotal);
 
@@ -111,7 +112,7 @@ export class Content extends PureComponent {
                 }
                 {this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMemberByMonth), resource.NA)}
                 {this._buildRow(rowTitle.TotalDeposits, DepositByMonth, DepositTotal)}
-                {this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
+                {hasTurnOverPermission && this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRate,
@@ -163,9 +164,9 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, today, customerStatistics }) {
+function mapStateToProps({ affCommonInfo, today, hasTurnOverPermission, customerStatistics }) {
     const { affId } = affCommonInfo;
-    return Object.assign({}, { monthDate: customerStatistics.monthDate, today, affId });
+    return Object.assign({}, { monthDate: customerStatistics.monthDate, today, affId, hasTurnOverPermission });
 }
 
 function mapDispatchToProps(dispatch) {

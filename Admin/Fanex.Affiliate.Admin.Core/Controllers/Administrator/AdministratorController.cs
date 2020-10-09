@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Administrator;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -15,16 +16,21 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 {
     [FunctionAuthorize(FunctionName = Function.UserControl)]
-    public class AdministratorController : BaseController
+    public class AdministratorController : Controller
     {
         private const string BreakLine = "<br />";
         private readonly IAdministratorService _administratorService;
+        private readonly IAuthRepository _authRepository;
+        private readonly ISessionService _sessionService;
 
         public AdministratorController(
             ISessionService sessionService,
-            IAdministratorService administratorService) : base(sessionService)
+            IAdministratorService administratorService,
+            IAuthRepository authRepository)
         {
             _administratorService = administratorService;
+            _authRepository = authRepository;
+            _sessionService = sessionService;
         }
 
         public ActionResult Index()
@@ -214,9 +220,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
                 };
                 GetUserInfoParam(encodeParam);
 
+                var result = _administratorService.UpdateAccountPolicy(encodeParam);
+                if (result.IsSuccessful)
+                {
+                    var permissions = _authRepository.GetPermissionList(_sessionService.UserId);
+                    _sessionService.UserPermissionList = permissions;
+                }
+
                 return new JsonNetResult
                 {
-                    Data = _administratorService.UpdateAccountPolicy(encodeParam)
+                    Data = result
                 };
             }
 
@@ -257,7 +270,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 
         private void GetUserInfoParam(UserInfoParam param)
         {
-            param.UserId = SessionService.UserId;
+            param.UserId = _sessionService.UserId;
             param.Ip = Request.UserHostAddress;
         }
     }

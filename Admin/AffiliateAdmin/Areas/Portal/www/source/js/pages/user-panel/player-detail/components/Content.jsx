@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { headerText, globalResource, selectedAllProduct, maxWidth, SortByIdList } from '../modules/constants';
-import { setPagingOption, toggleLoaderUserPanel, fetchData } from '../actions';
+import { setPagingOption, toggleLoaderUserPanel, fetchData, setSortedParam } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import SortingCell from './SortingCell';
 
@@ -14,9 +14,7 @@ export class Content extends PureComponent {
         super(props);
 
         this.state = {
-            data: null,
-            isSortAsc: false,
-            sortingColumn: 'Turnover'
+            data: null
         }
     }
 
@@ -27,10 +25,6 @@ export class Content extends PureComponent {
         if (isDifferent) {
             const postParam = { ...param, pageIndex: 1, pageSize: pagingOption.PageSize };
             this._fetchData(postParam);
-        }
-
-        if (param.isClickLink || isDifferent) {
-            this.setState({ isSortAsc: false, sortingColumn: 'Turnover' });
         }
     }
 
@@ -47,35 +41,35 @@ export class Content extends PureComponent {
         this.props.toggleLoaderUserPanel(false);
     }
 
-    handleClickHeader = (selectedColumn) => {
-        const { isSortAsc, sortingColumn } = this.state;
-        const { param, pagingOption } = this.props;
-        const postParam = { ...param, pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize, sortById: SortByIdList[selectedColumn] };
+    handleClickHeader = (selectedId) => {
+        const { param, pagingOption, sortedParam } = this.props;
+        const { isSortAsc, sortById } = sortedParam;
+        const postParam = { ...param, pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize, sortById: selectedId };
 
-        if (sortingColumn === selectedColumn) {
-            this.setState({ isSortAsc: !isSortAsc });
+        if (sortById === selectedId) {
             this._fetchData({ ...postParam, isSortAsc: !isSortAsc });
+            this.props.setSortedParam({ isSortAsc: !isSortAsc });
 
         } else {
-            this.setState({ isSortAsc: false, sortingColumn: selectedColumn });
             this._fetchData({ ...postParam, isSortAsc: false });
+            this.props.setSortedParam({ sortById: selectedId, isSortAsc: false });
         }
     }
     _renderHeader() {
-        const { isSortAsc, sortingColumn } = this.state;
+        const { isSortAsc, sortById } = this.props.sortedParam;
 
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Username'} title={headerText.UserName} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'IbcUsername'} title={headerText.IbcUserName} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'RegisteredDate'} title={headerText.RegisteredDate} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Turnover'} title={headerText.Turnover} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Winloss'} title={headerText.Winloss} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Deposit'} title={headerText.Deposit} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Withdrawal'} title={headerText.Withdrawal} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'Bonus'} title={headerText.Bonus} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortingColumn} columnName={'BankingFee'} title={headerText.BankingFee} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Username} title={headerText.UserName} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.IbcUsername} title={headerText.IbcUserName} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.RegisteredDate} title={headerText.RegisteredDate} handleClickHeader={this.handleClickHeader} />
+                {this.props.hasTurnOverPermission && <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Turnover} title={headerText.Turnover} handleClickHeader={this.handleClickHeader} />}
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Winloss} title={headerText.Winloss} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Deposit} title={headerText.Deposit} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Withdrawal} title={headerText.Withdrawal} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Bonus} title={headerText.Bonus} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.BankingFee} title={headerText.BankingFee} handleClickHeader={this.handleClickHeader} />
             </Row>
         )
     }
@@ -86,13 +80,13 @@ export class Content extends PureComponent {
         const dataRows = [];
 
         if (dataList && dataList.length) {
-            const { pagingOption } = this.props;
+            const { pagingOption, hasTurnOverPermission } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
 
-                dataRows.push(this._buildDataRow(dataItem, startIndex + i, productColumnClassName));
+                dataRows.push(this._buildDataRow(dataItem, startIndex + i, productColumnClassName, hasTurnOverPermission));
             }
         }
         else {
@@ -104,8 +98,8 @@ export class Content extends PureComponent {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, rowNumber, productColumnClassName) {
-        const turnover = formatDecimal(dataItem.Turnover);
+    _buildDataRow(dataItem, rowNumber, productColumnClassName, hasTurnOverPermission) {
+        const turnover = hasTurnOverPermission && formatDecimal(dataItem.Turnover);
         const winloss = formatDecimal(dataItem.Winloss);
         const bonus = formatDecimal(dataItem.Bonus);
         const deposit = formatDecimal(dataItem.Deposit);
@@ -119,7 +113,7 @@ export class Content extends PureComponent {
                 <Cell title={userName}>{userName}</Cell>
                 <Cell title={dataItem.IbcUserName}>{dataItem.IbcUserName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateText}>{dataItem.RegisteredDateText}</Cell>
-                <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>
+                {hasTurnOverPermission && <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>}
                 <Cell className={productColumnClassName} title={winloss}>{winloss}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
@@ -163,15 +157,15 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, playerDetail }) {
-    const { param, pagingOption } = playerDetail;
+function mapStateToProps({ affCommonInfo, hasTurnOverPermission, playerDetail }) {
+    const { param, pagingOption, sortedParam } = playerDetail;
     const { affId } = affCommonInfo;
 
-    return Object.assign({}, { param, pagingOption, affId });
+    return Object.assign({}, { param, pagingOption, affId, hasTurnOverPermission, sortedParam });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoaderUserPanel, fetchData }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoaderUserPanel, fetchData, setSortedParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

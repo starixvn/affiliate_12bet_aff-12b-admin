@@ -116,13 +116,17 @@ var commissionReport = (function ($) {
             var activeClass = isFirstSumRow ? ' active' : '';
             var toggleIconClass = isFirstSumRow ? 'bottom' : 'left';
             var className = isSummaryRow ? ' class="sumrow' + activeClass + '"' : '';
+            var columnNames = _me.getHeaderColNames();
 
             var iconHtml = '<span class="chevron toggleDetailRow ' + toggleIconClass + '" aria-hidden="true"></span>';
             var rowItems = [];
             rowItems.push('<tr' + className + '>');
             rowItems.push('<td class="text-center">' + (isSummaryRow ? index + 1 : '') + '</td>');
             rowItems.push('<td class="title-cell"><div class="row-wrapper">' + (isSummaryRow ? title + iconHtml : dataRow.ProductName) + '</div></td>');
-            rowItems.push(_me.buildCell(formatDecimal(dataRow.TurnOver)));
+
+            if (columnNames.TurnOver) {
+                rowItems.push(_me.buildCell(formatDecimal(dataRow.TurnOver)));
+            }
             rowItems.push(_me.buildCell(formatDecimal(dataRow.WinLoss)));
             if (isSummaryRow) {
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.PlatformFee)));
@@ -143,11 +147,25 @@ var commissionReport = (function ($) {
 
         buildTotalRow: function buildTotalRow() {
             var dataRow = _reportData.Total;
+            var columnNames = _me.getHeaderColNames();
             if (dataRow) {
-                return '<tr class="total">' + '<td class="text-right" colspan="2">' + 'Total' + '</td>' + _me.buildCell(formatDecimal(dataRow.TurnOver)) + _me.buildCell(formatDecimal(dataRow.WinLoss)) + _me.buildCell(formatDecimal(dataRow.PlatformFee)) + _me.buildCell(formatDecimal(dataRow.OperationalFee)) + _me.buildCell(formatDecimal(dataRow.BankingFee)) + _me.buildCell(formatDecimal(dataRow.Bonus)) + _me.buildCell('') + _me.buildCell(formatDecimal(dataRow.Commission)) + '</tr>';
+                return '<tr class="total">' + '<td class="text-right" colspan="2">' + 'Total' + '</td>' + (columnNames.TurnOver ? _me.buildCell(formatDecimal(dataRow.TurnOver)) : '') + _me.buildCell(formatDecimal(dataRow.WinLoss)) + _me.buildCell(formatDecimal(dataRow.PlatformFee)) + _me.buildCell(formatDecimal(dataRow.OperationalFee)) + _me.buildCell(formatDecimal(dataRow.BankingFee)) + _me.buildCell(formatDecimal(dataRow.Bonus)) + _me.buildCell('') + _me.buildCell(formatDecimal(dataRow.Commission)) + '</tr>';
             }
 
             return '';
+        },
+
+        getHeaderColNames: function getHeaderColNames() {
+            var headerCols = $('#dataTable thead tr th');
+            var rowNames = [];
+
+            headerCols.each(function () {
+                var name = $(this).data('name');
+                if (name) {
+                    rowNames[name] = name;
+                }
+            });
+            return rowNames;
         },
 
         buildCell: function buildCell(cellData) {

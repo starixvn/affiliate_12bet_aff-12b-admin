@@ -17,9 +17,10 @@ for(let i = 0; i < languageList.length; i++){
     language[languageItem.LanguageCode] = languageItem.LanguageName;
 }
 
-const today = window.initialState.today;
+const { today } = window.initialState;
+const { hasTurnOverPermission } = window.globalVariables;
 
-const store = configureStore({ productList, languageList: language, today }, reducer);
+const store = configureStore({ productList, languageList: language, today, hasTurnOverPermission }, reducer);
 
 export default class App extends React.Component {
     constructor(props) {

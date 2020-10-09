@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class MemberController : BaseController
+    public class MemberController : ReadOnlySessionBaseController
     {
         private readonly IMemberService _memberService;
         public MemberController(

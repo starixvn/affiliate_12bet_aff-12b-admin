@@ -4,7 +4,8 @@ import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('players detail - components - Content', () => {
-    const param = {productId: 0, monthDate: "11/1/2019"};
+    const param = { productId: 0, monthDate: "11/1/2019" };
+    const turnover = 5;
     const gridData = [
         {
             IbcUserName: "12BETUS$02002",
@@ -37,12 +38,15 @@ describe('players detail - components - Content', () => {
         param,
         setPagingOption: jest.fn(),
         toggleLoaderUserPanel: jest.fn(),
-        fetchData: jest.fn(() => gridData)
+        setSortedParam: jest.fn(),
+        fetchData: jest.fn(() => gridData),
+        hasTurnOverPermission: true,
+        sortedParam: { sortById: turnover, isSortAsc: false }
     }
 
     it('render correctly', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.setState({ data: gridData });
 
         expect(result).toMatchSnapshot();
@@ -52,7 +56,7 @@ describe('players detail - components - Content', () => {
         const newParam = Object.assign({}, defaultProps.param, { productId: 1 });
         const props = Object.assign({}, defaultProps, { param: newParam });
         const result = shallow(<Content {...props} />);
-        
+
         result.setState({ data: gridData });
 
         expect(result).toMatchSnapshot();
@@ -60,7 +64,7 @@ describe('players detail - components - Content', () => {
 
     it('render correctly with have data is empty', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.setState({ data: [] });
 
         expect(result).toMatchSnapshot();
@@ -88,7 +92,6 @@ describe('players detail - components - Content', () => {
         instance.componentDidUpdate(defaultProps);
 
         expect(instance._fetchData).toHaveBeenCalledWith({ ...newParam, pageIndex: 1, pageSize: 20 });
-        expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: false, sortingColumn: 'Turnover' });
     });
 
     it('fetchData - should call toggleLoaderUserPanel, setState and setPagingOption with correct parameter', async () => {
@@ -141,10 +144,10 @@ describe('players detail - components - Content', () => {
         instance.setState = jest.fn();
         instance._fetchData = jest.fn();
 
-        instance.handleClickHeader('Turnover');
+        instance.handleClickHeader(turnover);
 
-        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: true, sortById: 5, pageIndex: 1, pageSize: 20 });
-        expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: true });
+        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: true, sortById: turnover, pageIndex: 1, pageSize: 20 });
+        expect(defaultProps.setSortedParam).toHaveBeenCalledWith({ isSortAsc: true });
     });
 
     it('handleClickHeader - should call setState and _fetchData when sortingColumn !== selectedColumn', async () => {
@@ -153,10 +156,10 @@ describe('players detail - components - Content', () => {
         instance.setState = jest.fn();
         instance._fetchData = jest.fn();
 
-        instance.handleClickHeader('Username');
+        instance.handleClickHeader(1);
 
         expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: false, sortById: 1, pageIndex: 1, pageSize: 20 });
-        expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: false, sortingColumn: 'Username' });
+        expect(defaultProps.setSortedParam).toHaveBeenCalledWith({ isSortAsc: false, sortById: 1 });
     });
 
     it('handlePaging - should call fetchData with correct parameters', () => {

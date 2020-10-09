@@ -1,22 +1,15 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
+using System.Web;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+using static Fanex.Affiliate.User.Core.Constants.SessionKey;
 
 namespace Fanex.Affiliate.User.Core.CoreService
 {
     public class SessionService : ISessionService
-    {
-        private const string UserSessionKey = "Affiliate12Bet.UserSessionKey";
-        private const string CaptchaCodeKey = "Affiliate12Bet.CaptchaCodeKey";
-        private const string SingUpCaptchaCodeKey = "Affiliate12Bet.SingUpCaptchaCodeKey";
-
-        private const string CurrentLanguageKey = "Affiliate12Bet.CurrentLanguageKey";
-        private const string IsInternalKey = "Affiliate12Bet.IsInternalKey";
-
-        private const string RsaKeyPairKey = "Affiliate12Bet.RsaKeyPairKey";
-        private const string VerificationSessionKey = "Affiliate12Bet.VerificationSessionKey";
-
+    { 
         public string CaptchaCode
         {
             get { return HttpContext.Current.Session[CaptchaCodeKey] as string; }
@@ -97,6 +90,12 @@ namespace Fanex.Affiliate.User.Core.CoreService
         {
             get { return HttpContext.Current.Session[VerificationSessionKey] as VerificationSession; }
             set { HttpContext.Current.Session[VerificationSessionKey] = value; }
+        }
+
+        public IEnumerable<ClaimsIdentity> ClaimsIdentities 
+        { 
+            get => HttpContext.Current.Session[ClaimIdentitiesKey] as IEnumerable<ClaimsIdentity>;
+            set => HttpContext.Current.Session[ClaimIdentitiesKey] = value; 
         }
     }
 }

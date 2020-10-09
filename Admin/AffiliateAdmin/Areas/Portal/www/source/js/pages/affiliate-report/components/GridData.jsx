@@ -9,7 +9,7 @@ import { format, formatDecimal } from '../../../modules/numberFormat';
 import { setPagingOption, setViewLevel, setParam } from '../actions';
 import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
-import { allProduct, viewLevel, sortByMonthOnMonthView, sortDirectionType, totalText, headerText } from '../modules/constants';
+import { allProduct, viewLevel, month, sortDirectionType, totalText, headerText } from '../modules/constants';
 
 export class GridData extends Component {
     constructor(props) {
@@ -75,6 +75,7 @@ export class GridData extends Component {
 
     _renderHeader() {
         const isMainView = this._isMainView();
+        const { hasTurnOverPermission } = this.props;
         const firstColName = isMainView ? headerText.UserName : headerText.MonthDateString;
 
         return [
@@ -86,14 +87,14 @@ export class GridData extends Component {
                 <Cell header={true} colWidth={50} rowSpan="2" title={headerText.Fdm}>{headerText.Fdm}</Cell>
                 <Cell header={true} colWidth={60} rowSpan="2" title={headerText.ActiveMember}>{headerText.ActiveMember}</Cell>
                 <Cell header={true} colWidth={60} rowSpan="2" title={headerText.QualifiedMember}>{headerText.QualifiedMember}</Cell>
-                <Cell header={true} colSpan="9" title={headerText.MemberStatistics}>{headerText.MemberStatistics}</Cell>
+                <Cell header={true} colSpan={hasTurnOverPermission ? 9 : 8} title={headerText.MemberStatistics}>{headerText.MemberStatistics}</Cell>
                 <Cell header={true} colSpan={isMainView ? 5 : 4} title={headerText.AffiliateStatistics}>{headerText.AffiliateStatistics}</Cell>
                 {isMainView && (<Cell header={true} colWidth={50} rowSpan="2" title={headerText.MonthOnMonth}>{headerText.MonthOnMonth}</Cell>)}
             </Row>,
             <Row key="h2">
                 <Cell header={true} colWidth={75} title={headerText.Deposit}>{headerText.Deposit}</Cell>
                 <Cell header={true} colWidth={75} title={headerText.Withdrawal}>{headerText.Withdrawal}</Cell>
-                <Cell header={true} colWidth={95} title={headerText.Turnover}>{headerText.Turnover}</Cell>
+                {hasTurnOverPermission && <Cell header={true} colWidth={95} title={headerText.Turnover}>{headerText.Turnover}</Cell>}
                 <Cell header={true} colWidth={95} title={headerText.Winlost}>{headerText.Winlost}</Cell>
                 <Cell header={true} colWidth={70} title={headerText.Bonus}>{headerText.Bonus}</Cell>
                 <Cell header={true} colWidth={70} title={headerText.PlatformFee}>{headerText.PlatformFee}</Cell>
@@ -153,6 +154,7 @@ export class GridData extends Component {
     }
 
     _buildCommonCell(dataItem, productColumnClassName, isTotalRow) {
+        const { hasTurnOverPermission } = this.props;
         const totalClick = format(dataItem.TotalClick);
         const uniqueClick = format(dataItem.UniqueClick);
         const signup = format(dataItem.Signup);
@@ -161,7 +163,7 @@ export class GridData extends Component {
         const qualifiedMember = format(dataItem.QualifiedMember);
         const deposit = formatDecimal(dataItem.Deposit);
         const withdrawal = formatDecimal(dataItem.Withdrawal);
-        const turnover = formatDecimal(dataItem.Turnover);
+        const turnover = hasTurnOverPermission && formatDecimal(dataItem.Turnover);
         const winlost = formatDecimal(dataItem.Winlost);
         const bonus = formatDecimal(dataItem.Bonus);
         const platformFee = formatDecimal(dataItem.PlatformFee);
@@ -185,7 +187,7 @@ export class GridData extends Component {
                 <Cell className="text-right" title={qualifiedMember}>{qualifiedMember}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
-                <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>
+                {hasTurnOverPermission && <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>}
                 <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>
                 <Cell className="text-right" title={bonus}>{bonus}</Cell>
                 <Cell className="text-right" title={platformFee}>{platformFee}</Cell>
@@ -206,7 +208,7 @@ export class GridData extends Component {
 
         const postParam = Object.assign({}, param, {
             UserName,
-            SortType: sortByMonthOnMonthView.Month,
+            SortType: month,
             SortDirectionType: sortDirectionType.descending,
             PageIndex: 1,
             PageSize: pagingOption.PageSize
@@ -249,8 +251,8 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, param, currentViewLevel }) {
-    return Object.assign({}, { pagingOption, param, currentViewLevel });
+function mapStateToProps({ pagingOption, param, currentViewLevel, hasTurnOverPermission }) {
+    return Object.assign({}, { pagingOption, param, currentViewLevel, hasTurnOverPermission });
 }
 
 function mapDispatchToProps(dispatch) {
