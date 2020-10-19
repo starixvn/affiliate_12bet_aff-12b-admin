@@ -13,6 +13,7 @@ import Additional from './sections/Additional';
 import EmailFormat from './sections/EmailFormat';
 import WebSite from './sections/WebSite';
 import Payment from './sections/Payment';
+import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -93,6 +94,7 @@ export class Content extends PureComponent {
 
     render() {
         const { isSuccess, isShowMessage, message } = this.state;
+        const { claimsPrincipal } = this.props;
 
         return this.props.userAccountInfo && (
             <Container fluid={true} className="user-account-container">
@@ -120,24 +122,27 @@ export class Content extends PureComponent {
                     </Col>
                 </Row>
 
-                <Row>
-                    <Col xs="12" className="px-0">
-                        <Section title="Website Information">
-                            {
-                                this.props.moreSiteUrlsList && <WebSite />
-                            }
-                        </Section>
-                    </Col>
-                </Row>
+                {claimsPrincipal.hasReadClaim(claimResource.WebsiteUrl) && ( 
+                    <Row>
+                        <Col xs="12" className="px-0">
+                            <Section title="Website Information">
+                                {
+                                    this.props.moreSiteUrlsList && <WebSite />
+                                }
+                            </Section>
+                        </Col>
+                    </Row>
+                )}
 
-                <Row>
-                    <Col xs="12" className="px-0">
-                        <Section title="Payment Information">
-                            <Payment />
-                        </Section>
-                    </Col>
-                </Row>
-
+                {claimsPrincipal.hasReadClaim(claimResource.PaymentInfo) && (
+                    <Row>
+                        <Col xs="12" className="px-0">
+                            <Section title="Payment Information">
+                                <Payment />
+                            </Section>
+                        </Col>
+                    </Row>                    
+                )}           
                 <Row>
                     <Button className="mb-3" color="success" onClick={this.handleSubmit}>Submit</Button>
                 </Row>
@@ -146,11 +151,11 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, edit }) {
+function mapStateToProps({ affCommonInfo, edit, claimsPrincipal }) {
     const { affId, affName } = affCommonInfo;
     const { userAccountInfo, moreSiteUrlsList } = edit;
 
-    return Object.assign({}, { affId, affName, userAccountInfo, moreSiteUrlsList });
+    return Object.assign({}, { affId, affName, userAccountInfo, moreSiteUrlsList, claimsPrincipal });
 }
 
 function mapDispatchToProps(dispatch) {

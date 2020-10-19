@@ -6,6 +6,8 @@ import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import { capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo } from '../../actions';
 import { playerMethod, netellerMethod, moneybookersMethod, wireMethod, minimumPayment, nondeposited } from '../../modules/constants';
+import { SET_SHORT_CODE_LANGUAGE_LIST } from '../../../landing-page-statistics/actions/types';
+import { claimResource } from '../../../../../modules/claim';
 
 const paymentMethodList = [
     { key: playerMethod, value: '12BET player account' },
@@ -42,11 +44,17 @@ export class Payment extends PureComponent {
     }
 
     _renderPaymentForm(name, label, inputValue, isRequired, changeHandler) {
+        const {claimsPrincipal} = this.props;
+        const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.PaymentInfo);
         return (
             <FormGroup row>
                 <Label for={name} sm={3} xl={2} className={isRequired ? "required" : ""}>{label}</Label>
                 <Col sm={5} xl={6}>
-                    <Input type="text" id={name} name={name} value={inputValue} onChange={changeHandler} />
+                    {
+                        hasWriteClaim 
+                        ? <Input type="text" id={name} name={name} value={inputValue} onChange={changeHandler} />
+                        : <p className="form-control-plaintext">{inputValue}</p>
+                    }
                 </Col>
             </FormGroup>
         )
@@ -64,23 +72,36 @@ export class Payment extends PureComponent {
         )
     }
 
-    render() {
-        const { userAccountInfo } = this.props;
-        const renderFormByMethod = userAccountInfo && this._renderFormByMethod(userAccountInfo);
+    _renderPreferedPayment(){
+        const { userAccountInfo, claimsPrincipal } = this.props; 
+        const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.PaymentInfo);
+        return (
+            <FormGroup row>
+            <Label for="preferredPayment" sm={3} xl={2}>Preferred Payment Method</Label>
+            <Col sm={5} xl={6}>
+                { 
+                    hasWriteClaim 
+                    ? <Input type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
+                        {paymentMethodList.map(item => {
+                            return (<option key={item.key} value={item.key}>{item.value}</option>)
+                        })}
+                    </Input>
+                    : <p className="form-control-plaintext">{paymentMethodList.find(el => el.key === userAccountInfo.PreferredPayment).value}</p>
+                }
+            </Col>
+            <p>{minimumPayment}</p>
+            </FormGroup>
+        )
+    }
 
-        return userAccountInfo && (
+    render() {
+        const { userAccountInfo, claimsPrincipal } = this.props;
+        const renderFormByMethod = userAccountInfo && this._renderFormByMethod(userAccountInfo);
+        const hasReadClaim = claimsPrincipal.hasReadClaim(claimResource.PaymentInfo);
+
+        return userAccountInfo && hasReadClaim && (
             <Form tag="div">
-                <FormGroup row>
-                    <Label for="preferredPayment" sm={3} xl={2}>Preferred Payment Method</Label>
-                    <Col sm={5} xl={6}>
-                        <Input type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
-                            {paymentMethodList.map(item => {
-                                return (<option key={item.key} value={item.key}>{item.value}</option>)
-                            })}
-                        </Input>
-                    </Col>
-                    <p>{minimumPayment}</p>
-                </FormGroup>
+                {this._renderPreferedPayment()}
                 {renderFormByMethod[userAccountInfo.PreferredPayment]}
                 {
                     userAccountInfo.PreferredPayment === playerMethod && <p className="text-danger offset-sm-3 offset-xl-2 pl-1">{nondeposited}</p>
@@ -92,7 +113,7 @@ export class Payment extends PureComponent {
 
 function mapStateToProps({ edit, claimsPrincipal }) {
     const { userAccountInfo } = edit;
-    return Object.assign({}, { userAccountInfo });
+    return Object.assign({}, { userAccountInfo, claimsPrincipal });
 }
 
 function mapDispatchToProps(dispatch) {

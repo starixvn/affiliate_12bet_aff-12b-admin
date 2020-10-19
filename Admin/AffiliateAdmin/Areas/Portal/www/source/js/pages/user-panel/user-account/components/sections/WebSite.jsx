@@ -6,6 +6,7 @@ import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo, setMoreSiteUrlsList } from '../../actions';
 import { NotificationPopup } from '../../../../common/components/NotificationPopup';
+import { claimResource } from '../../../../../modules/claim';
 
 export class WebSite extends PureComponent {
     constructor(props) {
@@ -62,6 +63,8 @@ export class WebSite extends PureComponent {
     }
 
     _renderMoreSiteUrl(moreSiteUrlsList) {
+        const { claimsPrincipal } = this.props;
+        const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.WebsiteUrl);
         return (
             <React.Fragment>
                 {
@@ -69,10 +72,19 @@ export class WebSite extends PureComponent {
                         return (
                             <FormGroup row key={`siteUrl${index}`}>
                                 <Label for={`${index}`} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
-                                <Col sm={5} xl={6}>
-                                    <input className="form-control" name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
-                                </Col>
-                                <Button outline color="danger" className="mb-2" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
+                                { hasWriteClaim                                
+                                    ?  (<React.Fragment>
+                                            <Col sm={5} xl={6}>
+                                                <input className="form-control" name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
+                                            </Col>
+                                            <Button outline color="danger" className="mb-2" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
+                                        </React.Fragment> 
+                                        )
+                                    : (<Col sm={5} xl={6}>
+                                        <p className="form-control-plaintext">{value}</p>
+                                      </Col>) 
+
+                                }
                             </FormGroup>
                         )
                     })
@@ -83,26 +95,35 @@ export class WebSite extends PureComponent {
 
     render() {
         const { messageNotification } = this.state;
-        const { userAccountInfo, moreSiteUrlsList } = this.props;
-
+        const { userAccountInfo, moreSiteUrlsList, claimsPrincipal } = this.props;
+        const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.WebsiteUrl);
         return (
             <React.Fragment>
                 <Form tag="div">
                     <FormGroup row>
                         <Label for="siteUrl" sm={3} xl={2} className="required">Website URL</Label>
-                        <Col sm={5} xl={6}>
-                            <Input type="text" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
-                        </Col>
-                        <Button outline color="secondary" className="mb-2" onClick={this.handleAddUrl}>Add Url</Button>
+                        {hasWriteClaim  
+                            ? (<React.Fragment>
+                                    <Col sm={5} xl={6}>
+                                        <Input type="text" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
+                                    </Col>
+                                    <Button outline color="secondary" className="mb-2" onClick={this.handleAddUrl}>Add Url</Button>
+                                </React.Fragment>)
+                            : <p className="form-control-plaintext">{userAccountInfo.SiteUrl}</p>
+                        }
                     </FormGroup>
                     {
                         this._renderMoreSiteUrl(moreSiteUrlsList)
                     }
                     <FormGroup row>
                         <Label for="noSiteDescription" sm={3} xl={2}>I do not have a website Please describe how you would like to promote 12Bet if you do not have the URL .</Label>
-                        <Col sm={6} xl={7}>
-                            <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={userAccountInfo.NoSiteDescription} onChange={this.handleChange} />
-                        </Col>
+                        { hasWriteClaim 
+                            ? (<Col sm={6} xl={7}>
+                                <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={userAccountInfo.NoSiteDescription} onChange={this.handleChange} />
+                              </Col>)
+                            :  <p className="form-control-plaintext">{userAccountInfo.NoSiteDescription}</p>
+                        }
+
                     </FormGroup>
                 </Form>
                 {
@@ -117,9 +138,9 @@ export class WebSite extends PureComponent {
     }
 }
 
-function mapStateToProps({ edit }) {
+function mapStateToProps({ edit, claimsPrincipal }) {
     const { userAccountInfo, moreSiteUrlsList } = edit;
-    return Object.assign({}, { userAccountInfo, moreSiteUrlsList });
+    return Object.assign({}, { userAccountInfo, moreSiteUrlsList, claimsPrincipal });
 }
 
 function mapDispatchToProps(dispatch) {
