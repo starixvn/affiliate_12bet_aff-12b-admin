@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [ResetValueNotHavePermission(Function.Turnover)]
+        [HiddenProperty(Function.Turnover)]
         public ActionResult GetCustomerStatistics(CustomerStatisticsParam param)
         {
             if (ModelState.IsValid)

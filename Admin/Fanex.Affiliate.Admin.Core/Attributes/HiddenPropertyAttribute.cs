@@ -11,12 +11,12 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple =true)]
-    public class ResetValueNotHavePermissionAttribute : ActionFilterAttribute
+    public class HiddenPropertyAttribute : ActionFilterAttribute
     {
-        private string PermissionName { get; }
+        public string PermissionName { get; }
         private IEnumerable<UserPermission> Permission { get; set; }
 
-        public ResetValueNotHavePermissionAttribute(string permissionName)
+        public HiddenPropertyAttribute(string permissionName)
         {
             PermissionName = permissionName;
         }

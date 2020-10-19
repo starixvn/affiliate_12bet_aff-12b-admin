@@ -169,8 +169,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             httpContext.Session.Returns(session);
         }
 
-        private ResetValueNotHavePermissionAttribute CreateAttribute(string permissionName = PERMISSION_NAME)
-            => new ResetValueNotHavePermissionAttribute(permissionName);
+        private HiddenPropertyAttribute CreateAttribute(string permissionName = PERMISSION_NAME)
+            => new HiddenPropertyAttribute(permissionName);
 
         private class TestResetStringPropertyClass
         {
