@@ -6,8 +6,8 @@
 @{
     var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var permission = sessionService.ClaimIdentities.SelectMany(i => i.Claims);
-    var hasTurnOverPermission = permission.Any(i => i.FunctionName.Equals(Function.Turnover, StringComparison.OrdinalIgnoreCase));
+    var permissions = sessionService.ClaimIdentities.SelectMany(i => i.Claims);
+    var hasTurnOverPermission = permissions.Any(i => i.Type.Equals(Function.Turnover, StringComparison.OrdinalIgnoreCase));
     var menus = new Dictionary<string, string>
     {
         {"Customer",Function.Affiliate },
@@ -22,7 +22,7 @@
         {"Domain",Function.Domain }
     };
     var result = from n in menus
-                 join p in permission
+                 join p in permissions
                  on n.Value equals p.Type
                  select n.Key;
 }
@@ -43,6 +43,18 @@
             return menuKey;
         }
     }
+
+    public string GetClaimJOject(IEnumerable<System.Security.Claims.Claim> claims)
+    {
+        var builder = new System.Text.StringBuilder();
+        builder.Append("{");
+        foreach (var claim in claims)
+        {
+            builder.Append($"\"{claim.Type}\":\"{claim.Value}\",");
+        }
+        builder.Append("}");
+        return builder.ToString();
+    }
 }
 <ul class="nav menu-list">
     <li class="nav-item">
@@ -62,7 +74,8 @@
 
 <script type="text/javascript">
     window.globalVariables = {
-        hasTurnOverPermission: '@hasTurnOverPermission'.toLowerCase() === 'true'
+        hasTurnOverPermission: '@hasTurnOverPermission'.toLowerCase() === 'true',
+        claims: @Html.Raw(GetClaimJOject(permissions))
     }
 
     let element;
