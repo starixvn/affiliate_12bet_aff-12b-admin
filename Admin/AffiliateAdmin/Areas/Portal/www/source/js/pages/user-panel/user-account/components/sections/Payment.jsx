@@ -90,7 +90,7 @@ export class Payment extends PureComponent {
     }
 }
 
-function mapStateToProps({ edit }) {
+function mapStateToProps({ edit, claimsPrincipal }) {
     const { userAccountInfo } = edit;
     return Object.assign({}, { userAccountInfo });
 }

@@ -13,10 +13,12 @@ const defaultToday = `${now.getMonth()}/${now.getDate()}/${now.getFullYear()}`;
 const today = createReducer(defaultToday, {});
 const languageList = createReducer(null, {});
 const hasTurnOverPermission = createReducer(false, {});
+const claimsPrincipal = createReducer({}, {});
 
 export {
     affCommonInfo,
     today,
     languageList,
-    hasTurnOverPermission
+    hasTurnOverPermission,
+    claimsPrincipal
 }

@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import ClaimPrincipal from '../../modules/claim';
 
 import reducer from './mainpage/reducers';
 import AppContainer from './mainpage/components/AppContainer';
 import { configureStore } from '../../modules/store';
 
-const { hasTurnOverPermission } = window.globalVariables;
+const { hasTurnOverPermission, claims } = window.globalVariables;
 
-const store = configureStore({ ...window.initialState, hasTurnOverPermission }, reducer);
+const claimsPrincipal = new ClaimPrincipal(claims);
+
+const store = configureStore({ ...window.initialState, hasTurnOverPermission, claimsPrincipal }, reducer);
 
 export default class App extends React.PureComponent {
     constructor(props) {
