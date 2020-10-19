@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 {
     [FunctionAuthorize(FunctionName = Function.UserControl)]
-    public class AdminRoleController : BaseController
+    public class AdminRoleController : ReadOnlySessionBaseController
     {
         private readonly IAdminListService _adminListService;
         private readonly IAdminInfoService _adminInfoService;

@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
@@ -37,6 +38,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             };
         }
 
+        public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false)
+            => _userAccountRepository.GetSecurityQuestions(language, isIncludeOldData);
+
         private static bool ValidatePaymentMethod(UserAccountParam param)
         {
             var isPlayerUsername = PaymentMethod.Player.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.PlayerUsername);
@@ -52,5 +56,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             return !(string.IsNullOrEmpty(param.BankName) || string.IsNullOrEmpty(param.BankAddress) ||
                 string.IsNullOrEmpty(param.BankAccountName) || string.IsNullOrEmpty(param.BankAccountNumber));
         }
+
     }
 }

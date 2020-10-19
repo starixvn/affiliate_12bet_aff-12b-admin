@@ -73,6 +73,10 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 
         public bool MailOption { get; set; }
 
+        public int? QuestionId { get; set; }
+
+        public string Answer { get; set; }
+
         public IEnumerable<ContactApp> ContactAppList { get; set; }
     }
 }

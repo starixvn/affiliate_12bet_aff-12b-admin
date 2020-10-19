@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             if (!string.IsNullOrEmpty(FunctionName))
             {
                 var claims = filterContext.HttpContext.User as ClaimsPrincipal;
-                var claimValue = IsHost ? "IsHost" : String.Empty;
+                var claimValue = IsHost ? Function.WritePermission : String.Empty;
                 var hasPerimission = false;
                 if (claims != null)
                 {

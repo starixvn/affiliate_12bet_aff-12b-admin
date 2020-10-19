@@ -169,8 +169,9 @@
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\PermissionCheckAttribute.cs" />
-    <Compile Include="Attributes\ResetValueNotHavePermissionAttribute.cs" />
+    <Compile Include="Attributes\HiddenPropertyAttribute.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryHeaderAttribute.cs" />
+    <Compile Include="Attributes\SpParamProtectingAttribute.cs" />
     <Compile Include="Configurations\AppSetting.cs" />
     <Compile Include="Configurations\IAppSetting.cs" />
     <Compile Include="Configurations\LoggingConfig.cs" />
@@ -276,6 +277,7 @@
     <Compile Include="DTO\Member\DepositCustomerInfo.cs" />
     <Compile Include="DTO\Member\MemberInfo.cs" />
     <Compile Include="DTO\Member\InactiveMemberInfo.cs" />
+    <Compile Include="DTO\UserPanel\SecurityQuestion.cs" />
     <Compile Include="Extensions\ClaimPrincipalExtension.cs" />
     <Compile Include="MetaModels\Administrator\ChangeStatusParam.cs" />
     <Compile Include="MetaModels\Administrator\DeleteDepartmentParam.cs" />
@@ -492,6 +494,7 @@
     <Compile Include="Services\AffiliateService.cs" />
     <Compile Include="Services\AffTypeService.cs" />
     <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordService.cs" />
     <Compile Include="Services\ChangeAdminPassword\IChangeAdminPasswordService.cs" />
     <Compile Include="Services\CommGroup\CommGroupAssignmentService.cs" />

@@ -1,7 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Common.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
@@ -49,7 +51,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             BankAccountName = Convert.ToString(reader["BankAccountName"]),
                             BankAccountNumber = Convert.ToString(reader["BankAccountNo"]),
                             Question = isSpecialUser ? Convert.ToString(reader["Question"]) : string.Empty,
-                            Answer = isSpecialUser ? Convert.ToString(reader["Answer"]) : string.Empty,
+                            QuestionId = reader.ToInt("QuestionId"),
+                            Answer = Convert.ToString(reader["Answer"]),
+                            Lang = reader.ToString("PreferredLanguage"),
                             MailOption = reader["MailOption"] == DBNull.Value ? (bool?)null : Convert.ToBoolean(reader["MailOption"])
                         };
                     }
@@ -95,6 +99,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 objectDb.AddInParameter("BankAccountName", DbType.String, param.BankAccountName);
                 objectDb.AddInParameter("BankAccountNo", DbType.String, param.BankAccountNumber);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.AddInParameter("QuestionId", DbType.Int32, param.QuestionId);
+                objectDb.AddInParameter("Answer", DbType.String, param.Answer);
 
                 AssignResultOutputParam(objectDb);
 
@@ -102,6 +108,33 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
                 return GetResultInfo(objectDb);
             }
+        }
+
+        public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false)
+        {
+            const string spKey = "Aff_User_SecurityQuestions_Sel";
+
+            var securityQuestionList = new List<SecurityQuestion>();
+
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                objectDb.AddInParameter("IsIncludedOldData", DbType.Boolean, isIncludeOldData);
+                objectDb.AddInParameter("Language", DbType.String, language);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        securityQuestionList.Add(new SecurityQuestion
+                        {
+                            QuestionId = Convert.ToByte(reader["QuestionID"]),
+                            Question = Convert.ToString(reader["Question"])
+                        });
+                    }
+                }
+            }
+
+            return securityQuestionList;
         }
     }
 }

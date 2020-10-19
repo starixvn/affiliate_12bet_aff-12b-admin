@@ -11,6 +11,7 @@ using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
@@ -18,21 +19,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class UserAccountController : ReadOnlySessionBaseController
     {
-        private const int AAjeff = 1_216_422;
-        private const int AAmaggie = 1_203_083;
-        private const int AAsteve = 1_000_000_018;
-        private const int LocalAccount = 1_000_000_034;
-        private const int AAStarixQC1 = 1_000_000_043;
-
         private readonly IUserAccountService _userAccountService;
-        private readonly IAppSetting _appSetting;
 
         public UserAccountController(
-            IAppSetting appSetting,
             ISessionService sessionService,
             IUserAccountService userAccountService) : base(sessionService)
         {
-            _appSetting = appSetting;
             _userAccountService = userAccountService;
         }
 
@@ -42,13 +34,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (affId >= Validation.MinId)
             {
-                var userId = SessionService.UserId;
-                var isSpecialQcAccount = userId == AAStarixQC1;
-                var isLocalAccountTest = _appSetting.IsLocal && userId == LocalAccount;
-                var isSpecialUsersOnPro = userId == AAjeff || userId == AAmaggie || userId == AAsteve;
-
-                var isSpecialUser = isSpecialUsersOnPro || isSpecialQcAccount || isLocalAccountTest;
-                var userAccountInfo = _userAccountService.GetUserAccountInfo(affId, isSpecialUser);
+                var userAccountInfo = _userAccountService.GetUserAccountInfo(affId);
+                var claimPrincipal = HttpContext.User as ClaimsPrincipal;
+                var securityQuestions = claimPrincipal.HasWriteClaim(Function.SecurityQa) 
+                    ? _userAccountService.GetSecurityQuestions(userAccountInfo.Lang).Select(q => new KeyValuePair<int, string>(q.QuestionId, q.Question))
+                    : null;  
 
                 if (userAccountInfo != null)
                 {
@@ -80,9 +70,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                         BankAccountName = Server.HtmlDecode(userAccountInfo.BankAccountName),
                         BankAccountNumber = Server.HtmlDecode(userAccountInfo.BankAccountNumber),
                         Question = Server.HtmlDecode(userAccountInfo.Question),
+                        QuestionId = userAccountInfo.QuestionId,
                         Answer = Server.HtmlDecode(userAccountInfo.Answer),
                         MailOption = userAccountInfo.MailOption,
-                        IsSpecialUser = isSpecialUser
+                        SecurityQuestions = securityQuestions
                     };
 
                     if (!string.IsNullOrEmpty(newUserAccountInfo.ContactApps))

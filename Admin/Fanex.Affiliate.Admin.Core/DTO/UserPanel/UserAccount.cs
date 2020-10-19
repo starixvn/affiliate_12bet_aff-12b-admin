@@ -63,12 +63,16 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Question { get; set; }
 
+        public int QuestionId { get; set; }
+
         public string Answer { get; set; }
+
+        public string Lang { get; set; }
 
         public bool? MailOption { get; set; }
 
         public IEnumerable<ContactApp> ContactAppList { get; set; }
 
-        public bool IsSpecialUser { get; set; }
+        public IEnumerable<KeyValuePair<int,string>> SecurityQuestions { get; set; }
     }
 }
