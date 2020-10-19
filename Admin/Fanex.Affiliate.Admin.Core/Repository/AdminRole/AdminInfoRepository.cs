@@ -93,7 +93,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
         {
             objectDb.AddInParameter("UserName", DbType.String, string.IsNullOrEmpty(param.UserName) ? null : "AA" + param.UserName);
             objectDb.AddInParameter("UserPwd", DbType.String, param.Password);
-            objectDb.AddInParameter("UserSalt", DbType.String, param.UserSalt);
             objectDb.AddInParameter("FirstName", DbType.String, param.FirstName);
             objectDb.AddInParameter("LastName", DbType.String, param.LastName);
             objectDb.AddInParameter("RoleId", DbType.Int32, param.Role);
