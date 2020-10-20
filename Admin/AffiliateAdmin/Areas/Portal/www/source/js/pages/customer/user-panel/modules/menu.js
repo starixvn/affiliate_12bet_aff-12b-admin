@@ -1,4 +1,5 @@
 import React from 'react';
+import { claimResource } from '../../../../modules/claim';
 import { userPanelMenuKey as menuKey } from '../../common/modules/constants';
 import { withUserPanel } from '../modules/withUserPanel';
 
@@ -32,7 +33,7 @@ export const userPanelMenuList = [
     { key: menuKey.dailyEarning, name: '', component: withUserPanel(DailyEarning, menuKey.dailyEarning), parent: menuKey.statementHistory },
     { key: menuKey.dailyEarningDetail, name: '', component: withUserPanel(DailyEarningDetail, menuKey.dailyEarningDetail), parent: menuKey.statementHistory },
     { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null },
-    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null },
+    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null, permission: claimResource.Note },
     { key: menuKey.playerDetail, name: 'Players Detail', component: withUserPanel(PlayerDetail, menuKey.playerDetail), parent: null },
     { key: menuKey.adjustment, name: 'Adjustment', component: withUserPanel(Adjustment, menuKey.adjustment), parent: null },
     { key: menuKey.trackingStatistics, name: 'Tracking Statistics', component: withUserPanel(TrackingStatistics, menuKey.trackingStatistics), parent: null },

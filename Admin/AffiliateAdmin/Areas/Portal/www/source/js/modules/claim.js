@@ -4,7 +4,8 @@ export const claimResource = {
     PhoneNumber : '[AffPhone]',
     Email : '[AffEmail]',
     PaymentInfo : '[AffPaymentInfo]',
-    WebsiteUrl : '[AffWebURL]'
+    WebsiteUrl : '[AffWebURL]',
+    Note : '[Note]'
 }
 
 export default class ClaimPrincipal{
