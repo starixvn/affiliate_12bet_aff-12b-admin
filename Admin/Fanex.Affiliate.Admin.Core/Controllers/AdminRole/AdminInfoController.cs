@@ -88,6 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             {
                 var encodeParam = new AdminInfoParam
                 {
+                    UserId = param.UserId,
                     UserName = Server.HtmlEncode(param.UserName.Trim()),
                     FirstName = Server.HtmlEncode(param.FirstName.Trim()),
                     LastName = Server.HtmlEncode(param.LastName.Trim()),
