@@ -591,6 +591,7 @@
     <Content Include="www\build\js\validation.min.js">
       <DependentUpon>validation.js</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\bootstrap-3.3.7.min.css" />
     <Content Include="www\build\styles\css\commissionreport.css" />
     <Content Include="www\build\styles\css\commissionreport.min.css">
       <DependentUpon>commissionreport.css</DependentUpon>
@@ -1453,6 +1454,7 @@
     <Content Include="www\source\styles\scss\vendors\betlist\images\up.png" />
     <Content Include="www\source\styles\scss\vendors\betlist\rngcasino.handhistory.css" />
     <Content Include="www\source\styles\scss\vendors\betlist\systemparlay.detail.css" />
+    <Content Include="www\source\styles\scss\vendors\bootstrap-3.3.7.min.css" />
     <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_alerts.scss" />
     <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_background-variant.scss" />
     <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_border-radius.scss" />
