@@ -4,15 +4,17 @@ using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class UserAccountService : IUserAccountService
+    public class UserAccountService : BaseService ,IUserAccountService
     {
         private readonly IUserAccountRepository _userAccountRepository;
 
-        public UserAccountService(IUserAccountRepository userAccountRepository)
+        public UserAccountService(IUserAccountRepository userAccountRepository, IAuthService authService, ISessionService sessionService)
+            : base(authService, sessionService)
         {
             _userAccountRepository = userAccountRepository;
         }
@@ -25,6 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
         public ResultInfo UpdateUserAccount(UserAccountParam param)
         {
             var isValidPaymentMethod = ValidatePaymentMethod(param);
+            SetNullForPropertiesNotHavePermission(param);
 
             if (isValidPaymentMethod)
             {

@@ -33,5 +33,13 @@
         public const string Turnover = "[Turnover]";
         
         public const string AdminRole = "[Affiliate]";
+
+        public const string AffEmail = "[AffEmail]";
+
+        public const string AffPhone = "[AffPhone]";
+
+        public const string AffPaymentInfo = "[AffPaymentInfo]";
+
+        public const string AffWebUrl = "[AffWebURL]";
     }
 }
