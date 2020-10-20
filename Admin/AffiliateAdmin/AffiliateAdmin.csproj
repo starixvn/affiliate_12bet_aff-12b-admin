@@ -293,7 +293,6 @@
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adjustment.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminInfo.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminList.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminList~rolePermission.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\customer-statistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarning.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarningDetail.chunk.js" />
@@ -307,6 +306,7 @@
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\trackingStatistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\userAccount.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~adminInfo~adminList~rolePermission.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~adminList~rolePermission.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~landingPageStatistics~member~referrerStatistics~statementHistory~viewLog.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~playerDetail.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
