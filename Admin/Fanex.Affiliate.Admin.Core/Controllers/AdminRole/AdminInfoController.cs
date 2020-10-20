@@ -4,23 +4,34 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using ONEbook.UM.Filters;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 {
+    [CustomAuthorize]
+    [CheckUMFilter]
     [FunctionAuthorize(FunctionName = Function.UserControl)]
-    public class AdminInfoController : ReadOnlySessionBaseController
+    public class AdminInfoController : Controller
     {
+        private readonly IAuthService _authService;
+        private readonly ISessionService _sessionService;
         private readonly IAdminInfoService _adminInfoService;
 
         public AdminInfoController(
+            IAuthService authService,
             ISessionService sessionService,
-            IAdminInfoService adminInfoService) : base(sessionService)
+            IAdminInfoService adminInfoService)
         {
+            _authService = authService;
+            _sessionService = sessionService;
             _adminInfoService = adminInfoService;
         }
 
@@ -99,9 +110,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
                 GetUserInfoParam(encodeParam);
 
+                var result = _adminInfoService.UpdateUser(encodeParam);
+
+                UpdateClaims(result.IsSuccessful, encodeParam);
+
                 return new JsonNetResult
                 {
-                    Data = _adminInfoService.UpdateUser(encodeParam)
+                    Data = result
                 };
             }
 
@@ -123,9 +138,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             {
                 GetUserInfoParam(param);
 
+                var result = _adminInfoService.UpdateStatus(param);
+
+                UpdateClaims(result.IsSuccessful, param);
+
                 return new JsonNetResult
                 {
-                    Data = _adminInfoService.UpdateStatus(param)
+                    Data = result
                 };
             }
 
@@ -171,8 +190,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         private void GetUserInfoParam(AdminInfoParam param)
         {
-            param.ByUserId = SessionService.UserId;
+            param.ByUserId = _sessionService.UserId;
             param.Ip = Request.UserHostAddress;
+        }
+
+        private void UpdateClaims(bool isSuccessful, AdminInfoParam param)
+        {
+            if (isSuccessful && param.UserId == param.ByUserId)
+            {
+                var claims = _authService.GetClaims(param.UserId);
+                _sessionService.ClaimIdentities = new List<ClaimsIdentity> { new ClaimsIdentity(claims) };
+            }
         }
     }
 }

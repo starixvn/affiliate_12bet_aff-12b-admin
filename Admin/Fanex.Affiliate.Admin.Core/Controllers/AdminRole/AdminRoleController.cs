@@ -5,11 +5,14 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using ONEbook.UM.Filters;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 {
+    [CustomAuthorize]
+    [CheckUMFilter]
     [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class AdminRoleController : ReadOnlySessionBaseController
     {
