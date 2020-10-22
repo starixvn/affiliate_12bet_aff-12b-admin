@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -22,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             var service = new Mock<IRolePermissionService>();
             service.Setup(s => s.GetPermissionInfoList()).Returns(new List<RolePermissionInfo> { new RolePermissionInfo() });
 
-            var controller = CreateRolePermissionController(null, service.Object);
+            var controller = CreateRolePermissionController(null, null, service.Object);
 
             //Action
             var result = controller.GetPermissionInfoList() as JsonNetResult;
@@ -39,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             var service = new Mock<IRolePermissionService>();
             service.Setup(s => s.UpdatePermissionInfo(It.IsAny<UpdateRolePermissionParam>())).Returns(new ResultInfo());
 
-            var controller = CreateRolePermissionController(null, service.Object);
+            var controller = CreateRolePermissionController(null, null, service.Object);
 
             //Action
             var result = controller.UpdatePermissionInfo(new UpdateRolePermissionParam()) as JsonNetResult;
@@ -72,7 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             var service = new Mock<IRolePermissionService>();
             service.Setup(s => s.UpdateMarketInfoList(It.IsAny<UpdateMarketInfoParam>())).Returns(new ResultInfo());
 
-            var controller = CreateRolePermissionController(null, service.Object);
+            var controller = CreateRolePermissionController(null, null, service.Object);
 
             //Action
             var result = controller.UpdateMarketInfoList(new UpdateMarketInfoParam()) as JsonNetResult;
@@ -99,13 +100,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
         }
 
         private RolePermissionController CreateRolePermissionController(
+            IAuthService authService = null,
             ISessionService sessionService = null,
             IRolePermissionService rolePermissionService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakeAuthService = authService ?? Mock.Of<IAuthService>();
             var fakeRolePermissionService = rolePermissionService ?? Mock.Of<IRolePermissionService>();
 
-            var controller = new RolePermissionController(fakeSessionService, fakeRolePermissionService);
+            var controller = new RolePermissionController(fakeAuthService, fakeSessionService, fakeRolePermissionService);
 
             var request = MockingHelper.GetHttpRequest();
 

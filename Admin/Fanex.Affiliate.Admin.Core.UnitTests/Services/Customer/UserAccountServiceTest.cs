@@ -2,7 +2,10 @@
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
@@ -62,11 +65,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         }
 
         private static UserAccountService CreateUserAccountService(
-            IUserAccountRepository userAccountRepository = null)
+            IUserAccountRepository userAccountRepository = null,
+            IAuthService authService = null,
+            ISessionService sessionService = null)
         {
+            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakeAuthService = authService ?? Mock.Of<IAuthService>();
             var fakeUserAccountRepository = userAccountRepository ?? Mock.Of<IUserAccountRepository>();
 
-            return new UserAccountService(fakeUserAccountRepository);
+            return new UserAccountService(fakeUserAccountRepository, fakeAuthService, fakeSessionService);
         }
 
         private static UserAccountParam GetUserAccountParam()

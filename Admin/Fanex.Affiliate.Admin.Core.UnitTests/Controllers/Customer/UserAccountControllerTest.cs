@@ -8,6 +8,7 @@ using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -155,7 +156,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
                 ctx.HttpContext.Request == request &&
                 ctx.HttpContext.Server == server.Object &&
-                ctx.HttpContext.Session.SessionID == "SessionId"
+                ctx.HttpContext.Session.SessionID == "SessionId" &&
+                ctx.HttpContext.User == new ClaimsPrincipal(new List<ClaimsIdentity>{ new ClaimsIdentity() })
             );
 
             return controller;

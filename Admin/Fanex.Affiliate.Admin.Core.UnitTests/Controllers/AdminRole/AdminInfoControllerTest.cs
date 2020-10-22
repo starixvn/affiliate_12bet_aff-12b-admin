@@ -4,11 +4,13 @@ using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 using Xunit;
 
@@ -23,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             var service = new Mock<IAdminInfoService>();
             service.Setup(s => s.GetUserInfo(1)).Returns(new AdminInforResultEntity { MarketList = new List<MarketInfo> { new MarketInfo() } });
 
-            var controller = CreateAdminInfoController(null, service.Object);
+            var controller = CreateAdminInfoController(null, null, service.Object);
 
             //Action
             var result = controller.GetUserInfo(1) as JsonNetResult;
@@ -40,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             var service = new Mock<IAdminInfoService>();
             service.Setup(s => s.GetPermissionListByRole(1)).Returns(new List<UserPermissionInfo> { new UserPermissionInfo() });
 
-            var controller = CreateAdminInfoController(null, service.Object);
+            var controller = CreateAdminInfoController(null, null, service.Object);
 
             //Action
             var result = controller.GetPermissionListByRole(1) as JsonNetResult;
@@ -57,10 +59,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             var service = new Mock<IAdminInfoService>();
             service.Setup(s => s.CreateUser(It.IsAny<AdminInfoParam>())).Returns(new ResultInfo());
 
-            var controller = CreateAdminInfoController(null, service.Object);
+            var controller = CreateAdminInfoController(null, null, service.Object);
 
             //Action
-            var result = controller.CreateUser(new AdminInfoParam()) as JsonNetResult;
+            var result = controller.CreateUser(new AdminInfoParam { UserName = "ABC", Password = "123abc", FirstName = "A", LastName = "C"}) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             //Assert
@@ -90,10 +92,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             var service = new Mock<IAdminInfoService>();
             service.Setup(s => s.UpdateUser(It.IsAny<AdminInfoParam>())).Returns(new ResultInfo());
 
-            var controller = CreateAdminInfoController(null, service.Object);
+            var controller = CreateAdminInfoController(null, null, service.Object);
 
             //Action
-            var result = controller.UpdateUser(new AdminInfoParam { UserId = 123 }) as JsonNetResult;
+            var result = controller.UpdateUser(new AdminInfoParam { UserId = 123, UserName = "ABC", FirstName = "A", LastName = "C" }) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             //Assert
@@ -123,7 +125,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             var service = new Mock<IAdminInfoService>();
             service.Setup(s => s.UpdateStatus(It.IsAny<AdminInfoParam>())).Returns(new ResultInfo());
 
-            var controller = CreateAdminInfoController(null, service.Object);
+            var controller = CreateAdminInfoController(null, null, service.Object);
 
             //Action
             var result = controller.UpdateStatus(new AdminInfoParam { UserId = 123 }) as JsonNetResult;
@@ -155,7 +157,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             var service = new Mock<IAdminInfoService>();
             service.Setup(s => s.ChangePassword(It.IsAny<AdminInfoParam>())).Returns(new ResultInfo());
 
-            var controller = CreateAdminInfoController(null, service.Object);
+            var controller = CreateAdminInfoController(null, null, service.Object);
 
             //Action
             var result = controller.ChangePassword(new UpdatePasswordParam { Password = "123abc" }) as JsonNetResult;
@@ -182,16 +184,24 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
         }
 
         private AdminInfoController CreateAdminInfoController(
+            IAuthService authService = null,
             ISessionService sessionService = null,
             IAdminInfoService adminInfoService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakeAuthService = authService ?? Mock.Of<IAuthService>();
             var fakeAdminInfoService = adminInfoService ?? Mock.Of<IAdminInfoService>();
+            var controller = new AdminInfoController(fakeAuthService, fakeSessionService, fakeAdminInfoService);
 
             var request = MockingHelper.GetHttpRequest();
-            var controller = new AdminInfoController(fakeSessionService, fakeAdminInfoService);
-            controller.ControllerContext = Mock.Of<ControllerContext>(c => c.HttpContext.Request == request);
+            var server = new Mock<HttpServerUtilityBase>();
+            server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");
+
+            controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
+                ctx.HttpContext.Request == request &&
+                ctx.HttpContext.Server == server.Object
+            );
 
             return controller;
         }
