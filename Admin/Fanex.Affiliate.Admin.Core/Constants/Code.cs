@@ -4,6 +4,8 @@
     {
         public const int GeneralErrorCode = -999;
         public const int MonthlyWinlost = 201;
+        public const int PaymentRequest = 202;
+        public const int Adjustment = 203;
         public const int Transaction = 0;
         public const int ErrCodeSessionExpired = 401;
         public const int ErrCodeAccessDenied = 401;

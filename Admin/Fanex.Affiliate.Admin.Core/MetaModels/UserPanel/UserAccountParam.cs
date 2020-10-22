@@ -87,7 +87,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [SpParamProtecting(Function.AffPaymentInfo, Function.WritePermission)]
         public string BankAccountNumber { get; set; }
 
-        [SpParamProtecting(Function.AffPaymentInfo, Function.WritePermission)]
         public bool MailOption { get; set; }
 
         [SpParamProtecting(Function.SecurityQa, Function.WritePermission)]

@@ -41,5 +41,7 @@
         public const string AffPaymentInfo = "[AffPaymentInfo]";
 
         public const string AffWebUrl = "[AffWebURL]";
+
+        public const string AffAdjustment = "[AffAdjustment]";
     }
 }

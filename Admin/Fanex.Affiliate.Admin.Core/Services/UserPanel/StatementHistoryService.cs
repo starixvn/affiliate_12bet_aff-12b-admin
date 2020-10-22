@@ -1,18 +1,25 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
     public class StatementHistoryService : IStatementHistoryService
     {
         private readonly IStatementHistoryRepository _statementHistoryRepository;
+        private readonly ISessionService _sessionService;
 
-        public StatementHistoryService(IStatementHistoryRepository statementHistoryRepository)
+        public StatementHistoryService(IStatementHistoryRepository statementHistoryRepository, ISessionService sessionService)
         {
             _statementHistoryRepository = statementHistoryRepository;
+            _sessionService = sessionService;
         }
 
         public DailyEarningResult GetDailyEarning(DailyEarningParam param)
@@ -44,7 +51,21 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         public EntityResult<StatementHistory> GetStatementHistoryList(AffiliatePagingByDateParam param)
         {
-            return _statementHistoryRepository.GetStatementHistoryList(param);
+            var data = _statementHistoryRepository.GetStatementHistoryList(param);
+            data.MainData = FilterDataHaveClaimToQuery(data.MainData);
+            return data;
+        }
+
+        private IEnumerable<StatementHistory> FilterDataHaveClaimToQuery(IEnumerable<StatementHistory> mainData)
+        {
+            var claimPrincipal = _sessionService.UserClaim;
+            var result = mainData;
+            if (!claimPrincipal.HasClaim(Function.AffAdjustment))
+            {
+                result = result.Where(r => r.TransType !=  Code.Adjustment);
+            }
+
+            return result;
         }
     }
 }

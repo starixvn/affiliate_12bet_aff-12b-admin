@@ -125,7 +125,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     BankCode = Server.HtmlEncode(param.BankCode),
                     BankAccountName = Server.HtmlEncode(param.BankAccountName),
                     BankAccountNumber = Server.HtmlEncode(param.BankAccountNumber),
-                    MailOption = param.MailOption
+                    MailOption = param.MailOption,
+                    QuestionId = param.QuestionId,
+                    Answer = param.Answer
                 };
 
                 if (param.ContactAppList != null)

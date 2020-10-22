@@ -68,6 +68,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             set => HttpContext.Current.Session[ClaimSessionKey] = value;
         }
 
+        public ClaimsPrincipal UserClaim => HttpContext.Current.User as ClaimsPrincipal;
+
         IList<UserPermission> ISessionService.UserPermissionList
         {
 

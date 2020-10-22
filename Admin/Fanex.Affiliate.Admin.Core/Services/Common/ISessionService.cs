@@ -17,5 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         IList<UserPermission> UserPermissionList { get; set; }
 
         IEnumerable<ClaimsIdentity> ClaimIdentities { get; set; }
+
+        ClaimsPrincipal UserClaim { get; }
     }
 }
