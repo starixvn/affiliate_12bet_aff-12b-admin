@@ -3,7 +3,9 @@ using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
@@ -60,11 +62,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             Assert.Single(result.MainData);
         }
 
-        private static StatementHistoryService CreateStatementHistoryService(IStatementHistoryRepository statementHistoryRepository = null)
+        private static StatementHistoryService CreateStatementHistoryService(
+            IStatementHistoryRepository statementHistoryRepository = null,
+            ISessionService sessionService = null)
         {
+            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeStatementHistoryRepository = statementHistoryRepository ?? Mock.Of<IStatementHistoryRepository>();
 
-            return new StatementHistoryService(fakeStatementHistoryRepository);
+            return new StatementHistoryService(fakeStatementHistoryRepository, fakeSessionService);
         }
     }
 }
