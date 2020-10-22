@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.Note)]
     public class NoteController : ReadOnlySessionBaseController
     {
         private readonly INoteService _noteService;
@@ -58,7 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             return new JsonNetResult();
         }
 
-        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Note, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult InsertNote(InsertUpdateNoteParam param)
@@ -83,7 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             };
         }
 
-        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Note, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult UpdateNote(InsertUpdateNoteParam param)
