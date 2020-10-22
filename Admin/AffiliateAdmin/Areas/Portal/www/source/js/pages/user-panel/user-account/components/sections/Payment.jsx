@@ -49,12 +49,8 @@ export class Payment extends PureComponent {
         return (
             <FormGroup row>
                 <Label for={name} sm={3} xl={2} className={isRequired ? "required" : ""}>{label}</Label>
-                <Col sm={5} xl={6}>
-                    {
-                        hasWriteClaim 
-                        ? <Input type="text" id={name} name={name} value={inputValue} onChange={changeHandler} />
-                        : <p className="form-control-plaintext">{inputValue}</p>
-                    }
+                <Col sm={5} xl={6}>                   
+                    <Input type="text" id={name} name={name} value={inputValue} disabled={!hasWriteClaim} onChange={changeHandler} />                   
                 </Col>
             </FormGroup>
         )
@@ -75,19 +71,18 @@ export class Payment extends PureComponent {
     _renderPreferedPayment(){
         const { userAccountInfo, claimsPrincipal } = this.props; 
         const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.PaymentInfo);
+        const test = paymentMethodList.find(el => el.key === userAccountInfo.PreferredPayment);
+        console.log(test);
         return (
             <FormGroup row>
             <Label for="preferredPayment" sm={3} xl={2}>Preferred Payment Method</Label>
             <Col sm={5} xl={6}>
-                { 
-                    hasWriteClaim 
-                    ? <Input type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
+                <Input disabled = {!hasWriteClaim} type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
                         {paymentMethodList.map(item => {
                             return (<option key={item.key} value={item.key}>{item.value}</option>)
                         })}
-                    </Input>
-                    : <p className="form-control-plaintext">{paymentMethodList.find(el => el.key === userAccountInfo.PreferredPayment).value}</p>
-                }
+                </Input>
+            
             </Col>
             <p>{minimumPayment}</p>
             </FormGroup>

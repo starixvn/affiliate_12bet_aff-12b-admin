@@ -72,19 +72,11 @@ export class WebSite extends PureComponent {
                         return (
                             <FormGroup row key={`siteUrl${index}`}>
                                 <Label for={`${index}`} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
-                                { hasWriteClaim                                
-                                    ?  (<React.Fragment>
-                                            <Col sm={5} xl={6}>
-                                                <input className="form-control" name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
-                                            </Col>
-                                            <Button outline color="danger" className="mb-2" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
-                                        </React.Fragment> 
-                                        )
-                                    : (<Col sm={5} xl={6}>
-                                        <p className="form-control-plaintext">{value}</p>
-                                      </Col>) 
+                                <Col sm={5} xl={6}>
+                                    <input className="form-control" name={index} value={value} disabled={!hasWriteClaim} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
+                                </Col>
+                                {hasWriteClaim && <Button outline color="danger" className="mb-2" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>}
 
-                                }
                             </FormGroup>
                         )
                     })
@@ -102,28 +94,19 @@ export class WebSite extends PureComponent {
                 <Form tag="div">
                     <FormGroup row>
                         <Label for="siteUrl" sm={3} xl={2} className="required">Website URL</Label>
-                        {hasWriteClaim  
-                            ? (<React.Fragment>
-                                    <Col sm={5} xl={6}>
-                                        <Input type="text" name="siteUrl" value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
-                                    </Col>
-                                    <Button outline color="secondary" className="mb-2" onClick={this.handleAddUrl}>Add Url</Button>
-                                </React.Fragment>)
-                            : <p className="form-control-plaintext">{userAccountInfo.SiteUrl}</p>
-                        }
+                        <Col sm={5} xl={6}>
+                            <Input type="text" name="siteUrl" value={userAccountInfo.SiteUrl} disabled={!hasWriteClaim} onChange={this.handleChange} />
+                        </Col>
+                        {hasWriteClaim && <Button outline color="secondary" className="mb-2" onClick={this.handleAddUrl}>Add Url</Button>}
                     </FormGroup>
                     {
                         this._renderMoreSiteUrl(moreSiteUrlsList)
                     }
                     <FormGroup row>
                         <Label for="noSiteDescription" sm={3} xl={2}>I do not have a website Please describe how you would like to promote 12Bet if you do not have the URL .</Label>
-                        { hasWriteClaim 
-                            ? (<Col sm={6} xl={7}>
-                                <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={userAccountInfo.NoSiteDescription} onChange={this.handleChange} />
-                              </Col>)
-                            :  <p className="form-control-plaintext">{userAccountInfo.NoSiteDescription}</p>
-                        }
-
+                        <Col sm={6} xl={7}>
+                            <Input type="textarea" style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={userAccountInfo.NoSiteDescription} disabled={!hasWriteClaim} onChange={this.handleChange} />
+                        </Col>
                     </FormGroup>
                 </Form>
                 {

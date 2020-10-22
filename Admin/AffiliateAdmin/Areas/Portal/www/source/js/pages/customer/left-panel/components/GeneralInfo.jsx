@@ -7,6 +7,7 @@ import { htmlDecode } from '../../../../modules/htmlHelper';
 import Language from './general-info/Language';
 import ContactApp from './general-info/ContactApp';
 import ApprovedStatusInfo from './general-info/ApprovedStatusInfo';
+import { ContactNumber } from './general-info/ContactNumber';
 
 export const GeneralInfo = (props) => {
     const { affiliateInfo } = props;
@@ -40,7 +41,7 @@ export const GeneralInfo = (props) => {
             </Row>
             <Row>
                 <Col sm={5} className="pr-0">{resource.ContactNumber}</Col>
-                <Col sm={7} className='text-right'>{affiliateInfo.Phone}</Col>
+                <ContactNumber sm={7} className='text-right'>{affiliateInfo.Phone}</ContactNumber>
             </Row>
             <ContactApp />
             <Row>

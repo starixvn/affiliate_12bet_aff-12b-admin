@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { renderInputForm, capitalizeFirstChar, renderClaimBaseInputForm } from '../../modules/service';
+import { renderInputForm, capitalizeFirstChar, renderClaimBaseInputForm, renderStaticForm } from '../../modules/service';
 import { setUserAccountInfo } from '../../actions';
 import { updateObjectInArray } from '../../../../../modules/dataHandler';
 import { claimResource } from '../../../../../modules/claim';
@@ -66,7 +66,7 @@ export class Personal extends PureComponent {
 
         return userAccountInfo && (
             <Form tag="div">
-                {renderInputForm('username', 'User Name', userAccountInfo.AffName, true)}
+                {renderStaticForm('username', 'User Name', userAccountInfo.AffName, true)}
                 {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, true, this.handleChange)}
                 {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, true, this.handleChange)}
                 {this._renderGenderForm(userAccountInfo.Gender)}

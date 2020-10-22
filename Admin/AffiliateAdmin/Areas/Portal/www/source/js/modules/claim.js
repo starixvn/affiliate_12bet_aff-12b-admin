@@ -5,7 +5,15 @@ export const claimResource = {
     Email : '[AffEmail]',
     PaymentInfo : '[AffPaymentInfo]',
     WebsiteUrl : '[AffWebURL]',
-    Note : '[Note]'
+    Note : '[Note]',
+    Adjustment: '[AffAdjustment]'
+}
+
+export class Claim{
+    constructor(type, value){
+        this.type = type;
+        this.value = value;
+    }
 }
 
 export default class ClaimPrincipal{
@@ -14,7 +22,7 @@ export default class ClaimPrincipal{
     }
 
     hasReadClaim(claimType) {
-        if(typeof claimType === 'string')
+        if (typeof claimType === 'string')
         {
             return this.claims[claimType] !== undefined
         }
@@ -26,5 +34,10 @@ export default class ClaimPrincipal{
             return this.claims[claimType] === claimResource.WritePermission;
         }
         return false;
+    }
+
+    hasClaim(claim){
+        return this.claims[claim.type] !== undefined 
+            && (claim.value === undefined || this.claims[claim.type] === claim.value)
     }
 }

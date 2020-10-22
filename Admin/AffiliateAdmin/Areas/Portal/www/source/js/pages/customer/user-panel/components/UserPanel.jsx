@@ -16,7 +16,7 @@ export const UserPanel = (props) => {
     });
 
     const menuList = isPending ? userPanelPendingMenuList : userPanelMenuList;
-    const filterByClaimMenuList = menuList.filter(item => item.permission == undefined || claimsPrincipal.hasReadClaim(item.permission))
+    const filterByClaimMenuList = menuList.filter(item => item.renderClaim == undefined || claimsPrincipal.hasClaim(item.renderClaim));
     const componentIndex = filterByClaimMenuList.findIndex(p => p.key === selectedUserPanel);
     const UserPanelComponent = componentIndex === -1 ? null : menuList[componentIndex].component;
 
