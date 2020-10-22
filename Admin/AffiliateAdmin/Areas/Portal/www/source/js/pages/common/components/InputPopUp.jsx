@@ -3,19 +3,17 @@ import { Modal, ModalBody, ModalHeader, Input, ModalFooter, Button } from "react
 import { NotificationPopup } from "./NotificationPopup";
 
 export const InputPopUp = (props) => {
-    const { isOpen, handleSubmit, title, value } = props;
-    
+    const widthHeight = { width: 70, height: 30 };
+    const { isOpen, handleSubmit, title, value, toggle } = props;
+
     const [text, setText] = useState(value)
     const [message, setMessage] = useState("");
 
-    const toggle = () => setModal(!modal);
-
     const toggleNested = () => {
-        if (!!message)
-        {
+        if (!!message) {
             setMessage("")
         }
-        else{
+        else {
             setMessage("Are your sure?")
         }
     }
@@ -24,25 +22,31 @@ export const InputPopUp = (props) => {
 
     const handleConfirm = (isConfirm) => {
         toggleNested();
-        if(isConfirm)
-        {
+        if (isConfirm) {
             handleSubmit(text);
-            toggle();
         }
     }
 
     return (
         <Modal isOpen={isOpen} toggle={toggle} backdrop='static'>
-            <ModalHeader toggle={toggle}>{title}</ModalHeader>
+            <ModalHeader toggle={toggle}>
+                <div className="text-truncate" style={{ width: 450 }}>
+                    <span className="iconpopup"></span>{title}
+                </div>
+            </ModalHeader>
             <ModalBody>
-                <Input type="text" onChange={handleChangeText} value={text}/>
-                <NotificationPopup message={message} isConfirmPopup={true} handleClose={handleConfirm}/>
+                <div className="modal-body-wrapper">
+                    <div className="notification-popup-container" style={{ fontSize: 14 }}>
+                        <Input type="text" style={{ fontSize: 14 }} onChange={handleChangeText} value={text} />
+                        <div className="mt-3">
+                            <Button style={widthHeight} color="success mr-3" onClick={toggleNested}><strong>OK</strong></Button>
+                            <Button style={widthHeight} color="info" onClick={toggle}><strong>Cancel</strong></Button>
+                        </div>
+                    </div>
+                </div>
+                <NotificationPopup message={message} isConfirmPopup={true} onClose={handleConfirm} />
             </ModalBody>
-            <ModalFooter>
-                <Button onClick={toggleNested}>OK</Button>
-                <Button onClick={toggle}>Cancel</Button>
-            </ModalFooter>
         </Modal>
     );
 }
-export default InputPopUp;
+export default React.memo(InputPopUp);
