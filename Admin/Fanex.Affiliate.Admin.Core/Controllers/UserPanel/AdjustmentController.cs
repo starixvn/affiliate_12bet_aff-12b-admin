@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.AffAdjustment)]
     public class AdjustmentController : ReadOnlySessionBaseController
     {
         private readonly IAdjustmentService _adjustmentService;
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         }
 
-        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AffAdjustment, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult InsertAdjustment(AdjustmentParam param)

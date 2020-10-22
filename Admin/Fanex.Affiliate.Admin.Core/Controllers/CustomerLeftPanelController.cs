@@ -8,6 +8,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Affiliate.Admin.Core.ViewModels;
 using ONEbook.UM.Filters;
 using System.Web.Mvc;
 
@@ -92,6 +93,36 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     Code = Code.GeneralErrorCode,
                     Message = "Update Language is failed!"
                 }
+            };
+        }
+
+        [ValidateAntiForgeryHeader]
+        [HttpPost]
+        public ActionResult UpdateContactNumber(UpdateContactNumberViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new JsonResult
+                {
+                    Data = new ResultInfo
+                    {
+                        Code = Code.GeneralErrorCode,
+                        Message = "Update contact number is failed!"
+                    }
+                };
+            }
+
+            var param = new UpdateContactNumberParam
+            {
+                AffId = model.AffId,
+                PhoneNumber = model.ContactNumber,
+                Ip = Request.UserHostAddress,
+                UserId = _sessionService.UserId
+            };
+
+            return new JsonNetResult
+            {
+                Data = _customerLeftPanelService.UpdateContactNumber(param)
             };
         }
 

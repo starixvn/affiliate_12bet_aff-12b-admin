@@ -139,6 +139,21 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
             }
         }
 
+        public ResultInfo UpdateContactNumber(UpdateContactNumberParam param)
+        {
+            const string SpKey = "Aff_Admin_AffiliatePhoneNumber_Upd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery(param);
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
         public ResultInfo UpdateStatus(UpdateStatusParam param)
         {
             const string SpKey = "Aff_Admin_AffiliateStatus_Upd";
@@ -157,5 +172,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                 return GetResultInfo(objectDb);
             }
         }
+
+
     }
 }

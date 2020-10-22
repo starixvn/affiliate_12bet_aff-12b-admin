@@ -70,6 +70,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
 
             return result;
         }
+
+        public ResultInfo UpdateContactNumber(UpdateContactNumberParam param)
+            => new ResultInfo { Code = 0 };
+
         private void SendDisapprovedEmail(AffInformationEmail emailParam, AffiliateBasicInfo affInfo)
         {
             emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(affInfo.AffType);
@@ -93,5 +97,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             url += "&accOnId=" + accOnId;
             return new Uri(url, UriKind.Absolute);
         }
+
+
     }
 }
