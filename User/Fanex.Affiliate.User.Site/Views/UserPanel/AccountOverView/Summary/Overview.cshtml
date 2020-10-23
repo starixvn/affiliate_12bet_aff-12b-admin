@@ -7,6 +7,8 @@
     var itemTotal = Model.LastOrDefault();
     var hasData = rowNum > 1;
     var hasScroll = rowNum > 11;
+    var hasTurnOverPermission = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType);
+    var hasActivePlayerDetailPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.ActivePlayerDetail);
 }
 
 <div class="table">
@@ -16,10 +18,13 @@
                 <th width="10%">Date</th>
                 <th width="10%">New Sign Up</th>
                 <th width="12%">Deposited members</th>
-                <th width="12%">Active members</th>
+                @if (hasActivePlayerDetailPermission)
+                {
+                    <th width="12%">Active members</th>
+                }
                 <th width="16%">Qualified Active members</th>
                 <th width="10%">Deposits</th>
-                @if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+                @if (hasTurnOverPermission)
                 {
                     <th width="10%">Turnover</th>
                 }
@@ -33,10 +38,13 @@
                         <th class="text-center">Total</th>
                         <th class="text-center">@itemTotal.Signups</th>
                         <th class="text-center">@itemTotal.DepositedMembers</th>
+                        @if (hasActivePlayerDetailPermission)
+                        {
                         <th class="text-center">@itemTotal.ActiveMembers</th>
+                        }
                         <th class="text-center">@itemTotal.QualifiedActiveMembers</th>
                         <th class="text-center">@itemTotal.Deposit.FormatDecimal()</th>
-                        @if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+                        @if (hasTurnOverPermission)
                         {
                             <th class="text-center">@itemTotal.Turnover.FormatDecimal()</th>
                         }
@@ -57,10 +65,13 @@
                             <td class="text-center">@item.WinlostDate.ToString("MM/dd/yyyy")</td>
                             <td class="text-center">@item.Signups</td>
                             <td class="text-center">@item.DepositedMembers</td>
-                            <td class="text-center">@item.ActiveMembers</td>
+                            @if (hasActivePlayerDetailPermission)
+                            {
+                                <td class="text-center">@itemTotal.ActiveMembers</td>
+                            }
                             <td class="text-center">@item.QualifiedActiveMembers</td>
                             <td class="text-center">@item.Deposit.FormatDecimal()</td>
-                            @if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+                            @if (hasTurnOverPermission)
                             {
                                 <td class="text-center">@item.Turnover.FormatDecimal()</td>
                             }
@@ -72,7 +83,7 @@
                 else
                 {
                     <tr>
-                        <td class="text-center" colspan="9">@Lang.NoInfo</td>
+                        <td class="text-center" colspan="@( 7 + hasActivePlayerDetailPermission.ToInt() + hasTurnOverPermission.ToInt() )">@Lang.NoInfo</td>
                     </tr>
                 }
             }
