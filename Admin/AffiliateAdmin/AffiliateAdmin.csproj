@@ -293,7 +293,6 @@
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adjustment.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminInfo.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminList.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adminList~rolePermission.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\customer-statistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarning.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarningDetail.chunk.js" />
