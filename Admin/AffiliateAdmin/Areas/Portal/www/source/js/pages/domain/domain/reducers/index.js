@@ -2,6 +2,7 @@
 
 import createReducer from '../../../../modules/createReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
+import {claimsPrincipal} from '../../../common/reducers/index'
 import { SHOULD_RESET_SCROLL_POSITION, SET_SELECTED_DOMAIN, SET_GRID_DATA } from '../actions/types';
 
 const isAffDomain = createReducer(true, {});
@@ -29,5 +30,6 @@ export default combineReducers({
     isAffDomain,
     isShowLoader,
     selectedDomain,
-    shouldResetScrollPosition
+    shouldResetScrollPosition,
+    claimsPrincipal
 });

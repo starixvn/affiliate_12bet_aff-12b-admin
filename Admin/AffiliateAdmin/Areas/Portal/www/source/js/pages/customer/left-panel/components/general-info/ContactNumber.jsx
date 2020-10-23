@@ -28,7 +28,6 @@ export class ContactNumber extends PureComponent{
         this.setState(
             {
                 isOpen : true,
-                notificationMessage: "test"
             });
     }
 
@@ -44,14 +43,14 @@ export class ContactNumber extends PureComponent{
         this._toogle();
         const param = Object.assign({}, {AffId: this.props.affiliateInfo.AffId, ContactNumber: value })
         toggleLoaderLeftPanel(true);
-        var result = await updateContactNumber(param);
-        toggleLoaderLeftPanel(false);
+        var result = await this.props.updateContactNumber(param);
+        toggleLoaderLeftPanel(false);   
         if (result.IsSuccessful) {
-            this.setState({ notificationMessage: messages.contactNumberUpdatedSuccess, isConfirmPopup: false });
+            this.setState({ notificationMessage: messages.contactNumberUpdatedSuccess});
             this.props.getAffiliateInfo(this.props.affName);
         }
         else {
-            this.setState({ notificationMessage: result.Message, isConfirmPopup: false });
+            this.setState({ notificationMessage: result.Message});
         }
     } 
 
@@ -62,7 +61,7 @@ export class ContactNumber extends PureComponent{
             <Col className={className} sm={sm} md={md}>
                 <Button color="link" className="left-panel-btn-link" onClick={this._handleOnClick}>{this.props.children}</Button>
                 <InputPopUp isOpen={isOpen} title="Contact number" value={this.props.children} toggle={this._toogle} handleSubmit={this._handleSubmit}/>
-                <NotificationPopup message={notificationMessage} onClose={this._handleCloseNotification}/>
+                <NotificationPopup message={notificationMessage} onClose={this._handleCloseNotification} isConfirmPopup={false} />
             </Col>
         )
     }
@@ -78,6 +77,7 @@ export class ContactNumber extends PureComponent{
 
 function mapStateToProps({ affCommonInfo, leftPanel }) {
     const { affiliateInfo } = leftPanel;
+    console.log(affiliateInfo);
     const { affName } = affCommonInfo;
     return Object.assign({}, { affiliateInfo, affName });
 }

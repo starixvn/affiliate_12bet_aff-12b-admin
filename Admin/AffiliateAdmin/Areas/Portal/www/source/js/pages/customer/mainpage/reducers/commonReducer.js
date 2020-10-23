@@ -1,4 +1,5 @@
 import createReducer from '../../../../modules/createReducer';
+import {claimsPrincipal} from '../../../common/reducers/index'
 
 import { SET_AFF_COMMON_INFO } from '../actions/types';
 
@@ -13,7 +14,6 @@ const defaultToday = `${now.getMonth()}/${now.getDate()}/${now.getFullYear()}`;
 const today = createReducer(defaultToday, {});
 const languageList = createReducer(null, {});
 const hasTurnOverPermission = createReducer(false, {});
-const claimsPrincipal = createReducer({}, {});
 
 export {
     affCommonInfo,

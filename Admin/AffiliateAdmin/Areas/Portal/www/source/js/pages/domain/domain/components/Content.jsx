@@ -8,6 +8,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
 import { deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -64,6 +65,7 @@ export class Content extends PureComponent {
     }
 
     _renderHeader() {
+        const { isModifiable } = this.props;
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={60} title={headerText.Index}>{headerText.Index}</Cell>
@@ -71,8 +73,8 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={60} title={headerText.SSL}>{headerText.SSL}</Cell>
                 <Cell header={true} colWidth={160} title={headerText.Creator}>{headerText.Creator}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.Edit}>{headerText.Edit}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.Delete}>{headerText.Delete}</Cell>
+                { isModifiable && <Cell header={true} colWidth={60} title={headerText.Edit}>{headerText.Edit}</Cell>}
+                { isModifiable && <Cell header={true} colWidth={60} title={headerText.Delete}>{headerText.Delete}</Cell>}
             </Row>
         );
     }
@@ -98,7 +100,7 @@ export class Content extends PureComponent {
     _buildDataRow(dataItem, index) {
         const domainName = htmlDecode(dataItem.DomainName);
         const creator = htmlDecode(dataItem.Creator);
-
+        const {isModifiable} = this.props;
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
@@ -108,29 +110,35 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
-                <Cell className="text-center" title="Edit Domain">
-                    <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId, domainName, dataItem.IsSSL)}>
-                        <span className="oi oi-pencil text-secondary"></span>
-                    </Button>
-                </Cell>
-                <Cell className="text-center" title="Delete Domain">
-                    <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
-                        <span className="oi oi-trash text-danger"></span>
-                    </Button>
-                </Cell>
+                { isModifiable &&
+                    <React.Fragment>
+                        <Cell className="text-center" title="Edit Domain">
+                            <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId, domainName, dataItem.IsSSL)}>
+                                <span className="oi oi-pencil text-secondary"></span>
+                            </Button>
+                        </Cell>
+                        <Cell className="text-center" title="Delete Domain">
+                            <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
+                                <span className="oi oi-trash text-danger"></span>
+                            </Button>
+                        </Cell>
+                    </React.Fragment>
+                }
             </Row>
         )
     }
 
     render() {
-        const { gridData, shouldResetScrollPosition, isAffDomain } = this.props;
+        const { gridData, shouldResetScrollPosition, isAffDomain, isModifiable } = this.props;
         const { message, isConfirmPopup } = this.state;
 
         return gridData && (
             <div className="data-content">
-                <div className="my-2">
-                    <Button outline type="button" onClick={() => this._handleEditDomain(0, '', false)}>{isAffDomain ? 'Add AffDomain' : 'Add 12Bet Domain'}<span className="oi oi-plus ml-2"></span></Button>
-                </div>
+                { isModifiable &&
+                    <div className="my-2">
+                        <Button outline type="button" onClick={() => this._handleEditDomain(0, '', false)}>{isAffDomain ? 'Add AffDomain' : 'Add 12Bet Domain'}<span className="oi oi-plus ml-2"></span></Button>
+                    </div>
+                }
                 <div className="domain-list-content table-responsive table-striped my-2">
                     <Table
                         minWidth={1000}
@@ -154,8 +162,9 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, isAffDomain }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, isAffDomain });
+function mapStateToProps({ shouldResetScrollPosition, gridData, isAffDomain, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.Domain)
+    return Object.assign({}, { shouldResetScrollPosition, gridData, isAffDomain, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

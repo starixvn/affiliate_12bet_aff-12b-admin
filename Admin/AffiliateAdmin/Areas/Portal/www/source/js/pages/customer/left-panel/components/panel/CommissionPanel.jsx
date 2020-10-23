@@ -10,6 +10,7 @@ import { formatDecimalWithCurrencySymbol } from '../../../../../modules/numberFo
 import { getAffiliateInfo } from '../../actions';
 import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
 import { htmlDecode } from '../../../../../modules/htmlHelper';
+import { claimResource } from '../../../../../modules/claim';
 
 export class CommissionPanel extends PureComponent {
     constructor(props) {
@@ -33,30 +34,38 @@ export class CommissionPanel extends PureComponent {
     }
 
     _renderCommGroup(affiliateInfo) {
+        const { isChangingCommissionGroup, isPrivateGroup } = this.state;
         return affiliateInfo.IsClosed ? (<span className="">{htmlDecode(affiliateInfo.CommGroupName)}</span>) :
-            (<Button color="link" className="left-panel-btn-link align-baseline text-right" onClick={() => this.toggleEditingCommissionPopup(true)}>
-                {htmlDecode(affiliateInfo.CommGroupName)}
-            </Button>)
+            (
+                <React.Fragment>
+                    <Button color="link" className="left-panel-btn-link align-baseline text-right" onClick={() => this.toggleEditingCommissionPopup(true)}>
+                        {htmlDecode(affiliateInfo.CommGroupName)}
+                    </Button>
+                    <CommissionGroupPopup
+                        showPopupCommGroup={isChangingCommissionGroup}
+                        isPrivateGroup={isPrivateGroup}
+                        affName={affiliateInfo.AffName}
+                        affId={affiliateInfo.AffId}
+                        setShowPopupCommGroup={this.toggleEditingCommissionPopup}
+                        getAffiliateInfo={this.props.getAffiliateInfo}
+                    />
+                </React.Fragment>
+            )
+    }
+
+    _renderStaticContent = (affiliateInfo) => {      
+        return htmlDecode(affiliateInfo.CommGroupName)
     }
 
     render() {
-        const { isChangingCommissionGroup, isPrivateGroup } = this.state;
-        const { affiliateInfo } = this.props;
-
+        const { affiliateInfo, isStatic } = this.props;
+        const commSelection = isStatic ? this._renderStaticContent(affiliateInfo) : this._renderCommGroup(affiliateInfo);
         return (
             <Panel heading={resource.Commission}>
                 <Row>
                     <Col sm={7}>{resource.CommGroup}</Col>
                     <Col sm={5} className='text-right text-break pl-0'>
-                        {this._renderCommGroup(affiliateInfo)}
-                        <CommissionGroupPopup
-                            showPopupCommGroup={isChangingCommissionGroup}
-                            isPrivateGroup={isPrivateGroup}
-                            affName={affiliateInfo.AffName}
-                            affId={affiliateInfo.AffId}
-                            setShowPopupCommGroup={this.toggleEditingCommissionPopup}
-                            getAffiliateInfo={this.props.getAffiliateInfo}
-                        />
+                        {commSelection}
                     </Col>
                 </Row>
                 <Row>
@@ -68,10 +77,10 @@ export class CommissionPanel extends PureComponent {
     }
 }
 
-function mapStateToProps({ leftPanel }) {
+function mapStateToProps({ leftPanel, claimsPrincipal }) {
     const { affiliateInfo } = leftPanel;
-
-    return Object.assign({}, { affiliateInfo });
+    const isStatic = claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
+    return Object.assign({}, { affiliateInfo, isStatic });
 };
 
 function mapDispatchToProps(dispatch) {

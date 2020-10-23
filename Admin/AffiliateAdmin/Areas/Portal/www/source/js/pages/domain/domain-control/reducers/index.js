@@ -3,6 +3,7 @@
 import createReducer from '../../../../modules/createReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import { SET_SELECTED_MARKET, SET_SELECTED_DOMAIN, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_AFF_DOMAIN_LIST, SET_REDIRECT_DOMAIN } from '../actions/types';
+import { claimsPrincipal } from '../../../common/reducers/index';
 
 const marketList = createReducer(null, {})
 
@@ -50,5 +51,6 @@ export default combineReducers({
     selectedDomain,
     affDomainList,
     redirectDomainList,
-    shouldResetScrollPosition
+    shouldResetScrollPosition,
+    claimsPrincipal
 });

@@ -6,3 +6,5 @@ export const showPopupPassword = createReducer(false, {
         return action.data;
     }
 })
+
+export const claimsPrincipal = createReducer({}, {});
