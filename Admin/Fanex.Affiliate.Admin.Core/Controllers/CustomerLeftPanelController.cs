@@ -68,6 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.LanguageAmendment, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateLanguage(UpdateLanguageParam param)
         {
@@ -97,6 +98,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AffPhone, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateContactNumber(UpdateContactNumberViewModel model)
         {
@@ -149,6 +151,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AffAccountStatus, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateStatus(UpdateStatusParam param)
         {

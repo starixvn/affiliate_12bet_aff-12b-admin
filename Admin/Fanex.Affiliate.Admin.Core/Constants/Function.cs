@@ -43,5 +43,9 @@
         public const string AffWebUrl = "[AffWebURL]";
 
         public const string AffAdjustment = "[AffAdjustment]";
+
+        public const string LanguageAmendment = "[AffMarket]";
+
+        public const string AffAccountStatus = "[AffAccountStatus]";
     }
 }
