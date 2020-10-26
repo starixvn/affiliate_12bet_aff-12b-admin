@@ -2,6 +2,7 @@
 
 import createReducer from '../../../modules/createReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
+import { claimsPrincipal } from '../../../reducers/claimReducer';
 import { SET_DATE, SET_GRID_DATA, SET_TOGGLE_POPUP, SET_SELECTED_EXCHANGE_RATE, SHOULD_RESET_SCROLL_POSITION } from '../actions/types';
 
 const today = createReducer(null, {});
@@ -45,5 +46,6 @@ export default combineReducers({
     isOpenPopup,
     isShowLoader,
     selectedExchangeRate,
-    shouldResetScrollPosition
+    shouldResetScrollPosition,
+    claimsPrincipal
 });

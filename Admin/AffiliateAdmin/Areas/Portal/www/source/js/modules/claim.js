@@ -12,7 +12,9 @@ export const claimResource = {
     LanguageAmendment: '[AffMarket]',
     CommGroup: '[CommissionGroup]',
     AffAccountStatus: '[AffAccountStatus]',
-    Domain: '[Domain]'
+    Domain: '[Domain]',
+    HotNews: '[HotNews]',
+    AffExRate: '[AffEx.Rate]'
 }
 
 export class Claim{
@@ -47,3 +49,6 @@ export default class ClaimPrincipal{
             && (claim.value === undefined || this.claims[claim.type] === claim.value)
     }
 }
+
+export const claimsPrincipal = new ClaimPrincipal(window.globalVariables.claims);
+

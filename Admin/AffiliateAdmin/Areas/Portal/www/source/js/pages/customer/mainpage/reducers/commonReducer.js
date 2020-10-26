@@ -1,5 +1,4 @@
 import createReducer from '../../../../modules/createReducer';
-import {claimsPrincipal} from '../../../common/reducers/index'
 
 import { SET_AFF_COMMON_INFO } from '../actions/types';
 
@@ -20,5 +19,4 @@ export {
     today,
     languageList,
     hasTurnOverPermission,
-    claimsPrincipal
 }
