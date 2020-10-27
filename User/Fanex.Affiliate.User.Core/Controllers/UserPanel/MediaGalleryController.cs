@@ -36,7 +36,7 @@
             var bannerParam = new MarketingBannerParam
             {
                 AffId = userSession.AffId,
-                Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(selectedLanguage))?.EnglishName,
+                Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(selectedLanguage))?.MarketName,
                 AffType = userSession.AffType,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,

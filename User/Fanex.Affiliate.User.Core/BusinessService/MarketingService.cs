@@ -10,6 +10,7 @@ using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+using Fanex.Affiliate.User.Core.DTO;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -43,16 +44,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return categoryList ?? new List<CategoryType>();
         }
 
-        public IEnumerable<LanguageType> GetLanguageList(bool isInternal)
-            => _languageService.GetSystemLanguages(isInternal)
-            .Select(l => new LanguageType
-            {
-                DisplayName = l.DisplayName,
-                MarketId = l.Code,
-                MarketName = l.EnglishName,
-                MarketNativeName = l.NativeName,
-                ShortedCode = l.ShortedCode
-            });
+        public IEnumerable<Language> GetLanguageList(bool isInternal)
+            => _languageService.GetSystemLanguages(isInternal);
 
         public IEnumerable<CurrencyType> GetCurrencyList(bool isInternal)
         {
@@ -117,24 +110,24 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 foreach (var item in languageList)
                 {
-                    var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(item.Value));
+                    var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(item.Value));
 
                     if (language != null)
                     {
-                        linkList.Add(language.NativeName, GenerateLink(linkGenerationParam, language.ShortedCode));
+                        linkList.Add(language.MarketNativeName, GenerateLink(linkGenerationParam, language.ShortedCode));
                     }
                 }
 
-                var preferredLanguage = _languageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(linkGenerationParam.PreferredLanguage));
+                var preferredLanguage = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(linkGenerationParam.PreferredLanguage));
                 linkList.Add(Lang.Default, GenerateLink(linkGenerationParam, preferredLanguage.ShortedCode));
             }
             else
             {
-                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(selectedLanguage));
+                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(selectedLanguage));
 
                 if (language != null)
                 {
-                    linkList.Add(language.NativeName, GenerateLink(linkGenerationParam, language.ShortedCode));
+                    linkList.Add(language.MarketNativeName, GenerateLink(linkGenerationParam, language.ShortedCode));
                 }
             }
 
@@ -158,7 +151,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     banner.Height = Convert.ToInt32(sizes[1]);
                 }
 
-                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.EnglishName.MatchWith(banner.Language));
+                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketName.MatchWith(banner.Language));
 
                 if (language != null)
                 {
@@ -178,7 +171,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 text.Message = HttpContext.Current.Server.HtmlDecode(text.Message.Replace("\r\n", "<br/>"));
                 text.ScriptSrc = textParam.ScriptUrl + text.TextId;
-                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.EnglishName.MatchWith(text.Language));
+                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketName.MatchWith(text.Language));
 
                 if (language != null)
                 {

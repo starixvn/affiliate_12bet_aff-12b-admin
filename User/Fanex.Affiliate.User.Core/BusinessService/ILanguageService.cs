@@ -11,6 +11,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         bool IsValid(string langCode);
 
-        IEnumerable<Language> GetSystemLanguages(bool? isInternal = null); 
+        IEnumerable<Language> GetSystemLanguages(bool? isInternal = null);
     }
 }

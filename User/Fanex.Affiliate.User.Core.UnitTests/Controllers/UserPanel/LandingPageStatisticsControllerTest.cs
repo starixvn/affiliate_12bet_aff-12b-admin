@@ -13,6 +13,7 @@ using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics;
 using Moq;
 using Xunit;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+using Fanex.Affiliate.User.Core.DTO;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
@@ -108,16 +109,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.Equal(expectedShortedCode, param.LanguageCode);
         }
 
-        private IEnumerable<LanguageType> CreateFakeLanguageList()
+        private IEnumerable<Language> CreateFakeLanguageList()
         {
-            return new List<LanguageType>
+            return new List<Language>
             {
-                new LanguageType
+                new Language
                 {
                     MarketId = "en-US",
                     MarketName = "English",
                 },
-                new LanguageType
+                new Language
                 {
                     MarketId = "vi-VN",
                     MarketName = "Vietnamese",

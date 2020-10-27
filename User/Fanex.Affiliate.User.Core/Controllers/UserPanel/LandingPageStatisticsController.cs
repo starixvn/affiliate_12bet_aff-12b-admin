@@ -71,7 +71,7 @@
             if (!string.IsNullOrEmpty(selectedLanguage))
             {
                 landingPageParam.LanguageCode = LanguageService.GetSystemLanguages()
-                                                .FirstOrDefault(l => l.Code.Equals(selectedLanguage))
+                                                .FirstOrDefault(l => l.MarketId.Equals(selectedLanguage))
                                                 ?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
             }
 
@@ -92,7 +92,7 @@
             {
                 var language = LanguageService.GetSystemLanguages().FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
 
-                item.LanguageName = language == null ? item.LanguageCode : language.NativeName;
+                item.LanguageName = language == null ? item.LanguageCode : language.MarketNativeName;
             }
 
             return dataList;

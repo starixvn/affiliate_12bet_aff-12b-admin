@@ -2,7 +2,6 @@
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
@@ -33,14 +32,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 
         public static IEnumerable<Language> LanguageList = new List<Language>
         {
-            new Language {Code = "en-UK", DisplayName="English", EnglishName="English", NativeName="English", ShortedCode="en" },
-            new Language {Code ="vi-VN", DisplayName="VietNam", EnglishName= "VietNamese", NativeName="Tieng viet", ShortedCode = "vn" },
-            new Language {Code = "en-US",  DisplayName="English", EnglishName="English", NativeName="English", ShortedCode="us"}
+            new Language { MarketId = "en-UK", DisplayName = "English", MarketName = "English", MarketNativeName = "English", ShortedCode = "en" },
+            new Language { MarketId = "vi-VN", DisplayName = "VietNam", MarketName = "VietNamese", MarketNativeName = "Tieng viet", ShortedCode = "vn" },
+            new Language { MarketId = "en-US",  DisplayName ="English", MarketName = "English", MarketNativeName = "English", ShortedCode = "us" }
         };
 
-        public static IEnumerable<LanguageType> LanguageTypeList = new List<LanguageType>
+        public static IEnumerable<Language> LanguageTypeList = new List<Language>
         {
-            new LanguageType {DisplayName = "English", MarketId = "en-UK", MarketName = "England", MarketNativeName = "England", ShortedCode = "en" }
+            new Language { MarketId = "en-UK", DisplayName = "English", MarketName = "England", MarketNativeName = "England", ShortedCode = "en" }
         };
 
         public static IEnumerable<CategoryType> CategoryList = new List<CategoryType>

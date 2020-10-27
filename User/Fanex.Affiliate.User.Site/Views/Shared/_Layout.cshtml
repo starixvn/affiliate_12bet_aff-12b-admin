@@ -7,8 +7,8 @@
     var settingService = DependencyResolver.Current.GetService<IAppSetting>();
     var languageService = DependencyResolver.Current.GetService<ILanguageService>();
     var userSession = sessionService.UserSession;
-    var languageList = languageService.GetSystemLanguages().Where(l => !l.Code.Equals("en-GB") && !l.Code.Equals("es-ES"));
-    var currentLanguage = languageList.FirstOrDefault(l => l.Code.Equals(sessionService.CurrentLanguage))?.NativeName;
+    var languageList = languageService.GetSystemLanguages().Where(l => !l.MarketId.Equals("en-GB") && !l.MarketId.Equals("es-ES"));
+    var currentLanguage = languageList.FirstOrDefault(l => l.MarketId.Equals(sessionService.CurrentLanguage))?.MarketNativeName;
 }
 
 <!DOCTYPE html>
@@ -74,9 +74,9 @@
                                     <ul class="list-unstyled language-list">
                                         @foreach (var language in languageList)
                                         {
-                                            var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.Code) ? SystemLanguage.SupportedLanguage[language.Code] : language.ShortedCode;
+                                            var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.MarketId) ? SystemLanguage.SupportedLanguage[language.MarketId] : language.ShortedCode;
                                             <li>
-                                                <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
+                                                <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.MarketId"></i>@language.MarketNativeName</a>
                                             </li>
                                         }
                                     </ul>

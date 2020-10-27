@@ -3,7 +3,6 @@ using System.Web.Routing;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using ONEbook.UM.Filters;
-using Fanex.Affiliate.User.Core.Constants;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -39,9 +38,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         protected RedirectToRouteResult RedirectToFixedAction(string actionName, object routeValue)
         {
-            var routeDic = new RouteValueDictionary(routeValue);
-            routeDic.Add("controller", RouteData.Values["controller"]);
-            routeDic.Add("action", actionName);
+            var routeDic = new RouteValueDictionary(routeValue)
+            {
+                { "controller", RouteData.Values["controller"] },
+                { "action", actionName }
+            };
             var result = RedirectToRoute(RouteName, routeDic);
             return result;
         }

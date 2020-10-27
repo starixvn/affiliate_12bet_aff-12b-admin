@@ -16,6 +16,8 @@
 
         public string Status { get; set; }
 
+        public int AdminId { get; set; }
+
         public int OnUserId { get; set; }
 
         public string GroupName { get; set; }

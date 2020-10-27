@@ -1,6 +1,8 @@
 ﻿@{
     Layout = null;
 }
+@using Fanex.Affiliate.User.Core.Utilities
+@using Fanex.Affiliate.User.Core.Constants
 @model Fanex.Affiliate.User.Core.DTO.UserPanel.LastLoginInfo
 
 @Html.InlineStyles("~/www/build/styles/css/account-overview.min.css")
@@ -9,8 +11,11 @@
     <div class="tab-menu" id="account-overview-menu">
         <ul class="menu list-unstyled">
             <li><a href="javascript:;" data-name="Summary" class="menu-item account-overview-menu-item" id="menuSummary">Summary</a></li>
-            <li><a href="javascript:;" data-name="AffiliateLink" class="menu-item account-overview-menu-item" id="menuAffiliateLink">Affiliate Link</a></li>
-            <li><a href="javascript:;" data-name="MediaGallery" class="menu-item account-overview-menu-item" id="menuMediaGallery">Media Gallery</a></li>
+            @if (ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.MediaGallery))
+            {
+                <li><a href="javascript:;" data-name="AffiliateLink" class="menu-item account-overview-menu-item" id="menuAffiliateLink">Affiliate Link</a></li>
+                <li><a href="javascript:;" data-name="MediaGallery" class="menu-item account-overview-menu-item" id="menuMediaGallery">Media Gallery</a></li>
+            }
         </ul>
     </div>
     <div class="bg-orange">

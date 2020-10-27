@@ -61,7 +61,7 @@
             var subCategoryList = MarketingService.GetCategoryList(true, SessionService.IsInternal)
                                                     .Where(c => c.Category.MatchWith(category) && !string.IsNullOrEmpty(c.SubCategory));
 
-            return Json(subCategoryList.Select(i => 
+            return Json(subCategoryList.Select(i =>
                 new SelectListItem
                     {
                         Value = i.SubCategory,
@@ -75,7 +75,7 @@
         public ActionResult GetSize(SizeParam param)
         {
             param.AffType = SessionService.UserSession.AffType;
-            param.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(param.Language))?.EnglishName;
+            param.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(param.Language))?.MarketName;
             var sizeList = MarketingService.GetSizeList(param, SessionService.IsInternal);
 
             return Json(sizeList, JsonRequestBehavior.AllowGet);
@@ -99,7 +99,7 @@
             bannerParam.BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain;
             bannerParam.Language = LanguageService
                 .GetSystemLanguages()
-                .FirstOrDefault(l => l.Code.MatchWith(bannerParam.Language))?.EnglishName;
+                .FirstOrDefault(l => l.MarketId.MatchWith(bannerParam.Language))?.MarketName;
 
             var bannerList = GetBannerList(bannerParam);
             ViewBag.TotalItem = bannerParam.Nrows;
@@ -119,7 +119,7 @@
             textParam.SelectedDomain = selectedDomain;
             textParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
             textParam.ScriptUrl = AppSetting.MediaScriptUrl;
-            textParam.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(textParam.Language))?.EnglishName;
+            textParam.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(textParam.Language))?.MarketName;
 
             var textList = GetTextList(textParam);
             ViewBag.TotalItem = textParam.Nrows;
@@ -135,8 +135,8 @@
             var selectedDomain = MarketingService
                 .GetDomainList(userSession.AffId, SessionService.IsInternal)
                 .FirstOrDefault(d => d.DomainId == selectedDomainId);
-            var languageList = string.IsNullOrEmpty(selectedLanguage) 
-                ? MarketingHelper.GetLanguageList(MarketingService.GetLanguageList(SessionService.IsInternal), userSession.PreferredLanguage) 
+            var languageList = string.IsNullOrEmpty(selectedLanguage)
+                ? MarketingHelper.GetLanguageList(MarketingService.GetLanguageList(SessionService.IsInternal), userSession.PreferredLanguage)
                 : null;
 
             var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);

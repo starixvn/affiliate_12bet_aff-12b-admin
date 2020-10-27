@@ -2,11 +2,11 @@
 {
     public class Language
     {
-        public string Code { get; set; }
+        public string MarketId { get; set; }
 
-        public string EnglishName { get; set; }
+        public string MarketName { get; set; }
 
-        public string NativeName { get; set; }
+        public string MarketNativeName { get; set; }
 
         public string DisplayName { get; set; }
 

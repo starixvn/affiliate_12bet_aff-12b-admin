@@ -42,32 +42,28 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<Language> GetSystemLanguages(bool? isInternal = null)
         {
+            var isLogin = isInternal != null;
             var isForInternal = isInternal ?? _sessionService.IsInternal;
-            var languageList = _cacheService.Get<IEnumerable<LanguageType>>(CacheKey.LanguageList);
+            var adminId = isLogin ? _sessionService.UserSession?.AdminId : null;
+            var cacheKey = isLogin && isForInternal ? CacheKey.InternalLanguageList : CacheKey.LanguageList;
+
+            var languageList = _cacheService.Get<IEnumerable<Language>>(cacheKey);
             if (languageList == null)
             {
-                languageList = _languageRepository.GetLanguageList(isForInternal);
+
+                languageList = _languageRepository.GetLanguageList(isForInternal, adminId);
             }
 
             if (languageList != null)
             {
-                _cacheService.Set(CacheKey.LanguageList, languageList);
+                _cacheService.Set(cacheKey, languageList);
             }
 
-            languageList = languageList ?? new List<LanguageType>();
-
-            return languageList.Select(l => new Language
-            {
-                Code = l.MarketId,
-                DisplayName = l.DisplayName,
-                EnglishName = l.MarketName,
-                NativeName = l.MarketNativeName,
-                ShortedCode = l.ShortedCode
-            });
+            return languageList ?? new List<Language>();
         }
 
         public bool IsValid(string langCode)
-            => !string.IsNullOrWhiteSpace(langCode) && GetSystemLanguages().Any(l => Equals(l.Code, langCode));
+            => !string.IsNullOrWhiteSpace(langCode) && GetSystemLanguages().Any(l => Equals(l.MarketId, langCode));
 
 
         public void SetCulture(string languageCode)

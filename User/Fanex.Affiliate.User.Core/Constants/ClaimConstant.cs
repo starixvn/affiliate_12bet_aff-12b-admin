@@ -3,7 +3,9 @@ namespace Fanex.Affiliate.User.Core.Constants
 {
     public static class ClaimConstant
     {
-        public const string TurnOverType = "[TurnOver]";
+        public const string MediaGallery = "[Media]";
+
+        public const string TurnOverType = "[AffTurnover]";
 
         public const string ActivePlayerDetail = "[AffPlayerDetail]";
 
