@@ -2,7 +2,15 @@
     Layout = null;
 }
 @using Fanex.Affiliate.User.Core.CoreService
+@using Fanex.Affiliate.User.Core.Utilities
+@using Fanex.Affiliate.User.Core.Constants
 @model Fanex.Affiliate.User.Core.DTO.UserPanel.AccountInformation
+
+@{
+    var hasPhonePermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.PhoneType);
+    var hasEmailPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.EmailType);
+    var hasPaymentInfoPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.PaymentInfoType);
+}
 
 @Html.InlineStyles("~/www/build/styles/css/my-account.css")
 
@@ -69,7 +77,7 @@
                 </div>
 
                 @if (Model.IsRenderState)
-            {
+                {
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@Lang.State</label>
                         <div class="col-sm-4">
@@ -91,23 +99,28 @@
                         <p class="form-control-static">@Model.Country</p>
                     </div>
                 </div>
+                @if (hasEmailPermission)
+                {
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@Lang.Email</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">@Model.Email</p>
+                        </div>
+                    </div>
+                }
 
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">@Lang.Email</label>
-                    <div class="col-sm-4">
-                        <p class="form-control-static">@Model.Email</p>
+                @if (hasPhonePermission)
+                {
+                    <div class="form-group">
+                        <label class="col-sm-3 require control-label">@Lang.ContactNumber</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(p => p.Phone, new { @class = "form-control" })
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "help-block hide" })
+                        </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 require control-label">@Lang.ContactNumber</label>
-                    <div class="col-sm-4">
-                        @Html.TextBoxFor(p => p.Phone, new { @class = "form-control" })
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "help-block hide" })
-                    </div>
-                </div>
+                }
 
                 @if (Model.ContactAppList != null && Model.ContactAppList.Any())
                 {
@@ -137,8 +150,8 @@
                                 </div>
                             }
                             <div class="col-sm-offset-3 col-sm-9">
-                                <span class="field-validation-valid help-block hide" 
-                                      data-valmsg-for="@(contactAppCount == 2 ? dependentField : $"ContactAppList[{index}].Value")" 
+                                <span class="field-validation-valid help-block hide"
+                                      data-valmsg-for="@(contactAppCount == 2 ? dependentField : $"ContactAppList[{index}].Value")"
                                       data-valmsg-replace="true"></span>
                             </div>
                             <input type="hidden" name="ContactAppList[@index].Name" value="@item.Name" />
@@ -275,41 +288,44 @@
         </div>
 
         <div class="info-group">
-            <div class="title">
-                <span class="text">@Lang.PaymentInfor</span>
-            </div>
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
-                    <div class="col-sm-4">
-                        <label class="radio-inline">
-                            <input type="radio" checked /> @Lang._12BETPlayerAcc
-                        </label>
-                    </div>
+            @if (hasPaymentInfoPermission)
+            {
+                <div class="title">
+                    <span class="text">@Lang.PaymentInfor</span>
                 </div>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" checked /> @Lang._12BETPlayerAcc
+                            </label>
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label class="col-sm-3 control-label @(string.IsNullOrEmpty(Model.PlayerUsername) ? "require" : string.Empty)">@Lang.Username</label>
-                    <div class="col-sm-4">
-                        @if (string.IsNullOrEmpty(Model.PlayerUsername))
-                        {
-                            <input id="PlayerUsername" name="PlayerUsername" class="form-control" type="text" value=""
-                                   data-val="true" data-val-required="@Lang.BETUserNameIsRequired" />
-                        }
-                        else
-                        {
-                            <p class="form-control-static">@Model.PlayerUsername</p>
-                        }
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <span class="field-validation-valid help-block hide" data-valmsg-for="PlayerUsername" data-valmsg-replace="true"></span>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label @(string.IsNullOrEmpty(Model.PlayerUsername) ? "require" : string.Empty)">@Lang.Username</label>
+                        <div class="col-sm-4">
+                            @if (string.IsNullOrEmpty(Model.PlayerUsername))
+                            {
+                                <input id="PlayerUsername" name="PlayerUsername" class="form-control" type="text" value=""
+                                       data-val="true" data-val-required="@Lang.BETUserNameIsRequired" />
+                            }
+                            else
+                            {
+                                <p class="form-control-static">@Model.PlayerUsername</p>
+                            }
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <span class="field-validation-valid help-block hide" data-valmsg-for="PlayerUsername" data-valmsg-replace="true"></span>
+                        </div>
                     </div>
                 </div>
+            }
 
-                <div class="col-sm-offset-3 button-block">
-                    <button id="btnMyAccountSubmit" class="btn btn-submit" type="button">@Lang.Submit</button>
-                    <button id="btnCancel" class="btn btn-submit" type="button">@Lang.Cancel</button>
-                </div>
+            <div class="col-sm-offset-3 button-block">
+                <button id="btnMyAccountSubmit" class="btn btn-submit" type="button">@Lang.Submit</button>
+                <button id="btnCancel" class="btn btn-submit" type="button">@Lang.Cancel</button>
             </div>
         </div>
     </form>

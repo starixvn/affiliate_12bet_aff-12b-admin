@@ -18,7 +18,7 @@
             <div class="tab-menu details-section-menu" id="details-section-menu">
                 <ul class="menu list-unstyled">
                     <li><a href="javascript:;" data-name="Overview" class="menu-item details-section-menu-item" id="menuOverview">Overview</a></li>
-                    @if (ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.ActivePlayerDetail))
+                    @if (ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.ActivePlayerDetailType))
                     {
                         <li><a href="javascript:;" data-name="PlayersDetails" class="menu-item details-section-menu-item" id="menuPlayersDetails">Players Details</a></li>
                     }

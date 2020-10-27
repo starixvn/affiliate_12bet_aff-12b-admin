@@ -1,13 +1,12 @@
 ﻿@using Fanex.Affiliate.User.Core.Utilities
+@using Fanex.Affiliate.User.Core.CoreService
+@using Fanex.Affiliate.User.Core.Constants
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var groupName = sessionService.UserSession.GroupName;
 }
-
-@using Fanex.Affiliate.User.Core.CoreService
-@using Fanex.Affiliate.User.Core.Constants
 
 @section styles{
     @RenderSection("styles", required: false)

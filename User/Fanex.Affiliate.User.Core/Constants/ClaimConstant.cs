@@ -7,7 +7,13 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string TurnOverType = "[AffTurnover]";
 
-        public const string ActivePlayerDetail = "[AffPlayerDetail]";
+        public const string ActivePlayerDetailType = "[AffPlayerDetail]";
+
+        public const string PhoneType = "[AffPhone]";
+
+        public const string EmailType = "[AffPhone]";
+
+        public const string PaymentInfoType = "[AffPaymentInfo]";
 
         public const string WriteClaimValue = "Write";
     }

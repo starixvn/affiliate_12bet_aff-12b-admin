@@ -1,9 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Security.Claims;
 
 using System.Web;
@@ -13,6 +10,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 {
     public static class ClaimUtitlity
     {
+        private static readonly ISessionService SessionService = DependencyResolver.Current.GetService<ISessionService>();
+
         public static bool HasClaim(string claimType)
         {
             var pricinpal = HttpContext.Current.User as ClaimsPrincipal;
@@ -25,8 +24,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public static bool HasClaimOnlyInternalLogin(string claimType)
         {
-            var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-            if(!sessionService.IsInternal)
+            if(!SessionService.IsInternal)
             {
                 return true;
             }

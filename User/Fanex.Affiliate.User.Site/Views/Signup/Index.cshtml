@@ -246,7 +246,7 @@
                                 <option value="">@Lang.SelectOne</option>
                                 @foreach (var item in languageService.GetSystemLanguages())
                                 {
-                                    <option value="@item.Code">@item.NativeName</option>
+                                    <option value="@item.MarketId">@item.MarketNativeName</option>
                                 }
                             </select>
                         </div>
