@@ -9,7 +9,7 @@
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using Filters;
 
-    [CustomAuthorize]
+    [CustomAuthorize(PermissionName = ClaimConstant.CommissionReport)]
     public class CommissionReportController : BaseController
     {
         private readonly ICommissionReportService _commissionReportService;
@@ -17,7 +17,7 @@
         public CommissionReportController(
             ISessionService sessionService,
             ILanguageService languageService,
-            ICommissionReportService commissionReportService) 
+            ICommissionReportService commissionReportService)
             : base(sessionService, languageService)
         {
             _commissionReportService = commissionReportService;
@@ -38,7 +38,7 @@
             var viewModel = year >= 2009 && year <= DateTime.Now.Year
                 ? _commissionReportService.GenerateCommissionReportData(
                     SessionService.UserSession.AffId,
-                    new DateTime(year, 1, 1)) 
+                    new DateTime(year, 1, 1))
                 : new CommissionReportDataViewModel();
 
             ClearTurnOverDataIfNotHavePermmision(viewModel);

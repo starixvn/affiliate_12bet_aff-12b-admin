@@ -3,7 +3,11 @@ namespace Fanex.Affiliate.User.Core.Constants
 {
     public static class ClaimConstant
     {
+        public const string PaymentRequest = "[Payment]";
+
         public const string MediaGallery = "[Media]";
+
+        public const string CommissionReport = "[AffReport]";
 
         public const string TurnOverType = "[AffTurnover]";
 

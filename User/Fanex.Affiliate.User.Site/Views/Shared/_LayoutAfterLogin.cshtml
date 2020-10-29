@@ -6,6 +6,9 @@
 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var groupName = sessionService.UserSession.GroupName;
+    var hasTurnOverPermission = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType);
+    var hasPaymentRequestPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.PaymentRequest);
+    var hasCommissionReportPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.CommissionReport);
 }
 
 @section styles{
@@ -15,7 +18,7 @@
 @section scripts{
     <script>
         window.Permission = {
-            HasTurnOverPermission: '@ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType)'.toLowerCase() === 'true'
+            HasTurnOverPermission: '@hasTurnOverPermission'.toLowerCase() === 'true'
         }
     </script>
     @RenderSection("scripts", required: false)
@@ -32,8 +35,14 @@
             }
             <li><a class="menu-item" id="menuStatementHistory" href="@Url.Content("~/UserPanel/Main/#StatementHistory")">@Lang.StatementHistory</a></li>
             <li><a class="menu-item" id="menuMyAccount" href="@Url.Content("~/UserPanel/Main/#MyAccount")">@Lang.MyAccount</a></li>
-            <li><a class="menu-item" id="menuPaymentRequest" href="@Url.Content("~/UserPanel/Main/#PaymentRequest")">@Lang.PaymentRequest</a></li>
-            <li><a class="menu-item" id="menuCommissionReport" href="@Url.Content("~/UserPanel/Main/#CommissionReport")">@Lang.CommissionReport</a></li>
+            @if (hasPaymentRequestPermission)
+            {
+                <li><a class="menu-item" id="menuPaymentRequest" href="@Url.Content("~/UserPanel/Main/#PaymentRequest")">@Lang.PaymentRequest</a></li>
+            }
+            @if (hasCommissionReportPermission)
+            {
+                <li><a class="menu-item" id="menuCommissionReport" href="@Url.Content("~/UserPanel/Main/#CommissionReport")">@Lang.CommissionReport</a></li>
+            }
             <li class="parent">
                 <a class="menu-item" href="javascript:;">@Lang.Statistics <i class="caret"></i></a>
                 <ul class="menu submenu-container list-unstyled">
