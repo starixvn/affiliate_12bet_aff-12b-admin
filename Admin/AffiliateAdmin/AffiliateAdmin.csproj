@@ -305,8 +305,6 @@
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\statementHistory.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\trackingStatistics.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\userAccount.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~adminList~rolePermission.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~landingPageStatistics~member~referrerStatistics~statementHistory~viewLog.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~playerDetail.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\viewLog.chunk.js" />
@@ -314,8 +312,6 @@
     <Content Include="Areas\Portal\www\dist\js\pages\admin-role.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\administrator\administrator.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\administrator\department.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\affiliate\affiliate-info.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\affiliate\email-history.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\change-admin-password.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
@@ -331,9 +327,7 @@
     <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\landing-page.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\text-list.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\member\active-member.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\member\member-list.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\message\message.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\payment\payment-request.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\report\affiliate-report.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\under-maintenance.js" />
@@ -1409,6 +1403,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Portal\www\dist\js\pages\affiliate\" />
     <Folder Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\__test__\" />
   </ItemGroup>
   <ItemGroup>
