@@ -120,3 +120,24 @@ export const validateNewPassword = (newPassword) => {
 
     return result;
 }
+
+export const getVirtualUrl = () => {
+    if(!window.virtualUrl)
+        return '/';
+    return window.virtualUrl;
+}
+
+export const convertArrayToObjectProps = (array, key, value) => {
+    if(!Array.isArray(array))
+        return {};
+    let result = {};
+    array.forEach((item) =>{
+        let keyValue = item[key];
+        result[keyValue] = item[value];
+    })
+    return result;
+}
+
+export const removeUndifineItem = (obj) => {
+    return JSON.parse(JSON.stringify(obj));
+}

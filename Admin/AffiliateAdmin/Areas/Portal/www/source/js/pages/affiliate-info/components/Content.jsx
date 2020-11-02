@@ -10,6 +10,7 @@ import ReportExcel from '../modules/reportExcel';
 import { post } from '../../../modules/ajaxRequest';
 import { convertSelectedColumnList } from '../modules/utils';
 import { regExp } from '../modules/constants';
+import { claimResource } from '../../../modules/claim';
 
 export class Content extends Component {
     constructor(props) {
@@ -46,12 +47,15 @@ export class Content extends Component {
     }
 
     _buildReportTitle(reportTitle) {
+        const { isDisplayExportExcelBtn } = this.props;
         return (
             <div className="d-flex align-items-center">
                 {reportTitle}
-                <button type="button" className="ml-auto btn btn-link btn-excel" onClick={this.handleExportExcel} title="Export Excel">
-                    <span className="oi icon-excel"></span>
-                </button>
+                { isDisplayExportExcelBtn &&
+                    <button type="button" className="ml-auto btn btn-link btn-excel" onClick={this.handleExportExcel} title="Export Excel">
+                        <span className="oi icon-excel"></span>
+                    </button>
+                }
             </div>
         );
     }
@@ -68,8 +72,9 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ reportTitle, param, languageList, columnList }) {
-    return Object.assign({}, { reportTitle, param, languageList, columnList });
+function mapStateToProps({ reportTitle, param, languageList, columnList, claimsPrincipal }) {
+    const isDisplayExportExcelBtn = claimsPrincipal.hasClaim(claimResource.ExportExcel);
+    return Object.assign({}, { reportTitle, param, languageList, columnList, isDisplayExportExcelBtn });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -10,6 +10,7 @@ import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/num
 
 import { redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers } from '../../user-panel/actions';
 import { setMonthDate, fetchData } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -80,11 +81,11 @@ export class Content extends PureComponent {
 
     _renderData(monthDate, data) {
         data = data || {};
-        const { hasTurnOverPermission } = this.props;
+        const { isDisplayTurnOver, isDisplayActivePlayer } = this.props;
         const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
         const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
-        const TurnoverByMonth = hasTurnOverPermission && formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
-        const TurnoverTotal = hasTurnOverPermission && formatDecimalWithCurrencySymbol(data.TurnoverTotal);
+        const TurnoverByMonth = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
+        const TurnoverTotal = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverTotal);
         const WinlostByMonth = formatDecimalWithCurrencySymbol(data.WinlostByMonth);
         const WinlostTotal = formatDecimalWithCurrencySymbol(data.WinlostTotal);
 
@@ -101,7 +102,7 @@ export class Content extends PureComponent {
                         `${format(data.NewSignUpTotal)}/${format(data.NewFdmTotal)}`)
                 }
                 {
-                    this._buildRow(rowTitle.TotalActive,
+                    isDisplayActivePlayer && this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
                                 <a href="javascript:;" onClick={() => this.props.redirectToPlayerDetail({ productId: selectedAllProduct, monthDate: startMonthString, isClickLink: true })}>
@@ -112,7 +113,7 @@ export class Content extends PureComponent {
                 }
                 {this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMemberByMonth), resource.NA)}
                 {this._buildRow(rowTitle.TotalDeposits, DepositByMonth, DepositTotal)}
-                {hasTurnOverPermission && this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
+                { isDisplayTurnOver && this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRate,
@@ -164,9 +165,11 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, today, hasTurnOverPermission, customerStatistics }) {
+function mapStateToProps({ affCommonInfo, today, customerStatistics, claimsPrincipal }) {
     const { affId } = affCommonInfo;
-    return Object.assign({}, { monthDate: customerStatistics.monthDate, today, affId, hasTurnOverPermission });
+    const isDisplayTurnOver = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
+    const isDisplayActivePlayer = claimsPrincipal.hasReadClaim(claimResource.AffPlayerDetail)
+    return Object.assign({}, { monthDate: customerStatistics.monthDate, today, affId, isDisplayTurnOver, isDisplayActivePlayer });
 }
 
 function mapDispatchToProps(dispatch) {

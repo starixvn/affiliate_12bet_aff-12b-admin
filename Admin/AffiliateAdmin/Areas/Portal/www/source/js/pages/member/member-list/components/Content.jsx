@@ -8,6 +8,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
 import { deleteMember, fetchData, setPagingOption, toggleLoader, setShouldResetScrollPosition, setParam } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -22,7 +23,7 @@ export class Content extends PureComponent {
 
     componentDidUpdate(prevProps) {
         const { param } = this.props;
-        if(param && param !== prevProps.param) {
+        if (param && param !== prevProps.param) {
             this.props.fetchData(param);
         }
     }
@@ -72,6 +73,7 @@ export class Content extends PureComponent {
     }
 
     _renderHeader() {
+        const {isModifiable}  = this.props;
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
@@ -82,7 +84,7 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={120} title={headerText.CurrentBalance}>{headerText.CurrentBalance}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
-                <Cell header={true} colWidth={30} title={headerText.Remove}>{headerText.Remove}</Cell>
+                { isModifiable &&<Cell header={true} colWidth={30} title={headerText.Remove}>{headerText.Remove}</Cell>}
             </Row>
         );
     }
@@ -110,6 +112,8 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
+        const {isModifiable} = this.props;
+
         const userName = htmlDecode(dataItem.UserName);
         const ibcUserName = htmlDecode(dataItem.IbcUserName);
         const firstName = htmlDecode(dataItem.FirstName);
@@ -125,11 +129,13 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={dataItem.CurrentBalance}>{dataItem.CurrentBalance}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
                 <Cell className="text-center" title={dataItem.AffName}>{dataItem.AffName}</Cell>
-                <Cell className="text-center" title="Remove Member">
-                    <Button color="link p-0" onClick={() => this._handleDeleteMember(dataItem.MemberId)}>
-                        <span className="oi oi-trash text-danger"></span>
-                    </Button>
-                </Cell>
+                { isModifiable &&
+                    <Cell className="text-center" title="Remove Member">
+                        <Button color="link p-0" onClick={() => this._handleDeleteMember(dataItem.MemberId)}>
+                            <span className="oi oi-trash text-danger"></span>
+                        </Button>
+                    </Cell>
+                }
             </Row>
         )
     }
@@ -166,8 +172,9 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData });
+function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffMember);
+    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

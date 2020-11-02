@@ -10,6 +10,7 @@ import { setPagingOption, setViewLevel, setParam } from '../actions';
 import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { allProduct, viewLevel, month, sortDirectionType, totalText, headerText } from '../modules/constants';
+import { claimResource } from '../../../modules/claim';
 
 export class GridData extends Component {
     constructor(props) {
@@ -251,7 +252,8 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, param, currentViewLevel, hasTurnOverPermission }) {
+function mapStateToProps({ pagingOption, param, currentViewLevel, claimsPrincipal }) {
+    const hasTurnOverPermission = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
     return Object.assign({}, { pagingOption, param, currentViewLevel, hasTurnOverPermission });
 }
 

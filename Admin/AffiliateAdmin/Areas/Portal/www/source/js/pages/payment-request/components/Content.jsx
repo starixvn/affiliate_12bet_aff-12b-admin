@@ -8,6 +8,7 @@ import { headerText, globalResource, resource, statusList, pending } from '../mo
 import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
 import { htmlDecode } from '../../../modules/htmlHelper';
+import { claimResource } from '../../../modules/claim';
 
 const pendingStatus = pending.toLowerCase();
 
@@ -85,6 +86,8 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
+        const { isModifiable } = this.props;
+
         const amount = formatDecimalWithCurrencySymbol(dataItem.Amount);
         const isPending = dataItem.Status && dataItem.Status.toLowerCase() === pendingStatus;
 
@@ -96,9 +99,12 @@ export class Content extends PureComponent {
             <Row key={`dataRow-${index}`} className={status && status.toLowerCase()}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.TransId} className="text-center">
-                    <Button color="link" className="p-0" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
-                        {dataItem.TransId}
-                    </Button>
+                    {isModifiable
+                        ? (<Button color="link" className="p-0" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
+                            {dataItem.TransId}
+                        </Button>)
+                        : dataItem.TransId
+                    }
                 </Cell>
                 <Cell title={dataItem.TransDateText} className="text-center">{dataItem.TransDateText}</Cell>
                 <Cell title={dataItem.AffName} className="text-center">{dataItem.AffName}</Cell>
@@ -145,8 +151,9 @@ export class Content extends PureComponent {
 }
 
 
-function mapStateToProps({ pagingOption, param }) {
-    return Object.assign({}, { pagingOption, param });
+function mapStateToProps({ pagingOption, param, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.Payment)
+    return Object.assign({}, { pagingOption, param, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -6,6 +6,8 @@ import reducer from './reducers';
 import AppContainer from "./components/AppContainer";
 import { configureStore } from '../../modules/store';
 
+import ClaimPrincipal from '../../modules/claim';
+
 const productList = window.initialState.productList.map(p => {
     return Object.assign({}, p, { Checked: true });
 })
@@ -18,9 +20,8 @@ for(let i = 0; i < languageList.length; i++){
 }
 
 const { today } = window.initialState;
-const { hasTurnOverPermission } = window.globalVariables;
 
-const store = configureStore({ productList, languageList: language, today, hasTurnOverPermission }, reducer);
+const store = configureStore({ productList, languageList: language, today, claimsPrincipal: ClaimPrincipal.claimPrincipal }, reducer);
 
 export default class App extends React.Component {
     constructor(props) {

@@ -172,7 +172,6 @@ export class Content extends PureComponent {
 
 function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, claimsPrincipal }) {
     const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.Domain);
-    console.log(isModifiable);
     return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, isModifiable });
 }
 

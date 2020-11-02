@@ -1,6 +1,4 @@
 
-import ClaimPrincipal from "./claim";
-
 export const defaultPagingOption = {
     PageIndex: 1,
     PageSize: 20,

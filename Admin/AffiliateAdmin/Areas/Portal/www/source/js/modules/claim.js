@@ -14,7 +14,17 @@ export const claimResource = {
     AffAccountStatus: '[AffAccountStatus]',
     Domain: '[Domain]',
     HotNews: '[HotNews]',
-    AffExRate: '[AffEx.Rate]'
+    AffExRate: '[AffEx.Rate]',
+    MemberMenu: '[AffMember]',
+    AffMember: '[AffMemberDetail]',
+    ActiveMembers: '[ActiveMembers]',
+    AffPlayerDetail: '[AffPlayerDetail]',
+    AffMemberName: '[AffMemberName]',
+    TurnOver: '[AffTurnover]',
+    AffMemberName: '[AffMemberName]',
+    ExportExcel: '[ExportExcel]',
+    AffInfo: '[Affiliate]',
+    Payment: '[Payment]'
 }
 
 export class Claim{
@@ -28,6 +38,8 @@ export default class ClaimPrincipal{
     constructor(claims){
         this.claims = claims;
     }
+
+    static claimPrincipal =  new ClaimPrincipal(window.globalVariables.claims);
 
     hasReadClaim(claimType) {
         if (typeof claimType === 'string')
@@ -45,10 +57,14 @@ export default class ClaimPrincipal{
     }
 
     hasClaim(claim){
+        if (typeof claim === 'string')
+        {
+            return this.hasReadClaim(claim);
+        }
+
         return this.claims[claim.type] !== undefined 
             && (claim.value === undefined || this.claims[claim.type] === claim.value)
     }
 }
 
-export const claimsPrincipal = new ClaimPrincipal(window.globalVariables.claims);
 

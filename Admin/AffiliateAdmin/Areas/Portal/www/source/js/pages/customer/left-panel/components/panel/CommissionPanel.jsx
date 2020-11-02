@@ -79,7 +79,7 @@ export class CommissionPanel extends PureComponent {
 
 function mapStateToProps({ leftPanel, claimsPrincipal }) {
     const { affiliateInfo } = leftPanel;
-    const isStatic = claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
+    const isStatic = !claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
     return Object.assign({}, { affiliateInfo, isStatic });
 };
 

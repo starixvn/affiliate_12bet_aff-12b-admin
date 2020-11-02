@@ -7,6 +7,8 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { statusList, sortByList, defaultSortBy, resource } from '../modules/constants';
 import { setReportTitle, setParam, setSelectedColumn } from '../actions';
 import { htmlDecode } from '../../../modules/htmlHelper';
+import { convertArrayToObjectProps } from '../../../modules/utils';
+import {post} from '../../../modules/ajaxRequest'
 
 export class Filter extends Component {
     constructor(props) {
@@ -15,6 +17,8 @@ export class Filter extends Component {
         this.initialGroupId = this.props.groupId;
 
         this.state = {
+            commGroupList:{},
+            languageList:{},
             selectedCommGroup: this.initialGroupId,
             selectedLanguage: '',
             selectedStatus: props.param.Status || '',
@@ -26,14 +30,27 @@ export class Filter extends Component {
         }
     }
 
-    componentDidMount() {
-        if (this.initialGroupId !== 0 || this.props.param.IsFromHome) {
+    componentDidMount = async () => {
+        const data = await this.fetchFilter();
+        const commGroupList = convertArrayToObjectProps(data.CommGroupList, 'Id', 'Name');
+        const languageList = convertArrayToObjectProps(data.LanguageList, 'LanguageCode', 'LanguageName');
+
+        this.setState({commGroupList, languageList});
+
+        if (!!this.initialGroupId  || this.props.param.IsFromHome) {
             this.handleClickSearch();
         }
     }
 
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
+    }
+
+    fetchFilter = async () => {
+        const url = 'Portal/Affiliate/GetFilter'
+        const response = await post(url);
+
+        return response && response.status === 200 ? response.data : null;
     }
 
     handleChangeSortAscending = () => {
@@ -59,7 +76,8 @@ export class Filter extends Component {
             Email: email,
             SortBy: selectedSortBy,
             SortDirectionType: !isSortAscending,
-            AffId: affIdInput
+            AffId: affIdInput,
+            IsFromHome: false
         }
         this.props.setParam(param);
     }
@@ -99,7 +117,8 @@ export class Filter extends Component {
 
     render() {
         const { selectedCommGroup, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending } = this.state;
-        const { commGroupList, languageList, columnList } = this.props;
+        const { columnList } = this.props;
+        const { commGroupList, languageList } = this.state;
 
         return (
             <div className="filter-container">

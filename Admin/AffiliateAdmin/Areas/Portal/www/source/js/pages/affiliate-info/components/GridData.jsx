@@ -65,24 +65,24 @@ export class GridData extends Component {
     _renderHeader(selectedColumnList) {
         return (
             <Row key="theard">
-                {selectedColumnList['Index'] && <Cell header={true} colWidth={80} title={headerText.Index}>{headerText.Index}</Cell>}
-                <Cell header={true} colWidth={300} title={headerText.UserName}>{headerText.UserName}</Cell>
-                {selectedColumnList['Status'] && <Cell header={true} colWidth={200} title={headerText.Status}>{headerText.Status}</Cell>}
-                {selectedColumnList['FirstName'] && <Cell header={true} colWidth={200} title={headerText.FirstName}>{headerText.FirstName}</Cell>}
-                {selectedColumnList['LastName'] && <Cell header={true} colWidth={200} title={headerText.LastName}>{headerText.LastName}</Cell>}
-                {selectedColumnList['Language'] && <Cell header={true} colWidth={200} title={headerText.Language}>{headerText.Language}</Cell>}
-                {selectedColumnList['Phone'] && <Cell header={true} colWidth={200} title={headerText.Phone}>{headerText.Phone}</Cell>}
-                {selectedColumnList['Email'] && <Cell header={true} colWidth={400} title={headerText.Email}>{headerText.Email}</Cell>}
-                {selectedColumnList['RegistrationDateText'] && <Cell header={true} colWidth={300} title={headerText.RegistrationDateText}>{headerText.RegistrationDateText}</Cell>}
-                {selectedColumnList['ApprovalDateText'] && <Cell header={true} colWidth={300} title={headerText.ApprovalDateText}>{headerText.ApprovalDateText}</Cell>}
-                {selectedColumnList['CasinoDateText'] && <Cell header={true} colWidth={200} title={headerText.CasinoDateText}>{headerText.CasinoDateText}</Cell>}
-                {selectedColumnList['CommissionGroup'] && <Cell header={true} colWidth={300} title={headerText.CommissionGroup}>{headerText.CommissionGroup}</Cell>}
-                {selectedColumnList['BalanceBf'] && <Cell header={true} colWidth={200} title={headerText.BalanceBf}>{headerText.BalanceBf}</Cell>}
-                {selectedColumnList['Currency'] && <Cell header={true} colWidth={150} title={headerText.Currency}>{headerText.Currency}</Cell>}
-                {selectedColumnList['PlayerUserName'] && <Cell header={true} colWidth={200} title={headerText.PlayerUserName}>{headerText.PlayerUserName}</Cell>}
-                {selectedColumnList['PlayerCurrency'] && <Cell header={true} colWidth={150} title={headerText.PlayerCurrency}>{headerText.PlayerCurrency}</Cell>}
-                {selectedColumnList['Member'] && <Cell header={true} colWidth={150} title={headerText.Member}>{headerText.Member}</Cell>}
-                <Cell header={true} colWidth={130} title={headerText.Password}>{headerText.Password}</Cell>
+                {selectedColumnList['Index'] && <Cell header={true} colWidth={80} title={headerText.Index.label}>{headerText.Index.label}</Cell>}
+                <Cell header={true} colWidth={300} title={headerText.UserName.label}>{headerText.UserName.label}</Cell>
+                {selectedColumnList['Status'] && <Cell header={true} colWidth={200} title={headerText.Status.label}>{headerText.Status.label}</Cell>}
+                {selectedColumnList['FirstName'] && <Cell header={true} colWidth={200} title={headerText.FirstName.label}>{headerText.FirstName.label}</Cell>}
+                {selectedColumnList['LastName'] && <Cell header={true} colWidth={200} title={headerText.LastName.label}>{headerText.LastName.label}</Cell>}
+                {selectedColumnList['Language'] && <Cell header={true} colWidth={200} title={headerText.Language.label}>{headerText.Language.label}</Cell>}
+                {selectedColumnList['Phone'] && <Cell header={true} colWidth={200} title={headerText.Phone.label}>{headerText.Phone.label}</Cell>}
+                {selectedColumnList['Email'] && <Cell header={true} colWidth={400} title={headerText.Email.label}>{headerText.Email.label}</Cell>}
+                {selectedColumnList['RegistrationDateText'] && <Cell header={true} colWidth={300} title={headerText.RegistrationDateText.label}>{headerText.RegistrationDateText.label}</Cell>}
+                {selectedColumnList['ApprovalDateText'] && <Cell header={true} colWidth={300} title={headerText.ApprovalDateText.label}>{headerText.ApprovalDateText.label}</Cell>}
+                {selectedColumnList['CasinoDateText'] && <Cell header={true} colWidth={200} title={headerText.CasinoDateText.label}>{headerText.CasinoDateText.label}</Cell>}
+                {selectedColumnList['CommissionGroup'] && <Cell header={true} colWidth={300} title={headerText.CommissionGroup.label}>{headerText.CommissionGroup.label}</Cell>}
+                {selectedColumnList['BalanceBf'] && <Cell header={true} colWidth={200} title={headerText.BalanceBf.label}>{headerText.BalanceBf.label}</Cell>}
+                {selectedColumnList['Currency'] && <Cell header={true} colWidth={150} title={headerText.Currency.label}>{headerText.Currency.label}</Cell>}
+                {selectedColumnList['PlayerUserName'] && <Cell header={true} colWidth={200} title={headerText.PlayerUserName.label}>{headerText.PlayerUserName.label}</Cell>}
+                {selectedColumnList['PlayerCurrency'] && <Cell header={true} colWidth={150} title={headerText.PlayerCurrency.label}>{headerText.PlayerCurrency.label}</Cell>}
+                {selectedColumnList['Member'] && <Cell header={true} colWidth={150} title={headerText.Member.label}>{headerText.Member.label}</Cell>}
+                <Cell header={true} colWidth={130} title={headerText.Password.label}>{headerText.Password.label}</Cell>
             </Row>
         );
     }

@@ -10,6 +10,7 @@ import { toggleLoader } from '../../../actions/loaderAction';
 import { viewLevel } from '../modules/constants';
 import ReportExcel from '../modules/reportExcel';
 import { post } from '../../../modules/ajaxRequest';
+import { Claim, claimResource } from "../../../modules/claim";
 
 export class Content extends Component {
     constructor(props) {
@@ -41,22 +42,23 @@ export class Content extends Component {
     }
 
     _buildReportTitle() {
-        const { currentViewLevel, reportTitle } = this.props;
+        const { currentViewLevel, reportTitle, isDisplayExportExcelBtn } = this.props;
         const isMainView = currentViewLevel === viewLevel.main;
+
+        const btnExport = isDisplayExportExcelBtn && (<button type="button" className="ml-auto btn btn-link btn-excel" onClick={this.handleExportExcel} title="Export Excel">
+            <span className="oi icon-excel"></span>
+        </button>);
 
         return isMainView ? (
             <div className="d-flex align-items-center">
                 {reportTitle}
-                <button type="button" className="ml-auto btn btn-link btn-excel" onClick={this.handleExportExcel} title="Export Excel">
-                    <span className="oi icon-excel"></span>
-                </button>
+                {btnExport}
             </div>
         ) : (
                 <div className="d-flex align-items-center">
-                    <a href="javascript:;" className="btn-link font-weight-bold" onClick={this.handleClickBreadcrumb}>AFFILIATE REPORT</a> > {reportTitle}
-                    <button type="button" className="ml-auto btn btn-link btn-excel" onClick={this.handleExportExcel} title="Export Excel">
-                        <span className="oi icon-excel"></span>
-                    </button>
+                    <a href="javascript:;" className="btn-link font-weight-bold" onClick={this.handleClickBreadcrumb}>AFFILIATE REPORT</a> 
+                    {reportTitle}
+                    {btnExport}
                 </div>
             )
     }
@@ -73,8 +75,9 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ reportTitle, currentViewLevel, hasTurnOverPermission, param }) {
-    return Object.assign({}, { reportTitle, currentViewLevel, hasTurnOverPermission, param });
+function mapStateToProps({ reportTitle, currentViewLevel, hasTurnOverPermission, param, claimsPrincipal }) {
+    const isDisplayExportExcelBtn = claimsPrincipal.hasClaim(claimResource.ExportExcel);
+    return Object.assign({}, { reportTitle, currentViewLevel, hasTurnOverPermission, param, isDisplayExportExcelBtn });
 }
 
 function mapDispatchToProps(dispatch) {

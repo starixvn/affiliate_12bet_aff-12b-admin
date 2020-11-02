@@ -6,6 +6,7 @@ import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_COMMGROUP, SET_AFFID, SET_C
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
 import { showPopupPassword } from '../../common/reducers';
+import { claimsPrincipal} from '../../../reducers/claimReducer';
 
 export const commGroupList = createReducer({}, {});
 
@@ -61,5 +62,6 @@ export default combineReducers({
     affId,
     commGroup,
     groupId,
-    columnList
+    columnList,
+    claimsPrincipal
 });
