@@ -29,7 +29,7 @@ export default class App extends PureComponent {
         if (window.initialState && window.initialState.param && window.initialState.param.IsFromHome) {
             window.initialState.param.IsFromHome = false;
         }
-        const state = Object.assign({}, this.state, globalState, claimsPrincipal);
+        const state = Object.assign({}, this.state, globalState, {claimsPrincipal});
         const store = configureStore(state, reducer);
         return (
             <Provider store={store}>
