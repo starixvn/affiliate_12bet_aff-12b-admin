@@ -20,11 +20,17 @@
 
         public const string AffReport = "[AffReport]";
 
+        public const string ExportExcel = "[ExportExcel]";
+
         public const string Note = "[Note]";
 
         public const string SecurityQa = "[SecurityQA]";
 
         public const string Domain = "[Domain]";
+
+        public const string AffMember = "[AffMember]";
+
+        public const string AffMemberDetail = "[AffMemberDetail]";
 
         public const string ActiveMembers = "[ActiveMembers]";
 
@@ -47,5 +53,7 @@
         public const string LanguageAmendment = "[AffMarket]";
 
         public const string AffAccountStatus = "[AffAccountStatus]";
+
+
     }
 }

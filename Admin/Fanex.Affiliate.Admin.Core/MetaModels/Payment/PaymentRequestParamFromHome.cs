@@ -8,7 +8,5 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
         public int SearchBy { get; set; }
 
         public string FromDate { get; set; }
-
-        public IEnumerable<SubMenu> SubMenuList { get; set; }
     }
 }

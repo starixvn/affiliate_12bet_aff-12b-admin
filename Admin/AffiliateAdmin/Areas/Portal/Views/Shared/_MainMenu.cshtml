@@ -74,9 +74,9 @@
 
 <script type="text/javascript">
     window.globalVariables = {
-        hasTurnOverPermission: '@hasTurnOverPermission'.toLowerCase() === 'true',
         claims: @Html.Raw(GetClaimJOject(permissions))
-    }
+    };
+    window.virtualUrl = '@Url.Content("~")';
 
     let element;
 

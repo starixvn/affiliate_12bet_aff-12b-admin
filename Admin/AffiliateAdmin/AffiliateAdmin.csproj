@@ -785,7 +785,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\BannerDetailPopup.jsx" />
     <Content Include="Areas\Portal\Views\Shared\_ReactPageLayout.cshtml" />
-    <Content Include="Areas\Portal\Views\Affiliate\_AffiliateSubMenu.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\PaymentRequest.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\CommissionGroup.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\EmailHistory.cshtml" />
@@ -793,8 +792,6 @@
     <Content Include="Areas\Portal\Views\MediaGallery\LandingPageList.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Content.jsx" />
-    <Content Include="Areas\Portal\Views\Member\ActiveMember.cshtml" />
-    <Content Include="Areas\Portal\Views\Member\_MemberSubMenu.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\login\index.jsx" />

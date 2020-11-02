@@ -3,10 +3,9 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Member;
-using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.ViewModels.Member;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
@@ -23,15 +22,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
             _activeMemberService = activeMemberService;
         }
 
-        public ActionResult Index()
+
+        [HttpGet]
+        public ActionResult Index(string affName)
         {
-            var subMenu = new List<SubMenu>
+            var model = new MemberListViewModel
             {
-                new SubMenu { Name = Lang.Member, Url = Url.Content("~/Portal/Member") },
-                new SubMenu { Name = Lang.ActiveMember, Url = Url.Content("~/Portal/ActiveMember"), IsActive = true }
+                AffName = affName
             };
 
-            return View("~/Areas/Portal/Views/Member/ActiveMember.cshtml", subMenu);
+            return View("~/Areas/Portal/Views/Member/Index.cshtml", model);
         }
 
         [HttpPost]

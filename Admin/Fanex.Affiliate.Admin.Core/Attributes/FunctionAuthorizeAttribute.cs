@@ -1,7 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Services.Common;
 using System;
-using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Web.Mvc;

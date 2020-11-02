@@ -3,10 +3,8 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.EmailHistory;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.EmailHistory;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -26,15 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         public ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate") },
-                new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest") },
-                new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/Portal/CommissionGroup") },
-                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory"), IsActive = true }
-            };
-
-            return View("~/Areas/Portal/Views/Affiliate/EmailHistory.cshtml", model: subMenu);
+            return View("~/Areas/Portal/Views/Affiliate/EmailHistory.cshtml");
         }
 
         [HttpPost]

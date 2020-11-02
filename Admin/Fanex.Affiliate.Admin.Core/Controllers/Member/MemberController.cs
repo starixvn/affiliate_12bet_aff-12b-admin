@@ -8,6 +8,7 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Member;
 using Fanex.Affiliate.Admin.Core.ViewModels.Member;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
@@ -26,15 +27,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         [HttpGet]
         public ActionResult Index(string affName)
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.Member, Url = Url.Content("~/Portal/Member"), IsActive = true },
-                new SubMenu { Name = Lang.ActiveMember, Url = Url.Content("~/Portal/ActiveMember") }
-            };
-
             var model = new MemberListViewModel
             {
-                SubMenuList = subMenu,
                 AffName = affName
             };
 

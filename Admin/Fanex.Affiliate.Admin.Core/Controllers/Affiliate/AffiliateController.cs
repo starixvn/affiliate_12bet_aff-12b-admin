@@ -40,25 +40,27 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         [HttpGet]
         public ActionResult Index(ParamFromHome param, int groupId = 0)
         {
-            var subMenu = new List<SubMenu>
+            var viewModel = new AffiliateInfoViewModel
             {
-                new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate"), IsActive = true },
-                new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest") },
-                new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/Portal/CommissionGroup") },
-                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory") }
+                SelectedGroupId = groupId,
+                Param = param
             };
 
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetFilter()
+        {
             var groupListParam = new GetGroupListParam { AffId = -1 };
             var viewModel = new AffiliateInfoViewModel
             {
                 CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
                 LanguageList = _languageService.GetLanguageList(),
-                SelectedGroupId = groupId,
-                Param = param,
-                SubMenuList = subMenu
             };
 
-            return View(viewModel);
+            return new JsonNetResult(viewModel);
         }
 
         [HttpPost]
