@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [CustomAuthorize]
     [CheckUMFilter]
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.Customer)]
     public class CustomerLeftPanelController : Controller
     {
         private readonly ICustomerLeftPanelService _customerLeftPanelService;
@@ -129,6 +129,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.Customer, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateAffType(UpdateAffTypeParam param)
         {
@@ -186,6 +187,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.Customer, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateClosedStatus(UpdateClosedStatusParam param)
         {

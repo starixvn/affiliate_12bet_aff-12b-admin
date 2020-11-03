@@ -56,6 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
         public ActionResult DeleteUsers(DeleteAdminUsersParam param)
         {
             if (ModelState.IsValid)

@@ -45,6 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
         public ActionResult UpdatePermissionInfo(UpdateRolePermissionParam param)
         {
             if (ModelState.IsValid)
@@ -73,6 +74,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
         public ActionResult UpdateMarketInfoList(UpdateMarketInfoParam param)
         {
             if (ModelState.IsValid)

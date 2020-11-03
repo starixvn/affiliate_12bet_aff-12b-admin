@@ -37,7 +37,7 @@
         public const string MemberEmail = "[MemberEmail]";
 
         public const string Turnover = "[Turnover]";
-        
+
         public const string AdminRole = "[Affiliate]";
 
         public const string AffEmail = "[AffEmail]";
@@ -54,6 +54,8 @@
 
         public const string AffAccountStatus = "[AffAccountStatus]";
 
+        public const string AffPlayerDetail = "[AffPlayerDetail]";
 
+        public const string Customer = "[Customer]";
     }
 }

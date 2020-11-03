@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.AffMemberDetail)]
     public class CustomerMemberController : ReadOnlySessionBaseController
     {
         private readonly ISessionService _sessionService;

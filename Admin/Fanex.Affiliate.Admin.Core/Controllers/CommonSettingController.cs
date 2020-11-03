@@ -11,7 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [CustomAuthorize]
     [CheckUMFilter]
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class CommonSettingController : Controller
     {
         private readonly IProductRepository _productRepository;
