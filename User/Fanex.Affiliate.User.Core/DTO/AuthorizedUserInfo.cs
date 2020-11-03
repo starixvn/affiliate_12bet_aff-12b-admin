@@ -16,7 +16,7 @@
 
         public string Status { get; set; }
 
-        public int AdminId { get; set; }
+        public int? UserId { get; set; }
 
         public int OnUserId { get; set; }
 

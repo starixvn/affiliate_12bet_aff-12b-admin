@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal);
 
-        IEnumerable<Language> GetLanguageList(bool isInternal);
+        IEnumerable<Language> GetLanguageList();
 
         IEnumerable<CurrencyType> GetCurrencyList(bool isInternal);
 

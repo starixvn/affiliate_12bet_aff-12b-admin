@@ -15,7 +15,6 @@
     using System.Drawing;
     using ViewModels.UserPanel.Marketing;
 
-    [CustomAuthorize]
     public sealed class MarketingController : BaseMarketingController
     {
 
@@ -35,7 +34,7 @@
         {
             var userSession = SessionService.UserSession;
             var linkForm = GetLinkFormViewModel();
-            var languageList = MarketingService.GetLanguageList(SessionService.IsInternal);
+            var languageList = MarketingService.GetLanguageList();
 
             var selectedLanguage = userSession.PreferredLanguage;
             var selectedDomain = linkForm.DomainList.FirstOrDefault();
@@ -97,9 +96,7 @@
             bannerParam.SelectedDomain = selectedDomain;
             bannerParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
             bannerParam.BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain;
-            bannerParam.Language = LanguageService
-                .GetSystemLanguages()
-                .FirstOrDefault(l => l.MarketId.MatchWith(bannerParam.Language))?.MarketName;
+            bannerParam.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(bannerParam.Language))?.MarketName;
 
             var bannerList = GetBannerList(bannerParam);
             ViewBag.TotalItem = bannerParam.Nrows;
@@ -136,7 +133,7 @@
                 .GetDomainList(userSession.AffId, SessionService.IsInternal)
                 .FirstOrDefault(d => d.DomainId == selectedDomainId);
             var languageList = string.IsNullOrEmpty(selectedLanguage)
-                ? MarketingHelper.GetLanguageList(MarketingService.GetLanguageList(SessionService.IsInternal), userSession.PreferredLanguage)
+                ? MarketingHelper.GetLanguageList(MarketingService.GetLanguageList(), userSession.PreferredLanguage)
                 : null;
 
             var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);

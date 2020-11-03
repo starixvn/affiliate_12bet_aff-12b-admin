@@ -32,6 +32,7 @@
             var param = new StatementHistoryParam
             {
                 AffId = SessionService.UserSession.AffId,
+                UserId = SessionService.UserSession?.UserId,
                 IsInternal = SessionService.IsInternal,
                 PageSize = DefaultPageSize
             };

@@ -44,8 +44,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return categoryList ?? new List<CategoryType>();
         }
 
-        public IEnumerable<Language> GetLanguageList(bool isInternal)
-            => _languageService.GetSystemLanguages(isInternal);
+        public IEnumerable<Language> GetLanguageList()
+            => _languageService.GetSystemLanguages();
 
         public IEnumerable<CurrencyType> GetCurrencyList(bool isInternal)
         {
@@ -104,13 +104,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             var linkList = new Dictionary<string, string>();
             var selectedLanguage = linkGenerationParam.SelectedLanguage;
-            var languageList = linkGenerationParam.LanguageList;
+            var languageListFromParam = linkGenerationParam.LanguageList;
+            var languageList = _languageService.GetSystemLanguages();
 
-            if (IsSelectedAllLanguages(selectedLanguage) && languageList != null && languageList.Any())
+            if (IsSelectedAllLanguages(selectedLanguage) && languageListFromParam != null && languageListFromParam.Any())
             {
-                foreach (var item in languageList)
+                foreach (var item in languageListFromParam)
                 {
-                    var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(item.Value));
+                    var language = languageList.FirstOrDefault(l => l.MarketId.MatchWith(item.Value));
 
                     if (language != null)
                     {
@@ -118,12 +119,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     }
                 }
 
-                var preferredLanguage = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(linkGenerationParam.PreferredLanguage));
+                var preferredLanguage = languageList.FirstOrDefault(l => l.MarketId.MatchWith(linkGenerationParam.PreferredLanguage));
                 linkList.Add(Lang.Default, GenerateLink(linkGenerationParam, preferredLanguage.ShortedCode));
             }
             else
             {
-                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(selectedLanguage));
+                var language = languageList.FirstOrDefault(l => l.MarketId.MatchWith(selectedLanguage));
 
                 if (language != null)
                 {

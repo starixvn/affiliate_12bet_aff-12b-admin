@@ -11,5 +11,7 @@
         public string DisplayName { get; set; }
 
         public string ShortedCode { get; set; }
+
+        public bool Status { get; set; }
     }
 }

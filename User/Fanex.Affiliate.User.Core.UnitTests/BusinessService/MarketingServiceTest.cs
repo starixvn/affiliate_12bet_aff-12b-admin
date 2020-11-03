@@ -65,9 +65,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var service = CreateService();
 
-            service.GetLanguageList(false);
+            service.GetLanguageList();
 
-            LanguageService.Received().GetSystemLanguages(false);
+            LanguageService.Received().GetSystemLanguages();
         }
 
         [Fact]

@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.User.Core.DTO.Auth
 
         public int AffId { get; set; }
 
-        public int AdminId { get; set; }
+        public int? UserId { get; set; }
 
         public int OnUserId { get; set; }
 

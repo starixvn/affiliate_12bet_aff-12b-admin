@@ -7,6 +7,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
     {
         public int AffId { get; set; }
 
+        public int? UserId { get; set; }
+
         public int? PageSize { get; set; }
 
         public int? PageIndex { get; set; }

@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {
     public interface ICustomerLeftPanelService
     {
-        AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName, string accId, string accOnId, string sessionId);
+        AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName, string accOnId, string sessionId);
 
         IEnumerable<OnlineList> GetOnlineList(string affUserName);
 

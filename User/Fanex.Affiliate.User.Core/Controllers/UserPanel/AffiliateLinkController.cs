@@ -14,8 +14,6 @@
     using ONEbook.UM.Filters;
     using ViewModels.UserPanel.Marketing;
 
-    [CheckUMFilter]
-    [CustomAuthorize]
     public class AffiliateLinkController : BaseMarketingController
     {
         public AffiliateLinkController(ISessionService sessionService,

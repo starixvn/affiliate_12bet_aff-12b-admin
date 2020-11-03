@@ -5,6 +5,6 @@ namespace Fanex.Affiliate.User.Core.Repository
 {
     public interface ILanguageRepository
     {
-        IEnumerable<Language> GetLanguageList(bool isInternal, int? adminId = null);
+        IEnumerable<Language> GetLanguageList(bool isInternal, int? userId = null);
     }
 }

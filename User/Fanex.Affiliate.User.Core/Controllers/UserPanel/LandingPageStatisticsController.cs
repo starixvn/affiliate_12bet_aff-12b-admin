@@ -49,7 +49,7 @@
 
             var viewModel = new LandingPageStatisticsViewModel
             {
-                LanguageList = MarketingHelper.GetLanguageList(_marketingService.GetLanguageList(SessionService.IsInternal), userSession.PreferredLanguage),
+                LanguageList = MarketingHelper.GetLanguageList(_marketingService.GetLanguageList(), userSession.PreferredLanguage),
                 MemberSitePageList = _marketingService.GetLandingPageList(isInternal),
                 FromDate = landingPageParam.FromDate,
                 ToDate = landingPageParam.ToDate,
@@ -70,9 +70,7 @@
             var selectedLanguage = landingPageParam.LanguageCode;
             if (!string.IsNullOrEmpty(selectedLanguage))
             {
-                landingPageParam.LanguageCode = LanguageService.GetSystemLanguages()
-                                                .FirstOrDefault(l => l.MarketId.Equals(selectedLanguage))
-                                                ?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
+                landingPageParam.LanguageCode = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.Equals(selectedLanguage))?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
             }
 
             var viewModel = new LandingPageStatisticsViewModel

@@ -40,10 +40,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 return new JsonResult();
             }
 
-            var accId = _sessionService.UserId.ToString();
             var accOnId = _sessionService.OnUserId.ToString();
             var sessionId = Session.SessionID;
-            var affiliateInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, accId, accOnId, sessionId);
+            var affiliateInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, accOnId, sessionId);
             _sessionService.AffName = affUsername;
 
             return new JsonNetResult

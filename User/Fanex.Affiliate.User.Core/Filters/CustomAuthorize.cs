@@ -35,20 +35,20 @@ namespace Fanex.Affiliate.User.Core.Filters
                 }
                 else
                 {
-                    if(!string.IsNullOrEmpty(PermissionName))
+                    if(!string.IsNullOrEmpty(PermissionName) && sessionService.IsInternal)
                     {
-                        ClaimPermission(filterContext, sessionService.IsInternal);
+                        ClaimPermission(filterContext);
                     }
                 }
             }
         }
 
-        private void ClaimPermission(AuthorizationContext filterContext, bool isInternal)
+        private void ClaimPermission(AuthorizationContext filterContext)
         {
             var claims = filterContext.HttpContext.User as ClaimsPrincipal;
             var hasPermission = claims.HasClaim(c => c.Type == PermissionName);
 
-            if(isInternal && !hasPermission)
+            if(!hasPermission)
             {
                 HandleResponse(filterContext);
             }

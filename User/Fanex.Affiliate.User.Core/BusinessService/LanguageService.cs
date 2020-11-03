@@ -8,7 +8,6 @@ using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Repository;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -40,18 +39,15 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return IsValid(langCookie) ? langCookie : SystemLanguage.DefaultLanguageCode;
         }
 
-        public IEnumerable<Language> GetSystemLanguages(bool? isInternal = null)
+        public IEnumerable<Language> GetSystemLanguages(bool isAfterLogin = true)
         {
-            var isLogin = isInternal != null;
-            var isForInternal = isInternal ?? _sessionService.IsInternal;
-            var adminId = isLogin ? _sessionService.UserSession?.AdminId : null;
-            var cacheKey = isLogin && isForInternal ? CacheKey.InternalLanguageList : CacheKey.LanguageList;
+            var isInternal = _sessionService.IsInternal;
+            var cacheKey = isAfterLogin && isInternal ? CacheKey.InternalLanguageList : CacheKey.LanguageList;
 
             var languageList = _cacheService.Get<IEnumerable<Language>>(cacheKey);
             if (languageList == null)
             {
-
-                languageList = _languageRepository.GetLanguageList(isForInternal, adminId);
+                languageList = _languageRepository.GetLanguageList(isInternal, _sessionService.UserSession?.UserId);
             }
 
             if (languageList != null)
@@ -62,8 +58,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return languageList ?? new List<Language>();
         }
 
-        public bool IsValid(string langCode)
-            => !string.IsNullOrWhiteSpace(langCode) && GetSystemLanguages().Any(l => Equals(l.MarketId, langCode));
+        public bool IsValid(string langCode, bool isAfterLogin = true)
+            => !string.IsNullOrWhiteSpace(langCode) && GetSystemLanguages(isAfterLogin).Any(l => Equals(l.MarketId, langCode));
 
 
         public void SetCulture(string languageCode)

@@ -27,12 +27,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             _affiliateService = affiliateService;
             _customerLeftPanelRepository = customerLeftPanelRepository;
         }
-        public AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName, string accId, string accOnId, string sessionId)
+        public AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName, string accOnId, string sessionId)
         {
             var affiliateInfo = _customerLeftPanelRepository.GetAffiliateInfoOnLeftPanel(affUserName);
             if (affiliateInfo != null)
             {
-                affiliateInfo.AffLink = GenerateUrl(affUserName, affiliateInfo.AffType, accId, accOnId, sessionId).ToString();
+                affiliateInfo.AffLink = GenerateUrl(affUserName, affiliateInfo.AffType, accOnId, sessionId).ToString();
             }
             return affiliateInfo;
         }
@@ -85,7 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             _emailService.SendDisapprovedEmail(emailParam);
         }
 
-        private static Uri GenerateUrl(string custName, int affType, string accId, string accOnId, string sessionId)
+        private static Uri GenerateUrl(string custName, int affType, string accOnId, string sessionId)
         {
             var rndStr = Encryption.RandomString(6);
             var accKey = Generator.GenerateSHA512String(sessionId + rndStr);
@@ -93,11 +93,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             url += "?chalengeStr=" + rndStr;
             url += "&accKey=" + accKey;
             url += "&custName=" + custName;
-            url += "&accId=" + accId;
             url += "&accOnId=" + accOnId;
             return new Uri(url, UriKind.Absolute);
         }
-
-
     }
 }
