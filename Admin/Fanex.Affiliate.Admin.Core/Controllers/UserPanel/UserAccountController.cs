@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
@@ -17,12 +18,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class UserAccountController : ReadOnlySessionBaseController
     {
+        private const int AAjeff = 1_216_422;
+        private const int AAmaggie = 1_203_083;
+        private const int AAsteve = 1_000_000_018;
+        private const int LocalAccount = 1_000_000_034;
+
         private readonly IUserAccountService _userAccountService;
+        private readonly IAppSetting _appSetting;
 
         public UserAccountController(
+            IAppSetting appSetting,
             ISessionService sessionService,
             IUserAccountService userAccountService) : base(sessionService)
         {
+            _appSetting = appSetting;
             _userAccountService = userAccountService;
         }
 
@@ -32,7 +41,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (affId >= Validation.MinId)
             {
-                var userAccountInfo = _userAccountService.GetUserAccountInfo(affId);
+                var userId = SessionService.UserId;
+                var isSpecialUser = userId == AAjeff || userId == AAmaggie || userId == AAsteve;
+                var isLocalAccountTest = _appSetting.IsLocal && userId == LocalAccount;
+                var userAccountInfo = _userAccountService.GetUserAccountInfo(affId, isSpecialUser || isLocalAccountTest);
 
                 if (userAccountInfo != null)
                 {
@@ -65,7 +77,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                         BankAccountNumber = Server.HtmlDecode(userAccountInfo.BankAccountNumber),
                         Question = Server.HtmlDecode(userAccountInfo.Question),
                         Answer = Server.HtmlDecode(userAccountInfo.Answer),
-                        MailOption = userAccountInfo.MailOption
+                        MailOption = userAccountInfo.MailOption,
+                        IsSpecialUser = isSpecialUser || isLocalAccountTest
                     };
 
                     if (!string.IsNullOrEmpty(newUserAccountInfo.ContactApps))

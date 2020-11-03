@@ -48,8 +48,8 @@ export class Additional extends PureComponent {
                 {renderInputForm('state', 'State', userAccountInfo.State, false, false, this.handleChange)}
                 {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, false, true, this.handleChange)}
                 {this._renderCountry(userAccountInfo.Country)}
-                {renderInputForm('question', 'Security Question', userAccountInfo.Question, true)}
-                {renderInputForm('answer', 'Answer', userAccountInfo.Answer, true)}
+                {userAccountInfo.IsSpecialUser && renderInputForm('question', 'Security Question', userAccountInfo.Question, true)}
+                {userAccountInfo.IsSpecialUser && renderInputForm('answer', 'Answer', userAccountInfo.Answer, true)}
             </Form>
         )
     }

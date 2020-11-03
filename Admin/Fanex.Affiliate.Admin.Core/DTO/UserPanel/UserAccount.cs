@@ -68,5 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         public bool? MailOption { get; set; }
 
         public IEnumerable<ContactApp> ContactAppList { get; set; }
+
+        public bool IsSpecialUser { get; set; }
     }
 }
