@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Constants;
     using DTO.UserPanel;
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
@@ -11,7 +10,6 @@
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
-    using ONEbook.UM.Filters;
     using ViewModels.UserPanel.Marketing;
 
     public class AffiliateLinkController : BaseMarketingController
@@ -42,6 +40,7 @@
             var textParam = new MarketingTextParam
             {
                 AffId = userSession.AffId,
+                UserId = userSession.UserId,
                 Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(selectedLanguage))?.MarketName,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,

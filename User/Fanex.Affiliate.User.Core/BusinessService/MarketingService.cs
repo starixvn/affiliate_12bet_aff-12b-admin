@@ -120,15 +120,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 }
 
                 var preferredLanguage = languageList.FirstOrDefault(l => l.MarketId.MatchWith(linkGenerationParam.PreferredLanguage));
-                linkList.Add(Lang.Default, GenerateLink(linkGenerationParam, preferredLanguage.ShortedCode));
+                linkList.Add(Lang.Default, GenerateLink(linkGenerationParam, preferredLanguage?.ShortedCode ?? SystemLanguage.ShortedDefaultCode));
             }
             else
             {
                 var language = languageList.FirstOrDefault(l => l.MarketId.MatchWith(selectedLanguage));
-
                 if (language != null)
                 {
                     linkList.Add(language.MarketNativeName, GenerateLink(linkGenerationParam, language.ShortedCode));
+                }
+                else
+                {
+                    linkList.Add(Lang.Default, GenerateLink(linkGenerationParam, SystemLanguage.ShortedDefaultCode));
                 }
             }
 
@@ -154,11 +157,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
                 var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketName.MatchWith(banner.Language));
 
-                if (language != null)
-                {
-                    banner.RedirectLink = GenerateLink(bannerParam, language.ShortedCode);
-                }
-
+                banner.RedirectLink = GenerateLink(bannerParam, language?.ShortedCode ?? SystemLanguage.ShortedDefaultCode);
             }
 
             return bannerList;
@@ -174,11 +173,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 text.ScriptSrc = textParam.ScriptUrl + text.TextId;
                 var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketName.MatchWith(text.Language));
 
-                if (language != null)
-                {
-                    text.RedirectLink = GenerateLink(textParam, language.ShortedCode);
-                }
-
+                text.RedirectLink = GenerateLink(textParam, language?.ShortedCode ?? SystemLanguage.ShortedDefaultCode);
             }
 
             return textList;

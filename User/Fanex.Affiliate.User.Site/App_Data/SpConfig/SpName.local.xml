@@ -135,8 +135,8 @@
     <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_Domain_Sel" SpName="Aff_User_Domain_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_Text_Sel" SpName="Aff_Admin_Text_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Text_Sel" SpName="Aff_Admin_Text_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel_xtest" DbName="affiliate_12bet" />
 
     <Setting Key="Aff_Admin_MediaCategory_Sel_view" SpName="Aff_Admin_MediaCategory_Sel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_Admin_AdminUser_Market_Sel_view" SpName="Aff_Admin_AdminUser_Market_Sel_xtest" DbName="affiliate_12bet_view" />
@@ -145,7 +145,7 @@
     <Setting Key="Aff_Admin_MediaSize_Sel_view" SpName="Aff_Admin_MediaSize_Sel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_Domain_Sel_view" SpName="Aff_User_Domain_Sel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_Admin_LandingPage_Sel_view" SpName="Aff_Admin_LandingPage_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_Admin_Text_Sel_view" SpName="Aff_Admin_Text_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_Admin_Banner_Sel_view" SpName="Aff_Admin_Banner_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_Admin_Text_Sel_view" SpName="Aff_Admin_Text_Sel_xtest" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_Admin_Banner_Sel_view" SpName="Aff_Admin_Banner_Sel_xtest" DbName="affiliate_12bet_view" />
   </Function>
 </Functions>

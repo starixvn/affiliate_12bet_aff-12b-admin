@@ -32,7 +32,7 @@
             var param = new StatementHistoryParam
             {
                 AffId = SessionService.UserSession.AffId,
-                UserId = SessionService.UserSession?.UserId,
+                UserId = SessionService.UserSession.UserId,
                 IsInternal = SessionService.IsInternal,
                 PageSize = DefaultPageSize
             };
@@ -49,6 +49,7 @@
         public ActionResult Index(StatementHistoryParam param)
         {
             param.AffId = SessionService.UserSession.AffId;
+            param.UserId = SessionService.UserSession.UserId;
             param.IsInternal = SessionService.IsInternal;
             param.PageSize = param.PageSize ?? DefaultPageSize;
 
@@ -58,7 +59,5 @@
             ViewBag.AvailableFromDate = _appSetting.StatementAvailableFrom;
             return PartialView("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_StatementHistoryContent.cshtml", statementHistoryList);
         }
-
-
     }
 }

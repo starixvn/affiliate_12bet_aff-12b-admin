@@ -92,6 +92,7 @@
             var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 
             bannerParam.AffId = userSession.AffId;
+            bannerParam.UserId = userSession.UserId;
             bannerParam.AffType = userSession.AffType;
             bannerParam.SelectedDomain = selectedDomain;
             bannerParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
@@ -113,6 +114,7 @@
                                                     .FirstOrDefault(d => d.DomainId == textParam.SelectedDomainId);
 
             textParam.AffId = userSession.AffId;
+            textParam.UserId = userSession.UserId;
             textParam.SelectedDomain = selectedDomain;
             textParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
             textParam.ScriptUrl = AppSetting.MediaScriptUrl;
