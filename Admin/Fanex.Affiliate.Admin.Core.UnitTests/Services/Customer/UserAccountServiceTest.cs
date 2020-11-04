@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var param = 1271808;
             var passedParam = 0;
             var repository = new Mock<IUserAccountRepository>();
-            repository.Setup(comm => comm.GetUserAccountInfo(param)).Returns(new UserAccount { AffId = 1271808 }).Callback<int>(p => passedParam = p);
+            repository.Setup(comm => comm.GetUserAccountInfo(param, false)).Returns(new UserAccount { AffId = 1271808 }).Callback<int>(p => passedParam = p);
             var service = CreateUserAccountService(repository.Object);
 
             // Action

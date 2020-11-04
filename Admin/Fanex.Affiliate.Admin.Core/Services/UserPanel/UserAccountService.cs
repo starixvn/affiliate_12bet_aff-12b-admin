@@ -16,9 +16,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             _userAccountRepository = userAccountRepository;
         }
 
-        public UserAccount GetUserAccountInfo(int affId)
+        public UserAccount GetUserAccountInfo(int affId, bool isSpecialUser = false)
         {
-            return _userAccountRepository.GetUserAccountInfo(affId);
+            return _userAccountRepository.GetUserAccountInfo(affId, isSpecialUser);
         }
 
         public ResultInfo UpdateUserAccount(UserAccountParam param)
