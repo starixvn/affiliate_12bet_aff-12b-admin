@@ -22,6 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         private const int AAmaggie = 1_203_083;
         private const int AAsteve = 1_000_000_018;
         private const int LocalAccount = 1_000_000_034;
+        private const int AAStarixQC1 = 1_000_000_043;
 
         private readonly IUserAccountService _userAccountService;
         private readonly IAppSetting _appSetting;
@@ -42,9 +43,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             if (affId >= Validation.MinId)
             {
                 var userId = SessionService.UserId;
-                var isSpecialUser = userId == AAjeff || userId == AAmaggie || userId == AAsteve;
+                var isSpecialQcAccount = userId == AAStarixQC1;
                 var isLocalAccountTest = _appSetting.IsLocal && userId == LocalAccount;
-                var userAccountInfo = _userAccountService.GetUserAccountInfo(affId, isSpecialUser || isLocalAccountTest);
+                var isSpecialUsersOnPro = userId == AAjeff || userId == AAmaggie || userId == AAsteve;
+
+                var isSpecialUser = isSpecialUsersOnPro || isSpecialQcAccount || isLocalAccountTest;
+                var userAccountInfo = _userAccountService.GetUserAccountInfo(affId, isSpecialUser);
 
                 if (userAccountInfo != null)
                 {
@@ -78,7 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                         Question = Server.HtmlDecode(userAccountInfo.Question),
                         Answer = Server.HtmlDecode(userAccountInfo.Answer),
                         MailOption = userAccountInfo.MailOption,
-                        IsSpecialUser = isSpecialUser || isLocalAccountTest
+                        IsSpecialUser = isSpecialUser
                     };
 
                     if (!string.IsNullOrEmpty(newUserAccountInfo.ContactApps))
