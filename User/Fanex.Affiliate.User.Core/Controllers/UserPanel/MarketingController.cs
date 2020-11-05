@@ -74,7 +74,7 @@
         public ActionResult GetSize(SizeParam param)
         {
             param.AffType = SessionService.UserSession.AffType;
-            param.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(param.Language))?.MarketName;
+
             var sizeList = MarketingService.GetSizeList(param, SessionService.IsInternal);
 
             return Json(sizeList, JsonRequestBehavior.AllowGet);
@@ -92,12 +92,10 @@
             var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 
             bannerParam.AffId = userSession.AffId;
-            bannerParam.UserId = userSession.UserId;
             bannerParam.AffType = userSession.AffType;
             bannerParam.SelectedDomain = selectedDomain;
             bannerParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
             bannerParam.BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain;
-            bannerParam.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(bannerParam.Language))?.MarketName;
 
             var bannerList = GetBannerList(bannerParam);
             ViewBag.TotalItem = bannerParam.Nrows;
@@ -114,11 +112,9 @@
                                                     .FirstOrDefault(d => d.DomainId == textParam.SelectedDomainId);
 
             textParam.AffId = userSession.AffId;
-            textParam.UserId = userSession.UserId;
             textParam.SelectedDomain = selectedDomain;
             textParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
             textParam.ScriptUrl = AppSetting.MediaScriptUrl;
-            textParam.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(textParam.Language))?.MarketName;
 
             var textList = GetTextList(textParam);
             ViewBag.TotalItem = textParam.Nrows;

@@ -8,8 +8,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         [SpParam(Ignored = true)]
         public int AffId { get; set; }
 
-        public int? UserId { get; set; }
-
         [SpParam(Ignored = true)]
         public string TextLinkTemplate { get; set; }
 

@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Utilities;
@@ -27,7 +26,6 @@
             var searchForm = GetSearchFormViewModel(true);
             var linkForm = GetLinkFormViewModel();
 
-            var selectedLanguage = userSession.PreferredLanguage;
             var selectedDomain = linkForm.DomainList.FirstOrDefault();
             var selectedPage = linkForm.MemberSitePageList.FirstOrDefault()?.PageCode ?? string.Empty;
             var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
@@ -35,8 +33,7 @@
             var bannerParam = new MarketingBannerParam
             {
                 AffId = userSession.AffId,
-                UserId = userSession.UserId,
-                Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.MatchWith(selectedLanguage))?.MarketName,
+                Language = userSession.PreferredLanguage,
                 AffType = userSession.AffType,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,

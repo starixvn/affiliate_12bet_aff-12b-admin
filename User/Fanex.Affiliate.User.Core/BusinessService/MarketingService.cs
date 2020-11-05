@@ -65,6 +65,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal)
         {
+            var languageList = _languageService.GetSystemLanguages();
+            param.Languages = GetLanguageName(languageList, param.Language);
+
             return _marketingRepository.GetSizeList(param, isInternal);
         }
 
@@ -141,6 +144,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
         {
             const int LengthOfSplittingSize = 2;
+
+            var languageList = _languageService.GetSystemLanguages();
+            bannerParam.Languages = GetLanguageName(languageList, bannerParam.Language);
+
             var bannerList = _marketingRepository.GetBannerList(bannerParam);
 
             foreach (var banner in bannerList)
@@ -155,7 +162,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     banner.Height = Convert.ToInt32(sizes[1]);
                 }
 
-                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketName.MatchWith(banner.Language));
+                var language = languageList.FirstOrDefault(l => l.MarketName.MatchWith(banner.Language));
 
                 banner.RedirectLink = GenerateLink(bannerParam, language?.ShortedCode ?? SystemLanguage.ShortedDefaultCode);
             }
@@ -165,13 +172,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
         {
+            var languageList = _languageService.GetSystemLanguages();
+            textParam.Languages = GetLanguageName(languageList, textParam.Language);
+
             var textList = _marketingRepository.GetTextList(textParam);
 
             foreach (var text in textList)
             {
                 text.Message = HttpContext.Current.Server.HtmlDecode(text.Message.Replace("\r\n", "<br/>"));
                 text.ScriptSrc = textParam.ScriptUrl + text.TextId;
-                var language = _languageService.GetSystemLanguages().FirstOrDefault(l => l.MarketName.MatchWith(text.Language));
+                var language = languageList.FirstOrDefault(l => l.MarketName.MatchWith(text.Language));
 
                 text.RedirectLink = GenerateLink(textParam, language?.ShortedCode ?? SystemLanguage.ShortedDefaultCode);
             }
@@ -201,5 +211,19 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private static bool IsSelectedAllLanguages(string selectedLang)
             => string.IsNullOrWhiteSpace(selectedLang);
+
+        public static string GetLanguageName(IEnumerable<Language> languageList, string languageCode)
+        {
+            var languageName = languageList.FirstOrDefault(l => l.MarketId.MatchWith(languageCode))?.MarketName;
+
+            if(string.IsNullOrEmpty(languageName))
+            {
+                var allLanguageName = languageList.Select(l => l.MarketName).ToList();
+
+                return string.Join(",", allLanguageName);
+            }
+
+            return languageName;
+        }
     }
 }
