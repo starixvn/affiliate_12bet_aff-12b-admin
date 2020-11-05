@@ -14,7 +14,6 @@ export default class App extends React.PureComponent {
     }
 
     render() {
-        console.log("render");
         return (
             <Provider store={store}>
                 <AppContainer />

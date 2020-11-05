@@ -187,7 +187,7 @@ export class PersonalPermissionTable extends PureComponent {
                     }
                 </tr>
                 {
-                    dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, isCreateNew, isEdit, true)
+                    !!dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, isCreateNew, isEdit, true)
                 }
             </Fragment>
         )

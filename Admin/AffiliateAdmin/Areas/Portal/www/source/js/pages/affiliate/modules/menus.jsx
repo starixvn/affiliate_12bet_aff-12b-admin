@@ -2,10 +2,10 @@ import React from 'react'
 import { Claim, claimResource } from '../../../modules/claim';
 import { menuKey, relativePath} from '../constants/key';
 
-const AffInfo = React.lazy(() => import('../../affiliate-info/index'));
-const PaymentRequest = React.lazy(() => import('../../payment-request/index'));
-const CommGroup = React.lazy(() => import('../../commission-group/index'));
-const EmailHistory = React.lazy(() => import('../../email-history/index'));
+const AffInfo = React.lazy(() => import(/* webpackChunkName: "affiliateInfo" */ '../../affiliate-info/index'));
+const PaymentRequest = React.lazy(() => import(/* webpackChunkName: "paymentRequest" */ '../../payment-request/index'));
+const CommGroup = React.lazy(() => import(/* webpackChunkName: "commissionGroup" */ '../../commission-group/index'));
+const EmailHistory = React.lazy(() => import(/* webpackChunkName: "emailHistory" */ '../../email-history/index'));
 
 export const menus = [
     {key: menuKey.affiliateInfo, label: 'Affiliate Info', href: relativePath.affiliateInfo, component: AffInfo, renderClaim: new Claim(claimResource.AffInfo)},

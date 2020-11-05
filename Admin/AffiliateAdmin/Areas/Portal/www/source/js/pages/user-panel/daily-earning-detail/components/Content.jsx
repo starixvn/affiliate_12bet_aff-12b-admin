@@ -102,7 +102,7 @@ export class Content extends PureComponent {
     render() {
         const { gridData, total, isSelectedAllProducts } = this.state;
         const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
-        const hasFooter = gridData && gridData.length && total;
+        const hasFooter = gridData && !!gridData.length && !!total;
 
         return (
             <div className="table-responsive table-striped my-2">

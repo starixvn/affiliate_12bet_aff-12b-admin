@@ -16,8 +16,7 @@ export class Additional extends PureComponent {
     handleChange = (event) => {
         const target = event.target;
         const name = capitalizeFirstChar(target.name);
-        console.log(name);
-        
+
         const newUserAccountInfo = Object.assign({}, this.props.userAccountInfo, { [name]: target.value })
         this.props.setUserAccountInfo(newUserAccountInfo);
     }

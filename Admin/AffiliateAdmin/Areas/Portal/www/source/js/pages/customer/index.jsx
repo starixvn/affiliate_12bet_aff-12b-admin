@@ -7,7 +7,6 @@ import AppContainer from './mainpage/components/AppContainer';
 import { configureStore } from '../../modules/store';
 import ClaimPrincipal from '../../modules/claim';
 
-console.log(window.globalVariables);
 const claimsPrincipal = new ClaimPrincipal(window.globalVariables.claims);
 const store = configureStore({ ...window.initialState, claimsPrincipal }, reducer);
 

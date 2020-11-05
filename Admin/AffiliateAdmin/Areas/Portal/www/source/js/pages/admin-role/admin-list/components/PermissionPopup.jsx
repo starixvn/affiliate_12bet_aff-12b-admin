@@ -148,7 +148,7 @@ export class PermissionPopup extends PureComponent {
                     }
                 </tr>
                 {
-                    dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, true)
+                    !!dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, true)
                 }
             </Fragment>
         )

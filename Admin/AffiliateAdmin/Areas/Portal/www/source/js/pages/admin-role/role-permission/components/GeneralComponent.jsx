@@ -245,7 +245,7 @@ export class GeneralComponent extends PureComponent {
                     }
                 </Row>
                 {
-                    dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, isEdit, isExpand, true)
+                    !!dataList.length && this._renderSubChildrenDataSection(dataItem, dataList, isEdit, isExpand, true)
                 }
             </Fragment>
         )
@@ -263,6 +263,7 @@ export class GeneralComponent extends PureComponent {
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(roleList)}
+                        shouldResetScrollPosition={false}
                     />
                 </div>
                 {

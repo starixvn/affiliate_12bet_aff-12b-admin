@@ -312,6 +312,7 @@
     <Content Include="Areas\Portal\www\source\js\components\__test__\Loader.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\__test__\ReportTitle.test.js" />
     <Content Include="Areas\Portal\www\source\js\layouts\__test__\AppLayout.test.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\claim.js" />
     <Content Include="Areas\Portal\www\source\js\modules\globalResource.js" />
     <Content Include="Areas\Portal\www\source\js\modules\htmlHelper.js" />
     <Content Include="Areas\Portal\www\source\js\modules\reducerRegistry.js" />
@@ -397,6 +398,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\redux\GridData.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\constants\key.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\modules\menus.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\__test__\index.test.js" />
@@ -677,6 +681,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\constants\key.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\__test__\index.test.js" />
@@ -689,6 +695,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\modules\menus.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\SelectAll.jsx" />
@@ -1335,7 +1342,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Portal\www\dist\js\pages\affiliate\" />
     <Folder Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\__test__\" />
   </ItemGroup>
   <ItemGroup>

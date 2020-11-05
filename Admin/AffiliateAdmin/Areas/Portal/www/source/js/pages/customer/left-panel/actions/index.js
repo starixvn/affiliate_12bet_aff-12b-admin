@@ -43,7 +43,7 @@ export const updateLanguage = (param) => async () => {
 export const updateContactNumber = (param) => async () => {
     const url = 'Portal/CustomerLeftPanel/UpdateContactNumber';
     const response = await post(url, param);
-    console.log(response);
+
     return response && response.status === 200 ? response.data : null;
 }
 

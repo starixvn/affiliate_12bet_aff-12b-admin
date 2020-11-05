@@ -126,7 +126,13 @@ export class Content extends PureComponent {
             isShowMessage: false
         });
 
-        isSuccess && this.props.redirectToAdminList();
+        if (isSuccess) {
+            if (!this.props.userId) {
+                this.props.redirectToAdminList();
+            } else {
+                this.setState({ isClickedSubmit: false, isEdit: false });
+            }
+        }
     }
 
     _handlePressEnter = (event) => {
@@ -256,7 +262,7 @@ export class Content extends PureComponent {
                     <Button outline type="button" color="danger" onClick={this._handleDeleteUser}> Delete < span className="oi oi-trash ml-2"></span></Button>
                     <Button outline type="button" className="ml-2" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
                 </div>
-                <Container fluid={true} className="admin-info-container pt-2">
+                <Container fluid={true} className="admin-info-container pt-2 mb-5">
                     <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                         <div dangerouslySetInnerHTML={{ __html: message }}></div>
                     </Alert>
@@ -345,7 +351,7 @@ export class Content extends PureComponent {
                         <Button outline type="button" className="ml-2" disabled={isClickedSubmit ? !isValid : false} onClick={() => this._handleSubmit(isValid)}>Save<span className="oi oi-task ml-2"></span></Button>
                     </Fragment>
                 </div>
-                <Container fluid={true} className="admin-info-container pt-2">
+                <Container fluid={true} className="admin-info-container pt-2 mb-5">
                     <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                         <div dangerouslySetInnerHTML={{ __html: message }}></div>
                     </Alert>
