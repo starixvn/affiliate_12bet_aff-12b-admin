@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
     public interface IUserAccountRepository
     {
-        UserAccount GetUserAccountInfo(int affId, bool isSpecialUser = false);
+        UserAccount GetUserAccountInfo(int affId);
 
         ResultInfo UpdateUserAccount(UserAccountParam param);
 

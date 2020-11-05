@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
-            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "", "", "");
+            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "", "");
 
             // Assert
             Assert.Null(result);
@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
-            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "123", "234", "345");
+            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "123", "234");
 
             // Assert
             Assert.Equal("12BETAFF226", result.AffName);
@@ -87,7 +87,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
-            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "123", "234", "345");
+            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "123", "234");
 
             // Assert
             Assert.Equal("12BETAFF226", result.AffName);

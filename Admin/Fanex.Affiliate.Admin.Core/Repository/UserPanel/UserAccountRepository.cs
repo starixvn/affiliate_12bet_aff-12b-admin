@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
     public class UserAccountRepository : BaseRepository, IUserAccountRepository
     {
-        public UserAccount GetUserAccountInfo(int affId, bool isSpecialUser = false)
+        public UserAccount GetUserAccountInfo(int affId)
         {
             const string SpKey = "Aff_Admin_AffiliateInfo_Sel";
             UserAccount result = null;
@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             BankCode = Convert.ToString(reader["BankSwiftCode"]),
                             BankAccountName = Convert.ToString(reader["BankAccountName"]),
                             BankAccountNumber = Convert.ToString(reader["BankAccountNo"]),
-                            Question = isSpecialUser ? Convert.ToString(reader["Question"]) : string.Empty,
+                            Question = Convert.ToString(reader["Question"]),
                             QuestionId = reader.ToInt("QuestionId"),
                             Answer = Convert.ToString(reader["Answer"]),
                             Lang = reader.ToString("PreferredLanguage"),

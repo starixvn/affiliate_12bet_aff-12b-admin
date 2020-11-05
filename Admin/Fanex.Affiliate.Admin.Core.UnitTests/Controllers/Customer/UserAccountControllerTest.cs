@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var passedParam = 0;
             var userAccountService = new Mock<IUserAccountService>();
-            userAccountService.Setup(s => s.GetUserAccountInfo(affId, false)).Returns(GetUserAccount()).Callback<int>(p => passedParam = p);
+            userAccountService.Setup(s => s.GetUserAccountInfo(affId)).Returns(GetUserAccount()).Callback<int>(p => passedParam = p);
             var controller = CreateUserAccountController(userAccountService: userAccountService.Object);
 
             // Action
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             userAccount.ContactApps = "";
             var passedParam = 0;
             var userAccountService = new Mock<IUserAccountService>();
-            userAccountService.Setup(s => s.GetUserAccountInfo(affId, false)).Returns(userAccount).Callback<int>(p => passedParam = p);
+            userAccountService.Setup(s => s.GetUserAccountInfo(affId)).Returns(userAccount).Callback<int>(p => passedParam = p);
             var controller = CreateUserAccountController(userAccountService: userAccountService.Object);
 
             // Action
@@ -146,7 +146,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeUserAccountService = userAccountService ?? Mock.Of<IUserAccountService>();
 
-            var controller = new UserAccountController(null, fakeSessionService, fakeUserAccountService);
+            var controller = new UserAccountController(fakeSessionService, fakeUserAccountService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

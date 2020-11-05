@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
     public interface IUserAccountService
     {
-        UserAccount GetUserAccountInfo(int affId, bool isSpecialUser = false);
+        UserAccount GetUserAccountInfo(int affId);
 
         ResultInfo UpdateUserAccount(UserAccountParam param);
 
