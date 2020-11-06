@@ -10,6 +10,7 @@ import { defaultSortBy, affiliate, month, turnover, sortByCommon, allProduct, vi
 import { setReportTitle, setParam } from '../actions';
 import { formatUnit, resolveClientUrl } from '../../../modules/utils';
 import { minMonthDate } from '../../../modules/constants';
+import { claimResource } from '../../../modules/claim';
 
 export class Filter extends Component {
     constructor(props) {
@@ -380,7 +381,8 @@ export class Filter extends Component {
     }
 }
 
-function mapStateToProps({ productList, pagingOption, languageList, today, currentViewLevel, param, hasTurnOverPermission }) {
+function mapStateToProps({ productList, pagingOption, languageList, today, currentViewLevel, param, claimsPrincipal }) {
+    const hasTurnOverPermission = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
     return Object.assign({}, { productList, pagingOption, languageList, today, currentViewLevel, param, hasTurnOverPermission });
 }
 

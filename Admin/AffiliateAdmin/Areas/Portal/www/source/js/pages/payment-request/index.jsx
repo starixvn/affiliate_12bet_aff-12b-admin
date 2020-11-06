@@ -25,7 +25,7 @@ export default class App extends PureComponent {
 
     render() {
         const globalState = Object.assign({}, removeUndifineItem(window.initialState));
-        const claimsPrincipal = ClaimPrincipal.claimPrincipal;
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
         if (window.initialState && window.initialState.param && window.initialState.param.IsFromHome) {
             window.initialState.param.IsFromHome = false;
         }

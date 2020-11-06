@@ -1,11 +1,11 @@
 ﻿import React from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import AppContainer from './components/AppContainer';
 
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
+import ClaimPrincipal from '../../../modules/claim';
 
 const { categoryList, subCategoryList, languageList, currencyList, imageTypeList, sizeList, affTypeList,
     paramFromHome, subCategoryCasinoList, subCategorySportsbookList, bannerRootUrl } = window.initialState;
@@ -52,18 +52,18 @@ const newAffTypeList = affTypeList.map(item => {
     };
 });
 
-const store = configureStore({
-    languageList, paramFromHome, categoryList: newCategoryList, subCategoryList: newSubCategoryList,
-    currencyList: newCurrencyList, imageTypeList, sizeList: newSizeList, affTypeList: newAffTypeList,
-    subCategoryCasinoList, subCategorySportsbookList, bannerRootUrl
-}, reducer);
-
 export default class App extends React.PureComponent {
     constructor(props) {
         super(props);
     }
 
     render() {
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+        const store = configureStore({
+            languageList, paramFromHome, categoryList: newCategoryList, subCategoryList: newSubCategoryList,
+            currencyList: newCurrencyList, imageTypeList, sizeList: newSizeList, affTypeList: newAffTypeList,
+            subCategoryCasinoList, subCategorySportsbookList, bannerRootUrl, claimsPrincipal
+        }, reducer);
         return (
             <Provider store={store}>
                 <AppContainer />
@@ -71,5 +71,3 @@ export default class App extends React.PureComponent {
         );
     }
 }
-
-ReactDOM.render(<App />, document.getElementById("root"));

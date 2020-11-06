@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export const MenuList = (props) => {
     return (
@@ -9,11 +9,10 @@ export const MenuList = (props) => {
             </div>
             <div className='d-inline-block'>
                 <ul className='nav'>
-                    {props.menus.map((menu, index) => {
-                        const active = index === props.activeIndex ? "active" : "";
+                    {props.menus.map((menu) => {
                         return (
                             <li className='nav-item' key={menu.label}>
-                                <Link className={'nav-link ' + active} to={menu.href} onClick={() => props.handleClick(index)}>{menu.label}</Link>
+                                <NavLink className={'nav-link'} activeClassName='active' to={menu.href}>{menu.label}</NavLink>
                             </li>
                         )
                     })}

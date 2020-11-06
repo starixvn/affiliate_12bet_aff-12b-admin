@@ -21,7 +21,7 @@ for(let i = 0; i < languageList.length; i++){
 
 const { today } = window.initialState;
 
-const store = configureStore({ productList, languageList: language, today, claimsPrincipal: ClaimPrincipal.claimPrincipal }, reducer);
+const store = configureStore({ productList, languageList: language, today, claimsPrincipal: ClaimPrincipal.currentClaimPrincipal }, reducer);
 
 export default class App extends React.Component {
     constructor(props) {

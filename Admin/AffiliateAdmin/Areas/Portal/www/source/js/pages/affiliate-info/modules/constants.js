@@ -40,7 +40,7 @@ export const headerText = {
     Currency: { label: 'Aff. Currency' },
     PlayerUserName: { label: 'Aff. Player' },
     PlayerCurrency: { label: 'Aff. Player Currency' },
-    Member: { label: 'Member' },
+    Member: { label: 'Member', renderClaim: new Claim(claimResource.AffMember) },
     Password: { label: 'Password' },
 }
 

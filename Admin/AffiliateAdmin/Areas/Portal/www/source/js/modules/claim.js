@@ -24,7 +24,8 @@ export const claimResource = {
     AffMemberName: '[AffMemberName]',
     ExportExcel: '[ExportExcel]',
     AffInfo: '[Affiliate]',
-    Payment: '[Payment]'
+    Payment: '[Payment]',
+    MediaGallery: '[Media]'
 }
 
 export class Claim{
@@ -39,7 +40,7 @@ export default class ClaimPrincipal{
         this.claims = claims;
     }
 
-    static claimPrincipal =  new ClaimPrincipal(window.globalVariables.claims);
+    static currentClaimPrincipal =  new ClaimPrincipal(window.globalVariables.claims);
 
     hasReadClaim(claimType) {
         if (typeof claimType === 'string')

@@ -5,9 +5,6 @@
 
 @model Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery.TextListViewModel
 
-@{
-    Html.RenderPartial("~/Areas/Portal/Views/MediaGallery/_MediaGallerySubMenu.cshtml", Model.SubMenuList);
-}
 
 @section pagecss{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/text-list.css")" rel="stylesheet" />
@@ -21,6 +18,6 @@
             currencyList: @Html.Raw(Json.Encode(Model.CurrencyList))
         }
     </script>
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/text-list.js")"></script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/media-gallery.js")"></script>
 }
 

@@ -33,7 +33,7 @@ export default class App extends Component {
         const { groupId, param } = globalState;
         const initState = removeUndifineItem({ groupId, param });
 
-        const claimsPrincipal = ClaimPrincipal.claimPrincipal;
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
 
         const filteredColumnList = Object.keys(headerText)
             .filter(c => c !== 'UserName' && c !== 'Password')

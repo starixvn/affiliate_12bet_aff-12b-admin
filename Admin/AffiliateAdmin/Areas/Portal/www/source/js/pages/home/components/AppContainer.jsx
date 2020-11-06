@@ -9,6 +9,7 @@ import BannerStatistics from './BannerStatistics';
 import AffiliateStatistics from './AffiliateStatistics';
 import MemberStatistics from './MemberStatistics';
 import OnlineList from './OnlineList';
+import { claimResource } from '../../../modules/claim';
 
 export const AppContainer = (props) => {
     return (
@@ -22,9 +23,11 @@ export const AppContainer = (props) => {
                     <Col sm={6}>
                         <TasksWaitingForApproval />
                     </Col>
-                    <Col className="home-right">
-                        <BannerStatistics />
-                    </Col>
+                    {props.isShowBannerStat &&
+                        <Col className="home-right">
+                            <BannerStatistics />
+                        </Col>
+                    }
                 </Row>
                 <Row>
                     <Col className="home-panel" sm={6}>
@@ -48,8 +51,9 @@ export const AppContainer = (props) => {
     );
 }
 
-function mapStateToProps({ isShowLoader }) {
-    return Object.assign({}, { isShowLoader });
+function mapStateToProps({ isShowLoader, claimsPrincipal }) {
+    const isShowBannerStat = claimsPrincipal.hasReadClaim(claimResource.MediaGallery);
+    return Object.assign({}, { isShowLoader, isShowBannerStat });
 }
 
 export default connect(mapStateToProps)(React.memo(AppContainer));

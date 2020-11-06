@@ -7,8 +7,6 @@ import AppContainer from './mainpage/components/AppContainer';
 import { configureStore } from '../../modules/store';
 import ClaimPrincipal from '../../modules/claim';
 
-const claimsPrincipal = new ClaimPrincipal(window.globalVariables.claims);
-const store = configureStore({ ...window.initialState, claimsPrincipal }, reducer);
 
 export default class App extends React.PureComponent {
     constructor(props) {
@@ -16,6 +14,8 @@ export default class App extends React.PureComponent {
     }
 
     render() {
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+        const store = configureStore({ ...window.initialState, claimsPrincipal }, reducer);
         return (
             <Provider store={store}>
                 <AppContainer />

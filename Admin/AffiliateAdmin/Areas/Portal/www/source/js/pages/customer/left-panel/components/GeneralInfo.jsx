@@ -44,7 +44,7 @@ export const GeneralInfo = (props) => {
                 claimsPrincipal.hasReadClaim(claimResource.PhoneNumber) && 
                 <Row>
                     <Col sm={5} className="pr-0">{resource.ContactNumber}</Col>
-                    <ContactNumber sm={7} className='text-right' isStatic={!claimsPrincipal.hasWriteClaim(claimResource.PhoneNumber)}>{affiliateInfo.Phone}</ContactNumber>
+                    <ContactNumber sm={7} className='text-right' isStatic={true}>{htmlDecode(affiliateInfo.Phone)}</ContactNumber>
                 </Row>
             }
             <ContactApp />

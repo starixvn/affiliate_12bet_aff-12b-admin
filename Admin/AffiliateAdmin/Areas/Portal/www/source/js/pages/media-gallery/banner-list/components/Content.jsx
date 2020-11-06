@@ -8,6 +8,7 @@ import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resizeWidthHeight } from '../libs/utils';
 import { headerText, globalResource, maxWidthHeight, pcLaptop, mobile } from '../libs/constants';
 import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export const Content = (props) => {
 
@@ -36,6 +37,7 @@ export const Content = (props) => {
     };
 
     function _renderHeader() {
+        const { isModifiable } = props;
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={20}></Cell>
@@ -49,7 +51,7 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={50} title={headerText.Device}>{headerText.Device}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.ImageType}>{headerText.ImageType}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.Size}>{headerText.Size}</Cell>
-                <Cell header={true} colWidth={25} title={globalResource.Edit}>{globalResource.Edit}</Cell>
+                { isModifiable && <Cell header={true} colWidth={25} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
             </Row>
         );
     }
@@ -67,8 +69,10 @@ export const Content = (props) => {
             }
         }
         else {
+            const header = _renderHeader();
+            const colmCount = header.props.children.length;
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="11">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={colmCount}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -76,6 +80,7 @@ export const Content = (props) => {
     }
 
     function _buildDataRow(dataItem, index) {
+        const { isModifiable } = props;
         const bannerId = dataItem.BannerId;
         const fileName = dataItem.FileName;
         const src = `${props.bannerRootUrl}/${fileName}?id=${dataItem.LastUpdateText}`;
@@ -136,11 +141,13 @@ export const Content = (props) => {
                 </Cell>
                 <Cell className="text-center text-break" title={dataItem.ImageType}>{dataItem.ImageType}</Cell>
                 <Cell className="text-center text-break" title={size}>{size}</Cell>
-                <Cell className="text-center" title="Edit Banner">
-                    <Button color="link" onClick={() => props.setSelectedBannerId(bannerId)}>
-                        <span className="oi oi-pencil text-secondary"></span>
-                    </Button>
-                </Cell>
+                {isModifiable &&
+                    <Cell className="text-center" title="Edit Banner">
+                        <Button color="link" onClick={() => props.setSelectedBannerId(bannerId)}>
+                            <span className="oi oi-pencil text-secondary"></span>
+                        </Button>
+                    </Cell>
+                }
             </Row>
         )
     }
@@ -165,8 +172,9 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData });
+function mapStateToProps({ pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGallery);
+    return Object.assign({}, { pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

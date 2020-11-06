@@ -4,9 +4,6 @@
 }
 @model Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery.BannerListViewModel
 
-@{
-    Html.RenderPartial("~/Areas/Portal/Views/MediaGallery/_MediaGallerySubMenu.cshtml", Model.SubMenuList);
-}
 
 @section pagecss{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/banner-list.css")" rel="stylesheet" />
@@ -28,5 +25,5 @@
             paramFromHome: @Html.Raw(Json.Encode(Model.Param))
         }
     </script>
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/banner-list.js")"></script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/media-gallery.js")"></script>
 }
