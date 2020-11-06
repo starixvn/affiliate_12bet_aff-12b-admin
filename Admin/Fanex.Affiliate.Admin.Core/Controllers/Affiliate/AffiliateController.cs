@@ -7,7 +7,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -38,6 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         }
 
         [HttpGet]
+        [AllowByPassFunctionAuthorize]
         public ActionResult Index(ParamFromHome param, int groupId = 0)
         {
             var viewModel = new AffiliateInfoViewModel
@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var viewModel = new AffiliateInfoViewModel
             {
                 CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
-                LanguageList = _languageService.GetLanguageList(),
+                LanguageList = _languageService.GetInChangeLanguages(),
             };
 
             return new JsonNetResult(viewModel);

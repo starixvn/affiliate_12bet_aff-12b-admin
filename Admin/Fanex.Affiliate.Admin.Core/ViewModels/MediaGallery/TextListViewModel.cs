@@ -12,6 +12,5 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery
 
         public IEnumerable<MediaGalleryFilterItem> CurrencyList { get; set; }
 
-        public IEnumerable<SubMenu> SubMenuList { get; set; }
     }
 }

@@ -11,7 +11,6 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -45,15 +44,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             _appSetting = appSetting;
         }
 
+        [AllowByPassFunctionAuthorize]
         public ActionResult Index(BannerParamFromHome param)
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.BannerList, Url = Url.Content("~/Portal/MediaGallery"), IsActive = true },
-                new SubMenu { Name = Lang.TextList, Url = Url.Content("~/Portal/TextList") },
-                new SubMenu { Name = Lang.LandingPageList, Url = Url.Content("~/Portal/LandingPageList") }
-            };
-
             var sizeParam = new SizeParam
             {
                 ImageType = param.ImageType
@@ -69,12 +62,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 SubCategorySportsbookList = bannerListCategory.Where(c => string.Equals(c.CategoryName, SportsbookCategory, StringComparison.CurrentCultureIgnoreCase)
                                         && !string.IsNullOrEmpty(c.SubCategoryName)),
                 BannerRootUrl = _appSetting.BannerRootUrl,
-                LanguageList = _languageService.GetLanguageList(),
+                LanguageList = _languageService.GetInChangeLanguages(),
                 CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
                 ImageTypeList = _commonMediaGalleryService.GetImageTypeList(),
                 SizeList = _bannerListService.GetSizeList(sizeParam),
                 AffTypeList = _affTypeService.GetAffTypeList(),
-                SubMenuList = subMenu,
                 Param = param
             };
 

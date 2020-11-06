@@ -16,8 +16,9 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var context = filterContext.HttpContext;
+            var skipCheckAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowByPassFunctionAuthorizeAttribute), true);
 
-            if (!string.IsNullOrEmpty(FunctionName))
+            if (!(string.IsNullOrEmpty(FunctionName) || skipCheckAuthorization))
             {
                 var claims = filterContext.HttpContext.User as ClaimsPrincipal;
                 var claimValue = IsHost ? Function.WritePermission : String.Empty;

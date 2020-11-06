@@ -166,6 +166,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\AllowByPassFunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\PermissionCheckAttribute.cs" />

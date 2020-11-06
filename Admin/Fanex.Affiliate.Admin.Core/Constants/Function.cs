@@ -55,7 +55,7 @@
         public const string AffAccountStatus = "[AffAccountStatus]";
 
         public const string AffPlayerDetail = "[AffPlayerDetail]";
+        public const string InChargeMarket = "[Market]";
 
-        public const string Customer = "[Customer]";
     }
 }

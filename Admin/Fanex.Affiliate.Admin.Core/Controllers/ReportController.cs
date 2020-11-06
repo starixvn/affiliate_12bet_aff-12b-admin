@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var viewModel = new AffiliateReportViewModel
             {
                 ProductList = _productRepository.GetProductList(),
-                LanguageList = _languageService.GetLanguageList()
+                LanguageList = _languageService.GetInChangeLanguages()
             };
 
             return View(viewModel);

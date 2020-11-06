@@ -27,6 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         }
 
         [HttpGet]
+        [AllowByPassFunctionAuthorize]
         public ActionResult Index(PaymentRequestParamFromHome param)
         {
             return View("~/Areas/Portal/Views/Affiliate/PaymentRequest.cshtml", param);

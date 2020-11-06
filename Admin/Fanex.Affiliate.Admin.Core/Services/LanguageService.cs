@@ -1,7 +1,10 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 
 namespace Fanex.Affiliate.Admin.Core.Services
@@ -9,15 +12,24 @@ namespace Fanex.Affiliate.Admin.Core.Services
     public class LanguageService : ILanguageService
     {
         private readonly ILanguageRepository _languageRepository;
+        private readonly ISessionService _sessionService;
 
-        public LanguageService(ILanguageRepository languageRepository)
+        public LanguageService(ILanguageRepository languageRepository, ISessionService sessionService)
         {
             _languageRepository = languageRepository;
+            _sessionService = sessionService;
         }
 
         public IEnumerable<Language> GetLanguageList()
         {
             return _languageRepository.GetLanguageList();
+        }
+
+        public IEnumerable<Language> GetInChangeLanguages()
+        {
+            var languages = _languageRepository.GetLanguageList();
+            var inChangeMarket = _sessionService.UserClaim.FindAll(Function.InChargeMarket).Select(c => c.Value);
+            return languages.Where(l => inChangeMarket.Contains(l.LanguageCode));
         }
 
         public void SetCulture(string languageCode)

@@ -5,7 +5,6 @@ using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
@@ -35,21 +34,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         }
 
         [HttpGet]
+        [AllowByPassFunctionAuthorize]
         public ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.BannerList, Url = Url.Content("~/Portal/MediaGallery") },
-                new SubMenu { Name = Lang.TextList, Url = Url.Content("~/Portal/TextList"), IsActive = true },
-                new SubMenu { Name = Lang.LandingPageList, Url = Url.Content("~/Portal/LandingPageList") }
-            };
-
             var model = new TextListViewModel
             {
                 CategoryList = _commonMediaGalleryService.GetCategoryList(TextListCategory),
-                LanguageList = _languageService.GetLanguageList(),
+                LanguageList = _languageService.GetInChangeLanguages(),
                 CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
-                SubMenuList = subMenu
             };
 
             return View("~/Areas/Portal/Views/MediaGallery/TextList.cshtml", model);

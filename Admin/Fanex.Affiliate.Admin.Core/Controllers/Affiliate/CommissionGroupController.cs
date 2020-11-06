@@ -5,7 +5,6 @@ using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -39,6 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpGet]
+        [AllowByPassFunctionAuthorize]
         public ActionResult Index()
         {
             var viewModel = new CommissionGroupViewModel

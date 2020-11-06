@@ -22,6 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         }
 
         [HttpGet]
+        [AllowByPassFunctionAuthorize]
         public ActionResult Index(string affName)
         {
             var model = new MemberListViewModel

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [Authorize]
     public class EmailHistoryController : ReadOnlySessionBaseController
     {
         private readonly IEmailHistoryService _emailHistoryService;
