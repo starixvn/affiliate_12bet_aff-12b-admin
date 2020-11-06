@@ -16,7 +16,7 @@ export class AppContainer extends PureComponent {
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
-                <Menu />
+                <Menu isSelectedRolePermission={true} />
                 <Content />
             </AppLayout>
         );

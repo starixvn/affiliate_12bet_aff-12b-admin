@@ -5,7 +5,7 @@ import { Container } from 'reactstrap';
 
 import LanguageComponent from './LanguageComponent';
 import GeneralComponent from './GeneralComponent';
-import { setIsGeneral, getRoleList, getMarketList, getMarketListByRole } from '../actions';
+import { setIsGeneral, getRoleList, getMarketList } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -53,8 +53,7 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ rolePermission }) {
-    const { isGeneral } = rolePermission;
+function mapStateToProps({ isGeneral }) {
     return Object.assign({}, { isGeneral });
 }
 

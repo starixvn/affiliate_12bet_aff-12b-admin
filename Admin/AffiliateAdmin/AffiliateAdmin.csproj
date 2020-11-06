@@ -283,6 +283,7 @@
     <Content Include="Areas\Portal\www\dist\imgs\email\button.png" />
     <Content Include="Areas\Portal\www\dist\imgs\email\header.png" />
     <Content Include="Areas\Portal\www\dist\imgs\email\note.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_admin_role.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_admin.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_affiliateslist.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_domain.jpg" />
@@ -331,8 +332,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\PermissionPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\Menu.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\libs\render.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\components\AppContainer.jsx" />
@@ -348,9 +351,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\components\GeneralComponent.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\components\LanguageComponent.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\reducers\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\admin-role\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\index.js" />
@@ -440,6 +443,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\changePassword.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\paymentRequestUpdate.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\CheckboxSelectAll.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\InputPopUp.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\MenuList.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\ButtonDeleteItems.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\ChangePasswordForm.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\CommissionGroupPopup.test.js" />
@@ -776,6 +781,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\home\components\Filter.jsx" />
     <Content Include=".babelrc" />
     <Content Include="Areas\Portal\Views\AdminRole\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\AdminRole\RolePermission.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1311,8 +1317,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\SortingCell.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-role-menu.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-info.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\admin-role\core.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\admin-role\role-permisison.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-list.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\role-permission.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\affiliate.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -242,9 +242,7 @@ export class LanguageComponent extends PureComponent {
 }
 
 
-function mapStateToProps({ rolePermission }) {
-    const { gridData, roleList, marketIdList, marketList, isGeneral } = rolePermission;
-
+function mapStateToProps({ gridData, roleList, marketIdList, marketList, isGeneral }) {
     return Object.assign({}, { gridData, roleList, marketIdList, marketList, isGeneral });
 }
 

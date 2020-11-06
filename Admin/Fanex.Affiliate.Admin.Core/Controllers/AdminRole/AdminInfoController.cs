@@ -71,7 +71,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
                     Role = param.Role,
                     MarketList = param.MarketList,
                     PermissionInfo = param.PermissionInfo,
-                    IsClosed = param.IsClosed
+                    IsClosed = param.IsClosed,
+                    IsRoleMarketDefault = param.IsRoleMarketDefault,
+                    IsRoleFunctionDefault = param.IsRoleFunctionDefault
                 };
 
                 GetUserInfoParam(encodeParam);
@@ -107,7 +109,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
                     LastName = Server.HtmlEncode(param.LastName.Trim()),
                     Role = param.Role,
                     PermissionInfo = param.PermissionInfo,
-                    MarketList = param.MarketList
+                    MarketList = param.MarketList,
+                    IsRoleMarketDefault = param.IsRoleMarketDefault,
+                    IsRoleFunctionDefault = param.IsRoleFunctionDefault
                 };
 
                 GetUserInfoParam(encodeParam);

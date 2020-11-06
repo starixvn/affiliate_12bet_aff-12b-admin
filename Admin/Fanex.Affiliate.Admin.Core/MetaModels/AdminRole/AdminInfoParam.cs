@@ -24,6 +24,10 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.AdminRole
 
         public bool? IsClosed { get; set; }
 
+        public bool IsRoleMarketDefault { get; set; }
+
+        public bool IsRoleFunctionDefault { get; set; }
+
         public int ByUserId { get; set; }
 
         public string Ip { get; set; }

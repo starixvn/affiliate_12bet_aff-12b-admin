@@ -12,7 +12,7 @@
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {
-                        today: '@DateTime.Now.ToString("MM/dd/yyyy")',
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")',
             groupId: @Model.SelectedGroupId,
             param: @Html.Raw(Json.Encode(Model.Param))
         }

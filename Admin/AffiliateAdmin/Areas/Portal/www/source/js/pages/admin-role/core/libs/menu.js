@@ -6,12 +6,9 @@ const AdminList = React.lazy(() =>
     import( /* webpackChunkName: "adminList" */ '../../admin-list/components/AppContainer'));
 const AdminInfo = React.lazy(() =>
     import( /* webpackChunkName: "adminInfo" */ '../../admin-info/components/AppContainer'));
-const RolePermission = React.lazy(() =>
-    import( /* webpackChunkName: "rolePermission" */ '../../role-permission/components/AppContainer'));
 
 
 export const adminRoleMenuList = [
     { key: menuKey.adminList, component: resetAllProps(AdminList, menuKey.adminList) },
     { key: menuKey.adminInfo, component: resetAllProps(AdminInfo, menuKey.adminInfo) },
-    { key: menuKey.rolePermission, component: resetAllProps(RolePermission, menuKey.rolePermission) },
 ]

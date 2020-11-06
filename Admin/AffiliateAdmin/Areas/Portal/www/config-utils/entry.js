@@ -22,7 +22,8 @@ module.exports = {
     [`${jsDist}/pages/domain/domain`]: clientRoot + "/js/pages/domain/domain/index.jsx",
     [`${jsDist}/pages/domain/domain-control`]: clientRoot + "/js/pages/domain/domain-control/index.jsx",
     [`${jsDist}/pages/home`]: clientRoot + "/js/pages/home/index.jsx",
-    [`${jsDist}/pages/admin-role`]: clientRoot + "/js/pages/admin-role/index.jsx",
+    [`${jsDist}/pages/admin-role/admin-list`]: clientRoot + "/js/pages/admin-role/admin-list/index.jsx",
+    [`${jsDist}/pages/admin-role/role-permission`]: clientRoot + "/js/pages/admin-role/role-permission/index.jsx",
     [`${jsDist}/pages/member/member`]: clientRoot + "/js/pages/member/index.jsx",
 
     [`${styleDist}/portalmain`]: clientRoot + "/style/main.scss",
@@ -49,5 +50,6 @@ module.exports = {
     [`${styleDist}/pages/administrator/administrator`]: clientRoot + "/style/pages/administrator/administrator.scss",
     [`${styleDist}/pages/administrator/department`]: clientRoot + "/style/pages/administrator/department.scss",
     [`${styleDist}/home`]: clientRoot + "/style/pages/home.scss",
-    [`${styleDist}/pages/admin-role`]: clientRoot + "/style/pages/admin-role/core.scss",
+    [`${styleDist}/pages/admin-role/admin-list`]: clientRoot + "/style/pages/admin-role/admin-list.scss",
+    [`${styleDist}/pages/admin-role/role-permission`]: clientRoot + "/style/pages/admin-role/role-permission.scss",
 };

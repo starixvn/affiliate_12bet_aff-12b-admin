@@ -279,8 +279,7 @@ export class GeneralComponent extends PureComponent {
 }
 
 
-function mapStateToProps({ rolePermission }) {
-    const { gridData, roleList } = rolePermission;
+function mapStateToProps({ gridData, roleList }) {
     return Object.assign({}, { gridData, roleList });
 }
 

@@ -9,10 +9,6 @@ export const redirectToAdminList = () => (dispatch) => {
     dispatch(setIsBack(true));
 }
 
-export const redirectToRolePermission = () => (dispatch) => {
-    dispatch(setSelectedMenu(adminRoleMenuKey.rolePermission));
-}
-
 export const redirectToCreateNew = () => (dispatch) => {
     dispatch(setUserId(null));
     dispatch(setUserName(null));

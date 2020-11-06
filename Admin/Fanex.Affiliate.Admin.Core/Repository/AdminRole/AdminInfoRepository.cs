@@ -97,6 +97,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
             objectDb.AddInParameter("LastName", DbType.String, param.LastName);
             objectDb.AddInParameter("RoleId", DbType.Int32, param.Role);
             objectDb.AddInParameter("Closed", DbType.Boolean, param.IsClosed);
+            objectDb.AddInParameter("IsRoleMarketDefault", DbType.Boolean, param.IsRoleMarketDefault);
+            objectDb.AddInParameter("IsRoleFunctionDefault", DbType.Boolean, param.IsRoleFunctionDefault);
             objectDb.AddInParameter(Field.UserId, DbType.Int32, param.ByUserId);
             objectDb.AddInParameter("Ip", DbType.String, param.Ip);
             objectDb.AddInParameter("Function", DbType.Xml, param.PermissionInfoXml);
@@ -117,7 +119,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
                     FirstName = reader.ToString("FirstName"),
                     LastName = reader.ToString("LastName"),
                     RoleId = reader.ToInt("RoleId"),
-                    IsActive = !Convert.ToBoolean(reader["Closed"])
+                    IsActive = !Convert.ToBoolean(reader["Closed"]),
+                    IsRoleMarketDefault = reader.ToBool("IsRoleMarketDefault"),
+                    IsRoleFunctionDefault = reader.ToBool("IsRoleFunctionDefault")
                 };
             }
 

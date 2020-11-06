@@ -14,5 +14,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.AdminRole
         public int RoleId { get; set; }
 
         public bool IsActive { get; set; }
+
+        public bool IsRoleMarketDefault { get; set; }
+
+        public bool IsRoleFunctionDefault { get; set; }
     }
 }

@@ -4,7 +4,6 @@ import { adminRoleMenuKey as menuKey } from '../libs/constants';
 
 import adminListReducer from '../../admin-list/reducers';
 import adminInfoReducer from '../../admin-info/reducers';
-import rolePermissionReducer from '../../role-permission/reducers';
 
 export const selectedMenu = createReducer('adminList', {
     [SET_SELECTED_MENU](prevState, action) {
@@ -15,5 +14,4 @@ export const selectedMenu = createReducer('adminList', {
 export const adminRoleReducer = {
     [menuKey.adminList]: adminListReducer,
     [menuKey.adminInfo]: adminInfoReducer,
-    [menuKey.rolePermission]: rolePermissionReducer,
 }

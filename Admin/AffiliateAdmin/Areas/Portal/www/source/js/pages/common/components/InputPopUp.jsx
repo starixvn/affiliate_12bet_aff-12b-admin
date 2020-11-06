@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, ModalBody, ModalHeader, Input, ModalFooter, Button } from "reactstrap";
+import { Modal, ModalBody, ModalHeader, Input, Button } from "reactstrap";
 import { NotificationPopup } from "./NotificationPopup";
 
 export const InputPopUp = (props) => {

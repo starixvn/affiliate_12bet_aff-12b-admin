@@ -33,6 +33,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             _rolePermissionService = rolePermissionService;
         }
 
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View("~/Areas/Portal/Views/AdminRole/RolePermission.cshtml");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetPermissionInfoList()

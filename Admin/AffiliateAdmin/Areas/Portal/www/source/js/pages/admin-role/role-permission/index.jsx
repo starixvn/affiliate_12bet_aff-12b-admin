@@ -1,10 +1,10 @@
 ﻿import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import ReactDOM from 'react-dom';
 
-import reducer from './core/reducers';
-import { configureStore } from '../../modules/store';
-import AppContainer from './core/components/AppContainer';
+import reducer from './reducers';
+import { configureStore } from '../../../modules/store';
+import AppContainer from './components/AppContainer';
 
 const store = configureStore(window.initialState, reducer);
 
@@ -22,4 +22,4 @@ export default class App extends Component {
     }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(<App />, document.getElementById("root"));
