@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Action
             var viewResult = controller.Index(new ParamFromHome()) as ViewResult;
             var viewName = viewResult.ViewName;
-            var model = viewResult.Model as AffiliateInfoViewModel;
+            var model = viewResult.Model as AffiliateFilterViewModel;
 
             // Assert
             Assert.Equal("", viewName);
@@ -51,13 +51,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         {
             // Arrange
             var param = new AffiliateInfoParam();
+            var model = new GetAffiliateViewModel();
             AffiliateInfoParam passedParam = null;
             var affiliateInfoRepository = new Mock<IAffiliateInfoRepository>();
-            affiliateInfoRepository.Setup(t => t.GetAffiliateList(param)).Returns(new EntityResult<AffiliateInfo> { MainData = new List<AffiliateInfo> { new AffiliateInfo() }, TotalItem = 1 }).Callback<AffiliateInfoParam>(p => passedParam = p);
+            affiliateInfoRepository.Setup(t => t.GetAffiliateList(It.IsAny<AffiliateInfoParam>())).Returns(new EntityResult<AffiliateInfo> { MainData = new List<AffiliateInfo> { new AffiliateInfo() }, TotalItem = 1 }).Callback<AffiliateInfoParam>(p => passedParam = p);
             var controller = CreateAffiliateController(affiliateInfoRepository: affiliateInfoRepository.Object);
 
             // Action
-            var result = controller.GetAffiliateList(param) as JsonNetResult;
+            var result = controller.GetAffiliateList(model) as JsonNetResult;
             var entityResult = result.Data as EntityResult<AffiliateInfo>;
 
             // Assert
@@ -73,7 +74,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var controller = CreateAffiliateController();
 
             // Action
-            var result = controller.GetAffiliateList(new AffiliateInfoParam { AffId = "abc" }) as JsonNetResult;
+            var result = controller.GetAffiliateList(new GetAffiliateViewModel { AffId = "abc" }) as JsonNetResult;
             var entityResult = result.Data as EntityResult<AffiliateInfo>;
 
             // Assert

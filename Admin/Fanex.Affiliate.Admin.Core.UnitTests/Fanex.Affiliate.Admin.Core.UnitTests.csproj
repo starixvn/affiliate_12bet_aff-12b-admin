@@ -159,8 +159,6 @@
     <Compile Include="Attributes\ResetValueNotHavePermissionAttributeTest.cs" />
     <Compile Include="Common\MockFile.cs" />
     <Compile Include="Controllers\AccessDeniedControllerTest.cs" />
-    <Compile Include="Controllers\Administrator\AdministratorControllerTest.cs" />
-    <Compile Include="Controllers\Administrator\DepartmentControllerTest.cs" />
     <Compile Include="Controllers\AdminRole\AdminInfoControllerTest.cs" />
     <Compile Include="Controllers\AdminRole\AdminRoleCommonControllerTest.cs" />
     <Compile Include="Controllers\AdminRole\AdminRoleControllerTest.cs" />
@@ -261,6 +259,7 @@
     <Compile Include="TestHelper\ReaderHelper.cs" />
     <Compile Include="TestHelper\SimpleLifetimeScopeProvider.cs" />
     <Compile Include="Utilities\BannerHelperTest.cs" />
+    <Compile Include="Utilities\LanguageHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
