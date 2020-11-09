@@ -64,6 +64,7 @@ export class GridData extends Component {
     }
 
     _renderHeader(selectedColumnList) {
+        const { isPwdChangeable } = this.props;
         return (
             <Row key="theard">
                 {selectedColumnList['Index'] && <Cell header={true} colWidth={80} title={headerText.Index.label}>{headerText.Index.label}</Cell>}
@@ -83,7 +84,7 @@ export class GridData extends Component {
                 {selectedColumnList['PlayerUserName'] && <Cell header={true} colWidth={200} title={headerText.PlayerUserName.label}>{headerText.PlayerUserName.label}</Cell>}
                 {selectedColumnList['PlayerCurrency'] && <Cell header={true} colWidth={150} title={headerText.PlayerCurrency.label}>{headerText.PlayerCurrency.label}</Cell>}
                 {selectedColumnList['Member'] && <Cell header={true} colWidth={150} title={headerText.Member.label}>{headerText.Member.label}</Cell>}
-                <Cell header={true} colWidth={130} title={headerText.Password.label}>{headerText.Password.label}</Cell>
+                {isPwdChangeable && <Cell header={true} colWidth={130} title={headerText.Password.label}>{headerText.Password.label}</Cell>}
             </Row>
         );
     }
@@ -112,7 +113,7 @@ export class GridData extends Component {
     }
 
     _buildDataRow(dataItem, index, selectedColumnList) {
-        const { languageList, isAssignCommGroup } = this.props;
+        const { languageList, isAssignCommGroup, isPwdChangeable } = this.props;
         const status = dataItem.Status && htmlDecode(dataItem.Status).toLowerCase();
         const isApproved = status == "approved";
         const commissionGroupName = htmlDecode(dataItem.CommissionGroup);
@@ -167,13 +168,14 @@ export class GridData extends Component {
                 {selectedColumnList['PlayerUserName'] && <Cell title={playerUserName}>{playerUserName}</Cell>}
                 {selectedColumnList['PlayerCurrency'] && <Cell title={dataItem.PlayerCurrency}>{dataItem.PlayerCurrency}</Cell>}
                 {selectedColumnList['Member'] && <Cell className="text-right" title={formattedMemberValue}>{member}</Cell>}
-                <Cell className="text-center" title="Change Password">
+                { isPwdChangeable && <Cell className="text-center" title="Change Password">
                     {
                         isApproved && (<Button color="link" onClick={() => this.handleChangePassword(dataItem.AffId)}>
                             <span className="oi oi-pencil text-secondary"></span>
                         </Button>)
                     }
                 </Cell>
+                }
             </Row>
         );
     }
@@ -268,7 +270,9 @@ export class GridData extends Component {
 
 function mapStateToProps({ pagingOption, languageList, param, columnList, claimsPrincipal }) {
     const isAssignCommGroup = claimsPrincipal.hasWriteClaim(claimResource.AffCommGroup);
-    return Object.assign({}, { pagingOption, languageList, param, columnList, isAssignCommGroup });
+    const isPwdChangeable = claimsPrincipal.hasWriteClaim(claimResource.AffPassword);
+    console.log(isPwdChangeable);
+    return Object.assign({}, { pagingOption, languageList, param, columnList, isAssignCommGroup, isPwdChangeable });
 }
 
 function mapDispatchToProps(dispatch) {

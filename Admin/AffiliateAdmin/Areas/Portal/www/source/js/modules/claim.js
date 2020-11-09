@@ -1,5 +1,3 @@
-import { Language } from "../pages/customer/left-panel/components/general-info/Language";
-
 export const claimResource = {
     WritePermission : 'Write',
     SecurityQuestion : '[SecurityQA]',
@@ -26,7 +24,8 @@ export const claimResource = {
     ExportExcel: '[ExportExcel]',
     AffInfo: '[Affiliate]',
     Payment: '[Payment]',
-    MediaGallery: '[Media]'
+    MediaGallery: '[Media]',
+    AffPassword: '[AffPassword]'
 }
 
 export class Claim{
