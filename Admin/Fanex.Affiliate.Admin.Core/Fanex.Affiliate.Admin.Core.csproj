@@ -192,8 +192,6 @@
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Constants\Validation.cs" />
     <Compile Include="Controllers\AccessDeniedController.cs" />
-    <Compile Include="Controllers\Administrator\AdministratorController.cs" />
-    <Compile Include="Controllers\Administrator\DepartmentController.cs" />
     <Compile Include="Controllers\AdminRole\AdminRoleCommonController.cs" />
     <Compile Include="Controllers\AdminRole\AdminRoleController.cs" />
     <Compile Include="Controllers\AdminRole\AdminInfoController.cs" />
