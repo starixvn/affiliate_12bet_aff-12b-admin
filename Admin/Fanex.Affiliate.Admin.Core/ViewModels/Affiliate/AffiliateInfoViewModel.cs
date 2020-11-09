@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.ViewModels.Affiliate
 {
-    public class AffiliateInfoViewModel
+    public class AffiliateFilterViewModel
     {
         public IEnumerable<SelectItem> CommGroupList { get; set; }
 

@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         [AllowByPassFunctionAuthorize]
         public ActionResult Index(ParamFromHome param, int groupId = 0)
         {
-            var viewModel = new AffiliateInfoViewModel
+            var viewModel = new AffiliateFilterViewModel
             {
                 SelectedGroupId = groupId,
                 Param = param
@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         public ActionResult GetFilter()
         {
             var groupListParam = new GetGroupListParam { AffId = -1 };
-            var viewModel = new AffiliateInfoViewModel
+            var viewModel = new AffiliateFilterViewModel
             {
                 CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
                 LanguageList = _languageService.GetInChangeLanguages(),
@@ -65,13 +65,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetAffiliateList(AffiliateInfoParam param)
+        public ActionResult GetAffiliateList(GetAffiliateViewModel viewModel)
         {
             int affId;
-            if (int.TryParse(param.AffId, out affId) || string.IsNullOrEmpty(param.AffId))
+            if (int.TryParse(viewModel.AffId, out affId) || string.IsNullOrEmpty(viewModel.AffId))
             {
-                param.AffIdNumber = affId;
-                param.UserId = SessionService.UserId;
+                viewModel.AffIdNumber = affId;
+                viewModel.UserId = SessionService.UserId;
+                var param = BuildGetModelToParam(viewModel);
                 var model = _affiliateInfoRepository.GetAffiliateList(param);
 
                 return new JsonNetResult
@@ -112,7 +113,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AffPassword, IsHost = true)]
         public ActionResult ChangePassword(PasswordParam param)
         {
             if (ModelState.IsValid)
@@ -128,6 +129,28 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 Code = Code.GeneralErrorCode,
                 Message = "Change Password is failed!"
             });
+        }
+
+        private AffiliateInfoParam BuildGetModelToParam(GetAffiliateViewModel viewModel)
+        {
+            var supportLanguages = _languageService.GetInChangeLanguages();
+            var queryLangs = LanguageHelper.BuildAllowQueryLanguages(viewModel.Language, supportLanguages);
+            return new AffiliateInfoParam
+            {
+                AffId = viewModel.AffId,
+                AffIdNumber = viewModel.AffIdNumber,
+                Email = viewModel.Email,
+                GroupId = viewModel.GroupId,
+                IsExportExcel = viewModel.IsExportExcel,
+                PageIndex = viewModel.PageIndex,
+                PageSize = viewModel.PageSize,
+                PreferenceLanguages = queryLangs,
+                SortBy = viewModel.SortBy,
+                SortDirectionType = viewModel.SortDirectionType,
+                Status = viewModel.Status,
+                UserId = viewModel.UserId,
+                UserName = viewModel.UserName
+            };
         }
     }
 }

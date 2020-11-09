@@ -69,7 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffIdNumber);
             objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
             objectDb.AddInParameter("GroupID", DbType.Int32, param.GroupId);
-            objectDb.AddInParameter("PreferredLanguage", DbType.String, param.Language);
+            objectDb.AddInParameter("PreferredLanguages", DbType.String, param.PreferenceLanguages);
             objectDb.AddInParameter("Status", DbType.String, param.Status);
             objectDb.AddInParameter("UserName", DbType.String, param.UserName);
             objectDb.AddInParameter("Email", DbType.String, param.Email);

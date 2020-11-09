@@ -18,6 +18,8 @@
 
         public const string CommissionGroup = "[CommissionGroup]";
 
+        public const string AssignCommGroup = "[AssginCommGroup]";
+
         public const string AffReport = "[AffReport]";
 
         public const string ExportExcel = "[ExportExcel]";
@@ -59,6 +61,8 @@
         public const string InChargeMarket = "[Market]";
 
         public const string Customer = "[Customer]";
+
+        public const string AffPassword = "[AffPassword]";
 
     }
 }

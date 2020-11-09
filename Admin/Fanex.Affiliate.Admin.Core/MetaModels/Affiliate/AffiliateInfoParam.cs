@@ -10,7 +10,7 @@
 
         public int GroupId { get; set; }
 
-        public string Language { get; set; }
+        public string PreferenceLanguages { get; set; }
 
         public string Status { get; set; }
 

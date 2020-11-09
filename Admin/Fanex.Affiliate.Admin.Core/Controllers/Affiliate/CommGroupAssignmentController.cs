@@ -18,7 +18,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.CommissionGroup)]
+    [FunctionAuthorize(FunctionName = Function.AssignCommGroup)]
     public class CommGroupAssignmentController : ReadOnlySessionBaseController
     {
         private const string PrivateGroupName = "[None]";
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             return View("~/Areas/Portal/Views/Affiliate/AssignGroup.cshtml", viewModel);
         }
 
-        [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AssignCommGroup, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult AssignGroup(AssignGroupParam assignParam, AffiliateBasicInfo affInfo)
@@ -105,7 +105,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             return View("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewModel);
         }
 
-        [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AssignCommGroup, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult AssignPrivateGroup(CommissionGroupSetting commGroup, AffiliateBasicInfo affInfo)
