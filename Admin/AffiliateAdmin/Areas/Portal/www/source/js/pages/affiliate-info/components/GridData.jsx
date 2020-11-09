@@ -15,6 +15,7 @@ import { resolveClientUrl } from '../../../modules/utils';
 import { convertSelectedColumnList } from '../modules/utils';
 import { htmlDecode } from '../../../modules/htmlHelper';
 import { NotificationPopup } from '../../common/components/NotificationPopup';
+import { claimResource } from '../../../modules/claim';
 
 export class GridData extends Component {
     constructor(props) {
@@ -111,7 +112,7 @@ export class GridData extends Component {
     }
 
     _buildDataRow(dataItem, index, selectedColumnList) {
-        const { languageList } = this.props;
+        const { languageList, isAssignCommGroup } = this.props;
         const status = dataItem.Status && htmlDecode(dataItem.Status).toLowerCase();
         const isApproved = status == "approved";
         const commissionGroupName = htmlDecode(dataItem.CommissionGroup);
@@ -130,7 +131,7 @@ export class GridData extends Component {
 
         const language = languageList[dataItem.Language];
         const commissionGroup = dataItem.CommissionGroup ? (
-            commissionGroupName === dataItem.UserName ? (
+            commissionGroupName === dataItem.UserName && isAssignCommGroup ? (
                 <Button color="link"
                     onClick={() => this.handleEditCommGroup(dataItem.AffId, dataItem.CommissionGroup)}>
                     {commissionGroupName}
@@ -265,8 +266,9 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, languageList, param, columnList }) {
-    return Object.assign({}, { pagingOption, languageList, param, columnList });
+function mapStateToProps({ pagingOption, languageList, param, columnList, claimsPrincipal }) {
+    const isAssignCommGroup = claimsPrincipal.hasWriteClaim(claimResource.AffCommGroup);
+    return Object.assign({}, { pagingOption, languageList, param, columnList, isAssignCommGroup });
 }
 
 function mapDispatchToProps(dispatch) {

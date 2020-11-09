@@ -11,6 +11,7 @@ export const claimResource = {
     Adjustment: '[AffAdjustment]',
     LanguageAmendment: '[AffMarket]',
     CommGroup: '[CommissionGroup]',
+    AffCommGroup: '[AssignCommGroup]',
     AffAccountStatus: '[AffAccountStatus]',
     Domain: '[Domain]',
     HotNews: '[HotNews]',

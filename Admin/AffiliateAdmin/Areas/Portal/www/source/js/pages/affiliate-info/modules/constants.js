@@ -35,7 +35,7 @@ export const headerText = {
     RegistrationDateText: { label: 'Registration Date' },
     ApprovalDateText: { label: 'Approval Date' },
     CasinoDateText: { label: 'Casino Date' },
-    CommissionGroup: { label: 'Commission Group'},
+    CommissionGroup: { label: 'Commission Group', renderClaim: new Claim(claimResource.AffCommGroup)},
     BalanceBf: { label: 'Balance B/F' },
     Currency: { label: 'Aff. Currency' },
     PlayerUserName: { label: 'Aff. Player' },
