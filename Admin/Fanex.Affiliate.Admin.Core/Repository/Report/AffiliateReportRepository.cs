@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
-                objectDb.AddInParameter("PreferredLanguage", DbType.String, param.PreferredLanguage);
+                objectDb.AddInParameter("PreferredLanguages", DbType.String, param.PreferredLanguages);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

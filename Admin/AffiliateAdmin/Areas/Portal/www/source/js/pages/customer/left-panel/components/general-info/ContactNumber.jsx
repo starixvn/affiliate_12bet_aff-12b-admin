@@ -77,7 +77,6 @@ export class ContactNumber extends PureComponent{
 
 function mapStateToProps({ affCommonInfo, leftPanel }) {
     const { affiliateInfo } = leftPanel;
-    console.log(affiliateInfo);
     const { affName } = affCommonInfo;
     return Object.assign({}, { affiliateInfo, affName });
 }

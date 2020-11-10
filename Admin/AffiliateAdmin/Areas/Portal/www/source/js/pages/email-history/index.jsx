@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import AppContainer from './components/AppContainer';
 import { configureStore } from '../../modules/store';
+import ClaimPrincipal from '../../modules/claim';
 
 
 
@@ -16,7 +17,7 @@ export default class App extends PureComponent {
     }
 
     render() {
-        const state = Object.assign({}, this.state, window.initialState);
+        const state = Object.assign({}, this.state, window.initialState, {claimsPrincipal: ClaimPrincipal.currentClaimPrincipal});
         const store = configureStore(state, reducer);
         return (
             <Provider store={store}>

@@ -24,6 +24,7 @@ export const renderInputForm = (name, label, inputValue, isDisabled, isRequired,
 }
 
 export const renderSelectionForm = (name, label, items, selectedKey, isDisabled, isRequired, changeHandler) => {
+    console.log(items);
     return (
         <FormGroup row key={name}>
             <Label for={name} sm={3} xl={2} className={isRequired ? "required" : ""}>{label}</Label>
@@ -32,7 +33,7 @@ export const renderSelectionForm = (name, label, items, selectedKey, isDisabled,
                     {
                         selectedKey === 0 ? <option key={name + '-0'} value='0' selected='true'>Select a secret question</option>
                             : <option key={name + '-0'} value='0'>Select a secret question</option>}
-                    {items && items.map((item) => {
+                    { items && items.map((item) => {
                         return item.Key === selectedKey
                             ? <option key={name + '-' + item.Key} value={item.Key} selected='true'>{item.Value}</option>
                             : <option key={name + '-' + item.Key} value={item.Key}>{item.Value}</option>

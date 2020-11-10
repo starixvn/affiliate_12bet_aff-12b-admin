@@ -3,6 +3,7 @@
 import createReducer from '../../../modules/createReducer';
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
+import { claimsPrincipal} from '../../../reducers/claimReducer';
 import { SET_PARAM, SET_CHECKED_EMAILS, SET_SELECTED_EMAIL_ID, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from '../actions/types';
 
 export const today = createReducer(null, {});
@@ -45,5 +46,6 @@ export default combineReducers({
     shouldResetScrollPosition,
     gridData,
     today,
-    param
+    param,
+    claimsPrincipal
 });

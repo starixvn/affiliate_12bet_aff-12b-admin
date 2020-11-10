@@ -588,6 +588,7 @@
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
+    <Compile Include="ViewModels\GetReportMainDataViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\GetBannerViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\GetTextLinkViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\ImageSizeViewModel.cs" />
