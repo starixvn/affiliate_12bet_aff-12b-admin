@@ -39,12 +39,49 @@ export class GeneralComponent extends PureComponent {
         this.props.toggleLoader(false);
     }
 
+    _handleChangeChildrenOfItem = (gridData, data, roleId, parentId) => {
+        const children = gridData.filter(item => item.RoleId == roleId && item.FuncId != parentId && item.AllParentIds.includes(parentId));
+
+        for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            const indexItem = gridData.findIndex(item => item.RoleId == roleId && item.FuncId == child.FuncId);
+            const updateItem = Object.assign({}, gridData[indexItem], data);
+
+            gridData = updateObjectInArray(gridData, indexItem, updateItem);
+            gridData = this._handleChangeChildrenOfItem(gridData, data, roleId, child.FuncId);
+        }
+
+        return gridData;
+    }
+
+    _handleChangeParentsOfItem = (gridData, data, roleId, funcId, allParentIds, isChecked, isHost) => {
+        const parentIds = allParentIds.split(',').filter(parentId => funcId != parentId);
+
+        for (let i = 0; i < parentIds.length; i++) {
+            const parentId = parentIds[i];
+            const hasAnyChildIsCheck = gridData.filter(item => item.RoleId == roleId && item.FuncId != parentId && item.AllParentIds.includes(parentId) && (isHost ? item.IsHost : item.IsRead)).length;
+
+            if (isChecked || !hasAnyChildIsCheck) {
+                const indexItem = gridData.findIndex(item => item.RoleId == roleId && item.FuncId == parentId);
+                const updateItem = Object.assign({}, gridData[indexItem], data);
+
+                gridData = updateObjectInArray(gridData, indexItem, updateItem);
+                gridData = this._handleChangeParentsOfItem(gridData, data, roleId, updateItem.FuncId, updateItem.AllParentIds, isChecked);
+            }
+        }
+
+        return gridData;
+    }
+
     _handleChange = (roleId, funcId, isChecked, isHost) => {
         const { gridData } = this.state;
-        const data = isHost ? (isChecked ? { IsHost: !isChecked } : { IsRead: !isChecked, IsHost: !isChecked }) : (isChecked ? { IsRead: !isChecked, IsHost: !isChecked } : { IsRead: !isChecked });
-        const indexItem = gridData.findIndex(item => item.RoleId === roleId && item.FuncId === funcId);
+        const data = isHost ? (isChecked ? { IsRead: true, IsHost: true } : { IsHost: false }) : (isChecked ? { IsRead: true } : { IsRead: false, IsHost: false });
+        const indexItem = gridData.findIndex(item => item.RoleId == roleId && item.FuncId == funcId);
         const updateItem = Object.assign({}, gridData[indexItem], data);
-        const gridDataUpdate = updateObjectInArray(gridData, indexItem, updateItem);
+        let gridDataUpdate = updateObjectInArray(gridData, indexItem, updateItem);
+
+        gridDataUpdate = this._handleChangeChildrenOfItem(gridDataUpdate, data, roleId, funcId);
+        gridDataUpdate = this._handleChangeParentsOfItem(gridDataUpdate, data, roleId, funcId, updateItem.AllParentIds, isChecked, isHost);
 
         this.setState({ gridData: gridDataUpdate });
     }
@@ -177,10 +214,10 @@ export class GeneralComponent extends PureComponent {
         return isEdit && isExpand ? (
             <Fragment>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsRead} onChange={() => this._handleChange(dataItem.RoleId, dataItem.FuncId, dataItem.IsRead, false)} />
+                    <input type="checkbox" checked={dataItem.IsRead} onChange={() => this._handleChange(dataItem.RoleId, dataItem.FuncId, !dataItem.IsRead, false)} />
                 </Cell>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={dataItem.IsHost} onChange={() => this._handleChange(dataItem.RoleId, dataItem.FuncId, dataItem.IsHost, true)} />
+                    <input type="checkbox" checked={dataItem.IsHost} onChange={() => this._handleChange(dataItem.RoleId, dataItem.FuncId, !dataItem.IsHost, true)} />
                 </Cell>
             </Fragment>
         ) : (

@@ -6,6 +6,7 @@ import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { globalResource } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { getUserPermissionList, setUserInfo } from '../actions/index';
+import { renderHeader, renderColumns } from '../../common/libs/render';
 
 export class PermissionPopup extends PureComponent {
     constructor(props) {
@@ -34,24 +35,6 @@ export class PermissionPopup extends PureComponent {
         this.setState({ data: null });
     }
 
-    _renderHeader() {
-        return (
-            <thead key="thead">
-                <tr>
-                    <th rowSpan="2" colSpan="2">Function</th>
-                    <th colSpan="2">Individual Permission</th>
-                    <th colSpan="2">Role Permision</th>
-                </tr>
-                <tr>
-                    <th>Read</th>
-                    <th>Host</th>
-                    <th>Read</th>
-                    <th>Host</th>
-                </tr>
-            </thead>
-        );
-    }
-
     _renderDataSection(dataList) {
         const dataRows = [];
 
@@ -73,45 +56,15 @@ export class PermissionPopup extends PureComponent {
         return dataRows;
     }
 
-    _renderColumns(dataItem) {
-
-        return (
-                <Fragment>
-                    <td className="text-center">
-                        {
-                            dataItem.IsRead && <span className="oi oi-check text-primary"></span>
-                        }
-                    </td>
-
-                    <td className="text-center">
-                        {
-                            dataItem.IsHost && <span className="oi oi-check text-primary"></span>
-                        }
-                    </td>
-                    <td className="text-center">
-                        {
-                            dataItem.IsRoleRead && <span className="oi oi-check text-primary"></span>
-                        }
-                    </td>
-
-                    <td className="text-center">
-                        {
-                            dataItem.IsRoleHost && <span className="oi oi-check text-primary"></span>
-                        }
-                    </td>
-                </Fragment>
-        );
-    }
-
     _buildDataRowChildren(dataItem, dataList) {
         const funcName = htmlDecode(dataItem.FuncName);
 
         return (
             <Fragment>
                 <tr key={`dataRow-${dataItem.FuncId}`} className="current">
-                    <td colSpan="2" className="pl-2" title={funcName}>{funcName}</td>
+                    <td colSpan="3" className="pl-2" title={funcName}>{funcName}</td>
                     {
-                        this._renderColumns(dataItem)
+                        renderColumns(dataItem)
                     }
                 </tr>
                 {
@@ -142,9 +95,9 @@ export class PermissionPopup extends PureComponent {
         return (
             <Fragment>
                 <tr key={`dataRow-${dataItem.FuncId}`} className="current">
-                    <td colSpan="2" className={isRecursive ? "pl-5" : "pl-4"} title={dataItem.FuncName}>{dataItem.FuncName}</td>
+                    <td colSpan="3" className={isRecursive ? "pl-5" : "pl-4"} title={dataItem.FuncName}>{dataItem.FuncName}</td>
                     {
-                        this._renderColumns(dataItem, isRecursive)
+                        renderColumns(dataItem)
                     }
                 </tr>
                 {
@@ -170,7 +123,7 @@ export class PermissionPopup extends PureComponent {
                         <div className="permission-popup-form-container">
                             <div className="permission-popup-list-content table-responsive mb-2">
                                 <Table className="permission-popup-data-table">
-                                    {this._renderHeader()}
+                                    {renderHeader()}
                                     {this._renderDataSection(data)}
                                 </Table>
                             </div>

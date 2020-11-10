@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 import { Table, Form, FormGroup, Label } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText, globalResource } from '../libs/constants';
+import { globalResource } from '../libs/constants';
 import { updateObjectInArray } from '../../../../modules/dataHandler';
 import { setPermissionListByRole } from '../actions';
+import { renderHeader, renderColumns } from '../../common/libs/render';
 
 export class PersonalPermissionTable extends PureComponent {
     constructor(props) {
@@ -26,12 +27,50 @@ export class PersonalPermissionTable extends PureComponent {
         }
     }
 
+    _handleChangeChildrenOfItem = (gridData, data, parentId) => {
+        const children = gridData.filter(item => item.FuncId != parentId && item.AllParentIds.includes(parentId));
+
+        for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            const indexItem = gridData.findIndex(item => item.FuncId == child.FuncId);
+            const updateItem = Object.assign({}, gridData[indexItem], data);
+
+            gridData = updateObjectInArray(gridData, indexItem, updateItem);
+            gridData = this._handleChangeChildrenOfItem(gridData, data, child.FuncId);
+        }
+
+        return gridData;
+    }
+
+    _handleChangeParentsOfItem = (gridData, data, funcId, allParentIds, isChecked, isHost) => {
+        const parentIds = allParentIds.split(',').filter(parentId => funcId != parentId);
+
+        for (let i = 0; i < parentIds.length; i++) {
+            const parentId = parentIds[i];
+            const hasAnyChildIsCheck = gridData.filter(item => item.FuncId != parentId && item.AllParentIds.includes(parentId) && (isHost ? item.IsHost : item.IsRead)).length;
+
+            if (isChecked || !hasAnyChildIsCheck) {
+                const indexItem = gridData.findIndex(item => item.FuncId == parentId);
+                const updateItem = Object.assign({}, gridData[indexItem], data);
+
+                gridData = updateObjectInArray(gridData, indexItem, updateItem);
+                gridData = this._handleChangeParentsOfItem(gridData, data, updateItem.FuncId, updateItem.AllParentIds, isChecked);
+            }
+        }
+
+        return gridData;
+    }
+
     _handleChange = (funcId, isChecked, isHost) => {
         const { permissionListByRole } = this.props;
-        const data = isHost ? (isChecked ? { IsHost: !isChecked } : { IsRead: !isChecked, IsHost: !isChecked }) : (isChecked ? { IsRead: !isChecked, IsHost: !isChecked } : { IsRead: !isChecked });
-        const indexItem = permissionListByRole.findIndex(item => item.FuncId === funcId);
+        const data = isHost ? (isChecked ? { IsRead: true, IsHost: true } : { IsHost: false }) : (isChecked ? { IsRead: true } : { IsRead: false, IsHost: false });
+        const indexItem = permissionListByRole.findIndex(item => item.FuncId == funcId);
         const updateItem = Object.assign({}, permissionListByRole[indexItem], data);
-        const permissionListByRoleUpdate = updateObjectInArray(permissionListByRole, indexItem, updateItem);
+
+        let permissionListByRoleUpdate = updateObjectInArray(permissionListByRole, indexItem, updateItem);
+
+        permissionListByRoleUpdate = this._handleChangeChildrenOfItem(permissionListByRoleUpdate, data, funcId);
+        permissionListByRoleUpdate = this._handleChangeParentsOfItem(permissionListByRoleUpdate, data, funcId, updateItem.AllParentIds, isChecked, isHost);
 
         this.props.setPermissionListByRole(permissionListByRoleUpdate);
     }
@@ -52,25 +91,6 @@ export class PersonalPermissionTable extends PureComponent {
         });
 
         this.props.setPermissionListByRole(newPermissionListByRole);
-    }
-
-    _renderHeader() {
-
-        return (
-            <thead key="thead">
-                <tr>
-                    <th rowSpan="2" colSpan="3">{headerText.Function}</th>
-                    <th colSpan="2">{headerText.IndividualPermission}</th>
-                    <th colSpan="2">{headerText.RolePermission}</th>
-                </tr>
-                <tr>
-                    <th>{headerText.Read}</th>
-                    <th>{headerText.Host}</th>
-                    <th>{headerText.Read}</th>
-                    <th>{headerText.Host}</th>
-                </tr>
-            </thead>
-        );
     }
 
     _renderDataSection(dataList) {
@@ -102,10 +122,10 @@ export class PersonalPermissionTable extends PureComponent {
         return isEdit || isCreateNew ? (
             <Fragment>
                 <td className="text-center">
-                    <input type="checkbox" checked={dataItem.IsRead} disabled={isSetByDefault} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsRead, false)} />
+                    <input type="checkbox" checked={dataItem.IsRead} disabled={isSetByDefault} onChange={() => this._handleChange(dataItem.FuncId, !dataItem.IsRead, false)} />
                 </td>
                 <td className="text-center">
-                    <input type="checkbox" checked={dataItem.IsHost} disabled={isSetByDefault} onChange={() => this._handleChange(dataItem.FuncId, dataItem.IsHost, true)} />
+                    <input type="checkbox" checked={dataItem.IsHost} disabled={isSetByDefault} onChange={() => this._handleChange(dataItem.FuncId, !dataItem.IsHost, true)} />
                 </td>
                 <td className="text-center">
                     <input type="checkbox" checked={dataItem.IsRoleRead} disabled />
@@ -114,32 +134,7 @@ export class PersonalPermissionTable extends PureComponent {
                     <input type="checkbox" checked={dataItem.IsRoleHost} disabled />
                 </td>
             </Fragment>
-        ) : (
-                <Fragment>
-                    <td className="text-center">
-                        {
-                            dataItem.IsRead && <span className="oi oi-check text-primary"></span>
-                        }
-                    </td>
-
-                    <td className="text-center">
-                        {
-                            dataItem.IsHost && <span className="oi oi-check text-primary"></span>
-                        }
-                    </td>
-                    <td className="text-center">
-                        {
-                            dataItem.IsRoleRead && <span className="oi oi-check text-primary"></span>
-                        }
-                    </td>
-
-                    <td className="text-center">
-                        {
-                            dataItem.IsRoleHost && <span className="oi oi-check text-primary"></span>
-                        }
-                    </td>
-                </Fragment>
-            )
+        ) : renderColumns(dataItem);
     }
 
     _buildDataRowChildren(dataItem, dataList, isCreateNew, isEdit) {
@@ -212,7 +207,7 @@ export class PersonalPermissionTable extends PureComponent {
                 }
                 <div className="table-responsive table-striped my-3">
                     <Table className="permission-popup-data-table">
-                        {this._renderHeader()}
+                        {renderHeader()}
                         {this._renderDataSection(permissionListByRole)}
                     </Table>
                 </div>

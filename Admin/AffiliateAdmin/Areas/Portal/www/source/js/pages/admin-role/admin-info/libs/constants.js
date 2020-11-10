@@ -18,17 +18,6 @@ export const resources = {
     AccountStatus: 'Account Status'
 }
 
-export const headerText = {
-    Index: globalResource.Index,
-    Function: 'Function',
-    IndividualPermission: 'Individual Permission',
-    RolePermission: 'Role Permission',
-    Read: 'Read',
-    Host: 'Host',
-    View: 'View',
-    Edit: globalResource.Edit
-}
-
 export const initialState = {
     isClickedSubmit: false,
     newUserName: '',

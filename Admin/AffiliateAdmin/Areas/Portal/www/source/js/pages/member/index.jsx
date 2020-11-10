@@ -20,7 +20,7 @@ export default class App extends React.PureComponent {
         const renderMenuLst = this._getRenderMenuItems();
         const imgSrc = 'Areas/Portal/www/dist/imgs/i_member.png';
         const firstMenu = renderMenuLst[0];
-        console.log(firstMenu);
+
         return (
             <Router>
                 <MenuList img={imgSrc}
