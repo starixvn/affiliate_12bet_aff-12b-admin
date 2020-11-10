@@ -10,11 +10,11 @@
     var hasTurnOverPermission = permissions.Any(i => i.Type.Equals(Function.Turnover, StringComparison.OrdinalIgnoreCase));
     var menus = new Dictionary<string, string>
     {
-        {"Customer", String.Empty },
+        {"Customer", Function.Customer },
         {"Affiliate", String.Empty  },
         {"Member",Function.AffMember },
         {"Report",Function.AffReport },
-        {"MediaGallery", String.Empty  },
+        {"MediaGallery", Function.Media  },
         {"Message",Function.HotNews },
         {"ExchangeRate",Function.AffExRate },
         {"AdminRole",Function.UserControl },

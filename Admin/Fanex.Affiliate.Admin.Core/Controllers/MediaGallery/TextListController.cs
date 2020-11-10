@@ -8,8 +8,12 @@ using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
+using Microsoft.Practices.ObjectBuilder2;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
@@ -49,10 +53,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetTextList(TextParam param)
+        public ActionResult GetTextList(GetTextLinkViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var param = new TextParam
+                {
+                    Category = model.Category,
+                    PageSize = model.PageSize,
+                    PageIndex = model.PageIndex,
+                    Currency = model.Currency,
+                    DeviceType = model.DeviceType,
+                    Languages = BuildQueryLanguages(model.Language)
+                };
+
                 return new JsonNetResult
                 {
                     Data = _textListService.GetTextList(param)
@@ -168,6 +182,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 Currency = param.Currency,
                 DeviceType = param.DeviceType
             };
+        }
+
+        private string BuildQueryLanguages(string lang = null)
+        {
+            var langs = _languageService.GetInChangeLanguages();
+            if (!String.IsNullOrWhiteSpace(lang))
+            {
+                langs = langs.Where(l => l.LanguageName.Equals(lang, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return langs.JoinStrings(",", l => l.LanguageName);
         }
 
         private void GetUserInfoParam(UserInfoParam param)

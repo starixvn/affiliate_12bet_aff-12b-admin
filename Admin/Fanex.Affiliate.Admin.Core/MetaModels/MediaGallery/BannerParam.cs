@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 
         public string SubCategory { get; set; }
 
-        public string Language { get; set; }
+        public string Languages { get; set; }
 
         public string Currency { get; set; }
 

@@ -55,5 +55,8 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_DomainControl_Upd" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_DomainControl_Del" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Affiliate_Sel" Suffix="_xtest"></item>
-
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Banner_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_MediaSize_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Text_Sel" Suffix="_xtest"></item>
+  
 </Root>

@@ -9,7 +9,9 @@ using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
+using Microsoft.Practices.ObjectBuilder2;
 using System;
 using System.Linq;
 using System.Web;
@@ -49,7 +51,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             var sizeParam = new SizeParam
             {
-                ImageType = param.ImageType
+                ImageType = param.ImageType,
+                Languages = BuildQueryLanguages()
             };
             var bannerListCategory = _commonMediaGalleryService.GetCategoryList(BannerListCategory);
 
@@ -75,8 +78,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetSizeList(SizeParam param)
+        public ActionResult GetSizeList(ImageSizeViewModel model)
         {
+            var param = new SizeParam
+            {
+                AffType = model.AffType,
+                Category = model.Category,
+                Currency = model.Currency,
+                DeviceType = model.DeviceType,
+                ImageType = model.ImageType,
+                Languages = BuildQueryLanguages(model.Language),
+                SubCategory = model.SubCategory
+            };
+
             return new JsonNetResult
             {
                 Data = _bannerListService.GetSizeList(param)
@@ -85,8 +99,22 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetBannerList(BannerParam param)
+        public ActionResult GetBannerList(GetBannerViewModel model)
         {
+            var param = new BannerParam
+            {
+                AffType = model.AffType,
+                Category = model.Category,
+                Currency = model.Currency,
+                DeviceType = model.DeviceType,
+                ImageType = model.ImageType,
+                Languages = BuildQueryLanguages(model.Language),
+                PageIndex = model.PageIndex,
+                PageSize = model.PageSize,
+                Size = model.Size,
+                SubCategory = model.SubCategory
+            };
+
             return new JsonNetResult
             {
                 Data = _bannerListService.GetBannerList(param)
@@ -179,6 +207,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                     Message = "Please select Banner(s) to delete."
                 }
             };
+        }
+
+        private string BuildQueryLanguages(string lang = null)
+        {
+            var langs = _languageService.GetInChangeLanguages();
+            if (!String.IsNullOrWhiteSpace(lang))
+            {
+                langs = langs.Where(l => l.LanguageName.Equals(lang, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return langs.JoinStrings(",", l => l.LanguageName);
         }
 
         private InsertUpdateMultipleBannersParam EncodeParam(InsertUpdateMultipleBannersParam param)
