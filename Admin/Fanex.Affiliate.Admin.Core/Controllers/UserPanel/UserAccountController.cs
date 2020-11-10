@@ -21,6 +21,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     {
         private readonly IUserAccountService _userAccountService;
 
+        private const string AdminPageDefaultLang = "en-US";
+
         public UserAccountController(
             ISessionService sessionService,
             IUserAccountService userAccountService) : base(sessionService)
@@ -36,8 +38,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 var userAccountInfo = _userAccountService.GetUserAccountInfo(affId);
                 var claimPrincipal = HttpContext.User as ClaimsPrincipal;
-                var securityQuestions = claimPrincipal.HasWriteClaim(Function.SecurityQa)
-                    ? _userAccountService.GetSecurityQuestions(userAccountInfo.Lang).Select(q => new KeyValuePair<int, string>(q.QuestionId, q.Question))
+                var securityQuestions = claimPrincipal.HasClaim(Function.SecurityQa)
+                    ? _userAccountService.GetSecurityQuestions(AdminPageDefaultLang).Select(q => new KeyValuePair<int, string>(q.QuestionId, q.Question))
                     : null;
 
                 if (userAccountInfo != null)
