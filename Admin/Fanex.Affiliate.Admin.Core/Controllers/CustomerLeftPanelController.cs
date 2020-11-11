@@ -97,37 +97,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffPhone, IsHost = true)]
-        [HttpPost]
-        public ActionResult UpdateContactNumber(UpdateContactNumberViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return new JsonResult
-                {
-                    Data = new ResultInfo
-                    {
-                        Code = Code.GeneralErrorCode,
-                        Message = "Update contact number is failed!"
-                    }
-                };
-            }
-
-            var param = new UpdateContactNumberParam
-            {
-                AffId = model.AffId,
-                PhoneNumber = model.ContactNumber,
-                Ip = Request.UserHostAddress,
-                UserId = _sessionService.UserId
-            };
-
-            return new JsonNetResult
-            {
-                Data = _customerLeftPanelService.UpdateContactNumber(param)
-            };
-        }
-
-        [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Customer, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateAffType(UpdateAffTypeParam param)
@@ -186,7 +155,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Customer, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AffAccountStatus, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateClosedStatus(UpdateClosedStatusParam param)
         {

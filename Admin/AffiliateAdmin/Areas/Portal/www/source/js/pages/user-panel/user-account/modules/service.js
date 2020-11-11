@@ -24,7 +24,6 @@ export const renderInputForm = (name, label, inputValue, isDisabled, isRequired,
 }
 
 export const renderSelectionForm = (name, label, items, selectedKey, isDisabled, isRequired, changeHandler) => {
-    console.log(items);
     return (
         <FormGroup row key={name}>
             <Label for={name} sm={3} xl={2} className={isRequired ? "required" : ""}>{label}</Label>

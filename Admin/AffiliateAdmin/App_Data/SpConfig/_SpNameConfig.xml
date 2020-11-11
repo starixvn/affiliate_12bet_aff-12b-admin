@@ -59,5 +59,8 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_MediaSize_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Text_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateReport_Sel" Suffix="_xtest"></item>
-  
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_EmailHistory_Del" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Message_Ins" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Message_Upd" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Message_Del" Suffix="_xtest"></item>
 </Root>

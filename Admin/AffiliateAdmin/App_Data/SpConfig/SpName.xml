@@ -96,7 +96,7 @@
   <Function Name="EmailHistory">
     <Setting Key="Aff_Admin_EmailHistory_Sel" SpName="Aff_Admin_EmailHistory_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_EmailHistory_Detail_Sel" SpName="Aff_Admin_EmailHistory_Detail_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_EmailHistory_Del" SpName="Aff_Admin_EmailHistory_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_EmailHistory_Del" SpName="Aff_Admin_EmailHistory_Del_xtest" DbName="affiliate_12bet" />
   </Function>
   <Function Name="ExchangeRate">
     <Setting Key="Aff_Admin_Exchange_Sel" SpName="Aff_Admin_Exchange_Sel" DbName="affiliate_12bet" />
@@ -104,9 +104,9 @@
   </Function>
   <Function Name="Message">
     <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_Message_Ins" SpName="Aff_Admin_Message_Ins" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_Message_Upd" SpName="Aff_Admin_Message_Upd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_Message_Del" SpName="Aff_Admin_Message_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Ins" SpName="Aff_Admin_Message_Ins_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Upd" SpName="Aff_Admin_Message_Upd_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Message_Del" SpName="Aff_Admin_Message_Del_xtest" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Member">
     <Setting Key="Aff_MemberListSel" SpName="Aff_MemberListSel" DbName="affiliate_12bet" />

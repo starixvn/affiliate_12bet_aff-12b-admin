@@ -233,9 +233,6 @@
     <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\UserAccountController.cs" />
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
-    <Compile Include="DTO\Administrator\AdministratorInfo.cs" />
-    <Compile Include="DTO\Administrator\DepartmentInfo.cs" />
-    <Compile Include="DTO\Administrator\PolicyInfo.cs" />
     <Compile Include="DTO\AdminRole\AdminInfo.cs" />
     <Compile Include="DTO\AdminRole\AdminInforResultEntity.cs" />
     <Compile Include="DTO\AdminRole\AdminListInfo.cs" />
@@ -480,10 +477,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\Administrator\AdministratorService.cs" />
-    <Compile Include="Services\Administrator\DepartmentService.cs" />
-    <Compile Include="Services\Administrator\IAdministratorService.cs" />
-    <Compile Include="Services\Administrator\IDepartmentService.cs" />
     <Compile Include="Services\AdminRole\AdminInfoService.cs" />
     <Compile Include="Services\AdminRole\AdminRoleCommonService.cs" />
     <Compile Include="Services\AdminRole\AdminListService.cs" />
