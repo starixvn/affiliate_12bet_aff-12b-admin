@@ -64,6 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void GetSizeList_WhenCall_ReturnCorrectData()
         {
             // Arrange
+            var model = new ImageSizeViewModel();
             var param = new SizeParam();
             SizeParam passedSizeParam = null;
             var bannerListService = new Mock<IBannerListService>();
@@ -71,7 +72,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
 
             // Action
-            var result = controller.GetSizeList(param) as JsonNetResult;
+            var result = controller.GetSizeList(model) as JsonNetResult;
 
             // Assert
             Assert.Single(result.Data as IEnumerable<MediaGalleryFilterItem>);
@@ -82,6 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void GetBannerList_WhenCall_ReturnCorrectData()
         {
             // Arrange
+            var model = new GetBannerViewModel();
             var param = new BannerParam();
             BannerParam passedParam = null;
             var bannerListService = new Mock<IBannerListService>();
@@ -89,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
 
             // Action
-            var result = controller.GetBannerList(param) as JsonNetResult;
+            var result = controller.GetBannerList(model) as JsonNetResult;
             var entityResult = result.Data as EntityResult<BannerInfo>;
 
             // Assert

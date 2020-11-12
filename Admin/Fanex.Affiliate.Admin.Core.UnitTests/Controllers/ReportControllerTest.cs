@@ -42,6 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetMainData_WhenCall_ReturnCorrectData()
         {
             // Arrange
+            var model = new GetReportMainDataViewModel();
             var param = new AffiliateReportMainParam();
             AffiliateReportMainParam passedParam = null;
             var affiliateReportService = new Mock<IAffiliateReportService>();
@@ -49,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var controller = CreateReportController(affiliateReportService: affiliateReportService.Object);
 
             // Action
-            var result = controller.GetMainData(param) as JsonNetResult;
+            var result = controller.GetMainData(model) as JsonNetResult;
             var data = result.Data as EntityResult<AffiliateReport>;
 
             // Assert
@@ -61,6 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetDetailData_WhenCall_ReturnCorrectData()
         {
             // Arrange
+            var model = new GetReportMainDataViewModel();
             var param = new AffiliateReportMainParam();
             AffiliateReportMainParam passedParam = null;
             var affiliateReportService = new Mock<IAffiliateReportService>();
@@ -68,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var controller = CreateReportController(affiliateReportService: affiliateReportService.Object);
 
             // Action
-            var result = controller.GetDetailData(param) as JsonNetResult;
+            var result = controller.GetDetailData(model) as JsonNetResult;
             var data = result.Data as EntityResult<AffiliateReport>;
 
             // Assert

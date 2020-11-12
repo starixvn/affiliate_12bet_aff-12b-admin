@@ -50,6 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void GetTextList_WhenCallWithValidParam_ExcuteWithCorrectData()
         {
             // Arrange
+            var model = new GetTextLinkViewModel();
             var param = new TextParam();
             TextParam passedParam = null;
             var textListService = new Mock<ITextListService>();
@@ -57,7 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var controller = CreateTextListController(textListService: textListService.Object);
 
             // Action
-            var result = controller.GetTextList(param) as JsonNetResult;
+            var result = controller.GetTextList(model) as JsonNetResult;
             var entityResult = result.Data as EntityResult<TextInfo>;
 
             // Assert
@@ -74,7 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.GetTextList(new TextParam()) as JsonNetResult;
+            var result = controller.GetTextList(new GetTextLinkViewModel()) as JsonNetResult;
             var entityResult = result.Data as EntityResult<TextInfo>;
 
             // Assert

@@ -1,19 +1,18 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
 {
-    public class ResetValueNotHavePermissionAttributeTest
+    public class ResetDefaultUnauthorizedPropertyAttributeTest
     {
         const string PERMISSION_NAME = "[Permission]";
-        const string permissionSessionKey = "__UserPermissionSessionKey";
 
         [Fact]
         public void OnResultExecuting_WhenResultIsNotViewOrJsonResult_ThrowException()
@@ -21,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             var attribute = CreateAttribute();
             var filtercontext = new ResultExecutingContext();
             SetUpContext(filtercontext);
-            filtercontext.HttpContext.Session[permissionSessionKey].Returns(null);
+            filtercontext.HttpContext.User = new ClaimsPrincipal();
             filtercontext.Result = new HttpNotFoundResult();
 
             Assert.Throws<InvalidOperationException>(() => attribute.OnResultExecuting(filtercontext));
@@ -33,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             var attribute = CreateAttribute();
             var filtercontext = new ResultExecutingContext();
             SetUpContext(filtercontext);
-            filtercontext.HttpContext.Session[permissionSessionKey].Returns(null);
+            filtercontext.HttpContext.User = new ClaimsPrincipal();
             ViewResultBase viewResultBase = new ViewResult();
             filtercontext.Result = viewResultBase;
 
@@ -49,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             var attribute = CreateAttribute();
             var filtercontext = new ResultExecutingContext();
             SetUpContext(filtercontext);
-            filtercontext.HttpContext.Session[permissionSessionKey].Returns(new List<UserPermission>());
+            filtercontext.HttpContext.User = new ClaimsPrincipal();
             var data = new TestResetStringPropertyClass { ResetProterty = "abc", NotResetPropety = "123" };
             filtercontext.Result = new JsonResult() { Data = data };
 
@@ -65,7 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             var attribute = CreateAttribute();
             var filtercontext = new ResultExecutingContext();
             SetUpContext(filtercontext);
-            filtercontext.HttpContext.Session[permissionSessionKey].Returns(new List<UserPermission>());
+            filtercontext.HttpContext.User = new ClaimsPrincipal();
             var data = new TestResetDecimalPropertyClass { ResetProterty =  10, NotResetPropety = 10 };
             filtercontext.Result = new JsonNetResult() { Data = data };
 
@@ -81,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             var attribute = CreateAttribute();
             var filtercontext = new ResultExecutingContext();
             SetUpContext(filtercontext);
-            filtercontext.HttpContext.Session[permissionSessionKey].Returns(new List<UserPermission>());
+            filtercontext.HttpContext.User = new ClaimsPrincipal();
             var now = DateTime.Now;
             var data = new TestResetDateTimePropertyClass { ResetProterty = now, NotResetPropety = now };
             filtercontext.Result = new JsonResult() { Data = data };
@@ -98,7 +97,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             var attribute = CreateAttribute();
             var filtercontext = new ResultExecutingContext();
             SetUpContext(filtercontext);
-            filtercontext.HttpContext.Session[permissionSessionKey].Returns(new List<UserPermission> { new UserPermission {FunctionName = PERMISSION_NAME } });
+            var claims = new List<Claim> { new Claim(PERMISSION_NAME, "") };
+            filtercontext.HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity(claims));
             var data = new TestResetStringPropertyClass { ResetProterty = "abc", NotResetPropety = "123" };
             filtercontext.Result = new JsonResult() { Data = data };
 
@@ -114,7 +114,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             var attribute = CreateAttribute();
             var filtercontext = new ResultExecutingContext();
             SetUpContext(filtercontext);
-            filtercontext.HttpContext.Session[permissionSessionKey].Returns(new List<UserPermission>());
+            filtercontext.HttpContext.User = new ClaimsPrincipal();
             var data = new TestResetStringPropertyClass[]
             {
                 new TestResetStringPropertyClass { ResetProterty = "abc", NotResetPropety = "123" },
@@ -138,7 +138,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             var attribute = CreateAttribute();
             var filtercontext = new ResultExecutingContext();
             SetUpContext(filtercontext);
-            filtercontext.HttpContext.Session[permissionSessionKey].Returns(new List<UserPermission>());
+            filtercontext.HttpContext.User = new ClaimsPrincipal();
             var data = new TestResetPropertyInNestedClass
             {
                 ResetProperty = "abc",
@@ -169,8 +169,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             httpContext.Session.Returns(session);
         }
 
-        private HiddenPropertyAttribute CreateAttribute(string permissionName = PERMISSION_NAME)
-            => new HiddenPropertyAttribute(permissionName);
+        private ResetDefaultUnauthorizedPropertyAttribute CreateAttribute(string permissionName = PERMISSION_NAME)
+            => new ResetDefaultUnauthorizedPropertyAttribute(permissionName);
 
         private class TestResetStringPropertyClass
         {
