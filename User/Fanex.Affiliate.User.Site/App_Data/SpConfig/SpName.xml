@@ -61,11 +61,11 @@
   </Function>
 
   <Function Name="HotNews">
-    <Setting Key="Aff_HotNewsDetail" SpName="Aff_HotNewsDetail" DbName="affiliate_12bet" />
-    <Setting Key="Aff_HotNewsDetail_view" SpName="Aff_HotNewsDetail" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_HotNewsDetail" SpName="Aff_HotNewsDetail_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_HotNewsDetail_view" SpName="Aff_HotNewsDetail_xtest" DbName="affiliate_12bet_view" />
 
-    <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_HotNewsSel_view" SpName="Aff_HotNewsSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_HotNewsSel_view" SpName="Aff_HotNewsSel_xtest" DbName="affiliate_12bet_view" />
   </Function>
 
   <Function Name="Password">
