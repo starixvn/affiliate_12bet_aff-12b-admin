@@ -60,7 +60,7 @@ export const validateUserAccount = (userAccountInfo, moreSiteUrlsList) => {
     let message = '';
     const checkEmail = new RegExp(regexEmail);
     const isValidGender = userAccountInfo.Gender != null;
-    const isValidEmail = checkEmail.test(userAccountInfo.Email);
+    const isValidEmail = !userAccountInfo.Email || checkEmail.test(userAccountInfo.Email);
     const country = countriesList[userAccountInfo.Country] === undefined ? "" : userAccountInfo.Country;
 
     message = isValidGender ? message : message + messageList.Gender + "<br />";

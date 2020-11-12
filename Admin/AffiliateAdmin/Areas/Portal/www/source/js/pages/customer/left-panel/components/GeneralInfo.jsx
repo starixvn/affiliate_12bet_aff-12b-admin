@@ -13,7 +13,7 @@ import { claimResource } from '../../../../modules/claim';
 export const GeneralInfo = (props) => {
     const { affiliateInfo, claimsPrincipal } = props;
     const isApproved = affiliateInfo && affiliateInfo.Status && affiliateInfo.Status.toLowerCase() === status.Approved;
-    const siteUrl = affiliateInfo && (affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl);
+    const siteUrl = affiliateInfo && affiliateInfo.SiteUrl && (affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl);
 
     return affiliateInfo && (
         <div className="general-info pt-2">

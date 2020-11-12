@@ -65,6 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [ResetDefaultUnauthorizedProperty]
         public ActionResult GetAffiliateList(GetAffiliateViewModel viewModel)
         {
             int affId;

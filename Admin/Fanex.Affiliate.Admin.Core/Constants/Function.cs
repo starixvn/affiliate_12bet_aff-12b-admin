@@ -64,5 +64,7 @@
 
         public const string AffPassword = "[AffPassword]";
 
+        public const string AffMemberName = "[AffMemberName]";
+
     }
 }

@@ -170,7 +170,7 @@
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\PermissionCheckAttribute.cs" />
-    <Compile Include="Attributes\HiddenPropertyAttribute.cs" />
+    <Compile Include="Attributes\ResetDefaultUnauthorizedPropertyAttribute.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryHeaderAttribute.cs" />
     <Compile Include="Attributes\SpParamProtectingAttribute.cs" />
     <Compile Include="Configurations\AppSetting.cs" />
@@ -198,7 +198,7 @@
     <Compile Include="Controllers\AdminRole\RolePermissionController.cs" />
     <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ReadOnlySessionBaseController.cs" />
     <Compile Include="Controllers\Affiliate\CommissionGroupController.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentController.cs" />
     <Compile Include="Controllers\ChangeAdminPasswordController.cs" />

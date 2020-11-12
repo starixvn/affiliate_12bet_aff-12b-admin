@@ -1,10 +1,11 @@
-﻿using Fanex.Affiliate.Admin.Core.Extensions;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using System;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [Authorize]
+    [CustomAuthorize]
     class SystemController : Controller
     {
         [HttpPost]

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
-    [Authorize]
+    [FunctionAuthorize(FunctionName = Function.Media)]
     public class LandingPageListController : ReadOnlySessionBaseController
     {
         private readonly ILandingPageService _landingPageService;
@@ -74,6 +74,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult UpdateLandingPage(InsertUpdateLandingPageParam param)
         {
             if (ModelState.IsValid)
@@ -99,6 +100,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult DeleteLandingPage(DeleteLandingPageParam param)
         {
             if (ModelState.IsValid)

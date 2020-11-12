@@ -32,6 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [ResetDefaultUnauthorizedProperty]
         public ActionResult GetUserAccountInfo(int affId)
         {
             if (affId >= Validation.MinId)
@@ -147,7 +148,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     Data = _userAccountService.UpdateUserAccount(userAccountParam)
                 };
             }
-
             return new JsonNetResult
             {
                 Data = new ResultInfo

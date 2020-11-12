@@ -18,12 +18,10 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [Required]
         public bool Gender { get; set; }
 
-        [Required]
         [EmailAddress]
         [SpParamProtecting(Function.AffEmail, Function.WritePermission)]
         public string Email { get; set; }
 
-        [Required]
         [SpParamProtecting(Function.AffPhone, Function.WritePermission)]
         public string Phone { get; set; }
 
@@ -45,7 +43,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public string Country { get; set; }
 
         [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
-        [Required]
         [SpParamProtecting(Function.AffWebUrl, Function.WritePermission)]
         public string SiteUrl { get; set; }
 
@@ -58,7 +55,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [SpParamProtecting(Function.AffWebUrl, Function.WritePermission)]
         public string NoSiteDescription { get; set; }
 
-        [Required]
         [SpParamProtecting(Function.AffPaymentInfo, Function.WritePermission)]
         public string PreferredPayment { get; set; }
 

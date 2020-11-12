@@ -137,7 +137,7 @@ export class SettingPanel extends PureComponent {
                         <Col>{resource.Status}</Col>
                         <Col className="text-right">
                             {
-                                isApproved || !isStatusShowable ?
+                                isApproved || isReadOnly ?
                                     affiliateInfo.Status :
                                     (
                                         < div className="text-primary">
@@ -172,7 +172,7 @@ export class SettingPanel extends PureComponent {
                     isApproved && isStatusShowable && (
                         <Row>
                             <Col>{resource.Closed}</Col>
-                            {isStatusModifiable
+                            { isStatusModifiable
                                 ? (<Col className="text-right text-primary">
                                     <Button color="link" className="left-panel-btn-link btn-closed" onClick={this._handleOpenCloseAff}>
                                         {affiliateInfo.IsClosed ? resource.Yes : resource.No}

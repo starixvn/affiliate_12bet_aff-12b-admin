@@ -24,6 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [ResetDefaultUnauthorizedProperty]
         public ActionResult GetCustomerMember(CustomerMemberParam param)
         {
             if (ModelState.IsValid)

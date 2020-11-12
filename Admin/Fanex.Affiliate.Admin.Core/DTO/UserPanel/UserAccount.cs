@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -18,8 +20,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public bool? Gender { get; set; }
 
+        [PermissionCheck(Function.AffEmail)]
         public string Email { get; set; }
 
+        [PermissionCheck(Function.AffPhone)]
         public string Phone { get; set; }
 
         [JsonIgnore]
@@ -36,35 +40,50 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         public string Country { get; set; }
 
         [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
+        [PermissionCheck(Function.AffWebUrl)]
         public string SiteUrl { get; set; }
 
         [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
+        [PermissionCheck(Function.AffWebUrl)]
         public string MoreSiteUrls { get; set; }
 
+        [PermissionCheck(Function.AffWebUrl)]
         public string NoSiteDescription { get; set; }
 
+        [PermissionCheck(Function.AffPaymentInfo)]
         public string PreferredPayment { get; set; }
 
+        [PermissionCheck(Function.AffPaymentInfo)]
         public string PlayerUsername { get; set; }
 
+        [PermissionCheck(Function.AffPaymentInfo)]
         public string NetellerAccountId { get; set; }
 
+        [PermissionCheck(Function.AffPaymentInfo)]
         public string MoneybookersEmail { get; set; }
 
+        [PermissionCheck(Function.AffPaymentInfo)]
         public string BankName { get; set; }
 
+        [PermissionCheck(Function.AffPaymentInfo)]
         public string BankAddress { get; set; }
 
+        [PermissionCheck(Function.AffPaymentInfo)]
         public string BankCode { get; set; }
 
+        [PermissionCheck(Function.AffPaymentInfo)]
         public string BankAccountName { get; set; }
 
+        [PermissionCheck(Function.AffPaymentInfo)]
         public string BankAccountNumber { get; set; }
 
+        [PermissionCheck(Function.SecurityQa)]
         public string Question { get; set; }
 
+        [PermissionCheck(Function.SecurityQa)]
         public int QuestionId { get; set; }
 
+        [PermissionCheck(Function.SecurityQa)]
         public string Answer { get; set; }
 
         public string Lang { get; set; }

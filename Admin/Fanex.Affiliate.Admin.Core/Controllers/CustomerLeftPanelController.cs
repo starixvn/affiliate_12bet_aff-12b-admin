@@ -8,7 +8,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.Utilities;
-using Fanex.Affiliate.Admin.Core.ViewModels;
 using ONEbook.UM.Filters;
 using System.Web.Mvc;
 
@@ -32,6 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
+        [ResetDefaultUnauthorizedProperty]
         [HttpPost]
         public ActionResult GetAffiliateInfo(string affUsername)
         {

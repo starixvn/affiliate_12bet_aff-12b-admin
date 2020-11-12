@@ -111,8 +111,8 @@ export class Content extends PureComponent {
                         ),
                         resource.NA)
                 }
-                {this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMemberByMonth), resource.NA)}
-                {this._buildRow(rowTitle.TotalDeposits, DepositByMonth, DepositTotal)}
+                { isDisplayActivePlayer && this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMemberByMonth), resource.NA)}
+                { isDisplayActivePlayer && this._buildRow(rowTitle.TotalDeposits, DepositByMonth, DepositTotal)}
                 { isDisplayTurnOver && this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {

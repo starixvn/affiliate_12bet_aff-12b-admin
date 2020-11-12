@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
@@ -9,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class UserAccountService : BaseService ,IUserAccountService
+    public class UserAccountService : BaseService, IUserAccountService
     {
         private readonly IUserAccountRepository _userAccountRepository;
 
@@ -29,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             var isValidPaymentMethod = ValidatePaymentMethod(param);
             SetNullForPropertiesNotHavePermission(param);
 
-            if (isValidPaymentMethod)
+            if (!HasUpdatePaymentMethodPermission() || isValidPaymentMethod)
             {
                 return _userAccountRepository.UpdateUserAccount(param);
             }
@@ -46,12 +47,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         private static bool ValidatePaymentMethod(UserAccountParam param)
         {
-            var isPlayerUsername = PaymentMethod.Player.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.PlayerUsername);
+            var isPlayerUsername =  PaymentMethod.Player.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.PlayerUsername);
             var isNetellerAccountId = PaymentMethod.Neteller.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.NetellerAccountId);
             var isMoneybookersEmail = PaymentMethod.Moneybookers.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.MoneybookersEmail);
             var isBankTranfer = PaymentMethod.Wire.Equals(param.PreferredPayment) && IsValidWirePaymentMethod(param);
 
             return isPlayerUsername || isNetellerAccountId || isMoneybookersEmail || isBankTranfer;
+        }
+
+        private bool HasUpdatePaymentMethodPermission()
+        {
+            var userClaim = SessionService.UserClaim;
+            return userClaim.HasClaim(Function.AffPaymentInfo);
         }
 
         private static bool IsValidWirePaymentMethod(UserAccountParam param)

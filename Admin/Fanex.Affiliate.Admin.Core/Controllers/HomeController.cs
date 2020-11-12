@@ -5,7 +5,6 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [Authorize]
     public class HomeController : ReadOnlySessionBaseController
     {
         private readonly IHomeService _homeService;

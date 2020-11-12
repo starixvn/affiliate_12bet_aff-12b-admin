@@ -94,6 +94,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     _renderAccountInformation(paymentRequestInfo) {
+        const { isShowEmail, isShowFullName } = this.props;
         return (
             <fieldset>
                 <legend>
@@ -107,18 +108,24 @@ export class PaymentRequestUpdateForm extends PureComponent {
                     <Label sm={6}>{resource.RequestedDate}</Label>
                     <Label sm={6}><strong>{paymentRequestInfo.TransDateText}</strong></Label>
                 </FormGroup>
-                <FormGroup row className="mb-2">
-                    <Label sm={6}>{resource.EmailAddress}</Label>
-                    <Label sm={6}>{htmlDecode(paymentRequestInfo.Email)}</Label>
-                </FormGroup>
-                <FormGroup row className="mb-2">
-                    <Label sm={6}>{resource.FirstName}</Label>
-                    <Label sm={6}>{htmlDecode(paymentRequestInfo.FirstName)}</Label>
-                </FormGroup>
-                <FormGroup row className="mb-2">
-                    <Label sm={6}>{resource.LastName}</Label>
-                    <Label sm={6}>{htmlDecode(paymentRequestInfo.LastName)}</Label>
-                </FormGroup>
+                { isShowEmail &&
+                    <FormGroup row className="mb-2">
+                        <Label sm={6}>{resource.EmailAddress}</Label>
+                        <Label sm={6}>{htmlDecode(paymentRequestInfo.Email)}</Label>
+                    </FormGroup>
+                }
+                { isShowFullName &&
+                    <FormGroup row className="mb-2">
+                        <Label sm={6}>{resource.FirstName}</Label>
+                        <Label sm={6}>{htmlDecode(paymentRequestInfo.FirstName)}</Label>
+                    </FormGroup>
+                }
+                { isShowFullName &&
+                    <FormGroup row className="mb-2">
+                        <Label sm={6}>{resource.LastName}</Label>
+                        <Label sm={6}>{htmlDecode(paymentRequestInfo.LastName)}</Label>
+                    </FormGroup>
+                }
             </fieldset>
         );
     }
@@ -223,9 +230,10 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     render() {
-        const { transactionId } = this.props;
+        const { transactionId, isUpdatable } = this.props;
         const { paymentRequestInfo, originalStatus, isSuccess, isShowMessage, message } = this.state;
         const isPending = originalStatus && originalStatus.toLowerCase() === pendingStatus;
+        const isUpdatableForm = isPending && isUpdatable;
 
         return paymentRequestInfo && (
             <Modal isOpen={transactionId} toggle={this.handleClosePopup} backdrop='static'>
@@ -237,9 +245,9 @@ export class PaymentRequestUpdateForm extends PureComponent {
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
                             {this._renderAccountInformation(paymentRequestInfo)}
-                            {this._renderPaymentInformation(paymentRequestInfo, isPending)}
-                            {this._renderNote(paymentRequestInfo, isPending)}
-                            <Button type="button" color="success" className="mr-3" disabled={!isPending} onClick={this.handleSave}>{globalResource.Update}</Button>
+                            {this._renderPaymentInformation(paymentRequestInfo, isUpdatableForm)}
+                            {this._renderNote(paymentRequestInfo, isUpdatableForm)}
+                            <Button type="button" color="success" className="mr-3" disabled={!isUpdatableForm} onClick={this.handleSave}>{globalResource.Update}</Button>
                             <Button type="button" color="info" onClick={this.handleClosePopup}>{globalResource.Cancel}</Button>
                         </Form>
                     </div>

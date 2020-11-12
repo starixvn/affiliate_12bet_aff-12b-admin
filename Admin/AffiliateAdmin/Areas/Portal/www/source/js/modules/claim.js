@@ -20,7 +20,6 @@ export const claimResource = {
     AffPlayerDetail: '[AffPlayerDetail]',
     AffMemberName: '[AffMemberName]',
     TurnOver: '[AffTurnover]',
-    AffMemberName: '[AffMemberName]',
     ExportExcel: '[ExportExcel]',
     AffInfo: '[Affiliate]',
     Payment: '[Payment]',
@@ -28,7 +27,7 @@ export const claimResource = {
     AffPassword: '[AffPassword]'
 }
 
-export class Claim{
+export class Claim {
     constructor(type, value){
         this.type = type;
         this.value = value;

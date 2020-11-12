@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Newtonsoft.Json;
 using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
@@ -17,6 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string Language { get; set; }
 
+        [PermissionCheck(Function.AffEmail)]
         public string Email { get; set; }
 
         [JsonIgnore]
@@ -28,10 +31,12 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         [JsonIgnore]
         public DateTime? CasinoDate { get; set; }
 
+        [PermissionCheck(Function.AssignCommGroup)]
         public string CommissionGroup { get; set; }
 
         public decimal? BalanceBf { get; set; }
 
+        [PermissionCheck(Function.AffMemberDetail)]
         public int? Member { get; set; }
 
         public bool IsFavorite { get; set; }
@@ -42,8 +47,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string PlayerCurrency { get; set; }
 
+        [PermissionCheck(Function.AffPaymentInfo)]
         public string PlayerUserName { get; set; }
 
+        [PermissionCheck(Function.AffPhone)]
         public string Phone { get; set; }
 
         public string RegistrationDateText => RegistrationDate.ToString("MM/dd/yyyy HH:mm:ss");

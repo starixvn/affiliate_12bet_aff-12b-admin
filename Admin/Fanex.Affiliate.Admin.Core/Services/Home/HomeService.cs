@@ -23,7 +23,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
                 objectDb.AddInParameter("PageIndex", DbType.Int32, pageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, pageSize);
 
-                objectDb.AddOutParameter("TotalPages", DbType.Int32, Size.SizeOfInt);
                 objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())

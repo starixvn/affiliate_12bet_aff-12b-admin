@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [HiddenProperty(Function.Turnover)]
+        [ResetDefaultUnauthorizedProperty(Function.Turnover)]
         public ActionResult GetPlayerDetailList(PlayerDetailParam param)
         {
             if (ModelState.IsValid)

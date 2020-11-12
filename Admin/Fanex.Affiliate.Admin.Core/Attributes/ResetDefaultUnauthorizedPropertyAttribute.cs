@@ -6,17 +6,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple =true)]
-    public class HiddenPropertyAttribute : ActionFilterAttribute
+    public class ResetDefaultUnauthorizedPropertyAttribute : ActionFilterAttribute
     {
         public string PermissionName { get; }
-        private IEnumerable<UserPermission> Permission { get; set; }
+        private IEnumerable<Claim> Claims { get; set; }
 
-        public HiddenPropertyAttribute(string permissionName)
+        public ResetDefaultUnauthorizedPropertyAttribute(string permissionName = null)
         {
             PermissionName = permissionName;
         }
@@ -24,9 +25,10 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
             var context = filterContext.HttpContext;
-            Permission = context.Session[SessionKey.UserPermissionSessionKey] as IEnumerable<UserPermission>;
+            var userClaim = context.User as ClaimsPrincipal ;
+            Claims = userClaim.Claims;
             var data = GetResultData(filterContext.Result);
-            if (data != null && Permission != null)
+            if (data != null && Claims != null)
             {
                 ClearData(data);
             }
@@ -68,8 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                 var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
                 foreach (var pro in properties)
                 {
-                    var attribute = pro.GetCustomAttribute<PermissionCheckAttribute>();
-                    if(attribute != null && attribute.PermissionName == PermissionName && !Permission.Any(p => p.FunctionName == attribute.PermissionName))
+                    if(IsNeedResetPro(pro))
                     {
                         pro.SetValue(data, null, null);
                     }
@@ -78,6 +79,14 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                     ClearData(value);
                 }
             }
+        }
+
+        private bool IsNeedResetPro(PropertyInfo pro)
+        {
+            var attribute = pro.GetCustomAttribute<PermissionCheckAttribute>();
+            return attribute != null 
+                && (string.IsNullOrWhiteSpace(PermissionName) || attribute.PermissionName == PermissionName) 
+                && !Claims.Any(p => p.Type == attribute.PermissionName);
         }
 
         private static bool IsPrimitiveType(Type type)

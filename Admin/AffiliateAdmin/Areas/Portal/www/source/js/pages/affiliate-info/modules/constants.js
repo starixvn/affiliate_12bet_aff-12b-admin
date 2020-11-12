@@ -38,7 +38,7 @@ export const headerText = {
     CommissionGroup: { label: 'Commission Group', renderClaim: new Claim(claimResource.AffCommGroup)},
     BalanceBf: { label: 'Balance B/F' },
     Currency: { label: 'Aff. Currency' },
-    PlayerUserName: { label: 'Aff. Player' },
+    PlayerUserName: { label: 'Aff. Player', renderClaim: new Claim(claimResource.PaymentInfo) },
     PlayerCurrency: { label: 'Aff. Player Currency' },
     Member: { label: 'Member', renderClaim: new Claim(claimResource.AffMember) },
     Password: { label: 'Password' },

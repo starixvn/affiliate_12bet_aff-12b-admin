@@ -8,6 +8,7 @@ import Filter from './Filter';
 import Content from './Content';
 import PaymentRequestUpdateForm from '../../common/components/PaymentRequestUpdateForm';
 import { setTransactionId, setParam } from '../actions';
+import { claimResource } from '../../../modules/claim';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -23,7 +24,7 @@ export class AppContainer extends PureComponent {
     }
 
     render() {
-        const { isShowLoader, transactionId } = this.props;
+        const { isShowLoader, transactionId, claimsPrincipal } = this.props;
 
         return (
             <AppLayout>
@@ -31,6 +32,9 @@ export class AppContainer extends PureComponent {
                 <Filter />
                 <Content />
                 <PaymentRequestUpdateForm
+                    isUpdatable={claimsPrincipal.hasWriteClaim(claimResource.Payment)}
+                    isShowEmail={claimsPrincipal.hasReadClaim(claimResource.Email)}
+                    isShowFullName={claimsPrincipal.hasReadClaim(claimResource.AffMemberName)}
                     transactionId={transactionId}
                     handleClosePopup={this.handleClosePopup}
                     handleFetchData={this.handleFetchData}
@@ -40,8 +44,8 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ isShowLoader, transactionId, param }) {
-    return Object.assign({}, { isShowLoader, transactionId, param });
+function mapStateToProps({ isShowLoader, transactionId, param, claimsPrincipal }) {
+    return Object.assign({}, { isShowLoader, transactionId, param, claimsPrincipal });
 }
 
 function mapDispatchToProps(dispatch) {
