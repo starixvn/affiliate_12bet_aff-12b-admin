@@ -28,7 +28,7 @@ export class PersonalPermissionTable extends PureComponent {
     }
 
     _handleChangeChildrenOfItem = (gridData, data, parentId) => {
-        const children = gridData.filter(item => item.FuncId != parentId && item.AllParentIds.includes(parentId));
+        const children = gridData.filter(item => item.FuncId != parentId && item.AllParentIds.split(',').includes(parentId.toString()));
 
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
@@ -47,7 +47,7 @@ export class PersonalPermissionTable extends PureComponent {
 
         for (let i = 0; i < parentIds.length; i++) {
             const parentId = parentIds[i];
-            const hasAnyChildIsCheck = gridData.filter(item => item.FuncId != parentId && item.AllParentIds.includes(parentId) && (isHost ? item.IsHost : item.IsRead)).length;
+            const hasAnyChildIsCheck = gridData.filter(item => item.FuncId != parentId && item.AllParentIds.split(',').includes(parentId.toString()) && (isHost ? item.IsHost : item.IsRead)).length;
 
             if (isChecked || !hasAnyChildIsCheck) {
                 const indexItem = gridData.findIndex(item => item.FuncId == parentId);

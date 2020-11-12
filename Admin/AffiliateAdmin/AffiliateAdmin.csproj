@@ -1243,8 +1243,6 @@
     <Content Include="Areas\Portal\www\source\style\pages\member\active-member.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\domain\domain.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\domain\domain-control.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\administrator\administrator.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\administrator\department.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_policy-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_department-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\home.scss" />

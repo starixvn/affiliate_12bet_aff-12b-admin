@@ -40,7 +40,7 @@ export class GeneralComponent extends PureComponent {
     }
 
     _handleChangeChildrenOfItem = (gridData, data, roleId, parentId) => {
-        const children = gridData.filter(item => item.RoleId == roleId && item.FuncId != parentId && item.AllParentIds.includes(parentId));
+        const children = gridData.filter(item => item.RoleId == roleId && item.FuncId != parentId && item.AllParentIds.split(',').includes(parentId.toString()));
 
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
@@ -59,7 +59,7 @@ export class GeneralComponent extends PureComponent {
 
         for (let i = 0; i < parentIds.length; i++) {
             const parentId = parentIds[i];
-            const hasAnyChildIsCheck = gridData.filter(item => item.RoleId == roleId && item.FuncId != parentId && item.AllParentIds.includes(parentId) && (isHost ? item.IsHost : item.IsRead)).length;
+            const hasAnyChildIsCheck = gridData.filter(item => item.RoleId == roleId && item.FuncId != parentId && item.AllParentIds.split(',').includes(parentId.toString()) && (isHost ? item.IsHost : item.IsRead)).length;
 
             if (isChecked || !hasAnyChildIsCheck) {
                 const indexItem = gridData.findIndex(item => item.RoleId == roleId && item.FuncId == parentId);

@@ -47,8 +47,6 @@ module.exports = {
     [`${styleDist}/pages/member/active-member`]: clientRoot + "/style/pages/member/active-member.scss",
     [`${styleDist}/pages/domain/domain`]: clientRoot + "/style/pages/domain/domain.scss",
     [`${styleDist}/pages/domain/domain-control`]: clientRoot + "/style/pages/domain/domain-control.scss",
-    [`${styleDist}/pages/administrator/administrator`]: clientRoot + "/style/pages/administrator/administrator.scss",
-    [`${styleDist}/pages/administrator/department`]: clientRoot + "/style/pages/administrator/department.scss",
     [`${styleDist}/home`]: clientRoot + "/style/pages/home.scss",
     [`${styleDist}/pages/admin-role/admin-list`]: clientRoot + "/style/pages/admin-role/admin-list.scss",
     [`${styleDist}/pages/admin-role/role-permission`]: clientRoot + "/style/pages/admin-role/role-permission.scss",

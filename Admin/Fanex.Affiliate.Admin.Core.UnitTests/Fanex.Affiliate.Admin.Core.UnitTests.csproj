@@ -220,8 +220,6 @@
     <Compile Include="Repository\Member\MemberRepositoryTest.cs" />
     <Compile Include="Repository\ProductRepositoryTest.cs" />
     <Compile Include="Repository\Report\ReportRepositoryTest.cs" />
-    <Compile Include="Services\Administrator\AdministratorServiceTest.cs" />
-    <Compile Include="Services\Administrator\DepartmentServiceTest.cs" />
     <Compile Include="Services\AffilateServiceTest.cs" />
     <Compile Include="Services\AffTypeServiceTest.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordServiceTest.cs" />
