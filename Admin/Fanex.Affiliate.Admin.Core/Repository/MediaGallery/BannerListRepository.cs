@@ -60,6 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("bannerid", DbType.Int32, selectedBannerId);
+                objectDb.AddInParameter("languages", DbType.String, string.Empty);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

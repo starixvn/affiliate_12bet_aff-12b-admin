@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [ValidateAntiForgeryHeader]
         public ActionResult GetStatementHistoryList(AffiliatePagingByDateParam param)
         {
-            param.UserId = SessionService.OnUserId;
+            param.UserId = SessionService.UserId;
             if (ModelState.IsValid)
             {
                 return new JsonNetResult

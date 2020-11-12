@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             var result = mainData;
             if (!claimPrincipal.HasClaim(Function.AffAdjustment))
             {
-                result = result.Where(r => r.TransType !=  Code.Adjustment);
+                result = result.Where(r => r.TransType != Code.Adjustment);
             }
 
             if (!claimPrincipal.HasClaim(Function.Payment))
