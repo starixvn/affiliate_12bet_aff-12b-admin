@@ -18,7 +18,7 @@
 
         public const string CommissionGroup = "[CommissionGroup]";
 
-        public const string AssignCommGroup = "[AssginCommGroup]";
+        public const string AssignCommGroup = "[AssignCommGroup]";
 
         public const string AffReport = "[AffReport]";
 
