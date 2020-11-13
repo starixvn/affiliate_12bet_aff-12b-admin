@@ -8,6 +8,7 @@ import { resource, selectedAllProduct, shortedMonthNames, minMonthDate } from '.
 import { setParam, getProductList, exportExcel } from '../actions';
 import ReportExcel from '../modules/reportExcel';
 import { htmlDecode } from '../../../../modules/htmlHelper';
+import { claimResource } from '../../../../modules/claim';
 
 export class Filter extends PureComponent {
     constructor(props) {
@@ -155,10 +156,11 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo, hasTurnOverPermission, playerDetail }) {
+function mapStateToProps({ today, affCommonInfo, playerDetail, claimsPrincipal }) {
     const { param, sortedParam } = playerDetail;
     const { affId } = affCommonInfo;
-
+    const hasTurnOverPermission = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
+    console.log(hasTurnOverPermission);
     return Object.assign({}, {
         param,
         affId,
