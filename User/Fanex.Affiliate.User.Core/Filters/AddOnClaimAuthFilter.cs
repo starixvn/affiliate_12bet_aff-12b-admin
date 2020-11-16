@@ -19,10 +19,11 @@ namespace Fanex.Affiliate.User.Core.Filters
             if (claimIdentities != null)
             {
                 principal.AddIdentities(claimIdentities);
-            }    
+            }
 
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S1186:Methods should not be empty", Justification = "<Pending>")]
         public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext) { }
     }
 }
