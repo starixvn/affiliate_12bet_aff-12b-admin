@@ -1,5 +1,4 @@
-﻿using System;
-using Fanex.Affiliate.User.Core.DTO.Auth;
+﻿using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Data;
@@ -8,7 +7,6 @@ using Xunit;
 using System.Data;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
-using System.Collections;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Repository
 {
@@ -112,19 +110,41 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
         }
 
         [Fact]
-        public void GetSessionId_WhenCall_ReturnSessionId()
+        public void GetInternalLoginInfo_WhenCall_ReturnSessionId()
         {
-            var repo = CreateRepo();
-            var db = Builder.Build(null, null);
+            var onUserId = 1;
             var sessionId = "12345";
             var spKey = "Aff_SessionIdSel";
-            db.ExecuteScalar().Returns(sessionId);
 
-            var result = repo.GetInternalLoginInfo(1);
+            var repo = CreateRepo();
+            var db = Builder.Build(null, null);
+            var reader = db.ExecuteReader();
+
+            reader.Read().Returns(true);
+            reader["NetSessionID"].Returns(sessionId);
+            reader["CustId"].Returns(123);
+
+            var result = repo.GetInternalLoginInfo(onUserId);
 
             Assert.Equal(spKey, db.SettingKey);
-            db.Received().AddInParameter("OnUserId", System.Data.SqlDbType.Int, 1);
             Assert.Equal(sessionId, result.SesionId);
+            db.Received().AddInParameter("OnUserId", SqlDbType.Int, onUserId);
+        }
+
+        [Fact]
+        public void GetInternalLoginInfo_WhenCall_ReturnNull()
+        {
+            var onUserId = 1;
+            var spKey = "Aff_SessionIdSel";
+
+            var repo = CreateRepo();
+            var db = Builder.Build(null, null);
+            db.ExecuteReader();
+
+            var result = repo.GetInternalLoginInfo(onUserId);
+
+            Assert.Equal(spKey, db.SettingKey);
+            Assert.Null(result);
         }
 
         [Theory]
@@ -144,6 +164,27 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
 
             Assert.Equal(spKey, db.SettingKey);
             Assert.Equal(isKickOut, result);
+        }
+
+        [Fact]
+        public void GetInternalLoginPermission_WhenCall_ReturnSessionId()
+        {
+            var internalLoginUserId = 1;
+            var spKey = "Aff_Admin_PolicySel";
+
+            var repo = CreateRepo();
+            var db = Builder.Build(null, null);
+            var reader = db.ExecuteReader();
+
+            reader.Read().Returns(true, false);
+            reader["FuncName"].Returns("[Test]");
+            reader["Host"].Returns(1);
+
+            var result = repo.GetInternalLoginPermission(internalLoginUserId);
+
+            Assert.Equal(spKey, db.SettingKey);
+            Assert.NotEmpty(result);
+            db.Received().AddInParameter("UserId", SqlDbType.Int, internalLoginUserId);
         }
 
         private static void AssertDbReciveParam(IObjectDb db, LoginResultParam param)

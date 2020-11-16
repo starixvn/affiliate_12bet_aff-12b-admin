@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
                 new MarketingItem { BannerId = 1, TextId = 1 }
             });
             marketingService.GetCategoryList(Arg.Compat.Any<bool>(), Arg.Compat.Any<bool>()).Returns(Constant.CategoryList);
-            marketingService.GetLanguageList(Arg.Compat.Any<bool>()).Returns(Constant.LanguageTypeList);
+            marketingService.GetLanguageList().Returns(Constant.LanguageList);
             marketingService.GetCurrencyList(Arg.Compat.Any<bool>()).Returns(Constant.CurrencyType);
             marketingService.GetDomainList(Arg.Compat.Any<int>(), Arg.Compat.Any<bool>()).Returns(Constant.DomainList);
             marketingService.GetLandingPageList(Arg.Compat.Any<bool>()).Returns(Constant.LandingPageList);

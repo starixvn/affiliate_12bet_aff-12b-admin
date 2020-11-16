@@ -37,11 +37,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             new Language { MarketId = "en-US",  DisplayName ="English", MarketName = "English", MarketNativeName = "English", ShortedCode = "us" }
         };
 
-        public static IEnumerable<Language> LanguageTypeList = new List<Language>
-        {
-            new Language { MarketId = "en-UK", DisplayName = "English", MarketName = "England", MarketNativeName = "England", ShortedCode = "en" }
-        };
-
         public static IEnumerable<CategoryType> CategoryList = new List<CategoryType>
         {
             new CategoryType {Category = "test", SubCategory= "testSub1" },

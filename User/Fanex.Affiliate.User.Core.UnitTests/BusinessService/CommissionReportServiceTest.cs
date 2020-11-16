@@ -4,16 +4,13 @@ using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
     public class CommissionReportServiceTest
     {
-        private ICommissionReportRepository Repo;
+        private readonly ICommissionReportRepository Repo;
 
         public CommissionReportServiceTest()
         {

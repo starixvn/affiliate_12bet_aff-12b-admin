@@ -360,7 +360,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         private InternalLoginModel CreateInternalLoginParam()
             => new InternalLoginModel
             {
-                AccId = 1,
                 AccKey = "",
                 ChalengeStr = "abc",
                 AccOnId = 1,

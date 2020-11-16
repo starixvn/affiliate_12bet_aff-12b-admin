@@ -20,7 +20,8 @@ namespace Fanex.Affiliate.User.Core.Repository
 
             using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return db.Query<Language>(new { CustId = userId }).Where(l => l.Status);
+                var languageList = db.Query<Language>(new { CustId = userId });
+                return languageList.Where(l => l.Status);
             }
         }
     }

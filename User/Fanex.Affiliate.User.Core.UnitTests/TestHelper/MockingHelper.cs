@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -57,6 +60,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             mockHttpRequest.Setup(p => p.Browser.Browser).Returns(Constant.Browser);
 
             return mockHttpRequest.Object;
+        }
+
+        public static void SetClaimsPrincipal(string claim, bool hasClaim)
+        {
+            var request = new HttpRequest("111", "http://127.0.0.1:8080/controller/action", string.Empty);
+            var response = new HttpResponse(new StringWriter());
+            HttpContext.Current = new HttpContext(request, response)
+            {
+                User = new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(hasClaim ? claim : string.Empty, "Read") }) })
+            };
         }
     }
 }

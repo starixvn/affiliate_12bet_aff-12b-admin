@@ -45,14 +45,14 @@ namespace Fanex.Affiliate.User.Core.Repository
                 {
                     return reader.Read() ? new AuthorizedUserInfo
                     {
-                        AffId = Convert.ToInt32(reader["AffId"]),
-                        UserName = Convert.ToString(reader["UserName"]),
-                        Password = Convert.ToString(reader["Password"]),
-                        GroupName = Convert.ToString(reader["GroupName"]),
-                        AffType = Convert.ToString(reader["AffType"]),
-                        IsClosed = Convert.ToBoolean(reader["IsClosed"]),
-                        Status = Convert.ToString(reader["Status"]),
-                        PreferredLanguage = Convert.ToString(reader["PreferredLanguage"])
+                        AffId = reader.ToInt("AffId"),
+                        UserName = reader.ToString("UserName"),
+                        Password = reader.ToString("Password"),
+                        GroupName = reader.ToString("GroupName"),
+                        AffType = reader.ToString("AffType"),
+                        IsClosed = reader.ToBool("IsClosed"),
+                        Status = reader.ToString("Status"),
+                        PreferredLanguage = reader.ToString("PreferredLanguage")
                     } : null;
                 }
             }
@@ -119,7 +119,9 @@ namespace Fanex.Affiliate.User.Core.Repository
             var result = new List<InternalPermission>();
             using (var db = _builder.Build(spKey))
             {
-                using(var reader = db.ExecuteReader(new { UserId = internalLoginUserId }))
+                db.AddInParameter("UserId", SqlDbType.Int, internalLoginUserId);
+
+                using (var reader = db.ExecuteReader())
                 {
                     while(reader.Read())
                     {

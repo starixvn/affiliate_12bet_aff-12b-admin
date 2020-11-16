@@ -64,13 +64,15 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         }
 
         [Fact]
-        public void PlayersDetails_WhenCall_ReturnCorrectPartialView()
+        public void PlayersDetails_WhenCallHasTurnOverClaim_ReturnCorrectPartialView()
         {
             // Arrange
             var param = new PlayerDetailParam { MonthDate = monthDate };
             PlayerDetailParam passedParam = null;
             var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
             accountOverviewRepository.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
+
+            MockingHelper.SetClaimsPrincipal("[AffTurnover]", true);
             var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
 
             // Action
@@ -80,6 +82,30 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Assert
             Assert.Equal("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", partialViewResult.ViewName);
             Assert.Equal(param.MonthDate, passedParam.MonthDate);
+            Assert.Equal(5, param.SortById);
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void PlayersDetails_WhenCallNotHasTurnOverClaim_ReturnCorrectPartialView()
+        {
+            // Arrange
+            var param = new PlayerDetailParam { MonthDate = monthDate };
+            PlayerDetailParam passedParam = null;
+            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
+            accountOverviewRepository.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
+
+            MockingHelper.SetClaimsPrincipal("[AffTurnover]", false);
+            var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
+
+            // Action
+            var partialViewResult = controller.PlayersDetails(param) as PartialViewResult;
+            var result = partialViewResult.Model as IEnumerable<PlayerDetail>;
+
+            // Assert
+            Assert.Equal("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", partialViewResult.ViewName);
+            Assert.Equal(param.MonthDate, passedParam.MonthDate);
+            Assert.Equal(6, param.SortById);
             Assert.Single(result);
         }
 
