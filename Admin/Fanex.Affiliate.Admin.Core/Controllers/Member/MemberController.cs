@@ -11,7 +11,6 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 {
     [FunctionAuthorize(FunctionName = Function.AffMember)]
-    [FunctionAuthorize(FunctionName = Function.AffMemberDetail)]
     public class MemberController : ReadOnlySessionBaseController
     {
         private readonly IMemberService _memberService;
@@ -23,7 +22,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         }
 
         [HttpGet]
-        [AllowByPassFunctionAuthorize]
         public ActionResult Index(string affName)
         {
             var model = new MemberListViewModel
@@ -36,6 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AffMemberDetail)]
         public ActionResult GetMemberList(MemberParam param)
         {
             return new JsonNetResult

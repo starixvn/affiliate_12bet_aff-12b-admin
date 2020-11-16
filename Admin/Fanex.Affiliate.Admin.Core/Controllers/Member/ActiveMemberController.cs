@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 {
-    [FunctionAuthorize(FunctionName = Function.AffMember)]
+
     [FunctionAuthorize(FunctionName = Function.ActiveMembers)]
     public class ActiveMemberController : ReadOnlySessionBaseController
     {
@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 
 
         [HttpGet]
-        [AllowByPassFunctionAuthorize]
+        [FunctionAuthorize(FunctionName = Function.AffMember)]
         public ActionResult Index(string affName)
         {
             var model = new MemberListViewModel
