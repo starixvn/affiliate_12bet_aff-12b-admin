@@ -17,12 +17,12 @@
             <tr class="overview-table-header" id="overview-table-header">
                 <th width="10%">Date</th>
                 <th width="10%">New Sign Up</th>
-                <th width="12%">Deposited members</th>
+                <th width="12%">Deposited Members</th>
                 @if (hasActivePlayerDetailPermission)
                 {
-                    <th width="12%">Active members</th>
+                    <th width="12%">Active Members</th>
+                    <th width="16%">Qualified Active Members</th>
                 }
-                <th width="16%">Qualified Active members</th>
                 <th width="10%">Deposits</th>
                 @if (hasTurnOverPermission)
                 {
@@ -40,9 +40,9 @@
                         <th class="text-center">@itemTotal.DepositedMembers</th>
                         @if (hasActivePlayerDetailPermission)
                         {
-                        <th class="text-center">@itemTotal.ActiveMembers</th>
+                            <th class="text-center">@itemTotal.ActiveMembers</th>
+                            <th class="text-center">@itemTotal.QualifiedActiveMembers</th>
                         }
-                        <th class="text-center">@itemTotal.QualifiedActiveMembers</th>
                         <th class="text-center">@itemTotal.Deposit.FormatDecimal()</th>
                         @if (hasTurnOverPermission)
                         {
@@ -68,8 +68,8 @@
                             @if (hasActivePlayerDetailPermission)
                             {
                                 <td class="text-center">@itemTotal.ActiveMembers</td>
+                                <td class="text-center">@item.QualifiedActiveMembers</td>
                             }
-                            <td class="text-center">@item.QualifiedActiveMembers</td>
                             <td class="text-center">@item.Deposit.FormatDecimal()</td>
                             @if (hasTurnOverPermission)
                             {

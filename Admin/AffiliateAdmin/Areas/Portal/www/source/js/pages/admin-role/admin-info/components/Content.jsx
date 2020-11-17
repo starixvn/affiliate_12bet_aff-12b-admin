@@ -127,10 +127,13 @@ export class Content extends PureComponent {
         });
 
         if (isSuccess) {
-            if (!this.props.userId) {
+            const { userId } = this.props;
+
+            if (!userId) {
                 this.props.redirectToAdminList();
             } else {
                 this.setState({ isClickedSubmit: false, isEdit: false });
+                this._handleFetchData(userId);
             }
         }
     }
@@ -156,7 +159,7 @@ export class Content extends PureComponent {
                 role: initialUserInfo.RoleId,
                 isActive: initialUserInfo.IsActive,
                 isEdit: false,
-                marketList: initialMarketList
+                marketListByRole: initialMarketList
             });
 
             this.props.setPermissionListByRole(initialPermissionList);
