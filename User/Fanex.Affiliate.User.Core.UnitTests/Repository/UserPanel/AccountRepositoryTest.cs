@@ -271,6 +271,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var result = repo.CreateAffiliate(param);
 
             Assert.Equal(uSpKey, db.SettingKey);
+            Assert.Equal("Player", UserSignUpParam.PreferredPayment);
             Assert.True(result.IsOk);
         }
 

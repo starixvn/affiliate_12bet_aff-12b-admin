@@ -111,6 +111,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Assert
             Assert.Equal("~/Views/UserPanel/Statistics/StatisticsPartial/_TrackingStatisticsContent.cshtml", viewName);
             Assert.Equal(expectedViewModel.TrackingStatisticsList, model.TrackingStatisticsList);
+            Assert.Equal(12, param.Month);
+            Assert.Equal(2018, param.Year);
             Assert.True(model.IsDetail);
         }
 

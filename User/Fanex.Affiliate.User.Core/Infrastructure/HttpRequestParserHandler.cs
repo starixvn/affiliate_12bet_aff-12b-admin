@@ -69,6 +69,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
         private bool IsExpired(string timeTickString, int expirationByMinute)
         {
             var dateTimeProvider = DateTimeProvider ?? DependencyResolver.Current.GetService<IDateTimeProvider>();
+
             var minDateTime = dateTimeProvider.Now.AddMinutes(expirationByMinute * -1);
             var timeTicks = Convert.ToInt64(timeTickString);
             var dateTimeRequest = new DateTime(timeTicks, DateTimeKind.Local);

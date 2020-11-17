@@ -19,6 +19,45 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
+        public void GetLastestHotNews_WhenCall_ReturnNullHotNewsList(bool isInternal)
+        {
+            const string uSpKey = "Aff_HotNewsDetail";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+            var key = uSpKey + dbMode;
+            var repo = CreateRepo();
+            var db = Builder.Build(uSpKey, dbMode);
+            var reader = db.ExecuteReader();
+            reader.Read().Returns(false);
+
+            var result = repo.GetLastestHotNews(isInternal);
+
+            Assert.Equal(key, db.SettingKey);
+            Assert.Null(result.HotNewsList);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void GetLastestHotNews_WhenCall_ReturnEmptyAllLanguage(bool isInternal)
+        {
+            const string uSpKey = "Aff_HotNewsDetail";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+            var key = uSpKey + dbMode;
+            var repo = CreateRepo();
+            var db = Builder.Build(uSpKey, dbMode);
+            var reader = db.ExecuteReader();
+            reader.Read().Returns(true);
+            reader["Important"].Returns(true);
+
+            var result = repo.GetLastestHotNews(isInternal);
+
+            Assert.Equal(key, db.SettingKey);
+            Assert.NotEmpty(result.HotNewsList);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
         public void GetLastestHotNews_WhenCall_ReturnHotNewsAllLanguage(bool isInternal)
         {
             const string uSpKey = "Aff_HotNewsDetail";
@@ -29,6 +68,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var reader = db.ExecuteReader();
             reader.Read().Returns(true);
             reader["Important"].Returns(true);
+            reader["message_en"].Returns("test");
+            reader["message_cn"].Returns("test");
+            reader["message_tw"].Returns("test");
+            reader["message_es"].Returns("test");
+            reader["message_th"].Returns("test");
+            reader["message_vi"].Returns("test");
+            reader["message_id"].Returns("test");
+            reader["message_kr"].Returns("test");
 
             var result = repo.GetLastestHotNews(isInternal);
 

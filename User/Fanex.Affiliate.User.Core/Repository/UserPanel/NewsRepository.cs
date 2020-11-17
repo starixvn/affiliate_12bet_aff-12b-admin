@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public NewsRepository(IObjectDBBuilder builder)
         {
-            _builder = builder; 
+            _builder = builder;
         }
 
         public LatestHotNews GetLastestHotNews(bool isInternal)

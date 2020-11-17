@@ -47,6 +47,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.False(model.IsDetail);
             Assert.Equal(new DateTime(today.Year, today.Month, 1), model.FromDate.Date);
             Assert.Equal(today, model.ToDate.Date);
+            Assert.Equal(0, model.RowNumber);
         }
 
         [Fact]
