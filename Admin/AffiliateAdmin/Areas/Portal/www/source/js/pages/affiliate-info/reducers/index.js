@@ -1,18 +1,26 @@
 ﻿import { combineReducers } from 'redux';
 
 import createReducer from '../../../modules/createReducer';
-import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_COMMGROUP, SET_AFFID, SET_COMM_GROUP, SET_SELECTED_COLUMN } from '../actions/types';
+import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_COMMGROUP, SET_AFFID, SET_COMM_GROUP, SET_SELECTED_COLUMN, SET_LANGUAGE_LIST, SET_COMM_GROUP_LIST } from '../actions/types';
 
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
 import { showPopupPassword } from '../../common/reducers';
 import { claimsPrincipal} from '../../../reducers/claimReducer';
 
-export const commGroupList = createReducer({}, {});
-
-export const languageList = createReducer({}, {});
-
 export const groupId = createReducer(0, {});
+
+export const commGroupList = createReducer({}, {
+    [SET_COMM_GROUP_LIST](prevState, action){
+        return action.data;
+    }
+});
+
+export const languageList = createReducer({}, {
+    [SET_LANGUAGE_LIST](prevState, action){
+        return action.data;
+    }
+});
 
 export const reportTitle = createReducer('', {
     [SET_REPORT_TITLE](prevState, action) {

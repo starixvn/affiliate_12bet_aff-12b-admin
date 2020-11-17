@@ -14,7 +14,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
     {
         private readonly IUserAccountRepository _userAccountRepository;
 
-        public UserAccountService(IUserAccountRepository userAccountRepository, IAuthService authService, ISessionService sessionService)
+        public UserAccountService(IUserAccountRepository userAccountRepository, 
+            IAuthService authService, 
+            ISessionService sessionService)
             : base(authService, sessionService)
         {
             _userAccountRepository = userAccountRepository;
@@ -22,15 +24,19 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         public UserAccount GetUserAccountInfo(int affId)
         {
-            return _userAccountRepository.GetUserAccountInfo(affId);
+            var userId = SessionService.UserId;
+            return AuthService.IsUserHasPermissionOnAff(userId, affId)
+                ? _userAccountRepository.GetUserAccountInfo(affId)
+                : null;
         }
 
         public ResultInfo UpdateUserAccount(UserAccountParam param)
         {
             var isValidPaymentMethod = ValidatePaymentMethod(param);
+            var isUserHasPermissionOnAff = AuthService.IsUserHasPermissionOnAff(SessionService.UserId, param.AffId);
             SetNullForPropertiesNotHavePermission(param);
 
-            if (!HasUpdatePaymentMethodPermission() || isValidPaymentMethod)
+            if (!HasUpdatePaymentMethodPermission() || isValidPaymentMethod || isUserHasPermissionOnAff)
             {
                 return _userAccountRepository.UpdateUserAccount(param);
             }

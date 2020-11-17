@@ -9,6 +9,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         IEnumerable<Language> GetLanguageList();
 
-        IEnumerable<Language> GetInChangeLanguages();
+        IEnumerable<Language> GetInChangeMarkets();
     }
 }

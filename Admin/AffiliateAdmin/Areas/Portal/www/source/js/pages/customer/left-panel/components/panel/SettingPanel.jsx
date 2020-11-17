@@ -114,9 +114,6 @@ export class SettingPanel extends PureComponent {
         const { affiliateInfo, isApproved, isStatusShowable, isStatusModifiable } = this.props;
         const { isChangingAffType, isChangingAffStatus, isAssignCommissionGroup, messageNotification, isConfirmPopup } = this.state;
         const isReadOnly = isStatusShowable && !isStatusModifiable;
-        console.log(isStatusModifiable);
-        console.log(isStatusShowable);
-        console.log(isReadOnly);
         return (
             <Panel heading={resource.Setting}>
                 <Row>

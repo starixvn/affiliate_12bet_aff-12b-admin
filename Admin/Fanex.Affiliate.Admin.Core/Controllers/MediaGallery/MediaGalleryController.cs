@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 SubCategorySportsbookList = bannerListCategory.Where(c => string.Equals(c.CategoryName, SportsbookCategory, StringComparison.CurrentCultureIgnoreCase)
                                         && !string.IsNullOrEmpty(c.SubCategoryName)),
                 BannerRootUrl = _appSetting.BannerRootUrl,
-                LanguageList = _languageService.GetInChangeLanguages(),
+                LanguageList = _languageService.GetInChangeMarkets(),
                 CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
                 ImageTypeList = _commonMediaGalleryService.GetImageTypeList(),
                 SizeList = _bannerListService.GetSizeList(sizeParam),
@@ -211,7 +211,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         private string BuildQueryLanguages(string lang = null)
         {
-            var langs = _languageService.GetInChangeLanguages();
+            var langs = _languageService.GetInChangeMarkets();
             if (!String.IsNullOrWhiteSpace(lang))
             {
                 langs = langs.Where(l => l.LanguageName.Equals(lang, StringComparison.OrdinalIgnoreCase));

@@ -94,7 +94,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     _renderAccountInformation(paymentRequestInfo) {
-        const { isShowEmail, isShowFullName } = this.props;
+        const { isShowEmail } = this.props;
         return (
             <fieldset>
                 <legend>
@@ -114,18 +114,16 @@ export class PaymentRequestUpdateForm extends PureComponent {
                         <Label sm={6}>{htmlDecode(paymentRequestInfo.Email)}</Label>
                     </FormGroup>
                 }
-                { isShowFullName &&
-                    <FormGroup row className="mb-2">
-                        <Label sm={6}>{resource.FirstName}</Label>
-                        <Label sm={6}>{htmlDecode(paymentRequestInfo.FirstName)}</Label>
-                    </FormGroup>
-                }
-                { isShowFullName &&
-                    <FormGroup row className="mb-2">
-                        <Label sm={6}>{resource.LastName}</Label>
-                        <Label sm={6}>{htmlDecode(paymentRequestInfo.LastName)}</Label>
-                    </FormGroup>
-                }
+                <FormGroup row className="mb-2">
+                    <Label sm={6}>{resource.FirstName}</Label>
+                    <Label sm={6}>{htmlDecode(paymentRequestInfo.FirstName)}</Label>
+                </FormGroup>
+
+                <FormGroup row className="mb-2">
+                    <Label sm={6}>{resource.LastName}</Label>
+                    <Label sm={6}>{htmlDecode(paymentRequestInfo.LastName)}</Label>
+                </FormGroup>
+
             </fieldset>
         );
     }

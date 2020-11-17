@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var viewModel = new AffiliateFilterViewModel
             {
                 CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
-                LanguageList = _languageService.GetInChangeLanguages(),
+                LanguageList = _languageService.GetInChangeMarkets(),
             };
 
             return new JsonNetResult(viewModel);
@@ -134,7 +134,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private AffiliateInfoParam BuildGetModelToParam(GetAffiliateViewModel viewModel)
         {
-            var supportLanguages = _languageService.GetInChangeLanguages();
+            var supportLanguages = _languageService.GetInChangeMarkets();
             var queryLangs = LanguageHelper.BuildAllowQueryLanguages(viewModel.Language, supportLanguages);
             return new AffiliateInfoParam
             {

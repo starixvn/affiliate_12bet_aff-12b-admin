@@ -19,7 +19,5 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
         ResultInfo UpdateStatus(UpdateStatusParam param, AffInformationEmail emailParam);
 
         ResultInfo UpdateClosedStatus(UpdateClosedStatusParam param);
-
-        ResultInfo UpdateContactNumber(UpdateContactNumberParam param);
     }
 }

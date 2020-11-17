@@ -2,6 +2,7 @@
 
 import createReducer from '../../../../modules/createReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
+import {claimsPrincipal} from '../../../../reducers/claimReducer';
 import { SET_USER_NAMES, SET_SHOW_TEXT, SET_MESSAGE, SET_MEMBER_NOT_EXIST, SHOULD_RESET_SCROLL_POSITION, SET_ACTIVATED_GRID_DATA, SET_UNACTIVATED_GRID_DATA } from '../actions/types';
 
 export const userNames = createReducer('', {
@@ -54,5 +55,6 @@ export default combineReducers({
     memberNotExist,
     activatedGridData,
     unactivatedGridData,
-    shouldResetScrollPosition
+    shouldResetScrollPosition,
+    claimsPrincipal
 });

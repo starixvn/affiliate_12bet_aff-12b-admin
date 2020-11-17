@@ -8,7 +8,6 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels;
-using System.Security.Permissions;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
@@ -40,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var viewModel = new AffiliateReportViewModel
             {
                 ProductList = _productRepository.GetProductList(),
-                LanguageList = _languageService.GetInChangeLanguages()
+                LanguageList = _languageService.GetInChangeMarkets()
             };
 
             return View(viewModel);
@@ -85,7 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 IsGetAll = model.IsGetAll,
                 PageIndex = model.PageIndex,
                 PageSize = model.PageSize,
-                PreferredLanguages = LanguageHelper.BuildAllowQueryLanguages(model.PreferredLanguage, _languageService.GetInChangeLanguages()),
+                PreferredLanguages = LanguageHelper.BuildAllowQueryLanguages(model.PreferredLanguage, _languageService.GetInChangeMarkets()),
                 ProductIds = model.ProductIds,
                 SortDirectionType = model.SortDirectionType,
                 SortType = model.SortType,

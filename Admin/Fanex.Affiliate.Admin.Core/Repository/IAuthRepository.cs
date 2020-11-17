@@ -8,6 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
     public interface IAuthRepository
     {
         IList<UserPermission> GetPermissionList(int userId);
+
         bool ReCheckin(int onUserId);
 
         ResultInfo Login(LoginParam param);
@@ -15,5 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
         int LoginOnUser(LoginParam param, string sessionId, string serverId);
 
         void Logout(int onUserId);
+
+        bool CheckIfAffBeInChargeByUser(int userId, int affId);
     }
 }

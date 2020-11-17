@@ -54,6 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("textid", DbType.Int32, selectedTextId);
+                objectDb.AddInParameter("languages", DbType.String, string.Empty);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

@@ -5,20 +5,17 @@ import { bindActionCreators } from 'redux';
 import MultipleSelect from '../../../components/multiple-select';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { statusList, sortByList, defaultSortBy, resource } from '../modules/constants';
-import { setReportTitle, setParam, setSelectedColumn } from '../actions';
+import { setReportTitle, setParam, setSelectedColumn, setLanguageList } from '../actions';
 import { htmlDecode } from '../../../modules/htmlHelper';
-import { convertArrayToObjectProps } from '../../../modules/utils';
-import {post} from '../../../modules/ajaxRequest'
+import { claimResource } from '../../../modules/claim';
 
-export class Filter extends Component {
+export class Filter extends React.PureComponent {
     constructor(props) {
         super(props);
 
         this.initialGroupId = this.props.groupId;
 
         this.state = {
-            commGroupList:{},
-            languageList:{},
             selectedCommGroup: this.initialGroupId,
             selectedLanguage: '',
             selectedStatus: props.param.Status || '',
@@ -31,12 +28,6 @@ export class Filter extends Component {
     }
 
     componentDidMount = async () => {
-        const data = await this.fetchFilter();
-        const commGroupList = convertArrayToObjectProps(data.CommGroupList, 'Id', 'Name');
-        const languageList = convertArrayToObjectProps(data.LanguageList, 'LanguageCode', 'LanguageName');
-
-        this.setState({commGroupList, languageList});
-
         if (!!this.initialGroupId  || this.props.param.IsFromHome) {
             this.handleClickSearch();
         }
@@ -44,13 +35,6 @@ export class Filter extends Component {
 
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
-    }
-
-    fetchFilter = async () => {
-        const url = 'Portal/Affiliate/GetFilter'
-        const response = await post(url);
-
-        return response && response.status === 200 ? response.data : null;
     }
 
     handleChangeSortAscending = () => {
@@ -117,8 +101,7 @@ export class Filter extends Component {
 
     render() {
         const { selectedCommGroup, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending } = this.state;
-        const { columnList } = this.props;
-        const { commGroupList, languageList } = this.state;
+        const { columnList, languageList, commGroupList, isShowEmailFilter } = this.props;
 
         return (
             <div className="filter-container">
@@ -167,11 +150,13 @@ export class Filter extends Component {
                             onChange={this.handleChange} />
                     </FormGroup>
 
+                    { isShowEmailFilter && 
                     <FormGroup className="my-2 mr-sm-2">
                         <Input type="email" name="email" id="Email" placeholder="Email"
                             onKeyPress={this.handlePressEnter}
                             onChange={this.handleChange} />
                     </FormGroup>
+                    }
 
                     <FormGroup className="my-2 mr-sm-2">
                         <Input type="text" name="affId" id="AffId" placeholder="Affiliate Id"
@@ -218,12 +203,13 @@ export class Filter extends Component {
     }
 }
 
-function mapStateToProps({ languageList, commGroupList, param, groupId, columnList }) {
-    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList });
+function mapStateToProps({ languageList, commGroupList, param, groupId, columnList, claimsPrincipal }) {
+    const isShowEmailFilter = claimsPrincipal.hasReadClaim(claimResource.Email);
+    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setReportTitle, setParam, setSelectedColumn }, dispatch);
+    return bindActionCreators({ setReportTitle, setParam, setSelectedColumn, setLanguageList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

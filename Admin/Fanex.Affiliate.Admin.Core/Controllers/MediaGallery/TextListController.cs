@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             var model = new TextListViewModel
             {
                 CategoryList = _commonMediaGalleryService.GetCategoryList(TextListCategory),
-                LanguageList = _languageService.GetInChangeLanguages(),
+                LanguageList = _languageService.GetInChangeMarkets(),
                 CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
             };
 
@@ -186,7 +186,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         private string BuildQueryLanguages(string lang = null)
         {
-            var langs = _languageService.GetInChangeLanguages();
+            var langs = _languageService.GetInChangeMarkets();
             if (!String.IsNullOrWhiteSpace(lang))
             {
                 langs = langs.Where(l => l.LanguageName.Equals(lang, StringComparison.OrdinalIgnoreCase));

@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return _languageRepository.GetLanguageList();
         }
 
-        public IEnumerable<Language> GetInChangeLanguages()
+        public IEnumerable<Language> GetInChangeMarkets()
         {
             var languages = _languageRepository.GetLanguageList();
             var inChangeMarket = _sessionService.UserClaim.FindAll(Function.InChargeMarket).Select(c => c.Value);
