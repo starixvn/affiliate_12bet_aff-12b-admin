@@ -86,7 +86,7 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
-        const { isModifiable } = this.props;
+        const { isClickable } = this.props;
 
         const amount = formatDecimalWithCurrencySymbol(dataItem.Amount);
         const isPending = dataItem.Status && dataItem.Status.toLowerCase() === pendingStatus;
@@ -99,7 +99,7 @@ export class Content extends PureComponent {
             <Row key={`dataRow-${index}`} className={status && status.toLowerCase()}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.TransId} className="text-center">
-                    {isModifiable
+                    {isClickable
                         ? (<Button color="link" className="p-0" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
                             {dataItem.TransId}
                         </Button>)
@@ -152,8 +152,8 @@ export class Content extends PureComponent {
 
 
 function mapStateToProps({ pagingOption, param, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.Payment)
-    return Object.assign({}, { pagingOption, param, isModifiable });
+    const isClickable = claimsPrincipal.hasReadClaim(claimResource.Payment)
+    return Object.assign({}, { pagingOption, param, isClickable });
 }
 
 function mapDispatchToProps(dispatch) {
