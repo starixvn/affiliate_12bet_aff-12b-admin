@@ -7,6 +7,7 @@
     using CoreService;
     using DTO;
     using Enum;
+    using Fanex.Affiliate.User.Core.Resources;
     using Filters;
     using MetalModels.Email;
     using ONEbook.UM.Filters;
@@ -78,7 +79,9 @@
             try
             {
                 var content = GetEmailContent(criteria);
-                const string Subject = "Affilite 12Bet testing";
+                _languageService.SetCulture(criteria.Language);
+                string Subject = GetSubject(criteria.Function);
+                _languageService.SetCulture("en-US");
 
                 _mailProcessor.Send(content, criteria.EmailAddress, Subject);
             }
@@ -96,6 +99,31 @@
 
             return Json(result);
         }
+
+        private static string GetSubject(string functionName)
+        {
+            switch (functionName)
+            {
+                case "RecoverPassword":
+                    return Lang.SubjectForgetPass;
+
+                case "PaymentCancel":
+                    return Lang.CancelSubject.Replace("{transid}", "12345");
+
+                case "PaymentRequest":
+                    return Lang.CancelSubject.Replace("{transid}", "12345");
+
+                case "NewPassword":
+                    return Lang.SubjectNewPass;
+
+                case "Signup":
+                    return Lang.RegisSubject;
+
+                default:
+                    return Lang.AffiliateProgram;
+            }
+        }
+
 
         private string GetEmailContent(TestCriteria criteria)
         {
