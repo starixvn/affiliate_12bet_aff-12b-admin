@@ -203,22 +203,28 @@ export class LanguageComponent extends PureComponent {
     }
 
     render() {
+        const { hasWriteUserControlClaim } = this.props;
         const { isEdit, gridData, messagePopup, isConfirmPopup } = this.state;
 
         return gridData && (
-            <div className="data-content">
-                <div className="my-2">
-                    {
-                        isEdit ? (
-                            <Fragment>
-                                <Button outline type="button" color="danger" onClick={this._handleCancel}>Cancel<span className="oi oi-x ml-2"></span></Button>
-                                <Button outline type="button" className="ml-2" onClick={this._handleSubmit}>Save<span className="oi oi-task ml-2"></span></Button>
-                            </Fragment>
-                        ) : (
-                                <Button outline type="button" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
-                            )
-                    }
-                </div>
+            <div className={`data-content${hasWriteUserControlClaim ? '' : ' role-permission'}`}>
+                {
+                    hasWriteUserControlClaim && (
+                        <div className="my-2">
+                            {
+
+                                isEdit ? (
+                                    <Fragment>
+                                        <Button outline type="button" color="danger" onClick={this._handleCancel}>Cancel<span className="oi oi-x ml-2"></span></Button>
+                                        <Button outline type="button" className="ml-2" onClick={this._handleSubmit}>Save<span className="oi oi-task ml-2"></span></Button>
+                                    </Fragment>
+                                ) : (
+                                        <Button outline type="button" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
+                                    )
+                            }
+                        </div>
+                    )
+                }
                 <div className="table-responsive table-striped my-2">
                     <Table
                         minWidth={1000}
@@ -242,8 +248,8 @@ export class LanguageComponent extends PureComponent {
 }
 
 
-function mapStateToProps({ gridData, roleList, marketIdList, marketList, isGeneral }) {
-    return Object.assign({}, { gridData, roleList, marketIdList, marketList, isGeneral });
+function mapStateToProps({ gridData, roleList, marketIdList, marketList, isGeneral, hasWriteUserControlClaim }) {
+    return Object.assign({}, { gridData, roleList, marketIdList, marketList, isGeneral, hasWriteUserControlClaim });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -3,6 +3,8 @@
 import createReducer from '../../../../modules/createReducer';
 import { SET_GRID_DATA, SET_IS_GENERAL, SET_ROLE_LIST, SET_MARKET_ID_LIST, SET_MARKET_LIST } from '../actions/types';
 
+export const hasWriteUserControlClaim = createReducer(false, {});
+
 export const gridData = createReducer(null, {
     [SET_GRID_DATA](prevState, action) {
         return action.data;
@@ -38,5 +40,6 @@ export default combineReducers({
     isGeneral,
     roleList,
     marketIdList,
-    marketList
+    marketList,
+    hasWriteUserControlClaim
 });

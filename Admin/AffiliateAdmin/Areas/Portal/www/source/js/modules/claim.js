@@ -24,7 +24,8 @@ export const claimResource = {
     AffInfo: '[Affiliate]',
     Payment: '[Payment]',
     MediaGallery: '[Media]',
-    AffPassword: '[AffPassword]'
+    AffPassword: '[AffPassword]',
+    UserControl: '[UserControl]'
 }
 
 export class Claim {
@@ -62,7 +63,7 @@ export default class ClaimPrincipal{
             return this.hasReadClaim(claim);
         }
 
-        return this.claims[claim.type] !== undefined 
+        return this.claims[claim.type] !== undefined
             && (claim.value === undefined || this.claims[claim.type] === claim.value)
     }
 }

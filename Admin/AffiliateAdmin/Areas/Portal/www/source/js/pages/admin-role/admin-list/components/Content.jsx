@@ -92,13 +92,17 @@ export class Content extends PureComponent {
     _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={50}>
-                    <CheckboxSelectAll
-                        checkedList={this.props.checkedUsers}
-                        setCheckedList={this.props.setCheckedUsers}
-                        setShouldResetScrollPosition={this.props.setShouldResetScrollPosition}
-                    />
-                </Cell>
+                {
+                    this.props.hasWriteUserControlClaim && (
+                        <Cell header={true} colWidth={50}>
+                            <CheckboxSelectAll
+                                checkedList={this.props.checkedUsers}
+                                setCheckedList={this.props.setCheckedUsers}
+                                setShouldResetScrollPosition={this.props.setShouldResetScrollPosition}
+                            />
+                        </Cell>
+                    )
+                }
                 <Cell header={true} colWidth={50} title={resource.Index}>{resource.Index}</Cell>
                 <Cell header={true} colWidth={200} title={resource.UserName}>{resource.UserName}</Cell>
                 <Cell header={true} colWidth={200} title={resource.FirstName}>{resource.FirstName}</Cell>
@@ -115,23 +119,24 @@ export class Content extends PureComponent {
 
     _renderDataSection(dataList) {
         const dataRows = [];
+        const { hasWriteUserControlClaim } = this.props;
 
         if (dataList && dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, i + 1));
+                dataRows.push(this._buildDataRow(dataItem, i + 1, hasWriteUserControlClaim));
             }
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="9">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={hasWriteUserControlClaim ? "9" : "8"}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index) {
+    _buildDataRow(dataItem, index, hasWriteUserControlClaim) {
         const userId = dataItem.UserId;
         const userName = htmlDecode(dataItem.UserName);
         const firstName = htmlDecode(dataItem.FirstName);
@@ -143,10 +148,14 @@ export class Content extends PureComponent {
 
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={this.props.checkedUsers[userId]}
-                        onChange={(e) => this._onCheckItem(e.target.checked, userId)} />
-                </Cell>
+                {
+                    hasWriteUserControlClaim && (
+                        <Cell className="text-center">
+                            <input type="checkbox" checked={this.props.checkedUsers[userId]}
+                                onChange={(e) => this._onCheckItem(e.target.checked, userId)} />
+                        </Cell>
+                    )
+                }
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={resource.ViewAccountInfo}>
                     <a href="javascript:;" onClick={() => this._handleRedirectToUserDetail(userId, userName)}>
@@ -168,11 +177,15 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={dataItem.IsActive}>{dataItem.IsActive ? 'Open' : 'Closed'}</Cell>
                 <Cell className="text-center">
                     <Button color="link p-0" title={resource.ViewPermission} onClick={() => this._handleShowPermission(dataItem.UserId, dataItem.UserName)}>
-                        <span className="oi oi-eye pr-3"></span>
+                        <span className="oi oi-eye"></span>
                     </Button>
-                    <Button color="link p-0" title={resource.DeleteAccount} onClick={() => this._handleDeleteUser(dataItem.UserId, userName)}>
-                        <span className="oi oi-trash text-danger"></span>
-                    </Button>
+                    {
+                        hasWriteUserControlClaim && (
+                            <Button color="link p-0" title={resource.DeleteAccount} onClick={() => this._handleDeleteUser(dataItem.UserId, userName)}>
+                                <span className="oi oi-trash text-danger pl-3"></span>
+                            </Button>
+                        )
+                    }
                 </Cell>
             </Row>
         )
@@ -211,9 +224,9 @@ export class Content extends PureComponent {
 }
 
 
-function mapStateToProps({ adminList }) {
+function mapStateToProps({ adminList, hasWriteUserControlClaim }) {
     const { isBack, param, checkedUsers, shouldResetScrollPosition, gridData } = adminList;
-    return Object.assign({}, { isBack, param, checkedUsers, gridData, shouldResetScrollPosition });
+    return Object.assign({}, { isBack, param, checkedUsers, gridData, shouldResetScrollPosition, hasWriteUserControlClaim });
 }
 
 function mapDispatchToProps(dispatch) {

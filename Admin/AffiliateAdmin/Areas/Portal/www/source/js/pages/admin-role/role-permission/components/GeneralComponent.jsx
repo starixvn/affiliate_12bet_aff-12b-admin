@@ -173,7 +173,7 @@ export class GeneralComponent extends PureComponent {
                                 <span>{dataItem.RoleName}</span>
                             </Button>
                             {
-                                dataItem.RoleId !== management && (
+                                dataItem.RoleId !== management && this.props.hasWriteUserControlClaim && (
                                     isEdit && isExpand ? (
                                         <Fragment>
                                             <a href="javascript:;" onClick={this._handleCancel} title={resource.Cancel} >< span className="oi oi-x text-danger"></span></a>
@@ -316,8 +316,8 @@ export class GeneralComponent extends PureComponent {
 }
 
 
-function mapStateToProps({ gridData, roleList }) {
-    return Object.assign({}, { gridData, roleList });
+function mapStateToProps({ gridData, roleList, hasWriteUserControlClaim }) {
+    return Object.assign({}, { gridData, roleList, hasWriteUserControlClaim });
 }
 
 function mapDispatchToProps(dispatch) {

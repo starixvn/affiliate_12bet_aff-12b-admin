@@ -256,15 +256,19 @@ export class Content extends PureComponent {
     }
 
     _renderWhenView() {
-        const { roleList, userId } = this.props;
+        const { roleList, userId, hasWriteUserControlClaim } = this.props;
         const { newUserName, firstName, lastName, role, language, isActive, isShowMessage, isSuccess, message, isChangingPassword } = this.state;
 
         return (
             <Fragment>
-                <div className="mb-2">
-                    <Button outline type="button" color="danger" onClick={this._handleDeleteUser}> Delete < span className="oi oi-trash ml-2"></span></Button>
-                    <Button outline type="button" className="ml-2" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
-                </div>
+                {
+                    hasWriteUserControlClaim && (
+                        <div className="mb-2">
+                            <Button outline type="button" color="danger" onClick={this._handleDeleteUser}> Delete < span className="oi oi-trash ml-2"></span></Button>
+                            <Button outline type="button" className="ml-2" onClick={() => this.setState({ isEdit: true })}> Edit < span className="oi oi-pencil ml-2"></span></Button>
+                        </div>
+                    )
+                }
                 <Container fluid={true} className="admin-info-container pt-2 mb-5">
                     <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                         <div dangerouslySetInnerHTML={{ __html: message }}></div>
@@ -294,9 +298,15 @@ export class Content extends PureComponent {
                                 <FormGroup row className="mb-1">
                                     <Label sm="auto">{resources.Password}</Label>
                                     <Col>
-                                        <Button color="link" className="btn-password" onClick={() => this._toggleChangingPassword(true)}>
-                                            <span sm="auto">{resources.Change}</span>
-                                        </Button>
+                                        {
+                                            hasWriteUserControlClaim ? (
+                                                <Button color="link" className="btn-password" onClick={() => this._toggleChangingPassword(true)}>
+                                                    <span sm="auto">{resources.Change}</span>
+                                                </Button>
+                                            ) : (
+                                                <Label sm={12}><strong>.........</strong></Label>
+                                                )
+                                        }
                                         {isChangingPassword && <ChangePasswordForm
                                             showPopupPassword={isChangingPassword}
                                             selectedId={userId}
@@ -322,7 +332,7 @@ export class Content extends PureComponent {
                                 <FormGroup row className="mb-1">
                                     <Label sm="auto">{resources.AccountStatus}</Label>
                                     <Col>
-                                        <input type="checkbox" name="isActive" className="account-status" checked={isActive} onChange={() => this._handleChangeStatus(!isActive)} />
+                                        <input type="checkbox" name="isActive" className="account-status" checked={isActive} disabled={!hasWriteUserControlClaim} onChange={() => hasWriteUserControlClaim && this._handleChangeStatus(!isActive)} />
                                     </Col>
                                 </FormGroup>
                             </Form >
@@ -470,7 +480,7 @@ export class Content extends PureComponent {
         return (
             <Fragment>
                 {
-                    isCreateNew || isEdit ? this._renderWhenCreateAndEditUser() : this._renderWhenView()
+                    this.props.hasWriteUserControlClaim && (isCreateNew || isEdit) ? this._renderWhenCreateAndEditUser() : this._renderWhenView()
                 }
                 {
                     !!messagePopup && <NotificationPopup
@@ -484,9 +494,9 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ userId, userName, adminInfo }) {
+function mapStateToProps({ userId, userName, adminInfo, hasWriteUserControlClaim }) {
     const { roleList, permissionListByRole, marketListByUser } = adminInfo;
-    return Object.assign({}, { userId, userName, roleList, permissionListByRole, marketListByUser });
+    return Object.assign({}, { userId, userName, roleList, permissionListByRole, marketListByUser, hasWriteUserControlClaim });
 }
 
 function mapDispatchToProps(dispatch) {

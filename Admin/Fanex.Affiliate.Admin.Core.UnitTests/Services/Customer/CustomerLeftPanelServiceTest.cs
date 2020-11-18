@@ -9,6 +9,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
@@ -254,13 +255,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         private static CustomerLeftPanelService CreateCustomerLeftPanelService(
             IEmailService emailService = null,
             IAffiliateService affiliateService = null,
+            IAuthService authService = null,
+            ISessionService sessionService = null,
             ICustomerLeftPanelRepository customerLeftPanelRepository = null)
         {
             var fakeEmailService = emailService ?? Mock.Of<IEmailService>();
             var fakeAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
+            var fakeAuthService = authService ?? Mock.Of<IAuthService>();
+            var fakeSessionService = sessionService ?? Mock.Of<ISessionService>();
             var fakeCustomerLeftPanelRepository = customerLeftPanelRepository ?? Mock.Of<ICustomerLeftPanelRepository>();
 
-            return new CustomerLeftPanelService(fakeEmailService, fakeAffiliateService, fakeCustomerLeftPanelRepository);
+            return new CustomerLeftPanelService(fakeEmailService, fakeAffiliateService, fakeAuthService, fakeSessionService, fakeCustomerLeftPanelRepository);
         }
     }
 }

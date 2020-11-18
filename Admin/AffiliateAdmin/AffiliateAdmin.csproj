@@ -313,6 +313,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\Menu.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\libs\render.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\components\AppContainer.jsx" />
@@ -893,6 +894,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\reducers\claimReducer.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\loaderReducer.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\pagingReducer.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\__test__\loaderReducer.test.js" />
