@@ -83,14 +83,15 @@ namespace Fanex.Affiliate.User.Core.Repository
             const string spKey = "Aff_SessionIdSel";
             using (var db = _builder.Build(spKey))
             {
-                using (var reader = db.ExecuteReader(new { OnUserId = onUserId }))
+                db.AddInParameter("OnUserId", SqlDbType.Int, onUserId);
+
+                using (var reader = db.ExecuteReader())
                 {
-                    reader.Read();
-                    return new InternalLoginInfo
+                    return reader.Read() ? new InternalLoginInfo
                     {
                         SesionId = reader.ToString("NetSessionID"),
                         UserId = reader.ToInt("CustId")
-                    };
+                    } : null;
                 }
             }
         }
