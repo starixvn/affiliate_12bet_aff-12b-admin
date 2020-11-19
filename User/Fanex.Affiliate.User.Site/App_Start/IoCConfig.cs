@@ -7,6 +7,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.Infrastructure;
 using Fanex.Affiliate.User.Core.MemberInfoWebService;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -102,6 +103,7 @@ namespace Fanex.Affiliate.User.Site
 
             builder.RegisterType<ObjectDBBuilder>().AsImplementedInterfaces().UsingConstructor().InstancePerLifetimeScope();
             builder.RegisterType<LanguageRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<DateTimeProvider>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
