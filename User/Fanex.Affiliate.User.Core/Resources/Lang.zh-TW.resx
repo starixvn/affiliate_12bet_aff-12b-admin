@@ -758,8 +758,8 @@
   <data name="For" xml:space="preserve">
     <value>為了</value>
   </data>
-  <data name="Foranyreasonyou" xml:space="preserve">
-    <value>如果您沒有收到電郵，無論原因如何，請您及時聯繫我們，我們很如果您沒有收到電郵，無論原因如何，&lt;a href="{0}"&gt; 請您及時聯繫我們&lt;/a&gt;，我們很樂意為您提供協助</value>
+  <data name="ForAnyReason" xml:space="preserve">
+    <value>如您未收到任何郵件，請檢查您的垃圾郵件或&lt;a href='{0}'&gt;聯繫在線客服&lt;/a&gt;尋找協助。</value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>忘記密碼？</value>
@@ -1315,13 +1315,12 @@
     <value>12BET合作夥伴-您的申請</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>
-			感謝您提交申請。&lt;br /&gt;&lt;br /&gt;
-			我們12Bet合作夥伴團隊將會就您的網站和申請詳情進行審核，以確認相關內容是否適合推廣我們的產品。&lt;br /&gt;&lt;br /&gt;
-			我們將在5天內回复您的申請。一旦您的申請被核准，您將立即獲得全權參與進入我們的合作夥伴項目。&lt;br /&gt;&lt;br /&gt;
-			致以敬意，&lt;br /&gt;&lt;br /&gt;
-			12Bet合作夥伴團隊
-	</value>
+    <value>感謝您提交申請。&lt;br /&gt;&lt;br /&gt;
+我們12Bet合作夥伴團隊將會就您的網站和申請詳情進行審核，以確認相關內容是否適合推廣我們的產品。&lt;br /&gt;&lt;br /&gt;
+我們將在5天內回复您的申請。一旦您的申請被核准，您將立即獲得全權參與進入我們的合作夥伴項目。&lt;br /&gt;&lt;br /&gt;
+致以敬意，&lt;br /&gt;&lt;br /&gt;
+12Bet合作夥伴團隊。&lt;br /&gt;&lt;br /&gt;
+如您未收到任何郵件，請檢查您的垃圾郵件或&lt;a href='{0}'&gt;聯繫在線客服&lt;/a&gt;尋找協助。</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>拒絕</value>
@@ -2179,5 +2178,8 @@
   <data name="_12BetExchange" xml:space="preserve">
     <value>12BET EXCHANGE &lt;br /&gt;
  (僅適用於INR和IN.USD會員）</value>
+  </data>
+  <data name="AConfirmationEmail" xml:space="preserve">
+    <value>確認郵件已發送到您的電子郵箱。</value>
   </data>
 </root>

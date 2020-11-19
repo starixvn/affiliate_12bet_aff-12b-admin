@@ -759,8 +759,8 @@
   <data name="For" xml:space="preserve">
     <value>สำหรับ</value>
   </data>
-  <data name="Foranyreasonyou" xml:space="preserve">
-    <value>หากคุณไม่ได้รับอีเมลล์ กรุณา &lt;a href='{0}'&gt; ติดต่อเรา &lt;/a&gt; เรายินดีช่วยเหลือ คะ</value>
+  <data name="ForAnyReason" xml:space="preserve">
+    <value>ไม่ว่ากรณีใดก็ตาม หากคุณยังไม่ได้รับอีเมลโปรดตรวจสอบที่กล่องจดหมายขยะก่อน หรือ&lt;a href='{0}'&gt;ติดต่อเจ้าหน้าที่เพื่อการช่วยเหลือ&lt;/a&gt;</value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>ลืมไอดี/รหัสผ่าน?</value>
@@ -1316,7 +1316,7 @@
     <value>พันธมิตร 12bet - การสมัครของคุณ</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>ขอบคุณที่ส่งใบสมัครของคุณมายัง พันธมิตร 12BET &lt;br/&gt;&lt;br/&gt; เมื่อทางเราได้พิจารณาเนื้อหาเวบไซด์และข้อมูล ว่าเหมาะสม เราจะทำการแจ้งคุณถึงสถานะ &lt;br/&gt;&lt;br/&gt; ภายใน 5 วันทำการ และคุณจะสามารถเข้าใช้ระบบพันธมิตรของเราได้คะ &lt;br/&gt;&lt;br/&gt; ด้วยความนับถือ &lt;br/&gt;&lt;br/&gt; ทีมงานพันธมิตร 12BET</value>
+    <value>ขอบคุณที่ส่งใบสมัครของคุณมายัง พันธมิตร 12BET &lt;br/&gt;&lt;br/&gt; เมื่อทางเราได้พิจารณาเนื้อหาเวบไซด์และข้อมูล ว่าเหมาะสม เราจะทำการแจ้งคุณถึงสถานะ &lt;br/&gt;&lt;br/&gt; ภายใน 5 วันทำการ และคุณจะสามารถเข้าใช้ระบบพันธมิตรของเราได้คะ &lt;br/&gt;&lt;br/&gt; ด้วยความนับถือ &lt;br/&gt;&lt;br/&gt; ทีมงานพันธมิตร 12BET.&lt;br/&gt;&lt;br/&gt;ไม่ว่ากรณีใดก็ตาม หากคุณยังไม่ได้รับอีเมลโปรดตรวจสอบที่กล่องจดหมายขยะก่อน หรือ&lt;a href='{0}'&gt;ติดต่อเจ้าหน้าที่เพื่อการช่วยเหลือ&lt;/a&gt;</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>ถูกปฏิเสธแล้ว</value>
@@ -2174,5 +2174,8 @@
   <data name="_12BetExchange" xml:space="preserve">
     <value>12BET EXCHANGE &lt;br /&gt;
 (เฉพาะผู้เล่นในสกุลเงินINR,INR.US)</value>
+  </data>
+  <data name="AConfirmationEmail" xml:space="preserve">
+    <value>อีเมลยืนยันกำลังส่งไปยังอีเมลของคุณ</value>
   </data>
 </root>

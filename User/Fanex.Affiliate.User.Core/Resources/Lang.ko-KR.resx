@@ -772,9 +772,6 @@
   <data name="For" xml:space="preserve">
     <value>이달의</value>
   </data>
-  <data name="Foranyreasonyou" xml:space="preserve">
-    <value>어떠한 이유로 이메일을 받지 못했다면, 고객센터로 문의하시기 바랍니다.</value>
-  </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>비밀번호 찾기</value>
   </data>
@@ -1340,7 +1337,7 @@
     <value>12Bet 제휴 - 귀하의 신청</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>신청를 잘 접수되었습니다.  &lt;br/&gt;&lt;br/&gt; 귀하의 웹사이트와 자세한 신청서는 12bet제휴팀에 의해 재 검토됩니다.</value>
+    <value>신청를 잘 접수되었습니다.  &lt;br/&gt;&lt;br/&gt; 귀하의 웹사이트와 자세한 신청서는 12bet제휴팀에 의해 재 검토됩니다.&lt;br/&gt;&lt;br/&gt;확인 이메일을 받지 못한 경우 스팸 메일함 또는 &lt;a href='{0}'&gt;고객센터&lt;/a&gt; 로 문의하시기 바랍니다.</value>
   </data>
   <data name="RegisteredDate" xml:space="preserve">
     <value>가입일</value>
@@ -2167,5 +2164,11 @@
   <data name="_12BetExchange" xml:space="preserve">
     <value>12BET익스체인지 &lt;br /&gt;
 (INR &amp; IN.USD 회원전용)</value>
+  </data>
+  <data name="ForAnyReason" xml:space="preserve">
+    <value>확인 이메일을 받지 못한 경우 스팸 메일함 또는 &lt;a href='{0}'&gt;고객센터&lt;/a&gt;로 문의하시기 바랍니다.</value>
+  </data>
+  <data name="AConfirmationEmail" xml:space="preserve">
+    <value>확인 이메일 전송 중입니다.</value>
   </data>
 </root>

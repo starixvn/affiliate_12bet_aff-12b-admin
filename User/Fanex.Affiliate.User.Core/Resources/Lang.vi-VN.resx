@@ -762,8 +762,8 @@
   <data name="For" xml:space="preserve">
     <value>cho</value>
   </data>
-  <data name="Foranyreasonyou" xml:space="preserve">
-    <value>Vì bất kỳ lý do gì mà bạn không nhận được email, vui lòng &lt;a href='{0}'&gt;liên hệ với chúng tôi&lt;/a&gt; và chúng tôi sẽ rất sẵn lòng được trợ giúp bạn.  </value>
+  <data name="ForAnyReason" xml:space="preserve">
+    <value>Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm tra hộp Thư rác của bạn hoặc &lt;a href='{0}'&gt;liên hệ với chúng tôi&lt;/a&gt; và chúng tôi sẽ sẵn sàng hỗ trợ bạn.</value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>Quên Mật Khẩu?</value>
@@ -1318,7 +1318,7 @@
     <value>12Bet Affiliate - Đơn của bạn</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>Cảm ơn bạn đã gửi đơn.&lt;br/&gt;&lt;br/&gt;Các trang web và thông tin về đơn của bạn sẽ được nhóm 12Bet Affiliate xem xét để đảm bảo rằng nội dung là phù hợp để quảng cáo sản phẩm của chúng tôi.&lt;br/&gt;&lt;br/&gt;Trong vòng 5 ngày, chúng tôi sẽ có thể cung cấp cho bạn quyết định liên quan đến đơn của bạn. Nếu bạn được chấp thuận, bạn sẽ có toàn quyền truy cập vào chương trình hội viên của chúng tôi.&lt;br /&gt;&lt;br /&gt;Trân trọng!&lt;br /&gt;&lt;br /&gt;Nhóm quản lý hội viên 12BET.</value>
+    <value>Cảm ơn bạn đã gửi đơn.&lt;br/&gt;&lt;br/&gt;Các trang web và thông tin về đơn của bạn sẽ được nhóm 12Bet Affiliate xem xét để đảm bảo rằng nội dung là phù hợp để quảng cáo sản phẩm của chúng tôi.&lt;br/&gt;&lt;br/&gt;Trong vòng 5 ngày, chúng tôi sẽ có thể cung cấp cho bạn quyết định liên quan đến đơn của bạn. Nếu bạn được chấp thuận, bạn sẽ có toàn quyền truy cập vào chương trình hội viên của chúng tôi.&lt;br /&gt;&lt;br /&gt;Trân trọng!&lt;br /&gt;&lt;br /&gt;Nhóm quản lý hội viên 12BET.&lt;br/&gt;&lt;br/&gt;Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm tra hộp Thư rác của bạn hoặc &lt;a href='{0}'&gt;liên hệ với chúng tôi&lt;/a&gt; và chúng tôi sẽ sẵn sàng hỗ trợ bạn.</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Bị từ chối</value>
@@ -2176,5 +2176,8 @@
   <data name="_12BetExchange" xml:space="preserve">
     <value>12BET EXCHANGE &lt;br /&gt;
 (Giành riêng cho thành viên sử dụng tiền tệ INR &amp; USD)</value>
+  </data>
+  <data name="AConfirmationEmail" xml:space="preserve">
+    <value>Email xác nhận sẽ được gửi đến Email của bạn.</value>
   </data>
 </root>

@@ -36,7 +36,7 @@
 
     <div class="alert alert-success" role="alert" id="messageSuccess" style="display: none;">
         <p class="text-center">@Html.Raw(Lang.UnderReview)</p>
-        @Html.Raw(Lang.RegisSuccess)
+        @Html.Raw(string.Format(Lang.RegisSuccess, Url.Content("~/ContactUs")))
     </div>
 
     <div class="alert alert-danger" role="alert" id="messageError" style="display: none"></div>
@@ -279,7 +279,7 @@
                             <div class="captcha">
                                 <div class="validation-value"><img id="signupCaptcha" src="" alt="captcha" /></div>
                             </div>
-                        </div>                        
+                        </div>
                         <div class="col-sm-offset-3 col-sm-9">
                             @Html.ValidationMessageFor(x => x.Captcha, string.Empty, new { @class = "help-block hide" })
                         </div>
@@ -308,7 +308,7 @@
                                     @Html.ValidationMessageFor(x => x.Player_UserName, string.Empty, new { @class = "help-block hide" })
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
 
                     <div class="form-group">

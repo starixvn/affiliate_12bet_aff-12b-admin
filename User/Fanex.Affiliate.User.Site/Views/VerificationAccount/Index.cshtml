@@ -5,7 +5,7 @@
 @model Fanex.Affiliate.User.Core.ViewModels.VerificationAccountViewModel
 
 @{
-    var email = Model.Email;  
+    var email = Model.Email;
     if (string.IsNullOrEmpty(email))
     {
         <h4 class="text-danger">You don't have the email address. Please contact administrator!</h4>
@@ -45,6 +45,7 @@
             </form>
             <div class="hide" id="verificationAccountGroup">
                 <p>@Lang.AVerificationCode</p>
+                <p>@Html.Raw(string.Format(Lang.ForAnyReason, Url.Content("~/ContactUs")))</p>
                 <br />
                 <form id="verificationAccountForm">
                     @Html.AntiForgeryToken()
