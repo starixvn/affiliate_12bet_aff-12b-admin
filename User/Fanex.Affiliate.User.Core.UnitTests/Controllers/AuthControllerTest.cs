@@ -192,6 +192,44 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
+        public void SignIn_WhenCallWithLoginResultIsNotOk_SessionNotSave()
+        {
+            var controller = CreateController();
+            NSubtituteMockingHelper.FakeController(controller);
+            NSubtituteMockingHelper.FakeAjaxRequest(controller.Request);
+            var param = GetValidParam();
+            CaptchaService.IsValid("", "", "").ReturnsForAnyArgs(true);
+            var loginResult = GetInvalidLoginResultViewModel();
+            AuthService.GetLoginResult(null, false).ReturnsForAnyArgs(loginResult);
+            AppSetting.AllowedAffiliateTypes.Returns(new List<string> { "Asian" });
+
+            var result = controller.SignIn(param) as JsonResult;
+            var model = result.Data as ResultInfo;
+
+            SessionService.DidNotReceive().AssignSessions(Arg.Compat.Any<AuthorizedUserInfo>());
+            Assert.False(model.IsOk);
+        }
+
+        [Fact]
+        public void SignIn_WhenCallWithUserInfoIsNull_SessionNotSave()
+        {
+            var controller = CreateController();
+            NSubtituteMockingHelper.FakeController(controller);
+            NSubtituteMockingHelper.FakeAjaxRequest(controller.Request);
+            var param = GetValidParam();
+            CaptchaService.IsValid("", "", "").ReturnsForAnyArgs(true);
+            var loginResult = GetLoginResultViewModelHasUserInfoIsNull();
+            AuthService.GetLoginResult(null, false).ReturnsForAnyArgs(loginResult);
+            AppSetting.AllowedAffiliateTypes.Returns(new List<string> { "Asian" });
+
+            var result = controller.SignIn(param) as JsonResult;
+            var model = result.Data as ResultInfo;
+
+            SessionService.DidNotReceive().AssignSessions(Arg.Compat.Any<AuthorizedUserInfo>());
+            Assert.False(model.IsOk);
+        }
+
+        [Fact]
         public void SignIn_WhenCallWithLoginResultIsOk_SessionSave()
         {
             var controller = CreateController();
@@ -236,11 +274,22 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         [Fact]
         public void AdminLogin_WhenHashingKeyNotEqual_RedirectToPageNotFount()
         {
-            var adminSessionId = "sessionId";
             var param = CreateInternalLoginParam();
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);
-            AuthService.GetInternalLoginInfo(default(int)).ReturnsForAnyArgs(new InternalLoginInfo { SesionId = adminSessionId });
+            AuthService.GetInternalLoginInfo(default(int)).ReturnsForAnyArgs(new InternalLoginInfo());
+
+            var result = controller.AdminLogin(param) as RedirectResult;
+
+            Assert.Contains("PageNotFound", result.Url);
+        }
+
+        [Fact]
+        public void AdminLogin_WhenInternalLoginInfoIsNull_RedirectToPageNotFount()
+        {
+            var param = CreateInternalLoginParam();
+            var controller = CreateController();
+            NSubtituteMockingHelper.FakeController(controller);
 
             var result = controller.AdminLogin(param) as RedirectResult;
 
@@ -301,6 +350,18 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
+        public void ReCheckIn_WhenHasNotAnotherOneLogin_SignOut()
+        {
+            var controller = CreateController();
+            NSubtituteMockingHelper.FakeController(controller);
+            AuthService.Recheckin(1, false).ReturnsForAnyArgs(false);
+
+            controller.ReCheckin();
+
+            AuthService.DidNotReceive().SignOut();
+        }
+
+        [Fact]
         public void CaptchaImage_WhenUserDefaultType_SessionSaveCaptchaCode()
         {
             var controller = CreateController();
@@ -354,6 +415,33 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             {
                 Result = loginResult,
                 UserInfo = userInfo
+            };
+        }
+
+        private LoginResultViewModel GetInvalidLoginResultViewModel()
+        {
+            var userInfo = new AuthorizedUserInfo
+            {
+                AffId = 1,
+                UserName = "test",
+                AffType = "Asian"
+            };
+            var loginResult = new LoginResultInfo { ShouldVerifyAccount = false, IsOk = false };
+
+            return new LoginResultViewModel
+            {
+                Result = loginResult,
+                UserInfo = userInfo
+            };
+        }
+
+        private LoginResultViewModel GetLoginResultViewModelHasUserInfoIsNull()
+        {
+            var loginResult = new LoginResultInfo { ShouldVerifyAccount = false, IsOk = false };
+
+            return new LoginResultViewModel
+            {
+                Result = loginResult
             };
         }
 

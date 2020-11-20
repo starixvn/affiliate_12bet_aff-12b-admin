@@ -89,6 +89,23 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
             Assert.Equal(controller, result.ControllerName);
         }
 
+        [Fact]
+        public void TryParseQueryString_WhenCallWithNullParam_ReturnIsValidResult()
+        {
+            var parser = CreateParser();
+            var action = "action";
+            var controller = "controller";
+            var queryString = $"action={action}&controller={controller}";
+            var encodedQueryString = SymmetricEncryptionUtility.Encrypt<AesManaged>(queryString, PASSWORD, SALT);
+            var base64String = ConverterUtils.Base64Encode(encodedQueryString);
+
+            var result = parser.TryParseQueryString(base64String);
+
+            Assert.True(result.IsValid);
+            Assert.Equal(action, result.ActionName);
+            Assert.Equal(controller, result.ControllerName);
+        }
+
         private static string GenQueryString()
             => $"t={RequestTickCount}&e={ExpriredMin}";
 

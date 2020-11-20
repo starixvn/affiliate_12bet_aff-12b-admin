@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
         {
             var timeQuery = _request.Params["t"]?.Trim();
             var timeToken = paramValues["t"]?.Trim();
-            var expirationByMinute = int.Parse(paramValues["e"]?.Trim());
+            var expirationByMinute = int.Parse(paramValues["e"]?.Trim() ?? "0");
 
             return !string.Equals(timeQuery, timeToken) || IsExpired(timeToken, expirationByMinute);
         }

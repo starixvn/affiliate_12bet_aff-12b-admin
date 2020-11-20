@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -180,6 +181,25 @@ namespace Fanex.Affiliate.User.Core.UnitTests.CoreService
             service.VerificationSession = verifySession;
 
             Assert.Equal(verifySession, service.VerificationSession);
+        }
+
+        [Fact]
+        public void PropertyClaimsIdentities_WhenCall_ReturnCorrectValue()
+        {
+            SetUpHttpContextSession();
+            var claimsIdentities = new List<ClaimsIdentity>{
+                new ClaimsIdentity(
+                    new List<Claim>
+                    {
+                        new Claim("Test", "Write")
+                    }
+                )
+            };
+            var service = CreateService();
+
+            service.ClaimsIdentities = claimsIdentities;
+
+            Assert.Equal(claimsIdentities, service.ClaimsIdentities);
         }
 
         private static SessionService CreateService()

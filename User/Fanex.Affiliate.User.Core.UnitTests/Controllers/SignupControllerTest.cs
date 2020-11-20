@@ -181,7 +181,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 MailCc = Constant.DefaultMailCc,
                 MailBcc = string.Empty,
                 MailTo = Constant.DefaultMailContact,
-                RootDomain = Constant.DefaultRootDomain + "/"
+                RootDomain = Constant.DefaultRootDomain + "/",
+                CurrentLanguage = Constant.DefaultLanguage
             });
 
             // Action

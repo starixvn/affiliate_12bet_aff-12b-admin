@@ -468,7 +468,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 RequestDate = new DateTime(2018, 6, 12),
                 RootDomain = Constant.DefaultRootDomain + "/",
                 TransId = 1,
-                PaymentType = paymentType
+                PaymentType = paymentType,
+                CurrentLanguage = Constant.DefaultLanguage
             };
         }
     }
