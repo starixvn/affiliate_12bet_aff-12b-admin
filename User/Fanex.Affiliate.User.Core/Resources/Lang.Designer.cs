@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -139,6 +139,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string AccOverview {
             get {
                 return ResourceManager.GetString("AccOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Confirmation Email is sending to your Email..
+        /// </summary>
+        public static string AConfirmationEmail {
+            get {
+                return ResourceManager.GetString("AConfirmationEmail", resourceCulture);
             }
         }
         
@@ -2432,11 +2441,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For any reason you do not receive the email, please &lt;a href=&apos;{0}&apos;&gt;contact us&lt;/a&gt; and we will be glad to assist you.  .
+        ///   Looks up a localized string similar to For any reason, you do not receive the email, please check your Spam box or &lt;a href=&apos;{0}&apos;&gt;Contact Us&lt;/a&gt; and we will glad to assist you..
         /// </summary>
-        public static string Foranyreasonyou {
+        public static string ForAnyReason {
             get {
-                return ResourceManager.GetString("Foranyreasonyou", resourceCulture);
+                return ResourceManager.GetString("ForAnyReason", resourceCulture);
             }
         }
         
@@ -4698,7 +4707,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you for submitting your application.&lt;br/&gt;&lt;br/&gt;Your websites and application details will be reviewed by the team at 12Bet Affiliates to ensure that content is suitable for promoting our products.&lt;br/&gt;&lt;br/&gt;Within 5 days we should be able to provide you with a decision in regard to your application. If you are approved, you will be able to enjoy full access to our affiliate program.&lt;br /&gt;&lt;br /&gt;Best Regards,&lt;br /&gt;&lt;br /&gt;The team at 12Bet Affiliates.
+        ///   Looks up a localized string similar to Thank you for submitting your application.&lt;br/&gt;&lt;br/&gt;Your websites and application details will be reviewed by the team at 12Bet Affiliates to ensure that content is suitable for promoting our products.&lt;br/&gt;&lt;br/&gt;Within 5 days we should be able to provide you with a decision in regard to your application. If you are approved, you will be able to enjoy full access to our affiliate program.&lt;br /&gt;&lt;br /&gt;Best Regards,&lt;br /&gt;&lt;br /&gt;The team at 12Bet Affiliates&lt;br/&gt;&lt;br/&gt;For any reason, you do not receive the email, pl [rest of string was truncated]&quot;;.
         /// </summary>
         public static string RegisSuccess {
             get {

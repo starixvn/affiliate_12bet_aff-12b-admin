@@ -79,6 +79,11 @@
                 };
 
                 resultInfo = _paymentService.CreatePaymentRequest(paymentCreationParam, emailParam);
+
+                if (resultInfo.IsOk)
+                {
+                    resultInfo.Message = $"{Lang.RequestPayoutSucc}<br>{Lang.AConfirmationEmail}<br>{Lang.ForAnyReason.Replace("{0}", Url.Content("~/ContactUs"))}";
+                }
             }
 
             return Json(resultInfo);
@@ -112,6 +117,11 @@
                 };
 
                 resultInfo = _paymentService.CancelPaymentRequest(cancelParam, emailParam);
+
+                if (resultInfo.IsOk)
+                {
+                    resultInfo.Message = $"{Lang.CancelPayoutSucc}<br>{Lang.AConfirmationEmail}<br>{Lang.ForAnyReason.Replace("{0}", Url.Content("~/ContactUs"))}";
+                }
             }
 
             return Json(resultInfo);

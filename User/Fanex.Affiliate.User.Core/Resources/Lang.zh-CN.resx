@@ -761,8 +761,8 @@
   <data name="For" xml:space="preserve">
     <value>为了</value>
   </data>
-  <data name="Foranyreasonyou" xml:space="preserve">
-    <value>如果您没有收到电邮，无论原因如何，&lt;a href="{0}"&gt;请您及时联系我们&lt;/a&gt;，我们很乐意为您提供协助。</value>
+  <data name="ForAnyReason" xml:space="preserve">
+    <value>如您未收到任何邮件，请检查您的垃圾邮件或&lt;a href='{0}'&gt;联系在线客服&lt;/a&gt;寻找协助。</value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>忘记密码？</value>
@@ -1318,13 +1318,12 @@
     <value>12BET 合作伙伴 - 您的申请</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>
-		感谢您提交申请。&lt;br /&gt;&lt;br /&gt;
-		我们12Bet合作伙伴团队将会就您的网站和申请详情进行审核，以确认相关内容是否适合推广我们的产品。&lt;br /&gt;&lt;br /&gt;
-		我们将在5天内回复您的申请。一旦您的申请被核准，您将立即获得全权参与进入我们的合作伙伴项目。&lt;br /&gt;&lt;br /&gt;
-		致以敬意，&lt;br /&gt;&lt;br /&gt;
-		12Bet合作伙伴团队
-	</value>
+    <value>感谢您提交申请。&lt;br /&gt;&lt;br /&gt;
+我们12Bet合作伙伴团队将会就您的网站和申请详情进行审核，以确认相关内容是否适合推广我们的产品。&lt;br /&gt;&lt;br /&gt;
+我们将在5天内回复您的申请。一旦您的申请被核准，您将立即获得全权参与进入我们的合作伙伴项目。&lt;br /&gt;&lt;br /&gt;
+致以敬意，&lt;br /&gt;&lt;br /&gt;
+12Bet合作伙伴团队。&lt;br /&gt;&lt;br /&gt;
+如您未收到任何邮件，请检查您的垃圾邮件或&lt;a href='{0}'&gt;联系在线客服&lt;/a&gt;寻找协助。</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>拒绝</value>
@@ -2182,5 +2181,8 @@
   <data name="_12BetExchange" xml:space="preserve">
     <value>12BET EXCHANGE &lt;br /&gt;
 (仅适用于INR和IN.USD会员）</value>
+  </data>
+  <data name="AConfirmationEmail" xml:space="preserve">
+    <value>确认邮件已发送到您的电子邮箱。</value>
   </data>
 </root>

@@ -752,9 +752,6 @@
   <data name="For" xml:space="preserve">
     <value>Para</value>
   </data>
-  <data name="Foranyreasonyou" xml:space="preserve">
-    <value>Si por algún motivo no recibe el correo, &lt;a href='{0}'&gt;póngase en contacto con nosotros&lt;/a&gt;, estaremos encantados de atenderle.</value>
-  </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>¿Ha olvidado su ID o contraseña?</value>
   </data>
@@ -1299,9 +1296,6 @@
   </data>
   <data name="RegisSubject" xml:space="preserve">
     <value>Afiliado de 12Bet: su solicitud</value>
-  </data>
-  <data name="RegisSuccess" xml:space="preserve">
-    <value>Gracias por enviar la solicitud.&lt;br/&gt;&lt;br/&gt;El equipo de afiliados de 12BET revisará la información de su solicitud y sus sitios Web con el fin de garantizar que el contenido es adecuado para promocionar nuestros productos.&lt;br/&gt;&lt;br/&gt;Debería recibir la respuesta a su solicitud en un plazo de 5 días. Si se aprueba, podrá disfrutar de acceso completo a nuestro programa de afiliados.&lt;br /&gt;&lt;br /&gt;Atentamente,&lt;br /&gt;&lt;br /&gt;El equipo de afiliados de 12BET</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Rechazada</value>
