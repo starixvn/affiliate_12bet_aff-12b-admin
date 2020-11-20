@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
         [Theory]
         [InlineData(false, null)]
-        [InlineData(true, "Your payment request has been cancelled!")]
+        [InlineData(true, null)]
         public void CancelPaymentRequest_WhenCall_ReturnCorrectResult(bool isSuccessful, string message)
         {
             // Arrange
@@ -217,7 +217,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             // Assert
             Assert.True(result.IsOk);
-            Assert.Equal(Lang.RequestPayoutSucc, result.Message);
+            Assert.Null(result.Message);
             Assert.Equal(JsonConvert.SerializeObject(expectedEmailParam), JsonConvert.SerializeObject(passedEmailParam));
         }
 

@@ -18,7 +18,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         private const int SecretKeyExistedCode = 101;
 
-        private readonly ILanguageService _languageService;
         private readonly ITwoFactorAuthService _twoFactorAuthService;
         private readonly IAccountRepository _accountRepository;
         private readonly IEmailService _mailService;
@@ -30,7 +29,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             ITwoFactorAuthService twoFactorAuthService,
             IAccountRepository accountRepository,
             IEmailService mailService,
-            ILanguageService languageService,
             ICryptographyService cryptographyService,
             IWrapperUtility wrapperUtility,
             IVerificationRepository verificationRepository)
@@ -38,7 +36,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _twoFactorAuthService = twoFactorAuthService;
             _accountRepository = accountRepository;
             _mailService = mailService;
-            _languageService = languageService;
             _cryptographyService = cryptographyService;
             _wrapperUtility = wrapperUtility;
             _verificationRepository = verificationRepository;

@@ -23,7 +23,9 @@ namespace Fanex.Affiliate.User.Core.Filters
 
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S1186:Methods should not be empty", Justification = "<Pending>")]
-        public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext) { }
+        public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)
+        {
+            // Method intentionally left empty.
+        }
     }
 }
