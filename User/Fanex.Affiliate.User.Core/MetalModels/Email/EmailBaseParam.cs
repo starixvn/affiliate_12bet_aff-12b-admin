@@ -15,5 +15,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.Email
         public string MailBcc { get; set; } = string.Empty;
 
         public UserInfo User { get; set; }
+
+        public string CurrentLanguage { get; set; }
     }
 }

@@ -100,7 +100,8 @@
                     MailContact = _appSetting.MailContact,
                     MailBcc = _appSetting.MailBcc,
                     RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
-                    MailTo = _appSetting.MailContact
+                    MailTo = _appSetting.MailContact,
+                    CurrentLanguage = SessionService.CurrentLanguage
                 };
 
                 result = _accountService.CreateAffiliate(signUpParam, emailParam);

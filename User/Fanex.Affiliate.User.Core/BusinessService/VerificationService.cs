@@ -70,13 +70,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     MailTo = userInfo.Email,
                     RootDomain = emailParam.RootDomain,
                     Code = otp,
-                    Ip = emailParam.Ip
+                    Ip = emailParam.Ip,
+                    CurrentLanguage = emailParam.CurrentLanguage
                 };
 
-                var userLang = _languageService.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
-                _languageService.SetCulture(userLang);
                 _mailService.SendVerificationEmail(verificationAccountEmailParam);
-                _languageService.SetCulture(param.CurrentLanguage);
 
                 return new SendCodeResult
                 {

@@ -157,7 +157,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 {
                     MailContact = AppSetting.MailContact,
                     RootDomain = SiteDomainHelper.GetRootUrl(this, AppSetting),
-                    Ip = RequestHelper.GetClientIPAddress(Request)
+                    Ip = RequestHelper.GetClientIPAddress(Request),
+                    CurrentLanguage = SessionService.CurrentLanguage
                 }
             };
         }

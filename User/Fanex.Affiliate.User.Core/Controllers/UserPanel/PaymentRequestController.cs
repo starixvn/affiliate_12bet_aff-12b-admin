@@ -75,7 +75,8 @@
                     MailCc = _appSetting.MailCc,
                     MailContact = _appSetting.MailContact,
                     MailBcc = _appSetting.MailBcc,
-                    RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting)
+                    RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
+                    CurrentLanguage = SessionService.CurrentLanguage
                 };
 
                 resultInfo = _paymentService.CreatePaymentRequest(paymentCreationParam, emailParam);
@@ -113,7 +114,8 @@
                     RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
                     Amount = cancelParam.Amount,
                     RequestDate = cancelParam.RequestDate,
-                    TransId = cancelParam.TransId
+                    TransId = cancelParam.TransId,
+                    CurrentLanguage = SessionService.CurrentLanguage
                 };
 
                 resultInfo = _paymentService.CancelPaymentRequest(cancelParam, emailParam);

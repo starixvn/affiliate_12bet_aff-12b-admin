@@ -87,13 +87,11 @@
                     MailContact = _appSetting.MailContact,
                     MailTo = param.Email,
                     RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
-                    Code = code
+                    Code = code,
+                    CurrentLanguage = SessionService.CurrentLanguage
                 };
 
-                var userLang = LanguageService.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
-                LanguageService.SetCulture(userLang);
                 _mailService.SendRecoverPasswordEmail(recoverEmailParam);
-                LanguageService.SetCulture(SessionService.CurrentLanguage);
             }
 
             return Json(result);
@@ -128,13 +126,11 @@
                     RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
                     NewPassword = newPassword,
                     MailTo = userInfo.Email,
-                    MailContact = _appSetting.MailContact
+                    MailContact = _appSetting.MailContact,
+                    CurrentLanguage = SessionService.CurrentLanguage
                 };
 
-                var userLang = LanguageService.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
-                LanguageService.SetCulture(userLang);
                 _mailService.SendNewPasswordEmail(recoverEmailParam);
-                LanguageService.SetCulture(SessionService.CurrentLanguage);
             }
 
             return RedirectToFixedAction("RecoverPasswordResult", new { isSuccessful, errCode = param.ErrCode });
