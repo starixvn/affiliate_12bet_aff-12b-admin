@@ -48,19 +48,22 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.Equal("~/Views/UserPanel/StatementHistory/Index.cshtml", result.ViewName);
         }
 
-        [Fact]
-        public void Index_WhenCallWithParam_ReturnPartialView()
+        [Theory]
+        [InlineData(null)]
+        [InlineData(20)]
+        public void Index_WhenCallWithParam_ReturnPartialView(int? pageSize)
         {
             var controller = CreateController();
             var param = new StatementHistoryParam
             {
-                PageIndex = 1
+                PageIndex = 1,
+                PageSize = pageSize
             };
             Repo.When(a => a.GetStatementHistory(Arg.Compat.Any<StatementHistoryParam>()))
                 .Do( a =>
                 {
                     param.NRows = 10;
-                    param.PageSize = 10;
+                    param.PageSize = 20;
                 });
             var result = controller.Index(param) as PartialViewResult;
 

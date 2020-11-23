@@ -24,14 +24,29 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void Index_WhenCallWithGet_ReturnView()
         {
             // Arrange
-            var accountService = new Mock<IAccountService>();
-            var controller = CreateController(accountService.Object);
+            var controller = CreateController();
 
             // Action
             var result = controller.Index() as ViewResult;
 
             // Assert
             Assert.Empty(result.ViewName);
+        }
+
+        [Fact]
+        public void SecurityQuestion_WhenCall_ReturnView()
+        {
+            // Arrange
+            var service = new Mock<ISecurityQuestionService>();
+            service.Setup(s => s.GetSecurityQuestions(It.IsAny<string>(), false)).Returns(new List<SecurityQuestion> { new SecurityQuestion() });
+            var controller = CreateController(securityQuestionService: service.Object);
+
+            // Action
+            var result = controller.SecurityQuestion() as PartialViewResult;
+
+            // Assert
+            Assert.NotEmpty(result.Model as List<SecurityQuestion>);
+            Assert.Equal("~/Views/Signup/_SecurityQuestion.cshtml", result.ViewName);
         }
 
         [Fact]
@@ -194,7 +209,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         private static SignupController CreateController(
-            IAccountService accountService,
+            IAccountService accountService = null,
             ISessionService sessionService = null,
             IAppSetting appSetting = null,
             ICaptchaService captchaService = null,

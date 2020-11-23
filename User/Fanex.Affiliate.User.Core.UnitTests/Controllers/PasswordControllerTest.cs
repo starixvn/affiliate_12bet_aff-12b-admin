@@ -68,8 +68,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(Lang.ErrEmailRequire, data.Message);
         }
 
-        [Fact]
-        public void Forgot_WhenAccRepoReturnErrorCode_ReturnNotOkResult()
+        [Theory]
+        [InlineData(1001)]
+        [InlineData(1234)]
+        public void Forgot_WhenAccRepoReturnErrorCode_ReturnNotOkResult(int errCode)
         {
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);
@@ -77,7 +79,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             AccountRepo.GetUserInfoByEmail(default(UserInfoByEmailParam))
                 .ReturnsForAnyArgs(c =>
                 {
-                    (c[0] as UserInfoByEmailParam).ErrCode = 1001;
+                    (c[0] as UserInfoByEmailParam).ErrCode = errCode;
                     return new UserInfo();
                 });
             SetupHttpContext();

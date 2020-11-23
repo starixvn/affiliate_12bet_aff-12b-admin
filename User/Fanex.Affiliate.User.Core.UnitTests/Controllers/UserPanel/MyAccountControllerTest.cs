@@ -156,12 +156,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         {
             // Arrange
             var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation { PlayerUsername = PlayerUserName });
-            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(new DepositAccountInfo { Success = 1 });
+            accountRepository.Setup(ac => ac.GetDepositPlayerAccount($"Encoded{PlayerUserName}")).Returns(new DepositAccountInfo { Success = 1 });
             var controller = CreateAccountController(null, accountRepository.Object);
 
             // Action
-            var actionResult = controller.Index(new AccountInformation { ContactAppList = CreateContactAppList() }) as JsonResult;
+            var actionResult = controller.Index(new AccountInformation { ContactAppList = CreateContactAppList(), PlayerUsername = PlayerUserName }) as JsonResult;
             var result = actionResult.Data as ResultInfo;
 
             // Assert

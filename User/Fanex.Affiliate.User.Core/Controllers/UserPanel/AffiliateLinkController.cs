@@ -56,15 +56,5 @@
 
             return View("~/Views/UserPanel/AccountOverview/AffiliateLink/Index.cshtml", viewModel);
         }
-
-        private IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
-        {
-            if (textParam.SelectedDomain == null)
-            {
-                return new List<MarketingItem>();
-            }
-
-            return MarketingService.GetTextList(textParam);
-        }
     }
 }

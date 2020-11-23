@@ -71,10 +71,39 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             }
         }
 
+        [Fact]
+        public void Index_WhenCallWithDomainEmpty_ReturnCorrectView()
+        {
+            using (var image = Image)
+            {
+                var marketingService = Substitute.For<IMarketingService>();
+                marketingService.GetTextList(Arg.Compat.Any<MarketingTextParam>()).Returns(new List<MarketingItem>
+                {
+                    new MarketingItem { BannerId = 1, TextId = 1 }
+                });
+                marketingService.GetCategoryList(Arg.Compat.Any<bool>(), Arg.Compat.Any<bool>()).Returns(Constant.CategoryList);
+                marketingService.GetLanguageList().Returns(Constant.LanguageList);
+                marketingService.GetCurrencyList(Arg.Compat.Any<bool>()).Returns(Constant.CurrencyType);
+                marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
+
+                QrCodeService.GetImage(Arg.Compat.Any<string>()).Returns(image);
+                QrCodeService.GenerateBase64QrCode(Arg.Compat.Any<string>(), Arg.Compat.Any<Image>(), Arg.Compat.Any<bool>())
+                    .Returns(BASE64_IMAGE);
+
+                var controller = new MarketingController(SessionService, AppSetting, LanguageService, marketingService, QrCodeService);
+                controller = NSubtituteMockingHelper.FakeController(controller) as MarketingController;
+                controller.HttpContext.Server.MapPath(Arg.Compat.Any<string>()).Returns(String.Empty);
+                var result = controller.Index() as ViewResult;
+                var model = result.Model as MarketingViewModel;
+
+                Assert.Contains("AccountOverview/Partial/_GeneratedQrCode.cshtml", result.ViewName);
+                Assert.Empty(model.QrCodeList);
+            }
+        }
+
         [Theory]
         [InlineData("test")]
-        [InlineData("test1")]
-        [InlineData("test2")]
+        [InlineData("CasinoBonus")]
         public void GetSubCategory_WhenCall_ReturnCorrectNumberOfSubCategory(string category)
         {
             var subCate = Constant.CategoryList.Where(c => c.Category.MatchWith(category) && !string.IsNullOrEmpty(c.SubCategory));
@@ -97,7 +126,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var model = result.Data as IEnumerable<SizeType>;
 
             Assert.Collection(model, t => Assert.Contains(SizeTypes, s => s.SizeId == t.SizeId), t => Assert.Contains(SizeTypes, s => s.SizeId == t.SizeId));
-            Assert.Equal(JsonRequestBehavior.AllowGet, result.JsonRequestBehavior);          
+            Assert.Equal(JsonRequestBehavior.AllowGet, result.JsonRequestBehavior);
         }
 
         [Fact]
@@ -160,8 +189,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.NotEmpty(model);
         }
 
-        [Fact]
-        public void GenerateLink_WhenCall_ReturnCorrectView()
+        [Theory]
+        [InlineData(default(string))]
+        [InlineData("en-US")]
+        public void GenerateLink_WhenCall_ReturnCorrectView(string selectedLanguage)
         {
             using (var image = Image)
             {
@@ -172,7 +203,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                 var controller = CreateMarketingController();
                 controller = NSubtituteMockingHelper.FakeController(controller) as MarketingController;
                 controller.HttpContext.Server.MapPath(Arg.Compat.Any<string>()).Returns(String.Empty);
-                var result = controller.GenerateLink(default(string), default(int), default(string)) as ViewResult;
+                var result = controller.GenerateLink(selectedLanguage, default(int), default(string)) as ViewResult;
 
                 Assert.Equal("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", result.ViewName);
             }

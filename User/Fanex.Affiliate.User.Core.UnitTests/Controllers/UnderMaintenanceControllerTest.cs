@@ -62,22 +62,26 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(toTime.ToString(), result.ViewBag.UmTimeTo);
         }
 
-        [Fact]
-        public void Excute_WhenRequestChangeLang_SetForNewLang()
+        [Theory]
+        [InlineData("en-US")]
+        [InlineData("vi-VN")]
+        public void Excute_WhenRequestChangeLang_SetForNewLang(string languageCode)
         {
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);
             var routeData = CreateRouteData();
             controller.ControllerContext.RouteData = routeData;
             var requestContext = new RequestContext(controller.HttpContext, routeData);
-            LanguageService.GetFavoriteLanguage().Returns("vn-vi");
+
+            SessionService.CurrentLanguage.Returns("vi-VN");
+            LanguageService.GetFavoriteLanguage().Returns(languageCode);
 
             try
             {
                 (controller as IController).Execute(requestContext);
-            }
-            catch { }
-            LanguageService.Received().SetCulture("vn-vi");
+            } catch {}
+
+            LanguageService.Received().SetCulture(languageCode);
         }
 
         private static RouteData CreateRouteData()

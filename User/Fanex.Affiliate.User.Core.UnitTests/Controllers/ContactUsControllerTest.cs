@@ -216,6 +216,26 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(ExpectedCreator, result);
         }
 
+        [Fact]
+        public void Index_IsInvalid_NotCallService()
+        {
+            // Arrange
+            var param = CreateParam();
+            var captchaService = new Mock<ICaptchaService>();
+            captchaService.Setup(c => c.IsValid(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(true);
+            var controller = CreateController(null, captchaService: captchaService.Object);
+            controller.ModelState.AddModelError("Error1", "Model is invalid!");
+
+            // Action
+            var actionResult = controller.Index(param) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
+
+            // Assert
+            Assert.False(result.IsOk);
+            Assert.Equal("Model is invalid!", result.Message);
+        }
+
         private static ContactUsController CreateController(
             IContactService contactService = null,
             ISessionService sessionService = null,

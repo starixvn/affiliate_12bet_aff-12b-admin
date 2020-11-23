@@ -70,7 +70,7 @@
             var selectedLanguage = landingPageParam.LanguageCode;
             if (!string.IsNullOrEmpty(selectedLanguage))
             {
-                landingPageParam.LanguageCode = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.Equals(selectedLanguage))?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
+                landingPageParam.LanguageCode = _marketingService.GetLanguageList().FirstOrDefault(l => l.MarketId.Equals(selectedLanguage))?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
             }
 
             var viewModel = new LandingPageStatisticsViewModel
@@ -88,7 +88,7 @@
 
             foreach (var item in dataList)
             {
-                var language = LanguageService.GetSystemLanguages().FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
+                var language = _marketingService.GetLanguageList().FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
 
                 item.LanguageName = language == null ? item.LanguageCode : language.MarketNativeName;
             }

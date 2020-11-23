@@ -12,7 +12,6 @@ using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics;
 using Moq;
 using Xunit;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.DTO;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
@@ -83,6 +82,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         [InlineData(null, null)]
         [InlineData("", "")]
         [InlineData("en-US", "en")]
+        [InlineData("vi-VN", "vn")]
         public void IndexPost_WhenCall_ReturnViewWithCorrectModelData(string languageCode, string expectedShortedCode)
         {
             // Arrange
@@ -90,11 +90,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             {
                 LanguageCode = languageCode
             };
+            var marketingService = new Mock<IMarketingService>();
+            var languageList = CreateFakeInvalidLanguageList();
+            marketingService.Setup(m => m.GetLanguageList()).Returns(languageList);
             var statisticsRepository = new Mock<IStatisticsRepository>();
             var landingPageStisticsList = CreateFakeLandingPageStatisticsList();
             statisticsRepository.Setup(m => m.GetLandingPageStatistics(param)).Returns(landingPageStisticsList);
 
-            var controller = CreateController(staticticsRepository: statisticsRepository.Object);
+            var controller = CreateController(staticticsRepository: statisticsRepository.Object, marketingService: marketingService.Object);
 
             // Action
             var result = controller.Index(param) as PartialViewResult;
@@ -127,11 +130,24 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             };
         }
 
+        private IEnumerable<Language> CreateFakeInvalidLanguageList()
+        {
+            return new List<Language>
+            {
+                new Language
+                {
+                    MarketId = "vi-VN",
+                    MarketName = "Vietnamese",
+                    ShortedCode = "vn"
+                }
+            };
+        }
+
         private IEnumerable<LandingPageStatistics> CreateFakeLandingPageStatisticsList()
         {
             return new List<LandingPageStatistics>
             {
-                new LandingPageStatistics { LanguageCode = "abc" },
+                new LandingPageStatistics { LanguageCode = "vn" },
                 new LandingPageStatistics { LanguageCode = "en" }
             };
         }
