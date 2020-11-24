@@ -2,7 +2,6 @@
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using NSubstitute;
@@ -11,8 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using Xunit;
 
@@ -32,11 +29,41 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
+        public void GetFavoriteLanguage_WhenLangFromRequestIsInvalid_ReturnLang()
+        {
+            var validLang = SystemLanguage.SupportedLanguage.FirstOrDefault().Key;
+            var code = SystemLanguage.SupportedLanguage[validLang];
+            SetUpContext(code);
+            var service = CreateService();
+
+            var result = service.GetFavoriteLanguage();
+
+            Assert.Equal(validLang, result);
+        }
+
+        [Fact]
         public void GetFavoriteLanguage_WhenLangFromRequestIsValid_ReturnLang()
         {
             var validLang = SystemLanguage.SupportedLanguage.FirstOrDefault().Key;
             var code = SystemLanguage.SupportedLanguage[validLang];
             SetUpContext(code);
+
+            CacheServive.Get<IEnumerable<Language>>(CacheKey.InternalLanguageList).Returns(CreateLanguages());
+            this.SessionService.IsInternal.Returns(true);
+
+            var service = CreateService();
+
+            var result = service.GetFavoriteLanguage();
+
+            Assert.Equal(validLang, result);
+        }
+
+        [Fact]
+        public void GetFavoriteLanguage_WhenCookieLangIsInvalid_ReturnCookieLang()
+        {
+            var validLang = SystemLanguage.SupportedLanguage.FirstOrDefault().Key;
+            SetUpContext();
+            HttpContext.Current.Request.Cookies.Add(new HttpCookie("afffavoritelang", validLang));
             var service = CreateService();
 
             var result = service.GetFavoriteLanguage();
@@ -50,6 +77,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var validLang = SystemLanguage.SupportedLanguage.FirstOrDefault().Key;
             SetUpContext();
             HttpContext.Current.Request.Cookies.Add(new HttpCookie("afffavoritelang", validLang));
+            CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).Returns(CreateLanguages());
             var service = CreateService();
 
             var result = service.GetFavoriteLanguage();
@@ -129,7 +157,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             => new List<Language>
             {
                 new Language { DisplayName="VietNam", MarketId="vi-VN", MarketName="VietNam", MarketNativeName="Viet Nam", ShortedCode="vn" },
-                new Language { DisplayName="England", MarketId="en-UK", MarketName="England", MarketNativeName="England", ShortedCode="en" }
+                new Language { DisplayName="England", MarketId="en-US", MarketName="England", MarketNativeName="England", ShortedCode="en" }
             };
 
         private LanguageService CreateService()

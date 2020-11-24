@@ -77,18 +77,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.Equal(today, passedParam.ToDate.Date);
         }
 
-        [Theory]
-        [InlineData(null, null)]
-        [InlineData("", "")]
-        [InlineData("en-US", "en")]
-        [InlineData("vi-VN", "vn")]
-        public void IndexPost_WhenCall_ReturnViewWithCorrectModelData(string languageCode, string expectedShortedCode)
+        [Fact]
+        public void IndexPost_WhenCall_ReturnViewWithCorrectModelData()
         {
             // Arrange
-            var param = new LandingPageStatisticsParam
-            {
-                LanguageCode = languageCode
-            };
+            var param = new LandingPageStatisticsParam();
             var marketingService = new Mock<IMarketingService>();
             var languageList = CreateFakeInvalidLanguageList();
             marketingService.Setup(m => m.GetLanguageList()).Returns(languageList);
@@ -109,7 +102,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.False(model.IsDetail);
             Assert.Equal(Constant.DefaultAffId, param.AffId);
             Assert.Equal(IsInternal, param.IsInternal);
-            Assert.Equal(expectedShortedCode, param.LanguageCode);
         }
 
         private IEnumerable<Language> CreateFakeLanguageList()

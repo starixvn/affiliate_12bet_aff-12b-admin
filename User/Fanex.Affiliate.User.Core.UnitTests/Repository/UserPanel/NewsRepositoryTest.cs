@@ -91,8 +91,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             const string uSpKey = "Aff_HotNewsSel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
             var key = uSpKey + dbMode;
-            var param = new MessageHistoryParam();
-            param.IsInternal = isInternal;
+            var param = new MessageHistoryParam
+            {
+                IsInternal = isInternal
+            };
             var repo = CreateRepo();
             var db = Builder.Build(uSpKey, dbMode);
             db.Query<MessageHistory>(param).Returns(new List<MessageHistory> { new MessageHistory { } });

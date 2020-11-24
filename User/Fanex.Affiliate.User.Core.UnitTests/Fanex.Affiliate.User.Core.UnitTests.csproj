@@ -181,6 +181,7 @@
     <Compile Include="BusinessService\NewsServiceTest.cs" />
     <Compile Include="BusinessService\QrCodeGeneratorServiceTest.cs" />
     <Compile Include="BusinessService\SecurityQuestionServiceTest.cs" />
+    <Compile Include="BusinessService\StatisticsServiceTest.cs" />
     <Compile Include="BusinessService\TwoFactorAuthServiceTest.cs" />
     <Compile Include="BusinessService\VerificationServiceTest.cs" />
     <Compile Include="Controllers\UserPanel\MainControllerTest.cs" />

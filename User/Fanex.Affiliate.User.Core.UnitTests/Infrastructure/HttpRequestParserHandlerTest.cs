@@ -14,8 +14,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
         private readonly IAppSetting AppSetting;
         private readonly IDateTimeProvider DateTimeProvider;
 
-        private static long RequestTickCount = (new DateTime(2020, 10, 10)).Ticks;
-        private static long ExpriredMin = 10;
+        private static readonly long RequestTickCount = (new DateTime(2020, 10, 10)).Ticks;
+        private static readonly long ExpriredMin = 10;
 
         private const string PASSWORD = "password";
         private const string SALT = "ABCDEFGHABCDEF";
@@ -111,9 +111,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
 
         private HttpRequestParserHandler CreateParser()
         {
-            var parser = new HttpRequestParserHandler(Request);
-            parser.AppSetting = AppSetting;
-            parser.DateTimeProvider = DateTimeProvider;
+            var parser = new HttpRequestParserHandler(Request)
+            {
+                AppSetting = AppSetting,
+                DateTimeProvider = DateTimeProvider
+            };
             AppSetting.SymmetricPassword.Returns(PASSWORD);
             AppSetting.SymmetricSalt.Returns(SALT);
             Request.Params.Returns(new System.Collections.Specialized.NameValueCollection());
