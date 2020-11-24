@@ -10,4 +10,5 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AdminUser_Market_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_HotNewsDetail" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_HotNewsSel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_ClickStatisticsSelByPage" Suffix="_xtest"></item>
 </Root>

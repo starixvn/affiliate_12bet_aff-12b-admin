@@ -2,9 +2,9 @@
 
 // Generated helper templates
 // Generated items
-// D:\Work\12BetAffiliate\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.production.xml
-// D:\Work\12BetAffiliate\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.uat.xml
-// D:\Work\12BetAffiliate\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.sit.xml
-// D:\Work\12BetAffiliate\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.local.xml
-// D:\Work\12BetAffiliate\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.master.xml
-// D:\Work\12BetAffiliate\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.xml
+// D:\Projects\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.production.xml
+// D:\Projects\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.uat.xml
+// D:\Projects\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.sit.xml
+// D:\Projects\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.local.xml
+// D:\Projects\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.master.xml
+// D:\Projects\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.xml

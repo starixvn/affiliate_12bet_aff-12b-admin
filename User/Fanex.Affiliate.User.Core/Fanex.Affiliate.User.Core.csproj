@@ -214,6 +214,7 @@
     <Compile Include="BusinessService\ICommissionReportService.cs" />
     <Compile Include="BusinessService\IQrCodeGeneratorService.cs" />
     <Compile Include="BusinessService\ISecurityQuestionService.cs" />
+    <Compile Include="BusinessService\IStatisticsService.cs" />
     <Compile Include="BusinessService\ITwoFactorAuthService.cs" />
     <Compile Include="BusinessService\IVerificationService.cs" />
     <Compile Include="BusinessService\MemberTransactionService.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="BusinessService\PaymentService.cs" />
     <Compile Include="BusinessService\QrCodeGeneratorService.cs" />
     <Compile Include="BusinessService\SecurityQuestionService.cs" />
+    <Compile Include="BusinessService\StatisticsService.cs" />
     <Compile Include="BusinessService\TwoFactorAuthService.cs" />
     <Compile Include="BusinessService\VerificationService.cs" />
     <Compile Include="Constants\ActionName.cs" />

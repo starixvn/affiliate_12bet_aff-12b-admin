@@ -74,5 +74,6 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_DomainControl_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Message_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_UserOnlineList" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Check_AffBelongToUser" Suffix="_xtest"></item> 
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Check_AffBelongToUser" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_ClickStatisticsSelByPage" Suffix="_xtest"></item>
 </Root>

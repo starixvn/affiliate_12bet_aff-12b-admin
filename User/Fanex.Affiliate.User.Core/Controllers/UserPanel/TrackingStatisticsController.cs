@@ -5,7 +5,6 @@
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
     using ViewModels.UserPanel.Statistics;
@@ -13,13 +12,13 @@
     [CustomAuthorize]
     public class TrackingStatisticsController : BaseController
     {
-        private readonly IStatisticsRepository _statisticsRepository;
+        private readonly IStatisticsService _statisticsService;
         public TrackingStatisticsController(ISessionService sessionService,
             ILanguageService languageService,
-            IStatisticsRepository statisticsRepository
+            IStatisticsService statisticsService
             ) : base(sessionService, languageService)
         {
-            _statisticsRepository = statisticsRepository;
+            _statisticsService = statisticsService;
         }
 
         [HttpGet]
@@ -31,8 +30,8 @@
 
             var viewModel = new TrackingStatisticsViewModel
             {
-                TrackingCodeList = _statisticsRepository.GetTrackingCode(affId, isInternal).Where(c => !c.MatchWith("[None]")),
-                TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, null, isInternal),
+                TrackingCodeList = _statisticsService.GetTrackingCode(affId, isInternal).Where(c => !c.MatchWith("[None]")),
+                TrackingStatisticsList = _statisticsService.GetTrackingStatistics(affId, null, isInternal),
                 IsDetail = false,
                 CurrentLanguage = SessionService.CurrentLanguage
             };
@@ -49,7 +48,7 @@
 
             var viewModel = new TrackingStatisticsViewModel
             {
-                TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, trackingCode, isInternal),
+                TrackingStatisticsList = _statisticsService.GetTrackingStatistics(affId, trackingCode, isInternal),
                 IsDetail = false,
                 CurrentLanguage = SessionService.CurrentLanguage
             };
@@ -67,12 +66,11 @@
 
             var viewModel = new TrackingStatisticsViewModel
             {
-                TrackingStatisticsList = _statisticsRepository.GetTrackingStatisticsDetail(trackingStatisticsDetailParam),
+                TrackingStatisticsList = _statisticsService.GetTrackingStatisticsDetail(trackingStatisticsDetailParam),
                 IsDetail = true
             };
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_TrackingStatisticsContent.cshtml", viewModel);
         }
-
     }
 }

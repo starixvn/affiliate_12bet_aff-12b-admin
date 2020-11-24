@@ -19,6 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
+                objectDb.AddInParameter("LanguageCodes", DbType.String, param.LanguageCode);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -42,6 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             {
                 AssignCommonParam(objectDb, param);
 
+                objectDb.AddInParameter("LanguageCode", DbType.String, param.LanguageCode);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
 
@@ -68,7 +70,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
             objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
             objectDb.AddInParameter("SportCode", DbType.String, param.SelectedPage);
-            objectDb.AddInParameter("LanguageCode", DbType.String, param.LanguageCode);
             objectDb.AddInParameter("DeviceType", DbType.Int16, param.DeviceType);
         }
 

@@ -5,7 +5,6 @@
     using Enum;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
     using ViewModels.UserPanel.Statistics;
@@ -13,12 +12,12 @@
     [CustomAuthorize]
     public class ReferrersStatisticsController : BaseController
     {
-        private readonly IStatisticsRepository _statisticsRepository;
+        private readonly IStatisticsService _statisticsService;
         public ReferrersStatisticsController(ISessionService sessionService, ILanguageService languageService,
-            IStatisticsRepository statisticsRepository
+            IStatisticsService statisticsService
             ) : base(sessionService, languageService)
         {
-            _statisticsRepository = statisticsRepository;
+            _statisticsService = statisticsService;
         }
 
 
@@ -38,7 +37,7 @@
 
             var viewModel = new ReferrerStatisticsViewModel
             {
-                DataList = _statisticsRepository.GetReferrerStatistics(referrerStatisticsParam),
+                DataList = _statisticsService.GetReferrerStatistics(referrerStatisticsParam),
                 FromDate = referrerStatisticsParam.FromDate,
                 ToDate = referrerStatisticsParam.ToDate
             };
@@ -55,12 +54,10 @@
 
             var viewModel = new ReferrerStatisticsViewModel
             {
-                DataList = _statisticsRepository.GetReferrerStatistics(referrerStatisticsParam)
+                DataList = _statisticsService.GetReferrerStatistics(referrerStatisticsParam)
             };
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_ReferrersStatisticsContent.cshtml", viewModel);
         }
-
-
     }
 }

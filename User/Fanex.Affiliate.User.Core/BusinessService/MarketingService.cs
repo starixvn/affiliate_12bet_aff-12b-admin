@@ -212,7 +212,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private static bool IsSelectedAllLanguages(string selectedLang)
             => string.IsNullOrWhiteSpace(selectedLang);
 
-        public static string GetLanguageName(IEnumerable<Language> languageList, string languageCode)
+        private static string GetLanguageName(IEnumerable<Language> languageList, string languageCode)
         {
             var languageName = languageList.FirstOrDefault(l => l.MarketId.MatchWith(languageCode))?.MarketName;
 
