@@ -68,8 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         [ResetDefaultUnauthorizedProperty]
         public ActionResult GetAffiliateList(GetAffiliateViewModel viewModel)
         {
-            int affId;
-            if (int.TryParse(viewModel.AffId, out affId) || string.IsNullOrEmpty(viewModel.AffId))
+            if (int.TryParse(viewModel.AffId, out int affId) || string.IsNullOrEmpty(viewModel.AffId))
             {
                 viewModel.AffIdNumber = affId;
                 viewModel.UserId = SessionService.UserId;

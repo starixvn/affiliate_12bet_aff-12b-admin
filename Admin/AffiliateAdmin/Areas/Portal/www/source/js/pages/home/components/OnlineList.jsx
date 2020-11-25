@@ -59,7 +59,6 @@ export class OnlineList extends PureComponent {
         const ipAddress = dataItem.Ip;
         const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${ipAddress}&j=1`;
         const userName = htmlDecode(dataItem.UserName);
-        const role = roleList[dataItem.Role];
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -74,7 +73,7 @@ export class OnlineList extends PureComponent {
                 <Cell title={ipAddress} className="text-center">
                     <a target="_blank" href={url}>{ipAddress}</a>
                 </Cell>
-                <Cell title={role} className="text-center">{role}</Cell>
+                <Cell title={dataItem.Role} className="text-center">{dataItem.Role}</Cell>
             </Row>
         )
     }

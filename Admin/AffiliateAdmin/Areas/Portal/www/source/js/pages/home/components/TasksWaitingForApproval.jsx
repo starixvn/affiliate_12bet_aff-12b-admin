@@ -6,6 +6,7 @@ import { Col, Row } from 'reactstrap';
 import { resolveClientUrl } from '../../../modules/utils';
 import { getGeneralInfo } from '../actions';
 import { format } from '../../../modules/numberFormat';
+import { claimResource } from '../../../modules/claim';
 
 export class TasksWaitingForApproval extends PureComponent {
     constructor(props) {
@@ -17,7 +18,7 @@ export class TasksWaitingForApproval extends PureComponent {
     }
 
     render() {
-        const { generalInfo } = this.props;
+        const { generalInfo, isShowAffLink, isShowPaymentLink } = this.props;
 
         return (
             <div className="waiting-approval">
@@ -29,13 +30,25 @@ export class TasksWaitingForApproval extends PureComponent {
                             <span><strong>Affiliate</strong></span>
                         </Col>
                         <Col sm={2} className="text-border">
-                            <a href={resolveClientUrl("Portal/Affiliate?Status=Pending&IsFromHome=true")}><strong>{format(generalInfo.PendingAffiliateNumber)}</strong></a>
+                            {
+                                isShowAffLink ? (
+                                    <a href={resolveClientUrl("Portal/Affiliate?Status=Pending&IsFromHome=true")}><strong>{format(generalInfo.PendingAffiliateNumber)}</strong></a>
+                                ) : (
+                                        <strong>{format(generalInfo.PendingAffiliateNumber)}</strong>
+                                    )
+                            }
                         </Col>
                         <Col sm={5} className="text-border">
                             <span><strong>Payment Request</strong></span>
                         </Col>
                         <Col sm={2} className="text-border">
-                            <a href={resolveClientUrl("Portal/PaymentRequest?SearchBy=2&Status=Pending&FromDate=12/01/2009&IsFromHome=true")}><strong>{format(generalInfo.PaymentRequestNumber)}</strong></a>
+                            {
+                                isShowPaymentLink ? (
+                                    <a href={resolveClientUrl("Portal/PaymentRequest?SearchBy=2&Status=Pending&FromDate=12/01/2009&IsFromHome=true")}><strong>{format(generalInfo.PaymentRequestNumber)}</strong></a>
+                                ) : (
+                                        <strong>{format(generalInfo.PaymentRequestNumber)}</strong>
+                                    )
+                            }
                         </Col>
                     </Col>
                 </Row>
@@ -44,8 +57,11 @@ export class TasksWaitingForApproval extends PureComponent {
     }
 }
 
-function mapStateToProps({ generalInfo }) {
-    return Object.assign({}, { generalInfo });
+function mapStateToProps({ generalInfo, claimsPrincipal }) {
+    const isShowAffLink = claimsPrincipal.hasReadClaim(claimResource.AffInfo);
+    const isShowPaymentLink = claimsPrincipal.hasReadClaim(claimResource.Payment);
+
+    return Object.assign({}, { generalInfo, isShowAffLink, isShowPaymentLink });
 }
 
 function mapDispatchToProps(dispatch) {

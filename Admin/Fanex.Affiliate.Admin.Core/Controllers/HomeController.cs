@@ -1,6 +1,8 @@
 ﻿using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Home;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
@@ -8,12 +10,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     public class HomeController : ReadOnlySessionBaseController
     {
         private readonly IHomeService _homeService;
+        private readonly ILanguageService _languageService;
 
         public HomeController(
             ISessionService sessionService,
-            IHomeService homeService) : base(sessionService)
+            IHomeService homeService,
+            ILanguageService languageService) : base(sessionService)
         {
             _homeService = homeService;
+            _languageService = languageService;
         }
 
         [HttpGet]
@@ -52,9 +57,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpPost]
         public ActionResult GetOnlineList(int pageIndex = 1, int pageSize = 20)
         {
+            var supportLanguages = _languageService.GetInChangeMarkets();
+            var languageCodes = LanguageHelper.BuildAllowQueryLanguages(string.Empty, supportLanguages);
+
             return new JsonNetResult
             {
-                Data = _homeService.GetOnlineList(pageIndex, pageSize)
+                Data = _homeService.GetOnlineList(languageCodes, pageIndex, pageSize)
             };
         }
     }

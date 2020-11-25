@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 {
     public class HomeService : BaseRepository, IHomeService
     {
-        public EntityResult<OnlineListInfo> GetOnlineList(int pageIndex, int pageSize)
+        public EntityResult<OnlineListInfo> GetOnlineList(string languageCodes, int pageIndex, int pageSize)
         {
             const string SpKey = "Aff_UserOnlineList";
 
@@ -20,6 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 
             using (var objectDb = GetObjectDb(SpKey))
             {
+                objectDb.AddInParameter("LanguageCodes", DbType.String, languageCodes);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, pageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, pageSize);
 
