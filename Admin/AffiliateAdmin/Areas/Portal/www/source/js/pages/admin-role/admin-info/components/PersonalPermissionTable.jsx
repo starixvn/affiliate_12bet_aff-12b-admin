@@ -12,17 +12,12 @@ import { renderHeader, renderColumns } from '../../common/libs/render';
 export class PersonalPermissionTable extends PureComponent {
     constructor(props) {
         super(props);
-
-        this.state = {
-            isSetByDefault: false
-        }
     }
 
     componentDidUpdate(prevProps) {
-        const { isSetByDefault } = this.state;
-        const { permissionListByRole } = this.props;
+        const { permissionListByRole, isRoleFunctionDefault } = this.props;
 
-        if (isSetByDefault && JSON.stringify(permissionListByRole) !== JSON.stringify(prevProps.permissionListByRole)) {
+        if (isRoleFunctionDefault && JSON.stringify(permissionListByRole) !== JSON.stringify(prevProps.permissionListByRole)) {
             this._updatePermissionListByRole();
         }
     }
@@ -75,10 +70,10 @@ export class PersonalPermissionTable extends PureComponent {
         this.props.setPermissionListByRole(permissionListByRoleUpdate);
     }
 
-    _handleSetByDefault = (isSetByDefault) => {
-        this.setState({ isSetByDefault });
+    _handleSetByDefault = (isRoleFunctionDefault) => {
+        this.props.handleSetRoleFunctionDefault();
 
-        if (isSetByDefault) {
+        if (isRoleFunctionDefault) {
             this._updatePermissionListByRole()
         }
     }
@@ -117,15 +112,15 @@ export class PersonalPermissionTable extends PureComponent {
     }
 
     _renderCells(dataItem, isCreateNew, isEdit) {
-        const { isSetByDefault } = this.state;
+        const { isRoleFunctionDefault } = this.props;
 
         return isEdit || isCreateNew ? (
             <Fragment>
                 <td className="text-center">
-                    <input type="checkbox" checked={dataItem.IsRead} disabled={isSetByDefault} onChange={() => this._handleChange(dataItem.FuncId, !dataItem.IsRead, false)} />
+                    <input type="checkbox" checked={dataItem.IsRead} disabled={isRoleFunctionDefault} onChange={() => this._handleChange(dataItem.FuncId, !dataItem.IsRead, false)} />
                 </td>
                 <td className="text-center">
-                    <input type="checkbox" checked={dataItem.IsHost} disabled={isSetByDefault} onChange={() => this._handleChange(dataItem.FuncId, !dataItem.IsHost, true)} />
+                    <input type="checkbox" checked={dataItem.IsHost} disabled={isRoleFunctionDefault} onChange={() => this._handleChange(dataItem.FuncId, !dataItem.IsHost, true)} />
                 </td>
                 <td className="text-center">
                     <input type="checkbox" checked={dataItem.IsRoleRead} disabled />
@@ -189,8 +184,7 @@ export class PersonalPermissionTable extends PureComponent {
     }
 
     render() {
-        const { isSetByDefault } = this.state;
-        const { permissionListByRole, isEdit, isCreateNew } = this.props;
+        const { permissionListByRole, isEdit, isCreateNew, isRoleFunctionDefault } = this.props;
 
         return permissionListByRole && (
             <div className="data-content personal-permission-table">
@@ -199,7 +193,7 @@ export class PersonalPermissionTable extends PureComponent {
                     (isEdit || isCreateNew) && (
                         <Form inline tag="div" className="float-right">
                             <FormGroup>
-                                <input type="checkbox" checked={isSetByDefault} onChange={() => this._handleSetByDefault(!isSetByDefault)} />
+                                <input type="checkbox" checked={isRoleFunctionDefault} onChange={() => this._handleSetByDefault(!isRoleFunctionDefault)} />
                                 <Label sm="auto" className="pt-2 text-primary">Set to Role's Default</Label>
                             </FormGroup>
                         </Form>

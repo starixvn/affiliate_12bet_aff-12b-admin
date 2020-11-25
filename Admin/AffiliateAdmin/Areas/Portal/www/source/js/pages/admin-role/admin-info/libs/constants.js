@@ -40,6 +40,7 @@ export const initialState = {
     isDeleteUser: false,
     isAfterDeleted: false,
     isEdit: false,
+    isRoleFunctionDefault: false,
     marketListByRole: null,
     itemDefault: {
         MarketId: 'SetByDefault',

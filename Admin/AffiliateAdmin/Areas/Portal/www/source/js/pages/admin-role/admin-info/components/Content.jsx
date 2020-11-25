@@ -54,6 +54,8 @@ export class Content extends PureComponent {
                 initialUserInfo: AdminInfo,
                 initialMarketList: convertMarket,
                 marketListByRole: convertMarket,
+                isRoleFunctionDefault: AdminInfo.IsRoleFunctionDefault,
+                itemDefault: Object.assign({}, this.state.itemDefault, { HasPermission: AdminInfo.IsRoleMarketDefault }),
                 initialPermissionList: UserPermissionList
             });
 
@@ -100,8 +102,8 @@ export class Content extends PureComponent {
 
         if (isValid) {
             const { userId, permissionListByRole } = this.props;
-            const { newUserName, newPassword, firstName, lastName, role, isActive, marketListByRole } = this.state;
-            const param = { userId: userId || 0, userName: newUserName, firstName, lastName, password: newPassword, role, isClosed: !isActive, permissionInfo: permissionListByRole, marketList: marketListByRole };
+            const { newUserName, newPassword, firstName, lastName, role, isActive, marketListByRole, itemDefault, isRoleFunctionDefault } = this.state;
+            const param = { userId: userId || 0, userName: newUserName, firstName, lastName, password: newPassword, role, isClosed: !isActive, permissionInfo: permissionListByRole, marketList: marketListByRole, isRoleMarketDefault: itemDefault.HasPermission, isRoleFunctionDefault };
 
             const data = userId ? await this.props.updateUser(param) : await this.props.createUser(param);
 
@@ -149,7 +151,7 @@ export class Content extends PureComponent {
         if (isCreateNew) {
             this.props.redirectToAdminList();
         } else {
-            const { initialUserInfo, initialMarketList, initialPermissionList } = this.state;
+            const { initialUserInfo, initialMarketList, initialPermissionList, itemDefault } = this.state;
 
             this.setState({
                 isClickedSubmit: false,
@@ -159,6 +161,8 @@ export class Content extends PureComponent {
                 role: initialUserInfo.RoleId,
                 isActive: initialUserInfo.IsActive,
                 isEdit: false,
+                isRoleFunctionDefault: initialUserInfo.IsRoleFunctionDefault,
+                itemDefault: Object.assign({}, itemDefault, { HasPermission: initialUserInfo.IsRoleMarketDefault }),
                 marketListByRole: initialMarketList
             });
 
@@ -349,7 +353,7 @@ export class Content extends PureComponent {
     _renderWhenCreateAndEditUser() {
         const { roleList } = this.props;
         const { isClickedSubmit, newUserName, firstName, lastName, newPassword, role, isShowMessage, isSuccess, message,
-            isCreateNew, isEdit, isActive, itemDefault, marketListByRole } = this.state;
+            isCreateNew, isEdit, isActive, itemDefault, marketListByRole, isRoleFunctionDefault } = this.state;
 
         const validatedPasswordResult = validateNewPassword(newPassword);
         const validatedUserNameResult = validateUserName(newUserName);
@@ -455,18 +459,14 @@ export class Content extends PureComponent {
                                         </FormGroup>
                                     )
                                 }
-                                <FormGroup row className="mb-1">
-                                    <Label sm="auto" className="pt-2">{resources.AccountStatus}</Label>
-                                    <Col>
-                                        <input type="checkbox" className="mt-2" checked={isActive} onChange={() => this.setState({ isActive: !isActive })} />
-                                    </Col>
-                                </FormGroup>
                             </Form>
                         </Col>
                         <Col sm={6}>
                             <PersonalPermissionTable
                                 isCreateNew={isCreateNew}
-                                isEdit={isEdit} />
+                                isEdit={isEdit}
+                                isRoleFunctionDefault={isRoleFunctionDefault}
+                                handleSetRoleFunctionDefault={() => this.setState({ isRoleFunctionDefault: !isRoleFunctionDefault })} />
                         </Col>
                     </Row>
                 </Container>
