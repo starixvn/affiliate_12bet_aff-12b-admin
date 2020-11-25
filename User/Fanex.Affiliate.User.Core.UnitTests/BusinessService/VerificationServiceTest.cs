@@ -99,8 +99,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             AccountRepo.DidNotReceiveWithAnyArgs().CreateSecretKey(0, null);
         }
 
-        [Fact]
-        public void IsValidOtp_WhenLoginFail_UpdateFailVerificationInfo()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void IsValidOtp_WhenLoginFail_UpdateVerificationInfo(bool isOK)
         {
             var service = CreateService();
             var param = CreateVerificationOtpParam();
@@ -111,15 +113,17 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             };
 
             VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsForAnyArgs(verificationInfo);
-            VerificationRepo.UpdateVerificationInfo(null).ReturnsForAnyArgs(new ResultInfo { IsOk = false });
+            VerificationRepo.UpdateVerificationInfo(null).ReturnsForAnyArgs(new ResultInfo { IsOk = isOK });
 
             service.IsValidOtp(param);
 
             VerificationRepo.ReceivedWithAnyArgs().UpdateVerificationInfo(null);
         }
 
-        [Fact]
-        public void IsValidOtp_WhenLoginOkAndUseValidOtp_InsertUserDeviceToRepo()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void IsValidOtp_WhenLoginOkAndUseValidOtp_InsertUserDeviceToRepo(bool isOK)
         {
             var service = CreateService();
             var param = CreateVerificationOtpParam();
@@ -133,12 +137,34 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             TwoFactorAuthService.VerifyHotp(null, 0, null).ReturnsForAnyArgs(true);
             VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsForAnyArgs(verificationInfo);
-            VerificationRepo.InsertUserDeviceInfo(null).ReturnsForAnyArgs(new ResultInfo { IsOk = false });
+            VerificationRepo.InsertUserDeviceInfo(null).ReturnsForAnyArgs(new ResultInfo { IsOk = isOK });
 
             var result = service.IsValidOtp(param);
 
             VerificationRepo.ReceivedWithAnyArgs().InsertUserDeviceInfo(null);
             Assert.True(result);
+        }
+
+        [Fact]
+        public void IsInvalidOtp_WhenLoginOkButUseInvalidOtp_NotInsertUserDeviceToRepo()
+        {
+            var service = CreateService();
+            var param = CreateVerificationOtpParam();
+            var authMsg = param.LoginInfo + param.HashKey + param.Captcha + param.OtpCode;
+            param.HashMessage = CryptographyHelper.SHA256Hash(authMsg, param.HashKey);
+            var verificationInfo = new VerificationInfo
+            {
+                DeviceCount = 1,
+                FailedLoginCount = null
+            };
+
+            TwoFactorAuthService.VerifyHotp(null, 0, null).ReturnsForAnyArgs(false);
+            VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsForAnyArgs(verificationInfo);
+
+            var result = service.IsValidOtp(param);
+
+            VerificationRepo.DidNotReceiveWithAnyArgs().InsertUserDeviceInfo(null);
+            Assert.False(result);
         }
 
         [Fact]

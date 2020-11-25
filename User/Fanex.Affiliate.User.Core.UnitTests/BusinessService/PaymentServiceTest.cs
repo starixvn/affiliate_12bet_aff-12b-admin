@@ -127,6 +127,25 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
+        public void CreatePaymentRequest_IsLocalTest_ReturnCorrectResultInfo()
+        {
+            // Arrange
+            var param = new PaymentCreationParam
+            {
+                IsLocalTest = false
+            };
+
+            var service = CreatePaymentService();
+
+            // Action
+            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+
+            // Assert
+            Assert.False(result.IsOk);
+            Assert.Equal(Lang.PayoutTime, result.Message);
+        }
+
+        [Fact]
         public void CreatePaymentRequest_InvalidAmount_ReturnCorrectResultInfo()
         {
             // Arrange
@@ -146,6 +165,26 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Assert
             Assert.False(result.IsOk);
             Assert.Equal(Error.PaymentAmountInvalid, result.Message);
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_PlayerAccountIsNotActived_ReturnCorrectResultInfo()
+        {
+            // Arrange
+            var param = CreateValidPaymentCreationParam();
+            const string ErrorMessage = "Player Account Is Not Actived";
+
+            var accountService = new Mock<IAccountService>();
+            accountService.Setup(a => a.CheckPlayerAccountIsActived(param.AffId, param.Language)).Returns(new ResultInfo { Message = ErrorMessage });
+
+            var service = CreatePaymentService(accountService: accountService.Object);
+
+            // Action
+            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+
+            // Assert
+            Assert.False(result.IsOk);
+            Assert.Equal(ErrorMessage, result.Message);
         }
 
         [Fact]
@@ -219,6 +258,36 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Assert.True(result.IsOk);
             Assert.Null(result.Message);
             Assert.Equal(JsonConvert.SerializeObject(expectedEmailParam), JsonConvert.SerializeObject(passedEmailParam));
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_ValidParamButNotSendEmail_ReturnCorrectResultButEmailParamNotAssign()
+        {
+            // Arrange
+            PaymentEmailParam passedEmailParam = null;
+            var param = CreateValidPaymentCreationParam();
+
+            var accountService = new Mock<IAccountService>();
+            accountService.Setup(a => a.CheckPlayerAccountIsActived(param.AffId, param.Language)).Returns(new ResultInfo { IsOk = true });
+
+            var paymentRepository = new Mock<IPaymentRepository>();
+            paymentRepository.Setup(p => p.CreatePaymentRequest(param)).Returns(new ResultInfo { IsOk = true });
+
+            var emailService = new Mock<IEmailService>();
+            emailService.Setup(e => e.SendPaymentEmail(It.IsAny<PaymentEmailParam>())).Callback<PaymentEmailParam>(p => passedEmailParam = p);
+
+            var service = CreatePaymentService(
+                paymentRepository: paymentRepository.Object,
+                accountService: accountService.Object,
+                emailService: emailService.Object);
+
+            // Action
+            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+
+            // Assert
+            Assert.True(result.IsOk);
+            Assert.Null(result.Message);
+            Assert.Null(passedEmailParam);
         }
 
         private PaymentCreationParam CreateValidPaymentCreationParam()
