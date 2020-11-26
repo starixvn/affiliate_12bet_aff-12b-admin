@@ -44,21 +44,20 @@ export class Content extends PureComponent {
     }
 
     _renderHeader() {
-        const { canViewMemberEmail, isDisplayFullName } = this.props;
+        const {  isDisplayFullName } = this.props;
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
                 <Cell header={true} colWidth={100} title={resource.UserName}>{resource.UserName}</Cell>
                 { isDisplayFullName && <Cell header={true} colWidth={100} title={resource.FirstName}>{resource.FirstName}</Cell>}
                 { isDisplayFullName && <Cell header={true} colWidth={100} title={resource.LastName}>{resource.LastName}</Cell>}
-                { canViewMemberEmail && (<Cell header={true} colWidth={100} title={resource.EmailAddress}>{resource.EmailAddress}</Cell>)}
                 <Cell header={true} colWidth={50} title={resource.Currency}>{resource.Currency}</Cell>
                 <Cell header={true} colWidth={100} title={resource.RegisterDate}>{resource.RegisterDate}</Cell>
             </Row>
         )
     }
 
-    _renderDataSection(dataList, canViewMemberEmail) {
+    _renderDataSection(dataList) {
         const dataRows = [];
 
         if (dataList && dataList.length) {
@@ -68,7 +67,7 @@ export class Content extends PureComponent {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
 
-                dataRows.push(this._buildDataRow(dataItem, startIndex + i, canViewMemberEmail));
+                dataRows.push(this._buildDataRow(dataItem, startIndex + i));
             }
         }
         else {
@@ -81,7 +80,7 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, rowNumber) {
-        const { canViewMemberEmail, isDisplayFullName } = this.props;
+        const { isDisplayFullName } = this.props;
 
         const userName = htmlDecode(dataItem.UserName);
         const firstName = htmlDecode(dataItem.FirstName);
@@ -93,7 +92,6 @@ export class Content extends PureComponent {
                 <Cell title={userName}>{userName}</Cell>
                 { isDisplayFullName && <Cell title={firstName}>{firstName}</Cell>}
                 { isDisplayFullName && <Cell title={lastName}>{lastName}</Cell>}
-                {canViewMemberEmail && (<Cell title={email}>{email}</Cell>)}
                 <Cell className="text-center" title={dataItem.CurrencyName}>{dataItem.CurrencyName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateString}>{dataItem.RegisteredDateString}</Cell>
             </Row>
@@ -122,11 +120,11 @@ export class Content extends PureComponent {
 }
 
 function mapStateToProps({ affCommonInfo, member, claimsPrincipal }) {
-    const { param, canViewMemberEmail, pagingOption } = member;
+    const { param, pagingOption } = member;
     const { affId } = affCommonInfo;
     const isDisplayFullName = claimsPrincipal.hasReadClaim(claimResource.AffMemberName);
 
-    return Object.assign({}, { affId, param, pagingOption, canViewMemberEmail, isDisplayFullName });
+    return Object.assign({}, { affId, param, pagingOption, isDisplayFullName });
 }
 
 function mapDispatchToProps(dispatch) {

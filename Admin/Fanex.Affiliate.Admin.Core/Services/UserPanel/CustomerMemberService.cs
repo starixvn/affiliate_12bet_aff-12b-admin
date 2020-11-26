@@ -31,7 +31,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                             UserName = Convert.ToString(reader["UserName"]),
                             FirstName = Convert.ToString(reader["FirstName"]),
                             LastName = Convert.ToString(reader["LastName"]),
-                            Email = param.CanViewMemberEmail ? Convert.ToString(reader["Email"]) : string.Empty,
                             CurrencyName = Convert.ToString(reader["Currency"]),
                             RegisteredDate = Convert.ToDateTime(reader["RegisteredDate"])
                         });

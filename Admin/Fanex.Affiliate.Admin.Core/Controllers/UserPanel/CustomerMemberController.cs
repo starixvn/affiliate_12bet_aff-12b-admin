@@ -29,8 +29,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (ModelState.IsValid)
             {
-                param.CanViewMemberEmail = _sessionService.UserPermissionList.Any(i => i.FunctionName.Equals(Function.MemberEmail, StringComparison.OrdinalIgnoreCase));
-
                 return new JsonNetResult
                 {
                     Data = _customerMemberService.GetCustomerMemberList(param)
