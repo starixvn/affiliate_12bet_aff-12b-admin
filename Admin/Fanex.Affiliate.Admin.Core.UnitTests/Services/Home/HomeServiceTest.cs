@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             service.Setup(r => r.GetObjectDb("Aff_UserOnlineList", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetOnlineList(1, 20);
+            var result = service.Object.GetOnlineList("en-US", 1, 20);
             var item = result.MainData.FirstOrDefault();
 
             // Assert
@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             service.Setup(r => r.GetObjectDb("Aff_UserOnlineList", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetOnlineList(1, 20);
+            var result = service.Object.GetOnlineList("en-US", 1, 20);
             var item = result.MainData.FirstOrDefault();
 
             // Assert
@@ -74,7 +74,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             service.Setup(r => r.GetObjectDb("Aff_UserOnlineList", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetOnlineList(1, 20);
+            var result = service.Object.GetOnlineList("en-US", 1, 20);
 
             // Assert
             Assert.Equal(0, result.TotalItem);

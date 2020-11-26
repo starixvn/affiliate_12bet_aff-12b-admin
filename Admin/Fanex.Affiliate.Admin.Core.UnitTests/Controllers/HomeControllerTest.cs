@@ -2,6 +2,7 @@
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Home;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Home;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -79,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         {
             // Arrange
             var homeService = new Mock<IHomeService>();
-            homeService.Setup(t => t.GetOnlineList(1, 20)).Returns(new EntityResult<OnlineListInfo> { MainData = new List<OnlineListInfo> { new OnlineListInfo() } });
+            homeService.Setup(t => t.GetOnlineList(It.IsAny<string>(), 1, 20)).Returns(new EntityResult<OnlineListInfo> { MainData = new List<OnlineListInfo> { new OnlineListInfo() } });
             var controller = CreateHomeController(homeService: homeService.Object);
 
             // Action
@@ -92,12 +93,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
         private HomeController CreateHomeController(
             ISessionService sessionService = null,
-            IHomeService homeService = null)
+            IHomeService homeService = null,
+            ILanguageService languageService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeHomeService = homeService ?? Mock.Of<IHomeService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
 
-            return new HomeController(fakeSessionService, fakeHomeService);
+            return new HomeController(fakeSessionService, fakeHomeService, fakeLanguageService);
         }
     }
 }

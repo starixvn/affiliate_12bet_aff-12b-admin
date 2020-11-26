@@ -40,15 +40,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
         {
             var affiliateInfo = _customerLeftPanelRepository.GetAffiliateInfoOnLeftPanel(affUserName);
             var userId = _sessionService.UserId;
-            if( !_authService.IsUserHasPermissionOnAff(userId, affiliateInfo.AffId))
+
+            if(affiliateInfo == null || !_authService.IsUserHasPermissionOnAff(userId, affiliateInfo.AffId))
             {
-                affiliateInfo = null;
+                return null;
             }
-            
-            if (affiliateInfo != null )
-            {
-                affiliateInfo.AffLink = GenerateUrl(affUserName, affiliateInfo.AffType, accOnId, sessionId).ToString();
-            }
+
+            affiliateInfo.AffLink = GenerateUrl(affUserName, affiliateInfo.AffType, accOnId, sessionId).ToString();
+
             return affiliateInfo;
         }
 
