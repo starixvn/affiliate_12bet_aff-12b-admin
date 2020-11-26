@@ -6,7 +6,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import Filter from './Filter';
 import { htmlDecode } from '../../../modules/htmlHelper';
 import { resolveClientUrl } from '../../../modules/utils';
-import { headerText, roleList } from '../libs/constants';
+import { headerText } from '../libs/constants';
 import { setPagingOption, getOnlineList } from '../actions';
 
 export class OnlineList extends PureComponent {
@@ -65,7 +65,7 @@ export class OnlineList extends PureComponent {
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={userName} className="text-center">
                     {
-                        dataItem.Role.toLowerCase() === 'admin' ? userName : (<a href={resolveClientUrl(`Portal/Customer?user=${userName}`)}>{userName}</a>)
+                        dataItem.Role.toLowerCase() === 'affiliate' ? (<a href={resolveClientUrl(`Portal/Customer?user=${userName}`)}>{userName}</a>) : userName
                     }
                 </Cell>
                 <Cell title={dataItem.LoggedInDateText} className="text-center">{dataItem.LoggedInDateText}</Cell>
