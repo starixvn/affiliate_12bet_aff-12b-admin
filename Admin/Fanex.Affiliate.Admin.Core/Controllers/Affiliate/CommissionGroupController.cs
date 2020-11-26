@@ -81,6 +81,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [AllowByPassFunctionAuthorize]
         public ActionResult GetCommissionGroup(GetCommissionGroupParam param)
         {
             if (param.GroupId >= Validation.MinId)

@@ -7,7 +7,6 @@
     var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var permissions = sessionService.ClaimIdentities.SelectMany(i => i.Claims);
-    var hasTurnOverPermission = permissions.Any(i => i.Type.Equals(Function.Turnover, StringComparison.OrdinalIgnoreCase));
     var menus = new Dictionary<string, string>
     {
         {"Customer", Function.Customer },
@@ -39,18 +38,6 @@
             return menuKey;
         }
     }
-
-    public string GetClaimJOject(IEnumerable<System.Security.Claims.Claim> claims)
-    {
-        var builder = new System.Text.StringBuilder();
-        builder.Append("{");
-        foreach (var claim in claims)
-        {
-            builder.Append($"\"{claim.Type}\":\"{claim.Value}\",");
-        }
-        builder.Append("}");
-        return builder.ToString();
-    }
 }
 <ul class="nav menu-list">
     <li class="nav-item">
@@ -70,7 +57,7 @@
 
 <script type="text/javascript">
     window.globalVariables = {
-        claims: @Html.Raw(GetClaimJOject(permissions))
+        claims: @Html.Raw(permissions.ToJson())
     };
     window.virtualUrl = '@Url.Content("~")';
 

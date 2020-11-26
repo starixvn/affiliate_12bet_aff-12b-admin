@@ -14,6 +14,8 @@ import TierSetting from '../shared/tiersetting';
 import Loader from '../../../../components/Loader';
 import { post } from '../../../../modules/ajaxRequest';
 import { popupEventNames } from '../../../common/modules/constants/commissionGroup';
+import { claimsPrincipal } from '../../../../reducers/claimReducer';
+import { claimResource } from '../../../../modules/claim';
 
 export class AssignPrivateGroup extends React.Component {
     constructor(props) {
@@ -109,7 +111,7 @@ export class AssignPrivateGroup extends React.Component {
 
     render() {
         const { isShowMessage, isSuccess, message, isShowLoader } = this.state;
-        const { affInfo, selectedGroup } = this.props;
+        const { affInfo, selectedGroup, isModifiable } = this.props;
 
         return affInfo && selectedGroup && (
             <div className="comm-popup-container" style={{ padding: 10 }}>
@@ -122,14 +124,15 @@ export class AssignPrivateGroup extends React.Component {
                 <QmTurnOverSetting />
                 <TierSetting />
 
-                <button type="button" className="my-2 btn btn-success btn-save" onClick={this.handleSave}>SAVE</button>
+                <button type="button" disabled={!isModifiable} className="my-2 btn btn-success btn-save" onClick={this.handleSave}>SAVE</button>
             </div>
         )
     }
 }
 
-function mapStateToProp({ deductionList, productList, selectedGroup, affInfo }) {
-    return { deductionList, productList, selectedGroup, affInfo };
+function mapStateToProp({ deductionList, productList, selectedGroup, affInfo, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
+    return { deductionList, productList, selectedGroup, affInfo, isModifiable };
 }
 
 function mapDispatchToProps(dispatch) {

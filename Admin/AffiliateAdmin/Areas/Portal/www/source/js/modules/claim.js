@@ -40,7 +40,10 @@ export default class ClaimPrincipal{
         this.claims = claims;
     }
 
-    static currentClaimPrincipal =  new ClaimPrincipal(window.globalVariables.claims);
+    static get currentClaimPrincipal() { 
+        let claims = window.globalVariables.claims || window.initialState.claims || {};
+        return new ClaimPrincipal(claims); 
+    }
 
     hasReadClaim(claimType) {
         if (typeof claimType === 'string')
@@ -52,7 +55,8 @@ export default class ClaimPrincipal{
 
     hasWriteClaim(claimType){
         if( typeof claimType === 'string' && this.claims[claimType] !== undefined){
-            return this.claims[claimType] === claimResource.WritePermission;
+            const found = this.claims[claimType].find(c => c === claimResource.WritePermission);
+            return !!found;
         }
         return false;
     }

@@ -90,6 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             };
         }
 
+        [FunctionAuthorize(FunctionName = Function.CommissionGroup)]
         [HttpGet]
         public ActionResult AssignPrivateGroup(int affId)
         {
@@ -106,6 +107,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         }
 
         [FunctionAuthorize(FunctionName = Function.AssignCommGroup, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult AssignPrivateGroup(CommissionGroupSetting commGroup, AffiliateBasicInfo affInfo)
