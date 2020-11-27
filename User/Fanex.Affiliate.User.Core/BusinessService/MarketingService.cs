@@ -50,10 +50,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IEnumerable<CurrencyType> GetCurrencyList(bool isInternal)
         {
             var currencyList = _cacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList);
-            if (currencyList == null)
-            {
-                currencyList = _marketingRepository.GetCurrencyList(isInternal);
-            }
+            currencyList = currencyList ?? _marketingRepository.GetCurrencyList(isInternal);
 
             if (currencyList != null)
             {
@@ -74,10 +71,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IEnumerable<BannerType> GetBannerTypeList(bool isInternal)
         {
             var bannerTypeList = _cacheService.Get<IEnumerable<BannerType>>(CacheKey.BannerTypeList);
-            if (bannerTypeList == null)
-            {
-                bannerTypeList = _marketingRepository.GetBannerTypeList(isInternal);
-            }
+            bannerTypeList = bannerTypeList ?? _marketingRepository.GetBannerTypeList(isInternal);
 
             if (bannerTypeList != null)
             {
@@ -90,10 +84,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IEnumerable<Domain> GetDomainList(int affId, bool isInternal)
         {
             var domainList = _cacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList);
-            if (domainList == null)
-            {
-                domainList = _marketingRepository.GetDomainList(affId, isInternal);
-            }
+            domainList = domainList ?? _marketingRepository.GetDomainList(affId, isInternal);
 
             if (domainList != null)
             {

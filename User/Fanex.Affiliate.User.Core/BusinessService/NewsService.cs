@@ -22,10 +22,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public LatestHotNews GetLatestHotNews(bool isInternal)
         {
             var hotNews = _cacheService.Get<LatestHotNews>(CacheKey.LatestHotNews);
-            if (hotNews == null)
-            {
-                hotNews = _hotNewsRepository.GetLastestHotNews(isInternal);
-            }
+            hotNews = hotNews ?? _hotNewsRepository.GetLastestHotNews(isInternal);
 
             if (hotNews != null)
             {

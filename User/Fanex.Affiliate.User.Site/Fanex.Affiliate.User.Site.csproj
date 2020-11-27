@@ -275,6 +275,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AdditionalFiles Include="..\..\.sonarlint\12betaffuser\CSharp\SonarLint.xml">
+      <Link>SonarLint.xml</Link>
+    </AdditionalFiles>
     <Content Include="12monitor.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="App_Data\SpConfig\SpName.local.xml">
