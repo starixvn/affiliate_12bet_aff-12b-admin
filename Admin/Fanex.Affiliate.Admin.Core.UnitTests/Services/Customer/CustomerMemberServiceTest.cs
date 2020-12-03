@@ -37,29 +37,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         }
 
         [Fact]
-        public void GetCustomerMemberList_WhenCallWithCanViewMemberEmail_ReturnCorrectEmailInfoList()
-        {
-            // Arrange
-            var service = new Mock<CustomerMemberService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
-
-            ReaderHelper.MapReaderData(dataReader, GetExpectedMemberList());
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_Member_Sel", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetCustomerMemberList(new CustomerMemberParam { CanViewMemberEmail = true });
-            var item = result.MainData.SingleOrDefault();
-
-            // Assert
-            Assert.Single(result.MainData);
-            Assert.Equal("04/15/2020 12:00:00 AM", item.RegisteredDateString);
-        }
-
-        [Fact]
         public void GetCustomerMemberList_WhenCall_ReturnNull()
         {
             // Arrange

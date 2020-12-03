@@ -57,12 +57,12 @@ export class PermissionPopup extends PureComponent {
     }
 
     _buildDataRowChildren(dataItem, dataList) {
-        const funcName = htmlDecode(dataItem.FuncName);
+        const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
             <Fragment>
                 <tr key={`dataRow-${dataItem.FuncId}`} className="current">
-                    <td colSpan="3" className="pl-2" title={funcName}>{funcName}</td>
+                    <td colSpan="3" className="pl-2" title={displayName}>{displayName}</td>
                     {
                         renderColumns(dataItem)
                     }
@@ -91,11 +91,12 @@ export class PermissionPopup extends PureComponent {
     }
 
     _buildDataRowSubChildren(dataItem, dataList, isRecursive) {
+        const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
             <Fragment>
                 <tr key={`dataRow-${dataItem.FuncId}`} className="current">
-                    <td colSpan="3" className={isRecursive ? "pl-5" : "pl-4"} title={dataItem.FuncName}>{dataItem.FuncName}</td>
+                    <td colSpan="3" className={isRecursive ? "pl-5" : "pl-4"} title={displayName}>{displayName}</td>
                     {
                         renderColumns(dataItem)
                     }

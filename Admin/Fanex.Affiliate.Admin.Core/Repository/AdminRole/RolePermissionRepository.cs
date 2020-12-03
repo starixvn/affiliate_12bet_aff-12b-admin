@@ -24,6 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
                         {
                             RoleId = reader.ToInt("RoleId"),
                             RoleName = reader.ToString("RoleName"),
+                            DisplayName = reader.ToString("DisplayName"),
                             ParentId = reader.ToInt("ParentId"),
                             AllParentIds = reader.ToString("AllParentIds"),
                             FuncId = reader.ToInt("FuncId"),

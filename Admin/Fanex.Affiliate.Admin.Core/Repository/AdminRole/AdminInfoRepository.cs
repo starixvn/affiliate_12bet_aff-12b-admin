@@ -174,7 +174,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
                 ParentId = reader.ToInt("ParentId"),
                 AllParentIds = reader.ToString("AllParentIds"),
                 FuncId = reader.ToInt("FuncId"),
-                FuncName = reader.ToString("FuncName")
+                FuncName = reader.ToString("FuncName"),
+                DisplayName = reader.ToString("DisplayName")
             };
         }
     }

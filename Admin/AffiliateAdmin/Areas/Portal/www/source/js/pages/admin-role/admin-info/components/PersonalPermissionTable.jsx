@@ -133,12 +133,12 @@ export class PersonalPermissionTable extends PureComponent {
     }
 
     _buildDataRowChildren(dataItem, dataList, isCreateNew, isEdit) {
-        const funcName = htmlDecode(dataItem.FuncName);
+        const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
             <Fragment>
                 <tr key={`dataRow-${dataItem.FuncId}`} className="current">
-                    <td colSpan="3" className="pl-2" title={funcName}>{funcName}</td>
+                    <td colSpan="3" className="pl-2" title={displayName}>{displayName}</td>
                     {
                         this._renderCells(dataItem, isCreateNew, isEdit)
                     }
@@ -167,11 +167,12 @@ export class PersonalPermissionTable extends PureComponent {
     }
 
     _buildDataRowSubChildren(dataItem, dataList, isCreateNew, isEdit, isRecursive) {
+        const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
             <Fragment>
                 <tr key={`dataRow-${dataItem.FuncId}`} className="current">
-                    <td colSpan="3" className={isRecursive ? "pl-5" : "pl-4"} title={dataItem.FuncName}>{dataItem.FuncName}</td>
+                    <td colSpan="3" className={isRecursive ? "pl-5" : "pl-4"} title={displayName}>{displayName}</td>
                     {
                         this._renderCells(dataItem, isCreateNew, isEdit)
                     }

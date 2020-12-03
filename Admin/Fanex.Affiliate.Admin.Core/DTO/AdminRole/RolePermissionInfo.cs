@@ -15,6 +15,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.AdminRole
 
         public string FuncName { get; set; }
 
+        public string DisplayName { get; set; }
+
         public int Policy { get; set; }
 
         public bool IsRead => Policy == Constants.Policy.ReadButNotHost || Policy == Constants.Policy.ReadAndHost;

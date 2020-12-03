@@ -238,12 +238,12 @@ export class GeneralComponent extends PureComponent {
     }
 
     _buildDataRowChildren(dataItem, dataList, isEdit, isExpand) {
-        const funcName = htmlDecode(dataItem.FuncName);
+        const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
             <Fragment>
                 <Row key={`dataRow-${dataItem.FuncId}`} className="current">
-                    <Cell className="pl-2" title={funcName}>{funcName}</Cell>
+                    <Cell className="pl-2" title={displayName}>{displayName}</Cell>
                     {
                         this._renderCells(dataItem, isEdit, isExpand)
                     }
@@ -272,11 +272,12 @@ export class GeneralComponent extends PureComponent {
     }
 
     _buildDataRowSubChildren(dataItem, dataList, isEdit, isExpand, isRecursive) {
+        const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
             <Fragment>
                 <Row key={`dataRow-${dataItem.FuncId}`} className="current">
-                    <Cell className={isRecursive ? "pl-5" : "pl-4"} title={dataItem.FuncName}>{dataItem.FuncName}</Cell>
+                    <Cell className={isRecursive ? "pl-5" : "pl-4"} title={displayName}>{displayName}</Cell>
                     {
                         this._renderCells(dataItem, isEdit, isExpand)
                     }
