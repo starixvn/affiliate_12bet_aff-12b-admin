@@ -101,7 +101,7 @@ export class Filter extends React.PureComponent {
 
     render() {
         const { selectedCommGroup, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending } = this.state;
-        const { columnList, languageList, commGroupList, isShowEmailFilter } = this.props;
+        const { columnList, languageList, commGroupList, isShowEmailFilter, sortKeys } = this.props;
 
         return (
             <div className="filter-container">
@@ -168,8 +168,8 @@ export class Filter extends React.PureComponent {
                         <Label for="SortBy" className="mr-sm-2">{resource.SortBy}</Label>
                         <Input type="select" name="selectedSortBy" id="SortBy" value={selectedSortBy} onChange={this.handleChange} >
                             {
-                                Object.keys(sortByList).map(sortBy => {
-                                    return (<option key={'sortBy-' + sortBy} value={sortByList[sortBy]}>{sortBy}</option>)
+                                sortKeys.map(item => {
+                                    return (<option key={'sortBy-' + item.key} value={item.value}>{item.key}</option>)
                                 })
                             }
                         </Input>
@@ -205,7 +205,13 @@ export class Filter extends React.PureComponent {
 
 function mapStateToProps({ languageList, commGroupList, param, groupId, columnList, claimsPrincipal }) {
     const isShowEmailFilter = claimsPrincipal.hasReadClaim(claimResource.Email);
-    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter });
+    const sortKeys = Object.keys(sortByList)
+        .filter(key => {
+            const item = sortByList[key];
+            return !item.renderClaim || claimsPrincipal.hasClaim(item.renderClaim);
+        })
+        .map(key => { return {key: key, value: sortByList[key].value}});
+    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys });
 }
 
 function mapDispatchToProps(dispatch) {

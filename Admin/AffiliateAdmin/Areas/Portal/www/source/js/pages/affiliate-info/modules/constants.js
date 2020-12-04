@@ -16,11 +16,11 @@ export const defaultSortBy = 1;
 export const defaultSelectedColumnNumber = 2;
 
 export const sortByList = {
-    'Username': 1,
-    'Registration Date': 2,
-    'Approval Date': 3,
-    'Balance B/F': 4,
-    'Member': 5
+    'Username': {value: 1},
+    'Registration Date': { value: 2},
+    'Approval Date': { value : 3},
+    'Balance B/F': { value : 4 },
+    'Member': { value: 5, renderClaim : new Claim(claimResource.AffMember)}
 }
 
 export const headerText = {
