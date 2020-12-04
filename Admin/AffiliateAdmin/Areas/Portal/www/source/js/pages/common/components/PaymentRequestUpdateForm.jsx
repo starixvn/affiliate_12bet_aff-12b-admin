@@ -163,7 +163,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     _renderPaymentInformation(paymentRequestInfo, isPending) {
-        const { isShowPaymentInfo } = this.propsl
+        const { isShowPaymentInfo } = this.props
         return (
             <fieldset>
                 <legend>
