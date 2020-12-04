@@ -34,6 +34,7 @@ export class AppContainer extends PureComponent {
                 <PaymentRequestUpdateForm
                     isUpdatable={claimsPrincipal.hasWriteClaim(claimResource.Payment)}
                     isShowEmail={claimsPrincipal.hasReadClaim(claimResource.Email)}
+                    isShowPaymentInfo={claimsPrincipal.hasReadClaim(claimResource.PaymentInfo)}
                     transactionId={transactionId}
                     handleClosePopup={this.handleClosePopup}
                     handleFetchData={this.handleFetchData}

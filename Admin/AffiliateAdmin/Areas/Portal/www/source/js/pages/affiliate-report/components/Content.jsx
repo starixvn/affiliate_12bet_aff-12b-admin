@@ -11,7 +11,7 @@ import { viewLevel } from '../modules/constants';
 import ReportExcel from '../modules/reportExcel';
 import { post } from '../../../modules/ajaxRequest';
 import { claimResource } from "../../../modules/claim";
-import {dataHeader} from '../modules/constants';
+import {headerConfig} from '../modules/constants';
 import { SingleHeader, HeaderRow, AggregateHeader } from "../modules/header";
 
 export class Content extends Component {
@@ -68,16 +68,16 @@ export class Content extends Component {
     }
 
     _buildHeader = () => {
-        const keys = Object.keys(dataHeader);
+        const keys = Object.keys(headerConfig);
         let cols = [];
         keys.forEach(key => {
-            if (!!dataHeader[key].cols)
+            if (!!headerConfig[key].cols)
             {
-                cols.push(this._buildAggregateHeaderCol(key, dataHeader[key]));
+                cols.push(this._buildAggregateHeaderCol(key, headerConfig[key]));
             }
             else
             {
-                cols.push(this._buildHeaderCol(key, dataHeader[key]));
+                cols.push(this._buildHeaderCol(key, headerConfig[key]));
             }
         })
         return new HeaderRow(cols);

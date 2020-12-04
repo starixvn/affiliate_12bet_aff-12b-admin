@@ -83,7 +83,7 @@ function mapStateToProps({ leftPanel, claimsPrincipal }) {
     const isPrivateGroup = affiliateInfo.AffId === affiliateInfo.GroupId;
     if(isPrivateGroup)
     {
-        isStatic = isStatic || !claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
+        isStatic = !claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
     }
     return Object.assign({}, { affiliateInfo, isStatic });
 };

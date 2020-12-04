@@ -73,18 +73,18 @@ export class Content extends PureComponent {
     }
 
     _renderHeader() {
-        const {isModifiable}  = this.props;
+        const { isModifiable, isShowMemberName } = this.props;
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.UserName}>{headerText.UserName}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.IbcUserName}>{headerText.IbcUserName}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>
+                { isShowMemberName && <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>}
+                { isShowMemberName && <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>}
                 <Cell header={true} colWidth={120} title={headerText.CurrentBalance}>{headerText.CurrentBalance}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
-                { isModifiable &&<Cell header={true} colWidth={30} title={headerText.Remove}>{headerText.Remove}</Cell>}
+                { isModifiable && <Cell header={true} colWidth={30} title={headerText.Remove}>{headerText.Remove}</Cell>}
             </Row>
         );
     }
@@ -112,7 +112,7 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
-        const {isModifiable} = this.props;
+        const { isModifiable, isShowMemberName } = this.props;
 
         const userName = htmlDecode(dataItem.UserName);
         const ibcUserName = htmlDecode(dataItem.IbcUserName);
@@ -124,8 +124,8 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={userName}>{userName}</Cell>
                 <Cell className="text-center" title={ibcUserName}>{ibcUserName}</Cell>
-                <Cell className="text-center" title={firstName}>{firstName}</Cell>
-                <Cell className="text-center" title={lastName}>{lastName}</Cell>
+                { isShowMemberName && <Cell className="text-center" title={firstName}>{firstName}</Cell>}
+                { isShowMemberName && <Cell className="text-center" title={lastName}>{lastName}</Cell>}
                 <Cell className="text-center" title={dataItem.CurrentBalance}>{dataItem.CurrentBalance}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
                 <Cell className="text-center" title={dataItem.AffName}>{dataItem.AffName}</Cell>
@@ -174,7 +174,8 @@ export class Content extends PureComponent {
 
 function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData, claimsPrincipal }) {
     const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffMember);
-    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData, isModifiable });
+    const isShowMemberName = claimsPrincipal.hasClaim(claimResource.AffMemberName);
+    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData, isModifiable, isShowMemberName });
 }
 
 function mapDispatchToProps(dispatch) {

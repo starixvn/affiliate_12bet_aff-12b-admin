@@ -163,15 +163,18 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     _renderPaymentInformation(paymentRequestInfo, isPending) {
+        const { isShowPaymentInfo } = this.propsl
         return (
             <fieldset>
                 <legend>
                     <h6 className="font-weight-bold">{resource.PaymentInformation}</h6>
                 </legend>
-                <FormGroup row className="mb-2">
-                    <Label sm={6}>{resource.PaymentMethod}</Label>
-                    <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PaymentMethod)}</strong></Label>
-                </FormGroup>
+                { isShowPaymentInfo &&
+                    <FormGroup row className="mb-2">
+                        <Label sm={6}>{resource.PaymentMethod}</Label>
+                        <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PaymentMethod)}</strong></Label>
+                    </FormGroup>
+                }
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.Amount}</Label>
                     <Label sm={6}><strong>{formatDecimalWithCurrencySymbol(paymentRequestInfo.Amount)}</strong></Label>
@@ -180,10 +183,12 @@ export class PaymentRequestUpdateForm extends PureComponent {
                     <Label sm={6}>{resource.Status}</Label>
                     <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.Status)}</strong></Label>
                 </FormGroup>
-                <FormGroup row className="mb-2">
-                    <Label sm={6}>{resource.UserName12Bet}</Label>
-                    <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PlayerUsername)}</strong></Label>
-                </FormGroup>
+                { isShowPaymentInfo &&
+                    <FormGroup row className="mb-2">
+                        <Label sm={6}>{resource.UserName12Bet}</Label>
+                        <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PlayerUsername)}</strong></Label>
+                    </FormGroup>
+                }
                 {
                     isPending ? this._renderOptionalStatus() : this._renderPaymentCompletionInfo(paymentRequestInfo)
                 }

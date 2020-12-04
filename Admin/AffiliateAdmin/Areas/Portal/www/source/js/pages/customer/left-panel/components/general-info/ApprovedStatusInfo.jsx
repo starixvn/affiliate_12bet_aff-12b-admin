@@ -10,7 +10,7 @@ import { claimResource } from '../../../../../modules/claim';
 
 export const ApprovedStatusInfo = (props) => {
     const [isChangingPassword, setChangingPassword] = useState(false);
-    const { affiliateInfo, affName } = props;
+    const { affiliateInfo, affName, isShowMemberLstLink } = props;
 
     function toggleChangingPassword(isChanging) {
         setChangingPassword(isChanging);
@@ -32,7 +32,7 @@ export const ApprovedStatusInfo = (props) => {
                 </Col>
             </Row>
             }
-            <a href={resolveClientUrl(`Portal/Member?AffName=${affName}`)} target='fMain'>{resource.MemberList}</a>
+            { isShowMemberLstLink && <a href={resolveClientUrl(`Portal/Member?AffName=${affName}`)} target='fMain'>{resource.MemberList}</a>}
         </React.Fragment>
     )
 }
@@ -41,6 +41,7 @@ function mapStateToProps({ affCommonInfo, leftPanel, claimsPrincipal }) {
     const { affiliateInfo } = leftPanel;
     const { affName } = affCommonInfo;
     const isPwdChangeable = claimsPrincipal.hasWriteClaim(claimResource.AffPassword);
+    const isShowMemberLstLink = claimsPrincipal.hasReadClaim(claimResource.AffMember)
     return Object.assign({}, { affiliateInfo, affName, isPwdChangeable });
 }
 

@@ -106,7 +106,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             return View("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewModel);
         }
 
-        [FunctionAuthorize(FunctionName = Function.AssignCommGroup, IsHost = true)]
         [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
