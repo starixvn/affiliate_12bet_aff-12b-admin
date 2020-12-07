@@ -95,6 +95,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 
             // Assert
             Assert.True(result.IsRenderState);
+            Assert.Empty(result.MoreWebsiteUrlList);
             Assert.Equal(ExpectedLanguageName, result.LanguageName);
         }
 
@@ -208,7 +209,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                 SiteUrl = "SiteUrl",
                 MoreSiteUrls = "MoreSiteUrls",
                 NoSiteDesc = "NoSiteDesc",
-                AffId = Constant.DefaultAffId
+                AffId = Constant.DefaultAffId,
+                PreferredPayment = PlayerUserName
             };
 
             // Action
@@ -217,6 +219,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 
             // Assert
             Assert.Equal(expectedResult, result);
+            Assert.True(requestParam.IsPlayerAccount);
+            Assert.Single(requestParam.MoreWebsiteUrlList);
         }
 
         private UpdateAccountParam CreateExpectedParam()

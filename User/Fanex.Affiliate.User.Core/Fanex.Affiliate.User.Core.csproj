@@ -307,7 +307,6 @@
     <Compile Include="DTO\LoginResultInfo.cs" />
     <Compile Include="DTO\Payment.cs" />
     <Compile Include="DTO\ProductItem.cs" />
-    <Compile Include="DTO\RsaKeyPair.cs" />
     <Compile Include="DTO\SecurityQuestion.cs" />
     <Compile Include="DTO\InternalLoginInfo.cs" />
     <Compile Include="DTO\UserPanel\LastLoginInfo.cs" />

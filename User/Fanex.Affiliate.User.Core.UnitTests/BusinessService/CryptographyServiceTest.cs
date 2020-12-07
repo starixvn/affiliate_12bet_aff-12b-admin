@@ -26,6 +26,19 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
+        public void EncryptPassword_WhenCall_ThrowException()
+        {
+            var cipherText = "123abc";
+            var keyPair = GetXmlKeyPair();
+            var base64EncodePrivateKey = ConvertToBase64(keyPair);
+            var service = CreateService();
+
+            var hashingPass = service.EncryptPassword(base64EncodePrivateKey, cipherText);
+
+            Assert.Equal(CryptographyHelper.Encrypt(cipherText), hashingPass);
+        }
+
+        [Fact]
         public void RsaEncrypt_WhenCallWithCorrectKey_NotThrowException()
         {
             var text = "test";

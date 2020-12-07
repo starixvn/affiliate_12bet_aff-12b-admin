@@ -191,11 +191,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private bool IsMatchPassword(string passwordInput, string passwordFromDb)
         {
-            if (string.IsNullOrEmpty(passwordInput))
-            {
-                return false;
-            }
-
             string encryptedPassword = _cryptographyService.EncryptPassword(passwordInput);
 
             return encryptedPassword.Equals(passwordFromDb);

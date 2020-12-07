@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -9,9 +10,6 @@ using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
@@ -50,7 +48,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLogin_WhenLoginWithInternalClosedAdminUser_ReturnErrorResult()
+        public void GetLoginResult_WhenLoginWithInternalClosedAdminUser_ReturnErrorResult()
         {
             var param = CreateLoginParam();
             var userInfo = CreateAutherizedUserInfo();
@@ -65,7 +63,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLogin_WhenLoginInternalSuccess_ReturnOk()
+        public void GetLoginResult_WhenLoginInternalSuccess_ReturnOk()
         {
             var param = CreateLoginParam();
             var userInfo = CreateAutherizedUserInfo();
@@ -79,7 +77,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLogin_WhenLoginWithInvalidTimeStamp_ReturnFailResult()
+        public void GetLoginResult_WhenLoginWithInvalidTimeStamp_ReturnFailResult()
         {
             var service = CreateService();
             SetUpLoginNormaiUserPassedAllCheckCondition();
@@ -95,7 +93,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLogin_WhenQueryStringHaveEmptyUserName_ReturnFailResult()
+        public void GetLoginResult_WhenQueryStringHaveEmptyUserName_ReturnFailResult()
         {
             var nowTick = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             var queryString = $"u={String.Empty}&p={Password}&t={nowTick}";
@@ -111,7 +109,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLogin_WhenQueryStringHaveEmptyPassword_ReturnFailResult()
+        public void GetLoginResult_WhenQueryStringHaveEmptyPassword_ReturnFailResult()
         {
             var nowTick = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             var queryString = $"u={UserName}&p={String.Empty}&t={nowTick}";
@@ -127,7 +125,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLogin_WhenUserIsClosed_ReturnFailResult()
+        public void GetLoginResult_WhenUserIsClosed_ReturnFailResult()
         {
             var service = CreateService();
             var param = CreateLoginParam();
@@ -143,7 +141,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLogin_WhenUserVerifiedInfoNotExist_ReturnFailResult()
+        public void GetLoginResult_WhenUserVerifiedInfoNotExist_ReturnFailResult()
         {
             var service = CreateService();
             SetUpLoginNormaiUserPassedAllCheckCondition();
@@ -158,7 +156,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLogin_WhenUserVerifyFail_ReturnFailResult()
+        public void GetLoginResult_WhenUserVerifyFail_ReturnFailResult()
         {
             var service = CreateService();
             SetUpLoginNormaiUserPassedAllCheckCondition();
@@ -173,12 +171,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLogin_WhenPasswordIsEmpty_ReturnFailResult()
+        public void GetLoginResult_WhenNotMatchPassword_ReturnFailResult()
         {
             var service = CreateService();
             SetUpLoginNormaiUserPassedAllCheckCondition();
             var param = CreateLoginParam();
-            param.Password = String.Empty;
+            param.IsVerifyingAccount = false;
+            VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsForAnyArgs(CreateSuccessfulVerficationInfo());
             CryptographyService.EncryptPassword(null).ReturnsForAnyArgs("abc");
 
             var result = service.GetLoginResult(param, false);
@@ -188,21 +187,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLogin_WhenNotMatchPassword_ReturnFailResult()
-        {
-            var service = CreateService();
-            SetUpLoginNormaiUserPassedAllCheckCondition();
-            var param = CreateLoginParam();
-            CryptographyService.EncryptPassword(null).ReturnsForAnyArgs("abc");
-
-            var result = service.GetLoginResult(param, false);
-
-            Assert.False(result.Result.IsOk);
-            Assert.Contains(Error.LoginWrongInfo, result.Result.Message);
-        }
-
-        [Fact]
-        public void GetLogin_WhenLoginSuccess_ReturnOkResult()
+        public void GetLoginResult_WhenLoginSuccess_ReturnOkResult()
         {
             var service = CreateService();
             SetUpLoginNormaiUserPassedAllCheckCondition();
@@ -243,6 +228,26 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             AuthRepo.ReceivedWithAnyArgs().Recheckin(1, false);
         }
 
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void GetInternalLoginClaim_WhenCall_RepoCalled(bool isHost)
+        {
+            AuthRepo.GetInternalLoginPermission(Arg.Any<int>()).Returns(new List<InternalPermission> {
+                new InternalPermission
+                {
+                    FunctionName = "[123]",
+                    IsHost = isHost
+                }
+            });
+
+            var service = CreateService();
+
+            var result = service.GetInternalLoginClaim(1);
+
+            AuthRepo.ReceivedWithAnyArgs().GetInternalLoginPermission(1);
+            Assert.NotEmpty(result);
+        }
 
         private void SetUpLoginNormaiUserPassedAllCheckCondition()
         {
@@ -265,6 +270,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 FailedLoginCount = null
             };
 
+        private static VerificationInfo CreateSuccessfulVerficationInfo()
+            => new VerificationInfo
+            {
+                DeviceCount = 11,
+                FailedLoginCount = 1
+            };
 
         private static UserLoginParam CreateLoginParam()
             => new UserLoginParam
