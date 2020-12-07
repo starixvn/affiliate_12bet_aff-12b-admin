@@ -1,12 +1,11 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using DTO.UserPanel;
     using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using ViewModels.UserPanel.Marketing;
@@ -24,7 +23,7 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult Index()
         {
             var userSession = SessionService.UserSession;

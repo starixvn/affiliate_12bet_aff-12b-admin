@@ -23,6 +23,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string WebsiteUrlType = "[AffWebURL]";
 
+        public const string HotNewsType = "[HotNews]";
+
         public const string WriteClaimValue = "Write";
     }
 }

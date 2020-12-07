@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Web.Mvc;
     using Constants;
-    using DTO.UserPanel;
     using Extensions;
     using Fanex.Affiliate.User.Core.Resources;
     using Fanex.Affiliate.User.Core.BusinessService;
@@ -29,7 +28,7 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult Index()
         {
             var userSession = SessionService.UserSession;
@@ -54,7 +53,7 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetSubCategory(string category)
         {
             var subCategoryList = MarketingService.GetCategoryList(true, SessionService.IsInternal)
@@ -70,7 +69,7 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetSize(SizeParam param)
         {
             param.AffType = SessionService.UserSession.AffType;
@@ -81,7 +80,7 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetBanner(MarketingBannerParam bannerParam)
         {
             var userSession = SessionService.UserSession;
@@ -104,7 +103,7 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetText(MarketingTextParam textParam)
         {
             var userSession = SessionService.UserSession;
@@ -123,7 +122,7 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GenerateLink(string selectedLanguage, int selectedDomainId, string selectedPage)
         {
             var userSession = SessionService.UserSession;

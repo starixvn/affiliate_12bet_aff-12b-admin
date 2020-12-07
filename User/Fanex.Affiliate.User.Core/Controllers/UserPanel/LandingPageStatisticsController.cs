@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Constants;
     using DTO.UserPanel;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
