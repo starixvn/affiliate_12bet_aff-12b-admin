@@ -28,7 +28,7 @@ export class Filter extends React.PureComponent {
     }
 
     componentDidMount = async () => {
-        if (!!this.initialGroupId  || this.props.param.IsFromHome) {
+        if (!!this.initialGroupId || this.props.param.IsFromHome) {
             this.handleClickSearch();
         }
     }
@@ -85,7 +85,7 @@ export class Filter extends React.PureComponent {
     }
 
     _buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email, affId) {
-        const { commGroupList, languageList } = this.props;
+        const { commGroupList, languageList, isShowCommFilter, isShowAccStatusFilter, isShowEmailFilter } = this.props;
 
         const space = resource.Space;
         const apostrophe = resource.Apostrophe;
@@ -93,30 +93,37 @@ export class Filter extends React.PureComponent {
         const languageTitle = languageList[selectedLanguage] || resource.AllLanguages;
         const statusTitle = statusList[selectedStatus] || resource.AllStatuses;
 
-        const userNameTitle = userName && space + resource.UsernameContains + apostrophe + userName + apostrophe;
-        const emailTitle = email && space + resource.EmailContains + apostrophe + email + apostrophe;
-        const affIdTitle = affId && space + resource.AffIdContains + apostrophe + affId + apostrophe;
-        return `${resource.ReportName}${space}${commGroupTitle.toUpperCase()}${space}${languageTitle.toUpperCase()}${space}${statusTitle.toUpperCase()}${userNameTitle}${emailTitle}${affIdTitle}`;
+        const titles = [resource.ReportName];
+        isShowCommFilter && titles.push(commGroupTitle.toUpperCase());
+        titles.push(languageTitle.toUpperCase());
+        isShowAccStatusFilter && titles.push(statusTitle.toUpperCase());
+        userName &&  titles.push(resource.UsernameContains + apostrophe + userName + apostrophe);
+        email && titles.push(resource.EmailContains + apostrophe + email + apostrophe);
+        affId && titles.push(resource.AffIdContains + apostrophe + affId + apostrophe);
+        
+        return titles.join(space);
     }
 
     render() {
         const { selectedCommGroup, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending } = this.state;
-        const { columnList, languageList, commGroupList, isShowEmailFilter, sortKeys } = this.props;
+        const { columnList, languageList, commGroupList, isShowEmailFilter, sortKeys, isShowAccStatusFilter, isShowCommFilter } = this.props;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="my-2 mr-sm-2">
-                        <Label for="SearchBy" className="mr-sm-2">{resource.SearchBy}</Label>
-                        <Input type="select" name="selectedCommGroup" id="SearchBy" value={selectedCommGroup} onChange={this.handleChange} >
-                            <option key="commGroup-all" value={0}>{resource.AllCommGroups}</option>
-                            {
-                                Object.keys(commGroupList).map(commGroup => {
-                                    return (<option key={'commGroup-' + commGroup} value={commGroup}>{htmlDecode(commGroupList[commGroup])}</option>)
-                                })
-                            }
-                        </Input>
-                    </FormGroup>
+                    {isShowCommFilter &&
+                        <FormGroup className="my-2 mr-sm-2">
+                            <Label for="SearchBy" className="mr-sm-2">{resource.SearchBy}</Label>
+                            <Input type="select" name="selectedCommGroup" id="SearchBy" value={selectedCommGroup} onChange={this.handleChange} >
+                                <option key="commGroup-all" value={0}>{resource.AllCommGroups}</option>
+                                {
+                                    Object.keys(commGroupList).map(commGroup => {
+                                        return (<option key={'commGroup-' + commGroup} value={commGroup}>{htmlDecode(commGroupList[commGroup])}</option>)
+                                    })
+                                }
+                            </Input>
+                        </FormGroup>
+                    }
 
                     <FormGroup className="my-2 mr-sm-2">
                         {
@@ -131,18 +138,20 @@ export class Filter extends React.PureComponent {
                         }
                     </FormGroup>
 
-                    <FormGroup className="my-2 mr-sm-2">
-                        {
-                            <Input type="select" name="selectedStatus" id="Status" value={selectedStatus} onChange={this.handleChange}>
-                                <option key="status-all" value="">{resource.AllStatuses}</option>
-                                {
-                                    Object.keys(statusList).map(status => {
-                                        return (<option key={'status-' + status} value={status}>{statusList[status]}</option>)
-                                    })
-                                }
-                            </Input>
-                        }
-                    </FormGroup>
+                    {isShowAccStatusFilter &&
+                        <FormGroup className="my-2 mr-sm-2">
+                            {
+                                <Input type="select" name="selectedStatus" id="Status" value={selectedStatus} onChange={this.handleChange}>
+                                    <option key="status-all" value="">{resource.AllStatuses}</option>
+                                    {
+                                        Object.keys(statusList).map(status => {
+                                            return (<option key={'status-' + status} value={status}>{statusList[status]}</option>)
+                                        })
+                                    }
+                                </Input>
+                            }
+                        </FormGroup>
+                    }
 
                     <FormGroup className="my-2 mr-sm-2">
                         <Input type="text" name="userName" id="Username" placeholder="Username"
@@ -150,12 +159,12 @@ export class Filter extends React.PureComponent {
                             onChange={this.handleChange} />
                     </FormGroup>
 
-                    { isShowEmailFilter && 
-                    <FormGroup className="my-2 mr-sm-2">
-                        <Input type="email" name="email" id="Email" placeholder="Email"
-                            onKeyPress={this.handlePressEnter}
-                            onChange={this.handleChange} />
-                    </FormGroup>
+                    {isShowEmailFilter &&
+                        <FormGroup className="my-2 mr-sm-2">
+                            <Input type="email" name="email" id="Email" placeholder="Email"
+                                onKeyPress={this.handlePressEnter}
+                                onChange={this.handleChange} />
+                        </FormGroup>
                     }
 
                     <FormGroup className="my-2 mr-sm-2">
@@ -205,13 +214,15 @@ export class Filter extends React.PureComponent {
 
 function mapStateToProps({ languageList, commGroupList, param, groupId, columnList, claimsPrincipal }) {
     const isShowEmailFilter = claimsPrincipal.hasReadClaim(claimResource.Email);
+    const isShowAccStatusFilter = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus);
+    const isShowCommFilter = claimsPrincipal.hasReadClaim(claimResource.AffCommGroup);
     const sortKeys = Object.keys(sortByList)
         .filter(key => {
             const item = sortByList[key];
             return !item.renderClaim || claimsPrincipal.hasClaim(item.renderClaim);
         })
-        .map(key => { return {key: key, value: sortByList[key].value}});
-    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys });
+        .map(key => { return { key: key, value: sortByList[key].value } });
+    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys, isShowCommFilter, isShowAccStatusFilter });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -26,7 +26,7 @@ export const sortByList = {
 export const headerText = {
     Index: { label: globalResource.Index },
     UserName: { label: 'Username' },
-    Status: { label: 'Status' },
+    Status: { label: 'Status', renderClaim: new Claim(claimResource.AffAccountStatus) },
     FirstName: { label: 'First Name' },
     LastName: { label: 'Last Name' },
     Language: { label: 'Language' },

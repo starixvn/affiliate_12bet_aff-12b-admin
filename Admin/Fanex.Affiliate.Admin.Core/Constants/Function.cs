@@ -4,6 +4,8 @@
     {
         public const string WritePermission = "Write";
 
+        public const string HomePage = "[Home]";
+
         public const string UserControl = "[UserControl]";
 
         public const string Affiliate = "[Affiliate]";
