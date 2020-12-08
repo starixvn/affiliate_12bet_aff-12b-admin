@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
-using System.Security.Claims;
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.CoreService;
 
@@ -18,7 +18,8 @@ namespace Fanex.Affiliate.User.Core.Filters
 
             if (!string.IsNullOrEmpty(PermissionName) && sessionService.IsInternal)
             {
-                var claims = controllerContext.HttpContext.User as ClaimsPrincipal;
+                var claims = sessionService.ClaimsIdentities.FirstOrDefault();
+
                 hasPermission = claims.HasClaim(c => c.Type == PermissionName);
             }
 
