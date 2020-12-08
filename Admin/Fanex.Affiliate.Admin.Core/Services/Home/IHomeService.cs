@@ -11,6 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 
         DepositInfo GetDepositInfo();
 
-        GeneralInfo GetGeneralInfo();
+        GeneralInfo GetGeneralInfo(string marketIds);
     }
 }

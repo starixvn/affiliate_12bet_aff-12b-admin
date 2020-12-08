@@ -51,22 +51,29 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpPost]
         public ActionResult GetGeneralInfo()
         {
+            var marketIds = GetCurrentInChargeMarkets();
             return new JsonNetResult
             {
-                Data = _homeService.GetGeneralInfo()
+                Data = _homeService.GetGeneralInfo(marketIds)
             };
         }
 
         [HttpPost]
         public ActionResult GetOnlineList(int pageIndex = 1, int pageSize = 20)
         {
-            var supportLanguages = _languageService.GetInChangeMarkets();
-            var languageCodes = LanguageHelper.BuildAllowQueryLanguages(string.Empty, supportLanguages);
 
+            var marketIds = GetCurrentInChargeMarkets();
             return new JsonNetResult
             {
-                Data = _homeService.GetOnlineList(languageCodes, pageIndex, pageSize)
+                Data = _homeService.GetOnlineList(marketIds, pageIndex, pageSize)
             };
+        }
+
+        private string GetCurrentInChargeMarkets()
+        {
+            var supportLanguages = _languageService.GetInChangeMarkets();
+            return LanguageHelper.BuildAllowQueryLanguages(string.Empty, supportLanguages);
+
         }
     }
 }

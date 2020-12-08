@@ -87,13 +87,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
             return result;
         }
 
-        public GeneralInfo GetGeneralInfo()
+        public GeneralInfo GetGeneralInfo(string marketIds)
         {
             const string SpKey = "Aff_Admin_GeneralInfo_Sel";
             GeneralInfo result = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
+                objectDb.AddInParameter("Languages", DbType.String, marketIds);
                 using (var reader = objectDb.ExecuteReader())
                 {
                     if (reader.Read())

@@ -29,7 +29,7 @@ export const headerText = {
     Status: { label: 'Status', renderClaim: new Claim(claimResource.AffAccountStatus) },
     FirstName: { label: 'First Name' },
     LastName: { label: 'Last Name' },
-    Language: { label: 'Language' },
+    Language: { label: 'Language', renderClaim: new Claim(claimResource.LanguageAmendment) },
     Phone: { label: 'Mobile Phone', renderClaim: new Claim(claimResource.PhoneNumber) },
     Email: { label: 'Email', renderClaim: new Claim(claimResource.Email) },
     RegistrationDateText: { label: 'Registration Date' },
