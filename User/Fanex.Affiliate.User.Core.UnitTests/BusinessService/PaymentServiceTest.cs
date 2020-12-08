@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Enum;
+using Fanex.Affiliate.User.Core.Infrastructure;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -132,10 +134,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Arrange
             var param = new PaymentCreationParam
             {
-                IsLocalTest = false
+                IsLocalTest = false,
+                Amount = 123
             };
 
-            var service = CreatePaymentService();
+            var dateTimeProvider = new Mock<IDateTimeProvider>();
+            dateTimeProvider.Setup(d => d.Now).Returns(new DateTime(2020, 12, 06));
+
+            var service = CreatePaymentService(dateTimeProvider: dateTimeProvider.Object);
 
             // Action
             var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
@@ -309,14 +315,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             IAccountRepository accountRepository = null,
             IAccountService accountService = null,
             IPaymentRepository paymentRepository = null,
-            IEmailService emailService = null)
+            IEmailService emailService = null,
+            IDateTimeProvider dateTimeProvider = null)
         {
             var fakeAccountRepository = accountRepository ?? Mock.Of<IAccountRepository>();
             var fakeAccountService = accountService ?? Mock.Of<IAccountService>();
             var fakePaymentRepository = paymentRepository ?? Mock.Of<IPaymentRepository>();
             var fakeEmailService = emailService ?? Mock.Of<IEmailService>();
+            var fakeDateTimeProvider = dateTimeProvider ?? Mock.Of<IDateTimeProvider>();
 
-            return new PaymentService(fakeAccountRepository, fakeAccountService, fakePaymentRepository, fakeEmailService);
+            return new PaymentService(fakeAccountRepository, fakeAccountService, fakePaymentRepository, fakeEmailService, fakeDateTimeProvider);
         }
     }
 

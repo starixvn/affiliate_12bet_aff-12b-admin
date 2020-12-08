@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void Index_WhenCallWithYearReportNotInRange_ReceiveNoItemList()
         {
             var date = DateTime.Now.AddYears(2);
-            MockingHelper.SetClaimsPrincipal("[AffTurnover]", true);
+            MockingHelper.SetUpEnviroment("[AffTurnover]", true);
             var controller = new CommissionReportController(SessionService, LanguageService, CommissionService);
             var result = controller.Index(date.Year) as JsonResult;
             var model = (CommissionReportDataViewModel)result.Data;
@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void Index_WhenCallWithYearReportInRange_ServiceRecieveCall()
         {
             var thisYear = DateTime.Now.Year;
-            MockingHelper.SetClaimsPrincipal("[AffTurnover]", false);
+            MockingHelper.SetUpEnviroment("[AffTurnover]", false);
             CommissionService.GenerateCommissionReportData(Arg.Compat.Any<int>(), Arg.Compat.Any<DateTime>())
                 .Returns(new CommissionReportDataViewModel
                 {

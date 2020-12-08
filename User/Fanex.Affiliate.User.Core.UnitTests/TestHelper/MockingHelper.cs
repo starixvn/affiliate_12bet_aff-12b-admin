@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             return mockHttpRequest.Object;
         }
 
-        public static void SetClaimsPrincipal(string claim, bool hasClaim)
+        public static void SetUpEnviroment(string claim = null, bool hasClaim = false)
         {
             var request = new HttpRequest("111", "http://127.0.0.1:8080/controller/action", string.Empty);
             var response = new HttpResponse(new StringWriter());

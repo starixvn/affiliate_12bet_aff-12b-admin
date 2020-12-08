@@ -72,7 +72,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
             accountOverviewRepository.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
 
-            MockingHelper.SetClaimsPrincipal("[AffTurnover]", true);
+            MockingHelper.SetUpEnviroment("[AffTurnover]", true);
             var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
 
             // Action
@@ -95,7 +95,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
             accountOverviewRepository.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
 
-            MockingHelper.SetClaimsPrincipal("[AffTurnover]", false);
+            MockingHelper.SetUpEnviroment("[AffTurnover]", false);
             var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
 
             // Action
