@@ -184,6 +184,7 @@
     <Compile Include="Constants\Field.cs" />
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
+    <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
     <Compile Include="Utilities\Result.cs" />
     <Compile Include="Constants\Money.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />
@@ -277,14 +278,6 @@
     <Compile Include="DTO\Member\InactiveMemberInfo.cs" />
     <Compile Include="DTO\UserPanel\SecurityQuestion.cs" />
     <Compile Include="Extensions\ClaimPrincipalExtension.cs" />
-    <Compile Include="MetaModels\Administrator\ChangeStatusParam.cs" />
-    <Compile Include="MetaModels\Administrator\DeleteDepartmentParam.cs" />
-    <Compile Include="MetaModels\Administrator\InsertExistedUserParam.cs" />
-    <Compile Include="MetaModels\Administrator\InsertUserParam.cs" />
-    <Compile Include="MetaModels\Administrator\InsertUpdateDepartmentParam.cs" />
-    <Compile Include="MetaModels\Administrator\UpdatePasswordParam.cs" />
-    <Compile Include="MetaModels\Administrator\UpdatePolicyParam.cs" />
-    <Compile Include="MetaModels\Administrator\UpdateUserParam.cs" />
     <Compile Include="MetaModels\AdminRole\AdminInfoParam.cs" />
     <Compile Include="MetaModels\AdminRole\DeleteAdminUsersParam.cs" />
     <Compile Include="MetaModels\AdminRole\MarketInfoParam.cs" />
@@ -573,9 +566,6 @@
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="Utilities\SystemFile.cs" />
-    <Compile Include="ViewModels\AdminRole\AdminRoleViewModel.cs" />
-    <Compile Include="ViewModels\AdminRole\AdminInfoViewModel.cs" />
-    <Compile Include="ViewModels\AdminRole\PermissionRoleViewModel.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\Affiliate\GetAffiliateViewModel.cs" />

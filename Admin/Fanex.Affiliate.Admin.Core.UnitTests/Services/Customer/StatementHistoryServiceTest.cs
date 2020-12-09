@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
@@ -8,6 +9,7 @@ using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
+using System.Security.Claims;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
@@ -47,13 +49,38 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         }
 
         [Fact]
-        public void GetStatementHistoryList_WhenCall_ReturnCorrectData()
+        public void GetStatementHistoryList_WhenCallWithFullPermission_ReturnCorrectData()
         {
             // Arrange
             var param = new AffiliatePagingByDateParam();
+            var sessionService = new Mock<ISessionService>();
+            sessionService.Setup(s => s.UserClaim).Returns(new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> {
+                new Claim(Function.AffAdjustment, "Write"),
+                new Claim(Function.Payment, "Write")
+            }) }));
+
             var repository = new Mock<IStatementHistoryRepository>();
             repository.Setup(comm => comm.GetStatementHistoryList(param)).Returns(new EntityResult<StatementHistory> { MainData = new List<StatementHistory> { new StatementHistory() }, TotalItem = 1 });
-            var service = CreateStatementHistoryService(repository.Object);
+            var service = CreateStatementHistoryService(repository.Object, sessionService.Object);
+
+            // Action
+            var result = service.GetStatementHistoryList(param);
+
+            // Assert
+            Assert.Single(result.MainData);
+        }
+
+        [Fact]
+        public void GetStatementHistoryList_WhenCallWithNotHasPermission_ReturnCorrectData()
+        {
+            // Arrange
+            var param = new AffiliatePagingByDateParam();
+            var sessionService = new Mock<ISessionService>();
+            sessionService.Setup(s => s.UserClaim).Returns(new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> ()) }));
+
+            var repository = new Mock<IStatementHistoryRepository>();
+            repository.Setup(comm => comm.GetStatementHistoryList(param)).Returns(new EntityResult<StatementHistory> { MainData = new List<StatementHistory> { new StatementHistory() }, TotalItem = 1 });
+            var service = CreateStatementHistoryService(repository.Object, sessionService.Object);
 
             // Action
             var result = service.GetStatementHistoryList(param);

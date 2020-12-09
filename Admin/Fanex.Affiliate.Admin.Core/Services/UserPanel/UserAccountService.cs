@@ -14,8 +14,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
     {
         private readonly IUserAccountRepository _userAccountRepository;
 
-        public UserAccountService(IUserAccountRepository userAccountRepository, 
-            IAuthService authService, 
+        public UserAccountService(IUserAccountRepository userAccountRepository,
+            IAuthService authService,
             ISessionService sessionService)
             : base(authService, sessionService)
         {

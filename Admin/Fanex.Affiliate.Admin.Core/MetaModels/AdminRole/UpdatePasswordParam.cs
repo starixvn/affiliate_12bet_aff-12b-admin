@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using System.ComponentModel.DataAnnotations;
 
-namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
+namespace Fanex.Affiliate.Admin.Core.MetaModels.AdminRole
 {
     public class UpdatePasswordParam : UserInfoParam
     {

@@ -24,24 +24,32 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var commissionGroupRepository = new Mock<ICommissionGroupRepository>();
-            commissionGroupRepository.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(new List<SelectItem> { new SelectItem() });
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
+            var controller = CreateAffiliateController();
 
-            var controller = CreateAffiliateController(commissionGroupRepository: commissionGroupRepository.Object, languageService: languageService.Object);
-
-            var urlHelperMock = new Mock<UrlHelper>();
-            urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/Affiliate");
-
-            controller.Url = urlHelperMock.Object;
             // Action
             var viewResult = controller.Index(new ParamFromHome()) as ViewResult;
             var viewName = viewResult.ViewName;
-            var model = viewResult.Model as AffiliateFilterViewModel;
 
             // Assert
             Assert.Equal("", viewName);
+        }
+
+        [Fact]
+        public void GetFilter_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var commissionGroupRepository = new Mock<ICommissionGroupRepository>();
+            commissionGroupRepository.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(new List<SelectItem> { new SelectItem() });
+            var languageService = new Mock<ILanguageService>();
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+
+            var controller = CreateAffiliateController(commissionGroupRepository: commissionGroupRepository.Object, languageService: languageService.Object);
+
+            // Action
+            var viewResult = controller.GetFilter() as JsonNetResult;
+            var model = viewResult.Data as AffiliateFilterViewModel;
+
+            // Assert
             Assert.Single(model.CommGroupList);
             Assert.Single(model.LanguageList);
         }
@@ -50,21 +58,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         public void GetAffiliateList_WhenCallWithValidParam_ExcuteWithCorrectData()
         {
             // Arrange
-            var param = new AffiliateInfoParam();
-            var model = new GetAffiliateViewModel();
-            AffiliateInfoParam passedParam = null;
             var affiliateInfoRepository = new Mock<IAffiliateInfoRepository>();
-            affiliateInfoRepository.Setup(t => t.GetAffiliateList(It.IsAny<AffiliateInfoParam>())).Returns(new EntityResult<AffiliateInfo> { MainData = new List<AffiliateInfo> { new AffiliateInfo() }, TotalItem = 1 }).Callback<AffiliateInfoParam>(p => passedParam = p);
-            var controller = CreateAffiliateController(affiliateInfoRepository: affiliateInfoRepository.Object);
+            affiliateInfoRepository.Setup(t => t.GetAffiliateList(It.IsAny<AffiliateInfoParam>())).Returns(new EntityResult<AffiliateInfo> { MainData = new List<AffiliateInfo> { new AffiliateInfo() }, TotalItem = 1 });
+            var languageService = new Mock<ILanguageService>();
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+
+            var controller = CreateAffiliateController(affiliateInfoRepository: affiliateInfoRepository.Object, languageService: languageService.Object);
 
             // Action
-            var result = controller.GetAffiliateList(model) as JsonNetResult;
+            var result = controller.GetAffiliateList(new GetAffiliateViewModel()) as JsonNetResult;
             var entityResult = result.Data as EntityResult<AffiliateInfo>;
 
             // Assert
             Assert.Single(entityResult.MainData);
             Assert.Equal(1, entityResult.TotalItem);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]

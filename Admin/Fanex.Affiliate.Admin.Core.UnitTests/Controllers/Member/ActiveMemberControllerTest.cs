@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Member
             var viewName = viewResult.ViewName;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/Member/ActiveMember.cshtml", viewName);
+            Assert.Equal("~/Areas/Portal/Views/Member/Index.cshtml", viewName);
         }
 
         [Fact]

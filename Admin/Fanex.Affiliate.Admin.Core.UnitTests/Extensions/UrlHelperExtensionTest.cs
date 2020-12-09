@@ -11,7 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Extensions
 {
     public class UrlHelperExtensionTest
     {
-        private IDependencyResolver _originalResolver;
         private ILifetimeScopeProvider _scopeProvider;
 
         [Fact]
@@ -25,9 +24,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Extensions
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            _scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
             var urlHelper = new Mock<UrlHelper>();
             urlHelper.Setup(u => u.Content(It.IsAny<string>())).Returns("http://localhost:65181/V1/Portal/Abc");

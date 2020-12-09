@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             commonMediaGalleryService.Setup(c => c.GetCategoryList(2)).Returns(new List<Category> { new Category { CategoryName = "Category" } });
             commonMediaGalleryService.Setup(c => c.GetCurrencyList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
             var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
             var controller = CreateTextListController(commonMediaGalleryService: commonMediaGalleryService.Object, languageService: languageService.Object);
 
@@ -50,12 +50,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void GetTextList_WhenCallWithValidParam_ExcuteWithCorrectData()
         {
             // Arrange
-            var model = new GetTextLinkViewModel();
-            var param = new TextParam();
-            TextParam passedParam = null;
+            var model = new GetTextLinkViewModel { Language = "English" };
+            var languageService = new Mock<ILanguageService>();
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+
             var textListService = new Mock<ITextListService>();
-            textListService.Setup(t => t.GetTextList(param)).Returns(new EntityResult<TextInfo> { MainData = new List<TextInfo> { new TextInfo() }, TotalItem = 1 }).Callback<TextParam>(p => passedParam = p);
-            var controller = CreateTextListController(textListService: textListService.Object);
+            textListService.Setup(t => t.GetTextList(It.IsAny<TextParam>())).Returns(new EntityResult<TextInfo> { MainData = new List<TextInfo> { new TextInfo() }, TotalItem = 1 });
+            var controller = CreateTextListController(textListService: textListService.Object, languageService: languageService.Object);
 
             // Action
             var result = controller.GetTextList(model) as JsonNetResult;
@@ -64,7 +65,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             // Assert
             Assert.Single(entityResult.MainData);
             Assert.Equal(1, entityResult.TotalItem);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]

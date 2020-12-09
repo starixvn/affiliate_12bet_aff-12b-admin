@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var productRepository = new Mock<IProductRepository>();
             productRepository.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
             var languageService = new Mock<ILanguageService>();
-            languageService.Setup(s => s.GetLanguageList()).Returns(new List<Language> { new Language() });
+            languageService.Setup(s => s.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
             var controller = CreateReportController(productRepository: productRepository.Object, languageService: languageService.Object);
 
             // Action
@@ -42,40 +42,38 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetMainData_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var model = new GetReportMainDataViewModel();
-            var param = new AffiliateReportMainParam();
-            AffiliateReportMainParam passedParam = null;
             var affiliateReportService = new Mock<IAffiliateReportService>();
-            affiliateReportService.Setup(s => s.GetMainReportData(param)).Returns(new EntityResult<AffiliateReport> { MainData = new List<AffiliateReport> { new AffiliateReport() }, TotalItem = 1 }).Callback<AffiliateReportMainParam>(p => passedParam = p);
-            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object);
+            affiliateReportService.Setup(s => s.GetMainReportData(It.IsAny<AffiliateReportMainParam>())).Returns(new EntityResult<AffiliateReport> { MainData = new List<AffiliateReport> { new AffiliateReport() }, TotalItem = 1 });
+            var languageService = new Mock<ILanguageService>();
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+
+            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, languageService: languageService.Object);
 
             // Action
-            var result = controller.GetMainData(model) as JsonNetResult;
+            var result = controller.GetMainData(new GetReportMainDataViewModel()) as JsonNetResult;
             var data = result.Data as EntityResult<AffiliateReport>;
 
             // Assert
             Assert.Single(data.MainData);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
         public void GetDetailData_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var model = new GetReportMainDataViewModel();
-            var param = new AffiliateReportMainParam();
-            AffiliateReportMainParam passedParam = null;
             var affiliateReportService = new Mock<IAffiliateReportService>();
-            affiliateReportService.Setup(s => s.GetDetailReportData(param)).Returns(new EntityResult<AffiliateReport> { MainData = new List<AffiliateReport> { new AffiliateReport() }, TotalItem = 1 }).Callback<AffiliateReportMainParam>(p => passedParam = p);
-            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object);
+            affiliateReportService.Setup(s => s.GetDetailReportData(It.IsAny<AffiliateReportMainParam>())).Returns(new EntityResult<AffiliateReport> { MainData = new List<AffiliateReport> { new AffiliateReport() }, TotalItem = 1 });
+            var languageService = new Mock<ILanguageService>();
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+
+            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, languageService: languageService.Object);
 
             // Action
-            var result = controller.GetDetailData(model) as JsonNetResult;
+            var result = controller.GetDetailData(new GetReportMainDataViewModel()) as JsonNetResult;
             var data = result.Data as EntityResult<AffiliateReport>;
 
             // Assert
             Assert.Single(data.MainData);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]

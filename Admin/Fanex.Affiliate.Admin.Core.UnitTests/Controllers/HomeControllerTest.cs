@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         {
             // Arrange
             var homeService = new Mock<IHomeService>();
-            homeService.Setup(t => t.GetGeneralInfo()).Returns(new GeneralInfo { PaymentRequestNumber = 1 });
+            homeService.Setup(t => t.GetGeneralInfo(string.Empty)).Returns(new GeneralInfo { PaymentRequestNumber = 1 });
             var controller = CreateHomeController(homeService: homeService.Object);
 
             // Action

@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             commonMediaGalleryService.Setup(c => c.GetCurrencyList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
             commonMediaGalleryService.Setup(c => c.GetImageTypeList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 345, Name = "Image" } });
             var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
             var affTypeService = new Mock<IAffTypeService>();
             affTypeService.Setup(a => a.GetAffTypeList()).Returns(new List<AffTypeInfo> { new AffTypeInfo { AffTypeId = 2, AffTypeName = "Asian" } });
 
@@ -65,18 +65,18 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var model = new ImageSizeViewModel();
-            var param = new SizeParam();
-            SizeParam passedSizeParam = null;
+            var languageService = new Mock<ILanguageService>();
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+
             var bannerListService = new Mock<IBannerListService>();
-            bannerListService.Setup(t => t.GetSizeList(param)).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } }).Callback<SizeParam>(p => passedSizeParam = p);
-            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
+            bannerListService.Setup(t => t.GetSizeList(It.IsAny<SizeParam>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
+            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object, languageService: languageService.Object);
 
             // Action
             var result = controller.GetSizeList(model) as JsonNetResult;
 
             // Assert
             Assert.Single(result.Data as IEnumerable<MediaGalleryFilterItem>);
-            Assert.Equal(param, passedSizeParam);
         }
 
         [Fact]
@@ -84,11 +84,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var model = new GetBannerViewModel();
-            var param = new BannerParam();
-            BannerParam passedParam = null;
+            var languageService = new Mock<ILanguageService>();
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+
             var bannerListService = new Mock<IBannerListService>();
-            bannerListService.Setup(t => t.GetBannerList(param)).Returns(new EntityResult<BannerInfo> { MainData = new List<BannerInfo> { new BannerInfo() }, TotalItem = 1 }).Callback<BannerParam>(p => passedParam = p);
-            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
+            bannerListService.Setup(t => t.GetBannerList(It.IsAny<BannerParam>())).Returns(new EntityResult<BannerInfo> { MainData = new List<BannerInfo> { new BannerInfo() }, TotalItem = 1 });
+            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object, languageService: languageService.Object);
 
             // Action
             var result = controller.GetBannerList(model) as JsonNetResult;
@@ -97,7 +98,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             // Assert
             Assert.Single(entityResult.MainData);
             Assert.Equal(1, entityResult.TotalItem);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]

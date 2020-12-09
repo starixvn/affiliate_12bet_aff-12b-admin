@@ -125,15 +125,9 @@ export class Content extends PureComponent {
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const newPaging = {
-            PageIndex: pageIndex,
-            PageSize: pageSize
-        }
         const { param } = this.props;
+        const newParam = Object.assign({}, param, { pageIndex, pageSize });
 
-        this.props.setPagingOption(newPaging);
-
-        const newParam = { productId: param.productId, monthDate: param.monthDate, pageIndex, pageSize };
         this._fetchData(newParam);
     }
 

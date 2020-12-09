@@ -1,13 +1,16 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
+using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
+using System.Security.Claims;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
@@ -15,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
     public class UserAccountServiceTest
     {
         [Fact]
-        public void GetUserAccountInfo_WhenCall_ReturnCorrectData()
+        public void GetUserAccountInfo_WhenCall_ReturnNull()
         {
             // Arrange
             var param = 1271808;
@@ -23,6 +26,26 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var repository = new Mock<IUserAccountRepository>();
             repository.Setup(comm => comm.GetUserAccountInfo(param)).Returns(new UserAccount { AffId = 1271808 }).Callback<int>(p => passedParam = p);
             var service = CreateUserAccountService(repository.Object);
+
+            // Action
+            var result = service.GetUserAccountInfo(param);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetUserAccountInfo_WhenCallWithIsUserHasPermissionOnAff_ReturnCorrectData()
+        {
+            // Arrange
+            var param = 1271808;
+            var passedParam = 0;
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+
+            var repository = new Mock<IUserAccountRepository>();
+            repository.Setup(comm => comm.GetUserAccountInfo(param)).Returns(new UserAccount { AffId = 1271808 }).Callback<int>(p => passedParam = p);
+            var service = CreateUserAccountService(repository.Object, authService.Object);
 
             // Action
             var result = service.GetUserAccountInfo(param);
@@ -38,9 +61,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var param = GetUserAccountParam();
             UserAccountParam passedParam = null;
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+
+            var sessionService = new Mock<ISessionService>();
+            sessionService.Setup(s => s.UserClaim).Returns(new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(Function.AffPaymentInfo, "Write") }) }));
+
             var repository = new Mock<IUserAccountRepository>();
             repository.Setup(comm => comm.UpdateUserAccount(param)).Returns(new ResultInfo()).Callback<UserAccountParam>(p => passedParam = p);
-            var service = CreateUserAccountService(repository.Object);
+            var service = CreateUserAccountService(repository.Object, authService.Object, sessionService.Object);
 
             // Action
             var result = service.UpdateUserAccount(param);
@@ -54,14 +83,31 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         public void UpdateUserAccount_WhenCallWithInvalid_ReturnError()
         {
             // Arrange
-            var service = CreateUserAccountService();
+            var sessionService = new Mock<ISessionService>();
+            sessionService.Setup(s => s.UserClaim).Returns(new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(Function.AffPaymentInfo, "Write") }) }));
+            var service = CreateUserAccountService(sessionService: sessionService.Object);
 
             // Action
             var result = service.UpdateUserAccount(new UserAccountParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal("Update is failed!", result.Message);
+            Assert.Equal(Lang.UpdateIsFailed, result.Message);
+        }
+
+        [Fact]
+        public void GetSecurityQuestions_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var repository = new Mock<IUserAccountRepository>();
+            repository.Setup(comm => comm.GetSecurityQuestions("vi-VN", false)).Returns(new List<SecurityQuestion> { new SecurityQuestion() });
+            var service = CreateUserAccountService(repository.Object);
+
+            // Action
+            var result = service.GetSecurityQuestions("vi-VN");
+
+            // Assert
+            Assert.Single(result);
         }
 
         private static UserAccountService CreateUserAccountService(

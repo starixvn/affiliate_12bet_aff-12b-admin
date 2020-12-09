@@ -150,7 +150,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             service.Setup(r => r.GetObjectDb("Aff_Admin_GeneralInfo_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetGeneralInfo();
+            var result = service.Object.GetGeneralInfo(string.Empty);
 
             // Assert
             Assert.Equal(1, result.PaymentRequestNumber);
@@ -169,7 +169,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             service.Setup(r => r.GetObjectDb("Aff_Admin_GeneralInfo_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetGeneralInfo();
+            var result = service.Object.GetGeneralInfo(string.Empty);
 
             // Assert
             Assert.Null(result);
