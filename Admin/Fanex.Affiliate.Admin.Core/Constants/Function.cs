@@ -40,7 +40,7 @@
 
         public const string MemberEmail = "[MemberEmail]";
 
-        public const string Turnover = "[Turnover]";
+        public const string Turnover = "[AffTurnover]";
 
         public const string AdminRole = "[Affiliate]";
 

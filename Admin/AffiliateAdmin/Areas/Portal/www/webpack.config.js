@@ -59,7 +59,7 @@ module.exports = env => {
             { './jszip': 'jszip' },
             { './ods': 'ods' },
             { './cptable': 'var cptable' }
-        ]
+        ],
     });
 
     // Configuration for client-side bundle suitable for running in browsers
@@ -102,7 +102,10 @@ module.exports = env => {
                 manifest: require(`${clientBundleOutputDir}/vendors/moment-manifest.json`)
             })
         ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin(), new CleanWebpackPlugin(pathsToClean, cleanOptions), ]),
-        devtool: isDevBuild ? "source-map" : undefined
+        devtool: isDevBuild ? "source-map" : undefined,
+        optimization:{
+            splitChunks: false
+        }
     });
 
     const layoutBundleConfig = merge(sharedConfig(), {

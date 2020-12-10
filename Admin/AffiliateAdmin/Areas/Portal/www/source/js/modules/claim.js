@@ -66,9 +66,8 @@ export default class ClaimPrincipal{
         {
             return this.hasReadClaim(claim);
         }
-
         return this.claims[claim.type] !== undefined
-            && (claim.value === undefined || this.claims[claim.type] === claim.value)
+            && (claim.value === undefined || !!this.claims[claim.type].find(value => value === claim.value))
     }
 }
 
