@@ -533,11 +533,15 @@ var ClaimPrincipal = /*#__PURE__*/function () {
   }, {
     key: "hasClaim",
     value: function hasClaim(claim) {
+      var _context2;
+
       if (typeof claim === 'string') {
         return this.hasReadClaim(claim);
       }
 
-      return this.claims[claim.type] !== undefined && (claim.value === undefined || this.claims[claim.type] === claim.value);
+      return this.claims[claim.type] !== undefined && (claim.value === undefined || !!_babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = this.claims[claim.type]).call(_context2, function (value) {
+        return value === claim.value;
+      }));
     }
   }], [{
     key: "currentClaimPrincipal",
