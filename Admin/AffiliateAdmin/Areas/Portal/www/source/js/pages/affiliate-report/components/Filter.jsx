@@ -270,7 +270,7 @@ export class Filter extends Component {
 
     render() {
         const { selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, selectedProductList, userName, isGetAll } = this.state;
-        const { languageList } = this.props;
+        const { languageList, isShowLangFilter } = this.props;
 
         const productDataSource = this._getProductDataSource();
         const isValidSelectedProduct = selectedProductList.length > 0;
@@ -300,7 +300,7 @@ export class Filter extends Component {
                         }
                     </FormGroup>
                     {
-                        isMainView &&
+                        isMainView && isShowLangFilter &&
                         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                             <Input type="select" name="Language" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
                                 <option key="lang-all" value="">All Language</option>
@@ -383,7 +383,8 @@ export class Filter extends Component {
 
 function mapStateToProps({ productList, pagingOption, languageList, today, currentViewLevel, param, claimsPrincipal }) {
     const hasTurnOverPermission = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
-    return Object.assign({}, { productList, pagingOption, languageList, today, currentViewLevel, param, hasTurnOverPermission });
+    const isShowLangFilter = claimsPrincipal.hasReadClaim(claimResource.LanguageAmendment);
+    return Object.assign({}, { productList, pagingOption, languageList, today, currentViewLevel, param, hasTurnOverPermission, isShowLangFilter });
 }
 
 function mapDispatchToProps(dispatch) {

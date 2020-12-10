@@ -42,7 +42,7 @@ function mapStateToProps({ affCommonInfo, leftPanel, claimsPrincipal }) {
     const { affName } = affCommonInfo;
     const isPwdChangeable = claimsPrincipal.hasWriteClaim(claimResource.AffPassword);
     const isShowMemberLstLink = claimsPrincipal.hasReadClaim(claimResource.AffMember)
-    return Object.assign({}, { affiliateInfo, affName, isPwdChangeable });
+    return Object.assign({}, { affiliateInfo, affName, isPwdChangeable, isShowMemberLstLink });
 }
 
 export default connect(mapStateToProps)(React.memo(ApprovedStatusInfo));
