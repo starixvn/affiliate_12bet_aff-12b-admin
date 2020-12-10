@@ -57,6 +57,7 @@ describe('domain control - components - Content ', () => {
 
     const defaultProps = {
         shouldResetScrollPosition: true,
+        isModifiable: true,
         selectedMarket: '',
         gridData,
         affDomainList,

@@ -23,6 +23,8 @@ describe('member list - Content - connect', () => {
             param: { AffName: '12BETAFF226' },
             shouldResetScrollPosition: true,
             pagingOption: { PageSize: 1, PageIndex: 20 },
+            isModifiable: true,
+            isShowMemberName: true,
             gridData: []
         };
         const state = {
@@ -30,6 +32,7 @@ describe('member list - Content - connect', () => {
             shouldResetScrollPosition: true,
             pagingOption: { PageSize: 1, PageIndex: 20 },
             gridData: [],
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => true), hasClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

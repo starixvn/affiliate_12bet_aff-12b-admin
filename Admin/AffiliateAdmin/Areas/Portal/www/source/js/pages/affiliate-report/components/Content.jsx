@@ -60,7 +60,7 @@ export class Content extends Component {
             </div>
         ) : (
                 <div className="d-flex align-items-center">
-                    <a href="javascript:;" className="btn-link font-weight-bold" onClick={this.handleClickBreadcrumb}>AFFILIATE REPORT</a> 
+                    <a href="javascript:;" className="btn-link font-weight-bold" onClick={this.handleClickBreadcrumb}>AFFILIATE REPORT</a>
                     {reportTitle}
                     {btnExport}
                 </div>

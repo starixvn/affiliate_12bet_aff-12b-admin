@@ -19,7 +19,7 @@ describe('banner list - components - AppContainer', () => {
             deviceType: 0,
             language: ""
         }
-        const props = Object.assign({}, { isShowLoader: true, fetchData: jest.fn(), param })
+        const props = Object.assign({}, { isShowLoader: true, fetchData: jest.fn(), param, isModifiable: true })
         const result = shallow(<AppContainer {...props} />);
 
         result.find(ControlButtons).props().fetchData();

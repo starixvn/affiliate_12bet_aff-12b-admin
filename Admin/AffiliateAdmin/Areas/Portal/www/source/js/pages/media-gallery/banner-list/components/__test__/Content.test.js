@@ -72,6 +72,7 @@ describe('banner list - components - Content ', () => {
             { key: "EURO", name: "EURO", checked: false },
             { key: "VND", name: "VND", checked: false }
         ],
+        isModifiable: true,
         deviceTypeList
     };
 

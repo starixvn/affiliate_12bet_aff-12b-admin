@@ -18,9 +18,11 @@ describe('home - BannerStatistics - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             generalInfo: { PaymentRequestNumber: 1 },
+            isShowBannerLink: true
         };
         const state = {
             generalInfo: { PaymentRequestNumber: 1 },
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

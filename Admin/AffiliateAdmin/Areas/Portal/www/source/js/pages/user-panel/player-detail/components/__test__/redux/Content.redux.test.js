@@ -21,6 +21,7 @@ describe('player detail - Content - connect', () => {
         const expectedResult = {
             pagingOption: { PageSize: 10 },
             param: { abc: 123 },
+            isDisplayTurnOver: true,
             affId: 1271808
         };
         const state = {
@@ -31,6 +32,7 @@ describe('player detail - Content - connect', () => {
                 pagingOption: { PageSize: 10 },
                 param: { abc: 123 }
             },
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

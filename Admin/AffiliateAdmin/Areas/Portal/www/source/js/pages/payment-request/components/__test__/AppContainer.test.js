@@ -7,6 +7,7 @@ describe('payment request - components - AppContainer ', () => {
     const defaultProps = {
         isShowLoader: true,
         transactionId: 123,
+        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
         param: {
             FromDate: "6/25/2019",
             IsGetAll: false,

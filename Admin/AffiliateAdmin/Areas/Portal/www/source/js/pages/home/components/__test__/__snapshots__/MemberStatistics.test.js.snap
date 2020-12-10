@@ -7,6 +7,15 @@ exports[`home - components - MemberStatistics render correctly 1`] = `
 >
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="pl-4"
@@ -161,6 +170,15 @@ exports[`home - components - MemberStatistics render correctly with this month 1
 >
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="pl-4"

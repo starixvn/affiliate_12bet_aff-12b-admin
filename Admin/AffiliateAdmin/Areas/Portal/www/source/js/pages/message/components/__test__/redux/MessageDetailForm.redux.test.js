@@ -21,11 +21,13 @@ describe('message - MessageDetailForm - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             selectedMessageId: "123",
+            isModifiable: true,
             param: { isGetAll: true }
         };
         const state = {
             selectedMessageId: "123",
             param: { isGetAll: true },
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

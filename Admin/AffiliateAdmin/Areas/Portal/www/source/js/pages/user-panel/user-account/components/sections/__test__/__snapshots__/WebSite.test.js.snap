@@ -42,6 +42,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
         xl={6}
       >
         <Input
+          disabled={false}
           name="siteUrl"
           onChange={[Function]}
           type="text"
@@ -98,6 +99,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
       >
         <input
           className="form-control"
+          disabled={false}
           name={0}
           onChange={[Function]}
           value="www.sportsbookie.com"
@@ -157,6 +159,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
       >
         <input
           className="form-control"
+          disabled={false}
           name={1}
           onChange={[Function]}
           value="www.gzyyy.com"
@@ -216,6 +219,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
       >
         <input
           className="form-control"
+          disabled={false}
           name={2}
           onChange={[Function]}
           value="www.123.com"
@@ -271,6 +275,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
         xl={7}
       >
         <Input
+          disabled={false}
           id="noSiteDescription"
           name="noSiteDescription"
           onChange={[Function]}
@@ -330,6 +335,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
         xl={6}
       >
         <Input
+          disabled={false}
           name="siteUrl"
           onChange={[Function]}
           type="text"
@@ -386,6 +392,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
       >
         <input
           className="form-control"
+          disabled={false}
           name={0}
           onChange={[Function]}
           value="www.sportsbookie.com"
@@ -445,6 +452,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
       >
         <input
           className="form-control"
+          disabled={false}
           name={1}
           onChange={[Function]}
           value="www.gzyyy.com"
@@ -504,6 +512,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
       >
         <input
           className="form-control"
+          disabled={false}
           name={2}
           onChange={[Function]}
           value="www.123.com"
@@ -559,6 +568,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
         xl={7}
       >
         <Input
+          disabled={false}
           id="noSiteDescription"
           name="noSiteDescription"
           onChange={[Function]}

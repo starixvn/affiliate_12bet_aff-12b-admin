@@ -7,6 +7,15 @@ exports[`customer - mainpage - components - AppContainer Should render correctly
   >
     <Row
       tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
     >
       <div
         className="left-panel"
@@ -46,6 +55,15 @@ exports[`customer - mainpage - components - AppContainer Should render correctly
   >
     <Row
       tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
     >
       <div
         className="left-panel"

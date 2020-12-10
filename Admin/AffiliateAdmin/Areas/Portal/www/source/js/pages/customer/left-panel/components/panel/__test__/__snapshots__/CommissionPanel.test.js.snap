@@ -6,6 +6,15 @@ exports[`left panel - components - panel - CommissionPanel render correctly with
 >
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={7}
@@ -39,17 +48,19 @@ exports[`left panel - components - panel - CommissionPanel render correctly with
       <span
         className=""
       />
-      <CommissionGroupPopup
-        affId={1219631}
-        affName="12BETAFF016"
-        isPrivateGroup={false}
-        setShowPopupCommGroup={[Function]}
-        showPopupCommGroup={false}
-      />
     </Col>
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="pr-0"
@@ -93,6 +104,15 @@ exports[`left panel - components - panel - CommissionPanel render correctly with
 >
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={7}
@@ -142,6 +162,15 @@ exports[`left panel - components - panel - CommissionPanel render correctly with
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="pr-0"

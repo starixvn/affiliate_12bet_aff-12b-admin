@@ -160,7 +160,7 @@ function mapStateToProps({ today, affCommonInfo, playerDetail, claimsPrincipal }
     const { param, sortedParam } = playerDetail;
     const { affId } = affCommonInfo;
     const hasTurnOverPermission = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
-    console.log(hasTurnOverPermission);
+
     return Object.assign({}, {
         param,
         affId,

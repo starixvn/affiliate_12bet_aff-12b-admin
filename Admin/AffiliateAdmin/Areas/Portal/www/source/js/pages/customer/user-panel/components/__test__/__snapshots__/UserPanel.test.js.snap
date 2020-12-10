@@ -76,6 +76,10 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "note",
           "name": "Note",
           "parent": null,
+          "renderClaim": Claim {
+            "type": "[Note]",
+            "value": undefined,
+          },
         },
         Object {
           "component": Object {
@@ -88,6 +92,10 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "playerDetail",
           "name": "Players Detail",
           "parent": null,
+          "renderClaim": Claim {
+            "type": "[AffPlayerDetail]",
+            "value": undefined,
+          },
         },
         Object {
           "component": Object {
@@ -100,6 +108,10 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "adjustment",
           "name": "Adjustment",
           "parent": null,
+          "renderClaim": Claim {
+            "type": "[AffAdjustment]",
+            "value": "Write",
+          },
         },
         Object {
           "component": Object {
@@ -124,6 +136,10 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "member",
           "name": "Member",
           "parent": null,
+          "renderClaim": Claim {
+            "type": "[AffMemberDetail]",
+            "value": undefined,
+          },
         },
         Object {
           "component": Object {
@@ -206,6 +222,10 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "edit",
           "name": "Edit",
           "parent": null,
+          "renderClaim": Claim {
+            "type": "[Note]",
+            "value": undefined,
+          },
         },
         Object {
           "component": Object {

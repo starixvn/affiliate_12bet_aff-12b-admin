@@ -13,6 +13,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}
@@ -210,6 +211,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}
@@ -407,6 +409,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}
@@ -604,6 +607,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}

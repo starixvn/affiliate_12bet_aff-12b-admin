@@ -44,7 +44,6 @@ describe('customer - mainpage reducer', () => {
             isValidUserName: true,
         },
         member: {
-            canViewMemberEmail: false,
             pagingOption: defaultPagingOption,
             param: null,
         },
@@ -79,6 +78,7 @@ describe('customer - mainpage reducer', () => {
             param: {},
             showIdList: {},
         },
+        claimsPrincipal: {}
     }
     it(`should handle rootReducer reducer`, () => {
         const expectResult = Object.assign({}, expectedResult, { isShowLoaderUserPanel: true, })

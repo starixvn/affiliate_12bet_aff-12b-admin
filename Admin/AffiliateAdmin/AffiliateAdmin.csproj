@@ -348,6 +348,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\GridData.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\redux\GridData.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\header.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\constants\key.js" />
@@ -361,7 +362,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\__test__\AssignGroup.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\__test__\AssignPrivateGroup.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\__test__\EditGroup.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\__test__\GridData.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\__test__\redux\GridData.redux.test.js" />
@@ -456,6 +456,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\ContactNumber.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ApprovedStatusInfo.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ContactApp.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\Language.test.js" />
@@ -595,6 +596,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\InputFile.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\__test__\ControlButtons.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\constants\key.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\__test__\index.test.js" />
@@ -607,6 +610,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\modules\menus.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\__test__\index.test.js" />

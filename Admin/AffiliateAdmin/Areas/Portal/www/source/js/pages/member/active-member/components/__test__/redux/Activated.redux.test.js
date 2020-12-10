@@ -18,10 +18,12 @@ describe('active member - Content - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            activatedGridData: []
+            activatedGridData: [],
+            isShowMemberFullname: true
         };
         const state = {
             activatedGridData: [],
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

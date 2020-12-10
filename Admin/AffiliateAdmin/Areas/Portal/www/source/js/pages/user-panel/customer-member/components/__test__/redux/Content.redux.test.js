@@ -21,16 +21,16 @@ describe('customer member - Content - connect', () => {
         const expectedResult = {
             affId: 1271808,
             param: { abc: 123 },
-            canViewMemberEmail: true,
+            isDisplayFullName: true,
             pagingOption: { PageSize: 10 }
         };
         const state = {
             affCommonInfo: { affId: 1271808, affName: '12BETAFF226' },
             member: {
                 param: { abc: 123 },
-                canViewMemberEmail: true,
                 pagingOption: { PageSize: 10 }
             },
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

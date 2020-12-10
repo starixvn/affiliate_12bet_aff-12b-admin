@@ -22,12 +22,14 @@ describe('active member - Content - connect', () => {
         const expectedResult = {
             userNames: '12BETAFF226',
             shouldResetScrollPosition: true,
+            isShowMemberFullname: true,
             unactivatedGridData: []
         };
         const state = {
             userNames: '12BETAFF226',
             shouldResetScrollPosition: true,
             unactivatedGridData: [],
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

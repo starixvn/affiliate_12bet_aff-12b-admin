@@ -12,6 +12,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
       }
     }
     centered={false}
+    container="body"
     fade={true}
     innerRef={
       Object {
@@ -650,6 +651,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
       }
     }
     centered={false}
+    container="body"
     fade={true}
     innerRef={
       Object {
@@ -1293,6 +1295,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
       }
     }
     centered={false}
+    container="body"
     fade={true}
     innerRef={
       Object {

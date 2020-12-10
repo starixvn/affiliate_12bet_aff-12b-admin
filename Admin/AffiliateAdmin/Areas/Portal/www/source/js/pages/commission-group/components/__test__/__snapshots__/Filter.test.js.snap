@@ -14,7 +14,7 @@ exports[`commission group - Filter should render correctly 1`] = `
     tag="div"
   >
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="mb-2 mr-sm-2 my-2"
       tag="div"
     >
       <Label

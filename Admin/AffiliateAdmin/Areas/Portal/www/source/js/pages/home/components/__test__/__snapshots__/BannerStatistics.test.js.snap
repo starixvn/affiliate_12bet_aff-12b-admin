@@ -6,6 +6,15 @@ exports[`home - components - BannerStatistics render correctly 1`] = `
 >
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <span
       className="tbl-icon01"
@@ -19,6 +28,15 @@ exports[`home - components - BannerStatistics render correctly 1`] = `
   <Row
     className="background-gray border"
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={12}
@@ -35,14 +53,10 @@ exports[`home - components - BannerStatistics render correctly 1`] = `
     >
       <span>
         We have 
-        <a
-          href="/Portal/MediaGallery?IsFromHome=true"
-        >
-          <strong>
-            32
-          </strong>
-        </a>
-         banners in the program
+        <strong>
+          32
+        </strong>
+        banners in the program
       </span>
     </Col>
     <Col
@@ -59,21 +73,13 @@ exports[`home - components - BannerStatistics render correctly 1`] = `
       }
     >
       <span>
-        <a
-          href="/Portal/MediaGallery?ImageType=Image&IsFromHome=true"
-        >
-          <strong>
-            23
-          </strong>
-        </a>
+        <strong>
+          23
+        </strong>
          image banners / 
-        <a
-          href="/Portal/MediaGallery?ImageType=Flash&IsFromHome=true"
-        >
-          <strong>
-            9
-          </strong>
-        </a>
+        <strong>
+          9
+        </strong>
          flash banners
       </span>
     </Col>

@@ -20,12 +20,15 @@ describe('left panel - SettingPanel - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            affiliateInfo : { AffId: 1271808 },
+            affiliateInfo: { AffId: 1271808 },
+            isStatusModifiable: true,
+            isStatusShowable: true,
             affName: '12BETAFF226'
         };
 
         const state = {
-            leftPanel: { affiliateInfo : { AffId: 1271808 }, affName: '12BETAFF226' },
+            leftPanel: { affiliateInfo: { AffId: 1271808 }, affName: '12BETAFF226' },
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

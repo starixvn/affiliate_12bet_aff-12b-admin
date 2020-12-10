@@ -511,7 +511,7 @@ exports[`banner list - components - Content  render correctly with gridData is e
             <t
               asc={true}
               className="text-center"
-              colSpan="11"
+              colSpan={12}
               header={false}
               onClick={[Function]}
               sortable={false}

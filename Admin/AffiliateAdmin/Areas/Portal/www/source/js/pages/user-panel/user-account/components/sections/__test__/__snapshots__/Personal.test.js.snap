@@ -10,7 +10,6 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
     tag="div"
   >
     <Label
-      className=""
       for="username"
       sm={3}
       tag="label"
@@ -86,6 +85,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       xl={10}
     >
       <Input
+        disabled={false}
         id="firstName"
         name="firstName"
         onChange={[Function]}
@@ -132,6 +132,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       xl={10}
     >
       <Input
+        disabled={false}
         id="lastName"
         name="lastName"
         onChange={[Function]}
@@ -270,6 +271,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       xl={10}
     >
       <Input
+        disabled={false}
         id="email"
         name="email"
         onChange={[Function]}
@@ -316,6 +318,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       xl={10}
     >
       <Input
+        disabled={false}
         id="phone"
         name="phone"
         onChange={[Function]}
@@ -362,6 +365,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       xl={10}
     >
       <Input
+        disabled={false}
         id="MSN/YM/QQ"
         name="MSN/YM/QQ"
         onChange={[Function]}

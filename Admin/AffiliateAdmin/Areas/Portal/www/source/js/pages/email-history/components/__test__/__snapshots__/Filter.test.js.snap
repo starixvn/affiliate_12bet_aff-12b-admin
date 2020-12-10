@@ -9,7 +9,7 @@ exports[`email history - components - Filter  render correctly with SearchBy All
     tag="div"
   >
     <FormGroup
-      className="mr-sm-3"
+      className="mr-sm-3 my-2"
       tag="div"
     >
       <Label
@@ -98,7 +98,7 @@ exports[`email history - components - Filter  render correctly with SearchBy All
       </FormGroup>
     </FormGroup>
     <FormGroup
-      className="mr-sm-3"
+      className="mr-sm-3 my-2"
       tag="div"
     >
       <Label
@@ -131,7 +131,7 @@ exports[`email history - components - Filter  render correctly with SearchBy All
       />
     </FormGroup>
     <FormGroup
-      className="mr-sm-3"
+      className="mr-sm-3 my-2"
       tag="div"
     >
       <Label
@@ -189,7 +189,7 @@ exports[`email history - components - Filter  render correctly with SearchBy Sen
     tag="div"
   >
     <FormGroup
-      className="mr-sm-3"
+      className="mr-sm-3 my-2"
       tag="div"
     >
       <Label
@@ -246,7 +246,7 @@ exports[`email history - components - Filter  render correctly with SearchBy Sen
       </Input>
     </FormGroup>
     <FormGroup
-      className="mr-sm-3"
+      className="mr-sm-3 my-2"
       tag="div"
     >
       <Label
@@ -305,7 +305,7 @@ exports[`email history - components - Filter  render correctly with SearchBy Sen
       </FormGroup>
     </FormGroup>
     <FormGroup
-      className="mr-sm-3"
+      className="mr-sm-3 my-2"
       tag="div"
     >
       <Label
@@ -338,7 +338,7 @@ exports[`email history - components - Filter  render correctly with SearchBy Sen
       />
     </FormGroup>
     <FormGroup
-      className="mr-sm-3"
+      className="mr-sm-3 my-2"
       tag="div"
     >
       <Label

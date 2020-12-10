@@ -20,11 +20,13 @@ describe('payment request - Content - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             pagingOption: { PageSize: 10 },
+            isClickable: true,
             param: { abc: 123 }
         };
         const state = {
             pagingOption: { PageSize: 10 },
             param: { abc: 123 },
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

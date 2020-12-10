@@ -11,6 +11,7 @@ exports[`domain control - components - DomainControlPopup  render correctly with
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}
@@ -332,6 +333,7 @@ exports[`domain control - components - DomainControlPopup  render correctly with
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}

@@ -23,7 +23,32 @@ describe('affiliate info - Filter - connect', () => {
             languageList: { en: 'English' },
             commGroupList: { 133: 'New Group' },
             param: { abc: 123 },
+            sortKeys: [
+                { "key": "Username",
+                    "value": 1,
+                },
+                {
+                    "key": "Registration Date",
+                    "value": 2,
+                },
+                {
+                    "key": "Approval Date",
+                    "value": 3,
+                },
+                {
+                    "key": "Balance B/F",
+                    "value": 4,
+                },
+                {
+                    "key": "Member",
+                    "value": 5,
+                }
+            ],
             groupId: 123,
+            isShowEmailFilter: true,
+            isShowAccStatusFilter: true,
+            isShowCommFilter: true,
+            isShowLangFilter: true,
             columnList: [1, 2, 3]
         };
 
@@ -33,6 +58,7 @@ describe('affiliate info - Filter - connect', () => {
             param: { abc: 123 },
             groupId: 123,
             columnList: [1, 2, 3],
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 
@@ -46,6 +72,7 @@ describe('affiliate info - Filter - connect', () => {
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
             setReportTitle: actions['setReportTitle'],
+            setLanguageList: actions['setLanguageList'],
             setParam: actions['setParam'],
             setSelectedColumn: actions['setSelectedColumn']
         }

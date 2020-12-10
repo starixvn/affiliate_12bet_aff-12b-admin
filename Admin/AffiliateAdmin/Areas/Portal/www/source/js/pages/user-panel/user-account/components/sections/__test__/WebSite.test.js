@@ -42,12 +42,13 @@ describe('user account - components - sections - WebSite', () => {
         userAccountInfo,
         moreSiteUrlsList: [ "www.sportsbookie.com", "www.gzyyy.com", "www.123.com" ],
         setUserAccountInfo: jest.fn(),
+        claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
         setMoreSiteUrlsList: jest.fn()
     }
 
     it('render correctly', () => {
         const result = shallow(<WebSite {...defaultProps} />);
-        
+
         expect(result).toMatchSnapshot();
     });
 
@@ -62,7 +63,7 @@ describe('user account - components - sections - WebSite', () => {
         const result = shallow(<WebSite {...defaultProps} />);
         result.setState({ messageNotification: 'abc' });
         result.setState = jest.fn();
-        
+
         result.find(NotificationPopup).props().onClose();
 
         expect(result.setState).toHaveBeenCalledWith({ messageNotification: '' });
@@ -70,7 +71,7 @@ describe('user account - components - sections - WebSite', () => {
 
     it('handleChange - should call setUserAccountInfo', () => {
         const result = shallow(<WebSite {...defaultProps} />);
-        
+
         result.instance().handleChange({ target: { name: 'siteUrl', value: 'abc.com' }});
 
         expect(defaultProps.setUserAccountInfo).toHaveBeenCalledWith({ ...userAccountInfo, SiteUrl: 'abc.com'});
@@ -78,7 +79,7 @@ describe('user account - components - sections - WebSite', () => {
 
     it('handleChangeMoreUrl - should call setMoreSiteUrlsList', () => {
         const result = shallow(<WebSite {...defaultProps} />);
-        
+
         result.instance().handleChangeMoreUrl({ target: { name: '0', value: 'www.abc.com' }});
 
         expect(defaultProps.setMoreSiteUrlsList).toHaveBeenCalledWith([ "www.abc.com", "www.gzyyy.com", "www.123.com" ]);
@@ -90,7 +91,7 @@ describe('user account - components - sections - WebSite', () => {
         result.setState = jest.fn();
         result.instance().moreSiteUrlRefs[1].current = jest.fn();
         result.instance().moreSiteUrlRefs[1].current.focus = jest.fn();
-        
+
         result.instance().handleAddUrl();
 
         expect(result.setState).toHaveBeenCalledWith({ messageNotification: `Please input Website URL 3` });
@@ -106,7 +107,7 @@ describe('user account - components - sections - WebSite', () => {
 
     it('handleDeleteUrl - should be called when click Del button', () => {
         const result = shallow(<WebSite {...defaultProps} />);
-        
+
         result.find('Button[color="danger"]').at(0).simulate('click');
 
         expect(defaultProps.setMoreSiteUrlsList).toHaveBeenCalledWith([ "www.gzyyy.com", "www.123.com", "" ]);

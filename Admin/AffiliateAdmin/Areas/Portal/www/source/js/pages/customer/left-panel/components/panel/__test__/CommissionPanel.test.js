@@ -32,6 +32,7 @@ describe('left panel - components - panel - CommissionPanel', () => {
     };
 
     const defaultProps = {
+        isStatic: false,
         affiliateInfo
     }
 

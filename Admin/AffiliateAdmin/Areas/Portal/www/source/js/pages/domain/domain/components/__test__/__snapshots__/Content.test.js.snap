@@ -88,44 +88,46 @@ exports[`domain - components - Content  render correctly 1`] = `
             >
               4/19/2018
             </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Edit Domain"
-            >
-              <Button
-                color="link p-0"
+            <React.Fragment>
+              <t
+                asc={true}
+                className="text-center"
+                header={false}
                 onClick={[Function]}
-                tag="button"
+                sortable={false}
+                sorting={false}
+                title="Edit Domain"
               >
-                <span
-                  className="oi oi-pencil text-secondary"
-                />
-              </Button>
-            </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Delete Domain"
-            >
-              <Button
-                color="link p-0"
+                <Button
+                  color="link p-0"
+                  onClick={[Function]}
+                  tag="button"
+                >
+                  <span
+                    className="oi oi-pencil text-secondary"
+                  />
+                </Button>
+              </t>
+              <t
+                asc={true}
+                className="text-center"
+                header={false}
                 onClick={[Function]}
-                tag="button"
+                sortable={false}
+                sorting={false}
+                title="Delete Domain"
               >
-                <span
-                  className="oi oi-trash text-danger"
-                />
-              </Button>
-            </t>
+                <Button
+                  color="link p-0"
+                  onClick={[Function]}
+                  tag="button"
+                >
+                  <span
+                    className="oi oi-trash text-danger"
+                  />
+                </Button>
+              </t>
+            </React.Fragment>
           </t>,
           <t>
             <t
@@ -186,44 +188,46 @@ exports[`domain - components - Content  render correctly 1`] = `
             >
               8/1/2018
             </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Edit Domain"
-            >
-              <Button
-                color="link p-0"
+            <React.Fragment>
+              <t
+                asc={true}
+                className="text-center"
+                header={false}
                 onClick={[Function]}
-                tag="button"
+                sortable={false}
+                sorting={false}
+                title="Edit Domain"
               >
-                <span
-                  className="oi oi-pencil text-secondary"
-                />
-              </Button>
-            </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Delete Domain"
-            >
-              <Button
-                color="link p-0"
+                <Button
+                  color="link p-0"
+                  onClick={[Function]}
+                  tag="button"
+                >
+                  <span
+                    className="oi oi-pencil text-secondary"
+                  />
+                </Button>
+              </t>
+              <t
+                asc={true}
+                className="text-center"
+                header={false}
                 onClick={[Function]}
-                tag="button"
+                sortable={false}
+                sorting={false}
+                title="Delete Domain"
               >
-                <span
-                  className="oi oi-trash text-danger"
-                />
-              </Button>
-            </t>
+                <Button
+                  color="link p-0"
+                  onClick={[Function]}
+                  tag="button"
+                >
+                  <span
+                    className="oi oi-trash text-danger"
+                  />
+                </Button>
+              </t>
+            </React.Fragment>
           </t>,
         ]
       }

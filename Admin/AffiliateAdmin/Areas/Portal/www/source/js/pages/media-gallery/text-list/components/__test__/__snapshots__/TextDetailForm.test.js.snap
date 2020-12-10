@@ -11,6 +11,7 @@ exports[`text list - components - TextDetailForm  render correctly with insert 1
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}
@@ -430,6 +431,7 @@ exports[`text list - components - TextDetailForm  render correctly with not show
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={false}
   keyboard={true}
@@ -849,6 +851,7 @@ exports[`text list - components - TextDetailForm  render correctly with update 1
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}

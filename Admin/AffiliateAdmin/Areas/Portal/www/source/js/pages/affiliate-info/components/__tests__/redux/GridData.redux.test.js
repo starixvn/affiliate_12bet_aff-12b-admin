@@ -24,6 +24,8 @@ describe('affiliate info - GridData - connect', () => {
 			languageList: { en: 'English' },
 			pagingOption: { PageIndex: 1 },
 			param: { abc: 123 },
+			isAssignCommGroup: true,
+			isPwdChangeable : true,
 			columnList: [1, 2, 3]
 		};
 
@@ -31,6 +33,7 @@ describe('affiliate info - GridData - connect', () => {
 			languageList: { en: 'English' },
 			pagingOption: { PageIndex: 1 },
 			param: { abc: 123 },
+			claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
 			columnList: [1, 2, 3],
 			anotherProp: "Not included"
 		};

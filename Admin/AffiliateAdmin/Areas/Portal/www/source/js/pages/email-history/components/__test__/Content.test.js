@@ -16,6 +16,7 @@ describe('email history - components - Content ', () => {
             ToDate: "6/28/2019"
         },
         checkedEmails: {},
+        isModifiable: true,
         shouldResetScrollPosition: true,
         gridData: null
     }

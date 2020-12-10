@@ -6,7 +6,6 @@ import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import { capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo } from '../../actions';
 import { playerMethod, netellerMethod, moneybookersMethod, wireMethod, minimumPayment, nondeposited } from '../../modules/constants';
-import { SET_SHORT_CODE_LANGUAGE_LIST } from '../../../landing-page-statistics/actions/types';
 import { claimResource } from '../../../../../modules/claim';
 
 const paymentMethodList = [

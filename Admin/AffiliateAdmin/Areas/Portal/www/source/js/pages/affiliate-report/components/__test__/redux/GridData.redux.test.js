@@ -23,6 +23,7 @@ describe('affiliate report - GridData - connect', () => {
 		const expectedResult = {
 			pagingOption: { PageIndex: 1 },
 			param: { abc: 123 },
+			hasTurnOverPermission: true,
 			currentViewLevel: 123
 		};
 
@@ -30,6 +31,7 @@ describe('affiliate report - GridData - connect', () => {
 			pagingOption: { PageIndex: 1 },
 			param: { abc: 123 },
 			currentViewLevel: 123,
+			claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
 			anotherProp: "Not included"
 		};
 

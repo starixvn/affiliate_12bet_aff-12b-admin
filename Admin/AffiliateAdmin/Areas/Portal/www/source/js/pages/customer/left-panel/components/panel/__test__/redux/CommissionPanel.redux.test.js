@@ -20,11 +20,13 @@ describe('left panel - CommissionPanel - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
+            isStatic: false,
             affiliateInfo : { AffId: 1271808 }
         };
 
         const state = {
-            leftPanel: { affiliateInfo : { AffId: 1271808 } },
+            leftPanel: { affiliateInfo: { AffId: 1271808 } },
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

@@ -7,6 +7,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
   <Row
     className="border-0 py-1"
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -53,6 +62,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -88,6 +106,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -123,6 +150,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -158,6 +194,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="pr-0"
@@ -175,26 +220,26 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
     >
       Contact Number
     </Col>
-    <Col
+    <Connect(ContactNumber)
       className="text-right"
+      isStatic={true}
       sm={7}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
     >
       abc
-    </Col>
+    </Connect(ContactNumber)>
   </Row>
   <Connect(Component) />
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -212,7 +257,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
       Language
     </Col>
     <Col
-      className="text-right text-primary"
+      className="text-right"
       sm={7}
       tag="div"
       widths={
@@ -225,11 +270,22 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
         ]
       }
     >
-      <Connect(Language) />
+      <Connect(Language)
+        isStatic={false}
+      />
     </Col>
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -271,6 +327,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -306,6 +371,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -355,6 +429,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
   <Row
     className="border-0 py-1"
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -398,6 +481,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -431,6 +523,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -464,6 +565,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -497,6 +607,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="pr-0"
@@ -514,26 +633,26 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
     >
       Contact Number
     </Col>
-    <Col
+    <Connect(ContactNumber)
       className="text-right"
+      isStatic={true}
       sm={7}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
     >
       123456789
-    </Col>
+    </Connect(ContactNumber)>
   </Row>
   <Connect(Component) />
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -551,7 +670,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
       Language
     </Col>
     <Col
-      className="text-right text-primary"
+      className="text-right"
       sm={7}
       tag="div"
       widths={
@@ -564,11 +683,22 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
         ]
       }
     >
-      <Connect(Language) />
+      <Connect(Language)
+        isStatic={false}
+      />
     </Col>
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -610,6 +740,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -645,6 +784,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -695,6 +843,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   <Row
     className="border-0 py-1"
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -741,6 +898,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -776,6 +942,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -811,6 +986,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -846,6 +1030,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="pr-0"
@@ -863,26 +1056,26 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
     >
       Contact Number
     </Col>
-    <Col
+    <Connect(ContactNumber)
       className="text-right"
+      isStatic={true}
       sm={7}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
     >
       123456
-    </Col>
+    </Connect(ContactNumber)>
   </Row>
   <Connect(Component) />
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -900,7 +1093,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
       Language
     </Col>
     <Col
-      className="text-right text-primary"
+      className="text-right"
       sm={7}
       tag="div"
       widths={
@@ -913,11 +1106,22 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
         ]
       }
     >
-      <Connect(Language) />
+      <Connect(Language)
+        isStatic={false}
+      />
     </Col>
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -959,6 +1163,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -994,6 +1207,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -1043,6 +1265,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   <Row
     className="border-0 py-1"
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -1089,6 +1320,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -1124,6 +1364,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -1159,6 +1408,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -1194,6 +1452,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="pr-0"
@@ -1211,26 +1478,26 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
     >
       Contact Number
     </Col>
-    <Col
+    <Connect(ContactNumber)
       className="text-right"
+      isStatic={true}
       sm={7}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
     >
       123456
-    </Col>
+    </Connect(ContactNumber)>
   </Row>
   <Connect(Component) />
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -1248,7 +1515,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
       Language
     </Col>
     <Col
-      className="text-right text-primary"
+      className="text-right"
       sm={7}
       tag="div"
       widths={
@@ -1261,11 +1528,22 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
         ]
       }
     >
-      <Connect(Language) />
+      <Connect(Language)
+        isStatic={false}
+      />
     </Col>
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -1307,6 +1585,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}
@@ -1342,6 +1629,15 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}

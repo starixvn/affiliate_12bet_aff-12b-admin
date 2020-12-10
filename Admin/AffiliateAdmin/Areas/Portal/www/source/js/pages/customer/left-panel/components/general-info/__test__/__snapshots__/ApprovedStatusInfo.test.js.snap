@@ -1,63 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`left panel - components - general-info - ApprovedStatusInfo render correctly has props is null 1`] = `
-<Fragment>
-  <Row
-    tag="div"
-  >
-    <Col
-      sm={5}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-    >
-      Password
-    </Col>
-    <Col
-      className="text-right text-primary"
-      sm={7}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-    >
-      <Button
-        color="link left-panel-btn-link"
-        onClick={[Function]}
-        tag="button"
-      >
-        [
-        Change
-        ]
-      </Button>
-    </Col>
-  </Row>
-  <a
-    href="/Portal/Member?AffName=undefined"
-    target="fMain"
-  >
-    Member List
-  </a>
-</Fragment>
-`;
+exports[`left panel - components - general-info - ApprovedStatusInfo render correctly has props is null 1`] = `<Fragment />`;
 
 exports[`left panel - components - general-info - ApprovedStatusInfo render correctly with affiliateInfo is not null  1`] = `
 <Fragment>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}

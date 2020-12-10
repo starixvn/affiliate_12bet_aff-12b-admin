@@ -623,7 +623,7 @@ exports[`change admin password - components - AppContainer render correctly with
             <div
               dangerouslySetInnerHTML={
                 Object {
-                  "__html": "Password must have at least 6 characters, including at least 2 letters and at least 2 digits.",
+                  "__html": "New password must be different from old!",
                 }
               }
             />
