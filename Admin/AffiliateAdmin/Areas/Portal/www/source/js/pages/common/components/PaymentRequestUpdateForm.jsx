@@ -7,6 +7,7 @@ import { resource, globalResource, statusList, errorList, pending } from '../mod
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
 import { getPaymentRequestDetail, updatePaymentRequest } from '../actions/paymentRequestUpdate';
 import { htmlDecode } from '../../../modules/htmlHelper';
+import { claimResource } from '../../../modules/claim';
 
 const pendingStatus = pending.toLowerCase();
 const approvedStatus = statusList.Approved.toLowerCase();
@@ -260,8 +261,16 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 }
 
+function mapStateToProps({claimsPrincipal}){
+    const isUpdatable=claimsPrincipal.hasWriteClaim(claimResource.Payment)
+    const isShowEmail=claimsPrincipal.hasReadClaim(claimResource.Email)
+    const isShowFullName=claimsPrincipal.hasReadClaim(claimResource.AffMemberName)
+    const isShowPaymentInfo=claimsPrincipal.hasReadClaim(claimResource.PaymentInfo)
+    return Object.assign({}, { isUpdatable, isShowEmail, isShowFullName, isShowPaymentInfo });
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ getPaymentRequestDetail, updatePaymentRequest }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(PaymentRequestUpdateForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestUpdateForm);

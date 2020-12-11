@@ -8,7 +8,7 @@ import Content from './Content';
 import PaymentRequestUpdateForm from '../../../common/components/PaymentRequestUpdateForm';
 
 import { setTransactionId, setParam, getAffiliateInfo } from '../actions';
-import { claimResource } from '../../../../modules/claim';
+import ClaimPrincipal, { claimResource } from '../../../../modules/claim';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -33,9 +33,6 @@ export class AppContainer extends PureComponent {
                 <Filter />
                 <Content />
                 <PaymentRequestUpdateForm
-                    isUpdatable={claimsPrincipal.hasWriteClaim(claimResource.Payment)}
-                    isShowEmail={claimsPrincipal.hasReadClaim(claimResource.Email)}
-                    isShowFullName={claimsPrincipal.hasReadClaim(claimResource.AffMemberName)}
                     transactionId={transactionId}
                     handleClosePopup={this.handleClosePopup}
                     handleFetchData={this.handleFetchData}

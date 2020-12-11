@@ -5,6 +5,7 @@ import reducer from './reducers';
 import AppContainer from './components/AppContainer';
 import { configureStore } from '../../modules/store';
 import { post } from '../../modules/ajaxRequest';
+import ClaimPrincipal from '../../modules/claim';
 
 export default class App extends PureComponent {
     constructor(props) {
@@ -33,7 +34,9 @@ export default class App extends PureComponent {
     }
 
     render() {
-        const store = configureStore(this.state, reducer);
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+        const initState = Object.assign({}, this.state, {claimsPrincipal});
+        const store = configureStore(initState, reducer);
         return (
             <Provider store={store}>
                 <AppContainer />

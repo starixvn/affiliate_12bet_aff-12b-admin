@@ -10,6 +10,7 @@ import { format, formatDecimal } from '../../../../modules/numberFormat';
 import { deleteCommGroup, getGroupSettingList } from '../../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
+import { claimResource } from '../../../../modules/claim';
 
 export class GridData extends Component {
     constructor(props) {
@@ -72,6 +73,7 @@ export class GridData extends Component {
     }
 
     _renderHeader() {
+        const {isModifiable} = this.props;
         return [
             <Row key="theard">
                 <Cell header={true} colWidth={40} rowSpan="2"></Cell>
@@ -80,7 +82,7 @@ export class GridData extends Component {
                 <Cell header={true} colWidth={150} rowSpan="2">Description</Cell>
                 <Cell header={true} colWidth={80} rowSpan="2">Creation</Cell>
                 <Cell header={true} colSpan="11">Policy</Cell>
-                <Cell header={true} colWidth={70} rowSpan="2">Action</Cell>
+                {isModifiable && <Cell header={true} colWidth={70} rowSpan="2">Action</Cell>}
             </Row>,
             <Row key="sub-theard">
                 <Cell header={true} colWidth={80}></Cell>
@@ -99,7 +101,7 @@ export class GridData extends Component {
     }
 
     _renderGroupData() {
-        const { gridData } = this.props;
+        const { gridData, isModifiable, isShowAffTab } = this.props;
         const rows = [];
 
         if (gridData && gridData.length) {
@@ -126,7 +128,10 @@ export class GridData extends Component {
                             )}
                             {isFirstItem && (
                                 <Cell className="text-center" rowSpan={rowSpan}>
-                                    <a href={resolveClientUrl("Portal/Affiliate?groupId=") + group.GroupId} target="_top">{group.NoAffs}</a>
+                                    { isShowAffTab 
+                                        ? <a href={resolveClientUrl("Portal/Affiliate?groupId=") + group.GroupId} target="_top">{group.NoAffs}</a>
+                                        : group.NoAffs
+                                    }
                                 </Cell>
                             )}
                             {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{htmlDecode(group.Description)}</Cell>)}
@@ -150,7 +155,7 @@ export class GridData extends Component {
                                 {BankingFee && formatDecimal(BankingFee.DeductedPercentage)}</Cell>)}
                             {isFirstItem && (<Cell className="text-right" rowSpan={rowSpan}>{formatDecimal(group.QmTurnover)}</Cell>)}
 
-                            {isFirstItem && (
+                            {isFirstItem && isModifiable && (
                                 <Cell className="text-center" rowSpan={rowSpan}>
                                     <button className="btn btn-link" onClick={(e) => this.props.onEdit(item.GroupId)}>
                                         <span className="oi oi-pencil text-secondary"></span>
@@ -220,8 +225,10 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ gridData, productList, searchedGroupName, pagingOption }) {
-    return Object.assign({}, { gridData, productList, searchedGroupName, pagingOption });
+function mapStateToProps({ gridData, productList, searchedGroupName, pagingOption, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
+    const isShowAffTab = claimsPrincipal.hasReadClaim(claimResource.AffInfo)
+    return Object.assign({}, { gridData, productList, searchedGroupName, pagingOption, isModifiable, isShowAffTab });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -78,7 +78,7 @@ export class GridData extends Component {
     _renderHeader() {
         const isMainView = this._isMainView();
         const { headerConfig } = this.props;
-
+        console.log(headerConfig);
 
 
         if (!(headerConfig instanceof HeaderRow)) {
