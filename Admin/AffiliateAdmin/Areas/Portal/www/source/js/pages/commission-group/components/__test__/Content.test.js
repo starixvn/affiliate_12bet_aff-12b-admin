@@ -55,6 +55,7 @@ describe('commission group - Content', () => {
     const defaultProps = {
         pagingOption: {},
         searchedGroupName: '',
+        isModifiable: true,
         gridData
     }
 

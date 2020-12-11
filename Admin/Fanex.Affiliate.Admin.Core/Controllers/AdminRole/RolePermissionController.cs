@@ -3,13 +3,10 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using ONEbook.UM.Filters;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
@@ -19,16 +16,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
     [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class RolePermissionController : Controller
     {
-        private readonly IAuthService _authService;
         private readonly ISessionService _sessionService;
         private readonly IRolePermissionService _rolePermissionService;
 
         public RolePermissionController(
-            IAuthService authService,
             ISessionService sessionService,
             IRolePermissionService rolePermissionService)
         {
-            _authService = authService;
             _sessionService = sessionService;
             _rolePermissionService = rolePermissionService;
         }
@@ -60,7 +54,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
                 param.Ip = Request.UserHostAddress;
 
                 var result = _rolePermissionService.UpdatePermissionInfo(param);
-                UpdateClaims(result.IsSuccessful);
 
                 return new JsonNetResult
                 {
@@ -89,7 +82,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
                 param.Ip = Request.UserHostAddress;
 
                 var result = _rolePermissionService.UpdateMarketInfoList(param);
-                UpdateClaims(result.IsSuccessful);
 
                 return new JsonNetResult
                 {
@@ -105,15 +97,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
                     Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                 }
             };
-        }
-
-        private void UpdateClaims(bool isSuccessful)
-        {
-            if (isSuccessful)
-            {
-                var claims = _authService.GetClaims(_sessionService.UserId);
-                _sessionService.ClaimIdentities = new List<ClaimsIdentity> { new ClaimsIdentity(claims) };
-            }
         }
     }
 }

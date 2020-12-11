@@ -21,12 +21,15 @@ describe('commission group - GridData - connect', () => {
         const expectedResult = {
             gridData: [],
             productList: { abc: 123 },
+            isModifiable: true,
+            isShowAffTab: true,
             searchedGroupName: "abc"
         };
 
         const state = {
             gridData: [],
             productList: { abc: 123 },
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => true), hasReadClaim: jest.fn(() => true) },
             searchedGroupName: "abc",
             anotherProp: "Not included"
         };

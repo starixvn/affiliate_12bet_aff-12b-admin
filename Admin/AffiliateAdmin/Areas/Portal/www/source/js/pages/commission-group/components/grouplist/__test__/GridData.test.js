@@ -67,6 +67,8 @@ describe('commission group - GridData ', () => {
             dataItem
         ],
         pagingOption: defaultPagingOption,
+        isModifiable: true,
+        isShowAffTab: true,
         searchedGroupName: ''
     };
 

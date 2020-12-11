@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
+﻿
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Web;
@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             }
             set
             {
-                HttpContext.Current.Session["AffUsername"] = value;
+                HttpContext.Current.Session[AffIdKey] = value;
             }
         }
 
@@ -69,19 +69,5 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         }
 
         public ClaimsPrincipal UserClaim => HttpContext.Current.User as ClaimsPrincipal;
-
-        IList<UserPermission> ISessionService.UserPermissionList
-        {
-
-            get
-            {
-                var value = HttpContext.Current.Session[UserPermissionSessionKey];
-                return value != null ? value as IList<UserPermission> : new List<UserPermission>();
-            }
-            set
-            {
-                HttpContext.Current.Session[UserPermissionSessionKey] = value;
-            }
-        }
     }
 }

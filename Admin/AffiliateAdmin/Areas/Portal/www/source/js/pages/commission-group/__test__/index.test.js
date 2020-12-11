@@ -42,6 +42,9 @@ describe('commission group - App', () => {
     });
 
     it('Should render correctly', () => {
+        window.globalVariables = {};
+        window.initialState = {};
+
         const wrapper = shallow(<App />);
 
         expect(wrapper).toMatchSnapshot();

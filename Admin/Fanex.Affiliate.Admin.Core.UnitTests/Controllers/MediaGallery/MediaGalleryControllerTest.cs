@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void GetSizeList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var model = new ImageSizeViewModel();
+            var model = new ImageSizeViewModel { Language = "English" };
             var languageService = new Mock<ILanguageService>();
             languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 

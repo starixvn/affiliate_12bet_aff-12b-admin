@@ -94,7 +94,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             var controller = CreateAdminInfoController(null, null, service.Object);
 
             //Action
-            var result = controller.UpdateUser(new AdminInfoParam { UserId = 123, UserName = "ABC", FirstName = "A", LastName = "C" }) as JsonNetResult;
+            var result = controller.UpdateUser(new AdminInfoParam { UserId = Constant.UserId, UserName = "ABC", FirstName = "A", LastName = "C" }) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             //Assert

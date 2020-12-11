@@ -68,6 +68,25 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         }
 
         [Fact]
+        public void GetTextList_WhenCallWithEmptyLanguage_ExcuteWithCorrectData()
+        {
+            // Arrange
+            var model = new GetTextLinkViewModel();
+
+            var textListService = new Mock<ITextListService>();
+            textListService.Setup(t => t.GetTextList(It.IsAny<TextParam>())).Returns(new EntityResult<TextInfo> { MainData = new List<TextInfo> { new TextInfo() }, TotalItem = 1 });
+            var controller = CreateTextListController(textListService: textListService.Object);
+
+            // Action
+            var result = controller.GetTextList(model) as JsonNetResult;
+            var entityResult = result.Data as EntityResult<TextInfo>;
+
+            // Assert
+            Assert.Single(entityResult.MainData);
+            Assert.Equal(1, entityResult.TotalItem);
+        }
+
+        [Fact]
         public void GetTextList_WhenCallWithInvalidParam_ReturnEmptyData()
         {
             // Arrange

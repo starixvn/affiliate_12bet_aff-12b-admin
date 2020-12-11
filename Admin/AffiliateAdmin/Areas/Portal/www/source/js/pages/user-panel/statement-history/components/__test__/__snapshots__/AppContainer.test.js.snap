@@ -7,9 +7,6 @@ exports[`statement history - components - AppContainer render correctly with tra
   <Connect(PaymentRequestUpdateForm)
     handleClosePopup={[Function]}
     handleFetchData={[Function]}
-    isShowEmail={true}
-    isShowFullName={true}
-    isUpdatable={true}
     transactionId={1262276211}
   />
 </AppLayout>
@@ -22,9 +19,6 @@ exports[`statement history - components - AppContainer render correctly with tra
   <Connect(PaymentRequestUpdateForm)
     handleClosePopup={[Function]}
     handleFetchData={[Function]}
-    isShowEmail={true}
-    isShowFullName={true}
-    isUpdatable={true}
     transactionId={null}
   />
 </AppLayout>

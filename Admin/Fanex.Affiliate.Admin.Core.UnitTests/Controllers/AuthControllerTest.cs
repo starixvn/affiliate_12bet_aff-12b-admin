@@ -64,11 +64,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var mockUser = new Mock<IPrincipal>();
             mockUser.Setup(m => m.Identity.IsAuthenticated).Returns(true);
 
-            var controller = new AuthController(sessionService.Object, signInService.Object, null, Mock.Of<IAppSetting>());
-            controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
-                ctx.HttpContext.Request == mockHttpRequest.Object &&
-                ctx.HttpContext.User == mockUser.Object
-            );
+            var controller = new AuthController(sessionService.Object, signInService.Object, null, Mock.Of<IAppSetting>())
+            {
+                ControllerContext = Mock.Of<ControllerContext>(ctx =>
+                    ctx.HttpContext.Request == mockHttpRequest.Object &&
+                    ctx.HttpContext.User == mockUser.Object
+                )
+            };
             var expectedResult = new { IsKickedOut = false, Message = string.Empty };
 
             // Action

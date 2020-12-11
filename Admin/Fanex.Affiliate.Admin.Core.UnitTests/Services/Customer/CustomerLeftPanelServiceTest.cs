@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.InternalAsianAffiliateUrl).Returns("http://localhost:55690/Auth/AdminLogin");
+            appSetting.Setup(a => a.InternalAsianAffiliateUrl).Returns("http://127.0.0.1:8080/Auth/AdminLogin");
 
             var builder = new ContainerBuilder();
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.InternalEuropeanAffiliateUrl).Returns("http://localhost:55690/Auth/AdminLogin");
+            appSetting.Setup(a => a.InternalEuropeanAffiliateUrl).Returns("http://127.0.0.1:8081/Auth/AdminLogin");
 
             var builder = new ContainerBuilder();
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
