@@ -47,6 +47,7 @@ describe('affiliate info - Content ', () => {
         columnList: mockColumnList,
         reportTitle: '',
         param: {},
+        isDisplayExportExcelBtn: true,
         languageList: {}
     }
 

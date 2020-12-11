@@ -1,8 +1,7 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme';
 import { GridData } from '../GridData';
-import { HeaderCell } from '../../modules/header';
-import { reportKey } from '../../modules/constants';
+import { headerFake } from '../../modules/headerFake';
 
 import * as ajaxRequest from '../../../../modules/ajaxRequest';
 jest.mock('../../modules/constants');
@@ -21,30 +20,7 @@ describe('affiliate report - GridData ', () => {
         },
         param: {},
         hasTurnOverPermission,
-        headerConfig: {
-            getCols: jest.fn(() => [
-                new HeaderCell(reportKey.TotalClick, reportKey.TotalClick),
-                new HeaderCell(reportKey.UniqueClick, reportKey.UniqueClick),
-                new HeaderCell(reportKey.Signup, reportKey.Signup),
-                new HeaderCell(reportKey.Fdm, reportKey.Fdm),
-                new HeaderCell(reportKey.ActiveMember, reportKey.ActiveMember),
-                new HeaderCell(reportKey.QualifiedMember, reportKey.QualifiedMember),
-                new HeaderCell(reportKey.Deposit, reportKey.Deposit),
-                new HeaderCell(reportKey.Withdrawal, reportKey.Withdrawal),
-                new HeaderCell(reportKey.Turnover, reportKey.Turnover),
-                new HeaderCell(reportKey.Winlost, reportKey.Winlost),
-                new HeaderCell(reportKey.Bonus, reportKey.Bonus),
-                new HeaderCell(reportKey.PlatformFee, reportKey.PlatformFee),
-                new HeaderCell(reportKey.OperationalFee, reportKey.OperationalFee),
-                new HeaderCell(reportKey.BankingFee, reportKey.BankingFee),
-                new HeaderCell(reportKey.TotalFee, reportKey.TotalFee),
-                new HeaderCell(reportKey.CommissionRate, reportKey.CommissionRate),
-                new HeaderCell(reportKey.Earning, reportKey.Earning),
-                new HeaderCell(reportKey.AffWithdrawal, reportKey.AffWithdrawal),
-                new HeaderCell(reportKey.AffAdjustment, reportKey.AffAdjustment),
-                new HeaderCell(reportKey.BalanceBf, reportKey.BalanceBf)
-            ]), getHeaderCols: jest.fn(() => [])
-        },
+        headerConfig: headerFake,
         currentViewLevel: mainView
     };
 

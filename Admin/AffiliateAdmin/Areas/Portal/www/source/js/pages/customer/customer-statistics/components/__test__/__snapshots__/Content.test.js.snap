@@ -75,6 +75,78 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         </td>
       </tr>
       <tr
+        key="Total Active Players"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Active Players
+        </td>
+        <td
+          className="text-right"
+        />
+        <td
+          className="text-right"
+        >
+          N/A
+        </td>
+      </tr>
+      <tr
+        key="Total Qualified Active Players"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Qualified Active Players
+        </td>
+        <td
+          className="text-right"
+        />
+        <td
+          className="text-right"
+        >
+          N/A
+        </td>
+      </tr>
+      <tr
+        key="Total Deposits"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Deposits
+        </td>
+        <td
+          className="text-right"
+        >
+          $
+        </td>
+        <td
+          className="text-right"
+        >
+          $
+        </td>
+      </tr>
+      <tr
+        key="Turnover"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Turnover
+        </td>
+        <td
+          className="text-right"
+        >
+          $
+        </td>
+        <td
+          className="text-right"
+        >
+          $
+        </td>
+      </tr>
+      <tr
         key="Winlost"
       >
         <td
@@ -242,6 +314,82 @@ exports[`customer statistics - components - Content Should render correctly with
           className="text-right"
         >
           3,742/1,829
+        </td>
+      </tr>
+      <tr
+        key="Total Active Players"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Active Players
+        </td>
+        <td
+          className="text-right"
+        >
+          0
+        </td>
+        <td
+          className="text-right"
+        >
+          N/A
+        </td>
+      </tr>
+      <tr
+        key="Total Qualified Active Players"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Qualified Active Players
+        </td>
+        <td
+          className="text-right"
+        >
+          0
+        </td>
+        <td
+          className="text-right"
+        >
+          N/A
+        </td>
+      </tr>
+      <tr
+        key="Total Deposits"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Deposits
+        </td>
+        <td
+          className="text-right"
+        >
+          $0.00
+        </td>
+        <td
+          className="text-right"
+        >
+          $951.44
+        </td>
+      </tr>
+      <tr
+        key="Turnover"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Turnover
+        </td>
+        <td
+          className="text-right"
+        >
+          $0.00
+        </td>
+        <td
+          className="text-right"
+        >
+          $1,061,706.98
         </td>
       </tr>
       <tr
@@ -418,6 +566,87 @@ exports[`customer statistics - components - Content Should render correctly with
           className="text-right"
         >
           3,742/1,829
+        </td>
+      </tr>
+      <tr
+        key="Total Active Players"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Active Players
+        </td>
+        <td
+          className="text-right"
+        >
+          <a
+            href="javascript:;"
+            onClick={[Function]}
+          >
+            2
+          </a>
+        </td>
+        <td
+          className="text-right"
+        >
+          N/A
+        </td>
+      </tr>
+      <tr
+        key="Total Qualified Active Players"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Qualified Active Players
+        </td>
+        <td
+          className="text-right"
+        >
+          0
+        </td>
+        <td
+          className="text-right"
+        >
+          N/A
+        </td>
+      </tr>
+      <tr
+        key="Total Deposits"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Deposits
+        </td>
+        <td
+          className="text-right"
+        >
+          $0.00
+        </td>
+        <td
+          className="text-right"
+        >
+          $951.44
+        </td>
+      </tr>
+      <tr
+        key="Turnover"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Turnover
+        </td>
+        <td
+          className="text-right"
+        >
+          $0.00
+        </td>
+        <td
+          className="text-right"
+        >
+          $1,061,706.98
         </td>
       </tr>
       <tr

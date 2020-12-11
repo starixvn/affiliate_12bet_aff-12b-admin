@@ -43,6 +43,8 @@ describe('member list - components - Content ', () => {
     const defaultProps = {
         pagingOption: defaultPagingOption,
         shouldResetScrollPosition: true,
+        isModifiable: true,
+        isShowMemberName: true,
         param,
         gridData,
         fetchData: jest.fn()

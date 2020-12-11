@@ -346,6 +346,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\GridData.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\headerFake.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\redux\GridData.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\header.js" />

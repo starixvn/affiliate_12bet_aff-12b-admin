@@ -21,12 +21,12 @@ const TOTAL_SECTION_STYLE = 'totalSectionStyle';
 const COL_WIDTH = 'wpx';
 
 const colConfig = {
-    [fields.UserName]: { 
+    [fields.UserName]: {
         [MAIN_SECTION_STYLE]: bodyCellStyle.left,
         [TOTAL_SECTION_STYLE]: totalCellStyle.default,
         [COL_WIDTH] : 150
     },
-    [fields.MonthDateString]: { 
+    [fields.MonthDateString]: {
         [MAIN_SECTION_STYLE]: bodyCellStyle.left,
         [TOTAL_SECTION_STYLE]: totalCellStyle.default,
         [COL_WIDTH] : 150
@@ -145,6 +145,7 @@ export default class ReportExcel {
         this.currentRowIndex = DATA_ROW_INDEX;
         this.mergeConfig = [];
         this.columnConfigs = this._getcolumnConfigs(header);
+
         this.totalColumn = this.columnConfigs.length;
     }
 
@@ -186,7 +187,6 @@ export default class ReportExcel {
         const visableCells = this.header.childerent.filter(c => c.isVisable);
         let curColIndex = 0;
         visableCells.forEach(cell => {
-            console.log(cell);
             if (cell instanceof AggregateHeader)
             {
                 this._buildColspanColumn(HEADER_ROW_INDEX, curColIndex, cell);
@@ -245,7 +245,7 @@ export default class ReportExcel {
             }
         });
 
-        let curIndex = colIndex;        
+        let curIndex = colIndex;
         childCells.forEach(cell => {
             const address = Excel.getCellAddress({
                 c: curIndex,

@@ -118,7 +118,7 @@ export class HeaderRow extends AggregateHeader {
                 if (currentDepthCols[j],key === key)
                 {
                     return currentDepthCols[j];
-                }    
+                }
             }
         }
     }

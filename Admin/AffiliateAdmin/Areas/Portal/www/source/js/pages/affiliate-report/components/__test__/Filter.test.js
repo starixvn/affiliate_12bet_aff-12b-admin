@@ -12,7 +12,6 @@ describe('affiliate report - Filter ', () => {
     const monthOnMonth = 2;
     const now = new Date('12/24/2018');
     const isCheckedAllProduct = true;
-    const hasTurnOverPermission = true;
     const fromMonth = {
         month: now.getMonth(),
         year: now.getFullYear()
@@ -29,7 +28,8 @@ describe('affiliate report - Filter ', () => {
         languageList: {},
         today: now.getMonth() + '/' + now.getDate() + '/' + now.getFullYear(),
         currentViewLevel: mainView,
-        hasTurnOverPermission,
+        hasTurnOverPermission: true,
+        isShowLangFilter: true,
         param: {}
     };
 

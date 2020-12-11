@@ -8,7 +8,9 @@ describe('customer statistics - components - Content', () => {
         monthDate: '7/1/2019',
         today: '7/1/2019',
         affId: 1271808,
-        hasTurnOverPermission: true
+        hasTurnOverPermission: true,
+        isDisplayTurnOver: true,
+        isDisplayActivePlayer: true
     };
 
     const data = {

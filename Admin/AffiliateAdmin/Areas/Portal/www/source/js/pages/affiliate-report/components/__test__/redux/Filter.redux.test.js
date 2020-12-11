@@ -26,6 +26,7 @@ describe('affiliate report - Filter - connect', () => {
             param: { abc: 123 },
             today: '09/24/2019',
             hasTurnOverPermission: true,
+            isShowLangFilter: true,
             currentViewLevel: 'abc'
         };
 

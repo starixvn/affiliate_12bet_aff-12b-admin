@@ -79,7 +79,7 @@ describe('landing page statistics - components - Content', () => {
 
     it('render correctly with have data', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData });
 
         expect(result).toMatchSnapshot();
@@ -87,7 +87,7 @@ describe('landing page statistics - components - Content', () => {
 
     it('render correctly with have data is empty', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData: {} });
 
         expect(result).toMatchSnapshot();
@@ -119,7 +119,7 @@ describe('landing page statistics - components - Content', () => {
         expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchData).toHaveBeenCalledWith(param);
+        expect(props.fetchData).toHaveBeenCalledWith(param, shortCodeLanguageList);
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: [{ Id: 123 }] });
     });
 
@@ -137,7 +137,7 @@ describe('landing page statistics - components - Content', () => {
         expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchData).toHaveBeenCalledWith(param);
+        expect(props.fetchData).toHaveBeenCalledWith(param, shortCodeLanguageList);
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: null });
     });
 
