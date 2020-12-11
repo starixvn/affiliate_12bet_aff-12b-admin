@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.Login;
 using Fanex.Affiliate.Admin.Core.Repository;
-using System;
 
 namespace Fanex.Affiliate.Admin.Core.Services
 {

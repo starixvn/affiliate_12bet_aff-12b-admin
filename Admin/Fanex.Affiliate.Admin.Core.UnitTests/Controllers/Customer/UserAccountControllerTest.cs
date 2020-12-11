@@ -157,7 +157,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
                 ctx.HttpContext.Request == request &&
                 ctx.HttpContext.Server == server.Object &&
                 ctx.HttpContext.Session.SessionID == "SessionId" &&
-                ctx.HttpContext.User == new ClaimsPrincipal(new List<ClaimsIdentity>{ new ClaimsIdentity() })
+                ctx.HttpContext.User == new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity() })
             );
 
             return controller;

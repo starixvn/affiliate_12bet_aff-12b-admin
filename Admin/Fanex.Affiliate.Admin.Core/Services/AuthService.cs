@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         private IAdminInfoRepository AdminUserRepo { get; }
         private IAffiliateInfoRepository AffRepo { get; }
 
-        public AuthService(IAuthRepository authRepository, 
+        public AuthService(IAuthRepository authRepository,
             IAdminInfoRepository adminInfoRepository,
             IAffiliateInfoRepository affRepository)
         {

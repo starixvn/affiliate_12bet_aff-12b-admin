@@ -11,14 +11,8 @@ using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using Xunit;
 

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 {
-    public class AdminInfoService: IAdminInfoService
+    public class AdminInfoService : IAdminInfoService
     {
 
         private readonly IAdminInfoRepository _adminInfoRepository;

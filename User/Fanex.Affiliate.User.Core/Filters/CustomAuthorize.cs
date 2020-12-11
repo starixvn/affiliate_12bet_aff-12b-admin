@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.CoreService;
+using System;
 using System.Net;
 using System.Security.Claims;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Fanex.Affiliate.User.Core.CoreService;
 
 namespace Fanex.Affiliate.User.Core.Filters
 {
@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.User.Core.Filters
                 }
                 else
                 {
-                    if(!string.IsNullOrEmpty(PermissionName) && sessionService.IsInternal)
+                    if (!string.IsNullOrEmpty(PermissionName) && sessionService.IsInternal)
                     {
                         ClaimPermission(filterContext);
                     }
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.User.Core.Filters
             var claims = filterContext.HttpContext.User as ClaimsPrincipal;
             var hasPermission = claims.HasClaim(c => c.Type == PermissionName);
 
-            if(!hasPermission)
+            if (!hasPermission)
             {
                 HandleResponse(filterContext);
             }

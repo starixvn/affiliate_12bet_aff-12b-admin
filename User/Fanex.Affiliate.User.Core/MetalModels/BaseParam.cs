@@ -1,5 +1,5 @@
-﻿using System;
-using Fanex.Data;
+﻿using Fanex.Data;
+using System;
 
 namespace Fanex.Affiliate.User.Core.MetalModels
 {

@@ -1,12 +1,12 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Web.Mvc;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
+    using System.Web.Mvc;
 
     [CustomAuthorize]
     public class StatementHistoryController : BaseController

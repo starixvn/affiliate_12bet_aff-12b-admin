@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private static string GetShortedCode(IEnumerable<Language> languageList, string languageCode)
         {
-            if(string.IsNullOrEmpty(languageCode))
+            if (string.IsNullOrEmpty(languageCode))
             {
                 var allShortedCode = languageList.Select(l => l.ShortedCode).ToList();
 

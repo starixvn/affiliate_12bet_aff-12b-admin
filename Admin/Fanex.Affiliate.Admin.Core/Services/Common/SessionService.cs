@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         }
 
         public IEnumerable<ClaimsIdentity> ClaimIdentities
-        { 
+        {
             get => HttpContext.Current.Session[ClaimSessionKey] as IEnumerable<ClaimsIdentity>;
             set => HttpContext.Current.Session[ClaimSessionKey] = value;
         }

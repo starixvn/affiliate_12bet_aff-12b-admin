@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.AdminRole
             Assert.Single(data);
         }
 
-        private AdminRoleCommonController CreateAdminRoleCommonController (
+        private AdminRoleCommonController CreateAdminRoleCommonController(
             ISessionService sessionService = null,
             IAdminRoleCommonService adminRoleCommonService = null)
         {

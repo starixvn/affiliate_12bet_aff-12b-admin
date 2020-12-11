@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Fanex.Affiliate.User.Core.Constants;
+﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using Fanex.Affiliate.User.Core.DTO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -207,7 +207,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             var languageName = languageList.FirstOrDefault(l => l.MarketId.MatchWith(languageCode))?.MarketName;
 
-            if(string.IsNullOrEmpty(languageName))
+            if (string.IsNullOrEmpty(languageName))
             {
                 var allLanguageName = languageList.Select(l => l.MarketName).ToList();
 

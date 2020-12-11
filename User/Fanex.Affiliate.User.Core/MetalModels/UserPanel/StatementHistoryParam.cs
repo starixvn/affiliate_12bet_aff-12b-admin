@@ -1,7 +1,4 @@
-﻿using System;
-using Fanex.Data;
-
-namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
+﻿namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
     public class StatementHistoryParam : BaseParam
     {

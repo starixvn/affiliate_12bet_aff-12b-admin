@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.Extensions;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Affiliate.User.Core.DTO;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {

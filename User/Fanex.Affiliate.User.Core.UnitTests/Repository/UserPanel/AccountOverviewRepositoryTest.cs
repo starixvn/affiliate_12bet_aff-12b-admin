@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
                 }
             });
 
-            var result =  repo.GetPlayerDetailList(new MetalModels.UserPanel.PlayerDetailParam
+            var result = repo.GetPlayerDetailList(new MetalModels.UserPanel.PlayerDetailParam
             {
                 AffId = 1,
                 IsSortAsc = true,

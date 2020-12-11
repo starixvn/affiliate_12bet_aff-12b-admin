@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.Utilities;
+using System;
 using System.Security.Cryptography;
 using System.Text;
-using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             catch
             {
                 return cipherText;
-            }            
+            }
         }
 
         private static string DecodeUtfBase64(string base64EncodedData)

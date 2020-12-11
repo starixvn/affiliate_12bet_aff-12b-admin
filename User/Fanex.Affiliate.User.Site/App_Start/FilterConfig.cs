@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.Filters;
+﻿using Fanex.Affiliate.User.Core.Filters;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Site
 {

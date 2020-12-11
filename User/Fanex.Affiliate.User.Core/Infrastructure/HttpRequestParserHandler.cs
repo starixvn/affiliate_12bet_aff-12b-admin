@@ -2,7 +2,6 @@
 using Fanex.Affiliate.User.Core.Utilities;
 using System;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
@@ -32,7 +31,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
             var queryString = DecryptQueryString(encryptedQuery);
             var paramValues = HttpUtility.ParseQueryString(queryString);
 
-            if(CheckIsExpiredRequest(paramValues))
+            if (CheckIsExpiredRequest(paramValues))
             {
                 return new QueryStringResult { IsValid = false, IsExpired = true };
             }

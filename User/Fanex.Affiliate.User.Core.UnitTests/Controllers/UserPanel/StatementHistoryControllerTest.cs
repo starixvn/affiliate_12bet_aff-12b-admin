@@ -60,11 +60,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                 PageSize = pageSize
             };
             Repo.When(a => a.GetStatementHistory(Arg.Compat.Any<StatementHistoryParam>()))
-                .Do( a =>
-                {
-                    param.NRows = 10;
-                    param.PageSize = 20;
-                });
+                .Do(a =>
+               {
+                   param.NRows = 10;
+                   param.PageSize = 20;
+               });
             var result = controller.Index(param) as PartialViewResult;
 
             var startRowNumber = (param.PageIndex - 1) * param.PageSize + 1;

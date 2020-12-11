@@ -2,7 +2,6 @@
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Repository;
 using NSubstitute;
-using System.Collections;
 using System.Collections.Generic;
 using Xunit;
 

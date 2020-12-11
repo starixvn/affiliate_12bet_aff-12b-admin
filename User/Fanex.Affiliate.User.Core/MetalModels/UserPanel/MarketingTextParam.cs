@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Fanex.Data;
+﻿using Fanex.Data;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {

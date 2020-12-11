@@ -1,8 +1,8 @@
-﻿using System.Xml;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.MemberInfoWebService;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Moq;
+using System.Xml;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService

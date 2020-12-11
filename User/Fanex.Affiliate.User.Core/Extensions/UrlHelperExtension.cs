@@ -1,6 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using Fanex.Affiliate.User.Core.Utilities;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.Extensions
 {

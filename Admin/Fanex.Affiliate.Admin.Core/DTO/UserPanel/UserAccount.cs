@@ -92,6 +92,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public IEnumerable<ContactApp> ContactAppList { get; set; }
 
-        public IEnumerable<KeyValuePair<int,string>> SecurityQuestions { get; set; }
+        public IEnumerable<KeyValuePair<int, string>> SecurityQuestions { get; set; }
     }
 }

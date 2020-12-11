@@ -1,6 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
-using Fanex.Affiliate.Admin.Core.Extensions;
+﻿using Fanex.Affiliate.Admin.Core.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
 {
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple =true)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class ResetDefaultUnauthorizedPropertyAttribute : ActionFilterAttribute
     {
         public string PermissionName { get; }
@@ -25,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
             var context = filterContext.HttpContext;
-            var userClaim = context.User as ClaimsPrincipal ;
+            var userClaim = context.User as ClaimsPrincipal;
             Claims = userClaim.Claims;
             var data = GetResultData(filterContext.Result);
             if (data != null && Claims != null)
@@ -70,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                 var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
                 foreach (var pro in properties)
                 {
-                    if(IsNeedResetPro(pro))
+                    if (IsNeedResetPro(pro))
                     {
                         pro.SetValue(data, null, null);
                     }
@@ -84,8 +82,8 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         private bool IsNeedResetPro(PropertyInfo pro)
         {
             var attribute = pro.GetCustomAttribute<PermissionCheckAttribute>();
-            return attribute != null 
-                && (string.IsNullOrWhiteSpace(PermissionName) || attribute.PermissionName == PermissionName) 
+            return attribute != null
+                && (string.IsNullOrWhiteSpace(PermissionName) || attribute.PermissionName == PermissionName)
                 && !Claims.Any(p => p.Type == attribute.PermissionName);
         }
 

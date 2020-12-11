@@ -9,8 +9,6 @@ using Fanex.Affiliate.User.Core.ViewModels;
 using Newtonsoft.Json;
 using NSubstitute;
 using System;
-using System.IO;
-using System.Web;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService

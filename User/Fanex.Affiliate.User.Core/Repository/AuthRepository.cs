@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using Fanex.Affiliate.User.Core.Constants;
+﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Data;
 using Fanex.Common.Extensions;
+using Fanex.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
@@ -123,7 +123,7 @@ namespace Fanex.Affiliate.User.Core.Repository
 
                 using (var reader = db.ExecuteReader())
                 {
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         result.Add(new InternalPermission
                         {

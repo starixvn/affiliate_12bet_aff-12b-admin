@@ -1,10 +1,10 @@
-﻿using System;
-using System.Data;
-using Fanex.Affiliate.User.Core.Constants;
+﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Data;
+using System;
+using System.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {

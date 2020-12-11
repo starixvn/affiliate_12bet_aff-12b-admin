@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         private LatestHotNews CreateLastetHotNews()
             => new LatestHotNews
             {
-                HotNewsList = new Dictionary<string,string> { { "aa", "bb" } },
+                HotNewsList = new Dictionary<string, string> { { "aa", "bb" } },
                 IsImportant = true
             };
 

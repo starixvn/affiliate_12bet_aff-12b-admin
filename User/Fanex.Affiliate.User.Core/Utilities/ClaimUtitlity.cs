@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public static bool HasClaimOnlyInternalLogin(string claimType)
         {
-            if(!SessionService.IsInternal)
+            if (!SessionService.IsInternal)
             {
                 return true;
             }

@@ -1,17 +1,17 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Constants;
     using Extensions;
-    using Fanex.Affiliate.User.Core.Resources;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.Resources;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
+    using System.Collections.Generic;
     using System.Drawing;
+    using System.Linq;
+    using System.Web.Mvc;
     using ViewModels.UserPanel.Marketing;
 
     public sealed class MarketingController : BaseMarketingController
@@ -61,10 +61,10 @@
 
             return Json(subCategoryList.Select(i =>
                 new SelectListItem
-                    {
-                        Value = i.SubCategory,
-                        Text = Lang.ResourceManager.GetString(i.SubCategory.Trim()) ?? i.SubCategory
-                    }),
+                {
+                    Value = i.SubCategory,
+                    Text = Lang.ResourceManager.GetString(i.SubCategory.Trim()) ?? i.SubCategory
+                }),
                 JsonRequestBehavior.AllowGet);
         }
 

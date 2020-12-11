@@ -65,13 +65,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             var filtercontext = new ResultExecutingContext();
             SetUpContext(filtercontext);
             filtercontext.HttpContext.User = new ClaimsPrincipal();
-            var data = new TestResetDecimalPropertyClass { ResetProterty =  10, NotResetPropety = 10 };
+            var data = new TestResetDecimalPropertyClass { ResetProterty = 10, NotResetPropety = 10 };
             filtercontext.Result = new JsonNetResult() { Data = data };
 
             attribute.OnResultExecuting(filtercontext);
 
             Assert.Equal(default, data.ResetProterty);
-            Assert.Equal((decimal) 10, data.NotResetPropety);
+            Assert.Equal((decimal)10, data.NotResetPropety);
         }
 
         [Fact]
@@ -104,7 +104,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
 
             attribute.OnResultExecuting(filtercontext);
 
-            Assert.Equal("abc" ,data.ResetProterty);
+            Assert.Equal("abc", data.ResetProterty);
             Assert.Equal("123", data.NotResetPropety);
         }
 

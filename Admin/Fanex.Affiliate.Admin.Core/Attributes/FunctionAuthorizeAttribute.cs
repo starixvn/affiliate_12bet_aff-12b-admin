@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                 if (claims != null)
                 {
                     hasPerimission = IsHost ? claims.HasClaim(FunctionName, claimValue) : claims.HasClaim(c => c.Type == FunctionName);
-                }    
+                }
 
                 if (!hasPerimission)
                 {

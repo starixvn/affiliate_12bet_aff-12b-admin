@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Constants;
     using DTO;
     using DTO.UserPanel;
@@ -13,6 +10,9 @@
     using MetalModels;
     using Newtonsoft.Json;
     using Resources;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
 
     [CustomAuthorize]
     public class MyAccountController : BaseController

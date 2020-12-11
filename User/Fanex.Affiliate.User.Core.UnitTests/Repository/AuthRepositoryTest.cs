@@ -1,12 +1,12 @@
-﻿using Fanex.Affiliate.User.Core.DTO.Auth;
+﻿using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Data;
 using NSubstitute;
-using Xunit;
 using System.Data;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO;
+using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Repository
 {
@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
                 SubAccId = 4
             };
             var queryUserId = 100;
-            var db = Builder.Build(null,null);
+            var db = Builder.Build(null, null);
             db.When(c => c.ExecuteNonQuery(Arg.Compat.Any<OnUserIdParam>()))
                 .Do(c =>
                 {

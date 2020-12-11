@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using System.Web.Compilation;
-using System.Web.Mvc;
-using Autofac;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
@@ -14,6 +9,11 @@ using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Caching;
 using ONEbook.UM.Services.Impl;
+using System;
+using System.Linq;
+using System.Reflection;
+using System.Web.Compilation;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Site
 {

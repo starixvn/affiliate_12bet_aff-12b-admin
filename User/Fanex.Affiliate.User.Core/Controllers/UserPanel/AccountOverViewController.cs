@@ -1,10 +1,10 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System.Web.Mvc;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Filters;
     using Repository.UserPanel;
+    using System.Web.Mvc;
 
     [CustomAuthorize]
     public class AccountOverviewController : BaseController

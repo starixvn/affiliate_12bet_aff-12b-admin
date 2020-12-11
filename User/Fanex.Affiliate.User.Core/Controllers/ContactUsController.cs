@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
     using BusinessService;
     using CoreService;
     using DTO;
@@ -9,6 +7,8 @@
     using MetalModels.Email;
     using Repository.UserPanel;
     using Resources;
+    using System.Linq;
+    using System.Web.Mvc;
     using Utilities;
 
 

@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.Resources;
+using Fanex.Logging;
+using Newtonsoft.Json;
+using System;
 using System.Data.SqlClient;
 using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.Resources;
-using Fanex.Logging;
-using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.User.Core.Filters
 {

@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using System.Xml;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Moq;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Text;
+using System.Xml;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService

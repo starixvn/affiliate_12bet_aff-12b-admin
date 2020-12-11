@@ -4,7 +4,6 @@ using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
-using Moq;
 using NSubstitute;
 using System;
 using System.Web.Mvc;
@@ -104,7 +103,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             controller.HttpContext.Server.MapPath(Arg.Compat.Any<string>()).Returns(String.Empty);
 
             //Action
-            var result = controller.Preview(new TestCriteria { Format = "txt"}) as ViewResult;
+            var result = controller.Preview(new TestCriteria { Format = "txt" }) as ViewResult;
 
             //Assert
             Assert.Empty(result.ViewName);

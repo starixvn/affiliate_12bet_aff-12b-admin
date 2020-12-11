@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.Utilities;
+﻿using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Logging;
 using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Site.App_Start
 {

@@ -10,7 +10,6 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {
@@ -41,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             var affiliateInfo = _customerLeftPanelRepository.GetAffiliateInfoOnLeftPanel(affUserName);
             var userId = _sessionService.UserId;
 
-            if(affiliateInfo == null || !_authService.IsUserHasPermissionOnAff(userId, affiliateInfo.AffId))
+            if (affiliateInfo == null || !_authService.IsUserHasPermissionOnAff(userId, affiliateInfo.AffId))
             {
                 return null;
             }
@@ -57,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             var userId = _sessionService.UserId;
             IEnumerable<OnlineList> onlineList = new List<OnlineList>();
 
-            if(affiliateInfo != null && _authService.IsUserHasPermissionOnAff(userId, affiliateInfo.AffId))
+            if (affiliateInfo != null && _authService.IsUserHasPermissionOnAff(userId, affiliateInfo.AffId))
             {
                 onlineList = _customerLeftPanelRepository.GetOnlineList(affUserName);
             }

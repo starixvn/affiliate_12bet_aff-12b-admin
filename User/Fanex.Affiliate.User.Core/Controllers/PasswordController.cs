@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
     using BusinessService;
     using Constants;
     using CoreService;
@@ -11,6 +9,8 @@
     using MetalModels.Email;
     using Repository.UserPanel;
     using Resources;
+    using System.Linq;
+    using System.Web.Mvc;
     using Utilities;
 
     public class PasswordController : BaseController
@@ -102,7 +102,7 @@
         {
             if (uid == 0 || string.IsNullOrEmpty(vid))
             {
-                return RedirectToFixedAction("RecoverPasswordResult", new { isSuccessful=false });
+                return RedirectToFixedAction("RecoverPasswordResult", new { isSuccessful = false });
             }
             var newPassword = Generator.GetRandomString(10);
             var param = new PasswordRecoveryParam

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Fanex.Affiliate.User.Core.Infrastructure;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Fanex.Affiliate.User.Core.Infrastructure;
 
 namespace Fanex.Affiliate.User.Site
 {

@@ -1,8 +1,8 @@
-﻿using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {

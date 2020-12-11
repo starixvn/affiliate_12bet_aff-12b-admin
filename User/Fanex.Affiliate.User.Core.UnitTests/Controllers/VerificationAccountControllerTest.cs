@@ -10,11 +10,7 @@ using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using Xunit;
 
@@ -216,7 +212,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void VerifyAccount_WhenNotValidDomain_ReturnErrorMessage()
         {
             var controller = CreateController();
-            var verificationSession = new VerificationSession { AffId=1 };
+            var verificationSession = new VerificationSession { AffId = 1 };
             SessionService.VerificationSession.Returns(verificationSession);
             var sendCodeResult = GetSuccessSendCodeResult();
             VerificationService.SendCode(null).ReturnsForAnyArgs(sendCodeResult);

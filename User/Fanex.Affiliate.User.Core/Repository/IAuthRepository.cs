@@ -2,7 +2,6 @@
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using System.Collections.Generic;
-using System.Security.Claims;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {

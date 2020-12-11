@@ -1,7 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
-using System.Collections.Generic;
-
-namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
+﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
 {
     public class PaymentRequestParamFromHome : ParamFromHome
     {

@@ -1,9 +1,8 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.AdminRole
 {
-    public class UpdateMarketInfoParam: UserInfoParam
+    public class UpdateMarketInfoParam : UserInfoParam
     {
         public IEnumerable<MarketInfoParam> MarketInfoList { get; set; }
 

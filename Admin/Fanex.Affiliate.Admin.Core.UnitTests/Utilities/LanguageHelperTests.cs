@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Utilities;
-using System;
 using System.Collections.Generic;
 using Xunit;
 

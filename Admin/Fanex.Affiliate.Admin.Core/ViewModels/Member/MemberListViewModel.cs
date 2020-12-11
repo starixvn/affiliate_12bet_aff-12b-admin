@@ -1,7 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
-using System.Collections.Generic;
-
-namespace Fanex.Affiliate.Admin.Core.ViewModels.Member
+﻿namespace Fanex.Affiliate.Admin.Core.ViewModels.Member
 {
     public class MemberListViewModel
     {

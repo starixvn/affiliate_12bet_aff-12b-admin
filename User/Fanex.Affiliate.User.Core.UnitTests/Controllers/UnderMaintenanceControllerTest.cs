@@ -6,11 +6,6 @@ using NSubstitute;
 using ONEbook.UM.Models;
 using ONEbook.UM.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Xunit;
@@ -79,7 +74,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             try
             {
                 (controller as IController).Execute(requestContext);
-            } catch {}
+            }
+            catch { }
 
             LanguageService.Received().SetCulture(languageCode);
         }
