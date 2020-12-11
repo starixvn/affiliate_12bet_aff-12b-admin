@@ -1871,12 +1871,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @9softstudio/react-fixed-table-header */ "./node_modules/@9softstudio/react-fixed-table-header/dist/index.js");
 /* harmony import */ var _9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
-/* harmony import */ var _modules_htmlHelper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../modules/htmlHelper */ "./Areas/Portal/www/source/js/modules/htmlHelper.js");
-/* harmony import */ var _libs_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../libs/utils */ "./Areas/Portal/www/source/js/pages/media-gallery/banner-list/libs/utils.js");
-/* harmony import */ var _libs_constants__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../libs/constants */ "./Areas/Portal/www/source/js/pages/media-gallery/banner-list/libs/constants.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../actions */ "./Areas/Portal/www/source/js/pages/media-gallery/banner-list/actions/index.js");
-/* harmony import */ var _modules_claim__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../modules/claim */ "./Areas/Portal/www/source/js/modules/claim.js");
-
+/* harmony import */ var _libs_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../libs/utils */ "./Areas/Portal/www/source/js/pages/media-gallery/banner-list/libs/utils.js");
+/* harmony import */ var _libs_constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../libs/constants */ "./Areas/Portal/www/source/js/pages/media-gallery/banner-list/libs/constants.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../actions */ "./Areas/Portal/www/source/js/pages/media-gallery/banner-list/actions/index.js");
+/* harmony import */ var _modules_claim__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../modules/claim */ "./Areas/Portal/www/source/js/modules/claim.js");
 
 
 
@@ -1925,48 +1923,48 @@ var Content = function Content(props) {
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       header: true,
       colWidth: 25,
-      title: _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Index
-    }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Index), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
+      title: _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Index
+    }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Index), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       header: true,
       colWidth: 415,
-      title: _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Images
-    }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Images), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
+      title: _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Images
+    }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Images), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       header: true,
       colWidth: 190,
-      title: _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].FileName
-    }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].FileName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
+      title: _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].FileName
+    }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].FileName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       header: true,
       colWidth: 60,
-      title: _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Category
-    }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
+      title: _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Category
+    }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       header: true,
       colWidth: 55,
-      title: _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].SubCategory
-    }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].SubCategory), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
+      title: _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].SubCategory
+    }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].SubCategory), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       header: true,
       colWidth: 60,
-      title: _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Language
-    }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Language), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
+      title: _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Language
+    }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Language), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       header: true,
       colWidth: 55,
-      title: _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Currency
-    }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Currency), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
+      title: _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Currency
+    }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Currency), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       header: true,
       colWidth: 50,
-      title: _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Device
-    }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Device), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
+      title: _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Device
+    }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Device), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       header: true,
       colWidth: 50,
-      title: _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].ImageType
-    }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].ImageType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
+      title: _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].ImageType
+    }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].ImageType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       header: true,
       colWidth: 50,
-      title: _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Size
-    }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["headerText"].Size), isModifiable && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
+      title: _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Size
+    }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["headerText"].Size), isModifiable && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       header: true,
       colWidth: 25,
-      title: _libs_constants__WEBPACK_IMPORTED_MODULE_11__["globalResource"].Edit
-    }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["globalResource"].Edit));
+      title: _libs_constants__WEBPACK_IMPORTED_MODULE_10__["globalResource"].Edit
+    }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["globalResource"].Edit));
   }
 
   function _renderDataSection(dataList) {
@@ -1987,7 +1985,7 @@ var Content = function Content(props) {
       dataRows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
         className: "text-center",
         colSpan: colmCount
-      }, _libs_constants__WEBPACK_IMPORTED_MODULE_11__["globalResource"].NoInfo)));
+      }, _libs_constants__WEBPACK_IMPORTED_MODULE_10__["globalResource"].NoInfo)));
     }
 
     return dataRows;
@@ -2006,8 +2004,8 @@ var Content = function Content(props) {
     var strSize = size.split('x');
     var realWidth = strSize[0];
     var realHeight = strSize[1];
-    var isValidWithHeight = realWidth < _libs_constants__WEBPACK_IMPORTED_MODULE_11__["maxWidthHeight"] && realHeight < _libs_constants__WEBPACK_IMPORTED_MODULE_11__["maxWidthHeight"];
-    var resizeResult = !isValidWithHeight && Object(_libs_utils__WEBPACK_IMPORTED_MODULE_10__["resizeWidthHeight"])(realWidth, realHeight);
+    var isValidWithHeight = realWidth < _libs_constants__WEBPACK_IMPORTED_MODULE_10__["maxWidthHeight"] && realHeight < _libs_constants__WEBPACK_IMPORTED_MODULE_10__["maxWidthHeight"];
+    var resizeResult = !isValidWithHeight && Object(_libs_utils__WEBPACK_IMPORTED_MODULE_9__["resizeWidthHeight"])(realWidth, realHeight);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Row"], {
       key: "dataRow-".concat(index)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
@@ -2076,7 +2074,7 @@ var Content = function Content(props) {
     }, dataItem.DeviceTypes && _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_0___default()(_context6 = dataItem.DeviceTypes).call(_context6, function (value) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", {
         key: "deviceType-".concat(value)
-      }, value == 0 ? _libs_constants__WEBPACK_IMPORTED_MODULE_11__["pcLaptop"] : _libs_constants__WEBPACK_IMPORTED_MODULE_11__["mobile"]);
+      }, value == 0 ? _libs_constants__WEBPACK_IMPORTED_MODULE_10__["pcLaptop"] : _libs_constants__WEBPACK_IMPORTED_MODULE_10__["mobile"]);
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_9softstudio_react_fixed_table_header__WEBPACK_IMPORTED_MODULE_7__["Cell"], {
       className: "text-center text-break",
       title: dataItem.ImageType
@@ -2122,7 +2120,7 @@ function mapStateToProps(_ref) {
       shouldResetScrollPosition = _ref.shouldResetScrollPosition,
       gridData = _ref.gridData,
       claimsPrincipal = _ref.claimsPrincipal;
-  var isModifiable = claimsPrincipal.hasWriteClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_13__["claimResource"].MediaGallery);
+  var isModifiable = claimsPrincipal.hasWriteClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_12__["claimResource"].MediaGallery);
   return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, {
     pagingOption: pagingOption,
     param: param,
@@ -2136,13 +2134,13 @@ function mapStateToProps(_ref) {
 
 function mapDispatchToProps(dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_6__["bindActionCreators"])({
-    setSelectedBannerId: _actions__WEBPACK_IMPORTED_MODULE_12__["setSelectedBannerId"],
-    fetchData: _actions__WEBPACK_IMPORTED_MODULE_12__["fetchData"],
-    setPagingOption: _actions__WEBPACK_IMPORTED_MODULE_12__["setPagingOption"],
-    setCheckedBanners: _actions__WEBPACK_IMPORTED_MODULE_12__["setCheckedBanners"],
-    setShouldResetScrollPosition: _actions__WEBPACK_IMPORTED_MODULE_12__["setShouldResetScrollPosition"],
-    setParam: _actions__WEBPACK_IMPORTED_MODULE_12__["setParam"],
-    setBannerDetailUrl: _actions__WEBPACK_IMPORTED_MODULE_12__["setBannerDetailUrl"]
+    setSelectedBannerId: _actions__WEBPACK_IMPORTED_MODULE_11__["setSelectedBannerId"],
+    fetchData: _actions__WEBPACK_IMPORTED_MODULE_11__["fetchData"],
+    setPagingOption: _actions__WEBPACK_IMPORTED_MODULE_11__["setPagingOption"],
+    setCheckedBanners: _actions__WEBPACK_IMPORTED_MODULE_11__["setCheckedBanners"],
+    setShouldResetScrollPosition: _actions__WEBPACK_IMPORTED_MODULE_11__["setShouldResetScrollPosition"],
+    setParam: _actions__WEBPACK_IMPORTED_MODULE_11__["setParam"],
+    setBannerDetailUrl: _actions__WEBPACK_IMPORTED_MODULE_11__["setBannerDetailUrl"]
   }, dispatch);
 }
 

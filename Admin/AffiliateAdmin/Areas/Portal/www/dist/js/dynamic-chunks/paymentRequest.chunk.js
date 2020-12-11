@@ -594,6 +594,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_numberFormat__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../modules/numberFormat */ "./Areas/Portal/www/source/js/modules/numberFormat.js");
 /* harmony import */ var _actions_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../actions/paymentRequestUpdate */ "./Areas/Portal/www/source/js/pages/common/actions/paymentRequestUpdate.js");
 /* harmony import */ var _modules_htmlHelper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../../modules/htmlHelper */ "./Areas/Portal/www/source/js/modules/htmlHelper.js");
+/* harmony import */ var _modules_claim__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../../modules/claim */ "./Areas/Portal/www/source/js/modules/claim.js");
 
 
 
@@ -609,6 +610,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default()(this).constructor; result = _babel_runtime_corejs3_core_js_stable_reflect_construct__WEBPACK_IMPORTED_MODULE_0___default()(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8___default()(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !_babel_runtime_corejs3_core_js_stable_reflect_construct__WEBPACK_IMPORTED_MODULE_0___default.a) return false; if (_babel_runtime_corejs3_core_js_stable_reflect_construct__WEBPACK_IMPORTED_MODULE_0___default.a.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(_babel_runtime_corejs3_core_js_stable_reflect_construct__WEBPACK_IMPORTED_MODULE_0___default()(Date, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -992,6 +994,20 @@ var PaymentRequestUpdateForm = /*#__PURE__*/function (_PureComponent) {
   return PaymentRequestUpdateForm;
 }(react__WEBPACK_IMPORTED_MODULE_11__["PureComponent"]);
 
+function mapStateToProps(_ref3) {
+  var claimsPrincipal = _ref3.claimsPrincipal;
+  var isUpdatable = claimsPrincipal.hasWriteClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_19__["claimResource"].Payment);
+  var isShowEmail = claimsPrincipal.hasReadClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_19__["claimResource"].Email);
+  var isShowFullName = claimsPrincipal.hasReadClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_19__["claimResource"].AffMemberName);
+  var isShowPaymentInfo = claimsPrincipal.hasReadClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_19__["claimResource"].PaymentInfo);
+  return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, {
+    isUpdatable: isUpdatable,
+    isShowEmail: isShowEmail,
+    isShowFullName: isShowFullName,
+    isShowPaymentInfo: isShowPaymentInfo
+  });
+}
+
 function mapDispatchToProps(dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_13__["bindActionCreators"])({
     getPaymentRequestDetail: _actions_paymentRequestUpdate__WEBPACK_IMPORTED_MODULE_17__["getPaymentRequestDetail"],
@@ -999,7 +1015,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_12__["connect"])(null, mapDispatchToProps)(PaymentRequestUpdateForm));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_12__["connect"])(mapStateToProps, mapDispatchToProps)(PaymentRequestUpdateForm));
 
 /***/ }),
 

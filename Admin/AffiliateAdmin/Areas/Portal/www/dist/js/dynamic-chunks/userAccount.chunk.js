@@ -853,8 +853,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../modules/service */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/service.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../actions */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/actions/index.js");
 /* harmony import */ var _modules_constants__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../modules/constants */ "./Areas/Portal/www/source/js/pages/user-panel/user-account/modules/constants.js");
-/* harmony import */ var _landing_page_statistics_actions_types__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../landing-page-statistics/actions/types */ "./Areas/Portal/www/source/js/pages/user-panel/landing-page-statistics/actions/types.js");
-/* harmony import */ var _modules_claim__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../../../../modules/claim */ "./Areas/Portal/www/source/js/modules/claim.js");
+/* harmony import */ var _modules_claim__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../../../modules/claim */ "./Areas/Portal/www/source/js/modules/claim.js");
 
 
 
@@ -869,7 +868,6 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_8___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_corejs3_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_8___default()(this).constructor; result = _babel_runtime_corejs3_core_js_stable_reflect_construct__WEBPACK_IMPORTED_MODULE_0___default()(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_corejs3_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_7___default()(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !_babel_runtime_corejs3_core_js_stable_reflect_construct__WEBPACK_IMPORTED_MODULE_0___default.a) return false; if (_babel_runtime_corejs3_core_js_stable_reflect_construct__WEBPACK_IMPORTED_MODULE_0___default.a.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(_babel_runtime_corejs3_core_js_stable_reflect_construct__WEBPACK_IMPORTED_MODULE_0___default()(Date, [], function () {})); return true; } catch (e) { return false; } }
-
 
 
 
@@ -935,7 +933,7 @@ var Payment = /*#__PURE__*/function (_PureComponent) {
     key: "_renderPaymentForm",
     value: function _renderPaymentForm(name, label, inputValue, isRequired, changeHandler) {
       var claimsPrincipal = this.props.claimsPrincipal;
-      var hasWriteClaim = claimsPrincipal.hasWriteClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_18__["claimResource"].PaymentInfo);
+      var hasWriteClaim = claimsPrincipal.hasWriteClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_17__["claimResource"].PaymentInfo);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
         row: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
@@ -966,7 +964,7 @@ var Payment = /*#__PURE__*/function (_PureComponent) {
       var _this$props = this.props,
           userAccountInfo = _this$props.userAccountInfo,
           claimsPrincipal = _this$props.claimsPrincipal;
-      var hasWriteClaim = claimsPrincipal.hasWriteClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_18__["claimResource"].PaymentInfo);
+      var hasWriteClaim = claimsPrincipal.hasWriteClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_17__["claimResource"].PaymentInfo);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["FormGroup"], {
         row: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Label"], {
@@ -999,7 +997,7 @@ var Payment = /*#__PURE__*/function (_PureComponent) {
 
       var renderFormByMethod = userAccountInfo && this._renderFormByMethod(userAccountInfo);
 
-      var hasReadClaim = claimsPrincipal.hasReadClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_18__["claimResource"].PaymentInfo);
+      var hasReadClaim = claimsPrincipal.hasReadClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_17__["claimResource"].PaymentInfo);
       return userAccountInfo && hasReadClaim && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_13__["Form"], {
         tag: "div"
       }, this._renderPreferedPayment(), renderFormByMethod[userAccountInfo.PreferredPayment], userAccountInfo.PreferredPayment === _modules_constants__WEBPACK_IMPORTED_MODULE_16__["playerMethod"] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("p", {

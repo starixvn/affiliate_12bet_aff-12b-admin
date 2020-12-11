@@ -3573,6 +3573,7 @@ var GridData = /*#__PURE__*/function (_Component) {
       var isMainView = this._isMainView();
 
       var headerConfig = this.props.headerConfig;
+      console.log(headerConfig);
 
       if (!(headerConfig instanceof _modules_header__WEBPACK_IMPORTED_MODULE_23__["HeaderRow"])) {
         return [];

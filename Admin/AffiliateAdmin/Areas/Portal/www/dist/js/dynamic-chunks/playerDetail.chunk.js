@@ -1212,7 +1212,6 @@ function mapStateToProps(_ref3) {
       sortedParam = playerDetail.sortedParam;
   var affId = affCommonInfo.affId;
   var hasTurnOverPermission = claimsPrincipal.hasReadClaim(_modules_claim__WEBPACK_IMPORTED_MODULE_31__["claimResource"].TurnOver);
-  console.log(hasTurnOverPermission);
   return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_9___default()({}, {
     param: param,
     affId: affId,

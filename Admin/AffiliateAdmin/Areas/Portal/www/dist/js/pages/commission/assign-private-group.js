@@ -4011,6 +4011,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_createReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../modules/createReducer */ "./Areas/Portal/www/source/js/modules/createReducer.js");
 /* harmony import */ var _reducers_loaderReducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../reducers/loaderReducer */ "./Areas/Portal/www/source/js/reducers/loaderReducer.js");
 /* harmony import */ var _reducers_pagingReducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../reducers/pagingReducer */ "./Areas/Portal/www/source/js/reducers/pagingReducer.js");
+/* harmony import */ var _reducers_claimReducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../reducers/claimReducer */ "./Areas/Portal/www/source/js/reducers/claimReducer.js");
+
 
 
 
@@ -4036,7 +4038,8 @@ var deductionList = Object(_modules_createReducer__WEBPACK_IMPORTED_MODULE_4__["
   deductionList: deductionList,
   selectedGroup: selectedGroup,
   searchedGroupName: searchedGroupName,
-  isShowLoader: _reducers_loaderReducer__WEBPACK_IMPORTED_MODULE_5__["isShowLoader"]
+  isShowLoader: _reducers_loaderReducer__WEBPACK_IMPORTED_MODULE_5__["isShowLoader"],
+  claimsPrincipal: _reducers_claimReducer__WEBPACK_IMPORTED_MODULE_7__["claimsPrincipal"]
 }));
 
 /***/ }),
