@@ -7,6 +7,7 @@ import { Button } from 'reactstrap';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
 import { setSelectedLandingPageId, setCheckedLandingPages, setShouldResetScrollPosition } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export const Content = (props) => {
 
@@ -18,13 +19,14 @@ export const Content = (props) => {
     }
 
     function _renderHeader() {
+        const { isModifiable } = props;
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={20}></Cell>
                 <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={250} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
                 <Cell header={true} colWidth={250} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
-                <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>
+                { isModifiable && <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
             </Row>
         );
     }
@@ -48,6 +50,7 @@ export const Content = (props) => {
     }
 
     function _buildDataRow(dataItem, index) {
+        const { isModifiable } = props;
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
 
@@ -60,11 +63,13 @@ export const Content = (props) => {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={landingPageName}>{landingPageName}</Cell>
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
-                <Cell className="text-center" title="Edit Landing Page">
-                    <Button color="link" onClick={() => props.setSelectedLandingPageId(dataItem.PageId)}>
-                        <span className="oi oi-pencil text-secondary"></span>
-                    </Button>
-                </Cell>
+                { isModifiable &&
+                    <Cell className="text-center" title="Edit Landing Page">
+                        <Button color="link" onClick={() => props.setSelectedLandingPageId(dataItem.PageId)}>
+                            <span className="oi oi-pencil text-secondary"></span>
+                        </Button>
+                    </Cell>
+                }
             </Row>
         )
     }
@@ -86,8 +91,9 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ checkedLandingPages, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { checkedLandingPages, shouldResetScrollPosition, gridData });
+function mapStateToProps({ checkedLandingPages, shouldResetScrollPosition, gridData, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGallery);
+    return Object.assign({}, { checkedLandingPages, shouldResetScrollPosition, gridData, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

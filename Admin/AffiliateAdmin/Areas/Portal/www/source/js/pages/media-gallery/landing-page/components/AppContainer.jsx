@@ -10,30 +10,34 @@ import InsertUpdateForm from './InsertUpdateForm';
 
 import { messages } from '../libs/constants';
 import { fetchData, toggleLoader, setSelectedLandingPageId, setCheckedLandingPages, deleteLandingPages, setShouldResetScrollPosition } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />
-            <ControlButtons
-                messages={messages}
-                gridData={props.gridData}
-                fetchData={props.fetchData}
-                checkedItems={props.checkedLandingPages}
-                setCheckedItems={props.setCheckedLandingPages}
-                toggleLoader={props.toggleLoader}
-                setShouldResetScrollPosition={props.setShouldResetScrollPosition}
-                setSelectedItemId={props.setSelectedLandingPageId}
-                deleteItems={props.deleteLandingPages}
-            />
+            { props.isModifiable &&
+                <ControlButtons
+                    messages={messages}
+                    gridData={props.gridData}
+                    fetchData={props.fetchData}
+                    checkedItems={props.checkedLandingPages}
+                    setCheckedItems={props.setCheckedLandingPages}
+                    toggleLoader={props.toggleLoader}
+                    setShouldResetScrollPosition={props.setShouldResetScrollPosition}
+                    setSelectedItemId={props.setSelectedLandingPageId}
+                    deleteItems={props.deleteLandingPages}
+                />
+            }
             <Content />
             <InsertUpdateForm />
         </AppLayout>
     );
 }
 
-function mapStateToProps({ isShowLoader, gridData, checkedLandingPages }) {
-    return Object.assign({}, { isShowLoader, gridData, checkedLandingPages });
+function mapStateToProps({ isShowLoader, gridData, checkedLandingPages, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGallery);
+    return Object.assign({}, { isShowLoader, gridData, checkedLandingPages, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {
