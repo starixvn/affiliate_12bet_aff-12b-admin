@@ -158,6 +158,8 @@
   <ItemGroup>
     <Compile Include="Attributes\ResetValueNotHavePermissionAttributeTest.cs" />
     <Compile Include="Common\MockFile.cs" />
+    <Compile Include="Repository\AdminRole\AdminInfoRepositoryTest.cs" />
+    <Compile Include="Repository\AdminRole\RolePermissionRepositoryTest.cs" />
     <Compile Include="Services\AdminRole\AdminInfoServiceTest.cs" />
     <Compile Include="Services\Common\SessionServiceTest.cs" />
     <Compile Include="Controllers\AccessDeniedControllerTest.cs" />
@@ -254,6 +256,7 @@
     <Compile Include="Services\Message\MessageServiceTest.cs" />
     <Compile Include="Services\Payment\PaymentRequestServiceTest.cs" />
     <Compile Include="Services\Report\ReportServiceTest.cs" />
+    <Compile Include="Services\SignInServiceTest.cs" />
     <Compile Include="Services\UnderMaintenance\UnderMaintenanceServiceTest.cs" />
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />

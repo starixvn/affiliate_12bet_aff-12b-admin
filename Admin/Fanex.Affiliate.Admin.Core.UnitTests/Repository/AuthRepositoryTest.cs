@@ -156,6 +156,23 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             repository.Object.Logout(1234);
 
             // Assert
+            Assert.True(true);
+        }
+
+        [Fact]
+        public void CheckIfAffBeInChargeByUser_WhenCall_ReturnCorrect()
+        {
+            // Arrange
+            var repository = new Mock<AuthRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery(It.IsAny<object>()));
+            repository.Setup(re => re.GetObjectDb("Aff_Check_AffBelongToUser", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.CheckIfAffBeInChargeByUser(123, 123);
+
+            // Assert
+            Assert.False(result);
         }
 
         private IDictionary<string, object> GetPermissionList()

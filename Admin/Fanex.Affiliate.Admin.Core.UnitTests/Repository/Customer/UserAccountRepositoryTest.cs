@@ -89,6 +89,26 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             Assert.Equal(message, result.Message);
         }
 
+        [Fact]
+        public void GetSecurityQuestions_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var repository = new Mock<UserAccountRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetSecurityQuestionsList());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            repository.Setup(r => r.GetObjectDb("Aff_User_SecurityQuestions_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetSecurityQuestions("en-US");
+
+            // Assert
+            Assert.Single(result);
+        }
+
         private IDictionary<string, object> GetUserAccountInfo()
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
@@ -121,6 +141,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
                 ["Question"] = "test",
                 ["Answer"] = "test",
                 ["MailOption"] = 0
+            };
+        }
+
+        private IDictionary<string, object> GetSecurityQuestionsList()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["QuestionID"] = 123,
+                ["Question"] = "abc"
             };
         }
     }

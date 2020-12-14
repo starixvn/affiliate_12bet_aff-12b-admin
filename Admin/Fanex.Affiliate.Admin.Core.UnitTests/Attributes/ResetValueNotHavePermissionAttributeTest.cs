@@ -70,8 +70,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
 
             attribute.OnResultExecuting(filtercontext);
 
-            Assert.Equal(default, data.ResetProterty);
-            Assert.Equal((decimal)10, data.NotResetPropety);
+            Assert.Equal(default(decimal), data.ResetProterty);
+            Assert.Equal(10, data.NotResetPropety);
         }
 
         [Fact]
@@ -87,7 +87,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
 
             attribute.OnResultExecuting(filtercontext);
 
-            Assert.Equal(default, data.ResetProterty);
+            Assert.Equal(default(DateTime), data.ResetProterty);
             Assert.Equal(now, data.NotResetPropety);
         }
 

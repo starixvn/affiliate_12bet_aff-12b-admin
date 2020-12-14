@@ -66,7 +66,7 @@ export class SettingPanel extends PureComponent {
             const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: selectedStatus });
             const result = await this.props.updateStatus(param);
 
-            if (result.IsSuccessful) {
+            if (result && result.IsSuccessful) {
                 this.setState({ messageNotification: messages.statusUpdatedSuccess, isConfirmPopup: false });
                 this.props.getAffiliateInfo(this.props.affName);
             }
@@ -87,7 +87,7 @@ export class SettingPanel extends PureComponent {
         const param = { AffId: this.props.affiliateInfo.AffId, IsClosed: isClosed };
         const result = await this.props.updateClosedStatus(param);
 
-        if (result.IsSuccessful) {
+        if (result && result.IsSuccessful) {
             this.setState({ messageNotification: messages.statusUpdatedSuccess, isConfirmPopup: false });
             this.props.getAffiliateInfo(this.props.affName);
         }
@@ -101,7 +101,7 @@ export class SettingPanel extends PureComponent {
         const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, AffType: affType });
         const result = await this.props.updateAffType(param);
 
-        if (result.IsSuccessful) {
+        if (result && result.IsSuccessful) {
             this.props.getAffiliateInfo(this.props.affName);
             this.toggleChangingAffType(false);
         }

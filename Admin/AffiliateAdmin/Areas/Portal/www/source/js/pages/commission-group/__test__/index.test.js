@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import App from '../index';
 import { shallow } from 'enzyme';
+import * as ajaxRequest from '../../../modules/ajaxRequest';
 
 jest.mock('react-dom', () => ({ render: jest.fn() }))
 
@@ -44,6 +45,8 @@ describe('commission group - App', () => {
     it('Should render correctly', () => {
         window.globalVariables = {};
         window.initialState = {};
+        const expectedResponse = { data: { CommGroupList: [], LanguageList: [] }, status: 200 };
+        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const wrapper = shallow(<App />);
 

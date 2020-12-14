@@ -20,10 +20,13 @@ export class AppContainer extends React.PureComponent {
 
     componentDidMount = async () => {
         const data = await this.fetchFilter();
-        const commGroupList = convertArrayToObjectProps(data.CommGroupList, 'Id', 'Name');
-        const languageList = convertArrayToObjectProps(data.LanguageList, 'LanguageCode', 'LanguageName');
-        this.props.setLanguageList(languageList);
-        this.props.setCommGroupList(commGroupList);
+
+        if (!!data) {
+            const commGroupList = convertArrayToObjectProps(data.CommGroupList, 'Id', 'Name');
+            const languageList = convertArrayToObjectProps(data.LanguageList, 'LanguageCode', 'LanguageName');
+            this.props.setLanguageList(languageList);
+            this.props.setCommGroupList(commGroupList);
+        }
     }
 
     fetchFilter = async () => {
