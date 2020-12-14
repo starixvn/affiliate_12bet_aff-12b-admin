@@ -103,9 +103,6 @@ module.exports = env => {
             })
         ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin(), new CleanWebpackPlugin(pathsToClean, cleanOptions), ]),
         devtool: isDevBuild ? "source-map" : undefined,
-        optimization:{
-            splitChunks: false
-        }
     });
 
     const layoutBundleConfig = merge(sharedConfig(), {
