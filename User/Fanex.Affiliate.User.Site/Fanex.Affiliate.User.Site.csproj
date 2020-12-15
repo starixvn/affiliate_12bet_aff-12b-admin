@@ -902,6 +902,8 @@
     <Content Include="www\source\styles\Images\email\button.png" />
     <Content Include="www\source\styles\Images\email\header.png" />
     <Content Include="www\source\styles\Images\email\note.png" />
+    <Content Include="www\source\styles\Images\header-bg.png" />
+    <Content Include="www\source\styles\Images\left-main-banner.png" />
     <Content Include="www\source\styles\Images\notify\bgMain.jpg" />
     <Content Include="www\source\styles\Images\notify\icon.png" />
     <Content Include="www\source\styles\Images\notify\iconnf.png" />
@@ -909,6 +911,7 @@
     <Content Include="www\source\styles\Images\notify\note_icon.gif" />
     <Content Include="www\source\styles\Images\notify\sry.png" />
     <Content Include="www\source\styles\Images\notify\srynf.png" />
+    <Content Include="www\source\styles\Images\right-main-banner.png" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.css" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.min.css" />
     <Content Include="Views\Shared\Email\Signup\Content.en-GB.cshtml" />
@@ -1087,15 +1090,6 @@
     <Content Include="www\build\styles\Images\sports-banners\Sports-Banner.vi-VN.webp" />
     <Content Include="www\build\styles\Images\sports-banners\Sports-Banner.zh-CN.webp" />
     <Content Include="www\build\styles\Images\sports-banners\Sports-Banner.zh-TW.webp" />
-    <Content Include="www\source\styles\Images\sports-banners\Sports-Banner.en-US.webp" />
-    <Content Include="www\source\styles\Images\sports-banners\Sports-Banner.hi-IN.webp" />
-    <Content Include="www\source\styles\Images\sports-banners\Sports-Banner.id-ID.webp" />
-    <Content Include="www\source\styles\Images\sports-banners\Sports-Banner.ja-JP.webp" />
-    <Content Include="www\source\styles\Images\sports-banners\Sports-Banner.ko-KR.webp" />
-    <Content Include="www\source\styles\Images\sports-banners\Sports-Banner.th-TH.webp" />
-    <Content Include="www\source\styles\Images\sports-banners\Sports-Banner.vi-VN.webp" />
-    <Content Include="www\source\styles\Images\sports-banners\Sports-Banner.zh-CN.webp" />
-    <Content Include="www\source\styles\Images\sports-banners\Sports-Banner.zh-TW.webp" />
     <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.id-ID.webp" />
     <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.ja-JP.webp" />
     <Content Include="www\build\styles\Images\bg-Terms_&amp;_conditions_banner.webp" />
@@ -1103,6 +1097,11 @@
     <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.vi-VN.webp" />
     <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.zh-CN.webp" />
     <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.zh-TW.webp" />
+    <Content Include="www\build\styles\Images\left-main-banner.webp" />
+    <Content Include="www\build\styles\Images\right-main-banner.webp" />
+    <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.ko-KR.webp" />
+    <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.en-US.webp" />
+    <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.hi-IN.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
