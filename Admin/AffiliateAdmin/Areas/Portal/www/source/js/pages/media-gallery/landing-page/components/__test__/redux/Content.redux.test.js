@@ -21,12 +21,14 @@ describe('landing page list - Content - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             checkedLandingPages: { 123: false },
+            isModifiable: true,
             shouldResetScrollPosition: true,
             gridData: []
         };
         const state = {
             checkedLandingPages: { 123: false },
             shouldResetScrollPosition: true,
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             gridData: [],
             anotherProp: "Not included"
         };

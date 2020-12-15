@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.AdminRole;
-using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -15,15 +14,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
     {
         private IAuthRepository AuthRepo { get; }
         private IAdminInfoRepository AdminUserRepo { get; }
-        private IAffiliateInfoRepository AffRepo { get; }
 
         public AuthService(IAuthRepository authRepository,
-            IAdminInfoRepository adminInfoRepository,
-            IAffiliateInfoRepository affRepository)
+            IAdminInfoRepository adminInfoRepository)
         {
             AuthRepo = authRepository;
             AdminUserRepo = adminInfoRepository;
-            AffRepo = affRepository;
         }
 
         public IEnumerable<Claim> GetClaims(int userId)

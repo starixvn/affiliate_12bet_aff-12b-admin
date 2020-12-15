@@ -6,6 +6,9 @@ jest.mock('react-dom', ()=> ({render: jest.fn()}))
 
 describe('landing page list - App', () => {
     it('Should render correctly', () => {
+        window.globalVariables = {};
+        window.initialState = {};
+
         const wrapper = shallow(<App />);
 
         expect(wrapper).toMatchSnapshot();

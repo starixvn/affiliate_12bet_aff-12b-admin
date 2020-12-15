@@ -239,7 +239,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePhoneNumber_Upd", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.UpdateContactNumber(new UpdateContactNumberParam());
+            var result = repository.Object.UpdateContactNumber(new UpdateContactNumberParam { PhoneNumber = "123" });
 
             // Assert
             Assert.True(result.IsSuccessful);

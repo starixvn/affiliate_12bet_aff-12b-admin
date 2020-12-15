@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 {
     public class SignInServiceTest
     {
-        private IAuthRepository authRepository;
+        private readonly IAuthRepository authRepository;
         public SignInServiceTest()
         {
             authRepository = Substitute.For<IAuthRepository>();

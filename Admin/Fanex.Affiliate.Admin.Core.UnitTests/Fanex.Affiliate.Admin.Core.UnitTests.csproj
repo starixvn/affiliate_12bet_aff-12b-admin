@@ -161,6 +161,9 @@
     <Compile Include="Repository\AdminRole\AdminInfoRepositoryTest.cs" />
     <Compile Include="Repository\AdminRole\RolePermissionRepositoryTest.cs" />
     <Compile Include="Services\AdminRole\AdminInfoServiceTest.cs" />
+    <Compile Include="Services\AdminRole\AdminRoleCommonServiceTest.cs" />
+    <Compile Include="Services\AdminRole\RolePermissionServiceTest.cs" />
+    <Compile Include="Services\AuthServiceTest.cs" />
     <Compile Include="Services\Common\SessionServiceTest.cs" />
     <Compile Include="Controllers\AccessDeniedControllerTest.cs" />
     <Compile Include="Controllers\AdminRole\AdminInfoControllerTest.cs" />

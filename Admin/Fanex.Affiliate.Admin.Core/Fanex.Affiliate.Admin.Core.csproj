@@ -576,7 +576,6 @@
     <Compile Include="ViewModels\MediaGallery\GetBannerViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\GetTextLinkViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\ImageSizeViewModel.cs" />
-    <Compile Include="ViewModels\UpdateContactNumberViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerViewModel.cs" />
     <Compile Include="ViewModels\Domain\DomainControlViewModel.cs" />
     <Compile Include="ViewModels\Domain\DomainViewModel.cs" />

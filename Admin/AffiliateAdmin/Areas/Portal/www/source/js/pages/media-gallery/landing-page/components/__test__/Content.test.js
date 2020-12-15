@@ -22,6 +22,7 @@ describe('landing page list - components - Content ', () => {
     const defaultProps = {
         checkedLandingPages: { 1: false, 22: false },
         shouldResetScrollPosition: true,
+        isModifiable: true,
         gridData
     };
 
