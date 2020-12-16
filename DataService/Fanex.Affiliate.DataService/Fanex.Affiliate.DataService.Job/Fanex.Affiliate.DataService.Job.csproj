@@ -100,6 +100,8 @@
     <Compile Include="Log\LoggerFactory.cs" />
     <Compile Include="Log\LogLevel.cs" />
     <Compile Include="Log\LogWrapperManager.cs" />
+    <Compile Include="Modules\BTiJob.cs" />
+    <Compile Include="Modules\BTiScheduler.cs" />
     <Compile Include="Modules\KYGamingJob.cs" />
     <Compile Include="Modules\KYGamingScheduler.cs" />
     <Compile Include="NewApiJobBase.cs" />
@@ -143,6 +145,10 @@
     <Compile Include="Services\TimeTracker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Fanex.Affiliate.DataService.Importer.BTi\Fanex.Affiliate.DataService.Importer.BTi.csproj">
+      <Project>{e962c537-380b-439b-b66f-6e3fd8fbdbf6}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.BTi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.AgCasino\Fanex.Affiliate.DataService.Importer.AgCasino.csproj">
       <Project>{e1fea403-e07c-4d0b-8d9c-4a79ff356b18}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.AgCasino</Name>
