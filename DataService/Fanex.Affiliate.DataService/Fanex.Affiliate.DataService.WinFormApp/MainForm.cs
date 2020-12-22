@@ -112,5 +112,11 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             var form = new KYGamingForm();
             SetUpServiceForm(form);
         }
+
+        private void btnBTi_Click(object sender, EventArgs e)
+        {
+            var form = new BTiForm();
+            SetUpServiceForm(form);
+        }
     }
 }
