@@ -5,13 +5,12 @@ using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Repository;
 using Fanex.Affiliate.DataService.Importer.Core.ResponseChecker;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -19,8 +18,13 @@ namespace Fanex.Affiliate.DataService.Importer.BTi
 {
     public class BTiService : XmlImpoterlServiceBase
     {
-        public BTiService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
-            : base(appSetting, thirdPartyProductRepository) {}
+        protected readonly IApiClientFactory _apiClientFactory;
+
+        public BTiService(IApiClientFactory apiClientFactory = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
+            : base(appSetting, thirdPartyProductRepository)
+        {
+            _apiClientFactory = apiClientFactory ?? new ApiClientFactory();
+        }
 
         protected override int ProductId => Products.BTiId;
 
@@ -36,60 +40,41 @@ namespace Fanex.Affiliate.DataService.Importer.BTi
 
         private async Task<string> GetRawDataAsync(DateTime startTime, DateTime endTime)
         {
-            using (var client = new HttpClient())
-            {
-                var token = await GetTokenAsync(client).ConfigureAwait(false);
-                var url = _appSetting.GetValue("BTiApiUrl");
-                var uri = new Uri($"{url}?token={token}");
-
-                var requestBody = BuildRequestBody(startTime, endTime);
-                var contentType = GetContentType(requestBody);
-
-                var response = await client.PostAsync(uri, contentType).ConfigureAwait(false);
-                var data = response.Content.ReadAsStringAsync().Result;
-
-                return data;
-            }
-        }
-
-        private async Task<string> GetTokenAsync(HttpClient httpClient)
-        {
-            var url = _appSetting.GetValue("BTiTokenUrl");
-            var requestBody = new
-            {
-                agentUserName = _appSetting.GetValue("BTiAgentUserName"),
-                agentPassword = _appSetting.GetValue("BTiAgentPassword")
-            };
-            var contentType = GetContentType(requestBody);
-
-            var response = await httpClient.PostAsync(url, contentType).ConfigureAwait(false);
-            var token = GetTokenFromRawData(response.Content.ReadAsStringAsync().Result);
-
-            return token;
-        }
-
-        private object BuildRequestBody(DateTime startTime, DateTime endTime)
-        {
             var dateTimeFormat = _appSetting.GetValue("BTiFormatDateTime");
-
-            return new
+            var queryValues = new NameValueCollection
             {
-                From = startTime.ToString(dateTimeFormat),
-                To = endTime.ToString(dateTimeFormat)
+                { "From", startTime.ToString(dateTimeFormat) },
+                { "To", endTime.ToString(dateTimeFormat) }
             };
+
+            var token = await GetTokenAsync().ConfigureAwait(false);
+
+            var url = $"{_appSetting.GetValue("BTiApiUrl")}?token={token}";
+            var client = _apiClientFactory.CreateApiClient(url, HttpMethod.Post);
+
+            return await client.GetResponseAsync(queryValues).ConfigureAwait(false);
         }
 
-        private StringContent GetContentType(object requestBody)
+        private async Task<string> GetTokenAsync()
         {
-            var json = JsonConvert.SerializeObject(requestBody);
-            return new StringContent(json, Encoding.UTF8, "application/json");
+            var client = _apiClientFactory.CreateApiClient(_appSetting.GetValue("BTiTokenUrl"), HttpMethod.Post);
+
+            var queryValues = new NameValueCollection
+            {
+                { "agentUserName", _appSetting.GetValue("BTiAgentUserName") },
+                { "agentPassword", _appSetting.GetValue("BTiAgentPassword") }
+            };
+
+            var result = await client.GetResponseAsync(queryValues).ConfigureAwait(false);
+
+            return GetTokenFromRawData(result);
         }
 
         private static string GetTokenFromRawData(string raw)
         {
             var rawJsonOject = JObject.Parse(raw);
 
-            return (string)rawJsonOject.SelectToken("$.token");
+            return rawJsonOject.SelectToken("$.token").ToString();
         }
 
         protected override void CheckXmlResponseData(XDocument xml)
