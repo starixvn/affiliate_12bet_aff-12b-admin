@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Core.Extension;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Specialized;
 using System.Net.Http;
@@ -19,7 +18,6 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
         public HttpClientHeaderOption Headers { get; private set; }
         public IHttpContentProvider ContentProvider { get; set; } = new JsonContentProvider();
 
-
         public ApiClient(string url, HttpMethod httpMethod = null, HttpClientHeaderOption headers = null)
         {
             SetUrl(url);
@@ -32,7 +30,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             if(string.IsNullOrWhiteSpace(Url))
             {
                 throw new InvalidOperationException("Url cannot be null or empty");
-            }    
+            }
 
             switch (HttpMethod.Method.ToUpper())
             {
@@ -86,7 +84,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             {
                 return;
             }
- 
+
             var defaultHeaders = request.Headers;
             defaultHeaders.Authorization = headers.AuthenHeader ?? defaultHeaders.Authorization;
             if (!string.IsNullOrWhiteSpace(headers.AcceptContent))
@@ -99,7 +97,5 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
                 defaultHeaders.Add(header.Name, header.Value);
             }
         }
-
-
     }
 }

@@ -1,16 +1,17 @@
-﻿using Fanex.Affiliate.DataService.Importer.BTi.MetaModels;
-using Fanex.Affiliate.DataService.Importer.BTi.ResponseChecker;
+﻿using Fanex.Affiliate.DataService.Importer.BTi.ResponseChecker;
 using Fanex.Affiliate.DataService.Importer.Core.Constants;
 using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Repository;
 using Fanex.Affiliate.DataService.Importer.Core.ResponseChecker;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
+using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -18,66 +19,70 @@ namespace Fanex.Affiliate.DataService.Importer.BTi
 {
     public class BTiService : XmlImpoterlServiceBase
     {
-        protected readonly IApiClient _client;
-        protected readonly IApiClientFactory _apiClientFactory;
-
-        public BTiService(IApiClientFactory apiClientFactory = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) : base(appSetting, thirdPartyProductRepository)
-        {
-            _apiClientFactory = apiClientFactory ?? new ApiClientFactory();
-            _client = _apiClientFactory.CreateApiClient(_appSetting.GetValue("BTiApiUrl"), HttpMethod.Post);
-        }
+        public BTiService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
+            : base(appSetting, thirdPartyProductRepository) {}
 
         protected override int ProductId => Products.BTiId;
 
         public override async Task<IEnumerable<string>> GetRawDataListAsync(DateTime startTime, DateTime endTime)
         {
-            var paramToRequest = BuildParam(startTime, endTime);
             var datas = new List<string>
             {
-                await GetRawDataAsync(paramToRequest).ConfigureAwait(false)
+                await GetRawDataAsync(startTime, endTime).ConfigureAwait(false)
             };
 
             return datas;
         }
 
-        private async Task<string> GetRawDataAsync(BTiParam paramToRequest)
+        private async Task<string> GetRawDataAsync(DateTime startTime, DateTime endTime)
         {
-            var queryValues = BuildQueryParam(paramToRequest);
-            return await _client.GetResponseAsync(queryValues).ConfigureAwait(false);
+            using (var client = new HttpClient())
+            {
+                var token = await GetTokenAsync(client).ConfigureAwait(false);
+                var url = _appSetting.GetValue("BTiApiUrl");
+                var uri = new Uri($"{url}?token={token}");
+
+                var requestBody = BuildRequestBody(startTime, endTime);
+                var contentType = GetContentType(requestBody);
+
+                var response = await client.PostAsync(uri, contentType).ConfigureAwait(false);
+                var data = response.Content.ReadAsStringAsync().Result;
+
+                return data;
+            }
         }
 
-        private NameValueCollection BuildQueryParam(BTiParam paramToRequest)
+        private async Task<string> GetTokenAsync(HttpClient httpClient)
+        {
+            var url = _appSetting.GetValue("BTiTokenUrl");
+            var requestBody = new
+            {
+                agentUserName = _appSetting.GetValue("BTiAgentUserName"),
+                agentPassword = _appSetting.GetValue("BTiAgentPassword")
+            };
+            var contentType = GetContentType(requestBody);
+
+            var response = await httpClient.PostAsync(url, contentType).ConfigureAwait(false);
+            var token = GetTokenFromRawData(response.Content.ReadAsStringAsync().Result);
+
+            return token;
+        }
+
+        private object BuildRequestBody(DateTime startTime, DateTime endTime)
         {
             var dateTimeFormat = _appSetting.GetValue("BTiFormatDateTime");
 
-            var queryValues = new NameValueCollection(3)
+            return new
             {
-                { "token", paramToRequest.Token },
-                { "from", paramToRequest.From.ToString(dateTimeFormat) },
-                { "to", paramToRequest.To.ToString(dateTimeFormat) }
-            };
-
-            return queryValues;
-        }
-
-        private BTiParam BuildParam(DateTime startTime, DateTime endTime)
-        {
-            var token = GetTokenAsync();
-            return new BTiParam
-            {
-                Token = token.Result,
-                From = startTime,
-                To = endTime
+                From = startTime.ToString(dateTimeFormat),
+                To = endTime.ToString(dateTimeFormat)
             };
         }
 
-        private async Task<string> GetTokenAsync()
+        private StringContent GetContentType(object requestBody)
         {
-            var client = _apiClientFactory.CreateApiClient(_appSetting.GetValue("BTiTokenUrl"), HttpMethod.Post);
-            var queryValues = BuildQueryTokenParam();
-            var rawData = await client.GetResponseAsync(queryValues).ConfigureAwait(false);
-
-            return GetTokenFromRawData(rawData);
+            var json = JsonConvert.SerializeObject(requestBody);
+            return new StringContent(json, Encoding.UTF8, "application/json");
         }
 
         private static string GetTokenFromRawData(string raw)
@@ -85,19 +90,6 @@ namespace Fanex.Affiliate.DataService.Importer.BTi
             var rawJsonOject = JObject.Parse(raw);
 
             return (string)rawJsonOject.SelectToken("$.token");
-        }
-
-        private NameValueCollection BuildQueryTokenParam()
-        {
-            var agentUserName = _appSetting.GetValue("BTiAgentUserName");
-            var agentPassword = _appSetting.GetValue("BTiAgentPassword");
-
-            var queryValues = new NameValueCollection(2)
-            {
-                { "agentUserName", agentUserName },
-                { "agentPassword", agentPassword }
-            };
-            return queryValues;
         }
 
         protected override void CheckXmlResponseData(XDocument xml)
@@ -130,40 +122,52 @@ namespace Fanex.Affiliate.DataService.Importer.BTi
 
             if ((string)code == successCode)
             {
-                var count = (int)rawJsonOject.SelectToken("$.count");
                 var dataList = rawJsonOject.SelectToken("$.Bets");
-                var items = ReArrangeDataToListItems(dataList, count);
+                var items = ReArrangeDataToListItems(dataList);
                 dataList.Replace(items);
             }
 
             return rawJsonOject.ToString();
         }
 
-        private static JToken ReArrangeDataToListItems(JToken dataList, int count)
+        private static JToken ReArrangeDataToListItems(JToken dataList)
         {
             var items = new JArray();
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < dataList.Count(); i++)
             {
                 var item = new JObject();
-                FillDataToItem(item, dataList, i);
+                FillDataToItem(item, dataList[i]);
                 items.Add(item);
             }
             return items;
         }
 
-        private static void FillDataToItem(JObject item, JToken dataSource, int rowNumber)
+        private static void FillDataToItem(JObject item, JToken betItem)
         {
+            item.Add("BetID", GetBetID(betItem));
+
             foreach (var pro in GetDataFieldNames())
             {
-                item.Add(pro, dataSource.SelectToken($"$.{pro}[{rowNumber}]"));
+                var data = betItem.SelectToken($"$.{pro}");
+
+                item.Add(pro, data);
             }
         }
 
         private static string[] GetDataFieldNames()
             => new[]
             {
-                "BetID", "UserName", "TotalStake", "ValidStake",
-                "PL", "BetStatus", "BetSettleDate",
+                "UserName", "TotalStake", "ValidStake",
+                "PL", "BetStatus", "BetSettledDate",
             };
+
+        private static JToken GetBetID(JToken betItem)
+        {
+            var selections = betItem.SelectToken($"$.Selections");
+            var firstSelectionItem = selections[0];
+            var betID = firstSelectionItem.SelectToken($"$.BetID");
+
+            return betID;
+        }
     }
 }
