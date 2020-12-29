@@ -16,7 +16,7 @@ using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer.BTi
 {
-    public class BTiService : XmlImpoterlServiceBase
+    public class BTiService : XmlImporterlServiceBase
     {
         protected readonly IApiClientFactory _apiClientFactory;
 
@@ -149,7 +149,7 @@ namespace Fanex.Affiliate.DataService.Importer.BTi
         private static JToken GetBetID(JToken betItem)
         {
             var selections = betItem.SelectToken($"$.Selections");
-            var firstSelectionItem = selections[0];
+            var firstSelectionItem = selections.FirstOrDefault();
             var betID = firstSelectionItem.SelectToken($"$.BetID");
 
             return betID;

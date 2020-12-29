@@ -24,7 +24,8 @@ namespace Fanex.Affiliate.DataService.Job.Constants
                     { "VrLottery", new Lazy<IJobScheduler>(() => new ImOneVrLotteryScheduler()) },
                     { "GpiLottery", new Lazy<IJobScheduler>(() => new GpiLotteryScheduler()) },
                     { "LBKeno", new Lazy<IJobScheduler>(() => new LBKenoScheduler()) },
-                    { "KYGaming", new Lazy<IJobScheduler>(() => new KYGamingScheduler()) }
+                    { "KYGaming", new Lazy<IJobScheduler>(() => new KYGamingScheduler()) },
+                    { "BTi", new Lazy<IJobScheduler>(() => new BTiScheduler()) }
                 };
             }
         }

@@ -15,7 +15,7 @@ using System.Net.Http;
 
 namespace Fanex.Affiliate.DataService.Importer 
 {
-    public class VrLotteryService : XmlImpoterlServiceBase, IDataRequestByCurrency
+    public class VrLotteryService : XmlImporterlServiceBase, IDataRequestByCurrency
     {
         private const int MINUTE_TIME_RANGE_LIMIT = 10;
         private const string TimeDataFormat = "yyyy-MM-dd HH:mm:ss K";

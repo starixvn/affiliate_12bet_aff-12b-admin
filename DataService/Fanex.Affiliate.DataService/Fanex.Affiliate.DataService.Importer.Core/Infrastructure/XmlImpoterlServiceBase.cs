@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
 {
-    public abstract class XmlImpoterlServiceBase : IImporterService
+    public abstract class XmlImporterlServiceBase : IImporterService
     {
         protected IAppSettings _appSetting;
         protected IThirdPartyProductRepository _thirdPartyProductRepository;
@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
         public virtual int HoursAjust => 0;
 
 
-        protected XmlImpoterlServiceBase(IAppSettings appSetting, IThirdPartyProductRepository thirdPartyProductRepository)
+        protected XmlImporterlServiceBase(IAppSettings appSetting, IThirdPartyProductRepository thirdPartyProductRepository)
         {
             _appSetting = appSetting ?? new AppSettings();
             _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
