@@ -52,4 +52,11 @@ describe('user account - components - sections - Additional', () => {
 
         expect(defaultProps.setUserAccountInfo).toHaveBeenCalledWith({ ...userAccountInfo, Address: '123'});
     });
+
+    it('render correctly with not has claim', () => {
+        const props = Object.assign({}, defaultProps, { hasReadClaim: jest.fn(() => false), hasWriteClaim: jest.fn(() => false) });
+        const result = shallow(<Additional {...props} />);
+
+        expect(result).toMatchSnapshot();
+    });
 });
