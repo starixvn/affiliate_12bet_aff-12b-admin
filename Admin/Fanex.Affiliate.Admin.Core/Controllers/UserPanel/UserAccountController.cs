@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                 var userAccountInfo = _userAccountService.GetUserAccountInfo(affId);
                 var claimPrincipal = HttpContext.User as ClaimsPrincipal;
                 var securityQuestions = claimPrincipal.HasClaim(Function.SecurityQa)
-                    ? _userAccountService.GetSecurityQuestions(AdminPageDefaultLang, true).Select(q => new KeyValuePair<int, string>(q.QuestionId, q.Question))
+                    ? _userAccountService.GetSecurityQuestions(AdminPageDefaultLang).Select(q => new KeyValuePair<int, string>(q.QuestionId, q.Question))
                     : null;
 
                 if (userAccountInfo != null)

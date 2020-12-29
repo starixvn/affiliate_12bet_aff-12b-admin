@@ -81,7 +81,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         public string Question { get; set; }
 
         [PermissionCheck(Function.SecurityQa)]
-        public int QuestionId { get; set; }
+        public int? QuestionId { get; set; }
 
         [PermissionCheck(Function.SecurityQa)]
         public string Answer { get; set; }

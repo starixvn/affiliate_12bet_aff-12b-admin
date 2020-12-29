@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             BankAccountName = Convert.ToString(reader["BankAccountName"]),
                             BankAccountNumber = Convert.ToString(reader["BankAccountNo"]),
                             Question = Convert.ToString(reader["Question"]),
-                            QuestionId = reader.ToInt("QuestionId"),
+                            QuestionId = reader["QuestionId"] == DBNull.Value ? (int?)null : reader.ToInt("QuestionId"),
                             Answer = Convert.ToString(reader["Answer"]),
                             Lang = reader.ToString("PreferredLanguage"),
                             MailOption = reader["MailOption"] == DBNull.Value ? (bool?)null : Convert.ToBoolean(reader["MailOption"])
