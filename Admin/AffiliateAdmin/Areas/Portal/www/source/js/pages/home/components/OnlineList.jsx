@@ -47,7 +47,7 @@ export class OnlineList extends PureComponent {
             }
         }
         else {
-            dataRows.push(<Row>
+            dataRows.push(<Row key="No Info">
                 <Cell className="text-center" colSpan="6">No users are online</Cell>
             </Row>);
         }

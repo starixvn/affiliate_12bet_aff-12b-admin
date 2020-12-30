@@ -110,7 +110,7 @@ export class TextDetailForm extends PureComponent {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-2 p-1 border" autocomplete="off">
+                            <Form tag="form" className="mb-2 p-1 border" autoComplete="off">
                                 <FormGroup row className="mb-2">
                                     <Label for={textContent} sm={2} className="d-flex align-items-center">Text</Label>
                                     <Col sm={10}>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
+import MyLink from '../../../common/components/MyLink';
 
 import { resizeWidthHeight } from '../libs/utils';
 import { headerText, globalResource, maxWidthHeight, pcLaptop, mobile } from '../libs/constants';
@@ -102,9 +103,9 @@ export const Content = (props) => {
                         isValidWithHeight ? (
                             <img id={`img${bannerId}`} src={src} alt="" height={realHeight} width={realWidth} />
                         ) : (
-                                <a href="javascript:;" id={`link${bannerId}`} onClick={() => props.setBannerDetailUrl({ src, bannerId, width: realWidth, height: realHeight })}>
+                                <MyLink id={`link${bannerId}`} onClick={() => props.setBannerDetailUrl({ src, bannerId, width: realWidth, height: realHeight })}>
                                     <img id={`img${bannerId}`} src={src} alt="12Bet banner" height={resizeResult.height} width={resizeResult.width} />
-                                </a>
+                                </MyLink>
                             )
                     }
                 </Cell>

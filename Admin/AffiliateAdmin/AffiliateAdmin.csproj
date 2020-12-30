@@ -395,6 +395,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\components\CheckboxSelectAll.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\InputPopUp.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\MenuList.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\MyLink.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\ButtonDeleteItems.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\ChangePasswordForm.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\CommissionGroupPopup.test.js" />

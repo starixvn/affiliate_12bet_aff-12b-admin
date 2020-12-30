@@ -119,11 +119,11 @@ export class ChangePasswordForm extends PureComponent {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-5" autocomplete="off">
+                            <Form tag="form" className="mb-5" autoComplete="off">
                                 <FormGroup row className="mb-2">
                                     <Label for="Password" sm={4} className="required">{resource.Password}:</Label>
                                     <Col sm={8}>
-                                        <Input type="password" className="input-required" name="password" id="Password" autocomplete="false" maxlength="20"
+                                        <Input type="password" className="input-required" name="password" id="Password" autoComplete="false" maxlength="20"
                                             value={password} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this.handleChange} invalid={isClickedSubmit && !passwordValidation.IsValid} />
                                         {passwordValidation.Message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: passwordValidation.Message }} /></FormFeedback>}
@@ -133,7 +133,7 @@ export class ChangePasswordForm extends PureComponent {
                                 <FormGroup row className="mb-2">
                                     <Label for="ConfirmPassword" sm={4} className="required">{resource.ConfirmPassword}:</Label>
                                     <Col sm={8}>
-                                        <Input type="password" className="input-required" name="confirmPassword" id="ConfirmPassword" autocomplete="false" maxlength="20"
+                                        <Input type="password" className="input-required" name="confirmPassword" id="ConfirmPassword" autoComplete="false" maxlength="20"
                                             value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this.handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.IsValid} />
                                         {confirmPasswordValidation.Message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.Message }} /></FormFeedback>}

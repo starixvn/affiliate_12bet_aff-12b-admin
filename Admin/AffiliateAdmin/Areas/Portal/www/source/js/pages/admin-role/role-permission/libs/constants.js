@@ -23,6 +23,6 @@ export const resource = {
 }
 
 export const messages = {
-    AreYouSureUpdateRole: 'Are you sure? <br /> By confirm this action, <strong class="text-danger">all admin users</strong> under this role will update with new default role setting.',
-    AreYouSureUpdateLanguages: 'Are you sure? <br /> By confirm this action, <strong class="text-danger">all admin users</strong> under this role will update with new default language setting.',
+    AreYouSureUpdateRole: 'Are you sure? <br /> By confirm this action, <strong className="text-danger">all admin users</strong> under this role will update with new default role setting.',
+    AreYouSureUpdateLanguages: 'Are you sure? <br /> By confirm this action, <strong className="text-danger">all admin users</strong> under this role will update with new default language setting.',
 }

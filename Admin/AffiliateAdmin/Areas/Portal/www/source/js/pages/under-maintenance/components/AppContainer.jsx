@@ -10,7 +10,7 @@ export default class AppContainer extends PureComponent {
 
         return (
             <div className="under-maintenance-container">
-                <div class="text_time text_top">
+                <div className="text_time text_top">
                     {
                         umTimeFrom
                     }
@@ -19,7 +19,7 @@ export default class AppContainer extends PureComponent {
                         umTimeTo
                     }
                 </div>
-                <div class="text_time text_button">
+                <div className="text_time text_button">
                     {
                         umTimeFrom
                     }

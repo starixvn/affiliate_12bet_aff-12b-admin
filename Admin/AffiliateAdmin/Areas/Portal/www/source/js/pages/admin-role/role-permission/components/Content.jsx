@@ -5,6 +5,7 @@ import { Container } from 'reactstrap';
 
 import LanguageComponent from './LanguageComponent';
 import GeneralComponent from './GeneralComponent';
+import MyLink from '../../../common/components/MyLink';
 import { setIsGeneral, getRoleList, getMarketList } from '../actions';
 
 export class Content extends PureComponent {
@@ -29,18 +30,18 @@ export class Content extends PureComponent {
             <div className="data-content">
                 < Container fluid={true} className="tab-container">
                     <div className="tab-menu-container py-2">
-                        <ul class="nav">
+                        <ul className="nav">
                             <li className="nav-item">
-                                <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? 'active' : ''}`}
+                                <MyLink className={`sub-nav-link tab-link ${isGeneral ? 'active' : ''}`}
                                     onClick={() => this._handleChangeTab(true)}>
-                                    <span class="menu-text">General</span>
-                                </a>
+                                    <span className="menu-text">General</span>
+                                </MyLink>
                             </li>
                             <li className="nav-item pl-3">
-                                <a href="javascript:;" className={`sub-nav-link tab-link ${isGeneral ? '' : 'active'}`}
+                                <MyLink className={`sub-nav-link tab-link ${isGeneral ? '' : 'active'}`}
                                     onClick={() => this._handleChangeTab(false)}>
-                                    <span class="menu-text">Language</span>
-                                </a>
+                                    <span className="menu-text">Language</span>
+                                </MyLink>
                             </li>
                         </ul>
                     </div>

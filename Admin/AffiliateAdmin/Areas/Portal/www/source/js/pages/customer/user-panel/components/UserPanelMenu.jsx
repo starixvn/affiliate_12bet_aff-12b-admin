@@ -8,8 +8,8 @@ export const UserPanelMenu = (props) => {
 
     return (
         <div className="user-panel-menu-container">
-            <span class="icon-userpanel"></span>
-            <ul class="d-inline-block menu-list">
+            <span className="icon-userpanel"></span>
+            <ul className="d-inline-block menu-list">
                 {
                     menuList.filter(item => !item.parent).map(item => {
                         return (

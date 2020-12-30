@@ -16,7 +16,7 @@ export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={isShowLoader} />
-            <div class="admin-role-content-container">
+            <div className="admin-role-content-container">
                 {
                     componentIndex !== -1 &&
                     <Suspense fallback={null}>

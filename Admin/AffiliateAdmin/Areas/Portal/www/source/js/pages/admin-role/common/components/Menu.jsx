@@ -5,19 +5,19 @@ export const SubMenu = (props) => {
     const { isSelectedRolePermission } = props;
 
     return (
-        <div class="sub-menu-container admin-role-menu">
-            <div class="d-inline-block">
-                <ul class="nav align-items-center">
-                    <li class="nav-item">
+        <div className="sub-menu-container admin-role-menu">
+            <div className="d-inline-block">
+                <ul className="nav align-items-center">
+                    <li className="nav-item">
                         <a href={resolveClientUrl("Portal/AdminRole")}>
-                            <span class="icon-admin-role"></span>
+                            <span className="icon-admin-role"></span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class={`nav-link ${isSelectedRolePermission ? '' : 'active'}`} href={resolveClientUrl("Portal/AdminRole")}>Admin List</a>
+                    <li className="nav-item">
+                        <a className={`nav-link ${isSelectedRolePermission ? '' : 'active'}`} href={resolveClientUrl("Portal/AdminRole")}>Admin List</a>
                     </li>
                     <li class="nav-item">
-                        <a class={`nav-link ${isSelectedRolePermission ? 'active' : ''}`} href={resolveClientUrl("Portal/RolePermission")}>Role Permission</a>
+                        <a className={`nav-link ${isSelectedRolePermission ? 'active' : ''}`} href={resolveClientUrl("Portal/RolePermission")}>Role Permission</a>
                     </li>
                 </ul>
             </div>

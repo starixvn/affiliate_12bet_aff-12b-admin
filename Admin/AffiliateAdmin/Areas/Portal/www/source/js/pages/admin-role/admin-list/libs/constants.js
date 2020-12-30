@@ -25,6 +25,6 @@ export const resource = {
 
 export const messages = {
     PleaseSelect: 'Please select items to delete',
-    AreYouSureDeleteItems: 'Are you sure? <br /> By confirm this action, <strong class="text-danger">{0}</strong> users will be deleted?',
+    AreYouSureDeleteItems: 'Are you sure? <br /> By confirm this action, <strong className="text-danger">{0}</strong> users will be deleted?',
     DeleteItemsSuccessfully: 'Delete User(s) Successfully',
 }

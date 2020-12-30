@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import MonthPicker from '@9softstudio/react-monthpicker';
+import MyLink from '../../../common/components/MyLink';
 import { Table, Spinner } from 'reactstrap';
 import { rowTitle, resource } from '../modules/constants';
 import { shortedMonthNames, minMonthDate, selectedAllProduct, deviceTypes, pcLaptop, mobile } from '../../../../modules/constants';
@@ -105,9 +106,10 @@ export class Content extends PureComponent {
                     isDisplayActivePlayer && this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
-                                <a href="javascript:;" onClick={() => this.props.redirectToPlayerDetail({ productId: selectedAllProduct, monthDate: startMonthString, isClickLink: true })}>
+                                <MyLink onClick={() => this.props.redirectToPlayerDetail({ productId: selectedAllProduct, monthDate: startMonthString, isClickLink: true })}>
                                     {format(data.ActivePlayerByMonth)}
-                                </a>) : format(data.ActivePlayerByMonth)
+                                </MyLink>
+                            ) : format(data.ActivePlayerByMonth)
                         ),
                         resource.NA)
                 }
@@ -117,23 +119,29 @@ export class Content extends PureComponent {
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRate,
-                        (<a href="javascript:;" onClick={() => this.props.redirectToTrackingStatistics({ isClickLink: true })}>
-                            {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
-                        </a>),
+                        (
+                            <MyLink onClick={() => this.props.redirectToTrackingStatistics({ isClickLink: true })}>
+                                {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
+                            </MyLink>
+                        ),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
-                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[pcLaptop], isClickLink: true })}>
-                            {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
-                        </a>),
+                        (
+                            <MyLink onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[pcLaptop], isClickLink: true })}>
+                                {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
+                            </MyLink>
+                        ),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
-                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[mobile], isClickLink: true })}>
-                            {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
-                        </a>),
+                        (
+                            <MyLink onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[mobile], isClickLink: true })}>
+                                {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
+                            </MyLink>
+                         ),
                         resource.NA)
                 }
             </tbody>

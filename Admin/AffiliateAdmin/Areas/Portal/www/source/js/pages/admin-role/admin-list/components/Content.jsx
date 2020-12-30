@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import CheckboxSelectAll from '../../../common/components/CheckboxSelectAll';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
+import MyLink from '../../../common/components/MyLink';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resource, globalResource } from '../libs/constants';
@@ -46,7 +47,7 @@ export class Content extends PureComponent {
 
     _handleDeleteUser = (selectedUserId, selectedUserName) => {
         this.props.setShouldResetScrollPosition(false);
-        this.setState({ message: `Are you sure? <br /> By confirm this action, user <strong class="text-danger">${selectedUserName}</strong> will be deleted?`, isConfirmPopup: true, selectedUserId });
+        this.setState({ message: `Are you sure? <br /> By confirm this action, user <strong className="text-danger">${selectedUserName}</strong> will be deleted?`, isConfirmPopup: true, selectedUserId });
     }
 
     _deleteUser = async (selectedUserId) => {
@@ -158,9 +159,9 @@ export class Content extends PureComponent {
                 }
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={resource.ViewAccountInfo}>
-                    <a href="javascript:;" onClick={() => this._handleRedirectToUserDetail(userId, userName)}>
+                    <MyLink onClick={() => this._handleRedirectToUserDetail(userId, userName)}>
                         {userName}
-                    </a>
+                    </MyLink>
                 </Cell>
                 <Cell className="text-center" title={firstName}>{firstName}</Cell>
                 <Cell className="text-center" title={lastName}>{lastName}</Cell>

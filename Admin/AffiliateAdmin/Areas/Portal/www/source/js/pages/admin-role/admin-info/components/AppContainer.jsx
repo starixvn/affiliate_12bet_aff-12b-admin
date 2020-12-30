@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
 import Content from './Content';
+import MyLink from '../../../common/components/MyLink';
 import { redirectToAdminList } from '../actions';
 
 export class AppContainer extends Component {
@@ -17,8 +18,10 @@ export class AppContainer extends Component {
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
-                <div class="d-inline-flex p-3">
-                    <a class="admin-role-sub-menu-back" href="javascript:;" onClick={() => this.props.redirectToAdminList()}><span class="oi oi-chevron-left"></span></a>
+                <div className="d-inline-flex p-3">
+                    <MyLink className={"admin-role-sub-menu-back"} onClick={() => this.props.redirectToAdminList()}>
+                        <span className="oi oi-chevron-left"></span>
+                    </MyLink>
                     <strong>{ userName || "Create User"}</strong>
                 </div>
                 <Content />

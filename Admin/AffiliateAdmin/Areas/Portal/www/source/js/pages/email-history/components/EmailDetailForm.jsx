@@ -102,7 +102,7 @@ export class EmailDetailForm extends PureComponent {
                                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                                 </Alert>
-                                <Form tag="form" className="mb-3" autocomplete="off">
+                                <Form tag="form" className="mb-3" autoComplete="off">
                                     <FormGroup row>
                                         <Label className="py-1" sm={3}>{resource.Subject}</Label>
                                         <Label className="py-1" sm={9}>{htmlDecode(dataItem.Subject)}</Label>

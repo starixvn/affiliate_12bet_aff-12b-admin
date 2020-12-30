@@ -476,7 +476,7 @@ export class EditBannerForm extends PureComponent {
                                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                                 </Alert>
-                                <Form tag="form" className="mb-2 p-1 border" autocomplete="off">
+                                <Form tag="form" className="mb-2 p-1 border" autoComplete="off">
                                     <Label>[Valid Types: .gif, .jpg, .png, .jpeg]</Label>
                                     <Label className="d-block">[File Size Limit: 3MB]</Label>
                                     {

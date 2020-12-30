@@ -175,11 +175,11 @@ export class Content extends PureComponent {
     }
 
     _handleDeleteUser = () => {
-        this.setState({ messagePopup: `Are you sure? <br /> By confirm this action, user <strong class="text-danger">${this.props.userName}</strong> will be deleted?`, isConfirmPopup: true, isDeleteUser: true });
+        this.setState({ messagePopup: `Are you sure? <br /> By confirm this action, user <strong className="text-danger">${this.props.userName}</strong> will be deleted?`, isConfirmPopup: true, isDeleteUser: true });
     }
 
     _handleChangeStatus = (isActive) => {
-        this.setState({ messagePopup: `Are you sure? <br /> By confirm this action, user <strong class="text-danger">${this.props.userName}</strong> will be ${isActive ? 'activated' : 'deactivated'}?`, isConfirmPopup: true, isDeleteUser: false });
+        this.setState({ messagePopup: `Are you sure? <br /> By confirm this action, user <strong className="text-danger">${this.props.userName}</strong> will be ${isActive ? 'activated' : 'deactivated'}?`, isConfirmPopup: true, isDeleteUser: false });
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
@@ -375,7 +375,7 @@ export class Content extends PureComponent {
                     <Row>
                         <Col sm={6}>
                             <strong>General Information</strong>
-                            <Form tag="form" autocomplete="off" className="mt-2">
+                            <Form tag="form" autoComplete="off" className="mt-2">
                                 <FormGroup row className="mb-1">
                                     <Label for="newUserName" sm="auto" className="required">{resources.UserName}</Label>
                                     <Col sm={5} className="row-user">
@@ -412,7 +412,7 @@ export class Content extends PureComponent {
                                             <FormGroup row className="mb-1">
                                                 <Label for="newPassword" sm="auto" className="required">{resources.Password}</Label>
                                                 <Col sm={5}>
-                                                    <Input type="password" className="input-required mt-2" placeholder="Enter Default Password" name="newPassword" id="newPassword" autocomplete="false"
+                                                    <Input type="password" className="input-required mt-2" placeholder="Enter Default Password" name="newPassword" id="newPassword" autoComplete="false"
                                                         value={newPassword} onKeyPress={this._handlePressEnter} onChange={this._handleChange} invalid={isClickedSubmit && !validatedPasswordResult.IsValid} />
                                                     {validatedPasswordResult.Message &&
                                                         <FormFeedback><div dangerouslySetInnerHTML={{ __html: validatedPasswordResult.Message }} /></FormFeedback>}

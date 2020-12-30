@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GridData from './GridData';
 import ReportTitle from '../../../components/ReportTitle';
+import MyLink from '../../common/components/MyLink';
 
 import { setViewLevel } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
@@ -60,7 +61,9 @@ export class Content extends Component {
             </div>
         ) : (
                 <div className="d-flex align-items-center">
-                    <a href="javascript:;" className="btn-link font-weight-bold" onClick={this.handleClickBreadcrumb}>AFFILIATE REPORT</a>
+                    <MyLink className={"btn-link font-weight-bold"} onClick={this.handleClickBreadcrumb}>
+                        AFFILIATE REPORT
+                    </MyLink>
                     {reportTitle}
                     {btnExport}
                 </div>
