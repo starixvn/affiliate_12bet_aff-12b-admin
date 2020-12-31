@@ -13,7 +13,7 @@ import Additional from './sections/Additional';
 import EmailFormat from './sections/EmailFormat';
 import WebSite from './sections/WebSite';
 import Payment from './sections/Payment';
-import { claimResource } from '../../../../modules/claim';
+import { Claim, claimResource, claimTypes } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -142,9 +142,12 @@ export class Content extends PureComponent {
                             </Section>
                         </Col>
                     </Row>                    
-                )}           
+                )}        
                 <Row>
-                    <Button className="mb-3" color="success" onClick={this.handleSubmit}>Submit</Button>
+                    <Button className="mb-3" color="success" 
+                        onClick={this.handleSubmit} 
+                        disabled={!claimsPrincipal.hasClaim(new Claim(claimTypes.Role, claimResource.RoleManager))}
+                        >Submit</Button>
                 </Row>
             </Container>
         );

@@ -68,5 +68,7 @@
 
         public const string AffMemberName = "[AffMemberName]";
 
+        public const string ManagerRole = "Management";
+
     }
 }

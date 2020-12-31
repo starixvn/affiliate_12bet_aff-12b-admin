@@ -93,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             return new JsonNetResult();
         }
 
-        [FunctionAuthorize(FunctionName = Function.Customer, IsHost = true)]
+        [ClaimAuthorize(ClaimName = ClaimTypes.Role, ClaimValue = Function.ManagerRole)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult UpdateUserAccount(UserAccountParam param)

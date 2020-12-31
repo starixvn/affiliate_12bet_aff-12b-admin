@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.DTO.AdminRole;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.AdminRole;
+using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -14,12 +15,15 @@ namespace Fanex.Affiliate.Admin.Core.Services
     {
         private IAuthRepository AuthRepo { get; }
         private IAdminInfoRepository AdminUserRepo { get; }
+        private IAdminRoleCommonService RoleService { get; }
 
         public AuthService(IAuthRepository authRepository,
-            IAdminInfoRepository adminInfoRepository)
+            IAdminInfoRepository adminInfoRepository,
+            IAdminRoleCommonService roleService)
         {
             AuthRepo = authRepository;
             AdminUserRepo = adminInfoRepository;
+            RoleService = roleService;
         }
 
         public IEnumerable<Claim> GetClaims(int userId)
@@ -34,10 +38,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
         private IEnumerable<Claim> BuildClaims(AdminInforResultEntity adminAcc)
         {
             var accountInfo = adminAcc.AdminInfo;
+            var role = RoleService.GetRoleList().FirstOrDefault(r => r.RoleId == accountInfo.RoleId);
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, accountInfo.UserId.ToString()),
                 new Claim(ClaimTypes.GivenName, accountInfo.UserName),
+                new Claim(ClaimTypes.Role, role?.RoleName)
             };
 
             var permissions = AuthRepo.GetPermissionList(accountInfo.UserId);
