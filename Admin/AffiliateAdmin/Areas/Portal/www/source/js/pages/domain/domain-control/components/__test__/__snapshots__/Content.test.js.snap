@@ -106,7 +106,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
             >
               <input
                 checked={true}
-                disabled="true"
+                disabled={true}
                 type="checkbox"
               />
             </t>
@@ -228,7 +228,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
             >
               <input
                 checked={true}
-                disabled="true"
+                disabled={true}
                 type="checkbox"
               />
             </t>

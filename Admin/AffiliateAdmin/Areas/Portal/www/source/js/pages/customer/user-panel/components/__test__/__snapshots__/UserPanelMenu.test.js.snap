@@ -5,10 +5,10 @@ exports[`customer - user-panel - components - UserPanelMenu Should render correc
   className="user-panel-menu-container"
 >
   <span
-    class="icon-userpanel"
+    className="icon-userpanel"
   />
   <ul
-    class="d-inline-block menu-list"
+    className="d-inline-block menu-list"
   >
     <Memo(UserPanelMenuItem)
       isActive={true}

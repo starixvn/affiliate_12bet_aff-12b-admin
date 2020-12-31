@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { UserPanelMenuItem } from '../UserPanelMenuItem';
 import { shallow } from 'enzyme';
+import MyLink from '../../../../common/components/MyLink';
 
 describe('customer - user-panel - components - UserPanelMenuItem', () => {
     afterAll(() => {
@@ -31,7 +32,7 @@ describe('customer - user-panel - components - UserPanelMenuItem', () => {
 
     it('onClickMenu - should be called when click menu', () => {
         const wrapper = shallow(<UserPanelMenuItem {...defaultProps}/>);
-        wrapper.find('a').simulate('click');
+        wrapper.find(MyLink).simulate('click');
 
         expect(defaultProps.onClickMenu).toHaveBeenCalledWith('edit');
     });

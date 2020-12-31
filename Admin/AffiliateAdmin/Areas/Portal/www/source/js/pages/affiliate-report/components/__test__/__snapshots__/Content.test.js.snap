@@ -175,13 +175,12 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
       <div
         className="d-flex align-items-center"
       >
-        <a
+        <Memo(MyLink)
           className="btn-link font-weight-bold"
-          href="javascript:;"
           onClick={[Function]}
         >
           AFFILIATE REPORT
-        </a>
+        </Memo(MyLink)>
         Report Title - currentViewLevel is Month on Month view
         <button
           className="ml-auto btn btn-link btn-excel"
@@ -363,13 +362,12 @@ exports[`affiliate report - Content  should render correctly with _buildReportTi
   <div
     className="d-flex align-items-center"
   >
-    <a
+    <Memo(MyLink)
       className="btn-link font-weight-bold"
-      href="javascript:;"
       onClick={[Function]}
     >
       AFFILIATE REPORT
-    </a>
+    </Memo(MyLink)>
     <button
       className="ml-auto btn btn-link btn-excel"
       onClick={[Function]}

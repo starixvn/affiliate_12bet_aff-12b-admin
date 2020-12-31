@@ -26,7 +26,7 @@ export default class App extends React.PureComponent {
                     menus={renderMenuLst.map((menu) => { return { label: menu.label, href: menu.href } })} />
                 <Suspense fallback={null}>
                     <Switch>
-                        {renderMenuLst.map((menu) => <Route path={menu.href} component={menu.component} />)}
+                        {renderMenuLst.map((menu, index) => <Route key={`route_${index}`} path={menu.href} component={menu.component} />)}
                         {firstMenu && <Redirect from="/" to={firstMenu.href} />}
                     </Switch>
                 </Suspense>

@@ -163,8 +163,8 @@ export class GeneralComponent extends PureComponent {
         const isExpand = expandedRoleId === dataItem.RoleId;
 
         return (
-            <Fragment>
-                <Row key={`dataRow-${dataItem.RoleId}`}>
+            <Fragment key={`dataRow-${dataItem.RoleId}`}>
+                <Row>
                     <Cell colSpan="3">
                         <div className="d-flex">
                             <Button className="py-0 th-wrapper" color="link" onClick={() => this.setState({ expandedRoleId: isExpand ? 0 : dataItem.RoleId, isEdit: false })}>
@@ -251,8 +251,8 @@ export class GeneralComponent extends PureComponent {
         const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
-            <Fragment>
-                <Row key={`dataRow-${dataItem.FuncId}`} className="current">
+            <Fragment key={`dataRow-${dataItem.FuncId}`}>
+                <Row className="current">
                     <Cell className="pl-2" title={displayName}>{displayName}</Cell>
                     {
                         this._renderCells(dataItem, isEdit, isExpand)
@@ -285,8 +285,8 @@ export class GeneralComponent extends PureComponent {
         const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
-            <Fragment>
-                <Row key={`dataRow-${dataItem.FuncId}`} className="current">
+            <Fragment key={`dataRow-${dataItem.FuncId}`}>
+                <Row className="current">
                     <Cell className={isRecursive ? "pl-5" : "pl-4"} title={displayName}>{displayName}</Cell>
                     {
                         this._renderCells(dataItem, isEdit, isExpand)

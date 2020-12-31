@@ -145,6 +145,7 @@ export class Content extends PureComponent {
         const creator = htmlDecode(dataItem.Creator);
         const roleName = htmlDecode(dataItem.RoleName);
         const ipAddress = dataItem.LastLoginIp;
+        const status = dataItem.IsActive ? 'Open' : 'Closed';
         const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${ipAddress}&j=1`;
 
         return (
@@ -152,7 +153,7 @@ export class Content extends PureComponent {
                 {
                     hasWriteUserControlClaim && (
                         <Cell className="text-center">
-                            <input type="checkbox" checked={this.props.checkedUsers[userId]}
+                            <input type="checkbox" checked={this.props.checkedUsers[userId] || false}
                                 onChange={(e) => this._onCheckItem(e.target.checked, userId)} />
                         </Cell>
                     )
@@ -175,7 +176,7 @@ export class Content extends PureComponent {
                     }
                 </Cell>
                 <Cell className="text-center" title={roleName}>{roleName}</Cell>
-                <Cell className="text-center" title={dataItem.IsActive}>{dataItem.IsActive ? 'Open' : 'Closed'}</Cell>
+                <Cell className="text-center" title={status}>{status}</Cell>
                 <Cell className="text-center">
                     <Button color="link p-0" title={resource.ViewPermission} onClick={() => this._handleShowPermission(dataItem.UserId, dataItem.UserName)}>
                         <span className="oi oi-eye"></span>

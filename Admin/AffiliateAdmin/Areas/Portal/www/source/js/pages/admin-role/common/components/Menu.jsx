@@ -16,7 +16,7 @@ export const SubMenu = (props) => {
                     <li className="nav-item">
                         <a className={`nav-link ${isSelectedRolePermission ? '' : 'active'}`} href={resolveClientUrl("Portal/AdminRole")}>Admin List</a>
                     </li>
-                    <li class="nav-item">
+                    <li className="nav-item">
                         <a className={`nav-link ${isSelectedRolePermission ? 'active' : ''}`} href={resolveClientUrl("Portal/RolePermission")}>Role Permission</a>
                     </li>
                 </ul>

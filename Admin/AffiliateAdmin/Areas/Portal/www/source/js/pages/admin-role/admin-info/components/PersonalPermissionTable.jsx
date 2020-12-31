@@ -136,8 +136,8 @@ export class PersonalPermissionTable extends PureComponent {
         const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
-            <Fragment>
-                <tr key={`dataRow-${dataItem.FuncId}`} className="current">
+            <Fragment key={`dataRow-${dataItem.FuncId}`}>
+                <tr className="current">
                     <td colSpan="3" className="pl-2" title={displayName}>{displayName}</td>
                     {
                         this._renderCells(dataItem, isCreateNew, isEdit)
@@ -170,8 +170,8 @@ export class PersonalPermissionTable extends PureComponent {
         const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
-            <Fragment>
-                <tr key={`dataRow-${dataItem.FuncId}`} className="current">
+            <Fragment key={`dataRow-${dataItem.FuncId}`}>
+                <tr className="current">
                     <td colSpan="3" className={isRecursive ? "pl-5" : "pl-4"} title={displayName}>{displayName}</td>
                     {
                         this._renderCells(dataItem, isCreateNew, isEdit)
@@ -203,7 +203,9 @@ export class PersonalPermissionTable extends PureComponent {
                 <div className="table-responsive table-striped my-3">
                     <Table className="permission-popup-data-table">
                         {renderHeader()}
-                        {this._renderDataSection(permissionListByRole)}
+                        <tbody>
+                            {this._renderDataSection(permissionListByRole)}
+                        </tbody>
                     </Table>
                 </div>
             </div>

@@ -132,14 +132,16 @@ export class LanguageComponent extends PureComponent {
     }
 
     _renderColumnHeader() {
-        const dataRows = [<Cell header={true} colWidth={250} title={headerText.Role}>{headerText.Role}</Cell>];
+        const dataRows = [<Cell key={headerText.Role} header={true} colWidth={250} title={headerText.Role}>{headerText.Role}</Cell>];
 
         const { marketList } = this.props;
 
         if (marketList && marketList.length) {
 
             for (let i = 0; i < marketList.length; i++) {
-                dataRows.push(<Cell header={true} colWidth={80}>{marketList[i].MarketName}</Cell>);
+                const marketName = marketList[i].MarketName;
+
+                dataRows.push(<Cell key={marketName} header={true} colWidth={80}>{marketName}</Cell>);
             }
         }
 
@@ -178,7 +180,7 @@ export class LanguageComponent extends PureComponent {
     }
 
     _renderColumnBody(dataItem, marketList, isEdit) {
-        const dataRows = [<Cell title={dataItem.RoleName}>{dataItem.RoleName}</Cell>];
+        const dataRows = [<Cell key={dataItem.RoleName} title={dataItem.RoleName}>{dataItem.RoleName}</Cell>];
 
         if (marketList && marketList.length) {
 
@@ -189,7 +191,7 @@ export class LanguageComponent extends PureComponent {
                 const isChecked = dataItem[item.MarketId];
 
                 dataRows.push(
-                    <Cell className="text-center">
+                    <Cell className="text-center" key={`dataCell-${item.MarketId}`}>
                         {
                             isEdit ? <input type="checkbox" checked={isChecked} disabled={isManagement} onChange={() => this._handleChange(dataItem.RoleId, item.MarketId, isChecked)} />
                                 : (dataItem[item.MarketId] && <span className="oi oi-check text-primary"></span>)

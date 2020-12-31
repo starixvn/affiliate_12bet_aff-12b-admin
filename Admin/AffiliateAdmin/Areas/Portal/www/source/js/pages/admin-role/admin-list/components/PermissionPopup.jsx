@@ -60,8 +60,8 @@ export class PermissionPopup extends PureComponent {
         const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
-            <Fragment>
-                <tr key={`dataRow-${dataItem.FuncId}`} className="current">
+            <Fragment key={`dataRow-${dataItem.FuncId}`}>
+                <tr className="current">
                     <td colSpan="3" className="pl-2" title={displayName}>{displayName}</td>
                     {
                         renderColumns(dataItem)
@@ -94,8 +94,8 @@ export class PermissionPopup extends PureComponent {
         const displayName = htmlDecode(dataItem.DisplayName);
 
         return (
-            <Fragment>
-                <tr key={`dataRow-${dataItem.FuncId}`} className="current">
+            <Fragment key={`dataRow-${dataItem.FuncId}`}>
+                <tr className="current">
                     <td colSpan="3" className={isRecursive ? "pl-5" : "pl-4"} title={displayName}>{displayName}</td>
                     {
                         renderColumns(dataItem)
@@ -125,7 +125,9 @@ export class PermissionPopup extends PureComponent {
                             <div className="permission-popup-list-content table-responsive mb-2">
                                 <Table className="permission-popup-data-table">
                                     {renderHeader()}
-                                    {this._renderDataSection(data)}
+                                    <tbody>
+                                        {this._renderDataSection(data)}
+                                    </tbody>
                                 </Table>
                             </div>
 

@@ -183,7 +183,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
     selectedUserPanel="statementHistory"
   />
   <div
-    class="user-panel-content-container"
+    className="user-panel-content-container"
   >
     <Suspense
       fallback={null}
@@ -245,7 +245,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
     selectedUserPanel="statementHistory"
   />
   <div
-    class="user-panel-content-container"
+    className="user-panel-content-container"
   />
 </div>
 `;

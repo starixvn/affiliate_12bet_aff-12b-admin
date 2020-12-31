@@ -89,7 +89,7 @@ exports[`email history - components - EmailDetailForm  render correctly with hav
             />
           </Alert>
           <Form
-            autocomplete="off"
+            autoComplete="off"
             className="mb-3"
             tag="form"
           >
@@ -365,7 +365,7 @@ exports[`email history - components - EmailDetailForm  render correctly with hav
             />
           </Alert>
           <Form
-            autocomplete="off"
+            autoComplete="off"
             className="mb-3"
             tag="form"
           >

@@ -48,7 +48,7 @@ exports[`change admin password - components - AppContainer render correctly with
       />
     </Alert>
     <Form
-      autocomplete="off"
+      autoComplete="off"
       className="my-2"
       tag="form"
     >
@@ -88,7 +88,7 @@ exports[`change admin password - components - AppContainer render correctly with
           }
         >
           <Input
-            autocomplete="false"
+            autoComplete="false"
             className="input-required mt-1"
             id="oldPassword"
             invalid={false}
@@ -136,7 +136,7 @@ exports[`change admin password - components - AppContainer render correctly with
           }
         >
           <Input
-            autocomplete="false"
+            autoComplete="false"
             className="input-required mt-1"
             id="newPassword"
             invalid={false}
@@ -184,7 +184,7 @@ exports[`change admin password - components - AppContainer render correctly with
           }
         >
           <Input
-            autocomplete="false"
+            autoComplete="false"
             className="input-required mt-1"
             id="confirmPassword"
             invalid={false}
@@ -267,7 +267,7 @@ exports[`change admin password - components - AppContainer render correctly with
       />
     </Alert>
     <Form
-      autocomplete="off"
+      autoComplete="off"
       className="my-2"
       tag="form"
     >
@@ -307,7 +307,7 @@ exports[`change admin password - components - AppContainer render correctly with
           }
         >
           <Input
-            autocomplete="false"
+            autoComplete="false"
             className="input-required mt-1"
             id="oldPassword"
             invalid={false}
@@ -366,7 +366,7 @@ exports[`change admin password - components - AppContainer render correctly with
           }
         >
           <Input
-            autocomplete="false"
+            autoComplete="false"
             className="input-required mt-1"
             id="newPassword"
             invalid={false}
@@ -425,7 +425,7 @@ exports[`change admin password - components - AppContainer render correctly with
           }
         >
           <Input
-            autocomplete="false"
+            autoComplete="false"
             className="input-required mt-1"
             id="confirmPassword"
             invalid={false}
@@ -519,7 +519,7 @@ exports[`change admin password - components - AppContainer render correctly with
       />
     </Alert>
     <Form
-      autocomplete="off"
+      autoComplete="off"
       className="my-2"
       tag="form"
     >
@@ -559,7 +559,7 @@ exports[`change admin password - components - AppContainer render correctly with
           }
         >
           <Input
-            autocomplete="false"
+            autoComplete="false"
             className="input-required mt-1"
             id="oldPassword"
             invalid={false}
@@ -607,7 +607,7 @@ exports[`change admin password - components - AppContainer render correctly with
           }
         >
           <Input
-            autocomplete="false"
+            autoComplete="false"
             className="input-required mt-1"
             id="newPassword"
             invalid={false}
@@ -666,7 +666,7 @@ exports[`change admin password - components - AppContainer render correctly with
           }
         >
           <Input
-            autocomplete="false"
+            autoComplete="false"
             className="input-required mt-1"
             id="confirmPassword"
             invalid={false}

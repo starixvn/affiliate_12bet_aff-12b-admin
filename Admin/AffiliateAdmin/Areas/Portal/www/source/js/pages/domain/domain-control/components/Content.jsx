@@ -116,7 +116,7 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
                 <Cell className="text-center">
-                    <input type="checkbox" disabled="true" checked={dataItem.IsUsed} />
+                    <input type="checkbox" disabled checked={dataItem.IsUsed} />
                 </Cell>
                 { isModifiable &&
                     <React.Fragment>
