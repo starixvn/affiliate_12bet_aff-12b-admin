@@ -33,7 +33,7 @@ export class Filter extends Component {
         }
 
         this.cachedMainReportParam = null;
-        
+
         const newSortByCommon = hasTurnOverPermission ? {
             Turnover: turnover,
             ...sortByCommon
@@ -258,13 +258,11 @@ export class Filter extends Component {
         if (maxToYear > nowYear || actualMaxMonth > nowMonth && maxToYear === nowYear) {
             actualMaxMonth = nowMonth;
             maxToYear = nowYear;
-
-            min = { month: from.month, year: maxToYear }
         }
 
         return {
             min,
-            max: { month: actualMaxMonth, year: maxToYear }
+            max: { month: actualMaxMonth || 12, year: maxToYear }
         };
     }
 

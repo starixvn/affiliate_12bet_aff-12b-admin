@@ -19,10 +19,12 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             var isAuthorized = base.AuthorizeCore(httpContext)
                 && httpContext.Request.IsAuthenticated
                 && httpContext.User.Identity.IsAuthenticated;
-            if (isAuthorized && sessionService.UserId > 0 && sessionService.ClaimIdentities.Any())
+            var claimIdentities = sessionService.ClaimIdentities;
+
+            if (isAuthorized && sessionService.UserId > 0 && claimIdentities != null && claimIdentities.Any())
             {
                 var claimPrincipal = httpContext.User as ClaimsPrincipal;
-                claimPrincipal.AddIdentities(sessionService.ClaimIdentities);
+                claimPrincipal.AddIdentities(claimIdentities);
                 return true;
             }
             return false;
