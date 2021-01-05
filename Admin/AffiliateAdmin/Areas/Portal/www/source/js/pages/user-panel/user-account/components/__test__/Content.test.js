@@ -42,7 +42,7 @@ describe('user account - components - Content', () => {
         affName: "12BETAFF226",
         userAccountInfo,
         moreSiteUrlsList: ["www.sportsbookie.com", "www.gzyyy.com", "www.123.com"],
-        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
+        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true), hasClaim: jest.fn(() => true) },
         getUserAccountInfo: jest.fn(() => userAccountInfo)
     }
 

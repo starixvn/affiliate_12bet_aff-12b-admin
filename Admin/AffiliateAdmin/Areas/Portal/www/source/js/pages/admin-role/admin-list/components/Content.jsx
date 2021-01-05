@@ -9,7 +9,7 @@ import MyLink from '../../../common/components/MyLink';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resource, globalResource } from '../libs/constants';
-import { fetchData, setUserInfo, setCheckedUsers, setParam, setPagingOption, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail } from '../actions';
+import { fetchData, setUserInfo, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail } from '../actions';
 
 export class Content extends PureComponent {
 
@@ -78,17 +78,6 @@ export class Content extends PureComponent {
     _handleShowPermission = (userId, userName) => {
         this.props.setUserInfo({ UserId: userId, UserName: userName });
     }
-
-    handlePaging = (pageIndex, pageSize) => {
-        const newPaging = {
-            PageIndex: pageIndex,
-            PageSize: pageSize
-        };
-        const newParam = Object.assign({}, this.props.param, newPaging);
-
-        this.props.setPagingOption(newPaging);
-        this.props.setParam(newParam);
-    };
 
     _renderHeader() {
         return (
@@ -194,7 +183,7 @@ export class Content extends PureComponent {
     }
 
     render() {
-        const { pagingOption, gridData, shouldResetScrollPosition } = this.props;
+        const { gridData, shouldResetScrollPosition } = this.props;
         const { message, isConfirmPopup } = this.state;
 
         return gridData && (
@@ -207,9 +196,6 @@ export class Content extends PureComponent {
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}
                         containerPadding={20}
-                        isPaging={true}
-                        pageOption={pagingOption}
-                        onPaging={this.handlePaging}
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
@@ -232,7 +218,7 @@ function mapStateToProps({ adminList, hasWriteUserControlClaim }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, setUserInfo, setCheckedUsers, setParam, setPagingOption, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail }, dispatch);
+    return bindActionCreators({ fetchData, setUserInfo, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
