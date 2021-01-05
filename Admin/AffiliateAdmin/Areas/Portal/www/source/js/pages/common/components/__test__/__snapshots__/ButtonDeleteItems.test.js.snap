@@ -33,7 +33,7 @@ exports[`common - components - ButtonDeleteItems  render correctly has icon and 
   >
     Delete
     <span
-      className="oi oi-x ml-2"
+      className="oi oi-trash ml-2"
     />
   </Button>
 </Fragment>

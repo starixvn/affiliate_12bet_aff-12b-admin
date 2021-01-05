@@ -6,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.ExchangeRate;
 using System;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
@@ -25,10 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var permissionList = SessionService.UserPermissionList;
-            var hasPermission = permissionList.Any(i => i.FunctionName.Equals(Function.AffExRate, StringComparison.OrdinalIgnoreCase) && i.IsHost);
-
-            return View(model: hasPermission);
+            return View();
         }
 
         [HttpPost]

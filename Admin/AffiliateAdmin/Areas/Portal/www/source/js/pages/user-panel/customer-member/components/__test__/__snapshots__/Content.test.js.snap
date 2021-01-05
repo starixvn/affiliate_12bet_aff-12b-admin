@@ -36,26 +36,6 @@ exports[`customer member - components - Content render correctly with have data 
           </t>
           <t
             asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title=""
-          >
-            
-          </t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title=""
-          >
-            
-          </t>
-          <t
-            asc={true}
             className="text-center"
             header={false}
             onClick={[Function]}
@@ -98,26 +78,6 @@ exports[`customer member - components - Content render correctly with have data 
             title="zwmwxx8023"
           >
             zwmwxx8023
-          </t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="firstname_1271808"
-          >
-            firstname_1271808
-          </t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="lastname_1271808"
-          >
-            lastname_1271808
           </t>
           <t
             asc={true}
@@ -168,28 +128,6 @@ exports[`customer member - components - Content render correctly with have data 
           title="User Name"
         >
           User Name
-        </t>
-        <t
-          asc={true}
-          colWidth={100}
-          header={true}
-          onClick={[Function]}
-          sortable={false}
-          sorting={false}
-          title="First Name"
-        >
-          First Name
-        </t>
-        <t
-          asc={true}
-          colWidth={100}
-          header={true}
-          onClick={[Function]}
-          sortable={false}
-          sorting={false}
-          title="Last Name"
-        >
-          Last Name
         </t>
         <t
           asc={true}
@@ -273,36 +211,6 @@ exports[`customer member - components - Content render correctly with have data 
           </t>
           <t
             asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title=""
-          >
-            
-          </t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title=""
-          >
-            
-          </t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title=""
-          >
-            
-          </t>
-          <t
-            asc={true}
             className="text-center"
             header={false}
             onClick={[Function]}
@@ -345,36 +253,6 @@ exports[`customer member - components - Content render correctly with have data 
             title="zwmwxx8023"
           >
             zwmwxx8023
-          </t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="firstname_1271808"
-          >
-            firstname_1271808
-          </t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="lastname_1271808"
-          >
-            lastname_1271808
-          </t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title=""
-          >
-            
           </t>
           <t
             asc={true}
@@ -425,39 +303,6 @@ exports[`customer member - components - Content render correctly with have data 
           title="User Name"
         >
           User Name
-        </t>
-        <t
-          asc={true}
-          colWidth={100}
-          header={true}
-          onClick={[Function]}
-          sortable={false}
-          sorting={false}
-          title="First Name"
-        >
-          First Name
-        </t>
-        <t
-          asc={true}
-          colWidth={100}
-          header={true}
-          onClick={[Function]}
-          sortable={false}
-          sorting={false}
-          title="Last Name"
-        >
-          Last Name
-        </t>
-        <t
-          asc={true}
-          colWidth={100}
-          header={true}
-          onClick={[Function]}
-          sortable={false}
-          sorting={false}
-          title="Email Address"
-        >
-          Email Address
         </t>
         <t
           asc={true}
@@ -556,28 +401,6 @@ exports[`customer member - components - Content render correctly with have data 
           title="User Name"
         >
           User Name
-        </t>
-        <t
-          asc={true}
-          colWidth={100}
-          header={true}
-          onClick={[Function]}
-          sortable={false}
-          sorting={false}
-          title="First Name"
-        >
-          First Name
-        </t>
-        <t
-          asc={true}
-          colWidth={100}
-          header={true}
-          onClick={[Function]}
-          sortable={false}
-          sorting={false}
-          title="Last Name"
-        >
-          Last Name
         </t>
         <t
           asc={true}

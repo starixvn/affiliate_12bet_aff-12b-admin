@@ -4,6 +4,7 @@ import { SET_GRIDDATA, SET_SELECTED_GROUP, SET_SEARCHED_GROUPNAME } from '../act
 import createReducer from '../../../modules/createReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
 import { pagingOption } from '../../../reducers/pagingReducer';
+import { claimsPrincipal} from '../../../reducers/claimReducer';
 
 export const gridData = createReducer(null, {
     [SET_GRIDDATA](prevState, action) {
@@ -26,4 +27,12 @@ export const selectedGroup = createReducer(null, {
 export const productList = createReducer([], {});
 export const deductionList = createReducer([], {});
 
-export default combineReducers({ gridData, pagingOption, productList, deductionList, selectedGroup, searchedGroupName, isShowLoader });
+export default combineReducers(
+    { gridData,
+     pagingOption, 
+     productList, 
+     deductionList, 
+     selectedGroup, 
+     searchedGroupName, 
+     isShowLoader, 
+     claimsPrincipal });

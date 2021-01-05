@@ -2,11 +2,6 @@
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using Xunit;
 

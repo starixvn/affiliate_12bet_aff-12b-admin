@@ -108,5 +108,23 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 objectDb.ExecuteNonQuery();
             }
         }
+
+        public bool CheckIfAffBeInChargeByUser(int userId, int affId)
+        {
+            const string SpKey = "Aff_Check_AffBelongToUser";
+            var param = new
+            {
+                UserId = userId,
+                Affid = affId,
+                IsBelongTo = false
+            };
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.ExecuteNonQuery(param);
+
+                return param.IsBelongTo;
+            }
+        }
     }
 }

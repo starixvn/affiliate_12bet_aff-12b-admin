@@ -40,6 +40,7 @@ exports[`user account - components - sections - Payment render correctly 1`] = `
       xl={6}
     >
       <Input
+        disabled={false}
         id="preferredPayment"
         name="preferredPayment"
         onChange={[Function]}
@@ -113,6 +114,7 @@ exports[`user account - components - sections - Payment render correctly 1`] = `
       xl={6}
     >
       <Input
+        disabled={false}
         id="playerUsername"
         name="playerUsername"
         onChange={[Function]}

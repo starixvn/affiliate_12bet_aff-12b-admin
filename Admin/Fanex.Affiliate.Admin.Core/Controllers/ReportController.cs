@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 using System.Web.Mvc;
 
@@ -38,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var viewModel = new AffiliateReportViewModel
             {
                 ProductList = _productRepository.GetProductList(),
-                LanguageList = _languageService.GetLanguageList()
+                LanguageList = _languageService.GetInChangeMarkets()
             };
 
             return View(viewModel);
@@ -47,9 +48,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [ResetValueNotHavePermission(Function.Turnover)]
-        public ActionResult GetMainData(AffiliateReportMainParam param)
+        [ResetDefaultUnauthorizedProperty(Function.Turnover)]
+        public ActionResult GetMainData(GetReportMainDataViewModel model)
         {
+            var param = BuildParamFromModel(model);
             return new JsonNetResult
             {
                 Data = _affiliateReportService.GetMainReportData(param)
@@ -58,9 +60,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [ResetValueNotHavePermission(Function.Turnover)]
-        public ActionResult GetDetailData(AffiliateReportMainParam param)
+        [ResetDefaultUnauthorizedProperty(Function.Turnover)]
+        public ActionResult GetDetailData(GetReportMainDataViewModel model)
         {
+            var param = BuildParamFromModel(model);
             return new JsonNetResult
             {
                 Data = _affiliateReportService.GetDetailReportData(param)
@@ -72,5 +75,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             return Json(_affiliateReportService.SearchAffiliateList(query.Trim()), JsonRequestBehavior.AllowGet);
         }
+
+        private AffiliateReportMainParam BuildParamFromModel(GetReportMainDataViewModel model)
+            => new AffiliateReportMainParam
+            {
+                FromDate = model.FromDate,
+                IsExportExcel = model.IsExportExcel,
+                IsGetAll = model.IsGetAll,
+                PageIndex = model.PageIndex,
+                PageSize = model.PageSize,
+                PreferredLanguages = LanguageHelper.BuildAllowQueryLanguages(model.PreferredLanguage, _languageService.GetInChangeMarkets()),
+                ProductIds = model.ProductIds,
+                SortDirectionType = model.SortDirectionType,
+                SortType = model.SortType,
+                ToDate = model.ToDate,
+                UserName = model.UserName
+            };
     }
 }

@@ -14,8 +14,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
         private readonly IAppSetting AppSetting;
         private readonly IDateTimeProvider DateTimeProvider;
 
-        private static long RequestTickCount = (new DateTime(2020, 10, 10)).Ticks;
-        private static long ExpriredMin = 10;
+        private static readonly long RequestTickCount = (new DateTime(2020, 10, 10)).Ticks;
+        private static readonly long ExpriredMin = 10;
 
         private const string PASSWORD = "password";
         private const string SALT = "ABCDEFGHABCDEF";
@@ -89,14 +89,33 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
             Assert.Equal(controller, result.ControllerName);
         }
 
+        [Fact]
+        public void TryParseQueryString_WhenCallWithNullParam_ReturnIsValidResult()
+        {
+            var parser = CreateParser();
+            var action = "action";
+            var controller = "controller";
+            var queryString = $"action={action}&controller={controller}";
+            var encodedQueryString = SymmetricEncryptionUtility.Encrypt<AesManaged>(queryString, PASSWORD, SALT);
+            var base64String = ConverterUtils.Base64Encode(encodedQueryString);
+
+            var result = parser.TryParseQueryString(base64String);
+
+            Assert.True(result.IsValid);
+            Assert.Equal(action, result.ActionName);
+            Assert.Equal(controller, result.ControllerName);
+        }
+
         private static string GenQueryString()
             => $"t={RequestTickCount}&e={ExpriredMin}";
 
         private HttpRequestParserHandler CreateParser()
         {
-            var parser = new HttpRequestParserHandler(Request);
-            parser.AppSetting = AppSetting;
-            parser.DateTimeProvider = DateTimeProvider;
+            var parser = new HttpRequestParserHandler(Request)
+            {
+                AppSetting = AppSetting,
+                DateTimeProvider = DateTimeProvider
+            };
             AppSetting.SymmetricPassword.Returns(PASSWORD);
             AppSetting.SymmetricSalt.Returns(SALT);
             Request.Params.Returns(new System.Collections.Specialized.NameValueCollection());

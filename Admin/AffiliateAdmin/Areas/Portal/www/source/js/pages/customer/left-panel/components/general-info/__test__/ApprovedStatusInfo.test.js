@@ -38,6 +38,8 @@ describe('left panel - components - general-info - ApprovedStatusInfo', () => {
     };
     const props = {
         affiliateInfo,
+        isPwdChangeable: true,
+        isShowMemberLstLink: true,
         affName: '12BETAFF226'
     }
 

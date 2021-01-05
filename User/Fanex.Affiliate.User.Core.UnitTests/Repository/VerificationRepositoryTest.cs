@@ -1,12 +1,12 @@
-﻿using Fanex.Affiliate.User.Core.MetalModels;
+﻿using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
+using Fanex.Data;
 using NSubstitute;
 using System;
-using Xunit;
-using Fanex.Data;
 using System.Data;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Repository
 {
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
 
             var result = repo.GetLoginInfoByUserDevice(1, "127.0.0.1", "laptop");
 
-            Assert.Null(result.FailedLoginCount);               
+            Assert.Null(result.FailedLoginCount);
         }
 
         [Fact]

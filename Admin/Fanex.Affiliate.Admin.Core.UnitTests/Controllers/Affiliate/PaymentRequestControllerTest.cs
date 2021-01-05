@@ -20,7 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 {
     public class PaymentRequestControllerTest
     {
-        private IDependencyResolver _originalResolver;
         private ILifetimeScopeProvider _scopeProvider;
 
         [Fact]
@@ -29,10 +28,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var controller = CreatePaymentRequestController();
 
-            var urlHelperMock = new Mock<UrlHelper>();
-            urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/PaymentRequest");
-
-            controller.Url = urlHelperMock.Object;
             // Action
             var viewResult = controller.Index(new PaymentRequestParamFromHome { SearchBy = 1, FromDate = "21/04/2020", Status = "Approved", IsFromHome = true }) as ViewResult;
             var viewName = viewResult.ViewName;
@@ -70,7 +65,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             // Action
             var result = controller.GetPaymentRequestList(new PaymentRequestParam()) as JsonNetResult;
-            var entityResult = result.Data as EntityResult<PaymentRequest>;
 
             // Assert
             Assert.Null(result.Data);
@@ -120,9 +114,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            _scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var param = new PaymentRequestUpdateParam { TransId = 123 };

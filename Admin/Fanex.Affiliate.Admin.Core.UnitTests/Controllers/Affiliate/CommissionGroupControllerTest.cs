@@ -32,11 +32,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             var controller = CreateCommissionGroupController(productRepository: productRepository.Object, commGroupCommonService: commGroupCommonService.Object);
 
-            var urlHelperMock = new Mock<UrlHelper>();
-            urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal");
-
-            controller.Url = urlHelperMock.Object;
-
             // Action
             var viewResult = controller.Index() as ViewResult;
             var viewName = viewResult.ViewName;
@@ -44,6 +39,27 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             // Assert
             Assert.Equal("~/Areas/Portal/Views/Affiliate/CommissionGroup.cshtml", viewName);
+            Assert.Single(model.ProductList);
+            Assert.Single(model.DeductionList);
+        }
+
+        [Fact]
+        public void FetchInitState_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var productRepository = new Mock<IProductRepository>();
+            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product> { new Product { ProductId = 123, ProductName = "abc" } });
+
+            var commGroupCommonService = new Mock<ICommGroupCommonService>();
+            commGroupCommonService.Setup(c => c.GetDeductionList()).Returns(new List<Deduction> { new Deduction { DeductionId = 13, DeductionName = "ExchangeWinLossShare", DeductedPercentage = 0.05m } });
+
+            var controller = CreateCommissionGroupController(productRepository: productRepository.Object, commGroupCommonService: commGroupCommonService.Object);
+
+            // Action
+            var viewResult = controller.FetchInitState() as JsonNetResult;
+            var model = viewResult.Data as CommissionGroupViewModel;
+
+            // Assert
             Assert.Single(model.ProductList);
             Assert.Single(model.DeductionList);
         }

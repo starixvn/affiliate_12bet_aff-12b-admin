@@ -1,12 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Data;
 using NSubstitute;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Repository

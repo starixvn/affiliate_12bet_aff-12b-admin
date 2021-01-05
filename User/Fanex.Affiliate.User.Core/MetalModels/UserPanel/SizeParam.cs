@@ -8,7 +8,10 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public string SubCategory { get; set; }
 
+        [SpParam(Ignored = true)]
         public string Language { get; set; }
+
+        public string Languages { get; set; }
 
         public string Currency { get; set; }
 

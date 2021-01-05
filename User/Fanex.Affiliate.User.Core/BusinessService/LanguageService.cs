@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.Repository;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.Repository;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -40,34 +39,24 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return IsValid(langCookie) ? langCookie : SystemLanguage.DefaultLanguageCode;
         }
 
-        public IEnumerable<Language> GetSystemLanguages(bool? isInternal = null)
+        public IEnumerable<Language> GetSystemLanguages(bool isAfterLogin = true)
         {
-            var isForInternal = isInternal ?? _sessionService.IsInternal;
-            var languageList = _cacheService.Get<IEnumerable<LanguageType>>(CacheKey.LanguageList);
-            if (languageList == null)
-            {
-                languageList = _languageRepository.GetLanguageList(isForInternal);
-            }
+            var isInternal = _sessionService.IsInternal;
+            var cacheKey = isAfterLogin && isInternal ? CacheKey.InternalLanguageList : CacheKey.LanguageList;
+
+            var languageList = _cacheService.Get<IEnumerable<Language>>(cacheKey);
+            languageList = languageList ?? _languageRepository.GetLanguageList(isInternal, _sessionService.UserSession?.UserId);
 
             if (languageList != null)
             {
-                _cacheService.Set(CacheKey.LanguageList, languageList);
+                _cacheService.Set(cacheKey, languageList);
             }
 
-            languageList = languageList ?? new List<LanguageType>();
-
-            return languageList.Select(l => new Language
-            {
-                Code = l.MarketId,
-                DisplayName = l.DisplayName,
-                EnglishName = l.MarketName,
-                NativeName = l.MarketNativeName,
-                ShortedCode = l.ShortedCode
-            });
+            return languageList ?? new List<Language>();
         }
 
-        public bool IsValid(string langCode)
-            => !string.IsNullOrWhiteSpace(langCode) && GetSystemLanguages().Any(l => Equals(l.Code, langCode));
+        public bool IsValid(string langCode, bool isAfterLogin = true)
+            => !string.IsNullOrWhiteSpace(langCode) && GetSystemLanguages(isAfterLogin).Any(l => Equals(l.MarketId, langCode));
 
 
         public void SetCulture(string languageCode)

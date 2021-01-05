@@ -3,7 +3,7 @@
 export { globalResource, statusList, pending, resource }
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     TrxnId: 'Trxn.ID',
     Creator: 'Creator'
 }

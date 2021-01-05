@@ -1,12 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.Repository;
 using NSubstitute;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Repository
@@ -16,18 +11,24 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void GetLanguageList_WhenCall_DbQuery(bool isInternal)
+        public void GetLanguageList_WhenCall_DbQuery(bool isInternal, int userId = 123)
         {
-            var prefixKey = "Aff_Market_Sel";
-            var sufix = isInternal ? DBMode.View : DBMode.Main;
-            var key = prefixKey + sufix;
-            var repo = CreateRepo();
-            var db = Builder.Build(null, null);
+            var uSpkey = "Aff_Admin_AdminUser_Market_Sel";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+            var key = uSpkey + dbMode;
+            var db = Builder.Build(uSpkey, dbMode);
+            db.Query<Language>().ReturnsForAnyArgs(new List<Language>{
+                new Language
+                {
+                    Status = true
+                }
+            });
 
-            repo.GetLanguageList(isInternal);
+            var repo = CreateRepo();
+            var result = repo.GetLanguageList(isInternal, userId);
 
             Assert.Equal(key, db.SettingKey);
-            db.Received().Query<LanguageType>();
+            Assert.NotEmpty(result);
         }
     }
 }

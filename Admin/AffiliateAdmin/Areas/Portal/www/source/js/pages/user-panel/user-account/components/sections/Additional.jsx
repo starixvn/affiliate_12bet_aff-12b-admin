@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { renderInputForm, capitalizeFirstChar } from '../../modules/service';
+import { renderInputForm, capitalizeFirstChar, renderClaimBaseSelectionForm, renderClaimBaseInputForm } from '../../modules/service';
 import { countriesList } from '../../modules/constants';
 import { setUserAccountInfo } from '../../actions';
+import { claimResource } from '../../../../../modules/claim';
 
 export class Additional extends PureComponent {
     constructor(props) {
@@ -39,7 +40,7 @@ export class Additional extends PureComponent {
     }
 
     render() {
-        const { userAccountInfo } = this.props;
+        const { userAccountInfo, claimsPrincipal } = this.props;
 
         return userAccountInfo && (
             <Form tag="div">
@@ -48,16 +49,16 @@ export class Additional extends PureComponent {
                 {renderInputForm('state', 'State', userAccountInfo.State, false, false, this.handleChange)}
                 {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, false, true, this.handleChange)}
                 {this._renderCountry(userAccountInfo.Country)}
-                {userAccountInfo.IsSpecialUser && renderInputForm('question', 'Security Question', userAccountInfo.Question, true)}
-                {userAccountInfo.IsSpecialUser && renderInputForm('answer', 'Answer', userAccountInfo.Answer, true)}
+                {renderClaimBaseSelectionForm(claimsPrincipal, claimResource.SecurityQuestion, 'questionId', 'Security Question', userAccountInfo.SecurityQuestions, userAccountInfo.QuestionId,  false, this.handleChange, userAccountInfo.Question)}
+                {renderClaimBaseInputForm(claimsPrincipal, claimResource.SecurityQuestion, 'answer', 'Answer', userAccountInfo.Answer, false, this.handleChange)}
             </Form>
         )
     }
 }
 
-function mapStateToProps({ edit }) {
+function mapStateToProps({ edit, claimsPrincipal }) {
     const { userAccountInfo } = edit;
-    return Object.assign({}, { userAccountInfo });
+    return Object.assign({}, { userAccountInfo, claimsPrincipal });
 }
 
 function mapDispatchToProps(dispatch) {

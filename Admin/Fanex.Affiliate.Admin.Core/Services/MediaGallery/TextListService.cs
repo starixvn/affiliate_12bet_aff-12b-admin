@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("category", DbType.String, param.Category);
-                objectDb.AddInParameter("language", DbType.String, param.Language);
+                objectDb.AddInParameter("languages", DbType.String, param.Languages);
                 objectDb.AddInParameter("currency", DbType.String, param.Currency);
                 objectDb.AddInParameter("devicetype", DbType.Byte, param.DeviceType);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
@@ -54,6 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("textid", DbType.Int32, selectedTextId);
+                objectDb.AddInParameter("languages", DbType.String, string.Empty);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

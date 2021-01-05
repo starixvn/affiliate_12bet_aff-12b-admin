@@ -12,13 +12,14 @@ import BannerDetailPopup from './BannerDetailPopup';
 
 import { messages } from '../libs/constants';
 import { setParam, fetchData, toggleLoader, setSelectedBannerId, setCheckedBanners, deleteBanners, setShouldResetScrollPosition } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />
             <Filter />
-            <ControlButtons
+            { props.isModifiable && <ControlButtons
                 messages={messages}
                 gridData={props.gridData}
                 fetchData={() => props.fetchData(props.param)}
@@ -28,7 +29,7 @@ export const AppContainer = (props) => {
                 setShouldResetScrollPosition={props.setShouldResetScrollPosition}
                 setSelectedItemId={props.setSelectedBannerId}
                 deleteItems={props.deleteBanners}
-            />
+            />}
             <Content />
             <EditBannerForm />
             <BannerDetailPopup />
@@ -36,8 +37,9 @@ export const AppContainer = (props) => {
     );
 }
 
-function mapStateToProps({ isShowLoader, param, gridData, checkedBanners }) {
-    return Object.assign({}, { isShowLoader, param, gridData, checkedBanners });
+function mapStateToProps({ isShowLoader, param, gridData, checkedBanners, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGallery);
+    return Object.assign({}, { isShowLoader, param, gridData, checkedBanners, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -4,6 +4,7 @@
 
 @{
     var hasTurnOverPermission = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType);
+    var hasActivePlayerDetailPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.ActivePlayerDetailType);
 }
 
 <span class="my-account">My Account</span>
@@ -11,15 +12,18 @@
     <div class="img-icon">
         <img class="img-responsive" src="~/www/build/styles/Images/account-overview/new-sign-up.png" />
     </div>
-    <div class="info-panel">
+    <div class="info-panel @(hasActivePlayerDetailPermission ? "" : "w-100")">
         <span class="info-panel-title">New Signups / Deposited</span>
         <span class="info-panel-content">@($"{Model.Signups}/{Model.DepositedMembers}")</span>
     </div>
 
-    <div class="info-panel">
-        <span class="info-panel-title">Active Players / Qualified</span>
-        <span class="info-panel-content">@($"{Model.ActivePlayers}/{Model.QualifiedActivePlayers}")</span>
-    </div>
+    @if (hasActivePlayerDetailPermission)
+    {
+        <div class="info-panel">
+            <span class="info-panel-title">Active Players / Qualified</span>
+            <span class="info-panel-content">@($"{Model.ActivePlayers}/{Model.QualifiedActivePlayers}")</span>
+        </div>
+    }
 </div>
 <div class="group group-two">
     <div class="img-icon">

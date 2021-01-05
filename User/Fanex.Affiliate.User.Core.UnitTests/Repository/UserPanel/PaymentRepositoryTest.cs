@@ -1,14 +1,9 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.UnitTests.Repository;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel

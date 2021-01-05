@@ -5,12 +5,8 @@
 
 @model Fanex.Affiliate.Admin.Core.MetaModels.Payment.PaymentRequestParamFromHome
 
-@{
-    Html.RenderPartial("~/Areas/Portal/Views/Affiliate/_AffiliateSubMenu.cshtml", Model.SubMenuList);
-}
-
 @section pagecss{
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/payment/payment-request.css")" rel="stylesheet">
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/affiliate.css")" rel="stylesheet">
 }
 
 @section pagejs{
@@ -20,5 +16,5 @@
             param: @Html.Raw(Json.Encode(Model))
         }
     </script>
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/payment/payment-request.js")"></script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/affiliate/affiliate.js")"></script>
 }

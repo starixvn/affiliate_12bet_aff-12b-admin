@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Fanex.Affiliate.User.Core.DTO;
+﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Enum;
+using Fanex.Affiliate.User.Core.Infrastructure;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -18,17 +18,20 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private readonly IAccountService _accountService;
         private readonly IPaymentRepository _paymentRepository;
         private readonly IEmailService _emailService;
+        private readonly IDateTimeProvider _dateTimeProvider;
 
         public PaymentService(
             IAccountRepository accountRepository,
             IAccountService accountService,
             IPaymentRepository paymentRepository,
-            IEmailService emailService)
+            IEmailService emailService,
+            IDateTimeProvider dateTimeProvider)
         {
             _accountRepository = accountRepository;
             _accountService = accountService;
             _paymentRepository = paymentRepository;
             _emailService = emailService;
+            _dateTimeProvider = dateTimeProvider;
         }
 
         public IEnumerable<Payment> GetPaymentList(PaymentParam paymentParam)
@@ -83,7 +86,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public bool IsInDateRange()
         {
-            var currentDay = DateTime.Now.Day;
+            var currentDay = _dateTimeProvider.Now.Day;
             return (currentDay >= BeginDay && currentDay <= EndDay);
         }
 

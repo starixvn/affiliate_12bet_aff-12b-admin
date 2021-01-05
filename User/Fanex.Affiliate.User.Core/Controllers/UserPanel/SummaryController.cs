@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         }
 
         [HttpPost]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.ActivePlayerDetailType)]
         public ActionResult PlayersDetails(PlayerDetailParam param)
         {
             param.SortById = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType) ? Turnover : Winloss;
@@ -79,7 +79,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         }
 
         [HttpPost]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.ActivePlayerDetailType)]
         public ActionResult PlayersDetailsContent(PlayerDetailParam param)
         {
             param.AffId = SessionService.UserSession.AffId;

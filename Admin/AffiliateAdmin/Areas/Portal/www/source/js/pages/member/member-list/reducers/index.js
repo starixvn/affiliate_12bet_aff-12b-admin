@@ -3,6 +3,7 @@
 import createReducer from '../../../../modules/createReducer';
 import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
+import { claimsPrincipal} from '../../../../reducers/claimReducer';
 import { SET_PARAM, SET_IS_FROM_OTHER_PAGES, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from '../actions/types';
 
 const affName = createReducer(null, {})
@@ -38,5 +39,6 @@ export default combineReducers({
     pagingOption,
     isShowLoader,
     isFromOtherPages,
-    shouldResetScrollPosition
+    shouldResetScrollPosition,
+    claimsPrincipal
 });

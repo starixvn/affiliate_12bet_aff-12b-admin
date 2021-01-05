@@ -1,4 +1,5 @@
 export const globalResource = {
+    Index: '#',
     From: 'From',
     To: 'To',
     GetAll: 'Get All',
@@ -8,10 +9,12 @@ export const globalResource = {
     Product: 'Product',
     Add: 'Add',
     Edit: 'Edit',
+    Save: 'Save',
     Update: 'Update',
     Delete: 'Delete',
     Cancel: 'Cancel',
     Remove: 'Remove',
     NoInfo: 'There is no information available',
-    ChooseFile: "Choose File"
+    ChooseFile: "Choose File",
+    AnError: "An error occurred while processing your request, please try again later!"
 }

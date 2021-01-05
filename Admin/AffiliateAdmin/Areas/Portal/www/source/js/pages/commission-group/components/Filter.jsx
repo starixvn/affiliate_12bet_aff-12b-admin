@@ -32,7 +32,7 @@ export class Filter extends Component {
         return (
             <div className="filter-container">
                 <Form inline tag="div" style={{ backgroundColor: 'transparent' }}>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="mb-2 mr-sm-2 my-2">
                         <Label className="mr-sm-2">Group Name</Label>{' '}
                         <Input type="text" className="mr-sm-2 search-box" value={this.props.searchedGroupName} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />
                     </FormGroup>

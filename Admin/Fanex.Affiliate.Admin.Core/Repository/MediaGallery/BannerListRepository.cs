@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("language", DbType.String, param.Language);
+                objectDb.AddInParameter("languages", DbType.String, param.Languages);
                 objectDb.AddInParameter("category", DbType.String, param.Category);
                 objectDb.AddInParameter("subcategory", DbType.String, param.SubCategory);
                 objectDb.AddInParameter("currency", DbType.String, param.Currency);
@@ -60,6 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("bannerid", DbType.Int32, selectedBannerId);
+                objectDb.AddInParameter("languages", DbType.String, string.Empty);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -130,7 +131,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             {
                 objectDb.AddInParameter("Category", DbType.String, param.Category);
                 objectDb.AddInParameter("SubCategory", DbType.String, param.SubCategory);
-                objectDb.AddInParameter("Language", DbType.String, param.Language);
+                objectDb.AddInParameter("Languages", DbType.String, param.Languages);
                 objectDb.AddInParameter("Currency", DbType.String, param.Currency);
                 objectDb.AddInParameter("ImageType", DbType.String, param.ImageType);
                 objectDb.AddInParameter("AffType", DbType.String, param.AffType);

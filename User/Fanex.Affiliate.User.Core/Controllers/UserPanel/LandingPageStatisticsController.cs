@@ -1,32 +1,30 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using DTO.UserPanel;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.CoreService;
+    using Filters;
+    using MetalModels.UserPanel;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Constants;
-    using DTO.UserPanel;
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
-    using Filters;
-    using MetalModels.UserPanel;
     using Utilities;
     using ViewModels.UserPanel.Statistics;
 
     [CustomAuthorize]
     public class LandingPageStatisticsController : BaseController
     {
-        private readonly IStatisticsRepository _statisticsRepository;
+        private readonly IStatisticsService _statisticsService;
         private readonly IMarketingService _marketingService;
 
         public LandingPageStatisticsController(ISessionService sessionService,
             ILanguageService languageService,
-            IStatisticsRepository statisticsRepository,
+            IStatisticsService statisticsService,
             IMarketingService marketingService
             ) : base(sessionService, languageService)
         {
-            _statisticsRepository = statisticsRepository;
+            _statisticsService = statisticsService;
             _marketingService = marketingService;
         }
 
@@ -49,7 +47,7 @@
 
             var viewModel = new LandingPageStatisticsViewModel
             {
-                LanguageList = MarketingHelper.GetLanguageList(_marketingService.GetLanguageList(SessionService.IsInternal), userSession.PreferredLanguage),
+                LanguageList = MarketingHelper.GetLanguageList(_marketingService.GetLanguageList(), userSession.PreferredLanguage),
                 MemberSitePageList = _marketingService.GetLandingPageList(isInternal),
                 FromDate = landingPageParam.FromDate,
                 ToDate = landingPageParam.ToDate,
@@ -67,14 +65,6 @@
             landingPageParam.AffId = SessionService.UserSession.AffId;
             landingPageParam.IsInternal = SessionService.IsInternal;
 
-            var selectedLanguage = landingPageParam.LanguageCode;
-            if (!string.IsNullOrEmpty(selectedLanguage))
-            {
-                landingPageParam.LanguageCode = LanguageService.GetSystemLanguages()
-                                                .FirstOrDefault(l => l.Code.Equals(selectedLanguage))
-                                                ?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
-            }
-
             var viewModel = new LandingPageStatisticsViewModel
             {
                 DataList = GetLandingPageStatisticsData(landingPageParam),
@@ -86,13 +76,13 @@
 
         private IEnumerable<LandingPageStatistics> GetLandingPageStatisticsData(LandingPageStatisticsParam landingPageParam)
         {
-            var dataList = _statisticsRepository.GetLandingPageStatistics(landingPageParam);
+            var dataList = _statisticsService.GetLandingPageStatistics(landingPageParam);
 
             foreach (var item in dataList)
             {
-                var language = LanguageService.GetSystemLanguages().FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
+                var language = _marketingService.GetLanguageList().FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
 
-                item.LanguageName = language == null ? item.LanguageCode : language.NativeName;
+                item.LanguageName = language == null ? item.LanguageCode : language.MarketNativeName;
             }
 
             return dataList;

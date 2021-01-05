@@ -6,8 +6,6 @@ using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
@@ -178,7 +176,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void  GetSStatisticsOverview_WhenCall_QueryStatisticsOverview(bool isInternal)
+        public void GetSStatisticsOverview_WhenCall_QueryStatisticsOverview(bool isInternal)
         {
             const string uSpkey = "Aff_User_StatisticsSel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;

@@ -3,7 +3,7 @@
 exports[`left panel - components - general-info - Language render correctly with isChangingLanguage is false 1`] = `
 <Fragment>
   <Button
-    className="left-panel-btn-link"
+    className="left-panel-btn-link text-primary"
     color="link"
     onClick={[Function]}
     tag="button"

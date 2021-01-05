@@ -1,14 +1,13 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
+    using System.Linq;
+    using System.Web.Mvc;
     using ViewModels.UserPanel.Marketing;
 
     public sealed class MediaGalleryController : BaseMarketingController
@@ -21,14 +20,13 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult Index()
         {
             var userSession = SessionService.UserSession;
             var searchForm = GetSearchFormViewModel(true);
             var linkForm = GetLinkFormViewModel();
 
-            var selectedLanguage = userSession.PreferredLanguage;
             var selectedDomain = linkForm.DomainList.FirstOrDefault();
             var selectedPage = linkForm.MemberSitePageList.FirstOrDefault()?.PageCode ?? string.Empty;
             var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
@@ -36,7 +34,7 @@
             var bannerParam = new MarketingBannerParam
             {
                 AffId = userSession.AffId,
-                Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(selectedLanguage))?.EnglishName,
+                Language = userSession.PreferredLanguage,
                 AffType = userSession.AffType,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,

@@ -114,6 +114,7 @@ exports[`MultipleSelect  render showOptionList = true - render component with "d
         <input
           checked={true}
           className="option-checkbox"
+          disabled={false}
           id="multiple-select-15-optionItem-0"
           onChange={[Function]}
           type="checkbox"
@@ -131,6 +132,7 @@ exports[`MultipleSelect  render showOptionList = true - render component with "d
         <input
           checked={true}
           className="option-checkbox"
+          disabled={false}
           id="multiple-select-15-optionItem-1"
           onChange={[Function]}
           type="checkbox"
@@ -148,6 +150,7 @@ exports[`MultipleSelect  render showOptionList = true - render component with "d
         <input
           checked={true}
           className="option-checkbox"
+          disabled={false}
           id="multiple-select-15-optionItem-2"
           onChange={[Function]}
           type="checkbox"

@@ -6,7 +6,7 @@ export { globalResource, maxWidth }
 export const maxLength = 1000;
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     Content: 'Content',
     CreatedBy: 'Created By',
     LastModify: 'Last Modify'

@@ -1,14 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Fanex.Affiliate.User.Core.Constants
 {
     public static class ClaimConstant
     {
-        public const string TurnOverType = "[TurnOver]";
+        public const string PaymentRequest = "[Payment]";
+
+        public const string MediaGallery = "[Media]";
+
+        public const string CommissionReport = "[AffReport]";
+
+        public const string TurnOverType = "[AffTurnover]";
+
+        public const string ActivePlayerDetailType = "[AffPlayerDetail]";
+
+        public const string PhoneType = "[AffPhone]";
+
+        public const string EmailType = "[AffEmail]";
+
+        public const string PaymentInfoType = "[AffPaymentInfo]";
+
+        public const string LanguageAdmendmentType = "[AffMarket]";
+
+        public const string WebsiteUrlType = "[AffWebURL]";
+
+        public const string HotNewsType = "[HotNews]";
 
         public const string WriteClaimValue = "Write";
     }

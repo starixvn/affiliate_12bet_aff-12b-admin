@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { renderInputForm, capitalizeFirstChar } from '../../modules/service';
+import { renderInputForm, capitalizeFirstChar, renderClaimBaseInputForm, renderStaticForm } from '../../modules/service';
 import { setUserAccountInfo } from '../../actions';
 import { updateObjectInArray } from '../../../../../modules/dataHandler';
+import { claimResource } from '../../../../../modules/claim';
 
 export class Personal extends PureComponent {
     constructor(props) {
@@ -61,16 +62,16 @@ export class Personal extends PureComponent {
     }
 
     render() {
-        const { userAccountInfo } = this.props;
+        const { userAccountInfo, claimsPrincipal } = this.props;
 
         return userAccountInfo && (
             <Form tag="div">
-                {renderInputForm('username', 'User Name', userAccountInfo.AffName, true)}
+                {renderStaticForm('username', 'User Name', userAccountInfo.AffName, true)}
                 {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, true, this.handleChange)}
                 {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, true, this.handleChange)}
                 {this._renderGenderForm(userAccountInfo.Gender)}
-                {renderInputForm('email', 'Email Address', userAccountInfo.Email, false, true, this.handleChange)}
-                {renderInputForm('phone', 'Contact Number', userAccountInfo.Phone, false, true, this.handleChange)}
+                {renderClaimBaseInputForm(claimsPrincipal, claimResource.Email, 'email', 'Email Address', userAccountInfo.Email, true, this.handleChange)}
+                {renderClaimBaseInputForm(claimsPrincipal, claimResource.PhoneNumber, 'phone', 'Contact Number', userAccountInfo.Phone, true, this.handleChange)}
                 {
                     this.arrayContactApps && this.arrayContactApps.map(contactApp => {
                         return (
@@ -83,9 +84,9 @@ export class Personal extends PureComponent {
     }
 }
 
-function mapStateToProps({ edit }) {
+function mapStateToProps({ edit, claimsPrincipal }) {
     const { userAccountInfo } = edit;
-    return Object.assign({}, { userAccountInfo });
+    return Object.assign({}, { userAccountInfo, claimsPrincipal });
 }
 
 function mapDispatchToProp(dispatch) {

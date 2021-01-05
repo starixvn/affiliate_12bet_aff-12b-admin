@@ -27,11 +27,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Member
 
             controller.Url = urlHelperMock.Object;
             // Action
-            var viewResult = controller.Index() as ViewResult;
+            var viewResult = controller.Index("12BetAff001") as ViewResult;
             var viewName = viewResult.ViewName;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/Member/ActiveMember.cshtml", viewName);
+            Assert.Equal("~/Areas/Portal/Views/Member/Index.cshtml", viewName);
         }
 
         [Fact]

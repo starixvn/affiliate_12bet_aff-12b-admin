@@ -1,5 +1,5 @@
-﻿using System;
-using Fanex.Affiliate.User.Core.Enum;
+﻿using Fanex.Affiliate.User.Core.Enum;
+using System;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.Email
 {

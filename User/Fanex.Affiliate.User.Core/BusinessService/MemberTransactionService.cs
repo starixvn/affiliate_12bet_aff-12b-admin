@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Xml.Linq;
-using Fanex.Affiliate.User.Core.DTO;
+﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {

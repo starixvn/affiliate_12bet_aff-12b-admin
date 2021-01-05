@@ -1,0 +1,13 @@
+﻿@import "admin-role-menu";
+@import "admin-info";
+@import "../../components/modal";
+@import "../../components/multiple-select";
+
+.permission-popup-data-table {
+    background-color: #FFF !important;
+
+    td {
+        border: 1px solid #dee2e6 !important;
+        padding: 5px;
+    }
+}

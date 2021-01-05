@@ -35,6 +35,7 @@ describe('user account - components - sections - Payment', () => {
     };
     const defaultProps = {
         userAccountInfo,
+        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
         setUserAccountInfo: jest.fn()
     }
 
@@ -46,7 +47,7 @@ describe('user account - components - sections - Payment', () => {
 
     it('handleChangePaymentMethod - should call setUserAccountInfo', () => {
         const result = shallow(<Payment {...defaultProps} />);
-        
+
         result.instance().handleChangePaymentMethod({ target: { value: 'Neteller' }});
 
         expect(defaultProps.setUserAccountInfo).toHaveBeenCalledWith({ ...userAccountInfo, PreferredPayment: 'Neteller'});
@@ -54,7 +55,7 @@ describe('user account - components - sections - Payment', () => {
 
     it('handleChange - should call setUserAccountInfo', () => {
         const result = shallow(<Payment {...defaultProps} />);
-        
+
         result.instance().handleChange({ target: { name: 'bankName', value: '123' }});
 
         expect(defaultProps.setUserAccountInfo).toHaveBeenCalledWith({ ...userAccountInfo, BankName: '123'});

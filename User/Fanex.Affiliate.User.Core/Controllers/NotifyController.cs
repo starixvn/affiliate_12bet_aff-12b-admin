@@ -1,6 +1,6 @@
-﻿using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {

@@ -1,15 +1,15 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Login;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using NSubstitute;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -55,8 +55,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             sessionService.Setup(s => s.OnUserId).Returns(123);
             sessionService.Setup(s => s.UserId).Returns(234);
 
-            var authRepository = new Mock<IAuthRepository>();
-            authRepository.Setup(a => a.ReCheckin(It.IsAny<int>())).Returns(false);
+            var signInService = new Mock<ISignInService>();
+            signInService.Setup(a => a.IsKickOut(It.IsAny<int>())).Returns(false);
 
             var mockHttpRequest = new Mock<HttpRequestBase>();
             mockHttpRequest.Setup(m => m.IsAuthenticated).Returns(true);
@@ -64,11 +64,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var mockUser = new Mock<IPrincipal>();
             mockUser.Setup(m => m.Identity.IsAuthenticated).Returns(true);
 
-            var controller = new AuthController(sessionService.Object, authRepository.Object, Mock.Of<IAppSetting>());
-            controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
-                ctx.HttpContext.Request == mockHttpRequest.Object &&
-                ctx.HttpContext.User == mockUser.Object
-            );
+            var controller = new AuthController(sessionService.Object, signInService.Object, null, Mock.Of<IAppSetting>())
+            {
+                ControllerContext = Mock.Of<ControllerContext>(ctx =>
+                    ctx.HttpContext.Request == mockHttpRequest.Object &&
+                    ctx.HttpContext.User == mockUser.Object
+                )
+            };
             var expectedResult = new { IsKickedOut = false, Message = string.Empty };
 
             // Action
@@ -82,9 +84,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void Login_WhenCall_ReturnFalse()
         {
             // Arrange
-            var authRepository = new Mock<IAuthRepository>();
-            authRepository.Setup(a => a.Login(It.IsAny<LoginParam>())).Returns(new ResultInfo { Code = 999 });
-            var controller = CreateAuthController(authRepository: authRepository.Object);
+            var signInService = new Mock<ISignInService>();
+            signInService.Setup(a => a.VerifyAccount(It.IsAny<LoginParam>())).Returns(new ResultInfo { Code = 999 });
+            var controller = CreateAuthController(signInService: signInService.Object);
 
             // Action
             var jsonNetResult = controller.Login(new LoginParam()) as JsonNetResult;
@@ -119,10 +121,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void Login_WhenCall_ReturnNotAccess()
         {
             // Arrange
-            var authRepository = new Mock<IAuthRepository>();
-            authRepository.Setup(a => a.Login(It.IsAny<LoginParam>())).Returns(new ResultInfo());
-            authRepository.Setup(a => a.GetPermissionList(It.IsAny<int>())).Returns(new List<UserPermission>());
-            var controller = CreateAuthController(authRepository: authRepository.Object);
+            var signInService = new Mock<ISignInService>();
+            signInService.Setup(a => a.VerifyAccount(It.IsAny<LoginParam>())).Returns(new ResultInfo());
+
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.GetClaims(It.IsAny<int>())).Returns(new List<Claim>());
+            var controller = CreateAuthController(signInService: signInService.Object);
 
             // Action
             var jsonNetResult = controller.Login(new LoginParam { UserId = 123 }) as JsonNetResult;
@@ -135,15 +139,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
         private AuthController CreateAuthController(
             ISessionService sessionService = null,
-            IAuthRepository authRepository = null,
+            ISignInService signInService = null,
+            IAuthService authService = null,
             IAppSetting appSetting = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeAuthRepository = authRepository ?? Mock.Of<IAuthRepository>();
+            var fakeSignInService = signInService ?? Mock.Of<ISignInService>();
+            var fakeAuthService = authService ?? Mock.Of<IAuthService>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();
 
-            var controller = new AuthController(fakeSessionService, fakeAuthRepository, fakeAppSetting);
+            var controller = new AuthController(fakeSessionService, fakeSignInService, fakeAuthService, fakeAppSetting);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

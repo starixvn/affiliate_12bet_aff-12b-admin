@@ -1,5 +1,9 @@
-﻿@{
+﻿@using Fanex.Affiliate.Admin.Core.Services.Common;
+@{
     Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+
+    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var permissions = sessionService.ClaimIdentities.SelectMany(i => i.Claims);
 }
 
 @model Fanex.Affiliate.Admin.Core.ViewModels.AssignPrivateGroupViewModel
@@ -13,7 +17,8 @@
         window.initialState = {
             productList: @Html.Raw(Json.Encode(Model.ProductList)),
             deductionList: @Html.Raw(Json.Encode(Model.DeductionList)),
-            affInfo: @Html.Raw(Json.Encode(Model.AffInfo))
+            affInfo: @Html.Raw(Json.Encode(Model.AffInfo)),
+            claims: @Html.Raw(permissions.ToJson())
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/commission/assign-private-group.js")"></script>

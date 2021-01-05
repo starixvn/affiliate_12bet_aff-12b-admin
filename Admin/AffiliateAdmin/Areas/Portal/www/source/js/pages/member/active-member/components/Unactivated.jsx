@@ -7,6 +7,7 @@ import { Button } from 'reactstrap';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
 import { setMessage, activeMember, setShouldResetScrollPosition } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export const Unactivated = (props) => {
     const { unactivatedGridData, shouldResetScrollPosition, userNames } = props;
@@ -20,12 +21,13 @@ export const Unactivated = (props) => {
     }
 
     function _renderHeader() {
+        const {isShowMemberFullname} = props;
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.UserName}>{headerText.UserName}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>
+                { isShowMemberFullname && <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>}
+                { isShowMemberFullname && <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>}
                 {
                     unactivatedGridData && !!unactivatedGridData.length && (<Cell header={true} colWidth={50} title={headerText.ActiveAll}>
                         <Button color="link p-0" onClick={() => _handleActive(userNames)}>
@@ -56,6 +58,7 @@ export const Unactivated = (props) => {
     }
 
     function _buildDataRow(dataItem, index) {
+        const {isShowMemberFullname} = props;
         const userName = htmlDecode(dataItem.UserName);
         const firstName = htmlDecode(dataItem.FirstName);
         const lastName = htmlDecode(dataItem.LastName);
@@ -64,8 +67,8 @@ export const Unactivated = (props) => {
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={userName}>{userName}</Cell>
-                <Cell className="text-center" title={firstName}>{firstName || '---'}</Cell>
-                <Cell className="text-center" title={lastName}>{lastName || '---'}</Cell>
+                {isShowMemberFullname && <Cell className="text-center" title={firstName}>{firstName || '---'}</Cell>}
+                {isShowMemberFullname && <Cell className="text-center" title={lastName}>{lastName || '---'}</Cell>}
                 <Cell className="text-center" title="Active">
                     <Button color="link p-0" onClick={() => _handleActive(dataItem.UserName)}>
                         Active
@@ -92,8 +95,9 @@ export const Unactivated = (props) => {
     );
 }
 
-function mapStateToProps({ unactivatedGridData, shouldResetScrollPosition, userNames }) {
-    return Object.assign({}, { unactivatedGridData, shouldResetScrollPosition, userNames });
+function mapStateToProps({ unactivatedGridData, shouldResetScrollPosition, userNames, claimsPrincipal }) {
+    const isShowMemberFullname = claimsPrincipal.hasReadClaim(claimResource.AffMemberName);
+    return Object.assign({}, { unactivatedGridData, shouldResetScrollPosition, userNames, isShowMemberFullname });
 }
 
 function mapDispatchToProps(dispatch) {

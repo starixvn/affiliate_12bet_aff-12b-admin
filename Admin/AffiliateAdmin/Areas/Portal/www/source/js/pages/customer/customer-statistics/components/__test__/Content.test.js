@@ -1,14 +1,18 @@
-﻿import React from 'react';
+﻿/// <reference path="../../../../common/components/mylink.jsx" />
+import React from 'react';
 import { Content } from '../Content';
 import { shallow } from 'enzyme';
 import MonthPicker from '@9softstudio/react-monthpicker';
+import MyLink from '../../../../common/components/MyLink';
 
 describe('customer statistics - components - Content', () => {
     const defaultProps = {
         monthDate: '7/1/2019',
         today: '7/1/2019',
         affId: 1271808,
-        hasTurnOverPermission: true
+        hasTurnOverPermission: true,
+        isDisplayTurnOver: true,
+        isDisplayActivePlayer: true
     };
 
     const data = {
@@ -138,7 +142,7 @@ describe('customer statistics - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
-        wrapper.find('a').at(0).simulate('click');
+        wrapper.find(MyLink).at(0).simulate('click');
         expect(props.redirectToPlayerDetail).toHaveBeenCalledWith({ isClickLink: true, monthDate: "7/1/2019", productId: 0 });
     });
 
@@ -150,7 +154,7 @@ describe('customer statistics - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
-        wrapper.find('a').at(1).simulate('click');
+        wrapper.find(MyLink).at(1).simulate('click');
         expect(props.redirectToTrackingStatistics).toHaveBeenCalledWith({ isClickLink: true });
     });
 
@@ -162,7 +166,7 @@ describe('customer statistics - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
-        wrapper.find('a').at(2).simulate('click');
+        wrapper.find(MyLink).at(2).simulate('click');
         expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 0, fromDate: "7/1/2019", isClickLink: true, toDate: "7/31/2019" });
     });
 
@@ -174,7 +178,7 @@ describe('customer statistics - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
-        wrapper.find('a').at(3).simulate('click');
+        wrapper.find(MyLink).at(3).simulate('click');
         expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 1, fromDate: "7/1/2019", isClickLink: true, toDate: "7/31/2019" });
     });
 })

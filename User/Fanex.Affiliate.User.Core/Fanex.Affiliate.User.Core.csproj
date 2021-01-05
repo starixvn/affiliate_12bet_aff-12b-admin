@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\SonarQube\12betAFFUserCSharp.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Fanex.Affiliate.User.Core.Debug.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -214,6 +214,7 @@
     <Compile Include="BusinessService\ICommissionReportService.cs" />
     <Compile Include="BusinessService\IQrCodeGeneratorService.cs" />
     <Compile Include="BusinessService\ISecurityQuestionService.cs" />
+    <Compile Include="BusinessService\IStatisticsService.cs" />
     <Compile Include="BusinessService\ITwoFactorAuthService.cs" />
     <Compile Include="BusinessService\IVerificationService.cs" />
     <Compile Include="BusinessService\MemberTransactionService.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="BusinessService\PaymentService.cs" />
     <Compile Include="BusinessService\QrCodeGeneratorService.cs" />
     <Compile Include="BusinessService\SecurityQuestionService.cs" />
+    <Compile Include="BusinessService\StatisticsService.cs" />
     <Compile Include="BusinessService\TwoFactorAuthService.cs" />
     <Compile Include="BusinessService\VerificationService.cs" />
     <Compile Include="Constants\ActionName.cs" />
@@ -305,13 +307,11 @@
     <Compile Include="DTO\LoginResultInfo.cs" />
     <Compile Include="DTO\Payment.cs" />
     <Compile Include="DTO\ProductItem.cs" />
-    <Compile Include="DTO\RsaKeyPair.cs" />
     <Compile Include="DTO\SecurityQuestion.cs" />
     <Compile Include="DTO\InternalLoginInfo.cs" />
     <Compile Include="DTO\UserPanel\LastLoginInfo.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\CategoryType.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\CurrencyType.cs" />
-    <Compile Include="DTO\UserPanel\MediaGallery\LanguageType.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\SizeType.cs" />
     <Compile Include="DTO\UserPanel\OverviewDetail.cs" />
     <Compile Include="DTO\UserPanel\OverviewSummary.cs" />
@@ -609,6 +609,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <Compile Include="Controllers\UserPanel\AccountOverViewController.cs" />
+    <None Include="Fanex.Affiliate.User.Core.Debug.ruleset" />
     <None Include="Fanex.Affiliate.User.Core.ruleset" />
     <EmbeddedResource Include="Resources\Lang.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -671,6 +672,11 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\.sonarlint\12betaffuser\CSharp\SonarLint.xml">
+      <Link>SonarLint.xml</Link>
+    </AdditionalFiles>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,16 +3,14 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.EmailHistory;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.EmailHistory;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.AffEmail)]
     public class EmailHistoryController : ReadOnlySessionBaseController
     {
         private readonly IEmailHistoryService _emailHistoryService;
@@ -26,15 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         public ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate") },
-                new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest") },
-                new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/Portal/CommissionGroup") },
-                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory"), IsActive = true }
-            };
-
-            return View("~/Areas/Portal/Views/Affiliate/EmailHistory.cshtml", model: subMenu);
+            return View("~/Areas/Portal/Views/Affiliate/EmailHistory.cshtml");
         }
 
         [HttpPost]
@@ -54,6 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AffEmail, IsHost = true)]
         public ActionResult GetEmailHistoryDetail(int selectedEmailId)
         {
             if (selectedEmailId >= Validation.MinId)
@@ -69,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AffEmail, IsHost = true)]
         public ActionResult DeleteEmailHistory(DeleteEmailHistoryParam param)
         {
             if (ModelState.IsValid)

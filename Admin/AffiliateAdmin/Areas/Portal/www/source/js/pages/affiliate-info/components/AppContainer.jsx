@@ -8,12 +8,32 @@ import Content from './Content';
 import CommissionGroupPopup from '../../common/components/CommissionGroupPopup';
 import ChangePasswordForm from '../../common/components/ChangePasswordForm';
 import Loader from '../../../components/Loader';
+import { setShowPopupPassword, setShowPopupCommGroup , setLanguageList, setCommGroupList} from '../actions'
 
-import { setShowPopupPassword, setShowPopupCommGroup } from '../actions'
+import { convertArrayToObjectProps } from '../../../modules/utils';
+import {post} from '../../../modules/ajaxRequest'
 
-export class AppContainer extends Component {
+export class AppContainer extends React.PureComponent {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount = async () => {
+        const data = await this.fetchFilter();
+
+        if (!!data) {
+            const commGroupList = convertArrayToObjectProps(data.CommGroupList, 'Id', 'Name');
+            const languageList = convertArrayToObjectProps(data.LanguageList, 'LanguageCode', 'LanguageName');
+            this.props.setLanguageList(languageList);
+            this.props.setCommGroupList(commGroupList);
+        }
+    }
+
+    fetchFilter = async () => {
+        const url = 'Portal/Affiliate/GetFilter'
+        const response = await post(url);
+
+        return response && response.status === 200 ? response.data : null;
     }
 
     render() {
@@ -45,7 +65,7 @@ function mapStateToProps({ isShowLoader, showPopupPassword, affId, commGroup, sh
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopupPassword, setShowPopupCommGroup }, dispatch);
+    return bindActionCreators({ setShowPopupPassword, setShowPopupCommGroup, setLanguageList, setCommGroupList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

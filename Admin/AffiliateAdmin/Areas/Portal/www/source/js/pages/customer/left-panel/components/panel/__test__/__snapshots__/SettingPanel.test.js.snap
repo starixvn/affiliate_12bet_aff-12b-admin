@@ -6,6 +6,15 @@ exports[`left panel - components - panel - SettingPanel render correctly 1`] = `
 >
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       tag="div"
@@ -80,6 +89,15 @@ exports[`left panel - components - panel - SettingPanel render correctly 1`] = `
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       tag="div"
@@ -170,6 +188,15 @@ exports[`left panel - components - panel - SettingPanel render correctly with is
 >
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       tag="div"
@@ -244,6 +271,15 @@ exports[`left panel - components - panel - SettingPanel render correctly with is
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       tag="div"
@@ -285,6 +321,15 @@ exports[`left panel - components - panel - SettingPanel render correctly with is
   </Row>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       tag="div"

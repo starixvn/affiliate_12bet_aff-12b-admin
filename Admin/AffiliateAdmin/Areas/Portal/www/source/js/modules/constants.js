@@ -1,3 +1,4 @@
+
 export const defaultPagingOption = {
     PageIndex: 1,
     PageSize: 20,
@@ -37,4 +38,15 @@ export const mobile = 'Mobile';
 export const deviceTypes = {
     [pcLaptop]: 0,
     [mobile]: 1
+}
+
+export const regExp = {
+    CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
+}
+
+export const changePasswordMessages = {
+    RequiredConfirmPassword: "Confirm Password is required!",
+    ChangePasswordSuccess: "Change password is successful!",
+    ConfirmPasswordIncorrect: 'Confirm Password is incorrect!',
+    ChangePasswordFailed: 'Change password is failed!'
 }

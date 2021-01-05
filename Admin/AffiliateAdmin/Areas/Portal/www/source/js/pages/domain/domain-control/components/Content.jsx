@@ -8,6 +8,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
 import { deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomain, setShouldResetScrollPosition } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -65,6 +66,7 @@ export class Content extends PureComponent {
     }
 
     _renderHeader() {
+        const { isModifiable } = this.props;
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
@@ -74,8 +76,9 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={60} title={headerText.Creator}>{headerText.Creator}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
                 <Cell header={true} colWidth={20} title={headerText.Status}>{headerText.Status}</Cell>
-                <Cell header={true} colWidth={20} title={headerText.Edit}>{headerText.Edit}</Cell>
-                <Cell header={true} colWidth={20} title={headerText.Delete}>{headerText.Delete}</Cell>
+                { isModifiable && <Cell header={true} colWidth={20} title={headerText.Edit}>{headerText.Edit}</Cell>}
+                { isModifiable && <Cell header={true} colWidth={20} title={headerText.Delete}>{headerText.Delete}</Cell>}
+
             </Row>
         );
     }
@@ -102,6 +105,7 @@ export class Content extends PureComponent {
         const affDomain = htmlDecode(dataItem.AffDomain);
         const redirectDomain = htmlDecode(dataItem.RedirectDomain);
         const creator = htmlDecode(dataItem.Creator);
+        const { isModifiable } = this.props;
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -112,31 +116,37 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
                 <Cell className="text-center">
-                    <input type="checkbox" disabled="true" checked={dataItem.IsUsed} />
+                    <input type="checkbox" disabled checked={dataItem.IsUsed} />
                 </Cell>
-                <Cell className="text-center" title="Edit Domain">
-                    <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId, dataItem.MarketId, dataItem.AffDomainId, dataItem.RedirectDomainId, dataItem.IsUsed)}>
-                        <span className="oi oi-pencil text-secondary"></span>
-                    </Button>
-                </Cell>
-                <Cell className="text-center" title="Delete Domain">
-                    <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
-                        <span className="oi oi-x text-danger"></span>
-                    </Button>
-                </Cell>
+                { isModifiable &&
+                    <React.Fragment>
+                        <Cell className="text-center" title="Edit Domain">
+                            <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId, dataItem.MarketId, dataItem.AffDomainId, dataItem.RedirectDomainId, dataItem.IsUsed)}>
+                                <span className="oi oi-pencil text-secondary"></span>
+                            </Button>
+                        </Cell>
+                        <Cell className="text-center" title="Delete Domain">
+                            <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
+                                <span className="oi oi-trash text-danger"></span>
+                            </Button>
+                        </Cell>
+                    </React.Fragment>
+                }
             </Row>
         )
     }
 
     render() {
-        const { gridData, shouldResetScrollPosition, selectedMarket, affDomainList, redirectDomainList } = this.props;
+        const { gridData, shouldResetScrollPosition, selectedMarket, affDomainList, redirectDomainList, isModifiable } = this.props;
         const { message, isConfirmPopup } = this.state;
 
         return gridData && (
             <div className="data-content">
-                <div className="my-2">
-                    <Button outline type="button" onClick={() => this._handleEditDomain(0, selectedMarket || 'en-GB', affDomainList[0].DomainId, redirectDomainList[0].DomainId, false)}>Add New <span className="oi oi-plus ml-2"></span></Button>
-                </div>
+                { isModifiable &&
+                    <div className="my-2">
+                        <Button outline type="button" onClick={() => this._handleEditDomain(0, selectedMarket || 'en-GB', affDomainList[0].DomainId, redirectDomainList[0].DomainId, false)}>Add New <span className="oi oi-plus ml-2"></span></Button>
+                    </div>
+                }
                 <div className="domain-list-content table-responsive table-striped my-2">
                     <Table
                         minWidth={1000}
@@ -160,8 +170,9 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList });
+function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.Domain);
+    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

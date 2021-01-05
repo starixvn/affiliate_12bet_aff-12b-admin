@@ -228,6 +228,44 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         }
 
         [Fact]
+        public void UpdateContactNumber_WhenCallWithInvalidParam_UpdateSuccessfully()
+        {
+            // Arrange
+            var repository = new Mock<CustomerLeftPanelRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+            repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePhoneNumber_Upd", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.UpdateContactNumber(new UpdateContactNumberParam { PhoneNumber = "123" });
+
+            // Assert
+            Assert.True(result.IsSuccessful);
+        }
+
+        [Fact]
+        public void UpdateContactNumber_WhenCallWithValidParam_UpdateIsFailed()
+        {
+            // Arrange
+            var message = "Update contact number is failed.";
+            var repository = new Mock<CustomerLeftPanelRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
+            repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePhoneNumber_Upd", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.UpdateContactNumber(new UpdateContactNumberParam());
+
+            // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.Equal(message, result.Message);
+        }
+
+        [Fact]
         public void UpdateStatus_WhenCallWithInvalidParam_UpdateSuccessfully()
         {
             // Arrange

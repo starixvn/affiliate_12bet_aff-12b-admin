@@ -18,5 +18,5 @@ export {
     affCommonInfo,
     today,
     languageList,
-    hasTurnOverPermission
+    hasTurnOverPermission,
 }

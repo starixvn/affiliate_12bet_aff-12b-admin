@@ -26,6 +26,7 @@ describe('note - components - Content', () => {
             noteId: 0
         },
         noteList,
+        claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
         getNoteList: jest.fn()
     };
     const param = {

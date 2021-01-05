@@ -1,13 +1,13 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
-    using System.Web.Mvc;
     using Constants;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
+    using System;
+    using System.Web.Mvc;
     using ViewModels.UserPanel;
 
     [CustomAuthorize]
@@ -15,9 +15,9 @@
     {
         private readonly IStatementHistoryRepository _statementHistoryRepository;
 
-        public DailyEarningDetailController(ISessionService sessionService, 
+        public DailyEarningDetailController(ISessionService sessionService,
             ILanguageService languageService,
-            IStatementHistoryRepository statementHistoryRepository) 
+            IStatementHistoryRepository statementHistoryRepository)
             : base(sessionService, languageService)
         {
             _statementHistoryRepository = statementHistoryRepository;
@@ -35,8 +35,8 @@
             var viewModel = new DailyEarningDetailViewModel
             {
                 MainData = _statementHistoryRepository.GetDailyEarningDetail(param),
-                ProductList = param.IsOnlyContent 
-                    ? null 
+                ProductList = param.IsOnlyContent
+                    ? null
                     : _statementHistoryRepository.GetProductList(param.IsInternal),
                 SelectedDate = param.MonthDate.HasValue ? param.MonthDate.Value : DateTime.Now.Date,
                 SelectedProduct = param.ProductId.HasValue ? param.ProductId.Value : Product.Sportsbook,

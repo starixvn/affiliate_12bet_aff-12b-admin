@@ -9,6 +9,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
     public class AdjustmentService : BaseRepository, IAdjustmentService
     {
+
+
         public decimal GetBalanceBroughtForward(int affId)
         {
             const string SpKey = "Aff_CustomerSelBalBF";

@@ -6,6 +6,7 @@ import { Button } from 'reactstrap';
 
 import { headerText, globalResource, rateType, exchangeUs$Id } from '../libs/constants';
 import { setTogglePopup, setSelectedExchangeRate, setShouldResetScrollPosition } from '../actions';
+import { claimResource } from '../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -117,7 +118,8 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ today, date, shouldResetScrollPosition, gridData, hasPermission }) {
+function mapStateToProps({ today, date, shouldResetScrollPosition, gridData, claimsPrincipal }) {
+    const hasPermission = claimsPrincipal.hasWriteClaim(claimResource.AffExRate);
     return Object.assign({}, { today, date, shouldResetScrollPosition, gridData, hasPermission });
 }
 

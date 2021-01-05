@@ -22,12 +22,14 @@ describe('domain - Content - connect', () => {
         const expectedResult = {
             isAffDomain: true,
             shouldResetScrollPosition: true,
+            isModifiable: true,
             gridData: []
         };
         const state = {
             isAffDomain: true,
             shouldResetScrollPosition: true,
             gridData: [],
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

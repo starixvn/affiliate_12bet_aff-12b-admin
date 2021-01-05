@@ -120,7 +120,7 @@ export class InsertUpdateNoteForm extends PureComponent {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-5" autocomplete="off">
+                            <Form tag="form" className="mb-5" autoComplete="off">
                                 <FormGroup row className="mb-2">
                                     <Label for="noteContent" sm={3} className="d-flex justify-content-center align-items-center required">Content</Label>
                                     <Col sm={9}>

@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme';
 import { GridData } from '../GridData';
+import { headerFake } from '../../modules/headerFake';
 
 import * as ajaxRequest from '../../../../modules/ajaxRequest';
 jest.mock('../../modules/constants');
@@ -19,6 +20,7 @@ describe('affiliate report - GridData ', () => {
         },
         param: {},
         hasTurnOverPermission,
+        headerConfig: headerFake,
         currentViewLevel: mainView
     };
 

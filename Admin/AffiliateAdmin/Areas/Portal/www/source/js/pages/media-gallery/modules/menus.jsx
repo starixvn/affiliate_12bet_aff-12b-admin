@@ -1,0 +1,13 @@
+import React from 'react'
+import { Claim, claimResource } from '../../../modules/claim';
+import { menuKey, relativePath} from '../constants/key';
+
+const BannerList = React.lazy(() => import('../banner-list/index'));
+const TextList = React.lazy(() => import('../text-list/index'));
+const LandingPageList = React.lazy(() => import('../landing-page/index'));
+
+export const menus = [
+    {key: menuKey.bannerList, label: 'Banner List', href: relativePath.bannerList, component: BannerList, renderClaim: new Claim(claimResource.MediaGallery)},
+    {key: menuKey.textList, label: 'Text List', href: relativePath.textList, component: TextList, renderClaim: new Claim(claimResource.MediaGallery) },
+    {key: menuKey.landingPageList, label: 'Landing Page List', href: relativePath.landingPageList, component: LandingPageList},
+]

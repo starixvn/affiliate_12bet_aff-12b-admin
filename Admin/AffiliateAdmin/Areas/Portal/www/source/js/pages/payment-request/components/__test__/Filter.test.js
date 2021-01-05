@@ -39,7 +39,7 @@ describe('payment request - components - Filter ', () => {
 
         shallow(<Filter {...props} />);
 
-        expect(props.setParam).toHaveBeenCalledWith({"FromDate": "6/26/2019", "IsFromHome": true, "IsGetAll": false, "SearchBy": 1, "Status": undefined, "ToDate": "6/27/2019", "Username": null});
+        expect(props.setParam).toHaveBeenCalledWith({ "FromDate": "6/26/2019", "IsFromHome": false, "IsGetAll": false, "SearchBy": 1, "Status": undefined, "ToDate": "6/27/2019", "Username": null });
     });
 
     it('handleSearch - should be called when click Search Button', () => {
@@ -49,7 +49,7 @@ describe('payment request - components - Filter ', () => {
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ FromDate: "6/26/2019", IsGetAll: false, SearchBy: 1, Status: undefined, ToDate: "6/27/2019", Username: null });
+        expect(props.setParam).toHaveBeenCalledWith({ FromDate: "6/26/2019", IsGetAll: false, IsFromHome: false, SearchBy: 1, Status: undefined, ToDate: "6/27/2019", Username: null });
     });
 
     it("handleChange - should be called when change Search By's value", () => {
@@ -112,7 +112,7 @@ describe('payment request - components - Filter ', () => {
         const wrapper = shallow(<Filter {...props} />);
 
         wrapper.setState = jest.fn();
-        
+
         wrapper.find(DatePicker).at(0).simulate('change', monthDate);
 
         expect(wrapper.setState).toHaveBeenCalledWith({ fromDate: "6/25/2019", toDate: "6/27/2019" });
@@ -124,7 +124,7 @@ describe('payment request - components - Filter ', () => {
         const wrapper = shallow(<Filter {...props} />);
 
         wrapper.setState = jest.fn();
-        
+
         wrapper.find(DatePicker).at(1).simulate('change', monthDate);
 
         expect(wrapper.setState).toHaveBeenCalledWith({ toDate: "6/26/2019" });

@@ -34,7 +34,8 @@ export default class ButtonDeleteItems extends PureComponent {
 
     _handleDelete = () => {
         const itemIdList = this._getCheckedItemIdList();
-        !itemIdList.length ? this._handleOpenNotificationPopup(this.props.messages.PleaseSelect) : this._handleOpenNotificationPopup(this.props.messages.AreYouSureDeleteItems, true, itemIdList);
+        const length = itemIdList.length;
+        length === 0 ? this._handleOpenNotificationPopup(this.props.messages.PleaseSelect) : this._handleOpenNotificationPopup(this.props.messages.AreYouSureDeleteItems.replace('{0}', length), true, itemIdList);
     }
 
     _deleteExcute = async (itemIdList) => {
@@ -68,7 +69,7 @@ export default class ButtonDeleteItems extends PureComponent {
                         onClose={this._handleCloseNotificationPopup}
                     />
                 }
-                <Button outline type="button" color="danger" onClick={this._handleDelete}>Delete<span className={this.props.hasIcon ? "oi oi-x ml-2" : ""}></span></Button>
+                <Button outline type="button" color="danger" onClick={this._handleDelete}>Delete<span className={this.props.hasIcon ? "oi oi-trash ml-2" : ""}></span></Button>
             </React.Fragment>
         );
     }

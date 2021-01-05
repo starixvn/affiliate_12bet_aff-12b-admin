@@ -31,6 +31,7 @@ describe('message - components - MessageDetailForm ', () => {
 
     const defaultProps = {
         selectedMessageId: 37,
+        isModifiable: true,
         param
     };
 

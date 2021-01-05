@@ -71,6 +71,8 @@ describe('affiliate info - GridData ', () => {
             PageList: [10, 20, 50, 100, 500]
         },
         languageList: {},
+        isAssignCommGroup: true,
+        isPwdChangeable: true,
         param: {
             AffId: '',
             GroupId: 0,

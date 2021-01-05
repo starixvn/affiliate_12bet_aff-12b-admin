@@ -9,6 +9,32 @@ describe('affiliate info - Filter ', () => {
         commGroupList: {},
         param: {},
         groupId: 0,
+        sortKeys: [
+            {
+                "key": "Username",
+                "value": 1,
+            },
+            {
+                "key": "Registration Date",
+                "value": 2,
+            },
+            {
+                "key": "Approval Date",
+                "value": 3,
+            },
+            {
+                "key": "Balance B/F",
+                "value": 4,
+            },
+            {
+                "key": "Member",
+                "value": 5,
+            }
+        ],
+        isShowEmailFilter: true,
+        isShowAccStatusFilter: true,
+        isShowCommFilter: true,
+        isShowLangFilter: true,
         columnList: []
     };
 
@@ -138,6 +164,7 @@ describe('affiliate info - Filter ', () => {
             UserName: '',
             Email: '',
             SortBy: 1,
+            IsFromHome: false,
             SortDirectionType: false
         }
         expect(props.setReportTitle).toHaveBeenCalledWith(reportTitle);

@@ -24,6 +24,7 @@ describe('text list - Content - connect', () => {
             checkedTexts: { 123: false },
             shouldResetScrollPosition: true,
             pagingOption: { PageSize: 1, PageIndex: 20 },
+            isModifiable: true,
             gridData: []
         };
         const state = {
@@ -32,6 +33,7 @@ describe('text list - Content - connect', () => {
             shouldResetScrollPosition: true,
             pagingOption: { PageSize: 1, PageIndex: 20 },
             gridData: [],
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

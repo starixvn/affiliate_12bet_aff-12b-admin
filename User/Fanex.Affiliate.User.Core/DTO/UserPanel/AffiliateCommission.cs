@@ -18,6 +18,5 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         public decimal CommissionRate { get; set; }
         public decimal Commission { get; set; }
         public int CalculatedType { get; set; }
-       
     }
 }

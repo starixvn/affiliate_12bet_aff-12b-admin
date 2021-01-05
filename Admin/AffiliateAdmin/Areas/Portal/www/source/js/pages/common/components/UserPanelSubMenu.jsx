@@ -4,6 +4,12 @@ import { Nav, NavItem, NavLink } from 'reactstrap';
 const UserPanelSubMenu = (props) => {
     const subMenuList = props.subMenuList || null;
 
+    const handleClick = (event, func) => {
+        event.preventDefault();
+
+        func();
+    }
+
     return subMenuList && (
         <div className="sub-menu-container pt-1">
             <Nav>
@@ -11,7 +17,7 @@ const UserPanelSubMenu = (props) => {
                     subMenuList.map(item => {
                         return (
                             <NavItem key={item.title}>
-                                <NavLink active={item.isActive} href="javascript:;" onClick={item.handleClick}>{item.title}</NavLink>
+                                <NavLink active={item.isActive} href="#" onClick={(e) => handleClick(e, item.handleClick)}>{item.title}</NavLink>
                             </NavItem>
                         )
                     })

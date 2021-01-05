@@ -4,13 +4,11 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
-using System;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.AffMemberDetail)]
     public class CustomerMemberController : ReadOnlySessionBaseController
     {
         private readonly ISessionService _sessionService;
@@ -24,12 +22,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [ResetDefaultUnauthorizedProperty]
         public ActionResult GetCustomerMember(CustomerMemberParam param)
         {
             if (ModelState.IsValid)
             {
-                param.CanViewMemberEmail = _sessionService.UserPermissionList.Any(i => i.FunctionName.Equals(Function.MemberEmail, StringComparison.OrdinalIgnoreCase));
-
                 return new JsonNetResult
                 {
                     Data = _customerMemberService.GetCustomerMemberList(param)

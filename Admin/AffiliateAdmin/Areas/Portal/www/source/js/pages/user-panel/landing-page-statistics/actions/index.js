@@ -30,9 +30,17 @@ export const setShortCodeLanguageList = (data) => {
 
 export const getPageList = () => pageList;
 
-export const fetchData = (param) => async () => {
+export const fetchData = (param, shortCodeLanguageList) => async () => {
     const url = 'Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsList';
-    const response = await post(url, param);
+    let languageCode = param.languageCode;
+
+    if (!languageCode) {
+        var allShortCode = Object.keys(shortCodeLanguageList).map(key => key).join(',');
+
+        languageCode = allShortCode;
+    }
+
+    const response = await post(url, Object.assign({}, param, { languageCode }));
 
     return response && response.status === 200 ? response.data : null;
 }

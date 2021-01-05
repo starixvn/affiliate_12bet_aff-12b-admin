@@ -47,6 +47,9 @@
       <HintPath>..\..\packages\EasyNetQ.2.3.3\lib\net451\EasyNetQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
       <Private>True</Private>
@@ -163,11 +166,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\AllowByPassFunctionAuthorizeAttribute.cs" />
+    <Compile Include="Attributes\ClaimAuthorizeAttribute.cs" />
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\PermissionCheckAttribute.cs" />
-    <Compile Include="Attributes\ResetValueNotHavePermissionAttribute.cs" />
+    <Compile Include="Attributes\ResetDefaultUnauthorizedPropertyAttribute.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryHeaderAttribute.cs" />
+    <Compile Include="Attributes\SpParamProtectingAttribute.cs" />
     <Compile Include="Configurations\AppSetting.cs" />
     <Compile Include="Configurations\IAppSetting.cs" />
     <Compile Include="Configurations\LoggingConfig.cs" />
@@ -179,18 +185,23 @@
     <Compile Include="Constants\Field.cs" />
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
+    <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
+    <Compile Include="Utilities\Result.cs" />
     <Compile Include="Constants\Money.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />
     <Compile Include="Constants\SessionKey.cs" />
+    <Compile Include="Constants\Policy.cs" />
     <Compile Include="Constants\Size.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Constants\Validation.cs" />
     <Compile Include="Controllers\AccessDeniedController.cs" />
-    <Compile Include="Controllers\Administrator\AdministratorController.cs" />
-    <Compile Include="Controllers\Administrator\DepartmentController.cs" />
+    <Compile Include="Controllers\AdminRole\AdminRoleCommonController.cs" />
+    <Compile Include="Controllers\AdminRole\AdminRoleController.cs" />
+    <Compile Include="Controllers\AdminRole\AdminInfoController.cs" />
+    <Compile Include="Controllers\AdminRole\RolePermissionController.cs" />
     <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ReadOnlySessionBaseController.cs" />
     <Compile Include="Controllers\Affiliate\CommissionGroupController.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentController.cs" />
     <Compile Include="Controllers\ChangeAdminPasswordController.cs" />
@@ -213,6 +224,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\Affiliate\PaymentRequestController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\UserPanel\AdjustmentController.cs" />
     <Compile Include="Controllers\UserPanel\CustomerMemberController.cs" />
@@ -224,9 +236,13 @@
     <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\UserAccountController.cs" />
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
-    <Compile Include="DTO\Administrator\AdministratorInfo.cs" />
-    <Compile Include="DTO\Administrator\DepartmentInfo.cs" />
-    <Compile Include="DTO\Administrator\PolicyInfo.cs" />
+    <Compile Include="DTO\AdminRole\AdminInfo.cs" />
+    <Compile Include="DTO\AdminRole\AdminInforResultEntity.cs" />
+    <Compile Include="DTO\AdminRole\AdminListInfo.cs" />
+    <Compile Include="DTO\AdminRole\RolePermissionInfo.cs" />
+    <Compile Include="DTO\AdminRole\MarketInfo.cs" />
+    <Compile Include="DTO\AdminRole\UserPermissionInfo.cs" />
+    <Compile Include="DTO\AdminRole\RoleInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
     <Compile Include="DTO\AffTypeInfo.cs" />
@@ -261,15 +277,17 @@
     <Compile Include="DTO\Member\DepositCustomerInfo.cs" />
     <Compile Include="DTO\Member\MemberInfo.cs" />
     <Compile Include="DTO\Member\InactiveMemberInfo.cs" />
-    <Compile Include="MetaModels\Administrator\ChangeStatusParam.cs" />
-    <Compile Include="MetaModels\Administrator\DeleteDepartmentParam.cs" />
-    <Compile Include="MetaModels\Administrator\InsertExistedUserParam.cs" />
-    <Compile Include="MetaModels\Administrator\InsertUserParam.cs" />
-    <Compile Include="MetaModels\Administrator\InsertUpdateDepartmentParam.cs" />
-    <Compile Include="MetaModels\Administrator\UpdatePasswordParam.cs" />
-    <Compile Include="MetaModels\Administrator\UpdatePolicyParam.cs" />
-    <Compile Include="MetaModels\Administrator\UpdateUserParam.cs" />
+    <Compile Include="DTO\UserPanel\SecurityQuestion.cs" />
+    <Compile Include="Extensions\ClaimPrincipalExtension.cs" />
+    <Compile Include="MetaModels\AdminRole\AdminInfoParam.cs" />
+    <Compile Include="MetaModels\AdminRole\DeleteAdminUsersParam.cs" />
+    <Compile Include="MetaModels\AdminRole\MarketInfoParam.cs" />
+    <Compile Include="MetaModels\AdminRole\RolePermissionParam.cs" />
+    <Compile Include="MetaModels\AdminRole\UpdateMarketInfoParam.cs" />
+    <Compile Include="MetaModels\AdminRole\UpdateRolePermissionParam.cs" />
+    <Compile Include="MetaModels\AdminRole\UserMarketParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
+    <Compile Include="MetaModels\Customer\UpdateContactNumberParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />
     <Compile Include="MetaModels\Domain\InsertUpdateDomainControlParam.cs" />
@@ -366,6 +384,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repository\AdminRole\AdminInfoRepository.cs" />
+    <Compile Include="Repository\AdminRole\IAdminInfoRepository.cs" />
+    <Compile Include="Repository\AdminRole\RolePermissionRepository.cs" />
+    <Compile Include="Repository\AdminRole\IRolePermissionRepository.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />
@@ -450,12 +472,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\Administrator\AdministratorService.cs" />
-    <Compile Include="Services\Administrator\DepartmentService.cs" />
-    <Compile Include="Services\Administrator\IAdministratorService.cs" />
-    <Compile Include="Services\Administrator\IDepartmentService.cs" />
+    <Compile Include="Services\AdminRole\AdminInfoService.cs" />
+    <Compile Include="Services\AdminRole\AdminRoleCommonService.cs" />
+    <Compile Include="Services\AdminRole\AdminListService.cs" />
+    <Compile Include="Services\AdminRole\RolePermissionService.cs" />
+    <Compile Include="Services\AdminRole\IAdminInfoService.cs" />
+    <Compile Include="Services\AdminRole\IAdminRoleCommonService.cs" />
+    <Compile Include="Services\AdminRole\IAdminListService.cs" />
+    <Compile Include="Services\AdminRole\IRolePermissionService.cs" />
     <Compile Include="Services\AffiliateService.cs" />
     <Compile Include="Services\AffTypeService.cs" />
+    <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordService.cs" />
     <Compile Include="Services\ChangeAdminPassword\IChangeAdminPasswordService.cs" />
     <Compile Include="Services\CommGroup\CommGroupAssignmentService.cs" />
@@ -483,9 +511,11 @@
     <Compile Include="Services\Home\IHomeService.cs" />
     <Compile Include="Services\IAffiliateService.cs" />
     <Compile Include="Services\IAffTypeService.cs" />
+    <Compile Include="Services\IAuthService.cs" />
     <Compile Include="Services\ICommissionGroupService.cs" />
     <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Services\ILanguageService.cs" />
+    <Compile Include="Services\ISignInService.cs" />
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\MediaGallery\BannerListService.cs" />
     <Compile Include="Services\MediaGallery\BannerValidationService.cs" />
@@ -507,6 +537,7 @@
     <Compile Include="Services\Payment\PaymentRequestService.cs" />
     <Compile Include="Services\Report\AffiliateReportService.cs" />
     <Compile Include="Services\Report\IAffiliateReportService.cs" />
+    <Compile Include="Services\SignInService.cs" />
     <Compile Include="Services\UnderMaintenanceService\IUnderMaintenanceService.cs" />
     <Compile Include="Services\UnderMaintenanceService\UnderMaintenanceService.cs" />
     <Compile Include="Services\UserPanel\AdjustmentService.cs" />
@@ -530,6 +561,7 @@
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
     <Compile Include="Utilities\ISystemFile.cs" />
+    <Compile Include="Utilities\LanguageHelper.cs" />
     <Compile Include="Utilities\LogHelper.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
@@ -537,9 +569,14 @@
     <Compile Include="Utilities\SystemFile.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
+    <Compile Include="ViewModels\Affiliate\GetAffiliateViewModel.cs" />
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
+    <Compile Include="ViewModels\GetReportMainDataViewModel.cs" />
+    <Compile Include="ViewModels\MediaGallery\GetBannerViewModel.cs" />
+    <Compile Include="ViewModels\MediaGallery\GetTextLinkViewModel.cs" />
+    <Compile Include="ViewModels\MediaGallery\ImageSizeViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerViewModel.cs" />
     <Compile Include="ViewModels\Domain\DomainControlViewModel.cs" />
     <Compile Include="ViewModels\Domain\DomainViewModel.cs" />
@@ -604,6 +641,11 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\.sonarlint\12betaffadmin\CSharp\SonarLint.xml">
+      <Link>SonarLint.xml</Link>
+    </AdditionalFiles>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

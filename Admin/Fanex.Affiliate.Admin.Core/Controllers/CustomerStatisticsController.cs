@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.Customer)]
     public class CustomerStatisticsController : ReadOnlySessionBaseController
     {
         private readonly ICustomerStatisticsService _customerStatisticsService;
@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [ResetValueNotHavePermission(Function.Turnover)]
+        [ResetDefaultUnauthorizedProperty]
         public ActionResult GetCustomerStatistics(CustomerStatisticsParam param)
         {
             if (ModelState.IsValid)

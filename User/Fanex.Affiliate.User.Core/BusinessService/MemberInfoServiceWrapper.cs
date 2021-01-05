@@ -1,5 +1,5 @@
-﻿using System.Xml;
-using Fanex.Affiliate.User.Core.MemberInfoWebService;
+﻿using Fanex.Affiliate.User.Core.MemberInfoWebService;
+using System.Xml;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {

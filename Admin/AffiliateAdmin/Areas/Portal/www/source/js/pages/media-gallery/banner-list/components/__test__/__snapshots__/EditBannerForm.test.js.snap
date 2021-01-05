@@ -12,6 +12,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
       }
     }
     centered={false}
+    container="body"
     fade={true}
     innerRef={
       Object {
@@ -91,7 +92,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
             />
           </Alert>
           <Form
-            autocomplete="off"
+            autoComplete="off"
             className="mb-2 p-1 border"
             tag="form"
           >
@@ -237,6 +238,8 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -299,6 +302,8 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -415,6 +420,8 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -475,6 +482,8 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -535,6 +544,8 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -640,6 +651,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
       }
     }
     centered={false}
+    container="body"
     fade={true}
     innerRef={
       Object {
@@ -719,7 +731,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
             />
           </Alert>
           <Form
-            autocomplete="off"
+            autoComplete="off"
             className="mb-2 p-1 border"
             tag="form"
           >
@@ -865,6 +877,8 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -927,6 +941,8 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1043,6 +1059,8 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1103,6 +1121,8 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1163,6 +1183,8 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1273,6 +1295,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
       }
     }
     centered={false}
+    container="body"
     fade={true}
     innerRef={
       Object {
@@ -1352,7 +1375,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
             />
           </Alert>
           <Form
-            autocomplete="off"
+            autoComplete="off"
             className="mb-2 p-1 border"
             tag="form"
           >
@@ -1477,6 +1500,8 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1533,6 +1558,8 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1649,6 +1676,8 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1709,6 +1738,8 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1769,6 +1800,8 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                     ]
                   }
                   hasAllOption={true}
+                  isDisableOption={false}
+                  itemDefaultOption={null}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"

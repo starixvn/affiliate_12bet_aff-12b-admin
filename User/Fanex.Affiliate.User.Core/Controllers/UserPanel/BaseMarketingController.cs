@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.Filters;
@@ -9,10 +7,13 @@ using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    [CustomAuthorize]
+    [CustomAuthorize(PermissionName = ClaimConstant.MediaGallery)]
     public class BaseMarketingController : BaseController
     {
         protected readonly IMarketingService MarketingService;
@@ -31,7 +32,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             var categoryList = MarketingService
                 .GetCategoryList(isMediaPage, SessionService.IsInternal)
                 .Where(c => string.IsNullOrEmpty(c.SubCategory));
-            var languageList = MarketingService.GetLanguageList(SessionService.IsInternal);
+            var languageList = MarketingService.GetLanguageList();
             var currencyList = MarketingService.GetCurrencyList(SessionService.IsInternal);
             var userSession = SessionService.UserSession;
             var viewModel = new SearchFormViewModel
@@ -65,6 +66,15 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             };
 
             return viewModel;
+        }
+        protected IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
+        {
+            if (textParam.SelectedDomain == null)
+            {
+                return new List<MarketingItem>();
+            }
+
+            return MarketingService.GetTextList(textParam);
         }
 
         protected IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)

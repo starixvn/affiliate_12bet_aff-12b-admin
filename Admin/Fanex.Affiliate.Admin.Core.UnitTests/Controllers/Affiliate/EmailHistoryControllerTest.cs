@@ -22,10 +22,6 @@ namespace Fanex.EmailHistory.Admin.Core.UnitTests.Controllers.EmailHistory
             // Arrange
             var controller = CreateEmailHistoryController();
 
-            var urlHelperMock = new Mock<UrlHelper>();
-            urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/EmailHistory");
-
-            controller.Url = urlHelperMock.Object;
             // Action
             var viewResult = controller.Index() as ViewResult;
             var viewName = viewResult.ViewName;
@@ -63,7 +59,6 @@ namespace Fanex.EmailHistory.Admin.Core.UnitTests.Controllers.EmailHistory
 
             // Action
             var result = controller.GetEmailHistoryList(new EmailHistoryParam()) as JsonNetResult;
-            var entityResult = result.Data as EntityResult<EmailHistoryInfo>;
 
             // Assert
             Assert.Null(result.Data);

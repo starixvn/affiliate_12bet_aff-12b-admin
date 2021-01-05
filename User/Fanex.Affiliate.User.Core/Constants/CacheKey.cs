@@ -8,6 +8,8 @@
 
         public const string LanguageList = "Affiliate.12Bet.LanguageList";
 
+        public const string InternalLanguageList = "Affiliate.12Bet.InternalLanguageList";
+
         public const string CurrencyList = "Affiliate.12Bet.CurrencyList";
 
         public const string DomainList = "Affiliate.12Bet.DomainList";

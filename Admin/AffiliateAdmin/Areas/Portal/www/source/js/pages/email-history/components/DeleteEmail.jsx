@@ -66,7 +66,7 @@ export class DeleteEmail extends PureComponent {
 
         return (
             <div className="my-2">
-                <Button outline type="button" color="danger" onClick={this._handleDeleteEmails}>{resource.Delete}<span className="oi oi-x ml-2"></span></Button>
+                <Button outline type="button" color="danger" onClick={this._handleDeleteEmails}>{resource.Delete}<span className="oi oi-trash ml-2"></span></Button>
                 {
                     !!messageNotification && <NotificationPopup
                         message={messageNotification}

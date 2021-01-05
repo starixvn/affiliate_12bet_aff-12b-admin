@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.AffPlayerDetail)]
     public class PlayerDetailController : ReadOnlySessionBaseController
     {
         private readonly IPlayerDetailService _playerDetailService;
@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [ResetValueNotHavePermission(Function.Turnover)]
+        [ResetDefaultUnauthorizedProperty(Function.Turnover)]
         public ActionResult GetPlayerDetailList(PlayerDetailParam param)
         {
             if (ModelState.IsValid)

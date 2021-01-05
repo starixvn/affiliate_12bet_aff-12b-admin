@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.MetalModels.Attributes;
+using Fanex.Affiliate.User.Core.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using Fanex.Affiliate.User.Core.MetalModels.Attributes;
-using Fanex.Affiliate.User.Core.Resources;
 
 namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 {

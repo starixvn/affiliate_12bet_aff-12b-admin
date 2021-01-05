@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.Web;
+﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
@@ -9,12 +7,13 @@ using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
-using System.Web.Security;
-using System.Collections;
-using System.Security.Claims;
+using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
-using Fanex.Affiliate.User.Core.Constants;
+using System.Security.Claims;
+using System.Web;
+using System.Web.Security;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -191,11 +190,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private bool IsMatchPassword(string passwordInput, string passwordFromDb)
         {
-            if (string.IsNullOrEmpty(passwordInput))
-            {
-                return false;
-            }
-
             string encryptedPassword = _cryptographyService.EncryptPassword(passwordInput);
 
             return encryptedPassword.Equals(passwordFromDb);

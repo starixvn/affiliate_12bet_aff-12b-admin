@@ -6,6 +6,9 @@ jest.mock('react-dom', ()=> ({render: jest.fn()}))
 
 describe('payment request - App', () => {
     it('Should render correctly', () => {
+        window.globalVariables = {};
+        window.initialState = { param: {} };
+
         const wrapper = shallow(<App />);
 
         expect(wrapper).toMatchSnapshot();

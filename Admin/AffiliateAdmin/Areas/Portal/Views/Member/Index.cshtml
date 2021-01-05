@@ -5,9 +5,7 @@
 
 @model Fanex.Affiliate.Admin.Core.ViewModels.Member.MemberListViewModel
 
-@{
-    Html.RenderPartial("~/Areas/Portal/Views/Member/_MemberSubMenu.cshtml", Model.SubMenuList);
-}
+<link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/member/active-member.css")" rel="stylesheet" />
 
 @section pagejs{
     <script type="text/javascript">
@@ -16,5 +14,5 @@
             isFromOtherPages: '@isFromOtherPages'.toLowerCase() === 'true' ? true : false
         }
     </script>
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/member/member-list.js")"></script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/member/member.js")"></script>
 }

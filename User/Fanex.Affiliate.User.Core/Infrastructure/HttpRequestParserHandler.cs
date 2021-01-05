@@ -2,7 +2,6 @@
 using Fanex.Affiliate.User.Core.Utilities;
 using System;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
@@ -32,7 +31,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
             var queryString = DecryptQueryString(encryptedQuery);
             var paramValues = HttpUtility.ParseQueryString(queryString);
 
-            if(CheckIsExpiredRequest(paramValues))
+            if (CheckIsExpiredRequest(paramValues))
             {
                 return new QueryStringResult { IsValid = false, IsExpired = true };
             }
@@ -61,7 +60,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
         {
             var timeQuery = _request.Params["t"]?.Trim();
             var timeToken = paramValues["t"]?.Trim();
-            var expirationByMinute = int.Parse(paramValues["e"]?.Trim());
+            var expirationByMinute = int.Parse(paramValues["e"]?.Trim() ?? "0");
 
             return !string.Equals(timeQuery, timeToken) || IsExpired(timeToken, expirationByMinute);
         }
@@ -69,6 +68,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
         private bool IsExpired(string timeTickString, int expirationByMinute)
         {
             var dateTimeProvider = DateTimeProvider ?? DependencyResolver.Current.GetService<IDateTimeProvider>();
+
             var minDateTime = dateTimeProvider.Now.AddMinutes(expirationByMinute * -1);
             var timeTicks = Convert.ToInt64(timeTickString);
             var dateTimeRequest = new DateTime(timeTicks, DateTimeKind.Local);

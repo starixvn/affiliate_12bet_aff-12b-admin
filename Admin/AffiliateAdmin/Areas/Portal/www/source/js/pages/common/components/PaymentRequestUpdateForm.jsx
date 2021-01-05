@@ -7,6 +7,7 @@ import { resource, globalResource, statusList, errorList, pending } from '../mod
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
 import { getPaymentRequestDetail, updatePaymentRequest } from '../actions/paymentRequestUpdate';
 import { htmlDecode } from '../../../modules/htmlHelper';
+import { claimResource } from '../../../modules/claim';
 
 const pendingStatus = pending.toLowerCase();
 const approvedStatus = statusList.Approved.toLowerCase();
@@ -94,6 +95,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     _renderAccountInformation(paymentRequestInfo) {
+        const { isShowEmail } = this.props;
         return (
             <fieldset>
                 <legend>
@@ -107,18 +109,22 @@ export class PaymentRequestUpdateForm extends PureComponent {
                     <Label sm={6}>{resource.RequestedDate}</Label>
                     <Label sm={6}><strong>{paymentRequestInfo.TransDateText}</strong></Label>
                 </FormGroup>
-                <FormGroup row className="mb-2">
-                    <Label sm={6}>{resource.EmailAddress}</Label>
-                    <Label sm={6}>{htmlDecode(paymentRequestInfo.Email)}</Label>
-                </FormGroup>
+                { isShowEmail &&
+                    <FormGroup row className="mb-2">
+                        <Label sm={6}>{resource.EmailAddress}</Label>
+                        <Label sm={6}>{htmlDecode(paymentRequestInfo.Email)}</Label>
+                    </FormGroup>
+                }
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.FirstName}</Label>
                     <Label sm={6}>{htmlDecode(paymentRequestInfo.FirstName)}</Label>
                 </FormGroup>
+
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.LastName}</Label>
                     <Label sm={6}>{htmlDecode(paymentRequestInfo.LastName)}</Label>
                 </FormGroup>
+
             </fieldset>
         );
     }
@@ -158,15 +164,18 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     _renderPaymentInformation(paymentRequestInfo, isPending) {
+        const { isShowPaymentInfo } = this.props
         return (
             <fieldset>
                 <legend>
                     <h6 className="font-weight-bold">{resource.PaymentInformation}</h6>
                 </legend>
-                <FormGroup row className="mb-2">
-                    <Label sm={6}>{resource.PaymentMethod}</Label>
-                    <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PaymentMethod)}</strong></Label>
-                </FormGroup>
+                { isShowPaymentInfo &&
+                    <FormGroup row className="mb-2">
+                        <Label sm={6}>{resource.PaymentMethod}</Label>
+                        <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PaymentMethod)}</strong></Label>
+                    </FormGroup>
+                }
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.Amount}</Label>
                     <Label sm={6}><strong>{formatDecimalWithCurrencySymbol(paymentRequestInfo.Amount)}</strong></Label>
@@ -175,10 +184,12 @@ export class PaymentRequestUpdateForm extends PureComponent {
                     <Label sm={6}>{resource.Status}</Label>
                     <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.Status)}</strong></Label>
                 </FormGroup>
-                <FormGroup row className="mb-2">
-                    <Label sm={6}>{resource.UserName12Bet}</Label>
-                    <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PlayerUsername)}</strong></Label>
-                </FormGroup>
+                { isShowPaymentInfo &&
+                    <FormGroup row className="mb-2">
+                        <Label sm={6}>{resource.UserName12Bet}</Label>
+                        <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PlayerUsername)}</strong></Label>
+                    </FormGroup>
+                }
                 {
                     isPending ? this._renderOptionalStatus() : this._renderPaymentCompletionInfo(paymentRequestInfo)
                 }
@@ -223,9 +234,10 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     render() {
-        const { transactionId } = this.props;
+        const { transactionId, isUpdatable } = this.props;
         const { paymentRequestInfo, originalStatus, isSuccess, isShowMessage, message } = this.state;
         const isPending = originalStatus && originalStatus.toLowerCase() === pendingStatus;
+        const isUpdatableForm = isPending && isUpdatable;
 
         return paymentRequestInfo && (
             <Modal isOpen={transactionId} toggle={this.handleClosePopup} backdrop='static'>
@@ -237,9 +249,9 @@ export class PaymentRequestUpdateForm extends PureComponent {
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
                             {this._renderAccountInformation(paymentRequestInfo)}
-                            {this._renderPaymentInformation(paymentRequestInfo, isPending)}
-                            {this._renderNote(paymentRequestInfo, isPending)}
-                            <Button type="button" color="success" className="mr-3" disabled={!isPending} onClick={this.handleSave}>{globalResource.Update}</Button>
+                            {this._renderPaymentInformation(paymentRequestInfo, isUpdatableForm)}
+                            {this._renderNote(paymentRequestInfo, isUpdatableForm)}
+                            <Button type="button" color="success" className="mr-3" disabled={!isUpdatableForm} onClick={this.handleSave}>{globalResource.Update}</Button>
                             <Button type="button" color="info" onClick={this.handleClosePopup}>{globalResource.Cancel}</Button>
                         </Form>
                     </div>
@@ -249,8 +261,16 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 }
 
+function mapStateToProps({claimsPrincipal}){
+    const isUpdatable=claimsPrincipal.hasWriteClaim(claimResource.Payment)
+    const isShowEmail=claimsPrincipal.hasReadClaim(claimResource.Email)
+    const isShowFullName=claimsPrincipal.hasReadClaim(claimResource.AffMemberName)
+    const isShowPaymentInfo=claimsPrincipal.hasReadClaim(claimResource.PaymentInfo)
+    return Object.assign({}, { isUpdatable, isShowEmail, isShowFullName, isShowPaymentInfo });
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ getPaymentRequestDetail, updatePaymentRequest }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(PaymentRequestUpdateForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestUpdateForm);

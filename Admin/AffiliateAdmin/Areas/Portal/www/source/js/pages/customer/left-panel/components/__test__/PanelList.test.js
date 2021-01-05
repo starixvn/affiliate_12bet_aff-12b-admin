@@ -32,7 +32,7 @@ describe('left panel - components - PanelList', () => {
             SiteUrl: "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount",
             Status: "Approved"
         }
-        const result = shallow(<PanelList affiliateInfo={affiliateInfo} />);
+        const result = shallow(<PanelList affiliateInfo={affiliateInfo} claimsPrincipal={{ hasReadClaim: jest.fn(() => true) }} />);
 
         expect(result).toMatchSnapshot();
     });

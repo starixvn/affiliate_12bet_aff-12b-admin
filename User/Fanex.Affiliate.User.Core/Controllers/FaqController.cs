@@ -1,13 +1,13 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Web.Mvc;
     using CoreService;
     using Fanex.Affiliate.User.Core.BusinessService;
+    using System.Web.Mvc;
 
     public class FaqController : BaseController
     {
 
-        public FaqController(ISessionService sessionService,ILanguageService languageService)
+        public FaqController(ISessionService sessionService, ILanguageService languageService)
             : base(sessionService, languageService)
         {
         }

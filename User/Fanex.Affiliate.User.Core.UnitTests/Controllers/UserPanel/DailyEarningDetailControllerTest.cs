@@ -9,9 +9,6 @@ using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using Xunit;
 
@@ -51,7 +48,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         {
             var param = new DailyEarningParam
             {
-                IsOnlyContent = false
+                IsOnlyContent = false,
+                MonthDate = new DateTime(2020, 11, 23),
+                ProductId = 123
             };
             var controller = new DailyEarningDetailController(SessionService, LanguageService, Repo);
             var viewResult = controller.Index(param) as ViewResult;

@@ -58,12 +58,12 @@ describe('landing page actions', () => {
             affId: 1271808,
             deviceType: 0,
             fromDate: "07/01/2018",
-            languageCode: "",
+            languageCode: "en",
             selectedPage: "",
             toDate: "7/3/2019"
         }
-        
-        const result = await actions['fetchData'](param)();
+
+        const result = await actions['fetchData'](param, { en: 'en-US', vn: 'vi-VN' })();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsList', param);
         expect(result).toEqual(expectedResponse.data);
@@ -80,16 +80,16 @@ describe('landing page actions', () => {
             toDate: "7/3/2019"
         }
 
-        const result = await actions['fetchData'](param)();
+        const result = await actions['fetchData'](param, { en: 'en-US', vn: 'vi-VN' })();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsList', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsList', { ...param, languageCode: "en,vn" });
 
         expect(result).toEqual(null);
     })
 
     it('should create action to fetchDetailData with correct parameter', async () => {
         const expectedResponse = {
-            data: { 
+            data: {
                 MainData: [
                     {
                         Fdm: 0,
@@ -127,7 +127,7 @@ describe('landing page actions', () => {
             selectedPage: "sportsbook",
             toDate: "7/3/2019"
         }
-        
+
         const result = await actions['fetchDetailData'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsDetailList', param);

@@ -1,0 +1,56 @@
+﻿.admin-role-sub-menu {
+    &-back {
+        text-decoration: none;
+        color: black;
+        padding-right: 20px;
+    }
+}
+
+.admin-role-menu {
+    .icon-admin-role {
+        display: block;
+        width: 50px;
+        height: 50px;
+        margin: 6px 15px 0 0;
+        background: transparent url(../../assets/admin-role/icon_menu.png) no-repeat scroll 0 0;
+    }
+}
+
+.admin-role-menu, .admin-role-sub-menu {
+    .nav-link {
+        padding: 3px 10px;
+    }
+}
+
+.header-container {
+    background: #ecf3fb;
+    border: 1px solid #e8dfdf;
+    padding: .5rem;
+}
+
+.tab-container {
+    border: 1px solid #ced4da;
+
+    .sub-nav-link {
+        text-decoration: none;
+        color: black;
+        padding: 3px 0px;
+
+        &.active {
+            font-weight: bold;
+            border-bottom: 2px solid #0094ff;
+        }
+    }
+
+    .tab-link {
+        &:hover {
+            font-weight: bold;
+            border-bottom: 2px solid #0094ff;
+            color: #808080;
+        }
+    }
+
+    .not-tab-link {
+        cursor: default !important;
+    }
+}

@@ -9,7 +9,5 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels
         public IEnumerable<Product> ProductList { get; set; }
 
         public IEnumerable<Deduction> DeductionList { get; set; }
-
-        public IEnumerable<SubMenu> SubMenuList { get; set; }
     }
 }

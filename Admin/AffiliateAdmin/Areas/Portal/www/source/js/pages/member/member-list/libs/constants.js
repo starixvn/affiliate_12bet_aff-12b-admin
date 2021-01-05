@@ -3,7 +3,7 @@
 export { globalResource };
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     Affiliate: 'Affiliate',
     UserName: 'User Name',
     IbcUserName: 'IBC User Name',

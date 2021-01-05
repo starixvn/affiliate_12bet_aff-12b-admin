@@ -4,18 +4,20 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
+import { claimResource } from '../../../../modules/claim';
 
 export const Activated = (props) => {
     const { activatedGridData } = props;
 
     function _renderHeader() {
+        const { isShowMemberFullname } = props;
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.UserName}>{headerText.UserName}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.IbcUserName}>{headerText.IbcUserName}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>
+                { isShowMemberFullname && <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>}
+                { isShowMemberFullname && <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>}
                 <Cell header={true} colWidth={100} title={headerText.IBCCustID}>{headerText.IBCCustID}</Cell>
                 <Cell header={true} colWidth={80} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
             </Row>
@@ -41,6 +43,7 @@ export const Activated = (props) => {
     }
 
     function _buildDataRow(dataItem, index) {
+        const { isShowMemberFullname } = props;
         const userName = htmlDecode(dataItem.UserName);
         const ibcUserName = htmlDecode(dataItem.IbcUserName);
         const firstName = htmlDecode(dataItem.FirstName);
@@ -51,8 +54,8 @@ export const Activated = (props) => {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={userName}>{userName}</Cell>
                 <Cell className="text-center" title={ibcUserName}>{ibcUserName}</Cell>
-                <Cell className="text-center" title={firstName}>{firstName || '---'}</Cell>
-                <Cell className="text-center" title={lastName}>{lastName || '---'}</Cell>
+                { isShowMemberFullname && <Cell className="text-center" title={firstName}>{firstName || '---'}</Cell>}
+                { isShowMemberFullname && <Cell className="text-center" title={lastName}>{lastName || '---'}</Cell>}
                 <Cell className="text-center" title={dataItem.IbcCustId}>{dataItem.IbcCustId}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
             </Row>
@@ -75,8 +78,9 @@ export const Activated = (props) => {
     );
 }
 
-function mapStateToProps({ activatedGridData }) {
-    return Object.assign({}, { activatedGridData });
+function mapStateToProps({ activatedGridData, claimsPrincipal }) {
+    var isShowMemberFullname = claimsPrincipal.hasReadClaim(claimResource.AffMemberName);
+    return Object.assign({}, { activatedGridData, isShowMemberFullname });
 }
 
 export default connect(mapStateToProps)(React.memo(Activated));

@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using System;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -18,10 +19,15 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             var isAuthorized = base.AuthorizeCore(httpContext)
                 && httpContext.Request.IsAuthenticated
                 && httpContext.User.Identity.IsAuthenticated;
-            return isAuthorized
-                && sessionService.UserId > 0
-                && sessionService.UserPermissionList != null
-                && sessionService.UserPermissionList.Any();
+            var claimIdentities = sessionService.ClaimIdentities;
+
+            if (isAuthorized && sessionService.UserId > 0 && claimIdentities != null && claimIdentities.Any())
+            {
+                var claimPrincipal = httpContext.User as ClaimsPrincipal;
+                claimPrincipal.AddIdentities(claimIdentities);
+                return true;
+            }
+            return false;
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {

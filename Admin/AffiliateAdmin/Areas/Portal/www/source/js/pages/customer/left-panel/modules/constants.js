@@ -47,4 +47,5 @@ export const messages = {
     languageUpdatedSuccess: 'The Language has been updated successfully!',
     affTypeUpdatedFail: 'Occur an error when updating affiliate type!',
     userNotOnline: 'This user is not online',
+    contactNumberUpdatedSuccess: 'Contact number update successfully!',
 }

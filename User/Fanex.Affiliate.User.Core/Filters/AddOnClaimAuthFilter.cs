@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Security.Claims;
-using System.Web.Mvc;
 using System.Web.Mvc.Filters;
-using System.Web.Routing;
 using static Fanex.Affiliate.User.Core.Constants.SessionKey;
 
 namespace Fanex.Affiliate.User.Core.Filters
@@ -19,10 +15,13 @@ namespace Fanex.Affiliate.User.Core.Filters
             if (claimIdentities != null)
             {
                 principal.AddIdentities(claimIdentities);
-            }    
+            }
 
         }
 
-        public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext) { }
+        public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)
+        {
+            // Method intentionally left empty.
+        }
     }
 }

@@ -1,21 +1,19 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Constants;
-    using DTO.UserPanel;
     using Extensions;
-    using Fanex.Affiliate.User.Core.Resources;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.Resources;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
+    using System.Collections.Generic;
     using System.Drawing;
+    using System.Linq;
+    using System.Web.Mvc;
     using ViewModels.UserPanel.Marketing;
 
-    [CustomAuthorize]
     public sealed class MarketingController : BaseMarketingController
     {
 
@@ -30,12 +28,12 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult Index()
         {
             var userSession = SessionService.UserSession;
             var linkForm = GetLinkFormViewModel();
-            var languageList = MarketingService.GetLanguageList(SessionService.IsInternal);
+            var languageList = MarketingService.GetLanguageList();
 
             var selectedLanguage = userSession.PreferredLanguage;
             var selectedDomain = linkForm.DomainList.FirstOrDefault();
@@ -55,34 +53,34 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetSubCategory(string category)
         {
             var subCategoryList = MarketingService.GetCategoryList(true, SessionService.IsInternal)
                                                     .Where(c => c.Category.MatchWith(category) && !string.IsNullOrEmpty(c.SubCategory));
 
-            return Json(subCategoryList.Select(i => 
+            return Json(subCategoryList.Select(i =>
                 new SelectListItem
-                    {
-                        Value = i.SubCategory,
-                        Text = Lang.ResourceManager.GetString(i.SubCategory.Trim()) ?? i.SubCategory
-                    }),
+                {
+                    Value = i.SubCategory,
+                    Text = Lang.ResourceManager.GetString(i.SubCategory.Trim()) ?? i.SubCategory
+                }),
                 JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetSize(SizeParam param)
         {
             param.AffType = SessionService.UserSession.AffType;
-            param.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(param.Language))?.EnglishName;
+
             var sizeList = MarketingService.GetSizeList(param, SessionService.IsInternal);
 
             return Json(sizeList, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetBanner(MarketingBannerParam bannerParam)
         {
             var userSession = SessionService.UserSession;
@@ -97,9 +95,6 @@
             bannerParam.SelectedDomain = selectedDomain;
             bannerParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
             bannerParam.BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain;
-            bannerParam.Language = LanguageService
-                .GetSystemLanguages()
-                .FirstOrDefault(l => l.Code.MatchWith(bannerParam.Language))?.EnglishName;
 
             var bannerList = GetBannerList(bannerParam);
             ViewBag.TotalItem = bannerParam.Nrows;
@@ -108,7 +103,7 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetText(MarketingTextParam textParam)
         {
             var userSession = SessionService.UserSession;
@@ -119,7 +114,6 @@
             textParam.SelectedDomain = selectedDomain;
             textParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
             textParam.ScriptUrl = AppSetting.MediaScriptUrl;
-            textParam.Language = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.Code.MatchWith(textParam.Language))?.EnglishName;
 
             var textList = GetTextList(textParam);
             ViewBag.TotalItem = textParam.Nrows;
@@ -128,15 +122,15 @@
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GenerateLink(string selectedLanguage, int selectedDomainId, string selectedPage)
         {
             var userSession = SessionService.UserSession;
             var selectedDomain = MarketingService
                 .GetDomainList(userSession.AffId, SessionService.IsInternal)
                 .FirstOrDefault(d => d.DomainId == selectedDomainId);
-            var languageList = string.IsNullOrEmpty(selectedLanguage) 
-                ? MarketingHelper.GetLanguageList(MarketingService.GetLanguageList(SessionService.IsInternal), userSession.PreferredLanguage) 
+            var languageList = string.IsNullOrEmpty(selectedLanguage)
+                ? MarketingHelper.GetLanguageList(MarketingService.GetLanguageList(), userSession.PreferredLanguage)
                 : null;
 
             var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);
@@ -144,16 +138,6 @@
             var qrCodeParamsDic = GetQrCodes(textLinkList);
 
             return View("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", qrCodeParamsDic);
-        }
-
-        private IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
-        {
-            if (textParam.SelectedDomain == null)
-            {
-                return new List<MarketingItem>();
-            }
-
-            return MarketingService.GetTextList(textParam);
         }
 
         private IDictionary<string, QrCodeLinkModel> GetQrCodes(IDictionary<string, string> txtLinkList)

@@ -9,6 +9,7 @@ import { affType, resource, status, messages } from '../../modules/constants';
 import { updateAffType, updateClosedStatus, updateStatus, getAffiliateInfo } from '../../actions';
 import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
 import { NotificationPopup } from '../../../../common/components/NotificationPopup';
+import { claimResource } from '../../../../../modules/claim';
 
 export class SettingPanel extends PureComponent {
     constructor(props) {
@@ -65,7 +66,7 @@ export class SettingPanel extends PureComponent {
             const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: selectedStatus });
             const result = await this.props.updateStatus(param);
 
-            if (result.IsSuccessful) {
+            if (result && result.IsSuccessful) {
                 this.setState({ messageNotification: messages.statusUpdatedSuccess, isConfirmPopup: false });
                 this.props.getAffiliateInfo(this.props.affName);
             }
@@ -86,7 +87,7 @@ export class SettingPanel extends PureComponent {
         const param = { AffId: this.props.affiliateInfo.AffId, IsClosed: isClosed };
         const result = await this.props.updateClosedStatus(param);
 
-        if (result.IsSuccessful) {
+        if (result && result.IsSuccessful) {
             this.setState({ messageNotification: messages.statusUpdatedSuccess, isConfirmPopup: false });
             this.props.getAffiliateInfo(this.props.affName);
         }
@@ -100,7 +101,7 @@ export class SettingPanel extends PureComponent {
         const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, AffType: affType });
         const result = await this.props.updateAffType(param);
 
-        if (result.IsSuccessful) {
+        if (result && result.IsSuccessful) {
             this.props.getAffiliateInfo(this.props.affName);
             this.toggleChangingAffType(false);
         }
@@ -110,9 +111,9 @@ export class SettingPanel extends PureComponent {
     }
 
     render() {
-        const { affiliateInfo, isApproved } = this.props;
+        const { affiliateInfo, isApproved, isStatusShowable, isStatusModifiable } = this.props;
         const { isChangingAffType, isChangingAffStatus, isAssignCommissionGroup, messageNotification, isConfirmPopup } = this.state;
-
+        const isReadOnly = isStatusShowable && !isStatusModifiable;
         return (
             <Panel heading={resource.Setting}>
                 <Row>
@@ -131,49 +132,54 @@ export class SettingPanel extends PureComponent {
                         </Button>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>{resource.Status}</Col>
-                    <Col className="text-right">
-                        {
-                            isApproved ?
-                                affiliateInfo.Status :
-                                (
-                                    <div className="text-primary">
-                                        <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} value={affiliateInfo.Status}
-                                            onChange={this._handleChangeStatus}
-                                            onBlur={() => this.toggleChangingAffStatus(false)}
-                                            ref={this.affStatusDropdown}>
-                                            <option value="Approved">Approved</option>
-                                            <option value="Disapproved">Disapproved</option>
-                                            <option value="Pending">Pending</option>
-                                        </select>
-                                        <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }}
-                                            onClick={() => this.toggleChangingAffStatus(true)}>
-                                            {affiliateInfo.Status}
-                                        </Button>
-                                    </div>
-                                )
-                        }
-                        <CommissionGroupPopup
-                            showPopupCommGroup={isAssignCommissionGroup}
-                            isPrivateGroup={false}
-                            isNewAffiliate={true}
-                            affName={affiliateInfo.AffName}
-                            affId={affiliateInfo.AffId}
-                            setShowPopupCommGroup={this.toggleAssignCommissionPopup}
-                            getAffiliateInfo={this.props.getAffiliateInfo}
-                        />
-                    </Col>
-                </Row>
+                { isStatusShowable &&
+                    <Row>
+                        <Col>{resource.Status}</Col>
+                        <Col className="text-right">
+                            {
+                                isApproved || isReadOnly ?
+                                    affiliateInfo.Status :
+                                    (
+                                        < div className="text-primary">
+                                            <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} value={affiliateInfo.Status}
+                                                onChange={this._handleChangeStatus}
+                                                onBlur={() => this.toggleChangingAffStatus(false)}
+                                                ref={this.affStatusDropdown}>
+                                                <option value="Approved">Approved</option>
+                                                <option value="Disapproved">Disapproved</option>
+                                                <option value="Pending">Pending</option>
+                                            </select>
+                                            <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }}
+                                                onClick={() => this.toggleChangingAffStatus(true)}>
+                                                {affiliateInfo.Status}
+                                            </Button>
+                                        </div>
+                                    )
+                            }
+                            <CommissionGroupPopup
+                                showPopupCommGroup={isAssignCommissionGroup}
+                                isPrivateGroup={false}
+                                isNewAffiliate={true}
+                                affName={affiliateInfo.AffName}
+                                affId={affiliateInfo.AffId}
+                                setShowPopupCommGroup={this.toggleAssignCommissionPopup}
+                                getAffiliateInfo={this.props.getAffiliateInfo}
+                            />
+                        </Col>
+                    </Row>
+                }
                 {
-                    isApproved && (
+                    isApproved && isStatusShowable && (
                         <Row>
                             <Col>{resource.Closed}</Col>
-                            <Col className="text-right text-primary">
-                                <Button color="link" className="left-panel-btn-link btn-closed" onClick={this._handleOpenCloseAff}>
-                                    {affiliateInfo.IsClosed ? resource.Yes : resource.No}
-                                </Button>
-                            </Col>
+                            { isStatusModifiable
+                                ? (<Col className="text-right text-primary">
+                                    <Button color="link" className="left-panel-btn-link btn-closed" onClick={this._handleOpenCloseAff}>
+                                        {affiliateInfo.IsClosed ? resource.Yes : resource.No}
+                                    </Button>
+                                </Col>)
+                                : (<Col className="text-right">{affiliateInfo.IsClosed ? resource.Yes : resource.No}</Col>)
+                            }
                         </Row>)
                 }
                 {
@@ -188,10 +194,11 @@ export class SettingPanel extends PureComponent {
     }
 }
 
-function mapStateToProps({ leftPanel }) {
+function mapStateToProps({ leftPanel, claimsPrincipal }) {
     const { affiliateInfo, affName } = leftPanel;
-
-    return Object.assign({}, { affiliateInfo, affName });
+    const isStatusModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffAccountStatus);
+    const isStatusShowable = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus);
+    return Object.assign({}, { affiliateInfo, affName, isStatusShowable, isStatusModifiable });
 };
 
 function mapDispatchToProps(dispatch) {

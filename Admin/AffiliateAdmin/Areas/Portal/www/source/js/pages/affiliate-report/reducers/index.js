@@ -2,6 +2,7 @@
 
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
+import {claimsPrincipal} from '../../../reducers/claimReducer';
 
 import createReducer from '../../../modules/createReducer';
 import { SET_REPORT_TITLE, SET_PARAM, SET_VIEW_LEVEL } from '../actions/types';
@@ -10,8 +11,6 @@ import { viewLevel } from '../modules/constants';
 const productList = createReducer([], {});
 
 const languageList = createReducer({}, {});
-
-const hasTurnOverPermission = createReducer(false, {});
 
 const today = createReducer('', {});
 
@@ -42,5 +41,5 @@ export default combineReducers({
     isShowLoader,
     today,
     currentViewLevel,
-    hasTurnOverPermission
+    claimsPrincipal
 });

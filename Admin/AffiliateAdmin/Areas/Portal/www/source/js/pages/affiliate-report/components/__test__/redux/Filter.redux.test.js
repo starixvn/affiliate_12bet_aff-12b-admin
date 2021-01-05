@@ -25,6 +25,8 @@ describe('affiliate report - Filter - connect', () => {
             pagingOption: { PageSize: 1 },
             param: { abc: 123 },
             today: '09/24/2019',
+            hasTurnOverPermission: true,
+            isShowLangFilter: true,
             currentViewLevel: 'abc'
         };
 
@@ -35,6 +37,7 @@ describe('affiliate report - Filter - connect', () => {
             param: { abc: 123 },
             today: '09/24/2019',
             currentViewLevel: 'abc',
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

@@ -1,22 +1,21 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Web.Mvc;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
+    using System.Web.Mvc;
     using ViewModels.UserPanel.Statistics;
 
     [CustomAuthorize]
     public class StatisticsController : BaseController
     {
-        private readonly IStatisticsRepository _statisticsRepository;
+        private readonly IStatisticsService _statisticsService;
         public StatisticsController(ISessionService sessionService, ILanguageService languageService,
-            IStatisticsRepository statisticsRepository
+            IStatisticsService statisticsService
             ) : base(sessionService, languageService)
         {
-            _statisticsRepository = statisticsRepository;
+            _statisticsService = statisticsService;
         }
 
         [HttpPost]
@@ -28,13 +27,12 @@
 
             var viewModel = new ReferrerStatisticsViewModel
             {
-                DataList = _statisticsRepository.GetStatisticsDetailBySite(statisticsDetailParam),
+                DataList = _statisticsService.GetStatisticsDetailBySite(statisticsDetailParam),
                 IsDetail = true,
                 RowNumber = statisticsDetailParam.NRows
             };
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_ReferrersStatisticsContent.cshtml", viewModel);
         }
-
     }
 }

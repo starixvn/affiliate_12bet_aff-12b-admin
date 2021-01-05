@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
@@ -11,7 +10,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [CustomAuthorize]
     [CheckUMFilter]
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class CommonSettingController : Controller
     {
         private readonly IProductRepository _productRepository;

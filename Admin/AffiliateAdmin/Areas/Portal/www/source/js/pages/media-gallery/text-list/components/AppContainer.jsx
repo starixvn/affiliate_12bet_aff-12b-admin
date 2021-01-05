@@ -11,13 +11,14 @@ import TextDetailForm from './TextDetailForm';
 
 import { messages } from '../libs/constants';
 import { setParam, fetchData, toggleLoader, setSelectedTextId, setCheckedTexts, deleteTexts, setShouldResetScrollPosition } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />
             <Filter />
-            <ControlButtons
+            { props.isModifiable && <ControlButtons
                 messages={messages}
                 gridData={props.gridData}
                 fetchData={() => props.fetchData(props.param)}
@@ -27,15 +28,16 @@ export const AppContainer = (props) => {
                 setShouldResetScrollPosition={props.setShouldResetScrollPosition}
                 setSelectedItemId={props.setSelectedTextId}
                 deleteItems={props.deleteTexts}
-            />
+            />}
             <Content />
             <TextDetailForm />
         </AppLayout>
     );
 }
 
-function mapStateToProps({ isShowLoader, param, gridData, checkedTexts }) {
-    return Object.assign({}, { isShowLoader, param, gridData, checkedTexts });
+function mapStateToProps({ isShowLoader, param, gridData, checkedTexts, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGallery)
+    return Object.assign({}, { isShowLoader, param, gridData, checkedTexts, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -36,12 +36,12 @@ export const logTypes = {
     [LOGOUT_AFFILIATE]: 'LogoutAffiliate',
     [PASSWORD]: 'Password',
     [ADJUSTMENT]: 'Adjustment',
-    [MEMBER]: 'Member' 
+    [MEMBER]: 'Member'
 }
 
 export const headerText = {
     Type: 'Type',
-    Index: '#',
+    Index: globalResource.Index,
     Id: 'ID',
     Date: 'Date',
     UpdatedBy: 'Updated By',

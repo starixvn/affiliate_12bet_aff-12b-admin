@@ -11,6 +11,7 @@ describe('statement history - components - AppContainer', () => {
     const defaultProps = {
         affName: "12BETAFF226",
         transactionId: 1262276211,
+        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
         param: {
             fromDate: "1/11/2019",
             isGetAll: false,

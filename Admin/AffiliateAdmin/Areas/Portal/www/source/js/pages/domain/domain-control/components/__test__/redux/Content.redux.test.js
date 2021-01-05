@@ -24,6 +24,7 @@ describe('domain control- Content - connect', () => {
             shouldResetScrollPosition: true,
             gridData: [],
             affDomainList: [],
+            isModifiable: true,
             redirectDomainList: []
         };
         const state = {
@@ -32,6 +33,7 @@ describe('domain control- Content - connect', () => {
             gridData: [],
             affDomainList: [],
             redirectDomainList: [],
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

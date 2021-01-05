@@ -6,6 +6,15 @@ exports[`home - components - Filter render correctly 1`] = `
 >
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       tag="div"
@@ -115,6 +124,15 @@ exports[`home - components - Filter render correctly with is changing countdown 
 >
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       tag="div"

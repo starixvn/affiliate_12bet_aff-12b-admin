@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
             var db = Substitute.For<IObjectDb>();
             var reader = Substitute.For<IDataReader>();
             var multipleReader = Substitute.For<IMultiResultReader>();
-            Builder.Build(null, null).ReturnsForAnyArgs(c => 
+            Builder.Build(null, null).ReturnsForAnyArgs(c =>
             {
                 var spKey = (c.Args()[0] as string) + (c.Args()[1] as string);
                 db.SettingKey.Returns(spKey);
@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
             });
             db.ExecuteReader().ReturnsForAnyArgs(reader);
             db.QueryMultiple().ReturnsForAnyArgs(multipleReader);
-            
+
         }
 
         protected static void AssignObjectToReader(IDataReader reader, object obj)

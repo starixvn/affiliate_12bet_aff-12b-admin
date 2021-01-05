@@ -11,6 +11,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={false}
   keyboard={true}
@@ -187,42 +188,6 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
                 ]
               }
             >
-              Email Address
-            </Label>
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              hubert.duong_1@nexcel.vn
-            </Label>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
               First Name
             </Label>
             <Label
@@ -286,44 +251,6 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
               Payment Information
             </h6>
           </legend>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Payment Method
-            </Label>
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <strong>
-                Player
-              </strong>
-            </Label>
-          </FormGroup>
           <FormGroup
             className="mb-2"
             row={true}
@@ -418,7 +345,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
                 ]
               }
             >
-              12BET User Name
+              Completed Date
             </Label>
             <Label
               sm={6}
@@ -434,74 +361,58 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
               }
             >
               <strong>
-                bettingexp
+                08/16/2019 02:52:48 AM
               </strong>
             </Label>
           </FormGroup>
           <FormGroup
-            className="mb-2 ml-1"
+            className="mb-2"
             row={true}
             tag="div"
           >
-            <FormGroup
-              check={true}
-              className="mr-4"
-              tag="div"
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-              <Label
-                check={true}
-                tag="label"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              >
-                <Input
-                  className="mr-2"
-                  name="Status"
-                  onChange={[Function]}
-                  type="radio"
-                  value="Approved"
-                />
-                Approved
-              </Label>
-            </FormGroup>
-            <FormGroup
-              check={true}
-              tag="div"
+              Updated By
+            </Label>
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-              <Label
-                check={true}
-                tag="label"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              >
-                <Input
-                  className="mr-2"
-                  name="Status"
-                  onChange={[Function]}
-                  type="radio"
-                  value="Rejected"
-                />
-                Rejected
-              </Label>
-            </FormGroup>
+              AAwalter
+            </Label>
           </FormGroup>
         </fieldset>
         <Row
           tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
         >
           <Col
             className="pr-1"
@@ -544,7 +455,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
                   Visible only to admin
                 </Label>
                 <Input
-                  disabled={false}
+                  disabled={true}
                   name="AdminDesc"
                   onChange={[Function]}
                   rows="6"
@@ -595,7 +506,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
                   Visible also to affiliate
                 </Label>
                 <Input
-                  disabled={false}
+                  disabled={true}
                   name="AffDesc"
                   onChange={[Function]}
                   rows="6"
@@ -609,7 +520,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
         <Button
           className="mr-3"
           color="success"
-          disabled={false}
+          disabled={true}
           onClick={[Function]}
           tag="button"
           type="button"
@@ -641,6 +552,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={false}
   keyboard={true}
@@ -817,42 +729,6 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
                 ]
               }
             >
-              Email Address
-            </Label>
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              hubert.duong_1@nexcel.vn
-            </Label>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
               First Name
             </Label>
             <Label
@@ -916,44 +792,6 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
               Payment Information
             </h6>
           </legend>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Payment Method
-            </Label>
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <strong>
-                Player
-              </strong>
-            </Label>
-          </FormGroup>
           <FormGroup
             className="mb-2"
             row={true}
@@ -1048,44 +886,6 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
                 ]
               }
             >
-              12BET User Name
-            </Label>
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <strong>
-                bettingexp
-              </strong>
-            </Label>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
               Completed Date
             </Label>
             <Label
@@ -1145,6 +945,15 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
         </fieldset>
         <Row
           tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
         >
           <Col
             className="pr-1"

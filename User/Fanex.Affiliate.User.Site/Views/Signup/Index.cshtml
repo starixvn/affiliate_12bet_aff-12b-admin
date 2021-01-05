@@ -244,9 +244,9 @@
                         <div class="col-sm-4">
                             <select class="form-control" name="PreferredLanguage" id="PreferredLanguage" data-val="true" data-val-required="@Lang.PreferLangErr">
                                 <option value="">@Lang.SelectOne</option>
-                                @foreach (var item in languageService.GetSystemLanguages())
+                                @foreach (var item in languageService.GetSystemLanguages(false))
                                 {
-                                    <option value="@item.Code">@item.NativeName</option>
+                                    <option value="@item.MarketId">@item.MarketNativeName</option>
                                 }
                             </select>
                         </div>

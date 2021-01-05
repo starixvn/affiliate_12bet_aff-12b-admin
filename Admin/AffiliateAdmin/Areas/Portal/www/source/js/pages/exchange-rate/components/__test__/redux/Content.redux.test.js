@@ -31,6 +31,7 @@ describe('exchange rate - Content - connect', () => {
             shouldResetScrollPosition: true,
             gridData: [],
             hasPermission: true,
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

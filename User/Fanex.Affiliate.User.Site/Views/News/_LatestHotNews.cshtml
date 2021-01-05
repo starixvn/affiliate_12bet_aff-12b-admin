@@ -1,10 +1,12 @@
-﻿@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.LatestHotNewViewModel
+﻿@using Fanex.Affiliate.User.Core.Utilities
+@using Fanex.Affiliate.User.Core.Constants
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.LatestHotNewViewModel
 
 @{
     var selectedHotNews = Model.SelectedHotNews;
     if (!string.IsNullOrEmpty(selectedHotNews))
     {
-        if (Model.IsImportant)
+        if (Model.IsImportant && ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.HotNewsType))
         {
             var url = Model.IsAuthenticated ? Url.Content("~/News/MessageHistory") : "javascript:;";
             <a href="@url" style="color: #ff0000">@HttpUtility.HtmlDecode(selectedHotNews)</a>

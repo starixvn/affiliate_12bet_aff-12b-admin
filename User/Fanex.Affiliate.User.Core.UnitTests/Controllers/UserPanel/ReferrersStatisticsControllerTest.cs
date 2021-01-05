@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics;
 using Moq;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
@@ -22,10 +21,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Arrange
             var referrerStatisticsList = new List<ReferrerStatistics> { new ReferrerStatistics() };
 
-            var statisticsRepository = new Mock<IStatisticsRepository>();
+            var statisticsRepository = new Mock<IStatisticsService>();
             statisticsRepository.Setup(s => s.GetReferrerStatistics(It.IsAny<ReferrerStatisticsParam>())).Returns(referrerStatisticsList);
 
-            var controller = CreateController(staticticsRepository: statisticsRepository.Object);
+            var controller = CreateController(statisticsService: statisticsRepository.Object);
 
             var today = DateTime.Today;
             var expectedViewModel = new ReferrerStatisticsViewModel
@@ -53,10 +52,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Arrange
             var referrerStatisticsList = new List<ReferrerStatistics> { new ReferrerStatistics() };
 
-            var statisticsRepository = new Mock<IStatisticsRepository>();
+            var statisticsRepository = new Mock<IStatisticsService>();
             statisticsRepository.Setup(s => s.GetReferrerStatistics(It.IsAny<ReferrerStatisticsParam>())).Returns(referrerStatisticsList);
 
-            var controller = CreateController(staticticsRepository: statisticsRepository.Object);
+            var controller = CreateController(statisticsService: statisticsRepository.Object);
 
             var expectedViewModel = new ReferrerStatisticsViewModel
             {
@@ -85,13 +84,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         private static ReferrersStatisticsController CreateController(
             ISessionService sessionService = null,
             ILanguageService languageService = null,
-            IStatisticsRepository staticticsRepository = null)
+            IStatisticsService statisticsService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
-            var fakeStaticticsRepository = staticticsRepository ?? (new Mock<IStatisticsRepository>()).Object;
+            var fakeStaticticsService = statisticsService ?? Mock.Of<IStatisticsService>();
 
-            return new ReferrersStatisticsController(fakeSessionService, fakeLanguageService, fakeStaticticsRepository);
+            return new ReferrersStatisticsController(fakeSessionService, fakeLanguageService, fakeStaticticsService);
         }
     }
 }

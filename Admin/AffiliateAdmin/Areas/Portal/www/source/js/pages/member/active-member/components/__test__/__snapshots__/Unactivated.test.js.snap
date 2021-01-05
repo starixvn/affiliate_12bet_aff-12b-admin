@@ -48,28 +48,6 @@ exports[`active member - components - Unactivated  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title=""
-            >
-              ---
-            </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title=""
-            >
-              ---
-            </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
               title="Active"
             >
               <Button
@@ -108,28 +86,6 @@ exports[`active member - components - Unactivated  render correctly 1`] = `
             title="User Name"
           >
             User Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="First Name"
-          >
-            First Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Last Name"
-          >
-            Last Name
           </t>
           <t
             asc={true}
@@ -216,28 +172,6 @@ exports[`active member - components - Unactivated  render correctly with unactiv
             title="User Name"
           >
             User Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="First Name"
-          >
-            First Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Last Name"
-          >
-            Last Name
           </t>
         </t>
       }

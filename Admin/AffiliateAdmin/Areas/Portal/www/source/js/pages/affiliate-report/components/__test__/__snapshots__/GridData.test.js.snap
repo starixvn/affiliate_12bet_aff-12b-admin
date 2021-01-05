@@ -690,6 +690,17 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
       onClick={[Function]}
       sortable={false}
       sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
       title="803,935.72"
     >
       803,935.72
@@ -918,6 +929,17 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
       onClick={[Function]}
       sortable={false}
       sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
       title="165.00"
     >
       165.00
@@ -1116,6 +1138,17 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
       title="0.00%"
     >
       0.00%
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
     </t>
     <t
       asc={true}
@@ -1926,10 +1959,7 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
             rowSpan="2"
             sortable={false}
             sorting={false}
-            title="Affiliate"
-          >
-            Affiliate
-          </t>
+          />
           <t
             asc={true}
             colWidth={70}
@@ -2342,6 +2372,17 @@ exports[`affiliate report - GridData  should render correctly when have not turn
             </t>
             <t
               asc={true}
+              className="text-right highlight"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
               className="text-right"
               header={false}
               onClick={[Function]}
@@ -2561,6 +2602,17 @@ exports[`affiliate report - GridData  should render correctly when have not turn
             <t
               asc={true}
               className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right highlight"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -2825,6 +2877,17 @@ exports[`affiliate report - GridData  should render correctly when have not turn
             </t>
             <t
               asc={true}
+              className="text-right highlight"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
               className="text-right"
               header={false}
               onClick={[Function]}
@@ -2958,10 +3021,7 @@ exports[`affiliate report - GridData  should render correctly when have not turn
             rowSpan="2"
             sortable={false}
             sorting={false}
-            title="Affiliate"
-          >
-            Affiliate
-          </t>
+          />
           <t
             asc={true}
             colWidth={70}
@@ -3036,7 +3096,7 @@ exports[`affiliate report - GridData  should render correctly when have not turn
           </t>
           <t
             asc={true}
-            colSpan={8}
+            colSpan={9}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -3091,6 +3151,17 @@ exports[`affiliate report - GridData  should render correctly when have not turn
             title="Withdrawal"
           >
             Withdrawal
+          </t>
+          <t
+            asc={true}
+            colWidth={95}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Turnover"
+          >
+            Turnover
           </t>
           <t
             asc={true}
@@ -3253,10 +3324,7 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       rowSpan="2"
       sortable={false}
       sorting={false}
-      title="Affiliate"
-    >
-      Affiliate
-    </t>
+    />
     <t
       asc={true}
       colWidth={70}
@@ -3538,10 +3606,7 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       rowSpan="2"
       sortable={false}
       sorting={false}
-      title="Month"
-    >
-      Month
-    </t>
+    />
     <t
       asc={true}
       colWidth={70}
@@ -3627,7 +3692,7 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
     </t>
     <t
       asc={true}
-      colSpan={4}
+      colSpan={5}
       header={true}
       onClick={[Function]}
       sortable={false}
@@ -3771,6 +3836,17 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       title="Withdrawal"
     >
       Withdrawal
+    </t>
+    <t
+      asc={true}
+      colWidth={70}
+      header={true}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="Adjustment"
+    >
+      Adjustment
     </t>
     <t
       asc={true}

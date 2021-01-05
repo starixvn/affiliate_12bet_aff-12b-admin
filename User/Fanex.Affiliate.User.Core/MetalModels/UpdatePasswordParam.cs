@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Fanex.Affiliate.User.Core.Resources;
+﻿using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.User.Core.MetalModels
 {

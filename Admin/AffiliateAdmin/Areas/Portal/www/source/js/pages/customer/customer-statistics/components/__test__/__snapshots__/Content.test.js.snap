@@ -176,12 +176,11 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         <td
           className="text-right"
         >
-          <a
-            href="javascript:;"
+          <Memo(MyLink)
             onClick={[Function]}
           >
             /
-          </a>
+          </Memo(MyLink)>
         </td>
         <td
           className="text-right"
@@ -200,12 +199,11 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         <td
           className="text-right"
         >
-          <a
-            href="javascript:;"
+          <Memo(MyLink)
             onClick={[Function]}
           >
             /
-          </a>
+          </Memo(MyLink)>
         </td>
         <td
           className="text-right"
@@ -224,12 +222,11 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         <td
           className="text-right"
         >
-          <a
-            href="javascript:;"
+          <Memo(MyLink)
             onClick={[Function]}
           >
             /
-          </a>
+          </Memo(MyLink)>
         </td>
         <td
           className="text-right"
@@ -422,14 +419,13 @@ exports[`customer statistics - components - Content Should render correctly with
         <td
           className="text-right"
         >
-          <a
-            href="javascript:;"
+          <Memo(MyLink)
             onClick={[Function]}
           >
             0
             /
             0
-          </a>
+          </Memo(MyLink)>
         </td>
         <td
           className="text-right"
@@ -448,14 +444,13 @@ exports[`customer statistics - components - Content Should render correctly with
         <td
           className="text-right"
         >
-          <a
-            href="javascript:;"
+          <Memo(MyLink)
             onClick={[Function]}
           >
             0
             /
             0
-          </a>
+          </Memo(MyLink)>
         </td>
         <td
           className="text-right"
@@ -474,14 +469,13 @@ exports[`customer statistics - components - Content Should render correctly with
         <td
           className="text-right"
         >
-          <a
-            href="javascript:;"
+          <Memo(MyLink)
             onClick={[Function]}
           >
             0
             /
             0
-          </a>
+          </Memo(MyLink)>
         </td>
         <td
           className="text-right"
@@ -579,12 +573,11 @@ exports[`customer statistics - components - Content Should render correctly with
         <td
           className="text-right"
         >
-          <a
-            href="javascript:;"
+          <Memo(MyLink)
             onClick={[Function]}
           >
             2
-          </a>
+          </Memo(MyLink)>
         </td>
         <td
           className="text-right"
@@ -679,14 +672,13 @@ exports[`customer statistics - components - Content Should render correctly with
         <td
           className="text-right"
         >
-          <a
-            href="javascript:;"
+          <Memo(MyLink)
             onClick={[Function]}
           >
             0
             /
             0
-          </a>
+          </Memo(MyLink)>
         </td>
         <td
           className="text-right"
@@ -705,14 +697,13 @@ exports[`customer statistics - components - Content Should render correctly with
         <td
           className="text-right"
         >
-          <a
-            href="javascript:;"
+          <Memo(MyLink)
             onClick={[Function]}
           >
             0
             /
             0
-          </a>
+          </Memo(MyLink)>
         </td>
         <td
           className="text-right"
@@ -731,14 +722,13 @@ exports[`customer statistics - components - Content Should render correctly with
         <td
           className="text-right"
         >
-          <a
-            href="javascript:;"
+          <Memo(MyLink)
             onClick={[Function]}
           >
             0
             /
             0
-          </a>
+          </Memo(MyLink)>
         </td>
         <td
           className="text-right"

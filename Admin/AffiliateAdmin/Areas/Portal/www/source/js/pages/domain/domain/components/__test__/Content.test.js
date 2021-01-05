@@ -25,6 +25,7 @@ describe('domain - components - Content ', () => {
         shouldResetScrollPosition: true,
         isAffDomain: true,
         gridData,
+        isModifiable: true,
         fetchData: jest.fn()
     };
 

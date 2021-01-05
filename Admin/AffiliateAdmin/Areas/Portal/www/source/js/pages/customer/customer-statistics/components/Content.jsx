@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import MonthPicker from '@9softstudio/react-monthpicker';
+import MyLink from '../../../common/components/MyLink';
 import { Table, Spinner } from 'reactstrap';
 import { rowTitle, resource } from '../modules/constants';
 import { shortedMonthNames, minMonthDate, selectedAllProduct, deviceTypes, pcLaptop, mobile } from '../../../../modules/constants';
@@ -10,6 +11,7 @@ import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/num
 
 import { redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers } from '../../user-panel/actions';
 import { setMonthDate, fetchData } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -80,11 +82,11 @@ export class Content extends PureComponent {
 
     _renderData(monthDate, data) {
         data = data || {};
-        const { hasTurnOverPermission } = this.props;
+        const { isDisplayTurnOver, isDisplayActivePlayer } = this.props;
         const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
         const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
-        const TurnoverByMonth = hasTurnOverPermission && formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
-        const TurnoverTotal = hasTurnOverPermission && formatDecimalWithCurrencySymbol(data.TurnoverTotal);
+        const TurnoverByMonth = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
+        const TurnoverTotal = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverTotal);
         const WinlostByMonth = formatDecimalWithCurrencySymbol(data.WinlostByMonth);
         const WinlostTotal = formatDecimalWithCurrencySymbol(data.WinlostTotal);
 
@@ -101,38 +103,45 @@ export class Content extends PureComponent {
                         `${format(data.NewSignUpTotal)}/${format(data.NewFdmTotal)}`)
                 }
                 {
-                    this._buildRow(rowTitle.TotalActive,
+                    isDisplayActivePlayer && this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
-                                <a href="javascript:;" onClick={() => this.props.redirectToPlayerDetail({ productId: selectedAllProduct, monthDate: startMonthString, isClickLink: true })}>
+                                <MyLink onClick={() => this.props.redirectToPlayerDetail({ productId: selectedAllProduct, monthDate: startMonthString, isClickLink: true })}>
                                     {format(data.ActivePlayerByMonth)}
-                                </a>) : format(data.ActivePlayerByMonth)
+                                </MyLink>
+                            ) : format(data.ActivePlayerByMonth)
                         ),
                         resource.NA)
                 }
-                {this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMemberByMonth), resource.NA)}
-                {this._buildRow(rowTitle.TotalDeposits, DepositByMonth, DepositTotal)}
-                {hasTurnOverPermission && this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
+                { isDisplayActivePlayer && this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMemberByMonth), resource.NA)}
+                { isDisplayActivePlayer && this._buildRow(rowTitle.TotalDeposits, DepositByMonth, DepositTotal)}
+                { isDisplayTurnOver && this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRate,
-                        (<a href="javascript:;" onClick={() => this.props.redirectToTrackingStatistics({ isClickLink: true })}>
-                            {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
-                        </a>),
+                        (
+                            <MyLink onClick={() => this.props.redirectToTrackingStatistics({ isClickLink: true })}>
+                                {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
+                            </MyLink>
+                        ),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
-                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[pcLaptop], isClickLink: true })}>
-                            {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
-                        </a>),
+                        (
+                            <MyLink onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[pcLaptop], isClickLink: true })}>
+                                {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
+                            </MyLink>
+                        ),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
-                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[mobile], isClickLink: true })}>
-                            {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
-                        </a>),
+                        (
+                            <MyLink onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[mobile], isClickLink: true })}>
+                                {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
+                            </MyLink>
+                         ),
                         resource.NA)
                 }
             </tbody>
@@ -164,9 +173,11 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, today, hasTurnOverPermission, customerStatistics }) {
+function mapStateToProps({ affCommonInfo, today, customerStatistics, claimsPrincipal }) {
     const { affId } = affCommonInfo;
-    return Object.assign({}, { monthDate: customerStatistics.monthDate, today, affId, hasTurnOverPermission });
+    const isDisplayTurnOver = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
+    const isDisplayActivePlayer = claimsPrincipal.hasReadClaim(claimResource.AffPlayerDetail)
+    return Object.assign({}, { monthDate: customerStatistics.monthDate, today, affId, isDisplayTurnOver, isDisplayActivePlayer });
 }
 
 function mapDispatchToProps(dispatch) {

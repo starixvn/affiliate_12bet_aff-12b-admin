@@ -1,15 +1,15 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    [CustomAuthorize]
+    [CustomAuthorize(PermissionName = ClaimConstant.HotNewsType)]
     public class NewsController : BaseController
     {
         private readonly INewsService _newsService;
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         }
 
         [HttpGet]
-        [AjaxOnly]
+        [AjaxOnly(PermissionName = ClaimConstant.HotNewsType)]
         public ActionResult GetMessageHistory(MessageHistoryParam param)
         {
             param.IsInternal = SessionService.IsInternal;

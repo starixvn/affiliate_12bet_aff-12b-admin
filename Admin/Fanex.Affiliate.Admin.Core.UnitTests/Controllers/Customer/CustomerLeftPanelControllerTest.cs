@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         {
             // Arrange
             var customerLeftPanelService = new Mock<ICustomerLeftPanelService>();
-            customerLeftPanelService.Setup(s => s.GetAffiliateInfoOnLeftPanel(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226" });
+            customerLeftPanelService.Setup(s => s.GetAffiliateInfoOnLeftPanel(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226" });
             var controller = CreateCustomerLeftPanelController(customerLeftPanelService: customerLeftPanelService.Object);
 
             // Action

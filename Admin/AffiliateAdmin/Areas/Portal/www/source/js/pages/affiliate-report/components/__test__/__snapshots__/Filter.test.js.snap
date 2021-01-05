@@ -74,6 +74,8 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
       <MultipleSelect
         dataSource={Array []}
         hasAllOption={true}
+        isDisableOption={false}
+        itemDefaultOption={null}
         keyField="ProductId"
         maxDisplayItemCount={1}
         noneSelectedLabel="Please Select"
@@ -295,7 +297,7 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
         onInput={[Function]}
         onSelect={[Function]}
         queryParamName="query"
-        url="/Portal/AffiliateReport/GetAffiliateList"
+        url="/Portal/Report/GetAffiliateList"
         value=""
       />
     </FormGroup>
@@ -311,6 +313,8 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
       <MultipleSelect
         dataSource={Array []}
         hasAllOption={true}
+        isDisableOption={false}
+        itemDefaultOption={null}
         keyField="ProductId"
         maxDisplayItemCount={1}
         noneSelectedLabel="Please Select"

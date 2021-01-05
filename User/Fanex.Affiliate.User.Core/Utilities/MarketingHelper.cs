@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.Extensions;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
     public static class MarketingHelper
     {
-        public static IEnumerable<SelectListItem> GetLanguageList(IEnumerable<LanguageType> languageList, string preferredLanguage)
+        public static IEnumerable<SelectListItem> GetLanguageList(IEnumerable<Language> languageList, string preferredLanguage)
         {
             var dataList = languageList.Select(l => new SelectListItem
             {

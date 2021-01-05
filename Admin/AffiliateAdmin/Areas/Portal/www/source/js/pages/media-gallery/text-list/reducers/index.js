@@ -3,6 +3,7 @@
 import createReducer from '../../../../modules/createReducer';
 import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
+import { claimsPrincipal } from '../../../../reducers/claimReducer';
 import { SET_PARAM, SET_CHECKED_TEXTS, SET_SELECTED_TEXT_ID, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from '../actions/types';
 
 export const categoryList = createReducer(null, {});
@@ -49,5 +50,6 @@ export default combineReducers({
     isShowLoader,
     checkedTexts,
     selectedTextId,
-    shouldResetScrollPosition
+    shouldResetScrollPosition,
+    claimsPrincipal
 });

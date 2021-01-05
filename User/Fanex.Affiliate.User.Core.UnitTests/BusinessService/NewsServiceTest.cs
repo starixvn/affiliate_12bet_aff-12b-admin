@@ -2,6 +2,7 @@
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
@@ -58,10 +59,21 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Assert.Empty(result.HotNewsList);
         }
 
+        [Fact]
+        public void GetMessageList_WhenCall_CallRepo()
+        {
+            var param = new MessageHistoryParam();
+            var service = CreateService();
+
+            service.GetMessageList(param);
+
+            NewsRepo.Received().GetMessageList(param);
+        }
+
         private LatestHotNews CreateLastetHotNews()
             => new LatestHotNews
             {
-                HotNewsList = new Dictionary<string,string> { { "aa", "bb" } },
+                HotNewsList = new Dictionary<string, string> { { "aa", "bb" } },
                 IsImportant = true
             };
 

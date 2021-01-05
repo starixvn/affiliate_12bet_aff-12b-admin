@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
-    using System.Web.Mvc;
     using Constants;
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
@@ -9,6 +7,8 @@
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
+    using System;
+    using System.Web.Mvc;
     using ViewModels.UserPanel;
 
     [CustomAuthorize]

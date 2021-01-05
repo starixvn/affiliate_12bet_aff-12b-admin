@@ -5,6 +5,7 @@ import { SET_PARAM, SET_TRANSACTION_ID } from '../actions/types';
 
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
+import { claimsPrincipal } from '../../../reducers/claimReducer';
 
 export const today = createReducer(null, {});
 
@@ -25,5 +26,6 @@ export default combineReducers({
     isShowLoader,
     today,
     param,
-    transactionId
+    transactionId,
+    claimsPrincipal
 });

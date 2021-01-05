@@ -132,7 +132,7 @@ export class EditExchangeRateForm extends PureComponent {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-5" autocomplete="off">
+                            <Form tag="form" className="mb-5" autoComplete="off">
                                 <FormGroup row className="mb-2">
                                     <Label sm={4}>{resource.Currency}</Label>
                                     <Label sm={8}>{selectedExchangeRate.Currency}</Label>
@@ -141,7 +141,7 @@ export class EditExchangeRateForm extends PureComponent {
                                 <FormGroup row className={isValidRate ? "mb-2" : "mb-2 has-error"}>
                                     <Label for="rate" sm={4} className="required">{selectedExchangeRate.RateType ? resource.Buying : resource.US$Rate}</Label>
                                     <Col sm={8}>
-                                        <Input type="text" className="input-required mt-2" name="rate" id="rate" autocomplete="false"
+                                        <Input type="text" className="input-required mt-2" name="rate" id="rate" autoComplete="false"
                                             value={rate} onChange={this._handleChange} onKeyPress={this._handleKeyPress} maxLength="26" />
                                     </Col>
                                 </FormGroup>

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
+﻿using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
+using System;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {

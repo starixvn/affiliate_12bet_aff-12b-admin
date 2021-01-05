@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using BusinessService;
     using CoreService;
     using DTO;
@@ -10,6 +7,9 @@
     using MetalModels.Email;
     using Newtonsoft.Json;
     using Resources;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using Utilities;
 
     public class SignupController : BaseController
@@ -100,7 +100,8 @@
                     MailContact = _appSetting.MailContact,
                     MailBcc = _appSetting.MailBcc,
                     RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
-                    MailTo = _appSetting.MailContact
+                    MailTo = _appSetting.MailContact,
+                    CurrentLanguage = SessionService.CurrentLanguage
                 };
 
                 result = _accountService.CreateAffiliate(signUpParam, emailParam);

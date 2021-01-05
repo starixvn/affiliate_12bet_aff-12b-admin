@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
-    using System.Linq;
-    using System.Web.Mvc;
     using Constants;
     using DTO;
     using Extensions;
@@ -12,10 +9,13 @@
     using MetalModels.Email;
     using MetalModels.UserPanel;
     using Resources;
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
     using Utilities;
     using ViewModels.UserPanel;
 
-    [CustomAuthorize]
+    [CustomAuthorize(PermissionName = ClaimConstant.PaymentRequest)]
     public class PaymentRequestController : BaseController
     {
         private readonly IPaymentService _paymentService;
@@ -75,7 +75,8 @@
                     MailCc = _appSetting.MailCc,
                     MailContact = _appSetting.MailContact,
                     MailBcc = _appSetting.MailBcc,
-                    RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting)
+                    RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
+                    CurrentLanguage = SessionService.CurrentLanguage
                 };
 
                 resultInfo = _paymentService.CreatePaymentRequest(paymentCreationParam, emailParam);
@@ -113,7 +114,8 @@
                     RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
                     Amount = cancelParam.Amount,
                     RequestDate = cancelParam.RequestDate,
-                    TransId = cancelParam.TransId
+                    TransId = cancelParam.TransId,
+                    CurrentLanguage = SessionService.CurrentLanguage
                 };
 
                 resultInfo = _paymentService.CancelPaymentRequest(cancelParam, emailParam);

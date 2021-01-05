@@ -11,9 +11,6 @@ using NSubstitute.ReturnsExtensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -65,13 +62,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var service = CreateService();
 
-            service.GetLanguageList(false);
+            service.GetLanguageList();
 
-            LanguageService.Received().GetSystemLanguages(false);
+            LanguageService.Received().GetSystemLanguages();
         }
 
         [Fact]
-        public void GetCurrecyList_WhenNotHaveInfoInCache_CallInfoFromRepo()
+        public void GetCurrencyList_WhenNotHaveInfoInCache_CallInfoFromRepo()
         {
             var service = CreateService();
             CacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList).ReturnsNull();
@@ -84,7 +81,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetCurrecyList_WhenNotHaveInfoInBothCacheAndRepo_ReturnEmptyList()
+        public void GetCurrencyList_WhenNotHaveInfoInBothCacheAndRepo_ReturnEmptyList()
         {
             var service = CreateService();
             CacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList).ReturnsNull();
@@ -93,6 +90,18 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var result = service.GetCurrencyList(false);
 
             Assert.Empty(result);
+        }
+
+        [Fact]
+        public void GetCurrencyList_WhenHaveInfoInCache_NotCallInfoFromRepo()
+        {
+            var service = CreateService();
+            CacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList).Returns(Constant.CurrencyType);
+
+            service.GetCurrencyList(false);
+
+            Repo.DidNotReceive().GetCurrencyList(false);
+            CacheService.Received().Set(CacheKey.CurrencyList, Arg.Compat.Any<IEnumerable<CurrencyType>>());
         }
 
         [Fact]
@@ -145,6 +154,19 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
+        public void GetBannerTypeList_WhenCacheHaveBannerTypeInfo_RepoNotCall()
+        {
+            var service = CreateService();
+            CacheService.Get<IEnumerable<BannerType>>(CacheKey.BannerTypeList).Returns(Constant.BannerTypeList);
+
+            var result = service.GetBannerTypeList(false);
+
+            Repo.DidNotReceive().GetBannerTypeList(false);
+            CacheService.Received().Set(CacheKey.BannerTypeList, Arg.Compat.Any<IEnumerable<BannerType>>());
+            Assert.NotEmpty(result);
+        }
+
+        [Fact]
         public void GetDomainList_WhenCacheNotHaveDomainInfo_RepoCall()
         {
             var service = CreateService();
@@ -173,10 +195,25 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GenerateLinkList_WhenSelectAllLanguagesAndLanguagesInSystemNotEmpty_ReturnNotEmptyList()
+        public void GetDomainList_WhenCacheHaveDomainInfo_RepoNotCall()
         {
             var service = CreateService();
-            var param = CreateLinkGenerationParam();
+            CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).Returns(Constant.DomainList);
+
+            var result = service.GetDomainList(0, false);
+
+            Repo.DidNotReceive().GetDomainList(0, false);
+            CacheService.Received().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
+            Assert.NotEmpty(result);
+        }
+
+        [Theory]
+        [InlineData("vi-VN")]
+        [InlineData("th-TH")]
+        public void GenerateLinkList_WhenSelectAllLanguagesAndLanguagesInSystemNotEmpty_ReturnNotEmptyList(string preferredLanguage)
+        {
+            var service = CreateService();
+            var param = CreateLinkGenerationParam(preferredLanguage);
             param.SelectedLanguage = null;
 
             var result = service.GenerateLinkList(param);
@@ -184,35 +221,42 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Assert.NotEmpty(result);
         }
 
-        [Fact]
-        public void GenerateLinkList_WhenNotExistLanguageListFromSite_ReturnOneItem()
+        [Theory]
+        [InlineData("vi-VN")]
+        [InlineData("th-TH")]
+        public void GenerateLinkList_WhenNotExistLanguageListFromSite_ReturnOneItem(string preferredLanguage)
         {
             var service = CreateService();
-            var param = CreateLinkGenerationParam();
+            var param = CreateLinkGenerationParam(preferredLanguage);
             param.LanguageList = null;
+            param.SelectedLanguage = null;
 
             var result = service.GenerateLinkList(param);
 
             Assert.Equal(1, result.Count);
         }
 
-        [Fact]
-        public void GenerateLinkList_WhenLanglistFromSiteNotEmpty_ReturnNotEmpty()
+        [Theory]
+        [InlineData("vi-VN")]
+        [InlineData("th-TH")]
+        public void GenerateLinkList_WhenLanglistFromSiteNotEmpty_ReturnNotEmpty(string preferredLanguage)
         {
             var service = CreateService();
-            var param = CreateLinkGenerationParam();
+            var param = CreateLinkGenerationParam(preferredLanguage);
 
             var result = service.GenerateLinkList(param);
 
             Assert.NotEmpty(result);
         }
 
-        [Fact]
-        public void GetBannerList_WhenCall_RepoCall()
+        [Theory]
+        [InlineData("English")]
+        [InlineData("Thai")]
+        public void GetBannerList_WhenCall_RepoCall(string language)
         {
             var service = CreateService();
             var param = CreateMarketingBannerParam();
-            var bannerList = CreateMarketingItemList();
+            var bannerList = CreateMarketingItemList(language);
             Repo.GetBannerList(param).Returns(bannerList);
 
             var result = service.GetBannerList(param);
@@ -221,12 +265,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Assert.Equal(bannerList, result);
         }
 
-        [Fact]
-        public void GetTextLink_WhenCall_RepoCall()
+        [Theory]
+        [InlineData("English")]
+        [InlineData("Thai")]
+        public void GetTextLink_WhenCall_RepoCall(string language)
         {
             var service = CreateService();
             var param = CreateMarketingTextParam();
-            var textList = CreateMarketingItemList();
+            var textList = CreateMarketingItemList(language);
             Repo.GetTextList(param).Returns(textList);
             SetUpContext();
 
@@ -290,9 +336,28 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 TotalPages = 30
             };
 
-        private IEnumerable<MarketingItem> CreateMarketingItemList()
+        private IEnumerable<MarketingItem> CreateMarketingItemList(string language)
             => new List<MarketingItem>
             {
+                new MarketingItem
+                {
+                    BannerId = 1,
+                    Category = "cate",
+                    Currency = "USD",
+                    DeviceType = "mobile",
+                    FileName = "abc.png",
+                    Height = 1090,
+                    ImageType = "png",
+                    Language = language,
+                    LastUpdate = DateTime.Now,
+                    Message = "abc",
+                    RedirectLink = "abc.com",
+                    ScriptSrc = "banner.com/script",
+                    SelectedDomainName = "SignUp",
+                    Size = "1090x90",
+                    TextId = 2,
+                    Width = 90
+                },
                 new MarketingItem
                 {
                     BannerId = 1,
@@ -308,13 +373,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                     RedirectLink = "abc.com",
                     ScriptSrc = "banner.com/script",
                     SelectedDomainName = "SignUp",
-                    Size = "1090x90",
+                    Size = string.Empty,
                     TextId = 2,
                     Width = 90
                 }
             };
 
-        private LinkGenerationParam CreateLinkGenerationParam()
+        private LinkGenerationParam CreateLinkGenerationParam(string language)
             => new LinkGenerationParam
             {
                 AffId = 1,
@@ -323,12 +388,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 LanguageList = new List<SelectListItem>
                 {
                     new SelectListItem {Text = "VietNam", Selected = true, Value="vi-VN" },
-                    new SelectListItem {Text = "England", Selected = true, Value = "en-UK" }
+                    new SelectListItem {Text = "Thai", Selected = true, Value = "th-TH" }
                 },
-                PreferredLanguage = "vi-VN",
+                PreferredLanguage = language,
                 SelectedDomain = new Domain { DomainId = 1, DomainName = "abc.com", IsSsl = false },
                 SelectedDomainId = 1,
-                SelectedLanguage = "vi-VN",
+                SelectedLanguage = language,
                 SelectedPage = "SignUp",
                 TextLinkTemplate = "{scheme}://{domain}/{custid}/{target}/{lang}/index.html"
             };

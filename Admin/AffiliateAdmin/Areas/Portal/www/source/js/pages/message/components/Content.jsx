@@ -7,6 +7,7 @@ import { Button } from 'reactstrap';
 import { htmlDecode } from '../../../modules/htmlHelper';
 import { headerText, resource } from '../libs/constants';
 import { setSelectedMessageId, setPagingOption, fetchData, setCheckedMessages, setShouldResetScrollPosition, setParam } from '../actions';
+import { claimResource } from '../../../modules/claim';
 
 export const Content = (props) => {
 
@@ -78,7 +79,7 @@ export const Content = (props) => {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={props.checkedMessages[dataItem.MessageId]}
+                    <input type="checkbox" checked={props.checkedMessages[dataItem.MessageId] || false}
                         onChange={(e) => _onCheckItem(e.target.checked, dataItem.MessageId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>

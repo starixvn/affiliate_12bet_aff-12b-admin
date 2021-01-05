@@ -1,5 +1,5 @@
-﻿using System;
-using Fanex.Logging;
+﻿using Fanex.Logging;
+using System;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {

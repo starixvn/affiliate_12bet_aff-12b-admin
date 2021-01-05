@@ -6,6 +6,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resource, maxWidth } from '../modules/constants';
 import { toggleLoaderUserPanel, setPagingOption, fetchData } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -43,20 +44,20 @@ export class Content extends PureComponent {
     }
 
     _renderHeader() {
+        const {  isDisplayFullName } = this.props;
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
                 <Cell header={true} colWidth={100} title={resource.UserName}>{resource.UserName}</Cell>
-                <Cell header={true} colWidth={100} title={resource.FirstName}>{resource.FirstName}</Cell>
-                <Cell header={true} colWidth={100} title={resource.LastName}>{resource.LastName}</Cell>
-                {this.props.canViewMemberEmail && (<Cell header={true} colWidth={100} title={resource.EmailAddress}>{resource.EmailAddress}</Cell>)}
+                { isDisplayFullName && <Cell header={true} colWidth={100} title={resource.FirstName}>{resource.FirstName}</Cell>}
+                { isDisplayFullName && <Cell header={true} colWidth={100} title={resource.LastName}>{resource.LastName}</Cell>}
                 <Cell header={true} colWidth={50} title={resource.Currency}>{resource.Currency}</Cell>
                 <Cell header={true} colWidth={100} title={resource.RegisterDate}>{resource.RegisterDate}</Cell>
             </Row>
         )
     }
 
-    _renderDataSection(dataList, canViewMemberEmail) {
+    _renderDataSection(dataList) {
         const dataRows = [];
 
         if (dataList && dataList.length) {
@@ -66,7 +67,7 @@ export class Content extends PureComponent {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
 
-                dataRows.push(this._buildDataRow(dataItem, startIndex + i, canViewMemberEmail));
+                dataRows.push(this._buildDataRow(dataItem, startIndex + i));
             }
         }
         else {
@@ -79,6 +80,8 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, rowNumber) {
+        const { isDisplayFullName } = this.props;
+
         const userName = htmlDecode(dataItem.UserName);
         const firstName = htmlDecode(dataItem.FirstName);
         const lastName = htmlDecode(dataItem.LastName);
@@ -87,9 +90,8 @@ export class Content extends PureComponent {
             <Row>
                 <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>
                 <Cell title={userName}>{userName}</Cell>
-                <Cell title={firstName}>{firstName}</Cell>
-                <Cell title={lastName}>{lastName}</Cell>
-                {this.props.canViewMemberEmail && (<Cell title={email}>{email}</Cell>)}
+                { isDisplayFullName && <Cell title={firstName}>{firstName}</Cell>}
+                { isDisplayFullName && <Cell title={lastName}>{lastName}</Cell>}
                 <Cell className="text-center" title={dataItem.CurrencyName}>{dataItem.CurrencyName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateString}>{dataItem.RegisteredDateString}</Cell>
             </Row>
@@ -117,11 +119,12 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, member }) {
-    const { param, canViewMemberEmail, pagingOption } = member;
+function mapStateToProps({ affCommonInfo, member, claimsPrincipal }) {
+    const { param, pagingOption } = member;
     const { affId } = affCommonInfo;
+    const isDisplayFullName = claimsPrincipal.hasReadClaim(claimResource.AffMemberName);
 
-    return Object.assign({}, { affId, param, pagingOption, canViewMemberEmail });
+    return Object.assign({}, { affId, param, pagingOption, isDisplayFullName });
 }
 
 function mapDispatchToProps(dispatch) {

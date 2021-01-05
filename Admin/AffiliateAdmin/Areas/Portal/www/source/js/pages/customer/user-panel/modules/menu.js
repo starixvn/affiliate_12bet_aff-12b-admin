@@ -1,4 +1,5 @@
 import React from 'react';
+import { Claim, claimResource } from '../../../../modules/claim';
 import { userPanelMenuKey as menuKey } from '../../common/modules/constants';
 import { withUserPanel } from '../modules/withUserPanel';
 
@@ -32,17 +33,17 @@ export const userPanelMenuList = [
     { key: menuKey.dailyEarning, name: '', component: withUserPanel(DailyEarning, menuKey.dailyEarning), parent: menuKey.statementHistory },
     { key: menuKey.dailyEarningDetail, name: '', component: withUserPanel(DailyEarningDetail, menuKey.dailyEarningDetail), parent: menuKey.statementHistory },
     { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null },
-    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null },
-    { key: menuKey.playerDetail, name: 'Players Detail', component: withUserPanel(PlayerDetail, menuKey.playerDetail), parent: null },
-    { key: menuKey.adjustment, name: 'Adjustment', component: withUserPanel(Adjustment, menuKey.adjustment), parent: null },
+    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null, renderClaim: new Claim(claimResource.Note) },
+    { key: menuKey.playerDetail, name: 'Players Detail', component: withUserPanel(PlayerDetail, menuKey.playerDetail), parent: null, renderClaim: new Claim(claimResource.AffPlayerDetail) },
+    { key: menuKey.adjustment, name: 'Adjustment', component: withUserPanel(Adjustment, menuKey.adjustment), parent: null, renderClaim : new Claim(claimResource.Adjustment, claimResource.WritePermission) },
     { key: menuKey.trackingStatistics, name: 'Tracking Statistics', component: withUserPanel(TrackingStatistics, menuKey.trackingStatistics), parent: null },
-    { key: menuKey.member, name: 'Member', component: withUserPanel(Member, menuKey.member), parent: null },
+    { key: menuKey.member, name: 'Member', component: withUserPanel(Member, menuKey.member), parent: null, renderClaim: new Claim(claimResource.AffMember) },
     { key: menuKey.viewLog, name: 'View Log', component: withUserPanel(ViewLog, menuKey.viewLog), parent: null },
     { key: menuKey.clickStatistics, name: 'Click Statistics', component: withUserPanel(ReferrerStatistics, menuKey.clickStatistics), parent: null },
     { key: menuKey.landingPageStatistics, name: '', component: withUserPanel(LandingPageStatistics, menuKey.landingPageStatistics), parent: menuKey.clickStatistics }
 ]
 
 export const userPanelPendingMenuList = [
-    { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null },
+    { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null, renderClaim: new Claim(claimResource.Note) },
     { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null }
 ]

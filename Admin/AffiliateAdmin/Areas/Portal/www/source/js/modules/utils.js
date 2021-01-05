@@ -77,3 +77,67 @@ export const isValidNumber = (inputValue) => {
     const regex = /^\d*$/;
     return regex.test(inputValue);
 }
+
+export const validateUserName = (userName) => {
+    if (!userName) {
+        return {
+            IsValid: false,
+            Message: 'User Name is required!'
+        };
+    }
+
+    const regexCheckSpecialChar = new RegExp("^[a-zA-Z0-9]{1,20}$");
+    if (!regexCheckSpecialChar.test(userName)) {
+        return {
+            IsValid: false,
+            Message: 'User Name can not be contained the special characters. Please try again!'
+        };
+    }
+
+    return {
+        IsValid: true,
+        Message: ''
+    }
+}
+
+const regExp = {
+    CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
+}
+
+export const validateNewPassword = (newPassword) => {
+    const result = {
+        IsValid: false,
+        Message: "New Password is required!"
+    }
+
+    if (newPassword) {
+        const regexCheckPassword = new RegExp(regExp.CheckPassword);
+        const isValid = regexCheckPassword.test(newPassword);
+
+        result.IsValid = isValid;
+        result.Message = isValid ? "" : 'Password must have at least 6 characters, including at least 2 letters and at least 2 digits.';
+    }
+
+    return result;
+}
+
+export const getVirtualUrl = () => {
+    if(!window.virtualUrl)
+        return '/';
+    return window.virtualUrl;
+}
+
+export const convertArrayToObjectProps = (array, key, value) => {
+    if(!Array.isArray(array))
+        return {};
+    let result = {};
+    array.forEach((item) =>{
+        let keyValue = item[key];
+        result[keyValue] = item[value];
+    })
+    return result;
+}
+
+export const removeUndifineItem = (obj) => {
+    return JSON.parse(JSON.stringify(obj));
+}

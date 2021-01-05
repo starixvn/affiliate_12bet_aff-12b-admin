@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
 
         [Theory]
         [InlineData(true, true)]
-        [InlineData(false, false)]    
+        [InlineData(false, false)]
         public void GetCategoryList_WhenCall_QueryCategory(bool isMediaPage, bool isInternal)
         {
             const string uSpKey = "Aff_Admin_MediaCategory_Sel";

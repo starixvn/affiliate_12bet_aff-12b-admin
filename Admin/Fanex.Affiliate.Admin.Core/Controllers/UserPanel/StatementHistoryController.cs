@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.Customer)]
     public class StatementHistoryController : ReadOnlySessionBaseController
     {
         private readonly IStatementHistoryService _statementHistoryService;
@@ -25,6 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [ValidateAntiForgeryHeader]
         public ActionResult GetStatementHistoryList(AffiliatePagingByDateParam param)
         {
+            param.UserId = SessionService.UserId;
             if (ModelState.IsValid)
             {
                 return new JsonNetResult

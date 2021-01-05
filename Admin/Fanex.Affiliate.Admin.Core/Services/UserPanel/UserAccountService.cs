@@ -1,31 +1,42 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class UserAccountService : IUserAccountService
+    public class UserAccountService : BaseService, IUserAccountService
     {
         private readonly IUserAccountRepository _userAccountRepository;
 
-        public UserAccountService(IUserAccountRepository userAccountRepository)
+        public UserAccountService(IUserAccountRepository userAccountRepository,
+            IAuthService authService,
+            ISessionService sessionService)
+            : base(authService, sessionService)
         {
             _userAccountRepository = userAccountRepository;
         }
 
-        public UserAccount GetUserAccountInfo(int affId, bool isSpecialUser = false)
+        public UserAccount GetUserAccountInfo(int affId)
         {
-            return _userAccountRepository.GetUserAccountInfo(affId, isSpecialUser);
+            var userId = SessionService.UserId;
+            return AuthService.IsUserHasPermissionOnAff(userId, affId)
+                ? _userAccountRepository.GetUserAccountInfo(affId)
+                : null;
         }
 
         public ResultInfo UpdateUserAccount(UserAccountParam param)
         {
             var isValidPaymentMethod = ValidatePaymentMethod(param);
+            var isUserHasPermissionOnAff = AuthService.IsUserHasPermissionOnAff(SessionService.UserId, param.AffId);
+            SetNullForPropertiesNotHavePermission(param);
 
-            if (isValidPaymentMethod)
+            if (!HasUpdatePaymentMethodPermission() || isValidPaymentMethod || isUserHasPermissionOnAff)
             {
                 return _userAccountRepository.UpdateUserAccount(param);
             }
@@ -37,6 +48,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             };
         }
 
+        public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false)
+            => _userAccountRepository.GetSecurityQuestions(language, isIncludeOldData);
+
         private static bool ValidatePaymentMethod(UserAccountParam param)
         {
             var isPlayerUsername = PaymentMethod.Player.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.PlayerUsername);
@@ -47,10 +61,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             return isPlayerUsername || isNetellerAccountId || isMoneybookersEmail || isBankTranfer;
         }
 
+        private bool HasUpdatePaymentMethodPermission()
+        {
+            var userClaim = SessionService.UserClaim;
+            return userClaim.HasClaim(Function.AffPaymentInfo);
+        }
+
         private static bool IsValidWirePaymentMethod(UserAccountParam param)
         {
             return !(string.IsNullOrEmpty(param.BankName) || string.IsNullOrEmpty(param.BankAddress) ||
                 string.IsNullOrEmpty(param.BankAccountName) || string.IsNullOrEmpty(param.BankAccountNumber));
         }
+
     }
 }

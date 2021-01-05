@@ -11,6 +11,7 @@ exports[`common - components - NotificationPopup Confirm Popup - render correctl
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={false}
   keyboard={true}
@@ -28,60 +29,89 @@ exports[`common - components - NotificationPopup Confirm Popup - render correctl
   unmountOnClose={true}
   zIndex={1050}
 >
-  <div
-    className="notification-popup-content p-3"
-    style={
-      Object {
-        "fontSize": 14,
-      }
-    }
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
   >
-    <h5>
-      localhost
-       says
-    </h5>
     <div
+      className="text-truncate"
       style={
         Object {
-          "whiteSpace": "pre-line",
+          "width": 450,
         }
       }
-    />
-    <div
-      className="float-right mt-4"
     >
-      <Button
-        color="primary mr-2"
-        onClick={[Function]}
-        style={
-          Object {
-            "height": 35,
-            "width": 70,
-          }
-        }
-        tag="button"
-      >
-        <strong>
-          OK
-        </strong>
-      </Button>
-      <Button
-        color="light border"
-        onClick={[Function]}
-        style={
-          Object {
-            "height": 35,
-            "width": 70,
-          }
-        }
-        tag="button"
-      >
-        <strong>
-          Cancel
-        </strong>
-      </Button>
+      <span
+        className="iconpopup"
+      />
+      Confirmation
     </div>
-  </div>
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <div
+      className="modal-body-wrapper"
+    >
+      <div
+        className="notification-popup-container"
+        style={
+          Object {
+            "fontSize": 14,
+          }
+        }
+      >
+        <h5>
+          localhost
+           says
+        </h5>
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": undefined,
+            }
+          }
+        />
+        <div
+          className="mt-5"
+        >
+          <Button
+            color="success mr-3"
+            onClick={[Function]}
+            style={
+              Object {
+                "height": 30,
+                "width": 70,
+              }
+            }
+            tag="button"
+          >
+            <strong>
+              Confirm
+            </strong>
+          </Button>
+          <Button
+            color="info"
+            onClick={[Function]}
+            style={
+              Object {
+                "height": 30,
+                "width": 70,
+              }
+            }
+            tag="button"
+          >
+            <strong>
+              Cancel
+            </strong>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </ModalBody>
 </Modal>
 `;
 
@@ -96,6 +126,7 @@ exports[`common - components - NotificationPopup Notification Popup - render cor
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={false}
   keyboard={true}
@@ -113,40 +144,69 @@ exports[`common - components - NotificationPopup Notification Popup - render cor
   unmountOnClose={true}
   zIndex={1050}
 >
-  <div
-    className="notification-popup-content p-3"
-    style={
-      Object {
-        "fontSize": 14,
-      }
-    }
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
   >
-    <h5>
-      localhost
-       says
-    </h5>
     <div
+      className="text-truncate"
       style={
         Object {
-          "whiteSpace": "pre-line",
+          "width": 450,
         }
       }
-    />
-    <Button
-      color="primary mt-4 float-right"
-      onClick={[Function]}
-      style={
-        Object {
-          "height": 35,
-          "width": 70,
-        }
-      }
-      tag="button"
     >
-      <strong>
-        OK
-      </strong>
-    </Button>
-  </div>
+      <span
+        className="iconpopup"
+      />
+      Notification
+    </div>
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <div
+      className="modal-body-wrapper"
+    >
+      <div
+        className="notification-popup-container"
+        style={
+          Object {
+            "fontSize": 14,
+          }
+        }
+      >
+        <h5>
+          localhost
+           says
+        </h5>
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": undefined,
+            }
+          }
+        />
+        <Button
+          color="success mt-5"
+          onClick={[Function]}
+          style={
+            Object {
+              "height": 30,
+              "width": 70,
+            }
+          }
+          tag="button"
+        >
+          <strong>
+            OK
+          </strong>
+        </Button>
+      </div>
+    </div>
+  </ModalBody>
 </Modal>
 `;

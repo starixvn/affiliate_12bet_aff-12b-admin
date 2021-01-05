@@ -7,6 +7,7 @@ import { Button } from 'reactstrap';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, maxWidth, globalResource } from '../modules/constants';
 import { setShowPopup, setNoteInfo, getNoteList, getNoteContentById, toggleLoaderUserPanel } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -18,6 +19,11 @@ export class Content extends PureComponent {
         this.props.getNoteList(param);
     }
 
+    _hasEditPermission = () => {
+        const { claimsPrincipal } = this.props;
+        return claimsPrincipal.hasWriteClaim(claimResource.Note);
+    }
+
     _renderHeader() {
         return (
             <Row key="thead">
@@ -25,11 +31,11 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={580} title={headerText.Content}>{headerText.Content}</Cell>
                 <Cell header={true} colWidth={150} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.LastModify}>{headerText.LastModify}</Cell>
-                <Cell header={true} colWidth={35} title={globalResource.Edit}>{globalResource.Edit}</Cell>
+                { this._hasEditPermission() && <Cell header={true} colWidth={35} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
             </Row>
         );
     }
-
+    
     _renderDataSection(dataList) {
         const dataRows = [];
 
@@ -61,11 +67,13 @@ export class Content extends PureComponent {
                 <Cell title={noteContent}>{noteContent}</Cell>
                 <Cell title={createdBy}>{createdBy}</Cell>
                 <Cell title={dataItem.LastModifyText} className="text-center">{dataItem.LastModifyText}</Cell>
-                <Cell title="Edit Note" className="text-center">
-                    <Button className="p-0" color="link" onClick={() => this.handleShowPopup(dataItem.NoteId)}>
-                        <span className="oi oi-pencil text-secondary"></span>
-                    </Button>
-                </Cell>
+                { this._hasEditPermission() && 
+                    <Cell title="Edit Note" className="text-center">
+                        <Button className="p-0" color="link" onClick={() => this.handleShowPopup(dataItem.NoteId)}>
+                            <span className="oi oi-pencil text-secondary"></span>
+                        </Button>
+                    </Cell>
+                }
             </Row>
         )
     }
@@ -106,9 +114,11 @@ export class Content extends PureComponent {
 
         return noteList && (
             <div className="data-content">
-                <div className="my-2">
-                    <Button outline type="button" onClick={() => this.handleShowPopup(0)}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
-                </div>
+                { this._hasEditPermission() &&
+                    <div className="my-2">
+                        <Button outline type="button" onClick={() => this.handleShowPopup(0)}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
+                    </div>
+                }
                 <div className="table-responsive table-striped">
                     <Table
                         maxWidth={maxWidth}
@@ -127,7 +137,7 @@ export class Content extends PureComponent {
 }
 
 
-function mapStateToProps({ affCommonInfo, note }) {
+function mapStateToProps({ affCommonInfo, note, claimsPrincipal }) {
     const { pagingOption, noteList, noteInfo } = note;
     const { affId } = affCommonInfo;
 
@@ -135,7 +145,8 @@ function mapStateToProps({ affCommonInfo, note }) {
         affId,
         pagingOption,
         noteList,
-        noteInfo
+        noteInfo,
+        claimsPrincipal
     });
 }
 

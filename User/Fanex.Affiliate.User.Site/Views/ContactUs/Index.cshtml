@@ -4,6 +4,7 @@
 }
 
 @using Fanex.Affiliate.User.Core.Utilities
+@using Fanex.Affiliate.User.Core.Constants
 @model Fanex.Affiliate.User.Core.DTO.UserInfo
 @{
     var name = Model != null ? $"{Model?.FirstName} {Model?.LastName}" : string.Empty;
@@ -14,14 +15,14 @@
     var isMobile = Request.Browser.IsMobileDevice;
     var imLink = "tencent://message/?uin=1806412043&Site=qq&Menu=yes";
 
-    if(isMobile)
+    if (isMobile)
     {
         var userAgent = Request.UserAgent.ToLower();
         if (userAgent.Contains("android"))
         {
             imLink = "https://play.google.com/store/apps/details?id=com.tencent.mobileqqi";
         }
-        else if(userAgent.Contains("iphone") || userAgent.Contains("ipad") || userAgent.Contains("ipod"))
+        else if (userAgent.Contains("iphone") || userAgent.Contains("ipad") || userAgent.Contains("ipod"))
         {
             imLink = "https://itunes.apple.com/cn/app/qq-guo-ji-ban/id710380093?mt=8";
         }
@@ -207,13 +208,18 @@
                             <span class="help-block hide">@Lang.SubjectIsInvalid</span>
                         </div>
                     </div>
-                    <div class="group group-small">
-                        <label class="require" for="Email">@Lang.Email1</label>
-                        <input class="field emailInput" type="text" name="Email" id="Email" value="@email" />
-                        <div class="validation-input">
-                            <span class="help-block hide">@Lang.EmailAddressIsInvalid</span>
+
+                    @if (ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.EmailType))
+                    {
+                        <div class="group group-small">
+                            <label class="require" for="Email">@Lang.Email1</label>
+                            <input class="field emailInput" type="text" name="Email" id="Email" value="@email" />
+                            <div class="validation-input">
+                                <span class="help-block hide">@Lang.EmailAddressIsInvalid</span>
+                            </div>
                         </div>
-                    </div>
+                    }
+
                 </div>
                 <div class="form-group">
                     <div class="group group-full">

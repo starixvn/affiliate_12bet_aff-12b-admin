@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private const string Base64Prefix = "data:image/png;base64,";
 
         public int Size { get; set; } = SizeDefault;
-       
+
         public string GenerateBase64QrCode(string content, string icon = null, bool includePrefix = false)
         {
             Image img = null;
@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             Bitmap bitmap = null;
             if (icon != null)
             {
-                 bitmap = new Bitmap(icon);
+                bitmap = new Bitmap(icon);
             }
             var base64Img = GenerateBase64QrCode(content, bitmap, includePrefix);
             return base64Img;

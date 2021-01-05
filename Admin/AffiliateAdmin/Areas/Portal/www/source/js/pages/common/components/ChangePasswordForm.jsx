@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { resource, regExp, messages } from '../modules/constants/changePassword';
+import { resource, messages } from '../modules/constants/changePassword';
+import { validateNewPassword } from '../../../modules/utils';
 import { updateChangeAffPasswword, updateChangeAdminPasswword } from '../actions/changePassword';
 
 export class ChangePasswordForm extends PureComponent {
@@ -78,34 +79,17 @@ export class ChangePasswordForm extends PureComponent {
         });
     }
 
-    _validatePassword(password) {
-        const result = {
-            isValid: false,
-            message: messages.RequiredPassword
-        }
-
-        if (password) {
-            const regexCheckPassword = new RegExp(regExp.CheckPassword);
-            const isValid = regexCheckPassword.test(password);
-
-            result.isValid = isValid;
-            result.message = isValid ? "" : messages.PasswordErrorMessage;
-        }
-
-        return result;
-    }
-
     _validateConfirmPassword(password, confirmPassword) {
         const result = {
-            isValid: false,
-            message: messages.RequiredConfirmPassword
+            IsValid: false,
+            Message: messages.RequiredConfirmPassword
         }
 
         if (confirmPassword) {
             const isValid = confirmPassword === password;
 
-            result.isValid = isValid;
-            result.message = isValid ? "" : messages.ConfirmPasswordErrorMessage;
+            result.IsValid = isValid;
+            result.Message = isValid ? "" : messages.ConfirmPasswordIncorrect;
         }
 
         return result;
@@ -122,9 +106,9 @@ export class ChangePasswordForm extends PureComponent {
         const { showPopupPassword } = this.props;
         const { password, confirmPassword, isShowMessage, isSuccess, message, isClickedSubmit } = this.state;
 
-        const passwordValidation = this._validatePassword(password);
+        const passwordValidation = validateNewPassword(password);
         const confirmPasswordValidation = this._validateConfirmPassword(password, confirmPassword);
-        const isValid = passwordValidation.isValid && confirmPasswordValidation.isValid;
+        const isValid = passwordValidation.IsValid && confirmPasswordValidation.IsValid;
 
         return (
             <Modal isOpen={showPopupPassword} toggle={this.handleClosePopup} backdrop='static'>
@@ -135,24 +119,24 @@ export class ChangePasswordForm extends PureComponent {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-5" autocomplete="off">
+                            <Form tag="form" className="mb-5" autoComplete="off">
                                 <FormGroup row className="mb-2">
                                     <Label for="Password" sm={4} className="required">{resource.Password}:</Label>
                                     <Col sm={8}>
-                                        <Input type="password" className="input-required" name="password" id="Password" autocomplete="false"
-                                            value={password} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this.handleChange} invalid={isClickedSubmit && !passwordValidation.isValid} />
-                                        {passwordValidation.message &&
-                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: passwordValidation.message }} /></FormFeedback>}
+                                        <Input type="password" className="input-required" name="password" id="Password" autoComplete="false" maxLength="20"
+                                            value={password} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this.handleChange} invalid={isClickedSubmit && !passwordValidation.IsValid} />
+                                        {passwordValidation.Message &&
+                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: passwordValidation.Message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
 
                                 <FormGroup row className="mb-2">
                                     <Label for="ConfirmPassword" sm={4} className="required">{resource.ConfirmPassword}:</Label>
                                     <Col sm={8}>
-                                        <Input type="password" className="input-required" name="confirmPassword" id="ConfirmPassword" autocomplete="false"
-                                            value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this.handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
-                                        {confirmPasswordValidation.message &&
-                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
+                                        <Input type="password" className="input-required" name="confirmPassword" id="ConfirmPassword" autoComplete="false" maxLength="20"
+                                            value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this.handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.IsValid} />
+                                        {confirmPasswordValidation.Message &&
+                                            <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.Message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
                             </Form>

@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Constants;
     using DTO;
     using DTO.UserPanel;
@@ -13,6 +10,9 @@
     using MetalModels;
     using Newtonsoft.Json;
     using Resources;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
 
     [CustomAuthorize]
     public class MyAccountController : BaseController
@@ -62,7 +62,7 @@
             }
 
             var preferredLanguage = accountInformation.PreferredLanguage;
-            var languageName = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.Code.Equals(preferredLanguage))?.EnglishName ?? preferredLanguage;
+            var languageName = LanguageService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.Equals(preferredLanguage))?.MarketName ?? preferredLanguage;
             accountInformation.LanguageName = SystemLanguage.GetLanguageText(languageName);
 
             return View("~/Views/UserPanel/MyAccount/index.cshtml", accountInformation);

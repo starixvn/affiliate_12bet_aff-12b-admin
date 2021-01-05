@@ -6,24 +6,20 @@
 @{
     var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var permission = sessionService.UserPermissionList;
-    var hasTurnOverPermission = permission.Any(i => i.FunctionName.Equals(Function.Turnover, StringComparison.OrdinalIgnoreCase));
+    var permissions = sessionService.ClaimIdentities.SelectMany(i => i.Claims);
     var menus = new Dictionary<string, string>
     {
-        {"Customer",Function.Affiliate },
-        {"Affiliate",Function.Affiliate },
-        {"Member",Function.Affiliate },
+        {"Customer", Function.Customer },
+        {"Affiliate", String.Empty  },
+        {"Member",Function.AffMember },
         {"Report",Function.AffReport },
-        {"MediaGallery",Function.Media },
+        {"MediaGallery", Function.Media  },
         {"Message",Function.HotNews },
         {"ExchangeRate",Function.AffExRate },
-        {"Administrator",Function.UserControl },
+        {"AdminRole",Function.UserControl },
         {"Domain",Function.Domain }
     };
-    var result = from n in menus
-                 join p in permission
-                 on n.Value equals p.FunctionName
-                 select n.Key;
+    var displayMenus = menus.Where(m => string.IsNullOrEmpty(m.Value) || permissions.Any(p => p.Type == m.Value)).Select(m => m.Key);
 }
 
 @functions{
@@ -33,9 +29,9 @@
         {
             return "Media Gallery";
         }
-        else if (menuKey == "ExchangeRate")
+        else if (menuKey == "AdminRole")
         {
-            return "Ex.Rate";
+            return "Admin Role";
         }
         else
         {
@@ -48,7 +44,7 @@
         <a class="nav-link @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Portal/Home")">Home</a>
     </li>
 
-    @foreach (var item in result)
+    @foreach (var item in displayMenus)
     {
         var active = "nav-link " + (controllerName == item ? "active" : string.Empty);
         <li class="nav-item">
@@ -61,8 +57,9 @@
 
 <script type="text/javascript">
     window.globalVariables = {
-        hasTurnOverPermission: '@hasTurnOverPermission'.toLowerCase() === 'true'
-    }
+        claims: @Html.Raw(permissions.ToJson())
+    };
+    window.virtualUrl = '@Url.Content("~")';
 
     let element;
 
@@ -81,6 +78,9 @@
             break;
         case 'Domain': case 'DomainControl':
             element = document.getElementById('Domain');
+            break;
+        case 'AdminRole': case 'RolePermission':
+            element = document.getElementById('AdminRole');
             break;
     }
 

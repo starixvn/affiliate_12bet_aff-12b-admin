@@ -11,6 +11,7 @@ exports[`banner list - components - BannerDetailPopup  render correctly 1`] = `
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}

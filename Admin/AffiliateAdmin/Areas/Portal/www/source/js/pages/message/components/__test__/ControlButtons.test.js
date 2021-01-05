@@ -42,6 +42,7 @@ describe('message - components - ControlButtons ', () => {
     const defaultProps = {
         checkedMessages: { 37: false, 6: false },
         param,
+        isModifiable: true,
         gridData
     };
 

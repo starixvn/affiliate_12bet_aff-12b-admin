@@ -7,7 +7,9 @@ import AppContainer from './components/AppContainer';
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 
-const store = configureStore({ ...window.initialState }, reducer);
+import ClaimPrincipal from '../../../modules/claim';
+
+
 
 export default class App extends React.PureComponent {
     constructor(props) {
@@ -15,6 +17,7 @@ export default class App extends React.PureComponent {
     }
 
     render() {
+        const store = configureStore({ ...window.initialState, claimsPrincipal: ClaimPrincipal.currentClaimPrincipal }, reducer);
         return (
             <Provider store={store}>
                 <AppContainer />

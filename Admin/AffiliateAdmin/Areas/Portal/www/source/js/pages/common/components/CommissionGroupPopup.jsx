@@ -20,15 +20,15 @@ export default class CommissionGroupPopup extends PureComponent {
     }
 
     handleClosePopupEvent = (event) => {
-        if(event.data === popupEventNames.updatePrivateGroupSuccessfully) {
+        if (event.data === popupEventNames.updatePrivateGroupSuccessfully) {
             this.handleUpdatePrivateGroupSuccessfully();
         }
 
-        if(event.data === popupEventNames.assignGroupSuccessfully) {
+        if (event.data === popupEventNames.assignGroupSuccessfully) {
             this.handleAssignGroupSuccessfully();
         }
 
-        if(event.data === popupEventNames.changeAssignToPrivateGroup) {
+        if (event.data === popupEventNames.changeAssignToPrivateGroup) {
             this.handleChangeAssignToPrivateGroup();
         }
     }

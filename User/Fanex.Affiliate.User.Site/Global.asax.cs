@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.Filters;
+using Fanex.Affiliate.User.Site.App_Start;
+using Fanex.Data;
+using Fanex.Data.OldConnectionStringProvider;
+using System;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Fanex.Data;
-using Fanex.Data.OldConnectionStringProvider;
-using Fanex.Affiliate.User.Site.App_Start;
-using Fanex.Affiliate.User.Core.Filters;
 
 namespace Fanex.Affiliate.User.Site
 {

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.Customer)]
     public class CustomerController : ReadOnlySessionBaseController
     {
         private readonly ILanguageService _languageService;
@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var viewModel = new CustomerViewModel
             {
                 AffName = user,
-                LanguageList = _languageService.GetLanguageList()
+                LanguageList = _languageService.GetInChangeMarkets()
             };
 
             if (string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(SessionService.AffName))

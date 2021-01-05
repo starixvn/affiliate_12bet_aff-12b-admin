@@ -22,5 +22,10 @@
             var format = "N" + digit.ToString();
             return value.ToString(format, DefaultCulture.NumberFormat);
         }
+
+        public static int ToInt(this bool value)
+        {
+            return value ? 1 : 0;
+        }
     }
 }

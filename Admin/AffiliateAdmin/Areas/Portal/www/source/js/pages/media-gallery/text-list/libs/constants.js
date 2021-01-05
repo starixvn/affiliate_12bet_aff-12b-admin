@@ -9,7 +9,7 @@ const defaultCurrency = 'EURO';
 export const defaultDevice = pcLaptop;
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     Content: 'Content',
     Category: 'Category',
     Language: 'Language',

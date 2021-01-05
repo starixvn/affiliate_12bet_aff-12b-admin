@@ -1,11 +1,10 @@
-﻿using System;
-using Fanex.Data;
-
-namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
+﻿namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
     public class StatementHistoryParam : BaseParam
     {
         public int AffId { get; set; }
+
+        public int? UserId { get; set; }
 
         public int? PageSize { get; set; }
 

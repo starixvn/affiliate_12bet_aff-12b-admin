@@ -3,7 +3,6 @@ import AppContainer from '../AppContainer';
 import { shallow } from 'enzyme';
 
 import * as ajaxRequest from '../../../../modules/ajaxRequest';
-import * as utils from '../../../../modules/utils';
 
 describe('change admin password - components - AppContainer', () => {
     it('render correctly with empty password', () => {

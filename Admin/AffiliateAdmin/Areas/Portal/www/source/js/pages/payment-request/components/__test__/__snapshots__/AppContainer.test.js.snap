@@ -10,6 +10,9 @@ exports[`payment request - components - AppContainer  render correctly 1`] = `
   <Connect(PaymentRequestUpdateForm)
     handleClosePopup={[Function]}
     handleFetchData={[Function]}
+    isShowEmail={true}
+    isShowPaymentInfo={true}
+    isUpdatable={true}
     transactionId={123}
   />
 </AppLayout>

@@ -6,6 +6,15 @@ exports[`home - components - TasksWaitingForApproval render correctly 1`] = `
 >
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <span
       className="tbl-icon02"
@@ -63,13 +72,9 @@ exports[`home - components - TasksWaitingForApproval render correctly 1`] = `
           ]
         }
       >
-        <a
-          href="/Portal/Affiliate?Status=Pending&IsFromHome=true"
-        >
-          <strong>
-            1,024
-          </strong>
-        </a>
+        <strong>
+          1,024
+        </strong>
       </Col>
       <Col
         className="text-border"
@@ -105,13 +110,9 @@ exports[`home - components - TasksWaitingForApproval render correctly 1`] = `
           ]
         }
       >
-        <a
-          href="/Portal/PaymentRequest?SearchBy=2&Status=Pending&FromDate=12/01/2009&IsFromHome=true"
-        >
-          <strong>
-            1
-          </strong>
-        </a>
+        <strong>
+          1
+        </strong>
       </Col>
     </Col>
   </Row>

@@ -3,7 +3,7 @@
 export { globalResource };
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     Market: 'Market',
     AffDomain: 'AffDomain',
     RedirectDomain: 'Redirect Domain',

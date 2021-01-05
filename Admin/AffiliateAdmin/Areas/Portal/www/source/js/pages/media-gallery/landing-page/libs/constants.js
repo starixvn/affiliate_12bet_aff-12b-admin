@@ -3,7 +3,7 @@
 export { globalResource };
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     LandingPageName: 'Landing Page Name (Shown in dropdown)',
     LandingPageCode: 'Landing Page Code (Contained in links)'
 }

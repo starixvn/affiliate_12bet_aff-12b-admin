@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics;
 using Moq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Xunit;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
@@ -26,15 +25,15 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Arrange
             var marketingService = new Mock<IMarketingService>();
             var languageList = CreateFakeLanguageList();
-            marketingService.Setup(m => m.GetLanguageList(IsInternal)).Returns(languageList);
+            marketingService.Setup(m => m.GetLanguageList()).Returns(languageList);
             marketingService.Setup(m => m.GetLandingPageList(IsInternal)).Returns(new List<LandingPage>());
 
-            var statisticsRepository = new Mock<IStatisticsRepository>();
+            var statisticsRepository = new Mock<IStatisticsService>();
             var landingPageStisticsList = CreateFakeLandingPageStatisticsList();
             statisticsRepository.Setup(m => m.GetLandingPageStatistics(It.IsAny<LandingPageStatisticsParam>())).Returns(landingPageStisticsList);
 
             var today = DateTime.Today;
-            var controller = CreateController(marketingService: marketingService.Object, staticticsRepository: statisticsRepository.Object);
+            var controller = CreateController(marketingService: marketingService.Object, statisticsService: statisticsRepository.Object);
 
             // Action
             var result = controller.Index() as ViewResult;
@@ -46,6 +45,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.False(model.IsDetail);
             Assert.Equal(new DateTime(today.Year, today.Month, 1), model.FromDate.Date);
             Assert.Equal(today, model.ToDate.Date);
+            Assert.Equal(0, model.RowNumber);
         }
 
         [Fact]
@@ -55,17 +55,17 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             LandingPageStatisticsParam passedParam = null;
             var marketingService = new Mock<IMarketingService>();
             var languageList = CreateFakeLanguageList();
-            marketingService.Setup(m => m.GetLanguageList(IsInternal)).Returns(languageList);
+            marketingService.Setup(m => m.GetLanguageList()).Returns(languageList);
             marketingService.Setup(m => m.GetLandingPageList(IsInternal)).Returns(new List<LandingPage>());
 
-            var statisticsRepository = new Mock<IStatisticsRepository>();
+            var statisticsRepository = new Mock<IStatisticsService>();
             var landingPageStisticsList = CreateFakeLandingPageStatisticsList();
             statisticsRepository.Setup(m => m.GetLandingPageStatistics(It.IsAny<LandingPageStatisticsParam>()))
                 .Returns(landingPageStisticsList)
                 .Callback<LandingPageStatisticsParam>(p => passedParam = p);
 
             var today = DateTime.Today;
-            var controller = CreateController(marketingService: marketingService.Object, staticticsRepository: statisticsRepository.Object);
+            var controller = CreateController(marketingService: marketingService.Object, statisticsService: statisticsRepository.Object);
 
             // Action
             controller.Index();
@@ -77,22 +77,19 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.Equal(today, passedParam.ToDate.Date);
         }
 
-        [Theory]
-        [InlineData(null, null)]
-        [InlineData("", "")]
-        [InlineData("en-US", "en")]
-        public void IndexPost_WhenCall_ReturnViewWithCorrectModelData(string languageCode, string expectedShortedCode)
+        [Fact]
+        public void IndexPost_WhenCall_ReturnViewWithCorrectModelData()
         {
             // Arrange
-            var param = new LandingPageStatisticsParam
-            {
-                LanguageCode = languageCode
-            };
-            var statisticsRepository = new Mock<IStatisticsRepository>();
+            var param = new LandingPageStatisticsParam();
+            var marketingService = new Mock<IMarketingService>();
+            var languageList = CreateFakeInvalidLanguageList();
+            marketingService.Setup(m => m.GetLanguageList()).Returns(languageList);
+            var statisticsRepository = new Mock<IStatisticsService>();
             var landingPageStisticsList = CreateFakeLandingPageStatisticsList();
             statisticsRepository.Setup(m => m.GetLandingPageStatistics(param)).Returns(landingPageStisticsList);
 
-            var controller = CreateController(staticticsRepository: statisticsRepository.Object);
+            var controller = CreateController(statisticsService: statisticsRepository.Object, marketingService: marketingService.Object);
 
             // Action
             var result = controller.Index(param) as PartialViewResult;
@@ -105,22 +102,34 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.False(model.IsDetail);
             Assert.Equal(Constant.DefaultAffId, param.AffId);
             Assert.Equal(IsInternal, param.IsInternal);
-            Assert.Equal(expectedShortedCode, param.LanguageCode);
         }
 
-        private IEnumerable<LanguageType> CreateFakeLanguageList()
+        private IEnumerable<Language> CreateFakeLanguageList()
         {
-            return new List<LanguageType>
+            return new List<Language>
             {
-                new LanguageType
+                new Language
                 {
                     MarketId = "en-US",
                     MarketName = "English",
                 },
-                new LanguageType
+                new Language
                 {
                     MarketId = "vi-VN",
                     MarketName = "Vietnamese",
+                }
+            };
+        }
+
+        private IEnumerable<Language> CreateFakeInvalidLanguageList()
+        {
+            return new List<Language>
+            {
+                new Language
+                {
+                    MarketId = "vi-VN",
+                    MarketName = "Vietnamese",
+                    ShortedCode = "vn"
                 }
             };
         }
@@ -129,7 +138,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         {
             return new List<LandingPageStatistics>
             {
-                new LandingPageStatistics { LanguageCode = "abc" },
+                new LandingPageStatistics { LanguageCode = "vn" },
                 new LandingPageStatistics { LanguageCode = "en" }
             };
         }
@@ -137,18 +146,18 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         private static LandingPageStatisticsController CreateController(
             ISessionService sessionService = null,
             ILanguageService languageService = null,
-            IStatisticsRepository staticticsRepository = null,
+            IStatisticsService statisticsService = null,
             IMarketingService marketingService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
-            var fakeStaticticsRepository = staticticsRepository ?? Mock.Of<IStatisticsRepository>();
+            var fakeStaticticsService = statisticsService ?? Mock.Of<IStatisticsService>();
             var fakeMarketingService = marketingService ?? Mock.Of<IMarketingService>();
 
             return new LandingPageStatisticsController(
                 fakeSessionService,
                 fakeLanguageService,
-                fakeStaticticsRepository,
+                fakeStaticticsService,
                 fakeMarketingService);
         }
     }

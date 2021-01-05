@@ -6,67 +6,147 @@ import {
     totalCellStyle
 } from '../../../modules/excelStyleConstant';
 import {
-    headerText,
-    totalText
+    totalText,
+    reportKey as fields
 } from './constants';
 import { formatDecimal } from '../../../modules/numberFormat';
+import { AggregateHeader } from './header';
 
 const TITLE_ROW_INDEX = 0;
 const HEADER_ROW_INDEX = 1;
 const DATA_ROW_INDEX = 3;
 
-const TOTAL_COLUMN = 20;
-
-const INDEX_MEMBER_STATISTICS_COLUMN = 7;
-const INDEX_AFFILIATE_STATISTICS_COLUMN = 8;
-
-const INDEX_DEPOSIT_COLUMN = 7;
-const COLSPAN_MEMBER_STATISTICS = 8;
-const INDEX_COMM_COLUMN = 15;
-const COLSPAN_AFFILIATE_STATISTICS = 5;
-
 const MAIN_SECTION_STYLE = 'mainSectionStyle';
 const TOTAL_SECTION_STYLE = 'totalSectionStyle';
+const COL_WIDTH = 'wpx';
 
-const fields = {
-    UserName: 'UserName',
-    Description: 'Description',
-    MonthDateString: 'MonthDateString',
-    TotalClick: 'TotalClick',
-    UniqueClick: 'UniqueClick',
-    Signup: 'Signup',
-    Fdm: 'Fdm',
-    ActiveMember: 'ActiveMember',
-    QualifiedMember: 'QualifiedMember',
-    Deposit: 'Deposit',
-    Withdrawal: 'Withdrawal',
-    Turnover: 'Turnover',
-    Winlost: 'Winlost',
-    Bonus: 'Bonus',
-    PlatformFee: 'PlatformFee',
-    OperationalFee: 'OperationalFee',
-    BankingFee: 'BankingFee',
-    TotalFee: 'TotalFee',
-    CommissionRate: 'CommissionRate',
-    Earning: 'Earning',
-    AffWithdrawal: 'AffWithdrawal',
-    AffAdjustment: 'AffAdjustment',
-    BalanceBf: 'BalanceBf'
+const colConfig = {
+    [fields.UserName]: {
+        [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.default,
+        [COL_WIDTH] : 150
+    },
+    [fields.MonthDateString]: {
+        [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.default,
+        [COL_WIDTH] : 150
+    },
+    [fields.TotalClick]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.number,
+        [COL_WIDTH] : 80
+    },
+    [fields.UniqueClick]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.number,
+        [COL_WIDTH] : 80
+    },
+    [fields.Signup]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.number,
+        [COL_WIDTH] : 80
+    },
+    [fields.Fdm]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.number,
+        [COL_WIDTH] : 80
+    },
+    [fields.ActiveMember]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.number,
+        [COL_WIDTH] : 100
+    },
+    [fields.QualifiedMember]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.number,
+        [COL_WIDTH] : 120
+    },
+    [fields.Deposit]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 120
+    },
+    [fields.Withdrawal]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 120
+    },
+    [fields.Turnover]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 120
+    },
+    [fields.Winlost]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 120
+    },
+    [fields.Bonus]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 80
+    },
+    [fields.PlatformFee]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 100
+    },
+    [fields.OperationalFee]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 110
+    },
+    [fields.BankingFee]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 100
+    },
+    [fields.TotalFee]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 100
+    },
+    [fields.CommissionRate]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.right,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.right,
+        [COL_WIDTH] : 80
+    },
+    [fields.Earning]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 100
+    },
+    [fields.AffWithdrawal]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 100
+    },
+    [fields.AffAdjustment]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 100
+    },
+    [fields.BalanceBf]:{
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH] : 150
+    }
+
 }
 
 export default class ReportExcel {
-    constructor(data, title, hasTurnOverPermission, isMainView) {
+    constructor(data, title, header, isMainView) {
         this.worksheet = {};
         this.title = isMainView ? title : 'AFFILIATE REPORT > ' + title;
         this.data = data;
         this.isMainView = isMainView;
-        this.hasTurnOverPermission = hasTurnOverPermission;
-        this.turnoverColumn = hasTurnOverPermission ? 1 : 0;
+        this.header = header;
 
         this.currentRowIndex = DATA_ROW_INDEX;
         this.mergeConfig = [];
-        this.columnConfigs = this._getcolumnConfigs(hasTurnOverPermission, isMainView);
-        this.totalColumn = isMainView ? (TOTAL_COLUMN + this.turnoverColumn) : (TOTAL_COLUMN + this.turnoverColumn - 1);
+        this.columnConfigs = this._getcolumnConfigs(header);
+
+        this.totalColumn = this.columnConfigs.length;
     }
 
     export () {
@@ -104,49 +184,52 @@ export default class ReportExcel {
     }
 
     _createHeader() {
-        const colSpanAffStatistics = this.isMainView ? COLSPAN_AFFILIATE_STATISTICS : COLSPAN_AFFILIATE_STATISTICS - 1;
-        const colSpanMemberStatistics = COLSPAN_MEMBER_STATISTICS + this.turnoverColumn;
-
-        const length = this.columnConfigs.length - (colSpanMemberStatistics - 1) - (colSpanAffStatistics - 1);
-        for (let i = 0; i < length; i++) {
-            if (i === INDEX_MEMBER_STATISTICS_COLUMN) {
-                this._buildColspanColumn(HEADER_ROW_INDEX, INDEX_DEPOSIT_COLUMN, colSpanMemberStatistics, headerText.MemberStatistics);
-            } else if (i === INDEX_AFFILIATE_STATISTICS_COLUMN) {
-                this._buildColspanColumn(HEADER_ROW_INDEX, INDEX_COMM_COLUMN + this.turnoverColumn, colSpanAffStatistics, headerText.AffiliateStatistics);
-            } else {
-                const fieldName = this.columnConfigs[i].field;
+        const visableCells = this.header.childerent.filter(c => c.isVisable);
+        let curColIndex = 0;
+        visableCells.forEach(cell => {
+            if (cell instanceof AggregateHeader)
+            {
+                this._buildColspanColumn(HEADER_ROW_INDEX, curColIndex, cell);
+                curColIndex += cell.totalVisableCol;
+            }
+            else{
                 let address = Excel.getCellAddress({
-                    c: i,
+                    c: curColIndex,
                     r: HEADER_ROW_INDEX
                 });
                 this.worksheet[address] = {
                     t: "s",
-                    v: headerText[fieldName],
+                    v: cell.text,
                     s: headerCellStyle
                 }
 
                 this.mergeConfig.push({
                     s: {
                         r: HEADER_ROW_INDEX,
-                        c: i
+                        c: curColIndex
                     },
                     e: {
                         r: HEADER_ROW_INDEX + 1,
-                        c: i
+                        c: curColIndex
                     }
                 });
+
+                curColIndex++;
             }
-        }
+        })
     }
 
-    _buildColspanColumn(rowIndex, colIndex, colSpan, colSpanheaderText) {
+    _buildColspanColumn(rowIndex, colIndex, headerCell) {
+        let childCells = headerCell.childerent.filter(c => c.isVisable);
+        const colSpan = childCells.length;
+
         const colSpanCellAddress = Excel.getCellAddress({
             c: colIndex,
             r: rowIndex
         });
         this.worksheet[colSpanCellAddress] = {
             t: "s",
-            v: colSpanheaderText,
+            v: headerCell.text,
             s: headerCellStyle
         }
 
@@ -162,19 +245,20 @@ export default class ReportExcel {
             }
         });
 
-        for (let i = colIndex; i < totalColumn; i++) {
+        let curIndex = colIndex;
+        childCells.forEach(cell => {
             const address = Excel.getCellAddress({
-                c: i,
+                c: curIndex,
                 r: rowIndex + 1
             });
 
-            const fieldName = this.columnConfigs[i].field;
             this.worksheet[address] = {
                 t: "s",
-                v: headerText[fieldName] || '',
+                v: cell.text || '',
                 s: headerCellStyle
             }
-        }
+            curIndex++;
+        });
     }
 
     _createBodyData() {
@@ -244,191 +328,25 @@ export default class ReportExcel {
         });
         const cellEnd = Excel.getCellAddress({
             r: this.currentRowIndex,
-            c: TOTAL_COLUMN
+            c: this.totalColumn
         });
 
         this.worksheet["!merges"] = this.mergeConfig;
         this.worksheet["!ref"] = `${cellStart}:${cellEnd}`;
-        this.worksheet['!cols'] = [{
-                wpx: 150
-            }, {
-                wpx: 80
-            }, {
-                wpx: 80
-            }, {
-                wpx: 80
-            }, {
-                wpx: 80
-            }, {
-                wpx: 100
-            }, {
-                wpx: 120
-            },
-            {
-                wpx: 120
-            }, {
-                wpx: 120
-            }
-        ];
-
-        if (this.hasTurnOverPermission) {
-            this.worksheet['!cols'].push({
-                wpx: 120
-            });
-        }
-
-        this.worksheet['!cols'].push(
-            {
-                wpx: 120
-            }, {
-                wpx: 80
-            }, {
-                wpx: 100
-            }, {
-                wpx: 110
-            }, {
-                wpx: 100
-            }, {
-                wpx: 100
-            },
-            {
-                wpx: 80
-            }, {
-                wpx: 100
-            }, {
-                wpx: 100
-            }
-        );
-
-        if (this.isMainView) {
-            this.worksheet['!cols'].push({
-                wpx: 100
-            });
-        }
-
-        this.worksheet['!cols'].push({
-            wpx: 150
-        });
+        this.worksheet['!cols'] = this.columnConfigs.map(item => {
+            return {[COL_WIDTH] : item[COL_WIDTH]}
+        })
     }
 
-    _getcolumnConfigs(hasTurnOverPermission, isMainView) {
-        const columnConfigList = [{
-                field: isMainView ? fields.UserName : fields.MonthDateString,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.left,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.default
-            },
-            {
-                field: fields.TotalClick,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.UniqueClick,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.Signup,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.Fdm,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.ActiveMember,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.QualifiedMember,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.Deposit,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.Withdrawal,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+    _getcolumnConfigs(header) {
+        const visableCols = header.getCols().filter(item => item.isVisable);
+        return visableCols.map(col => {
+            return {
+                field: col.key,
+                [MAIN_SECTION_STYLE]: colConfig[col.key][MAIN_SECTION_STYLE],
+                [TOTAL_SECTION_STYLE]: colConfig[col.key][TOTAL_SECTION_STYLE],
+                [COL_WIDTH]: colConfig[col.key][COL_WIDTH]
             }
-        ];
-
-        if (hasTurnOverPermission) {
-            columnConfigList.push({
-                field: fields.Turnover,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            })
-        }
-
-        columnConfigList.push(
-            {
-                field: fields.Winlost,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.Bonus,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.PlatformFee,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.OperationalFee,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.BankingFee,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.TotalFee,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.CommissionRate,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.right,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.right
-            },
-            {
-                field: fields.Earning,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.AffWithdrawal,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            }
-        );
-
-        if (isMainView) {
-            columnConfigList.push({
-                field: fields.AffAdjustment,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            })
-        }
-
-        columnConfigList.push({
-            field: fields.BalanceBf,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-        });
-
-        return columnConfigList;
+        })
     }
 }

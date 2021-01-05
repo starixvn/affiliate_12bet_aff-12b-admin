@@ -1,10 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.Resources;
-using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.CoreService;
+﻿using Fanex.Affiliate.User.Core.Resources;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.Constants
 {
@@ -36,8 +31,7 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public static string GetShortedCodeForTracking(string currentLanguage)
         {
-            string result = string.Empty;
-            if (_supportedLanguageForGoogleAnalytics.TryGetValue(currentLanguage, out result) && !string.IsNullOrEmpty(result))
+            if (_supportedLanguageForGoogleAnalytics.TryGetValue(currentLanguage, out string result) && !string.IsNullOrEmpty(result))
             {
                 return result.ToUpperInvariant();
             }
@@ -49,7 +43,6 @@ namespace Fanex.Affiliate.User.Core.Constants
         {
             return value.Equals("english (europe)", System.StringComparison.OrdinalIgnoreCase) ? Lang.EnglishEU
                   : Lang.ResourceManager.GetString(value.Replace(" ", "")) ?? value;
-
         }
     }
 }

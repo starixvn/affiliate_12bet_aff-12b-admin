@@ -13,6 +13,15 @@ exports[`left panel - components - panel - OnlineInfoPanel render correctly with
   <Row
     className="mr-0"
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="text_bold text-center pr-0"
@@ -67,6 +76,15 @@ exports[`left panel - components - panel - OnlineInfoPanel render correctly with
     className="mr-0"
     key="onl-info-0"
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="text-center pr-0"
@@ -138,6 +156,15 @@ exports[`left panel - components - panel - OnlineInfoPanel render correctly with
   <Row
     className="mr-0"
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="text_bold text-center pr-0"
@@ -191,6 +218,15 @@ exports[`left panel - components - panel - OnlineInfoPanel render correctly with
   <Row
     className="mr-0"
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       className="text-center"

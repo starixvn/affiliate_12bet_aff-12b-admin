@@ -1,14 +1,12 @@
 ﻿using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.Infrastructure;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-using Fanex.Affiliate.User.Core.Utilities;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using System;
 using System.IO;
 using System.Net;
 using System.Web;
-using System.Web.Management;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Xunit;
@@ -20,7 +18,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
         private readonly RequestContext RequestContext;
         private readonly IHttpRequestParserHandler HttpRequestParserHandler;
         private readonly IControllerFactory ControllerFactory;
-        private HttpRequestBase HttpRequest; 
+        private HttpRequestBase HttpRequest;
 
         public EncryptedHandlerTest()
         {

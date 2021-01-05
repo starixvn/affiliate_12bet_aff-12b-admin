@@ -3,19 +3,17 @@ using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
+using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using NSubstitute;
-using NSubstitute.Extensions;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Xunit;
-using System;
-using System.Web;
-using System.IO;
-using Fanex.Affiliate.User.Core.MetalModels.Email;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 {
@@ -68,8 +66,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(Lang.ErrEmailRequire, data.Message);
         }
 
-        [Fact]
-        public void Forgot_WhenAccRepoReturnErrorCode_ReturnNotOkResult()
+        [Theory]
+        [InlineData(1001)]
+        [InlineData(1234)]
+        public void Forgot_WhenAccRepoReturnErrorCode_ReturnNotOkResult(int errCode)
         {
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);
@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             AccountRepo.GetUserInfoByEmail(default(UserInfoByEmailParam))
                 .ReturnsForAnyArgs(c =>
                 {
-                    (c[0] as UserInfoByEmailParam).ErrCode = 1001;
+                    (c[0] as UserInfoByEmailParam).ErrCode = errCode;
                     return new UserInfo();
                 });
             SetupHttpContext();

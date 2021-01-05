@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics;
 using Moq;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
@@ -24,11 +23,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var trackingCodeList = new List<string> { "[None]", "Code123" };
             var trackingStatisticsList = new List<TrackingStatistics> { new TrackingStatistics() };
 
-            var statisticsRepository = new Mock<IStatisticsRepository>();
+            var statisticsRepository = new Mock<IStatisticsService>();
             statisticsRepository.Setup(s => s.GetTrackingCode(Constant.DefaultAffId, IsInternal)).Returns(trackingCodeList);
             statisticsRepository.Setup(s => s.GetTrackingStatistics(Constant.DefaultAffId, null, IsInternal)).Returns(trackingStatisticsList);
 
-            var controller = CreateController(staticticsRepository: statisticsRepository.Object);
+            var controller = CreateController(statisticsService: statisticsRepository.Object);
 
             var expectedViewModel = new TrackingStatisticsViewModel
             {
@@ -58,10 +57,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             const bool IsInternal = false;
             var trackingStatisticsList = new List<TrackingStatistics> { new TrackingStatistics() };
 
-            var statisticsRepository = new Mock<IStatisticsRepository>();
+            var statisticsRepository = new Mock<IStatisticsService>();
             statisticsRepository.Setup(s => s.GetTrackingStatistics(Constant.DefaultAffId, TrackingCode, IsInternal)).Returns(trackingStatisticsList);
 
-            var controller = CreateController(staticticsRepository: statisticsRepository.Object);
+            var controller = CreateController(statisticsService: statisticsRepository.Object);
 
             var expectedViewModel = new TrackingStatisticsViewModel
             {
@@ -92,10 +91,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             };
             var trackingStatisticsList = new List<TrackingStatistics> { new TrackingStatistics() };
 
-            var statisticsRepository = new Mock<IStatisticsRepository>();
+            var statisticsRepository = new Mock<IStatisticsService>();
             statisticsRepository.Setup(s => s.GetTrackingStatisticsDetail(param)).Returns(trackingStatisticsList);
 
-            var controller = CreateController(staticticsRepository: statisticsRepository.Object);
+            var controller = CreateController(statisticsService: statisticsRepository.Object);
 
             var expectedViewModel = new TrackingStatisticsViewModel
             {
@@ -111,19 +110,21 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Assert
             Assert.Equal("~/Views/UserPanel/Statistics/StatisticsPartial/_TrackingStatisticsContent.cshtml", viewName);
             Assert.Equal(expectedViewModel.TrackingStatisticsList, model.TrackingStatisticsList);
+            Assert.Equal(12, param.Month);
+            Assert.Equal(2018, param.Year);
             Assert.True(model.IsDetail);
         }
 
         private static TrackingStatisticsController CreateController(
             ISessionService sessionService = null,
             ILanguageService languageService = null,
-            IStatisticsRepository staticticsRepository = null)
+            IStatisticsService statisticsService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
-            var fakeStaticticsRepository = staticticsRepository ?? (new Mock<IStatisticsRepository>()).Object;
+            var fakeStaticticsService = statisticsService ?? Mock.Of<IStatisticsService>();
 
-            return new TrackingStatisticsController(fakeSessionService, fakeLanguageService, fakeStaticticsRepository);
+            return new TrackingStatisticsController(fakeSessionService, fakeLanguageService, fakeStaticticsService);
         }
     }
 }

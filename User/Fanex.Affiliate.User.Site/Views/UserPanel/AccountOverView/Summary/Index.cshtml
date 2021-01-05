@@ -1,4 +1,6 @@
-﻿
+﻿@using Fanex.Affiliate.User.Core.Utilities
+@using Fanex.Affiliate.User.Core.Constants
+
 <div class="summary" id="summary">
     <div class="form-group">
         <div id="monthPicker" class="form-wrapper d-inline-block">
@@ -10,19 +12,22 @@
         </div>
     </div>
     <div class="summary-content">
-            <div class="dashboard-section" id="dashboard-section"></div>
+        <div class="dashboard-section" id="dashboard-section"></div>
 
-            <div class="details-section" id="details-section">
-                <div class="tab-menu details-section-menu" id="details-section-menu">
-                    <ul class="menu list-unstyled">
-                        <li><a href="javascript:;" data-name="Overview" class="menu-item details-section-menu-item" id="menuOverview">Overview</a></li>
+        <div class="details-section" id="details-section">
+            <div class="tab-menu details-section-menu" id="details-section-menu">
+                <ul class="menu list-unstyled">
+                    <li><a href="javascript:;" data-name="Overview" class="menu-item details-section-menu-item" id="menuOverview">Overview</a></li>
+                    @if (ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.ActivePlayerDetailType))
+                    {
                         <li><a href="javascript:;" data-name="PlayersDetails" class="menu-item details-section-menu-item" id="menuPlayersDetails">Players Details</a></li>
-                    </ul>
-                </div>
-                <div class="details-section-content" id="details-section-content"></div>
+                    }
+                </ul>
             </div>
+            <div class="details-section-content" id="details-section-content"></div>
         </div>
     </div>
+</div>
 
 <input type="hidden" id="ToDay" value="@DateTime.Now.ToString("MM/dd/yyyy")" />
 

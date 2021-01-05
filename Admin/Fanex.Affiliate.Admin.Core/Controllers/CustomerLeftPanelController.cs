@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [CustomAuthorize]
     [CheckUMFilter]
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.Customer)]
     public class CustomerLeftPanelController : Controller
     {
         private readonly ICustomerLeftPanelService _customerLeftPanelService;
@@ -31,6 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
+        [ResetDefaultUnauthorizedProperty]
         [HttpPost]
         public ActionResult GetAffiliateInfo(string affUsername)
         {
@@ -39,10 +40,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 return new JsonResult();
             }
 
-            var accId = _sessionService.UserId.ToString();
             var accOnId = _sessionService.OnUserId.ToString();
             var sessionId = Session.SessionID;
-            var affiliateInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, accId, accOnId, sessionId);
+            var affiliateInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, accOnId, sessionId);
             _sessionService.AffName = affUsername;
 
             return new JsonNetResult
@@ -67,6 +67,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.LanguageAmendment, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateLanguage(UpdateLanguageParam param)
         {
@@ -96,6 +97,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.Customer, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateAffType(UpdateAffTypeParam param)
         {
@@ -118,6 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AffAccountStatus, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateStatus(UpdateStatusParam param)
         {
@@ -152,6 +155,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AffAccountStatus, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateClosedStatus(UpdateClosedStatusParam param)
         {

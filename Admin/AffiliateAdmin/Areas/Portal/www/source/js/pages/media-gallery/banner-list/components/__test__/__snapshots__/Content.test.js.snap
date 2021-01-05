@@ -203,8 +203,7 @@ exports[`banner list - components - Content  render correctly 1`] = `
               sortable={false}
               sorting={false}
             >
-              <a
-                href="javascript:;"
+              <Memo(MyLink)
                 id="link2448"
                 onClick={[Function]}
               >
@@ -215,7 +214,7 @@ exports[`banner list - components - Content  render correctly 1`] = `
                   src="null/CategoryMedia/step1.jpg?id=undefined"
                   width={500}
                 />
-              </a>
+              </Memo(MyLink)>
             </t>
             <t
               asc={true}
@@ -511,7 +510,7 @@ exports[`banner list - components - Content  render correctly with gridData is e
             <t
               asc={true}
               className="text-center"
-              colSpan="11"
+              colSpan={12}
               header={false}
               onClick={[Function]}
               sortable={false}

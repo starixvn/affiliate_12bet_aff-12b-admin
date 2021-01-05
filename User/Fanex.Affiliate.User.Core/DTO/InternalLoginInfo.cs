@@ -1,7 +1,4 @@
-﻿using Fanex.Data;
-
-
-namespace Fanex.Affiliate.User.Core.DTO
+﻿namespace Fanex.Affiliate.User.Core.DTO
 {
     public class InternalLoginInfo
     {

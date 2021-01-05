@@ -10,6 +10,7 @@ import { defaultSortBy, affiliate, month, turnover, sortByCommon, allProduct, vi
 import { setReportTitle, setParam } from '../actions';
 import { formatUnit, resolveClientUrl } from '../../../modules/utils';
 import { minMonthDate } from '../../../modules/constants';
+import { claimResource } from '../../../modules/claim';
 
 export class Filter extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ export class Filter extends Component {
         }
 
         this.cachedMainReportParam = null;
-        
+
         const newSortByCommon = hasTurnOverPermission ? {
             Turnover: turnover,
             ...sortByCommon
@@ -257,19 +258,17 @@ export class Filter extends Component {
         if (maxToYear > nowYear || actualMaxMonth > nowMonth && maxToYear === nowYear) {
             actualMaxMonth = nowMonth;
             maxToYear = nowYear;
-
-            min = { month: from.month, year: maxToYear }
         }
 
         return {
             min,
-            max: { month: actualMaxMonth, year: maxToYear }
+            max: { month: actualMaxMonth || 12, year: maxToYear }
         };
     }
 
     render() {
         const { selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, selectedProductList, userName, isGetAll } = this.state;
-        const { languageList } = this.props;
+        const { languageList, isShowLangFilter } = this.props;
 
         const productDataSource = this._getProductDataSource();
         const isValidSelectedProduct = selectedProductList.length > 0;
@@ -290,7 +289,7 @@ export class Filter extends Component {
                                     onChange={this.handleChangeAffiliate}
                                     value={userName} />) :
                                 (
-                                    <AutoComplete url={resolveClientUrl('Portal/AffiliateReport/GetAffiliateList')}
+                                    <AutoComplete url={resolveClientUrl('Portal/Report/GetAffiliateList')}
                                         onSelect={(value) => this.setState({ userName: value })}
                                         onInput={(value) => this.setState({ userName: value })}
                                         value={userName}
@@ -299,7 +298,7 @@ export class Filter extends Component {
                         }
                     </FormGroup>
                     {
-                        isMainView &&
+                        isMainView && isShowLangFilter &&
                         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                             <Input type="select" name="Language" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
                                 <option key="lang-all" value="">All Language</option>
@@ -380,8 +379,10 @@ export class Filter extends Component {
     }
 }
 
-function mapStateToProps({ productList, pagingOption, languageList, today, currentViewLevel, param, hasTurnOverPermission }) {
-    return Object.assign({}, { productList, pagingOption, languageList, today, currentViewLevel, param, hasTurnOverPermission });
+function mapStateToProps({ productList, pagingOption, languageList, today, currentViewLevel, param, claimsPrincipal }) {
+    const hasTurnOverPermission = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
+    const isShowLangFilter = claimsPrincipal.hasReadClaim(claimResource.LanguageAmendment);
+    return Object.assign({}, { productList, pagingOption, languageList, today, currentViewLevel, param, hasTurnOverPermission, isShowLangFilter });
 }
 
 function mapDispatchToProps(dispatch) {

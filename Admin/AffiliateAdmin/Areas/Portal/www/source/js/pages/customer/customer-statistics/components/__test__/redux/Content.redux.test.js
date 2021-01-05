@@ -23,6 +23,8 @@ describe('customer statistics - Content - connect', () => {
         const expectedResult = {
             monthDate: '09/24/2019',
             today: '09/24/2019',
+            isDisplayTurnOver: true,
+            isDisplayActivePlayer: true,
             affId: 123
         };
 
@@ -30,6 +32,7 @@ describe('customer statistics - Content - connect', () => {
             customerStatistics : { monthDate: '09/24/2019' },
             affCommonInfo: { affId: 123 },
             today: '09/24/2019',
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

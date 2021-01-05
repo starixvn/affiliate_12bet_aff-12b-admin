@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Option from './Option'
 
 const MultipleSelectOptionList = (props) => {
-    const { dataSource, onChange, id } = props;
+    const { dataSource, onChange, id, isDisableOption } = props;
 
     return (
         <ul className="multiple-select-options">
@@ -14,7 +14,8 @@ const MultipleSelectOptionList = (props) => {
                             id={`${id}-optionItem-${index}`}
                             key={`${id}optionItem${index}`}
                             itemData={item}
-                            onChange={onChange} />
+                            onChange={onChange}
+                            isDisableOption={isDisableOption} />
                     )
                 })
             }

@@ -7,7 +7,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -38,24 +37,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         }
 
         [HttpGet]
+        [AllowByPassFunctionAuthorize]
         public ActionResult Index(ParamFromHome param, int groupId = 0)
         {
-            var subMenu = new List<SubMenu>
+            var viewModel = new AffiliateFilterViewModel
             {
-                new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate"), IsActive = true },
-                new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest") },
-                new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/Portal/CommissionGroup") },
-                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory") }
-            };
-
-            var groupListParam = new GetGroupListParam { AffId = -1 };
-            var viewModel = new AffiliateInfoViewModel
-            {
-                CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
-                LanguageList = _languageService.GetLanguageList(),
                 SelectedGroupId = groupId,
-                Param = param,
-                SubMenuList = subMenu
+                Param = param
             };
 
             return View(viewModel);
@@ -63,13 +51,28 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetAffiliateList(AffiliateInfoParam param)
+        public ActionResult GetFilter()
         {
-            int affId;
-            if (int.TryParse(param.AffId, out affId) || string.IsNullOrEmpty(param.AffId))
+            var groupListParam = new GetGroupListParam { AffId = -1 };
+            var viewModel = new AffiliateFilterViewModel
             {
-                param.AffIdNumber = affId;
-                param.UserId = SessionService.UserId;
+                CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
+                LanguageList = _languageService.GetInChangeMarkets(),
+            };
+
+            return new JsonNetResult(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [ResetDefaultUnauthorizedProperty]
+        public ActionResult GetAffiliateList(GetAffiliateViewModel viewModel)
+        {
+            if (int.TryParse(viewModel.AffId, out int affId) || string.IsNullOrEmpty(viewModel.AffId))
+            {
+                viewModel.AffIdNumber = affId;
+                viewModel.UserId = SessionService.UserId;
+                var param = BuildGetModelToParam(viewModel);
                 var model = _affiliateInfoRepository.GetAffiliateList(param);
 
                 return new JsonNetResult
@@ -90,6 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
         public ActionResult ToggleFavorite(FavoriteParam param)
         {
             if (ModelState.IsValid)
@@ -109,6 +113,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AffPassword, IsHost = true)]
         public ActionResult ChangePassword(PasswordParam param)
         {
             if (ModelState.IsValid)
@@ -124,6 +129,28 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 Code = Code.GeneralErrorCode,
                 Message = "Change Password is failed!"
             });
+        }
+
+        private AffiliateInfoParam BuildGetModelToParam(GetAffiliateViewModel viewModel)
+        {
+            var supportLanguages = _languageService.GetInChangeMarkets();
+            var queryLangs = LanguageHelper.BuildAllowQueryLanguages(viewModel.Language, supportLanguages);
+            return new AffiliateInfoParam
+            {
+                AffId = viewModel.AffId,
+                AffIdNumber = viewModel.AffIdNumber,
+                Email = viewModel.Email,
+                GroupId = viewModel.GroupId,
+                IsExportExcel = viewModel.IsExportExcel,
+                PageIndex = viewModel.PageIndex,
+                PageSize = viewModel.PageSize,
+                PreferenceLanguages = queryLangs,
+                SortBy = viewModel.SortBy,
+                SortDirectionType = viewModel.SortDirectionType,
+                Status = viewModel.Status,
+                UserId = viewModel.UserId,
+                UserName = viewModel.UserName
+            };
         }
     }
 }

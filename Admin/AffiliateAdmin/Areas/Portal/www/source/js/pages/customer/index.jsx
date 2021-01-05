@@ -5,10 +5,8 @@ import { Provider } from 'react-redux';
 import reducer from './mainpage/reducers';
 import AppContainer from './mainpage/components/AppContainer';
 import { configureStore } from '../../modules/store';
+import ClaimPrincipal from '../../modules/claim';
 
-const { hasTurnOverPermission } = window.globalVariables;
-
-const store = configureStore({ ...window.initialState, hasTurnOverPermission }, reducer);
 
 export default class App extends React.PureComponent {
     constructor(props) {
@@ -16,6 +14,8 @@ export default class App extends React.PureComponent {
     }
 
     render() {
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+        const store = configureStore({ ...window.initialState, claimsPrincipal }, reducer);
         return (
             <Provider store={store}>
                 <AppContainer />

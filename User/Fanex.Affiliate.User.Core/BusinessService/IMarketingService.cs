@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -9,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal);
 
-        IEnumerable<LanguageType> GetLanguageList(bool isInternal);
+        IEnumerable<Language> GetLanguageList();
 
         IEnumerable<CurrencyType> GetCurrencyList(bool isInternal);
 

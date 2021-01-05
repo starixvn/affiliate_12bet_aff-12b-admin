@@ -5,13 +5,11 @@ using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using Fanex.Affiliate.Admin.Core.ViewModels;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -40,24 +38,29 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpGet]
+        [AllowByPassFunctionAuthorize]
         public ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate") },
-                new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest") },
-                new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/Portal/CommissionGroup"), IsActive = true },
-                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory") }
-            };
-
             var viewModel = new CommissionGroupViewModel
             {
                 ProductList = _productRepository.GetProductList(),
                 DeductionList = _commGroupCommonService.GetDeductionList(),
-                SubMenuList = subMenu
             };
 
             return View("~/Areas/Portal/Views/Affiliate/CommissionGroup.cshtml", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult FetchInitState()
+        {
+            var viewModel = new CommissionGroupViewModel
+            {
+                ProductList = _productRepository.GetProductList(),
+                DeductionList = _commGroupCommonService.GetDeductionList(),
+            };
+
+            return new JsonNetResult(viewModel);
         }
 
         [HttpPost]
@@ -78,6 +81,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [AllowByPassFunctionAuthorize]
         public ActionResult GetCommissionGroup(GetCommissionGroupParam param)
         {
             if (param.GroupId >= Validation.MinId)

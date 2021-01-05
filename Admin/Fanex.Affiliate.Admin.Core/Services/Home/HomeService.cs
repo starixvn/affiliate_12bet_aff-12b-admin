@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 {
     public class HomeService : BaseRepository, IHomeService
     {
-        public EntityResult<OnlineListInfo> GetOnlineList(int pageIndex, int pageSize)
+        public EntityResult<OnlineListInfo> GetOnlineList(string languageCodes, int pageIndex, int pageSize)
         {
             const string SpKey = "Aff_UserOnlineList";
 
@@ -20,10 +20,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 
             using (var objectDb = GetObjectDb(SpKey))
             {
+                objectDb.AddInParameter("LanguageCodes", DbType.String, languageCodes);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, pageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, pageSize);
 
-                objectDb.AddOutParameter("TotalPages", DbType.Int32, Size.SizeOfInt);
                 objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
 
                 using (var reader = objectDb.ExecuteReader())
@@ -87,13 +87,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
             return result;
         }
 
-        public GeneralInfo GetGeneralInfo()
+        public GeneralInfo GetGeneralInfo(string marketIds)
         {
             const string SpKey = "Aff_Admin_GeneralInfo_Sel";
             GeneralInfo result = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
+                objectDb.AddInParameter("Languages", DbType.String, marketIds);
                 using (var reader = objectDb.ExecuteReader())
                 {
                     if (reader.Read())

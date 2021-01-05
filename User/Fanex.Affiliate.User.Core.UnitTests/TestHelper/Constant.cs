@@ -2,7 +2,6 @@
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
@@ -33,21 +32,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 
         public static IEnumerable<Language> LanguageList = new List<Language>
         {
-            new Language {Code = "en-UK", DisplayName="English", EnglishName="English", NativeName="English", ShortedCode="en" },
-            new Language {Code ="vi-VN", DisplayName="VietNam", EnglishName= "VietNamese", NativeName="Tieng viet", ShortedCode = "vn" },
-            new Language {Code = "en-US",  DisplayName="English", EnglishName="English", NativeName="English", ShortedCode="us"}
-        };
-
-        public static IEnumerable<LanguageType> LanguageTypeList = new List<LanguageType>
-        {
-            new LanguageType {DisplayName = "English", MarketId = "en-UK", MarketName = "England", MarketNativeName = "England", ShortedCode = "en" }
+            new Language { MarketId = "en-UK", DisplayName = "English", MarketName = "English", MarketNativeName = "English", ShortedCode = "en" },
+            new Language { MarketId = "vi-VN", DisplayName = "VietNam", MarketName = "VietNamese", MarketNativeName = "Tieng viet", ShortedCode = "vn" },
+            new Language { MarketId = "en-US",  DisplayName ="English", MarketName = "English", MarketNativeName = "English", ShortedCode = "us" }
         };
 
         public static IEnumerable<CategoryType> CategoryList = new List<CategoryType>
         {
             new CategoryType {Category = "test", SubCategory= "testSub1" },
-            new CategoryType { Category = "test", SubCategory = "testSub2" },
-            new CategoryType { Category = "test1", SubCategory = "testSub3" },
+            new CategoryType { Category = "test1", SubCategory = "testSub2" },
+            new CategoryType { Category = "Casino", SubCategory = "CasinoClubs" },
             new CategoryType { Category = "test2" }
         };
 
@@ -71,7 +65,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 
         public static IEnumerable<BannerType> BannerTypeList = new List<BannerType>
         {
-            new BannerType {Type = "Image", TypeId =1 }
+            new BannerType {Type = "Image", TypeId = 1 },
+            new BannerType {Type = "test", TypeId = 2 }
         };
 
         public static UserSession Session = new UserSession

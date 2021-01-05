@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Fanex.Affiliate.User.Core.DTO;
+﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var db = _builder.Build(uSpKey, mode))
             {
-               return db.Query<DailyEarningDetail>(earningDetailParam);
+                return db.Query<DailyEarningDetail>(earningDetailParam);
             }
         }
     }

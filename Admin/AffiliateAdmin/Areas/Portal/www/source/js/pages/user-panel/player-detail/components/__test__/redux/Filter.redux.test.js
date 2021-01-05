@@ -21,6 +21,7 @@ describe('player detail - Filter - connect', () => {
         const expectedResult = {
             param: { abc: 123 },
             affId: 1271808,
+            hasTurnOverPermission: true,
             today: '25/09/2019'
         };
         const state = {
@@ -31,6 +32,7 @@ describe('player detail - Filter - connect', () => {
             playerDetail: {
                 param: { abc: 123 },
             },
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

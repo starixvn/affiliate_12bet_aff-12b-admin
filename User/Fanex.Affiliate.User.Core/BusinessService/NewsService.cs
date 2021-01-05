@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Fanex.Affiliate.User.Core.Constants;
+﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -22,10 +22,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public LatestHotNews GetLatestHotNews(bool isInternal)
         {
             var hotNews = _cacheService.Get<LatestHotNews>(CacheKey.LatestHotNews);
-            if (hotNews == null)
-            {
-                hotNews = _hotNewsRepository.GetLastestHotNews(isInternal);
-            }
+            hotNews = hotNews ?? _hotNewsRepository.GetLastestHotNews(isInternal);
 
             if (hotNews != null)
             {

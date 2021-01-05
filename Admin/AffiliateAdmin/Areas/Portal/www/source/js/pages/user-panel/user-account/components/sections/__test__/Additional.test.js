@@ -35,6 +35,7 @@ describe('user account - components - sections - Additional', () => {
     };
     const defaultProps = {
         userAccountInfo,
+        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
         setUserAccountInfo: jest.fn()
     }
 
@@ -46,9 +47,16 @@ describe('user account - components - sections - Additional', () => {
 
     it('handleChange - should call setUserAccountInfo', () => {
         const result = shallow(<Additional {...defaultProps} />);
-        
+
         result.instance().handleChange({ target: { name: 'address', value: '123' }});
 
         expect(defaultProps.setUserAccountInfo).toHaveBeenCalledWith({ ...userAccountInfo, Address: '123'});
+    });
+
+    it('render correctly with not has claim', () => {
+        const props = Object.assign({}, defaultProps, { hasReadClaim: jest.fn(() => false), hasWriteClaim: jest.fn(() => false) });
+        const result = shallow(<Additional {...props} />);
+
+        expect(result).toMatchSnapshot();
     });
 });

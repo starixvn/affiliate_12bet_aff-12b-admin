@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.ExchangeRate;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.ExchangeRate;
@@ -42,39 +41,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.ExchangeRate
         }
 
         [Fact]
-        public void Index_WhenCallHasPermission_ReturnView()
+        public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var sessionService = new Mock<ISessionService>();
-            sessionService.Setup(s => s.UserPermissionList).Returns(new List<UserPermission> { new UserPermission { FunctionName = "[AffEx.Rate]", IsHost = true } });
-            var controller = CreateExchangeRateController(sessionService.Object);
+            var controller = CreateExchangeRateController();
 
             // Action
             var viewResult = controller.Index() as ViewResult;
             var viewName = viewResult.ViewName;
-            var hasPermission = viewResult.Model as bool?;
 
             // Assert
             Assert.Equal("", viewName);
-            Assert.True(hasPermission);
-        }
-
-        [Fact]
-        public void Index_WhenCallNonPermission_ReturnView()
-        {
-            // Arrange
-            var sessionService = new Mock<ISessionService>();
-            sessionService.Setup(s => s.UserPermissionList).Returns(new List<UserPermission> { new UserPermission { FunctionName = "[Rate]", IsHost = false } });
-            var controller = CreateExchangeRateController(sessionService.Object);
-
-            // Action
-            var viewResult = controller.Index() as ViewResult;
-            var viewName = viewResult.ViewName;
-            var hasPermission = viewResult.Model as bool?;
-
-            // Assert
-            Assert.Equal("", viewName);
-            Assert.False(hasPermission);
         }
 
         [Fact]

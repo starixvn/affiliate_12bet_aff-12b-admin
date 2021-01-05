@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Fanex.Data;
+﻿using Fanex.Data;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
@@ -7,7 +7,10 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
     {
         public string Category { get; set; }
 
+        [SpParam(Ignored = true)]
         public string Language { get; set; }
+
+        public string Languages { get; set; }
 
         public string Currency { get; set; }
 

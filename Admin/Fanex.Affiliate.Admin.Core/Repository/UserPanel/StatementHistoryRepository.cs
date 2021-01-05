@@ -25,6 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 objectDb.AddInParameter("TDate", DbType.DateTime, param.ToDate);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
 
                 objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
 

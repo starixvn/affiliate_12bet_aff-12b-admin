@@ -15,6 +15,7 @@ describe('affiliate report - Content ', () => {
         reportTitle: '',
         currentViewLevel: mainView,
         hasTurnOverPermission,
+        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasClaim: jest.fn(() => true) },
         param: {}
     };
 
@@ -143,7 +144,7 @@ describe('affiliate report - Content ', () => {
 
             await componentInstance.handleExportExcel();
 
-            expect(ReportExcel).toHaveBeenCalledWith(expectedResponse.data, reportTitle, hasTurnOverPermission, isMainView);
+            expect(ReportExcel).toHaveBeenCalled();
         });
     });
 

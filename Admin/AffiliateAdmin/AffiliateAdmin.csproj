@@ -98,6 +98,9 @@
       <HintPath>..\..\packages\NPOI.2.0.6\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
@@ -263,100 +266,10 @@
     <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_en-GB.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_en-US.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_en.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_es-ES.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_hi-IN.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_id-ID.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_ja-JP.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_ko-KR.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_th-TH.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_vi-VN.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_zh-CN.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\banner_zh-TW.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\bgMain.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\button.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\header.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\note.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\i_admin.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\i_affiliateslist.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\i_domain.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\i_media1.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\i_member.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\i_report.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\**" />
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\adjustment.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\customer-statistics.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarning.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\dailyEarningDetail.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\landingPageStatistics.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\member.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\note.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\playerDetail.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\referrerStatistics.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\statementHistory.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\trackingStatistics.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\userAccount.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~landingPageStatistics~member~referrerStatistics~statementHistory~viewLog.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~playerDetail.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\viewLog.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\xlsx-style.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\administrator\administrator.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\administrator\department.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\affiliate\affiliate-info.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\affiliate\email-history.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\change-admin-password.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\customer\customer.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\domain\domain-control.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\domain\domain.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\exchange-rate\exchange-rate.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\home.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\login.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\banner-list.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\landing-page.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\text-list.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\member\active-member.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\member\member-list.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\message\message.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\payment\payment-request.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\report\affiliate-report.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\under-maintenance.js" />
-    <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
-    <Content Include="Areas\Portal\www\dist\style\assets\lgLeft.jpg" />
-    <Content Include="Areas\Portal\www\dist\style\assets\lgLogo.jpg" />
-    <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
-    <Content Include="Areas\Portal\www\dist\style\assets\UnderMaintenance.gif" />
-    <Content Include="Areas\Portal\www\dist\style\change-admin-password.css" />
-    <Content Include="Areas\Portal\www\dist\style\home.css" />
-    <Content Include="Areas\Portal\www\dist\style\layout.css" />
-    <Content Include="Areas\Portal\www\dist\style\login.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\administrator\administrator.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\administrator\department.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\affiliate-info.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\customer.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\domain\domain-control.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\domain\domain.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\email-history.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\exchange-rate\exchange-rate.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\banner-list.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\landing-page.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\text-list.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\member\active-member.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\message\message.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\payment\payment-request.css" />
-    <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
-    <Content Include="Areas\Portal\www\dist\style\under-maintenance.css" />
-    <Content Include="Areas\Portal\www\dist\style\user-panel-layout.css" />
+    <Content Include="Areas\Portal\www\dist\js\**" />
+    <Content Include="Areas\Portal\www\dist\style\**" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
     <Content Include="Areas\Portal\www\dist\vendors\moment.js" />
@@ -377,36 +290,50 @@
     <Content Include="Areas\Portal\www\source\js\components\__test__\Loader.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\__test__\ReportTitle.test.js" />
     <Content Include="Areas\Portal\www\source\js\layouts\__test__\AppLayout.test.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\claim.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\globalResource.js" />
     <Content Include="Areas\Portal\www\source\js\modules\htmlHelper.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\actions\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\components\__test__\AppContainer.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\reducers\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\reducers\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\Content.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\EditPolicyForm.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\Filter.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\InsertUpdateAccForm.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\DepartmentPopup.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\redux\EditPolicyForm.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\__test__\redux\InsertUpdateAccForm.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\libs\constants.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\actions\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\libs\services.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\actions\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\AppContainer.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\Content.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\InsertUpdateForm.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\__test__\redux\InsertUpdateForm.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\libs\constants.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\reducers\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\reducers\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\reducerRegistry.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\PersonalPermissionTable.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\libs\utils.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\ControlButtons.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\PermissionPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\components\Menu.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\libs\render.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\libs\utils.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\menu.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\resetAllProps.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\common-reducers.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\children-reducers.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\components\GeneralComponent.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\components\LanguageComponent.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\__tests__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\GridData.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\redux\Filter.redux.test.js" />
@@ -419,10 +346,15 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\GridData.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\headerFake.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\__test__\redux\GridData.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\header.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\constants\key.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\modules\menus.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\change-admin-password\__test__\index.test.js" />
@@ -431,7 +363,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\__test__\AssignGroup.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\__test__\AssignPrivateGroup.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\__test__\EditGroup.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\__test__\GridData.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\__test__\redux\GridData.redux.test.js" />
@@ -461,6 +392,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\changePassword.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\actions\__test__\paymentRequestUpdate.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\CheckboxSelectAll.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\InputPopUp.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\MenuList.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\MyLink.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\ButtonDeleteItems.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\ChangePasswordForm.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\CommissionGroupPopup.test.js" />
@@ -523,6 +458,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\ContactNumber.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ApprovedStatusInfo.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ContactApp.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\Language.test.js" />
@@ -662,6 +598,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\InputFile.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\__test__\ControlButtons.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\constants\key.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\__test__\index.test.js" />
@@ -674,6 +612,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\modules\menus.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\__test__\index.test.js" />
@@ -702,6 +641,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\constants\key.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\__test__\index.test.js" />
@@ -714,6 +655,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\modules\menus.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\SelectAll.jsx" />
@@ -736,7 +678,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\BannerDetailPopup.jsx" />
     <Content Include="Areas\Portal\Views\Shared\_ReactPageLayout.cshtml" />
-    <Content Include="Areas\Portal\Views\Affiliate\_AffiliateSubMenu.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\PaymentRequest.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\CommissionGroup.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\EmailHistory.cshtml" />
@@ -744,8 +685,6 @@
     <Content Include="Areas\Portal\Views\MediaGallery\LandingPageList.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Content.jsx" />
-    <Content Include="Areas\Portal\Views\Member\ActiveMember.cshtml" />
-    <Content Include="Areas\Portal\Views\Member\_MemberSubMenu.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\login\index.jsx" />
@@ -773,19 +712,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\DomainControlPopup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\Content.jsx" />
-    <Content Include="Areas\Portal\Views\Administrator\Department.cshtml" />
-    <Content Include="Areas\Portal\Views\Administrator\_AdministratorSubMenu.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\administrator\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\department\components\InsertUpdateForm.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\Filter.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\InsertUpdateAccForm.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\EditPolicyForm.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\administrator\common\components\DepartmentPopup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\home\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\OnlineList.jsx" />
@@ -796,6 +722,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\home\components\Panel.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\Filter.jsx" />
     <Content Include=".babelrc" />
+    <Content Include="Areas\Portal\Views\AdminRole\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\AdminRole\RolePermission.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -972,6 +900,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\reducers\claimReducer.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\loaderReducer.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\pagingReducer.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\__test__\loaderReducer.test.js" />
@@ -1012,6 +941,7 @@
     <Content Include="Areas\Portal\www\source\style\assets\login\lgRight.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\login\lgRp.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\under-maintenance\UnderMaintenance.gif" />
+    <Content Include="Areas\Portal\www\source\style\assets\admin-role\icon_menu.png" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\a_bg.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_box_tab.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_button2.jpg" />
@@ -1025,6 +955,7 @@
     <Content Include="Areas\Portal\www\webpack.config.js" />
     <Content Include="Areas\Portal\www\webpack.config.vendor.js" />
     <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Release Note.txt" />
     <Content Include="SpNames.xml">
@@ -1075,7 +1006,6 @@
     <Content Include="Areas\Portal\Views\MediaGallery\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Message\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ExchangeRate\Index.cshtml" />
-    <Content Include="Areas\Portal\Views\Administrator\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Domain\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\_MainMenu.cshtml" />
@@ -1321,12 +1251,15 @@
     <Content Include="Areas\Portal\www\source\style\pages\member\active-member.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\domain\domain.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\domain\domain-control.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\administrator\administrator.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\administrator\department.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_policy-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_department-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\home.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\SortingCell.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-role-menu.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-info.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-list.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\admin-role\role-permission.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\affiliate.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1397,7 +1330,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
   </Target>
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

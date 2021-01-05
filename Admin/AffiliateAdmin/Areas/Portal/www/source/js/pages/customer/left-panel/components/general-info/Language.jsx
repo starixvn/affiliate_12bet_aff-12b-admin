@@ -72,15 +72,20 @@ export class Language extends PureComponent {
         const languageItem = languageList.find(l => l.LanguageCode === affiliateInfo.PreferredLanguage);
 
         return (
-            <Button color="link" className="left-panel-btn-link" onClick={() => this.toggleChangingLanguage(true)}>
+            <Button color="link" className="left-panel-btn-link text-primary" onClick={() => this.toggleChangingLanguage(true)}>
                 {languageItem && htmlDecode(languageItem.LanguageName)}
             </Button>
         )
     }
 
-    render() {
-        const { isChangingLanguage, messageNotification, isConfirmPopup } = this.state;
+    _renderStaticContent = () => {
+        const { affiliateInfo, languageList } = this.props;
+        const languageItem = languageList.find(l => l.LanguageCode === affiliateInfo.PreferredLanguage);
+        return <React.Fragment> {languageItem && htmlDecode(languageItem.LanguageName)} </React.Fragment>;
+    }
 
+    _renderSelectionContent =() => {
+        const { isChangingLanguage, messageNotification, isConfirmPopup } = this.state;
         return (
             <React.Fragment>
                 {
@@ -95,6 +100,14 @@ export class Language extends PureComponent {
                 }
             </React.Fragment>
         )
+    }
+
+    render() {
+        const { isStatic } = this.props;
+
+        const renderContent = isStatic ? this._renderStaticContent : this._renderSelectionContent;
+
+        return renderContent();
     }
 }
 

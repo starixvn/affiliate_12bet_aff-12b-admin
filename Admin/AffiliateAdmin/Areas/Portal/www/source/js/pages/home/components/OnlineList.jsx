@@ -6,7 +6,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import Filter from './Filter';
 import { htmlDecode } from '../../../modules/htmlHelper';
 import { resolveClientUrl } from '../../../modules/utils';
-import { headerText, roleList } from '../libs/constants';
+import { headerText } from '../libs/constants';
 import { setPagingOption, getOnlineList } from '../actions';
 
 export class OnlineList extends PureComponent {
@@ -47,7 +47,7 @@ export class OnlineList extends PureComponent {
             }
         }
         else {
-            dataRows.push(<Row>
+            dataRows.push(<Row key="No Info">
                 <Cell className="text-center" colSpan="6">No users are online</Cell>
             </Row>);
         }
@@ -59,14 +59,13 @@ export class OnlineList extends PureComponent {
         const ipAddress = dataItem.Ip;
         const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${ipAddress}&j=1`;
         const userName = htmlDecode(dataItem.UserName);
-        const role = roleList[dataItem.Role];
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={userName} className="text-center">
                     {
-                        dataItem.Role.toLowerCase() === 'admin' ? userName : (<a href={resolveClientUrl(`Portal/Customer?user=${userName}`)}>{userName}</a>)
+                        dataItem.Role.toLowerCase() === 'affiliate' ? (<a href={resolveClientUrl(`Portal/Customer?user=${userName}`)}>{userName}</a>) : userName
                     }
                 </Cell>
                 <Cell title={dataItem.LoggedInDateText} className="text-center">{dataItem.LoggedInDateText}</Cell>
@@ -74,7 +73,7 @@ export class OnlineList extends PureComponent {
                 <Cell title={ipAddress} className="text-center">
                     <a target="_blank" href={url}>{ipAddress}</a>
                 </Cell>
-                <Cell title={role} className="text-center">{role}</Cell>
+                <Cell title={dataItem.Role} className="text-center">{dataItem.Role}</Cell>
             </Row>
         )
     }

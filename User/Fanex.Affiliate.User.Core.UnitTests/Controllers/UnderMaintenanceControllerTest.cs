@@ -6,11 +6,6 @@ using NSubstitute;
 using ONEbook.UM.Models;
 using ONEbook.UM.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Xunit;
@@ -62,22 +57,27 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(toTime.ToString(), result.ViewBag.UmTimeTo);
         }
 
-        [Fact]
-        public void Excute_WhenRequestChangeLang_SetForNewLang()
+        [Theory]
+        [InlineData("en-US")]
+        [InlineData("vi-VN")]
+        public void Excute_WhenRequestChangeLang_SetForNewLang(string languageCode)
         {
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);
             var routeData = CreateRouteData();
             controller.ControllerContext.RouteData = routeData;
             var requestContext = new RequestContext(controller.HttpContext, routeData);
-            LanguageService.GetFavoriteLanguage().Returns("vn-vi");
+
+            SessionService.CurrentLanguage.Returns("vi-VN");
+            LanguageService.GetFavoriteLanguage().Returns(languageCode);
 
             try
             {
                 (controller as IController).Execute(requestContext);
             }
             catch { }
-            LanguageService.Received().SetCulture("vn-vi");
+
+            LanguageService.Received().SetCulture(languageCode);
         }
 
         private static RouteData CreateRouteData()

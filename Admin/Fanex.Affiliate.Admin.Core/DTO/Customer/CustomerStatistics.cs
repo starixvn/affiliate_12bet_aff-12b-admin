@@ -13,12 +13,16 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public int NewFdmTotal { get; set; }
 
+        [PermissionCheck(Function.AffPlayerDetail)]
         public int ActivePlayerByMonth { get; set; }
 
+        [PermissionCheck(Function.AffPlayerDetail)]
         public int QualifiedMemberByMonth { get; set; }
 
+        [PermissionCheck(Function.AffPlayerDetail)]
         public decimal DepositByMonth { get; set; }
 
+        [PermissionCheck(Function.AffPlayerDetail)]
         public decimal DepositTotal { get; set; }
 
         [PermissionCheck(Function.Turnover)]

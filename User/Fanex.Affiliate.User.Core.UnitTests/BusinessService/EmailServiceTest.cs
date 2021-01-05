@@ -3,13 +3,12 @@ using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Resources;
+using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 using Newtonsoft.Json;
 using NSubstitute;
 using System;
-using System.IO;
-using System.Web;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
@@ -17,10 +16,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
     public class EmailServiceTest
     {
         private readonly IMailProcessor MailProcessor;
+        private readonly ILanguageService LanguageService;
 
         public EmailServiceTest()
         {
             MailProcessor = Substitute.For<IMailProcessor>();
+            LanguageService = Substitute.For<ILanguageService>();
         }
 
         [Fact]
@@ -29,7 +30,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var service = CreateService();
             var param = CreateRecoverEmailParam();
             var mainContent = "mail content";
-            SetUpEnviroment();
+            MockingHelper.SetUpEnviroment();
             MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendRecoverPasswordEmail(param);
@@ -40,18 +41,55 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
+        public void SendCodeReoverPasswordEmail_WhenCallWithTextContent_SendMail()
+        {
+            var service = CreateService();
+            var param = CreateRecoverEmailParam();
+            param.User.MailOption = true;
+
+            var mainContent = "mail content";
+            MockingHelper.SetUpEnviroment();
+            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            LanguageService.IsValid(Arg.Any<string>()).Returns(true);
+
+            service.SendRecoverPasswordEmail(param);
+
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<RecoverPasswordEmailParam>());
+            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectForgetPass, param.MailBcc, param.MailCc);
+        }
+
+        [Fact]
         public void SendNewPasswordEmail_WhenCall_SendMail()
         {
             var service = CreateService();
             var param = CreateNewPasswordEmailParam();
             var mainContent = "mail content";
-            SetUpEnviroment();
+            MockingHelper.SetUpEnviroment();
             MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendNewPasswordEmail(param);
 
             MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<NewPasswordEmailParam>());
             MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectNewPass, param.MailBcc, param.MailCc);
+        }
+
+        [Fact]
+        public void SendNewPasswordEmail_WhenCallWithTextContent_SendMail()
+        {
+            var service = CreateService();
+            var param = CreateNewPasswordEmailParam();
+            param.User.MailOption = true;
+
+            var mainContent = "mail content";
+            MockingHelper.SetUpEnviroment();
+            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+
+            service.SendNewPasswordEmail(param);
+
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<NewPasswordEmailParam>());
+            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectNewPass, param.MailBcc, param.MailCc);
         }
 
@@ -63,7 +101,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var service = CreateService();
             var param = CreatePaymentEmailParam(type);
             var mainContent = "mail content";
-            SetUpEnviroment();
+            MockingHelper.SetUpEnviroment();
             MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendPaymentEmail(param);
@@ -73,13 +111,33 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             MailProcessor.Received().Send(mainContent, param.MailTo, Arg.Compat.Is<string>(c => c.Contains(param.TransId.ToString())), param.MailBcc, param.MailCc);
         }
 
+        [Theory]
+        [InlineData(PaymentRequestType.Cancel)]
+        [InlineData(PaymentRequestType.Create)]
+        public void SendPaymentEmail_WhenCallWithTextContent_SendMail(PaymentRequestType type)
+        {
+            var service = CreateService();
+            var param = CreatePaymentEmailParam(type);
+            param.User.MailOption = true;
+
+            var mainContent = "mail content";
+            MockingHelper.SetUpEnviroment();
+            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+
+            service.SendPaymentEmail(param);
+
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<PaymentEmailParam>());
+            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().Send(mainContent, param.MailTo, Arg.Compat.Is<string>(c => c.Contains(param.TransId.ToString())), param.MailBcc, param.MailCc);
+        }
+
         [Fact]
         public void SendSignUpEmail_WhenCall_SendMail()
         {
             var service = CreateService();
             var param = CreateEmailBaseParam();
             var mainContent = "mail content";
-            SetUpEnviroment();
+            MockingHelper.SetUpEnviroment();
             MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendSignUpEmail(param);
@@ -90,12 +148,30 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
+        public void SendSignUpEmail_WhenCallWithTextContent_SendMail()
+        {
+            var service = CreateService();
+            var param = CreateEmailBaseParam();
+            param.User.MailOption = true;
+
+            var mainContent = "mail content";
+            MockingHelper.SetUpEnviroment();
+            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+
+            service.SendSignUpEmail(param);
+
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailBaseParam>());
+            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().Send(mainContent, param.MailTo, Lang.RegisSubject, param.MailBcc, param.MailCc);
+        }
+
+        [Fact]
         public void SendNoticeEmailToCsd_WhenCall_SendMail()
         {
             var service = CreateService();
             var param = CreateNoticeEmailParam();
             var mainContent = "mail content";
-            SetUpEnviroment();
+            MockingHelper.SetUpEnviroment();
             MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendNoticeEmailToCsd(param);
@@ -111,7 +187,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var param = CreateEmailBaseParam();
             var contactUsParam = CreateContactUsParam();
             var mainContent = "mail content";
-            SetUpEnviroment();
+            MockingHelper.SetUpEnviroment();
             MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendContactUsEmail(param, contactUsParam);
@@ -126,7 +202,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var service = CreateService();
             var param = CreateVerificationAccountEmailParam();
             var mainContent = "mail content";
-            SetUpEnviroment();
+            MockingHelper.SetUpEnviroment();
             MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendVerificationEmail(param);
@@ -136,11 +212,22 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectVerificationAccount, param.MailBcc, param.MailCc);
         }
 
-        private static void SetUpEnviroment()
+        [Fact]
+        public void SendVerificationEmail_WhenCallWithTextContent_SendMail()
         {
-            var request = new HttpRequest("111", "http://127.0.0.1:8080/controller/action", null);
-            var response = new HttpResponse(new StringWriter());
-            HttpContext.Current = new HttpContext(request, response);
+            var service = CreateService();
+            var param = CreateVerificationAccountEmailParam();
+            param.User.MailOption = true;
+
+            var mainContent = "mail content";
+            MockingHelper.SetUpEnviroment();
+            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+
+            service.SendVerificationEmail(param);
+
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<VerificationAccountEmailParam>());
+            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectVerificationAccount, param.MailBcc, param.MailCc);
         }
 
         private static RecoverPasswordEmailParam CreateRecoverEmailParam()
@@ -232,6 +319,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             };
 
         private EmailService CreateService()
-            => new EmailService(MailProcessor);
+            => new EmailService(MailProcessor, LanguageService);
     }
 }

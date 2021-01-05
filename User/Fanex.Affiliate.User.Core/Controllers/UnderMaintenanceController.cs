@@ -1,9 +1,9 @@
-﻿using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.Security;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using ONEbook.UM.Services;
+using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.Security;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -36,8 +36,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var underMaintenanceTimeFrom = string.Empty;
-            var underMaintenanceTimeTo = string.Empty;
             var maintenanceInfo = _maintenanceService.GetUnderMaintenanceTime();
 
             if (!maintenanceInfo.IsUnderMaintenanceTime)
@@ -45,14 +43,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Redirect(FormsAuthentication.LoginUrl);
             }
 
-            if (maintenanceInfo.IsUnderMaintenanceTime)
-            {
-                underMaintenanceTimeFrom = maintenanceInfo.From;
-                underMaintenanceTimeTo = maintenanceInfo.To;
-            }
-
-            ViewBag.UmTimeFrom = underMaintenanceTimeFrom;
-            ViewBag.UmTimeTo = underMaintenanceTimeTo;
+            ViewBag.UmTimeFrom = maintenanceInfo.From;
+            ViewBag.UmTimeTo = maintenanceInfo.To;
 
             return View();
         }

@@ -36,6 +36,7 @@ exports[`commission group - Content should render correctly 1`] = `
       }
     }
     centered={false}
+    container="body"
     fade={true}
     innerRef={
       Object {

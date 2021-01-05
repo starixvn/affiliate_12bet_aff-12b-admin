@@ -5,7 +5,7 @@ exports[`under maintenance - components - AppContainer render correctly 1`] = `
   className="under-maintenance-container"
 >
   <div
-    class="text_time text_top"
+    className="text_time text_top"
   >
     <font
       color="#555"
@@ -14,7 +14,7 @@ exports[`under maintenance - components - AppContainer render correctly 1`] = `
     </font>
   </div>
   <div
-    class="text_time text_button"
+    className="text_time text_button"
   >
     <font
       color="#555"

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fanex.Data;
+using System;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
@@ -7,7 +8,10 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
     {
         public string SportCode { get; set; }
 
+        [SpParam(Ignored = true)]
         public string LanguageCode { get; set; }
+
+        public string LanguageCodes { get; set; }
 
         public int TotalSignUps { get; set; }
 

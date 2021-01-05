@@ -1,16 +1,17 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
-    using System.Web.Mvc;
     using BusinessService;
     using Constants;
     using CoreService;
     using DTO;
     using Enum;
+    using Fanex.Affiliate.User.Core.MetalModels;
     using Fanex.Affiliate.User.Core.Resources;
     using Filters;
     using MetalModels.Email;
     using ONEbook.UM.Filters;
+    using System;
+    using System.Web.Mvc;
     using Utilities;
     using ViewModels;
 
@@ -19,17 +20,19 @@
     public class TestController : BaseController
     {
         private readonly IMailProcessor _mailProcessor;
-        private readonly ILanguageService _languageService;
         private readonly IAppSetting _appSetting;
 
-        private const string MailContact = "walter.tran@starixsoft.com";
+        private readonly string _mailContact;
+        private readonly string _userName;
 
         public TestController(ISessionService sessionService,
-            ILanguageService languageService, IAppSetting appSetting) : base(sessionService, languageService)
+            ILanguageService languageService, IAppSetting appSetting, IMailProcessor mailProcessor) : base(sessionService, languageService)
         {
-            _mailProcessor = new MailProcessor();
-            _languageService = languageService;
+            _mailProcessor = mailProcessor;
             _appSetting = appSetting;
+
+            _mailContact = appSetting.MailContact;
+            _userName = sessionService.UserSession?.UserName ?? "12B0000";
         }
 
         [HttpGet]
@@ -53,9 +56,9 @@
 
             try
             {
-                _languageService.SetCulture(criteria.Language);
+                LanguageService.SetCulture(criteria.Language);
                 ViewBag.Data = GetEmailContent(criteria);
-                _languageService.SetCulture("en-US");
+                LanguageService.SetCulture("en-US");
             }
             catch (Exception ex)
             {
@@ -79,9 +82,9 @@
             try
             {
                 var content = GetEmailContent(criteria);
-                _languageService.SetCulture(criteria.Language);
+                LanguageService.SetCulture(criteria.Language);
                 string Subject = GetSubject(criteria.Function);
-                _languageService.SetCulture("en-US");
+                LanguageService.SetCulture("en-US");
 
                 _mailProcessor.Send(content, criteria.EmailAddress, Subject);
             }
@@ -104,6 +107,12 @@
         {
             switch (functionName)
             {
+                case "ContactUs":
+                    return Lang.ContactUs;
+
+                case "Csd":
+                    return Lang.CsdSubject;
+
                 case "RecoverPassword":
                     return Lang.SubjectForgetPass;
 
@@ -118,6 +127,9 @@
 
                 case "Signup":
                     return Lang.RegisSubject;
+
+                case "VerificationAccount":
+                    return Lang.SubjectVerificationAccount;
 
                 default:
                     return Lang.AffiliateProgram;
@@ -146,7 +158,7 @@
 
         private string GetEmailHtmlContent(string content, string language)
         {
-            var domain = SiteDomainHelper.GetRootUrl(this);
+            var domain = SiteDomainHelper.GetRootUrl(this, _appSetting);
 
             var viewModel = new EmailTemplateViewModel
             {
@@ -165,6 +177,12 @@
         {
             switch (functionName)
             {
+                case "ContactUs":
+                    return GetContactUsModel();
+
+                case "Csd":
+                    return GetCSDModel();
+
                 case "RecoverPassword":
                     return GetForgetPasswordModel();
 
@@ -180,9 +198,36 @@
                 case "Signup":
                     return GetSignupModel();
 
+                case "VerificationAccount":
+                    return GetVerificationAccountModel();
+
                 default:
                     return null;
             }
+        }
+
+        private object GetContactUsModel()
+        {
+            return new ContactUsParam
+            {
+                Sender = "Sender",
+                Affiliate = _userName,
+                Email = "abc@12b.com",
+                Content = SiteDomainHelper.GetRootUrl(this, _appSetting),
+            };
+        }
+
+        private object GetCSDModel()
+        {
+            return new NoticeEmailParam
+            {
+                UserName = _userName,
+                FirstName = "Firs Name",
+                LastName = "Last Name",
+                SiteUrl = "abc.com.vn",
+                MoreSiteUrls = "xyz.com.vn",
+                MailContact = _mailContact
+            };
         }
 
         private object GetForgetPasswordModel()
@@ -190,10 +235,10 @@
             return new RecoverPasswordEmailParam
             {
                 User = GetUserInfo(),
-                MailContact = MailContact,
+                MailContact = _mailContact,
                 Code = "12345",
-                RootDomain = SiteDomainHelper.GetRootUrl(this),
-                MailTo = MailContact
+                RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
+                MailTo = _mailContact
             };
         }
 
@@ -205,12 +250,12 @@
             return new PaymentEmailParam
             {
                 User = GetUserInfo(),
-                MailContact = MailContact,
+                MailContact = _mailContact,
                 TransId = TranId,
                 RequestDate = DateTime.Now.Date,
                 Amount = Amount,
-                RootDomain = SiteDomainHelper.GetRootUrl(this),
-                MailTo = MailContact,
+                RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
+                MailTo = _mailContact,
                 PaymentType = type
             };
         }
@@ -220,10 +265,10 @@
             return new NewPasswordEmailParam
             {
                 User = GetUserInfo(),
-                MailContact = "mailcontact@gmail.com",
+                MailContact = _mailContact,
                 NewPassword = "1234aa",
                 RootDomain = "http://affiliate.12ying.com/",
-                MailTo = MailContact,
+                MailTo = _mailContact,
             };
         }
 
@@ -232,7 +277,19 @@
             return new EmailBaseParam
             {
                 User = GetUserInfo(),
-                MailContact = "mailcontact@gmail.com"
+                MailContact = _mailContact
+            };
+        }
+
+        private object GetVerificationAccountModel()
+        {
+            return new VerificationAccountEmailParam
+            {
+                User = GetUserInfo(),
+                MailContact = _mailContact,
+                RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
+                Code = "123456",
+                Ip = "127.0.0.1"
             };
         }
 
@@ -241,10 +298,10 @@
             return new UserInfo
             {
                 AffId = 1,
-                FirstName = "walter fisrt name",
-                UserName = "walter",
-                Email = "walter.tran@starixsoft.com",
-                LastName = "walter last name",
+                FirstName = "Fisrt name",
+                UserName = _userName,
+                Email = "abc@nova.com",
+                LastName = "Last name",
                 MailOption = false,
                 PreferredLanguage = "en-US"
             };

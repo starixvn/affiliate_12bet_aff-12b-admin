@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Enum;
+using Fanex.Affiliate.User.Core.Infrastructure;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -9,6 +9,8 @@ using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Moq;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
@@ -71,7 +73,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
         [Theory]
         [InlineData(false, null)]
-        [InlineData(true, "Your payment request has been cancelled!")]
+        [InlineData(true, null)]
         public void CancelPaymentRequest_WhenCall_ReturnCorrectResult(bool isSuccessful, string message)
         {
             // Arrange
@@ -127,6 +129,29 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
+        public void CreatePaymentRequest_IsLocalTest_ReturnCorrectResultInfo()
+        {
+            // Arrange
+            var param = new PaymentCreationParam
+            {
+                IsLocalTest = false,
+                Amount = 123
+            };
+
+            var dateTimeProvider = new Mock<IDateTimeProvider>();
+            dateTimeProvider.Setup(d => d.Now).Returns(new DateTime(2020, 12, 06));
+
+            var service = CreatePaymentService(dateTimeProvider: dateTimeProvider.Object);
+
+            // Action
+            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+
+            // Assert
+            Assert.False(result.IsOk);
+            Assert.Equal(Lang.PayoutTime, result.Message);
+        }
+
+        [Fact]
         public void CreatePaymentRequest_InvalidAmount_ReturnCorrectResultInfo()
         {
             // Arrange
@@ -146,6 +171,26 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Assert
             Assert.False(result.IsOk);
             Assert.Equal(Error.PaymentAmountInvalid, result.Message);
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_PlayerAccountIsNotActived_ReturnCorrectResultInfo()
+        {
+            // Arrange
+            var param = CreateValidPaymentCreationParam();
+            const string ErrorMessage = "Player Account Is Not Actived";
+
+            var accountService = new Mock<IAccountService>();
+            accountService.Setup(a => a.CheckPlayerAccountIsActived(param.AffId, param.Language)).Returns(new ResultInfo { Message = ErrorMessage });
+
+            var service = CreatePaymentService(accountService: accountService.Object);
+
+            // Action
+            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+
+            // Assert
+            Assert.False(result.IsOk);
+            Assert.Equal(ErrorMessage, result.Message);
         }
 
         [Fact]
@@ -217,8 +262,38 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             // Assert
             Assert.True(result.IsOk);
-            Assert.Equal(Lang.RequestPayoutSucc, result.Message);
+            Assert.Null(result.Message);
             Assert.Equal(JsonConvert.SerializeObject(expectedEmailParam), JsonConvert.SerializeObject(passedEmailParam));
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_ValidParamButNotSendEmail_ReturnCorrectResultButEmailParamNotAssign()
+        {
+            // Arrange
+            PaymentEmailParam passedEmailParam = null;
+            var param = CreateValidPaymentCreationParam();
+
+            var accountService = new Mock<IAccountService>();
+            accountService.Setup(a => a.CheckPlayerAccountIsActived(param.AffId, param.Language)).Returns(new ResultInfo { IsOk = true });
+
+            var paymentRepository = new Mock<IPaymentRepository>();
+            paymentRepository.Setup(p => p.CreatePaymentRequest(param)).Returns(new ResultInfo { IsOk = true });
+
+            var emailService = new Mock<IEmailService>();
+            emailService.Setup(e => e.SendPaymentEmail(It.IsAny<PaymentEmailParam>())).Callback<PaymentEmailParam>(p => passedEmailParam = p);
+
+            var service = CreatePaymentService(
+                paymentRepository: paymentRepository.Object,
+                accountService: accountService.Object,
+                emailService: emailService.Object);
+
+            // Action
+            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+
+            // Assert
+            Assert.True(result.IsOk);
+            Assert.Null(result.Message);
+            Assert.Null(passedEmailParam);
         }
 
         private PaymentCreationParam CreateValidPaymentCreationParam()
@@ -240,14 +315,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             IAccountRepository accountRepository = null,
             IAccountService accountService = null,
             IPaymentRepository paymentRepository = null,
-            IEmailService emailService = null)
+            IEmailService emailService = null,
+            IDateTimeProvider dateTimeProvider = null)
         {
             var fakeAccountRepository = accountRepository ?? Mock.Of<IAccountRepository>();
             var fakeAccountService = accountService ?? Mock.Of<IAccountService>();
             var fakePaymentRepository = paymentRepository ?? Mock.Of<IPaymentRepository>();
             var fakeEmailService = emailService ?? Mock.Of<IEmailService>();
+            var fakeDateTimeProvider = dateTimeProvider ?? Mock.Of<IDateTimeProvider>();
 
-            return new PaymentService(fakeAccountRepository, fakeAccountService, fakePaymentRepository, fakeEmailService);
+            return new PaymentService(fakeAccountRepository, fakeAccountService, fakePaymentRepository, fakeEmailService, fakeDateTimeProvider);
         }
     }
 

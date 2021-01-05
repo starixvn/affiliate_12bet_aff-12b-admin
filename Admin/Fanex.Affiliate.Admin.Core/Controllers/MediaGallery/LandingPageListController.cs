@@ -3,10 +3,8 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -25,14 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpGet]
         public ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.BannerList, Url = Url.Content("~/Portal/MediaGallery") },
-                new SubMenu { Name = Lang.TextList, Url = Url.Content("~/Portal/TextList") },
-                new SubMenu { Name = Lang.LandingPageList, Url = Url.Content("~/Portal/LandingPageList"), IsActive = true }
-            };
-
-            return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml", subMenu);
+            return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml");
         }
 
         [HttpPost]

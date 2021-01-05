@@ -6,6 +6,7 @@ import { defaultPagingOption } from '../../../../modules/constants';
 describe('payment request - components - Content ', () => {
     const defaultProps = {
         pagingOption: defaultPagingOption,
+        isClickable: true,
         param: {
             FromDate: "6/25/2019",
             IsGetAll: false,
@@ -47,7 +48,7 @@ describe('payment request - components - Content ', () => {
 
     it('render correctly with have gridData', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData });
 
         expect(result).toMatchSnapshot();
@@ -55,7 +56,7 @@ describe('payment request - components - Content ', () => {
 
     it('render correctly with have gridData is empty', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData: {} });
 
         expect(result).toMatchSnapshot();

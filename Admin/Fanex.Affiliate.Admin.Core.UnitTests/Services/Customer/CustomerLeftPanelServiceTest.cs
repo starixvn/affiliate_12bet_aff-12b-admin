@@ -9,6 +9,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
@@ -20,7 +21,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 {
     public class CustomerLeftPanelServiceTest
     {
-        private IDependencyResolver _originalResolver;
         private ILifetimeScopeProvider _scopeProvider;
 
         [Fact]
@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
-            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "", "", "");
+            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "", "");
 
             // Assert
             Assert.Null(result);
@@ -43,23 +43,25 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.InternalAsianAffiliateUrl).Returns("http://localhost:55690/Auth/AdminLogin");
+            appSetting.Setup(a => a.InternalAsianAffiliateUrl).Returns("http://127.0.0.1:8080/Auth/AdminLogin");
 
             var builder = new ContainerBuilder();
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            _scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
+
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
 
             var repository = new Mock<ICustomerLeftPanelRepository>();
             repository.Setup(comm => comm.GetAffiliateInfoOnLeftPanel(It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226", AffType = 2 });
-            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
+            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object, authService: authService.Object);
 
             // Action
-            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "123", "234", "345");
+            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "123", "234");
 
             // Assert
             Assert.Equal("12BETAFF226", result.AffName);
@@ -71,23 +73,25 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.InternalEuropeanAffiliateUrl).Returns("http://localhost:55690/Auth/AdminLogin");
+            appSetting.Setup(a => a.InternalEuropeanAffiliateUrl).Returns("http://127.0.0.1:8081/Auth/AdminLogin");
 
             var builder = new ContainerBuilder();
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            _scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
+
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
             var repository = new Mock<ICustomerLeftPanelRepository>();
             repository.Setup(comm => comm.GetAffiliateInfoOnLeftPanel(It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226", AffType = 4 });
-            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
+            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object, authService: authService.Object);
 
             // Action
-            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "123", "234", "345");
+            var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "123", "234");
 
             // Assert
             Assert.Equal("12BETAFF226", result.AffName);
@@ -100,9 +104,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var param = "12BETAFF226";
             var passedParam = string.Empty;
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+
             var repository = new Mock<ICustomerLeftPanelRepository>();
+            repository.Setup(r => r.GetAffiliateInfoOnLeftPanel(It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel());
             repository.Setup(comm => comm.GetOnlineList(param)).Returns(new List<OnlineList> { new OnlineList() }).Callback<string>(p => passedParam = p);
-            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
+            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object, authService: authService.Object);
 
             // Action
             var result = service.GetOnlineList(param);
@@ -113,7 +121,48 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         }
 
         [Fact]
+        public void GetOnlineList_WhenCallWithInvalidParam_ReturnEmptyData()
+        {
+            // Arrange
+            var param = "12BETAFF226";
+            var passedParam = string.Empty;
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+
+            var repository = new Mock<ICustomerLeftPanelRepository>();
+            repository.Setup(comm => comm.GetOnlineList(param)).Returns(new List<OnlineList> { new OnlineList() }).Callback<string>(p => passedParam = p);
+            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object, authService: authService.Object);
+
+            // Action
+            var result = service.GetOnlineList(param);
+
+            // Assert
+            Assert.Empty(result);
+            Assert.NotEqual(param, passedParam);
+        }
+
+        [Fact]
         public void UpdateAffType_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var param = new UpdateAffTypeParam();
+            UpdateAffTypeParam passedParam = null;
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            var repository = new Mock<ICustomerLeftPanelRepository>();
+            repository.Setup(comm => comm.UpdateAffType(param)).Returns(new ResultInfo()).Callback<UpdateAffTypeParam>(p => passedParam = p);
+            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object, authService: authService.Object);
+
+            // Action
+            var result = service.UpdateAffType(param);
+
+            // Assert
+            Assert.True(result.IsSuccessful);
+            Assert.Equal(param, passedParam);
+        }
+
+        [Fact]
+        public void UpdateAffType_WhenCallWithNotHasPermission_ReturnCorrectData()
         {
             // Arrange
             var param = new UpdateAffTypeParam();
@@ -126,12 +175,32 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.UpdateAffType(param);
 
             // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.NotEqual(param, passedParam);
+        }
+
+        [Fact]
+        public void UpdateClosedStatus_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var param = new UpdateClosedStatusParam();
+            UpdateClosedStatusParam passedParam = null;
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            var repository = new Mock<ICustomerLeftPanelRepository>();
+            repository.Setup(comm => comm.UpdateClosedStatus(param)).Returns(new ResultInfo()).Callback<UpdateClosedStatusParam>(p => passedParam = p);
+            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object, authService: authService.Object);
+
+            // Action
+            var result = service.UpdateClosedStatus(param);
+
+            // Assert
             Assert.True(result.IsSuccessful);
             Assert.Equal(param, passedParam);
         }
 
         [Fact]
-        public void UpdateClosedStatus_WhenCall_ReturnCorrectData()
+        public void UpdateClosedStatusNotHasPermission_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var param = new UpdateClosedStatusParam();
@@ -144,12 +213,32 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.UpdateClosedStatus(param);
 
             // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.NotEqual(param, passedParam);
+        }
+
+        [Fact]
+        public void UpdateLanguage_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var param = new UpdateLanguageParam();
+            UpdateLanguageParam passedParam = null;
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            var repository = new Mock<ICustomerLeftPanelRepository>();
+            repository.Setup(comm => comm.UpdateLanguage(param)).Returns(new ResultInfo()).Callback<UpdateLanguageParam>(p => passedParam = p);
+            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object, authService: authService.Object);
+
+            // Action
+            var result = service.UpdateLanguage(param);
+
+            // Assert
             Assert.True(result.IsSuccessful);
             Assert.Equal(param, passedParam);
         }
 
         [Fact]
-        public void UpdateLanguage_WhenCall_ReturnCorrectData()
+        public void UpdateLanguage_WhenCallNotHasPermission_ReturnCorrectData()
         {
             // Arrange
             var param = new UpdateLanguageParam();
@@ -162,8 +251,27 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.UpdateLanguage(param);
 
             // Assert
-            Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
+            Assert.False(result.IsSuccessful);
+            Assert.NotEqual(param, passedParam);
+        }
+
+        [Fact]
+        public void UpdateStatus_WhenCallWithNotHasPermission_ReturnError()
+        {
+            // Arrange
+            var param = new UpdateStatusParam { AffId = 1271808, Status = "disapproved" };
+            UpdateStatusParam passedParam = null;
+            var repository = new Mock<ICustomerLeftPanelRepository>();
+            repository.Setup(comm => comm.UpdateStatus(param)).Returns(new ResultInfo { Code = -999 }).Callback<UpdateStatusParam>(p => passedParam = p);
+
+            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
+
+            // Action
+            var result = service.UpdateStatus(param, new AffInformationEmail());
+
+            // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.NotEqual(param, passedParam);
         }
 
         [Fact]
@@ -179,7 +287,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             this._scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "disapproved" };
@@ -188,8 +295,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             repository.Setup(comm => comm.UpdateStatus(param)).Returns(new ResultInfo()).Callback<UpdateStatusParam>(p => passedParam = p);
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.GetAffiliateBasicInfo(It.IsAny<int>(), null)).Returns(new AffiliateBasicInfo { AffId = 1271808, AffType = 2 });
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
 
-            var service = CreateCustomerLeftPanelService(affiliateService: affiliateService.Object, customerLeftPanelRepository: repository.Object);
+            var service = CreateCustomerLeftPanelService(affiliateService: affiliateService.Object, customerLeftPanelRepository: repository.Object, authService: authService.Object);
 
             // Action
             var result = service.UpdateStatus(param, new AffInformationEmail());
@@ -210,9 +319,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            _scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "disapproved" };
@@ -221,8 +329,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             repository.Setup(comm => comm.UpdateStatus(param)).Returns(new ResultInfo()).Callback<UpdateStatusParam>(p => passedParam = p);
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.GetAffiliateBasicInfo(It.IsAny<int>(), null)).Returns(new AffiliateBasicInfo { AffId = 1271808, AffType = 2, PreferredLanguage = "vi-VN" });
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
 
-            var service = CreateCustomerLeftPanelService(affiliateService: affiliateService.Object, customerLeftPanelRepository: repository.Object);
+            var service = CreateCustomerLeftPanelService(affiliateService: affiliateService.Object, customerLeftPanelRepository: repository.Object, authService: authService.Object);
 
             // Action
             var result = service.UpdateStatus(param, new AffInformationEmail());
@@ -240,8 +350,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             UpdateStatusParam passedParam = null;
             var repository = new Mock<ICustomerLeftPanelRepository>();
             repository.Setup(comm => comm.UpdateStatus(param)).Returns(new ResultInfo { Code = -999 }).Callback<UpdateStatusParam>(p => passedParam = p);
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
 
-            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
+            var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object, authService: authService.Object);
 
             // Action
             var result = service.UpdateStatus(param, new AffInformationEmail());
@@ -254,13 +366,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         private static CustomerLeftPanelService CreateCustomerLeftPanelService(
             IEmailService emailService = null,
             IAffiliateService affiliateService = null,
+            IAuthService authService = null,
+            ISessionService sessionService = null,
             ICustomerLeftPanelRepository customerLeftPanelRepository = null)
         {
             var fakeEmailService = emailService ?? Mock.Of<IEmailService>();
             var fakeAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
+            var fakeAuthService = authService ?? Mock.Of<IAuthService>();
+            var fakeSessionService = sessionService ?? Mock.Of<ISessionService>();
             var fakeCustomerLeftPanelRepository = customerLeftPanelRepository ?? Mock.Of<ICustomerLeftPanelRepository>();
 
-            return new CustomerLeftPanelService(fakeEmailService, fakeAffiliateService, fakeCustomerLeftPanelRepository);
+            return new CustomerLeftPanelService(fakeEmailService, fakeAffiliateService, fakeAuthService, fakeSessionService, fakeCustomerLeftPanelRepository);
         }
     }
 }

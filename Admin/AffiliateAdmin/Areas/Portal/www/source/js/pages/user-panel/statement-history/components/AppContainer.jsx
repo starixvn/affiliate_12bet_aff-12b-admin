@@ -8,6 +8,7 @@ import Content from './Content';
 import PaymentRequestUpdateForm from '../../../common/components/PaymentRequestUpdateForm';
 
 import { setTransactionId, setParam, getAffiliateInfo } from '../actions';
+import ClaimPrincipal, { claimResource } from '../../../../modules/claim';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -25,7 +26,7 @@ export class AppContainer extends PureComponent {
     }
 
     render() {
-        const { transactionId } = this.props;
+        const { transactionId, claimsPrincipal } = this.props;
 
         return (
             <AppLayout>
@@ -41,10 +42,10 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ statementHistory, affCommonInfo }) {
+function mapStateToProps({ statementHistory, affCommonInfo, claimsPrincipal }) {
     const { transactionId, param } = statementHistory;
     const { affName } = affCommonInfo;
-    return Object.assign({}, { transactionId, param, affName });
+    return Object.assign({}, { transactionId, param, affName, claimsPrincipal });
 }
 
 function mapDispatchToProps(dispatch) {

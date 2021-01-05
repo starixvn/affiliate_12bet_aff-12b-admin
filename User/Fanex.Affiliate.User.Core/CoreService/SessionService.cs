@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Security.Claims;
-using System.Web;
-using Fanex.Affiliate.User.Core.Constants;
+﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Web;
 using static Fanex.Affiliate.User.Core.Constants.SessionKey;
 
 namespace Fanex.Affiliate.User.Core.CoreService
 {
     public class SessionService : ISessionService
-    { 
+    {
         public string CaptchaCode
         {
             get { return HttpContext.Current.Session[CaptchaCodeKey] as string; }
@@ -80,7 +80,8 @@ namespace Fanex.Affiliate.User.Core.CoreService
                                         authorizedUser.PreferredLanguage,
                 OnUserId = authorizedUser.OnUserId,
                 AffType = authorizedUser.AffType,
-                GroupName = authorizedUser.GroupName
+                GroupName = authorizedUser.GroupName,
+                UserId = authorizedUser.UserId
             };
 
             HttpContext.Current.Session[UserSessionKey] = userSession;
@@ -92,10 +93,10 @@ namespace Fanex.Affiliate.User.Core.CoreService
             set { HttpContext.Current.Session[VerificationSessionKey] = value; }
         }
 
-        public IEnumerable<ClaimsIdentity> ClaimsIdentities 
-        { 
+        public IEnumerable<ClaimsIdentity> ClaimsIdentities
+        {
             get => HttpContext.Current.Session[ClaimIdentitiesKey] as IEnumerable<ClaimsIdentity>;
-            set => HttpContext.Current.Session[ClaimIdentitiesKey] = value; 
+            set => HttpContext.Current.Session[ClaimIdentitiesKey] = value;
         }
     }
 }

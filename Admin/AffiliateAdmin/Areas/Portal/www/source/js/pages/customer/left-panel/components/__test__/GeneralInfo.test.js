@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 describe('left panel - components - Content', () => {
     it('render correctly with affiliateInfo is null', () => {
-        const result = shallow(<GeneralInfo />);
+        const result = shallow(<GeneralInfo claimsPrincipal={{ hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) }} />);
 
         expect(result).toMatchSnapshot();
     });
@@ -32,7 +32,7 @@ describe('left panel - components - Content', () => {
             SiteUrl: "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount",
             Status: "Approved"
         }
-        const result = shallow(<GeneralInfo affiliateInfo={affiliateInfo} />);
+        const result = shallow(<GeneralInfo affiliateInfo={affiliateInfo} claimsPrincipal={{ hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) }} />);
 
         expect(result).toMatchSnapshot();
     });
@@ -60,7 +60,7 @@ describe('left panel - components - Content', () => {
             SiteUrl: "www.betwiki.net",
             Status: "Approved"
         }
-        const result = shallow(<GeneralInfo affiliateInfo={affiliateInfo} />);
+        const result = shallow(<GeneralInfo affiliateInfo={affiliateInfo} claimsPrincipal={{ hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) }} />);
 
         expect(result).toMatchSnapshot();
     });
@@ -88,7 +88,7 @@ describe('left panel - components - Content', () => {
             SiteUrl: "www.betwiki.net",
             Status: "Approved"
         }
-        const result = shallow(<GeneralInfo affiliateInfo={affiliateInfo} />);
+        const result = shallow(<GeneralInfo affiliateInfo={affiliateInfo} claimsPrincipal={{ hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) }} />);
 
         expect(result).toMatchSnapshot();
     });
@@ -116,7 +116,7 @@ describe('left panel - components - Content', () => {
             SiteUrl: "http://www.12345678.com",
             Status: "Disapproved"
         }
-        const result = shallow(<GeneralInfo affiliateInfo={affiliateInfo} />);
+        const result = shallow(<GeneralInfo affiliateInfo={affiliateInfo} claimsPrincipal={{ hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) }} />);
 
         expect(result).toMatchSnapshot();
     });

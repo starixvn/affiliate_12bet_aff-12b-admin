@@ -13,7 +13,7 @@ export const maxLength = 50;
 export const regSpecialCharacters  = '[\\\\\/\:\*\?\"\<\>\|\#\%\&\+]';
 
 export const headerText = {
-    Index: '#',
+    Index: globalResource.Index,
     Images: 'Images',
     FileName: 'File Name',
     Category: 'Category',

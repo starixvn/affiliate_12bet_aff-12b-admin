@@ -39,6 +39,7 @@ describe('text list - components - Content ', () => {
         checkedTexts: { 2437: false, 2438: false },
         shouldResetScrollPosition: true,
         param,
+        isModifiable: true,
         gridData
     };
 

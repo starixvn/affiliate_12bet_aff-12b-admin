@@ -3,6 +3,7 @@
 import createReducer from '../../../../modules/createReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import { SET_CHECKED_LANDING_PAGES, SET_SELECTED_LANDING_PAGE_ID, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from '../actions/types';
+import {claimsPrincipal} from '../../../../reducers/claimReducer';
 
 export const selectedLandingPageId = createReducer(null, {
     [SET_SELECTED_LANDING_PAGE_ID](prevState, action) {
@@ -33,5 +34,6 @@ export default combineReducers({
     isShowLoader,
     checkedLandingPages,
     selectedLandingPageId,
-    shouldResetScrollPosition
+    shouldResetScrollPosition,
+    claimsPrincipal
 });

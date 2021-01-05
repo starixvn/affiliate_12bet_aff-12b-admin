@@ -181,6 +181,7 @@
     <Compile Include="BusinessService\NewsServiceTest.cs" />
     <Compile Include="BusinessService\QrCodeGeneratorServiceTest.cs" />
     <Compile Include="BusinessService\SecurityQuestionServiceTest.cs" />
+    <Compile Include="BusinessService\StatisticsServiceTest.cs" />
     <Compile Include="BusinessService\TwoFactorAuthServiceTest.cs" />
     <Compile Include="BusinessService\VerificationServiceTest.cs" />
     <Compile Include="Controllers\UserPanel\MainControllerTest.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Controllers\UserPanel\StatementHistoryControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\StatisticsControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\SummaryControllerTest.cs" />
+    <Compile Include="Controllers\TestingEmailControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\TrackingStatisticsControllerTest.cs" />
     <Compile Include="Controllers\VerificationAccountControllerTest.cs" />
     <Compile Include="CoreService\MemoryCacheServiceTest.cs" />

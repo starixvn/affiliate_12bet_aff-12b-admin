@@ -41,7 +41,8 @@ describe('user account - components - Content', () => {
         affId: 1271808,
         affName: "12BETAFF226",
         userAccountInfo,
-        moreSiteUrlsList: [ "www.sportsbookie.com", "www.gzyyy.com", "www.123.com" ],
+        moreSiteUrlsList: ["www.sportsbookie.com", "www.gzyyy.com", "www.123.com"],
+        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
         getUserAccountInfo: jest.fn(() => userAccountInfo)
     }
 
@@ -60,7 +61,7 @@ describe('user account - components - Content', () => {
 
     it('componentDidMount - should call getUserAccountInfo', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().componentDidMount();
 
         expect(defaultProps.getUserAccountInfo).toHaveBeenCalledWith(1271808);
@@ -68,7 +69,7 @@ describe('user account - components - Content', () => {
 
     it('handleGetMoreSiteUrls - should return correct data', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         const siteUrlList = result.instance().handleGetMoreSiteUrls(defaultProps.moreSiteUrlsList);
 
         expect(siteUrlList).toEqual('www.sportsbookie.com;www.gzyyy.com;www.123.com');
@@ -78,7 +79,7 @@ describe('user account - components - Content', () => {
         const newUserAccountInfo = Object.assign({}, userAccountInfo, { AffName: "    12BETAFF226    " });
         const props = Object.assign({}, defaultProps, { userAccountInfo: newUserAccountInfo });
         const result = shallow(<Content {...props} />);
-        
+
         const objectAfterTrim = result.instance().handleTrimObject(newUserAccountInfo);
 
         expect(objectAfterTrim).toEqual(userAccountInfo);

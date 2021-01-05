@@ -9,6 +9,7 @@ import { headerText, globalResource } from '../modules/constants';
 import { setSelectedEmailId, setPagingOption, fetchData, setCheckedEmails, setShouldResetScrollPosition, setParam } from '../actions';
 import DeleteEmail from './DeleteEmail';
 import SelectAll from '../../common/components/SelectAll';
+import { claimResource } from '../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -77,6 +78,7 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
+        const { isModifiable } = this.props;
         const email = htmlDecode(dataItem.Email);
         const href = `mailto:${email}`;
         const sender = htmlDecode(dataItem.Sender);
@@ -92,9 +94,12 @@ export class Content extends PureComponent {
                 <Cell title={sender}>{sender}</Cell>
                 <Cell title={affName}>{affName}</Cell>
                 <Cell title={subject}>
-                    <Button color="link" className="p-0" onClick={() => this.props.setSelectedEmailId(dataItem.EmailId)}>
-                        {subject}
-                    </Button>
+                    {isModifiable
+                        ? (<Button color="link" className="p-0" onClick={() => this.props.setSelectedEmailId(dataItem.EmailId)}>
+                            {subject}
+                        </Button>)
+                        : subject
+                    }
                 </Cell>
                 <Cell title={email}>
                     <a target="_top" href={href}>{email}</a>
@@ -105,11 +110,11 @@ export class Content extends PureComponent {
     }
 
     render() {
-        const { gridData } = this.props;
+        const { gridData, isModifiable } = this.props;
 
         return gridData && (
             <div className="data-content">
-                <DeleteEmail />
+                {isModifiable && <DeleteEmail />}
                 <SelectAll
                     checkedList={this.props.checkedEmails}
                     setCheckedList={this.props.setCheckedEmails}
@@ -135,8 +140,9 @@ export class Content extends PureComponent {
 }
 
 
-function mapStateToProps({ pagingOption, param, checkedEmails, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { pagingOption, param, checkedEmails, shouldResetScrollPosition, gridData });
+function mapStateToProps({ pagingOption, param, checkedEmails, shouldResetScrollPosition, gridData, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.Email);
+    return Object.assign({}, { pagingOption, param, checkedEmails, shouldResetScrollPosition, gridData, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

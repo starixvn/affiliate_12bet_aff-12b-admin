@@ -9,6 +9,7 @@ import { htmlDecode } from '../../../modules/htmlHelper';
 import { resource, languages, popupTitle, messages, defaultMessageContentList, messageInsertId, messageCurrentId } from '../libs/constants';
 import Notification from '../../common/components/NotificationPopup';
 import ButtonDeleteItems from '../../common/components/ButtonDeleteItems';
+import { claimResource } from '../../../modules/claim';
 
 export class MessageDetailForm extends PureComponent {
     constructor(props) {
@@ -42,7 +43,7 @@ export class MessageDetailForm extends PureComponent {
     _handleGetMessageDetail = async (selectedMessageId) => {
         const item = await this.props.getMessageDetail(selectedMessageId);
 
-        if(item) {
+        if (item) {
             const messageContentList = {};
 
             Object.keys(this.state.messageContentList).map(key => {
@@ -135,7 +136,7 @@ export class MessageDetailForm extends PureComponent {
 
     render() {
         const { important, messageContentList, isClickedEdit, isSuccess, isShowMessage, message, messageNotification, isInsert } = this.state;
-        const { selectedMessageId } = this.props;
+        const { selectedMessageId, isModifiable } = this.props;
         const isShowPopup = selectedMessageId !== null;
         const isCurrentMessage = selectedMessageId === messageCurrentId;
         const title = isInsert ? popupTitle.Add : (isCurrentMessage ? popupTitle.Current : `${popupTitle.Detail} (ID=${selectedMessageId})`);
@@ -151,7 +152,7 @@ export class MessageDetailForm extends PureComponent {
                                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                                 </Alert>
-                                <Form tag="form" className="mb-2 p-1 border" autocomplete="off">
+                                <Form tag="form" className="mb-2 p-1 border" autoComplete="off">
                                     <FormGroup row className="mb-2">
                                         <Label for="important" sm={2} className="text-right">{resource.Important}</Label>
                                         <Col sm={10}>
@@ -173,7 +174,8 @@ export class MessageDetailForm extends PureComponent {
                                     }
                                 </Form>
                                 {
-                                    isInsert ? (<Button type="button" color="success" onClick={this._handleSave}>{resource.Add}</Button>)
+                                    isModifiable &&
+                                    (isInsert ? (<Button type="button" color="success" onClick={this._handleSave}>{resource.Add}</Button>)
                                         : (
                                             <React.Fragment>
                                                 {
@@ -188,7 +190,7 @@ export class MessageDetailForm extends PureComponent {
                                                     messages={messages}
                                                 />
                                             </React.Fragment>
-                                        )
+                                        ))
                                 }
                                 <Button type="button" color="info" className="ml-2" onClick={this._handleClosePopup}>{resource.Cancel}</Button>
                             </div>
@@ -207,8 +209,9 @@ export class MessageDetailForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedMessageId, param }) {
-    return Object.assign({}, { selectedMessageId, param });
+function mapStateToProps({ selectedMessageId, param, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.HotNews);
+    return Object.assign({}, { selectedMessageId, param, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

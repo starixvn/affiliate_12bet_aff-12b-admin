@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
     using BusinessService;
     using Constants;
     using CoreService;
@@ -11,6 +9,8 @@
     using MetalModels.Email;
     using Repository.UserPanel;
     using Resources;
+    using System.Linq;
+    using System.Web.Mvc;
     using Utilities;
 
     public class PasswordController : BaseController
@@ -87,13 +87,11 @@
                     MailContact = _appSetting.MailContact,
                     MailTo = param.Email,
                     RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
-                    Code = code
+                    Code = code,
+                    CurrentLanguage = SessionService.CurrentLanguage
                 };
 
-                var userLang = LanguageService.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
-                LanguageService.SetCulture(userLang);
                 _mailService.SendRecoverPasswordEmail(recoverEmailParam);
-                LanguageService.SetCulture(SessionService.CurrentLanguage);
             }
 
             return Json(result);
@@ -104,7 +102,7 @@
         {
             if (uid == 0 || string.IsNullOrEmpty(vid))
             {
-                return RedirectToFixedAction("RecoverPasswordResult", new { isSuccessful=false });
+                return RedirectToFixedAction("RecoverPasswordResult", new { isSuccessful = false });
             }
             var newPassword = Generator.GetRandomString(10);
             var param = new PasswordRecoveryParam
@@ -128,13 +126,11 @@
                     RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
                     NewPassword = newPassword,
                     MailTo = userInfo.Email,
-                    MailContact = _appSetting.MailContact
+                    MailContact = _appSetting.MailContact,
+                    CurrentLanguage = SessionService.CurrentLanguage
                 };
 
-                var userLang = LanguageService.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
-                LanguageService.SetCulture(userLang);
                 _mailService.SendNewPasswordEmail(recoverEmailParam);
-                LanguageService.SetCulture(SessionService.CurrentLanguage);
             }
 
             return RedirectToFixedAction("RecoverPasswordResult", new { isSuccessful, errCode = param.ErrCode });

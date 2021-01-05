@@ -43,6 +43,8 @@ describe('member list - components - Content ', () => {
     const defaultProps = {
         pagingOption: defaultPagingOption,
         shouldResetScrollPosition: true,
+        isModifiable: true,
+        isShowMemberName: true,
         param,
         gridData,
         fetchData: jest.fn()
@@ -105,7 +107,7 @@ describe('member list - components - Content ', () => {
         dataRow.find('Button').at(0).simulate('click');
 
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(wrapper.setState).toHaveBeenCalledWith({ message: 'Are you sure you want to remove this member from his affiliate?', isConfirmPopup: true, selectedMemberId: 26522982 });
+        expect(wrapper.setState).toHaveBeenCalledWith({ message: 'Are you sure you want to remove this member from this affiliate?', isConfirmPopup: true, selectedMemberId: 26522982 });
     });
 
     it('_handleCloseNotificationPopup - should be called when call onClose with true in NotificationPopup', () => {

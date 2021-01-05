@@ -1,5 +1,6 @@
 ﻿import React, { PureComponent } from 'react';
 import { Alert, Form, FormGroup, Label, Input, Col } from 'reactstrap';
+import MyLink from '../../common/components/MyLink';
 
 import { post } from '../../../modules/ajaxRequest';
 import { resolveClientUrl } from '../../../modules/utils';
@@ -90,7 +91,7 @@ export default class AppContainer extends PureComponent {
                             <div dangerouslySetInnerHTML={{ __html: message }}></div>
                         </Alert>
                     </div>
-                    <Form tag="form" className="form-login pl-3" autocomplete="false">
+                    <Form tag="form" className="form-login pl-3" autoComplete="false">
                         <FormGroup row className="mb-1">
                             <span className="icUser">&nbsp;</span>
                             <Label for="userName" sm={3} className="form-login-text">User Name</Label>
@@ -104,21 +105,23 @@ export default class AppContainer extends PureComponent {
                             <span className="icPass">&nbsp;</span>
                             <Label for="passWord" sm={3} className="form-login-text">Password</Label>
                             <Col sm={6}>
-                                <Input type="password" name="password" id="password" autocomplete="false"
+                                <Input type="password" name="password" id="password" autoComplete="false"
                                     value={password} onKeyPress={this._handlePressEnter} onChange={this._handleChange} />
                             </Col>
                         </FormGroup>
                     </Form>
                     <div className="bt">
-                        <a href="javascript:;" class="bt-login" onClick={this._handleLogin}>Log On</a>
+                        <MyLink className={"bt-login"} onClick={this._handleLogin}>
+                            Log On
+                        </MyLink>
                     </div>
                     <div className="foot">
                         <span className="foot-left">&nbsp;</span>
                         <span className="foot-rp">{`© Copyright ${year} Pacific Sea Invests`}</span>
                         <span className="foot-right">&nbsp;</span>
-                        <span className="foot-text">Best view in</span>
+                        {/* <span className="foot-text">Best view in</span>
                         <span className="foot-icIE">&nbsp;</span>
-                        <span className="foot-icFirefox">&nbsp;</span>
+                        <span className="foot-icFirefox">&nbsp;</span> */}
                     </div>
                 </div>
             </div>

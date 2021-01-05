@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
@@ -14,6 +9,11 @@ using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using Moq;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
@@ -24,14 +24,29 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void Index_WhenCallWithGet_ReturnView()
         {
             // Arrange
-            var accountService = new Mock<IAccountService>();
-            var controller = CreateController(accountService.Object);
+            var controller = CreateController();
 
             // Action
             var result = controller.Index() as ViewResult;
 
             // Assert
             Assert.Empty(result.ViewName);
+        }
+
+        [Fact]
+        public void SecurityQuestion_WhenCall_ReturnView()
+        {
+            // Arrange
+            var service = new Mock<ISecurityQuestionService>();
+            service.Setup(s => s.GetSecurityQuestions(It.IsAny<string>(), false)).Returns(new List<SecurityQuestion> { new SecurityQuestion() });
+            var controller = CreateController(securityQuestionService: service.Object);
+
+            // Action
+            var result = controller.SecurityQuestion() as PartialViewResult;
+
+            // Assert
+            Assert.NotEmpty(result.Model as List<SecurityQuestion>);
+            Assert.Equal("~/Views/Signup/_SecurityQuestion.cshtml", result.ViewName);
         }
 
         [Fact]
@@ -181,7 +196,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 MailCc = Constant.DefaultMailCc,
                 MailBcc = string.Empty,
                 MailTo = Constant.DefaultMailContact,
-                RootDomain = Constant.DefaultRootDomain + "/"
+                RootDomain = Constant.DefaultRootDomain + "/",
+                CurrentLanguage = Constant.DefaultLanguage
             });
 
             // Action
@@ -193,7 +209,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         private static SignupController CreateController(
-            IAccountService accountService,
+            IAccountService accountService = null,
             ISessionService sessionService = null,
             IAppSetting appSetting = null,
             ICaptchaService captchaService = null,

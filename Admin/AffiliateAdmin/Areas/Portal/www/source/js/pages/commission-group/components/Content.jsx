@@ -9,6 +9,7 @@ import { Pager } from '@9softstudio/react-fixed-table-header';
 import AddGroup from './addgroup';
 import EditGroup from './editgroup';
 import { getGroupSettingList } from '../actions';
+import { claimResource } from "../../../modules/claim";
 
 export class Content extends Component {
     constructor(props) {
@@ -53,13 +54,16 @@ export class Content extends Component {
 
     render() {
         const { Popup, popupTitle } = this.state;
+        const {isModifiable} = this.props;
         const showPopup = Popup !== null;
 
         return this.props.gridData && (
             <div className="data-content">
-                <div className="my-2">
-                    <Button outline type="button" onClick={this.handleAddNewGroup}>Add New Group</Button>
-                </div>
+                {isModifiable &&
+                    <div className="my-2">
+                        <Button outline type="button" onClick={this.handleAddNewGroup}>Add New Group</Button>
+                    </div>
+                }
 
                 <GridData onEdit={this.handleEditGroup} />
                 <Pager pageOption={this.props.pagingOption} onPaging={this.onPaging} />
@@ -77,8 +81,9 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, searchedGroupName, gridData }) {
-    return Object.assign({}, { pagingOption, searchedGroupName, gridData });
+function mapStateToProps({ pagingOption, searchedGroupName, gridData, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
+    return Object.assign({}, { pagingOption, searchedGroupName, gridData, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

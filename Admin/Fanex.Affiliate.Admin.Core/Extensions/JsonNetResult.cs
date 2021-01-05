@@ -19,6 +19,11 @@ namespace Fanex.Affiliate.Admin.Core.Extensions
             Formatting = Formatting.None;
         }
 
+        public JsonNetResult(object data) : this()
+        {
+            Data = data;
+        }
+
         public override void ExecuteResult(ControllerContext context)
         {
             if (context == null)

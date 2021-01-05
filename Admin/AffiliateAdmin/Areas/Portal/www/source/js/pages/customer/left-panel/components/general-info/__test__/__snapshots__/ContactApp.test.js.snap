@@ -7,6 +7,15 @@ exports[`left panel - components - general-info - ContactApp render correctly wi
   <Row
     key="contactApp-MSN/YM/QQ"
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       sm={5}

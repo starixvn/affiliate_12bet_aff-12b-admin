@@ -4,7 +4,7 @@
     {
         public string Category { get; set; }
 
-        public string Language { get; set; }
+        public string Languages { get; set; }
 
         public string Currency { get; set; }
 

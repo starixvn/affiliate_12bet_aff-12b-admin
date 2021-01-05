@@ -68,7 +68,7 @@ describe('user account actions', () => {
             { type: types.SET_USER_ACCOUNT_INFO , data: expectedResponse.data },
             { type: 'TOGGLE_LOADER_USER_PANEL', data: false },
         ];
-        
+
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getUserAccountInfo'](1271808)).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/UserAccount/GetUserAccountInfo', { affId: 1271808 });
@@ -81,11 +81,11 @@ describe('user account actions', () => {
 
         const expectedAction = [
             { type: 'TOGGLE_LOADER_USER_PANEL' , data: true },
-            { type: types.SET_MORE_SITE_URLS_LIST , data: null },
+            { type: types.SET_MORE_SITE_URLS_LIST , data: [] },
             { type: types.SET_USER_ACCOUNT_INFO , data: null },
             { type: 'TOGGLE_LOADER_USER_PANEL', data: false },
         ];
-        
+
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getUserAccountInfo'](123456)).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/UserAccount/GetUserAccountInfo', { affId: 123456 });
@@ -166,7 +166,7 @@ describe('user account actions', () => {
             SiteUrl: "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount",
             State: "A"
         }
-        
+
         const result = await actions['updateUserAccount'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/UserAccount/updateUserAccount', param);

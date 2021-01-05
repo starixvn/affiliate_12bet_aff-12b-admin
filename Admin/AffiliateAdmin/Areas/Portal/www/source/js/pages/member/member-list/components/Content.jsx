@@ -8,6 +8,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
 import { deleteMember, fetchData, setPagingOption, toggleLoader, setShouldResetScrollPosition, setParam } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -22,7 +23,7 @@ export class Content extends PureComponent {
 
     componentDidUpdate(prevProps) {
         const { param } = this.props;
-        if(param && param !== prevProps.param) {
+        if (param && param !== prevProps.param) {
             this.props.fetchData(param);
         }
     }
@@ -49,7 +50,7 @@ export class Content extends PureComponent {
 
     _handleDeleteMember = (selectedMemberId) => {
         this.props.setShouldResetScrollPosition(false);
-        this.setState({ message: 'Are you sure you want to remove this member from his affiliate?', isConfirmPopup: true, selectedMemberId });
+        this.setState({ message: 'Are you sure you want to remove this member from this affiliate?', isConfirmPopup: true, selectedMemberId });
     }
 
     _deleteMember = async (selectedMemberId) => {
@@ -59,7 +60,7 @@ export class Content extends PureComponent {
 
         if (result) {
             if (result.IsSuccessful) {
-                this.setState({ message: 'Member has been removed suseccfully!', isConfirmPopup: false });
+                this.setState({ message: 'Member has been removed successfully!', isConfirmPopup: false });
 
                 this.props.fetchData(this.props.param);
             }
@@ -72,17 +73,18 @@ export class Content extends PureComponent {
     }
 
     _renderHeader() {
+        const { isModifiable, isShowMemberName } = this.props;
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.UserName}>{headerText.UserName}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.IbcUserName}>{headerText.IbcUserName}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>
+                { isShowMemberName && <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>}
+                { isShowMemberName && <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>}
                 <Cell header={true} colWidth={120} title={headerText.CurrentBalance}>{headerText.CurrentBalance}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
-                <Cell header={true} colWidth={30} title={headerText.Remove}>{headerText.Remove}</Cell>
+                { isModifiable && <Cell header={true} colWidth={30} title={headerText.Remove}>{headerText.Remove}</Cell>}
             </Row>
         );
     }
@@ -110,6 +112,8 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
+        const { isModifiable, isShowMemberName } = this.props;
+
         const userName = htmlDecode(dataItem.UserName);
         const ibcUserName = htmlDecode(dataItem.IbcUserName);
         const firstName = htmlDecode(dataItem.FirstName);
@@ -120,16 +124,18 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={userName}>{userName}</Cell>
                 <Cell className="text-center" title={ibcUserName}>{ibcUserName}</Cell>
-                <Cell className="text-center" title={firstName}>{firstName}</Cell>
-                <Cell className="text-center" title={lastName}>{lastName}</Cell>
+                { isShowMemberName && <Cell className="text-center" title={firstName}>{firstName}</Cell>}
+                { isShowMemberName && <Cell className="text-center" title={lastName}>{lastName}</Cell>}
                 <Cell className="text-center" title={dataItem.CurrentBalance}>{dataItem.CurrentBalance}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
                 <Cell className="text-center" title={dataItem.AffName}>{dataItem.AffName}</Cell>
-                <Cell className="text-center" title="Remove Member">
-                    <Button color="link p-0" onClick={() => this._handleDeleteMember(dataItem.MemberId)}>
-                        <span className="oi oi-x text-danger"></span>
-                    </Button>
-                </Cell>
+                { isModifiable &&
+                    <Cell className="text-center" title="Remove Member">
+                        <Button color="link p-0" onClick={() => this._handleDeleteMember(dataItem.MemberId)}>
+                            <span className="oi oi-trash text-danger"></span>
+                        </Button>
+                    </Cell>
+                }
             </Row>
         )
     }
@@ -166,8 +172,10 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData });
+function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData, claimsPrincipal }) {
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffMember);
+    const isShowMemberName = claimsPrincipal.hasClaim(claimResource.AffMemberName);
+    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData, isModifiable, isShowMemberName });
 }
 
 function mapDispatchToProps(dispatch) {

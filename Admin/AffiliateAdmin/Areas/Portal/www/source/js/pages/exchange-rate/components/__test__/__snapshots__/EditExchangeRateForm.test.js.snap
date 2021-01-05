@@ -13,6 +13,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}
@@ -87,7 +88,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
           />
         </Alert>
         <Form
-          autocomplete="off"
+          autoComplete="off"
           className="mb-5"
           tag="form"
         >
@@ -163,7 +164,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
               }
             >
               <Input
-                autocomplete="false"
+                autoComplete="false"
                 className="input-required mt-2"
                 id="rate"
                 maxLength="26"
@@ -210,6 +211,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}
@@ -284,7 +286,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
           />
         </Alert>
         <Form
-          autocomplete="off"
+          autoComplete="off"
           className="mb-5"
           tag="form"
         >
@@ -360,7 +362,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
               }
             >
               <Input
-                autocomplete="false"
+                autoComplete="false"
                 className="input-required mt-2"
                 id="rate"
                 maxLength="26"
@@ -407,6 +409,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}
@@ -481,7 +484,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
           />
         </Alert>
         <Form
-          autocomplete="off"
+          autoComplete="off"
           className="mb-5"
           tag="form"
         >
@@ -557,7 +560,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
               }
             >
               <Input
-                autocomplete="false"
+                autoComplete="false"
                 className="input-required mt-2"
                 id="rate"
                 maxLength="26"
@@ -604,6 +607,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}
@@ -678,7 +682,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
           />
         </Alert>
         <Form
-          autocomplete="off"
+          autoComplete="off"
           className="mb-5"
           tag="form"
         >
@@ -754,7 +758,7 @@ exports[`exchange rate - components - EditExchangeRateForm  render correctly wit
               }
             >
               <Input
-                autocomplete="false"
+                autoComplete="false"
                 className="input-required mt-2"
                 id="rate"
                 maxLength="26"

@@ -5,10 +5,11 @@ import { bindActionCreators } from 'redux';
 import MultipleSelect from '../../../components/multiple-select';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { statusList, sortByList, defaultSortBy, resource } from '../modules/constants';
-import { setReportTitle, setParam, setSelectedColumn } from '../actions';
+import { setReportTitle, setParam, setSelectedColumn, setLanguageList } from '../actions';
 import { htmlDecode } from '../../../modules/htmlHelper';
+import { claimResource } from '../../../modules/claim';
 
-export class Filter extends Component {
+export class Filter extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -26,8 +27,8 @@ export class Filter extends Component {
         }
     }
 
-    componentDidMount() {
-        if (this.initialGroupId !== 0 || this.props.param.IsFromHome) {
+    componentDidMount = async () => {
+        if (!!this.initialGroupId || this.props.param.IsFromHome) {
             this.handleClickSearch();
         }
     }
@@ -59,7 +60,8 @@ export class Filter extends Component {
             Email: email,
             SortBy: selectedSortBy,
             SortDirectionType: !isSortAscending,
-            AffId: affIdInput
+            AffId: affIdInput,
+            IsFromHome: false
         }
         this.props.setParam(param);
     }
@@ -83,7 +85,7 @@ export class Filter extends Component {
     }
 
     _buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email, affId) {
-        const { commGroupList, languageList } = this.props;
+        const { commGroupList, languageList, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter } = this.props;
 
         const space = resource.Space;
         const apostrophe = resource.Apostrophe;
@@ -91,56 +93,67 @@ export class Filter extends Component {
         const languageTitle = languageList[selectedLanguage] || resource.AllLanguages;
         const statusTitle = statusList[selectedStatus] || resource.AllStatuses;
 
-        const userNameTitle = userName && space + resource.UsernameContains + apostrophe + userName + apostrophe;
-        const emailTitle = email && space + resource.EmailContains + apostrophe + email + apostrophe;
-        const affIdTitle = affId && space + resource.AffIdContains + apostrophe + affId + apostrophe;
-        return `${resource.ReportName}${space}${commGroupTitle.toUpperCase()}${space}${languageTitle.toUpperCase()}${space}${statusTitle.toUpperCase()}${userNameTitle}${emailTitle}${affIdTitle}`;
+        const titles = [resource.ReportName];
+        isShowCommFilter && titles.push(commGroupTitle.toUpperCase());
+        isShowLangFilter && titles.push(languageTitle.toUpperCase());
+        isShowAccStatusFilter && titles.push(statusTitle.toUpperCase());
+        userName && titles.push(resource.UsernameContains + apostrophe + userName + apostrophe);
+        email && titles.push(resource.EmailContains + apostrophe + email + apostrophe);
+        affId && titles.push(resource.AffIdContains + apostrophe + affId + apostrophe);
+
+        return titles.join(space);
     }
 
     render() {
         const { selectedCommGroup, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending } = this.state;
-        const { commGroupList, languageList, columnList } = this.props;
+        const { columnList, languageList, commGroupList, isShowEmailFilter, sortKeys, isShowAccStatusFilter, isShowCommFilter, isShowLangFilter } = this.props;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="my-2 mr-sm-2">
-                        <Label for="SearchBy" className="mr-sm-2">{resource.SearchBy}</Label>
-                        <Input type="select" name="selectedCommGroup" id="SearchBy" value={selectedCommGroup} onChange={this.handleChange} >
-                            <option key="commGroup-all" value={0}>{resource.AllCommGroups}</option>
+                    {isShowCommFilter &&
+                        <FormGroup className="my-2 mr-sm-2">
+                            <Label for="SearchBy" className="mr-sm-2">{resource.SearchBy}</Label>
+                            <Input type="select" name="selectedCommGroup" id="SearchBy" value={selectedCommGroup} onChange={this.handleChange} >
+                                <option key="commGroup-all" value={0}>{resource.AllCommGroups}</option>
+                                {
+                                    Object.keys(commGroupList).map(commGroup => {
+                                        return (<option key={'commGroup-' + commGroup} value={commGroup}>{htmlDecode(commGroupList[commGroup])}</option>)
+                                    })
+                                }
+                            </Input>
+                        </FormGroup>
+                    }
+
+                    {isShowLangFilter &&
+                        <FormGroup className="my-2 mr-sm-2">
                             {
-                                Object.keys(commGroupList).map(commGroup => {
-                                    return (<option key={'commGroup-' + commGroup} value={commGroup}>{htmlDecode(commGroupList[commGroup])}</option>)
-                                })
+                                <Input type="select" name="selectedLanguage" id="Language" value={selectedLanguage} onChange={this.handleChange}>
+                                    <option key="lang-all" value="">{resource.AllLanguages}</option>
+                                    {
+                                        Object.keys(languageList).map(lang => {
+                                            return (<option key={'lang-' + lang} value={lang}>{languageList[lang]}</option>)
+                                        })
+                                    }
+                                </Input>
                             }
-                        </Input>
-                    </FormGroup>
+                        </FormGroup>
+                    }
 
-                    <FormGroup className="my-2 mr-sm-2">
-                        {
-                            <Input type="select" name="selectedLanguage" id="Language" value={selectedLanguage} onChange={this.handleChange}>
-                                <option key="lang-all" value="">{resource.AllLanguages}</option>
-                                {
-                                    Object.keys(languageList).map(lang => {
-                                        return (<option key={'lang-' + lang} value={lang}>{languageList[lang]}</option>)
-                                    })
-                                }
-                            </Input>
-                        }
-                    </FormGroup>
-
-                    <FormGroup className="my-2 mr-sm-2">
-                        {
-                            <Input type="select" name="selectedStatus" id="Status" value={selectedStatus} onChange={this.handleChange}>
-                                <option key="status-all" value="">{resource.AllStatuses}</option>
-                                {
-                                    Object.keys(statusList).map(status => {
-                                        return (<option key={'status-' + status} value={status}>{statusList[status]}</option>)
-                                    })
-                                }
-                            </Input>
-                        }
-                    </FormGroup>
+                    {isShowAccStatusFilter &&
+                        <FormGroup className="my-2 mr-sm-2">
+                            {
+                                <Input type="select" name="selectedStatus" id="Status" value={selectedStatus} onChange={this.handleChange}>
+                                    <option key="status-all" value="">{resource.AllStatuses}</option>
+                                    {
+                                        Object.keys(statusList).map(status => {
+                                            return (<option key={'status-' + status} value={status}>{statusList[status]}</option>)
+                                        })
+                                    }
+                                </Input>
+                            }
+                        </FormGroup>
+                    }
 
                     <FormGroup className="my-2 mr-sm-2">
                         <Input type="text" name="userName" id="Username" placeholder="Username"
@@ -148,11 +161,13 @@ export class Filter extends Component {
                             onChange={this.handleChange} />
                     </FormGroup>
 
-                    <FormGroup className="my-2 mr-sm-2">
-                        <Input type="email" name="email" id="Email" placeholder="Email"
-                            onKeyPress={this.handlePressEnter}
-                            onChange={this.handleChange} />
-                    </FormGroup>
+                    {isShowEmailFilter &&
+                        <FormGroup className="my-2 mr-sm-2">
+                            <Input type="email" name="email" id="Email" placeholder="Email"
+                                onKeyPress={this.handlePressEnter}
+                                onChange={this.handleChange} />
+                        </FormGroup>
+                    }
 
                     <FormGroup className="my-2 mr-sm-2">
                         <Input type="text" name="affId" id="AffId" placeholder="Affiliate Id"
@@ -164,8 +179,8 @@ export class Filter extends Component {
                         <Label for="SortBy" className="mr-sm-2">{resource.SortBy}</Label>
                         <Input type="select" name="selectedSortBy" id="SortBy" value={selectedSortBy} onChange={this.handleChange} >
                             {
-                                Object.keys(sortByList).map(sortBy => {
-                                    return (<option key={'sortBy-' + sortBy} value={sortByList[sortBy]}>{sortBy}</option>)
+                                sortKeys.map(item => {
+                                    return (<option key={'sortBy-' + item.key} value={item.value}>{item.key}</option>)
                                 })
                             }
                         </Input>
@@ -199,12 +214,22 @@ export class Filter extends Component {
     }
 }
 
-function mapStateToProps({ languageList, commGroupList, param, groupId, columnList }) {
-    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList });
+function mapStateToProps({ languageList, commGroupList, param, groupId, columnList, claimsPrincipal }) {
+    const isShowEmailFilter = claimsPrincipal.hasReadClaim(claimResource.Email);
+    const isShowAccStatusFilter = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus);
+    const isShowCommFilter = claimsPrincipal.hasReadClaim(claimResource.AffCommGroup);
+    const isShowLangFilter = claimsPrincipal.hasReadClaim(claimResource.LanguageAmendment);
+    const sortKeys = Object.keys(sortByList)
+        .filter(key => {
+            const item = sortByList[key];
+            return !item.renderClaim || claimsPrincipal.hasClaim(item.renderClaim);
+        })
+        .map(key => { return { key: key, value: sortByList[key].value } });
+    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setReportTitle, setParam, setSelectedColumn }, dispatch);
+    return bindActionCreators({ setReportTitle, setParam, setSelectedColumn, setLanguageList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

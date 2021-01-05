@@ -53,6 +53,7 @@ exports[`commission group - assign private group should render correctly 1`] = `
   <Connect(TierSetting) />
   <button
     className="my-2 btn btn-success btn-save"
+    disabled={true}
     onClick={[Function]}
     type="button"
   >
@@ -114,6 +115,7 @@ exports[`commission group - assign private group should render correctly with is
   <Connect(TierSetting) />
   <button
     className="my-2 btn btn-success btn-save"
+    disabled={true}
     onClick={[Function]}
     type="button"
   >

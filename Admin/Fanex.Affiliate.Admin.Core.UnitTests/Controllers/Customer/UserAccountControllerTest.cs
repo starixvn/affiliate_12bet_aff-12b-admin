@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.Controllers.UserPanel;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Controllers.UserPanel;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
@@ -8,6 +9,8 @@ using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -24,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var passedParam = 0;
             var userAccountService = new Mock<IUserAccountService>();
-            userAccountService.Setup(s => s.GetUserAccountInfo(affId, false)).Returns(GetUserAccount()).Callback<int>(p => passedParam = p);
+            userAccountService.Setup(s => s.GetUserAccountInfo(affId)).Returns(GetUserAccount()).Callback<int>(p => passedParam = p);
             var controller = CreateUserAccountController(userAccountService: userAccountService.Object);
 
             // Action
@@ -44,8 +47,22 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             userAccount.ContactApps = "";
             var passedParam = 0;
             var userAccountService = new Mock<IUserAccountService>();
-            userAccountService.Setup(s => s.GetUserAccountInfo(affId, false)).Returns(userAccount).Callback<int>(p => passedParam = p);
+            userAccountService.Setup(s => s.GetUserAccountInfo(affId)).Returns(userAccount).Callback<int>(p => passedParam = p);
+
+            var request = MockingHelper.GetHttpRequest();
+            var server = new Mock<HttpServerUtilityBase>();
+            server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => s);
+            server.Setup(s => s.HtmlDecode(It.IsAny<string>())).Returns<string>(s => s);
+            var mockUser = new Mock<IPrincipal>();
+            mockUser.Setup(m => m.Identity.IsAuthenticated).Returns(true);
+
             var controller = CreateUserAccountController(userAccountService: userAccountService.Object);
+            controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
+                ctx.HttpContext.Request == request &&
+                ctx.HttpContext.Server == server.Object &&
+                ctx.HttpContext.Session.SessionID == "SessionId" &&
+                ctx.HttpContext.User == new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(Function.SecurityQa, "Write") } ) })
+            );
 
             // Action
             var result = controller.GetUserAccountInfo(affId) as JsonNetResult;
@@ -145,7 +162,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeUserAccountService = userAccountService ?? Mock.Of<IUserAccountService>();
 
-            var controller = new UserAccountController(null, fakeSessionService, fakeUserAccountService);
+            var controller = new UserAccountController(fakeSessionService, fakeUserAccountService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();
@@ -155,7 +172,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
                 ctx.HttpContext.Request == request &&
                 ctx.HttpContext.Server == server.Object &&
-                ctx.HttpContext.Session.SessionID == "SessionId"
+                ctx.HttpContext.Session.SessionID == "SessionId" &&
+                ctx.HttpContext.User == new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity() })
             );
 
             return controller;
