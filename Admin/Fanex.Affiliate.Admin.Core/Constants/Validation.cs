@@ -19,7 +19,5 @@
 
         public const int MaxLengthCommGroupDescription = 100;
         public const int MaxLengthLandingPage = 100;
-
-        public const int MaxRoleId = 5;
     }
 }

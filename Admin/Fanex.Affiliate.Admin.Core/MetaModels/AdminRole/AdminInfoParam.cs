@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.AdminRole
 
         public string Password { get; set; }
 
-        [Range(Validation.MinId, Validation.MaxRoleId, ErrorMessage = "Role is invalid!")]
+        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "Role is invalid!")]
         public int? Role { get; set; }
 
         public bool? IsClosed { get; set; }
