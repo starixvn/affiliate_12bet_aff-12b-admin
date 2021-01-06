@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`affiliate info - components - AppContainer render correctly 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <div
+    className="d-inline-flex p-3"
+  >
+    <Memo(MyLink)
+      className="admin-role-sub-menu-back"
+      onClick={[Function]}
+    >
+      <span
+        className="oi oi-chevron-left"
+      />
+    </Memo(MyLink)>
+    <strong>
+      Create User
+    </strong>
+  </div>
+  <Connect(Content) />
+</AppLayout>
+`;
+
+exports[`affiliate info - components - AppContainer render correctly with has Username 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <div
+    className="d-inline-flex p-3"
+  >
+    <Memo(MyLink)
+      className="admin-role-sub-menu-back"
+      onClick={[Function]}
+    >
+      <span
+        className="oi oi-chevron-left"
+      />
+    </Memo(MyLink)>
+    <strong>
+      Abc
+    </strong>
+  </div>
+  <Connect(Content) />
+</AppLayout>
+`;

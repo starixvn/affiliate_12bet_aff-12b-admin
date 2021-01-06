@@ -63,7 +63,7 @@ export const getMarketListByRole = () => async (dispatch) => {
 }
 
 export const getMarketList = () => async (dispatch) => {
-    const url = `Portal/AdminRoleCommon/getMarketListByUser`;
+    const url = `Portal/AdminRoleCommon/GetMarketListByUser`;
     const response = await post(url);
 
     const data = response && response.status === 200 ? response.data : null;
