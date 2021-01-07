@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 
-import { status, resource } from '../modules/constants';
+import { status, resource } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import Language from './general-info/Language';
 import ContactApp from './general-info/ContactApp';
@@ -41,7 +41,7 @@ export const GeneralInfo = (props) => {
                 <Col sm={7} className='text-right'>{affiliateInfo.Gender === null ? '' : (affiliateInfo.Gender ? resource.Male : resource.Female)}</Col>
             </Row>
             {
-                claimsPrincipal.hasReadClaim(claimResource.PhoneNumber) && 
+                claimsPrincipal.hasReadClaim(claimResource.PhoneNumber) &&
                 <Row>
                     <Col sm={5} className="pr-0">{resource.ContactNumber}</Col>
                     <ContactNumber sm={7} className='text-right' isStatic={true}>{htmlDecode(affiliateInfo.Phone)}</ContactNumber>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
 import Content from './Content';
-import Menu from '../../common/components/Menu';
+import Menu from '../../common/components/SubMenu';
 
 export class AppContainer extends PureComponent {
     constructor(props) {

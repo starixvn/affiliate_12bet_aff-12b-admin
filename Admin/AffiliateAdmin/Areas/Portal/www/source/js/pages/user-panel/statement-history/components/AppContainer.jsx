@@ -8,7 +8,6 @@ import Content from './Content';
 import PaymentRequestUpdateForm from '../../../common/components/PaymentRequestUpdateForm';
 
 import { setTransactionId, setParam, getAffiliateInfo } from '../actions';
-import ClaimPrincipal, { claimResource } from '../../../../modules/claim';
 
 export class AppContainer extends PureComponent {
     constructor(props) {

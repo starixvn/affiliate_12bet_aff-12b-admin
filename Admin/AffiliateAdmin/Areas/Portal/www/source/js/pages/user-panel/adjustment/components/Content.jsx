@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Alert, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { toggleLoaderUserPanel, getBalanceBroughtForward, handleSubmit, getAffiliateInfo } from '../actions';
-import { message, resource, regExp, userPanelMenuKey, money } from '../modules/constants';
+import { message, resource, regExp, userPanelMenuKey, money } from '../libs/constants';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 
 const regexCheckAmount = new RegExp(regExp.checkAmount);

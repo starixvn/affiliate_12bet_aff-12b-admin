@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { resource, messages } from '../modules/constants/changePassword';
+import { resource, messages } from '../libs/constants/changePassword';
 import { validateNewPassword } from '../../../modules/utils';
 import { updateChangeAffPasswword, updateChangeAdminPasswword } from '../actions/changePassword';
 

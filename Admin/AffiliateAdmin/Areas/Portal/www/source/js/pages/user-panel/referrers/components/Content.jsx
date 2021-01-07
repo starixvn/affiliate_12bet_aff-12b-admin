@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText, globalResource, maxWidth } from '../modules/constants';
+import { headerText, globalResource, maxWidth } from '../libs/constants';
 import { setSelectedSiteUrl, toggleLoaderUserPanel, fetchData } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 

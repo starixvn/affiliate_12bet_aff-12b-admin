@@ -7,7 +7,7 @@ import Filter from './Filter';
 import ControlButtons from './ControlButtons';
 import Content from './Content';
 import PermissionPopup from './PermissionPopup';
-import Menu from '../../common/components/Menu';
+import Menu from '../../common/components/SubMenu';
 
 export class AppContainer extends Component {
     constructor(props) {

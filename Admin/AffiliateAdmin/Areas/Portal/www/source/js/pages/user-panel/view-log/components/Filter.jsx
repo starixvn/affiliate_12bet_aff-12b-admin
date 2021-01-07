@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { logTypes, headerText, globalResource } from '../modules/constants';
+import { logTypes, headerText, globalResource } from '../libs/constants';
 import { setParam, setShowIdList } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
 

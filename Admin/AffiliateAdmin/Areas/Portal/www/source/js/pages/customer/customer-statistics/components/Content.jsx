@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import MyLink from '../../../common/components/MyLink';
 import { Table, Spinner } from 'reactstrap';
-import { rowTitle, resource } from '../modules/constants';
+import { rowTitle, resource } from '../libs/constants';
 import { shortedMonthNames, minMonthDate, selectedAllProduct, deviceTypes, pcLaptop, mobile } from '../../../../modules/constants';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 

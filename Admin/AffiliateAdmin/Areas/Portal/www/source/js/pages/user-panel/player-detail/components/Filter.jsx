@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import MonthPicker from '@9softstudio/react-monthpicker';
 
-import { resource, selectedAllProduct, shortedMonthNames, minMonthDate } from '../modules/constants';
+import { resource, selectedAllProduct, shortedMonthNames, minMonthDate } from '../libs/constants';
 import { setParam, getProductList, exportExcel } from '../actions';
-import ReportExcel from '../modules/reportExcel';
+import ReportExcel from '../libs/reportExcel';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { claimResource } from '../../../../modules/claim';
 

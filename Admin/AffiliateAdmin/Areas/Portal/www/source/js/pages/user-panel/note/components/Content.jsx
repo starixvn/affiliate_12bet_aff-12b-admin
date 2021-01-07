@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText, maxWidth, globalResource } from '../modules/constants';
+import { headerText, maxWidth, globalResource } from '../libs/constants';
 import { setShowPopup, setNoteInfo, getNoteList, getNoteContentById, toggleLoaderUserPanel } from '../actions';
 import { claimResource } from '../../../../modules/claim';
 
@@ -35,7 +35,7 @@ export class Content extends PureComponent {
             </Row>
         );
     }
-    
+
     _renderDataSection(dataList) {
         const dataRows = [];
 
@@ -67,7 +67,7 @@ export class Content extends PureComponent {
                 <Cell title={noteContent}>{noteContent}</Cell>
                 <Cell title={createdBy}>{createdBy}</Cell>
                 <Cell title={dataItem.LastModifyText} className="text-center">{dataItem.LastModifyText}</Cell>
-                { this._hasEditPermission() && 
+                { this._hasEditPermission() &&
                     <Cell title="Edit Note" className="text-center">
                         <Button className="p-0" color="link" onClick={() => this.handleShowPopup(dataItem.NoteId)}>
                             <span className="oi oi-pencil text-secondary"></span>

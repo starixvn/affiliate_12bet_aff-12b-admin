@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { capitalizeFirstChar } from '../../modules/service';
+import { capitalizeFirstChar } from '../../libs/service';
 import { setUserAccountInfo } from '../../actions';
-import { playerMethod, netellerMethod, moneybookersMethod, wireMethod, minimumPayment, nondeposited } from '../../modules/constants';
+import { playerMethod, netellerMethod, moneybookersMethod, wireMethod, minimumPayment, nondeposited } from '../../libs/constants';
 import { claimResource } from '../../../../../modules/claim';
 
 const paymentMethodList = [

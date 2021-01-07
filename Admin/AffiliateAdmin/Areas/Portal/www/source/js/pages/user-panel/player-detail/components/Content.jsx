@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { headerText, globalResource, selectedAllProduct, maxWidth, SortByIdList } from '../modules/constants';
+import { headerText, globalResource, selectedAllProduct, maxWidth, SortByIdList } from '../libs/constants';
 import { setPagingOption, toggleLoaderUserPanel, fetchData, setSortedParam } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import SortingCell from './SortingCell';

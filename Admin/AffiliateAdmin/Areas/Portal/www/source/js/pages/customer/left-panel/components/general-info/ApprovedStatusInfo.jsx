@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col, Button } from 'reactstrap';
 
 import ChangePasswordForm from '../../../../common/components/ChangePasswordForm';
-import { resource } from '../../modules/constants';
+import { resource } from '../../libs/constants';
 import { resolveClientUrl } from '../../../../../modules/utils';
 import { claimResource } from '../../../../../modules/claim';
 

@@ -2,8 +2,8 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import ClaimPrincipal from '../../modules/claim';
 import MenuList from '../common/components/MenuList';
-import { menus } from './modules/menus';
-import { BrowserRouter as Router, Route, Switch, StaticRouter, Redirect } from 'react-router-dom'
+import { menus } from './libs/menus';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 export default class App extends React.PureComponent {
     constructor(props) {

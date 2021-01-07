@@ -6,7 +6,7 @@ import { Button, Col } from 'reactstrap';
 import InputPopUp from "../../../../common/components/InputPopUp";
 import { updateContactNumber, getAffiliateInfo, toggleLoaderLeftPanel } from '../../actions';
 import  NotificationPopup  from "../../../../common/components/NotificationPopup";
-import { messages } from '../../modules/constants';
+import { messages } from '../../libs/constants';
 
 export class ContactNumber extends PureComponent{
     constructor(props){
@@ -44,7 +44,7 @@ export class ContactNumber extends PureComponent{
         const param = Object.assign({}, {AffId: this.props.affiliateInfo.AffId, ContactNumber: value })
         toggleLoaderLeftPanel(true);
         var result = await this.props.updateContactNumber(param);
-        toggleLoaderLeftPanel(false);   
+        toggleLoaderLeftPanel(false);
         if (result.IsSuccessful) {
             this.setState({ notificationMessage: messages.contactNumberUpdatedSuccess});
             this.props.getAffiliateInfo(this.props.affName);
@@ -52,7 +52,7 @@ export class ContactNumber extends PureComponent{
         else {
             this.setState({ notificationMessage: result.Message});
         }
-    } 
+    }
 
     _renderClickableContent = () => {
         const { className, sm, md } = this.props;

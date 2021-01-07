@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { headerText, globalResource, maxWidth } from '../modules/constants';
+import { headerText, globalResource, maxWidth } from '../libs/constants';
 import { toggleLoaderUserPanel, setPagingOption, fetchDetailData } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 

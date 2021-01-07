@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Form, FormGroup, Input, Label } from 'reactstrap';
 
-import { selectedAllProduct, globalResource } from '../modules/constants';
+import { selectedAllProduct, globalResource } from '../libs/constants';
 import { setParam, getProductList } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 

@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import Panel from '../Panel';
 import { Row, Col } from 'reactstrap';
 
-import { resource, messages } from '../../modules/constants';
+import { resource, messages } from '../../libs/constants';
 import { toggleLoaderLeftPanel, getOnLineList } from '../../actions';
 
 export class OnlineInfoPanel extends PureComponent {

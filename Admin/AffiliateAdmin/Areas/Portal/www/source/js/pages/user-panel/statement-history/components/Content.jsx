@@ -7,7 +7,7 @@ import { Button } from 'reactstrap';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { setPagingOption, toggleLoaderUserPanel, fetchData, setTransactionId, redirectToDailyEarning } from '../actions';
-import { headerText, globalResource, transTypeList, monthlyWinlost, MONTHLY_WINLOST, PAYMENT_REQUEST, TRANSACTION, selectedAllProduct, maxWidth } from '../modules/constants';
+import { headerText, globalResource, transTypeList, monthlyWinlost, MONTHLY_WINLOST, PAYMENT_REQUEST, TRANSACTION, selectedAllProduct, maxWidth } from '../libs/constants';
 
 export class Content extends PureComponent {
     constructor(props) {

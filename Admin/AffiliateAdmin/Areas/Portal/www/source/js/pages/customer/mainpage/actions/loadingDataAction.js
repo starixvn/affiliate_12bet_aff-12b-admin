@@ -3,7 +3,7 @@ import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoaderLeftPanel } from '../../left-panel/actions';
 
 import { setSelectedUserPanel } from '../../user-panel/actions';
-import { userPanelMenuKey } from '../../common/modules/constants';
+import { userPanelMenuKey } from '../../common/libs/constants';
 import { setIsValidUserName } from '../../left-panel/actions';
 
 export const receiveLeftMenuInfo = (data) => {

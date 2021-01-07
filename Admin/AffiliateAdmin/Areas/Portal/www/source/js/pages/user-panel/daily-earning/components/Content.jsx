@@ -6,7 +6,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { toggleLoaderUserPanel, fetchData, redirectToDailyEarningDetail } from '../actions';
-import { resource, selectedAllProduct, maxWidth, globalResource } from '../modules/constants';
+import { resource, selectedAllProduct, maxWidth, globalResource } from '../libs/constants';
 
 export class Content extends PureComponent {
     constructor(props) {

@@ -1,9 +1,8 @@
 ﻿import React from 'react';
 import { Filter } from '../Filter';
 import { shallow } from 'enzyme';
-import { DatePicker } from '@9softstudio/react-datepicker';
-import ReportExcel from '../../modules/reportExcel';
-jest.mock('../../modules/reportExcel');
+import ReportExcel from '../../libs/reportExcel';
+jest.mock('../../libs/reportExcel');
 
 describe('players detail - components - Filter', () => {
     afterAll(() => {

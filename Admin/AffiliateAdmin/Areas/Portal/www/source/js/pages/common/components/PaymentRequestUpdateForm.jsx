@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, ModalHeader, ModalBody, Alert, Button, Form, Row, Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { resource, globalResource, statusList, errorList, pending } from '../modules/constants/paymentRequestUpdate';
+import { resource, globalResource, statusList, errorList, pending } from '../libs/constants/paymentRequestUpdate';
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
 import { getPaymentRequestDetail, updatePaymentRequest } from '../actions/paymentRequestUpdate';
 import { htmlDecode } from '../../../modules/htmlHelper';

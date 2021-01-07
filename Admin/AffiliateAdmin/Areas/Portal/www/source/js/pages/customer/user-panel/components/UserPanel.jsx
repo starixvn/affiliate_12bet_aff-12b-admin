@@ -2,8 +2,8 @@ import React, { Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Loader from '../../../../components/Loader';
 import UserPanelMenu from './UserPanelMenu';
-import { userPanelMenuList, userPanelPendingMenuList } from '../modules/menu';
-import { userPanelMenuKey } from '../../common/modules/constants';
+import { userPanelMenuList, userPanelPendingMenuList } from '../libs/menu';
+import { userPanelMenuKey } from '../../common/libs/constants';
 import { spinnerLoaderWidth, spinnerLoaderUserPanelHeight } from '../../../../modules/constants';
 
 export const UserPanel = (props) => {

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { renderInputForm, capitalizeFirstChar, renderClaimBaseSelectionForm, renderClaimBaseInputForm } from '../../modules/service';
-import { countriesList } from '../../modules/constants';
+import { renderInputForm, capitalizeFirstChar, renderClaimBaseSelectionForm, renderClaimBaseInputForm } from '../../libs/service';
+import { countriesList } from '../../libs/constants';
 import { setUserAccountInfo } from '../../actions';
 import { claimResource } from '../../../../../modules/claim';
 

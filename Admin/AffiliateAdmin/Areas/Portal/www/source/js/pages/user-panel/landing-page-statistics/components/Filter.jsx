@@ -5,7 +5,7 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { getDateRange } from '../../../../modules/utils';
-import { headerTitle, deviceTypes, globalResource } from '../modules/constants';
+import { headerTitle, deviceTypes, globalResource } from '../libs/constants';
 import { setSelectedPage, setParam, setShortCodeLanguageList, getPageList } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 

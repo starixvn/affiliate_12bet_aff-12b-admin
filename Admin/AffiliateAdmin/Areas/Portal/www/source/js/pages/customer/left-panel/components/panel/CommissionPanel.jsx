@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import Panel from '../Panel';
 import { Row, Col, Button } from 'reactstrap';
 
-import { resource } from '../../modules/constants';
+import { resource } from '../../libs/constants';
 import { formatDecimalWithCurrencySymbol } from '../../../../../modules/numberFormat';
 import { getAffiliateInfo } from '../../actions';
 import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
@@ -53,7 +53,7 @@ export class CommissionPanel extends PureComponent {
             )
     }
 
-    _renderStaticContent = (affiliateInfo) => {      
+    _renderStaticContent = (affiliateInfo) => {
         return htmlDecode(affiliateInfo.CommGroupName)
     }
 

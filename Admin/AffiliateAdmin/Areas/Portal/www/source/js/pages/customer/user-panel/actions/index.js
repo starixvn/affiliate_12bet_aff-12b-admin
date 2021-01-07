@@ -1,5 +1,5 @@
 import { SET_SELECTED_USERPANEL, RESET_USER_PANEL, TOGGLE_LOADER_USER_PANEL } from './types';
-import { userPanelMenuKey } from '../../common/modules/constants';
+import { userPanelMenuKey } from '../../common/libs/constants';
 import { setParam as setDailyEarningParam } from '../../../user-panel/daily-earning/actions';
 import { setParam as setDailyEarningDetailParam } from '../../../user-panel/daily-earning-detail/actions';
 

@@ -1,6 +1,6 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
-import { getTrackingCodeList as trackingCodeList } from '../../../customer/user-panel/modules/service';
+import { getTrackingCodeList as trackingCodeList } from '../../../customer/user-panel/libs/service';
 import { SET_PARAM, SET_SELECTED_MONTH } from './types';
 
 export { toggleLoaderUserPanel }

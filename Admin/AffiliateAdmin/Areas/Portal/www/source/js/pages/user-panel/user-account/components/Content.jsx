@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import { Container, Button, Row, Col, Alert } from 'reactstrap';
 
 import { getUserAccountInfo, updateUserAccount, getAffiliateInfo } from '../actions';
-import { validateUserAccount } from '../modules/validation';
-import { userPanelMenuKey } from '../modules/constants';
+import { validateUserAccount } from '../libs/validation';
+import { userPanelMenuKey } from '../libs/constants';
 
 import Section from './Section';
 import Personal from './sections/Personal';
@@ -122,7 +122,7 @@ export class Content extends PureComponent {
                     </Col>
                 </Row>
 
-                {claimsPrincipal.hasReadClaim(claimResource.WebsiteUrl) && ( 
+                {claimsPrincipal.hasReadClaim(claimResource.WebsiteUrl) && (
                     <Row>
                         <Col xs="12" className="px-0">
                             <Section title="Website Information">
@@ -141,11 +141,11 @@ export class Content extends PureComponent {
                                 <Payment />
                             </Section>
                         </Col>
-                    </Row>                    
-                )}        
+                    </Row>
+                )}
                 <Row>
-                    <Button className="mb-3" color="success" 
-                        onClick={this.handleSubmit} 
+                    <Button className="mb-3" color="success"
+                        onClick={this.handleSubmit}
                         disabled={!claimsPrincipal.hasClaim(new Claim(claimTypes.Role, claimResource.RoleManager))}
                         >Submit</Button>
                 </Row>

@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { Button } from 'reactstrap';
 
-import { resource } from '../modules/constants/selectAll';
+import { resource } from '../libs/constants/selectAll';
 
 export const SelectAll = (props) => {
 

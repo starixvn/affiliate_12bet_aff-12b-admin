@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import CommissionPanel from './panel/CommissionPanel';
 import SettingPanel from './panel/SettingPanel';
 import OnlineInfoPanel from './panel/OnlineInfoPanel';
-import { status } from '../modules/constants';
+import { status } from '../libs/constants';
 import { claimResource } from '../../../../modules/claim';
 
 export const PanelList = (props) => {

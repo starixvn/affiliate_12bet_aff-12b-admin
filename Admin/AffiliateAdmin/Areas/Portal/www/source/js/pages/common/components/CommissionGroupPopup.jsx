@@ -1,7 +1,7 @@
 ﻿import React, { PureComponent } from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { resolveClientUrl } from '../../../modules/utils';
-import { popupEventNames } from '../modules/constants/commissionGroup';
+import { popupEventNames } from '../libs/constants/commissionGroup';
 
 export default class CommissionGroupPopup extends PureComponent {
     constructor(props) {
