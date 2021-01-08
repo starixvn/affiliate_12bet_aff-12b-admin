@@ -185,7 +185,12 @@
     <Compile Include="Constants\Field.cs" />
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
+    <Compile Include="Controllers\Affiliate\MassAdjustmentController.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
+    <Compile Include="Repository\Affiliate\IMassAdjustmentRepository.cs" />
+    <Compile Include="Repository\Affiliate\MassAdjustmentRepository.cs" />
+    <Compile Include="Services\MassAdjustment\IMassAdjustmentService.cs" />
+    <Compile Include="Services\MassAdjustment\MassAdjustmentService.cs" />
     <Compile Include="Utilities\Result.cs" />
     <Compile Include="Constants\Money.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />

@@ -355,6 +355,14 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\libs\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\libs\__test__\utils.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\reducers\__tests__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\Content.test.js" />
@@ -737,6 +745,7 @@
     <Content Include="Areas\Portal\Views\Affiliate\PaymentRequest.cshtml" />
     <Content Include="Areas\Portal\Views\MediaGallery\LandingPageList.cshtml" />
     <Content Include="Areas\Portal\Views\MediaGallery\TextList.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\MassAdjustment.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
