@@ -20,7 +20,6 @@
             {
                 MailTo = mailTo,
                 Subject = subject,
-                Title = subject,
                 Body = content,
                 MailBcc = mailBcc,
                 MailCc = mailCc
