@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Label, Input } from 'reactstrap';
-import { globalResource } from '../../../../modules/globalResource';
-import { messages } from '../libs/constants';
+import { globalResource } from '../../../modules/globalResource';
 
 export class InputFile extends React.PureComponent {
     constructor(props) {
@@ -21,9 +20,9 @@ export class InputFile extends React.PureComponent {
     }
 
     render() {
-        const { className, id, files, isMultiple, handleOnChangeFiles } = this.props;
+        const { className, id, files, isMultiple, handleOnChangeFiles, accept } = this.props;
 
-        let text = messages.NoFileChoosen;
+        let text = "No file choosen";
         if (files && files.length === 1) {
             text = files[0].name;
         }
@@ -38,11 +37,11 @@ export class InputFile extends React.PureComponent {
                     <Label className="ml-1">{text}</Label>
                     <Input type="file"
                         name="file"
-                        id={id}
+                        id="input-file"
                         hidden
                         files={files}
                         multiple={isMultiple}
-                        onChange={handleOnChangeFiles} accept="image/jpg, image/gif, image/png, image/jpeg" />
+                        onChange={handleOnChangeFiles} accept={accept} />
                 </div>
             </React.Fragment>
         )

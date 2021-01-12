@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
-import Filter from './Filter';
+import ImportForm from './ImportForm';
 import Content from './Content';
 import Loader from '../../../../components/Loader';
 
@@ -11,7 +11,7 @@ export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />
-            <Filter />
+            <ImportForm />
             <Content />
         </AppLayout>
     );

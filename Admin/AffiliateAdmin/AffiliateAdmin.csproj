@@ -359,7 +359,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\ImportForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\reducers\index.js" />
@@ -617,7 +617,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\reducers\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\InputFile.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\InputFile.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\__test__\ControlButtons.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\libs\constants.js" />
@@ -1281,6 +1281,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\admin-list.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\role-permission.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\affiliate.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\affiliate\mass-adjustment.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

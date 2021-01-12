@@ -10,7 +10,7 @@ import { htmlDecode } from '../../../../modules/htmlHelper';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 import { validateFileExtension, validateInputFile } from '../libs/utils';
 import MultipleSelect from '../../../../components/multiple-select';
-import InputFile from '../../common/components/InputFile';
+import InputFile from '../../../common/components/InputFile';
 
 const regexSpecialCharacters = new RegExp(regSpecialCharacters);
 
@@ -486,9 +486,11 @@ export class EditBannerForm extends PureComponent {
                                     <FormGroup row className="mb-2">
                                         <Label sm={3} for="file" className={isInsert ? "required" : ""}>File</Label>
                                         <Col sm={9} >
-                                            <InputFile id="file" className={`border ${(isInsert && isDisabled) || files.length === 0 ? "text-danger" : "text-success"}`}
+                                            <InputFile className={`border ${(isInsert && isDisabled) || files.length === 0 ? "text-danger" : "text-success"}`}
                                                 isMultiple={isInsert} files={files}
-                                                handleOnChangeFiles={this._handleFile}></InputFile>
+                                                handleOnChangeFiles={this._handleFile}
+                                                accept="image/jpg, image/gif, image/png, image/jpeg"
+                                            />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
