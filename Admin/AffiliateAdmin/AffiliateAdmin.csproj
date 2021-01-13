@@ -1244,7 +1244,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\EmailDetailForm.jsx" />
-    <Content Include="Areas\Portal\www\source\style\pages\affiliate\email-history.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\DeleteEmail.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\common\payment-request-table.scss" />

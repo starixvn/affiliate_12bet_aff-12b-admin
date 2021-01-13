@@ -11,20 +11,27 @@ export class ImportForm extends PureComponent {
         super(props);
 
         this.state = {
-            file: null
+            files: []
         }
     }
 
     handleChangeFile = () => {
+        let { files } = event.target;
 
+        this.setState({ files });
     }
 
-    handleClickUpload = () => {
+    handleClickUpload = (hasFiles) => {
+        const { files } = this.state;
 
+        if (hasFiles) {
+            this.props.setFile(files[0]);
+        }
     }
 
     render() {
-        const { file } = this.state;
+        const { files } = this.state;
+        const hasFiles = files && !!files.length;
 
         return (
             <div className="filter-container">
@@ -32,11 +39,16 @@ export class ImportForm extends PureComponent {
                      <FormGroup className="my-2 mr-sm-2">
                         <Label check>
                             <Label className="mr-sm-2">Import File</Label>
-                            <InputFile className="border d-flex" files={file} handleOnChangeFiles={this.handleChangeFile} accept=".xlsx"></InputFile>
+                            <InputFile className={`input-file ${hasFiles ? "text-success" : "text-danger"}`}
+                                btnName="Browse"
+                                lblText="Select file..."
+                                files={files}
+                                handleOnChangeFiles={this.handleChangeFile}
+                                accept=".xlsx" />
                         </Label>
                     </FormGroup>
 
-                    <Button className="my-2" outline color="primary" type="button" onClick={this.handleClickUpload}>
+                    <Button className="my-2" disabled={!hasFiles} outline color="primary" type="button" onClick={() => this.handleClickUpload(hasFiles)}>
                         Upload
                     </Button>
                 </Form>
@@ -45,12 +57,8 @@ export class ImportForm extends PureComponent {
     }
 }
 
-function mapStateToProps({  }) {
-    return Object.assign({}, { });
-}
-
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setFile }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImportForm);
+export default connect(null, mapDispatchToProps)(ImportForm);

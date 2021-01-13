@@ -1,9 +1,8 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import { setFile } from '../actions';
-import { toggleLoader } from '../../../../actions/loaderAction';
+import Note from './Note';
+import Result from './Result';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -11,21 +10,20 @@ export class Content extends PureComponent {
     }
 
     render() {
+        const { file } = this.props;
 
         return (
-            <div className="data-content my-2">
-                Mass Adjustment
+            <div className="mass-adjustment-content">
+                {
+                    !file ? <Note /> : <Result />
+                }
             </div>
         );
     }
 }
 
-function mapStateToProps({  }) {
-    return Object.assign({}, { });
+function mapStateToProps({ file }) {
+    return Object.assign({}, { file });
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setFile, toggleLoader }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Content);
+export default connect(mapStateToProps)(Content);

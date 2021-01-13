@@ -487,6 +487,8 @@ export class EditBannerForm extends PureComponent {
                                         <Label sm={3} for="file" className={isInsert ? "required" : ""}>File</Label>
                                         <Col sm={9} >
                                             <InputFile className={`border ${(isInsert && isDisabled) || files.length === 0 ? "text-danger" : "text-success"}`}
+                                                lblText="No file choosen"
+                                                btnName={globalResource.ChooseFile}
                                                 isMultiple={isInsert} files={files}
                                                 handleOnChangeFiles={this._handleFile}
                                                 accept="image/jpg, image/gif, image/png, image/jpeg"
