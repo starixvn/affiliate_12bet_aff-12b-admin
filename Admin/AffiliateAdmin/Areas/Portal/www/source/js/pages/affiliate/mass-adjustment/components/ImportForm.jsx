@@ -18,7 +18,9 @@ export class ImportForm extends PureComponent {
     handleChangeFile = () => {
         let { files } = event.target;
 
-        this.setState({ files });
+        if (files && files.length > 0 ) {
+            this.setState({ files });
+        }
     }
 
     handleClickUpload = (hasFiles) => {
@@ -37,15 +39,13 @@ export class ImportForm extends PureComponent {
             <div className="filter-container">
                 <Form inline tag="div">
                      <FormGroup className="my-2 mr-sm-2">
-                        <Label check>
-                            <Label className="mr-sm-2">Import File</Label>
-                            <InputFile className={`input-file ${hasFiles ? "text-success" : "text-danger"}`}
-                                btnName="Browse"
-                                lblText="Select file..."
-                                files={files}
-                                handleOnChangeFiles={this.handleChangeFile}
-                                accept=".xlsx" />
-                        </Label>
+                        <Label className="mr-sm-2">Import File</Label>
+                        <InputFile className={`input-file ${hasFiles ? "text-success" : "text-danger"}`}
+                            btnName="Browse"
+                            lblText="Select file..."
+                            files={files}
+                            handleOnChangeFiles={this.handleChangeFile}
+                            accept=".xlsx" />
                     </FormGroup>
 
                     <Button className="my-2" disabled={!hasFiles} outline color="primary" type="button" onClick={() => this.handleClickUpload(hasFiles)}>

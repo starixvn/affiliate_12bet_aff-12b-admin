@@ -360,6 +360,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\ImportForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\Note.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\Result.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\reducers\index.js" />

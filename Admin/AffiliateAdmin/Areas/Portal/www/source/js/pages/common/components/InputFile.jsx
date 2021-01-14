@@ -1,49 +1,60 @@
 import React from 'react';
-import { Button, Label, Input } from 'reactstrap';
+import PropTypes from 'prop-types';
+import { Button, Input } from 'reactstrap';
 
 export class InputFile extends React.PureComponent {
     constructor(props) {
         super(props);
+
+        this.inputRef = React.createRef();
     }
 
-    componentDidMount() {
-        this.$input = $(this.input);
-        this.$input.css('cursor', 'pointer');
-        this.$input.click(() => {
-            this.$input.children('input')[0].click();
-        })
-    }
-
-    componentWillUnmount() {
-        this.$input.unbind('click');
+    handleClick = () => {
+        this.inputRef.current.click();
     }
 
     render() {
         const { className, files, isMultiple, handleOnChangeFiles, accept, btnName, lblText } = this.props;
-
         let text = lblText;
-        if (files && files.length === 1) {
-            text = files[0].name;
-        }
-        if (files && files.length > 1) {
-            text = `${files.length} files`
+
+        if (files.length > 0) {
+            text = files.length == 1 ? files[0].name : `${files.length} files`;
         }
 
         return (
             <React.Fragment>
-                <div className={className} ref={el => this.input = el}>
+                <div className={className} style={{ cursor: 'pointer' }} onClick={this.handleClick}>
                     <Button type="button">{btnName}</Button>
-                    <Label className="px-2 m-0">{text}</Label>
+                    <span className="px-2" style={{ 'margin-top': '2px' }}>{text}</span>
                     <Input type="file"
                         name="file"
                         hidden
                         files={files}
                         multiple={isMultiple}
-                        onChange={handleOnChangeFiles} accept={accept} />
+                        innerRef={this.inputRef}
+                        onChange={handleOnChangeFiles}
+                        accept={accept} />
                 </div>
             </React.Fragment>
         )
     }
 }
 
-export default (React.memo(InputFile));
+InputFile.propTypes = {
+    files: PropTypes.array.isRequired,
+    handleOnChangeFiles: PropTypes.func.isRequired,
+    accept: PropTypes.string.isRequired,
+    btnName: PropTypes.string,
+    lblText: PropTypes.string,
+    className: PropTypes.string,
+    multiple: PropTypes.bool
+};
+
+InputFile.defaultProps = {
+    multiple: false,
+    className: null,
+    btnName: 'Choosen',
+    lblText: 'No file choosen'
+};
+
+export default React.memo(InputFile);
