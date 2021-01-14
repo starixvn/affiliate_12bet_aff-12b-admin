@@ -1,9 +1,7 @@
-﻿import { post } from '../../../../modules/ajaxRequest';
-import { toggleLoader } from '../../../../actions/loaderAction';
-import { setPagingOption } from '../../../../actions/pagingAction';
-import { SET_FILE } from './types';
+﻿import { toggleLoader } from '../../../../actions/loaderAction';
+import { SET_FILE, SET_IS_CLICK_UPLOAD } from './types';
 
-export { toggleLoader, setPagingOption };
+export { toggleLoader };
 
 export const setFile = (data) => {
     return {
@@ -12,15 +10,25 @@ export const setFile = (data) => {
     }
 }
 
-export const handleUploadFile = (file) => async (dispatch) => {
-    dispatch(toggleLoader(true));
+export const setIsClickUpload = (data) => {
+    return {
+        type: SET_IS_CLICK_UPLOAD,
+        data
+    }
+}
 
-    const url = '';
-    const response = await post(url, file);
+export const handleUploadFile = (file) => async () => {
+    //const url = 'Portal/MassAdjustment/UploadFile';
+    //const response = await post(url, file);
 
-    const data = response && response.status === 200 ? response.data : null;
+    //return response && response.status === 200 ? response.data : null;
 
-    dispatch(toggleLoader(false));
-
-    return data;
+    return new Promise((resolve, reject) => {
+        const result = {
+            isOk: false,
+            message: 'Upload failed!',
+            data: "Json"
+        };
+        resolve(result);
+    });
 }

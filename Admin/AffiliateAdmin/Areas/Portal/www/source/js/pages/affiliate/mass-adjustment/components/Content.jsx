@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 import Note from './Note';
-import Result from './Result';
+import UploadResult from './UploadResult';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -15,7 +15,7 @@ export class Content extends PureComponent {
         return (
             <div className="mass-adjustment-content">
                 {
-                    !file ? <Note /> : <Result />
+                    !file ? <Note /> : <UploadResult />
                 }
             </div>
         );

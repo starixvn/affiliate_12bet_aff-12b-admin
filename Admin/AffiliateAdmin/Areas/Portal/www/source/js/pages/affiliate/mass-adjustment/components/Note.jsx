@@ -1,19 +1,18 @@
 ﻿import React from 'react';
-import { resolveClientUrl } from '../../../../modules/utils';
 
 const Note = () => {
-    const href = resolveClientUrl('Areas/Portal/www/sources/style/assets/template.xlsx');
-
     const renderRow = () => {
-        let rows = []
+        const rows = []
 
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < 10; i++) {
+            const index = i + 1;
+
             rows.push(
                 <tr key={i}>
-                    <td>{i + 1}</td>
-                    <td colSpan="3">Username01</td>
-                    <td>{i + 10}</td>
-                    <td>Reason01</td>
+                    <td>{index}</td>
+                    <td colSpan="3">Username{index}</td>
+                    <td>{i + 11}</td>
+                    <td>Reason{index}</td>
                 </tr>
             )
         }
@@ -23,7 +22,7 @@ const Note = () => {
 
     const sample = () => {
         return (
-            <table className="sample-table">
+            <table className="data-table">
                 <thead>
                     <th>Stt</th>
                     <th colSpan="3">User Name</th>

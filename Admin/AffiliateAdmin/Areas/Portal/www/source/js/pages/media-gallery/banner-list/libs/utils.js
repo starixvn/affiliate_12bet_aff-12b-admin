@@ -1,4 +1,4 @@
-﻿import { Casino, Sportsbook, maxLength } from './constants';
+﻿import { maxLength } from './constants';
 
 export const validateFileExtension = (fileName) => {
     const result = {
@@ -17,7 +17,6 @@ export const validateFileExtension = (fileName) => {
     }
 
     return result;
-
 }
 
 export const validateInputFile = (inputFileName) => {
@@ -29,7 +28,6 @@ export const validateInputFile = (inputFileName) => {
     }
 
     return result;
-
 }
 
 export const resizeWidthHeight = (realWidth, realHeight, size = 500) => {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Button, Form, FormGroup, Label } from 'reactstrap';
-import { setFile } from '../actions';
+import { setFile, setIsClickUpload } from '../actions';
 import { InputFile } from '../../../common/components/InputFile';
 
 export class ImportForm extends PureComponent {
@@ -15,10 +15,14 @@ export class ImportForm extends PureComponent {
         }
     }
 
+    componentWillUnmount() {
+        this.props.setFile(null);
+    }
+
     handleChangeFile = () => {
         let { files } = event.target;
 
-        if (files && files.length > 0 ) {
+        if (files && files.length > 0) {
             this.setState({ files });
         }
     }
@@ -28,6 +32,8 @@ export class ImportForm extends PureComponent {
 
         if (hasFiles) {
             this.props.setFile(files[0]);
+
+            this.props.setIsClickUpload(true);
         }
     }
 
@@ -38,9 +44,9 @@ export class ImportForm extends PureComponent {
         return (
             <div className="filter-container">
                 <Form inline tag="div">
-                     <FormGroup className="my-2 mr-sm-2">
+                    <FormGroup className="my-2 mr-sm-2">
                         <Label className="mr-sm-2">Import File</Label>
-                        <InputFile className={`input-file ${hasFiles ? "text-success" : "text-danger"}`}
+                        <InputFile className={`input-file ${hasFiles ? "text-dark" : "text-muted"}`}
                             btnName="Browse"
                             lblText="Select file..."
                             files={files}
@@ -58,7 +64,7 @@ export class ImportForm extends PureComponent {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setFile }, dispatch);
+    return bindActionCreators({ setFile, setIsClickUpload }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(ImportForm);
