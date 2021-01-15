@@ -82,7 +82,7 @@ export const getSizeList = (param) => async (dispatch) => {
 
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
-    
+
     const url = 'Portal/MediaGallery/GetBannerList';
     const response = await post(url, param);
 

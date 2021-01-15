@@ -43,17 +43,17 @@ export class UploadResult extends PureComponent {
         let validateFileResult = this.validateFile(file);
 
         if (validateFileResult.isOK) {
-            let result = await this.props.handleUploadFile(file).then(re => re);
+            let resultInfo = await this.props.handleUploadFile(file).then(re => re);
 
-            if (result.isOK) {
-                validateFileResult.message = 'Upload file successfully!';
+            if (resultInfo.Result.IsSuccessful) {
+                validateFileResult.message = 'Your file has been upload successfully!';
             } else {
                 validateFileResult = {
                     isOK: false,
-                    message: result.message
+                    message: resultInfo.Result.Message
                 };
 
-                responseData = result.data;
+                responseData = resultInfo.ErroredAdjustmentInfoList;
             }
         }
 
@@ -106,7 +106,7 @@ export class UploadResult extends PureComponent {
         return (
             <div className="result-container">
                 {
-                    result.isOk ? (
+                    result.isOK ? (
                         <div className="success-alert">
                             <span className="text-success">{result.message}</span>
                         </div>

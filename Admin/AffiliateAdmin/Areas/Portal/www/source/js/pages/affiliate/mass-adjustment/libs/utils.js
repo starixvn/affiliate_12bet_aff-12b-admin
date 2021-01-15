@@ -9,7 +9,7 @@
                 <li>The file is not excel file</li>
                 <li>File has more than 500 rows</li>
             </ol>
-        </div >
+        </div>
         `,
     }
     if (!!fileName) {

@@ -367,6 +367,22 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;div&gt;
+        ///            &lt;p&gt;The upload file is not correct format, error shall be one of following list:&lt;/p&gt;
+        ///            &lt;ol&gt;
+        ///                &lt;li&gt;Merge column in Excel file&lt;/li&gt;
+        ///                &lt;li&gt;The file is not excel file&lt;/li&gt;
+        ///                &lt;li&gt;File has more than 500 rows&lt;/li&gt;
+        ///            &lt;/ol&gt;
+        ///&lt;/div&gt;.
+        /// </summary>
+        public static string InvalidAdjustmentFile {
+            get {
+                return ResourceManager.GetString("InvalidAdjustmentFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file name already exists.&lt;br /&gt;.
         /// </summary>
         public static string InvalidBannerAlready {

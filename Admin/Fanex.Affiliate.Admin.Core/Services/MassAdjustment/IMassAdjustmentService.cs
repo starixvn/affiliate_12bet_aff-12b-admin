@@ -1,9 +1,10 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO.MassAdjustment;
+using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
 {
     public interface IMassAdjustmentService
     {
-        ResultInfo InsertMassAdjusment();
+        AdjustmentResultInfo InsertMassAdjusment(HttpPostedFileBase file);
     }
 }
