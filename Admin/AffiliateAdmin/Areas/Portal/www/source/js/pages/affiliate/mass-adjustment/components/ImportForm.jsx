@@ -51,7 +51,7 @@ export class ImportForm extends PureComponent {
                             lblText="Select file..."
                             files={files}
                             handleOnChangeFiles={this.handleChangeFile}
-                            accept=".xlsx" />
+                            accept=".xlsx, .xls" />
                     </FormGroup>
 
                     <Button className="my-2" disabled={!hasFiles} outline color="primary" type="button" onClick={() => this.handleClickUpload(hasFiles)}>

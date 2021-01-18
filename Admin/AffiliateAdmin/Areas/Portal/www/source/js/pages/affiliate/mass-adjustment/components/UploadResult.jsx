@@ -64,17 +64,19 @@ export class UploadResult extends PureComponent {
     }
 
     renderRow = () => {
-        const rows = []
+        const rows = [];
+        const { responseData } = this.state;
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < responseData.length; i++) {
+            const item = responseData[i];
             const index = i + 1;
 
             rows.push(
                 <tr key={i}>
                     <td>{index}</td>
-                    <td colSpan="3">Username{index}</td>
-                    <td>{i + 11}</td>
-                    <td>Error{index}</td>
+                    <td colSpan="3">{item.Username}</td>
+                    <td>{item.Amount}</td>
+                    <td>{item.Reason}</td>
                 </tr>
             )
         }
@@ -118,7 +120,7 @@ export class UploadResult extends PureComponent {
                                 </div >
                                 <p>Please check and re-upload the file.</p>
                                 {
-                                    !!responseData && (
+                                    responseData && !!responseData.length && (
                                         this.handleResponseData()
                                     )
                                 }
