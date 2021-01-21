@@ -166,6 +166,7 @@
     <Compile Include="MetaModels\RequestBaseParam.cs" />
     <Compile Include="MetaModels\TimeTrackerParam.cs" />
     <Compile Include="Controllers\TopazController.cs" />
+    <Compile Include="MetaModels\TopazRequestParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IImportQueueRepository.cs" />
     <Compile Include="Repository\ImportQueueRepository.cs" />

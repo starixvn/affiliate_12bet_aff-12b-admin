@@ -36,7 +36,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -45,7 +46,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <!-- Exclude the project from analysis -->
@@ -270,6 +272,7 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\timetracker.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\ky-gaming.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\topaz-rawdata.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\topaz.js" />
     <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
@@ -464,6 +467,7 @@
     <Content Include="App_Data\IsoftbetData\isoftbet_25.json" />
     <Content Include="App_Data\EBetConfig.json" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\KyGaming\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Topaz\RawData.cshtml" />
     <None Include="Properties\PublishProfiles\ThirdPartyApi.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
