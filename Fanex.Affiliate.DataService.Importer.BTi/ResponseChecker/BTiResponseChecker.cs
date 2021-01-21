@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.DataService.Importer.BTi.ResponseChecker
             {
                 throw new ThirdPartyProductException($"BTi - Xml response is not correct format {xml}");
             }
-            var code = data.Element("errorCode");
+            var code = root.Element("errorCode");
             if (code == null)
             {
                 throw new ThirdPartyProductException($"BTi - Xml response is not correct format {xml}");
