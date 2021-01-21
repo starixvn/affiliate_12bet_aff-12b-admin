@@ -90,9 +90,19 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private bool IsHasAnotherPage(string json)
         {
-            var jsonObject = JObject.Parse(json);
-            var datas = jsonObject.SelectToken("$.data");
-            return datas != null && datas.Count() == PAGE_SIZE;
+            try
+            {
+                var jsonObject = JObject.Parse(json);
+                var datas = jsonObject.SelectToken("$.data");
+                return datas != null && datas.Count() == PAGE_SIZE;
+            }
+            catch (Exception ex)
+            {
+                var message = $"{json}\n" +
+                    $"{ex.Message}";
+                throw new ThirdPartyProductException(message, ex);
+            }
+
         }
 
         private NameValueCollection GetDataParam(DateTime startTime, DateTime endTime, int page)
