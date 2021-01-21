@@ -16,20 +16,20 @@ namespace Fanex.Affiliate.DataService.Job
                 var msg = func();
                 switch (level)
                 {
-                    case Quartz.Logging.LogLevel.Debug:
+                    case LogLevel.Debug:
                         LogService.Debug(msg, parameters);
                         break;
-                    case Quartz.Logging.LogLevel.Error:
+                    case LogLevel.Error:
                         LogService.Error(msg, exception);
                         break;
-                    case Quartz.Logging.LogLevel.Fatal:
+                    case LogLevel.Fatal:
                         LogService.Critical(msg, parameters);
                         LogService.Error(msg, exception);
                         break;
-                    case Quartz.Logging.LogLevel.Info:
+                    case LogLevel.Info:
                         LogService.Info(msg, parameters);
                         break;
-                    case Quartz.Logging.LogLevel.Warn:
+                    case LogLevel.Warn:
                         LogService.Warn(msg, parameters);
                         break;
                     default:

@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.DataService.WinFormApp.Converter;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,7 +35,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 {"VR Lottery", new VRLotteryFileImporter() },
                 {"LB Keno", new LBKenoFileImporter() },
                 {"Ky Gaming", new KYGamingFileImporter() },
-                {"Topaz", new TopazFileImporter() }
+                {"Topaz", new TopazFileImporter() },
+                {"BTi", new BTiFileImporter() }
             };
             return dic;
         }
@@ -74,7 +74,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
             var data = File.ReadAllText(path);
             var xmls = await FileImporter.ConvertToXml(data);
-            ShowXml(xmls);           
+            ShowXml(xmls);
         }
 
         private void ShowXml(IEnumerable<XDocument> xmls)

@@ -15,7 +15,7 @@ using System.Globalization;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public class LBKenoService : XmlImpoterlServiceBase
+    public class LBKenoService : XmlImporterlServiceBase
     {
 
         private const string TimeDataFormat = "yyyy-MM-dd HH:mm:ss";

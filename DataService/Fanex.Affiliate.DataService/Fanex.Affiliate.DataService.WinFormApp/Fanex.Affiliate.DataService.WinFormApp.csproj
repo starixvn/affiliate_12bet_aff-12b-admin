@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\IFileImporter.cs" />
+    <Compile Include="Converter\BTiFileImporter.cs" />
     <Compile Include="Converter\KYGamingFileImporter.cs" />
     <Compile Include="Converter\LBKenoFileImporter.cs" />
     <Compile Include="Converter\TopazFileImporter.cs" />
@@ -132,6 +133,12 @@
     </Compile>
     <Compile Include="Forms\ISoftbetForm.Designer.cs">
       <DependentUpon>ISoftbetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BTiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BTiForm.Designer.cs">
+      <DependentUpon>BTiForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LBKenoForm.cs">
       <SubType>Form</SubType>
@@ -196,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ISoftbetForm.resx">
       <DependentUpon>ISoftbetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BTiForm.resx">
+      <DependentUpon>BTiForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LBKenoForm.resx">
       <DependentUpon>LBKenoForm.cs</DependentUpon>
@@ -370,6 +380,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Fanex.Affiliate.DataService.Importer.BTi\Fanex.Affiliate.DataService.Importer.BTi.csproj">
+      <Project>{e962c537-380b-439b-b66f-6e3fd8fbdbf6}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.BTi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.AgCasino\Fanex.Affiliate.DataService.Importer.AgCasino.csproj">
       <Project>{e1fea403-e07c-4d0b-8d9c-4a79ff356b18}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.AgCasino</Name>

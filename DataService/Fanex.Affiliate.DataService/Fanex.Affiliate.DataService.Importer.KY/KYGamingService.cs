@@ -18,7 +18,7 @@ using System.Net.Http;
 
 namespace Fanex.Affiliate.DataService.Importer.KYGaming
 {
-    public class KYGamingService : XmlImpoterlServiceBase, IDataRequestByCurrency
+    public class KYGamingService : XmlImporterlServiceBase, IDataRequestByCurrency
     {
         protected readonly IApiClient _client;
         private const string _operateSubType = "6";

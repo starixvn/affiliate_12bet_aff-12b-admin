@@ -43,6 +43,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnKYGaming = new System.Windows.Forms.Button();
+            this.btnBTi = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             // btnCasino
             // 
             this.btnCasino.Location = new System.Drawing.Point(20, 81);
-            this.btnCasino.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCasino.Margin = new System.Windows.Forms.Padding(4);
             this.btnCasino.Name = "btnCasino";
             this.btnCasino.Size = new System.Drawing.Size(147, 28);
             this.btnCasino.TabIndex = 1;
@@ -70,7 +71,7 @@
             // btnBetsoft
             // 
             this.btnBetsoft.Location = new System.Drawing.Point(204, 81);
-            this.btnBetsoft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBetsoft.Margin = new System.Windows.Forms.Padding(4);
             this.btnBetsoft.Name = "btnBetsoft";
             this.btnBetsoft.Size = new System.Drawing.Size(147, 28);
             this.btnBetsoft.TabIndex = 2;
@@ -81,7 +82,7 @@
             // btnEbet
             // 
             this.btnEbet.Location = new System.Drawing.Point(20, 138);
-            this.btnEbet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEbet.Margin = new System.Windows.Forms.Padding(4);
             this.btnEbet.Name = "btnEbet";
             this.btnEbet.Size = new System.Drawing.Size(147, 28);
             this.btnEbet.TabIndex = 3;
@@ -92,7 +93,7 @@
             // btnCrystal
             // 
             this.btnCrystal.Location = new System.Drawing.Point(204, 138);
-            this.btnCrystal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCrystal.Margin = new System.Windows.Forms.Padding(4);
             this.btnCrystal.Name = "btnCrystal";
             this.btnCrystal.Size = new System.Drawing.Size(147, 28);
             this.btnCrystal.TabIndex = 4;
@@ -103,7 +104,7 @@
             // btnQuartz
             // 
             this.btnQuartz.Location = new System.Drawing.Point(20, 191);
-            this.btnQuartz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuartz.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuartz.Name = "btnQuartz";
             this.btnQuartz.Size = new System.Drawing.Size(147, 28);
             this.btnQuartz.TabIndex = 5;
@@ -114,7 +115,7 @@
             // btnOpus
             // 
             this.btnOpus.Location = new System.Drawing.Point(204, 191);
-            this.btnOpus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOpus.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpus.Name = "btnOpus";
             this.btnOpus.Size = new System.Drawing.Size(147, 28);
             this.btnOpus.TabIndex = 6;
@@ -125,7 +126,7 @@
             // btnGpiLottery
             // 
             this.btnGpiLottery.Location = new System.Drawing.Point(204, 240);
-            this.btnGpiLottery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGpiLottery.Margin = new System.Windows.Forms.Padding(4);
             this.btnGpiLottery.Name = "btnGpiLottery";
             this.btnGpiLottery.Size = new System.Drawing.Size(147, 28);
             this.btnGpiLottery.TabIndex = 7;
@@ -136,7 +137,7 @@
             // btnTopaz
             // 
             this.btnTopaz.Location = new System.Drawing.Point(20, 240);
-            this.btnTopaz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTopaz.Margin = new System.Windows.Forms.Padding(4);
             this.btnTopaz.Name = "btnTopaz";
             this.btnTopaz.Size = new System.Drawing.Size(147, 28);
             this.btnTopaz.TabIndex = 8;
@@ -147,7 +148,7 @@
             // btLBKeno
             // 
             this.btLBKeno.Location = new System.Drawing.Point(204, 290);
-            this.btLBKeno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btLBKeno.Margin = new System.Windows.Forms.Padding(4);
             this.btLBKeno.Name = "btLBKeno";
             this.btLBKeno.Size = new System.Drawing.Size(147, 28);
             this.btLBKeno.TabIndex = 9;
@@ -158,7 +159,7 @@
             // btnVrLottery
             // 
             this.btnVrLottery.Location = new System.Drawing.Point(20, 290);
-            this.btnVrLottery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVrLottery.Margin = new System.Windows.Forms.Padding(4);
             this.btnVrLottery.Name = "btnVrLottery";
             this.btnVrLottery.Size = new System.Drawing.Size(147, 28);
             this.btnVrLottery.TabIndex = 10;
@@ -204,11 +205,24 @@
             this.btnKYGaming.UseVisualStyleBackColor = true;
             this.btnKYGaming.Click += new System.EventHandler(this.btnKYGaming_Click);
             // 
+            // btnBTi
+            // 
+            this.btnBTi.Location = new System.Drawing.Point(204, 342);
+            this.btnBTi.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBTi.Name = "btnBTi";
+            this.btnBTi.Size = new System.Drawing.Size(147, 28);
+            this.btnBTi.TabIndex = 13;
+            this.btnBTi.Text = "BTi";
+            this.btnBTi.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnBTi.UseVisualStyleBackColor = true;
+            this.btnBTi.Click += new System.EventHandler(this.btnBTi_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 394);
+            this.Controls.Add(this.btnBTi);
             this.Controls.Add(this.btnKYGaming);
             this.Controls.Add(this.btnVrLottery);
             this.Controls.Add(this.btLBKeno);
@@ -223,7 +237,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
@@ -251,5 +265,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importFromFileToolStripMenuItem;
         private System.Windows.Forms.Button btnKYGaming;
+        private System.Windows.Forms.Button btnBTi;
     }
 }

@@ -16,7 +16,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public sealed class TopazService : XmlImpoterlServiceBase
+    public sealed class TopazService : XmlImporterlServiceBase
     {
         private const string DEFAULT_CURRENCY = "USD";
         private const string DEFAULT_TIME_ZONE = "UTC+8";

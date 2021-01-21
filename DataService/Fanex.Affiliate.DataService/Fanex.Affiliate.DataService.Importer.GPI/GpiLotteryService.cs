@@ -18,7 +18,7 @@ using System.Net.Http;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public class GpiLotteryService : XmlImpoterlServiceBase, IGetDataByGameType<GameType>
+    public class GpiLotteryService : XmlImporterlServiceBase, IGetDataByGameType<GameType>
     {
         private readonly IApiClient _client;
         private readonly IApiClientFactory _clientFactory;
