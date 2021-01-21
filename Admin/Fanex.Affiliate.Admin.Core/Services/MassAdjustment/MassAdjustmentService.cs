@@ -16,9 +16,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
 {
     public class MassAdjustmentService : IMassAdjustmentService
     {
-        private const int MaxRows = 500;
-        private const int UserNameColumnIndex = 1;
-        private const int AmountColumnIndex = 2;
+        private const int MaxRow = 501;
+        private const int MinColumn = 2;
+        private const int UserNameColumnIndex = 0;
+        private const int AmountColumnIndex = 1;
+        private const int ReasonColumnIndex = 2;
         private static readonly string[] ValidExtensions = {
             ".xlsx",
             ".xls"
@@ -53,15 +55,23 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
                 var isExcelFile = IsExcelFile(file.FileName);
                 var hasMergeCell = HasMergeCell(reader);
 
-                if (!isExcelFile || hasMergeCell)
+                var dataSet = reader.AsDataSet();
+                var firstSheet = dataSet.Tables[0];
+
+                var isValidCellNumber = IsValidCellNumber(firstSheet.Rows.Count, firstSheet.Columns.Count);
+
+                if (!isExcelFile || hasMergeCell || !isValidCellNumber)
                 {
                     return CreateErrorResult();
                 }
 
-                var hasRowIsNull = HasRowIsNull(reader);
-            }
+                var result = CheckDataOfRow(firstSheet.Rows);
 
-            return new AdjustmentResultInfo();
+                return new AdjustmentResultInfo
+                {
+                    ErroredAdjustmentInfoList = result
+                };
+            }
         }
 
         public bool IsExcelFile(string fileName)
@@ -71,6 +81,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
             return ValidExtensions.Contains(extension.ToLowerInvariant());
         }
 
+        public static bool IsValidCellNumber(int rowNumber, int columnNumber)
+        {
+            return rowNumber < MaxRow || columnNumber < MinColumn;
+        }
+
         public static bool HasMergeCell(IExcelDataReader reader)
         {
             var mergeCells = reader.MergeCells;
@@ -78,27 +93,91 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
             return mergeCells != null;
         }
 
-        public static bool IsValidRow(DataRow row)
+        public static List<ErroredAdjustmentInfo> CheckDataOfRow(DataRowCollection rows)
         {
-            return !row.IsNull(UserNameColumnIndex) && !row.IsNull(AmountColumnIndex);
-        }
+            List<ErroredAdjustmentInfo> erroredAdjustmentInfoList = new List<ErroredAdjustmentInfo>();
 
-        public static bool HasRowIsNull(IExcelDataReader reader)
-        {
-            var dataSet = reader.AsDataSet();
-            var table = dataSet.Tables[0];
-
-            foreach (DataRow row in table.Rows)
+            for (int i = 0; i < rows.Count; i++)
             {
-                var isValidRow = IsValidRow(row);
+                var rowData = rows[i];
 
-                if(!isValidRow)
+                var itemArray = rowData.ItemArray;
+                var userName = itemArray[UserNameColumnIndex].ToString();
+                var amount = itemArray[AmountColumnIndex].ToString();
+
+                var isValidUserName = IsValidUserName(userName);
+                var isValidAmount = IsValidAmount(amount);
+                var isDuplicateUserName = IsDuplicateUserName(rows, userName.ToLowerInvariant(), i);
+
+                if(!isDuplicateUserName.IsSuccessful || !isValidUserName.IsSuccessful || !isValidAmount.IsSuccessful)
                 {
-                    return isValidRow;
+                    erroredAdjustmentInfoList.Add(new ErroredAdjustmentInfo {
+                        Username = userName,
+                        Amount = amount,
+                        Reason = isDuplicateUserName.Message + isValidUserName.Message + isValidAmount.Message
+                    });
                 }
             }
 
-            return true;
+            return erroredAdjustmentInfoList;
+        }
+
+        public static ResultInfo IsDuplicateUserName(DataRowCollection rows, string userName, int index)
+        {
+            for (int i = 0; i < rows.Count; i++)
+            {
+                var rowData = rows[i];
+                var itemArray = rowData.ItemArray;
+                var userNameToLower = itemArray[UserNameColumnIndex].ToString().ToLowerInvariant();
+
+                if(userName.Equals(userNameToLower, StringComparison.InvariantCultureIgnoreCase) && i != index)
+                {
+                    return new ResultInfo
+                    {
+                        Code = Code.GeneralErrorCode,
+                        Message = "This username is duplicate in Import file. "
+                    };
+                }
+            }
+
+            return new ResultInfo();
+        }
+
+        public static ResultInfo IsValidUserName(string userName)
+        {
+            if(string.IsNullOrEmpty(userName))
+            {
+                return new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "This username does not exist. "
+                };
+            }
+
+            return new ResultInfo();
+        }
+
+        public static ResultInfo IsValidAmount(string amount)
+        {
+            if (string.IsNullOrEmpty(amount) || !decimal.TryParse(amount, out decimal amountNumber))
+            {
+                return new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "The amount is invalid."
+                };
+            }
+
+            if (amountNumber < Money.MinValue || amountNumber > Money.MaxValue)
+            {
+                return new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "The amount is too big."
+                };
+            }
+
+            return new ResultInfo();
         }
 
         private static AdjustmentResultInfo CreateErrorResult()
@@ -114,7 +193,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
                     new ErroredAdjustmentInfo
                     {
                         Username = "Test01",
-                        Amount = 1,
+                        Amount = "1",
                         Reason = "Invalid username"
                     }
                 }

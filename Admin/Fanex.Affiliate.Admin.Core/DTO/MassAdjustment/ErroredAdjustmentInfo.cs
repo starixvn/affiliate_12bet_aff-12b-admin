@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.MassAdjustment
     {
         public string Username { get; set; }
 
-        public decimal Amount { get; set; }
+        public string Amount { get; set; }
 
         public string Reason { get; set; }
     }

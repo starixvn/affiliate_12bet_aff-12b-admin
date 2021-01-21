@@ -211,7 +211,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         private string BuildQueryLanguages(string lang = null)
         {
             var langs = _languageService.GetInChangeMarkets();
-            if (!String.IsNullOrWhiteSpace(lang))
+            if (!string.IsNullOrWhiteSpace(lang))
             {
                 langs = langs.Where(l => l.LanguageName.Equals(lang, StringComparison.OrdinalIgnoreCase));
             }

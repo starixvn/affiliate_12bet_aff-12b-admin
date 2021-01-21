@@ -4,15 +4,15 @@ const Note = () => {
     const renderRow = () => {
         const rows = []
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 8; i++) {
             const index = i + 1;
 
             rows.push(
                 <tr key={i}>
-                    <td>{index}</td>
-                    <td colSpan="3">Username{index}</td>
-                    <td>{i + 11}</td>
-                    <td>Reason{index}</td>
+                    <td className="text-center">{index}</td>
+                    <td colSpan="2">Sample{index}</td>
+                    <td>6.4</td>
+                    <td>test</td>
                 </tr>
             )
         }
@@ -24,10 +24,10 @@ const Note = () => {
         return (
             <table className="data-table">
                 <thead>
-                    <th>Stt</th>
-                    <th colSpan="3">User Name</th>
-                    <th>Amount</th>
-                    <th>Reason</th>
+                    <th></th>
+                    <th colSpan="2">A</th>
+                    <th>B</th>
+                    <th>C</th>
                 </thead>
                 <tbody>
                     {
