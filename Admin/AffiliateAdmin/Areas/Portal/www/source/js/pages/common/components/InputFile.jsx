@@ -9,7 +9,18 @@ export class InputFile extends React.PureComponent {
         this.inputRef = React.createRef();
     }
 
+    componentDidUpdate(prevProps) {
+        const { files } = this.props;
+
+        if (!files.length && files !== prevProps.files) {
+            //reset value to select the previous file again
+            this.inputRef.current.value = null;
+        }
+    }
+
     handleClick = () => {
+        this.inputRef.current.value = null;
+
         this.inputRef.current.click();
     }
 

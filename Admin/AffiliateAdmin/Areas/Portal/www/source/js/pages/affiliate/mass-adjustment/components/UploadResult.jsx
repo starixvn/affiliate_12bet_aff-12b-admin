@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { validateFileExtension } from '../libs/utils';
-import { setIsClickUpload, toggleLoader, handleUploadFile } from '../actions';
+import { setIsClickUpload, toggleLoader, handleUploadFile, setFile } from '../actions';
 
 export class UploadResult extends PureComponent {
     constructor(props) {
@@ -61,6 +61,12 @@ export class UploadResult extends PureComponent {
 
         this.props.setIsClickUpload(false);
         this.props.toggleLoader(false);
+
+        setTimeout(this.handleRefreshPage, 60000);
+    }
+
+    handleRefreshPage = () => {
+        this.props.setFile(null);
     }
 
     renderRow = () => {
@@ -73,10 +79,10 @@ export class UploadResult extends PureComponent {
 
             rows.push(
                 <tr key={i}>
-                    <td>{index}</td>
+                    <td className="text-center">{index}</td>
                     <td colSpan="3">{item.Username}</td>
-                    <td>{item.Amount}</td>
-                    <td>{item.Reason}</td>
+                    <td className="text-right pr-1">{item.Amount}</td>
+                    <td colSpan="5">{item.Reason}</td>
                 </tr>
             )
         }
@@ -86,12 +92,12 @@ export class UploadResult extends PureComponent {
 
     handleResponseData = () => {
         return (
-            <table className="data-table mt-3">
+            <table className="data-table result-table">
                 <thead>
-                    <th>Stt</th>
+                    <th>#</th>
                     <th colSpan="3">User Name</th>
                     <th>Amount</th>
-                    <th>Error</th>
+                    <th colSpan="5">Error</th>
                 </thead>
                 <tbody>
                     {
@@ -115,7 +121,7 @@ export class UploadResult extends PureComponent {
                     ) : (
                             <div className="error-alert">
                                 <div className="text-danger">
-                                    <p><strong>Error:</strong></p>
+                                    <p><strong className="error-title">Error:</strong></p>
                                     <div className="my-2" dangerouslySetInnerHTML={{ __html: result.message }}></div>
                                 </div >
                                 <p>Please check and re-upload the file.</p>
@@ -137,7 +143,7 @@ function mapStateToProps({ file, isClickUpload }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setIsClickUpload, toggleLoader, handleUploadFile }, dispatch);
+    return bindActionCreators({ setIsClickUpload, toggleLoader, handleUploadFile, setFile }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadResult);

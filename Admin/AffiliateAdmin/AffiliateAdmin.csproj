@@ -1284,6 +1284,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\role-permission.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\affiliate.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\mass-adjustment.scss" />
+    <Content Include="Areas\Portal\www\source\style\assets\template.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

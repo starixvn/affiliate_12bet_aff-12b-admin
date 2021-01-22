@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 
-const Note = () => {
+export const Note = () => {
     const renderRow = () => {
         const rows = []
 
@@ -22,7 +22,7 @@ const Note = () => {
 
     const sample = () => {
         return (
-            <table className="data-table">
+            <table className="data-table sample-table">
                 <thead>
                     <th></th>
                     <th colSpan="2">A</th>

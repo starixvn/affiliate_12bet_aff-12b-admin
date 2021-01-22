@@ -17,12 +17,10 @@
     }
 
     .data-table {
-        width: 350px;
         margin-bottom: 25px;
 
         th {
             text-align: center;
-            font-weight: normal;
         }
 
         tr {
@@ -41,9 +39,30 @@
         }
     }
 
+    .sample-table {
+        width: 350px;
+
+        th {
+            font-weight: normal;
+        }
+    }
+
+    .result-table {
+        width: 700px;
+        margin-top: 20px;
+
+        th {
+            background-color: #e0e0e0;
+        }
+    }
+
     ol {
         li {
             list-style-type: initial;
         }
+    }
+
+    .error-title {
+        background-color: #FFF0F0;
     }
 }

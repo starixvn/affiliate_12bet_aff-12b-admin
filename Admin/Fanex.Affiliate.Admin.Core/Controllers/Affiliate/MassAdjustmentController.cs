@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MassAdjustment;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels.MassAdjustment;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MassAdjustment;
 using System.Web;
@@ -36,9 +37,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         {
             if (file != null && file.ContentLength > 0)
             {
+                var param = new MassAdjustmentParam
+                {
+                    UserId = SessionService.UserId,
+                    Ip = Request.UserHostAddress
+                };
+
                 return new JsonNetResult
                 {
-                    Data = _massAdjustmentService.InsertMassAdjusment(file)
+                    Data = _massAdjustmentService.InsertMassAdjusment(file, param)
                 };
             }
 

@@ -195,10 +195,12 @@
     <Compile Include="DTO\MassAdjustment\AdjustmentResultInfo.cs" />
     <Compile Include="DTO\MassAdjustment\ErroredAdjustmentInfo.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
+    <Compile Include="MetaModels\MassAdjustment\MassAdjustmentParam.cs" />
     <Compile Include="Repository\Affiliate\IMassAdjustmentRepository.cs" />
     <Compile Include="Repository\Affiliate\MassAdjustmentRepository.cs" />
     <Compile Include="Services\MassAdjustment\IMassAdjustmentService.cs" />
     <Compile Include="Services\MassAdjustment\MassAdjustmentService.cs" />
+    <Compile Include="Utilities\MassAdjustment\MassAdjustmentHelper.cs" />
     <Compile Include="Utilities\Result.cs" />
     <Compile Include="Constants\Money.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />

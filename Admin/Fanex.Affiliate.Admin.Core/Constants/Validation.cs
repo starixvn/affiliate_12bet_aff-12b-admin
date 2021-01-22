@@ -19,5 +19,11 @@
 
         public const int MaxLengthCommGroupDescription = 100;
         public const int MaxLengthLandingPage = 100;
+
+        public const int MaxRow = 501;
+        public const int MinColumn = 2;
+        public const int UserNameColumnIndex = 0;
+        public const int AmountColumnIndex = 1;
+        public const int ReasonColumnIndex = 2;
     }
 }

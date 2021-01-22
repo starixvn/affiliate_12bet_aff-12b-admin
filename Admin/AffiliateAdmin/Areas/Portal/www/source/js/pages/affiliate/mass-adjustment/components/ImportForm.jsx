@@ -19,7 +19,15 @@ export class ImportForm extends PureComponent {
         this.props.setFile(null);
     }
 
-    handleChangeFile = () => {
+    componentDidUpdate(prevProps) {
+        const { file } = this.props;
+
+        if (!file && file !== prevProps.file) {
+            this.setState({ files: [] });
+        }
+    }
+
+    handleChangeFile = (event) => {
         let { files } = event.target;
 
         if (files && files.length > 0) {
@@ -63,8 +71,12 @@ export class ImportForm extends PureComponent {
     }
 }
 
+function mapStateToProps({ file }) {
+    return Object.assign({}, { file });
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setFile, setIsClickUpload }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(ImportForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ImportForm);
