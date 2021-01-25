@@ -31,7 +31,7 @@ export class ImportForm extends PureComponent {
         let { files } = event.target;
 
         if (files && files.length > 0) {
-            this.setState({ files });
+            this.setState({ files: Array.from(files) });
         }
     }
 

@@ -57,11 +57,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
         private static string FormatAmount(string amount)
         {
-            if (string.IsNullOrEmpty(amount))
-            {
-                return amount;
-            }
-
             if (decimal.TryParse(amount, out decimal amountNumber))
             {
                 return NumberFormat.DecFormat(amountNumber, Money.DecDigits);
