@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { headerText, globalResource, resource, statusList, pending } from '../libs/constants';
-import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
+import { setPagingOption, toggleLoader, fetchData, setTransactionId, setIsClickSearch } from '../actions';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { claimResource } from '../../../../modules/claim';
@@ -23,10 +23,12 @@ export class Content extends PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        const { pagingOption, param } = this.props;
+        const { isClickSearch } = this.props;
 
-        if (param !== prevProps.param) {
+        if (isClickSearch && isClickSearch !== prevProps.isClickSearch) {
+            const { pagingOption, param } = this.props;
             const newParam = Object.assign({}, param, { PageIndex: 1, PageSize: pagingOption.PageSize });
+
             this.fetchData(newParam);
         }
     }
@@ -39,6 +41,7 @@ export class Content extends PureComponent {
         this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
         this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
 
+        this.props.setIsClickSearch(false);
         this.props.toggleLoader(false);
     }
 
@@ -151,13 +154,13 @@ export class Content extends PureComponent {
 }
 
 
-function mapStateToProps({ pagingOption, param, claimsPrincipal }) {
+function mapStateToProps({ pagingOption, param, claimsPrincipal, isClickSearch }) {
     const isClickable = claimsPrincipal.hasReadClaim(claimResource.Payment)
-    return Object.assign({}, { pagingOption, param, isClickable });
+    return Object.assign({}, { pagingOption, param, isClickable, isClickSearch });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, setTransactionId, fetchData }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, setTransactionId, fetchData, setIsClickSearch }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

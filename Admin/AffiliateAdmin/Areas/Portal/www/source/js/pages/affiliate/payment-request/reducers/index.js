@@ -1,7 +1,7 @@
 ﻿import { combineReducers } from 'redux';
 
 import createReducer from '../../../../modules/createReducer';
-import { SET_PARAM, SET_TRANSACTION_ID } from '../actions/types';
+import { SET_PARAM, SET_TRANSACTION_ID, SET_IS_CLICK_SEARCH } from '../actions/types';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
@@ -21,11 +21,18 @@ export const transactionId = createReducer(null, {
     }
 })
 
+export const isClickSearch = createReducer(false, {
+    [SET_IS_CLICK_SEARCH](prevState, action) {
+        return action.data;
+    }
+})
+
 export default combineReducers({
     pagingOption,
     isShowLoader,
     today,
     param,
     transactionId,
-    claimsPrincipal
+    claimsPrincipal,
+    isClickSearch
 });

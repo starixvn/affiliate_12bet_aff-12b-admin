@@ -6,7 +6,7 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { resource, searchByList, statusList, globalResource, searchByUserName } from '../libs/constants';
 import { getDateRange } from '../../../../modules/utils';
-import { setParam } from '../actions';
+import { setParam, setIsClickSearch } from '../actions';
 
 const minDate = new Date(2009, 11, 1);
 
@@ -73,6 +73,7 @@ export class Filter extends PureComponent {
         });
 
         this.props.setParam(newParam);
+        this.props.setIsClickSearch(true);
     }
 
     _renderSearchByOthers() {
@@ -152,7 +153,7 @@ function mapStateToProps({ today, param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam }, dispatch);
+    return bindActionCreators({ setParam, setIsClickSearch }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

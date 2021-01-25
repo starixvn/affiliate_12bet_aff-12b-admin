@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                             errorList.Add(new ErroredAdjustmentInfo
                             {
                                 Username = Convert.ToString(reader["Username"]),
-                                Amount = NumberFormat.DecFormat(Convert.ToDecimal(reader["Amount"]), Money.DecDigits),
+                                Amount = FormatAmount(Convert.ToString(reader["Amount"])),
                                 Reason = Convert.ToString(reader["ErrorMsg"]),
                             });
                         }
@@ -53,6 +53,21 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                     Result = result
                 };
             }
+        }
+
+        private static string FormatAmount(string amount)
+        {
+            if (string.IsNullOrEmpty(amount))
+            {
+                return amount;
+            }
+
+            if (decimal.TryParse(amount, out decimal amountNumber))
+            {
+                return NumberFormat.DecFormat(amountNumber, Money.DecDigits);
+            }
+
+            return amount;
         }
     }
 }

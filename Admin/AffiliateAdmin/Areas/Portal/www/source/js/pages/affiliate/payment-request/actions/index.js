@@ -1,4 +1,4 @@
-﻿import { SET_PARAM, SET_TRANSACTION_ID } from './types';
+﻿import { SET_PARAM, SET_TRANSACTION_ID, SET_IS_CLICK_SEARCH } from './types';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
 import { post } from '../../../../modules/ajaxRequest';
@@ -15,6 +15,13 @@ export const setParam = (data) => {
 export const setTransactionId = (data) => {
     return {
         type: SET_TRANSACTION_ID,
+        data
+    }
+}
+
+export const setIsClickSearch = (data) => {
+    return {
+        type: SET_IS_CLICK_SEARCH,
         data
     }
 }
