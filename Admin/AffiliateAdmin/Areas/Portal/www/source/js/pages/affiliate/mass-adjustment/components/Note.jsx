@@ -1,10 +1,11 @@
 ﻿import React from 'react';
+import { resolveClientUrl } from '../../../../modules/utils';
 
 export const Note = () => {
     const renderRow = () => {
         const rows = []
 
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 10; i++) {
             const index = i + 1;
 
             rows.push(
@@ -30,6 +31,12 @@ export const Note = () => {
                     <th>C</th>
                 </thead>
                 <tbody>
+                    <tr className="font-weight-bold">
+                        <td className="text-center">1</td>
+                        <td className="text-center" colSpan="2">Username</td>
+                        <td className="text-center">Amount</td>
+                        <td className="text-center">Reason</td>
+                    </tr>
                     {
                         renderRow()
                     }
@@ -51,7 +58,7 @@ export const Note = () => {
                 {
                     sample()
                 }
-                <p>For importing file template, please following this <a href="/Areas/Portal/www/sources/style/assets/template.xlsx" download>file</a>.</p>
+                <p>For importing file template, please following this <a href={resolveClientUrl("areas/portal/www/dist/assets/template.xlsx")} download>file</a>.</p>
             </div>
         </div>
     );

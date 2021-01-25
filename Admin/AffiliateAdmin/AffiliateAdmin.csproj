@@ -749,6 +749,7 @@
     <Content Include="Areas\Portal\Views\MediaGallery\LandingPageList.cshtml" />
     <Content Include="Areas\Portal\Views\MediaGallery\TextList.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\MassAdjustment.cshtml" />
+    <Content Include="Areas\Portal\www\dist\assets\template.xlsx" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1284,7 +1285,6 @@
     <Content Include="Areas\Portal\www\source\style\pages\admin-role\role-permission.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\affiliate.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\mass-adjustment.scss" />
-    <Content Include="Areas\Portal\www\source\style\assets\template.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -7,7 +7,6 @@ using Fanex.Affiliate.Admin.Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities.MassAdjustment
 {
@@ -29,7 +28,8 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MassAdjustment
         {
             List<ErroredAdjustmentInfo> erroredAdjustmentInfoList = new List<ErroredAdjustmentInfo>();
 
-            for (int i = 0; i < rows.Count; i++)
+            //First line of file must be title line. Therefore, system shall not check this line.
+            for (int i = 1; i < rows.Count; i++)
             {
                 var rowData = rows[i];
                 var itemArray = rowData.ItemArray;
@@ -80,7 +80,8 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MassAdjustment
 
         private static ResultInfo ValidateDuplicateUserName(DataRowCollection rows, string userName, int index)
         {
-            for (int i = 0; i < rows.Count; i++)
+            //First line of file must be title line. Therefore, system shall not check this line.
+            for (int i = 1; i < rows.Count; i++)
             {
                 var rowData = rows[i];
                 var itemArray = rowData.ItemArray;

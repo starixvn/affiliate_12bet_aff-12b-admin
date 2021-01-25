@@ -87,8 +87,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
             var result = new StringBuilder();
             result.Append("<root>");
 
-            foreach (DataRow rowData in rows)
+            //First line of file must be title line. Therefore, system shall not check this line.
+            for (int i = 1; i < rows.Count; i++)
             {
+                var rowData = rows[i];
                 var itemArray = rowData.ItemArray;
                 var userName = itemArray[Validation.UserNameColumnIndex].ToString().Trim();
                 var amount = itemArray[Validation.AmountColumnIndex].ToString().Trim();
