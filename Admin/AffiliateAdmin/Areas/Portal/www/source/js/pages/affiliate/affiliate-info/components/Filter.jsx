@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import MultipleSelect from '../../../../components/multiple-select';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { statusList, sortByList, defaultSortBy, resource } from '../libs/constants';
-import { setReportTitle, setParam, setSelectedColumn, setLanguageList } from '../actions';
+import { setReportTitle, setParam, setSelectedColumn, setLanguageList, setIsClickSearch } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { claimResource } from '../../../../modules/claim';
 
@@ -64,6 +64,7 @@ export class Filter extends PureComponent {
             IsFromHome: false
         }
         this.props.setParam(param);
+        this.props.setIsClickSearch(true);
     }
 
     handleChangeColumn = (item, selectedColumn) => {
@@ -214,7 +215,7 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ languageList, commGroupList, param, groupId, columnList, claimsPrincipal }) {
+function mapStateToProps({ languageList, commGroupList, param, groupId, columnList, claimsPrincipal, isClickSearch }) {
     const isShowEmailFilter = claimsPrincipal.hasReadClaim(claimResource.Email);
     const isShowAccStatusFilter = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus);
     const isShowCommFilter = claimsPrincipal.hasReadClaim(claimResource.AffCommGroup);
@@ -225,11 +226,11 @@ function mapStateToProps({ languageList, commGroupList, param, groupId, columnLi
             return !item.renderClaim || claimsPrincipal.hasClaim(item.renderClaim);
         })
         .map(key => { return { key: key, value: sortByList[key].value } });
-    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter });
+    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter, isClickSearch });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setReportTitle, setParam, setSelectedColumn, setLanguageList }, dispatch);
+    return bindActionCreators({ setReportTitle, setParam, setSelectedColumn, setLanguageList, setIsClickSearch }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

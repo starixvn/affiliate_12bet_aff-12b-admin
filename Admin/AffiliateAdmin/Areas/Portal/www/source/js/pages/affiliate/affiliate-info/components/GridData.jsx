@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, resource, regExp, defaultSelectedColumnNumber, globalResource } from '../libs/constants';
-import { setPagingOption, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup } from '../actions';
+import { setPagingOption, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup, setIsClickSearch } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { post } from '../../../../modules/ajaxRequest';
 import { format, formatDecimal } from '../../../../modules/numberFormat';
@@ -29,10 +29,10 @@ export class GridData extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { param } = this.props;
+        const { isClickSearch } = this.props;
 
-        if (param !== prevProps.param) {
-            const { pagingOption } = this.props;
+        if (isClickSearch && isClickSearch !== prevProps.isClickSearch) {
+            const { pagingOption, param } = this.props;
             const updateParam = Object.assign({}, param, { PageIndex: 1, PageSize: pagingOption.PageSize });
 
             this.fetchData(updateParam);
@@ -60,6 +60,8 @@ export class GridData extends Component {
 
             this.props.setPagingOption({ TotalItem: 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
         }
+
+        this.props.setIsClickSearch(false);
         this.props.toggleLoader(false);
     }
 
@@ -268,15 +270,15 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, languageList, param, columnList, claimsPrincipal }) {
+function mapStateToProps({ pagingOption, languageList, param, columnList, claimsPrincipal, isClickSearch }) {
     const isAssignCommGroup = claimsPrincipal.hasReadClaim(claimResource.CommGroup);
 
     const isPwdChangeable = claimsPrincipal.hasWriteClaim(claimResource.AffPassword);
-    return Object.assign({}, { pagingOption, languageList, param, columnList, isAssignCommGroup, isPwdChangeable });
+    return Object.assign({}, { pagingOption, languageList, param, columnList, isAssignCommGroup, isPwdChangeable, isClickSearch });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup, setIsClickSearch }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);

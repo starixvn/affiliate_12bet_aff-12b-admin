@@ -6,6 +6,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
 {
     public interface IMassAdjustmentService
     {
-        AdjustmentResultInfo InsertMassAdjusment(HttpPostedFileBase file, MassAdjustmentParam param);
+        AdjustmentResultInfo UpdateMassAdjusment(HttpPostedFileBase file, MassAdjustmentParam param);
     }
 }

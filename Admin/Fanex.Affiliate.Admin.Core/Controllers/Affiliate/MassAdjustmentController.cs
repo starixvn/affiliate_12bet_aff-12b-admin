@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
                 return new JsonNetResult
                 {
-                    Data = _massAdjustmentService.InsertMassAdjusment(file, param)
+                    Data = _massAdjustmentService.UpdateMassAdjusment(file, param)
                 };
             }
 

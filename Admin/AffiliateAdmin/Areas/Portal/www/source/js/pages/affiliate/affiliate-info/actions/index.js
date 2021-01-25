@@ -1,4 +1,4 @@
-﻿import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_COMMGROUP, SET_AFFID, SET_COMM_GROUP, SET_SELECTED_COLUMN, SET_LANGUAGE_LIST, SET_COMM_GROUP_LIST } from './types';
+﻿import * as type from './types';
 import { setPagingOption } from '../../../../actions/pagingAction';
 import { setShowPopupPassword } from '../../../common/actions/changePassword';
 
@@ -6,56 +6,63 @@ export { setPagingOption, setShowPopupPassword };
 
 export const setLanguageList = (data) => {
     return{
-        type : SET_LANGUAGE_LIST,
+        type: type.SET_LANGUAGE_LIST,
         data
     }
 }
 
 export const setCommGroupList = (data) => {
     return {
-        type : SET_COMM_GROUP_LIST,
+        type: type.SET_COMM_GROUP_LIST,
         data
     }
 }
 
 export const setReportTitle = (data) => {
     return {
-        type: SET_REPORT_TITLE,
+        type: type.SET_REPORT_TITLE,
         data
     }
 }
 
 export const setParam = (data) => {
     return {
-        type: SET_PARAM,
+        type: type.SET_PARAM,
         data
     }
 }
 
 export const setShowPopupCommGroup = (data) => {
     return {
-        type: SET_SHOW_POPUP_COMMGROUP,
+        type: type.SET_SHOW_POPUP_COMMGROUP,
         data
     }
 }
 
 export const setAffId = (data) => {
     return {
-        type: SET_AFFID,
+        type: type.SET_AFFID,
         data
     }
 }
 
 export const setCommGroup = (data) => {
     return {
-        type: SET_COMM_GROUP,
+        type: type.SET_COMM_GROUP,
         data
     }
 }
 
 export const setSelectedColumn = (data) => {
     return {
-        type: SET_SELECTED_COLUMN,
+        type: type.SET_SELECTED_COLUMN,
+        data
+    }
+}
+
+export const setIsClickSearch = (data) => {
+    return {
+        type: type.SET_IS_CLICK_SEARCH,
         data
     }
 }

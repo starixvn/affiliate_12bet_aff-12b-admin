@@ -18,8 +18,27 @@ export class AppContainer extends PureComponent {
         super(props);
     }
 
-    componentDidMount = async () => {
-        const data = await this.fetchFilter();
+    componentDidMount() {
+        this.fetchFilter();
+    }
+
+    componentDidUpdate(prevProps) {
+        const { languageList, commGroupList } = this.props;
+
+        if (this.isEmptyObject(languageList) && this.isEmptyObject(commGroupList)) {
+            this.fetchFilter();
+        }
+    }
+
+    isEmptyObject = (initialObject) => {
+        return Object.keys(initialObject).length === 0;
+    }
+
+    fetchFilter = async () => {
+        const url = 'Portal/Affiliate/GetFilter'
+        const response = await post(url);
+
+        const data = response && response.status === 200 ? response.data : null;
 
         if (!!data) {
             const commGroupList = convertArrayToObjectProps(data.CommGroupList, 'Id', 'Name');
@@ -27,13 +46,6 @@ export class AppContainer extends PureComponent {
             this.props.setLanguageList(languageList);
             this.props.setCommGroupList(commGroupList);
         }
-    }
-
-    fetchFilter = async () => {
-        const url = 'Portal/Affiliate/GetFilter'
-        const response = await post(url);
-
-        return response && response.status === 200 ? response.data : null;
     }
 
     render() {
@@ -60,8 +72,8 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup }) {
-    return Object.assign({}, { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup });
+function mapStateToProps({ isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup, languageList, commGroupList }) {
+    return Object.assign({}, { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup, languageList, commGroupList });
 }
 
 function mapDispatchToProps(dispatch) {

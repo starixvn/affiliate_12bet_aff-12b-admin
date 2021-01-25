@@ -1,6 +1,5 @@
 ﻿using ExcelDataReader;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MassAdjustment;
 using Fanex.Affiliate.Admin.Core.MetaModels.MassAdjustment;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
@@ -31,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
             _systemFile = systemFile;
         }
 
-        public AdjustmentResultInfo InsertMassAdjusment(HttpPostedFileBase file, MassAdjustmentParam param)
+        public AdjustmentResultInfo UpdateMassAdjusment(HttpPostedFileBase file, MassAdjustmentParam param)
         {
             using (var reader = ExcelReaderFactory.CreateReader(file.InputStream))
             {
@@ -63,17 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
                 return MassAdjustmentHelper.CreateErrorResult();
             }
 
-            var errorList = MassAdjustmentHelper.CheckDataOfRow(data.Rows);
-
-            return new AdjustmentResultInfo
-            {
-                Result = new ResultInfo
-                {
-                    Code = errorList.Any() ? Code.GeneralErrorCode : Code.Success,
-                    Message = "The upload process is not completed. There are some invalid username/amount in your file."
-                },
-                ErroredAdjustmentInfoList = errorList
-            };
+            return new AdjustmentResultInfo();
         }
 
         private bool IsExcelFile(string fileName)
@@ -97,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
                 var amount = itemArray[Validation.AmountColumnIndex].ToString().Trim();
                 var reason = itemArray[Validation.ReasonColumnIndex].ToString().Trim();
 
-                var row = $"<r Username=\"{WebUtility.HtmlEncode(userName)}\" Amount=\"{amount}\" Description=\"{WebUtility.HtmlEncode(reason)}\" />";
+                var row = $"<r Username=\"{WebUtility.HtmlEncode(userName)}\" Amount=\"{WebUtility.HtmlEncode(amount)}\" Description=\"{WebUtility.HtmlEncode(reason)}\" />";
                 result.Append(row);
             }
 

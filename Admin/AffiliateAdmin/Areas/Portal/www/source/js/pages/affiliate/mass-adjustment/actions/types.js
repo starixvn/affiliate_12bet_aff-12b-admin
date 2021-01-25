@@ -1,2 +1,2 @@
-﻿export const SET_FILE = "SET_FILE";
-export const SET_IS_CLICK_UPLOAD = "SET_IS_CLICK_UPLOAD";
+﻿export const SET_FILE = "ADJUSTMENT_SET_FILE";
+export const SET_IS_CLICK_UPLOAD = "ADJUSTMENT_SET_IS_CLICK_UPLOAD";
