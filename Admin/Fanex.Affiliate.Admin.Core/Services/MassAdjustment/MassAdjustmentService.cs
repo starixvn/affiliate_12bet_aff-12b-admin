@@ -63,15 +63,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
                 return MassAdjustmentHelper.CreateErrorResult();
             }
 
-            var result = MassAdjustmentHelper.CheckDataOfRow(data.Rows);
+            var errorList = MassAdjustmentHelper.CheckDataOfRow(data.Rows);
 
             return new AdjustmentResultInfo
             {
                 Result = new ResultInfo
                 {
-                    Code = result.Any() ? Code.GeneralErrorCode : Code.Success
+                    Code = errorList.Any() ? Code.GeneralErrorCode : Code.Success,
+                    Message = "The upload process is not completed. There are some invalid username/amount in your file."
                 },
-                ErroredAdjustmentInfoList = result
+                ErroredAdjustmentInfoList = errorList
             };
         }
 

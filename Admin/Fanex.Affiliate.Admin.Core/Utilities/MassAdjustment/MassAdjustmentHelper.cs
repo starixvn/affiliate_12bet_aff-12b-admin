@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MassAdjustment
                 };
             }
 
-            if (amountNumber < Money.MinValue || amountNumber > Money.MaxValue)
+            if (amountNumber < Money.DoubleMinValue || amountNumber > Money.DoubleMaxValue)
             {
                 return new ResultInfo
                 {
