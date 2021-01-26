@@ -1,7 +1,7 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { globalResource } from '../../../../modules/globalResource';
-import { SET_FILE, SET_IS_CLICK_UPLOAD } from './types';
+import { SET_FILE, SET_IS_CLICK_UPLOAD, SET_IS_SHOW_RESULT } from './types';
 
 export { toggleLoader };
 
@@ -19,8 +19,15 @@ export const setIsClickUpload = (data) => {
     }
 }
 
+export const setIsShowResult = (data) => {
+    return {
+        type: SET_IS_SHOW_RESULT,
+        data
+    }
+}
+
 export const handleUploadFile = (file) => async () => {
-    const url = 'Portal/MassAdjustment/UploadFile';
+    const url = 'Portal/Adjustment/UploadFile';
     const formData = new FormData();
     formData.append('file', file);
 
@@ -33,13 +40,4 @@ export const handleUploadFile = (file) => async () => {
         },
         ErroredAdjustmentInfoList: null
     };
-
-    //return new Promise((resolve, reject) => {
-    //    const result = {
-    //        isOk: false,
-    //        message: 'Upload failed!',
-    //        data: "Json"
-    //    };
-    //    resolve(result);
-    //});
 }

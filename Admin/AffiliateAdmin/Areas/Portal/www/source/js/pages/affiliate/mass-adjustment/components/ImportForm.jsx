@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Button, Form, FormGroup, Label } from 'reactstrap';
-import { setFile, setIsClickUpload } from '../actions';
+import { setFile, setIsClickUpload, setIsShowResult } from '../actions';
 import { InputFile } from '../../../common/components/InputFile';
 
 export class ImportForm extends PureComponent {
@@ -41,6 +41,7 @@ export class ImportForm extends PureComponent {
         if (hasFiles) {
             this.props.setFile(files[0]);
 
+            this.props.setIsShowResult(true);
             this.props.setIsClickUpload(true);
         }
     }
@@ -76,7 +77,7 @@ function mapStateToProps({ file }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setFile, setIsClickUpload }, dispatch);
+    return bindActionCreators({ setFile, setIsClickUpload, setIsShowResult }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImportForm);

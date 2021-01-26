@@ -5,7 +5,7 @@ export const Note = () => {
     const renderRow = () => {
         const rows = []
 
-        for (let i = 1; i < 10; i++) {
+        for (let i = 1; i < 4; i++) {
             const index = i + 1;
 
             rows.push(
@@ -13,7 +13,7 @@ export const Note = () => {
                     <td className="text-center">{index}</td>
                     <td colSpan="2">12BETAFF00{i}</td>
                     <td>6.4</td>
-                    <td>test</td>
+                    <td>Comment adjustment</td>
                 </tr>
             )
         }

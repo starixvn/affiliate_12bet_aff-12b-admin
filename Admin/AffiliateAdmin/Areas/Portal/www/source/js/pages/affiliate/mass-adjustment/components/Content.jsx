@@ -10,20 +10,20 @@ export class Content extends PureComponent {
     }
 
     render() {
-        const { file } = this.props;
+        const { isShowResult } = this.props;
 
         return (
             <div className="mass-adjustment-content">
                 {
-                    !file ? <Note /> : <UploadResult />
+                    isShowResult ? <UploadResult /> : <Note />
                 }
             </div>
         );
     }
 }
 
-function mapStateToProps({ file }) {
-    return Object.assign({}, { file });
+function mapStateToProps({ isShowResult }) {
+    return Object.assign({}, { isShowResult });
 }
 
 export default connect(mapStateToProps)(Content);

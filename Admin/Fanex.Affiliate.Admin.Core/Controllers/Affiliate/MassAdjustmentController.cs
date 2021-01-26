@@ -12,11 +12,11 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
     [FunctionAuthorize(FunctionName = Function.AffAdjustment)]
-    public class MassAdjustmentController : ReadOnlySessionBaseController
+    public class AdjustmentController : ReadOnlySessionBaseController
     {
         private readonly IMassAdjustmentService _massAdjustmentService;
 
-        public MassAdjustmentController(
+        public AdjustmentController(
             ISessionService sessionService,
             IMassAdjustmentService massAdjustmentService) : base(sessionService)
         {

@@ -17,6 +17,7 @@
     }
 
     .data-table {
+        width: 700px;
         margin-bottom: 25px;
 
         th {
@@ -40,15 +41,12 @@
     }
 
     .sample-table {
-        width: 350px;
-
         th {
             font-weight: normal;
         }
     }
 
     .result-table {
-        width: 700px;
         margin-top: 20px;
 
         th {

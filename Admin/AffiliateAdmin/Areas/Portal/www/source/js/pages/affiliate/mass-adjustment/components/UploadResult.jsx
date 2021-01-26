@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { validateFileExtension } from '../libs/utils';
-import { setIsClickUpload, toggleLoader, handleUploadFile, setFile } from '../actions';
+import { setIsClickUpload, toggleLoader, handleUploadFile, setFile, setIsShowResult } from '../actions';
 
 export class UploadResult extends PureComponent {
     constructor(props) {
@@ -36,6 +36,7 @@ export class UploadResult extends PureComponent {
 
     handleUploadFile = async () => {
         this.props.toggleLoader(true);
+        this.props.setIsShowResult(true);
 
         const { file } = this.props;
 
@@ -47,6 +48,8 @@ export class UploadResult extends PureComponent {
 
             if (resultInfo.Result.IsSuccessful) {
                 validateFileResult.message = 'Your file has been upload successfully!';
+
+                setTimeout(this.handleRefreshPage, 3000);
             } else {
                 validateFileResult = {
                     isOK: false,
@@ -61,12 +64,11 @@ export class UploadResult extends PureComponent {
 
         this.props.setIsClickUpload(false);
         this.props.toggleLoader(false);
-
-        setTimeout(this.handleRefreshPage, 60000);
     }
 
     handleRefreshPage = () => {
         this.props.setFile(null);
+        this.props.setIsShowResult(false);
     }
 
     renderRow = () => {
@@ -143,7 +145,7 @@ function mapStateToProps({ file, isClickUpload }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setIsClickUpload, toggleLoader, handleUploadFile, setFile }, dispatch);
+    return bindActionCreators({ setIsClickUpload, toggleLoader, handleUploadFile, setFile, setIsShowResult }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadResult);

@@ -13,5 +13,5 @@ export const relativePath = {
     paymentRequest: getVirtualUrl() + 'Portal/PaymentRequest',
     commGroup: getVirtualUrl() + 'Portal/CommissionGroup',
     emailHistory: getVirtualUrl() + 'Portal/EmailHistory',
-    massAdjustment: getVirtualUrl() + 'Portal/MassAdjustment'
+    massAdjustment: getVirtualUrl() + 'Portal/Adjustment'
 }
