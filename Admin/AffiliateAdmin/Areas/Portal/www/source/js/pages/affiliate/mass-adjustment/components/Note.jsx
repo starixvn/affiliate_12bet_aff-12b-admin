@@ -5,13 +5,13 @@ export const Note = () => {
     const renderRow = () => {
         const rows = []
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 1; i < 10; i++) {
             const index = i + 1;
 
             rows.push(
                 <tr key={i}>
                     <td className="text-center">{index}</td>
-                    <td colSpan="2">Sample{index}</td>
+                    <td colSpan="2">12BETAFF00{i}</td>
                     <td>6.4</td>
                     <td>test</td>
                 </tr>
@@ -31,11 +31,11 @@ export const Note = () => {
                     <th>C</th>
                 </thead>
                 <tbody>
-                    <tr className="font-weight-bold">
+                    <tr>
                         <td className="text-center">1</td>
-                        <td className="text-center" colSpan="2">Username</td>
-                        <td className="text-center">Amount</td>
-                        <td className="text-center">Reason</td>
+                        <td className="text-center font-weight-bold" colSpan="2">Username</td>
+                        <td className="text-center font-weight-bold">Amount</td>
+                        <td className="text-center font-weight-bold">Reason</td>
                     </tr>
                     {
                         renderRow()
