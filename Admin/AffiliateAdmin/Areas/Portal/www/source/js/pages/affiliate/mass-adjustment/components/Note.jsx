@@ -12,7 +12,7 @@ export const Note = () => {
                 <tr key={i}>
                     <td className="text-center">{index}</td>
                     <td colSpan="2">12BETAFF00{i}</td>
-                    <td>6.4</td>
+                    <td className="text-right pr-1">6.40</td>
                     <td>Comment adjustment</td>
                 </tr>
             )
