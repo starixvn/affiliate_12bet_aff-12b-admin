@@ -83,7 +83,7 @@ export class UploadResult extends PureComponent {
                 <tr key={i}>
                     <td className="text-center">{index}</td>
                     <td colSpan="3">{item.Username}</td>
-                    <td className="text-right pr-1">{item.Amount}</td>
+                    <td className="amount">{item.Amount}</td>
                     <td colSpan="5">{item.Reason}</td>
                 </tr>
             )

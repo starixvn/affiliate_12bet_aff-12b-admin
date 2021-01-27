@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MassAdjustment
     {
         public static bool IsValidCellNumber(int rowNumber, int columnNumber)
         {
-            return rowNumber < Validation.MaxRow && columnNumber >= Validation.MinColumn;
+            return rowNumber < Validation.MaxRow && columnNumber == Validation.ColumnNumber;
         }
 
         public static bool HasMergeCell(IExcelDataReader reader)

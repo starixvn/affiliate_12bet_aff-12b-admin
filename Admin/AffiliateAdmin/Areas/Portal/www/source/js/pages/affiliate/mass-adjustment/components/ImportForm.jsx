@@ -17,6 +17,7 @@ export class ImportForm extends PureComponent {
 
     componentWillUnmount() {
         this.props.setFile(null);
+        this.props.setIsShowResult(false);
     }
 
     componentDidUpdate(prevProps) {
