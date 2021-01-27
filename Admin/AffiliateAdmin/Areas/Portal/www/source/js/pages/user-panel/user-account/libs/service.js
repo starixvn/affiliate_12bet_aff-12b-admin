@@ -32,13 +32,13 @@ export const renderSelectionForm = (name, label, items, selectedKey, isDisabled,
                 <Input type="select" id={name} name={name} value={selectedKey} key="name" disabled={isDisabled} onChange={changeHandler}>
                     <option key={name + '-0'} defaultValue value=''>{selectOption}</option>
 
-                    {/* Fix bug that old secret question is not exist in system so still show old secret question whether user haven't seletcted new one yet*/                    
-                        !selectedKey && !!defaultOption && <option key={name+'-default'} selected value=''>{defaultOption}</option> 
+                    {/* Fix bug that old secret question is not exist in system so still show old secret question whether user haven't seletcted new one yet*/
+                        !selectedKey && !!defaultOption && <option key={name + '-default'} defaultValue value=''>{defaultOption}</option>
                     }
 
                     { items && items.map((item) => {
                         return item.Key === selectedKey
-                            ? <option key={name + '-' + item.Key} value={item.Key} selected>{item.Value}</option>
+                            ? <option key={name + '-' + item.Key} value={item.Key} defaultValue>{item.Value}</option>
                             : <option key={name + '-' + item.Key} value={item.Key}>{item.Value}</option>
                     })}
                 </Input>

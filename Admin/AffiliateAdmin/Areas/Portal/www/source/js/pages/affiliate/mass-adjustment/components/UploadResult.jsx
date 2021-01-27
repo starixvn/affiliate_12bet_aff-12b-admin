@@ -96,10 +96,12 @@ export class UploadResult extends PureComponent {
         return (
             <table className="data-table result-table">
                 <thead>
-                    <th>#</th>
-                    <th colSpan="3">User Name</th>
-                    <th>Amount</th>
-                    <th colSpan="5">Error</th>
+                    <tr>
+                        <th>#</th>
+                        <th colSpan="3">User Name</th>
+                        <th>Amount</th>
+                        <th colSpan="5">Error</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {

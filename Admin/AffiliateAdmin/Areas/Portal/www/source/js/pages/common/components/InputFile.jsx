@@ -36,7 +36,7 @@ export class InputFile extends React.PureComponent {
             <React.Fragment>
                 <div className={className} style={{ cursor: 'pointer' }} onClick={this.handleClick}>
                     <Button type="button">{btnName}</Button>
-                    <span className="px-2" style={{ 'margin-top': '2px' }}>{text}</span>
+                    <span className="px-2" style={{ 'marginTop': '2px' }}>{text}</span>
                     <Input type="file"
                         name="file"
                         hidden

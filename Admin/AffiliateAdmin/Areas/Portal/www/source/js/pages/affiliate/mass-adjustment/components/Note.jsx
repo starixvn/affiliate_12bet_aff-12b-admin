@@ -25,10 +25,12 @@ export const Note = () => {
         return (
             <table className="data-table sample-table">
                 <thead>
-                    <th></th>
-                    <th colSpan="2">A</th>
-                    <th>B</th>
-                    <th>C</th>
+                    <tr>
+                        <th></th>
+                        <th colSpan="2">A</th>
+                        <th>B</th>
+                        <th>C</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
