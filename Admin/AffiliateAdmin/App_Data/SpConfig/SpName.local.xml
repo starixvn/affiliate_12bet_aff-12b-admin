@@ -159,6 +159,6 @@
   </Function>
 
   <Function Name="MassAdjustment">
-    <Setting Key="Aff_Admin_Adjustment_Upd" SpName="Aff_Admin_Adjustment_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Adjustment_Upd" SpName="Aff_Admin_Adjustment_Upd_xtest" DbName="affiliate_12bet" />
   </Function>
 </Functions>
