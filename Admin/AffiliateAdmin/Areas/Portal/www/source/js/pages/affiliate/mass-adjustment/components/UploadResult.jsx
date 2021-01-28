@@ -47,7 +47,7 @@ export class UploadResult extends PureComponent {
             let resultInfo = await this.props.handleUploadFile(file).then(re => re);
 
             if (resultInfo.Result.IsSuccessful) {
-                validateFileResult.message = 'Your file has been upload successfully!';
+                validateFileResult.message = 'Your file has been uploaded successfully!';
 
                 setTimeout(this.handleRefreshPage, 3000);
             } else {
