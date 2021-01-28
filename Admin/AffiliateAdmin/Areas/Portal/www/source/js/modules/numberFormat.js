@@ -13,7 +13,16 @@ export function format(value, digits = 0) {
 }
 
 export function formatDecimalWithCurrencySymbol(value, currencySymbol = "$") {
-    return value < 0 ? `-${currencySymbol}${formatDecimal(Math.abs(value))}` : `${currencySymbol}${formatDecimal(value)}`;
+    return isNegativeDecimal(value) ? `-${currencySymbol}${formatDecimal(Math.abs(value))}` : `${currencySymbol}${formatDecimal(value)}`;
+}
+
+function isNegativeDecimal(value) {
+    //-$0.00xy (x < 5), the amount must be shown as $0.00
+    if (value * 1000 > -5) {
+        return false;
+    }
+
+    return true;
 }
 
 export function round(value, digits) {
