@@ -42,10 +42,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     UserId = SessionService.UserId,
                     Ip = Request.UserHostAddress
                 };
-
+                var data = _massAdjustmentService.UpdateMassAdjusment(file, param);
                 return new JsonNetResult
                 {
-                    Data = _massAdjustmentService.UpdateMassAdjusment(file, param)
+                    Data = data
                 };
             }
 

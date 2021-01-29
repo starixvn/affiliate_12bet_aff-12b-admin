@@ -10,6 +10,8 @@
 
         public const string AffName = "12BETAFF226";
 
+        public const string UserHostAddress = "::1";
+
         public const int OnUserId = 8647;
 
         public const int UserId = 1000000026;

@@ -61,42 +61,6 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Active member.
-        /// </summary>
-        public static string ActiveMember {
-            get {
-                return ResourceManager.GetString("ActiveMember", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Admin Info.
-        /// </summary>
-        public static string AdminInfo {
-            get {
-                return ResourceManager.GetString("AdminInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Admin List.
-        /// </summary>
-        public static string AdminList {
-            get {
-                return ResourceManager.GetString("AdminList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Admin Users.
-        /// </summary>
-        public static string AdminUsers {
-            get {
-                return ResourceManager.GetString("AdminUsers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Affiliate.
         /// </summary>
         public static string Affiliate {
@@ -115,92 +79,11 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Affiliate Info.
-        /// </summary>
-        public static string AffiliateInfo {
-            get {
-                return ResourceManager.GetString("AffiliateInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Affiliate Report.
-        /// </summary>
-        public static string AffiliateReport {
-            get {
-                return ResourceManager.GetString("AffiliateReport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The amount is invalid.
         /// </summary>
         public static string AmountIsInvalid {
             get {
                 return ResourceManager.GetString("AmountIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Approved.
-        /// </summary>
-        public static string Approved {
-            get {
-                return ResourceManager.GetString("Approved", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Banner List.
-        /// </summary>
-        public static string BannerList {
-            get {
-                return ResourceManager.GetString("BannerList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Casino.
-        /// </summary>
-        public static string Casino {
-            get {
-                return ResourceManager.GetString("Casino", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Closed.
-        /// </summary>
-        public static string Closed {
-            get {
-                return ResourceManager.GetString("Closed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Comm Group.
-        /// </summary>
-        public static string CommGroup {
-            get {
-                return ResourceManager.GetString("CommGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dept List.
-        /// </summary>
-        public static string DeptList {
-            get {
-                return ResourceManager.GetString("DeptList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disapproved.
-        /// </summary>
-        public static string Disapproved {
-            get {
-                return ResourceManager.GetString("Disapproved", resourceCulture);
             }
         }
         
@@ -219,15 +102,6 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string EmailAutoNotification {
             get {
                 return ResourceManager.GetString("EmailAutoNotification", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email History.
-        /// </summary>
-        public static string EmailHistory {
-            get {
-                return ResourceManager.GetString("EmailHistory", resourceCulture);
             }
         }
         
@@ -340,29 +214,11 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ex.Rate.
-        /// </summary>
-        public static string ExRate {
-            get {
-                return ResourceManager.GetString("ExRate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A File Name can&apos;t contain any of the following characters: \/:*?&quot;&lt;&gt;|#%&amp;+.
         /// </summary>
         public static string FileNameCanNotContain {
             get {
                 return ResourceManager.GetString("FileNameCanNotContain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Home.
-        /// </summary>
-        public static string Home {
-            get {
-                return ResourceManager.GetString("Home", resourceCulture);
             }
         }
         
@@ -380,15 +236,6 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string InvalidAdjustmentFile {
             get {
                 return ResourceManager.GetString("InvalidAdjustmentFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The file name already exists.&lt;br /&gt;.
-        /// </summary>
-        public static string InvalidBannerAlready {
-            get {
-                return ResourceManager.GetString("InvalidBannerAlready", resourceCulture);
             }
         }
         
@@ -420,47 +267,11 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Landing Page List.
-        /// </summary>
-        public static string LandingPageList {
-            get {
-                return ResourceManager.GetString("LandingPageList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Landing Pages.
-        /// </summary>
-        public static string LandingPages {
-            get {
-                return ResourceManager.GetString("LandingPages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The maximum length of file name is 50. Please either choose another file name or select another file..
         /// </summary>
         public static string MaxLenghtOfFileName {
             get {
                 return ResourceManager.GetString("MaxLenghtOfFileName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Member.
-        /// </summary>
-        public static string Member {
-            get {
-                return ResourceManager.GetString("Member", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Message History.
-        /// </summary>
-        public static string MessageHistory {
-            get {
-                return ResourceManager.GetString("MessageHistory", resourceCulture);
             }
         }
         
@@ -479,42 +290,6 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string MsgKickout {
             get {
                 return ResourceManager.GetString("MsgKickout", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to My Favorite.
-        /// </summary>
-        public static string MyFavorite {
-            get {
-                return ResourceManager.GetString("MyFavorite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Payment Request.
-        /// </summary>
-        public static string PaymentRequest {
-            get {
-                return ResourceManager.GetString("PaymentRequest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pending.
-        /// </summary>
-        public static string Pending {
-            get {
-                return ResourceManager.GetString("Pending", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Permission Role.
-        /// </summary>
-        public static string PermissionRole {
-            get {
-                return ResourceManager.GetString("PermissionRole", resourceCulture);
             }
         }
         
@@ -546,47 +321,11 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Referrers.
-        /// </summary>
-        public static string Referrers {
-            get {
-                return ResourceManager.GetString("Referrers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Report Details.
-        /// </summary>
-        public static string ReportDetails {
-            get {
-                return ResourceManager.GetString("ReportDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sportsbook.
-        /// </summary>
-        public static string Sportsbook {
-            get {
-                return ResourceManager.GetString("Sportsbook", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 12Bet Domains.
         /// </summary>
         public static string Text12BetDomains {
             get {
                 return ResourceManager.GetString("Text12BetDomains", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Text List.
-        /// </summary>
-        public static string TextList {
-            get {
-                return ResourceManager.GetString("TextList", resourceCulture);
             }
         }
         

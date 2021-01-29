@@ -117,53 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ActiveMember" xml:space="preserve">
-    <value>Active member</value>
-  </data>
-  <data name="AdminList" xml:space="preserve">
-    <value>Admin List</value>
-  </data>
   <data name="Affiliate" xml:space="preserve">
     <value>Affiliate</value>
   </data>
   <data name="AffiliateDomain" xml:space="preserve">
     <value>Affiliate Domain</value>
   </data>
-  <data name="AffiliateInfo" xml:space="preserve">
-    <value>Affiliate Info</value>
-  </data>
-  <data name="AffiliateReport" xml:space="preserve">
-    <value>Affiliate Report</value>
-  </data>
   <data name="AmountIsInvalid" xml:space="preserve">
     <value>The amount is invalid</value>
-  </data>
-  <data name="Approved" xml:space="preserve">
-    <value>Approved</value>
-  </data>
-  <data name="BannerList" xml:space="preserve">
-    <value>Banner List</value>
-  </data>
-  <data name="Closed" xml:space="preserve">
-    <value>Closed</value>
-  </data>
-  <data name="CommGroup" xml:space="preserve">
-    <value>Comm Group</value>
-  </data>
-  <data name="DeptList" xml:space="preserve">
-    <value>Dept List</value>
-  </data>
-  <data name="Disapproved" xml:space="preserve">
-    <value>Disapproved</value>
   </data>
   <data name="DomainControl" xml:space="preserve">
     <value>Domain Control</value>
   </data>
   <data name="EmailAutoNotification" xml:space="preserve">
     <value>This is a system auto generated email, please do not reply to this email directly.</value>
-  </data>
-  <data name="EmailHistory" xml:space="preserve">
-    <value>Email History</value>
   </data>
   <data name="EmailSubjectAffApproved" xml:space="preserve">
     <value>12Bet Affiliates - Affiliate Notification</value>
@@ -183,44 +150,11 @@
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
     <value>Affiliate Withdrawal Guidance</value>
   </data>
-  <data name="ExRate" xml:space="preserve">
-    <value>Ex.Rate</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="LandingPages" xml:space="preserve">
-    <value>Landing Pages</value>
-  </data>
-  <data name="Member" xml:space="preserve">
-    <value>Member</value>
-  </data>
-  <data name="MessageHistory" xml:space="preserve">
-    <value>Message History</value>
-  </data>
   <data name="MsgKickout" xml:space="preserve">
     <value>Another session has logged in or your session is expired. Forced to logout!</value>
   </data>
-  <data name="MyFavorite" xml:space="preserve">
-    <value>My Favorite</value>
-  </data>
-  <data name="PaymentRequest" xml:space="preserve">
-    <value>Payment Request</value>
-  </data>
-  <data name="Pending" xml:space="preserve">
-    <value>Pending</value>
-  </data>
-  <data name="Referrers" xml:space="preserve">
-    <value>Referrers</value>
-  </data>
-  <data name="ReportDetails" xml:space="preserve">
-    <value>Report Details</value>
-  </data>
   <data name="Text12BetDomains" xml:space="preserve">
     <value>12Bet Domains</value>
-  </data>
-  <data name="TextList" xml:space="preserve">
-    <value>Text List</value>
   </data>
   <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
     <value>12Bet Affiliates - [{0}] - Your payment request has been processed and completed successfully</value>
@@ -369,9 +303,6 @@
   <data name="MessageIdIsInvalid" xml:space="preserve">
     <value>MessageId is invalid.</value>
   </data>
-  <data name="LandingPageList" xml:space="preserve">
-    <value>Landing Page List</value>
-  </data>
   <data name="InvalidBannerExtensionFile" xml:space="preserve">
     <value>Sorry! We just support these file types : .jpg, .gif, .png, .jpeg&lt;br /&gt;</value>
   </data>
@@ -381,29 +312,11 @@
   <data name="InvalidBannerSize" xml:space="preserve">
     <value>Your upload file size must be &lt;= 3 MB.&lt;br /&gt;</value>
   </data>
-  <data name="InvalidBannerAlready" xml:space="preserve">
-    <value>The file name already exists.&lt;br /&gt;</value>
-  </data>
-  <data name="Casino" xml:space="preserve">
-    <value>Casino</value>
-  </data>
-  <data name="Sportsbook" xml:space="preserve">
-    <value>Sportsbook</value>
-  </data>
   <data name="PleaseEnterFileName" xml:space="preserve">
     <value>You must either enter a file name for banner or browse other banner.</value>
   </data>
   <data name="FileNameCanNotContain" xml:space="preserve">
     <value>A File Name can't contain any of the following characters: \/:*?"&lt;&gt;|#%&amp;+</value>
-  </data>
-  <data name="AdminInfo" xml:space="preserve">
-    <value>Admin Info</value>
-  </data>
-  <data name="AdminUsers" xml:space="preserve">
-    <value>Admin Users</value>
-  </data>
-  <data name="PermissionRole" xml:space="preserve">
-    <value>Permission Role</value>
   </data>
   <data name="InvalidAdjustmentFile" xml:space="preserve">
     <value>&lt;div&gt;

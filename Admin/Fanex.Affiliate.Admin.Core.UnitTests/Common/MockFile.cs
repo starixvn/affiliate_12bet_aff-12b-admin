@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Common
         {
         }
 
-        public MockFile(Stream stream, string contentType = "", string fileName = "")
+        public MockFile(MemoryStream stream, string contentType = "", string fileName = "")
         {
             this.stream = stream;
             this.contentType = contentType;

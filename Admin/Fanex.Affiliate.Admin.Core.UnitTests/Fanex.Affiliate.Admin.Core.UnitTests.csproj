@@ -158,8 +158,10 @@
   <ItemGroup>
     <Compile Include="Attributes\ResetValueNotHavePermissionAttributeTest.cs" />
     <Compile Include="Common\MockFile.cs" />
+    <Compile Include="Controllers\Affiliate\MassAdjustmentControllerTest.cs" />
     <Compile Include="Repository\AdminRole\AdminInfoRepositoryTest.cs" />
     <Compile Include="Repository\AdminRole\RolePermissionRepositoryTest.cs" />
+    <Compile Include="Repository\Affiliate\MassAdjustmentRepositoryTest.cs" />
     <Compile Include="Services\AdminRole\AdminInfoServiceTest.cs" />
     <Compile Include="Services\AdminRole\AdminRoleCommonServiceTest.cs" />
     <Compile Include="Services\AdminRole\RolePermissionServiceTest.cs" />
