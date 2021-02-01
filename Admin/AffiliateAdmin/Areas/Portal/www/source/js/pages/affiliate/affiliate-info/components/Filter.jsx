@@ -215,7 +215,7 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ languageList, commGroupList, param, groupId, columnList, claimsPrincipal, isClickSearch }) {
+function mapStateToProps({ languageList, commGroupList, param, groupId, columnList, claimsPrincipal }) {
     const isShowEmailFilter = claimsPrincipal.hasReadClaim(claimResource.Email);
     const isShowAccStatusFilter = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus);
     const isShowCommFilter = claimsPrincipal.hasReadClaim(claimResource.AffCommGroup);
@@ -226,7 +226,7 @@ function mapStateToProps({ languageList, commGroupList, param, groupId, columnLi
             return !item.renderClaim || claimsPrincipal.hasClaim(item.renderClaim);
         })
         .map(key => { return { key: key, value: sortByList[key].value } });
-    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter, isClickSearch });
+    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter });
 }
 
 function mapDispatchToProps(dispatch) {

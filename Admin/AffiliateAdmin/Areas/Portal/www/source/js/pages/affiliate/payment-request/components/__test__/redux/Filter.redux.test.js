@@ -34,7 +34,8 @@ describe('payment request - Filter - connect', () => {
         const mockBindAction = jest.fn();
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
-            setParam: actions['setParam']
+            setParam: actions['setParam'],
+            setIsClickSearch: actions['setIsClickSearch']
         }
 
         const dispatch = {};

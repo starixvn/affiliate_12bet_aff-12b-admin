@@ -1322,8 +1322,8 @@ exports[`user account - components - sections - Additional render correctly 1`] 
           Select a secret question
         </option>
         <option
+          defaultValue={true}
           key="questionId-default"
-          selected={true}
           value=""
         >
           What?
@@ -2703,8 +2703,8 @@ exports[`user account - components - sections - Additional render correctly with
           Select a secret question
         </option>
         <option
+          defaultValue={true}
           key="questionId-default"
-          selected={true}
           value=""
         >
           What?

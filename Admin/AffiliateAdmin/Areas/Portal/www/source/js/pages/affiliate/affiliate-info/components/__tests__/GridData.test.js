@@ -82,15 +82,16 @@ describe('affiliate info - GridData ', () => {
             Email: '',
             SortBy: 1,
             SortDirectionType: false
-        }
+        },
+        isClickSearch: true,
+        setIsClickSearch: jest.fn()
     };
 
-    it('componentDidUpdate - should call fetchData if param change', () => {
-        const propParam = Object.assign({}, defaultProps.param, { SortBy: 0 });
-        const props = Object.assign({}, defaultProps, { param: propParam });
-        const componentInstance = new GridData(props);
+    it('componentDidUpdate - should call fetchData if isClickSearch change', () => {
+        const props = Object.assign({}, defaultProps, { isClickSearch: false });
+        const componentInstance = new GridData(defaultProps);
         componentInstance.fetchData = jest.fn();
-        componentInstance.componentDidUpdate(defaultProps);
+        componentInstance.componentDidUpdate(props);
 
         const param = {
             AffId: '',
@@ -99,7 +100,7 @@ describe('affiliate info - GridData ', () => {
             Status: '',
             UserName: '',
             Email: '',
-            SortBy: 0,
+            SortBy: 1,
             SortDirectionType: false,
             PageIndex: 1,
             PageSize: 20

@@ -12,6 +12,7 @@ const runTestAction = ({ name, type, data }) => {
 
 const actionList = [
     { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } },
+    { name: 'setIsClickSearch', type: types.SET_IS_CLICK_SEARCH, data: true },
     { name: 'setTransactionId', type: types.SET_TRANSACTION_ID, data: 123456 },
 ]
 

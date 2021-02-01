@@ -19,7 +19,8 @@ const testCaseList = [
     { name: 'showPopupCommGroup', value: undefined, action: { type: types.SET_SHOW_POPUP_COMMGROUP, data: true }, expectedResult: true },
     { name: 'affId', value: undefined, action: { type: types.SET_AFFID, data: 123 }, expectedResult: 123 },
     { name: 'commGroup', value: undefined, action: { type: types.SET_COMM_GROUP, data: 321 }, expectedResult: 321 },
-    { name: 'columnList', value: undefined, action: { type: types.SET_SELECTED_COLUMN, data: mockColumnList }, expectedResult: mockColumnList }
+    { name: 'columnList', value: undefined, action: { type: types.SET_SELECTED_COLUMN, data: mockColumnList }, expectedResult: mockColumnList },
+    { name: 'isClickSearch', value: undefined, action: { type: types.SET_IS_CLICK_SEARCH, data: true }, expectedResult: true }
 ]
 
 describe('affiliate info reducers', () => {
