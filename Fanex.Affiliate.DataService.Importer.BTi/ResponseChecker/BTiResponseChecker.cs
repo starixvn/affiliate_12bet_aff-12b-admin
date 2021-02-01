@@ -22,12 +22,6 @@ namespace Fanex.Affiliate.DataService.Importer.BTi.ResponseChecker
             {
                 throw new ThirdPartyProductException($"BTi - Xml response code indicate request not success {xml}");
             }
-
-            var data = root.Element("Bets");
-            if (data == null)
-            {
-                throw new ThirdPartyProductException($"BTi - Xml response is not correct data format {xml}");
-            }
         }
     }
 }
