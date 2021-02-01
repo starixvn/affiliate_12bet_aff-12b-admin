@@ -96,14 +96,9 @@ namespace Fanex.Affiliate.DataService.Importer.BTi
 
         private static string ReFormatJson(string raw)
         {
-            const string tokenExpiredCode = "-1000";
             const string successCode = "0";
             var rawJsonOject = JObject.Parse(raw);
             var code = rawJsonOject.SelectToken("$.errorCode");
-            if ((string)code == tokenExpiredCode)
-            {
-                return raw;
-            }
 
             if ((string)code == successCode)
             {
