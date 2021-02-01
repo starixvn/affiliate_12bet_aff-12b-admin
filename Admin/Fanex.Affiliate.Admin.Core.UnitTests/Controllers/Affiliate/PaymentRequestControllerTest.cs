@@ -157,7 +157,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakePaymentRequestService = PaymentRequestService ?? Mock.Of<IPaymentRequestService>();
 
-            var controller = new PaymentRequestController(fakeSessionService, PaymentRequestService);
+            var controller = new PaymentRequestController(fakeSessionService, fakePaymentRequestService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

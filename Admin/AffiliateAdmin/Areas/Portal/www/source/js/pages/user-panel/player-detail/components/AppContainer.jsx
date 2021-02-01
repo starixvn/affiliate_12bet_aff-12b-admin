@@ -6,7 +6,7 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
 import { setSortedParam } from '../actions';
-import { SortByIdList } from '../modules/constants';
+import { SortByIdList } from '../libs/constants';
 
 export class AppContainer extends PureComponent {
 

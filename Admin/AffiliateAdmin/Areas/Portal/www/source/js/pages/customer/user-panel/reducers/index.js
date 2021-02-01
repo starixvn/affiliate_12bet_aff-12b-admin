@@ -1,6 +1,6 @@
 import createReducer from '../../../../modules/createReducer';
 import { SET_SELECTED_USERPANEL, TOGGLE_LOADER_USER_PANEL } from '../actions/types';
-import { userPanelMenuKey as menuKey } from '../../common/modules/constants';
+import { userPanelMenuKey as menuKey } from '../../common/libs/constants';
 
 import statementHistoryReducer from '../../../user-panel/statement-history/reducers';
 import userAccountReducer from '../../../user-panel/user-account/reducers';

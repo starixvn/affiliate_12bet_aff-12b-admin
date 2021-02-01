@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { resource, selectedAllProduct, maxWidth, globalResource } from '../modules/constants';
+import { resource, selectedAllProduct, maxWidth, globalResource } from '../libs/constants';
 import { fetchData, toggleLoaderUserPanel } from '../actions';
 import { formatDecimal } from '../../../../modules/numberFormat';
 

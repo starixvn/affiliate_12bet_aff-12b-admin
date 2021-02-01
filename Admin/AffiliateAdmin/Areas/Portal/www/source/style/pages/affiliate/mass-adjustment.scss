@@ -1,0 +1,71 @@
+﻿.filter-container {
+    .input-file {
+        display: flex;
+        border: 1px solid #dee2e6 !important;
+        min-width: 250px;
+        background-color: #fff;
+    }
+}
+
+.mass-adjustment-content {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #dee2e6 !important;
+
+    .sample-file {
+        margin-left: 25px;
+    }
+
+    .data-table {
+        width: 700px;
+        margin-bottom: 25px;
+
+        th {
+            text-align: center;
+        }
+
+        tr {
+            &:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            &:hover {
+                background-color: #fff4c2;
+            }
+        }
+
+        th, td {
+            padding-left: 5px;
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .amount {
+            text-align: right;
+            padding-right: 5px;
+        }
+    }
+
+    .sample-table {
+        th {
+            font-weight: normal;
+        }
+    }
+
+    .result-table {
+        margin-top: 20px;
+
+        th {
+            background-color: #e0e0e0;
+        }
+    }
+
+    ol {
+        li {
+            list-style-type: initial;
+        }
+    }
+
+    .error-title {
+        background-color: #FFF0F0;
+    }
+}

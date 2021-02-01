@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { resource, maxWidth } from '../modules/constants';
+import { resource, maxWidth } from '../libs/constants';
 import { toggleLoaderUserPanel, setPagingOption, fetchData } from '../actions';
 import { claimResource } from '../../../../modules/claim';
 

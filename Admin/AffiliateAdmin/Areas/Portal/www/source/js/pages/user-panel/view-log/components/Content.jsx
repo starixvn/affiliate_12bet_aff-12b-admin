@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText, globalResource, maxWidth } from '../modules/constants';
+import { headerText, globalResource, maxWidth } from '../libs/constants';
 import { setPagingOption, toggleLoaderUserPanel, setShowIdList, fetchData } from '../actions';
 
 export class Content extends PureComponent {

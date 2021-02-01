@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 
 import { updateLanguage, getAffiliateInfo } from '../../actions';
-import { messages } from '../../modules/constants';
+import { messages } from '../../libs/constants';
 import { htmlDecode } from '../../../../../modules/htmlHelper';
 import { NotificationPopup } from '../../../../common/components/NotificationPopup';
 

@@ -94,12 +94,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = ErrorMessage });
             var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object);
 
-            // Action
-            var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream(), fileName: "abc.pdf")) }, new InsertUpdateMultipleBannersParam());
+            using (var memoryStream = new MemoryStream())
+            {
+                // Action
+                var result = service.InsertBanner(new MockFile[1] { (new MockFile(memoryStream, fileName: "abc.pdf")) }, new InsertUpdateMultipleBannersParam());
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("File abc.pdf is incorrect.<br />" + ErrorMessage, result.Message);
+                // Assert
+                Assert.False(result.IsSuccessful);
+                Assert.Equal("File abc.pdf is incorrect.<br />" + ErrorMessage, result.Message);
+            }
         }
 
         [Fact]
@@ -113,12 +116,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".png");
             var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
 
-            // Action
-            var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream())) }, param);
+            using (var memoryStream = new MemoryStream())
+            {
+                // Action
+                var result = service.InsertBanner(new MockFile[1] { (new MockFile(memoryStream)) }, param);
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("The maximum length of file name is 50. Please choose another name File Name 1.<br />", result.Message);
+                // Assert
+                Assert.False(result.IsSuccessful);
+                Assert.Equal("The maximum length of file name is 50. Please choose another name File Name 1.<br />", result.Message);
+            }
         }
 
         [Fact]
@@ -132,12 +138,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".png");
             var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
 
-            // Action
-            var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream())) }, param);
+            using (var memoryStream = new MemoryStream())
+            {
+                // Action
+                var result = service.InsertBanner(new MockFile[1] { (new MockFile(memoryStream)) }, param);
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("A File Name can't contain any of the following characters: \\/:*?\"<>|#%&+", result.Message);
+                // Assert
+                Assert.False(result.IsSuccessful);
+                Assert.Equal("A File Name can't contain any of the following characters: \\/:*?\"<>|#%&+", result.Message);
+            }
         }
 
         [Fact]
@@ -151,12 +160,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".png");
             var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
 
-            // Action
-            var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream())) }, param);
+            using (var memoryStream = new MemoryStream())
+            {
+                // Action
+                var result = service.InsertBanner(new MockFile[1] { (new MockFile(memoryStream)) }, param);
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("File Name is unique, please enter other file name!", result.Message);
+                // Assert
+                Assert.False(result.IsSuccessful);
+                Assert.Equal("File Name is unique, please enter other file name!", result.Message);
+            }
         }
 
         [Fact]
@@ -170,12 +182,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             systemFile.SetupSequence(s => s.GetExtension(It.IsAny<string>())).Returns(".pdf").Returns(".png");
             var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
 
-            // Action
-            var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream())) }, param);
+            using (var memoryStream = new MemoryStream())
+            {
+                // Action
+                var result = service.InsertBanner(new MockFile[1] { (new MockFile(memoryStream)) }, param);
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("File Name 1 is incorrect.<br />Sorry! We just support these file types : .jpg, .gif, .png, .jpeg<br />", result.Message);
+                // Assert
+                Assert.False(result.IsSuccessful);
+                Assert.Equal("File Name 1 is incorrect.<br />Sorry! We just support these file types : .jpg, .gif, .png, .jpeg<br />", result.Message);
+            }
         }
 
         [Fact]
@@ -187,12 +202,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
             var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object);
 
-            // Action
-            var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream(), fileName: "123test123test123test123test123test123test123test123test.png")) }, param);
+            using (var memoryStream = new MemoryStream())
+            {
+                // Action
+                var result = service.InsertBanner(new MockFile[1] { (new MockFile(memoryStream, fileName: "123test123test123test123test123test123test123test123test.png")) }, param);
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("The maximum length of file name is 50. Please choose another name for File Name 1 or select another File.<br />", result.Message);
+                // Assert
+                Assert.False(result.IsSuccessful);
+                Assert.Equal("The maximum length of file name is 50. Please choose another name for File Name 1 or select another File.<br />", result.Message);
+            }
         }
 
         [Fact]
@@ -206,12 +224,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".gif");
             var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
 
-            // Action
-            var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream(), fileName: "abc.png")) }, new InsertUpdateMultipleBannersParam { InputFileNames = "" });
+            using (var memoryStream = new MemoryStream())
+            {
+                // Action
+                var result = service.InsertBanner(new MockFile[1] { (new MockFile(memoryStream, fileName: "abc.png")) }, new InsertUpdateMultipleBannersParam { InputFileNames = "" });
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("abc.png, This file name(s) belong to existing banner(s). Please change the file name.", result.Message);
+                // Assert
+                Assert.False(result.IsSuccessful);
+                Assert.Equal("abc.png, This file name(s) belong to existing banner(s). Please change the file name.", result.Message);
+            }
         }
 
         [Fact]
@@ -225,12 +246,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".gif");
             var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
 
-            // Action
-            var result = service.InsertBanner(new MockFile[1] { (new MockFile(stream: new MemoryStream(), fileName: "abc.png")) }, new InsertUpdateMultipleBannersParam { InputFileNames = "" });
+            using (var memoryStream = new MemoryStream())
+            {
+                // Action
+                var result = service.InsertBanner(new MockFile[1] { (new MockFile(memoryStream, fileName: "abc.png")) }, new InsertUpdateMultipleBannersParam { InputFileNames = "" });
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("Can not access folder.", result.Message);
+                // Assert
+                Assert.False(result.IsSuccessful);
+                Assert.Equal("Can not access folder.", result.Message);
+            }
         }
 
         [Fact]
@@ -244,12 +268,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".png");
             var service = CreateBannerListService(bannerValidationService: bannerValidationService.Object, systemFile: systemFile.Object);
 
-            // Action
-            var result = service.UpdateBanner(new MockFile(stream: new MemoryStream()), param);
+            using (var memoryStream = new MemoryStream())
+            {
+                // Action
+                var result = service.UpdateBanner(new MockFile(memoryStream), param);
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("A File Name can't contain any of the following characters: \\/:*?\"<>|#%&+", result.Message);
+                // Assert
+                Assert.False(result.IsSuccessful);
+                Assert.Equal("A File Name can't contain any of the following characters: \\/:*?\"<>|#%&+", result.Message);
+            }
         }
 
         [Fact]
@@ -278,12 +305,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             systemFile.Setup(s => s.GetExtension(It.IsAny<string>())).Returns(".png");
             var service = CreateBannerListService(systemFile: systemFile.Object);
 
-            // Action
-            var result = service.UpdateBanner(new MockFile(stream: new MemoryStream(), fileName: "123test123test123test123test123test123test123test123test.png"), param);
+            using (var memoryStream = new MemoryStream())
+            {
+                // Action
+                var result = service.UpdateBanner(new MockFile(memoryStream, fileName: "123test123test123test123test123test123test123test123test.png"), param);
 
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("The maximum length of file name is 50. Please either choose another file name or select another file.", result.Message);
+                // Assert
+                Assert.False(result.IsSuccessful);
+                Assert.Equal("The maximum length of file name is 50. Please either choose another file name or select another file.", result.Message);
+            }
         }
 
         [Fact]

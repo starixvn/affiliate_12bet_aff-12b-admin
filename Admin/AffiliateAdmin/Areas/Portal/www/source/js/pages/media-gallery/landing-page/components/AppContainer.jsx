@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -13,6 +13,17 @@ import { fetchData, toggleLoader, setSelectedLandingPageId, setCheckedLandingPag
 import { claimResource } from '../../../../modules/claim';
 
 export const AppContainer = (props) => {
+
+    useEffect(() => {
+        const { gridData } = props;
+
+        !gridData && handleFetchData();
+    }, [props.gridData]);
+
+    const handleFetchData = async () => {
+        await props.fetchData();
+    }
+
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />

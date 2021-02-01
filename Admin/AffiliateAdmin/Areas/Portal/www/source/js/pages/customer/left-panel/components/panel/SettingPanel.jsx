@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import Panel from '../Panel';
 import { Row, Col, Button } from 'reactstrap';
 
-import { affType, resource, status, messages } from '../../modules/constants';
+import { affType, resource, status, messages } from '../../libs/constants';
 import { updateAffType, updateClosedStatus, updateStatus, getAffiliateInfo } from '../../actions';
 import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
 import { NotificationPopup } from '../../../../common/components/NotificationPopup';

@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
         {
             var mockHttpRequest = new Mock<HttpRequestBase>();
             mockHttpRequest.Setup(p => p.ApplicationPath).Returns("/");
-            mockHttpRequest.Setup(p => p.UserHostAddress).Returns("::1");
+            mockHttpRequest.Setup(p => p.UserHostAddress).Returns(Constant.UserHostAddress);
             mockHttpRequest.Setup(p => p.Url).Returns(new Uri(Constant.DefaultRootDomain));
             mockHttpRequest.Setup(p => p.ServerVariables).Returns(new NameValueCollection());
             mockHttpRequest.Setup(p => p.Browser.Browser).Returns(Constant.Browser);

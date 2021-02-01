@@ -7,7 +7,6 @@ import { Button } from 'reactstrap';
 import { htmlDecode } from '../../../modules/htmlHelper';
 import { headerText, resource } from '../libs/constants';
 import { setSelectedMessageId, setPagingOption, fetchData, setCheckedMessages, setShouldResetScrollPosition, setParam } from '../actions';
-import { claimResource } from '../../../modules/claim';
 
 export const Content = (props) => {
 

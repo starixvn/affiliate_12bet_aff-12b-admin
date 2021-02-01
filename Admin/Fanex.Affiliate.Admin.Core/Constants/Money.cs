@@ -4,5 +4,7 @@
     {
         public const decimal MaxValue = 922_337_203_685_477m;
         public const decimal MinValue = -922_337_203_685_477m;
+
+        public const int DecDigits = 2;
     }
 }

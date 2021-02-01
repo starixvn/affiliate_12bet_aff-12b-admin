@@ -17,10 +17,6 @@ export class InsertUpdateForm extends PureComponent {
         }
     }
 
-    componentDidMount() {
-        this.props.fetchData();
-    }
-
     componentDidUpdate(prevProps) {
         const { selectedLandingPageId } = this.props;
         if (prevProps.selectedLandingPageId !== selectedLandingPageId) {

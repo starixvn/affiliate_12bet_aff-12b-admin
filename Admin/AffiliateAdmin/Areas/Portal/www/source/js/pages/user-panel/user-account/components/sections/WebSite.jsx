@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
-import { capitalizeFirstChar } from '../../modules/service';
+import { capitalizeFirstChar } from '../../libs/service';
 import { setUserAccountInfo, setMoreSiteUrlsList } from '../../actions';
 import { NotificationPopup } from '../../../../common/components/NotificationPopup';
 import { claimResource } from '../../../../../modules/claim';

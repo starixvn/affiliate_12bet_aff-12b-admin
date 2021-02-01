@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Form, FormGroup, Input, Label } from 'reactstrap';
 
 import { setParam, getProductList } from '../actions';
-import { selectedAllProduct, globalResource } from '../modules/constants';
+import { selectedAllProduct, globalResource } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class Filter extends PureComponent {

@@ -6,7 +6,7 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { setSelectedSiteUrl, setParam } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
-import { headerText, globalResource, deviceTypes, pcLaptop } from '../modules/constants';
+import { headerText, globalResource, deviceTypes, pcLaptop } from '../libs/constants';
 
 const minDate = new Date(2009, 11, 1);
 

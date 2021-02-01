@@ -6,7 +6,7 @@ import { Alert, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal,
 import { setShowPopup, getNoteList, insertNote, updateNote } from '../actions';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { resource, maxLength } from '../modules/constants';
+import { resource, maxLength } from '../libs/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 export class InsertUpdateNoteForm extends PureComponent {

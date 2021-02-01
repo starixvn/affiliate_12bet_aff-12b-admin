@@ -1,6 +1,6 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../actions/pagingAction';
-import { getPageList as pageList } from '../../../customer/user-panel/modules/service';
+import { getPageList as pageList } from '../../../customer/user-panel/libs/service';
 import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 import { SET_SELECTED_PAGE, SET_PARAM, SET_SHORT_CODE_LANGUAGE_LIST } from '../actions/types';

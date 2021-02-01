@@ -29,14 +29,18 @@
         {
             return "Media Gallery";
         }
-        else if (menuKey == "AdminRole")
+
+        if (menuKey == "ExchangeRate")
+        {
+            return "Exchange Rate";
+        }
+
+        if (menuKey == "AdminRole")
         {
             return "Admin Role";
         }
-        else
-        {
-            return menuKey;
-        }
+
+        return menuKey;
     }
 }
 <ul class="nav menu-list">
@@ -64,7 +68,7 @@
     let element;
 
     switch('@controllerName') {
-        case 'PaymentRequest': case 'CommissionGroup': case 'EmailHistory':
+        case 'PaymentRequest': case 'CommissionGroup': case 'EmailHistory': case 'Adjustment':
             element = document.getElementById('Affiliate');
             break;
         case 'ActiveMember':

@@ -1,0 +1,15 @@
+﻿@import "../../../layout/menu";
+@import "../../common/payment-request-modal";
+@import "../../common/payment-request-table.scss";
+@import "adjustment";
+@import "user-account";
+@import "view-log";
+@import "player-detail";
+
+.user-panel {
+    .loader {
+        .backdrop, .spinner {
+            margin-top: 276px;
+        }
+    }
+}

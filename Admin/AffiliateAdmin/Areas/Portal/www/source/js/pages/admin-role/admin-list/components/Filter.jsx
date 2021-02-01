@@ -33,8 +33,7 @@ export class Filter extends PureComponent {
     }
 
     _handleSearch = () => {
-        const { pagingOption } = this.props;
-        const param = Object.assign({}, this.state, { pageIndex: 1, pageSize: pagingOption.PageSize });
+        const param = Object.assign({}, this.state);
 
         this.props.setParam(param);
     }
@@ -59,8 +58,8 @@ export class Filter extends PureComponent {
 }
 
 function mapStateToProps({ adminList }) {
-    const { pagingOption, isBack } = adminList;
-    return Object.assign({}, { pagingOption, isBack });
+    const { isBack } = adminList;
+    return Object.assign({}, { isBack });
 }
 
 function mapDispatchToProps(dispatch) {

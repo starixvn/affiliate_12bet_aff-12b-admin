@@ -1,10 +1,9 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { setPagingOption } from '../../../../actions/pagingAction';
 import { redirectToCreateNew, redirectToUserDetail } from '../../common/actions';
 import { SET_PARAM, SET_CHECKED_USERS, SET_IS_BACK, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_USER_INFO } from './types';
 
-export { toggleLoader, setPagingOption, redirectToCreateNew, redirectToUserDetail };
+export { toggleLoader, redirectToCreateNew, redirectToUserDetail };
 
 export const setParam = (data) => {
     return {
@@ -57,7 +56,6 @@ export const fetchData = (param) => async (dispatch) => {
     const checkedUsers = data ? _convertCheckedUsers(data) : {};
 
     dispatch(setGridData(data ? data : []));
-    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0 }));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(setCheckedUsers(checkedUsers));
     dispatch(toggleLoader(false));

@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using NSubstitute;
 using System.Collections.Generic;
 using Xunit;
@@ -13,11 +14,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
     {
         private readonly IAuthRepository authRepository;
         private readonly IAdminInfoRepository adminInfoRepository;
+        private readonly IAdminRoleCommonService roleService;
 
         public AuthServiceTest()
         {
             authRepository = Substitute.For<IAuthRepository>();
             adminInfoRepository = Substitute.For<IAdminInfoRepository>();
+            roleService = Substitute.For<IAdminRoleCommonService>();
         }
 
         [Fact]
@@ -27,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             adminInfoRepository.GetUserInfo(Arg.Any<int>()).Returns(new AdminInforResultEntity {
                 AdminInfo = new AdminInfo
                 {
-                    UserId = 123, UserName = "UserName"
+                    UserId = 123, UserName = "UserName", RoleId = 1
                 },
                 MarketList = new List<MarketInfo> { new MarketInfo { MarketId = "en-US", MarketName = "English", HasPermission = true } }
             });
@@ -35,6 +38,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             authRepository.GetPermissionList(Arg.Any<int>()).Returns(new List<UserPermission> {
                 new UserPermission { FunctionName = "[Test]", IsHost = true },
                 new UserPermission { FunctionName = "[Abc]", IsHost = false }
+            });
+
+            roleService.GetRoleList().Returns(new List<RoleInfo>
+            {
+                new RoleInfo { RoleId = 1, RoleName = "Management" }
             });
             var service = CreateAuthService;
 
@@ -61,6 +69,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         }
 
         private AuthService CreateAuthService
-            => new AuthService(authRepository, adminInfoRepository);
+            => new AuthService(authRepository, adminInfoRepository, roleService);
     }
 }

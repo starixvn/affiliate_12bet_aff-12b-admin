@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 
 import { setParam, setSelectedMonth, getTrackingCodeList } from '../actions';
-import { resource, globalResource } from '../modules/constants';
+import { resource, globalResource } from '../libs/constants';
 
 export class Filter extends PureComponent {
     constructor(props) {

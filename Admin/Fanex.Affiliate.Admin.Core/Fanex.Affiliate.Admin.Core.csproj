@@ -47,6 +47,12 @@
       <HintPath>..\..\packages\EasyNetQ.2.3.3\lib\net451\EasyNetQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
     </Reference>
@@ -185,7 +191,16 @@
     <Compile Include="Constants\Field.cs" />
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
+    <Compile Include="Controllers\Affiliate\MassAdjustmentController.cs" />
+    <Compile Include="DTO\MassAdjustment\AdjustmentResultInfo.cs" />
+    <Compile Include="DTO\MassAdjustment\ErroredAdjustmentInfo.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
+    <Compile Include="MetaModels\MassAdjustment\MassAdjustmentParam.cs" />
+    <Compile Include="Repository\Affiliate\IMassAdjustmentRepository.cs" />
+    <Compile Include="Repository\Affiliate\MassAdjustmentRepository.cs" />
+    <Compile Include="Services\MassAdjustment\IMassAdjustmentService.cs" />
+    <Compile Include="Services\MassAdjustment\MassAdjustmentService.cs" />
+    <Compile Include="Utilities\MassAdjustment\MassAdjustmentHelper.cs" />
     <Compile Include="Utilities\Result.cs" />
     <Compile Include="Constants\Money.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />

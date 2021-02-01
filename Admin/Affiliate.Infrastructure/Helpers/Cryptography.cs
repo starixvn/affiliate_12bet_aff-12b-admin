@@ -127,7 +127,7 @@ namespace Affiliate.Infrastructure.Helpers
             {
                 if (str.ToString(1, 1) != "=")
                 {
-                    length += getNewLength(str);
+                    length += GetNewLength(str);
 
                     str4 = str.ToString(0, length);
                     for (int num9 = str4.Length; num9 > 1; num9--)
@@ -138,11 +138,11 @@ namespace Affiliate.Infrastructure.Helpers
                     return new[] { sourceString.Substring(0, sourceString.Length - length), str3.ToString() };
                 }
 
-                length += 1 + getNewLength(str, Two);
+                length += 1 + GetNewLength(str, Two);
             }
             else
             {
-                length += Two + getNewLength(str, Three);
+                length += Two + GetNewLength(str, Three);
 
                 str4 = str.ToString(0, length);
                 for (int num5 = str4.Length; num5 > 1; num5--)
@@ -162,7 +162,7 @@ namespace Affiliate.Infrastructure.Helpers
             return new[] { sourceString.Substring(0, sourceString.Length - length), str3.ToString() };
         }
 
-        private static int getNewLength(StringBuilder str, int initialValue = 1)
+        private static int GetNewLength(StringBuilder str, int initialValue = 1)
         {
             var length = 0;
 
