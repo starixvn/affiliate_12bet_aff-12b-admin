@@ -3,6 +3,9 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MassAdjustment;
 using Fanex.Affiliate.Admin.Core.Resources;
+using System.Data;
+using System.Net;
+using System.Text;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities.MassAdjustment
 {

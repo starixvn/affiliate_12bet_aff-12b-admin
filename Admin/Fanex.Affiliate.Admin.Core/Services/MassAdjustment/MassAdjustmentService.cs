@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MassAdjustment
             }
         }
 
-        public AdjustmentResultInfo ValidateFile(DataTable data, string fileName, bool hasMergeCell)
+        private AdjustmentResultInfo ValidateFile(DataTable data, string fileName, bool hasMergeCell)
         {
             var isExcelFile = IsExcelFile(fileName);
 

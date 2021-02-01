@@ -3,7 +3,7 @@ using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Common
 {
-    class MockFile : HttpPostedFileBase
+    public class MockFile : HttpPostedFileBase
     {
         public Stream stream;
         public string contentType;

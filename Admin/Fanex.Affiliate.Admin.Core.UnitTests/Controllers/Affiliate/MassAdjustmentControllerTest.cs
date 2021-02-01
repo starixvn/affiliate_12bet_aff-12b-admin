@@ -47,11 +47,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var controller = CreateAdjustmentController(null, massAdjustmentService.Object);
 
             // Action
-            var result = controller.UploadFile(new MockFile(new MemoryStream(new byte[3] { 1, 2, 3 }))) as JsonNetResult;
-            var resultInfo = result.Data as AdjustmentResultInfo;
+            using (var memoryStream = new MemoryStream(new byte[3] { 1, 2, 3 }))
+            {
+                var result = controller.UploadFile(new MockFile(memoryStream)) as JsonNetResult;
+                var resultInfo = result.Data as AdjustmentResultInfo;
 
-            // Assert
-            Assert.True(resultInfo.Result.IsSuccessful);
+                // Assert
+                Assert.True(resultInfo.Result.IsSuccessful);
+            }
         }
 
         private AdjustmentController CreateAdjustmentController(
