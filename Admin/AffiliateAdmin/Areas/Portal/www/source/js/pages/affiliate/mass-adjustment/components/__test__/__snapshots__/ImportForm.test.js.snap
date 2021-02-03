@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mass adjustment - components - ImportForm  render correctly 1`] = `
+<div
+  className="filter-container"
+>
+  <Form
+    inline={true}
+    tag="div"
+  >
+    <FormGroup
+      className="my-2 mr-sm-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Import File
+      </Label>
+      <InputFile
+        accept=".xlsx, .xls"
+        btnName="Browse"
+        className="input-file text-muted"
+        files={Array []}
+        handleOnChangeFiles={[Function]}
+        lblText="Select file..."
+        multiple={false}
+      />
+    </FormGroup>
+    <Button
+      className="my-2"
+      color="primary"
+      disabled={true}
+      onClick={[Function]}
+      outline={true}
+      tag="button"
+      type="button"
+    >
+      Upload
+    </Button>
+  </Form>
+</div>
+`;
+
+exports[`mass adjustment - components - ImportForm  render correctly with selected file 1`] = `
+<div
+  className="filter-container"
+>
+  <Form
+    inline={true}
+    tag="div"
+  >
+    <FormGroup
+      className="my-2 mr-sm-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Import File
+      </Label>
+      <InputFile
+        accept=".xlsx, .xls"
+        btnName="Browse"
+        className="input-file text-dark"
+        files={
+          Array [
+            Object {
+              "name": "abc.xlsx",
+            },
+          ]
+        }
+        handleOnChangeFiles={[Function]}
+        lblText="Select file..."
+        multiple={false}
+      />
+    </FormGroup>
+    <Button
+      className="my-2"
+      color="primary"
+      disabled={false}
+      onClick={[Function]}
+      outline={true}
+      tag="button"
+      type="button"
+    >
+      Upload
+    </Button>
+  </Form>
+</div>
+`;

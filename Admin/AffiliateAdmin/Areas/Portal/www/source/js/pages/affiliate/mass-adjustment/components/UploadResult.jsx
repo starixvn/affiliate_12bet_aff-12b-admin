@@ -31,7 +31,7 @@ export class UploadResult extends PureComponent {
     }
 
     validateFile = (file) => {
-        return validateFileExtension(file.name);
+        return validateFileExtension(file && file.name);
     }
 
     handleUploadFile = async () => {
@@ -44,12 +44,12 @@ export class UploadResult extends PureComponent {
         let validateFileResult = this.validateFile(file);
 
         if (validateFileResult.isOK) {
-            let resultInfo = await this.props.handleUploadFile(file).then(re => re);
+            let resultInfo = await this.props.handleUploadFile(file);
 
             if (resultInfo.Result.IsSuccessful) {
                 validateFileResult.message = 'Your file has been uploaded successfully!';
 
-                setTimeout(this.handleRefreshPage, 3000);
+                window.setTimeout(this.handleRefreshPage, 3000);
             } else {
                 validateFileResult = {
                     isOK: false,

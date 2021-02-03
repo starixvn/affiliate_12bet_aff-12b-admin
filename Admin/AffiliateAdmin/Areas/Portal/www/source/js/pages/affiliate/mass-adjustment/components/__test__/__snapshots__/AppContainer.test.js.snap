@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mass adjustment - components - AppContainer  render correctly 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <Connect(ImportForm) />
+  <Connect(Content) />
+</AppLayout>
+`;

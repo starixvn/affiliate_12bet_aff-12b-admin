@@ -220,7 +220,7 @@ describe('banner list actions', () => {
 
         expect(ajaxRequest.post.mock.calls[0][0]).toEqual('Portal/MediaGallery/insertBanner');
 
-        expect(result).toEqual({ IsSuccessful: true, Message: "" });
+        expect(result).toEqual(expectedResponse.data);
     })
 
     it('should create action to insertBanner with incorrect parameter', async () => {

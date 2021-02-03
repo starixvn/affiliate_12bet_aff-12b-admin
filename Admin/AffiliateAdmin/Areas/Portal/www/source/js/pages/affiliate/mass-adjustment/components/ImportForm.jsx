@@ -37,9 +37,9 @@ export class ImportForm extends PureComponent {
     }
 
     handleClickUpload = (hasFiles) => {
-        const { files } = this.state;
-
         if (hasFiles) {
+            const { files } = this.state;
+
             this.props.setFile(files[0]);
 
             this.props.setIsShowResult(true);
