@@ -26,6 +26,12 @@
 
         public const string ExportExcel = "[ExportExcel]";
 
+        public const string ExportAffInfoExcel = "[ExportAffInfoExcel]";
+
+        public const string ExportPlayerDetailExcel = "[ExportPlayerDetailExcel]";
+
+        public const string ExportReportExcel = "[ExportReportExcel]";
+
         public const string Note = "[Note]";
 
         public const string SecurityQa = "[SecurityQA]";

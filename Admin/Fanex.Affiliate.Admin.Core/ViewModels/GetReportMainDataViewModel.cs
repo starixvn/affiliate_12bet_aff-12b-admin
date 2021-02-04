@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.ViewModels
 {
     public class GetReportMainDataViewModel
     {
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string UserName { get; set; }
 
         public DateTime FromDate { get; set; }

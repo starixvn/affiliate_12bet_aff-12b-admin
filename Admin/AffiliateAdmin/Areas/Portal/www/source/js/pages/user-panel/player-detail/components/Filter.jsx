@@ -147,9 +147,13 @@ export class Filter extends PureComponent {
                         <span className="oi oi-magnifying-glass"></span> {resource.Search}
                     </Button>
 
-                    <Button color="link" type="button" className="ml-auto btn-excel" onClick={this.handleExportExcel} title="Export Excel">
-                        <span className="oi icon-excel"></span>
-                    </Button>
+                    {
+                        this.props.isDisplayExportExcelBtn && (
+                            <Button color="link" type="button" className="ml-auto btn-excel" onClick={this.handleExportExcel} title="Export Excel">
+                                <span className="oi icon-excel"></span>
+                            </Button>
+                        )
+                    }
                 </Form>
             </div>
         );
@@ -160,13 +164,15 @@ function mapStateToProps({ today, affCommonInfo, playerDetail, claimsPrincipal }
     const { param, sortedParam } = playerDetail;
     const { affId } = affCommonInfo;
     const hasTurnOverPermission = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
+    const isDisplayExportExcelBtn = claimsPrincipal.hasClaim(claimResource.ExportPlayerDetailExcel);
 
     return Object.assign({}, {
         param,
         affId,
         today,
         sortedParam,
-        hasTurnOverPermission
+        hasTurnOverPermission,
+        isDisplayExportExcelBtn
     });
 }
 

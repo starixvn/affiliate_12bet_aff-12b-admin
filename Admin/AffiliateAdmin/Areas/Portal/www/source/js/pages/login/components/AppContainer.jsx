@@ -55,7 +55,7 @@ export default class AppContainer extends PureComponent {
                 const { data } = response;
 
                 if (data.IsSuccessful) {
-                    window.location = resolveClientUrl("Portal/Home")
+                    window.location = resolveClientUrl("Portal/Home/RedirectMenu");
                 } else {
                     this._handleShowAlert(false, data.Message);
                 }

@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [ResetDefaultUnauthorizedProperty(Function.Turnover)]
+        [ResetDefaultUnauthorizedProperty]
         public ActionResult GetMainData(GetReportMainDataViewModel model)
         {
             var param = BuildParamFromModel(model);
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [ResetDefaultUnauthorizedProperty(Function.Turnover)]
+        [ResetDefaultUnauthorizedProperty]
         public ActionResult GetDetailData(GetReportMainDataViewModel model)
         {
             var param = BuildParamFromModel(model);
@@ -89,7 +89,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 SortDirectionType = model.SortDirectionType,
                 SortType = model.SortType,
                 ToDate = model.ToDate,
-                UserName = model.UserName
+                UserName = model.UserName.Trim()
             };
     }
 }

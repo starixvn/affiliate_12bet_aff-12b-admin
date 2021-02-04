@@ -21,6 +21,9 @@ export const claimResource = {
     AffMemberName: '[AffMemberName]',
     TurnOver: '[AffTurnover]',
     ExportExcel: '[ExportExcel]',
+    ExportAffInfoExcel: '[ExportAffInfoExcel]',
+    ExportPlayerDetailExcel: '[ExportPlayerDetailExcel]',
+    ExportReportExcel: '[ExportReportExcel]',
     AffInfo: '[Affiliate]',
     Payment: '[Payment]',
     MediaGallery: '[Media]',
@@ -98,9 +101,9 @@ export default class ClaimPrincipal{
         this.claims = claims;
     }
 
-    static get currentClaimPrincipal() { 
+    static get currentClaimPrincipal() {
         let claims = window.globalVariables.claims || window.initialState.claims || {};
-        return new ClaimPrincipal(claims); 
+        return new ClaimPrincipal(claims);
     }
 
     hasReadClaim(claimType) {

@@ -9,11 +9,12 @@
     var permissions = sessionService.ClaimIdentities.SelectMany(i => i.Claims);
     var menus = new Dictionary<string, string>
     {
+        {"Home", Function.HomePage },
         {"Customer", Function.Customer },
-        {"Affiliate", String.Empty  },
+        {"Affiliate", Function.Affiliate },
         {"Member",Function.AffMember },
         {"Report",Function.AffReport },
-        {"MediaGallery", Function.Media  },
+        {"MediaGallery", Function.Media },
         {"Message",Function.HotNews },
         {"ExchangeRate",Function.AffExRate },
         {"AdminRole",Function.UserControl },
@@ -44,9 +45,6 @@
     }
 }
 <ul class="nav menu-list">
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Portal/Home")">Home</a>
-    </li>
 
     @foreach (var item in displayMenus)
     {
