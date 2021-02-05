@@ -73,6 +73,7 @@ describe('affiliate info - Filter - connect', () => {
             setReportTitle: actions['setReportTitle'],
             setLanguageList: actions['setLanguageList'],
             setParam: actions['setParam'],
+            setIsClickSearch: actions['setIsClickSearch'],
             setSelectedColumn: actions['setSelectedColumn']
         }
 

@@ -7,6 +7,8 @@ describe('payment request - components - Content ', () => {
     const defaultProps = {
         pagingOption: defaultPagingOption,
         isClickable: true,
+        isClickSearch: true,
+        setIsClickSearch: jest.fn(),
         param: {
             FromDate: "6/25/2019",
             IsGetAll: false,
@@ -63,13 +65,12 @@ describe('payment request - components - Content ', () => {
     });
 
     it('componentDidUpdate - should call fetchData if param change', () => {
-        const param = Object.assign({}, defaultProps.param, { ToDate: "6/27/2019" });
-        const props = Object.assign({}, defaultProps, { param });
-        const componentInstance = new Content(props);
+        const props = Object.assign({}, defaultProps, { isClickSearch: false });
+        const componentInstance = new Content(defaultProps);
         componentInstance.fetchData = jest.fn();
-        componentInstance.componentDidUpdate(defaultProps);
+        componentInstance.componentDidUpdate(props);
 
-        expect(componentInstance.fetchData).toHaveBeenCalledWith({ ...param, PageIndex: 1, PageSize: 20 });
+        expect(componentInstance.fetchData).toHaveBeenCalledWith({ ...defaultProps.param, PageIndex: 1, PageSize: 20 });
     });
 
     it('fetchData - should call toggleLoader, setState and setPagingOption with correct parameter', async () => {

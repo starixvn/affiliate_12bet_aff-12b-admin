@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { EditBannerForm } from '../EditBannerForm';
 import { shallow } from 'enzyme';
-import InputFile from '../../../common/components/InputFile';
+import InputFile from '../../../../common/components/InputFile';
 import NotificationPopup from '../../../../common/components/NotificationPopup';
 
 describe('banner list - components - EditBannerForm ', () => {
@@ -358,7 +358,7 @@ describe('banner list - components - EditBannerForm ', () => {
     it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select category', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: false }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -379,7 +379,7 @@ describe('banner list - components - EditBannerForm ', () => {
     it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select casino sub category', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -400,7 +400,7 @@ describe('banner list - components - EditBannerForm ', () => {
     it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select sportsbook sub category', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Sportsbook", key: "Sportsbook", name: "Sportsbook", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -421,7 +421,7 @@ describe('banner list - components - EditBannerForm ', () => {
     it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select currency', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
             currencyList: [{ key: "EURO", name: "EURO", checked: false }],
@@ -442,7 +442,7 @@ describe('banner list - components - EditBannerForm ', () => {
     it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select Affiliate Type', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -463,7 +463,7 @@ describe('banner list - components - EditBannerForm ', () => {
     it('_handleSubmit - should call toggleLoader and _handleShowAlert when not select Device', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -484,7 +484,7 @@ describe('banner list - components - EditBannerForm ', () => {
     it('_handleSubmit - should call toggleLoader and _handleShowAlert when max input file', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -506,7 +506,7 @@ describe('banner list - components - EditBannerForm ', () => {
     it('_handleSubmit - should call toggleLoader and _handleShowAlert when duplicate input file', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -528,7 +528,7 @@ describe('banner list - components - EditBannerForm ', () => {
     it('_handleSubmit - should call toggleLoader and _save', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -554,7 +554,7 @@ describe('banner list - components - EditBannerForm ', () => {
     it('_handleSubmit - should call toggleLoader and _handleShowAlert when invalid input file name', async () => {
         const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn() });
         const wrapper = shallow(<EditBannerForm {...props} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -707,7 +707,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
     it('_getParam - should return correct data', () => {
         const wrapper = shallow(<EditBannerForm {...defaultProps} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -722,7 +722,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
     it('_getParam - should return correct data with has SubCategory', () => {
         const wrapper = shallow(<EditBannerForm {...defaultProps} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -738,7 +738,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
     it('_getParam - should return correct data with update', () => {
         const wrapper = shallow(<EditBannerForm {...defaultProps} />);
-        wrapper.setState({ 
+        wrapper.setState({
             categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }],
             currencyList: [{ key: "EURO", name: "EURO", checked: true }],
@@ -754,7 +754,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
     it('handleChangeCategory - should call setState', async () => {
         const wrapper = shallow(<EditBannerForm {...defaultProps} />);
-        wrapper.setState({ 
+        wrapper.setState({
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }]
         });
         const instance = wrapper.instance();
@@ -777,7 +777,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
     it('handleChangeSubCategory - should call setState', async () => {
         const wrapper = shallow(<EditBannerForm {...defaultProps} />);
-        wrapper.setState({ 
+        wrapper.setState({
             subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: true }]
         });
         const instance = wrapper.instance();
@@ -790,7 +790,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
     it('handleChangeCurrency - should call setState', async () => {
         const wrapper = shallow(<EditBannerForm {...defaultProps} />);
-        wrapper.setState({ 
+        wrapper.setState({
             currencyList: [{ key: "EURO", name: "EURO", checked: true }]
         });
         const instance = wrapper.instance();
@@ -803,7 +803,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
     it('handleChangeAffType - should call setState', async () => {
         const wrapper = shallow(<EditBannerForm {...defaultProps} />);
-        wrapper.setState({ 
+        wrapper.setState({
             affTypeList: [{ key: "Asian", name: "Asian", checked: true }]
         });
         const instance = wrapper.instance();
@@ -816,7 +816,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
     it('handleChangeDevice - should call setState', async () => {
         const wrapper = shallow(<EditBannerForm {...defaultProps} />);
-        wrapper.setState({ 
+        wrapper.setState({
             deviceTypeList: [{ key: 0, name: "PC / Laptop", checked: true }]
         });
         const instance = wrapper.instance();

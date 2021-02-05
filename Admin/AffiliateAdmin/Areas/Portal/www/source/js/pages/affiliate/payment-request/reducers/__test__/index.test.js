@@ -10,6 +10,7 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 
 const testCaseList = [
     { name: 'param', value: null, action: { type: types.SET_PARAM, data: { AffId: 123456 } }, expectedResult: { AffId: 123456 } },
+    { name: 'isClickSearch', value: undefined, action: { type: types.SET_IS_CLICK_SEARCH, data: true }, expectedResult: true },
     { name: 'transactionId', value: null, action: { type: types.SET_TRANSACTION_ID, data: 123 }, expectedResult: 123 }
 ]
 

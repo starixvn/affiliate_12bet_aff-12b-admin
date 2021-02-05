@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mass adjustment - components - Content  render correctly 1`] = `
+<div
+  className="mass-adjustment-content"
+>
+  <Note />
+</div>
+`;
+
+exports[`mass adjustment - components - Content  render correctly with show result 1`] = `
+<div
+  className="mass-adjustment-content"
+>
+  <Connect(UploadResult) />
+</div>
+`;

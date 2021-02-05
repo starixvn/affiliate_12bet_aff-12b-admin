@@ -21,11 +21,13 @@ describe('payment request - Content - connect', () => {
         const expectedResult = {
             pagingOption: { PageSize: 10 },
             isClickable: true,
+            isClickSearch: true,
             param: { abc: 123 }
         };
         const state = {
             pagingOption: { PageSize: 10 },
             param: { abc: 123 },
+            isClickSearch: true,
             claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
@@ -42,6 +44,7 @@ describe('payment request - Content - connect', () => {
             setPagingOption: actions['setPagingOption'],
             toggleLoader: actions['toggleLoader'],
             fetchData: actions['fetchData'],
+            setIsClickSearch: actions['setIsClickSearch'],
             setTransactionId: actions['setTransactionId']
         }
 

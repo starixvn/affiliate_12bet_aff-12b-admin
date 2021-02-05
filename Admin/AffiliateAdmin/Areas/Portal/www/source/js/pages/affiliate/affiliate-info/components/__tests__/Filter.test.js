@@ -35,7 +35,8 @@ describe('affiliate info - Filter ', () => {
         isShowAccStatusFilter: true,
         isShowCommFilter: true,
         isShowLangFilter: true,
-        columnList: []
+        columnList: [],
+        setIsClickSearch: jest.fn()
     };
 
     it('componentDidMount - should call handleClickSearch if initial group Id different 0', () => {

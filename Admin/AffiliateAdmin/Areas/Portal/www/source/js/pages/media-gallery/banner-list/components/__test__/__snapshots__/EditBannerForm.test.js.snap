@@ -177,11 +177,13 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                 }
               >
                 <Memo(InputFile)
+                  accept="image/jpg, image/gif, image/png, image/jpeg"
+                  btnName="Choose File"
                   className="border text-danger"
                   files={Array []}
                   handleOnChangeFiles={[Function]}
-                  id="file"
                   isMultiple={true}
+                  lblText="No file choosen"
                 />
               </Col>
             </FormGroup>
@@ -816,11 +818,13 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                 }
               >
                 <Memo(InputFile)
+                  accept="image/jpg, image/gif, image/png, image/jpeg"
+                  btnName="Choose File"
                   className="border text-danger"
                   files={Array []}
                   handleOnChangeFiles={[Function]}
-                  id="file"
                   isMultiple={true}
+                  lblText="No file choosen"
                 />
               </Col>
             </FormGroup>
@@ -1445,11 +1449,13 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                 }
               >
                 <Memo(InputFile)
+                  accept="image/jpg, image/gif, image/png, image/jpeg"
+                  btnName="Choose File"
                   className="border text-danger"
                   files={Array []}
                   handleOnChangeFiles={[Function]}
-                  id="file"
                   isMultiple={false}
+                  lblText="No file choosen"
                 />
               </Col>
             </FormGroup>

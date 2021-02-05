@@ -25,6 +25,7 @@ describe('affiliate info - GridData - connect', () => {
 			param: { abc: 123 },
 			isAssignCommGroup: true,
 			isPwdChangeable : true,
+			isClickSearch : true,
 			columnList: [1, 2, 3]
 		};
 
@@ -34,6 +35,7 @@ describe('affiliate info - GridData - connect', () => {
 			param: { abc: 123 },
 			claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
 			columnList: [1, 2, 3],
+			isClickSearch: true,
 			anotherProp: "Not included"
 		};
 
@@ -51,6 +53,7 @@ describe('affiliate info - GridData - connect', () => {
 			setShowPopupPassword: actions['setShowPopupPassword'],
 			setShowPopupCommGroup: actions['setShowPopupCommGroup'],
 			setAffId: actions['setAffId'],
+			setIsClickSearch: actions['setIsClickSearch'],
 			setCommGroup: actions['setCommGroup']
 		}
 

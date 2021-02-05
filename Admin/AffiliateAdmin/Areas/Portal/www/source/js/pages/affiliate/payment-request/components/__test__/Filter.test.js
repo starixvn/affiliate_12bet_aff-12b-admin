@@ -6,6 +6,7 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 describe('payment request - components - Filter ', () => {
     const defaultProps = {
         today: "6/27/2019",
+        setIsClickSearch: jest.fn(),
         param: {}
     }
 

@@ -7,8 +7,6 @@ import { configureStore } from '../../../modules/store';
 import { removeUndifineItem } from '../../../modules/utils';
 import ClaimPrincipal from '../../../modules/claim';
 
-
-
 export default class App extends PureComponent {
     constructor(props) {
         super(props)
