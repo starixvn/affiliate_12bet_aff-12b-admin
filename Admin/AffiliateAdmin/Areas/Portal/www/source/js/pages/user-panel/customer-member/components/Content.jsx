@@ -44,7 +44,7 @@ export class Content extends PureComponent {
     }
 
     _renderHeader() {
-        const {  isDisplayFullName } = this.props;
+        const { isDisplayFullName } = this.props;
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
@@ -85,7 +85,7 @@ export class Content extends PureComponent {
         const userName = htmlDecode(dataItem.UserName);
         const firstName = htmlDecode(dataItem.FirstName);
         const lastName = htmlDecode(dataItem.LastName);
-        const email = htmlDecode(dataItem.Email);
+
         return (
             <Row>
                 <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>
@@ -122,7 +122,7 @@ export class Content extends PureComponent {
 function mapStateToProps({ affCommonInfo, member, claimsPrincipal }) {
     const { param, pagingOption } = member;
     const { affId } = affCommonInfo;
-    const isDisplayFullName = claimsPrincipal.hasReadClaim(claimResource.AffMemberName);
+    const isDisplayFullName = claimsPrincipal.hasReadClaim(claimResource.MemberName);
 
     return Object.assign({}, { affId, param, pagingOption, isDisplayFullName });
 }

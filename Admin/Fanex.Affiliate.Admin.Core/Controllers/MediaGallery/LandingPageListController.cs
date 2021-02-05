@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
-    [FunctionAuthorize(FunctionName = Function.Media)]
+    [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu)]
     public class LandingPageListController : ReadOnlySessionBaseController
     {
         private readonly ILandingPageService _landingPageService;
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult InsertLandingPage(InsertUpdateLandingPageParam param)
         {
             if (ModelState.IsValid)
@@ -74,7 +74,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult UpdateLandingPage(InsertUpdateLandingPageParam param)
         {
             if (ModelState.IsValid)
@@ -100,7 +100,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult DeleteLandingPage(DeleteLandingPageParam param)
         {
             if (ModelState.IsValid)

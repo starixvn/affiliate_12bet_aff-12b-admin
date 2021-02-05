@@ -5,9 +5,9 @@ import ReactDOM from 'react-dom';
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 import AppContainer from './components/AppContainer';
-import { hasWriteUserControlClaim } from '../common/libs/utils';
+import { hasWriteAdminRoleClaim } from '../common/libs/utils';
 
-const store = configureStore({ hasWriteUserControlClaim }, reducer);
+const store = configureStore({ hasWriteAdminRoleClaim }, reducer);
 
 export default class App extends Component {
     constructor(props) {

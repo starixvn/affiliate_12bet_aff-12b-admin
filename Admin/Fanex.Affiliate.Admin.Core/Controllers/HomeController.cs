@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.HomePage)]
+    [FunctionAuthorize(FunctionName = Function.HomeMenu)]
     public class HomeController : ReadOnlySessionBaseController
     {
         private readonly IHomeService _homeService;

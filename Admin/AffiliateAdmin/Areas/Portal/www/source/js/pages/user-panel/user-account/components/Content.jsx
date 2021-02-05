@@ -122,7 +122,7 @@ export class Content extends PureComponent {
                     </Col>
                 </Row>
 
-                {claimsPrincipal.hasReadClaim(claimResource.WebsiteUrl) && (
+                {claimsPrincipal.hasReadClaim(claimResource.AffWebUrl) && (
                     <Row>
                         <Col xs="12" className="px-0">
                             <Section title="Website Information">
@@ -134,7 +134,7 @@ export class Content extends PureComponent {
                     </Row>
                 )}
 
-                {claimsPrincipal.hasReadClaim(claimResource.PaymentInfo) && (
+                {claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo) && (
                     <Row>
                         <Col xs="12" className="px-0">
                             <Section title="Payment Information">
@@ -147,7 +147,7 @@ export class Content extends PureComponent {
                     <Button className="mb-3" color="success"
                         onClick={this.handleSubmit}
                         disabled={!claimsPrincipal.hasClaim(new Claim(claimTypes.Role, claimResource.RoleManager))}
-                        >Submit</Button>
+                    >Submit</Button>
                 </Row>
             </Container>
         );

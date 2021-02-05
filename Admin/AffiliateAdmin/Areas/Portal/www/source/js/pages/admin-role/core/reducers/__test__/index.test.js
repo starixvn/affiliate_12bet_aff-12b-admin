@@ -20,7 +20,7 @@ describe('admin role - core - reducer', () => {
         isShowLoader: false,
         userId: null,
         userName: null,
-        hasWriteUserControlClaim: false
+        hasWriteAdminRoleClaim: false
     }
     it(`should handle rootReducer reducer`, () => {
         const expectResult = Object.assign({}, expectedResult, { isShowLoader: true, })

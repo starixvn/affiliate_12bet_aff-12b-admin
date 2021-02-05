@@ -173,7 +173,7 @@ export const Content = (props) => {
 }
 
 function mapStateToProps({ pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGallery);
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGalleryMenu);
     return Object.assign({}, { pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData, isModifiable });
 }
 

@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
-    [FunctionAuthorize(FunctionName = Function.Domain)]
+    [FunctionAuthorize(FunctionName = Function.DomainMenu)]
     public class DomainControlController : ReadOnlySessionBaseController
     {
         private readonly IDomainControlService _domainControlService;
@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult InsertDomainControl(InsertUpdateDomainControlParam param)
         {
             if (ModelState.IsValid)
@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult UpdateDomainControl(InsertUpdateDomainControlParam param)
         {
             var isValidDomainId = param.DomainId >= Validation.MinId;
@@ -110,7 +110,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult DeleteDomainControl(DeleteDomainControlParam param)
         {
             if (ModelState.IsValid)

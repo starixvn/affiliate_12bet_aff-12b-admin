@@ -18,7 +18,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
-    [FunctionAuthorize(FunctionName = Function.Media)]
+    [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu)]
     public class MediaGalleryController : ReadOnlySessionBaseController
     {
         private const int BannerListCategory = 1;
@@ -132,7 +132,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult InsertBanner(HttpPostedFileBase[] files, InsertUpdateMultipleBannersParam param)
         {
             if (ModelState.IsValid && files != null)
@@ -158,7 +158,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult UpdateBanner(HttpPostedFileBase files, InsertUpdateMultipleBannersParam param)
         {
             var isValidBannerId = param.BannerId >= Validation.MinId;
@@ -185,7 +185,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult DeleteBanners(DeleteBannerParam param)
         {
             if (ModelState.IsValid)

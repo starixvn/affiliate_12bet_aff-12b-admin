@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.AffReport)]
+    [FunctionAuthorize(FunctionName = Function.ReportMenu)]
     public class ReportController : ReadOnlySessionBaseController
     {
         private readonly IProductRepository _productRepository;

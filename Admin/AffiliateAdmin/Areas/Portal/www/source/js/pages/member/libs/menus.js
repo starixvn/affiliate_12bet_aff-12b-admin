@@ -6,6 +6,6 @@ const AffMember = React.lazy(() => import(/* webpackChunkName: "memberList" */ '
 const ActiveMember = React.lazy(() => import(/* webpackChunkName: "activeMember" */ '../active-member/index'));
 
 export const menus = [
-    {key: menuKey.affMember, label: 'Member', href: relativePath.affMember, component: AffMember, renderClaim: new Claim(claimResource.AffMember)},
-    {key: menuKey.activeMember, label: 'Active member', href: relativePath.activeMember, component: ActiveMember, renderClaim: new Claim(claimResource.ActiveMembers) }
+    { key: menuKey.affMember, label: 'Member', href: relativePath.affMember, component: AffMember, renderClaim: new Claim(claimResource.MemberDetail) },
+    { key: menuKey.activeMember, label: 'Active member', href: relativePath.activeMember, component: ActiveMember, renderClaim: new Claim(claimResource.ActiveMembers) }
 ]

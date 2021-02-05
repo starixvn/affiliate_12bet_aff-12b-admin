@@ -6,17 +6,17 @@ namespace Fanex.Affiliate.Admin.Core.Constants
     {
         private static readonly IDictionary<string, string> MainMenuList = new Dictionary<string, string>
         {
-            ["Home"] = Function.HomePage,
-            ["Customer"] = Function.Customer,
-            ["Affiliate"] = Function.Affiliate,
-            ["Member"] = Function.AffMember,
-            ["Report"] = Function.AffReport,
-            ["MediaGallery"] = Function.Media,
-            ["Message"] = Function.HotNews,
-            ["ExchangeRate"] = Function.AffExRate,
-            ["AdminRole"] = Function.UserControl,
-            ["Domain"] = Function.Domain,
-            ["AccessDenied"] = string.Empty
+            ["Home"] = Function.HomeMenu,
+            ["Customer"] = Function.CustomerMenu,
+            ["Affiliate"] = Function.AffiliateMenu,
+            ["Member"] = Function.MemberMenu,
+            ["Report"] = Function.ReportMenu,
+            ["MediaGallery"] = Function.MediaGalleryMenu,
+            ["Message"] = Function.MessageMenu,
+            ["ExchangeRate"] = Function.ExchangeRateMenu,
+            ["AdminRole"] = Function.AdminRoleMenu,
+            ["Domain"] = Function.DomainMenu,
+            ["AccessDenied"] = Function.AccessDenied
         };
 
         public static IDictionary<string, string> MainMenus => MainMenuList;

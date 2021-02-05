@@ -1,8 +1,8 @@
-﻿using Fanex.Affiliate.Admin.Core.Utilities.MassAdjustment;
+﻿using ExcelDataReader;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Utilities.MassAdjustment;
 using Moq;
 using Xunit;
-using ExcelDataReader;
-using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
 {

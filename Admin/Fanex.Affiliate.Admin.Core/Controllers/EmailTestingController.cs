@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.UserControl)]
+    [FunctionAuthorize(FunctionName = Function.AdminRoleMenu)]
     public class EmailTestingController : ReadOnlySessionBaseController
     {
         private readonly IMailProcessor _mailProcessor;
@@ -41,8 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpGet]
         public ActionResult Preview(string language, string function, string format)
         {
-            var result = string.Empty;
-
+            string result;
             try
             {
                 _languageService.SetCulture(language);

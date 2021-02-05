@@ -118,7 +118,7 @@ export const Content = (props) => {
 }
 
 function mapStateToProps({ pagingOption, param, checkedTexts, shouldResetScrollPosition, gridData, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGallery);
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGalleryMenu);
     return Object.assign({}, { pagingOption, param, checkedTexts, shouldResetScrollPosition, gridData, isModifiable });
 }
 

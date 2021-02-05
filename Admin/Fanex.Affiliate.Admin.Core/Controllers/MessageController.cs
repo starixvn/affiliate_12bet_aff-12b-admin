@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.HotNews)]
+    [FunctionAuthorize(FunctionName = Function.MessageMenu)]
     public class MessageController : ReadOnlySessionBaseController
     {
         private const int threeMilliSecond = 3;
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.HotNews, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MessageMenu, IsHost = true)]
         public ActionResult InsertMessage(InsertUpdateMessageParam param)
         {
             if (param.IsValid())
@@ -94,7 +94,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.HotNews, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MessageMenu, IsHost = true)]
         public ActionResult UpdateMessage(InsertUpdateMessageParam param)
         {
             var isValidMessageId = param.MessageId >= Validation.MinId;
@@ -121,7 +121,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.HotNews, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MessageMenu, IsHost = true)]
         public ActionResult DeleteMessages(DeleteMessageParam param)
         {
             if (ModelState.IsValid)

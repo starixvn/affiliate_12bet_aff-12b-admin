@@ -79,11 +79,10 @@ export class CommissionPanel extends PureComponent {
 
 function mapStateToProps({ leftPanel, claimsPrincipal }) {
     const { affiliateInfo } = leftPanel;
-    let isStatic = !claimsPrincipal.hasWriteClaim(claimResource.AffCommGroup);
+    let isStatic = !claimsPrincipal.hasWriteClaim(claimResource.AssignCommGroup);
     const isPrivateGroup = affiliateInfo.AffId === affiliateInfo.GroupId;
-    if(isPrivateGroup)
-    {
-        isStatic = !claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
+    if (isPrivateGroup) {
+        isStatic = !claimsPrincipal.hasWriteClaim(claimResource.CommissionGroup);
     }
     return Object.assign({}, { affiliateInfo, isStatic });
 };

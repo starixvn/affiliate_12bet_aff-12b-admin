@@ -54,7 +54,7 @@ export class Content extends Component {
 
     render() {
         const { Popup, popupTitle } = this.state;
-        const {isModifiable} = this.props;
+        const { isModifiable } = this.props;
         const showPopup = Popup !== null;
 
         return this.props.gridData && (
@@ -82,7 +82,7 @@ export class Content extends Component {
 }
 
 function mapStateToProps({ pagingOption, searchedGroupName, gridData, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.CommissionGroup);
     return Object.assign({}, { pagingOption, searchedGroupName, gridData, isModifiable });
 }
 

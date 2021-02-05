@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 {
     [CustomAuthorize]
     [CheckUMFilter]
-    [FunctionAuthorize(FunctionName = Function.UserControl)]
+    [FunctionAuthorize(FunctionName = Function.AdminRoleMenu)]
     public class AdminRoleController : ReadOnlySessionBaseController
     {
         private readonly IAdminListService _adminListService;
@@ -56,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AdminRoleMenu, IsHost = true)]
         public ActionResult DeleteUsers(DeleteAdminUsersParam param)
         {
             if (ModelState.IsValid)

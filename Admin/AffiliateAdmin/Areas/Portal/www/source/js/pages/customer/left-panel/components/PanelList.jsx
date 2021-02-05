@@ -13,7 +13,7 @@ export const PanelList = (props) => {
 
     return affiliateInfo && (
         <React.Fragment>
-            {isApproved && claimsPrincipal.hasReadClaim(claimResource.AffCommGroup) && <CommissionPanel/>}
+            {isApproved && claimsPrincipal.hasReadClaim(claimResource.AssignCommGroup) && <CommissionPanel />}
             {<SettingPanel isApproved={isApproved} />}
             {isApproved && <OnlineInfoPanel />}
         </React.Fragment>

@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 result = result.Where(r => r.TransType != Code.Adjustment);
             }
 
-            if (!claimPrincipal.HasClaim(Function.Payment))
+            if (!claimPrincipal.HasClaim(Function.PaymentRequest))
             {
                 result = result.Where(r => r.TransType != Code.PaymentRequest);
             }

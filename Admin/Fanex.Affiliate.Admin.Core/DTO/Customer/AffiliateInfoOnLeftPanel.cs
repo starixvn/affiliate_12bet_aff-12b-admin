@@ -2,7 +2,6 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Newtonsoft.Json;
 using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 {
@@ -23,11 +22,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
         public string ContactApps { get; set; }
 
         [PermissionCheck(Function.AffWebUrl)]
-        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string SiteUrl { get; set; }
 
         [PermissionCheck(Function.AffWebUrl)]
-        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string MoreSiteUrl { get; set; }
 
         [PermissionCheck(Function.AffWebUrl)]

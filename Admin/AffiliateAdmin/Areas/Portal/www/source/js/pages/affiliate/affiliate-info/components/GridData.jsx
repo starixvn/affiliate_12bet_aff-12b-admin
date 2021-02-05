@@ -271,7 +271,7 @@ export class GridData extends Component {
 }
 
 function mapStateToProps({ pagingOption, languageList, param, columnList, claimsPrincipal, isClickSearch }) {
-    const isAssignCommGroup = claimsPrincipal.hasReadClaim(claimResource.CommGroup);
+    const isAssignCommGroup = claimsPrincipal.hasReadClaim(claimResource.CommissionGroup);
 
     const isPwdChangeable = claimsPrincipal.hasWriteClaim(claimResource.AffPassword);
     return Object.assign({}, { pagingOption, languageList, param, columnList, isAssignCommGroup, isPwdChangeable, isClickSearch });

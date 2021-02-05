@@ -63,8 +63,8 @@ export class WebSite extends PureComponent {
     }
 
     _renderMoreSiteUrl(moreSiteUrlsList) {
-        const { claimsPrincipal } = this.props;
-        const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.WebsiteUrl);
+        const { hasWriteClaim } = this.props;
+
         return (
             <React.Fragment>
                 {
@@ -87,8 +87,8 @@ export class WebSite extends PureComponent {
 
     render() {
         const { messageNotification } = this.state;
-        const { userAccountInfo, moreSiteUrlsList, claimsPrincipal } = this.props;
-        const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.WebsiteUrl);
+        const { userAccountInfo, moreSiteUrlsList, hasWriteClaim } = this.props;
+
         return (
             <React.Fragment>
                 <Form tag="div">
@@ -123,7 +123,9 @@ export class WebSite extends PureComponent {
 
 function mapStateToProps({ edit, claimsPrincipal }) {
     const { userAccountInfo, moreSiteUrlsList } = edit;
-    return Object.assign({}, { userAccountInfo, moreSiteUrlsList, claimsPrincipal });
+    const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.AffWebUrl);
+
+    return Object.assign({}, { userAccountInfo, moreSiteUrlsList, hasWriteClaim });
 }
 
 function mapDispatchToProps(dispatch) {

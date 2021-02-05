@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.Customer)]
+    [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
     public class CustomerController : ReadOnlySessionBaseController
     {
         private readonly ILanguageService _languageService;

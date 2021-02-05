@@ -205,13 +205,13 @@ export class LanguageComponent extends PureComponent {
     }
 
     render() {
-        const { hasWriteUserControlClaim } = this.props;
+        const { hasWriteAdminRoleClaim } = this.props;
         const { isEdit, gridData, messagePopup, isConfirmPopup } = this.state;
 
         return gridData && (
-            <div className={`data-content${hasWriteUserControlClaim ? '' : ' role-permission'}`}>
+            <div className={`data-content${hasWriteAdminRoleClaim ? '' : ' role-permission'}`}>
                 {
-                    hasWriteUserControlClaim && (
+                    hasWriteAdminRoleClaim && (
                         <div className="my-2">
                             {
 
@@ -250,8 +250,8 @@ export class LanguageComponent extends PureComponent {
 }
 
 
-function mapStateToProps({ gridData, roleList, marketIdList, marketList, isGeneral, hasWriteUserControlClaim }) {
-    return Object.assign({}, { gridData, roleList, marketIdList, marketList, isGeneral, hasWriteUserControlClaim });
+function mapStateToProps({ gridData, roleList, marketIdList, marketList, isGeneral, hasWriteAdminRoleClaim }) {
+    return Object.assign({}, { gridData, roleList, marketIdList, marketList, isGeneral, hasWriteAdminRoleClaim });
 }
 
 function mapDispatchToProps(dispatch) {

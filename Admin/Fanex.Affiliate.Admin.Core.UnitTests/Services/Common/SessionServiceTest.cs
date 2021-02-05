@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Services.Common;
+﻿using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Claims;

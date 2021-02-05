@@ -49,8 +49,8 @@ export class Additional extends PureComponent {
                 {renderInputForm('state', 'State', userAccountInfo.State, false, false, this.handleChange)}
                 {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, false, true, this.handleChange)}
                 {this._renderCountry(userAccountInfo.Country)}
-                {renderClaimBaseSelectionForm(claimsPrincipal, claimResource.SecurityQuestion, 'questionId', 'Security Question', userAccountInfo.SecurityQuestions, userAccountInfo.QuestionId,  false, this.handleChange, userAccountInfo.Question)}
-                {renderClaimBaseInputForm(claimsPrincipal, claimResource.SecurityQuestion, 'answer', 'Answer', userAccountInfo.Answer, false, this.handleChange)}
+                {renderClaimBaseSelectionForm(claimsPrincipal, claimResource.SecurityQA, 'questionId', 'Security Question', userAccountInfo.SecurityQuestions, userAccountInfo.QuestionId, false, this.handleChange, userAccountInfo.Question)}
+                {renderClaimBaseInputForm(claimsPrincipal, claimResource.SecurityQA, 'answer', 'Answer', userAccountInfo.Answer, false, this.handleChange)}
             </Form>
         )
     }

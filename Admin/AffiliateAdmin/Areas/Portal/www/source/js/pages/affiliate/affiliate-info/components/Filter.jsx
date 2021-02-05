@@ -216,9 +216,9 @@ export class Filter extends PureComponent {
 }
 
 function mapStateToProps({ languageList, commGroupList, param, groupId, columnList, claimsPrincipal }) {
-    const isShowEmailFilter = claimsPrincipal.hasReadClaim(claimResource.Email);
+    const isShowEmailFilter = claimsPrincipal.hasReadClaim(claimResource.AffEmail);
     const isShowAccStatusFilter = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus);
-    const isShowCommFilter = claimsPrincipal.hasReadClaim(claimResource.AffCommGroup);
+    const isShowCommFilter = claimsPrincipal.hasReadClaim(claimResource.AssignCommGroup);
     const isShowLangFilter = claimsPrincipal.hasReadClaim(claimResource.LanguageAmendment);
     const sortKeys = Object.keys(sortByList)
         .filter(key => {

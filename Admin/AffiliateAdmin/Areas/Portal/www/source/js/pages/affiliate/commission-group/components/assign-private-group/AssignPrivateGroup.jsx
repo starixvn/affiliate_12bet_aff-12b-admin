@@ -130,7 +130,7 @@ export class AssignPrivateGroup extends React.Component {
 }
 
 function mapStateToProp({ deductionList, productList, selectedGroup, affInfo, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.CommissionGroup);
     return { deductionList, productList, selectedGroup, affInfo, isModifiable };
 }
 

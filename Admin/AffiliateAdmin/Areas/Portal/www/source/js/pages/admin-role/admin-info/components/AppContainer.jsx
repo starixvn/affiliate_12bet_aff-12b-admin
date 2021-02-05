@@ -22,7 +22,7 @@ export class AppContainer extends Component {
                     <MyLink className={"admin-role-sub-menu-back"} onClick={() => this.props.redirectToAdminList()}>
                         <span className="oi oi-chevron-left"></span>
                     </MyLink>
-                    <strong>{ userName || "Create User"}</strong>
+                    <strong>{userName || "Create User"}</strong>
                 </div>
                 <Content />
             </AppLayout>

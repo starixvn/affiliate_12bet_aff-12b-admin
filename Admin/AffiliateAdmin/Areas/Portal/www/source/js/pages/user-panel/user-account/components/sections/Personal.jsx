@@ -70,8 +70,8 @@ export class Personal extends PureComponent {
                 {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, true, this.handleChange)}
                 {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, true, this.handleChange)}
                 {this._renderGenderForm(userAccountInfo.Gender)}
-                {renderClaimBaseInputForm(claimsPrincipal, claimResource.Email, 'email', 'Email Address', userAccountInfo.Email, true, this.handleChange)}
-                {renderClaimBaseInputForm(claimsPrincipal, claimResource.PhoneNumber, 'phone', 'Contact Number', userAccountInfo.Phone, true, this.handleChange)}
+                {renderClaimBaseInputForm(claimsPrincipal, claimResource.AffEmail, 'email', 'Email Address', userAccountInfo.Email, true, this.handleChange)}
+                {renderClaimBaseInputForm(claimsPrincipal, claimResource.AffPhone, 'phone', 'Contact Number', userAccountInfo.Phone, true, this.handleChange)}
                 {
                     this.arrayContactApps && this.arrayContactApps.map(contactApp => {
                         return (

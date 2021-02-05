@@ -173,8 +173,8 @@ export class Content extends PureComponent {
 }
 
 function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffMember);
-    const isShowMemberName = claimsPrincipal.hasClaim(claimResource.AffMemberName);
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MemberDetail);
+    const isShowMemberName = claimsPrincipal.hasClaim(claimResource.MemberName);
     return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData, isModifiable, isShowMemberName });
 }
 

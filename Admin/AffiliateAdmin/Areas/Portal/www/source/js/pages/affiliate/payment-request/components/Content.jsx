@@ -155,7 +155,7 @@ export class Content extends PureComponent {
 
 
 function mapStateToProps({ pagingOption, param, claimsPrincipal, isClickSearch }) {
-    const isClickable = claimsPrincipal.hasReadClaim(claimResource.Payment)
+    const isClickable = claimsPrincipal.hasReadClaim(claimResource.PaymentRequest)
     return Object.assign({}, { pagingOption, param, isClickable, isClickSearch });
 }
 

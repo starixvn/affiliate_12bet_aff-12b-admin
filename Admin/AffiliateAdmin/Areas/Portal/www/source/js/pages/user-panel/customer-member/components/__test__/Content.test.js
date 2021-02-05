@@ -6,7 +6,6 @@ import { defaultPagingOption } from '../../../../../modules/constants';
 describe('customer member - components - Content', () => {
     const defaultProps = {
         affId: 1271808,
-        canViewMemberEmail: false,
         pagingOption: defaultPagingOption,
         param: {
             fromDate: "7/01/2017",
@@ -19,7 +18,6 @@ describe('customer member - components - Content', () => {
     const data = [
         {
             CurrencyName: "TB",
-            Email: "",
             FirstName: "",
             LastName: "",
             RegisteredDate: "2017-07-02T13:44:00",
@@ -28,7 +26,6 @@ describe('customer member - components - Content', () => {
         },
         {
             CurrencyName: "RMB",
-            Email: "",
             FirstName: "firstname_1271808",
             LastName: "lastname_1271808",
             RegisteredDate: "2017-07-03T13:14:00",
@@ -45,16 +42,7 @@ describe('customer member - components - Content', () => {
 
     it('render correctly with have data', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
-        result.instance().setState({ data });
 
-        expect(result).toMatchSnapshot();
-    });
-
-    it('render correctly with have data and canViewMemberEmail is true', () => {
-        const props = Object.assign({}, defaultProps, { canViewMemberEmail: true });
-        const result = shallow(<Content {...props} />);
-        
         result.instance().setState({ data });
 
         expect(result).toMatchSnapshot();
@@ -62,7 +50,7 @@ describe('customer member - components - Content', () => {
 
     it('render correctly with have data is empty', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ data: {} });
 
         expect(result).toMatchSnapshot();

@@ -141,7 +141,7 @@ export class Content extends PureComponent {
 
 
 function mapStateToProps({ pagingOption, param, checkedEmails, shouldResetScrollPosition, gridData, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.Email);
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffEmail);
     return Object.assign({}, { pagingOption, param, checkedEmails, shouldResetScrollPosition, gridData, isModifiable });
 }
 

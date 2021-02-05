@@ -56,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.UserClaim).Returns(new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> {
                 new Claim(Function.AffAdjustment, "Write"),
-                new Claim(Function.Payment, "Write")
+                new Claim(Function.PaymentRequest, "Write")
             }) }));
 
             var repository = new Mock<IStatementHistoryRepository>();

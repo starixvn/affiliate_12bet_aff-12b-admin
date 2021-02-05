@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 {
     [CustomAuthorize]
     [CheckUMFilter]
-    [FunctionAuthorize(FunctionName = Function.UserControl)]
+    [FunctionAuthorize(FunctionName = Function.AdminRoleMenu)]
     public class AdminRoleCommonController : ReadOnlySessionBaseController
     {
         private readonly IAdminRoleCommonService _adminRoleCommonService;

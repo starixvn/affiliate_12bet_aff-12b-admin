@@ -56,7 +56,7 @@ export const ControlButtons = (props) => {
 
 
 function mapStateToProps({ checkedMessages, param, gridData, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.HotNews);
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MessageMenu);
     return Object.assign({}, { checkedMessages, param, gridData, isModifiable });
 }
 

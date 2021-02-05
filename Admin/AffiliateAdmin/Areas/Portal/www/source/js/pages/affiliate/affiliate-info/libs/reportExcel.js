@@ -55,7 +55,7 @@ export default class ReportExcel {
         this.columnConfigs = this._getcolumnConfigs();
     }
 
-    export () {
+    export() {
         Excel.process(() => {
             this._createReportTitle();
             this._createHeader();

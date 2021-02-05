@@ -73,7 +73,7 @@ export class GridData extends Component {
     }
 
     _renderHeader() {
-        const {isModifiable} = this.props;
+        const { isModifiable } = this.props;
         return [
             <Row key="theard">
                 <Cell header={true} colWidth={40} rowSpan="2"></Cell>
@@ -226,8 +226,8 @@ export class GridData extends Component {
 }
 
 function mapStateToProps({ gridData, productList, searchedGroupName, pagingOption, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.CommGroup);
-    const isShowAffTab = claimsPrincipal.hasReadClaim(claimResource.AffInfo)
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.CommissionGroup);
+    const isShowAffTab = claimsPrincipal.hasReadClaim(claimResource.AffiliateInfo)
     return Object.assign({}, { gridData, productList, searchedGroupName, pagingOption, isModifiable, isShowAffTab });
 }
 

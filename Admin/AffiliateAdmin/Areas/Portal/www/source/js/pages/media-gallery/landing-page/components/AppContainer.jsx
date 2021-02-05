@@ -47,7 +47,7 @@ export const AppContainer = (props) => {
 }
 
 function mapStateToProps({ isShowLoader, gridData, checkedLandingPages, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGallery);
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGalleryMenu);
     return Object.assign({}, { isShowLoader, gridData, checkedLandingPages, isModifiable });
 }
 

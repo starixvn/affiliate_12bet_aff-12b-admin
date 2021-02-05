@@ -210,7 +210,7 @@ export class MessageDetailForm extends PureComponent {
 }
 
 function mapStateToProps({ selectedMessageId, param, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.HotNews);
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MessageMenu);
     return Object.assign({}, { selectedMessageId, param, isModifiable });
 }
 

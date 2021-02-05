@@ -8,7 +8,7 @@ import Content from './Content';
 import CommissionGroupPopup from '../../../common/components/CommissionGroupPopup';
 import ChangePasswordForm from '../../../common/components/ChangePasswordForm';
 import Loader from '../../../../components/Loader';
-import { setShowPopupPassword, setShowPopupCommGroup , setLanguageList, setCommGroupList} from '../actions'
+import { setShowPopupPassword, setShowPopupCommGroup, setLanguageList, setCommGroupList } from '../actions'
 
 import { convertArrayToObjectProps } from '../../../../modules/utils';
 import { post } from '../../../../modules/ajaxRequest'

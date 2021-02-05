@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.Customer)]
+    [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
     public class TrackingStatisticsController : ReadOnlySessionBaseController
     {
         private readonly ITrackingStatisticsService _trackingStatisticsService;

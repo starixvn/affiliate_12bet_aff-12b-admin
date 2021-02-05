@@ -119,7 +119,7 @@ export class Content extends PureComponent {
 }
 
 function mapStateToProps({ today, date, shouldResetScrollPosition, gridData, claimsPrincipal }) {
-    const hasPermission = claimsPrincipal.hasWriteClaim(claimResource.AffExRate);
+    const hasPermission = claimsPrincipal.hasWriteClaim(claimResource.ExchangeRateMenu);
     return Object.assign({}, { today, date, shouldResetScrollPosition, gridData, hasPermission });
 }
 

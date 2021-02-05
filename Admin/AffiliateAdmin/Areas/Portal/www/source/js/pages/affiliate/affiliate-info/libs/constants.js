@@ -16,11 +16,11 @@ export const defaultSortBy = 1;
 export const defaultSelectedColumnNumber = 2;
 
 export const sortByList = {
-    'Username': {value: 1},
-    'Registration Date': { value: 2},
-    'Approval Date': { value : 3},
-    'Balance B/F': { value : 4 },
-    'Member': { value: 5, renderClaim : new Claim(claimResource.AffMember)}
+    'Username': { value: 1 },
+    'Registration Date': { value: 2 },
+    'Approval Date': { value: 3 },
+    'Balance B/F': { value: 4 },
+    'Member': { value: 5, renderClaim: new Claim(claimResource.MemberDetail) }
 }
 
 export const headerText = {
@@ -30,17 +30,17 @@ export const headerText = {
     FirstName: { label: 'First Name' },
     LastName: { label: 'Last Name' },
     Language: { label: 'Language', renderClaim: new Claim(claimResource.LanguageAmendment) },
-    Phone: { label: 'Mobile Phone', renderClaim: new Claim(claimResource.PhoneNumber) },
+    Phone: { label: 'Mobile Phone', renderClaim: new Claim(claimResource.AffPhone) },
     Email: { label: 'Email', renderClaim: new Claim(claimResource.Email) },
     RegistrationDateText: { label: 'Registration Date' },
     ApprovalDateText: { label: 'Approval Date' },
     CasinoDateText: { label: 'Casino Date' },
-    CommissionGroup: { label: 'Commission Group', renderClaim: new Claim(claimResource.AffCommGroup)},
+    CommissionGroup: { label: 'Commission Group', renderClaim: new Claim(claimResource.AssignCommGroup) },
     BalanceBf: { label: 'Balance B/F' },
     Currency: { label: 'Aff. Currency' },
-    PlayerUserName: { label: 'Aff. Player', renderClaim: new Claim(claimResource.PaymentInfo) },
+    PlayerUserName: { label: 'Aff. Player', renderClaim: new Claim(claimResource.AffPaymentInfo) },
     PlayerCurrency: { label: 'Aff. Player Currency' },
-    Member: { label: 'Member', renderClaim: new Claim(claimResource.AffMember) },
+    Member: { label: 'Member', renderClaim: new Claim(claimResource.MemberDetail) },
     Password: { label: 'Password' },
 }
 

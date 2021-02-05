@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
@@ -39,11 +38,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Country { get; set; }
 
-        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         [PermissionCheck(Function.AffWebUrl)]
         public string SiteUrl { get; set; }
 
-        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         [PermissionCheck(Function.AffWebUrl)]
         public string MoreSiteUrls { get; set; }
 
@@ -77,13 +74,13 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         [PermissionCheck(Function.AffPaymentInfo)]
         public string BankAccountNumber { get; set; }
 
-        [PermissionCheck(Function.SecurityQa)]
+        [PermissionCheck(Function.SecurityQA)]
         public string Question { get; set; }
 
-        [PermissionCheck(Function.SecurityQa)]
+        [PermissionCheck(Function.SecurityQA)]
         public int? QuestionId { get; set; }
 
-        [PermissionCheck(Function.SecurityQa)]
+        [PermissionCheck(Function.SecurityQA)]
         public string Answer { get; set; }
 
         public string Lang { get; set; }
