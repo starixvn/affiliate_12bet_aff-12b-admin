@@ -43,13 +43,13 @@ export class Payment extends PureComponent {
     }
 
     _renderPaymentForm(name, label, inputValue, isRequired, changeHandler) {
-        const { hasWriteClaim } = this.props;
+        const { hasWriteClaim, hasWriteEditAffClaim } = this.props;
 
         return (
             <FormGroup row>
                 <Label for={name} sm={3} xl={2} className={isRequired ? "required" : ""}>{label}</Label>
                 <Col sm={5} xl={6}>
-                    <Input type="text" id={name} name={name} value={inputValue} disabled={!hasWriteClaim} onChange={changeHandler} />
+                    <Input type="text" id={name} name={name} value={inputValue} disabled={!hasWriteClaim || !hasWriteEditAffClaim} onChange={changeHandler} />
                 </Col>
             </FormGroup>
         )
@@ -68,13 +68,13 @@ export class Payment extends PureComponent {
     }
 
     _renderPreferedPayment() {
-        const { userAccountInfo, hasWriteClaim } = this.props;
+        const { userAccountInfo, hasWriteClaim, hasWriteEditAffClaim } = this.props;
 
         return (
             <FormGroup row>
                 <Label for="preferredPayment" sm={3} xl={2}>Preferred Payment Method</Label>
                 <Col sm={5} xl={6}>
-                    <Input disabled={!hasWriteClaim} type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
+                    <Input disabled={!hasWriteClaim || !hasWriteEditAffClaim} type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
                         {paymentMethodList.map(item => {
                             return (<option key={item.key} value={item.key}>{item.value}</option>)
                         })}
@@ -88,7 +88,7 @@ export class Payment extends PureComponent {
 
     render() {
         const { userAccountInfo, hasReadClaim } = this.props;
-        const renderFormByMethod = userAccountInfo && this._renderFormByMethod(userAccountInfo);
+        const renderFormByMethod = this._renderFormByMethod(userAccountInfo);
 
         return hasReadClaim && (
             <Form tag="div">
@@ -103,11 +103,11 @@ export class Payment extends PureComponent {
 }
 
 function mapStateToProps({ edit, claimsPrincipal }) {
-    const { userAccountInfo } = edit;
-    const hasReadClaim = userAccountInfo && claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo);
-    const hasWriteClaim = userAccountInfo && claimsPrincipal.hasWriteClaim(claimResource.AffPaymentInfo);
+    const { userAccountInfo, hasWriteEditAffClaim } = edit;
+    const hasReadClaim = claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo);
+    const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.AffPaymentInfo);
 
-    return Object.assign({}, { userAccountInfo, hasReadClaim, hasWriteClaim });
+    return Object.assign({}, { userAccountInfo, hasReadClaim, hasWriteClaim, hasWriteEditAffClaim });
 }
 
 function mapDispatchToProps(dispatch) {

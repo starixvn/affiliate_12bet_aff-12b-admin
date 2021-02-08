@@ -18,9 +18,9 @@ export class EmailFormat extends PureComponent {
 
     render() {
         const { userAccountInfo } = this.props;
-        const isTextFormat = !!userAccountInfo && userAccountInfo.MailOption;
+        const isTextFormat = userAccountInfo.MailOption;
 
-        return userAccountInfo && (
+        return (
             <Form tag="div">
                 <FormGroup row>
                     <Col sm={5}>

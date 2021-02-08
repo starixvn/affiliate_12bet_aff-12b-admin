@@ -15,7 +15,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
+    [FunctionAuthorize(FunctionName = Function.EditAffiliate)]
     public class UserAccountController : ReadOnlySessionBaseController
     {
         private readonly IUserAccountService _userAccountService;
@@ -93,9 +93,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             return new JsonNetResult();
         }
 
-        [ClaimAuthorize(ClaimName = ClaimTypes.Role, ClaimValue = Function.ManagerRole)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.EditAffiliate, IsHost = true)]
         public ActionResult UpdateUserAccount(UserAccountParam param)
         {
             if (ModelState.IsValid)

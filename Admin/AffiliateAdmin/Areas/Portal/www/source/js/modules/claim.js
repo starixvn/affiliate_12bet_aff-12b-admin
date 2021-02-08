@@ -1,5 +1,4 @@
 export const claimResource = {
-    RoleManager: 'Management',
     WritePermission: 'Write',
 
     //Main menu permission

@@ -1,20 +1,27 @@
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
-import { SET_USER_ACCOUNT_INFO, SET_MORE_SITE_URLS_LIST } from './types';
+import * as types from './types';
 
 export { getAffiliateInfo }
 
 export const setUserAccountInfo = (data) => {
     return {
-        type: SET_USER_ACCOUNT_INFO,
+        type: types.SET_USER_ACCOUNT_INFO,
         data
     }
 }
 
 export const setMoreSiteUrlsList = (data) => {
     return {
-        type: SET_MORE_SITE_URLS_LIST,
+        type: types.SET_MORE_SITE_URLS_LIST,
+        data
+    }
+}
+
+export const setHasWriteEditAffClaim = (data) => {
+    return {
+        type: types.SET_HAS_WRITE_EDIT_AFF_CLAIM,
         data
     }
 }
@@ -28,7 +35,7 @@ export const getUserAccountInfo = (affId) => async (dispatch) => {
     const data = response && response.status === 200 ? response.data : null;
 
     const moreSiteUrls = data && data.MoreSiteUrls;
-    const moreSiteUrlsList = moreSiteUrls && moreSiteUrls != '' 
+    const moreSiteUrlsList = moreSiteUrls && moreSiteUrls != ''
         ? moreSiteUrls.split(';')
         : [];
 

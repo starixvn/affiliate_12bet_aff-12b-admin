@@ -2,8 +2,6 @@
 {
     public static class Function
     {
-        public const string ManagerRole = "Management";
-
         public const string WritePermission = "Write";
 
         public const string AccessDenied = "";

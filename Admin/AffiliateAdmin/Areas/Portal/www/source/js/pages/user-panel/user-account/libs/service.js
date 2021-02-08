@@ -47,24 +47,28 @@ export const renderSelectionForm = (name, label, items, selectedKey, isDisabled,
     )
 }
 
-export const renderClaimBaseInputForm = (claimPrincipal, claimName, name, label, inputValue, isRequired, changeHandler) => {
-    const hasWriteClaim = claimPrincipal.hasWriteClaim(claimName);
+export const renderClaimBaseInputForm = (claimPrincipal, hasWriteParentClaim, claimName, name, label, inputValue, isRequired, changeHandler) => {
     const hasReadClaim = claimPrincipal.hasReadClaim(claimName);
+    const hasWriteClaim = claimPrincipal.hasWriteClaim(claimName);
+
     if (!hasReadClaim)
-        return;
+        return null;
     else {
-        const isDisabled = !hasWriteClaim;
+        const isDisabled = !hasWriteClaim || !hasWriteParentClaim;
+
         return renderInputForm(name, label, inputValue, isDisabled, isRequired, changeHandler);
     }
 }
 
-export const renderClaimBaseSelectionForm = (claimPrincipal, claimName, name, label, items, selectedKey, isRequired, changeHandler, defaultOption) => {
-    const hasWriteClaim = claimPrincipal.hasWriteClaim(claimName);
+export const renderClaimBaseSelectionForm = (claimPrincipal, hasWriteParentClaim, claimName, name, label, items, selectedKey, isRequired, changeHandler, defaultOption) => {
     const hasReadClaim = claimPrincipal.hasReadClaim(claimName);
+    const hasWriteClaim = claimPrincipal.hasWriteClaim(claimName);
+
     if (!hasReadClaim)
-        return;
+        return null;
     else {
-        const isDisabled = !hasWriteClaim;
+        const isDisabled = !hasWriteClaim || !hasWriteParentClaim;
+
         return renderSelectionForm(name, label, items, selectedKey, isDisabled, isRequired, changeHandler, defaultOption);
     }
 }
