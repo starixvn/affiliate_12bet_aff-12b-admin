@@ -1,5 +1,6 @@
 ﻿@using Fanex.Affiliate.User.Core.Utilities
 @using Fanex.Affiliate.User.Core.Constants
+@using Fanex.Affiliate.User.Core.CoreService
 @model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.OverviewDetail>
 
 @{
@@ -9,6 +10,9 @@
     var hasScroll = rowNum > 11;
     var hasTurnOverPermission = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType);
     var hasActivePlayerDetailPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.ActivePlayerDetailType);
+
+    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, sessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !sessionService.IsInternal;
 }
 
 <div class="table">
@@ -29,7 +33,10 @@
                     <th width="10%">Turnover</th>
                 }
                 <th width="10%">Withdrawal</th>
-                <th width="10%">Win/Loss</th>
+                @if (!isIndiaAffiliate)
+                {
+                    <th width="10%">Win/Loss</th>
+                }
             </tr>
             @{
                 if (hasData)
@@ -49,7 +56,10 @@
                             <th class="text-center">@itemTotal.Turnover.FormatDecimal()</th>
                         }
                         <th class="text-center">@itemTotal.Withdrawal.FormatDecimal()</th>
-                        <th class="text-center">@itemTotal.Winloss.FormatDecimal()</th>
+                        @if (!isIndiaAffiliate)
+                        {
+                            <th class="text-center">@itemTotal.Winloss.FormatDecimal()</th>
+                        }
                     </tr>
                 }
             }
@@ -76,14 +86,17 @@
                                 <td class="text-center">@item.Turnover.FormatDecimal()</td>
                             }
                             <td class="text-center">@item.Withdrawal.FormatDecimal()</td>
-                            <td class="text-center">@item.Winloss.FormatDecimal()</td>
+                            @if (!isIndiaAffiliate)
+                            {
+                                <td class="text-center">@item.Winloss.FormatDecimal()</td>
+                            }
                         </tr>
                     }
                 }
                 else
                 {
                     <tr>
-                        <td class="text-center" colspan="@( 7 + hasActivePlayerDetailPermission.ToInt() + hasTurnOverPermission.ToInt() )">@Lang.NoInfo</td>
+                        <td class="text-center" colspan="@( 6 + hasActivePlayerDetailPermission.ToInt() + hasTurnOverPermission.ToInt() + (!isIndiaAffiliate).ToInt() )">@Lang.NoInfo</td>
                     </tr>
                 }
             }
