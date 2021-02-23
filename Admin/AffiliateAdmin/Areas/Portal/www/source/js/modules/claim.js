@@ -10,6 +10,7 @@ export const claimResource = {
 
     AffiliateInfo: '[Affiliate]',
     PaymentRequest: '[Payment]',
+    EmailHistory: '[EmailHistory]',
     CommissionGroup: '[CommissionGroup]',
     AssignCommGroup: '[AssignCommGroup]',
     MemberDetail: '[AffMemberDetail]',

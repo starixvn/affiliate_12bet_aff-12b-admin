@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.AffEmail)]
+    [FunctionAuthorize(FunctionName = Function.EmailHistory)]
     public class EmailHistoryController : ReadOnlySessionBaseController
     {
         private readonly IEmailHistoryService _emailHistoryService;
@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffEmail, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.EmailHistory, IsHost = true)]
         public ActionResult GetEmailHistoryDetail(int selectedEmailId)
         {
             if (selectedEmailId >= Validation.MinId)
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffEmail, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.EmailHistory, IsHost = true)]
         public ActionResult DeleteEmailHistory(DeleteEmailHistoryParam param)
         {
             if (ModelState.IsValid)

@@ -36,6 +36,8 @@
 
         public const string PaymentRequest = "[Payment]";
 
+        public const string EmailHistory = "[EmailHistory]";
+
         public const string CommissionGroup = "[CommissionGroup]";
 
         public const string AssignCommGroup = "[AssignCommGroup]";

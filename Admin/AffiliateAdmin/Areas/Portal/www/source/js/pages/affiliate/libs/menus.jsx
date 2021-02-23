@@ -12,6 +12,6 @@ export const menus = [
     { key: menuKey.affiliateInfo, label: 'Affiliate Info', href: relativePath.affiliateInfo, component: AffInfo, renderClaim: new Claim(claimResource.AffiliateInfo) },
     { key: menuKey.paymentRequest, label: 'Payment Request', href: relativePath.paymentRequest, component: PaymentRequest, renderClaim: new Claim(claimResource.PaymentRequest) },
     { key: menuKey.commGroup, label: 'Comm Group', href: relativePath.commGroup, component: CommGroup, renderClaim: new Claim(claimResource.CommissionGroup) },
-    { key: menuKey.emailHistory, label: 'Email History', href: relativePath.emailHistory, component: EmailHistory, renderClaim: new Claim(claimResource.AffEmail) },
+    { key: menuKey.emailHistory, label: 'Email History', href: relativePath.emailHistory, component: EmailHistory, renderClaim: new Claim(claimResource.EmailHistory) },
     { key: menuKey.massAdjustment, label: 'Adjustment', href: relativePath.massAdjustment, component: MassAdjustment, renderClaim: new Claim(claimResource.AffAdjustment, claimResource.WritePermission) }
 ]

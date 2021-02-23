@@ -20,7 +20,20 @@
         {"AdminRole",Function.AdminRoleMenu },
         {"Domain",Function.DomainMenu }
     };
-    var displayMenus = menus.Where(m => string.IsNullOrEmpty(m.Value) || permissions.Any(p => p.Type == m.Value)).Select(m => m.Key);
+    var displayMenus = menus.Where(m => {
+        if(string.Equals("Affiliate", m.Key, StringComparison.OrdinalIgnoreCase))
+        {
+            return permissions.Any(p => p.Type == m.Value || p.Type == Function.AffAdjustment);
+        }
+
+        if(string.IsNullOrEmpty(m.Value) || permissions.Any(p => p.Type == m.Value))
+        {
+            return true;
+        }
+
+        return false;
+
+    }).Select(m => m.Key);
 }
 
 @functions{
