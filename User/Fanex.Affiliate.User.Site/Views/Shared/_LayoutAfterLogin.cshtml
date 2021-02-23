@@ -9,6 +9,7 @@
     var hasTurnOverPermission = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType);
     var hasPaymentRequestPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.PaymentRequest);
     var hasCommissionReportPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.CommissionReport);
+    var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, sessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !sessionService.IsInternal;
 }
 
 @section styles{
@@ -18,7 +19,8 @@
 @section scripts{
     <script>
         window.Permission = {
-            HasTurnOverPermission: '@hasTurnOverPermission'.toLowerCase() === 'true'
+            HasTurnOverPermission: '@hasTurnOverPermission'.toLowerCase() === 'true',
+            IsIndiaAffiliate: '@isIndiaAffiliate'.toLowerCase() === 'true'
         }
     </script>
     @RenderSection("scripts", required: false)

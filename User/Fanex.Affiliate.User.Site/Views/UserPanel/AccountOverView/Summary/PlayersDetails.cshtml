@@ -1,6 +1,12 @@
 ﻿@using Fanex.Affiliate.User.Core.Utilities
 @using Fanex.Affiliate.User.Core.Constants
+@using Fanex.Affiliate.User.Core.CoreService
 @model List<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
+
+@{
+    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, sessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !sessionService.IsInternal;
+}
 
 <div class="table player-detail-table">
     <table id="player-detail-table">
@@ -9,10 +15,10 @@
                 <th width="8%">No.</th>
                 <th width="16%" class="th" data-name="Username">
                     <div class="th-wrapper">
-                        <span>User Name</span>
+                        <span>Username</span>
                         <div class="icon-container">
                             <span class="caret asc"></span>
-                            <span class="caret desc"></span>
+                            <span id="Username" class="caret desc"></span>
                         </div>
                     </div>
                 </th>
@@ -37,15 +43,18 @@
                         </div>
                     </th>
                 }
-                <th width="10%" class="th" data-name="Winloss">
-                    <div class="th-wrapper">
-                        <span>Win/Loss</span>
-                        <div class="icon-container">
-                            <span class="caret asc"></span>
-                            <span id="Winloss" class="caret desc"></span>
+                @if (!isIndiaAffiliate)
+                {
+                    <th width="10%" class="th" data-name="Winloss">
+                        <div class="th-wrapper">
+                            <span>Win/Loss</span>
+                            <div class="icon-container">
+                                <span class="caret asc"></span>
+                                <span id="Winloss" class="caret desc"></span>
+                            </div>
                         </div>
-                    </div>
-                </th>
+                    </th>
+                }
                 <th width="10%" class="th" data-name="Deposit">
                     <div class="th-wrapper">
                         <span>Deposit</span>
