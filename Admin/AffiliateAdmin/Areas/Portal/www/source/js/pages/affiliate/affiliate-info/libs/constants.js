@@ -31,7 +31,7 @@ export const headerText = {
     LastName: { label: 'Last Name' },
     Language: { label: 'Language', renderClaim: new Claim(claimResource.LanguageAmendment) },
     Phone: { label: 'Mobile Phone', renderClaim: new Claim(claimResource.AffPhone) },
-    Email: { label: 'Email', renderClaim: new Claim(claimResource.Email) },
+    Email: { label: 'Email', renderClaim: new Claim(claimResource.AffEmail) },
     RegistrationDateText: { label: 'Registration Date' },
     ApprovalDateText: { label: 'Approval Date' },
     CasinoDateText: { label: 'Casino Date' },
