@@ -235,7 +235,7 @@
 var PlayersDetails = (function ($) {
     var _pageSize = 20;
     var _pageIndex = 0;
-    var _sortingColumn = window.Permission.HasTurnOverPermission ? 'Turnover' : 'Winloss';
+    var _sortingColumn = window.Permission.HasTurnOverPermission ? 'Turnover' : (window.Permission.IsIndiaAffiliate ? 'Username' : 'Winloss');
     var _isSortingAsc = false;
     const SortByIdList = {
         Username: 1,
@@ -266,6 +266,7 @@ var PlayersDetails = (function ($) {
 
     var _me = {
         initialize: function () {
+            console.log(_sortingColumn);
             initPager();
             _me.initEvent();
             _me.activeSortIcon($('#' + _sortingColumn));

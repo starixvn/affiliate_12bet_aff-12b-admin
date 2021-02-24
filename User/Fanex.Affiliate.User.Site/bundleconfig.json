@@ -24,13 +24,13 @@
   //    "www/source/js/pages/account-overview/summary.js"
   //  ]
   //},
-  //{
-  //  "outputFileName": "www/build/js/player-detail.js",
-  //  "inputFiles": [
-  //    "www/source/js/components/pager.js",
-  //    "www/source/js/pages/account-overview/player-detail.js"
-  //  ]
-  //},
+  {
+    "outputFileName": "www/build/js/player-detail.js",
+    "inputFiles": [
+      "www/source/js/components/pager.js",
+      "www/source/js/pages/account-overview/player-detail.js"
+    ]
+  },
   //{
   //  "outputFileName": "www/build/js/overview.js",
   //  "inputFiles": [

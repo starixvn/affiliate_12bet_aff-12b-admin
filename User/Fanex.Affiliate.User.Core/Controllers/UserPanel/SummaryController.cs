@@ -18,6 +18,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
     {
         private const int Turnover = 5;
         private const int Winloss = 6;
+        private const int Username = 1;
         private readonly IAccountOverviewRepository _accountOverviewRepository;
 
         public SummaryController(ISessionService sessionService,
@@ -68,7 +69,16 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         [AjaxOnly(PermissionName = ClaimConstant.ActivePlayerDetailType)]
         public ActionResult PlayersDetails(PlayerDetailParam param)
         {
-            param.SortById = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType) ? Turnover : Winloss;
+            if(ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+            {
+                param.SortById = Turnover;
+            } else
+            {
+                var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, SessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !SessionService.IsInternal;
+
+                param.SortById = isIndiaAffiliate ? Username : Winloss;
+            }
+
             param.AffId = SessionService.UserSession.AffId;
             var model = _accountOverviewRepository.GetPlayerDetailList(param);
 

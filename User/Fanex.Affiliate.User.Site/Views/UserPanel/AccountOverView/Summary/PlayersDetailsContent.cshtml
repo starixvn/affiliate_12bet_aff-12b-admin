@@ -1,11 +1,16 @@
 ﻿@using Fanex.Affiliate.User.Core.Utilities
 @using Fanex.Affiliate.User.Core.Constants
+@using Fanex.Affiliate.User.Core.CoreService
 @model List<Fanex.Affiliate.User.Core.DTO.UserPanel.PlayerDetail>
 
 @{
     var hasScroll = Model.Count() > 10;
     var totalItem = ViewBag.TotalItem;
     var startRowNumber = ViewBag.StartRowNumber;
+    var hasTurnOverPermission = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType);
+
+    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, sessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !sessionService.IsInternal;
 }
 
 @{
@@ -13,20 +18,23 @@
     {
         foreach (var item in Model)
         {
-            <tr>
-                <td class="text-center">@startRowNumber</td>
-                <td class="text-center break-all">@item.Username</td>
-                <td class="text-center">@item.RegisteredDate.ToString("dd-MMM-yyyy hh:mm tt")</td>
-                @if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
-                {
-                    <td class="text-center">@item.Turnover.FormatDecimal()</td>
-                }
-                <td class="text-center">@item.Winloss.FormatDecimal()</td>
-                <td class="text-center">@item.Deposit.FormatDecimal()</td>
-                <td class="text-center">@item.Withdrawal.FormatDecimal()</td>
-                <td class="text-center">@item.Bonus.FormatDecimal()</td>
-                <td class="text-center">@item.BankingFee.FormatDecimal()</td>
-            </tr>
+    <tr>
+        <td class="text-center">@startRowNumber</td>
+        <td class="text-center break-all">@item.Username</td>
+        <td class="text-center">@item.RegisteredDate.ToString("dd-MMM-yyyy hh:mm tt")</td>
+        @if (hasTurnOverPermission)
+        {
+            <td class="text-center">@item.Turnover.FormatDecimal()</td>
+        }
+        @if (!isIndiaAffiliate)
+        {
+            <td class="text-center">@item.Winloss.FormatDecimal()</td>
+        }
+        <td class="text-center">@item.Deposit.FormatDecimal()</td>
+        <td class="text-center">@item.Withdrawal.FormatDecimal()</td>
+        <td class="text-center">@item.Bonus.FormatDecimal()</td>
+        <td class="text-center">@item.BankingFee.FormatDecimal()</td>
+    </tr>
 
             startRowNumber++;
         }
@@ -34,7 +42,7 @@
     else
     {
         <tr>
-            <td class="text-center" colspan="9">@Lang.NoInfo</td>
+            <td class="text-center" colspan="@( 7 + hasTurnOverPermission.ToInt() + (!isIndiaAffiliate).ToInt() )">@Lang.NoInfo</td>
         </tr>
     }
 }
