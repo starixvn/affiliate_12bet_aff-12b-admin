@@ -1,6 +1,49 @@
-﻿.btn {
-    &.btn-link {
-        padding: 0;
-        font-size: 12px;
+﻿.view-log {
+    .btn {
+        &.btn-link {
+            padding: 0;
+            font-size: 12px;
+        }
+    }
+
+    &-table {
+        th {
+            border-bottom: 1px solid #ccc !important;
+        }
+
+        .row-data {
+            td {
+                font-weight: bold;
+                background: #DBEEF4;
+            }
+        }
+
+        .row-detail-group {
+            &:hover td {
+                background: #fff;
+            }
+
+            .row-detail-table {
+                width: 100%;
+
+                thead {
+                    td {
+                        padding: 0;
+                        border: none;
+                        width: 12.5% !important;
+                    }
+                }
+
+                tbody {
+                    tr:hover td {
+                        background: #fff4c2;
+                    }
+
+                    .key {
+                        background: #e0e0e0;
+                    }
+                }
+            }
+        }
     }
 }

@@ -954,6 +954,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\RowDetail.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\__test__\redux\Content.redux.test.js" />
