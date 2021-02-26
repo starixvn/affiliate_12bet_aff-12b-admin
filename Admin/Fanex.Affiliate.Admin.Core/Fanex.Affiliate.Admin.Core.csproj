@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -379,7 +379,7 @@
     <Compile Include="MetaModels\MediaGallery\SizeParam.cs" />
     <Compile Include="MetaModels\MediaGallery\TextParam.cs" />
     <Compile Include="MetaModels\Member\ActiveMemberParam.cs" />
-    <Compile Include="MetaModels\Member\DeleteMemberParam.cs" />
+    <Compile Include="MetaModels\Member\UpdateMemberStatusParam.cs" />
     <Compile Include="MetaModels\Member\MemberParam.cs" />
     <Compile Include="MetaModels\Message\DeleteMessageParam.cs" />
     <Compile Include="MetaModels\Message\InsertUpdateMessageParam.cs" />

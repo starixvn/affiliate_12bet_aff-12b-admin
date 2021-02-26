@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.MemberDetail, IsHost = true)]
-        public ActionResult DeleteMember(DeleteMemberParam param)
+        public ActionResult UpdateMemberStatus(UpdateMemberStatusParam param)
         {
             if (ModelState.IsValid)
             {
@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 
                 return new JsonNetResult
                 {
-                    Data = _memberService.DeleteMember(param)
+                    Data = _memberService.UpdateMemberStatus(param)
                 };
             }
 

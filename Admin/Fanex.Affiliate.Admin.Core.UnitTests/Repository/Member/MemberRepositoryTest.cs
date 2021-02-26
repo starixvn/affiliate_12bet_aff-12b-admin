@@ -91,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
         public void DeleteMember_WhenCallWithValidParam_DeleteSuccessfully()
         {
             // Arrange
-            var param = new DeleteMemberParam();
+            var param = new UpdateMemberStatusParam();
             var repository = new Mock<MemberRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             repository.Setup(re => re.GetObjectDb(SpKeyMemberDel, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.DeleteMember(param);
+            var result = repository.Object.UpdateMemberStatus(param);
 
             // Assert
             Assert.True(result.IsSuccessful);
@@ -125,7 +125,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             repository.Setup(re => re.GetObjectDb(SpKeyMemberDel, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.DeleteMember(new DeleteMemberParam());
+            var result = repository.Object.UpdateMemberStatus(new UpdateMemberStatusParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -144,7 +144,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             repository.Setup(re => re.GetObjectDb(SpKeyAdminUpdAffID, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.DeleteMemberInDepositDB(123456);
+            var result = repository.Object.UpdateMemberStatusInDepositDB(123456, 123);
 
             // Assert
             Assert.True(result.IsSuccessful);
@@ -163,7 +163,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             repository.Setup(re => re.GetObjectDb(SpKeyAdminUpdAffID, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.DeleteMemberInDepositDB(123456);
+            var result = repository.Object.UpdateMemberStatusInDepositDB(123456, 123);
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -180,9 +180,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             repository.Setup(re => re.GetObjectDb(SpKeyWriteLog, 120)).Returns(objectDb.Object);
 
             // Action
-            repository.Object.WriteAfterDeleteSuccefully(new DeleteMemberParam());
+            repository.Object.WriteAfterDeleteSuccefully(new UpdateMemberStatusParam());
 
             // Assert
+            Assert.True(true);
         }
 
         private IDictionary<string, object> GetMemberList()

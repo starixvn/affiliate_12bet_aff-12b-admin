@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
     {
         public EntityResult<MemberInfo> GetMemberList(MemberParam param)
         {
-            const string Spkey = "Aff_MemberListSel";
+            const string Spkey = "Aff_Admin_MemberList_Sel";
             var result = new EntityResult<MemberInfo>();
             var dataList = new List<MemberInfo>();
 
@@ -40,6 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                             LastName = Convert.ToString(reader["LastName"]),
                             CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"]),
                             AffName = Convert.ToString(reader["AffUserName"]),
+                            IsRemoved = Convert.ToBoolean(reader["IsRemoved"]),
                             CurrentBalance = FormatNumber(reader["CurrBalance"])
                         });
                     }
@@ -53,18 +54,18 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
             return result;
         }
 
-        public ResultInfo DeleteMember(DeleteMemberParam param)
+        public ResultInfo UpdateMemberStatus(UpdateMemberStatusParam param)
         {
-            const string SpKey = "Aff_MemberDel";
+            const string SpKey = "Aff_Admin_Member_RemoveStatus_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
+                objectDb.AddInParameter("IsRemoved", DbType.Int32, param.IsRemoved);
                 objectDb.AddInParameter("ibccustid", DbType.Int32, param.MemberId);
                 objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
                 objectDb.AddOutParameter("AffID", DbType.Int32, Size.SizeOfInt);
-                objectDb.AddOutParameter("RefNo", DbType.Int64, Size.SizeOfInt);
                 objectDb.AddOutParameter("DepositCustID", DbType.Int32, Size.SizeOfInt);
 
                 AssignResultOutputParam(objectDb);
@@ -81,12 +82,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
             }
         }
 
-        public ResultInfo DeleteMemberInDepositDB(int depositMemberId)
+        public ResultInfo UpdateMemberStatusInDepositDB(int depositMemberId, int affId)
         {
             const string SpKey = "DEP_AdminUpdAffID";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
+                objectDb.AddInParameter("AffId", DbType.Int32, affId);
                 objectDb.AddInParameter("DepositCustID", DbType.Int32, depositMemberId);
                 AssignResultOutputParam(objectDb);
                 objectDb.ExecuteNonQuery();
@@ -95,7 +97,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
             }
         }
 
-        public void WriteAfterDeleteSuccefully(DeleteMemberParam param)
+        public void WriteAfterDeleteSuccefully(UpdateMemberStatusParam param)
         {
             const string SpKey = "Aff_WriteLog";
 
@@ -116,9 +118,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
         private static string FormatNumber(object Number)
         {
-            decimal decimalNumber = CastAide.AsDecimal(Number, 0m);
+            var decimalString = CastAide.AsDecimal(Number, 0m).ToString("N2");
+            var decimalNumber = Convert.ToDecimal(decimalString);
 
-            return (decimalNumber >= 0 ? "$" : "-$") + Math.Abs(decimalNumber).ToString("N2");
+            return (decimalNumber >= 0 ? "$" : "-$") + Math.Abs(decimalNumber);
 
         }
     }

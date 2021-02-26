@@ -20,6 +20,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Member
 
         public string AffName { get; set; }
 
+        public bool IsRemoved { get; set; }
+
         public string CreatedDateText => CreatedDate?.ToString("MM/dd/yyyy HH:mm:ss");
     }
 }

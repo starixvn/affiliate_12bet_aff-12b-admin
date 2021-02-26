@@ -8,10 +8,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
     {
         EntityResult<MemberInfo> GetMemberList(MemberParam param);
 
-        ResultInfo DeleteMember(DeleteMemberParam param);
+        ResultInfo UpdateMemberStatus(UpdateMemberStatusParam param);
 
-        ResultInfo DeleteMemberInDepositDB(int depositMemberId);
+        ResultInfo UpdateMemberStatusInDepositDB(int depositMemberId, int affId);
 
-        void WriteAfterDeleteSuccefully(DeleteMemberParam param);
+        void WriteAfterDeleteSuccefully(UpdateMemberStatusParam param);
     }
 }

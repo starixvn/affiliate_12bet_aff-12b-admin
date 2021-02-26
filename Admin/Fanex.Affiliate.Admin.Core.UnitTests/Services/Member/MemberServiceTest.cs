@@ -29,35 +29,35 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
         }
 
         [Fact]
-        public void DeleteMember_WhenCall_ReturnCorrectData()
+        public void UpdateMemberStatus_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = new DeleteMemberParam();
+            var param = new UpdateMemberStatusParam();
             var memberRepository = new Mock<IMemberRepository>();
-            memberRepository.Setup(comm => comm.DeleteMember(param)).Returns(new ResultInfo());
-            memberRepository.Setup(comm => comm.DeleteMemberInDepositDB(param.DepositMemberId)).Returns(new ResultInfo());
+            memberRepository.Setup(comm => comm.UpdateMemberStatus(param)).Returns(new ResultInfo());
+            memberRepository.Setup(comm => comm.UpdateMemberStatusInDepositDB(param.DepositMemberId, It.IsAny<int>())).Returns(new ResultInfo());
             memberRepository.Setup(comm => comm.WriteAfterDeleteSuccefully(param));
             var service = CreateMemberService(memberRepository.Object);
 
             // Action
-            var result = service.DeleteMember(param);
+            var result = service.UpdateMemberStatus(param);
 
             // Assert
             Assert.True(result.IsSuccessful);
         }
 
         [Fact]
-        public void DeleteMember_WhenCall_DeleteDepositMemberIsFailed()
+        public void UpdateMemberStatus_WhenCall_DeleteDepositMemberIsFailed()
         {
             // Arrange
-            var param = new DeleteMemberParam();
+            var param = new UpdateMemberStatusParam();
             var memberRepository = new Mock<IMemberRepository>();
-            memberRepository.Setup(comm => comm.DeleteMember(param)).Returns(new ResultInfo());
-            memberRepository.Setup(comm => comm.DeleteMemberInDepositDB(param.DepositMemberId)).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "Delete Member In Deposit DB is failed" });
+            memberRepository.Setup(comm => comm.UpdateMemberStatus(param)).Returns(new ResultInfo());
+            memberRepository.Setup(comm => comm.UpdateMemberStatusInDepositDB(param.DepositMemberId, It.IsAny<int>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "Delete Member In Deposit DB is failed" });
             var service = CreateMemberService(memberRepository.Object);
 
             // Action
-            var result = service.DeleteMember(param);
+            var result = service.UpdateMemberStatus(param);
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -65,16 +65,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
         }
 
         [Fact]
-        public void DeleteMember_WhenCall_DeleteMemberIsFailed()
+        public void UpdateMemberStatus_WhenCall_UpdateMemberStatusIsFailed()
         {
             // Arrange
-            var param = new DeleteMemberParam();
+            var param = new UpdateMemberStatusParam();
             var memberRepository = new Mock<IMemberRepository>();
-            memberRepository.Setup(comm => comm.DeleteMember(param)).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "Delete Member is failed" });
+            memberRepository.Setup(comm => comm.UpdateMemberStatus(param)).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "Delete Member is failed" });
             var service = CreateMemberService(memberRepository.Object);
 
             // Action
-            var result = service.DeleteMember(param);
+            var result = service.UpdateMemberStatus(param);
 
             // Assert
             Assert.False(result.IsSuccessful);

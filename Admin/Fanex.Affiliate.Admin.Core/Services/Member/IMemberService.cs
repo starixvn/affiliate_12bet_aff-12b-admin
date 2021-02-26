@@ -8,6 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
     {
         EntityResult<MemberInfo> GetMemberList(MemberParam param);
 
-        ResultInfo DeleteMember(DeleteMemberParam param);
+        ResultInfo UpdateMemberStatus(UpdateMemberStatusParam param);
     }
 }

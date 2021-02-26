@@ -59,17 +59,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Member
         }
 
         [Fact]
-        public void DeleteMember_WhenCallWithValidParam_DeleteSuccessful()
+        public void UpdateMemberStatus_WhenCallWithValidParam_DeleteSuccessful()
         {
             // Arrange
-            var param = new DeleteMemberParam { MemberId = 123 };
-            DeleteMemberParam passedParam = null;
+            var param = new UpdateMemberStatusParam { MemberId = 123 };
+            UpdateMemberStatusParam passedParam = null;
             var memberService = new Mock<IMemberService>();
-            memberService.Setup(s => s.DeleteMember(param)).Returns(new ResultInfo()).Callback<DeleteMemberParam>(p => passedParam = p);
+            memberService.Setup(s => s.UpdateMemberStatus(param)).Returns(new ResultInfo()).Callback<UpdateMemberStatusParam>(p => passedParam = p);
             var controller = CreateMemberController(memberService: memberService.Object);
 
             // Action
-            var result = controller.DeleteMember(param) as JsonNetResult;
+            var result = controller.UpdateMemberStatus(param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -78,14 +78,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Member
         }
 
         [Fact]
-        public void DeleteMember_WhenCallWithInvalidParam_ReturnError()
+        public void UpdateMemberStatus_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
             var controller = CreateMemberController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.DeleteMember(new DeleteMemberParam()) as JsonNetResult;
+            var result = controller.UpdateMemberStatus(new UpdateMemberStatusParam()) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
