@@ -32,7 +32,6 @@
 
     var _me = {
         initialize: function () {
-            console.log(_sortingColumn);
             initPager();
             _me.initEvent();
             _me.activeSortIcon($('#' + _sortingColumn));
