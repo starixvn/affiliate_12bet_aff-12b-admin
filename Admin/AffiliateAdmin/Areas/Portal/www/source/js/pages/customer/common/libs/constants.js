@@ -8,6 +8,7 @@ export const userPanelMenuKey = {
     adjustment: 'adjustment',
     trackingStatistics: 'trackingStatistics',
     member: 'member',
+    newViewLog: 'newViewLog',
     viewLog: 'viewLog',
     clickStatistics: 'clickStatistics',
     landingPageStatistics: 'landingPageStatistics'

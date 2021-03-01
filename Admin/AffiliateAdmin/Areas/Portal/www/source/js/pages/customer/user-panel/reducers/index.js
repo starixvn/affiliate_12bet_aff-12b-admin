@@ -8,6 +8,7 @@ import noteReducer from '../../../user-panel/note/reducers';
 import adjustmentReducer from '../../../user-panel/adjustment/reducers';
 import trackingStatisticsReducer from '../../../user-panel/tracking-statistics/reducers';
 import memberReducer from '../../../user-panel/customer-member/reducers';
+import newViewLogReducer from '../../../user-panel/new-view-log/reducers';
 import viewLogReducer from '../../../user-panel/view-log/reducers';
 import referrerStatisticsReducer from '../../../user-panel/referrers/reducers';
 import landingPageStatisticsReducer from '../../../user-panel/landing-page-statistics/reducers';
@@ -37,6 +38,7 @@ export const userPanelReducer = {
     [menuKey.adjustment]: adjustmentReducer,
     [menuKey.trackingStatistics]: trackingStatisticsReducer,
     [menuKey.member]: memberReducer,
+    [menuKey.newViewLog]: newViewLogReducer,
     [menuKey.viewLog]: viewLogReducer,
     [menuKey.clickStatistics]: referrerStatisticsReducer,
     [menuKey.landingPageStatistics]: landingPageStatisticsReducer

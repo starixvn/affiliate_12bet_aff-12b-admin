@@ -1,9 +1,8 @@
-﻿import React, { Fragment, PureComponent } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
-import RowDetail from './RowDetail';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource, maxWidth } from '../libs/constants';
@@ -22,7 +21,7 @@ export class Content extends PureComponent {
     componentDidUpdate(prevProps) {
         const { pagingOption, param } = this.props;
 
-        if (param !== prevProps.param) {
+        if (param && param !== prevProps.param) {
             const newParam = Object.assign({}, param, { pageIndex: 1, pageSize: pagingOption.PageSize });
             this.fetchData(newParam);
         }
@@ -51,12 +50,13 @@ export class Content extends PureComponent {
     _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={50} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={90} title={headerText.Id}>{headerText.Id}</Cell>
-                <Cell header={true} colWidth={200} title={headerText.Date}>{headerText.Date}</Cell>
-                <Cell header={true} colWidth={150} title={headerText.UpdatedBy}>{headerText.UpdatedBy}</Cell>
-                <Cell header={true} colWidth={360} title={headerText.Action}>{headerText.Action}</Cell>
-                <Cell header={true} colWidth={150} title={headerText.Ip}>{headerText.Ip}</Cell>
+                <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.Id}>{headerText.Id}</Cell>
+                <Cell header={true} colWidth={125} title={headerText.Date}>{headerText.Date}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.UpdatedBy}>{headerText.UpdatedBy}</Cell>
+                <Cell header={true} colWidth={130} title={headerText.Action}>{headerText.Action}</Cell>
+                <Cell header={true} colWidth={440} title={headerText.Description}>{headerText.Description}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Ip}>{headerText.Ip}</Cell>
             </Row>
         );
     }
@@ -108,27 +108,21 @@ export class Content extends PureComponent {
         const description = htmlDecode(dataItem.Description);
 
         return (
-            <Fragment key={`dataRow-${index}`}>
-                <Row className="row-data">
-                    <Cell title={index} className="text-center">{index}</Cell>
-                    <Cell title={id} className="text-center">
-                        {isLink ? <Button color="link" onClick={() => this.handleShow(id)}>
-                            {id}
-                        </Button> : id}
-                    </Cell>
-                    <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
-                    <Cell title={updatedBy} className="text-center">{updatedBy}</Cell>
-                    <Cell title={action} className="text-center">{action}</Cell>
-                    <Cell title={ipAddress} className="text-center">
-                        <a target="_blank" href={url}>{ipAddress}</a>
-                    </Cell>
-                </Row>
-                <Row className="row-detail-group">
-                    <Cell colSpan="6" className="p-0">
-                        <RowDetail/>
-                    </Cell>
-                </Row>
-            </Fragment>
+            <Row key={`dataRow-${index}`}>
+                <Cell title={index} className="text-center">{index}</Cell>
+                <Cell title={id} className="text-center">
+                    {isLink ? <Button color="link" onClick={() => this.handleShow(id)}>
+                        {id}
+                    </Button> : id}
+                </Cell>
+                <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
+                <Cell title={updatedBy} className="text-center">{updatedBy}</Cell>
+                <Cell title={action} className="text-center">{action}</Cell>
+                <Cell title={description} className="text-break">{description}</Cell>
+                <Cell title={ipAddress} className="text-center">
+                    <a target="_blank" href={url}>{ipAddress}</a>
+                </Cell>
+            </Row>
         )
     }
 
@@ -143,8 +137,8 @@ export class Content extends PureComponent {
         const { gridData, shouldResetScrollPosition } = this.state;
 
         return gridData && (
-            <div className="data-content view-log">
-                <div className="table-responsive table-striped view-log-table my-2">
+            <div className="data-content">
+                <div className="table-responsive table-striped my-2">
                     <Table
                         maxWidth={maxWidth}
                         bodyHeight={300}

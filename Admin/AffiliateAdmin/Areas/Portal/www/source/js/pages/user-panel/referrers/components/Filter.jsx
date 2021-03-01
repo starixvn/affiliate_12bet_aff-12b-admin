@@ -6,9 +6,7 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { setSelectedSiteUrl, setParam } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
-import { headerText, globalResource, deviceTypes, pcLaptop } from '../libs/constants';
-
-const minDate = new Date(2009, 11, 1);
+import { headerText, globalResource, deviceTypes, pcLaptop, minDate } from '../libs/constants';
 
 export class Filter extends PureComponent {
     constructor(props) {

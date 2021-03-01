@@ -1,6 +1,7 @@
-﻿import { globalResource, resource, statusList, pending } from '../../../common/libs/constants/paymentRequestUpdate';
+﻿import { minDate } from '../../../../modules/constants';
+import { globalResource, resource, statusList, pending } from '../../../common/libs/constants/paymentRequestUpdate';
 
-export { globalResource, statusList, pending, resource }
+export { globalResource, statusList, pending, resource, minDate }
 
 export const headerText = {
     Index: globalResource.Index,

@@ -1,7 +1,7 @@
-﻿import { maxWidth } from '../../../../modules/constants';
+﻿import { maxWidth, minDate } from '../../../../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-export { globalResource, maxWidth }
+export { globalResource, maxWidth, minDate }
 
 const COMMISSION_GROUP = 1;
 const USER_INFO = 2;

@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
-import { memberTypes, resource } from '../libs/constants';
+import { memberTypes, resource, minDate } from '../libs/constants';
 import { setParam } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
 
-const minDate = new Date(2009, 11, 1);
 export class Filter extends React.Component {
     constructor(props) {
         super(props);

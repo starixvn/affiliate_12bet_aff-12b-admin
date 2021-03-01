@@ -4,11 +4,11 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { logTypes, headerText, globalResource } from '../libs/constants';
+import { logTypes, headerText, globalResource, minDate } from '../libs/constants';
 import { setParam, setShowIdList } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
 
-const minDate = new Date(2009, 11, 1);
+const maxDate = new Date(2021, 1, 28);
 
 export class Filter extends React.Component {
     constructor(props) {
@@ -16,10 +16,11 @@ export class Filter extends React.Component {
 
         const { today } = this.props;
         const now = new Date(today);
+        const isValidNow = now < maxDate;
 
-        this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+        this.nowString = isValidNow ? `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}` : '02/28/2021';
 
-        const sixMonthAgo = new Date(today);
+        const sixMonthAgo = new Date(this.nowString);
         sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
 
         this.state = {
