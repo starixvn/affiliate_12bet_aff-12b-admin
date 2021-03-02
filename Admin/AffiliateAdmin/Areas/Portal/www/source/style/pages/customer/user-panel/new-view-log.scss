@@ -4,7 +4,7 @@
             border-bottom: 1px solid #ccc !important;
         }
 
-        .row-data {
+        .row-data, .row-data:nth-of-type(odd) {
             td {
                 font-weight: bold;
                 background: #DBEEF4;

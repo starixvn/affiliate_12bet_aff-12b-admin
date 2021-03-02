@@ -20,8 +20,7 @@ export class Content extends PureComponent {
 
     componentDidUpdate(prevProps) {
         const { pagingOption, param } = this.props;
-        console.log(prevProps.param);
-        console.log(param);
+
         if (param && param !== prevProps.param) {
             const newParam = Object.assign({}, param, { pageIndex: 1, pageSize: pagingOption.PageSize });
             this.fetchData(newParam);
@@ -62,20 +61,7 @@ export class Content extends PureComponent {
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
-                let isLink = false;
-                let isHide = false;
-
-                const dataItem = dataList[i];
-                const dataPreviousItem = i == 0 ? {} : dataList[i - 1];
-                const dataNextItem = i == dataList.length - 1 ? {} : dataList[i + 1];
-
-                if (dataItem.Id == dataPreviousItem.Id) {
-                    isHide = true;
-                } else if (dataItem.Id == dataNextItem.Id) {
-                    isLink = true;
-                }
-
-                dataRows.push(this._buildDataRow(dataItem, i + startIndex, isLink, isHide));
+                dataRows.push(this._buildDataRow(dataList[i], i + startIndex));
             }
         }
         else {
@@ -87,17 +73,15 @@ export class Content extends PureComponent {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index, isLink, isHide) {
+    _buildDataRow(dataItem, index) {
         const id = dataItem.Id;
         const ipAddress = dataItem.Ip;
         const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${ipAddress}&j=1`;
 
-        if (isHide && !this.props.showIdList[id]) {
-            return null;
-        }
-
         const updatedBy = htmlDecode(dataItem.UpdatedBy);
         const action = htmlDecode(dataItem.Action);
+        const oldData = htmlDecode(dataItem.OldData);
+        const newData = htmlDecode(dataItem.NewData);
 
         return (
             <Fragment key={`dataRow-${index}`}>
@@ -111,11 +95,15 @@ export class Content extends PureComponent {
                         <a target="_blank" href={url}>{ipAddress}</a>
                     </Cell>
                 </Row>
-                <Row className="row-detail-group">
-                    <Cell colSpan="6" className="p-0">
-                        <RowDetail/>
-                    </Cell>
-                </Row>
+                {
+                    (oldData || newData) && (
+                        <Row className="row-detail-group">
+                            <Cell colSpan="6" className="p-0">
+                                <RowDetail oldData={oldData} newData={newData} />
+                            </Cell>
+                        </Row>
+                    )
+                }
             </Fragment>
         )
     }

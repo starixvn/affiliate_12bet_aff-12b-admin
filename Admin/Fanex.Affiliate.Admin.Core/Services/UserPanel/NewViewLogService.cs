@@ -3,9 +3,11 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Xml;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
@@ -38,8 +40,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                             Date = Convert.ToDateTime(reader["Date"]),
                             UpdatedBy = Convert.ToString(reader["UpdatedName"]),
                             Action = Convert.ToString(reader["Action"]),
-                            OldData = Convert.ToString(reader["OldData"]),
-                            NewData = Convert.ToString(reader["NewData"]),
+                            OldData = ParseXmlToJson(Convert.ToString(reader["OldData"])),
+                            NewData = ParseXmlToJson(Convert.ToString(reader["NewData"])),
                             Ip = Convert.ToString(reader["IP"]),
                         });
                     }
@@ -51,6 +53,28 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             }
 
             return result;
+        }
+
+        private static string ParseXmlToJson(string xmlString)
+        {
+            if (!string.IsNullOrEmpty(xmlString) && xmlString.TrimStart().StartsWith("<"))
+            {
+                try
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(xmlString);
+
+                    return JsonConvert.SerializeXmlNode(doc);
+                }
+                catch (Exception)
+                {
+                    return string.Empty;
+                }
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
     }
 }

@@ -14,7 +14,6 @@ export const setParam = (data) => {
 
 export const fetchData = (param) => async() => {
     const url = 'Portal/UserPanel/NewViewLog/GetViewLogList';
-    console.log(url);
 
     const response = await post(url, param);
 
