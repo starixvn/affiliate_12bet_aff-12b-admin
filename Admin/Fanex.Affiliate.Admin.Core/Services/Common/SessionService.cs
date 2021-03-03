@@ -69,5 +69,21 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         }
 
         public ClaimsPrincipal UserClaim => HttpContext.Current.User as ClaimsPrincipal;
+
+        public string RequestIp
+        {
+            get
+            {
+                var request = HttpContext.Current.Request;
+                string ipList = request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+                if (!string.IsNullOrEmpty(ipList))
+                {
+                    return ipList.Split(',')[0];
+                }
+
+                return request.ServerVariables["REMOTE_ADDR"];
+            }
+        }
     }
 }

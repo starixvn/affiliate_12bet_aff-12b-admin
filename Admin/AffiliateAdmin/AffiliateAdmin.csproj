@@ -760,6 +760,7 @@
     <Content Include="Areas\Portal\Views\MediaGallery\TextList.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\MassAdjustment.cshtml" />
     <Content Include="Areas\Portal\www\dist\assets\template.xlsx" />
+    <Content Include="Areas\Portal\Views\MediaGallery\NewsLetterPageList.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />

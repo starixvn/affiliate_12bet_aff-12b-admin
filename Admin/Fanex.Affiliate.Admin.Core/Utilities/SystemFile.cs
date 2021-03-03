@@ -66,6 +66,31 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             }
         }
 
+        public ResultInfo UploadFile(Stream file, string filePath)
+        {
+            try
+            {
+                file.Seek(0, SeekOrigin.Begin);
+                using (var writer = File.Create(filePath))
+                {
+                    var buffer = new byte[file.Length];
+                    var totalByte = file.Read(buffer, 0, buffer.Length);
+                    writer.Write(buffer, 0, totalByte);
+                }
+                return ResultInfo.Success;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+                return new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = ex.Message
+                };
+            }
+
+        }
+
         public ResultInfo CreateFolder(string serverPath, string folder)
         {
             if (!Directory.Exists(Path.Combine(serverPath, folder)))
@@ -96,7 +121,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                 return new ResultInfo
                 {
                     Code = Code.ErrTheFileNameAlreadyExists,
-                    Message = "This file name belong to an existing banner. Please change the file name."
+                    Message = "This file name is existing. Please change the file name."
                 };
             }
 
@@ -107,5 +132,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         {
             return Path.GetExtension(fileName);
         }
+
+
     }
 }

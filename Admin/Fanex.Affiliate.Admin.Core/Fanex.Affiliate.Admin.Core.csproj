@@ -192,14 +192,24 @@
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
     <Compile Include="Controllers\Affiliate\MassAdjustmentController.cs" />
+    <Compile Include="Controllers\MediaGallery\NewsLetterController.cs" />
     <Compile Include="DTO\MassAdjustment\AdjustmentResultInfo.cs" />
     <Compile Include="DTO\MassAdjustment\ErroredAdjustmentInfo.cs" />
+    <Compile Include="DTO\MediaGallery\NewsLetter.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
     <Compile Include="MetaModels\MassAdjustment\MassAdjustmentParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\DeleteNewsLetterParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\InsertNewsLetterParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\SelectNewsLetterParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\UpdateNewsLetterParam.cs" />
     <Compile Include="Repository\Affiliate\IMassAdjustmentRepository.cs" />
     <Compile Include="Repository\Affiliate\MassAdjustmentRepository.cs" />
+    <Compile Include="Repository\MediaGallery\INewsLetterRepository.cs" />
+    <Compile Include="Repository\MediaGallery\NewsLetterRepository.cs" />
     <Compile Include="Services\MassAdjustment\IMassAdjustmentService.cs" />
     <Compile Include="Services\MassAdjustment\MassAdjustmentService.cs" />
+    <Compile Include="Services\MediaGallery\INewsLetterService.cs" />
+    <Compile Include="Services\MediaGallery\NewsLetterService.cs" />
     <Compile Include="Utilities\MassAdjustment\MassAdjustmentHelper.cs" />
     <Compile Include="Utilities\Result.cs" />
     <Compile Include="Constants\Money.cs" />
@@ -598,6 +608,7 @@
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\BannerListViewModel.cs" />
+    <Compile Include="ViewModels\MediaGallery\NewsLetterViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\TextListViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberListViewModel.cs" />
   </ItemGroup>

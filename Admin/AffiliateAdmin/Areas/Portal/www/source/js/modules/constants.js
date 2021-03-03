@@ -50,3 +50,5 @@ export const changePasswordMessages = {
     ConfirmPasswordIncorrect: 'Confirm Password is incorrect!',
     ChangePasswordFailed: 'Change password is failed!'
 }
+
+export const specialCharacters = ["#", "<", "$", "+", "%", ">", "!", "`", "&", "*", "'", "|", "{", "}", "?", "\"", "=", "/", ":", "\\", "@"]
