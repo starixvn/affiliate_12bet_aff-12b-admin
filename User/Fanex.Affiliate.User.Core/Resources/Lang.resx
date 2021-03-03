@@ -2331,4 +2331,7 @@
   <data name="AConfirmationEmail" xml:space="preserve">
     <value>A Confirmation Email is sending to your Email.</value>
   </data>
+  <data name="WhatNewThisMonth" xml:space="preserve">
+    <value>What's New This Month</value>
+  </data>
 </root>

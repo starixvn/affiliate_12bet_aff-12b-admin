@@ -6184,6 +6184,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to What&apos;s New This Month.
+        /// </summary>
+        public static string WhatNewThisMonth {
+            get {
+                return ResourceManager.GetString("WhatNewThisMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Winlost.
         /// </summary>
         public static string Winlost {

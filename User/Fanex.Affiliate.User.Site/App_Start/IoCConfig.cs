@@ -105,6 +105,10 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<ObjectDBBuilder>().AsImplementedInterfaces().UsingConstructor().InstancePerLifetimeScope();
             builder.RegisterType<LanguageRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<DateTimeProvider>().AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            builder.RegisterType<NewsLetterRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<NewsLetterService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+
         }
     }
 }

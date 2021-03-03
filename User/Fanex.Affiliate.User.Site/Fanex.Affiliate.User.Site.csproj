@@ -1102,6 +1102,8 @@
     <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.hi-IN.webp" />
     <Content Include="www\build\styles\Images\left-main-banner.webp" />
     <Content Include="www\build\styles\Images\right-main-banner.webp" />
+    <Content Include="Views\UserPanel\NewsLetter\Index.cshtml" />
+    <Content Include="Views\UserPanel\NewsLetter\Preview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1431,6 +1433,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
