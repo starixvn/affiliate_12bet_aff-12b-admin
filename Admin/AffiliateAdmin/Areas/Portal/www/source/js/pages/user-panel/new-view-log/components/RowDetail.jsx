@@ -1,25 +1,15 @@
 ﻿import React, { Fragment } from 'react';
+import { handleParseToObject } from '../libs/utils';
 
 export const RowDetail = (props) => {
     const { oldData, newData } = props;
-    const oldDataObject = oldData ? JSON.parse(oldData).root.row : {};
-    const newDataObject = newData ? JSON.parse(newData).root.row : {};
+    const oldDataObject = handleParseToObject(oldData);
+    const newDataObject = handleParseToObject(newData);
+
     const oldDataList = Object.keys(oldDataObject);
     const newDataList = Object.keys(newDataObject);
     const length = newDataList.length || oldDataList.length;
     const rowNumber = length / 4;
-
-    const renderHeader = () => {
-        const columns = [];
-
-        for (let i = 1; i < 9; i++) {
-            columns.push(
-                <td key={i} className="header-column"></td>
-            )
-        }
-
-        return columns;
-    };
 
     const renderColumn = (oldValue, newValue) => {
         if (!oldValue && !newValue) {
@@ -45,10 +35,10 @@ export const RowDetail = (props) => {
         const rows = []
 
         for (let i = 0; i < rowNumber; i++) {
-            const keyColumn1 = oldDataList[i * 4] || '';
-            const keyColumn2 = oldDataList[i * 4 + 1] || '';
-            const keyColumn3 = oldDataList[i * 4 + 2] || '';
-            const keyColumn4 = oldDataList[i * 4 + 3] || '';
+            const keyColumn1 = oldDataList[i * 4] || newDataList[i * 4] || '';
+            const keyColumn2 = oldDataList[i * 4 + 1] || newDataList[i * 4 + 1] || '';
+            const keyColumn3 = oldDataList[i * 4 + 2] || newDataList[i * 4 + 2] || '';
+            const keyColumn4 = oldDataList[i * 4 + 3] || newDataList[i * 4 + 3] || '';
 
             rows.push(
                 <tr key={i}>
@@ -69,13 +59,6 @@ export const RowDetail = (props) => {
 
     return (
         <table className="row-detail-table">
-            <thead>
-                <tr>
-                    {
-                        renderHeader()
-                    }
-                </tr>
-            </thead>
             <tbody>
                 {
                     renderRow()
