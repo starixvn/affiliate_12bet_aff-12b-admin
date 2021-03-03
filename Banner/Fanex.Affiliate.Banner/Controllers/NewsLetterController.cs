@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.Banner.Controllers
         [HttpGet]
         public ActionResult GetContent(string fileName)
         {
-            var filePath = Server.MapPath($"~/NewsLetter/{fileName}");
+            var filePath = Server.MapPath($"~/CategoryMedia/NewsLetter/{fileName}");
             if (System.IO.File.Exists(filePath))
             {
                 var content = System.IO.File.ReadAllText(filePath);

@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         public ActionResult Index()
         {
-            ViewBag.PreviewUrl = $"{AppSetting.AsianAffSiteUrl}UserPanel/NewsLetter/Preview";
+            ViewBag.PreviewUrl = $"{AppSetting.AsianAffSiteUrl}/UserPanel/NewsLetter/Preview";
             ViewBag.Languages = LanguageService.GetInChangeMarkets();
             return View("~/Areas/Portal/Views/MediaGallery/NewsLetterPageList.cshtml");
         }

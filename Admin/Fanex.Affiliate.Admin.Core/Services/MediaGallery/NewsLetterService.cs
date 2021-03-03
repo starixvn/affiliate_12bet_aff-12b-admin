@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         private const int MAX_FILE_SIZE = 3 * 1024 * 1024;
         private const int MAX_LENGTH = 50;
 
-        private const string UPLOAD_FOLDER = "NewsLetter";
+        private const string UPLOAD_FOLDER = "CategoryMedia\\NewsLetter";
         
 
         private INewsLetterRepository Repo { get; }
