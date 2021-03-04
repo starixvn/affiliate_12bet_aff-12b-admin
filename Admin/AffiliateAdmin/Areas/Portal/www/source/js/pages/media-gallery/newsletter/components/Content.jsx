@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText, globalResource } from '../libs/constants';
+import { headerText, globalResource, displayDateFormat } from '../libs/constants';
 import { setPagingOption, setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData } from '../actions';
 import { claimResource } from '../../../../modules/claim';
 import{formatDateTime} from '../../../../modules/utils';
@@ -27,7 +27,7 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={250} title={headerText.FileName}>{headerText.FileName}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.FileSize}>{headerText.FileSize}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.Language}>{headerText.Language}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Language}>{headerText.Language}</Cell>
                 <Cell header={true} colWidth={150} title={headerText.UploadDate}>{headerText.UploadDate}</Cell>
                 <Cell header={true} colWidth={150} title={headerText.FromDate}>{headerText.FromDate}</Cell>
                 <Cell header={true} colWidth={150} title={headerText.ToDate}>{headerText.ToDate}</Cell>
@@ -56,7 +56,7 @@ export const Content = (props) => {
     }
 
     function _buildDataRow(dataItem, index) {
-        const displayDateFormat = "MM/dd/yyyy hh:mm:ss"
+
         const { isModifiable } = props;
         const fileName = htmlDecode(dataItem.FileName);
         const displayFileSize = Math.round((dataItem.FileSize/1024)*100)/100;
@@ -69,7 +69,7 @@ export const Content = (props) => {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={fileName}>{fileName}</Cell>
                 <Cell className="text-center" title={dataItem.FileSize}>{displayFileSize}</Cell>
-                <Cell className="text-center" title={dataItem.Language}>{dataItem.Language}</Cell>
+                <Cell className="text-center" title={dataItem.Language}>{dataItem.LanguageName}</Cell>
                 <Cell className="text-center" title={dataItem.UploadDate}>{formatDateTime(dataItem.UploadDate, displayDateFormat) }</Cell>
                 <Cell className="text-center" title={dataItem.FromDate}>{formatDateTime(dataItem.FromDate, displayDateFormat)}</Cell>
                 <Cell className="text-center" title={dataItem.ToDate}>{formatDateTime(dataItem.ToDate, displayDateFormat)}</Cell>
@@ -79,7 +79,7 @@ export const Content = (props) => {
                     </Button>
                 </Cell>
                 { isModifiable &&
-                    <Cell className="text-center" title="Edit Landing Page">
+                    <Cell className="text-center" title="Edit Newsletter">
                         <Button color="link" onClick={() => props.setSelectedNewsLetterPageId(dataItem.NewsLetterId)}>
                             <span className="oi oi-pencil text-secondary"></span>
                         </Button>
@@ -114,7 +114,7 @@ export const Content = (props) => {
                     autoWidth={true}
                     bodyHeight={300}
                     header={_renderHeader()}
-                    body={_renderDataSection(props.gridData.MainData)}
+                    body={_renderDataSection(props.gridData)}
                     containerPadding={20}
                     isPaging={true}
                     pageOption={props.pagingOption}

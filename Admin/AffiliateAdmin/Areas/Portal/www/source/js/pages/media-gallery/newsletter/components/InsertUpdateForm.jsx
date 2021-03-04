@@ -1,19 +1,21 @@
+import '../style/style.scss';
+
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert, FormFeedback, Row } from 'reactstrap';
 import { setSelectedNewsLetterPageId, getNewsLetterPageDetail, fetchData, insertNewsLetterPage, updateNewsLetterPage, toggleLoader } from '../actions/index';
-import { defaultState, globalResource, messages, restrictedCharactersPattern, maxLength, maxFileSize, dateFormat } from '../libs/constants';
+import { defaultState, globalResource, maxLength, maxFileSize } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
-import { htmlDecode } from '../../../../modules/htmlHelper';
-import { formatDateTime, validateFileExtension } from '../../../../modules/utils';
+import DateTimePicker from 'react-datetime-picker';
+
 
 export class InsertUpdateForm extends PureComponent {
     constructor(props) {
         super(props)
 
-        const language = props.languageList[0].LanguageCode;
+        const language = props.languageList.find(l => l.LanguageCode === defaultState.language) ? defaultState.language : props.languageList[0].LanguageCode;
         const initState = Object.assign({}, {...defaultState }, {language})
         this.state = {
             ...initState
@@ -29,18 +31,18 @@ export class InsertUpdateForm extends PureComponent {
         if (prevProps.selectedNewsLetterPageId !== selectedNewsLetterPageId) {
             this.setState({ isInsert: selectedNewsLetterPageId === defaultInsertId });
 
-            selectedNewsLetterPageId && this._handleGetLandingPageDetail(selectedNewsLetterPageId);
+            selectedNewsLetterPageId && this._handleGetNewsletterDetail(selectedNewsLetterPageId);
         }
     }
 
-    _handleGetLandingPageDetail = async (selectedNewsLetterPageId) => {
+    _handleGetNewsletterDetail = async (selectedNewsLetterPageId) => {
         const item = await this.props.getNewsLetterPageDetail(selectedNewsLetterPageId);
 
         item && this.setState({
             fileName: item.FileName,
             fileSize: item.FileSize,
-            fromDate: item.FromDate,
-            toDate: item.ToDate,
+            fromDate: new Date(item.FromDate),
+            toDate: new Date(item.ToDate),
             language: item.Language
         });
     }
@@ -60,6 +62,10 @@ export class InsertUpdateForm extends PureComponent {
         const name = event.target.name;
 
         this.setState({ [name]: value });
+    }
+
+    _handleChangeDatePicker = (name, value) => {
+        this.setState({[name]: value});
     }
 
     _handFileSelect = (event) => {
@@ -92,7 +98,6 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     _validateFileName = (fileName) => {
-        const maxLength = 50;
         const rg1=/^[^\\/$:\*\?"<>\|]+(.html)$/; // forbidden characters \ / : * ? $ " < > |
         if (fileName.length > maxLength){
             this._handleShowAlert(false, "File name too long. Max length is 50." );
@@ -147,12 +152,12 @@ export class InsertUpdateForm extends PureComponent {
     _getParam = () => {
         const { selectedFile, fileName, fileSize, fromDate, toDate, language } = this.state;
         const { selectedNewsLetterPageId } = this.props;
-        return Object.assign({}, { newsLetterId: selectedNewsLetterPageId, file: selectedFile, fileName, fileSize, fromDate, toDate, language});
+        return Object.assign({}, { newsLetterId: selectedNewsLetterPageId, file: selectedFile, fileName, fileSize, fromDate: fromDate.toISOString(), toDate: toDate.toISOString(), language});
     }
 
     _handleAfterUpload = (result) => {
         console.log(result);
-        const message = isInsert ? "Add Successfully!" : "Update Successfully!";
+        const message = isInsert ? "Your newsletter has been added successfully!" : "Your newsletter has been updated successfully!";
         const {isInsert} = this.state;
         if (result) {
             this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
@@ -209,7 +214,8 @@ export class InsertUpdateForm extends PureComponent {
         const { fromDate, toDate, fileName, language, isShowMessage, isSuccess, message, isInsert, messageNotificationPopup } = this.state;
         const { languageList } = this.props;
         const isShowPopup = this.props.selectedNewsLetterPageId !== null;
-        const title = isInsert ? "Add Landing Page" : "Edit Landing Page";
+        const title = isInsert ? "Add Newsletter" : "Edit Newsletter";
+        const displayDateFormat = "M/dd/yyyy hh:mm:ss a"
 
         return (
             <React.Fragment>
@@ -241,18 +247,18 @@ export class InsertUpdateForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
-                                        <Label row className="required" sm={4}>File Name</Label>
+                                        <Label  className="required" sm={4}>File Name</Label>
                                         <Col sm={6}>
                                             <Input type="text" name="fileName" className="input-required mt-2" value={fileName} onChange={this._handleChange}
                                                 onKeyPress={this._handleKeyPress} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
-                                        <Label row className="required" sm={4}>Language</Label>
+                                        <Label  className="required" sm={4}>Language</Label>
                                         <Col sm={6}>
                                             <Input type="select" name="language" className="input-required mt-2" value={language} onChange={this._handleChange}>
-                                                {languageList.map(lang =>
-                                                    <option key={lang.LanguageCode} value={lang.LanguageCode}>{lang.LanguageName}</option>
+                                                {languageList.map(lang => 
+                                                        <option key={lang.LanguageCode} value={lang.LanguageCode}>{lang.LanguageName}</option>
                                                 )}
                                             </Input>
                                         </Col>
@@ -260,13 +266,13 @@ export class InsertUpdateForm extends PureComponent {
                                     <FormGroup row className="mb-2 align-items-center">
                                         <Label for="fromDate" sm={4} className="required">Effective From (GMT-4)</Label>
                                         <Col sm={6}>
-                                            <Input type="datetime-local" name="fromDate" required value={formatDateTime(fromDate, dateFormat)} onChange={this._handleChange} />
+                                            <DateTimePicker name="fromDate" format={displayDateFormat} value={fromDate} onChange={(value) => this._handleChangeDatePicker("fromDate", value)} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2 align-items-center">
-                                        <Label for="toDate" sm={4} className="required">Effective To (GMT-4)</Label>
+                                        <Label for="toDate" sm={4} className="required">To (GMT-4)</Label>
                                         <Col sm={6}>
-                                            <Input name="toDate" type="datetime-local" required value={formatDateTime(toDate, dateFormat)} onChange={this._handleChange} />
+                                            <DateTimePicker name="toDate" format={displayDateFormat}  value={toDate} onChange={(value) => this._handleChangeDatePicker("toDate", value)} />
                                         </Col>
                                     </FormGroup>
                                 </Form>

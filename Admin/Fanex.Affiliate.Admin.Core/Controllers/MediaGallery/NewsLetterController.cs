@@ -16,6 +16,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
+    [FunctionAuthorize(FunctionName = Function.Media)]
     public class NewsLetterController : ReadOnlySessionBaseController
     {
         private ILanguageService LanguageService { get; }
@@ -32,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         public ActionResult Index()
         {
             ViewBag.PreviewUrl = $"{AppSetting.AsianAffSiteUrl}/UserPanel/NewsLetter/Preview";
-            ViewBag.Languages = LanguageService.GetInChangeMarkets();
+            ViewBag.Languages = LanguageService.GetLanguageList();
             return View("~/Areas/Portal/Views/MediaGallery/NewsLetterPageList.cshtml");
         }
 
@@ -107,7 +108,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media)]
         public ActionResult GetNewsLetterList(SelectNewsLetterParam param)
         {
             var data = NewsLetterService.GetNewsLetters(param);
@@ -119,7 +119,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 NewsLetterId = i.NewsLetterId,
                 ToDate = i.EffectiveToDate,
                 UploadDate = i.UploadDate,
-                FileSize = i.FileSize
+                FileSize = i.FileSize,
+                LanguageName = i.LanguageName
             });
             return new JsonNetResult
             {
@@ -152,7 +153,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media)]
         public ActionResult GetNewsLetterDetailById(int id)
         {
             var item = NewsLetterService.GetNewsLetterById(id);

@@ -30,8 +30,8 @@ export const AppContainer = (props) => {
             { props.isModifiable &&
                 <ControlButtons
                     messages={messages}
-                    gridData={props.gridData?.MainData}
-                    fetchData={props.fetchData}
+                    gridData={props.gridData}
+                    fetchData={() => props.fetchData(props.param)}
                     checkedItems={props.checkedNewsLetterPages}
                     setCheckedItems={props.setCheckedNewsLetterPages}
                     toggleLoader={props.toggleLoader}

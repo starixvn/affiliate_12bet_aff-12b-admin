@@ -1,13 +1,4 @@
 import { globalResource } from '../../../../modules/globalResource';
-import {formatDateTime, convertToTimeOffset} from '../../../../modules/utils';
-
-const getCurrentDateInServerString = () => {
-    let date = new Date();
-    var serverDate = convertToTimeOffset(date, -4);
-    return formatDateTime(serverDate, dateFormat);
-}
-
-export const dateFormat = "yyyy-MM-ddThh:mm";
 
 export { globalResource };
 
@@ -23,10 +14,14 @@ export const headerText = {
     Edit: 'Edit'
 }
 
+const now = new Date();
+const firstDate = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+const lastDate = new Date(now.getFullYear(), now.getMonth() + 2, 0); 
+
 export const defaultState = {
     fileName: '',
-    fromDate: getCurrentDateInServerString(),
-    toDate: getCurrentDateInServerString(),
+    fromDate: firstDate,
+    toDate: lastDate,
     language:'en-US',
     fileSize:0,
     selectedFile: null,
@@ -44,9 +39,11 @@ export const maxLength = 50;
 export const messages = {
     requiredErrorMessage: 'This field is required',
     maxLengthErrorMessage: 'This field must not exceed 50 characters',
-    PleaseSelect: 'Please select landing page(s) to delete',
-    AreYouSureDeleteItems: 'Are you sure to delete the selected landing page(s)?',
-    DeleteItemsSuccessfully: 'Delete landing page(s) Successfully'
+    PleaseSelect: 'Please select newsletter(s) to delete',
+    AreYouSureDeleteItems: 'Are you sure to delete the selected newsletter(s)?',
+    DeleteItemsSuccessfully: 'Delete newsletter(s) Successfully'
 }
 
 export const maxFileSize = 3 * 1024 * 1024;
+
+export const displayDateFormat = "MM/dd/yyyy hh:mm:ss"

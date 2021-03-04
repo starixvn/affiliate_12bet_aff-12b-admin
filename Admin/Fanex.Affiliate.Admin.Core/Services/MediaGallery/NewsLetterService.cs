@@ -225,6 +225,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 result = SystemFile.CheckExistedFile(folderPath, fileName);
                 if (!result.IsSuccessful)
                 {
+                    result.Message = "The html file name exist already, please choose another name.";
                     return result;
                 }    
             }

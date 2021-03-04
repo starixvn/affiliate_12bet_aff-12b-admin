@@ -21,5 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
         public DateTime EffectiveToDate { get; set; }
 
         public string Language { get; set; }
+
+        public string LanguageName { get; set; }
     }
 }

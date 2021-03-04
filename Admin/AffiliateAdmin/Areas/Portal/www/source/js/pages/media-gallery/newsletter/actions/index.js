@@ -54,9 +54,10 @@ export const fetchData = (param) => async (dispatch) => {
     const response = await post(url, param);
 
     const data = response && response.status === 200 ? response.data : null;
-    const checkedNewsLetterPages = data ? _convertCheckedNewsLetterPages(data) : {};
+    const checkedNewsLetterPages = data ? _convertCheckedNewsLetterPages(data.MainData) : {};
 
-    dispatch(setGridData(data ? data : []));
+    dispatch(setGridData(data ? data.MainData : []));
+    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize }));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(setCheckedNewsLetterPages(checkedNewsLetterPages));
     dispatch(toggleLoader(false));
@@ -65,7 +66,7 @@ export const fetchData = (param) => async (dispatch) => {
 function _convertCheckedNewsLetterPages(dataList) {
     const checkedNewsLetterPages = {};
     for (let i = 0; i < dataList.length; i++) {
-        const itemId = dataList[i].PageId;
+        const itemId = dataList[i].NewsLetterId;
         checkedNewsLetterPages[itemId] = false;
     }
 
