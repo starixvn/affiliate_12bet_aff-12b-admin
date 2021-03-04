@@ -9,9 +9,5 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
         EntityResult<MemberInfo> GetMemberList(MemberParam param);
 
         ResultInfo UpdateMemberStatus(UpdateMemberStatusParam param);
-
-        ResultInfo UpdateMemberStatusInDepositDB(int depositMemberId, int affId);
-
-        void WriteAfterDeleteSuccefully(UpdateMemberStatusParam param);
     }
 }

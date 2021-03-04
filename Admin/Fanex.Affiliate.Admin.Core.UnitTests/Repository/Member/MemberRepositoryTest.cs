@@ -15,8 +15,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
     {
         private const string SpKeyMemberListSel = "Aff_MemberListSel";
         private const string SpKeyMemberDel = "Aff_MemberDel";
-        private const string SpKeyAdminUpdAffID = "DEP_AdminUpdAffID";
-        private const string SpKeyWriteLog = "Aff_WriteLog";
 
         [Fact]
         public void GetMemberList_WhenCallWithSpKeyBannerSel_ReturnCorrectData()
@@ -88,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
         }
 
         [Fact]
-        public void DeleteMember_WhenCallWithValidParam_DeleteSuccessfully()
+        public void UpdateMemberStatus_WhenCallWithValidParam_UpdateSuccessfully()
         {
             // Arrange
             var param = new UpdateMemberStatusParam();
@@ -111,10 +109,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
         }
 
         [Fact]
-        public void DeleteMember_WhenCallWithInvalidParam_DeleteIsFailed()
+        public void UpdateMemberStatus_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
-            var message = "Delete member is failed.";
+            var message = "Update member is failed.";
             var repository = new Mock<MemberRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
@@ -131,61 +129,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             Assert.False(result.IsSuccessful);
             Assert.Equal(message, result.Message);
         }
-
-        [Fact]
-        public void DeleteMemberInDepositDB_WhenCallWithValidParam_DeleteSuccessfully()
-        {
-            // Arrange
-            var repository = new Mock<MemberRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            repository.Setup(re => re.GetObjectDb(SpKeyAdminUpdAffID, 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.UpdateMemberStatusInDepositDB(123456, 123);
-
-            // Assert
-            Assert.True(result.IsSuccessful);
-        }
-
-        [Fact]
-        public void DeleteMemberInDepositDB_WhenCallWithValidParam_DeleteIsFailed()
-        {
-            // Arrange
-            var message = "Delete deposit member is failed.";
-            var repository = new Mock<MemberRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            repository.Setup(re => re.GetObjectDb(SpKeyAdminUpdAffID, 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.UpdateMemberStatusInDepositDB(123456, 123);
-
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
-        }
-
-        [Fact]
-        public void WriteAfterDeleteSuccefully_WhenCallWithValidParam_ExcuteCorrectly()
-        {
-            // Arrange
-            var repository = new Mock<MemberRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
-            repository.Setup(re => re.GetObjectDb(SpKeyWriteLog, 120)).Returns(objectDb.Object);
-
-            // Action
-            repository.Object.WriteAfterDeleteSuccefully(new UpdateMemberStatusParam());
-
-            // Assert
-            Assert.True(true);
-        }
-
         private IDictionary<string, object> GetMemberList()
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)

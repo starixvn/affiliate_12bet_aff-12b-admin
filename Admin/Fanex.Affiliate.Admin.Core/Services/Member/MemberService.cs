@@ -21,19 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
 
         public ResultInfo UpdateMemberStatus(UpdateMemberStatusParam param)
         {
-            var result = _memberRepository.UpdateMemberStatus(param);
-
-            if (result.IsSuccessful)
-            {
-                var resultOfDepositDB = _memberRepository.UpdateMemberStatusInDepositDB(param.DepositMemberId, param.AffId);
-
-                if (resultOfDepositDB.IsSuccessful)
-                {
-                    _memberRepository.WriteAfterDeleteSuccefully(param);
-                }
-            }
-
-            return result;
+            return _memberRepository.UpdateMemberStatus(param);
         }
     }
 }

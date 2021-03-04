@@ -82,40 +82,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
             }
         }
 
-        public ResultInfo UpdateMemberStatusInDepositDB(int depositMemberId, int affId)
-        {
-            const string SpKey = "DEP_AdminUpdAffID";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.AddInParameter("AffId", DbType.Int32, affId);
-                objectDb.AddInParameter("DepositCustID", DbType.Int32, depositMemberId);
-                AssignResultOutputParam(objectDb);
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
-        }
-
-        public void WriteAfterDeleteSuccefully(UpdateMemberStatusParam param)
-        {
-            const string SpKey = "Aff_WriteLog";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("Creator", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
-                objectDb.AddInParameter("Typename", DbType.String, "Member");
-                objectDb.AddInParameter("SPName", DbType.String, "DEP_AdminUpdAffID");
-                objectDb.AddInParameter("Details", DbType.String, $"Remove member. DepositCustID={param.DepositMemberId} (On Deposit_DB)");
-
-                objectDb.AddOutParameter("RefNo", DbType.Int64, Size.SizeOfInt);
-
-                objectDb.ExecuteNonQuery();
-            }
-        }
-
         private static string FormatNumber(object Number)
         {
             var decimalString = CastAide.AsDecimal(Number, 0m).ToString("N2");
