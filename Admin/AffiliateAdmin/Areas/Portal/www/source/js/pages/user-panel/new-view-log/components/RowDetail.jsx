@@ -1,5 +1,5 @@
 ﻿import React, { Fragment } from 'react';
-import { handleParseToObject } from '../libs/utils';
+import { handleParseToObject, removeFirstCharacter } from '../libs/utils';
 
 export const RowDetail = (props) => {
     const { oldData, newData } = props;
@@ -8,27 +8,27 @@ export const RowDetail = (props) => {
 
     const oldDataList = Object.keys(oldDataObject);
     const newDataList = Object.keys(newDataObject);
-    const length = newDataList.length || oldDataList.length;
+    const length = oldDataList.length > newDataList.length ? oldDataList.length : newDataList.length;
     const rowNumber = length / 4;
 
     const renderColumn = (oldValue, newValue) => {
+
         if (!oldValue && !newValue) {
             return '';
         }
 
         if (oldValue && newValue) {
             return oldValue == newValue ? (
-                oldValue
+                `${oldValue}`
             ) : (
                     <Fragment>
-                        <p className="text-primary">{newValue}</p>
-                        <span className="text-secondary">{oldValue}</span>
+                        <p className="text-primary">{`${newValue}`}</p>
+                        <span className="text-secondary">{`${oldValue}`}</span>
                     </Fragment>
                 )
         }
 
-
-        return oldValue || newValue;
+        return `${oldValue || newValue}`;
     }
 
     const renderRow = () => {
@@ -42,13 +42,13 @@ export const RowDetail = (props) => {
 
             rows.push(
                 <tr key={i}>
-                    <td className="key">{keyColumn1.slice(1)}</td>
+                    <td className="key">{removeFirstCharacter(keyColumn1)}</td>
                     <td className="text-center">{renderColumn(oldDataObject[keyColumn1], newDataObject[keyColumn1])}</td>
-                    <td className="key">{keyColumn2.slice(1)}</td>
+                    <td className="key">{removeFirstCharacter(keyColumn2)}</td>
                     <td className="text-center">{renderColumn(oldDataObject[keyColumn2], newDataObject[keyColumn2])}</td>
-                    <td className="key">{keyColumn3.slice(1)}</td>
+                    <td className="key">{removeFirstCharacter(keyColumn3)}</td>
                     <td className="text-center">{renderColumn(oldDataObject[keyColumn3], newDataObject[keyColumn3])}</td>
-                    <td className="key">{keyColumn4.slice(1)}</td>
+                    <td className="key">{removeFirstCharacter(keyColumn4)}</td>
                     <td className="text-center">{renderColumn(oldDataObject[keyColumn4], newDataObject[keyColumn4])}</td>
                 </tr>
             )

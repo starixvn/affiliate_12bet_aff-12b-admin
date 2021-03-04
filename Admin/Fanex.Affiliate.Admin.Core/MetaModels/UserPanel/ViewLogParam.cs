@@ -3,5 +3,7 @@
     public class ViewLogParam : AffiliatePagingByDateParam
     {
         public int LogType { get; set; }
+
+        public bool IsNewViewLog { get; set; }
     }
 }

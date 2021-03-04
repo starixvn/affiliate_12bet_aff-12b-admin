@@ -13,9 +13,9 @@ export const setParam = (data) => {
 }
 
 export const fetchData = (param) => async() => {
-    const url = 'Portal/UserPanel/NewViewLog/GetViewLogList';
+    const url = 'Portal/UserPanel/ViewLog/GetViewLogList';
 
-    const response = await post(url, param);
+    const response = await post(url, { ...param, IsNewViewLog: true });
 
     return response && response.status === 200 ? response.data : null;
 }

@@ -112,7 +112,6 @@ export class Content extends PureComponent {
         const newParam = { ...this.props.param, pageIndex, pageSize };
 
         this.fetchData(newParam);
-        this.props.setShowIdList({});
     };
 
     render() {

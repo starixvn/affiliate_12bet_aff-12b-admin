@@ -1,4 +1,8 @@
-﻿export const handleParseToObject = (data) => {
+﻿export const removeFirstCharacter = (value) => {
+    return value.replace('@', '');
+}
+
+export const handleParseToObject = (data) => {
     const dataObject = data ? JSON.parse(data).root.row : {};
 
     handleContactApps(dataObject);
@@ -14,7 +18,7 @@ const handleContactApps = (objectData) => {
 
         delete objectData['@ContactApps'];
 
-        contactAppList.map(item => {
+        Array.isArray(contactAppList) && contactAppList.map(item => {
             objectData[`@${item.Name}`] = item.Value;
         });
     }
