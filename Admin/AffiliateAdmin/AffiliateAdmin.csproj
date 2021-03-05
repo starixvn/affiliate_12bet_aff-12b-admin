@@ -880,6 +880,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\new-view-log\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\new-view-log\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\new-view-log\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\new-view-log\components\__test__\RowDetail.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\new-view-log\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\new-view-log\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\new-view-log\reducers\index.js" />

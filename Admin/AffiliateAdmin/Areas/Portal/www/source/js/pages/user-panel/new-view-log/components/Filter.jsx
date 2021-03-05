@@ -24,7 +24,7 @@ export class Filter extends React.Component {
 
         this.state = {
             logType: 0,
-            fromDate: sixMonthAgo < minDate ? '03/01/2021' : `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
+            fromDate: sixMonthAgo < minDate ? '3/1/2021' : `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
             toDate: this.nowString,
         }
     }

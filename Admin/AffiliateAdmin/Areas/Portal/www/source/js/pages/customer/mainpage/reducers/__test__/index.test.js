@@ -48,6 +48,10 @@ describe('customer - mainpage reducer', () => {
             pagingOption: defaultPagingOption,
             param: null,
         },
+        newViewLog: {
+            pagingOption: defaultPagingOption,
+            param: null,
+        },
         note: {
             isShowPopup: false,
             noteInfo: {
@@ -76,7 +80,7 @@ describe('customer - mainpage reducer', () => {
         },
         viewLog: {
             pagingOption: defaultPagingOption,
-            param: {},
+            param: null,
             showIdList: {},
         },
         claimsPrincipal: {}

@@ -3,7 +3,7 @@ import { Content } from '../Content';
 import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
-describe('view log - components - Content', () => {
+describe('new view log - components - Content', () => {
     const defaultProps = {
         affId: 1271808,
         pagingOption: defaultPagingOption,
@@ -23,7 +23,8 @@ describe('view log - components - Content', () => {
         {
             Id: 10279106,
             UpdatedBy: "AAwalter",
-            Description: "Update Affiliate's Closed Status. IsClosed=0",
+            OldData: "{\"root\":{\"row\":{\"@PageName\":\"11111\",\"@PageCode\":\"1111\"}}}",
+            NewData: "{\"root\":{\"row\":{\"@PageName\":\"1122111\",\"@PageCode\":\"1111\"}}}",
             Action: "User Info",
             Ip: "::1",
             DateText: "06/06/2019 03:42:42 AM"
@@ -31,15 +32,26 @@ describe('view log - components - Content', () => {
         {
             Id: 10279105,
             UpdatedBy: "AAwalter",
-            Description: "Update Affiliate's Closed Status. IsClosed=1",
+            OldData: "",
+            NewData: "{\"root\":{\"row\":{\"@PageName\":\"111111\",\"@PageCode\":\"111\"}}}",
             Action: "User Info",
             Ip: "::1",
             DateText: "06/06/2019 03:42:38 AM"
         },
         {
-            Id: 10279105,
+            Id: 10279104,
             UpdatedBy: "AAwalter",
-            Description: "Assign a common commission group.GroupID=102\n AffIDList=1271808",
+            OldData: "{\"root\":{\"row\":{\"@PageName\":\"11111\",\"@PageCode\":\"1111\"}}}",
+            NewData: "",
+            Action: "Setting for Commission Group",
+            Ip: "::1",
+            DateText: "06/06/2019 03:42:38 AM"
+        },
+        {
+            Id: 10279103,
+            UpdatedBy: "AAwalter",
+            OldData: "",
+            NewData: "",
             Action: "Setting for Commission Group",
             Ip: "::1",
             DateText: "06/06/2019 03:42:38 AM"
@@ -48,7 +60,7 @@ describe('view log - components - Content', () => {
 
     it('render correctly', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData });
 
         expect(result).toMatchSnapshot();
@@ -56,7 +68,7 @@ describe('view log - components - Content', () => {
 
     it('render correctly with have data is empty', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData: [] });
 
         expect(result).toMatchSnapshot();
@@ -112,19 +124,6 @@ describe('view log - components - Content', () => {
         expect(props.fetchData).toHaveBeenCalledWith({ ...param, affId: 1271808 });
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: null, "shouldResetScrollPosition": true });
         expect(props.setPagingOption).toHaveBeenCalledWith({ TotalItem: 0, PageIndex: 1, PageSize: 20 });
-    });
-
-    it('handleShow - should call setState, setShowIdList when click button link', async () => {
-        const props = Object.assign({}, defaultProps, { setShowIdList: jest.fn() });
-        const wrapper = shallow(<Content {...props} />);
-        wrapper.setState = jest.fn();
-
-        const dataRow = shallow(<div>{wrapper.instance()._buildDataRow(gridData[1], 2, true, false)}</div>);
-
-        dataRow.find('Button').at(0).simulate('click');
-
-        expect(wrapper.setState).toHaveBeenCalledWith({ "shouldResetScrollPosition": false });
-        expect(props.setShowIdList).toHaveBeenCalledWith({10279105: true});
     });
 
     it('handlePaging - should call fetchData with correct parameters', () => {

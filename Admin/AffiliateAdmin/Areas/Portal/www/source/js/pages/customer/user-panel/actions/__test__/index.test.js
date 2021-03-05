@@ -52,7 +52,7 @@ describe('user panel actions', () => {
             { type: 'USER_PANEL/SET_SELECTED_USERPANEL', data: 'dailyEarningDetail' },
             { type: 'USER_PANEL/DAILY_EARNING_DETAIL/SET_PARAM', data: param},
         ];
-        
+
         const store = mockStore({ todos: [] });
         store.dispatch(actions['redirectToDailyEarningDetail'](param));
         expect(store.getActions()).toEqual(expectedAction)
@@ -68,7 +68,7 @@ describe('user panel actions', () => {
             { type: 'USER_PANEL/SET_SELECTED_USERPANEL', data: 'playerDetail' },
             { type: 'PLAYER_DETAIL/SET_PARAM', data: param},
         ];
-        
+
         const store = mockStore({ todos: [] });
         store.dispatch(actions['redirectToPlayerDetail'](param));
         expect(store.getActions()).toEqual(expectedAction);
@@ -82,7 +82,7 @@ describe('user panel actions', () => {
             { type: 'USER_PANEL/SET_SELECTED_USERPANEL', data: 'trackingStatistics' },
             { type: 'USER_PANEL/TRACKING_STATISTICS/SET_PARAM', data: param},
         ];
-        
+
         const store = mockStore({ todos: [] });
         store.dispatch(actions['redirectToTrackingStatistics'](param));
         expect(store.getActions()).toEqual(expectedAction)
@@ -97,9 +97,9 @@ describe('user panel actions', () => {
         }
         const expectedAction = [
             { type: 'USER_PANEL/SET_SELECTED_USERPANEL', data: 'clickStatistics' },
-            { type: 'SET_PARAM', data: param},
+            { type: 'USER_PANEL/REFERRERS/SET_PARAM', data: param },
         ];
-        
+
         const store = mockStore({ todos: [] });
         store.dispatch(actions['redirectToReferrers'](param));
         expect(store.getActions()).toEqual(expectedAction);

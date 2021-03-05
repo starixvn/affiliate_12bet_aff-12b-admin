@@ -35,7 +35,7 @@ export const RowDetail = (props) => {
         const rows = []
 
         for (let i = 0; i < rowNumber; i++) {
-            const keyColumn1 = oldDataList[i * 4] || newDataList[i * 4] || '';
+            const keyColumn1 = oldDataList[i * 4] || newDataList[i * 4];
             const keyColumn2 = oldDataList[i * 4 + 1] || newDataList[i * 4 + 1] || '';
             const keyColumn3 = oldDataList[i * 4 + 2] || newDataList[i * 4 + 2] || '';
             const keyColumn4 = oldDataList[i * 4 + 3] || newDataList[i * 4 + 3] || '';

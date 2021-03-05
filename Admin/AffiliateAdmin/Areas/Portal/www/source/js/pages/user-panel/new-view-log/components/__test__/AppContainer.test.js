@@ -2,7 +2,7 @@
 import AppContainer from '../AppContainer';
 import { shallow } from 'enzyme';
 
-describe('view log - components - AppContainer', () => {
+describe('new view log - components - AppContainer', () => {
     it('render correctly', () => {
         const result = shallow(<AppContainer isShowLoader={true} />);
 

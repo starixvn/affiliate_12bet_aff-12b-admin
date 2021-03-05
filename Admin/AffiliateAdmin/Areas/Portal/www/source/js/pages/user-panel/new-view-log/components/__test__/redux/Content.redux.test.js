@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../actions/index';
 
-describe('view log - Content - connect', () => {
+describe('new view log - Content - connect', () => {
     let mapStateToProps, mapDispatchToProps;
     const connectMock = jest.fn();
 
@@ -21,17 +21,15 @@ describe('view log - Content - connect', () => {
         const expectedResult = {
             pagingOption: { PageSize: 10 },
             param: { abc: 123 },
-            showIdList: { 234: true, 345: false },
             affId: 1271808
         };
         const state = {
             affCommonInfo: {
                 affId: 1271808
             },
-            viewLog: {
+            newViewLog: {
                 pagingOption: { PageSize: 10 },
-                param: { abc: 123 },
-                showIdList: { 234: true, 345: false }
+                param: { abc: 123 }
             },
             anotherProp: "Not included"
         };

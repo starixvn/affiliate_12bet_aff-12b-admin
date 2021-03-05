@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../actions/index';
 
-describe('view log - Filter - connect', () => {
+describe('new view log - Filter - connect', () => {
     let mapStateToProps, mapDispatchToProps;
     const connectMock = jest.fn();
 
