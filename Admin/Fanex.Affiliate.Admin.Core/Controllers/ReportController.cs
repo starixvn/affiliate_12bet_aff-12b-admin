@@ -89,7 +89,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 SortDirectionType = model.SortDirectionType,
                 SortType = model.SortType,
                 ToDate = model.ToDate,
-                UserName = model.UserName.Trim()
+                UserName = model.UserName?.Trim()
             };
     }
 }

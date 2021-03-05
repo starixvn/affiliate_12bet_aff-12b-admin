@@ -13,8 +13,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
 {
     public class MemberRepositoryTest
     {
-        private const string SpKeyMemberListSel = "Aff_MemberListSel";
-        private const string SpKeyMemberDel = "Aff_MemberDel";
+        private const string SpKeyMemberListSel = "Aff_Admin_MemberList_Sel";
+        private const string SpKeyMemberUpdateStatus = "Aff_Admin_Member_RemoveStatus_Upd";
 
         [Fact]
         public void GetMemberList_WhenCallWithSpKeyBannerSel_ReturnCorrectData()
@@ -95,17 +95,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            objectDb.Setup(obj => obj.GetParameterValue("AffID")).Returns(1271808);
-            objectDb.Setup(obj => obj.GetParameterValue("DepositCustID")).Returns(123456);
-            repository.Setup(re => re.GetObjectDb(SpKeyMemberDel, 120)).Returns(objectDb.Object);
+            repository.Setup(re => re.GetObjectDb(SpKeyMemberUpdateStatus, 120)).Returns(objectDb.Object);
 
             // Action
             var result = repository.Object.UpdateMemberStatus(param);
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(1271808, param.AffId);
-            Assert.Equal(123456, param.DepositMemberId);
         }
 
         [Fact]
@@ -120,7 +116,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             objectDb.Setup(obj => obj.GetParameterValue("AffID")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("DepositCustID")).Returns(DBNull.Value);
-            repository.Setup(re => re.GetObjectDb(SpKeyMemberDel, 120)).Returns(objectDb.Object);
+            repository.Setup(re => re.GetObjectDb(SpKeyMemberUpdateStatus, 120)).Returns(objectDb.Object);
 
             // Action
             var result = repository.Object.UpdateMemberStatus(new UpdateMemberStatusParam());
@@ -139,6 +135,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
                 ["FirstName"] = "12Bet",
                 ["LastName"] = "Aff",
                 ["CurrBalance"] = 123m,
+                ["IsRemoved"] = false,
                 ["CreatedDate"] = new DateTime(2019, 10, 10),
                 ["AffUserName"] = "12BETAFF226",
             };
@@ -154,6 +151,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
                 ["FirstName"] = "12Bet",
                 ["LastName"] = "Aff",
                 ["CurrBalance"] = -123m,
+                ["IsRemoved"] = false,
                 ["CreatedDate"] = DBNull.Value,
                 ["AffUserName"] = "12BETAFF226",
             };

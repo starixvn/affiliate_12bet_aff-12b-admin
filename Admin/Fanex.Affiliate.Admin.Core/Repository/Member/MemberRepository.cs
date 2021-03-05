@@ -65,18 +65,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                 objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
-                objectDb.AddOutParameter("AffID", DbType.Int32, Size.SizeOfInt);
-                objectDb.AddOutParameter("DepositCustID", DbType.Int32, Size.SizeOfInt);
-
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
-
-                var affId = objectDb.GetParameterValue("AffID");
-                var depositMemberId = objectDb.GetParameterValue("DepositCustID");
-
-                param.AffId = affId == DBNull.Value ? 0 : Convert.ToInt32(affId);
-                param.DepositMemberId = depositMemberId == DBNull.Value ? 0 : Convert.ToInt32(depositMemberId);
 
                 return GetResultInfo(objectDb);
             }
