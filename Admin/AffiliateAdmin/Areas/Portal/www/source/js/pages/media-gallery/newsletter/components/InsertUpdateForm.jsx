@@ -156,7 +156,6 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     _handleAfterUpload = (result) => {
-        console.log(result);
         const message = isInsert ? "Your newsletter has been added successfully!" : "Your newsletter has been updated successfully!";
         const {isInsert} = this.state;
         if (result) {
@@ -215,7 +214,8 @@ export class InsertUpdateForm extends PureComponent {
         const { languageList } = this.props;
         const isShowPopup = this.props.selectedNewsLetterPageId !== null;
         const title = isInsert ? "Add Newsletter" : "Edit Newsletter";
-        const displayDateFormat = "M/dd/yyyy hh:mm:ss a"
+        const submitBtnText = isInsert ? "Upload" : "Update"
+        const displayDateFormat = "M/dd/yyyy HH:mm:ss"
 
         return (
             <React.Fragment>
@@ -277,7 +277,7 @@ export class InsertUpdateForm extends PureComponent {
                                     </FormGroup>
                                 </Form>
 
-                                <Button type="button" color="success" className="mr-3" onClick={ this._handleSubmit} >Upload</Button>
+                                <Button type="button" color="success" className="mr-3" onClick={ this._handleSubmit} >{submitBtnText}</Button>
                                 <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
                             </div>
                         </div>

@@ -43,7 +43,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public async Task<string> GetCurrentContent()
         {
-            var items = Repository.GetNewsLettersByDate(DateTime.Now);
+            var items = Repository.GetNewsLettersByDate(DateTime.Now)
+                .OrderByDescending(n => n.UploadDate);
             var currentLang = SessionService.CurrentLanguage;
             var item = items.FirstOrDefault(i => string.Equals(currentLang, i.Language, StringComparison.OrdinalIgnoreCase))
                 ?? items.FirstOrDefault(i => string.Equals(SystemLanguage.DefaultLanguageCode, i.Language, StringComparison.OrdinalIgnoreCase))

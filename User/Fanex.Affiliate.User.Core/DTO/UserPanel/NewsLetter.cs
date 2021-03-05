@@ -17,5 +17,7 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         public DateTime EffectiveTo { get; set; }
 
         public string Language { get; set; }
+
+        public DateTime UploadDate { get; set; }
     }
 }

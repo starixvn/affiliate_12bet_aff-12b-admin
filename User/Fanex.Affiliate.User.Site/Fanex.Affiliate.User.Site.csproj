@@ -1104,6 +1104,7 @@
     <Content Include="www\build\styles\Images\right-main-banner.webp" />
     <Content Include="Views\UserPanel\NewsLetter\Index.cshtml" />
     <Content Include="Views\UserPanel\NewsLetter\Preview.cshtml" />
+    <Content Include="Views\Shared\_LayoutPreviewAfterLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

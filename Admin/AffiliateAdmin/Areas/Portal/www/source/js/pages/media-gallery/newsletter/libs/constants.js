@@ -46,4 +46,4 @@ export const messages = {
 
 export const maxFileSize = 3 * 1024 * 1024;
 
-export const displayDateFormat = "MM/dd/yyyy hh:mm:ss"
+export const displayDateFormat = "MM/dd/yyyy HH:mm:ss"
