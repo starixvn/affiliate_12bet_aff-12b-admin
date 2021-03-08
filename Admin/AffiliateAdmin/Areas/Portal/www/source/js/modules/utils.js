@@ -8,6 +8,10 @@ export const formatUnit = (value) => {
     return value < 10 ? '0' + value : value;
 }
 
+const formatMilisecond = (value) => {
+    return value < 10 ? '00' + value : value < 100 ? '0' + value : value;
+}
+
 export const formatDateTime = (dateTimeValue, format) => {
     if (!dateTimeValue) {
         return "";
@@ -21,6 +25,7 @@ export const formatDateTime = (dateTimeValue, format) => {
     var hours = dateTime.getHours();
     var minutes = dateTime.getMinutes();
     var seconds = dateTime.getSeconds();
+    var miliseconds = dateTime.getMilliseconds();
     var ampm = hours >= 12 ? 'PM' : 'AM';
 
     var shortedHours = hours % 12;
@@ -36,7 +41,8 @@ export const formatDateTime = (dateTimeValue, format) => {
         .replace("mm", formatUnit(minutes))
         .replace("ss", formatUnit(seconds))
         .replace("tt", ampm)
-        .replace("HH", dateTime.getHours());
+        .replace("HH", formatUnit(dateTime.getHours()))
+        .replace("SSS", formatMilisecond(miliseconds));
 
     return result;
 }

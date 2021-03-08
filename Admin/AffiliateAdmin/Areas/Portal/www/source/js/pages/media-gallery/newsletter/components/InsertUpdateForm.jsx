@@ -8,6 +8,7 @@ import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBo
 import { setSelectedNewsLetterPageId, getNewsLetterPageDetail, fetchData, insertNewsLetterPage, updateNewsLetterPage, toggleLoader } from '../actions/index';
 import { defaultState, globalResource, maxLength, maxFileSize } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
+import{ formatDateTime } from '../../../../modules/utils';
 import DateTimePicker from 'react-datetime-picker';
 
 
@@ -150,9 +151,10 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     _getParam = () => {
+        const formatISO = "yyyy-MM-ddTHH:mm:ss.SSS"
         const { selectedFile, fileName, fileSize, fromDate, toDate, language } = this.state;
         const { selectedNewsLetterPageId } = this.props;
-        return Object.assign({}, { newsLetterId: selectedNewsLetterPageId, file: selectedFile, fileName, fileSize, fromDate: fromDate.toISOString(), toDate: toDate.toISOString(), language});
+        return Object.assign({}, { newsLetterId: selectedNewsLetterPageId, file: selectedFile, fileName, fileSize, fromDate: formatDateTime(fromDate, formatISO), toDate: formatDateTime(toDate, formatISO), language});
     }
 
     _handleAfterUpload = (result) => {
