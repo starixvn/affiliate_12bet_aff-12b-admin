@@ -109,17 +109,13 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Remove Member"
+              title="Remove the member"
             >
-              <Button
-                color="link p-0"
-                onClick={[Function]}
-                tag="button"
-              >
-                <span
-                  className="oi oi-trash text-danger"
-                />
-              </Button>
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+              />
             </t>
           </t>,
           <t>
@@ -218,17 +214,13 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Remove Member"
+              title="Reinstate the member"
             >
-              <Button
-                color="link p-0"
-                onClick={[Function]}
-                tag="button"
-              >
-                <span
-                  className="oi oi-trash text-danger"
-                />
-              </Button>
+              <input
+                checked={true}
+                onChange={[Function]}
+                type="checkbox"
+              />
             </t>
           </t>,
         ]
@@ -294,7 +286,7 @@ exports[`member list - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={120}
+            colWidth={110}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -327,7 +319,7 @@ exports[`member list - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={30}
+            colWidth={40}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -473,17 +465,13 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Remove Member"
+              title="Remove the member"
             >
-              <Button
-                color="link p-0"
-                onClick={[Function]}
-                tag="button"
-              >
-                <span
-                  className="oi oi-trash text-danger"
-                />
-              </Button>
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+              />
             </t>
           </t>,
           <t>
@@ -582,17 +570,13 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Remove Member"
+              title="Reinstate the member"
             >
-              <Button
-                color="link p-0"
-                onClick={[Function]}
-                tag="button"
-              >
-                <span
-                  className="oi oi-trash text-danger"
-                />
-              </Button>
+              <input
+                checked={true}
+                onChange={[Function]}
+                type="checkbox"
+              />
             </t>
           </t>,
         ]
@@ -658,7 +642,7 @@ exports[`member list - components - Content  render correctly with NotificationP
           </t>
           <t
             asc={true}
-            colWidth={120}
+            colWidth={110}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -691,7 +675,7 @@ exports[`member list - components - Content  render correctly with NotificationP
           </t>
           <t
             asc={true}
-            colWidth={30}
+            colWidth={40}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -822,7 +806,7 @@ exports[`member list - components - Content  render correctly with gridData is e
           </t>
           <t
             asc={true}
-            colWidth={120}
+            colWidth={110}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -855,7 +839,7 @@ exports[`member list - components - Content  render correctly with gridData is e
           </t>
           <t
             asc={true}
-            colWidth={30}
+            colWidth={40}
             header={true}
             onClick={[Function]}
             sortable={false}

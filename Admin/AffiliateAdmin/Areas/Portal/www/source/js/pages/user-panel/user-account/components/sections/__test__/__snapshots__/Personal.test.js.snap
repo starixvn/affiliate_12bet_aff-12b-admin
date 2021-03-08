@@ -85,7 +85,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="firstName"
         name="firstName"
         onChange={[Function]}
@@ -132,7 +132,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="lastName"
         name="lastName"
         onChange={[Function]}
@@ -197,6 +197,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
         >
           <Input
             checked={false}
+            disabled={true}
             onChange={[Function]}
             type="radio"
           />
@@ -224,6 +225,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
         >
           <Input
             checked={true}
+            disabled={true}
             onChange={[Function]}
             type="radio"
           />
@@ -271,7 +273,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="email"
         name="email"
         onChange={[Function]}
@@ -318,7 +320,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="phone"
         name="phone"
         onChange={[Function]}
@@ -365,7 +367,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="MSN/YM/QQ"
         name="MSN/YM/QQ"
         onChange={[Function]}

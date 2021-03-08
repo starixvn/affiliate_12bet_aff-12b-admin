@@ -208,7 +208,7 @@ exports[`user account - components - Content render correctly 1`] = `
     <Button
       className="mb-3"
       color="success"
-      disabled={false}
+      disabled={true}
       onClick={[Function]}
       tag="button"
     >
@@ -426,7 +426,7 @@ exports[`user account - components - Content render correctly with isSuccess is 
     <Button
       className="mb-3"
       color="success"
-      disabled={false}
+      disabled={true}
       onClick={[Function]}
       tag="button"
     >

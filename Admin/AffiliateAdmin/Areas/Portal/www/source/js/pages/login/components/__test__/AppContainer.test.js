@@ -135,7 +135,7 @@ describe('Login - components - AppContainer', () => {
 
         expect(instance._validateAccount).toHaveBeenCalledWith('sa', '1234aa');
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Auth/Login', { "password": "1234aa", "userName": "sa" });
-        expect(utils.resolveClientUrl).toHaveBeenCalledWith("Portal/Home");
+        expect(utils.resolveClientUrl).toHaveBeenCalledWith("Portal/Home/RedirectMenu");
     });
 
     it('_handleLogin - should call _validateAccount, post and _handleShowAlert with response is error', async () => {

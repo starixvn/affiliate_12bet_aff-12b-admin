@@ -64,6 +64,10 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "edit",
           "name": "Edit",
           "parent": null,
+          "renderClaim": Claim {
+            "type": "[AffCustomerEdit]",
+            "value": undefined,
+          },
         },
         Object {
           "component": Object {

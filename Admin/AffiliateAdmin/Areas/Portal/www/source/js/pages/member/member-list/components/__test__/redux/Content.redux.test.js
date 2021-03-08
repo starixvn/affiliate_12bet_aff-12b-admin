@@ -45,10 +45,8 @@ describe('member list - Content - connect', () => {
         const mockBindAction = jest.fn();
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
-            deleteMember: actions['deleteMember'],
+            updateMemberStatus: actions['updateMemberStatus'],
             fetchData: actions['fetchData'],
-            setPagingOption: actions['setPagingOption'],
-            toggleLoader: actions['toggleLoader'],
             setShouldResetScrollPosition: actions['setShouldResetScrollPosition'],
             setParam: actions['setParam']
         }

@@ -42,7 +42,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="address"
         name="address"
         onChange={[Function]}
@@ -89,7 +89,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="city"
         name="city"
         onChange={[Function]}
@@ -136,7 +136,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="state"
         name="state"
         onChange={[Function]}
@@ -183,7 +183,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="postcode"
         name="postcode"
         onChange={[Function]}
@@ -229,6 +229,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
+        disabled={true}
         id="country"
         name="country"
         onChange={[Function]}
@@ -1307,7 +1308,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="questionId"
         key="name"
         name="questionId"
@@ -1369,7 +1370,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="answer"
         name="answer"
         onChange={[Function]}
@@ -1423,7 +1424,7 @@ exports[`user account - components - sections - Additional render correctly with
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="address"
         name="address"
         onChange={[Function]}
@@ -1470,7 +1471,7 @@ exports[`user account - components - sections - Additional render correctly with
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="city"
         name="city"
         onChange={[Function]}
@@ -1517,7 +1518,7 @@ exports[`user account - components - sections - Additional render correctly with
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="state"
         name="state"
         onChange={[Function]}
@@ -1564,7 +1565,7 @@ exports[`user account - components - sections - Additional render correctly with
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="postcode"
         name="postcode"
         onChange={[Function]}
@@ -1610,6 +1611,7 @@ exports[`user account - components - sections - Additional render correctly with
       xl={10}
     >
       <Input
+        disabled={true}
         id="country"
         name="country"
         onChange={[Function]}
@@ -2688,7 +2690,7 @@ exports[`user account - components - sections - Additional render correctly with
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="questionId"
         key="name"
         name="questionId"
@@ -2750,7 +2752,7 @@ exports[`user account - components - sections - Additional render correctly with
       xl={10}
     >
       <Input
-        disabled={false}
+        disabled={true}
         id="answer"
         name="answer"
         onChange={[Function]}

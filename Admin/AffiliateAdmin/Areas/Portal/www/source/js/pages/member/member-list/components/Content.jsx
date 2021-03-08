@@ -6,7 +6,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { updateMemberStatus, fetchData, setPagingOption, toggleLoader, setShouldResetScrollPosition, setParam } from '../actions';
+import { updateMemberStatus, fetchData, setShouldResetScrollPosition, setParam } from '../actions';
 import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
@@ -35,7 +35,6 @@ export class Content extends PureComponent {
         };
         const newParam = Object.assign({}, this.props.param, newPaging);
 
-        this.props.setPagingOption(newPaging);
         this.props.setParam(newParam);
     };
 
@@ -56,7 +55,6 @@ export class Content extends PureComponent {
     }
 
     _updateMemberStatus = async (selectedMemberId) => {
-        this.props.toggleLoader(true);
         const { isRemoved } = this.state;
 
         const result = await this.props.updateMemberStatus(selectedMemberId, isRemoved);
@@ -72,8 +70,6 @@ export class Content extends PureComponent {
                 this.setState({ message: result.Message, isConfirmPopup: false });
             }
         }
-
-        this.props.toggleLoader(false);
     }
 
     _renderHeader() {
@@ -182,7 +178,7 @@ function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridD
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateMemberStatus, fetchData, setPagingOption, toggleLoader, setShouldResetScrollPosition, setParam }, dispatch);
+    return bindActionCreators({ updateMemberStatus, fetchData, setShouldResetScrollPosition, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
