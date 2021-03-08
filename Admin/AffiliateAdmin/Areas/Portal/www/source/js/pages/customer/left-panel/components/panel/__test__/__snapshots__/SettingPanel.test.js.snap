@@ -346,7 +346,7 @@ exports[`left panel - components - panel - SettingPanel render correctly with is
       Closed
     </Col>
     <Col
-      className="text-right text-primary"
+      className="text-right"
       tag="div"
       widths={
         Array [
@@ -358,15 +358,13 @@ exports[`left panel - components - panel - SettingPanel render correctly with is
         ]
       }
     >
-      <Button
-        className="left-panel-btn-link btn-closed"
-        color="link"
-        onClick={[Function]}
-        tag="button"
-      >
-        No
-      </Button>
+      No
     </Col>
   </Row>
+  <NotificationPopup
+    isConfirmPopup={true}
+    message="message"
+    onClose={[Function]}
+  />
 </Memo(Panel)>
 `;

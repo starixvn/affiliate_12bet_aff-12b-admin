@@ -10,28 +10,18 @@ exports[`left panel - components - general-info - Language render correctly with
   >
     Vietnamese
   </Button>
+  <NotificationPopup
+    isConfirmPopup={true}
+    message="message"
+    onClose={[Function]}
+  />
 </Fragment>
 `;
 
 exports[`left panel - components - general-info - Language render correctly with isChangingLanguage is true 1`] = `
 <Fragment>
-  <select
-    onBlur={[Function]}
-    onChange={[Function]}
-    value="vi-VN"
-  >
-    <option
-      key="affinfo-lang-en-US"
-      value="en-US"
-    >
-      English
-    </option>
-    <option
-      key="affinfo-lang-vi-VN"
-      value="vi-VN"
-    >
-      Vietnamese
-    </option>
-  </select>
+   
+  Vietnamese
+   
 </Fragment>
 `;

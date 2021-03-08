@@ -40,7 +40,7 @@ describe('players detail - components - Content', () => {
         toggleLoaderUserPanel: jest.fn(),
         setSortedParam: jest.fn(),
         fetchData: jest.fn(() => gridData),
-        hasTurnOverPermission: true,
+        isDisplayTurnOver: true,
         sortedParam: { sortById: turnover, isSortAsc: false }
     }
 

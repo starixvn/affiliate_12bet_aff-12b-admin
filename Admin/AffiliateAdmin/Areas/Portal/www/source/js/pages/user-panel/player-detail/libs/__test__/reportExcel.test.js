@@ -27,7 +27,16 @@ describe('players detail - Report Excel ', () => {
 
         instance.constructor(data, title);
 
-        expect(instance._getcolumnConfigs).toHaveBeenCalled();
+        expect(instance._getcolumnConfigs).toHaveBeenCalledWith(false);
+    });
+
+    it('contrustor - should call _getcolumnConfigs when has turnover permission', () => {
+        const instance = new ReportExcel(data, title, true);
+        instance._getcolumnConfigs = jest.fn();
+
+        instance.constructor(data, title, true);
+
+        expect(instance._getcolumnConfigs).toHaveBeenCalledWith(true);
     });
 
     it('export - should call Excel.process', () => {
@@ -133,5 +142,17 @@ describe('players detail - Report Excel ', () => {
         expect(Excel.getCellAddress).toHaveBeenCalledTimes(2);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 0 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 9, "r": 1 });
+    });
+
+    it('_createExcelConfig - should call Excel.getCellAddress when has turnover permission', () => {
+        const instance = new ReportExcel(data, title, true);
+
+        Excel.getCellAddress = jest.fn();
+
+        instance._createExcelConfig();
+
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(2);
+        expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 0 });
+        expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 10, "r": 1 });
     });
 });

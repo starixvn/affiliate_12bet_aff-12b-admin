@@ -84,7 +84,7 @@ export class SettingPanel extends PureComponent {
 
         //closes an affiliate between the 1st and 5th of the month
         const isSpecialDate = currentDate > 0 && currentDate < 6;
-        const specialMessage = isClosed && isSpecialDate ? '<p class="text-danger">Closing an affiliate from 1st to 5th of each month will prevent the affiliate from being commissioned for the previous month.</p>' : '';
+        const specialMessage = isClosed && isSpecialDate ? messages.closedAffOnSpecialDate : '';
 
         this.setState({ messageNotification: `${specialMessage}Are you sure you want to ${isClosed ? 'close' : 'open'} this affiliate?`, isConfirmPopup: true, isConfirmStatus: false, isClosed });
     }

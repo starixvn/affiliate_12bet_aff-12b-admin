@@ -42,7 +42,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={true}
+        disabled={false}
         id="address"
         name="address"
         onChange={[Function]}
@@ -89,7 +89,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={true}
+        disabled={false}
         id="city"
         name="city"
         onChange={[Function]}
@@ -136,7 +136,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={true}
+        disabled={false}
         id="state"
         name="state"
         onChange={[Function]}
@@ -183,7 +183,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={true}
+        disabled={false}
         id="postcode"
         name="postcode"
         onChange={[Function]}
@@ -229,7 +229,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={true}
+        disabled={false}
         id="country"
         name="country"
         onChange={[Function]}
@@ -1308,7 +1308,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={true}
+        disabled={false}
         id="questionId"
         key="name"
         name="questionId"
@@ -1328,6 +1328,18 @@ exports[`user account - components - sections - Additional render correctly 1`] 
           value=""
         >
           What?
+        </option>
+        <option
+          key="questionId-11"
+          value={11}
+        >
+          Name of the worst kid who bullied you?
+        </option>
+        <option
+          key="questionId-12"
+          value={12}
+        >
+          Name of your childhood bestfriend?
         </option>
       </Input>
     </Col>
@@ -1370,7 +1382,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       xl={10}
     >
       <Input
-        disabled={true}
+        disabled={false}
         id="answer"
         name="answer"
         onChange={[Function]}
@@ -1382,7 +1394,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
 </Form>
 `;
 
-exports[`user account - components - sections - Additional render correctly with not has claim 1`] = `
+exports[`user account - components - sections - Additional render correctly when not read claim 1`] = `
 <Form
   tag="div"
 >
@@ -2650,115 +2662,6 @@ exports[`user account - components - sections - Additional render correctly with
           Zimbabwe
         </option>
       </Input>
-    </Col>
-  </FormGroup>
-  <FormGroup
-    key="questionId"
-    row={true}
-    tag="div"
-  >
-    <Label
-      className=""
-      for="questionId"
-      sm={3}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-      xl={2}
-    >
-      Security Question
-    </Label>
-    <Col
-      sm={9}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-      xl={10}
-    >
-      <Input
-        disabled={true}
-        id="questionId"
-        key="name"
-        name="questionId"
-        onChange={[Function]}
-        type="select"
-      >
-        <option
-          defaultValue={true}
-          key="questionId-0"
-          value=""
-        >
-          Select a secret question
-        </option>
-        <option
-          defaultValue={true}
-          key="questionId-default"
-          value=""
-        >
-          What?
-        </option>
-      </Input>
-    </Col>
-  </FormGroup>
-  <FormGroup
-    key="answer"
-    row={true}
-    tag="div"
-  >
-    <Label
-      className=""
-      for="answer"
-      sm={3}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-      xl={2}
-    >
-      Answer
-    </Label>
-    <Col
-      sm={9}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-      xl={10}
-    >
-      <Input
-        disabled={true}
-        id="answer"
-        name="answer"
-        onChange={[Function]}
-        type="text"
-        value="What?"
-      />
     </Col>
   </FormGroup>
 </Form>

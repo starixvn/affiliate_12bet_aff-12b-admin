@@ -60,6 +60,17 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="5,367,360.00"
+          >
+            5,367,360.00
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
             title="-26,050.00"
           >
             -26,050.00
@@ -159,6 +170,17 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="23.71"
+          >
+            23.71
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
             title="-11.93"
           >
             -11.93
@@ -244,6 +266,13 @@ exports[`players detail - components - Content render correctly 1`] = `
           isSortAsc={false}
           sortingColumn={5}
           title="Registered Date"
+        />
+        <Memo(SortingCell)
+          columnValue={5}
+          handleClickHeader={[Function]}
+          isSortAsc={false}
+          sortingColumn={5}
+          title="Turnover"
         />
         <Memo(SortingCell)
           columnValue={6}
@@ -367,6 +396,13 @@ exports[`players detail - components - Content render correctly with have data i
           title="Registered Date"
         />
         <Memo(SortingCell)
+          columnValue={5}
+          handleClickHeader={[Function]}
+          isSortAsc={false}
+          sortingColumn={5}
+          title="Turnover"
+        />
+        <Memo(SortingCell)
           columnValue={6}
           handleClickHeader={[Function]}
           isSortAsc={false}
@@ -487,6 +523,17 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="5,367,360.00"
+          >
+            5,367,360.00
+          </t>
+          <t
+            asc={true}
+            className="text-right highlight"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
             title="-26,050.00"
           >
             -26,050.00
@@ -586,6 +633,17 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="23.71"
+          >
+            23.71
+          </t>
+          <t
+            asc={true}
+            className="text-right highlight"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
             title="-11.93"
           >
             -11.93
@@ -671,6 +729,13 @@ exports[`players detail - components - Content render correctly with not selecte
           isSortAsc={false}
           sortingColumn={5}
           title="Registered Date"
+        />
+        <Memo(SortingCell)
+          columnValue={5}
+          handleClickHeader={[Function]}
+          isSortAsc={false}
+          sortingColumn={5}
+          title="Turnover"
         />
         <Memo(SortingCell)
           columnValue={6}

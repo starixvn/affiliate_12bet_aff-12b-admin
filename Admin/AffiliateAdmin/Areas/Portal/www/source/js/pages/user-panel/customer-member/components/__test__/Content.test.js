@@ -12,7 +12,8 @@ describe('customer member - components - Content', () => {
             isGetAll: false,
             memberType: '0',
             toDate: "7/01/2019"
-        }
+        },
+        isDisplayFullName: true
     }
 
     const data = [
