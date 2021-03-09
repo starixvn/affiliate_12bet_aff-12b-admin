@@ -20,14 +20,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private static HttpClient HttpClient => LazyHttpClient.Value;
         private INewsLetterRepository Repository { get; }
         private ISessionService SessionService { get; }
-        private ILanguageService LanguageService { get; }
         private IAppSetting AppSetting { get; }
 
-        public NewsLetterService(INewsLetterRepository repository, ISessionService sessionService, ILanguageService languageService, IAppSetting appSetting)
+        public NewsLetterService(INewsLetterRepository repository, ISessionService sessionService, IAppSetting appSetting)
         {
             Repository = repository;
             SessionService = sessionService;
-            LanguageService = languageService;
             AppSetting = appSetting;
         }
 
@@ -65,7 +63,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private async Task<string> GetContent(string fileName)
         {
-            var url = $"{AppSetting.BannerDomain}{NEWSLETTER_CONTENT_PATH}?fileName={fileName}";
+            var url = $"{AppSetting.ResourceDomain}{NEWSLETTER_CONTENT_PATH}?fileName={fileName}";
             var content = await HttpClient.GetAsync(url);
             if (content.IsSuccessStatusCode)
             {
