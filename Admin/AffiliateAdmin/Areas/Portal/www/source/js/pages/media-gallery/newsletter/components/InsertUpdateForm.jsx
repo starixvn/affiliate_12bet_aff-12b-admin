@@ -1,5 +1,6 @@
-import '../style/style.scss';
 
+import 'react-datepicker/dist/react-datepicker.css';
+import '../style/style.scss';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,8 +10,7 @@ import { setSelectedNewsLetterPageId, getNewsLetterPageDetail, fetchData, insert
 import { defaultState, globalResource, maxLength, maxFileSize } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import{ formatDateTime } from '../../../../modules/utils';
-import DateTimePicker from 'react-datetime-picker';
-
+import DatePicker from 'react-datepicker';
 
 export class InsertUpdateForm extends PureComponent {
     constructor(props) {
@@ -268,13 +268,13 @@ export class InsertUpdateForm extends PureComponent {
                                     <FormGroup row className="mb-2 align-items-center">
                                         <Label for="fromDate" sm={4} className="required">Effective From (GMT-4)</Label>
                                         <Col sm={6}>
-                                            <DateTimePicker name="fromDate" format={displayDateFormat} value={fromDate} onChange={(value) => this._handleChangeDatePicker("fromDate", value)} />
+                                            <DatePicker name="fromDate" showTimeInput dateFormat={displayDateFormat} selected={fromDate} className='form-control' onChange={(value) => this._handleChangeDatePicker("fromDate", value)} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2 align-items-center">
                                         <Label for="toDate" sm={4} className="required">To (GMT-4)</Label>
                                         <Col sm={6}>
-                                            <DateTimePicker name="toDate" format={displayDateFormat}  value={toDate} onChange={(value) => this._handleChangeDatePicker("toDate", value)} />
+                                            <DatePicker name="toDate" showTimeInput dateFormat={displayDateFormat}  selected={toDate} className='form-control' onChange={(value) => this._handleChangeDatePicker("toDate", value)} />
                                         </Col>
                                     </FormGroup>
                                 </Form>
