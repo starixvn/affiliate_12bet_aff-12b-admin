@@ -71,6 +71,13 @@ describe('left panel - components - panel - CommissionPanel', () => {
         expect(result).toMatchSnapshot();
     });
 
+    it('render correctly with isStatic', () => {
+        const props = Object.assign({}, defaultProps, { isStatic: true });
+        const result = shallow(<CommissionPanel {...props} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
     it('componentDidUpdate - should call setState', () => {
         const wrapper = shallow(<CommissionPanel {...defaultProps} />);
         wrapper.setState = jest.fn();

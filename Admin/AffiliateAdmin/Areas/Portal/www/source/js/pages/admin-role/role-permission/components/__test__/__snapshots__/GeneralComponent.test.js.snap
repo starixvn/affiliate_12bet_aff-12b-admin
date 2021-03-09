@@ -1,0 +1,257 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`role permission - components - GeneralComponent render correctly 1`] = `
+<div
+  className="data-content role-permission"
+>
+  <div
+    className="table-responsive table-striped"
+  >
+    <t
+      adjustedHeight={0}
+      autoHeight={true}
+      autoWidth={true}
+      body={
+        Array [
+          <React.Fragment>
+            <t>
+              <t
+                asc={true}
+                colSpan="3"
+                header={false}
+                onClick={[Function]}
+                sortable={false}
+                sorting={false}
+              >
+                <div
+                  className="d-flex"
+                >
+                  <Button
+                    className="py-0 th-wrapper"
+                    color="link"
+                    onClick={[Function]}
+                    tag="button"
+                  >
+                    <div
+                      className="icon-container"
+                    >
+                      <span
+                        className="caret collapsed"
+                      />
+                    </div>
+                    <span>
+                      Management
+                    </span>
+                  </Button>
+                </div>
+              </t>
+            </t>
+          </React.Fragment>,
+          <React.Fragment>
+            <t>
+              <t
+                asc={true}
+                colSpan="3"
+                header={false}
+                onClick={[Function]}
+                sortable={false}
+                sorting={false}
+              >
+                <div
+                  className="d-flex"
+                >
+                  <Button
+                    className="py-0 th-wrapper"
+                    color="link"
+                    onClick={[Function]}
+                    tag="button"
+                  >
+                    <div
+                      className="icon-container"
+                    >
+                      <span
+                        className="caret collapsed"
+                      />
+                    </div>
+                    <span>
+                      Exe. Settlement
+                    </span>
+                  </Button>
+                </div>
+              </t>
+            </t>
+          </React.Fragment>,
+        ]
+      }
+      bodyHeight={300}
+      containerPadding={30}
+      header={
+        <t>
+          <t
+            asc={true}
+            colWidth={600}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Function
+          </t>
+          <t
+            asc={true}
+            colWidth={200}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Read
+          </t>
+          <t
+            asc={true}
+            colWidth={200}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Host
+          </t>
+        </t>
+      }
+      isPaging={false}
+      maxWidth={1000}
+      shouldResetScrollPosition={false}
+      width={0}
+    />
+  </div>
+</div>
+`;
+
+exports[`role permission - components - GeneralComponent render correctly with has not write permission 1`] = `
+<div
+  className="data-content role-permission"
+>
+  <div
+    className="table-responsive table-striped"
+  >
+    <t
+      adjustedHeight={0}
+      autoHeight={true}
+      autoWidth={true}
+      body={
+        Array [
+          <React.Fragment>
+            <t>
+              <t
+                asc={true}
+                colSpan="3"
+                header={false}
+                onClick={[Function]}
+                sortable={false}
+                sorting={false}
+              >
+                <div
+                  className="d-flex"
+                >
+                  <Button
+                    className="py-0 th-wrapper"
+                    color="link"
+                    onClick={[Function]}
+                    tag="button"
+                  >
+                    <div
+                      className="icon-container"
+                    >
+                      <span
+                        className="caret collapsed"
+                      />
+                    </div>
+                    <span>
+                      Management
+                    </span>
+                  </Button>
+                </div>
+              </t>
+            </t>
+          </React.Fragment>,
+          <React.Fragment>
+            <t>
+              <t
+                asc={true}
+                colSpan="3"
+                header={false}
+                onClick={[Function]}
+                sortable={false}
+                sorting={false}
+              >
+                <div
+                  className="d-flex"
+                >
+                  <Button
+                    className="py-0 th-wrapper"
+                    color="link"
+                    onClick={[Function]}
+                    tag="button"
+                  >
+                    <div
+                      className="icon-container"
+                    >
+                      <span
+                        className="caret collapsed"
+                      />
+                    </div>
+                    <span>
+                      Exe. Settlement
+                    </span>
+                  </Button>
+                </div>
+              </t>
+            </t>
+          </React.Fragment>,
+        ]
+      }
+      bodyHeight={300}
+      containerPadding={30}
+      header={
+        <t>
+          <t
+            asc={true}
+            colWidth={600}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Function
+          </t>
+          <t
+            asc={true}
+            colWidth={200}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Read
+          </t>
+          <t
+            asc={true}
+            colWidth={200}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          >
+            Host
+          </t>
+        </t>
+      }
+      isPaging={false}
+      maxWidth={1000}
+      shouldResetScrollPosition={false}
+      width={0}
+    />
+  </div>
+</div>
+`;

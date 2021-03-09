@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`role permission - components - LanguageComponent render correctly 1`] = `""`;
+
+exports[`role permission - components - LanguageComponent render correctly with has not write permission 1`] = `""`;

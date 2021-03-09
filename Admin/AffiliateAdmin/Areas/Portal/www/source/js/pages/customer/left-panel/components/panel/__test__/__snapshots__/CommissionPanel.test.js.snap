@@ -1,5 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`left panel - components - panel - CommissionPanel render correctly with isStatic 1`] = `
+<Memo(Panel)
+  heading="Commission"
+>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Comm Group
+    </Col>
+    <Col
+      className="text-right text-break pl-0"
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      NoCommission
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      className="pr-0"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Balance Brought Forward
+    </Col>
+    <Col
+      className="text-right text-break pl-0"
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      $9,802,280.54
+    </Col>
+  </Row>
+</Memo(Panel)>
+`;
+
 exports[`left panel - components - panel - CommissionPanel render correctly with status is closed 1`] = `
 <Memo(Panel)
   heading="Commission"

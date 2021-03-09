@@ -78,6 +78,14 @@ describe('left panel - components - panel - SettingPanel', () => {
         expect(result).toMatchSnapshot();
     });
 
+    it('render correctly with isApproved and isClosed are true', () => {
+        const props = Object.assign({}, defaultProps, { isStatusModifiable: false })
+        const result = shallow(<SettingPanel {...props} isApproved={true} />);
+        result.setState({ messageNotification: 'message' });
+
+        expect(result).toMatchSnapshot();
+    });
+
     it('toggleChangingAffType - should call setState when onBlur AffType select', async () => {
         const wrapper = shallow(<SettingPanel {...defaultProps} />);
         wrapper.setState = jest.fn((val, fn) => fn());

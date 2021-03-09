@@ -250,8 +250,8 @@ export class LanguageComponent extends PureComponent {
 }
 
 
-function mapStateToProps({ gridData, roleList, marketIdList, marketList, isGeneral, hasWriteAdminRoleClaim }) {
-    return Object.assign({}, { gridData, roleList, marketIdList, marketList, isGeneral, hasWriteAdminRoleClaim });
+function mapStateToProps({ gridData, roleList, marketIdList, marketList, hasWriteAdminRoleClaim }) {
+    return Object.assign({}, { gridData, roleList, marketIdList, marketList, hasWriteAdminRoleClaim });
 }
 
 function mapDispatchToProps(dispatch) {

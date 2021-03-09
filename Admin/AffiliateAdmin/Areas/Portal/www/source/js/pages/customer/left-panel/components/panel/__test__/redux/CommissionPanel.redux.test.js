@@ -1,6 +1,5 @@
 ﻿jest.mock('redux');
 jest.mock('react-redux');
-import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../../actions/index';
@@ -27,6 +26,23 @@ describe('left panel - CommissionPanel - connect', () => {
         const state = {
             leftPanel: { affiliateInfo: { AffId: 1271808 } },
             claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
+            anotherProp: "Not included"
+        };
+
+        const result = mapStateToProps(state);
+
+        expect(result).toEqual(expectedResult);
+    })
+
+    it('props should be mapped correctly 2', () => {
+        const expectedResult = {
+            isStatic: true,
+            affiliateInfo: { AffId: 1271808, GroupId: 1271808 }
+        };
+
+        const state = {
+            leftPanel: { affiliateInfo: { AffId: 1271808, GroupId: 1271808 } },
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => false) },
             anotherProp: "Not included"
         };
 
