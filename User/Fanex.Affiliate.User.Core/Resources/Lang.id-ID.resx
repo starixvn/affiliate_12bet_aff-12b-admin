@@ -2183,4 +2183,7 @@
   <data name="AConfirmationEmail" xml:space="preserve">
     <value>Email konfirmasi dikirimkan ke email Anda.</value>
   </data>
+  <data name="WhatNewThisMonth" xml:space="preserve">
+    <value>Apa yang baru di bulan ini?</value>
+  </data>
 </root>
