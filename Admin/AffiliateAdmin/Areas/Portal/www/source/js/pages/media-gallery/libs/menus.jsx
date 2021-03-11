@@ -11,5 +11,5 @@ export const menus = [
     { key: menuKey.bannerList, label: 'Banner List', href: relativePath.bannerList, component: BannerList, renderClaim: new Claim(claimResource.MediaGalleryMenu) },
     { key: menuKey.textList, label: 'Text List', href: relativePath.textList, component: TextList, renderClaim: new Claim(claimResource.MediaGalleryMenu) },
     { key: menuKey.landingPageList, label: 'Landing Page List', href: relativePath.landingPageList, component: LandingPageList },
-    {key: menuKey.newsLetterList, label: 'NewsLetter List', href: relativePath.newsLetterList, component: NewsLetterList, renderClaim: new Claim(claimResource.MediaGallery)}
+    { key: menuKey.newsLetterList, label: 'NewsLetter List', href: relativePath.newsLetterList, component: NewsLetterList, renderClaim: new Claim(claimResource.MediaGalleryMenu)}
 ]
