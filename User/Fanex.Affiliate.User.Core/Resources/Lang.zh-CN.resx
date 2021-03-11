@@ -2185,4 +2185,7 @@
   <data name="AConfirmationEmail" xml:space="preserve">
     <value>确认邮件已发送到您的电子邮箱。</value>
   </data>
+  <data name="WhatNewThisMonth" xml:space="preserve">
+    <value>本月精选</value>
+  </data>
 </root>

@@ -448,7 +448,7 @@
     <value>เกาะ คุ๊ก</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>สงวนลิขสิทธิ์ © 2008 - 2019 | 12BET.com | 21+</value>
+    <value>สงวนลิขสิทธิ์ © 2008 - 2019 | 12BET.com | 21+</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>คอสตาริกา</value>
@@ -2177,5 +2177,8 @@
   </data>
   <data name="AConfirmationEmail" xml:space="preserve">
     <value>อีเมลยืนยันกำลังส่งไปยังอีเมลของคุณ</value>
+  </data>
+  <data name="WhatNewThisMonth" xml:space="preserve">
+    <value>ข่าวใหม่ล่าสุดเดือนนี้</value>
   </data>
 </root>

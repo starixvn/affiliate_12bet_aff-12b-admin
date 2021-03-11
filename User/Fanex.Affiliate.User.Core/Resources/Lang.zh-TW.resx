@@ -2182,4 +2182,7 @@
   <data name="AConfirmationEmail" xml:space="preserve">
     <value>確認郵件已發送到您的電子郵箱。</value>
   </data>
+  <data name="WhatNewThisMonth" xml:space="preserve">
+    <value>本月精選</value>
+  </data>
 </root>
