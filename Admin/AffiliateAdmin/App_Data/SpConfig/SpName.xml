@@ -67,7 +67,7 @@
     <Setting Key="Aff_Admin_AffiliateStatus_Upd" SpName="Aff_Admin_AffiliateStatus_Upd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_AffiliateClosed_Upd" SpName="Aff_Admin_AffiliateClosed_Upd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_AffiliateAffType_Upd" SpName="Aff_Admin_AffiliateAffType_Upd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_AffiliateInfo_Upd" SpName="Aff_Admin_AffiliateInfo_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateInfo_Upd" SpName="Aff_Admin_AffiliateInfo_Upd_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_SecurityQuestions_Sel" SpName="Aff_User_SecurityQuestions_Sel" DbName="affiliate_12bet" />
   </Function>
   <Function Name="MediaGallery">
@@ -101,7 +101,7 @@
   <Function Name="EmailHistory">
     <Setting Key="Aff_Admin_EmailHistory_Sel" SpName="Aff_Admin_EmailHistory_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_EmailHistory_Detail_Sel" SpName="Aff_Admin_EmailHistory_Detail_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_EmailHistory_Del" SpName="Aff_Admin_EmailHistory_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_EmailHistory_Del" SpName="Aff_Admin_EmailHistory_Del_xtest" DbName="affiliate_12bet" />
   </Function>
   <Function Name="ExchangeRate">
     <Setting Key="Aff_Admin_Exchange_Sel" SpName="Aff_Admin_Exchange_Sel" DbName="affiliate_12bet" />

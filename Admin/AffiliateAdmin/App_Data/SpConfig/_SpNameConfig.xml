@@ -6,4 +6,7 @@
 
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Member_RemoveStatus_Upd" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_MemberList_Sel" Suffix="_xtest"></item>
+
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_EmailHistory_Del" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateInfo_Upd" Suffix="_xtest"></item>
 </Root>

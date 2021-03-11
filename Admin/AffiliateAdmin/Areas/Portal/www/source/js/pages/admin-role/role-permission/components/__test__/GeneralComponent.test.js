@@ -128,19 +128,19 @@ describe('role permission - components - GeneralComponent', () => {
         Policy: 3,
         RoleId: 2,
         RoleName: "Exe. Settlement"
-        },
-        {
-            AllParentIds: "1",
-            DisplayName: "Home page",
-            FuncId: 1,
-            FuncName: "[Home]",
-            IsHost: true,
-            IsRead: true,
-            ParentId: 1,
-            Policy: 3,
-            RoleId: 3,
-            RoleName: "Management"
-        }];
+    },
+    {
+        AllParentIds: "1",
+        DisplayName: "Home page",
+        FuncId: 1,
+        FuncName: "[Home]",
+        IsHost: true,
+        IsRead: true,
+        ParentId: 1,
+        Policy: 3,
+        RoleId: 3,
+        RoleName: "Assistant"
+    }];
 
     const roleList = [
         { RoleId: 1, RoleName: "Management" },
@@ -159,6 +159,7 @@ describe('role permission - components - GeneralComponent', () => {
 
     it('render correctly', () => {
         const result = shallow(<GeneralComponent {...defaultProps} />);
+        result.setState({ gridData });
 
         expect(result).toMatchSnapshot();
     });
@@ -166,6 +167,7 @@ describe('role permission - components - GeneralComponent', () => {
     it('render correctly with has not write permission', () => {
         const props = Object.assign({}, defaultProps, { hasWriteAdminRoleClaim: false });
         const result = shallow(<GeneralComponent {...props} />);
+        result.setState({ gridData });
 
         expect(result).toMatchSnapshot();
     });
@@ -173,14 +175,21 @@ describe('role permission - components - GeneralComponent', () => {
     it('render correctly with roleList is empty', () => {
         const props = Object.assign({}, defaultProps, { roleList: [] });
         const result = shallow(<GeneralComponent {...props} />);
-        result.setState({ messagePopup: 'test' })
+        result.setState({ messagePopup: 'test', gridData });
 
         expect(result).toMatchSnapshot();
     });
 
     it('render correctly with expand a role', () => {
         const result = shallow(<GeneralComponent {...defaultProps} />);
-        result.setState({ expandedRoleId: 2 });
+        result.setState({ expandedRoleId: 2, gridData });
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('render correctly with expand a role has not children', () => {
+        const result = shallow(<GeneralComponent {...defaultProps} />);
+        result.setState({ expandedRoleId: 3, gridData });
 
         expect(result).toMatchSnapshot();
     });
@@ -195,7 +204,6 @@ describe('role permission - components - GeneralComponent', () => {
     it('setState - should be called when click Role Name button', () => {
         const result = shallow(<GeneralComponent {...defaultProps} />);
         const instance = result.instance();
-
         instance.setState = jest.fn();
 
         const dataRow = shallow(<div>{instance._buildDataRow(roleList[0], gridData, 0, false)}</div>);
@@ -207,13 +215,12 @@ describe('role permission - components - GeneralComponent', () => {
     it('setState - should be called when click Role Name button with collapsed', () => {
         const result = shallow(<GeneralComponent {...defaultProps} />);
         const instance = result.instance();
-        instance.setState({ isExpand: true });
         instance.setState = jest.fn();
 
-        const dataRow = shallow(<div>{instance._buildDataRow(roleList[0], gridData, 0, false)}</div>);
+        const dataRow = shallow(<div>{instance._buildDataRow(roleList[0], gridData, 1, false)}</div>);
 
         dataRow.find("Button").at(0).simulate("click");
-        expect(instance.setState).toHaveBeenCalledWith({ expandedRoleId: 1, isEdit: false });
+        expect(instance.setState).toHaveBeenCalledWith({ expandedRoleId: 0, isEdit: false });
     });
 
     it('setState - should be called when click Edit button', () => {

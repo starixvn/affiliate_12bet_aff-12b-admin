@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
@@ -301,6 +301,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\PersonalPermissionTable.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\__tests__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\__tests__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\__tests__\redux\PersonalPermissionTable.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\libs\utils.js" />
@@ -387,6 +388,15 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ContactNumber.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\redux\ApprovedStatus.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\redux\ContactNumber.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\components\InsertUpdateForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\Content.test.js" />
@@ -772,6 +782,7 @@
     <Content Include="Areas\Portal\Views\Affiliate\MassAdjustment.cshtml" />
     <Content Include="Areas\Portal\www\dist\assets\template.xlsx" />
     <Content Include="Areas\Portal\Views\MediaGallery\NewsLetterPageList.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\style\style.scss" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
