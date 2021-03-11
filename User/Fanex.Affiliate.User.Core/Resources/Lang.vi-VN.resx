@@ -2180,4 +2180,7 @@
   <data name="AConfirmationEmail" xml:space="preserve">
     <value>Email xác nhận sẽ được gửi đến Email của bạn.</value>
   </data>
+  <data name="WhatNewThisMonth" xml:space="preserve">
+    <value>Tin Mới Tháng Này</value>
+  </data>
 </root>

@@ -214,6 +214,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Something wrong, please contact admin..
+        /// </summary>
+        public static string ErrGeneral {
+            get {
+                return ResourceManager.GetString("ErrGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A File Name can&apos;t contain any of the following characters: \/:*?&quot;&lt;&gt;|#%&amp;+.
         /// </summary>
         public static string FileNameCanNotContain {
@@ -263,6 +272,42 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string InvalidBannerSize {
             get {
                 return ResourceManager.GetString("InvalidBannerSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must browse file before upload.
+        /// </summary>
+        public static string InvalidFileBrowser {
+            get {
+                return ResourceManager.GetString("InvalidFileBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File size exceeded max length..
+        /// </summary>
+        public static string InvalidFileSize {
+            get {
+                return ResourceManager.GetString("InvalidFileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid file type..
+        /// </summary>
+        public static string InvalidFileType {
+            get {
+                return ResourceManager.GetString("InvalidFileType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Id.
+        /// </summary>
+        public static string InvalidId {
+            get {
+                return ResourceManager.GetString("InvalidId", resourceCulture);
             }
         }
         

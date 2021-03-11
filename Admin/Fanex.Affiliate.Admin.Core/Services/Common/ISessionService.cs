@@ -16,5 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         IEnumerable<ClaimsIdentity> ClaimIdentities { get; set; }
 
         ClaimsPrincipal UserClaim { get; }
+
+        string RequestIp { get; }
     }
 }

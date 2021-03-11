@@ -8,6 +8,10 @@ export const formatUnit = (value) => {
     return value < 10 ? '0' + value : value;
 }
 
+const formatMilisecond = (value) => {
+    return value < 10 ? '00' + value : value < 100 ? '0' + value : value;
+}
+
 export const formatDateTime = (dateTimeValue, format) => {
     if (!dateTimeValue) {
         return "";
@@ -21,6 +25,7 @@ export const formatDateTime = (dateTimeValue, format) => {
     var hours = dateTime.getHours();
     var minutes = dateTime.getMinutes();
     var seconds = dateTime.getSeconds();
+    var miliseconds = dateTime.getMilliseconds();
     var ampm = hours >= 12 ? 'PM' : 'AM';
 
     var shortedHours = hours % 12;
@@ -36,7 +41,8 @@ export const formatDateTime = (dateTimeValue, format) => {
         .replace("mm", formatUnit(minutes))
         .replace("ss", formatUnit(seconds))
         .replace("tt", ampm)
-        .replace("HH", dateTime.getHours());
+        .replace("HH", formatUnit(dateTime.getHours()))
+        .replace("SSS", formatMilisecond(miliseconds));
 
     return result;
 }
@@ -57,6 +63,15 @@ export const parseDateTime = (value) => {
     }
 
     return value;
+}
+
+export const convertToTimeOffset = (date, offset) => {
+    let localDate = new Date(date);
+    let localTime = localDate.getTime();
+    let localOffset = localDate.getTimezoneOffset() * 60000;
+    let utcTime = localTime + localOffset;
+    let convertTime = utcTime + (3600000 * offset);
+    return new Date(convertTime);
 }
 
 export function getDateRange(selectedFromDate, toDateString) {
@@ -140,4 +155,23 @@ export const convertArrayToObjectProps = (array, key, value) => {
 
 export const removeUndifineItem = (obj) => {
     return JSON.parse(JSON.stringify(obj));
+}
+
+export const validateFileExtension = (fileName, fileExtensions) => {
+    const result = {
+        isOK: false,
+        message: `Sorry! We just support these file types : ${fileExtension.reduce((acc, cur) => {acc + `'.'${cur}`}, "")}`,
+    }
+    if (!!fileName) {
+        const fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length).toLowerCase();
+
+        const isOK = fileExtensions.find(val => val === fileExtension);
+
+        if (isOK) {
+            result.isOK = isOK
+            result.message = '';
+        }
+    }
+
+    return result;
 }

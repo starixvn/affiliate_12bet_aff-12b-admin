@@ -91,7 +91,8 @@ module.exports = env => {
         },
         plugins: [
             new MiniCssExtractPlugin({
-                filename: "[name].css"
+                filename: "[name].css",
+                chunkFilename: relativeOutputPath + "/style/dynamic-chunk/[name].css",
             }),
             new webpack.DllReferencePlugin({
                 context: __dirname,

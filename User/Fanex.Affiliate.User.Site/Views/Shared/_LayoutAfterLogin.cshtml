@@ -1,15 +1,18 @@
 ﻿@using Fanex.Affiliate.User.Core.Utilities
 @using Fanex.Affiliate.User.Core.CoreService
+@using Fanex.Affiliate.User.Core.BusinessService
 @using Fanex.Affiliate.User.Core.Constants
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var newsLetterService = DependencyResolver.Current.GetService<INewsLetterService>();
     var groupName = sessionService.UserSession.GroupName;
     var hasTurnOverPermission = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType);
     var hasPaymentRequestPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.PaymentRequest);
     var hasCommissionReportPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.CommissionReport);
     var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, sessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !sessionService.IsInternal;
+    var isShowNewsLetterTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && newsLetterService.HasNewCurrentTime();
 }
 
 @section styles{
@@ -53,12 +56,16 @@
                     <li><a class="menu-item" id="menuLandingPageStatistics" href="@Url.Content("~/UserPanel/Main/#LandingPageStatistics")">@Lang.LandingPages</a></li>
                 </ul>
             </li>
+            @if (isShowNewsLetterTab)
+            {
+                <li><a class="menu-item" id="menuNewsLetter" href="@Url.Content("~/UserPanel/Main/#NewsLetter")">@Lang.WhatNewThisMonth</a></li>
+            }
         </ul>
     </div>
 
     <div class="main-content">
         <div class="container-fluid">
-            @RenderBody()
+            @RenderBody()32
         </div>
     </div>
 </div>

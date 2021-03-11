@@ -87,6 +87,10 @@
     <Setting Key="Aff_Admin_Banner_Upd" SpName="Aff_Admin_Banner_Upd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Banner_Del" SpName="Aff_Admin_Banner_Del" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Newsletter_Sel" SpName="Aff_Admin_Newsletter_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Newsletter_Upd" SpName="Aff_Admin_Newsletter_Upd_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Newsletter_Del" SpName="Aff_Admin_Newsletter_Del_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Newsletter_Ins" SpName="Aff_Admin_Newsletter_Ins_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffTypeSel" SpName="Aff_AffTypeSel" DbName="affiliate_12bet" />
   </Function>
   <Function Name="ThirdPartyProduct">

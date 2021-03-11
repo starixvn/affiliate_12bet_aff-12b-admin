@@ -1,0 +1,72 @@
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using System;
+using System.Data;
+
+namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
+{
+    public class NewsLetterRepository : BaseRepository, INewsLetterRepository
+    {
+        public ResultInfo DeleteNewsLetter(DeleteNewsLetterParam param)
+        {
+            const string spKey = "Aff_Admin_Newsletter_Del";
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                AssignResultOutputParam(objectDb);
+                objectDb.ExecuteNonQuery(param);
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        public NewsLetter GetNewsLetterById(int id)
+        {
+            const string spKey = "Aff_Admin_Newsletter_Sel";
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                return objectDb.QueryEntity<NewsLetter>(new { NewsletterId = id });
+            }
+        }
+
+        public EntityResult<NewsLetter> GetNewsLetters(SelectNewsLetterParam param)
+        {
+            const string spKey = "Aff_Admin_Newsletter_Sel";
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+                var items = objectDb.Query<NewsLetter>(param);
+
+                var rowTotal = objectDb.GetParameterValue("NRows");
+                return new EntityResult<NewsLetter>
+                {
+                    MainData = items,
+                    TotalItem = rowTotal == DBNull.Value ? 0 : Convert.ToInt32(rowTotal)
+                };
+            }
+        }
+
+        public ResultInfo InsertNewsLetter(InsertNewsLetterParam param)
+        {
+            
+            const string spKey = "Aff_Admin_Newsletter_Ins";
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                AssignResultOutputParam(objectDb);
+                objectDb.ExecuteNonQuery(param);
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        public ResultInfo UpdateNewsLetter(UpdateNewsLetterParam param)
+        {
+            const string spKey = "Aff_Admin_Newsletter_Upd";
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                AssignResultOutputParam(objectDb);
+                objectDb.ExecuteNonQuery(param);
+                return GetResultInfo(objectDb);
+            }
+        }
+    }
+}

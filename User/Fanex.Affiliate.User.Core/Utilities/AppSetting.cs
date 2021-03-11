@@ -52,6 +52,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string QrCodeIcon => GetValue("QrCodeIcon");
 
+        public string ResourceDomain => GetValue("ResourceDomain");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

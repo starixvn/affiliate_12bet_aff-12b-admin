@@ -212,6 +212,7 @@
     <Compile Include="BusinessService\ContactService.cs" />
     <Compile Include="BusinessService\ICaptchaService.cs" />
     <Compile Include="BusinessService\ICommissionReportService.cs" />
+    <Compile Include="BusinessService\INewsLetterService.cs" />
     <Compile Include="BusinessService\IQrCodeGeneratorService.cs" />
     <Compile Include="BusinessService\ISecurityQuestionService.cs" />
     <Compile Include="BusinessService\IStatisticsService.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="BusinessService\IMemberTransactionService.cs" />
     <Compile Include="BusinessService\IMemberInfoServiceWrapper.cs" />
     <Compile Include="BusinessService\IPaymentService.cs" />
+    <Compile Include="BusinessService\NewsLetterService.cs" />
     <Compile Include="BusinessService\NewsService.cs" />
     <Compile Include="BusinessService\IAccountService.cs" />
     <Compile Include="BusinessService\IEmailService.cs" />
@@ -260,6 +262,7 @@
     <Compile Include="Controllers\UserPanel\BaseMarketingController.cs" />
     <Compile Include="Controllers\UserPanel\CommissionReportController.cs" />
     <Compile Include="Controllers\UserPanel\DailyEarningController.cs" />
+    <Compile Include="Controllers\UserPanel\NewsLetterController.cs" />
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
     <Compile Include="Controllers\UserPanel\ReferrersStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsController.cs" />
@@ -313,6 +316,7 @@
     <Compile Include="DTO\UserPanel\MediaGallery\CategoryType.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\CurrencyType.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\SizeType.cs" />
+    <Compile Include="DTO\UserPanel\NewsLetter.cs" />
     <Compile Include="DTO\UserPanel\OverviewDetail.cs" />
     <Compile Include="DTO\UserPanel\OverviewSummary.cs" />
     <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
@@ -323,7 +327,10 @@
     <Compile Include="Infrastructure\IHttpRequestParserHandler.cs" />
     <Compile Include="Repository\ILanguageRepository.cs" />
     <Compile Include="Repository\LanguageRepository.cs" />
+    <Compile Include="Repository\UserPanel\INewsLetterRepository.cs" />
+    <Compile Include="Repository\UserPanel\NewsLetterRepository.cs" />
     <Compile Include="Utilities\ClaimUtitlity.cs" />
+    <Compile Include="Utilities\Helper.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\QrCodeLinkModel.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />

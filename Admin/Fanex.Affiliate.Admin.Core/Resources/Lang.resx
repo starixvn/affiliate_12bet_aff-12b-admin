@@ -329,4 +329,19 @@
             &lt;/ol&gt;
 &lt;/div&gt;</value>
   </data>
+  <data name="InvalidFileBrowser" xml:space="preserve">
+    <value>You must browse file before upload</value>
+  </data>
+  <data name="InvalidFileType" xml:space="preserve">
+    <value>Invalid file type.</value>
+  </data>
+  <data name="InvalidFileSize" xml:space="preserve">
+    <value>File size exceeded max length.</value>
+  </data>
+  <data name="ErrGeneral" xml:space="preserve">
+    <value>Something wrong, please contact admin.</value>
+  </data>
+  <data name="InvalidId" xml:space="preserve">
+    <value>Invalid Id</value>
+  </data>
 </root>

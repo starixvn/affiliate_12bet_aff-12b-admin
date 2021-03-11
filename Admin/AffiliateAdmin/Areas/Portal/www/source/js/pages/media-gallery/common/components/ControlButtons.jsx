@@ -14,7 +14,6 @@ export const ControlButtons = (props) => {
     }
 
     const hasData = props.gridData && !!props.gridData.length;
-
     return props.gridData && (
         <React.Fragment>
             {
