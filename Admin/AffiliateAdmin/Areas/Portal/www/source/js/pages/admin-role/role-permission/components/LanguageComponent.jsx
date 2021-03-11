@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { headerText, globalResource, management, messages } from '../libs/constants';
+import { headerText, management, messages } from '../libs/constants';
 import { getMarketListByRole, toggleLoader, setGridData, updateMarketInfoList } from '../actions';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 import { updateObjectInArray } from '../../../../modules/dataHandler';
@@ -115,7 +115,7 @@ export class LanguageComponent extends PureComponent {
                 this.setState({ messagePopup: result.Message, isConfirmPopup: false });
             }
         } else {
-            this.setState({ messagePopup: globalResource.AnError, isConfirmPopup: false });
+            this.setState({ messagePopup: messages.AnError, isConfirmPopup: false });
         }
 
         this.props.toggleLoader(false);
@@ -152,7 +152,7 @@ export class LanguageComponent extends PureComponent {
         const dataRows = [];
         const { marketList } = this.props;
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             const { isEdit } = this.state;
 
             for (let i = 0; i < dataList.length; i++) {
@@ -162,7 +162,7 @@ export class LanguageComponent extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan={1 + (marketList && marketList.length)}>{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={1 + (marketList && marketList.length)}>{messages.NoInfo}</Cell>
             </Row>);
         }
 
