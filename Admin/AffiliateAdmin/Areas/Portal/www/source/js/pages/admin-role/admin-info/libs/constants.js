@@ -1,9 +1,10 @@
 ﻿import { globalResource } from '../../../../modules/globalResource';
 
-export { globalResource };
-
 export const messages = {
-    RequiredRole: "Role is required!"
+    RequiredRole: "Role is required!",
+    AnError: globalResource.AnError,
+    NoInfo: globalResource.NoInfo,
+    UpdateStatusSuccessfully: "User's status has been updated successfully!"
 }
 
 export const resources = {

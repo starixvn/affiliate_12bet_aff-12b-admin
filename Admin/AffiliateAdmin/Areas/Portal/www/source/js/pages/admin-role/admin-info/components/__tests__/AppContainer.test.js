@@ -3,7 +3,11 @@ import { AppContainer } from '../AppContainer';
 import { shallow } from 'enzyme';
 import MyLink from '../../../../common/components/MyLink';
 
-describe('affiliate info - components - AppContainer', () => {
+describe('admin info - components - AppContainer', () => {
+    afterAll(() => {
+        jest.resetAllMocks();
+    });
+
     it('render correctly', () => {
         const result = shallow(<AppContainer isShowLoader={true} userName={''} />);
 

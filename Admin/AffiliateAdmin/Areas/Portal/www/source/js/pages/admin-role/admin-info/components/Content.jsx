@@ -6,7 +6,6 @@ import { messages, initialState, resources } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { validateUserName, validateNewPassword } from '../../../../modules/utils';
 import { convertMarketListByRole, getSelectedMarketName, validateLanguage } from '../libs/utils';
-import { globalResource } from '../../../../modules/globalResource';
 import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByRole, getPermissionListByRole, setPermissionListByRole } from '../actions';
 import ChangePasswordForm from '../../../common/components/ChangePasswordForm';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
@@ -61,7 +60,7 @@ export class Content extends PureComponent {
 
             this.props.setPermissionListByRole(UserPermissionList);
         } else {
-            this._handleShowAlert(false, globalResource.AnError);
+            this._handleShowAlert(false, messages.AnError);
         }
 
         this.props.toggleLoader(false);
@@ -140,7 +139,7 @@ export class Content extends PureComponent {
         }
     }
 
-    _handlePressEnter = (event) => {
+    _handlePressEnter = (event, isValid) => {
         if (event.charCode === 13) {
             event.preventDefault()
             this._handleSubmit(isValid);
@@ -236,7 +235,7 @@ export class Content extends PureComponent {
 
             this.setState({ messagePopup, isConfirmPopup: false, isAfterDeleted: true });
         } else {
-            this.setState({ messagePopup: globalResource.AnError, isDeleteUser: false, isConfirmPopup: false });
+            this.setState({ messagePopup: messages.AnError, isDeleteUser: false, isConfirmPopup: false });
         }
 
         this.props.toggleLoader(false);
@@ -248,12 +247,12 @@ export class Content extends PureComponent {
         const result = await this.props.updateStatus({ userId, isClosed: isActive });
 
         if (result) {
-            const messagePopup = result.IsSuccessful ? "User's status has been updated successfully!" : result.Message;
+            const messagePopup = result.IsSuccessful ? messages.UpdateStatusSuccessfully : result.Message;
 
             result.IsSuccessful && this.setState({ isActive: !isActive });
             this.setState({ messagePopup, isConfirmPopup: false });
         } else {
-            this.setState({ messagePopup: globalResource.AnError, isConfirmPopup: false });
+            this.setState({ messagePopup: messages.AnError, isConfirmPopup: false });
         }
 
         this.props.toggleLoader(false);
@@ -382,7 +381,7 @@ export class Content extends PureComponent {
                                         <Input type="text" className="refix" disabled value="AA" />
                                         <div className="user-name-group">
                                             <Input type="text" className="input-required user-name" placeholder="Enter User Name" name="newUserName" id="newUserName"
-                                                value={newUserName} onKeyPress={this._handlePressEnter} onChange={this._handleChange} invalid={isClickedSubmit && !validatedUserNameResult.IsValid} />
+                                                value={newUserName} onKeyPress={(e) => this._handlePressEnter(e, isValid)} onChange={this._handleChange} invalid={isClickedSubmit && !validatedUserNameResult.IsValid} />
                                             {!validatedUserNameResult.IsValid &&
                                                 <FormFeedback className="invalid-user-name"><div dangerouslySetInnerHTML={{ __html: validatedUserNameResult.Message }} /></FormFeedback>}
                                         </div>
@@ -392,7 +391,7 @@ export class Content extends PureComponent {
                                     <Label for="firstName" sm="auto" className="required">{resources.FirstName}</Label>
                                     <Col sm={5}>
                                         <Input type="text" className="input-required mt-2" placeholder="Enter First Name" name="firstName" id="firstName"
-                                            value={firstName} onKeyPress={this._handlePressEnter} onChange={this._handleChange} invalid={isClickedSubmit && !firstName} />
+                                            value={firstName} onKeyPress={(e) => this._handlePressEnter(e, isValid)} onChange={this._handleChange} invalid={isClickedSubmit && !firstName} />
                                         {!firstName &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: "First Name is required!" }} /></FormFeedback>}
                                     </Col>
@@ -401,7 +400,7 @@ export class Content extends PureComponent {
                                     <Label for="lastName" sm="auto" className="required">{resources.LastName}</Label>
                                     <Col sm={5}>
                                         <Input type="text" className="input-required mt-2" placeholder="Enter Last Name" name="lastName" id="lastName"
-                                            value={lastName} onKeyPress={this._handlePressEnter} onChange={this._handleChange} invalid={isClickedSubmit && !lastName} />
+                                            value={lastName} onKeyPress={(e) => this._handlePressEnter(e, isValid)} onChange={this._handleChange} invalid={isClickedSubmit && !lastName} />
                                         {!lastName &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: "Last Name is required!" }} /></FormFeedback>}
                                     </Col>
@@ -413,7 +412,7 @@ export class Content extends PureComponent {
                                                 <Label for="newPassword" sm="auto" className="required">{resources.Password}</Label>
                                                 <Col sm={5}>
                                                     <Input type="password" className="input-required mt-2" placeholder="Enter Default Password" name="newPassword" id="newPassword" autoComplete="false"
-                                                        value={newPassword} onKeyPress={this._handlePressEnter} onChange={this._handleChange} invalid={isClickedSubmit && !validatedPasswordResult.IsValid} />
+                                                        value={newPassword} onKeyPress={(e) => this._handlePressEnter(e, isValid)} onChange={this._handleChange} invalid={isClickedSubmit && !validatedPasswordResult.IsValid} />
                                                     {validatedPasswordResult.Message &&
                                                         <FormFeedback><div dangerouslySetInnerHTML={{ __html: validatedPasswordResult.Message }} /></FormFeedback>}
                                                 </Col>

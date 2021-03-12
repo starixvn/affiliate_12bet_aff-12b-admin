@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private async Task<string> GetContent(string fileName)
         {
-            var url = $"{AppSetting.ResourceDomain}{NEWSLETTER_CONTENT_PATH}?fileName={fileName}";
+            var url = new Uri($"{AppSetting.ResourceDomain}{NEWSLETTER_CONTENT_PATH}?fileName={fileName}");
             var content = await HttpClient.GetAsync(url);
             if (content.IsSuccessStatusCode)
             {

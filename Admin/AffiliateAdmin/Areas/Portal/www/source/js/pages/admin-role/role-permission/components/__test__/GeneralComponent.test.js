@@ -17,7 +17,6 @@ describe('role permission - components - GeneralComponent', () => {
         IsHost: true,
         IsRead: true,
         ParentId: 1,
-        Policy: 3,
         RoleId: 1,
         RoleName: "Management"
     },
@@ -29,7 +28,6 @@ describe('role permission - components - GeneralComponent', () => {
         IsHost: true,
         IsRead: true,
         ParentId: 22,
-        Policy: 3,
         RoleId: 1,
         RoleName: "Management"
     },
@@ -41,7 +39,6 @@ describe('role permission - components - GeneralComponent', () => {
         IsHost: true,
         IsRead: true,
         ParentId: 22,
-        Policy: 3,
         RoleId: 1,
         RoleName: "Management"
     },
@@ -53,7 +50,6 @@ describe('role permission - components - GeneralComponent', () => {
         IsHost: true,
         IsRead: true,
         ParentId: 22,
-        Policy: 3,
         RoleId: 1,
         RoleName: "Management"
     },
@@ -65,7 +61,6 @@ describe('role permission - components - GeneralComponent', () => {
         IsHost: true,
         IsRead: true,
         ParentId: 24,
-        Policy: 3,
         RoleId: 1,
         RoleName: "Management"
     },
@@ -77,7 +72,6 @@ describe('role permission - components - GeneralComponent', () => {
         IsHost: true,
         IsRead: true,
         ParentId: 1,
-        Policy: 3,
         RoleId: 2,
         RoleName: "Exe. Settlement"
     },
@@ -89,7 +83,6 @@ describe('role permission - components - GeneralComponent', () => {
         IsHost: false,
         IsRead: true,
         ParentId: 22,
-        Policy: 0,
         RoleId: 2,
         RoleName: "Exe. Settlement"
     },
@@ -101,7 +94,6 @@ describe('role permission - components - GeneralComponent', () => {
         IsHost: false,
         IsRead: true,
         ParentId: 22,
-        Policy: 0,
         RoleId: 2,
         RoleName: "Exe. Settlement"
     },
@@ -113,7 +105,6 @@ describe('role permission - components - GeneralComponent', () => {
         IsHost: false,
         IsRead: false,
         ParentId: 22,
-        Policy: 0,
         RoleId: 2,
         RoleName: "Exe. Settlement"
     },
@@ -125,7 +116,6 @@ describe('role permission - components - GeneralComponent', () => {
         IsHost: false,
         IsRead: false,
         ParentId: 24,
-        Policy: 3,
         RoleId: 2,
         RoleName: "Exe. Settlement"
     },
@@ -137,7 +127,6 @@ describe('role permission - components - GeneralComponent', () => {
         IsHost: true,
         IsRead: true,
         ParentId: 1,
-        Policy: 3,
         RoleId: 3,
         RoleName: "Assistant"
     }];
@@ -269,7 +258,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: false,
                 IsRead: false,
                 ParentId: 24,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -284,7 +272,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: true,
                 IsRead: true,
                 ParentId: 24,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -307,7 +294,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: true,
                 IsRead: true,
                 ParentId: 24,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -331,7 +317,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: false,
                 IsRead: false,
                 ParentId: 24,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             },
@@ -343,7 +328,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: true,
                 IsRead: true,
                 ParentId: 24,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -358,7 +342,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: true,
                 IsRead: true,
                 ParentId: 24,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             },
@@ -370,7 +353,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: true,
                 IsRead: true,
                 ParentId: 24,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -394,7 +376,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: false,
                 IsRead: false,
                 ParentId: 25,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -409,7 +390,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: true,
                 IsRead: true,
                 ParentId: 25,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -434,7 +414,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: true,
                 IsRead: true,
                 ParentId: 25,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -449,7 +428,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: false,
                 IsRead: true,
                 ParentId: 25,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -474,7 +452,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: true,
                 IsRead: true,
                 ParentId: 25,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -489,7 +466,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: false,
                 IsRead: false,
                 ParentId: 25,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -514,7 +490,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: false,
                 IsRead: false,
                 ParentId: 25,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
@@ -529,7 +504,6 @@ describe('role permission - components - GeneralComponent', () => {
                 IsHost: false,
                 IsRead: true,
                 ParentId: 25,
-                Policy: 3,
                 RoleId: 2,
                 RoleName: "Exe. Settlement"
             }
