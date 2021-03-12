@@ -7,7 +7,7 @@ import { htmlDecode } from '../../../../modules/htmlHelper';
 import { validateUserName, validateNewPassword } from '../../../../modules/utils';
 import { convertMarketListByRole, getSelectedMarketName, validateLanguage } from '../libs/utils';
 import { globalResource } from '../../../../modules/globalResource';
-import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByUser, getMarketListByRole, getPermissionListByRole, setPermissionListByRole } from '../actions';
+import { fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByRole, getPermissionListByRole, setPermissionListByRole } from '../actions';
 import ChangePasswordForm from '../../../common/components/ChangePasswordForm';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
 import PersonalPermissionTable from './PersonalPermissionTable';
@@ -495,12 +495,12 @@ export class Content extends PureComponent {
 }
 
 function mapStateToProps({ userId, userName, adminInfo, hasWriteAdminRoleClaim }) {
-    const { roleList, permissionListByRole, marketListByUser } = adminInfo;
-    return Object.assign({}, { userId, userName, roleList, permissionListByRole, marketListByUser, hasWriteAdminRoleClaim });
+    const { roleList, permissionListByRole } = adminInfo;
+    return Object.assign({}, { userId, userName, roleList, permissionListByRole, hasWriteAdminRoleClaim });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByUser, getMarketListByRole, getPermissionListByRole, setPermissionListByRole }, dispatch);
+    return bindActionCreators({ fetchData, createUser, updateUser, toggleLoader, getRoleList, redirectToAdminList, deleteUsers, updateStatus, getMarketListByRole, getPermissionListByRole, setPermissionListByRole }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

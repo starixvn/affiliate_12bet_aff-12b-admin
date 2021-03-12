@@ -61,7 +61,7 @@ export class Content extends PureComponent {
 
         if (result) {
             if (result.IsSuccessful) {
-                const message = `The selected member has been ${isRemoved ? 'removed' : 'reinstansed'} successfully!`;
+                const message = `The selected member has been ${isRemoved ? 'removed' : 'reinstated'} successfully!`;
                 this.setState({ message, isConfirmPopup: false });
 
                 this.props.fetchData(this.props.param);
