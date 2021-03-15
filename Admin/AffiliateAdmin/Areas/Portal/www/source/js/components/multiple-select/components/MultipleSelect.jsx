@@ -107,7 +107,7 @@ export default class MultipleSelect extends Component {
 
     _callBackToParent(selectedItem, newDataSource) {
         const selectedItemsKey = this._getSelectedItemKey(newDataSource);
-        this.props.onChange && this.props.onChange(selectedItem, selectedItemsKey);
+        this.props.onChange && this.props.onChange(selectedItem, selectedItemsKey, false);
     }
 
     _convertDataSource() {

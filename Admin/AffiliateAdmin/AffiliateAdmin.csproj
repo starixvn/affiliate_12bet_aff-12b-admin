@@ -302,6 +302,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\PersonalPermissionTable.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\__tests__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\__tests__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\__tests__\PersonalPermissionTable.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\__tests__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\__tests__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\components\__tests__\redux\PersonalPermissionTable.redux.test.js" />

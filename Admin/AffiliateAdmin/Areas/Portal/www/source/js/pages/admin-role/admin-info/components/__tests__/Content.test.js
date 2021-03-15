@@ -607,6 +607,38 @@ describe('admin info - components - Content', () => {
         expect(props.redirectToAdminList).not.toHaveBeenCalled();
     });
 
+    it('_handleChangeMarket - should call setState and _handleUpdateMarketList', () => {
+        const result = shallow(<Content {...defaultProps} />);
+        const instance = result.instance();
+        instance.setState = jest.fn((obj, func) => func && func());
+        instance._handleUpdateMarketList = jest.fn();
+
+        const item = { MarketId: "SetByDefault", MarketName: "Set to Role's Default", HasPermission: true };
+        instance._handleChangeMarket(item, '', true);
+
+        expect(instance.setState).toHaveBeenCalledWith({ itemDefault: item }, expect.any(Function));
+        expect(instance._handleUpdateMarketList).toHaveBeenCalledWith(0);
+    });
+
+    it('_handleChangeMarket - should call setState but not call _handleUpdateMarketList', () => {
+        const result = shallow(<Content {...defaultProps} />);
+        const instance = result.instance();
+        instance.setState({ marketListByRole: marketList });
+        instance.setState = jest.fn();
+        instance._handleUpdateMarketList = jest.fn();
+
+        const item = { MarketId: "vi-VN", MarketName: "VietNamese", HasPermission: false };
+        instance._handleChangeMarket(item, 'en-US', false);
+
+        expect(instance.setState).toHaveBeenCalledWith({
+            marketListByRole: [
+                { MarketId: "en-US", MarketName: "English", HasPermission: true },
+                { MarketId: "vi-VN", MarketName: "Vietnamese", HasPermission: false },
+                { MarketId: "th-TH", MarketName: "Thai", HasPermission: false }
+            ] });
+        expect(instance._handleUpdateMarketList).not.toHaveBeenCalled();
+    });
+
     it('_deleteUser - should call deleteUsers, setState when success', async () => {
         const props = Object.assign({}, defaultProps, { deleteUsers: jest.fn(() => ({ IsSuccessful: true, Message: "" })) });
         const result = shallow(<Content {...props} />);
