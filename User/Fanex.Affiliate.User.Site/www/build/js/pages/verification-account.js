@@ -121,7 +121,7 @@ var VerificationAccount = (function () {
             var $form = $("#sendCodeForm");
             var validator = $form.validate();
             var isValidForm = validator.form();
-            
+
             if (isValidForm) {
                 var email = $('#Email').val().trim();
                 var token = $('input[name="__RequestVerificationToken"]', $("#verificationAccountForm")).val();
@@ -144,7 +144,7 @@ var VerificationAccount = (function () {
                             $('#btnSendCode').prop("disabled", true);
                             $('#Email').prop("disabled", true);
                             _me.countDown(INTERVAL_SENDCODE_SECOND);
-                            
+
                             if (!response.CanSendCode) {
                                 alert($("<div/>").html(resource.wait60Seconds).text());
                             }
@@ -215,6 +215,7 @@ var VerificationAccount = (function () {
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
+                        console.log(response);
                         if (response.IsOk) {
                             Site.showLoader();
                             Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
