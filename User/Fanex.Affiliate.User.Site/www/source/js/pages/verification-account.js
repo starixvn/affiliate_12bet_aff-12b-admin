@@ -168,7 +168,6 @@
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
-                        console.log(response);
                         if (response.IsOk) {
                             Site.showLoader();
                             Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
