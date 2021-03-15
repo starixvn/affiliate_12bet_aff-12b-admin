@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
@@ -42,11 +41,9 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [Required]
         public string Country { get; set; }
 
-        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         [SpParamProtecting(Function.AffWebUrl, Function.WritePermission)]
         public string SiteUrl { get; set; }
 
-        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         [SpParamProtecting(Function.AffWebUrl, Function.WritePermission)]
         public string MoreSiteUrls { get; set; }
@@ -85,10 +82,10 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 
         public bool MailOption { get; set; }
 
-        [SpParamProtecting(Function.SecurityQa, Function.WritePermission)]
+        [SpParamProtecting(Function.SecurityQA, Function.WritePermission)]
         public int? QuestionId { get; set; }
 
-        [SpParamProtecting(Function.SecurityQa, Function.WritePermission)]
+        [SpParamProtecting(Function.SecurityQA, Function.WritePermission)]
         public string Answer { get; set; }
 
         public IEnumerable<ContactApp> ContactAppList { get; set; }

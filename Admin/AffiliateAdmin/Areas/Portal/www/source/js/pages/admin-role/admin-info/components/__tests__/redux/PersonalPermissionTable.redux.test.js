@@ -1,53 +1,23 @@
-﻿jest.mock('redux');
-jest.mock('react-redux');
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../../actions/index';
+﻿import React from 'react';
+import PersonalPermissionTable from '../../PersonalPermissionTable';
+import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
 
-describe('admin info - PersonalPermissionTable - connect', () => {
-	let mapStateToProps, mapDispatchToProps;
-	const connectMock = jest.fn();
+const mockStore = configureMockStore();
 
-	beforeAll(() => {
-		connect.mockImplementationOnce((mapStateToPropsFunc, mapDispatchToPropsFunc) => {
-			mapStateToProps = mapStateToPropsFunc;
-			mapDispatchToProps = mapDispatchToPropsFunc;
-			return connectMock;
-		});
-		require('../../PersonalPermissionTable').default;
-	});
+describe('admin info - components - PersonalPermissionTable - connect', () => {
+    let wrapper;
+    let store;
 
-	it('props should be mapped correctly', () => {
-		const expectedResult = {
-			permissionListByRole: [{ RoleId: 123 }]
-		};
+    beforeEach(() => {
+        const initialState = {
+            adminInfo: { permissionListByRole: [] }
+        };
+        store = mockStore(initialState);
+        wrapper = shallow(<PersonalPermissionTable store={store} />).dive();
+    });
 
-		const state = {
-			adminInfo: { permissionListByRole: [{ RoleId: 123 }] },
-			anotherProp: "Not included"
-		};
-
-		const result = mapStateToProps(state);
-
-		expect(result).toEqual(expectedResult);
-	})
-
-	it('bindActionCreators should be called with correct parameter', () => {
-		const mockBindAction = jest.fn();
-		bindActionCreators.mockImplementationOnce(mockBindAction);
-		const expectedActionCreator = {
-			setPermissionListByRole: actions['setPermissionListByRole']
-		}
-
-		const dispatch = {};
-		mapDispatchToProps(dispatch);
-
-		expect(mockBindAction).toHaveBeenCalledWith(expectedActionCreator, dispatch);
-	})
-
-	it('returned function of connect should be called with correct parameter', () => {
-		const PersonalPermissionTable = require('../../PersonalPermissionTable').PersonalPermissionTable;
-
-		expect(connectMock).toHaveBeenCalledWith(PersonalPermissionTable);
-	})
+    it('should show correct value', () => {
+        expect(wrapper.props().permissionListByRole).toEqual([]);
+    });
 })

@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
                 ctx.HttpContext.Request == request &&
                 ctx.HttpContext.Server == server.Object &&
                 ctx.HttpContext.Session.SessionID == "SessionId" &&
-                ctx.HttpContext.User == new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(Function.SecurityQa, "Write") } ) })
+                ctx.HttpContext.User == new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(Function.SecurityQA, "Write") }) })
             );
 
             // Action

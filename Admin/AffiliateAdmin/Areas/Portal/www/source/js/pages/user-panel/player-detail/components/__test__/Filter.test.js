@@ -32,6 +32,7 @@ describe('players detail - components - Filter', () => {
         setParam,
         getProductList,
         hasTurnOverPermission: true,
+        isDisplayExportExcelBtn: true,
         sortedParam: { sortById: 5, isSortAsc: false }
     };
 

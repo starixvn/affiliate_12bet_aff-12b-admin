@@ -81,35 +81,35 @@ export const headerText = {
 
 export const headerConfig = {
     [reportKey.UserName]: { label: headerText[reportKey.UserName], isVisable: (claimPrincipal, isMainView) => isMainView },
-    [reportKey.MonthDateString] : { label: headerText[reportKey.MonthDateString], isVisable: (claimPrincipal, isMainView) => !isMainView},
-    [reportKey.TotalClick]: { label: headerText[reportKey.TotalClick]},
-    [reportKey.UniqueClick]: {label: headerText[reportKey.UniqueClick]},
-    [reportKey.Signup]: {label: headerText[reportKey.Signup]},
-    [reportKey.Fdm]: {label: headerText[reportKey.Fdm]},
-    [reportKey.ActiveMember]: { label: headerText[reportKey.ActiveMember], isVisable: (claimPrincipal) => claimPrincipal.hasReadClaim(claimResource.AffPlayerDetail)},
-    [reportKey.QualifiedMember]: { label: headerText[reportKey.QualifiedMember], isVisable: (claimPrincipal) => claimPrincipal.hasReadClaim(claimResource.AffPlayerDetail)},
+    [reportKey.MonthDateString]: { label: headerText[reportKey.MonthDateString], isVisable: (claimPrincipal, isMainView) => !isMainView },
+    [reportKey.TotalClick]: { label: headerText[reportKey.TotalClick] },
+    [reportKey.UniqueClick]: { label: headerText[reportKey.UniqueClick] },
+    [reportKey.Signup]: { label: headerText[reportKey.Signup] },
+    [reportKey.Fdm]: { label: headerText[reportKey.Fdm] },
+    [reportKey.ActiveMember]: { label: headerText[reportKey.ActiveMember], isVisable: (claimPrincipal) => claimPrincipal.hasReadClaim(claimResource.AffPlayerDetail) },
+    [reportKey.QualifiedMember]: { label: headerText[reportKey.QualifiedMember], isVisable: (claimPrincipal) => claimPrincipal.hasReadClaim(claimResource.AffPlayerDetail) },
     [reportKey.MemberStatistics]: {
         label: headerText[reportKey.MemberStatistics],
         cols: {
-            [reportKey.Deposit]: { label: headerText[reportKey.Deposit]},
-            [reportKey.Withdrawal]: { label: headerText[reportKey.Withdrawal]},
-            [reportKey.Turnover]: { label: headerText[reportKey.Turnover], isVisable: (claimPrincipal) => claimPrincipal.hasReadClaim(claimResource.TurnOver)},
-            [reportKey.Winlost]: { label: headerText[reportKey.Winlost]},
-            [reportKey.Bonus]: {label: headerText[reportKey.Bonus]},
-            [reportKey.PlatformFee]: {label: headerText[reportKey.PlatformFee]},
-            [reportKey.OperationalFee]: {label: headerText[reportKey.OperationalFee]},
-            [reportKey.BankingFee]: {label: headerText[reportKey.BankingFee]},
-            [reportKey.TotalFee]: { label: headerText[reportKey.TotalFee]},
+            [reportKey.Deposit]: { label: headerText[reportKey.Deposit] },
+            [reportKey.Withdrawal]: { label: headerText[reportKey.Withdrawal] },
+            [reportKey.Turnover]: { label: headerText[reportKey.Turnover], isVisable: (claimPrincipal) => claimPrincipal.hasReadClaim(claimResource.TurnOver) },
+            [reportKey.Winlost]: { label: headerText[reportKey.Winlost] },
+            [reportKey.Bonus]: { label: headerText[reportKey.Bonus] },
+            [reportKey.PlatformFee]: { label: headerText[reportKey.PlatformFee] },
+            [reportKey.OperationalFee]: { label: headerText[reportKey.OperationalFee] },
+            [reportKey.BankingFee]: { label: headerText[reportKey.BankingFee] },
+            [reportKey.TotalFee]: { label: headerText[reportKey.TotalFee] },
         }
     },
-    [reportKey.AffiliateStatistics] : {
+    [reportKey.AffiliateStatistics]: {
         label: headerText.AffiliateStatistics,
         cols: {
-            [reportKey.CommissionRate]: {label: headerText[reportKey.CommissionRate]},
-            [reportKey.Earning]: {label: headerText[reportKey.Earning]},
-            [reportKey.AffWithdrawal]: {label: headerText[reportKey.AffWithdrawal]},
-            [reportKey.AffAdjustment]: {label: headerText[reportKey.AffAdjustment], isVisable: (claimPrincipal, isMainView) => claimPrincipal.hasReadClaim(claimResource.Adjustment) && isMainView},
-            [reportKey.BalanceBf]: {label: headerText[reportKey.BalanceBf]}
+            [reportKey.CommissionRate]: { label: headerText[reportKey.CommissionRate] },
+            [reportKey.Earning]: { label: headerText[reportKey.Earning] },
+            [reportKey.AffWithdrawal]: { label: headerText[reportKey.AffWithdrawal] },
+            [reportKey.AffAdjustment]: { label: headerText[reportKey.AffAdjustment], isVisable: (claimPrincipal, isMainView) => claimPrincipal.hasReadClaim(claimResource.AffAdjustment) && isMainView },
+            [reportKey.BalanceBf]: { label: headerText[reportKey.BalanceBf] }
         }
     }
 

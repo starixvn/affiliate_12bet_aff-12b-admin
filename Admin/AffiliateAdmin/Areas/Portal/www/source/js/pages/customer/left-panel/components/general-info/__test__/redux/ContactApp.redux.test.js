@@ -2,8 +2,6 @@
 jest.mock('react-redux');
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../../../actions/index';
 
 describe('left panel - ContactApp - connect', () => {
     let mapStateToProps;

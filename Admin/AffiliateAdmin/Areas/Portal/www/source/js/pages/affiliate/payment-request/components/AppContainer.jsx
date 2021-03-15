@@ -32,9 +32,9 @@ export class AppContainer extends PureComponent {
                 <Filter />
                 <Content />
                 <PaymentRequestUpdateForm
-                    isUpdatable={claimsPrincipal.hasWriteClaim(claimResource.Payment)}
-                    isShowEmail={claimsPrincipal.hasReadClaim(claimResource.Email)}
-                    isShowPaymentInfo={claimsPrincipal.hasReadClaim(claimResource.PaymentInfo)}
+                    isUpdatable={claimsPrincipal.hasWriteClaim(claimResource.PaymentRequest)}
+                    isShowEmail={claimsPrincipal.hasReadClaim(claimResource.AffEmail)}
+                    isShowPaymentInfo={claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo)}
                     transactionId={transactionId}
                     handleClosePopup={this.handleClosePopup}
                     handleFetchData={this.handleFetchData}

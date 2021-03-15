@@ -17,7 +17,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
-    [FunctionAuthorize(FunctionName = Function.Media)]
+    [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu)]
     public class TextListController : ReadOnlySessionBaseController
     {
         private const int TextListCategory = 2;
@@ -94,7 +94,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult InsertText(InsertUpdateTextParam param)
         {
             if (ModelState.IsValid)
@@ -120,7 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult UpdateText(InsertUpdateTextParam param)
         {
             var isValidTextId = param.TextId >= Validation.MinId;
@@ -147,7 +147,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult DeleteTexts(DeleteTextParam param)
         {
             if (ModelState.IsValid)

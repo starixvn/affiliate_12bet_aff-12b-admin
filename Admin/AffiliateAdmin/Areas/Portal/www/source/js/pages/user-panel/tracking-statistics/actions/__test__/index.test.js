@@ -1,6 +1,7 @@
 ﻿import * as actions from '../index';
 import * as types from '../types';
 import * as ajaxRequest from '../../../../../modules/ajaxRequest';
+import { getTrackingCodeList as trackingCodeList } from '../../../../customer/user-panel/libs/service';
 
 const runTestAction = ({ name, type, data }) => {
     it(`should create action to ${name}`, () => {
@@ -21,9 +22,18 @@ describe('landing page actions', () => {
     });
 
     it('getTrackingCodeList - should return correct data', async () => {
-        const getTrackingCodeList = await actions['getTrackingCodeList'](1300390);
 
-        expect(getTrackingCodeList).toEqual(expect.any(Function));
+        const expectData = ["[None]", "Casino", "Sportsbook"];
+        const mockFunc = jest.fn(() => expectData);
+        const result = await actions['getTrackingCodeList'](1300390, mockFunc)();
+
+        expect(result).toEqual(expectData);
+    })
+
+    it('getTrackingCodeList - should return correct data with default func', async () => {
+        const result = await actions['getTrackingCodeList'](1300390);
+
+        expect(result).toEqual(expect.any(Function));
     })
 
     it('should create action to fetchData with correct parameter', async () => {
@@ -51,7 +61,7 @@ describe('landing page actions', () => {
             affId: 1300390,
             trackingCode: ""
         }
-        
+
         const result = await actions['fetchData'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsList', param);
@@ -102,7 +112,7 @@ describe('landing page actions', () => {
             selectedMonth: "January-2017",
             trackingCode: ""
         }
-        
+
         const result = await actions['fetchDetailData'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsDetailList', param);

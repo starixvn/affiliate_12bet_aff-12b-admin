@@ -18,6 +18,7 @@ const runTestAction = ({ name, type, data }) => {
 
 const actionList = [
     { name: 'setUserAccountInfo', type: types.SET_USER_ACCOUNT_INFO, data: { Id: 123 }},
+    { name: 'setHasWriteEditAffClaim', type: types.SET_HAS_WRITE_EDIT_AFF_CLAIM, data: false},
     { name: 'setMoreSiteUrlsList', type: types.SET_MORE_SITE_URLS_LIST, data: 'setMoreSiteUrlsList' }
 ];
 

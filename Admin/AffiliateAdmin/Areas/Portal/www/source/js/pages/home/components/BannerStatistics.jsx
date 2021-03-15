@@ -46,7 +46,7 @@ export const BannerStatistics = (props) => {
 }
 
 function mapStateToProps({ generalInfo, claimsPrincipal }) {
-    const isShowBannerLink = claimsPrincipal.hasReadClaim(claimResource.MediaGallery);
+    const isShowBannerLink = claimsPrincipal.hasReadClaim(claimResource.MediaGalleryMenu);
 
     return Object.assign({}, { generalInfo, isShowBannerLink });
 }

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`role permission - components - AppContainer render correctly 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <Memo(SubMenu)
+    isSelectedRolePermission={true}
+  />
+  <Connect(Component) />
+</AppLayout>
+`;

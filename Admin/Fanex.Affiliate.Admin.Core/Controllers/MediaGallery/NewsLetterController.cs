@@ -16,7 +16,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
-    [FunctionAuthorize(FunctionName = Function.Media)]
+    [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu)]
     public class NewsLetterController : ReadOnlySessionBaseController
     {
         private ILanguageService LanguageService { get; }
@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult InsertNewsLetter(HttpPostedFileBase file, NewsLetterViewModel model)
         {
             if (ModelState.IsValid && file != null)
@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult UpdateNewsLetter(HttpPostedFileBase file, NewsLetterViewModel model)
         {
             if (ModelState.IsValid)
@@ -134,7 +134,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult DeleteNewsLetters(string ids)
         {
             var param = new DeleteNewsLetterParam

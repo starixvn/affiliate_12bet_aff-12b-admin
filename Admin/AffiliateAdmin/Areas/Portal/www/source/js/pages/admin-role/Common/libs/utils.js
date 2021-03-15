@@ -1,3 +1,3 @@
 ﻿import ClaimPrincipal, { claimResource } from '../../../../modules/claim';
 
-export const hasWriteUserControlClaim = ClaimPrincipal.currentClaimPrincipal.hasWriteClaim(claimResource.UserControl);
+export const hasWriteAdminRoleClaim = ClaimPrincipal.currentClaimPrincipal.hasWriteClaim(claimResource.AdminRoleMenu);

@@ -73,7 +73,7 @@ export class Content extends Component {
 }
 
 function mapStateToProps({ reportTitle, param, languageList, columnList, claimsPrincipal }) {
-    const isDisplayExportExcelBtn = claimsPrincipal.hasClaim(claimResource.ExportExcel);
+    const isDisplayExportExcelBtn = claimsPrincipal.hasClaim(claimResource.ExportAffInfoExcel);
     return Object.assign({}, { reportTitle, param, languageList, columnList, isDisplayExportExcelBtn });
 }
 

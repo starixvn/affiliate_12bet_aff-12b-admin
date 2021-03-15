@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`role permission - components - Content render correctly 1`] = `
+<div
+  className="data-content"
+>
+  <Container
+    className="tab-container"
+    fluid={true}
+    tag="div"
+  >
+    <div
+      className="tab-menu-container py-2"
+    >
+      <ul
+        className="nav"
+      >
+        <li
+          className="nav-item"
+        >
+          <Memo(MyLink)
+            className="sub-nav-link tab-link active"
+            onClick={[Function]}
+          >
+            <span
+              className="menu-text"
+            >
+              General
+            </span>
+          </Memo(MyLink)>
+        </li>
+        <li
+          className="nav-item pl-3"
+        >
+          <Memo(MyLink)
+            className="sub-nav-link tab-link "
+            onClick={[Function]}
+          >
+            <span
+              className="menu-text"
+            >
+              Language
+            </span>
+          </Memo(MyLink)>
+        </li>
+      </ul>
+    </div>
+    <Connect(GeneralComponent) />
+  </Container>
+</div>
+`;
+
+exports[`role permission - components - Content render correctly with not isGeneral 1`] = `
+<div
+  className="data-content"
+>
+  <Container
+    className="tab-container"
+    fluid={true}
+    tag="div"
+  >
+    <div
+      className="tab-menu-container py-2"
+    >
+      <ul
+        className="nav"
+      >
+        <li
+          className="nav-item"
+        >
+          <Memo(MyLink)
+            className="sub-nav-link tab-link "
+            onClick={[Function]}
+          >
+            <span
+              className="menu-text"
+            >
+              General
+            </span>
+          </Memo(MyLink)>
+        </li>
+        <li
+          className="nav-item pl-3"
+        >
+          <Memo(MyLink)
+            className="sub-nav-link tab-link active"
+            onClick={[Function]}
+          >
+            <span
+              className="menu-text"
+            >
+              Language
+            </span>
+          </Memo(MyLink)>
+        </li>
+      </ul>
+    </div>
+    <Connect(LanguageComponent) />
+  </Container>
+</div>
+`;

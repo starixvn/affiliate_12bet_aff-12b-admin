@@ -21,7 +21,7 @@ export const Unactivated = (props) => {
     }
 
     function _renderHeader() {
-        const {isShowMemberFullname} = props;
+        const { isShowMemberFullname } = props;
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
@@ -58,7 +58,7 @@ export const Unactivated = (props) => {
     }
 
     function _buildDataRow(dataItem, index) {
-        const {isShowMemberFullname} = props;
+        const { isShowMemberFullname } = props;
         const userName = htmlDecode(dataItem.UserName);
         const firstName = htmlDecode(dataItem.FirstName);
         const lastName = htmlDecode(dataItem.LastName);
@@ -96,7 +96,7 @@ export const Unactivated = (props) => {
 }
 
 function mapStateToProps({ unactivatedGridData, shouldResetScrollPosition, userNames, claimsPrincipal }) {
-    const isShowMemberFullname = claimsPrincipal.hasReadClaim(claimResource.AffMemberName);
+    const isShowMemberFullname = claimsPrincipal.hasReadClaim(claimResource.MemberName);
     return Object.assign({}, { unactivatedGridData, shouldResetScrollPosition, userNames, isShowMemberFullname });
 }
 

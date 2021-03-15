@@ -77,10 +77,16 @@ export class SettingPanel extends PureComponent {
     }
 
     _handleOpenCloseAff = () => {
-        const { affiliateInfo } = this.props;
+        const { affiliateInfo, today } = this.props;
+        const currentDate = new Date(today).getDate();
+
         const isClosed = !affiliateInfo.IsClosed;
 
-        this.setState({ messageNotification: `Are you sure you want to ${isClosed ? 'close' : 'open'} this affiliate?`, isConfirmPopup: true, isConfirmStatus: false, isClosed });
+        //closes an affiliate between the 1st and 5th of the month
+        const isSpecialDate = currentDate > 0 && currentDate < 6;
+        const specialMessage = isClosed && isSpecialDate ? messages.closedAffOnSpecialDate : '';
+
+        this.setState({ messageNotification: `${specialMessage}Are you sure you want to ${isClosed ? 'close' : 'open'} this affiliate?`, isConfirmPopup: true, isConfirmStatus: false, isClosed });
     }
 
     _openCloseAff = async (isClosed) => {
@@ -194,11 +200,11 @@ export class SettingPanel extends PureComponent {
     }
 }
 
-function mapStateToProps({ leftPanel, claimsPrincipal }) {
+function mapStateToProps({ leftPanel, claimsPrincipal, today }) {
     const { affiliateInfo, affName } = leftPanel;
     const isStatusModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffAccountStatus);
     const isStatusShowable = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus);
-    return Object.assign({}, { affiliateInfo, affName, isStatusShowable, isStatusModifiable });
+    return Object.assign({}, { affiliateInfo, affName, isStatusShowable, isStatusModifiable, today });
 };
 
 function mapDispatchToProps(dispatch) {

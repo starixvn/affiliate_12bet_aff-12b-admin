@@ -35,12 +35,21 @@ describe('user account - components - sections - Payment', () => {
     };
     const defaultProps = {
         userAccountInfo,
-        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
+        hasWriteEditAffClaim: true,
+        hasReadClaim: true,
+        hasWriteClaim: true,
         setUserAccountInfo: jest.fn()
     }
 
     it('render correctly', () => {
         const result = shallow(<Payment {...defaultProps} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('render correctly when not has read claim', () => {
+        const props = Object.assign({}, defaultProps, { hasReadClaim: false, hasWriteClaim: false });
+        const result = shallow(<Payment {...props} />);
 
         expect(result).toMatchSnapshot();
     });

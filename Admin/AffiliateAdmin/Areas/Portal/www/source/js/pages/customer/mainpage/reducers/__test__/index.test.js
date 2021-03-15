@@ -24,6 +24,7 @@ describe('customer - mainpage reducer', () => {
             param: {},
         },
         edit: {
+            hasWriteEditAffClaim: false,
             moreSiteUrlsList: null,
             userAccountInfo: null,
         },

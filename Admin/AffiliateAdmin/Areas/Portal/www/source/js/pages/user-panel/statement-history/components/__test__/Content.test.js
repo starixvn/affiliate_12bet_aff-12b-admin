@@ -51,9 +51,19 @@ describe('statement history - components - Content', () => {
             DateText: "Jun-2019",
             NormalizeDateText: "Jun-2019",
             Description: "",
-            Status: "Approved",
+            Status: "B/F",
             TransId: 1262276209,
-            TransType: 200
+            TransType: 0
+        },
+        {
+            Amount: 105,
+            Creator: "AAwalter",
+            DateText: "Jun-2019",
+            NormalizeDateText: "Jun-2019",
+            Description: "",
+            Status: "B/F",
+            TransId: 1262276208,
+            TransType: -1
         }
     ]
 
@@ -65,7 +75,7 @@ describe('statement history - components - Content', () => {
 
     it('render correctly with have data', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData });
 
         expect(result).toMatchSnapshot();
@@ -73,7 +83,7 @@ describe('statement history - components - Content', () => {
 
     it('render correctly with have data is empty', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData: {} });
 
         expect(result).toMatchSnapshot();
@@ -173,6 +183,19 @@ describe('statement history - components - Content', () => {
         wrapper.instance().handleSetTransactionId = jest.fn();
 
         const dataRow = shallow(<div>{wrapper.instance()._buildDataRow(gridData[0], 1)}</div>);
+
+        dataRow.find('Button').at(0).simulate('click');
+
+        expect(props.redirectToDailyEarning).toHaveBeenCalledWith({ affId: 1271808, monthDate: "Jun-2019", productId: 0 });
+    });
+
+    it('transTypeClickHandler - should call redirectToDailyEarning when click transaction Button', () => {
+        const props = Object.assign({}, defaultProps, { redirectToDailyEarning: jest.fn() });
+        const wrapper = shallow(<Content {...props} />);
+
+        wrapper.instance().handleSetTransactionId = jest.fn();
+
+        const dataRow = shallow(<div>{wrapper.instance()._buildDataRow(gridData[3], 1)}</div>);
 
         dataRow.find('Button').at(0).simulate('click');
 

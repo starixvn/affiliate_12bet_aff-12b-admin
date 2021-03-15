@@ -9,13 +9,15 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 }
 
 const testCaseList = [
-    { name: 'selectedLandingPageId', value: null, action: { type: types.SET_SELECTED_LANDING_PAGE_ID, data: 123 }, expectedResult: 123 },
-    { name: 'checkedLandingPages', value: null, action: { type: types.SET_CHECKED_LANDING_PAGES, data: { 123: true } }, expectedResult: { 123: true } },
+    { name: 'selectedNewsLetterPageId', value: null, action: { type: types.SET_SELECTED_NEWSLETTER_PAGE_ID, data: 123 }, expectedResult: 123 },
+    { name: 'selectedPreviewPageId', value: null, action: { type: types.SET_SELECTED_PREVIEW_PAGE_ID, data: 123 }, expectedResult: 123 },
+    { name: 'param', value: null, action: { type: types.SET_PARAM, data: { 123: true } }, expectedResult: { 123: true } },
+    { name: 'checkedNewsLetterPages', value: null, action: { type: types.SET_CHECKED_NEWSLETTER_PAGES, data: { 123: true } }, expectedResult: { 123: true } },
     { name: 'shouldResetScrollPosition', value: true, action: { type: types.SHOULD_RESET_SCROLL_POSITION, data: false }, expectedResult: false },
     { name: 'gridData', value: null, action: { type: types.SET_GRID_DATA, data: [{ name: 'abc' }] }, expectedResult: [{ name: 'abc' }] }
 ]
 
-describe('landing page list reducers', () => {
+describe('news letter reducers', () => {
     testCaseList.forEach((item) => {
         runTestReducer(item);
     })

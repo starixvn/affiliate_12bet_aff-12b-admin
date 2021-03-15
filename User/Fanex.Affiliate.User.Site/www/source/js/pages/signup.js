@@ -1,8 +1,5 @@
 ﻿var SignUp = (function ($) {
     var _isReadTermAndCondition = false;
-    function setFocusForLastInput() {
-        $("#websiteInfo .urlInput").last().focus();
-    }
 
     var _me = {
         initialize: function () {

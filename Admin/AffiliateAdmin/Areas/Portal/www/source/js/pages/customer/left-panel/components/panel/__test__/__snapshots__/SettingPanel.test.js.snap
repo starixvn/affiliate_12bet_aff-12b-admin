@@ -182,6 +182,193 @@ exports[`left panel - components - panel - SettingPanel render correctly 1`] = `
 </Memo(Panel)>
 `;
 
+exports[`left panel - components - panel - SettingPanel render correctly with isApproved and isClosed are true 1`] = `
+<Memo(Panel)
+  heading="Setting"
+>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Affiliate Type
+    </Col>
+    <Col
+      className="text-right text-primary"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <select
+        onBlur={[Function]}
+        onChange={[Function]}
+        style={
+          Object {
+            "display": "none",
+          }
+        }
+        value={2}
+      >
+        <option
+          key="affinfo-type-0"
+          value="2"
+        >
+          Asian
+        </option>
+        <option
+          key="affinfo-type-1"
+          value="3"
+        >
+          Media
+        </option>
+        <option
+          key="affinfo-type-2"
+          value="4"
+        >
+          European
+        </option>
+      </select>
+      <Button
+        className="left-panel-btn-link"
+        color="link"
+        onClick={[Function]}
+        style={
+          Object {
+            "display": "inline-block",
+          }
+        }
+        tag="button"
+      >
+        Asian
+      </Button>
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Status
+    </Col>
+    <Col
+      className="text-right"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Disapproved
+      <CommissionGroupPopup
+        affId={1219631}
+        affName="12BETAFF016"
+        isNewAffiliate={true}
+        isPrivateGroup={false}
+        setShowPopupCommGroup={[Function]}
+        showPopupCommGroup={false}
+      />
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Closed
+    </Col>
+    <Col
+      className="text-right"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Yes
+    </Col>
+  </Row>
+  <NotificationPopup
+    isConfirmPopup={true}
+    message="message"
+    onClose={[Function]}
+  />
+</Memo(Panel)>
+`;
+
 exports[`left panel - components - panel - SettingPanel render correctly with isApproved is true 1`] = `
 <Memo(Panel)
   heading="Setting"
@@ -346,7 +533,7 @@ exports[`left panel - components - panel - SettingPanel render correctly with is
       Closed
     </Col>
     <Col
-      className="text-right text-primary"
+      className="text-right"
       tag="div"
       widths={
         Array [
@@ -358,15 +545,13 @@ exports[`left panel - components - panel - SettingPanel render correctly with is
         ]
       }
     >
-      <Button
-        className="left-panel-btn-link btn-closed"
-        color="link"
-        onClick={[Function]}
-        tag="button"
-      >
-        No
-      </Button>
+      No
     </Col>
   </Row>
+  <NotificationPopup
+    isConfirmPopup={true}
+    message="message"
+    onClose={[Function]}
+  />
 </Memo(Panel)>
 `;

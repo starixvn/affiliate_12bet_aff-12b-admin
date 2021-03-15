@@ -32,7 +32,7 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
-        if(this.props.param.IsFromHome) {
+        if (this.props.param.IsFromHome) {
             this.handleSearch();
         }
     }

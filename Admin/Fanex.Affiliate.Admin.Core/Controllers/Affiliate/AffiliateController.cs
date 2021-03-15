@@ -16,7 +16,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    [FunctionAuthorize(FunctionName = Function.AffiliateMenu)]
     public class AffiliateController : ReadOnlySessionBaseController
     {
         private readonly IAffiliateInfoRepository _affiliateInfoRepository;
@@ -93,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AffiliateInfo, IsHost = true)]
         public ActionResult ToggleFavorite(FavoriteParam param)
         {
             if (ModelState.IsValid)

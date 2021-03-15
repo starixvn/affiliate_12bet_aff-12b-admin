@@ -14,7 +14,7 @@ export class Personal extends PureComponent {
 
         const { userAccountInfo } = this.props;
 
-        this.arrayContactApps = userAccountInfo && userAccountInfo.ContactAppList;
+        this.arrayContactApps = userAccountInfo.ContactAppList;
     }
 
     handleChange = (event) => {
@@ -41,19 +41,19 @@ export class Personal extends PureComponent {
         this.props.setUserAccountInfo(newUserAccountInfo);
     }
 
-    _renderGenderForm(isMale) {
+    _renderGenderForm(isMale, isDisabled) {
         return (
             <FormGroup row>
                 <Label for={name} sm={3} xl={2} className="required">Gender</Label>
                 <Col sm={9} xl={10}>
                     <FormGroup check className="d-inline-block mr-3">
                         <Label check>
-                            <Input type="radio" checked={isMale != null && isMale} onChange={() => this.handleChangeGender(true)} />{' '} Male
+                            <Input type="radio" checked={isMale != null && isMale} disabled={isDisabled} onChange={() => this.handleChangeGender(true)} />{' '} Male
                         </Label>
                     </FormGroup>
                     <FormGroup check className="d-inline-block">
                         <Label check>
-                            <Input type="radio" checked={isMale != null && !isMale} onChange={() => this.handleChangeGender(false)} />{' '} Female
+                            <Input type="radio" checked={isMale != null && !isMale} disabled={isDisabled} onChange={() => this.handleChangeGender(false)} />{' '} Female
                         </Label>
                     </FormGroup>
                 </Col>
@@ -62,20 +62,20 @@ export class Personal extends PureComponent {
     }
 
     render() {
-        const { userAccountInfo, claimsPrincipal } = this.props;
+        const { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim } = this.props;
 
-        return userAccountInfo && (
+        return (
             <Form tag="div">
                 {renderStaticForm('username', 'User Name', userAccountInfo.AffName, true)}
-                {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, true, this.handleChange)}
-                {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, true, this.handleChange)}
-                {this._renderGenderForm(userAccountInfo.Gender)}
-                {renderClaimBaseInputForm(claimsPrincipal, claimResource.Email, 'email', 'Email Address', userAccountInfo.Email, true, this.handleChange)}
-                {renderClaimBaseInputForm(claimsPrincipal, claimResource.PhoneNumber, 'phone', 'Contact Number', userAccountInfo.Phone, true, this.handleChange)}
+                {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, !hasWriteEditAffClaim, true, this.handleChange)}
+                {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, !hasWriteEditAffClaim, true, this.handleChange)}
+                {this._renderGenderForm(userAccountInfo.Gender, !hasWriteEditAffClaim)}
+                {renderClaimBaseInputForm(claimsPrincipal, hasWriteEditAffClaim, claimResource.AffEmail, 'email', 'Email Address', userAccountInfo.Email, true, this.handleChange)}
+                {renderClaimBaseInputForm(claimsPrincipal, hasWriteEditAffClaim, claimResource.AffPhone, 'phone', 'Contact Number', userAccountInfo.Phone, true, this.handleChange)}
                 {
                     this.arrayContactApps && this.arrayContactApps.map(contactApp => {
                         return (
-                            renderInputForm(contactApp.Name, contactApp.Name, contactApp.Value, false, false, this.handleChangeContactApps)
+                            renderInputForm(contactApp.Name, contactApp.Name, contactApp.Value, !hasWriteEditAffClaim, false, this.handleChangeContactApps)
                         )
                     })
                 }
@@ -85,8 +85,8 @@ export class Personal extends PureComponent {
 }
 
 function mapStateToProps({ edit, claimsPrincipal }) {
-    const { userAccountInfo } = edit;
-    return Object.assign({}, { userAccountInfo, claimsPrincipal });
+    const { userAccountInfo, hasWriteEditAffClaim } = edit;
+    return Object.assign({}, { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim });
 }
 
 function mapDispatchToProp(dispatch) {

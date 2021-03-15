@@ -100,7 +100,7 @@ export class Content extends PureComponent {
     _buildDataRow(dataItem, index) {
         const domainName = htmlDecode(dataItem.DomainName);
         const creator = htmlDecode(dataItem.Creator);
-        const {isModifiable} = this.props;
+        const { isModifiable } = this.props;
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
@@ -163,7 +163,7 @@ export class Content extends PureComponent {
 }
 
 function mapStateToProps({ shouldResetScrollPosition, gridData, isAffDomain, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.Domain)
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.DomainMenu)
     return Object.assign({}, { shouldResetScrollPosition, gridData, isAffDomain, isModifiable });
 }
 

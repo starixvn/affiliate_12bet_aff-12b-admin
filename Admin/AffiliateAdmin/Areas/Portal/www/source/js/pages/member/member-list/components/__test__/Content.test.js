@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { Content } from '../Content';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import { defaultPagingOption } from '../../../../../modules/constants';
 import { NotificationPopup } from '../../../../common/components/NotificationPopup';
@@ -17,6 +17,7 @@ describe('member list - components - Content ', () => {
             IbcUserName: "12BETRMB0239317",
             LastName: "",
             MemberId: 26522982,
+            IsRemoved: false,
             UserName: "12Bet$wjpwjp"
         },
         {
@@ -28,6 +29,7 @@ describe('member list - components - Content ', () => {
             IbcUserName: "12BETRMB0239312",
             LastName: "",
             MemberId: 26518302,
+            IsRemoved: true,
             UserName: "12Bet$jingguoan"
         }
     ];
@@ -47,7 +49,8 @@ describe('member list - components - Content ', () => {
         isShowMemberName: true,
         param,
         gridData,
-        fetchData: jest.fn()
+        fetchData: jest.fn(),
+        toggleLoader: jest.fn()
     };
 
     it('render correctly', () => {
@@ -88,88 +91,91 @@ describe('member list - components - Content ', () => {
     });
 
     it('_handlePaging - should be called when onPaging in Table', () => {
-        const props = Object.assign({}, defaultProps, { setPagingOption: jest.fn(), setParam: jest.fn() });
+        const props = Object.assign({}, defaultProps, { setParam: jest.fn() });
         const result = shallow(<Content {...props} />);
 
         result.instance()._handlePaging(50, 50);
 
-        expect(props.setPagingOption).toHaveBeenCalledWith({ PageIndex: 50, PageSize: 50 });
         expect(props.setParam).toHaveBeenCalledWith({ PageIndex: 50, PageSize: 50, AffName: '', UserName: '', IbcUserName: '' });
     });
 
-    it('_handleDeleteMember - should be called when click remove button', () => {
+    it('_handleupdateMemberStatus - should be called when click remove checkbox', () => {
         const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), setShouldResetScrollPosition: jest.fn() });
 
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState = jest.fn();
         const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData)}</div>);
 
-        dataRow.find('Button').at(0).simulate('click');
+        dataRow.find('input').at(0).simulate('change');
 
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(wrapper.setState).toHaveBeenCalledWith({ message: 'Are you sure you want to remove this member from this affiliate?', isConfirmPopup: true, selectedMemberId: 26522982 });
+        expect(wrapper.setState).toHaveBeenCalledWith({ message: 'Are you sure you want to remove the selected member from this affiliate?', isConfirmPopup: true, isRemoved: true, selectedMemberId: 26522982 });
+    });
+
+    it('_handleupdateMemberStatus - should be called when click instance checkbox', () => {
+        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), setShouldResetScrollPosition: jest.fn() });
+
+        const wrapper = shallow(<Content {...props} />);
+        wrapper.setState = jest.fn();
+        const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData)}</div>);
+
+        dataRow.find('input').at(1).simulate('change');
+
+        expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
+        expect(wrapper.setState).toHaveBeenCalledWith({ message: 'Do you want to reinstate the selected member for this affiliate?', isConfirmPopup: true, isRemoved: false, selectedMemberId: 26518302 });
     });
 
     it('_handleCloseNotificationPopup - should be called when call onClose with true in NotificationPopup', () => {
         const wrapper = shallow(<Content {...defaultProps} />);
-        wrapper.instance()._deleteMember = jest.fn();
+        wrapper.instance()._updateMemberStatus = jest.fn();
         wrapper.setState({ message: 'Has NotificationPopup', isConfirmPopup: true, selectedMemberId: 26522982 });
 
         wrapper.find(NotificationPopup).props().onClose(true);
 
-        expect(wrapper.instance()._deleteMember).toHaveBeenCalledWith(26522982);
+        expect(wrapper.instance()._updateMemberStatus).toHaveBeenCalledWith(26522982);
     });
 
     it('_handleCloseNotificationPopup - should be called when call onClose with false in NotificationPopup', () => {
         const wrapper = shallow(<Content {...defaultProps} />);
-        wrapper.instance()._deleteMember = jest.fn();
+        wrapper.instance()._updateMemberStatus = jest.fn();
         wrapper.setState({ message: 'Has NotificationPopup', isConfirmPopup: true, selectedMemberId: 26522982 });
 
         wrapper.find(NotificationPopup).props().onClose(false);
 
-        expect(wrapper.instance()._deleteMember).not.toHaveBeenCalled();
+        expect(wrapper.instance()._updateMemberStatus).not.toHaveBeenCalled();
     });
 
-    it('_deleteMember - should call deleteMember with delete successfully', async () => {
+    it('_updateMemberStatus - should call updateMemberStatus with delete successfully', async () => {
         const expectedResult = { IsSuccessful: true, Message: "" };
-        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), toggleLoader: jest.fn(), deleteMember: jest.fn(() => expectedResult) });
+        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), updateMemberStatus: jest.fn(() => expectedResult) });
         const wrapper = shallow(<Content {...props} />);
 
-        await wrapper.instance()._deleteMember(26522982);
+        await wrapper.instance()._updateMemberStatus(26522982);
 
-        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
-        expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteMember).toHaveBeenCalledWith(26522982);
+        expect(props.updateMemberStatus).toHaveBeenCalledWith(26522982, false);
         expect(props.fetchData).toHaveBeenCalledWith(param);
     });
 
-    it('_deleteMember - should call deleteMember with delete is failed', async () => {
+    it('_updateMemberStatus - should call updateMemberStatus with delete is failed', async () => {
         const expectedResult = { IsSuccessful: false, Message: "Delete is failed!" };
-        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), toggleLoader: jest.fn(), deleteMember: jest.fn(() => expectedResult) });
+        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), updateMemberStatus: jest.fn(() => expectedResult) });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState = jest.fn();
 
-        await wrapper.instance()._deleteMember(26522982);
+        await wrapper.instance()._updateMemberStatus(26522982);
 
-        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
-        expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteMember).toHaveBeenCalledWith(26522982);
+        expect(props.updateMemberStatus).toHaveBeenCalledWith(26522982, false);
         expect(wrapper.setState).toHaveBeenCalledWith({ message: "Delete is failed!", isConfirmPopup: false });
     });
 
-    it('_deleteMember - should call deleteMember with error', async () => {
-        const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), deleteMember: jest.fn() });
+    it('_updateMemberStatus - should call updateMemberStatus with error', async () => {
+        const props = Object.assign({}, defaultProps, { updateMemberStatus: jest.fn() });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState = jest.fn();
 
-        await wrapper.instance()._deleteMember(26522982);
+        await wrapper.instance()._updateMemberStatus(26522982);
 
-        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
-        expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteMember).toHaveBeenCalledWith(26522982);
+        expect(props.updateMemberStatus).toHaveBeenCalledWith(26522982, false);
         expect(wrapper.setState).not.toHaveBeenCalled();
     });
 })

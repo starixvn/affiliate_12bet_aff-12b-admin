@@ -79,7 +79,7 @@ export const Activated = (props) => {
 }
 
 function mapStateToProps({ activatedGridData, claimsPrincipal }) {
-    var isShowMemberFullname = claimsPrincipal.hasReadClaim(claimResource.AffMemberName);
+    var isShowMemberFullname = claimsPrincipal.hasReadClaim(claimResource.MemberName);
     return Object.assign({}, { activatedGridData, isShowMemberFullname });
 }
 

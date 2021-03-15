@@ -261,11 +261,11 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 }
 
-function mapStateToProps({claimsPrincipal}){
-    const isUpdatable=claimsPrincipal.hasWriteClaim(claimResource.Payment)
-    const isShowEmail=claimsPrincipal.hasReadClaim(claimResource.Email)
-    const isShowFullName=claimsPrincipal.hasReadClaim(claimResource.AffMemberName)
-    const isShowPaymentInfo=claimsPrincipal.hasReadClaim(claimResource.PaymentInfo)
+function mapStateToProps({ claimsPrincipal }) {
+    const isUpdatable = claimsPrincipal.hasWriteClaim(claimResource.PaymentRequest)
+    const isShowEmail = claimsPrincipal.hasReadClaim(claimResource.AffEmail)
+    const isShowFullName = claimsPrincipal.hasReadClaim(claimResource.MemberName)
+    const isShowPaymentInfo = claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo)
     return Object.assign({}, { isUpdatable, isShowEmail, isShowFullName, isShowPaymentInfo });
 }
 

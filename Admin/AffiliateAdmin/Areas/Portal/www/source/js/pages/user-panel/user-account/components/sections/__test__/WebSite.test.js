@@ -42,7 +42,8 @@ describe('user account - components - sections - WebSite', () => {
         userAccountInfo,
         moreSiteUrlsList: [ "www.sportsbookie.com", "www.gzyyy.com", "www.123.com" ],
         setUserAccountInfo: jest.fn(),
-        claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
+        hasWriteEditAffClaim: true,
+        hasWriteClaim: true,
         setMoreSiteUrlsList: jest.fn()
     }
 

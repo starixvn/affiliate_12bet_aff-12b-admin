@@ -48,4 +48,5 @@ export const messages = {
     affTypeUpdatedFail: 'Occur an error when updating affiliate type!',
     userNotOnline: 'This user is not online',
     contactNumberUpdatedSuccess: 'Contact number update successfully!',
+    closedAffOnSpecialDate: '<p class="text-danger">Closing an affiliate from 1st to 5th of each month will prevent the affiliate from being commissioned for the previous month.</p>',
 }

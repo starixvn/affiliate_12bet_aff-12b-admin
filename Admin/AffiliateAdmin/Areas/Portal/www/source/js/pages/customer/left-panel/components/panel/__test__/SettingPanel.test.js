@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { SettingPanel } from '../SettingPanel';
 import { shallow } from 'enzyme';
+import { messages } from '../../../libs/constants';
 import CommissionGroupPopup from '../../../../../common/components/CommissionGroupPopup';
 
 describe('left panel - components - panel - SettingPanel', () => {
@@ -59,6 +60,7 @@ describe('left panel - components - panel - SettingPanel', () => {
         affiliateInfo: affInfoClosed,
         isStatusShowable: true,
         isStatusModifiable: true,
+        today: '2021/3/8',
         affName
     }
 
@@ -69,8 +71,17 @@ describe('left panel - components - panel - SettingPanel', () => {
     });
 
     it('render correctly with isApproved is true', () => {
-        const props = Object.assign({}, defaultProps, { affiliateInfo })
+        const props = Object.assign({}, defaultProps, { affiliateInfo, isStatusModifiable: false })
         const result = shallow(<SettingPanel {...props} isApproved={true} />);
+        result.setState({ messageNotification: 'message' });
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('render correctly with isApproved and isClosed are true', () => {
+        const props = Object.assign({}, defaultProps, { isStatusModifiable: false })
+        const result = shallow(<SettingPanel {...props} isApproved={true} />);
+        result.setState({ messageNotification: 'message' });
 
         expect(result).toMatchSnapshot();
     });
@@ -195,6 +206,16 @@ describe('left panel - components - panel - SettingPanel', () => {
         await wrapper.find('Button').at(1).simulate('click');
 
         expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: "Are you sure you want to close this affiliate?", isConfirmPopup: true, isConfirmStatus: false, isClosed: true});
+    });
+
+    it('_handleOpenCloseAff - should call wrapper.setState with close status and special date', async () => {
+        const props = Object.assign({}, defaultProps, { affiliateInfo, today: '2021/3/3' });
+        const wrapper = shallow(<SettingPanel {...props} isApproved={true} />);
+        wrapper.setState = jest.fn();
+
+        await wrapper.find('Button').at(1).simulate('click');
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: `${messages.closedAffOnSpecialDate}Are you sure you want to close this affiliate?`, isConfirmPopup: true, isConfirmStatus: false, isClosed: true });
     });
 
     it('_openCloseAff - should call updateClosedStatus and setState', async () => {

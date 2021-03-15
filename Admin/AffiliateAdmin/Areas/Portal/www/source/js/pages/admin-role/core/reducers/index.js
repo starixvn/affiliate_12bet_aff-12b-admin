@@ -2,7 +2,7 @@
 import { RESET_REDUCER } from '../actions/types';
 
 import { selectedMenu, adminRoleReducer } from './children-reducers';
-import { isShowLoader, userId, userName, hasWriteUserControlClaim } from './common-reducers';
+import { isShowLoader, userId, userName, hasWriteAdminRoleClaim } from './common-reducers';
 
 const allReducers = combineReducers({
     ...adminRoleReducer,
@@ -10,7 +10,7 @@ const allReducers = combineReducers({
     isShowLoader,
     userId,
     userName,
-    hasWriteUserControlClaim
+    hasWriteAdminRoleClaim
 });
 
 export const rootReducer = (state, action) => {

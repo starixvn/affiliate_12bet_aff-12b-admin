@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 objectDb.ExecuteNonQuery();
                 var result = GetResultInfo(objectDb);
 
-                if(!result.IsSuccessful)
+                if (!result.IsSuccessful)
                 {
                     using (var reader = objectDb.ExecuteReader())
                     {

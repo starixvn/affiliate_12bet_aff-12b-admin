@@ -13,10 +13,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
 {
     public class MemberRepositoryTest
     {
-        private const string SpKeyMemberListSel = "Aff_MemberListSel";
-        private const string SpKeyMemberDel = "Aff_MemberDel";
-        private const string SpKeyAdminUpdAffID = "DEP_AdminUpdAffID";
-        private const string SpKeyWriteLog = "Aff_WriteLog";
+        private const string SpKeyMemberListSel = "Aff_Admin_MemberList_Sel";
+        private const string SpKeyMemberUpdateStatus = "Aff_Admin_Member_RemoveStatus_Upd";
 
         [Fact]
         public void GetMemberList_WhenCallWithSpKeyBannerSel_ReturnCorrectData()
@@ -88,33 +86,29 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
         }
 
         [Fact]
-        public void DeleteMember_WhenCallWithValidParam_DeleteSuccessfully()
+        public void UpdateMemberStatus_WhenCallWithValidParam_UpdateSuccessfully()
         {
             // Arrange
-            var param = new DeleteMemberParam();
+            var param = new UpdateMemberStatusParam();
             var repository = new Mock<MemberRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            objectDb.Setup(obj => obj.GetParameterValue("AffID")).Returns(1271808);
-            objectDb.Setup(obj => obj.GetParameterValue("DepositCustID")).Returns(123456);
-            repository.Setup(re => re.GetObjectDb(SpKeyMemberDel, 120)).Returns(objectDb.Object);
+            repository.Setup(re => re.GetObjectDb(SpKeyMemberUpdateStatus, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.DeleteMember(param);
+            var result = repository.Object.UpdateMemberStatus(param);
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(1271808, param.AffId);
-            Assert.Equal(123456, param.DepositMemberId);
         }
 
         [Fact]
-        public void DeleteMember_WhenCallWithInvalidParam_DeleteIsFailed()
+        public void UpdateMemberStatus_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
-            var message = "Delete member is failed.";
+            var message = "Update member is failed.";
             var repository = new Mock<MemberRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
@@ -122,69 +116,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             objectDb.Setup(obj => obj.GetParameterValue("AffID")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("DepositCustID")).Returns(DBNull.Value);
-            repository.Setup(re => re.GetObjectDb(SpKeyMemberDel, 120)).Returns(objectDb.Object);
+            repository.Setup(re => re.GetObjectDb(SpKeyMemberUpdateStatus, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.DeleteMember(new DeleteMemberParam());
+            var result = repository.Object.UpdateMemberStatus(new UpdateMemberStatusParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
             Assert.Equal(message, result.Message);
         }
-
-        [Fact]
-        public void DeleteMemberInDepositDB_WhenCallWithValidParam_DeleteSuccessfully()
-        {
-            // Arrange
-            var repository = new Mock<MemberRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            repository.Setup(re => re.GetObjectDb(SpKeyAdminUpdAffID, 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.DeleteMemberInDepositDB(123456);
-
-            // Assert
-            Assert.True(result.IsSuccessful);
-        }
-
-        [Fact]
-        public void DeleteMemberInDepositDB_WhenCallWithValidParam_DeleteIsFailed()
-        {
-            // Arrange
-            var message = "Delete deposit member is failed.";
-            var repository = new Mock<MemberRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            repository.Setup(re => re.GetObjectDb(SpKeyAdminUpdAffID, 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.DeleteMemberInDepositDB(123456);
-
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
-        }
-
-        [Fact]
-        public void WriteAfterDeleteSuccefully_WhenCallWithValidParam_ExcuteCorrectly()
-        {
-            // Arrange
-            var repository = new Mock<MemberRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
-            repository.Setup(re => re.GetObjectDb(SpKeyWriteLog, 120)).Returns(objectDb.Object);
-
-            // Action
-            repository.Object.WriteAfterDeleteSuccefully(new DeleteMemberParam());
-
-            // Assert
-        }
-
         private IDictionary<string, object> GetMemberList()
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
@@ -195,6 +135,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
                 ["FirstName"] = "12Bet",
                 ["LastName"] = "Aff",
                 ["CurrBalance"] = 123m,
+                ["IsRemoved"] = false,
                 ["CreatedDate"] = new DateTime(2019, 10, 10),
                 ["AffUserName"] = "12BETAFF226",
             };
@@ -210,6 +151,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
                 ["FirstName"] = "12Bet",
                 ["LastName"] = "Aff",
                 ["CurrBalance"] = -123m,
+                ["IsRemoved"] = false,
                 ["CreatedDate"] = DBNull.Value,
                 ["AffUserName"] = "12BETAFF226",
             };

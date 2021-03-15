@@ -19,21 +19,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
             return _memberRepository.GetMemberList(param);
         }
 
-        public ResultInfo DeleteMember(DeleteMemberParam param)
+        public ResultInfo UpdateMemberStatus(UpdateMemberStatusParam param)
         {
-            var result = _memberRepository.DeleteMember(param);
-
-            if (result.IsSuccessful)
-            {
-                result = _memberRepository.DeleteMemberInDepositDB(param.DepositMemberId);
-
-                if (result.IsSuccessful)
-                {
-                    _memberRepository.WriteAfterDeleteSuccefully(param);
-                }
-            }
-
-            return result;
+            return _memberRepository.UpdateMemberStatus(param);
         }
     }
 }

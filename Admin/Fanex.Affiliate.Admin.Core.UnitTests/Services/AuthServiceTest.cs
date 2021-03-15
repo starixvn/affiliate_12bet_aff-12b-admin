@@ -27,10 +27,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         public void GetClaims_WhenCall_Excute()
         {
             // Arrange
-            adminInfoRepository.GetUserInfo(Arg.Any<int>()).Returns(new AdminInforResultEntity {
+            adminInfoRepository.GetUserInfo(Arg.Any<int>()).Returns(new AdminInforResultEntity
+            {
                 AdminInfo = new AdminInfo
                 {
-                    UserId = 123, UserName = "UserName", RoleId = 1
+                    UserId = 123,
+                    UserName = "UserName",
+                    RoleId = 1
                 },
                 MarketList = new List<MarketInfo> { new MarketInfo { MarketId = "en-US", MarketName = "English", HasPermission = true } }
             });

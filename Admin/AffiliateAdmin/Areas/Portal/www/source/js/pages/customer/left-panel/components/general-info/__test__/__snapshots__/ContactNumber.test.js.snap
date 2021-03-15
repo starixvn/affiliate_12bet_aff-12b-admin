@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`left panel - components - general-info - ContactNumber render correctly 1`] = `
+<Col
+  tag="div"
+  widths={
+    Array [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+    ]
+  }
+>
+  <Button
+    className="left-panel-btn-link"
+    color="link"
+    onClick={[Function]}
+    tag="button"
+  />
+  <Memo(InputPopUp)
+    handleSubmit={[Function]}
+    isOpen={false}
+    title="Contact number"
+    toggle={[Function]}
+  />
+  <Memo(NotificationPopup)
+    isConfirmPopup={false}
+    message=""
+    onClose={[Function]}
+  />
+</Col>
+`;
+
+exports[`left panel - components - general-info - ContactNumber render correctly with isStatic is true 1`] = `
+<Col
+  tag="div"
+  widths={
+    Array [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+    ]
+  }
+/>
+`;

@@ -42,7 +42,7 @@ export const AffiliateStatistics = (props) => {
 }
 
 function mapStateToProps({ generalInfo, claimsPrincipal }) {
-    const isShowAffLink = claimsPrincipal.hasReadClaim(claimResource.AffInfo);
+    const isShowAffLink = claimsPrincipal.hasReadClaim(claimResource.AffiliateInfo);
 
     return Object.assign({}, { generalInfo, isShowAffLink });
 }

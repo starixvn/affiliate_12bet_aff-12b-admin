@@ -41,7 +41,7 @@ export const GeneralInfo = (props) => {
                 <Col sm={7} className='text-right'>{affiliateInfo.Gender === null ? '' : (affiliateInfo.Gender ? resource.Male : resource.Female)}</Col>
             </Row>
             {
-                claimsPrincipal.hasReadClaim(claimResource.PhoneNumber) &&
+                claimsPrincipal.hasReadClaim(claimResource.AffPhone) &&
                 <Row>
                     <Col sm={5} className="pr-0">{resource.ContactNumber}</Col>
                     <ContactNumber sm={7} className='text-right' isStatic={true}>{htmlDecode(affiliateInfo.Phone)}</ContactNumber>
@@ -54,7 +54,7 @@ export const GeneralInfo = (props) => {
                     <Col sm={7} className='text-right'><Language isStatic={!claimsPrincipal.hasWriteClaim(claimResource.LanguageAmendment)} /></Col>
                 </Row>
             }
-            { claimsPrincipal.hasReadClaim(claimResource.WebsiteUrl) &&
+            { claimsPrincipal.hasReadClaim(claimResource.AffWebUrl) &&
                 <Row>
                     <Col sm={5}>{resource.WebsiteUrl}</Col>
                     <Col sm={7} className='text-right text-truncate'>

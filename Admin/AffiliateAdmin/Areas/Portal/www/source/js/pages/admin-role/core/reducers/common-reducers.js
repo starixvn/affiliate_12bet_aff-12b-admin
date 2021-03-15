@@ -4,7 +4,7 @@ import { SET_USER_ID, SET_USER_NAME } from '../actions/types';
 
 export { isShowLoader }
 
-export const hasWriteUserControlClaim = createReducer(false, {});
+export const hasWriteAdminRoleClaim = createReducer(false, {});
 
 export const userId = createReducer(null, {
     [SET_USER_ID](prevState, action) {

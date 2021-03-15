@@ -411,7 +411,7 @@ exports[`statement history - components - Content render correctly with have dat
             </t>
           </t>,
           <t
-            className="approved"
+            className="b/f"
           >
             <t
               asc={true}
@@ -442,7 +442,94 @@ exports[`statement history - components - Content render correctly with have dat
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={200}
+              title={0}
+            >
+              Transaction
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="$105.00"
+            >
+              <Button
+                className="p-0"
+                color="link"
+                onClick={[Function]}
+                tag="button"
+              >
+                $105.00
+              </Button>
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="B/F"
+            >
+              B/F
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="AAwalter"
+            >
+              AAwalter
+            </t>
+            <t
+              asc={true}
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+          </t>,
+          <t
+            className="b/f"
+          >
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title={5}
+            >
+              5
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Jun-2019"
+            >
+              Jun-2019
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title={-1}
             >
               Monthly Winlost
             </t>
@@ -464,9 +551,9 @@ exports[`statement history - components - Content render correctly with have dat
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Approved"
+              title="B/F"
             >
-              Approved
+              B/F
             </t>
             <t
               asc={true}

@@ -19,8 +19,8 @@ export const setSelectedMonth = (data) => {
     }
 }
 
-export const getTrackingCodeList = (affId) => () => {
-    return trackingCodeList(affId);
+export const getTrackingCodeList = (affId, func = trackingCodeList) => async () => {
+    return await func(affId);
 }
 
 export const fetchData = (param) => async () => {

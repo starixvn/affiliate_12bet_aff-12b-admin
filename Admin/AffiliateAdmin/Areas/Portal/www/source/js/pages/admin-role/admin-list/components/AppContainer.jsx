@@ -15,14 +15,14 @@ export class AppContainer extends Component {
     }
 
     render() {
-        const { isShowLoader, hasWriteUserControlClaim } = this.props;
+        const { isShowLoader, hasWriteAdminRoleClaim } = this.props;
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
                 <Menu />
                 <Filter />
                 {
-                    hasWriteUserControlClaim && <ControlButtons />
+                    hasWriteAdminRoleClaim && <ControlButtons />
                 }
                 <Content />
                 <PermissionPopup />
@@ -31,8 +31,8 @@ export class AppContainer extends Component {
     }
 }
 
-function mapStateToProps({ isShowLoader, hasWriteUserControlClaim }) {
-    return Object.assign({}, { isShowLoader, hasWriteUserControlClaim });
+function mapStateToProps({ isShowLoader, hasWriteAdminRoleClaim }) {
+    return Object.assign({}, { isShowLoader, hasWriteAdminRoleClaim });
 }
 
 export default connect(mapStateToProps)(AppContainer);

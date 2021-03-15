@@ -41,6 +41,7 @@ exports[`user account - components - sections - EmailFormat render correctly 1`]
         >
           <Input
             checked={false}
+            disabled={true}
             onChange={[Function]}
             type="radio"
           />
@@ -68,6 +69,7 @@ exports[`user account - components - sections - EmailFormat render correctly 1`]
         >
           <Input
             checked={true}
+            disabled={true}
             onChange={[Function]}
             type="radio"
           />

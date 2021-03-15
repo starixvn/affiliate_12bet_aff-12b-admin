@@ -10,6 +10,7 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 
 const testCaseList = [
     { name: 'moreSiteUrlsList', value: null, action: { type: types.SET_MORE_SITE_URLS_LIST, data: ['123.vn','abc.com'] }, expectedResult: ['123.vn','abc.com'] },
+    { name: 'hasWriteEditAffClaim', value: false, action: { type: types.SET_HAS_WRITE_EDIT_AFF_CLAIM, data: true }, expectedResult: true },
     { name: 'userAccountInfo', value: {}, action: { type: types.SET_USER_ACCOUNT_INFO, data: { userName: 'abc' } }, expectedResult: { userName: 'abc' } }
 ]
 

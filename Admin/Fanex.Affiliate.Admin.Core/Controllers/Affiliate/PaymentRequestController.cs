@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.Payment)]
+    [FunctionAuthorize(FunctionName = Function.PaymentRequest)]
     public class PaymentRequestController : ReadOnlySessionBaseController
     {
         private readonly IPaymentRequestService _paymentRequestService;
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             return new JsonNetResult();
         }
 
-        [FunctionAuthorize(FunctionName = Function.Payment, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.PaymentRequest, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult UpdatePaymentRequest(PaymentRequestUpdateParam param)

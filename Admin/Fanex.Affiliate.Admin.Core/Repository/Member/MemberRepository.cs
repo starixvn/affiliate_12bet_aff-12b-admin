@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
     {
         public EntityResult<MemberInfo> GetMemberList(MemberParam param)
         {
-            const string Spkey = "Aff_MemberListSel";
+            const string Spkey = "Aff_Admin_MemberList_Sel";
             var result = new EntityResult<MemberInfo>();
             var dataList = new List<MemberInfo>();
 
@@ -40,6 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                             LastName = Convert.ToString(reader["LastName"]),
                             CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"]),
                             AffName = Convert.ToString(reader["AffUserName"]),
+                            IsRemoved = Convert.ToBoolean(reader["IsRemoved"]),
                             CurrentBalance = FormatNumber(reader["CurrBalance"])
                         });
                     }
@@ -53,72 +54,31 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
             return result;
         }
 
-        public ResultInfo DeleteMember(DeleteMemberParam param)
+        public ResultInfo UpdateMemberStatus(UpdateMemberStatusParam param)
         {
-            const string SpKey = "Aff_MemberDel";
+            const string SpKey = "Aff_Admin_Member_RemoveStatus_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
+                objectDb.AddInParameter("IsRemoved", DbType.Int32, param.IsRemoved);
                 objectDb.AddInParameter("ibccustid", DbType.Int32, param.MemberId);
                 objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
-                objectDb.AddOutParameter("AffID", DbType.Int32, Size.SizeOfInt);
-                objectDb.AddOutParameter("RefNo", DbType.Int64, Size.SizeOfInt);
-                objectDb.AddOutParameter("DepositCustID", DbType.Int32, Size.SizeOfInt);
-
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
 
-                var affId = objectDb.GetParameterValue("AffID");
-                var depositMemberId = objectDb.GetParameterValue("DepositCustID");
-
-                param.AffId = affId == DBNull.Value ? 0 : Convert.ToInt32(affId);
-                param.DepositMemberId = depositMemberId == DBNull.Value ? 0 : Convert.ToInt32(depositMemberId);
-
                 return GetResultInfo(objectDb);
-            }
-        }
-
-        public ResultInfo DeleteMemberInDepositDB(int depositMemberId)
-        {
-            const string SpKey = "DEP_AdminUpdAffID";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.AddInParameter("DepositCustID", DbType.Int32, depositMemberId);
-                AssignResultOutputParam(objectDb);
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
-        }
-
-        public void WriteAfterDeleteSuccefully(DeleteMemberParam param)
-        {
-            const string SpKey = "Aff_WriteLog";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("Creator", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
-                objectDb.AddInParameter("Typename", DbType.String, "Member");
-                objectDb.AddInParameter("SPName", DbType.String, "DEP_AdminUpdAffID");
-                objectDb.AddInParameter("Details", DbType.String, $"Remove member. DepositCustID={param.DepositMemberId} (On Deposit_DB)");
-
-                objectDb.AddOutParameter("RefNo", DbType.Int64, Size.SizeOfInt);
-
-                objectDb.ExecuteNonQuery();
             }
         }
 
         private static string FormatNumber(object Number)
         {
-            decimal decimalNumber = CastAide.AsDecimal(Number, 0m);
+            var decimalString = CastAide.AsDecimal(Number, 0m).ToString("N2");
+            var decimalNumber = Convert.ToDecimal(decimalString);
 
-            return (decimalNumber >= 0 ? "$" : "-$") + Math.Abs(decimalNumber).ToString("N2");
+            return (decimalNumber >= 0 ? "$" : "-$") + Math.Abs(decimalNumber);
 
         }
     }

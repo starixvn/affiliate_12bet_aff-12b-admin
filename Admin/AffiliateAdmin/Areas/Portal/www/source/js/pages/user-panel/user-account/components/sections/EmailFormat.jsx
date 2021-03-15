@@ -17,21 +17,21 @@ export class EmailFormat extends PureComponent {
     }
 
     render() {
-        const { userAccountInfo } = this.props;
-        const isTextFormat = !!userAccountInfo && userAccountInfo.MailOption;
+        const { userAccountInfo, hasWriteEditAffClaim } = this.props;
+        const isTextFormat = userAccountInfo.MailOption;
 
-        return userAccountInfo && (
+        return (
             <Form tag="div">
                 <FormGroup row>
                     <Col sm={5}>
                         <FormGroup check className="d-inline-block mr-3">
                             <Label check>
-                                <Input type="radio" checked={isTextFormat} onChange={() => this.handleChange(true)} />{' '} Plain Text Format
+                                <Input type="radio" checked={isTextFormat} disabled={!hasWriteEditAffClaim} onChange={() => this.handleChange(true)} />{' '} Plain Text Format
                             </Label>
                         </FormGroup>
                         <FormGroup check className="d-inline-block">
                             <Label check>
-                                <Input type="radio" checked={!isTextFormat} onChange={() => this.handleChange(false)} />{' '} Html Format
+                                <Input type="radio" checked={!isTextFormat} disabled={!hasWriteEditAffClaim} onChange={() => this.handleChange(false)} />{' '} Html Format
                             </Label>
                         </FormGroup>
                     </Col>
@@ -42,8 +42,8 @@ export class EmailFormat extends PureComponent {
 }
 
 function mapStateToProps({ edit }) {
-    const { userAccountInfo } = edit;
-    return Object.assign({}, { userAccountInfo });
+    const { userAccountInfo, hasWriteEditAffClaim } = edit;
+    return Object.assign({}, { userAccountInfo, hasWriteEditAffClaim });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -29,7 +29,7 @@ const fields = {
 }
 
 export default class ReportExcel {
-    constructor(data, title, hasTurnOverPermission) {
+    constructor(data, title, hasTurnOverPermission = false) {
         this.data = data;
         this.title = title;
         this.hasTurnOverPermission = hasTurnOverPermission;

@@ -130,3 +130,5 @@ exports[`user account - components - sections - Payment render correctly 1`] = `
   </p>
 </Form>
 `;
+
+exports[`user account - components - sections - Payment render correctly when not has read claim 1`] = `""`;

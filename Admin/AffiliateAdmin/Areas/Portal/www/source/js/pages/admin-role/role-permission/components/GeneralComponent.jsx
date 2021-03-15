@@ -6,11 +6,10 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { updateObjectInArray } from '../../../../modules/dataHandler';
-import { headerText, globalResource, management } from '../libs/constants';
+import { headerText, resource, messages, management } from '../libs/constants';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 import MyLink from '../../../common/components/MyLink';
 import { getPermissionInfoList, toggleLoader, setGridData, updatePermissionInfo } from '../actions';
-import { resource, messages } from '../libs/constants';
 
 export class GeneralComponent extends PureComponent {
     constructor(props) {
@@ -122,7 +121,7 @@ export class GeneralComponent extends PureComponent {
                 this.setState({ messagePopup: result.Message, isConfirmPopup: false });
             }
         } else {
-            this.setState({ messagePopup: globalResource.AnError, isConfirmPopup: false });
+            this.setState({ messagePopup: messages.AnError, isConfirmPopup: false });
         }
 
         this.props.toggleLoader(false);
@@ -141,7 +140,7 @@ export class GeneralComponent extends PureComponent {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             const { isEdit, expandedRoleId, gridData } = this.state;
 
             for (let i = 0; i < dataList.length; i++) {
@@ -151,7 +150,7 @@ export class GeneralComponent extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="3">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="3">{messages.NoInfo}</Cell>
             </Row>);
         }
 
@@ -174,7 +173,7 @@ export class GeneralComponent extends PureComponent {
                                 <span>{dataItem.RoleName}</span>
                             </Button>
                             {
-                                dataItem.RoleId !== management && this.props.hasWriteUserControlClaim && (
+                                dataItem.RoleId !== management && this.props.hasWriteAdminRoleClaim && (
                                     isEdit && isExpand ? (
                                         <Fragment>
                                             <MyLink title={resource.Cancel} onClick={this._handleCancel}>
@@ -212,7 +211,7 @@ export class GeneralComponent extends PureComponent {
 
             for (let i = 0; i < parentFunction.length; i++) {
                 const dataItem = parentFunction[i];
-                dataRows.push(this._buildDataRowChildren(dataItem, subFunction, isEdit, isExpand));
+                dataItem && dataRows.push(this._buildDataRowChildren(dataItem, subFunction, isEdit, isExpand));
             }
         }
 
@@ -268,7 +267,7 @@ export class GeneralComponent extends PureComponent {
     _renderSubChildrenDataSection(dataItem, dataList, isEdit, isExpand, isRecursive) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             const parentFunction = dataList.filter(s => s.ParentId === dataItem.FuncId);
             const subFunction = dataList.filter(s => s.ParentId !== dataItem.FuncId);
 
@@ -327,8 +326,8 @@ export class GeneralComponent extends PureComponent {
 }
 
 
-function mapStateToProps({ gridData, roleList, hasWriteUserControlClaim }) {
-    return Object.assign({}, { gridData, roleList, hasWriteUserControlClaim });
+function mapStateToProps({ gridData, roleList, hasWriteAdminRoleClaim }) {
+    return Object.assign({}, { gridData, roleList, hasWriteAdminRoleClaim });
 }
 
 function mapDispatchToProps(dispatch) {

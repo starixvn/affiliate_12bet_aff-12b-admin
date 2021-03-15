@@ -44,19 +44,22 @@ describe('left panel - components - general-info - Language', () => {
     const defaultProps = {
         affiliateInfo,
         languageList,
+        isStatic: false,
         affName: '12BETAFF226'
     }
 
     it('render correctly with isChangingLanguage is false', () => {
         const result = shallow(<Language {...defaultProps} />);
+        result.setState({ messageNotification: 'message' });
 
         expect(result).toMatchSnapshot();
     });
 
     it('render correctly with isChangingLanguage is true', () => {
-        const result = shallow(<Language {...defaultProps} />);
+        const props = Object.assign({}, defaultProps, { isStatic: true });
+        const result = shallow(<Language {...props} />);
 
-        result.setState({ isChangingLanguage: true });
+        result.instance().setState({ isChangingLanguage: true });
 
         expect(result).toMatchSnapshot();
     });

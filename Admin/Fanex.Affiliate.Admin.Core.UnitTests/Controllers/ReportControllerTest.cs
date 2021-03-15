@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, languageService: languageService.Object);
 
             // Action
-            var result = controller.GetMainData(new GetReportMainDataViewModel()) as JsonNetResult;
+            var result = controller.GetMainData(new GetReportMainDataViewModel { UserName = "test"}) as JsonNetResult;
             var data = result.Data as EntityResult<AffiliateReport>;
 
             // Assert

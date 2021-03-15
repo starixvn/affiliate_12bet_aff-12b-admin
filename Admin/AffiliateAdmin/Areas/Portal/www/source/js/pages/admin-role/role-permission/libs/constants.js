@@ -1,7 +1,5 @@
 ﻿import { globalResource } from '../../../../modules/globalResource';
 
-export { globalResource };
-
 export const management = 1;
 
 export const headerText = {
@@ -23,6 +21,8 @@ export const resource = {
 }
 
 export const messages = {
+    NoInfo: globalResource.NoInfo,
+    AnError: globalResource.AnError,
     AreYouSureUpdateRole: 'Are you sure? <br /> By confirm this action, <strong className="text-danger">all admin users</strong> under this role will update with new default role setting.',
     AreYouSureUpdateLanguages: 'Are you sure? <br /> By confirm this action, <strong className="text-danger">all admin users</strong> under this role will update with new default language setting.',
 }

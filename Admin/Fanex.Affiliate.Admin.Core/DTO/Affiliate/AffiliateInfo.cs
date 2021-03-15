@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public decimal? BalanceBf { get; set; }
 
-        [PermissionCheck(Function.AffMemberDetail)]
+        [PermissionCheck(Function.MemberDetail)]
         public int? Member { get; set; }
 
         public bool IsFavorite { get; set; }

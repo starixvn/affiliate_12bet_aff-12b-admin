@@ -9,17 +9,31 @@
     var permissions = sessionService.ClaimIdentities.SelectMany(i => i.Claims);
     var menus = new Dictionary<string, string>
     {
-        {"Customer", Function.Customer },
-        {"Affiliate", String.Empty  },
-        {"Member",Function.AffMember },
-        {"Report",Function.AffReport },
-        {"MediaGallery", Function.Media  },
-        {"Message",Function.HotNews },
-        {"ExchangeRate",Function.AffExRate },
-        {"AdminRole",Function.UserControl },
-        {"Domain",Function.Domain }
+        {"Home", Function.HomeMenu },
+        {"Customer", Function.CustomerMenu },
+        {"Affiliate", Function.AffiliateMenu },
+        {"Member",Function.MemberMenu },
+        {"Report",Function.ReportMenu },
+        {"MediaGallery", Function.MediaGalleryMenu },
+        {"Message",Function.MessageMenu },
+        {"ExchangeRate",Function.ExchangeRateMenu },
+        {"AdminRole",Function.AdminRoleMenu },
+        {"Domain",Function.DomainMenu }
     };
-    var displayMenus = menus.Where(m => string.IsNullOrEmpty(m.Value) || permissions.Any(p => p.Type == m.Value)).Select(m => m.Key);
+    var displayMenus = menus.Where(m => {
+        if(string.Equals("Affiliate", m.Key, StringComparison.OrdinalIgnoreCase))
+        {
+            return permissions.Any(p => p.Type == m.Value || p.Type == Function.AffAdjustment);
+        }
+
+        if(string.IsNullOrEmpty(m.Value) || permissions.Any(p => p.Type == m.Value))
+        {
+            return true;
+        }
+
+        return false;
+
+    }).Select(m => m.Key);
 }
 
 @functions{
@@ -44,9 +58,6 @@
     }
 }
 <ul class="nav menu-list">
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Portal/Home")">Home</a>
-    </li>
 
     @foreach (var item in displayMenus)
     {

@@ -1,32 +1,39 @@
 export const claimResource = {
-    WritePermission : 'Write',
-    SecurityQuestion : '[SecurityQA]',
-    PhoneNumber : '[AffPhone]',
-    Email : '[AffEmail]',
-    PaymentInfo : '[AffPaymentInfo]',
-    WebsiteUrl : '[AffWebURL]',
-    Note : '[Note]',
-    Adjustment: '[AffAdjustment]',
-    LanguageAmendment: '[AffMarket]',
-    CommGroup: '[CommissionGroup]',
-    AffCommGroup: '[AssignCommGroup]',
-    AffAccountStatus: '[AffAccountStatus]',
-    Domain: '[Domain]',
-    HotNews: '[HotNews]',
-    AffExRate: '[AffEx.Rate]',
-    MemberMenu: '[AffMember]',
-    AffMember: '[AffMemberDetail]',
+    WritePermission: 'Write',
+
+    //Main menu permission
+    MediaGalleryMenu: '[Media]',
+    MessageMenu: '[HotNews]',
+    ExchangeRateMenu: '[AffEx.Rate]',
+    AdminRoleMenu: '[UserControl]',
+    DomainMenu: '[Domain]',
+
+    AffiliateInfo: '[Affiliate]',
+    PaymentRequest: '[Payment]',
+    EmailHistory: '[EmailHistory]',
+    CommissionGroup: '[CommissionGroup]',
+    AssignCommGroup: '[AssignCommGroup]',
+    MemberDetail: '[AffMemberDetail]',
     ActiveMembers: '[ActiveMembers]',
-    AffPlayerDetail: '[AffPlayerDetail]',
-    AffMemberName: '[AffMemberName]',
+    MemberName: '[AffMemberName]',
     TurnOver: '[AffTurnover]',
-    ExportExcel: '[ExportExcel]',
-    AffInfo: '[Affiliate]',
-    Payment: '[Payment]',
-    MediaGallery: '[Media]',
+    Note: '[Note]',
+    EditAffiliate: '[AffCustomerEdit]',
+    SecurityQA: '[SecurityQA]',
+    AffEmail: '[AffEmail]',
+    AffPhone : '[AffPhone]',
+    AffPaymentInfo : '[AffPaymentInfo]',
+    AffWebUrl : '[AffWebURL]',
+    AffAdjustment: '[AffAdjustment]',
+    AffAccountStatus: '[AffAccountStatus]',
+    AffPlayerDetail: '[AffPlayerDetail]',
     AffPassword: '[AffPassword]',
-    UserControl: '[UserControl]',
-    RoleManager: 'Management'
+    LanguageAmendment: '[AffMarket]',
+
+    //Export Excel
+    ExportAffInfoExcel: '[ExportAffInfoExcel]',
+    ExportPlayerDetailExcel: '[ExportPlayerDetailExcel]',
+    ExportReportExcel: '[ExportReportExcel]',
 }
 
 export const claimTypes = {
@@ -98,9 +105,9 @@ export default class ClaimPrincipal{
         this.claims = claims;
     }
 
-    static get currentClaimPrincipal() { 
+    static get currentClaimPrincipal() {
         let claims = window.globalVariables.claims || window.initialState.claims || {};
-        return new ClaimPrincipal(claims); 
+        return new ClaimPrincipal(claims);
     }
 
     hasReadClaim(claimType) {

@@ -6,10 +6,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
     public class CustomerMember
     {
-        [PermissionCheck(Function.AffMemberName)]
+        [PermissionCheck(Function.MemberName)]
         public string FirstName { get; set; }
 
-        [PermissionCheck(Function.AffMemberName)]
+        [PermissionCheck(Function.MemberName)]
         public string LastName { get; set; }
 
         public string UserName { get; set; }

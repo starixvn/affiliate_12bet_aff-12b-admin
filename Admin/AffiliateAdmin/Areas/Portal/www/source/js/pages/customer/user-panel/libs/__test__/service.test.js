@@ -14,7 +14,7 @@ describe('user panel services', () => {
             name: "Statement History",
             parent: null
         }
-        
+
         const result = await services['isActiveMenu'](selectedMenu, menuItem);
 
         expect(result).toBe(true);
@@ -32,7 +32,7 @@ describe('user panel services', () => {
             name: "Statement History",
             parent: null
         }
-        
+
         const result = await services['isActiveMenu'](selectedMenu, menuItem);
 
         expect(result).toBe(true);
@@ -44,7 +44,7 @@ describe('user panel services', () => {
             name: "Statement History",
             parent: null
         }
-        
+
         const result = await services['isActiveMenu']({}, menuItem);
 
         expect(result).toBe(false);
@@ -56,7 +56,7 @@ describe('user panel services', () => {
             name: "Statement History",
             parent: null
         }
-        
+
         const result = await services['isActiveMenu'](null, menuItem);
 
         expect(result).toEqual(null);
@@ -74,7 +74,7 @@ describe('user panel services', () => {
         };
 
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
-        
+
         const result = await services['getProductList']();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetProductList');
@@ -103,7 +103,7 @@ describe('user panel services', () => {
         };
 
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
-        
+
         const result = await services['getPageList']();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetPageList');
@@ -127,7 +127,7 @@ describe('user panel services', () => {
         };
 
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
-        
+
         const result = await services['getTrackingCodeList'](1271808);
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetTrackingCodeList', { affId: 1271808 });

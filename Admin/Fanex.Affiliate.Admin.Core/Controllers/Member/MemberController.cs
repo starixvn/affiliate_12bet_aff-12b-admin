@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 {
-    [FunctionAuthorize(FunctionName = Function.AffMember)]
+    [FunctionAuthorize(FunctionName = Function.MemberMenu)]
     public class MemberController : ReadOnlySessionBaseController
     {
         private readonly IMemberService _memberService;
@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffMemberDetail)]
+        [FunctionAuthorize(FunctionName = Function.MemberDetail)]
         public ActionResult GetMemberList(MemberParam param)
         {
             return new JsonNetResult
@@ -45,8 +45,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffMemberDetail, IsHost = true)]
-        public ActionResult DeleteMember(DeleteMemberParam param)
+        [FunctionAuthorize(FunctionName = Function.MemberDetail, IsHost = true)]
+        public ActionResult UpdateMemberStatus(UpdateMemberStatusParam param)
         {
             if (ModelState.IsValid)
             {
@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 
                 return new JsonNetResult
                 {
-                    Data = _memberService.DeleteMember(param)
+                    Data = _memberService.UpdateMemberStatus(param)
                 };
             }
 

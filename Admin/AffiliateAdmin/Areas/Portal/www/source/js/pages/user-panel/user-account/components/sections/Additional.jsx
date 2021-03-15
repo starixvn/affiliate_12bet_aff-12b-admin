@@ -21,12 +21,12 @@ export class Additional extends PureComponent {
         this.props.setUserAccountInfo(newUserAccountInfo);
     }
 
-    _renderCountry(country) {
+    _renderCountry(country, isDisabled) {
         return (
             <FormGroup row>
                 <Label for="country" sm={3} xl={2} className="required">Country</Label>
                 <Col sm={9} xl={10}>
-                    <Input type="select" id="country" name="country" value={country} onChange={this.handleChange}>
+                    <Input type="select" id="country" name="country" disabled={isDisabled} value={country} onChange={this.handleChange}>
                         <option value="">Select One</option>
                         {
                             Object.keys(countriesList).map((key) => {
@@ -40,25 +40,25 @@ export class Additional extends PureComponent {
     }
 
     render() {
-        const { userAccountInfo, claimsPrincipal } = this.props;
+        const { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim } = this.props;
 
-        return userAccountInfo && (
+        return (
             <Form tag="div">
-                {renderInputForm('address', 'Address', userAccountInfo.Address, false, true, this.handleChange)}
-                {renderInputForm('city', 'City', userAccountInfo.City, false, true, this.handleChange)}
-                {renderInputForm('state', 'State', userAccountInfo.State, false, false, this.handleChange)}
-                {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, false, true, this.handleChange)}
-                {this._renderCountry(userAccountInfo.Country)}
-                {renderClaimBaseSelectionForm(claimsPrincipal, claimResource.SecurityQuestion, 'questionId', 'Security Question', userAccountInfo.SecurityQuestions, userAccountInfo.QuestionId,  false, this.handleChange, userAccountInfo.Question)}
-                {renderClaimBaseInputForm(claimsPrincipal, claimResource.SecurityQuestion, 'answer', 'Answer', userAccountInfo.Answer, false, this.handleChange)}
+                {renderInputForm('address', 'Address', userAccountInfo.Address, !hasWriteEditAffClaim, true, this.handleChange)}
+                {renderInputForm('city', 'City', userAccountInfo.City, !hasWriteEditAffClaim, true, this.handleChange)}
+                {renderInputForm('state', 'State', userAccountInfo.State, !hasWriteEditAffClaim, false, this.handleChange)}
+                {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, !hasWriteEditAffClaim, true, this.handleChange)}
+                {this._renderCountry(userAccountInfo.Country, !hasWriteEditAffClaim)}
+                {renderClaimBaseSelectionForm(claimsPrincipal, hasWriteEditAffClaim, claimResource.SecurityQA, 'questionId', 'Security Question', userAccountInfo.SecurityQuestions, userAccountInfo.QuestionId, false, this.handleChange, userAccountInfo.Question)}
+                {renderClaimBaseInputForm(claimsPrincipal, hasWriteEditAffClaim, claimResource.SecurityQA, 'answer', 'Answer', userAccountInfo.Answer, false, this.handleChange)}
             </Form>
         )
     }
 }
 
 function mapStateToProps({ edit, claimsPrincipal }) {
-    const { userAccountInfo } = edit;
-    return Object.assign({}, { userAccountInfo, claimsPrincipal });
+    const { userAccountInfo, hasWriteEditAffClaim } = edit;
+    return Object.assign({}, { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim });
 }
 
 function mapDispatchToProps(dispatch) {

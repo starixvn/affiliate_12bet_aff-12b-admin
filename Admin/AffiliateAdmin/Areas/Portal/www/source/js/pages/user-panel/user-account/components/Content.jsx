@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, Button, Row, Col, Alert } from 'reactstrap';
 
-import { getUserAccountInfo, updateUserAccount, getAffiliateInfo } from '../actions';
+import { getUserAccountInfo, updateUserAccount, getAffiliateInfo, setHasWriteEditAffClaim } from '../actions';
 import { validateUserAccount } from '../libs/validation';
 import { userPanelMenuKey } from '../libs/constants';
 
@@ -13,7 +13,7 @@ import Additional from './sections/Additional';
 import EmailFormat from './sections/EmailFormat';
 import WebSite from './sections/WebSite';
 import Payment from './sections/Payment';
-import { Claim, claimResource, claimTypes } from '../../../../modules/claim';
+import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -27,8 +27,11 @@ export class Content extends PureComponent {
     }
 
     componentDidMount() {
-        const { affId } = this.props;
+        const { affId, claimsPrincipal } = this.props;
+        const hasWriteEditAffClaim = claimsPrincipal.hasWriteClaim(claimResource.EditAffiliate);
+
         affId && this.props.getUserAccountInfo(affId);
+        hasWriteEditAffClaim && this.props.setHasWriteEditAffClaim(hasWriteEditAffClaim);
     }
 
     handleGetMoreSiteUrls = (moreSiteUrlsList) => {
@@ -94,9 +97,11 @@ export class Content extends PureComponent {
 
     render() {
         const { isSuccess, isShowMessage, message } = this.state;
-        const { claimsPrincipal } = this.props;
+        const { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim } = this.props;
 
-        return this.props.userAccountInfo && (
+        const hasReadEditAffClaim = userAccountInfo && claimsPrincipal.hasReadClaim(claimResource.EditAffiliate);
+
+        return hasReadEditAffClaim && (
             <Container fluid={true} className="user-account-container">
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
@@ -122,7 +127,7 @@ export class Content extends PureComponent {
                     </Col>
                 </Row>
 
-                {claimsPrincipal.hasReadClaim(claimResource.WebsiteUrl) && (
+                {claimsPrincipal.hasReadClaim(claimResource.AffWebUrl) && (
                     <Row>
                         <Col xs="12" className="px-0">
                             <Section title="Website Information">
@@ -134,7 +139,7 @@ export class Content extends PureComponent {
                     </Row>
                 )}
 
-                {claimsPrincipal.hasReadClaim(claimResource.PaymentInfo) && (
+                {claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo) && (
                     <Row>
                         <Col xs="12" className="px-0">
                             <Section title="Payment Information">
@@ -146,8 +151,8 @@ export class Content extends PureComponent {
                 <Row>
                     <Button className="mb-3" color="success"
                         onClick={this.handleSubmit}
-                        disabled={!claimsPrincipal.hasClaim(new Claim(claimTypes.Role, claimResource.RoleManager))}
-                        >Submit</Button>
+                        disabled={!hasWriteEditAffClaim}
+                    >Submit</Button>
                 </Row>
             </Container>
         );
@@ -156,13 +161,13 @@ export class Content extends PureComponent {
 
 function mapStateToProps({ affCommonInfo, edit, claimsPrincipal }) {
     const { affId, affName } = affCommonInfo;
-    const { userAccountInfo, moreSiteUrlsList } = edit;
+    const { userAccountInfo, moreSiteUrlsList, hasWriteEditAffClaim } = edit;
 
-    return Object.assign({}, { affId, affName, userAccountInfo, moreSiteUrlsList, claimsPrincipal });
+    return Object.assign({}, { affId, affName, userAccountInfo, moreSiteUrlsList, claimsPrincipal, hasWriteEditAffClaim });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getUserAccountInfo, updateUserAccount, getAffiliateInfo }, dispatch);
+    return bindActionCreators({ getUserAccountInfo, updateUserAccount, getAffiliateInfo, setHasWriteEditAffClaim }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

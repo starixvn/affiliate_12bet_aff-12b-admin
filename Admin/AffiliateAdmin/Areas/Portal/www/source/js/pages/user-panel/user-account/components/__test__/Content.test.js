@@ -43,6 +43,7 @@ describe('user account - components - Content', () => {
         userAccountInfo,
         moreSiteUrlsList: ["www.sportsbookie.com", "www.gzyyy.com", "www.123.com"],
         claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true), hasClaim: jest.fn(() => true) },
+        setHasWriteEditAffClaim: jest.fn(),
         getUserAccountInfo: jest.fn(() => userAccountInfo)
     }
 

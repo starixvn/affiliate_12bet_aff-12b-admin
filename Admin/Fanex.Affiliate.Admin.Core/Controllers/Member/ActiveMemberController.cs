@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 {
 
-    [FunctionAuthorize(FunctionName = Function.AffMember)]
+    [FunctionAuthorize(FunctionName = Function.MemberMenu)]
     public class ActiveMemberController : ReadOnlySessionBaseController
     {
         private readonly IActiveMemberService _activeMemberService;
@@ -23,9 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
             _activeMemberService = activeMemberService;
         }
 
-
         [HttpGet]
-
         public ActionResult Index(string affName)
         {
             var model = new MemberListViewModel

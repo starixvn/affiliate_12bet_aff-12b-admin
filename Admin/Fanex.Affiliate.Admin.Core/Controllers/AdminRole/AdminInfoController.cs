@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 {
     [CustomAuthorize]
     [CheckUMFilter]
-    [FunctionAuthorize(FunctionName = Function.UserControl)]
+    [FunctionAuthorize(FunctionName = Function.AdminRoleMenu)]
     public class AdminInfoController : Controller
     {
         private readonly IAuthService _authService;
@@ -56,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AdminRoleMenu, IsHost = true)]
         public ActionResult CreateUser(AdminInfoParam param)
         {
             if (ModelState.IsValid)
@@ -95,7 +95,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AdminRoleMenu, IsHost = true)]
         public ActionResult UpdateUser(AdminInfoParam param)
         {
             if (ModelState.IsValid && param.UserId >= Validation.MinId)
@@ -137,7 +137,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AdminRoleMenu, IsHost = true)]
         public ActionResult UpdateStatus(AdminInfoParam param)
         {
             if (param.UserId >= Validation.MinId)
@@ -166,7 +166,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.UserControl, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AdminRoleMenu, IsHost = true)]
         public ActionResult ChangePassword(UpdatePasswordParam param)
         {
             if (ModelState.IsValid)

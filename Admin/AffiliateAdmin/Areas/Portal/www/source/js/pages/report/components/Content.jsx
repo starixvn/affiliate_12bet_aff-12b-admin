@@ -47,7 +47,7 @@ export class Content extends Component {
     _buildReportTitle() {
         const { currentViewLevel, reportTitle, claimsPrincipal } = this.props;
         const isMainView = currentViewLevel === viewLevel.main;
-        const isDisplayExportExcelBtn = claimsPrincipal.hasClaim(claimResource.ExportExcel);
+        const isDisplayExportExcelBtn = claimsPrincipal.hasClaim(claimResource.ExportReportExcel);
 
         const btnExport = isDisplayExportExcelBtn && (<button type="button" className="ml-auto btn btn-link btn-excel" onClick={this.handleExportExcel} title="Export Excel">
             <span className="oi icon-excel"></span>
