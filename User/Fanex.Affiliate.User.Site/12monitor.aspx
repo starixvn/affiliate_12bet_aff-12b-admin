@@ -19,10 +19,14 @@
         <%= DateTime.Now%></div>
     <div class="haproxy">
         Client IP:
-        <%= Request.UserHostAddress%></div>    
+        <%= Request.UserHostAddress%></div>
     <div>
          HTTP_X_FORWARDED_FOR:
         <%= Request.ServerVariables["HTTP_X_FORWARDED_FOR"]%>
+    </div>
+        <div>
+        HTTP_X_FORWARDED_PROTO:
+        <%= Request.ServerVariables["HTTP_X_FORWARDED_PROTO"]%>
     </div>
     <div>
          HTTP_X_REAL_IP:

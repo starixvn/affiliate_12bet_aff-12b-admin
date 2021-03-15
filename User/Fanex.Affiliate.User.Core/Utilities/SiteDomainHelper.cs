@@ -14,7 +14,7 @@
             var isUatOrProEnv = string.Equals("UAT", setting.Environment, StringComparison.OrdinalIgnoreCase) || setting.IsProduction;
             var requestUrl = controller.Request.Url;
 
-            return GetScheme(controller.Request, setting.IsProduction || setting.IsLocal) + Uri.SchemeDelimiter + requestUrl.Host +
+            return GetScheme(controller.Request, setting.IsProduction) + Uri.SchemeDelimiter + requestUrl.Host +
                 (requestUrl.IsDefaultPort || isUatOrProEnv ? string.Empty : ":" + requestUrl.Port) + controller.Url.Content("~/");
         }
 
