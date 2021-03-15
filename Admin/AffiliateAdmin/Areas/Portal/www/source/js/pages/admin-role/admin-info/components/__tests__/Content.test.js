@@ -547,6 +547,66 @@ describe('admin info - components - Content', () => {
         expect(instance.setState).toHaveBeenCalledWith({ isConfirmPopup: true, isDeleteUser: false, messagePopup: `Are you sure? <br /> By confirm this action, user <strong className=\"text-danger\">AAHubert</strong> will be activated?` });
     });
 
+    it('_handleCloseNotificationPopup - should call setState and _deleteUser', () => {
+        const result = shallow(<Content {...defaultProps} />);
+        const instance = result.instance();
+        instance.setState({ isDeleteUser: true });
+        instance.setState = jest.fn();
+        instance._deleteUser = jest.fn();
+
+        instance._handleCloseNotificationPopup(true);
+
+        expect(instance.setState).toHaveBeenCalledWith({ messagePopup: '' });
+        expect(instance._deleteUser).toHaveBeenCalledWith(defaultProps.userId);
+    });
+
+    it('_handleCloseNotificationPopup - should call setState and _updateStatus', () => {
+        const result = shallow(<Content {...defaultProps} />);
+        const instance = result.instance();
+        instance.setState = jest.fn();
+        instance._deleteUser = jest.fn();
+        instance._updateStatus = jest.fn();
+
+        instance._handleCloseNotificationPopup(true);
+
+        expect(instance.setState).toHaveBeenCalledWith({ messagePopup: '' });
+        expect(instance._deleteUser).not.toHaveBeenCalled();
+        expect(instance._updateStatus).toHaveBeenCalledWith(defaultProps.userId, true);
+    });
+
+    it('_handleCloseNotificationPopup - should call setState and redirectToAdminList', () => {
+        const props = Object.assign({}, defaultProps, { redirectToAdminList: jest.fn() });
+        const result = shallow(<Content {...props} />);
+        const instance = result.instance();
+        instance.setState({ isAfterDeleted: true });
+        instance.setState = jest.fn();
+        instance._deleteUser = jest.fn();
+        instance._updateStatus = jest.fn();
+
+        instance._handleCloseNotificationPopup(false);
+
+        expect(instance.setState).toHaveBeenCalledWith({ messagePopup: '' });
+        expect(instance._deleteUser).not.toHaveBeenCalled();
+        expect(instance._updateStatus).not.toHaveBeenCalled();
+        expect(props.redirectToAdminList).toHaveBeenCalled();
+    });
+
+    it('_handleCloseNotificationPopup - should call only setState', () => {
+        const props = Object.assign({}, defaultProps, { redirectToAdminList: jest.fn() });
+        const result = shallow(<Content {...props} />);
+        const instance = result.instance();
+        instance.setState = jest.fn();
+        instance._deleteUser = jest.fn();
+        instance._updateStatus = jest.fn();
+
+        instance._handleCloseNotificationPopup(false);
+
+        expect(instance.setState).toHaveBeenCalledWith({ messagePopup: '' });
+        expect(instance._deleteUser).not.toHaveBeenCalled();
+        expect(instance._updateStatus).not.toHaveBeenCalled();
+        expect(props.redirectToAdminList).not.toHaveBeenCalled();
+    });
+
     it('_deleteUser - should call deleteUsers, setState when success', async () => {
         const props = Object.assign({}, defaultProps, { deleteUsers: jest.fn(() => ({ IsSuccessful: true, Message: "" })) });
         const result = shallow(<Content {...props} />);
