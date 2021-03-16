@@ -11,7 +11,7 @@ import { claimResource } from '../../../../modules/claim';
 import{formatDateTime} from '../../../../modules/utils';
 
 export const Content = (props) => {
-    
+
     const _onCheckItem = (isChecked, newsLetterId) => {
         const newCheckedNewsLetterPages = Object.assign({}, props.checkedNewsLetterPages, { [newsLetterId]: isChecked });
 
@@ -127,7 +127,7 @@ export const Content = (props) => {
 }
 
 function mapStateToProps({param, previewLink, pagingOption ,checkedNewsLetterPages, shouldResetScrollPosition, gridData, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGallery);
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGalleryMenu);
     return Object.assign({}, {param, previewLink, pagingOption, checkedNewsLetterPages, shouldResetScrollPosition, gridData, isModifiable });
 }
 
