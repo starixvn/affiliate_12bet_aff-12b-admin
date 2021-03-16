@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 import ButtonDeleteItems from '../../../../common/components/ButtonDeleteItems';
 
-describe('message - components - ControlButtons ', () => {
+describe('media gallery - components - ControlButtons ', () => {
     const gridData = [{ Id: 123 }];
 
     const param = {
@@ -37,7 +37,7 @@ describe('message - components - ControlButtons ', () => {
         expect(result).toMatchSnapshot();
     });
 
-    it('fetchData should be call when click button Delete', () => {
+    it('fetchData should be called when click button Delete', () => {
         const fetchData = jest.fn();
         const props = Object.assign({}, defaultProps, { fetchData })
         const result = shallow(<ControlButtons {...props} />);
@@ -47,7 +47,7 @@ describe('message - components - ControlButtons ', () => {
         expect(props.fetchData).toHaveBeenCalledWith(param);
     });
 
-    it('_handleAddItem should be call when click button Add', () => {
+    it('_handleAddItem should be called when click button Add', () => {
         const setSelectedItemId = jest.fn();
         const setShouldResetScrollPosition = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedItemId, setShouldResetScrollPosition })
@@ -59,7 +59,7 @@ describe('message - components - ControlButtons ', () => {
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
     });
 
-    it('_handleClickButton should be call when click button Add with gridData is empty', () => {
+    it('_handleClickButton should be called when click button Add with gridData is empty', () => {
         const setSelectedItemId = jest.fn();
         const setShouldResetScrollPosition = jest.fn();
         const props = Object.assign({}, defaultProps, { gridData: [], setSelectedItemId, setShouldResetScrollPosition })

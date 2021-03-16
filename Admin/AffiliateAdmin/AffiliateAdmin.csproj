@@ -318,6 +318,16 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\PermissionPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\__test__\ControlButton.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\__test__\PermissionPopup.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\__test__\redux\AppContainer.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\__test__\redux\ControlButtons.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\components\__test__\redux\PermissionPopup.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-list\reducers\__tests__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\common\actions\index.js" />
@@ -330,6 +340,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\menu.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\core\libs\resetAllProps.js" />

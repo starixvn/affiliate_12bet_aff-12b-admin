@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`admin role - core - components - AppContainer render correctly 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <div
+    className="admin-role-content-container"
+  >
+    <Suspense
+      fallback={null}
+    >
+      <Connect(Item) />
+    </Suspense>
+  </div>
+</AppLayout>
+`;
+
+exports[`admin role - core - components - AppContainer render correctly with has not menu item 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <div
+    className="admin-role-content-container"
+  />
+</AppLayout>
+`;

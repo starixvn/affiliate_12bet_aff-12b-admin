@@ -11,14 +11,15 @@ export const AppContainer = (props) => {
     const { isShowLoader, selectedMenu } = props;
 
     const componentIndex = adminRoleMenuList.findIndex(p => p.key === selectedMenu);
-    const ComponentItem = componentIndex === -1 ? null : adminRoleMenuList[componentIndex].component;
+    const hasMenuItem = componentIndex !== -1;
+    const ComponentItem = hasMenuItem ? adminRoleMenuList[componentIndex].component : null;
 
     return (
         <AppLayout>
             <Loader show={isShowLoader} />
             <div className="admin-role-content-container">
                 {
-                    componentIndex !== -1 &&
+                    hasMenuItem &&
                     <Suspense fallback={null}>
                         <ComponentItem />
                     </Suspense>

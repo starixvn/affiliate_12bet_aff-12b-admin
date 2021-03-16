@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React from 'react';
 import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
@@ -9,30 +9,25 @@ import Content from './Content';
 import PermissionPopup from './PermissionPopup';
 import Menu from '../../common/components/SubMenu';
 
-export class AppContainer extends Component {
-    constructor(props) {
-        super(props);
-    }
+export const AppContainer = (props) => {
+    const { isShowLoader, hasWriteAdminRoleClaim } = props;
 
-    render() {
-        const { isShowLoader, hasWriteAdminRoleClaim } = this.props;
-        return (
-            <AppLayout>
-                <Loader show={isShowLoader} />
-                <Menu />
-                <Filter />
-                {
-                    hasWriteAdminRoleClaim && <ControlButtons />
-                }
-                <Content />
-                <PermissionPopup />
-            </AppLayout>
-        );
-    }
+    return (
+        <AppLayout>
+            <Loader show={isShowLoader} />
+            <Menu />
+            <Filter />
+            {
+                hasWriteAdminRoleClaim && <ControlButtons />
+            }
+            <Content />
+            <PermissionPopup />
+        </AppLayout>
+    );
 }
 
 function mapStateToProps({ isShowLoader, hasWriteAdminRoleClaim }) {
     return Object.assign({}, { isShowLoader, hasWriteAdminRoleClaim });
 }
 
-export default connect(mapStateToProps)(AppContainer);
+export default connect(mapStateToProps)(React.memo(AppContainer));

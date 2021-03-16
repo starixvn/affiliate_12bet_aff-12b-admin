@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-import { globalResource } from '../libs/constants';
+import { messages } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { getUserPermissionList, setUserInfo } from '../actions/index';
 import { renderHeader, renderColumns } from '../../common/libs/render';
@@ -38,7 +38,7 @@ export class PermissionPopup extends PureComponent {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             const parentFunction = dataList.filter(s => s.FuncId === s.ParentId);
             const subFunction = dataList.filter(s => s.FuncId !== s.ParentId);
 
@@ -49,7 +49,7 @@ export class PermissionPopup extends PureComponent {
         }
         else {
             dataRows.push(<tr key="no-info">
-                <td className="text-center" colSpan="5">{globalResource.NoInfo}</td>
+                <td className="text-center" colSpan="5">{messages.NoInfo}</td>
             </tr>);
         }
 
@@ -77,7 +77,7 @@ export class PermissionPopup extends PureComponent {
     _renderSubChildrenDataSection(dataItem, dataList, isRecursive) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             const parentFunction = dataList.filter(s => s.ParentId === dataItem.FuncId);
             const subFunction = dataList.filter(s => s.ParentId !== dataItem.FuncId);
 

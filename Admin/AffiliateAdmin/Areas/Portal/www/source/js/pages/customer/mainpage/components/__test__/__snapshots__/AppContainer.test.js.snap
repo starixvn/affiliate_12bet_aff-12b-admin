@@ -37,10 +37,14 @@ exports[`customer - mainpage - components - AppContainer Should render correctly
         <div
           className="user-panel"
         >
-          <Connect(Component)
-            isPending={false}
-            selectedUserPanel="statementHistory"
-          />
+          <Suspense
+            fallback={null}
+          >
+            <Connect(Component)
+              isPending={false}
+              selectedUserPanel="statementHistory"
+            />
+          </Suspense>
         </div>
       </div>
     </Row>
@@ -79,10 +83,14 @@ exports[`customer - mainpage - components - AppContainer Should render correctly
         <div
           className="user-panel"
         >
-          <Connect(Component)
-            isPending={true}
-            selectedUserPanel="statementHistory"
-          />
+          <Suspense
+            fallback={null}
+          >
+            <Connect(Component)
+              isPending={true}
+              selectedUserPanel="statementHistory"
+            />
+          </Suspense>
         </div>
       </div>
     </Row>
