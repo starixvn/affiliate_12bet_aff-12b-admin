@@ -24,19 +24,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         private const int MAX_LENGTH = 50;
 
         private const string UPLOAD_FOLDER = "CategoryMedia\\NewsLetter";
-        
 
         private INewsLetterRepository Repo { get; }
         private ISystemFile SystemFile { get; }
         private IAppSetting AppSetting { get; }
 
-        public NewsLetterService(INewsLetterRepository repo, ISystemFile systemFile, IAppSetting appSetting) 
+        public NewsLetterService(INewsLetterRepository repo, ISystemFile systemFile, IAppSetting appSetting)
         {
             Repo = repo;
             SystemFile = systemFile;
             AppSetting = appSetting;
         }
-
 
         public EntityResult<NewsLetter> GetNewsLetters(SelectNewsLetterParam param)
             => Repo.GetNewsLetters(param);
@@ -79,7 +77,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public ResultInfo UpdateNewsLetter(HttpPostedFileBase file, UpdateNewsLetterParam param)
         {
-
             var result = ValidateFileName(param.FileName);
             if (!result.IsSuccessful)
             {
@@ -96,43 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 };
             }
 
-            if (file != null)
-            {
-                result = ValidateFile(file);
-                if (!result.IsSuccessful)
-                {
-                    return result;
-                }
-
-                result = CheckFileExistInFolder(param.FileName);
-                if (!result.IsSuccessful && oldNewsLetter.FileName != param.FileName)
-                {
-                    return result;
-                }
-
-                UploadFile(file, param.FileName);
-                if(!string.Equals(oldNewsLetter.FileName, param.FileName, StringComparison.OrdinalIgnoreCase))
-                {
-                    Delete(oldNewsLetter.FileName);
-                }
-
-                return Repo.UpdateNewsLetter(param);
-            }
-            else
-            {
-                result = CheckFileExistInFolder(param.FileName);
-                if (!result.IsSuccessful && oldNewsLetter.FileName != param.FileName)
-                {
-                    return result;
-                }
-
-                if (!string.Equals(oldNewsLetter.FileName, param.FileName, StringComparison.OrdinalIgnoreCase))
-                {
-                    MoveFile(param.FileName, oldNewsLetter.FileName);
-                }
-
-                return Repo.UpdateNewsLetter(param);
-            }
+            return file != null ? UpdateNewsLetterWithANewFile(file, param, oldNewsLetter) : UpdateOldNewsLetter(param, oldNewsLetter);
 
         }
 
@@ -153,6 +114,45 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public NewsLetter GetNewsLetterById(int id)
             => Repo.GetNewsLetterById(id);
+
+        private ResultInfo UpdateNewsLetterWithANewFile(HttpPostedFileBase file, UpdateNewsLetterParam param, NewsLetter oldNewsLetter)
+        {
+            var result = ValidateFile(file);
+            if (!result.IsSuccessful)
+            {
+                return result;
+            }
+
+            result = CheckFileExistInFolder(param.FileName);
+            if (!result.IsSuccessful && oldNewsLetter.FileName != param.FileName)
+            {
+                return result;
+            }
+
+            UploadFile(file, param.FileName);
+            if (!string.Equals(oldNewsLetter.FileName, param.FileName, StringComparison.OrdinalIgnoreCase))
+            {
+                Delete(oldNewsLetter.FileName);
+            }
+
+            return Repo.UpdateNewsLetter(param);
+        }
+
+        private ResultInfo UpdateOldNewsLetter(UpdateNewsLetterParam param, NewsLetter oldNewsLetter)
+        {
+            var result = CheckFileExistInFolder(param.FileName);
+            if (!result.IsSuccessful && oldNewsLetter.FileName != param.FileName)
+            {
+                return result;
+            }
+
+            if (!string.Equals(oldNewsLetter.FileName, param.FileName, StringComparison.OrdinalIgnoreCase))
+            {
+                MoveFile(param.FileName, oldNewsLetter.FileName);
+            }
+
+            return Repo.UpdateNewsLetter(param);
+        }
 
         private IEnumerable<string> GetFileNamesFromIds(string newsLetterIds)
         {
@@ -227,7 +227,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 {
                     result.Message = "The html file name exist already, please choose another name.";
                     return result;
-                }    
+                }
             }
             return ResultInfo.Success;
         }
@@ -286,7 +286,5 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
             return ResultInfo.Success;
         }
-
-
     }
 }
