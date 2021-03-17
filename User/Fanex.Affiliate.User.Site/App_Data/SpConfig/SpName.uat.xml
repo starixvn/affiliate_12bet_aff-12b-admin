@@ -101,7 +101,7 @@
     <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd_xpre" DbName="affiliate_12bet" />
-    <Setting Key="Aff_PaymentRequestIns" SpName="Aff_PaymentRequestIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_PaymentRequestIns" SpName="Aff_PaymentRequestIns_xpre" DbName="affiliate_12bet" />
   </Function>
 
   <Function Name="SignUp">
@@ -114,7 +114,7 @@
   </Function>
 
   <Function Name="ContactUs">
-    <Setting Key="Aff_EmailHistoryIns" SpName="Aff_EmailHistoryIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_EmailHistoryIns" SpName="Aff_EmailHistoryIns_xpre" DbName="affiliate_12bet" />
   </Function>
   <Function Name="CommissionReport">
     <Setting Key="Aff_User_Rpt_Commission" SpName="Aff_User_Rpt_Commission" DbName="affiliate_12bet"></Setting>
