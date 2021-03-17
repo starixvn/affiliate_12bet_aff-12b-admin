@@ -21,6 +21,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        public ActionResult GetLogTypeList()
+        {
+            return new JsonNetResult
+            {
+                Data = _viewLogService.GetLogTypeList()
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetViewLogList(ViewLogParam param)
         {
             if (ModelState.IsValid)

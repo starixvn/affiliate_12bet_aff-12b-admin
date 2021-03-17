@@ -1,9 +1,10 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../actions/pagingAction';
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
+import { getLogTypeList } from '../../new-view-log/actions';
 import { SET_PARAM, SET_SHOW_ID_LIST } from '../actions/types';
 
-export { setPagingOption, toggleLoaderUserPanel };
+export { setPagingOption, toggleLoaderUserPanel, getLogTypeList };
 
 export const setParam = (data) => {
     return {

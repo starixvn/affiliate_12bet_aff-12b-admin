@@ -409,6 +409,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\components\InsertUpdateForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\components\__test__\redux\AppContainer.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\components\__test__\redux\InsertUpdateForm.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\reducers\index.js" />

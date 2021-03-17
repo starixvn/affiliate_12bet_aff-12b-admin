@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { logTypes, headerText, globalResource } from '../libs/constants';
-import { setParam } from '../actions';
+import { headerText, globalResource } from '../libs/constants';
+import { setParam, getLogTypeList } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
 
 const minDate = new Date(2021, 2, 1);
@@ -26,7 +26,14 @@ export class Filter extends React.Component {
             logType: 0,
             fromDate: sixMonthAgo < minDate ? '3/1/2021' : `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
             toDate: this.nowString,
+            logTypeList: null
         }
+    }
+
+    componentDidMount = async () => {
+        const logTypeList = await this.props.getLogTypeList();
+
+        this.setState({ logTypeList });
     }
 
     handleChange = (event) => {
@@ -46,7 +53,7 @@ export class Filter extends React.Component {
     }
 
     render() {
-        const { logType, fromDate, toDate } = this.state;
+        const { logType, fromDate, toDate, logTypeList } = this.state;
 
         return (
             <div className="filter-container">
@@ -56,8 +63,8 @@ export class Filter extends React.Component {
                         <Input type="select" name="logType" id="logType" value={logType} onChange={this.handleChange}>
                             <option value="0">{globalResource.All}</option>
                             {
-                                Object.keys(logTypes).map(index => {
-                                    return (<option key={`logType-${index}`} value={index}>{logTypes[index]}</option>)
+                                logTypeList && logTypeList.map(item => {
+                                    return (<option key={`logType-${item.TypeId}`} value={item.TypeId}>{item.Description}</option>)
                                 })
                             }
                         </Input>
@@ -90,7 +97,7 @@ function mapStateToProps({ today }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam }, dispatch);
+    return bindActionCreators({ setParam, getLogTypeList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

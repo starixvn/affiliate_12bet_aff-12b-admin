@@ -2,20 +2,21 @@
     return value.replace('@', '');
 }
 
-export const handleParseToObject = (data) => {
-    const dataObject = data ? JSON.parse(data).root.row : {};
+export const handleParseToObject = (obj) => {
+    const dataObject = obj ? JSON.parse(obj).root.row : {};
 
     handleContactApps(dataObject);
 
-    return dataObject;
+    return cleanBlankAttributes(dataObject);
 }
 
-export const cleanBlankAttributes = (obj) => {
+const cleanBlankAttributes = (obj) => {
     for (let propName in obj) {
         if (!obj[propName]) {
             delete obj[propName];
         }
     }
+
     return obj
 }
 

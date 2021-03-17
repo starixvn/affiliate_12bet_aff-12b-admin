@@ -12,23 +12,22 @@ export const RowDetail = (props) => {
     const rowNumber = length / 4;
 
     const renderColumn = (oldValue, newValue) => {
-
         if (!oldValue && !newValue) {
             return '';
         }
 
-        if (oldValue && newValue) {
-            return oldValue == newValue ? (
-                `${oldValue}`
-            ) : (
-                    <Fragment>
-                        <p className="text-primary">{`${newValue}`}</p>
-                        <span className="text-secondary">{`${oldValue}`}</span>
-                    </Fragment>
-                )
-        }
-
-        return `${oldValue || newValue}`;
+        return oldValue == newValue ? (
+            `${oldValue}`
+        ) : (
+                <Fragment>
+                    {
+                        !!newValue && <p className="text-primary mb-0">{`${newValue}`}</p>
+                    }
+                    {
+                        !!oldValue && <span className="text-secondary">{`${oldValue}`}</span>
+                    }
+                </Fragment>
+            )
     }
 
     const renderRow = () => {

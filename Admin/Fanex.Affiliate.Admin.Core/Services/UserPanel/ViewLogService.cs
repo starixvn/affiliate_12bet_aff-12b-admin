@@ -63,6 +63,28 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             return result;
         }
 
+        public IEnumerable<LogType> GetLogTypeList()
+        {
+            const string SpKey = "Aff_AffiliateSelLogType";
+            var dataList = new List<LogType>();
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        dataList.Add(new LogType {
+                            TypeId = Convert.ToInt32(reader["TypeId"]),
+                            Description = Convert.ToString(reader["Description"]),
+                        });
+                    }
+                }
+            }
+
+            return dataList;
+        }
+
         private static ViewLog BuildViewLogItem(IDataReader reader)
         {
             return new ViewLog
