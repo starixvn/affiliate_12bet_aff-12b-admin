@@ -41,6 +41,7 @@ module.exports = {
     [`${styleDist}/pages/media-gallery/landing-page`]: clientRoot + "/style/pages/media-gallery/landing-page.scss",
     [`${styleDist}/pages/media-gallery/text-list`]: clientRoot + "/style/pages/media-gallery/text-list.scss",
     [`${styleDist}/pages/media-gallery/banner-list`]: clientRoot + "/style/pages/media-gallery/banner-list.scss",
+    [`${styleDist}/pages/media-gallery/news-letter`]: clientRoot + "/style/pages/media-gallery/news-letter.scss",
 
     //Message
     [`${jsDist}/pages/message/message`]: clientRoot + "/js/pages/message/index.jsx",

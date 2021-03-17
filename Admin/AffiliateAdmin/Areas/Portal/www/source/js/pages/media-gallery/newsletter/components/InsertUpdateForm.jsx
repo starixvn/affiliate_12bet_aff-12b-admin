@@ -1,11 +1,9 @@
-
-import 'react-datepicker/dist/react-datepicker.css';
-import '../style/style.scss';
+//import 'react-datepicker/dist/react-datepicker.css';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert, FormFeedback, Row } from 'reactstrap';
+import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedNewsLetterPageId, getNewsLetterPageDetail, fetchData, insertNewsLetterPage, updateNewsLetterPage, toggleLoader } from '../actions/index';
 import { defaultState, globalResource, maxLength, maxFileSize } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
@@ -108,7 +106,7 @@ export class InsertUpdateForm extends PureComponent {
         {
             this._handleShowAlert(false, "File name must not have characters \\ / : * ? $ \" < > | and extension is html" );
             return false;
-        } 
+        }
         if (!fileName)
         {
             this._handleShowAlert(false, "Please enter file name");
@@ -232,7 +230,7 @@ export class InsertUpdateForm extends PureComponent {
                     <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">
-                            <div className="landing-page-form-container">
+                            <div className="news-letter-form-container">
                                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                                 </Alert>
@@ -259,7 +257,7 @@ export class InsertUpdateForm extends PureComponent {
                                         <Label  className="required" sm={4}>Language</Label>
                                         <Col sm={6}>
                                             <Input type="select" name="language" className="input-required mt-2" value={language} onChange={this._handleChange}>
-                                                {languageList.map(lang => 
+                                                {languageList.map(lang =>
                                                         <option key={lang.LanguageCode} value={lang.LanguageCode}>{lang.LanguageName}</option>
                                                 )}
                                             </Input>

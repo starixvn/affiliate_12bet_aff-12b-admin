@@ -16,10 +16,18 @@ describe('active member - components - Unactivated ', () => {
         shouldResetScrollPosition: true,
         userNames: 'xyl157',
         unactivatedGridData,
+        isShowMemberFullname: false
     };
 
     it('render correctly', () => {
         const result = shallow(<Unactivated {...defaultProps} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('render correctly with show full name', () => {
+        const props = Object.assign({}, defaultProps, { isShowMemberFullname: true });
+        const result = shallow(<Unactivated {...props} />);
 
         expect(result).toMatchSnapshot();
     });

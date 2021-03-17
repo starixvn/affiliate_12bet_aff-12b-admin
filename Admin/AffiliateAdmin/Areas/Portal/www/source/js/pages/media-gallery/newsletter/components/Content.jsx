@@ -1,4 +1,4 @@
-import React,  { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource, displayDateFormat } from '../libs/constants';
-import { setPagingOption, setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData } from '../actions';
+import { setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData } from '../actions';
 import { claimResource } from '../../../../modules/claim';
 import{formatDateTime} from '../../../../modules/utils';
 
@@ -96,7 +96,6 @@ export const Content = (props) => {
         };
         const newParam = Object.assign({}, props.param, newPaging);
 
-        props.setPagingOption(newPaging);
         props.setParam(newParam);
     };
 
@@ -132,7 +131,7 @@ function mapStateToProps({param, previewLink, pagingOption ,checkedNewsLetterPag
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({setPagingOption, setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData }, dispatch);
+    return bindActionCreators({setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

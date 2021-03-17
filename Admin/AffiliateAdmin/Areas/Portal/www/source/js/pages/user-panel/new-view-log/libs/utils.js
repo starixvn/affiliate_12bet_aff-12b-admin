@@ -10,6 +10,15 @@ export const handleParseToObject = (data) => {
     return dataObject;
 }
 
+export const cleanBlankAttributes = (obj) => {
+    for (let propName in obj) {
+        if (!obj[propName]) {
+            delete obj[propName];
+        }
+    }
+    return obj
+}
+
 const handleContactApps = (objectData) => {
     const contactApps = objectData['@ContactApps'];
 

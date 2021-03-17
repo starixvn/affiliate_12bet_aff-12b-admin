@@ -17,11 +17,19 @@ describe('active member - components - Activated ', () => {
     ];
 
     const defaultProps = {
-        activatedGridData
+        activatedGridData,
+        isShowMemberFullname: false
     };
 
     it('render correctly', () => {
         const result = shallow(<Activated {...defaultProps} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('render correctly with show full name', () => {
+        const props = Object.assign({}, defaultProps, { isShowMemberFullname: true });
+        const result = shallow(<Activated {...props} />);
 
         expect(result).toMatchSnapshot();
     });
