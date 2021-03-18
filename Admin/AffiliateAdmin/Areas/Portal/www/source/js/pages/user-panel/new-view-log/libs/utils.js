@@ -10,6 +10,13 @@ export const handleParseToObject = (obj) => {
     return cleanBlankAttributes(dataObject);
 }
 
+export const mergeToNonDuplicateArray = (obj1, obj2) => {
+    const arr1 = Object.keys(obj1);
+    const arr2 = Object.keys(obj2);
+
+    return [...new Set([ ...arr1, ...arr2])];
+}
+
 const cleanBlankAttributes = (obj) => {
     for (let propName in obj) {
         if (!obj[propName]) {
