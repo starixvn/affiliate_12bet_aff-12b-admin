@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,12 +11,12 @@ using System.Web.Mvc;
 namespace Fanex.Affiliate.Admin.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-    public class ResetDefaultUnauthorizedPropertyAttribute : ActionFilterAttribute
+    public class UpdateUnauthorizedPropertyAttribute : ActionFilterAttribute
     {
         public string PermissionName { get; }
         private IEnumerable<Claim> Claims { get; set; }
 
-        public ResetDefaultUnauthorizedPropertyAttribute(string permissionName = null)
+        public UpdateUnauthorizedPropertyAttribute(string permissionName = null)
         {
             PermissionName = permissionName;
         }
@@ -28,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             var data = GetResultData(filterContext.Result);
             if (data != null && Claims != null)
             {
-                ClearData(data);
+                CensorData(data);
             }
             base.OnResultExecuting(filterContext);
         }
@@ -48,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             }
         }
 
-        private void ClearData(object data)
+        private void CensorData(object data)
         {
             var type = data?.GetType();
             if (data == null || IsPrimitiveType(type))
@@ -60,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             {
                 foreach (var item in data as IEnumerable)
                 {
-                    ClearData(item);
+                    CensorData(item);
                 }
             }
             else
@@ -68,20 +69,41 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                 var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
                 foreach (var pro in properties)
                 {
-                    if (IsNeedResetPro(pro))
-                    {
-                        pro.SetValue(data, null, null);
-                    }
-
-                    var value = pro.GetValue(data, null);
-                    ClearData(value);
+                    var value = UpdateData(data, pro);
+                    CensorData(value);
                 }
             }
+        }
+
+        private object UpdateData(object data, PropertyInfo pro)
+        {
+            if (IsNeedResetPro(pro))
+            {
+                pro.SetValue(data, null, null);
+            } else
+            {
+                if (IsNeedCensoredPro(pro))
+                {
+                    var valueOfPro = pro.GetValue(data, null);
+                    var newValueOfPro = StringHelper.HideStringPart(valueOfPro.ToString());
+                    pro.SetValue(data, newValueOfPro, null);
+                }
+            }
+
+            return pro.GetValue(data, null);
         }
 
         private bool IsNeedResetPro(PropertyInfo pro)
         {
             var attribute = pro.GetCustomAttribute<PermissionCheckAttribute>();
+            return attribute != null
+                && (string.IsNullOrWhiteSpace(PermissionName) || attribute.PermissionName == PermissionName)
+                && !Claims.Any(p => p.Type == attribute.PermissionName);
+        }
+
+        private bool IsNeedCensoredPro(PropertyInfo pro)
+        {
+            var attribute = pro.GetCustomAttribute<CensoredPermissionCheckAttribute>();
             return attribute != null
                 && (string.IsNullOrWhiteSpace(PermissionName) || attribute.PermissionName == PermissionName)
                 && !Claims.Any(p => p.Type == attribute.PermissionName);

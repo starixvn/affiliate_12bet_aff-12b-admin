@@ -1,7 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 {
@@ -13,12 +15,15 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public string AffName { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string FirstName { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string LastName { get; set; }
 
         public bool Gender { get; set; }
 
+        [JsonIgnore]
         public string ContactApps { get; set; }
 
         [PermissionCheck(Function.AffWebUrl)]
@@ -52,8 +57,11 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
         public string PreferredLanguage { get; set; }
 
         [PermissionCheck(Function.AffPhone)]
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string Phone { get; set; }
 
         public string AffLink { get; set; }
+
+        public IEnumerable<CensoredContactApp> ContactAppList { get; set; }
     }
 }

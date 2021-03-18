@@ -15,6 +15,7 @@ export const Content = (props) => {
 
 function mapStateToProps({ leftPanel }) {
     const { affiliateInfo } = leftPanel;
+
     return Object.assign({}, { affiliateInfo });
 };
 

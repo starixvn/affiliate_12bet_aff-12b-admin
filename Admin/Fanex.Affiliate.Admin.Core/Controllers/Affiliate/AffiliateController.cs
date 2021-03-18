@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [ResetDefaultUnauthorizedProperty]
+        [UpdateUnauthorizedProperty]
         public ActionResult GetAffiliateList(GetAffiliateViewModel viewModel)
         {
             if (int.TryParse(viewModel.AffId, out int affId) || string.IsNullOrEmpty(viewModel.AffId))

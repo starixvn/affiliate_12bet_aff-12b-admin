@@ -169,8 +169,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             httpContext.Session.Returns(session);
         }
 
-        private ResetDefaultUnauthorizedPropertyAttribute CreateAttribute(string permissionName = PERMISSION_NAME)
-            => new ResetDefaultUnauthorizedPropertyAttribute(permissionName);
+        private UpdateUnauthorizedPropertyAttribute CreateAttribute(string permissionName = PERMISSION_NAME)
+            => new UpdateUnauthorizedPropertyAttribute(permissionName);
 
         private class TestResetStringPropertyClass
         {
