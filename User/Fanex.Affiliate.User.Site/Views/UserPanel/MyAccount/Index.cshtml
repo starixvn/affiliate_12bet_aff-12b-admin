@@ -117,7 +117,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 require control-label">@Lang.ContactNumber</label>
                         <div class="col-sm-4">
-                            @Html.TextBoxFor(p => p.Phone, new { @class = "form-control", @Value = Model.Phone.HideStringPart(hasAffPersonalInfoPermission) })
+                            @Html.TextBoxFor(p => p.Phone, new { @class = "form-control", @Value = Model.Phone.ReplaceAHalfOfString(hasAffPersonalInfoPermission) })
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
                             @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "help-block hide" })
@@ -138,7 +138,7 @@
                             {
                                 <div class="col-sm-4">
                                     <input type="text" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-control"
-                                           value="@Html.Raw(item.Value.HideStringPart(hasAffPersonalInfoPermission))"
+                                           value="@Html.Raw(item.Value.ReplaceAHalfOfString(hasAffPersonalInfoPermission))"
                                            data-val="true" data-val-requiredifnullorempty-dependentprop="@dependentField"
                                            data-val-requiredifnullorempty="@Error.RequireIMAccount" />
                                 </div>
@@ -147,7 +147,7 @@
                             {
                                 <div class="col-sm-4">
                                     <input type="text" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-control"
-                                           value="@Html.Raw(item.Value.HideStringPart(hasAffPersonalInfoPermission))"
+                                           value="@Html.Raw(item.Value.ReplaceAHalfOfString(hasAffPersonalInfoPermission))"
                                            data-val="true"
                                            data-val-required="@Error.RequireIMAccount" />
                                 </div>

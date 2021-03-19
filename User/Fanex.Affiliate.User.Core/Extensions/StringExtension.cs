@@ -3,17 +3,13 @@
     public static class StringExtension
     {
         private const char Asterisks = '*';
-        private const int ShortValueLength = 1;
-        private const int CharLengthToShowOfMediumValue = 1;
-        private const int CharLengthToShowOfLongValue = 2;
-        private const int MinLongValueLength = 3;
 
         public static bool MatchWith(this string value, string strToMatch)
         {
             return string.Equals(value, strToMatch, System.StringComparison.OrdinalIgnoreCase);
         }
 
-        public static string HideStringPart(this string value, bool hasPermission)
+        public static string ReplaceAHalfOfString(this string value, bool hasPermission = true, char character = Asterisks)
         {
             if (hasPermission)
             {
@@ -25,25 +21,11 @@
                 return string.Empty;
             }
 
-            if (value.Length == ShortValueLength)
-            {
-                return Asterisks.ToString();
-            }
-
-            if (value.Length > MinLongValueLength)
-            {
-                return ReplaceValuePart(value, CharLengthToShowOfLongValue);
-            }
-
-            return ReplaceValuePart(value, CharLengthToShowOfMediumValue);
-        }
-
-        private static string ReplaceValuePart(string value, int charLengthToShow)
-        {
             var length = value.Length;
-            var hiddenCharCount = length - charLengthToShow;
-            var stringReplace = new string(Asterisks, hiddenCharCount);
-            var convertedValue = value.Remove(charLengthToShow).Insert(charLengthToShow, stringReplace);
+            var halfLength = length / 2;
+            var hiddenCharCount = length - halfLength;
+            var stringReplace = new string(character, hiddenCharCount);
+            var convertedValue = value.Remove(halfLength).Insert(halfLength, stringReplace);
 
             return convertedValue;
         }
