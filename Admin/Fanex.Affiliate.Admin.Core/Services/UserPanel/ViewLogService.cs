@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("LogType", DbType.Int32, param.LogType);
+                objectDb.AddInParameter("LogActionId", DbType.Int32, param.LogAction);
                 objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
                 objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
@@ -63,10 +63,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             return result;
         }
 
-        public IEnumerable<LogType> GetLogTypeList()
+        public IEnumerable<LogAction> GetLogActionList()
         {
-            const string SpKey = "Aff_AffiliateSelLogType";
-            var dataList = new List<LogType>();
+            const string SpKey = "Aff_LogAction_Sel";
+            var dataList = new List<LogAction>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -74,9 +74,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(new LogType {
-                            TypeId = Convert.ToInt32(reader["TypeId"]),
-                            Description = Convert.ToString(reader["Description"]),
+                        dataList.Add(new LogAction
+                        {
+                            ActionId = Convert.ToInt32(reader["ActionId"]),
+                            ActionName = Convert.ToString(reader["ActionName"]),
                         });
                     }
                 }

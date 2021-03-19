@@ -12,8 +12,8 @@ export const setParam = (data) => {
     }
 }
 
-export const getLogTypeList = () => async () => {
-    const url = 'Portal/UserPanel/ViewLog/GetLogTypeList';
+export const getLogActionList = () => async () => {
+    const url = 'Portal/UserPanel/ViewLog/GetLogActionList';
 
     const response = await post(url);
 

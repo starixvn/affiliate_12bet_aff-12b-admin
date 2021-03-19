@@ -199,7 +199,7 @@
     <Compile Include="DTO\MassAdjustment\ErroredAdjustmentInfo.cs" />
     <Compile Include="DTO\MediaGallery\NewsLetter.cs" />
     <Compile Include="DTO\UserPanel\CensoredContactApp.cs" />
-    <Compile Include="DTO\UserPanel\LogType.cs" />
+    <Compile Include="DTO\UserPanel\LogAction.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
     <Compile Include="MetaModels\MassAdjustment\MassAdjustmentParam.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteNewsLetterParam.cs" />

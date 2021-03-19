@@ -8,7 +8,7 @@ describe('new view log - components - Content', () => {
         affId: 1271808,
         pagingOption: defaultPagingOption,
         param: {
-            logType: 0,
+            logAction: 0,
             fromDate: "06/06/2019",
             toDate: "06/06/2019"
         },

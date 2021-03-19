@@ -9,6 +9,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
     {
         EntityResult<ViewLog> GetViewLogList(ViewLogParam param);
 
-        IEnumerable<LogType> GetLogTypeList();
+        IEnumerable<LogAction> GetLogActionList();
     }
 }

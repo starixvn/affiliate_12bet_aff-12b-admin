@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         public void GetViewLogList_WhenCallWithValidParam_ExcuteWithCorrectData()
         {
             // Arrange
-            var param = new ViewLogParam { AffId = 1271808, LogType = 0, PageIndex = 1, PageSize = 20 };
+            var param = new ViewLogParam { AffId = 1271808, LogAction = 0, PageIndex = 1, PageSize = 20 };
             ViewLogParam passedParam = null;
             var viewLogService = new Mock<IViewLogService>();
             viewLogService.Setup(s => s.GetViewLogList(param)).Returns(new EntityResult<ViewLog> { MainData = new List<ViewLog> { new ViewLog() }, TotalItem = 1 }).Callback<ViewLogParam>(p => passedParam = p);

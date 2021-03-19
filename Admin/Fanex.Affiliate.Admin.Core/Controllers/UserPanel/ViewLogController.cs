@@ -21,11 +21,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetLogTypeList()
+        public ActionResult GetLogActionList()
         {
             return new JsonNetResult
             {
-                Data = _viewLogService.GetLogTypeList()
+                Data = _viewLogService.GetLogActionList()
             };
         }
 

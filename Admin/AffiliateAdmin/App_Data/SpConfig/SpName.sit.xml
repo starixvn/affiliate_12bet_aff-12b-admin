@@ -61,7 +61,7 @@
     <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="affiliate_12bet" />
     <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_AffiliateLog_Sel" SpName="Aff_Admin_AffiliateLog_Sel_xpre" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateSelLogType" SpName="Aff_AffiliateSelLogType" DbName="affiliate_12bet" />
+    <Setting Key="Aff_LogAction_Sel" SpName="Aff_LogAction_Sel_xpre" DbName="affiliate_12bet" />
     <Setting Key="Aff_CustomerSelBalBF" SpName="Aff_CustomerSelBalBF" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_AffiliateAdjustment_Ins" SpName="Aff_Admin_AffiliateAdjustment_Ins_xpre" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_AffiliatePreferredLanguage_Upd" SpName="Aff_Admin_AffiliatePreferredLanguage_Upd_xpre" DbName="affiliate_12bet" />

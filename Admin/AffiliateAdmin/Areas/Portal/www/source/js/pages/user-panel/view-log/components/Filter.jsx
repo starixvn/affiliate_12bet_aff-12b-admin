@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { headerText, globalResource, minDate } from '../libs/constants';
-import { setParam, setShowIdList, getLogTypeList } from '../actions';
+import { setParam, setShowIdList, getLogActionList } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
 
 const maxDate = new Date(2021, 1, 28);
@@ -24,17 +24,21 @@ export class Filter extends React.Component {
         sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
 
         this.state = {
-            logType: 0,
+            logAction: 0,
             fromDate: `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
             toDate: this.nowString,
-            logTypeList: null
+            logActionList: null
         }
     }
 
-    componentDidMount = async () => {
-        const logTypeList = await this.props.getLogTypeList();
+    componentDidMount() {
+        this.handleGetLogActionList();
+    }
 
-        this.setState({ logTypeList });
+    handleGetLogActionList = async () => {
+        var logActionList = await this.props.getLogActionList();
+
+        this.setState({ logActionList });
     }
 
     handleChange = (event) => {
@@ -50,23 +54,25 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        this.props.setParam(this.state);
+        const { logAction, fromDate, toDate } = this.state;
+
         this.props.setShowIdList({});
+        this.props.setParam({ logAction, fromDate, toDate });
     }
 
     render() {
-        const { logType, fromDate, toDate, logTypeList } = this.state;
+        const { logAction, fromDate, toDate, logActionList } = this.state;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mr-sm-2">
-                        <Label for="logType" className="mr-sm-2">{headerText.Type}</Label>
-                        <Input type="select" name="logType" id="logType" value={logType} onChange={this.handleChange}>
+                        <Label for="logAction" className="mr-sm-2">{headerText.Action}</Label>
+                        <Input type="select" name="logAction" id="logAction" value={logAction} onChange={this.handleChange}>
                             <option value="0">{globalResource.All}</option>
                             {
-                                logTypeList && logTypeList.map(item => {
-                                    return (<option key={`logType-${item.TypeId}`} value={item.TypeId}>{item.Description}</option>)
+                                logActionList && logActionList.map(item => {
+                                    return (<option key={`logAction-${item.ActionId}`} value={item.ActionId}>{item.ActionName}</option>)
                                 })
                             }
                         </Input>
@@ -99,7 +105,7 @@ function mapStateToProps({ today }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, setShowIdList, getLogTypeList }, dispatch);
+    return bindActionCreators({ setParam, setShowIdList, getLogActionList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

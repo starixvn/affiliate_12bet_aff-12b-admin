@@ -52,4 +52,5 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Message_Ins" Suffix="_xpre"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Message_Upd" Suffix="_xpre"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Member_RemoveStatus_Upd" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_LogAction_Sel" Suffix="_xpre"></item>
 </Root>

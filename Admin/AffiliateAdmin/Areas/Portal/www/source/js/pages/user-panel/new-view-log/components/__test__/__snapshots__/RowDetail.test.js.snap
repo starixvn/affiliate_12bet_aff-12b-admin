@@ -17,7 +17,7 @@ exports[`new view log - components - RowDetail render correctly 1`] = `
         className="text-center"
       >
         <p
-          className="text-primary"
+          className="text-primary mb-0"
         >
           1122111
         </p>
@@ -45,7 +45,11 @@ exports[`new view log - components - RowDetail render correctly 1`] = `
       <td
         className="text-center"
       >
-        123 Lê Văn
+        <span
+          className="text-secondary"
+        >
+          123 Lê Văn
+        </span>
       </td>
       <td
         className="key"
@@ -74,7 +78,11 @@ exports[`new view log - components - RowDetail render correctly 1 1`] = `
       <td
         className="text-center"
       >
-        11111
+        <span
+          className="text-secondary"
+        >
+          11111
+        </span>
       </td>
       <td
         className="key"
@@ -84,7 +92,11 @@ exports[`new view log - components - RowDetail render correctly 1 1`] = `
       <td
         className="text-center"
       >
-        1111
+        <span
+          className="text-secondary"
+        >
+          1111
+        </span>
       </td>
       <td
         className="key"
@@ -94,7 +106,11 @@ exports[`new view log - components - RowDetail render correctly 1 1`] = `
       <td
         className="text-center"
       >
-        123 Lê Văn
+        <span
+          className="text-secondary"
+        >
+          123 Lê Văn
+        </span>
       </td>
       <td
         className="key"
@@ -123,7 +139,11 @@ exports[`new view log - components - RowDetail render correctly 2 1`] = `
       <td
         className="text-center"
       >
-        1122111
+        <p
+          className="text-primary mb-0"
+        >
+          1122111
+        </p>
       </td>
       <td
         className="key"

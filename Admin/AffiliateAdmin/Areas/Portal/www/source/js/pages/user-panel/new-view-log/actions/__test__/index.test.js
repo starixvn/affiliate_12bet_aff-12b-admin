@@ -71,7 +71,7 @@ describe('new view log actions', () => {
         const param = {
             affId: 1271808,
             fromDate: "01/04/2016",
-            logType: 0,
+            logAction: 0,
             pageIndex: 3,
             pageSize: 20,
             toDate: "07/03/2019"
@@ -88,7 +88,7 @@ describe('new view log actions', () => {
         const param = {
             affId: 123456,
             fromDate: "01/04/2016",
-            logType: 0,
+            logAction: 0,
             pageIndex: 3,
             pageSize: 20,
             toDate: "07/03/2019"

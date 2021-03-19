@@ -4,7 +4,6 @@ import { globalResource } from '../../../../modules/globalResource';
 export { globalResource, maxWidth }
 
 export const headerText = {
-    Type: 'Type',
     Index: globalResource.Index,
     Id: 'ID',
     Date: 'Date',
