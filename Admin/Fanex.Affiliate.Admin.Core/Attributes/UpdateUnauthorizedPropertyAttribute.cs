@@ -85,7 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                 if (IsNeedCensoredPro(pro))
                 {
                     var valueOfPro = pro.GetValue(data, null);
-                    var newValueOfPro = StringHelper.HideStringPart(valueOfPro.ToString());
+                    var newValueOfPro = valueOfPro.ToString().HideStringPart();
                     pro.SetValue(data, newValueOfPro, null);
                 }
             }
@@ -96,17 +96,19 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         private bool IsNeedResetPro(PropertyInfo pro)
         {
             var attribute = pro.GetCustomAttribute<PermissionCheckAttribute>();
-            return attribute != null
-                && (string.IsNullOrWhiteSpace(PermissionName) || attribute.PermissionName == PermissionName)
-                && !Claims.Any(p => p.Type == attribute.PermissionName);
+            return attribute != null && !HasPermission(attribute.PermissionName);
         }
 
         private bool IsNeedCensoredPro(PropertyInfo pro)
         {
             var attribute = pro.GetCustomAttribute<CensoredPermissionCheckAttribute>();
-            return attribute != null
-                && (string.IsNullOrWhiteSpace(PermissionName) || attribute.PermissionName == PermissionName)
-                && !Claims.Any(p => p.Type == attribute.PermissionName);
+            return attribute != null && !HasPermission(attribute.PermissionName);
+        }
+
+        private bool HasPermission(string permissionName)
+        {
+            return (string.IsNullOrWhiteSpace(PermissionName) && permissionName == PermissionName)
+                || Claims.Any(p => p.Type == permissionName);
         }
 
         private static bool IsPrimitiveType(Type type)

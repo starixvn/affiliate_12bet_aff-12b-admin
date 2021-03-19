@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
+import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 export const ContactApp = (props) => {
     const { affiliateInfo } = props;
@@ -13,7 +14,7 @@ export const ContactApp = (props) => {
                     return (
                         <Row key={`contactApp-${contactApp.Name}`}>
                             <Col sm={5}>{contactApp.Name}</Col>
-                            <Col sm={7} className='text-right'>{contactApp.Value}</Col>
+                            <Col sm={7} className='text-right'>{htmlDecode(contactApp.Value)}</Col>
                         </Row>
                     )
                 })

@@ -47,6 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [UpdateUnauthorizedProperty]
         public ActionResult GetPaymentRequestDetail(long transId)
         {
             if (transId >= Validation.MinId)

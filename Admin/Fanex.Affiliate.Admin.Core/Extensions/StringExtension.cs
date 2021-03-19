@@ -1,13 +1,13 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Utilities
 {
-    public static class StringHelper
+    public static class StringExtension
     {
         private const char Asterisks = '*';
         private const int ShortValueLength = 1;
         private const int CharLengthToShowOfMediumValue = 1;
         private const int CharLengthToShowOfLongValue = 2;
         private const int MinLongValueLength = 3;
-        public static string HideStringPart(string value)
+        public static string HideStringPart(this string value)
         {
             if (string.IsNullOrEmpty(value))
             {

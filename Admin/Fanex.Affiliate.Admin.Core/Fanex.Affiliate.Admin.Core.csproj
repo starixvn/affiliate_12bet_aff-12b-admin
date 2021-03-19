@@ -594,7 +594,7 @@
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
-    <Compile Include="Utilities\StringHelper.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Utilities\SystemFile.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
