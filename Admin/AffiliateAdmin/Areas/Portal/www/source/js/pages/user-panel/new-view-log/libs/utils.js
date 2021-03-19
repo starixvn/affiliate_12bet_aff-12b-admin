@@ -3,7 +3,7 @@
 }
 
 export const handleParseToObject = (obj) => {
-    const dataObject = obj ? JSON.parse(obj).root.row : {};
+    const dataObject = obj ? JSON.parse(obj).root.row || {} : {};
 
     handleContactApps(dataObject);
 
