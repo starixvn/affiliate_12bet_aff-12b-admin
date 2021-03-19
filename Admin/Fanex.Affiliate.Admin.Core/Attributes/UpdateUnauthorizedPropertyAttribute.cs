@@ -85,7 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                 if (IsNeedCensoredPro(pro))
                 {
                     var valueOfPro = pro.GetValue(data, null);
-                    var newValueOfPro = valueOfPro.ToString().HideStringPart();
+                    var newValueOfPro = valueOfPro?.ToString().HideStringPart() ?? string.Empty;
                     pro.SetValue(data, newValueOfPro, null);
                 }
             }
