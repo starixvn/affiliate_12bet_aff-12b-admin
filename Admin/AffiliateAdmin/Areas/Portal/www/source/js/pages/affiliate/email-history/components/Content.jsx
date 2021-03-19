@@ -47,7 +47,11 @@ export class Content extends PureComponent {
             <Row key="thead">
                 <Cell header={true} colWidth={35}></Cell>
                 <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.Sender}>{headerText.Sender}</Cell>
+                {
+                    this.props.isShowSender && (
+                            <Cell header={true} colWidth={300} title={headerText.Sender}>{headerText.Sender}</Cell>
+                        )
+                }
                 <Cell header={true} colWidth={150} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.Subject}>{headerText.Subject}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.EmailAddress}>{headerText.EmailAddress}</Cell>
@@ -70,7 +74,7 @@ export class Content extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="7">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={this.props.isShowSender ? "7" : "6"}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -78,7 +82,7 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
-        const { isModifiable } = this.props;
+        const { isModifiable, isShowSender } = this.props;
         const email = htmlDecode(dataItem.Email);
         const href = `mailto:${email}`;
         const sender = htmlDecode(dataItem.Sender);
@@ -91,7 +95,11 @@ export class Content extends PureComponent {
                         onChange={(e) => this.onCheckItem(e.target.checked, dataItem.EmailId)} />
                 </Cell>
                 <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={sender}>{sender}</Cell>
+                {
+                    isShowSender && (
+                            <Cell title={sender}>{sender}</Cell>
+                        )
+                }
                 <Cell title={affName}>{affName}</Cell>
                 <Cell title={subject}>
                     {isModifiable
@@ -142,7 +150,8 @@ export class Content extends PureComponent {
 
 function mapStateToProps({ pagingOption, param, checkedEmails, shouldResetScrollPosition, gridData, claimsPrincipal }) {
     const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.EmailHistory);
-    return Object.assign({}, { pagingOption, param, checkedEmails, shouldResetScrollPosition, gridData, isModifiable });
+    const isShowSender = claimsPrincipal.hasWriteClaim(claimResource.AffPersonalInfo);
+    return Object.assign({}, { pagingOption, param, checkedEmails, shouldResetScrollPosition, gridData, isModifiable, isShowSender });
 }
 
 function mapDispatchToProps(dispatch) {

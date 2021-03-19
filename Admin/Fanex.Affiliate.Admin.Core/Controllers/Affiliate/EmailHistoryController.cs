@@ -29,6 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [UpdateUnauthorizedProperty]
         public ActionResult GetEmailHistoryList(EmailHistoryParam param)
         {
             if (ModelState.IsValid)
