@@ -30,11 +30,11 @@ export const GeneralInfo = (props) => {
             </Row>
             <Row>
                 <Col sm={5}>{resource.FirstName}</Col>
-                <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.FirstName)}</Col>
+                <Col sm={7} className='text-right'>{affiliateInfo.FirstName}</Col>
             </Row>
             <Row>
                 <Col sm={5}>{resource.LastName}</Col>
-                <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.LastName)}</Col>
+                <Col sm={7} className='text-right'>{affiliateInfo.LastName}</Col>
             </Row>
             <Row>
                 <Col sm={5}>{resource.Gender}</Col>
@@ -44,7 +44,7 @@ export const GeneralInfo = (props) => {
                 claimsPrincipal.hasReadClaim(claimResource.AffPhone) &&
                 <Row>
                     <Col sm={5} className="pr-0">{resource.ContactNumber}</Col>
-                    <ContactNumber sm={7} className='text-right' isStatic={true}>{htmlDecode(affiliateInfo.Phone)}</ContactNumber>
+                    <ContactNumber sm={7} className='text-right' isStatic={true}>{affiliateInfo.Phone}</ContactNumber>
                 </Row>
             }
             <ContactApp />

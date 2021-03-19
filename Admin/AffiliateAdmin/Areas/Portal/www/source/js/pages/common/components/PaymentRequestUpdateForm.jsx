@@ -117,12 +117,12 @@ export class PaymentRequestUpdateForm extends PureComponent {
                 }
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.FirstName}</Label>
-                    <Label sm={6}>{htmlDecode(paymentRequestInfo.FirstName)}</Label>
+                    <Label sm={6}>{paymentRequestInfo.FirstName}</Label>
                 </FormGroup>
 
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.LastName}</Label>
-                    <Label sm={6}>{htmlDecode(paymentRequestInfo.LastName)}</Label>
+                    <Label sm={6}>{paymentRequestInfo.LastName}</Label>
                 </FormGroup>
 
             </fieldset>
