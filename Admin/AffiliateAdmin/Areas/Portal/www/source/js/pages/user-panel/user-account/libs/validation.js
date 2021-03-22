@@ -62,17 +62,19 @@ export const validateUserAccount = (userAccountInfo, moreSiteUrlsList) => {
     const isValidGender = userAccountInfo.Gender != null;
     const isValidEmail = !userAccountInfo.Email || checkEmail.test(userAccountInfo.Email);
     const country = countriesList[userAccountInfo.Country] === undefined ? "" : userAccountInfo.Country;
+    const selectedField = userAccountInfo.HasWebSite ? 'SiteUrl' : 'NoSiteDescription';
 
+    const newRequiredFieldList = [...requiredFieldList, selectedField];
     message = isValidGender ? message : message + messageList.Gender + "<br />";
     message = isValidEmail ? message : message + messageList.Email + "<br />";
     message += getMessage('Country', country);
-    message += requiredFieldList.reduce((accumulator, field) => { return accumulator + getMessage(field, userAccountInfo[field]) }, '');
+    message += newRequiredFieldList.reduce((accumulator, field) => { return accumulator + getMessage(field, userAccountInfo[field]) }, '');
 
     let isValid = isValidGender && isValidEmail && userAccountInfo.FirstName !== '' && userAccountInfo.LastName !== '' &&
         userAccountInfo.Phone !== '' && userAccountInfo.Address !== '' && userAccountInfo.City !== '' &&
-        userAccountInfo.Postcode !== '' && userAccountInfo.Country !== '' && userAccountInfo.SiteUrl !== '';
+        userAccountInfo.Postcode !== '' && userAccountInfo.Country !== '' && userAccountInfo[selectedField] !== '';
 
-    const resultValidateMoreSiteUrls = moreSiteUrlsList ? validateMoreSiteUrls(moreSiteUrlsList) : ({ message: '', isValid: true });
+    const resultValidateMoreSiteUrls = (userAccountInfo.HasWebSite && moreSiteUrlsList) ? validateMoreSiteUrls(moreSiteUrlsList) : ({ message: '', isValid: true });
     const resultValidatePaymentMethod = validatePaymentMethod(userAccountInfo);
 
     return {

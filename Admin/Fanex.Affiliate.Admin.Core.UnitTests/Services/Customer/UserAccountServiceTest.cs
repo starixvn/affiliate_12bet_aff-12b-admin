@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal(Lang.UpdateIsFailed, result.Message);
+            Assert.Equal("Please describe how you would like to promote 12Bet if you don't have the URL is required", result.Message);
         }
 
         [Fact]

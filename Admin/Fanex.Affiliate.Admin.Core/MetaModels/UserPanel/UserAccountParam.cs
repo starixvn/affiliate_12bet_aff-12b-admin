@@ -42,6 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public string Country { get; set; }
 
         [SpParamProtecting(Function.AffWebUrl, Function.WritePermission)]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string SiteUrl { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
@@ -89,5 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public string Answer { get; set; }
 
         public IEnumerable<ContactApp> ContactAppList { get; set; }
+
+        public bool HasWebSite { get; set; }
     }
 }

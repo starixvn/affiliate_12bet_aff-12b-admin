@@ -239,7 +239,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "name": "Edit",
           "parent": null,
           "renderClaim": Claim {
-            "type": "[Note]",
+            "type": "[AffCustomerEdit]",
             "value": undefined,
           },
         },
@@ -254,6 +254,10 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "note",
           "name": "Note",
           "parent": null,
+          "renderClaim": Claim {
+            "type": "[Note]",
+            "value": undefined,
+          },
         },
       ]
     }

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`news letter - components - AppContainer render correctly 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <Memo(ControlButtons)
+    checkedItems={Object {}}
+    fetchData={[Function]}
+    gridData={Array []}
+    messages={
+      Object {
+        "AreYouSureDeleteItems": "Are you sure to delete the selected newsletter(s)?",
+        "DeleteItemsSuccessfully": "Delete newsletter(s) Successfully",
+        "PleaseSelect": "Please select newsletter(s) to delete",
+        "maxLengthErrorMessage": "This field must not exceed 50 characters",
+        "requiredErrorMessage": "This field is required",
+      }
+    }
+    param={
+      Object {
+        "pageIndex": 1,
+        "pageSize": 20,
+      }
+    }
+  />
+  <Connect(Component) />
+  <Connect(InsertUpdateForm) />
+</AppLayout>
+`;
+
+exports[`news letter - components - AppContainer render correctly with has not permission 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <Connect(Component) />
+  <Connect(InsertUpdateForm) />
+</AppLayout>
+`;

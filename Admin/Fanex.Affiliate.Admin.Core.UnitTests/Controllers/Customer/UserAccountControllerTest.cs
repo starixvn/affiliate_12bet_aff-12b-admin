@@ -151,7 +151,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
             // Assert
             Assert.False(data.IsSuccessful);
-            Assert.Equal("Update is failed!", data.Message);
+            Assert.Equal("", data.Message);
         }
 
         private UserAccountController CreateUserAccountController(

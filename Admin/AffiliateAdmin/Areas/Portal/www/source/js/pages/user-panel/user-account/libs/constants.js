@@ -24,7 +24,7 @@ export const messageList = {
     BankAccountNumber: 'Bank Account Number is required',
 }
 
-export const requiredFieldList = [ 'FirstName', 'LastName', 'Phone', 'Address', 'City', 'Postcode', 'SiteUrl' ]
+export const requiredFieldList = [ 'FirstName', 'LastName', 'Phone', 'Address', 'City', 'Postcode' ]
 
 export const requiredBankTranferList = [ 'BankName', 'BankAddress', 'BankAccountName', 'BankAccountNumber' ]
 
