@@ -44,6 +44,6 @@ export const userPanelMenuList = [
 ]
 
 export const userPanelPendingMenuList = [
-    { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null, renderClaim: new Claim(claimResource.Note) },
-    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null }
+    { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null, renderClaim: new Claim(claimResource.EditAffiliate) },
+    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null, renderClaim: new Claim(claimResource.Note) }
 ]

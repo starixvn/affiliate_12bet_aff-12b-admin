@@ -4,6 +4,7 @@ import Loader from '../../../../components/Loader';
 import UserPanelMenu from './UserPanelMenu';
 import { userPanelMenuList, userPanelPendingMenuList } from '../libs/menu';
 import { userPanelMenuKey } from '../../common/libs/constants';
+import { claimResource } from '../../../../modules/claim';
 import { spinnerLoaderWidth, spinnerLoaderUserPanelHeight } from '../../../../modules/constants';
 
 export const UserPanel = (props) => {
@@ -11,7 +12,7 @@ export const UserPanel = (props) => {
 
     useEffect(() => {
         if (isPending && selectedUserPanel === userPanelMenuKey.statementHistory) {
-            props.onClickMenu(userPanelMenuKey.edit);
+            props.onClickMenu(claimsPrincipal.hasClaim(claimResource.EditAffiliate) ? userPanelMenuKey.edit : userPanelMenuKey.note);
         }
     });
 
