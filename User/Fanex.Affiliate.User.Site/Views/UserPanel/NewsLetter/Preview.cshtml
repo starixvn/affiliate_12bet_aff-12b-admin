@@ -4,5 +4,7 @@
     ViewBag.Title = Lang.WhatNewThisMonth;
 }
 
-@Html.Raw(@ViewBag.Content)
+<div style="overflow-x:scroll">
+    @Html.Raw(@ViewBag.Content)
+</div>
 
