@@ -4,7 +4,11 @@
     ViewBag.Title = Lang.WhatNewThisMonth;
 }
 
-<div style="overflow-x:scroll">
+@section styles{
+    @Html.InlineStyles("~/www/build/styles/css/news-letter.css")
+}
+
+<div class="news-letter-content">
     @Html.Raw(@ViewBag.Content)
 </div>
 

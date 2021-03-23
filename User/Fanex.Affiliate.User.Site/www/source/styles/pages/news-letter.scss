@@ -1,0 +1,21 @@
+﻿@media (max-width: 630px)
+{
+    .news-letter-content {
+        overflow-x: hidden;
+
+        table[width="600"] {
+            display: inline;
+            max-width: 100% !important;
+
+            &:last-of-type {
+                td[height="50"] {
+                    width: 600px;
+                }
+            }
+        }
+
+        img[width="600"] {
+            max-width: 100% !important;
+        }
+    }
+}
