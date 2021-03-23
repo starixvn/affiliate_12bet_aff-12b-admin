@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { AppContainer } from '../AppContainer';
 import { shallow } from 'enzyme';
-import ControlButtons from '../../../common/components/ControlButtons';
 
 describe('news letter - components - AppContainer', () => {
     const defaultProps = {
@@ -25,12 +24,23 @@ describe('news letter - components - AppContainer', () => {
         expect(result).toMatchSnapshot();
     });
 
-    it('fetchData - should be called when call fetchData in ControlButtons', () => {
-        const props = Object.assign({}, defaultProps, { fetchData: jest.fn() });
+    it('componentDidMount - should call handleFetchData when gridData is null', async () => {
+        const props = Object.assign({}, defaultProps, { gridData: null, fetchData: jest.fn() })
+        const result = shallow(<AppContainer {...props} />);
+        const instance = result.instance();
+        instance.handleFetchData = jest.fn();
+
+        instance.componentDidMount();
+
+        expect(instance.handleFetchData).toHaveBeenCalled();
+    });
+
+    it('handleFetchData - should call fetchData', async () => {
+        const props = Object.assign({}, defaultProps, { fetchData: jest.fn() })
         const result = shallow(<AppContainer {...props} />);
 
-        result.find(ControlButtons).props().fetchData();
+        result.instance().handleFetchData();
 
-        expect(props.fetchData).toHaveBeenCalledWith(defaultProps.param);
+        expect(props.fetchData).toHaveBeenCalled();
     });
 });

@@ -35,6 +35,7 @@ describe('user account - components - Content', () => {
         Question: "What?",
         Answer: "What?",
         MailOption: false,
+        HasWebSite: true,
         ContactAppList: [{Name: "MSN/YM/QQ", Value: "@123 Lê Văn", Order: 0}]
     };
     const defaultProps = {

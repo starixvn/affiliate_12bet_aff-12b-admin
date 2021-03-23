@@ -2,9 +2,6 @@
 import { Content } from '../Content';
 import { shallow, mount } from 'enzyme';
 
-import { defaultPagingOption } from '../../../../../modules/constants';
-import { Table } from '@9softstudio/react-fixed-table-header';
-
 describe('landing page list - components - Content ', () => {
     const gridData = [
                 {

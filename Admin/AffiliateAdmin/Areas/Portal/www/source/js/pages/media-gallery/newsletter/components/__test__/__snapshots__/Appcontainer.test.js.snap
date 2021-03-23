@@ -7,7 +7,6 @@ exports[`news letter - components - AppContainer render correctly 1`] = `
   />
   <Memo(ControlButtons)
     checkedItems={Object {}}
-    fetchData={[Function]}
     gridData={Array []}
     messages={
       Object {

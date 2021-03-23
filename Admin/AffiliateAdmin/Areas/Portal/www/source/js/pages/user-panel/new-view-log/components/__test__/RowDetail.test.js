@@ -16,7 +16,7 @@ describe('new view log - components - RowDetail', () => {
 
     it('render correctly 1', () => {
         const defaultProps = {
-            oldData: "{\"root\":{\"row\":{\"@ContactApps\":\"[{\\\"Name\\\":\\\"MSN/YM/QQ\\\",\\\"Value\\\":\\\"123 Lê Văn\\\"}]\",\"@PageName\":\"11111\",\"@PageCode\":\"1111\"}}}",
+            oldData: "{\"root\":{\"row\":{\"@ContactApps\":\"[{\\\"Name\\\":\\\"MSN/YM/QQ\\\",\\\"Value\\\":\\\"123 Lê Văn\\\"}]\",\"@PageName\":\"11111\",\"@PageCode\":\"1111\", \"@Name\":\"\"}}}",
             newData: "",
         }
 
@@ -27,7 +27,7 @@ describe('new view log - components - RowDetail', () => {
 
     it('render correctly 2', () => {
         const defaultProps = {
-            oldData: "",
+            oldData: "{\"root\":{\"row\":null}}",
             newData: "{\"root\":{\"row\":{\"@PageName\":\"1122111\"}}}",
         }
 

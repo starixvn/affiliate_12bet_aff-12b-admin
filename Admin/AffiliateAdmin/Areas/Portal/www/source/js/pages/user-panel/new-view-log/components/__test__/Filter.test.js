@@ -63,7 +63,7 @@ describe('new view log - components - Filter', () => {
 
     it('handleSearch - should be called when click Search Button', () => {
         const setParam = jest.fn();
-        const props = Object.assign({}, { today: '3/5/2021', setParam });
+        const props = Object.assign({}, defaultProps, { today: '3/5/2021', setParam });
         const wrapper = shallow(<Filter {...props} />);
         wrapper.instance().setState({ logActionList });
         wrapper.find('Button').simulate('click');

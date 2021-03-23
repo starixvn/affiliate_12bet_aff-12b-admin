@@ -19,7 +19,39 @@ describe('new view log actions', () => {
         runTestAction(item);
     });
 
-    it('should create action to fetchData with correct parameter', async () => {
+    it('should create action to getLogActionList with correct response', async () => {
+        const expectedResponse = {
+            data: [
+                {
+                    ActionName: "Setting for Commission Group",
+                    ActionId: 6860
+                },
+                {
+                    ActionName: "Payout",
+                    ActionId: 10279364
+                }
+            ],
+            status: 200
+        };
+
+        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
+
+        const result = await actions['getLogActionList']()();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/ViewLog/GetLogActionList');
+        expect(result).toEqual(expectedResponse.data);
+    })
+
+    it('should create action to getLogActionList with response error', async () => {
+        ajaxRequest.post = jest.fn();
+
+        const result = await actions['getLogActionList']()();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/ViewLog/GetLogActionList');
+        expect(result).toEqual(null);
+    })
+
+    it('should create action to fetchData with correct response', async () => {
         const expectedResponse = {
             data: {
                 MainData: [
@@ -83,7 +115,7 @@ describe('new view log actions', () => {
         expect(result).toEqual(expectedResponse.data);
     })
 
-    it('should create action to fetchData with incorrect parameter', async () => {
+    it('should create action to fetchData with response error', async () => {
         ajaxRequest.post = jest.fn();
         const param = {
             affId: 123456,

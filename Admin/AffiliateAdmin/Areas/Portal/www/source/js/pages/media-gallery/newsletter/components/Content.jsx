@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
@@ -8,19 +8,22 @@ import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource, displayDateFormat } from '../libs/constants';
 import { setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData } from '../actions';
 import { claimResource } from '../../../../modules/claim';
-import{formatDateTime} from '../../../../modules/utils';
+import { formatDateTime } from '../../../../modules/utils';
 
-export const Content = (props) => {
-
-    const _onCheckItem = (isChecked, newsLetterId) => {
-        const newCheckedNewsLetterPages = Object.assign({}, props.checkedNewsLetterPages, { [newsLetterId]: isChecked });
-
-        props.setShouldResetScrollPosition(false);
-        props.setCheckedNewsLetterPages(newCheckedNewsLetterPages);
+export class Content extends PureComponent {
+    constructor(props) {
+        super(props)
     }
 
-    function _renderHeader() {
-        const { isModifiable } = props;
+    onCheckItem = (isChecked, newsLetterId) => {
+        const newCheckedNewsLetterPages = Object.assign({}, this.props.checkedNewsLetterPages, { [newsLetterId]: isChecked });
+
+        this.props.setShouldResetScrollPosition(false);
+        this.props.setCheckedNewsLetterPages(newCheckedNewsLetterPages);
+    }
+
+    _renderHeader() {
+        const { isModifiable } = this.props;
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={20}></Cell>
@@ -37,13 +40,13 @@ export const Content = (props) => {
         );
     }
 
-    function _renderDataSection(dataList) {
+    _renderDataSection(dataList) {
         const dataRows = [];
 
         if (dataList && dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(_buildDataRow(dataItem, i + 1));
+                dataRows.push(this.buildDataRow(dataItem, i + 1));
             }
         }
         else {
@@ -55,32 +58,31 @@ export const Content = (props) => {
         return dataRows;
     }
 
-    function _buildDataRow(dataItem, index) {
-
-        const { isModifiable } = props;
+    buildDataRow(dataItem, index) {
         const fileName = htmlDecode(dataItem.FileName);
-        const displayFileSize = Math.round((dataItem.FileSize/1024)*100)/100;
+        const displayFileSize = Math.round((dataItem.FileSize / 1024) * 100) / 100;
+
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={!!props.checkedNewsLetterPages[dataItem.NewsLetterId]}
-                        onChange={(e) => _onCheckItem(e.target.checked, dataItem.NewsLetterId)} />
+                    <input type="checkbox" checked={!!this.props.checkedNewsLetterPages[dataItem.NewsLetterId]}
+                        onChange={(e) => this.onCheckItem(e.target.checked, dataItem.NewsLetterId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={fileName}>{fileName}</Cell>
                 <Cell className="text-center" title={dataItem.FileSize}>{displayFileSize}</Cell>
                 <Cell className="text-center" title={dataItem.Language}>{dataItem.LanguageName}</Cell>
-                <Cell className="text-center" title={dataItem.UploadDate}>{formatDateTime(dataItem.UploadDate, displayDateFormat) }</Cell>
+                <Cell className="text-center" title={dataItem.UploadDate}>{formatDateTime(dataItem.UploadDate, displayDateFormat)}</Cell>
                 <Cell className="text-center" title={dataItem.FromDate}>{formatDateTime(dataItem.FromDate, displayDateFormat)}</Cell>
                 <Cell className="text-center" title={dataItem.ToDate}>{formatDateTime(dataItem.ToDate, displayDateFormat)}</Cell>
                 <Cell className="text-center" title={headerText.Preview}>
-                    <Button color="link" onClick={() => _handlePreview(dataItem.NewsLetterId)}>
+                    <Button color="link" onClick={() => this.handlePreview(dataItem.NewsLetterId)}>
                         <span className="oi oi-eye text-primary"></span>
                     </Button>
                 </Cell>
-                { isModifiable &&
+                { this.props.isModifiable &&
                     <Cell className="text-center" title="Edit Newsletter">
-                        <Button color="link" onClick={() => props.setSelectedNewsLetterPageId(dataItem.NewsLetterId)}>
+                        <Button color="link" onClick={() => this.props.setSelectedNewsLetterPageId(dataItem.NewsLetterId)}>
                             <span className="oi oi-pencil text-secondary"></span>
                         </Button>
                     </Cell>
@@ -89,49 +91,53 @@ export const Content = (props) => {
         )
     }
 
-    const _handlePaging = (pageIndex, pageSize) => {
+    _handlePaging = (pageIndex, pageSize) => {
         const newPaging = {
             PageIndex: pageIndex,
             PageSize: pageSize
         };
-        const newParam = Object.assign({}, props.param, newPaging);
+        const newParam = Object.assign({}, this.props.param, newPaging);
 
-        props.setParam(newParam);
+        this.props.setParam(newParam);
     };
 
-    const _handlePreview = (id) => {
-        const {previewLink} = props;
+    handlePreview = (id) => {
+        const { previewLink } = this.props;
         const url = `${previewLink}?id=${id}`;
         window.open(url);
     }
 
-    return props.gridData && (
-        <div className="data-content">
-            <div className="landing-page-content table-responsive table-striped my-2">
-                <Table
-                    minWidth={1000}
-                    autoWidth={true}
-                    bodyHeight={300}
-                    header={_renderHeader()}
-                    body={_renderDataSection(props.gridData)}
-                    containerPadding={20}
-                    isPaging={true}
-                    pageOption={props.pagingOption}
-                    onPaging={_handlePaging}
-                    shouldResetScrollPosition={props.shouldResetScrollPosition}
-                />
+    render() {
+        const { gridData, pagingOption } = this.props;
+
+        return gridData && (
+            <div className="data-content">
+                <div className="landing-page-content table-responsive table-striped my-2">
+                    <Table
+                        minWidth={1000}
+                        autoWidth={true}
+                        bodyHeight={300}
+                        header={this._renderHeader()}
+                        body={this._renderDataSection(gridData)}
+                        containerPadding={20}
+                        isPaging={true}
+                        pageOption={pagingOption}
+                        onPaging={this._handlePaging}
+                        shouldResetScrollPosition={this.props.shouldResetScrollPosition}
+                    />
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
-function mapStateToProps({param, previewLink, pagingOption ,checkedNewsLetterPages, shouldResetScrollPosition, gridData, claimsPrincipal }) {
+function mapStateToProps({ param, previewLink, pagingOption, checkedNewsLetterPages, shouldResetScrollPosition, gridData, claimsPrincipal }) {
     const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGalleryMenu);
-    return Object.assign({}, {param, previewLink, pagingOption, checkedNewsLetterPages, shouldResetScrollPosition, gridData, isModifiable });
+    return Object.assign({}, { param, previewLink, pagingOption, checkedNewsLetterPages, shouldResetScrollPosition, gridData, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData }, dispatch);
+    return bindActionCreators({ setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

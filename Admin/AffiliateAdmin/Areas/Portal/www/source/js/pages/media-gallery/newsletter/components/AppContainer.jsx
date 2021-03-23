@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -12,39 +12,46 @@ import { messages } from '../libs/constants';
 import { fetchData, toggleLoader, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, deleteNewsLetterPages, setSelectedPreviewPageId, setShouldResetScrollPosition } from '../actions';
 import { claimResource } from '../../../../modules/claim';
 
-export const AppContainer = (props) => {
-
-    useEffect(() => {
-        const { gridData } = props;
-
-        !gridData && handleFetchData();
-    }, [props.gridData]);
-
-    const handleFetchData = async () => {
-        await props.fetchData(props.param);
+export class AppContainer extends PureComponent {
+    constructor(props) {
+        super(props)
     }
 
-    return (
-        <AppLayout>
-            <Loader show={props.isShowLoader} />
-            { props.isModifiable &&
-                <ControlButtons
-                    messages={messages}
-                    gridData={props.gridData}
-                    fetchData={() => props.fetchData(props.param)}
-                    checkedItems={props.checkedNewsLetterPages}
-                    setCheckedItems={props.setCheckedNewsLetterPages}
-                    toggleLoader={props.toggleLoader}
-                    setShouldResetScrollPosition={props.setShouldResetScrollPosition}
-                    setSelectedItemId={props.setSelectedNewsLetterPageId}
-                    deleteItems={props.deleteNewsLetterPages}
-                    param={props.param}
-                />
-            }
-            <Content />
-            <InsertUpdateForm />
-        </AppLayout>
-    );
+    componentDidMount() {
+        const { gridData } = this.props;
+
+        !gridData && this.handleFetchData();
+    };
+
+    handleFetchData = async () => {
+        await this.props.fetchData(this.props.param);
+    }
+
+    render() {
+        const { isShowLoader, isModifiable, gridData, param, checkedNewsLetterPages } = this.props;
+
+        return (
+            <AppLayout>
+                <Loader show={isShowLoader} />
+                { isModifiable &&
+                    <ControlButtons
+                        messages={messages}
+                        gridData={gridData}
+                        param={param}
+                        fetchData={this.props.fetchData}
+                        checkedItems={checkedNewsLetterPages}
+                        setCheckedItems={this.props.setCheckedNewsLetterPages}
+                        toggleLoader={this.props.toggleLoader}
+                        setShouldResetScrollPosition={this.props.setShouldResetScrollPosition}
+                        setSelectedItemId={this.props.setSelectedNewsLetterPageId}
+                        deleteItems={this.props.deleteNewsLetterPages}
+                    />
+                }
+                <Content />
+                <InsertUpdateForm />
+            </AppLayout>
+        );
+    }
 }
 
 function mapStateToProps({ param, isShowLoader, gridData, checkedNewsLetterPages, claimsPrincipal }) {
