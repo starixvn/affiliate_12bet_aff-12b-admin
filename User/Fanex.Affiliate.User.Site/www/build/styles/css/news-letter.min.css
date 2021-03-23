@@ -1,1 +1,1 @@
-﻿@media(max-width:630px){.news-letter-content{overflow-x:hidden;}.news-letter-content table[width="600"]{display:inline;max-width:100% !important;}.news-letter-content table[width="600"]:last-of-type td[height="50"]{width:600px;}.news-letter-content img[width="600"]{max-width:100% !important;}}
+﻿.news-letter-content{margin:auto;max-width:600px;}@media(max-width:630px){.news-letter-content table{display:inline;}.news-letter-content #Table_01 img[width="600"]{max-width:100% !important;}}
