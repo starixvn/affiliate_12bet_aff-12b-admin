@@ -3,6 +3,7 @@ import { EditBannerForm } from '../EditBannerForm';
 import { shallow } from 'enzyme';
 import InputFile from '../../../../common/components/InputFile';
 import NotificationPopup from '../../../../common/components/NotificationPopup';
+import { defaultState } from '../../libs/constants';
 
 describe('banner list - components - EditBannerForm ', () => {
     const bannerInfo =         {
@@ -968,7 +969,7 @@ describe('banner list - components - EditBannerForm ', () => {
         instance._handleClosePopup();
 
         expect(props.setSelectedBannerId).toHaveBeenCalledWith(null);
-        expect(instance.setState).toHaveBeenCalledWith({"affTypeList": [{"checked": true, "key": "Asian", "name": "Asian"}, {"checked": true, "key": "Media", "name": "Media"}], "categoryList": [{"categoryName": "Casino", "checked": true, "key": "Casino", "name": "Casino"}, {"categoryName": "Sportsbook", "checked": true, "key": "Sportsbook", "name": "Sportsbook"}], "currencyList": [{"checked": true, "key": "EURO", "name": "EURO"}, {"checked": true, "key": "VND", "name": "VND"}], "deviceTypeList": [{"checked": true, "key": 0, "name": "PC / Laptop"}, {"checked": true, "key": 1, "name": "Mobile"}], "subCategoryList": [{"checked": true, "key": "Slot", "name": "Slot", "parentCategoryName": "Casino"}, {"checked": true, "key": "Basketball", "name": "Basketball", "parentCategoryName": "Sportsbook"}]});
+        expect(instance.setState).toHaveBeenCalledWith({ ...defaultState });
     });
 
     it('_handleCloseNotificationPopup - should call setState, _getParam and _updateBanner', () => {

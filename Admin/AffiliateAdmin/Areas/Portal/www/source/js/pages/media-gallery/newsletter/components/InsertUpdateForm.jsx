@@ -83,10 +83,11 @@ export class InsertUpdateForm extends PureComponent {
             return false;
         }
         if (file && file.type != "text/html") {
-            this._handleShowAlert(false, "Please select html file");
+            this._handleShowAlert(false, "Please select html file!");
+            return false;
         }
         if (isInsert && !file) {
-            this._handleShowAlert(false, "Please select file to upload");
+            this._handleShowAlert(false, "Please select file to upload!");
             return false;
         }
         return true;
@@ -95,15 +96,15 @@ export class InsertUpdateForm extends PureComponent {
     _validateFileName = (fileName) => {
         const rg1 = /^[^\\/$:\*\?"<>\|]+(.html)$/; // forbidden characters \ / : * ? $ " < > |
         if (fileName.length > maxLength) {
-            this._handleShowAlert(false, "File name too long. Max length is 50.");
+            this._handleShowAlert(false, "File name too long. Max length is 50!");
             return false;
         }
         if (fileName && !(rg1.test(fileName))) {
-            this._handleShowAlert(false, "File name must not have characters \\ / : * ? $ \" < > | and extension is html");
+            this._handleShowAlert(false, "File name must not have characters \\ / : * ? $ \" < > | and extension is html!");
             return false;
         }
         if (!fileName) {
-            this._handleShowAlert(false, "Please enter file name");
+            this._handleShowAlert(false, "Please enter file name!");
             return false;
         }
         return true;
@@ -149,8 +150,9 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     _handleAfterUpload = (result) => {
-        const message = isInsert ? "Your newsletter has been added successfully!" : "Your newsletter has been updated successfully!";
         const { isInsert } = this.state;
+        const message = isInsert ? "Your newsletter has been added successfully!" : "Your newsletter has been updated successfully!";
+
         if (result) {
             this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
         } else {
@@ -158,7 +160,7 @@ export class InsertUpdateForm extends PureComponent {
         }
     }
 
-    _handleSubmit = async () => {
+    _handleSubmit = () => {
         this.props.toggleLoader(true);
 
         if (this._validateInputs()) {
@@ -215,7 +217,7 @@ export class InsertUpdateForm extends PureComponent {
                     !!messageNotificationPopup && <NotificationPopup
                         message={messageNotificationPopup}
                         isConfirmPopup={true}
-                        onClose={(confirmResult) => this._handleCloseNotificationPopup(confirmResult)}
+                        onClose={this._handleCloseNotificationPopup}
                     />
                 }
                 <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>

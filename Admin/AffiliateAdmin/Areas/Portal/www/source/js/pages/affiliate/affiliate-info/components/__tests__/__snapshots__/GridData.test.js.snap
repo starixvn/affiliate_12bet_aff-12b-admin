@@ -76,10 +76,7 @@ exports[`affiliate info - GridData  _buildDataRow - should render correctly with
       onClick={[Function]}
       sortable={false}
       sorting={false}
-      title="undefined"
-    >
-      undefined
-    </t>
+    />
     <t
       asc={true}
       header={false}
@@ -286,10 +283,7 @@ exports[`affiliate info - GridData  _buildDataRow - should render correctly with
       onClick={[Function]}
       sortable={false}
       sorting={false}
-      title="undefined"
-    >
-      undefined
-    </t>
+    />
     <t
       asc={true}
       header={false}
@@ -484,10 +478,7 @@ exports[`affiliate info - GridData  should render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="undefined"
-            >
-              undefined
-            </t>
+            />
             <t
               asc={true}
               header={false}
@@ -883,10 +874,7 @@ exports[`affiliate info - GridData  should render correctly with _renderDataSect
       onClick={[Function]}
       sortable={false}
       sorting={false}
-      title="undefined"
-    >
-      undefined
-    </t>
+    />
     <t
       asc={true}
       header={false}

@@ -1,0 +1,1458 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`news letter list - components - InsertUpdateForm  render correctly with insert 1`] = `
+<Fragment>
+  <Modal
+    autoFocus={true}
+    backdrop="static"
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
+    }
+    centered={false}
+    container="body"
+    fade={true}
+    isOpen={true}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
+    }
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
+    toggle={[Function]}
+    unmountOnClose={true}
+    zIndex={1050}
+  >
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      <span
+        className="iconpopup"
+      />
+      Add Newsletter
+    </ModalHeader>
+    <ModalBody
+      tag="div"
+    >
+      <div
+        className="modal-body-wrapper"
+      >
+        <div
+          className="news-letter-form-container"
+        >
+          <Alert
+            closeAriaLabel="Close"
+            color="success"
+            fade={true}
+            isOpen={false}
+            tag="div"
+            transition={
+              Object {
+                "appear": true,
+                "baseClass": "fade",
+                "baseClassActive": "show",
+                "enter": true,
+                "exit": true,
+                "in": true,
+                "mountOnEnter": false,
+                "onEnter": [Function],
+                "onEntered": [Function],
+                "onEntering": [Function],
+                "onExit": [Function],
+                "onExited": [Function],
+                "onExiting": [Function],
+                "tag": "div",
+                "timeout": 150,
+                "unmountOnExit": true,
+              }
+            }
+          >
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "",
+                }
+              }
+            />
+          </Alert>
+          <div>
+            <Label
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [Valid Types: .html]
+            </Label>
+          </div>
+          <div>
+            <Label
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [File Size Limit: 3MB]
+            </Label>
+          </div>
+          <div>
+            <Label
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [Maximum files: 1]
+            </Label>
+          </div>
+          <Form
+            autoComplete="off"
+            className="mb-5"
+            tag="form"
+          >
+            <FormGroup
+              className="mb-2 align-items-center"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="file"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                File
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  accept=".html"
+                  id="file"
+                  name="file"
+                  onChange={[Function]}
+                  type="file"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                File Name
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  className="input-required mt-2"
+                  name="fileName"
+                  onChange={[Function]}
+                  onKeyPress={[Function]}
+                  type="text"
+                  value=""
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Language
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  className="input-required mt-2"
+                  name="language"
+                  onChange={[Function]}
+                  type="select"
+                  value="en-US"
+                >
+                  <option
+                    key="en-US"
+                    value="en-US"
+                  >
+                    English
+                  </option>
+                  <option
+                    key="vi-VN"
+                    value="vi-VN"
+                  >
+                    Vietnamese
+                  </option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2 align-items-center"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="fromDate"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Effective From (GMT-4)
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <r
+                  allowSameDay={false}
+                  className="form-control"
+                  customTimeInput={null}
+                  dateFormat="M/dd/yyyy HH:mm:ss"
+                  dateFormatCalendar="LLLL yyyy"
+                  disabled={false}
+                  disabledKeyboardNavigation={false}
+                  dropdownMode="scroll"
+                  enableTabLoop={true}
+                  excludeScrollbar={true}
+                  focusSelectedMonth={false}
+                  monthsShown={1}
+                  name="fromDate"
+                  nextMonthButtonLabel="Next Month"
+                  nextYearButtonLabel="Next Year"
+                  onBlur={[Function]}
+                  onCalendarClose={[Function]}
+                  onCalendarOpen={[Function]}
+                  onChange={[Function]}
+                  onClickOutside={[Function]}
+                  onFocus={[Function]}
+                  onInputClick={[Function]}
+                  onInputError={[Function]}
+                  onKeyDown={[Function]}
+                  onMonthChange={[Function]}
+                  onSelect={[Function]}
+                  onYearChange={[Function]}
+                  preventOpenOnFocus={false}
+                  previousMonthButtonLabel="Previous Month"
+                  previousYearButtonLabel="Previous Year"
+                  readOnly={false}
+                  renderDayContents={[Function]}
+                  selected={2021-03-31T17:00:00.000Z}
+                  shouldCloseOnSelect={true}
+                  showFourColumnMonthYearPicker={false}
+                  showFullMonthYearPicker={false}
+                  showMonthYearPicker={false}
+                  showPopperArrow={true}
+                  showPreviousMonths={false}
+                  showQuarterYearPicker={false}
+                  showTimeInput={true}
+                  showTimeSelect={false}
+                  showTwoColumnMonthYearPicker={false}
+                  showYearPicker={false}
+                  strictParsing={false}
+                  timeCaption="Time"
+                  timeInputLabel="Time"
+                  timeIntervals={30}
+                  withPortal={false}
+                  yearItemNumber={12}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2 align-items-center"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="toDate"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                To (GMT-4)
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <r
+                  allowSameDay={false}
+                  className="form-control"
+                  customTimeInput={null}
+                  dateFormat="M/dd/yyyy HH:mm:ss"
+                  dateFormatCalendar="LLLL yyyy"
+                  disabled={false}
+                  disabledKeyboardNavigation={false}
+                  dropdownMode="scroll"
+                  enableTabLoop={true}
+                  excludeScrollbar={true}
+                  focusSelectedMonth={false}
+                  monthsShown={1}
+                  name="toDate"
+                  nextMonthButtonLabel="Next Month"
+                  nextYearButtonLabel="Next Year"
+                  onBlur={[Function]}
+                  onCalendarClose={[Function]}
+                  onCalendarOpen={[Function]}
+                  onChange={[Function]}
+                  onClickOutside={[Function]}
+                  onFocus={[Function]}
+                  onInputClick={[Function]}
+                  onInputError={[Function]}
+                  onKeyDown={[Function]}
+                  onMonthChange={[Function]}
+                  onSelect={[Function]}
+                  onYearChange={[Function]}
+                  preventOpenOnFocus={false}
+                  previousMonthButtonLabel="Previous Month"
+                  previousYearButtonLabel="Previous Year"
+                  readOnly={false}
+                  renderDayContents={[Function]}
+                  selected={2021-04-29T17:00:00.000Z}
+                  shouldCloseOnSelect={true}
+                  showFourColumnMonthYearPicker={false}
+                  showFullMonthYearPicker={false}
+                  showMonthYearPicker={false}
+                  showPopperArrow={true}
+                  showPreviousMonths={false}
+                  showQuarterYearPicker={false}
+                  showTimeInput={true}
+                  showTimeSelect={false}
+                  showTwoColumnMonthYearPicker={false}
+                  showYearPicker={false}
+                  strictParsing={false}
+                  timeCaption="Time"
+                  timeInputLabel="Time"
+                  timeIntervals={30}
+                  withPortal={false}
+                  yearItemNumber={12}
+                />
+              </Col>
+            </FormGroup>
+          </Form>
+          <Button
+            className="mr-3"
+            color="success"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Upload
+          </Button>
+          <Button
+            color="info"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+    </ModalBody>
+  </Modal>
+</Fragment>
+`;
+
+exports[`news letter list - components - InsertUpdateForm  render correctly with not show popup 1`] = `
+<Fragment>
+  <Modal
+    autoFocus={true}
+    backdrop="static"
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
+    }
+    centered={false}
+    container="body"
+    fade={true}
+    isOpen={false}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
+    }
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
+    toggle={[Function]}
+    unmountOnClose={true}
+    zIndex={1050}
+  >
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      <span
+        className="iconpopup"
+      />
+      Add Newsletter
+    </ModalHeader>
+    <ModalBody
+      tag="div"
+    >
+      <div
+        className="modal-body-wrapper"
+      >
+        <div
+          className="news-letter-form-container"
+        >
+          <Alert
+            closeAriaLabel="Close"
+            color="danger"
+            fade={true}
+            isOpen={false}
+            tag="div"
+            transition={
+              Object {
+                "appear": true,
+                "baseClass": "fade",
+                "baseClassActive": "show",
+                "enter": true,
+                "exit": true,
+                "in": true,
+                "mountOnEnter": false,
+                "onEnter": [Function],
+                "onEntered": [Function],
+                "onEntering": [Function],
+                "onExit": [Function],
+                "onExited": [Function],
+                "onExiting": [Function],
+                "tag": "div",
+                "timeout": 150,
+                "unmountOnExit": true,
+              }
+            }
+          >
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "",
+                }
+              }
+            />
+          </Alert>
+          <div>
+            <Label
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [Valid Types: .html]
+            </Label>
+          </div>
+          <div>
+            <Label
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [File Size Limit: 3MB]
+            </Label>
+          </div>
+          <div>
+            <Label
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [Maximum files: 1]
+            </Label>
+          </div>
+          <Form
+            autoComplete="off"
+            className="mb-5"
+            tag="form"
+          >
+            <FormGroup
+              className="mb-2 align-items-center"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="file"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                File
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  accept=".html"
+                  id="file"
+                  name="file"
+                  onChange={[Function]}
+                  type="file"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                File Name
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  className="input-required mt-2"
+                  name="fileName"
+                  onChange={[Function]}
+                  onKeyPress={[Function]}
+                  type="text"
+                  value=""
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Language
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  className="input-required mt-2"
+                  name="language"
+                  onChange={[Function]}
+                  type="select"
+                  value="vi-VN"
+                >
+                  <option
+                    key="vi-VN"
+                    value="vi-VN"
+                  >
+                    Vietnamese
+                  </option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2 align-items-center"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="fromDate"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Effective From (GMT-4)
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <r
+                  allowSameDay={false}
+                  className="form-control"
+                  customTimeInput={null}
+                  dateFormat="M/dd/yyyy HH:mm:ss"
+                  dateFormatCalendar="LLLL yyyy"
+                  disabled={false}
+                  disabledKeyboardNavigation={false}
+                  dropdownMode="scroll"
+                  enableTabLoop={true}
+                  excludeScrollbar={true}
+                  focusSelectedMonth={false}
+                  monthsShown={1}
+                  name="fromDate"
+                  nextMonthButtonLabel="Next Month"
+                  nextYearButtonLabel="Next Year"
+                  onBlur={[Function]}
+                  onCalendarClose={[Function]}
+                  onCalendarOpen={[Function]}
+                  onChange={[Function]}
+                  onClickOutside={[Function]}
+                  onFocus={[Function]}
+                  onInputClick={[Function]}
+                  onInputError={[Function]}
+                  onKeyDown={[Function]}
+                  onMonthChange={[Function]}
+                  onSelect={[Function]}
+                  onYearChange={[Function]}
+                  preventOpenOnFocus={false}
+                  previousMonthButtonLabel="Previous Month"
+                  previousYearButtonLabel="Previous Year"
+                  readOnly={false}
+                  renderDayContents={[Function]}
+                  selected={2021-03-31T17:00:00.000Z}
+                  shouldCloseOnSelect={true}
+                  showFourColumnMonthYearPicker={false}
+                  showFullMonthYearPicker={false}
+                  showMonthYearPicker={false}
+                  showPopperArrow={true}
+                  showPreviousMonths={false}
+                  showQuarterYearPicker={false}
+                  showTimeInput={true}
+                  showTimeSelect={false}
+                  showTwoColumnMonthYearPicker={false}
+                  showYearPicker={false}
+                  strictParsing={false}
+                  timeCaption="Time"
+                  timeInputLabel="Time"
+                  timeIntervals={30}
+                  withPortal={false}
+                  yearItemNumber={12}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2 align-items-center"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="toDate"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                To (GMT-4)
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <r
+                  allowSameDay={false}
+                  className="form-control"
+                  customTimeInput={null}
+                  dateFormat="M/dd/yyyy HH:mm:ss"
+                  dateFormatCalendar="LLLL yyyy"
+                  disabled={false}
+                  disabledKeyboardNavigation={false}
+                  dropdownMode="scroll"
+                  enableTabLoop={true}
+                  excludeScrollbar={true}
+                  focusSelectedMonth={false}
+                  monthsShown={1}
+                  name="toDate"
+                  nextMonthButtonLabel="Next Month"
+                  nextYearButtonLabel="Next Year"
+                  onBlur={[Function]}
+                  onCalendarClose={[Function]}
+                  onCalendarOpen={[Function]}
+                  onChange={[Function]}
+                  onClickOutside={[Function]}
+                  onFocus={[Function]}
+                  onInputClick={[Function]}
+                  onInputError={[Function]}
+                  onKeyDown={[Function]}
+                  onMonthChange={[Function]}
+                  onSelect={[Function]}
+                  onYearChange={[Function]}
+                  preventOpenOnFocus={false}
+                  previousMonthButtonLabel="Previous Month"
+                  previousYearButtonLabel="Previous Year"
+                  readOnly={false}
+                  renderDayContents={[Function]}
+                  selected={2021-04-29T17:00:00.000Z}
+                  shouldCloseOnSelect={true}
+                  showFourColumnMonthYearPicker={false}
+                  showFullMonthYearPicker={false}
+                  showMonthYearPicker={false}
+                  showPopperArrow={true}
+                  showPreviousMonths={false}
+                  showQuarterYearPicker={false}
+                  showTimeInput={true}
+                  showTimeSelect={false}
+                  showTwoColumnMonthYearPicker={false}
+                  showYearPicker={false}
+                  strictParsing={false}
+                  timeCaption="Time"
+                  timeInputLabel="Time"
+                  timeIntervals={30}
+                  withPortal={false}
+                  yearItemNumber={12}
+                />
+              </Col>
+            </FormGroup>
+          </Form>
+          <Button
+            className="mr-3"
+            color="success"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Upload
+          </Button>
+          <Button
+            color="info"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+    </ModalBody>
+  </Modal>
+</Fragment>
+`;
+
+exports[`news letter list - components - InsertUpdateForm  render correctly with update 1`] = `
+<Fragment>
+  <Memo(NotificationPopup)
+    isConfirmPopup={true}
+    message="abc"
+    onClose={[Function]}
+  />
+  <Modal
+    autoFocus={true}
+    backdrop="static"
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
+    }
+    centered={false}
+    container="body"
+    fade={true}
+    isOpen={true}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
+    }
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
+    toggle={[Function]}
+    unmountOnClose={true}
+    zIndex={1050}
+  >
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      <span
+        className="iconpopup"
+      />
+      Edit Newsletter
+    </ModalHeader>
+    <ModalBody
+      tag="div"
+    >
+      <div
+        className="modal-body-wrapper"
+      >
+        <div
+          className="news-letter-form-container"
+        >
+          <Alert
+            closeAriaLabel="Close"
+            color="success"
+            fade={true}
+            isOpen={false}
+            tag="div"
+            transition={
+              Object {
+                "appear": true,
+                "baseClass": "fade",
+                "baseClassActive": "show",
+                "enter": true,
+                "exit": true,
+                "in": true,
+                "mountOnEnter": false,
+                "onEnter": [Function],
+                "onEntered": [Function],
+                "onEntering": [Function],
+                "onExit": [Function],
+                "onExited": [Function],
+                "onExiting": [Function],
+                "tag": "div",
+                "timeout": 150,
+                "unmountOnExit": true,
+              }
+            }
+          >
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "",
+                }
+              }
+            />
+          </Alert>
+          <div>
+            <Label
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [Valid Types: .html]
+            </Label>
+          </div>
+          <div>
+            <Label
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [File Size Limit: 3MB]
+            </Label>
+          </div>
+          <div>
+            <Label
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              [Maximum files: 1]
+            </Label>
+          </div>
+          <Form
+            autoComplete="off"
+            className="mb-5"
+            tag="form"
+          >
+            <FormGroup
+              className="mb-2 align-items-center"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="file"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                File
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  accept=".html"
+                  id="file"
+                  name="file"
+                  onChange={[Function]}
+                  type="file"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                File Name
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  className="input-required mt-2"
+                  name="fileName"
+                  onChange={[Function]}
+                  onKeyPress={[Function]}
+                  type="text"
+                  value=""
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Language
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  className="input-required mt-2"
+                  name="language"
+                  onChange={[Function]}
+                  type="select"
+                  value="en-US"
+                >
+                  <option
+                    key="en-US"
+                    value="en-US"
+                  >
+                    English
+                  </option>
+                  <option
+                    key="vi-VN"
+                    value="vi-VN"
+                  >
+                    Vietnamese
+                  </option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2 align-items-center"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="fromDate"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Effective From (GMT-4)
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <r
+                  allowSameDay={false}
+                  className="form-control"
+                  customTimeInput={null}
+                  dateFormat="M/dd/yyyy HH:mm:ss"
+                  dateFormatCalendar="LLLL yyyy"
+                  disabled={false}
+                  disabledKeyboardNavigation={false}
+                  dropdownMode="scroll"
+                  enableTabLoop={true}
+                  excludeScrollbar={true}
+                  focusSelectedMonth={false}
+                  monthsShown={1}
+                  name="fromDate"
+                  nextMonthButtonLabel="Next Month"
+                  nextYearButtonLabel="Next Year"
+                  onBlur={[Function]}
+                  onCalendarClose={[Function]}
+                  onCalendarOpen={[Function]}
+                  onChange={[Function]}
+                  onClickOutside={[Function]}
+                  onFocus={[Function]}
+                  onInputClick={[Function]}
+                  onInputError={[Function]}
+                  onKeyDown={[Function]}
+                  onMonthChange={[Function]}
+                  onSelect={[Function]}
+                  onYearChange={[Function]}
+                  preventOpenOnFocus={false}
+                  previousMonthButtonLabel="Previous Month"
+                  previousYearButtonLabel="Previous Year"
+                  readOnly={false}
+                  renderDayContents={[Function]}
+                  selected={2021-03-31T17:00:00.000Z}
+                  shouldCloseOnSelect={true}
+                  showFourColumnMonthYearPicker={false}
+                  showFullMonthYearPicker={false}
+                  showMonthYearPicker={false}
+                  showPopperArrow={true}
+                  showPreviousMonths={false}
+                  showQuarterYearPicker={false}
+                  showTimeInput={true}
+                  showTimeSelect={false}
+                  showTwoColumnMonthYearPicker={false}
+                  showYearPicker={false}
+                  strictParsing={false}
+                  timeCaption="Time"
+                  timeInputLabel="Time"
+                  timeIntervals={30}
+                  withPortal={false}
+                  yearItemNumber={12}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2 align-items-center"
+              row={true}
+              tag="div"
+            >
+              <Label
+                className="required"
+                for="toDate"
+                sm={4}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                To (GMT-4)
+              </Label>
+              <Col
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <r
+                  allowSameDay={false}
+                  className="form-control"
+                  customTimeInput={null}
+                  dateFormat="M/dd/yyyy HH:mm:ss"
+                  dateFormatCalendar="LLLL yyyy"
+                  disabled={false}
+                  disabledKeyboardNavigation={false}
+                  dropdownMode="scroll"
+                  enableTabLoop={true}
+                  excludeScrollbar={true}
+                  focusSelectedMonth={false}
+                  monthsShown={1}
+                  name="toDate"
+                  nextMonthButtonLabel="Next Month"
+                  nextYearButtonLabel="Next Year"
+                  onBlur={[Function]}
+                  onCalendarClose={[Function]}
+                  onCalendarOpen={[Function]}
+                  onChange={[Function]}
+                  onClickOutside={[Function]}
+                  onFocus={[Function]}
+                  onInputClick={[Function]}
+                  onInputError={[Function]}
+                  onKeyDown={[Function]}
+                  onMonthChange={[Function]}
+                  onSelect={[Function]}
+                  onYearChange={[Function]}
+                  preventOpenOnFocus={false}
+                  previousMonthButtonLabel="Previous Month"
+                  previousYearButtonLabel="Previous Year"
+                  readOnly={false}
+                  renderDayContents={[Function]}
+                  selected={2021-04-29T17:00:00.000Z}
+                  shouldCloseOnSelect={true}
+                  showFourColumnMonthYearPicker={false}
+                  showFullMonthYearPicker={false}
+                  showMonthYearPicker={false}
+                  showPopperArrow={true}
+                  showPreviousMonths={false}
+                  showQuarterYearPicker={false}
+                  showTimeInput={true}
+                  showTimeSelect={false}
+                  showTwoColumnMonthYearPicker={false}
+                  showYearPicker={false}
+                  strictParsing={false}
+                  timeCaption="Time"
+                  timeInputLabel="Time"
+                  timeIntervals={30}
+                  withPortal={false}
+                  yearItemNumber={12}
+                />
+              </Col>
+            </FormGroup>
+          </Form>
+          <Button
+            className="mr-3"
+            color="success"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Update
+          </Button>
+          <Button
+            color="info"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+    </ModalBody>
+  </Modal>
+</Fragment>
+`;
