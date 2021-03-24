@@ -13,8 +13,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string Status { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string FirstName { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string LastName { get; set; }
 
         public string Language { get; set; }
@@ -51,6 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public string PlayerUserName { get; set; }
 
         [PermissionCheck(Function.AffPhone)]
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string Phone { get; set; }
 
         public string RegistrationDateText => RegistrationDate.ToString("MM/dd/yyyy HH:mm:ss");

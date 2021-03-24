@@ -25,6 +25,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string HotNewsType = "[HotNews]";
 
+        public const string AffPersonalInfo = "[AffPersonalInfo]";
+
         public const string WriteClaimValue = "Write";
     }
 }

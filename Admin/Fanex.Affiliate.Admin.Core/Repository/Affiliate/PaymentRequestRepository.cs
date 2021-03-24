@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
@@ -74,8 +75,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                             AffName = Convert.ToString(reader["username"]),
                             TransDate = Convert.ToDateTime(reader["Transdate"]),
                             Email = Convert.ToString(reader["email"]),
-                            FirstName = Convert.ToString(reader["firstname"]),
-                            LastName = Convert.ToString(reader["lastname"]),
+                            FirstName = HttpUtility.HtmlDecode(Convert.ToString(reader["firstname"])),
+                            LastName = HttpUtility.HtmlDecode(Convert.ToString(reader["lastname"])),
                             PaymentMethod = Convert.ToString(reader["PreferredPayment"]),
                             Amount = Convert.ToDecimal(reader["Amount"]),
                             Status = Convert.ToString(reader[Field.Status]),

@@ -1,4 +1,7 @@
-﻿.comm-popup-container {
+﻿@import "../../components/modal";
+@import "../../components/multiple-select";
+
+.comm-popup-container {
     font-size: 12px;
 
     .required {

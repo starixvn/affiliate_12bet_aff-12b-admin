@@ -6,6 +6,7 @@ using Fanex.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
@@ -89,8 +90,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 AffId = Convert.ToInt32(reader[Field.AffId]),
                 UserName = Convert.ToString(reader["Username"]),
                 Status = Convert.ToString(reader["Status"]),
-                FirstName = Convert.ToString(reader["FirstName"]),
-                LastName = Convert.ToString(reader["LastName"]),
+                FirstName = HttpUtility.HtmlDecode(Convert.ToString(reader["FirstName"])),
+                LastName = HttpUtility.HtmlDecode(Convert.ToString(reader["LastName"])),
                 Language = Convert.ToString(reader["PreferredLanguage"]),
                 Email = Convert.ToString(reader["Email"]),
                 RegistrationDate = Convert.ToDateTime(reader["RegisteredDate"]),
@@ -103,7 +104,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 IsClosed = Convert.ToBoolean(reader["IsClosed"]),
                 Currency = Convert.ToString(reader["Currency"]),
                 PlayerCurrency = Convert.ToString(reader["PlayerCurrency"]),
-                Phone = Convert.ToString(reader["Phone"]),
+                Phone = HttpUtility.HtmlDecode(Convert.ToString(reader["Phone"])),
                 PlayerUserName = Convert.ToString(reader["Player_Username"])
             };
         }

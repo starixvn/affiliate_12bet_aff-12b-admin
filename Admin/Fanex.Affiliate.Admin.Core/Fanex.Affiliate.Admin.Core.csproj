@@ -177,7 +177,8 @@
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\PermissionCheckAttribute.cs" />
-    <Compile Include="Attributes\ResetDefaultUnauthorizedPropertyAttribute.cs" />
+    <Compile Include="Attributes\CensoredPermissionCheckAttribute.cs" />
+    <Compile Include="Attributes\UpdateUnauthorizedPropertyAttribute.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryHeaderAttribute.cs" />
     <Compile Include="Attributes\SpParamProtectingAttribute.cs" />
     <Compile Include="Configurations\AppSetting.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="DTO\MassAdjustment\AdjustmentResultInfo.cs" />
     <Compile Include="DTO\MassAdjustment\ErroredAdjustmentInfo.cs" />
     <Compile Include="DTO\MediaGallery\NewsLetter.cs" />
+    <Compile Include="DTO\UserPanel\CensoredContactApp.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
     <Compile Include="MetaModels\MassAdjustment\MassAdjustmentParam.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteNewsLetterParam.cs" />
@@ -592,6 +594,7 @@
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Utilities\SystemFile.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />

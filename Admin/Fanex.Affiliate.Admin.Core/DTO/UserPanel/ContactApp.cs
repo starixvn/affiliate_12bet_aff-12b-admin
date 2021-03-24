@@ -1,4 +1,7 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+
+namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
     public class ContactApp
     {

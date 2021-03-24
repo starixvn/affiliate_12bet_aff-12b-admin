@@ -5,7 +5,7 @@ import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 export const ContactApp = (props) => {
     const { affiliateInfo } = props;
-    const contactAppList = affiliateInfo && JSON.parse(htmlDecode(affiliateInfo.ContactApps));
+    const contactAppList = affiliateInfo && affiliateInfo.ContactAppList;
 
     return contactAppList && (
         <React.Fragment>

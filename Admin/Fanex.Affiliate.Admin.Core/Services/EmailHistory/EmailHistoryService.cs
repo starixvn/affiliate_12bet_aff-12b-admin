@@ -57,7 +57,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.EmailHistory
             const string SpKey = "Aff_Admin_EmailHistory_Sel";
             var result = new EntityResult<EmailHistoryInfo>();
             var dataList = new List<EmailHistoryInfo>();
-            EmailHistoryInfo dataItem = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -75,7 +74,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.EmailHistory
                 {
                     while (reader.Read())
                     {
-                        dataItem = BuildDataItem(reader);
+                        EmailHistoryInfo dataItem = BuildDataItem(reader);
                         dataItem.AffName = Convert.ToString(reader["Affname"]);
 
                         dataList.Add(dataItem);

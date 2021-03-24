@@ -119,9 +119,9 @@ export class GridData extends Component {
         const status = dataItem.Status && htmlDecode(dataItem.Status).toLowerCase();
         const isApproved = status == "approved";
         const commissionGroupName = htmlDecode(dataItem.CommissionGroup);
-        const firstName = htmlDecode(dataItem.FirstName);
-        const lastName = htmlDecode(dataItem.LastName);
-        const phone = htmlDecode(dataItem.Phone);
+        const firstName = dataItem.FirstName;
+        const lastName = dataItem.LastName;
+        const phone = dataItem.Phone;
         const email = htmlDecode(dataItem.Email);
         const playerUserName = htmlDecode(dataItem.PlayerUserName);
 

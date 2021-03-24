@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Newtonsoft.Json;
 using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.EmailHistory
@@ -8,6 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.EmailHistory
     {
         public int EmailId { get; set; }
 
+        [PermissionCheck(Function.AffPersonalInfo)]
         public string Sender { get; set; }
 
         public string AffName { get; set; }

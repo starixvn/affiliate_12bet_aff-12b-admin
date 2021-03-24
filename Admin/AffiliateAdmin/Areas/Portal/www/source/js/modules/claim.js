@@ -29,6 +29,7 @@ export const claimResource = {
     AffPlayerDetail: '[AffPlayerDetail]',
     AffPassword: '[AffPassword]',
     LanguageAmendment: '[AffMarket]',
+    AffPersonalInfo: "[AffPersonalInfo]",
 
     //Export Excel
     ExportAffInfoExcel: '[ExportAffInfoExcel]',

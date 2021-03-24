@@ -2,13 +2,17 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
+using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Newtonsoft.Json;
 using ONEbook.UM.Filters;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
@@ -31,7 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [ResetDefaultUnauthorizedProperty]
+        [UpdateUnauthorizedProperty]
         [HttpPost]
         public ActionResult GetAffiliateInfo(string affUsername)
         {
@@ -43,6 +47,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var accOnId = _sessionService.OnUserId.ToString();
             var sessionId = Session.SessionID;
             var affiliateInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, accOnId, sessionId);
+
+            if (!string.IsNullOrEmpty(affiliateInfo.ContactApps))
+            {
+                affiliateInfo.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<CensoredContactApp>>(affiliateInfo.ContactApps).OrderBy(p => p.Order);
+            }
+
             _sessionService.AffName = affUsername;
 
             return new JsonNetResult

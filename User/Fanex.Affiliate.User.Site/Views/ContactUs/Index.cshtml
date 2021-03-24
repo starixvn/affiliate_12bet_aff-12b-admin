@@ -7,7 +7,8 @@
 @using Fanex.Affiliate.User.Core.Constants
 @model Fanex.Affiliate.User.Core.DTO.UserInfo
 @{
-    var name = Model != null ? $"{Model?.FirstName} {Model?.LastName}" : string.Empty;
+    var hasAffPersonalInfoPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.AffPersonalInfo);
+    var name = Model != null ? $"{Model?.FirstName.ReplaceAHalfOfString(hasAffPersonalInfoPermission)} {Model?.LastName.ReplaceAHalfOfString(hasAffPersonalInfoPermission)}" : string.Empty;
     var affiliate = Model?.UserName;
     var email = Model?.Email;
     var appSetting = new AppSetting();

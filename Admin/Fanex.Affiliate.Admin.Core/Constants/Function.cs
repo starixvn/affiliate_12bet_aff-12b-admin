@@ -76,6 +76,8 @@
 
         public const string LanguageAmendment = "[AffMarket]";
 
+        public const string AffPersonalInfo = "[AffPersonalInfo]";
+
         // Export excel
 
         public const string ExportAffInfoExcel = "[ExportAffInfoExcel]";

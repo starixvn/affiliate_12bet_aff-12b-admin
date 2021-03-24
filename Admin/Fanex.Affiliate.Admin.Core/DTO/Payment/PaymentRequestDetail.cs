@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Payment
 {
@@ -9,8 +11,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Payment
 
         public string Email { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string FirstName { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string LastName { get; set; }
 
         public string PaymentMethod { get; set; }

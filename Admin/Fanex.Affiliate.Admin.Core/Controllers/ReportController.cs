@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [ResetDefaultUnauthorizedProperty]
+        [UpdateUnauthorizedProperty]
         public ActionResult GetMainData(GetReportMainDataViewModel model)
         {
             var param = BuildParamFromModel(model);
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [ResetDefaultUnauthorizedProperty]
+        [UpdateUnauthorizedProperty]
         public ActionResult GetDetailData(GetReportMainDataViewModel model)
         {
             var param = BuildParamFromModel(model);

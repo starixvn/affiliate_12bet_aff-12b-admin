@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [ResetDefaultUnauthorizedProperty]
+        [UpdateUnauthorizedProperty]
         public ActionResult GetCustomerStatistics(CustomerStatisticsParam param)
         {
             if (ModelState.IsValid)
