@@ -6,7 +6,7 @@ import { SET_SELECTED_USERPANEL } from '../../../../user-panel/actions/types';
 
 const mockStore = configureMockStore();
 
-describe('banner list - components - AppContainer - connect', () => {
+describe('Customer - components - AppContainer - connect', () => {
     let wrapper;
     let store;
 

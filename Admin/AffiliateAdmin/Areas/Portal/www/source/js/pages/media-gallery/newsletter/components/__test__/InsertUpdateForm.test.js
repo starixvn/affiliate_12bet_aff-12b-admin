@@ -23,13 +23,15 @@ describe('news letter list - components - InsertUpdateForm ', () => {
         pageSize: 20
     };
 
+    const languageList = [
+        { LanguageCode: "en-US", LanguageName: "English" },
+        { LanguageCode: "vi-VN", LanguageName: "Vietnamese" }
+    ]
+
     const defaultProps = {
         selectedNewsLetterPageId: 0,
         param,
-        languageList: [
-            { LanguageCode: "en-US", LanguageName: "English" },
-            { LanguageCode: "vi-VN", LanguageName: "Vietnamese" }
-        ]
+        languageList
     };
 
     it('render correctly with insert', () => {
@@ -49,7 +51,7 @@ describe('news letter list - components - InsertUpdateForm ', () => {
     });
 
     it('render correctly with not show popup', () => {
-        const props = Object.assign({}, defaultProps, { selectedNewsLetterPageId: null });
+        const props = Object.assign({}, defaultProps, { selectedNewsLetterPageId: null, languageList: [{ LanguageCode: "vi-VN", LanguageName: "Vietnamese" }] });
         const result = shallow(<InsertUpdateForm {...props} />);
         result.setState({ category: "" })
 

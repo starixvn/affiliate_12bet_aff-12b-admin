@@ -65,4 +65,71 @@ describe('news letter - components - Content ', () => {
 
         expect(result).toMatchSnapshot();
     });
+
+    it('onCheckItem - should be called when click checkbox', () => {
+        const result = shallow(<Content {...defaultProps} />);
+        const instance = result.instance();
+        instance.onCheckItem = jest.fn();
+
+        const dataRow = shallow(<div>{instance.buildDataRow(gridData[0], 1)}</div>);
+
+        dataRow.find("input").at(0).simulate('change', { target: { checked: true } });
+
+        expect(instance.onCheckItem).toHaveBeenCalledWith(true, 25);
+    });
+
+    it('handlePreview - should be called when click preview button', () => {
+        const result = shallow(<Content {...defaultProps} />);
+        const instance = result.instance();
+        instance.handlePreview = jest.fn();
+
+        const dataRow = shallow(<div>{instance.buildDataRow(gridData[0], 1)}</div>);
+
+        dataRow.find("Button").at(0).simulate('click');
+
+        expect(instance.handlePreview).toHaveBeenCalledWith(25);
+    });
+
+    it('setSelectedNewsLetterPageId - should be called when click edit button', () => {
+        const props = Object.assign({}, defaultProps, { setSelectedNewsLetterPageId: jest.fn() });
+        const result = shallow(<Content {...props} />);
+        const instance = result.instance();
+
+        const dataRow = shallow(<div>{instance.buildDataRow(gridData[0], 1)}</div>);
+
+        dataRow.find("Button").at(1).simulate('click');
+
+        expect(props.setSelectedNewsLetterPageId).toHaveBeenCalledWith(25);
+    });
+
+    it('onCheckItem - should call setShouldResetScrollPosition and setCheckedNewsLetterPages', () => {
+        const props = Object.assign({}, defaultProps, { setCheckedNewsLetterPages: jest.fn(), setShouldResetScrollPosition: jest.fn() });
+        const result = shallow(<Content {...props} />);
+        const instance = result.instance();
+
+        instance.onCheckItem(true, 25);
+
+        expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
+        expect(props.setCheckedNewsLetterPages).toHaveBeenCalledWith({ 25: true, 23: false, 22: true });
+    });
+
+    it('_handlePaging - should call setParam', () => {
+        const props = Object.assign({}, defaultProps, { setParam: jest.fn() });
+        const result = shallow(<Content {...props} />);
+        const instance = result.instance();
+
+        instance._handlePaging(2, 20);
+
+        expect(props.setParam).toHaveBeenCalledWith({ pageIndex: 2, pageSize: 20 });
+    });
+
+    it('handlePreview - should call window.open', () => {
+        const result = shallow(<Content {...defaultProps} />);
+        const instance = result.instance();
+        window.open = jest.fn();
+
+        instance.handlePreview(25);
+
+        expect(window.open).toHaveBeenCalledWith("https://ha.nexdev.net:7613/12BetUserAsianNew/?id=25");
+    });
 })

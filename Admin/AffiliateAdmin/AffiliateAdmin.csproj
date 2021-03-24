@@ -374,11 +374,14 @@
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\role-permission\reducers\__tests__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\actions\__tests__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\components\__tests__\GridData.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\components\__tests__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\components\__tests__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\libs\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\libs\__test__\utils.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\reducers\__tests__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\__test__\redux\AppContainer.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\actions\__test__\index.test.js" />
@@ -389,6 +392,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\UploadResult.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\__test__\UploadResult.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\__test__\ImportForm.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\__test__\Note.test.js" />
@@ -400,6 +404,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\payment-request\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ContactNumber.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\redux\ApprovedStatus.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\redux\ContactNumber.redux.test.js" />
