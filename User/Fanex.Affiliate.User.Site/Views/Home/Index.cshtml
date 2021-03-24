@@ -11,8 +11,8 @@
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var shortedLangCode = SystemLanguage.GetShortedCodeForTracking(sessionService.CurrentLanguage);
-    //var sportBannerFileName = Url.Content("~/www/build/styles/Images/sports-banners/Sports-Banner." + Model.Language);
-    //var casinoBannerFileName = Url.Content("~/www/build/styles/Images/casino-banners/Casino-Banner." + Model.Language);
+    var sportBannerFileName = Url.Content("~/www/build/styles/Images/sports-banners/Sports-Banner." + Model.Language);
+    var casinoBannerFileName = Url.Content("~/www/build/styles/Images/casino-banners/Casino-Banner." + Model.Language);
     var euroBannerFileName = Url.Content("~/www/build/styles/Images/euro-banners/Euro-Banner." + Model.Language);
     var advFileName = Url.Content("~/www/build/styles/Images/apply12bet/3step." + Model.Language);
 }
@@ -28,7 +28,16 @@
 <div class="content home-page">
     <div id="mainBanner" class="carousel slide banner-center" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
-            @*<div class="item active">
+            <div class="item active">
+                <a id="euroBanner" class="nounderline" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
+                    <picture>
+                        <source srcset="@(euroBannerFileName + ".webp?v=152214")" type="image/webp" />
+                        <source srcset="@(euroBannerFileName + ".png?v=152214")" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(euroBannerFileName + ".png?v=152214")" alt="Euro 2020 Banner" />
+                    </picture>
+                </a>
+            </div>
+            <div class="item">
                 <a id="sportBanner" class="nounderline" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
                     <picture>
                         <source srcset="@(sportBannerFileName + ".webp?v=152214")" type="image/webp" />
@@ -43,16 +52,6 @@
                         <source srcset="@(casinoBannerFileName + ".webp?v=152214")" type="image/webp" />
                         <source srcset="@(casinoBannerFileName + ".png?v=152214")" type="image/jpeg" />
                         <img class="img-item img-responsive" src="@(casinoBannerFileName + ".png?v=152214")" alt="Casino Banner" />
-                    </picture>
-                </a>
-            </div>*@
-
-            <div class="item active">
-                <a class="nounderline" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
-                    <picture>
-                        <source srcset="@(euroBannerFileName + ".webp?v=152214")" type="image/webp" />
-                        <source srcset="@(euroBannerFileName + ".png?v=152214")" type="image/jpeg" />
-                        <img class="img-item img-responsive" src="@(euroBannerFileName + ".png?v=152214")" alt="Euro 2020 Banner" />
                     </picture>
                 </a>
             </div>
