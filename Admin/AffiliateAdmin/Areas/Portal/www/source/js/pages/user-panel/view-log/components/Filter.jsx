@@ -8,7 +8,7 @@ import { headerText, globalResource, minDate } from '../libs/constants';
 import { setParam, setShowIdList, getLogActionList } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
 
-const maxDate = new Date(2021, 1, 28);
+const maxDate = new Date(2021, 2, 24);
 
 export class Filter extends React.Component {
     constructor(props) {
@@ -18,7 +18,7 @@ export class Filter extends React.Component {
         const now = new Date(today);
         const isValidNow = now < maxDate;
 
-        this.nowString = isValidNow ? `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}` : '02/28/2021';
+        this.nowString = isValidNow ? `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}` : '3/24/2021';
 
         const sixMonthAgo = new Date(this.nowString);
         sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);

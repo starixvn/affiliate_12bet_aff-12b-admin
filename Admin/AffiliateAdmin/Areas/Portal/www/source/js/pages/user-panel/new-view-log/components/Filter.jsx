@@ -8,7 +8,7 @@ import { headerText, globalResource } from '../libs/constants';
 import { setParam, getLogActionList } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
 
-const minDate = new Date(2021, 2, 1);
+const minDate = new Date(2021, 2, 25);
 
 export class Filter extends React.Component {
     constructor(props) {
@@ -24,7 +24,7 @@ export class Filter extends React.Component {
 
         this.state = {
             logAction: 0,
-            fromDate: sixMonthAgo < minDate ? '3/1/2021' : `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
+            fromDate: sixMonthAgo < minDate ? '3/25/2021' : `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
             toDate: this.nowString,
             logActionList: null
         }
