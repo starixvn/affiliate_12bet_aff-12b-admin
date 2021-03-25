@@ -18,6 +18,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
     public class MassAdjustmentControllerTest
     {
         [Fact]
+        public void Index_WhenCall_ReturnView()
+        {
+            // Arrange
+            var controller = CreateAdjustmentController();
+
+            // Action
+            var viewResult = controller.Index() as ViewResult;
+            var viewName = viewResult.ViewName;
+
+            // Assert
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/MassAdjustment.cshtml", viewName);
+        }
+
+        [Fact]
         public void UploadFile_WhenCallWithFileIsNull_ReturnError()
         {
             // Arrange

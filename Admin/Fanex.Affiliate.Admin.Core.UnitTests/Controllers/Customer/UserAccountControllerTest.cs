@@ -37,6 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Assert
             Assert.Equal(affId, item.AffId);
             Assert.Equal(affId, passedParam);
+            Assert.True(item.HasWebSite);
         }
 
         [Fact]

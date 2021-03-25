@@ -20,7 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
 {
     public class CommGroupAssignmentServiceTest
     {
-        private IDependencyResolver _originalResolver;
         private ILifetimeScopeProvider _scopeProvider;
 
         [Fact]
@@ -103,9 +102,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            _scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var param = new AssignGroupParam();
@@ -270,9 +268,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            _scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var param = CreateValidCreateUpdateCommissionGroupParam();

@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.Controllers;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Home;
 using Fanex.Affiliate.Admin.Core.Extensions;
@@ -26,6 +27,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
             // Assert
             Assert.Equal("", viewResult.ViewName);
+        }
+
+        [Fact]
+        public void RedirectMenu_WhenCall_RedirectCorrect()
+        {
+            // Arrange
+            var controller = CreateHomeController();
+
+            // Action
+            var viewResult = controller.RedirectMenu() as RedirectResult;
+
+            // Assert
+            Assert.Equal("~/Portal/Home", viewResult.Url);
         }
 
         [Fact]
@@ -96,7 +110,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             IHomeService homeService = null,
             ILanguageService languageService = null)
         {
-            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService(Function.HomeMenu, true);
             var fakeHomeService = homeService ?? Mock.Of<IHomeService>();
             var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
 

@@ -63,8 +63,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
                 ["LogId"] = 123,
                 ["UpdatedName"] = "sa",
                 ["Date"] = new DateTime(2019, 12, 27),
-                ["Action"] = "abc",
-                ["Description"] = "abc",
+                ["Action"] = "Action",
+                ["OldData"] = "<root><row /></root>",
+                ["NewData"] = "<root><row /></root>",
+                ["Description"] = "Description",
                 ["IP"] = "::1"
             };
         }

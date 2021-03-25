@@ -1,20 +1,23 @@
 ﻿using Fanex.Affiliate.Admin.Core.Services.Common;
 using Moq;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Security.Claims;
 using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
 {
     public static class MockingHelper
     {
-        public static ISessionService GetSessionService()
+        public static ISessionService GetSessionService(string claim = null, bool hasClaim = false, bool isHost = false)
         {
             return Mock.Of<ISessionService>(ss =>
                 ss.AffId == Constant.AffId &&
                 ss.AffName == Constant.AffName &&
                 ss.OnUserId == Constant.OnUserId &&
-                ss.UserId == Constant.UserId
+                ss.UserId == Constant.UserId &&
+                ss.ClaimIdentities == new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(hasClaim ? claim : string.Empty, isHost ? "Write" : "Read") }) }
             );
         }
 
