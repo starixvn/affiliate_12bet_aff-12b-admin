@@ -4,5 +4,10 @@
     ViewBag.Title = Lang.WhatNewThisMonth;
 }
 
-@Html.Raw(@ViewBag.Content)
+<link href="~/www/build/styles/css/news-letter.css" rel="stylesheet" />
+
+<div class="news-letter-content">
+    @Html.Raw(@ViewBag.Content)
+</div>
+
 

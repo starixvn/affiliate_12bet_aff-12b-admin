@@ -1,9 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Filters;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.Utilities;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -14,8 +11,8 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
     {
         private INewsLetterService Service { get; }
 
-        public NewsLetterController(INewsLetterService service, 
-            ISessionService sessionService, 
+        public NewsLetterController(INewsLetterService service,
+            ISessionService sessionService,
             ILanguageService languageService)
             : base(sessionService, languageService)
         {
