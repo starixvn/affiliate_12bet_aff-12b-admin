@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Action
             using (var memoryStream = new MemoryStream(new byte[3] { 1, 2, 3 }))
             {
-                var result = controller.UploadFile(new MockFile(memoryStream)) as JsonNetResult;
+                var result = controller.UploadFile(new MockFile(memoryStream, "", "", 1024)) as JsonNetResult;
                 var resultInfo = result.Data as AdjustmentResultInfo;
 
                 // Assert

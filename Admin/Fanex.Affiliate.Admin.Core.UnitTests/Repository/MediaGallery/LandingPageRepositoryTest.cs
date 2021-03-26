@@ -188,7 +188,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
         public void DeleteLandingPage_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
-            var message = "Delete Text(s) is failed.";
+            var message = "Delete Landing Page(s) is failed.";
             var repository = new Mock<LandingPageRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);

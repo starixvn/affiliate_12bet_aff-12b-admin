@@ -7,6 +7,7 @@ import { setSelectedNewsLetterPageId, getNewsLetterPageDetail, fetchData, insert
 import { defaultState, globalResource, maxLength, maxFileSize } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { formatDateTime } from '../../../../modules/utils';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 import DatePicker from 'react-datepicker';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 
@@ -32,14 +33,15 @@ export class InsertUpdateForm extends PureComponent {
 
     _handleGetNewsletterDetail = async (selectedNewsLetterPageId) => {
         const item = await this.props.getNewsLetterPageDetail(selectedNewsLetterPageId);
+        const fileName = htmlDecode(item.FileName);
 
         item && this.setState({
-            fileName: item.FileName,
+            fileName,
             fileSize: item.FileSize,
             fromDate: new Date(item.FromDate),
             toDate: new Date(item.ToDate),
             language: item.Language,
-            initialFileName: item.FileName
+            initialFileName: fileName
         });
     }
 

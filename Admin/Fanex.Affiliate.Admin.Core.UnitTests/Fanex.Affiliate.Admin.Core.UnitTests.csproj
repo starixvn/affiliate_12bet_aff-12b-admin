@@ -163,9 +163,11 @@
     <Compile Include="Attributes\ResetValueNotHavePermissionAttributeTest.cs" />
     <Compile Include="Common\MockFile.cs" />
     <Compile Include="Controllers\Affiliate\MassAdjustmentControllerTest.cs" />
+    <Compile Include="Controllers\MediaGallery\NewsLetterControllerTest.cs" />
     <Compile Include="Repository\AdminRole\AdminInfoRepositoryTest.cs" />
     <Compile Include="Repository\AdminRole\RolePermissionRepositoryTest.cs" />
     <Compile Include="Repository\Affiliate\MassAdjustmentRepositoryTest.cs" />
+    <Compile Include="Repository\MediaGallery\NewsLetterRepositoryTest.cs" />
     <Compile Include="Services\AdminRole\AdminInfoServiceTest.cs" />
     <Compile Include="Services\AdminRole\AdminRoleCommonServiceTest.cs" />
     <Compile Include="Services\AdminRole\RolePermissionServiceTest.cs" />
@@ -255,6 +257,7 @@
     <Compile Include="Services\Home\HomeServiceTest.cs" />
     <Compile Include="Services\LanguageServiceTest.cs" />
     <Compile Include="Services\ExchangeRate\ExchangeRateServiceTest.cs" />
+    <Compile Include="Services\MediaGallery\NewsLetterServiceTest.cs" />
     <Compile Include="Utilities\MassAdjustmentHelperTest.cs" />
     <Compile Include="Services\MediaGallery\BannerListServiceTest.cs" />
     <Compile Include="Services\MediaGallery\BannerValidationServiceTest.cs" />

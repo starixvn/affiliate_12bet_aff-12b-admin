@@ -129,7 +129,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 return result;
             }
 
-            UploadFile(file, param.FileName);
+            result = UploadFile(file, param.FileName);
+            if (!result.IsSuccessful)
+            {
+                return result;
+            }
+
             if (!string.Equals(oldNewsLetter.FileName, param.FileName, StringComparison.OrdinalIgnoreCase))
             {
                 Delete(oldNewsLetter.FileName);

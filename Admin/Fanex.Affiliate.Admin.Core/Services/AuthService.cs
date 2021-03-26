@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, accountInfo.UserId.ToString()),
                 new Claim(ClaimTypes.GivenName, accountInfo.UserName),
-                new Claim(ClaimTypes.Role, role?.RoleName)
+                new Claim(ClaimTypes.Role, role?.RoleName ?? string.Empty)
             };
 
             var permissions = AuthRepo.GetPermissionList(accountInfo.UserId);

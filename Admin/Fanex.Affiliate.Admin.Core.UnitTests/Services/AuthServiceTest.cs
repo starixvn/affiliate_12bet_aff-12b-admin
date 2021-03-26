@@ -59,6 +59,38 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         }
 
         [Fact]
+        public void GetClaims_WhenCallWithHasNotRole_Excute()
+        {
+            // Arrange
+            adminInfoRepository.GetUserInfo(Arg.Any<int>()).Returns(new AdminInforResultEntity
+            {
+                AdminInfo = new AdminInfo
+                {
+                    UserId = 123,
+                    UserName = "UserName",
+                    RoleId = 1
+                },
+                MarketList = new List<MarketInfo> { new MarketInfo { MarketId = "en-US", MarketName = "English", HasPermission = true } }
+            });
+
+            authRepository.GetPermissionList(Arg.Any<int>()).Returns(new List<UserPermission> {
+                new UserPermission { FunctionName = "[Test]", IsHost = true },
+                new UserPermission { FunctionName = "[Abc]", IsHost = false }
+            });
+
+            roleService.GetRoleList().Returns(new List<RoleInfo>());
+            var service = CreateAuthService;
+
+            // Action
+            var claims = service.GetClaims(123);
+
+            // Assert
+            Assert.NotEmpty(claims);
+            adminInfoRepository.Received().GetUserInfo(123);
+            authRepository.Received().GetPermissionList(123);
+        }
+
+        [Fact]
         public void IsUserHasPermissionOnAff_WhenCall_Excute()
         {
             // Arrange

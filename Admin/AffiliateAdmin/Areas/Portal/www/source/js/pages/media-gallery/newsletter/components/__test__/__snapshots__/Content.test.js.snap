@@ -68,7 +68,7 @@ exports[`news letter - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="hi-IN"
+              title="English (India)"
             >
               English (India)
             </t>
@@ -199,7 +199,7 @@ exports[`news letter - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="en-US"
+              title="English"
             >
               English
             </t>
@@ -330,7 +330,7 @@ exports[`news letter - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="hi-IN"
+              title="English (India)"
             >
               English (India)
             </t>

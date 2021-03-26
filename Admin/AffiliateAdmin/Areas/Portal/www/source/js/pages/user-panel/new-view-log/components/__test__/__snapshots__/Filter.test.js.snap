@@ -36,7 +36,7 @@ exports[`new view log - components - Filter render correctly 1`] = `
         value=""
       >
         <option
-          value="0"
+          value=""
         >
           All
         </option>
