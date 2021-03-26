@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             var isUserHasPermissionOnAff = AuthService.IsUserHasPermissionOnAff(SessionService.UserId, param.AffId);
             SetNullForPropertiesNotHavePermission(param);
 
-            if (!HasUpdatePaymentMethodPermission() || isValidPaymentMethod || isUserHasPermissionOnAff)
+            if ((!HasUpdatePaymentMethodPermission() || isValidPaymentMethod) && isUserHasPermissionOnAff)
             {
                 return _userAccountRepository.UpdateUserAccount(param);
             }

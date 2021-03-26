@@ -24,7 +24,7 @@ export class Filter extends React.Component {
         sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
 
         this.state = {
-            logAction: 0,
+            logActionIds: '',
             fromDate: `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
             toDate: this.nowString,
             logActionList: null
@@ -54,25 +54,25 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        const { logAction, fromDate, toDate } = this.state;
+        const { logActionIds, fromDate, toDate } = this.state;
 
         this.props.setShowIdList({});
-        this.props.setParam({ logAction, fromDate, toDate });
+        this.props.setParam({ logActionIds, fromDate, toDate });
     }
 
     render() {
-        const { logAction, fromDate, toDate, logActionList } = this.state;
+        const { logActionIds, fromDate, toDate, logActionList } = this.state;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mr-sm-2">
-                        <Label for="logAction" className="mr-sm-2">{headerText.Action}</Label>
-                        <Input type="select" name="logAction" id="logAction" value={logAction} onChange={this.handleChange}>
-                            <option value="0">{globalResource.All}</option>
+                        <Label for="logActionIds" className="mr-sm-2">{headerText.Action}</Label>
+                        <Input type="select" name="logActionIds" id="logActionIds" value={logActionIds} onChange={this.handleChange}>
+                            <option value="">{globalResource.All}</option>
                             {
                                 logActionList && logActionList.map(item => {
-                                    return (<option key={`logAction-${item.ActionId}`} value={item.ActionId}>{item.ActionName}</option>)
+                                    return (<option key={`logAction-${item.ActionIds}`} value={item.ActionIds}>{item.ActionName}</option>)
                                 })
                             }
                         </Input>

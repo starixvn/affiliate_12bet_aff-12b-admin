@@ -1,4 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Services.Common;
+using Moq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Claims;
@@ -115,12 +117,21 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Common
             Assert.Null(service.UserClaim);
         }
 
+        [Fact]
+        public void RequestIp_WhenCall_ReturnCorrectData()
+        {
+            SetUpHttpContextSession();
+            var service = CreateService();
+
+            Assert.Null(service.RequestIp);
+        }
+
         private static SessionService CreateService()
             => new SessionService();
 
         private static void SetUpHttpContextSession()
         {
-            var request = new HttpRequest(null, "http://abco.com", null);
+            var request = new HttpRequest(null, "http://abco.com", "?HTTP_X_FORWARDED_FOR=abc");
             var response = new HttpResponse(new StringWriter());
             HttpContext.Current = new HttpContext(request, response);
             var sessionContainer = new HttpSessionStateContainer("id", new SessionStateItemCollection(),

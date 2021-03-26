@@ -9,7 +9,7 @@ describe('view log - components - Filter', () => {
     });
 
     const today = '12/27/2019';
-    const logActionList = [{ ActionId: 123, ActionName: 'Test' }];
+    const logActionList = [{ ActionIds: '123', ActionName: 'Test' }];
     const defaultProps = {
         today,
         getLogActionList: jest.fn(() => logActionList)
@@ -25,17 +25,17 @@ describe('view log - components - Filter', () => {
         const event = {
             target: {
                 type: 'select',
-                value: 'UserInfo',
-                name: 'logAction'
+                value: 'Action Name',
+                name: 'logActionIds'
             }
         }
         const wrapper = shallow(<Filter {...defaultProps} />);
         wrapper.instance().setState({ logActionList });
         wrapper.setState = jest.fn();
 
-        wrapper.find('Input[type="select"][name="logAction"][id="logAction"]').simulate('change', event)
+        wrapper.find('Input[type="select"][name="logActionIds"][id="logActionIds"]').simulate('change', event)
 
-        expect(wrapper.setState).toHaveBeenCalledWith({ logAction: 'UserInfo' });
+        expect(wrapper.setState).toHaveBeenCalledWith({ logActionIds: 'Action Name' });
     });
 
     it('handleChangeFromDate - should be called when From change', () => {
@@ -67,7 +67,7 @@ describe('view log - components - Filter', () => {
         wrapper.instance().setState({ logActionList });
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "6/27/2019", logAction: 0, toDate: "12/27/2019" });
+        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "6/27/2019", logActionIds: '', toDate: "12/27/2019" });
         expect(props.setShowIdList).toHaveBeenCalledWith({});
     });
 });

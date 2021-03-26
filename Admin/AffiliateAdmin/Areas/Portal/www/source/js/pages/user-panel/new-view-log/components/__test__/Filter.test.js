@@ -9,7 +9,7 @@ describe('new view log - components - Filter', () => {
     });
 
     const today = '5/5/2022';
-    const logActionList = [{ ActionId: 123, ActionName: 'Test' }];
+    const logActionList = [{ ActionIds: '123', ActionName: 'Test' }];
     const defaultProps = {
         today,
         getLogActionList: jest.fn(() => logActionList)
@@ -26,17 +26,17 @@ describe('new view log - components - Filter', () => {
         const event = {
             target: {
                 type: 'select',
-                value: 'UserInfo',
-                name: 'logAction'
+                value: 'Action Name',
+                name: 'logActionIds'
             }
         }
         const wrapper = shallow(<Filter {...defaultProps} />);
         wrapper.instance().setState({ logActionList });
         wrapper.setState = jest.fn();
 
-        wrapper.find('Input[type="select"][name="logAction"][id="logAction"]').simulate('change', event)
+        wrapper.find('Input[type="select"][name="logActionIds"][id="logActionIds"]').simulate('change', event)
 
-        expect(wrapper.setState).toHaveBeenCalledWith({ logAction: 'UserInfo' });
+        expect(wrapper.setState).toHaveBeenCalledWith({ logActionIds: 'Action Name' });
     });
 
     it('handleChangeFromDate - should be called when From change', () => {
@@ -63,11 +63,11 @@ describe('new view log - components - Filter', () => {
 
     it('handleSearch - should be called when click Search Button', () => {
         const setParam = jest.fn();
-        const props = Object.assign({}, defaultProps, { today: '3/5/2021', setParam });
+        const props = Object.assign({}, defaultProps, { today: '3/26/2021', setParam });
         const wrapper = shallow(<Filter {...props} />);
         wrapper.instance().setState({ logActionList });
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "3/1/2021", logAction: 0, toDate: "3/5/2021" });
+        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "3/25/2021", logActionIds: '', toDate: "3/26/2021" });
     });
 });

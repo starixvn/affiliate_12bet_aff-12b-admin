@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("LogActionId", DbType.Int32, param.LogAction);
+                objectDb.AddInParameter("LogActionIds", DbType.String, param.LogActionIds);
                 objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
                 objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                     {
                         dataList.Add(new LogAction
                         {
-                            ActionId = Convert.ToInt32(reader["ActionId"]),
+                            ActionIds = Convert.ToString(reader["ActionIds"]),
                             ActionName = Convert.ToString(reader["ActionName"]),
                         });
                     }

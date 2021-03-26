@@ -13,8 +13,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 {
     public class ViewLogServiceTest
     {
-        [Fact]
-        public void GetViewLogList_WhenCall_ReturnCorrectData()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void GetViewLogList_WhenCall_ReturnCorrectData(bool isNewViewLog)
         {
             // Arrange
             var service = new Mock<ViewLogService> { CallBase = true };
@@ -28,12 +30,57 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             service.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateLog_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetViewLogList(new ViewLogParam());
+            var result = service.Object.GetViewLogList(new ViewLogParam { IsNewViewLog = isNewViewLog });
             var item = result.MainData.FirstOrDefault();
 
             // Assert
             Assert.Single(result.MainData);
             Assert.Equal("12/27/2019 12:00:00 AM", item.DateText);
+        }
+
+        [Fact]
+        public void GetNewViewLogList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var service = new Mock<ViewLogService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetNewErroredViewLogList());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
+            service.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateLog_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = service.Object.GetViewLogList(new ViewLogParam { IsNewViewLog = true });
+            var item = result.MainData.FirstOrDefault();
+
+            // Assert
+            Assert.Single(result.MainData);
+            Assert.Empty(item.OldData);
+            Assert.Empty(item.NewData);
+            Assert.Equal("12/27/2019 12:00:00 AM", item.DateText);
+        }
+
+        [Fact]
+        public void GetLogActionList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var service = new Mock<ViewLogService> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetLogActionList());
+            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            service.Setup(r => r.GetObjectDb("Aff_LogAction_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = service.Object.GetLogActionList();
+
+            // Assert
+            Assert.Single(result);
         }
 
         [Fact]
@@ -65,9 +112,33 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
                 ["Date"] = new DateTime(2019, 12, 27),
                 ["Action"] = "Action",
                 ["OldData"] = "<root><row /></root>",
-                ["NewData"] = "<root><row /></root>",
+                ["NewData"] = "<root></root>",
                 ["Description"] = "Description",
                 ["IP"] = "::1"
+            };
+        }
+
+        private IDictionary<string, object> GetNewErroredViewLogList()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["LogId"] = 123,
+                ["UpdatedName"] = "sa",
+                ["Date"] = new DateTime(2019, 12, 27),
+                ["Action"] = "Action",
+                ["OldData"] = "",
+                ["NewData"] = "<",
+                ["Description"] = "Description",
+                ["IP"] = "::1"
+            };
+        }
+
+        private IDictionary<string, object> GetLogActionList()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["ActionId"] = 123,
+                ["ActionName"] = "Action"
             };
         }
     }
