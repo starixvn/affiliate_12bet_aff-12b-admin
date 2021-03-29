@@ -178,6 +178,7 @@
     <Compile Include="BusinessService\EmailServiceTest.cs" />
     <Compile Include="BusinessService\LanguageServiceTest.cs" />
     <Compile Include="BusinessService\MarketingServiceTest.cs" />
+    <Compile Include="BusinessService\NewsLetterServiceTest.cs" />
     <Compile Include="BusinessService\NewsServiceTest.cs" />
     <Compile Include="BusinessService\QrCodeGeneratorServiceTest.cs" />
     <Compile Include="BusinessService\SecurityQuestionServiceTest.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Controllers\UserPanel\MemberControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionControllerTest.cs" />
     <Compile Include="Controllers\SignupControllerTest.cs" />
+    <Compile Include="Controllers\UserPanel\NewsLetterControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\ReferrersStatisticsControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\StatementHistoryControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\StatisticsControllerTest.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="Repository\UserPanel\CommissionReportRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\MarketingRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\MemberRepositoryTest.cs" />
+    <Compile Include="Repository\UserPanel\NewsLetterRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\NewsRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\PaymentRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\StatementHistoryRepositoryTest.cs" />
