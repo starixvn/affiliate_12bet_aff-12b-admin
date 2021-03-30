@@ -1,14 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_UserInfoUpd" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_Login_ResultUpd" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_ForgotPassword" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_RecoverPassWord" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_PaymentRequest_Upd" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_Affiliate_Ins" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_VerificationUpd" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_EmailHistoryIns" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_PaymentRequestIns" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_AffiliateUpdPwd" Suffix="_xpre"></item>
 </Root>
