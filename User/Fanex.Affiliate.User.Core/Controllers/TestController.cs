@@ -11,6 +11,7 @@
     using MetalModels.Email;
     using ONEbook.UM.Filters;
     using System;
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using Utilities;
     using ViewModels;
@@ -81,9 +82,10 @@
 
             try
             {
+                var funtion = criteria.Function.ToLowerInvariant();
                 var content = GetEmailContent(criteria);
                 LanguageService.SetCulture(criteria.Language);
-                string Subject = GetSubject(criteria.Function);
+                string Subject = SubjectList.ContainsKey(funtion) ? SubjectList[funtion] : Lang.AffiliateProgram;
                 LanguageService.SetCulture("en-US");
 
                 _mailProcessor.Send(content, criteria.EmailAddress, Subject);
@@ -103,38 +105,17 @@
             return Json(result);
         }
 
-        private static string GetSubject(string functionName)
+        private static readonly IDictionary<string, string> SubjectList = new Dictionary<string, string>
         {
-            switch (functionName)
-            {
-                case "ContactUs":
-                    return Lang.ContactUs;
-
-                case "Csd":
-                    return Lang.CsdSubject;
-
-                case "RecoverPassword":
-                    return Lang.SubjectForgetPass;
-
-                case "PaymentCancel":
-                    return Lang.CancelSubject.Replace("{transid}", "12345");
-
-                case "PaymentRequest":
-                    return Lang.CancelSubject.Replace("{transid}", "12345");
-
-                case "NewPassword":
-                    return Lang.SubjectNewPass;
-
-                case "Signup":
-                    return Lang.RegisSubject;
-
-                case "VerificationAccount":
-                    return Lang.SubjectVerificationAccount;
-
-                default:
-                    return Lang.AffiliateProgram;
-            }
-        }
+            ["contactus"] = Lang.ContactUs,
+            ["csd"] = Lang.CsdSubject,
+            ["recoverpassword"] = Lang.SubjectForgetPass,
+            ["paymentcancel"] = Lang.CancelSubject.Replace("{transid}", "12345"),
+            ["paymentrequest"] = Lang.CancelSubject.Replace("{transid}", "12345"),
+            ["newpassword"] = Lang.SubjectNewPass,
+            ["signup"] = Lang.RegisSubject,
+            ["verificationaccount"] = Lang.SubjectVerificationAccount
+        };
 
 
         private string GetEmailContent(TestCriteria criteria)
@@ -151,7 +132,7 @@
 
             var viewPath = string.Format(TemplateString.EmailTemplatePath, function, language);
             var physicalPath = Server.MapPath(viewPath);
-            var model = GetModelByFunction(function);
+            var model = GetModelByFunction(function.ToLowerInvariant());
 
             return model == null ? string.Empty : _mailProcessor.BuildTemplateContent(physicalPath, model);
         }
@@ -177,28 +158,28 @@
         {
             switch (functionName)
             {
-                case "ContactUs":
+                case "contactus":
                     return GetContactUsModel();
 
-                case "Csd":
+                case "csd":
                     return GetCSDModel();
 
-                case "RecoverPassword":
+                case "recoverpassword":
                     return GetForgetPasswordModel();
 
-                case "PaymentCancel":
+                case "paymentcancel":
                     return GetPaymentModel(PaymentRequestType.Cancel);
 
-                case "PaymentRequest":
+                case "paymentrequest":
                     return GetPaymentModel(PaymentRequestType.Create);
 
-                case "NewPassword":
+                case "newpassword":
                     return GetRecoverPasswordModel();
 
-                case "Signup":
+                case "signup":
                     return GetSignupModel();
 
-                case "VerificationAccount":
+                case "verificationaccount":
                     return GetVerificationAccountModel();
 
                 default:

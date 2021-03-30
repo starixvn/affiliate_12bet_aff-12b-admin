@@ -1,9 +1,22 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.Resources;
+using System;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 {
     public class StatementHistory
     {
+        private static readonly IDictionary<string, string> StatusList = new Dictionary<string, string>
+        {
+            ["running"] = Lang.Proccessing,
+            ["pending"] = Lang.Proccessing,
+            ["completed"] = Lang.Approved,
+            ["cancelled"] = Lang.Cancelled,
+            ["approved"] = Lang.Approved,
+            ["rejected"] = Lang.Rejected,
+            ["current"] = Lang.Current
+        };
+
         public DateTime MonthDate { get; set; }
 
         public int TransType { get; set; }
@@ -28,30 +41,9 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         {
             get
             {
-                switch (Status.ToLowerInvariant())
-                {
-                    case "running":
-                    case "pending":
-                        return Resources.Lang.Proccessing;
+                var lowerStatus = Status.ToLowerInvariant();
 
-                    case "completed":
-                        return Resources.Lang.Approved;
-
-                    case "cancelled":
-                        return Resources.Lang.Cancelled;
-
-                    case "approved":
-                        return Resources.Lang.Approved;
-
-                    case "rejected":
-                        return Resources.Lang.Rejected;
-
-                    case "current":
-                        return Resources.Lang.Current;
-
-                    default:
-                        return Status;
-                }
+                return StatusList.ContainsKey(lowerStatus) ? StatusList[lowerStatus] : Status;
             }
         }
 
@@ -62,14 +54,14 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
                 switch (TransType)
                 {
                     case Constants.TransType.Adjustment:
-                        return Resources.Lang.Adjustment;
+                        return Lang.Adjustment;
                     case Constants.TransType.Commission:
-                        return Resources.Lang.MonthlyWinlost;
+                        return Lang.MonthlyWinlost;
                     case Constants.TransType.Payment:
-                        return Resources.Lang.PaymentRequest;
+                        return Lang.PaymentRequest;
 
                     default:
-                        return Resources.Lang.Transaction;
+                        return Lang.Transaction;
                 }
             }
         }

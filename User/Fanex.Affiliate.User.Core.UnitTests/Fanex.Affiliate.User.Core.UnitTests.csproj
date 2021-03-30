@@ -185,6 +185,7 @@
     <Compile Include="BusinessService\StatisticsServiceTest.cs" />
     <Compile Include="BusinessService\TwoFactorAuthServiceTest.cs" />
     <Compile Include="BusinessService\VerificationServiceTest.cs" />
+    <Compile Include="Constants\SystemLanguageTest.cs" />
     <Compile Include="Controllers\UserPanel\MainControllerTest.cs" />
     <Compile Include="BusinessService\MemberInfoServiceWrapperTest.cs" />
     <Compile Include="BusinessService\MemberTransactionServiceTest.cs" />
