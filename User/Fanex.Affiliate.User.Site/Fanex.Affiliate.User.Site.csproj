@@ -664,7 +664,7 @@
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.en-US.jpg" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.hi-IN.jpg" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.id-ID.jpg" />
-    <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.js-JP.jpg" />
+    <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.ja-JP.jpg" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.ko-KR.jpg" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.th-TH.jpg" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.vi-VN.jpg" />
@@ -1122,7 +1122,7 @@
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.en-US.webp" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.hi-IN.webp" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.id-ID.webp" />
-    <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.js-JP.webp" />
+    <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.ja-JP.webp" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.ko-KR.webp" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.th-TH.webp" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.vi-VN.webp" />
