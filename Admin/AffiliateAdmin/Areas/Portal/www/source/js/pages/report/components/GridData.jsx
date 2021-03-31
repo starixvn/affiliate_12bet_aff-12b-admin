@@ -11,6 +11,7 @@ import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { allProduct, viewLevel, month, sortDirectionType, totalText, headerText, reportKey } from '../libs/constants';
 import { claimResource } from '../../../modules/claim';
+import { globalResource } from '../../../modules/globalResource';
 import { AggregateHeader, HeaderRow } from '../libs/header';
 
 export class GridData extends Component {
@@ -18,8 +19,6 @@ export class GridData extends Component {
         super(props);
 
         this.cachedMainReport = null;
-        this.totalItemMainReport = 0;
-        this.count = 0;
 
         this.state = {
             gridData: null,
@@ -119,15 +118,28 @@ export class GridData extends Component {
     }
 
     _renderDataSection(dataList) {
+        const dataRows = [];
         const { param } = this.props;
 
-        const isSelectedAllProducts = param.ProductIds === allProduct;
-        const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
-        const dataRows = [];
+        if (dataList.length) {
+            const isSelectedAllProducts = param.ProductIds === allProduct;
+            const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
 
-        for (let i = 0; i < dataList.length; i++) {
-            const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, productColumnClassName, i));
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
+                dataRows.push(this._buildDataRow(dataItem, productColumnClassName, i));
+            }
+        } else {
+            const header = AggregateHeader.convertColsToObject(this.props.headerConfig.getHeaderCols(0));
+            const singleColums = Object.keys(header).filter(i => header[i].visable).length;
+            const memberStatisticsColumns = header[reportKey.MemberStatistics].isVisable ? header[reportKey.MemberStatistics].childerent.filter(i => i.visable).length : 0;
+            const affStatisticsColumns = header[reportKey.AffiliateStatistics].isVisable ? header[reportKey.AffiliateStatistics].childerent.filter(i => i.visable).length : 0;
+
+            const colSpan = singleColums + memberStatisticsColumns + affStatisticsColumns + this._isMainView()
+
+            dataRows.push(<Row>
+                <Cell className="text-center" colSpan={colSpan}>{globalResource.NoInfo}</Cell>
+            </Row>);
         }
 
         return dataRows;
@@ -240,7 +252,7 @@ export class GridData extends Component {
     render() {
         const { gridData, total } = this.state;
 
-        return gridData && total && (
+        return gridData && (
             <div className="table-responsive table-striped">
                 <Table
                     minWidth={1000}
@@ -248,7 +260,7 @@ export class GridData extends Component {
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}
-                    footer={this._renderDataSection([total])}
+                    footer={total && this._renderDataSection([total])}
                     containerPadding={20}
                     isPaging={true}
                     pageOption={this.props.pagingOption}

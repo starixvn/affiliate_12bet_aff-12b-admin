@@ -21,7 +21,7 @@ export default class App extends React.PureComponent {
         const imgSrc = 'Areas/Portal/www/dist/imgs/i_media1.png';
         const firstMenu = renderMenuLst[0];
         return (
-            <Router forceRefresh>
+            <Router forceRefresh={true}>
                 <MenuList img={imgSrc}
                     menus={renderMenuLst.map((menu) => { return { label: menu.label, href: menu.href } })} />
                 <Suspense fallback={null}>
