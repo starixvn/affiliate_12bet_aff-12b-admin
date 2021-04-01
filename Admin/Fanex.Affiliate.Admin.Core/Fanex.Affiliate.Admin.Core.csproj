@@ -200,7 +200,6 @@
     <Compile Include="DTO\MassAdjustment\ErroredAdjustmentInfo.cs" />
     <Compile Include="DTO\MediaGallery\NewsLetter.cs" />
     <Compile Include="DTO\NewViewLog\NewViewLogInfo.cs" />
-    <Compile Include="DTO\NewViewLog\NewViewLogBasicInfo.cs" />
     <Compile Include="DTO\NewViewLog\NewViewLogDetailInfo.cs" />
     <Compile Include="DTO\UserPanel\CensoredContactApp.cs" />
     <Compile Include="DTO\UserPanel\LogAction.cs" />

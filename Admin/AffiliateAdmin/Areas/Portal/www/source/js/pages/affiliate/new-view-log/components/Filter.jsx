@@ -6,7 +6,8 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { headerText, globalResource } from '../libs/constants';
 import { setMainViewParam, setDetailViewParam, getLogActionList } from '../actions';
-import { getDateRange } from '../../../../modules/utils';
+import { sixMonth } from '../../../../modules/constants';
+import { handleAfterChangeFromDate, handleAfterChangeToDate } from '../../../../modules/utils';
 
 const minDate = '3/25/2021';
 
@@ -20,7 +21,7 @@ export class Filter extends React.Component {
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
         const sixMonthAgo = new Date(today);
-        sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
+        sixMonthAgo.setMonth(sixMonthAgo.getMonth() - sixMonth);
 
         this.state = {
             affName: '',
@@ -62,11 +63,11 @@ export class Filter extends React.Component {
     }
 
     _handleChangeFromDate = (momentDate) => {
-        this.setState(getDateRange(momentDate, this.state.toDate));
+        this.setState(handleAfterChangeFromDate(momentDate, this.state.toDate, sixMonth));
     }
 
     _handleChangeToDate = (momentDate) => {
-        this.setState({ toDate: momentDate.format("MM/DD/YYYY") });
+        this.setState(handleAfterChangeToDate(momentDate, this.state.fromDate, sixMonth));
     }
 
     _handleSearch = () => {

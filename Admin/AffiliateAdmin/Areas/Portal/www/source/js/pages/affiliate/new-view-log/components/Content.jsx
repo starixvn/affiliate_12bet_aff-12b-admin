@@ -18,8 +18,17 @@ export class Content extends PureComponent {
         }
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidMount() {
         const { pagingOption, mainViewParam } = this.props;
+
+        if (mainViewParam) {
+            const newParam = Object.assign({}, mainViewParam, { pageIndex: 1, pageSize: pagingOption.PageSize });
+            this.fetchData(newParam);
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const { mainViewParam, pagingOption } = this.props;
 
         if (mainViewParam && mainViewParam !== prevProps.mainViewParam) {
             const newParam = Object.assign({}, mainViewParam, { pageIndex: 1, pageSize: pagingOption.PageSize });
@@ -80,20 +89,20 @@ export class Content extends PureComponent {
 
     _buildDataRow(dataItem, index) {
         const affName = dataItem.AffName;
-        const actionNumber = dataItem.ActionNumber;
-        const updatedBy = htmlDecode(dataItem.UpdatedBy);
-        const lastAction = htmlDecode(dataItem.Action);
-        const dateTime = htmlDecode(dataItem.CreatedDateText);
+        const numberOfAction = dataItem.NumberOfAction;
+        const updatedBy = htmlDecode(dataItem.Actor);
+        const lastAction = htmlDecode(dataItem.LastAction);
+        const dateTime = htmlDecode(dataItem.DateTimeText);
 
         return (
             <Fragment key={`dataRow-${index}`}>
                 <Row className="row-data">
                     <Cell title={index} className="text-center">{index}</Cell>
                     <Cell title={affName} className="text-center">{affName}</Cell>
-                    <Cell title={actionNumber} className="text-center">
+                    <Cell title={numberOfAction} className="text-center">
                         <Button color="link"
                             onClick={() => this._handleViewDetail(dataItem.AffId, affName)}>
-                            {actionNumber}
+                            {numberOfAction}
                         </Button>
                     </Cell>
                     <Cell title={lastAction} className="text-center">{lastAction}</Cell>

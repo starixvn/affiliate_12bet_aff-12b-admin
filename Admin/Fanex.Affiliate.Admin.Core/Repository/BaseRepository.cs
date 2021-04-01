@@ -29,5 +29,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 Message = objectDb.GetParameterValue("ErrMsg").ToString()
             };
         }
+
+        protected static int GetTotalRow(IObjectDb objectDb)
+        {
+            var totalRow = objectDb.GetParameterValue("NRows");
+            return totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
+        }
     }
 }

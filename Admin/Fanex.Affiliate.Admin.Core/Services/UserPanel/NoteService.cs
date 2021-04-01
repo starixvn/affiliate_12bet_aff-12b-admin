@@ -18,7 +18,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             const string SpKey = "Aff_Admin_AffiliateNote_Sel";
             var result = new EntityResult<NoteDetail>();
             var dataList = new List<NoteDetail>();
-            NoteDetail dataItem = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -31,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 {
                     while (reader.Read())
                     {
-                        dataItem = BuildNoteItem(reader);
+                        var dataItem = BuildNoteItem(reader);
                         dataItem.CreatedBy = Convert.ToString(reader["UpdatedName"]);
                         dataItem.LastModify = reader["UpdatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["UpdatedDate"]);
 
@@ -39,8 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                     }
                 }
                 result.MainData = dataList;
-                var totalRow = objectDb.GetParameterValue("NRows");
-                result.TotalItem = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
+                result.TotalItem = GetTotalRow(objectDb);
             }
 
             return result;

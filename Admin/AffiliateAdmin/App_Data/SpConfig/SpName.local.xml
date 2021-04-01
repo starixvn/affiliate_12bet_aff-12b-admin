@@ -60,8 +60,6 @@
     <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="affiliate_12bet" />
     <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="affiliate_12bet" />
     <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_AffiliateLog_Sel" SpName="Aff_Admin_AffiliateLog_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_LogAction_Sel" SpName="Aff_LogAction_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_CustomerSelBalBF" SpName="Aff_CustomerSelBalBF" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_AffiliateAdjustment_Ins" SpName="Aff_Admin_AffiliateAdjustment_Ins" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_AffiliatePreferredLanguage_Upd" SpName="Aff_Admin_AffiliatePreferredLanguage_Upd" DbName="affiliate_12bet" />
@@ -164,5 +162,10 @@
 
   <Function Name="MassAdjustment">
     <Setting Key="Aff_Admin_Adjustment_Upd" SpName="Aff_Admin_Adjustment_Upd" DbName="affiliate_12bet" />
+  </Function>
+  <Function Name="ViewLog">
+    <Setting Key="Aff_Admin_ViewLog_Sel" SpName="Aff_Admin_ViewLog_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateLog_Sel" SpName="Aff_Admin_AffiliateLog_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_LogAction_Sel" SpName="Aff_LogAction_Sel_xtest" DbName="affiliate_12bet" />
   </Function>
 </Functions>

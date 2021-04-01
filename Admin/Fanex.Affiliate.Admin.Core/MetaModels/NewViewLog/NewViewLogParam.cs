@@ -1,10 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.NewsViewLog
 {
@@ -12,8 +8,10 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.NewsViewLog
     {
         public int AffId { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string AffName { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string LogActionIds { get; set; }
 
         public int UserId { get; set; }

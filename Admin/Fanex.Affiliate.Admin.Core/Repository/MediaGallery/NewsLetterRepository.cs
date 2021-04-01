@@ -37,18 +37,17 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                 objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
                 var items = objectDb.Query<NewsLetter>(param);
 
-                var rowTotal = objectDb.GetParameterValue("NRows");
                 return new EntityResult<NewsLetter>
                 {
                     MainData = items,
-                    TotalItem = rowTotal == DBNull.Value ? 0 : Convert.ToInt32(rowTotal)
+                    TotalItem = GetTotalRow(objectDb)
                 };
             }
         }
 
         public ResultInfo InsertNewsLetter(InsertNewsLetterParam param)
         {
-            
+
             const string spKey = "Aff_Admin_Newsletter_Ins";
             using (var objectDb = GetObjectDb(spKey))
             {

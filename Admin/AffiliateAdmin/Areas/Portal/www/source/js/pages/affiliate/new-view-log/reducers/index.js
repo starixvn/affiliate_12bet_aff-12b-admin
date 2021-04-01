@@ -19,7 +19,7 @@ export const detailViewParam = createReducer(null, {
     }
 });
 
-export const selectedAff = createReducer(null, {
+export const selectedAff = createReducer('', {
     [SET_SELECTED_AFF](prevState, action) {
         return action.data;
     }

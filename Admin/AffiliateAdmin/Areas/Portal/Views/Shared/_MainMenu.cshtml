@@ -23,7 +23,7 @@
     var displayMenus = menus.Where(m => {
         if(string.Equals("Affiliate", m.Key, StringComparison.OrdinalIgnoreCase))
         {
-            return permissions.Any(p => p.Type == m.Value || p.Type == Function.AffAdjustment);
+            return permissions.Any(p => p.Type == m.Value || p.Type == Function.AffAdjustment || p.Type == Function.ViewLog);
         }
 
         if(string.IsNullOrEmpty(m.Value) || permissions.Any(p => p.Type == m.Value))

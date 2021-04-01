@@ -1,12 +1,13 @@
 ﻿import React, { Fragment, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Button, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import RowDetail from './RowDetail';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { setPagingOption, toggleLoader, fetchDetailData } from '../actions';
+import { setPagingOption, toggleLoader, fetchDetailData, setSelectedAff } from '../actions';
 
 export class DetailContent extends PureComponent {
     constructor(props) {
@@ -81,11 +82,11 @@ export class DetailContent extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
-        const id = dataItem.Id;
+        const logId = dataItem.LogId;
         const ipAddress = dataItem.Ip;
         const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${ipAddress}&j=1`;
 
-        const updatedBy = htmlDecode(dataItem.UpdatedBy);
+        const updatedBy = htmlDecode(dataItem.UpdatedName);
         const action = htmlDecode(dataItem.Action);
         const oldData = htmlDecode(dataItem.OldData);
         const newData = htmlDecode(dataItem.NewData);
@@ -94,7 +95,7 @@ export class DetailContent extends PureComponent {
             <Fragment key={`dataRow-${index}`}>
                 <Row className="row-data">
                     <Cell title={index} className="text-center">{index}</Cell>
-                    <Cell title={id} className="text-center">{id}</Cell>
+                    <Cell title={logId} className="text-center">{logId}</Cell>
                     <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
                     <Cell title={updatedBy} className="text-center">{updatedBy}</Cell>
                     <Cell title={action} className="text-center">{action}</Cell>
@@ -125,22 +126,32 @@ export class DetailContent extends PureComponent {
         const { gridData, shouldResetScrollPosition } = this.state;
 
         return gridData && (
-            <div className="data-content new-view-log">
-                <div className="table-responsive table-striped new-view-log-table my-2">
-                    <Table
-                        minWidth={1000}
-                        autoWidth={true}
-                        bodyHeight={300}
-                        header={this._renderHeader()}
-                        body={this._renderDataSection(gridData)}
-                        containerPadding={20}
-                        isPaging={true}
-                        pageOption={this.props.pagingOption}
-                        onPaging={this.handlePaging}
-                        shouldResetScrollPosition={shouldResetScrollPosition}
-                    />
+            <Fragment>
+                <Breadcrumb className="mt-2">
+                    (<BreadcrumbItem>
+                        <Button color="link" onClick={() => this.props.setSelectedAff("")}>
+                            Aff List
+                        </Button>
+                    </BreadcrumbItem>
+                    <BreadcrumbItem active>{this.props.selectedAff}</BreadcrumbItem>)
+                </Breadcrumb>
+                <div className="data-content new-view-log">
+                    <div className="table-responsive table-striped new-view-log-table my-2">
+                        <Table
+                            minWidth={1000}
+                            autoWidth={true}
+                            bodyHeight={300}
+                            header={this._renderHeader()}
+                            body={this._renderDataSection(gridData)}
+                            containerPadding={20}
+                            isPaging={true}
+                            pageOption={this.props.pagingOption}
+                            onPaging={this.handlePaging}
+                            shouldResetScrollPosition={shouldResetScrollPosition}
+                        />
+                    </div>
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }
@@ -151,7 +162,7 @@ function mapStateToProps({ selectedAff, detailViewParam, pagingOption }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, fetchDetailData }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, fetchDetailData, setSelectedAff }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailContent);

@@ -18,35 +18,20 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
     {
         public EntityResult<NewViewLogInfo> GetNewViewLogList(NewViewLogParam param)
         {
-            const string SpKey = "Aff_Admin_Affiliate_Sel";
-            var result = new EntityResult<NewViewLogInfo>();
-            var dataList = new List<NewViewLogInfo>();
+            const string SpKey = "Aff_Admin_ViewLog_Sel";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("UserName", DbType.String, param.AffName);
-                objectDb.AddInParameter("PreferredLanguages", DbType.String, "en-GB,en-US,hi-IN,id-ID,ko-KR,th-TH,vi-VN,zh-CN,zh-TW");
+                objectDb.AddInParameter("AffName", DbType.String, param.AffName);
                 AssignParam(objectDb, param);
 
-                using (var reader = objectDb.ExecuteReader())
+                return new EntityResult<NewViewLogInfo>
                 {
-                    while (reader.Read())
-                    {
-                        dataList.Add(new NewViewLogInfo {
-                            AffId = Convert.ToInt32(reader[Field.AffId]),
-                            AffName = Convert.ToString(reader["Username"]),
-                            ActionNumber = reader["NoOfMember"] == DBNull.Value ? 0 : Convert.ToInt32(reader["NoOfMember"]),
-                            CreatedDate = Convert.ToDateTime(reader["RegisteredDate"]),
-                            Action = Convert.ToString(reader["Status"])
-                        });
-                    }
-                }
-                result.MainData = dataList;
-                var totalRow = objectDb.GetParameterValue("NRows");
-                result.TotalItem = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
+                    MainData = objectDb.Query<NewViewLogInfo>(),
+                    TotalItem = GetTotalRow(objectDb)
+                };
             }
-            return result;
         }
 
         public EntityResult<NewViewLogDetailInfo> GetNewViewLogDetailList(NewViewLogParam param)
@@ -58,9 +43,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("LogActionIds", DbType.String, param.LogActionIds);
-                objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
-                objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
                 AssignParam(objectDb, param);
 
                 using (var reader = objectDb.ExecuteReader())
@@ -69,11 +51,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                     {
                         dataList.Add(new NewViewLogDetailInfo
                         {
-                            Id = Convert.ToInt32(reader["LogId"]),
-                            CreatedDate = Convert.ToDateTime(reader["Date"]),
+                            LogId = Convert.ToInt32(reader["LogId"]),
+                            Date = Convert.ToDateTime(reader["Date"]),
                             OldData = ParseXmlToJson(Convert.ToString(reader["OldData"])),
                             NewData = ParseXmlToJson(Convert.ToString(reader["NewData"])),
-                            UpdatedBy = Convert.ToString(reader["UpdatedName"]),
+                            UpdatedName = Convert.ToString(reader["UpdatedName"]),
                             Action = Convert.ToString(reader["Action"]),
                             Ip = Convert.ToString(reader["IP"]),
                         });
@@ -81,8 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 }
 
                 result.MainData = dataList;
-                var totalRow = objectDb.GetParameterValue("NRows");
-                result.TotalItem = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
+                result.TotalItem = GetTotalRow(objectDb);
             }
 
             return result;
@@ -90,7 +71,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
         private static void AssignParam(IObjectDb objectDb, NewViewLogParam param)
         {
-            //objectDb.AddInParameter("UserName", DbType.String, param.AffName);
+            objectDb.AddInParameter("LogActionIds", DbType.String, param.LogActionIds);
+            objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
+            objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
             objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
             objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
             objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
