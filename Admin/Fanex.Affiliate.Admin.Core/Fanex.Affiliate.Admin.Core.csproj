@@ -211,9 +211,7 @@
     <Compile Include="MetaModels\MediaGallery\UpdateNewsLetterParam.cs" />
     <Compile Include="MetaModels\NewViewLog\NewViewLogParam.cs" />
     <Compile Include="Repository\Affiliate\IMassAdjustmentRepository.cs" />
-    <Compile Include="Repository\Affiliate\INewViewLogRepository.cs" />
     <Compile Include="Repository\Affiliate\MassAdjustmentRepository.cs" />
-    <Compile Include="Repository\Affiliate\NewViewLogRepository.cs" />
     <Compile Include="Repository\MediaGallery\INewsLetterRepository.cs" />
     <Compile Include="Repository\MediaGallery\NewsLetterRepository.cs" />
     <Compile Include="Services\MassAdjustment\IMassAdjustmentService.cs" />

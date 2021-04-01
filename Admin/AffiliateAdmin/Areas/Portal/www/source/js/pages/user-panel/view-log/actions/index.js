@@ -21,8 +21,8 @@ export const setShowIdList = (data) => {
 }
 
 export const fetchData = (param) => async() => {
-    const url = 'Portal/UserPanel/ViewLog/GetViewLogList';
-    const response = await post(url, { ...param, IsNewViewLog: false });
+    const url = 'Portal/ViewLog/GetViewLogList';
+    const response = await post(url, param );
 
     return response && response.status === 200 ? response.data : null;
 }

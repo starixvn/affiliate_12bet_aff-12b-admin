@@ -6,7 +6,5 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
     {
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string LogActionIds { get; set; }
-
-        public bool IsNewViewLog { get; set; }
     }
 }

@@ -163,6 +163,7 @@
     <Compile Include="Attributes\ResetValueNotHavePermissionAttributeTest.cs" />
     <Compile Include="Common\MockFile.cs" />
     <Compile Include="Controllers\Affiliate\MassAdjustmentControllerTest.cs" />
+    <Compile Include="Controllers\Affiliate\NewViewLogControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\NewsLetterControllerTest.cs" />
     <Compile Include="Repository\AdminRole\AdminInfoRepositoryTest.cs" />
     <Compile Include="Repository\AdminRole\RolePermissionRepositoryTest.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Services\AdminRole\AdminInfoServiceTest.cs" />
     <Compile Include="Services\AdminRole\AdminRoleCommonServiceTest.cs" />
     <Compile Include="Services\AdminRole\RolePermissionServiceTest.cs" />
+    <Compile Include="Services\Affiliate\NewViewLogServiceTest.cs" />
     <Compile Include="Services\AuthServiceTest.cs" />
     <Compile Include="Services\Common\SessionServiceTest.cs" />
     <Compile Include="Controllers\AccessDeniedControllerTest.cs" />

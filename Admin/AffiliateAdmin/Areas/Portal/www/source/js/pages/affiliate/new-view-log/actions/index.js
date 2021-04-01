@@ -27,7 +27,7 @@ export const setSelectedAff = (data) => {
 }
 
 export const getLogActionList = () => async () => {
-    const url = 'Portal/UserPanel/ViewLog/GetLogActionList';
+    const url = 'Portal/ViewLog/GetLogActionList';
 
     const response = await post(url);
 

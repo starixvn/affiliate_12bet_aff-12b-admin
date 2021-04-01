@@ -3,14 +3,10 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.NewViewLog;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.MetaModels.NewsViewLog;
+using Fanex.Affiliate.Admin.Core.MetaModels.NewViewLog;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.NewViewLog;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
@@ -32,6 +28,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         public ActionResult Index()
         {
             return View("~/Areas/Portal/Views/Affiliate/NewViewLog.cshtml");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetLogActionList()
+        {
+            return new JsonNetResult
+            {
+                Data = _newViewLogService.GetLogActionList()
+            };
         }
 
         [HttpPost]

@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Fanex.Affiliate.Admin.Core.MetaModels.NewsViewLog
+namespace Fanex.Affiliate.Admin.Core.MetaModels.NewViewLog
 {
     public class NewViewLogParam
     {
