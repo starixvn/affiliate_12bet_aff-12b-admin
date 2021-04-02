@@ -11,10 +11,12 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } }
+    { name: 'setMainViewParam', type: types.SET_MAIN_VIEW_PARAM, data: { param: 'param' } },
+    { name: 'setDetailViewParam', type: types.SET_DETAIL_VIEW_PARAM, data: { param: 'param' } },
+    { name: 'setSelectedAff', type: types.SET_SELECTED_AFF, data: '123' }
 ]
 
-describe('new view log actions', () => {
+describe('new view log - actions', () => {
     actionList.forEach(item => {
         runTestAction(item);
     });
@@ -38,7 +40,7 @@ describe('new view log actions', () => {
 
         const result = await actions['getLogActionList']()();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/ViewLog/GetLogActionList');
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/ViewLog/GetLogActionList');
         expect(result).toEqual(expectedResponse.data);
     })
 
@@ -47,7 +49,7 @@ describe('new view log actions', () => {
 
         const result = await actions['getLogActionList']()();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/ViewLog/GetLogActionList');
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/ViewLog/GetLogActionList');
         expect(result).toEqual(null);
     })
 
@@ -56,40 +58,114 @@ describe('new view log actions', () => {
             data: {
                 MainData: [
                     {
-                        Action: "Setting for Commission Group",
-                        DateText: "07/01/2019 12:46:38 AM",
+                        AffId: 10279106,
+                        Actor: "AAwalter",
+                        LastAction: "User Info",
+                        NumberOfAction: 1,
+                        DateTimeText: "06/06/2019 03:42:42 AM"
+                    },
+                    {
+                        AffId: 10279105,
+                        Actor: "AAwalter",
+                        LastAction: "User Info",
+                        NumberOfAction: 2,
+                        DateTimeText: "06/06/2019 03:42:38 AM"
+                    },
+                    {
+                        AffId: 10279104,
+                        Actor: "AAwalter",
+                        LastAction: "Setting for Commission Group",
+                        NumberOfAction: 3,
+                        DateTimeText: "06/06/2019 03:42:38 AM"
+                    },
+                    {
+                        AffId: 10279103,
+                        Actor: "AAwalter",
+                        LastAction: "Setting for Commission Group",
+                        NumberOfAction: 4,
+                        DateTimeText: "06/06/2019 03:42:38 AM"
+                    }
+                ],
+                Total: null,
+                TotalItem: 4
+            },
+            status: 200
+        };
+
+        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
+
+        const param = {
+            username: '',
+            fromDate: "01/04/2016",
+            logActionIds: '',
+            pageIndex: 3,
+            pageSize: 20,
+            toDate: "07/03/2019"
+        }
+
+        const result = await actions['fetchData'](param)();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/ViewLog/GetNewViewLogList', param);
+        expect(result).toEqual(expectedResponse.data);
+    })
+
+    it('should create action to fetchData with response error', async () => {
+        ajaxRequest.post = jest.fn();
+        const param = {
+            username: '',
+            fromDate: "01/04/2016",
+            logActionIds: '',
+            pageIndex: 3,
+            pageSize: 20,
+            toDate: "07/03/2019"
+        }
+
+        const result = await actions['fetchData'](param)();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/ViewLog/GetNewViewLogList', param);
+
+        expect(result).toEqual(null);
+    })
+
+    it('should create action to fetchDetailData with correct response', async () => {
+        const expectedResponse = {
+            data: {
+                MainData: [
+                    {
+                        LogId: 10279106,
+                        UpdatedName: "AAwalter",
                         OldData: "{\"root\":{\"row\":{\"@PageName\":\"11111\",\"@PageCode\":\"1111\"}}}",
                         NewData: "{\"root\":{\"row\":{\"@PageName\":\"1122111\",\"@PageCode\":\"1111\"}}}",
-                        Id: 6860,
+                        Action: "User Info",
                         Ip: "::1",
-                        UpdatedBy: "AAwalter"
+                        DateText: "06/06/2019 03:42:42 AM"
                     },
                     {
-                        Action: "Payout",
-                        DateText: "06/20/2019 10:25:07 PM",
+                        LogId: 10279105,
+                        UpdatedName: "AAwalter",
                         OldData: "",
                         NewData: "{\"root\":{\"row\":{\"@PageName\":\"111111\",\"@PageCode\":\"111\"}}}",
-                        Id: 10279364,
-                        Ip: "10.18.200.125",
-                        UpdatedBy: ""
+                        Action: "User Info",
+                        Ip: "::1",
+                        DateText: "06/06/2019 03:42:38 AM"
                     },
                     {
-                        Action: "Payout",
-                        DateText: "06/20/2019 10:25:07 PM",
+                        LogId: 10279104,
+                        UpdatedName: "AAwalter",
                         OldData: "{\"root\":{\"row\":{\"@PageName\":\"11111\",\"@PageCode\":\"1111\"}}}",
                         NewData: "",
-                        Id: 102793,
-                        Ip: "10.18.200.125",
-                        UpdatedBy: ""
+                        Action: "Setting for Commission Group",
+                        Ip: "::1",
+                        DateText: "06/06/2019 03:42:38 AM"
                     },
                     {
-                        Action: "Payout",
-                        DateText: "06/20/2019 10:25:07 PM",
+                        LogId: 10279103,
+                        UpdatedName: "AAwalter",
                         OldData: "",
                         NewData: "",
-                        Id: 102793,
-                        Ip: "10.18.200.125",
-                        UpdatedBy: ""
+                        Action: "Setting for Commission Group",
+                        Ip: "::1",
+                        DateText: "06/06/2019 03:42:38 AM"
                     }
                 ],
                 Total: null,
@@ -102,33 +178,35 @@ describe('new view log actions', () => {
 
         const param = {
             affId: 1271808,
+            username: '12BETAFF001',
             fromDate: "01/04/2016",
-            logAction: 0,
+            logActionIds: '',
             pageIndex: 3,
             pageSize: 20,
             toDate: "07/03/2019"
         }
 
-        const result = await actions['fetchData'](param)();
+        const result = await actions['fetchDetailData'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/ViewLog/GetViewLogList', { ...param, IsNewViewLog: true });
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/ViewLog/GetNewViewLogDetailList', param);
         expect(result).toEqual(expectedResponse.data);
     })
 
-    it('should create action to fetchData with response error', async () => {
+    it('should create action to fetchDetailData with response error', async () => {
         ajaxRequest.post = jest.fn();
         const param = {
             affId: 123456,
+            username: '12BETAFF001',
             fromDate: "01/04/2016",
-            logAction: 0,
+            logActionIds: '',
             pageIndex: 3,
             pageSize: 20,
             toDate: "07/03/2019"
         }
 
-        const result = await actions['fetchData'](param)();
+        const result = await actions['fetchDetailData'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/ViewLog/GetViewLogList', { ...param, IsNewViewLog: true });
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/ViewLog/GetNewViewLogDetailList', param);
 
         expect(result).toEqual(null);
     })

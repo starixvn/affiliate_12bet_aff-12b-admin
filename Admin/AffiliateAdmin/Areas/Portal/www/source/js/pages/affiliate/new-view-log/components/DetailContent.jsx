@@ -117,7 +117,7 @@ export class DetailContent extends PureComponent {
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const newParam = { ...this.props.param, pageIndex, pageSize };
+        const newParam = { ...this.props.detailViewParam, pageIndex, pageSize };
 
         this.fetchData(newParam);
     };

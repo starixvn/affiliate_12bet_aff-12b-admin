@@ -9,7 +9,9 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 }
 
 const testCaseList = [
-    { name: 'param', value: {}, action: { type: types.SET_PARAM, data: { productId: 123, content: 'abc' } }, expectedResult: { productId: 123, content: 'abc' } }
+    { name: 'mainViewParam', value: null, action: { type: types.SET_MAIN_VIEW_PARAM, data: { username: 'abc' } }, expectedResult: { username: 'abc' } },
+    { name: 'detailViewParam', value: null, action: { type: types.SET_DETAIL_VIEW_PARAM, data: { username: 'abc' } }, expectedResult: { username: 'abc' } },
+    { name: 'selectedAff', value: '', action: { type: types.SET_SELECTED_AFF, data: 'abc' }, expectedResult: 'abc' }
 ]
 
 describe('new view log reducers', () => {

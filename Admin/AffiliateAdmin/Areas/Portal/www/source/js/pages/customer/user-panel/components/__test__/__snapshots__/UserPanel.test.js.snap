@@ -153,21 +153,13 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
             "displayName": "Connect(UserPanelItem)",
             "type": [Function],
           },
-          "key": "newViewLog",
-          "name": "View Log",
-          "parent": null,
-        },
-        Object {
-          "component": Object {
-            "$$typeof": Symbol(react.memo),
-            "WrappedComponent": [Function],
-            "compare": null,
-            "displayName": "Connect(UserPanelItem)",
-            "type": [Function],
-          },
           "key": "viewLog",
           "name": "View Log (Old)",
           "parent": null,
+          "renderClaim": Claim {
+            "type": "[ViewLog]",
+            "value": undefined,
+          },
         },
         Object {
           "component": Object {

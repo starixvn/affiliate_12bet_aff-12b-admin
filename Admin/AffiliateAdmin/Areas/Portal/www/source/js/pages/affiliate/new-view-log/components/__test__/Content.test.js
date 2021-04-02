@@ -5,56 +5,50 @@ import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('new view log - components - Content', () => {
     const defaultProps = {
-        affId: 1271808,
         pagingOption: defaultPagingOption,
-        param: {
-            logAction: 0,
+        mainViewParam: {
+            affName: '',
+            logActionIds: '',
             fromDate: "06/06/2019",
             toDate: "06/06/2019"
         },
-        showIdList: {10279105: false},
         setPagingOption: jest.fn(),
-        toggleLoaderUserPanel: jest.fn(),
-        setShowIdList: jest.fn(),
+        toggleLoader: jest.fn(),
         fetchData: jest.fn(() => gridData)
     }
 
     const gridData = [
         {
-            Id: 10279106,
-            UpdatedBy: "AAwalter",
-            OldData: "{\"root\":{\"row\":{\"@PageName\":\"11111\",\"@PageCode\":\"1111\"}}}",
-            NewData: "{\"root\":{\"row\":{\"@PageName\":\"1122111\",\"@PageCode\":\"1111\"}}}",
-            Action: "User Info",
-            Ip: "::1",
-            DateText: "06/06/2019 03:42:42 AM"
+            AffId: 10279106,
+            AffName: "12BetAff001",
+            Actor: "AAwalter",
+            LastAction: "User Info",
+            NumberOfAction: 1,
+            DateTimeText: "06/06/2019 03:42:42 AM"
         },
         {
-            Id: 10279105,
-            UpdatedBy: "AAwalter",
-            OldData: "",
-            NewData: "{\"root\":{\"row\":{\"@PageName\":\"111111\",\"@PageCode\":\"111\"}}}",
-            Action: "User Info",
-            Ip: "::1",
-            DateText: "06/06/2019 03:42:38 AM"
+            AffId: 10279105,
+            AffName: "12BetAff002",
+            Actor: "AAwalter",
+            LastAction: "User Info",
+            NumberOfAction: 2,
+            DateTimeText: "06/06/2019 03:42:38 AM"
         },
         {
-            Id: 10279104,
-            UpdatedBy: "AAwalter",
-            OldData: "{\"root\":{\"row\":{\"@PageName\":\"11111\",\"@PageCode\":\"1111\"}}}",
-            NewData: "",
-            Action: "Setting for Commission Group",
-            Ip: "::1",
-            DateText: "06/06/2019 03:42:38 AM"
+            AffId: 10279104,
+            AffName: "12BetAff003",
+            Actor: "AAwalter",
+            LastAction: "Setting for Commission Group",
+            NumberOfAction: 3,
+            DateTimeText: "06/06/2019 03:42:38 AM"
         },
         {
-            Id: 10279103,
-            UpdatedBy: "AAwalter",
-            OldData: "",
-            NewData: "",
-            Action: "Setting for Commission Group",
-            Ip: "::1",
-            DateText: "06/06/2019 03:42:38 AM"
+            AffId: 10279103,
+            AffName: "12BetAff004",
+            Actor: "AAwalter",
+            LastAction: "Setting for Commission Group",
+            NumberOfAction: 4,
+            DateTimeText: "06/06/2019 03:42:38 AM"
         }
     ]
 
@@ -74,66 +68,94 @@ describe('new view log - components - Content', () => {
         expect(result).toMatchSnapshot();
     });
 
-    it('componentDidUpdate - should call fetchData if param change', () => {
-        const param = Object.assign({}, defaultProps.param, { toDate: "6/27/2017" });
-        const props = Object.assign({}, defaultProps, { param });
+    it('componentDidMount - should not call fetchData', () => {
+        const props = Object.assign({}, defaultProps, { mainViewParam: null });
+        const componentInstance = new Content(props);
+        componentInstance.fetchData = jest.fn();
+        componentInstance.componentDidMount();
+
+        expect(componentInstance.fetchData).not.toHaveBeenCalled();
+    });
+
+    it('componentDidUpdate - should call fetchData if mainViewParam change', () => {
+        const mainViewParam = Object.assign({}, defaultProps.mainViewParam, { toDate: "6/27/2017" });
+        const props = Object.assign({}, defaultProps, { mainViewParam });
         const componentInstance = new Content(props);
         componentInstance.fetchData = jest.fn();
         componentInstance.componentDidUpdate(defaultProps);
 
-        expect(componentInstance.fetchData).toHaveBeenCalledWith({ ...param, pageIndex: 1, pageSize: 20 });
+        expect(componentInstance.fetchData).toHaveBeenCalledWith({ ...mainViewParam, pageIndex: 1, pageSize: 20 });
     });
 
-    it('fetchData - should call toggleLoaderUserPanel, setState and setPagingOption with correct parameter', async () => {
+    it('fetchData - should call toggleLoader, setState and setPagingOption with correct parameter', async () => {
         const data = { MainData: [{ Id: 123 }], TotalItem: 1 };
 
-        const toggleLoaderUserPanel = jest.fn();
+        const toggleLoader = jest.fn();
         const setPagingOption = jest.fn();
         const fetchData = jest.fn(() => data);
 
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, setPagingOption, fetchData });
+        const props = Object.assign({}, defaultProps, { toggleLoader, setPagingOption, fetchData });
         const componentInstance = new Content(props);
         componentInstance.setState = jest.fn();
-        const param = Object.assign({}, defaultProps.param, { pageIndex: 1, pageSize: 20 });
-        await componentInstance.fetchData(param);
+        const mainViewParam = Object.assign({}, defaultProps.mainViewParam, { pageIndex: 1, pageSize: 20 });
+        await componentInstance.fetchData(mainViewParam);
 
-        expect(props.toggleLoaderUserPanel).toHaveBeenCalledTimes(2);
-        expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
+        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
+        expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
+        expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchData).toHaveBeenCalledWith({ ...param, affId: 1271808 });
+        expect(props.fetchData).toHaveBeenCalledWith(mainViewParam);
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: [{ Id: 123 }], "shouldResetScrollPosition": true });
         expect(props.setPagingOption).toHaveBeenCalledWith({ TotalItem: 1, PageIndex: 1, PageSize: 20 });
     });
 
-    it('fetchData - should call toggleLoaderUserPanel, setState and setPagingOption with incorrect parameter', async () => {
-        const toggleLoaderUserPanel = jest.fn();
+    it('fetchData - should call toggleLoader, setState and setPagingOption with incorrect parameter', async () => {
+        const toggleLoader = jest.fn();
         const setPagingOption = jest.fn();
         const fetchData = jest.fn();
 
-        const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, setPagingOption, fetchData });
+        const props = Object.assign({}, defaultProps, { toggleLoader, setPagingOption, fetchData });
         const componentInstance = new Content(props);
         componentInstance.setState = jest.fn();
-        const param = Object.assign({}, defaultProps.param, { memberType: '-1', pageIndex: 1, pageSize: 20 });
-        await componentInstance.fetchData(param);
+        const mainViewParam = Object.assign({}, defaultProps.mainViewParam, { memberType: '-1', pageIndex: 1, pageSize: 20 });
+        await componentInstance.fetchData(mainViewParam);
 
-        expect(props.toggleLoaderUserPanel).toHaveBeenCalledTimes(2);
-        expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
+        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
+        expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
+        expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchData).toHaveBeenCalledWith({ ...param, affId: 1271808 });
+        expect(props.fetchData).toHaveBeenCalledWith(mainViewParam);
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: null, "shouldResetScrollPosition": true });
         expect(props.setPagingOption).toHaveBeenCalledWith({ TotalItem: 0, PageIndex: 1, PageSize: 20 });
     });
 
+    it('_handleViewDetail - should call setDetailViewParam and setSelectedAff', () => {
+        const props = Object.assign({}, defaultProps, { setDetailViewParam: jest.fn(), setSelectedAff: jest.fn() });
+        const componentInstance = new Content(props);
+
+        componentInstance._handleViewDetail(123, "ABC");
+
+        expect(props.setDetailViewParam).toHaveBeenCalledWith({ ...defaultProps.mainViewParam, affId: 123, affName: "ABC" });
+        expect(props.setSelectedAff).toHaveBeenCalledWith("ABC");
+    });
+
+    it('_handleViewDetail - should be called when click detail button', () => {
+        const componentInstance = new Content(defaultProps);
+        componentInstance._handleViewDetail = jest.fn();
+
+        const wrapper = shallow(<div>{componentInstance._buildDataRow(gridData[0], 1)}</div>);
+
+        wrapper.find("Button").simulate('click');
+
+        expect(componentInstance._handleViewDetail).toHaveBeenCalledWith(10279106, "12BetAff001");
+    });
+
     it('handlePaging - should call fetchData with correct parameters', () => {
-        const setPagingOption = jest.fn();
         const pageIndex = 2;
         const pageSize = 50;
-        const paramExpect = Object.assign({}, defaultProps.param, { pageIndex, pageSize });
+        const paramExpect = Object.assign({}, defaultProps.mainViewParam, { pageIndex, pageSize });
 
-        const props = Object.assign({}, defaultProps, { setPagingOption });
-        const componentInstance = new Content(props);
+        const componentInstance = new Content(defaultProps);
         componentInstance.fetchData = jest.fn();
 
         componentInstance.handlePaging(pageIndex, pageSize);

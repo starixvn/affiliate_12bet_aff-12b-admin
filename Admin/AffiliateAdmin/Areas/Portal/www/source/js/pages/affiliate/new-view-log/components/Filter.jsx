@@ -39,16 +39,10 @@ export class Filter extends React.Component {
     componentDidUpdate(prevProps) {
         const { selectedAff } = this.props;
 
-        if (!selectedAff && selectedAff !== prevProps.selectedAff) {
-            const { mainViewParam } = this.props;
+        if (selectedAff !== prevProps.selectedAff) {
+            const { mainViewParam, detailViewParam } = this.props;
 
-            this.setState({ ...mainViewParam });
-        }
-
-        if (!!selectedAff && selectedAff !== prevProps.selectedAff) {
-            const { detailViewParam } = this.props;
-
-            this.setState({ logActionIds: detailViewParam.logActionIds, fromDate: detailViewParam.fromDate, toDate: detailViewParam.toDate });
+            !selectedAff ? this.setState({ ...mainViewParam }) : this.setState({ logActionIds: detailViewParam.logActionIds, fromDate: detailViewParam.fromDate, toDate: detailViewParam.toDate });
         }
     }
 
@@ -97,7 +91,7 @@ export class Filter extends React.Component {
                                 <Label for="affName" className="mr-sm-2">{headerText.Affiliate}</Label>
                                 <Input type="text" name="affName" id="affName" value={affName} onChange={this._handleChange} onKeyPress={this._handleKeyPress} />
                             </FormGroup>
-                            )
+                        )
                     }
                     <FormGroup className="mr-sm-2 my-2">
                         <Label for="logActionIds" className="mr-sm-2">{headerText.Action}</Label>

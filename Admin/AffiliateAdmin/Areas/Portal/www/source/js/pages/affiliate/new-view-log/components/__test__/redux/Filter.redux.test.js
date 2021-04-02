@@ -1,53 +1,37 @@
-﻿jest.mock('redux');
-jest.mock('react-redux');
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../../actions/index';
+﻿import React from 'react';
+import Filter from '../../Filter';
+import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
+import { SET_MAIN_VIEW_PARAM } from '../../../actions/types';
 
-describe('new view log - Filter - connect', () => {
-    let mapStateToProps, mapDispatchToProps;
-    const connectMock = jest.fn();
+const mockStore = configureMockStore();
 
-    beforeAll(() => {
-        connect.mockImplementationOnce((mapStateToPropsFunc, mapDispatchToPropsFunc) => {
-            mapStateToProps = mapStateToPropsFunc;
-            mapDispatchToProps = mapDispatchToPropsFunc;
-            return connectMock;
-        });
-        require('../../Filter').default;
+describe('News View Log - components - Filter - connect', () => {
+    let wrapper;
+    let store;
+
+    beforeEach(() => {
+        const initialState = {
+            today: '4/2/2021',
+            selectedAff: '',
+            detailViewParam: {},
+            mainViewParam: {}
+        };
+        store = mockStore(initialState);
+        wrapper = shallow(<Filter store={store} />).dive();
     });
 
-    it('props should be mapped correctly', () => {
-        const expectedResult = {
-            today: '25/09/2019'
-        };
-        const state = {
-            today: '25/09/2019',
-            anotherProp: "Not included"
-        };
+    it('should show correct value', () => {
+        expect(wrapper.props().today).toEqual('4/2/2021');
+        expect(wrapper.props().selectedAff).toEqual('');
+        expect(wrapper.props().detailViewParam).toEqual({});
+        expect(wrapper.props().mainViewParam).toEqual({});
+    });
 
-        const result = mapStateToProps(state);
+    it('should call correct action', () => {
+        wrapper.props().setMainViewParam(null);
 
-        expect(result).toEqual(expectedResult);
-    })
-
-    it('bindActionCreators should be called with correct parameter', () => {
-        const mockBindAction = jest.fn();
-        bindActionCreators.mockImplementationOnce(mockBindAction);
-        const expectedActionCreator = {
-            setParam: actions['setParam'],
-            getLogActionList: actions['getLogActionList']
-        }
-
-        const dispatch = {};
-        mapDispatchToProps(dispatch);
-
-        expect(mockBindAction).toHaveBeenCalledWith(expectedActionCreator, dispatch);
-    })
-
-    it('returned function of connect should be called with correct parameter', () => {
-        const Filter = require('../../Filter').Filter;
-
-        expect(connectMock).toHaveBeenCalledWith(Filter);
-    })
+        const actions = store.getActions();
+        expect(actions).toEqual([{ type: SET_MAIN_VIEW_PARAM, data: null }]);
+    });
 })

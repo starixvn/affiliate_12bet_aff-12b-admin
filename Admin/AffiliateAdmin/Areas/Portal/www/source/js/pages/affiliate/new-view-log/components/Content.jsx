@@ -114,7 +114,7 @@ export class Content extends PureComponent {
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const newParam = { ...this.props.param, pageIndex, pageSize };
+        const newParam = { ...this.props.mainViewParam, pageIndex, pageSize };
 
         this.fetchData(newParam);
     };
