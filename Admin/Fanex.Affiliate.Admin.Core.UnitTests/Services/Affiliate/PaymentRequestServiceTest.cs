@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
 {
     public class PaymentRequestServiceTest
     {

@@ -9,7 +9,7 @@ using System.Data;
 using System.Linq;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.EmailHistory
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
 {
     public class EmailHistoryServiceTest
     {

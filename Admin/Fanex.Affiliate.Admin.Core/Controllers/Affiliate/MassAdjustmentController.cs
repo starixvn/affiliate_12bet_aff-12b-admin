@@ -6,6 +6,8 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MassAdjustment;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MassAdjustment;
+using System;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 
@@ -37,6 +39,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         {
             if (file != null && file.ContentLength > 0)
             {
+                byte[] thePictureAsBytes = new byte[file.ContentLength];
+                using (BinaryReader theReader = new BinaryReader(file.InputStream))
+                {
+                    thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
+                }
+                string thePictureDataAsString = Convert.ToBase64String(thePictureAsBytes);
                 var param = new MassAdjustmentParam
                 {
                     UserId = SessionService.UserId,

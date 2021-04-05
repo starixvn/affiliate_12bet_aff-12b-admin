@@ -10,7 +10,7 @@ using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
 {
-    public class ResetDefaultUnauthorizedPropertyAttributeTest
+    public class UpdateUnauthorizedPropertyAttributeTest
     {
         const string PERMISSION_NAME = "[Permission]";
 
@@ -161,6 +161,31 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             }
         }
 
+        [Theory]
+        [InlineData("", null)]
+        [InlineData("", "")]
+        [InlineData("*", "a")]
+        [InlineData("a**", "abc")]
+        [InlineData("abc****", "abc1234")]
+        public void OnResultExecuting_WhenNotHavePersonalPermission_CensoredData(string expectedValue, string value)
+        {
+            var attribute = CreateAttribute();
+            var filtercontext = new ResultExecutingContext();
+            SetUpContext(filtercontext);
+            filtercontext.HttpContext.User = new ClaimsPrincipal();
+            var data = new TestCensoredStringPropertyClass
+            {
+                CensoredProterty = value,
+                NotCensoredProterty = "123"
+            };
+            filtercontext.Result = new JsonResult() { Data = data };
+
+            attribute.OnResultExecuting(filtercontext);
+
+            Assert.Equal(expectedValue, data.CensoredProterty);
+            Assert.Equal("123", data.NotCensoredProterty);
+        }
+
         private void SetUpContext(ResultExecutingContext context)
         {
             var httpContext = Substitute.For<HttpContextBase>();
@@ -204,5 +229,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Attributes
             public IEnumerable<TestResetStringPropertyClass> ResetArrayProperty { get; set; }
         }
 
+        private class TestCensoredStringPropertyClass
+        {
+            [CensoredPermissionCheck(PERMISSION_NAME)]
+            public string CensoredProterty { get; set; }
+
+            public string NotCensoredProterty { get; set; }
+        }
     }
 }

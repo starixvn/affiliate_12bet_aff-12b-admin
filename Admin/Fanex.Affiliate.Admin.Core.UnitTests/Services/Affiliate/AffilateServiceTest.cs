@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
 {
     public class AffilateServiceTest
     {

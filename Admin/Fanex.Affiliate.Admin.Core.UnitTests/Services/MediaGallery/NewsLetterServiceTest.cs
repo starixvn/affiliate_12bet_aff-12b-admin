@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         public void GetNewsLetters_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = new SelectNewsLetterParam();
+            var param = new SelectNewsLetterParam { PageIndex = 1, PageSize = 20 };
             SelectNewsLetterParam passedParam = null;
             var newsLetterRepository = new Mock<INewsLetterRepository>();
             newsLetterRepository.Setup(s => s.GetNewsLetters(param)).Returns(new EntityResult<NewsLetter> { MainData = new List<NewsLetter> { new NewsLetter() }, TotalItem = 1 }).Callback<SelectNewsLetterParam>(p => passedParam = p);
@@ -180,7 +180,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var controller = CreateNewsLetterService(null, appSetting.Object, systemFile.Object);
 
             // Action
-            using (var memoryStream = new MemoryStream(new byte[3] { 1, 2, 3 }))
+            using (var memoryStream = new MemoryStream(new byte[] { 1, 2, 3 }))
             {
                 var result = controller.AddNewsLetter(new MockFile(memoryStream, "text/html", "abc.html", 1024), new InsertNewsLetterParam { FileName = "abc.html" });
 

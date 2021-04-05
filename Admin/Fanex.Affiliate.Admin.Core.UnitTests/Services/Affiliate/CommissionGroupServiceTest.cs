@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
 {
     public class CommissionGroupServiceTest
     {

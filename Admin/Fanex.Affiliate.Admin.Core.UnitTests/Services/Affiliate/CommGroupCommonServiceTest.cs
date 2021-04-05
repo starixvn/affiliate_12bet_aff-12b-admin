@@ -7,7 +7,7 @@ using Moq;
 using System.Collections.Generic;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
 {
     public class CommGroupCommonServiceTest
     {

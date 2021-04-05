@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
 {
     public class CommGroupAssignmentServiceTest
     {
