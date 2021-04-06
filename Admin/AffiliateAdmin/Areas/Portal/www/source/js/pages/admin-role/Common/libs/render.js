@@ -4,7 +4,7 @@ export const renderHeader = () => {
     return (
         <thead key="thead">
             <tr>
-                <th rowSpan="2" colSpan="3">Function</th>
+                <th rowSpan="2" colSpan="4">Function</th>
                 <th colSpan="2">Individual Permission</th>
                 <th colSpan="2">Role Permision</th>
             </tr>

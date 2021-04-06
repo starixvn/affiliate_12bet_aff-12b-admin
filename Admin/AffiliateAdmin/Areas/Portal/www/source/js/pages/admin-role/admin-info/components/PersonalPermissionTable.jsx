@@ -104,7 +104,7 @@ export class PersonalPermissionTable extends PureComponent {
         }
         else {
             dataRows.push(<tr key="no-info">
-                <td className="text-center" colSpan="5">{messages.NoInfo}</td>
+                <td className="text-center" colSpan="6">{messages.NoInfo}</td>
             </tr>);
         }
 
@@ -138,7 +138,7 @@ export class PersonalPermissionTable extends PureComponent {
         return (
             <Fragment key={`dataRow-${dataItem.FuncId}`}>
                 <tr className="current">
-                    <td colSpan="3" className="pl-2" title={displayName}>{displayName}</td>
+                    <td colSpan="4" className="pl-2" title={displayName}>{displayName}</td>
                     {
                         this._renderCells(dataItem, isCreateNew, isEdit)
                     }
@@ -172,7 +172,7 @@ export class PersonalPermissionTable extends PureComponent {
         return (
             <Fragment key={`dataRow-${dataItem.FuncId}`}>
                 <tr className="current">
-                    <td colSpan="3" className={isRecursive ? "pl-5" : "pl-4"} title={displayName}>{displayName}</td>
+                    <td colSpan="4" className={isRecursive ? "pl-5" : "pl-4"} title={displayName}>{displayName}</td>
                     {
                         this._renderCells(dataItem, isCreateNew, isEdit)
                     }
