@@ -50,16 +50,6 @@ exports[`email history - components - Content  render correctly with have gridDa
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="test test1"
-            >
-              test test1
-            </t>
-            <t
-              asc={true}
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
               title="12BETAFF12885"
             >
               12BETAFF12885
@@ -138,16 +128,6 @@ exports[`email history - components - Content  render correctly with have gridDa
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12BETAFF226 12BETAFF226"
-            >
-              12BETAFF226 12BETAFF226
-            </t>
-            <t
-              asc={true}
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
               title="12BETAFF226"
             >
               12BETAFF226
@@ -219,17 +199,6 @@ exports[`email history - components - Content  render correctly with have gridDa
             title="#"
           >
             #
-          </t>
-          <t
-            asc={true}
-            colWidth={300}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Sender"
-          >
-            Sender
           </t>
           <t
             asc={true}
@@ -324,7 +293,7 @@ exports[`email history - components - Content  render correctly with have gridDa
             <t
               asc={true}
               className="text-center"
-              colSpan="7"
+              colSpan="6"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -357,17 +326,6 @@ exports[`email history - components - Content  render correctly with have gridDa
             title="#"
           >
             #
-          </t>
-          <t
-            asc={true}
-            colWidth={300}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Sender"
-          >
-            Sender
           </t>
           <t
             asc={true}

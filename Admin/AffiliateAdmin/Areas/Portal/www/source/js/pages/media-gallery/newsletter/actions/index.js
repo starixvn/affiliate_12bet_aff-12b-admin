@@ -1,48 +1,48 @@
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
-import { SET_CHECKED_NEWSLETTER_PAGES, SET_SELECTED_NEWSLETTER_PAGE_ID, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_SELECTED_PREVIEW_PAGE_ID } from './types';
+import * as types from './types';
 
 export { toggleLoader, setPagingOption };
 
 export const setSelectedNewsLetterPageId = (data) => {
     return {
-        type: SET_SELECTED_NEWSLETTER_PAGE_ID,
+        type: types.SET_SELECTED_NEWSLETTER_PAGE_ID,
         data
     }
 }
 
 export const setParam = (data) => {
     return {
-        type: SET_PARAM,
+        type: types.SET_PARAM,
         data
     }
 }
 
 export const setSelectedPreviewPageId = data => {
     return {
-        type: SET_SELECTED_PREVIEW_PAGE_ID,
+        type: types.SET_SELECTED_PREVIEW_PAGE_ID,
         data
     }
 }
 
 export const setCheckedNewsLetterPages = (data) => {
     return {
-        type: SET_CHECKED_NEWSLETTER_PAGES,
+        type: types.SET_CHECKED_NEWSLETTER_PAGES,
         data
     }
 }
 
 export const setShouldResetScrollPosition = (data) => {
     return {
-        type: SHOULD_RESET_SCROLL_POSITION,
+        type: types.SHOULD_RESET_SCROLL_POSITION,
         data
     }
 }
 
 export const setGridData = (data) => {
     return {
-        type: SET_GRID_DATA,
+        type: types.SET_GRID_DATA,
         data
     }
 }

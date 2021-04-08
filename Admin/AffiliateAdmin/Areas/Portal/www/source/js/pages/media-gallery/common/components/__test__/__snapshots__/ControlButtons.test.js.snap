@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`message - components - ControlButtons  render correctly 1`] = `
+exports[`media gallery - components - ControlButtons  render correctly 1`] = `
 <Fragment>
   <div
     className="my-2"
@@ -29,7 +29,7 @@ exports[`message - components - ControlButtons  render correctly 1`] = `
 </Fragment>
 `;
 
-exports[`message - components - ControlButtons  render correctly with gridData is empty 1`] = `
+exports[`media gallery - components - ControlButtons  render correctly with gridData is empty 1`] = `
 <Fragment>
   <div
     className="my-2"
@@ -51,4 +51,4 @@ exports[`message - components - ControlButtons  render correctly with gridData i
 </Fragment>
 `;
 
-exports[`message - components - ControlButtons  render correctly with gridData is null 1`] = `""`;
+exports[`media gallery - components - ControlButtons  render correctly with gridData is null 1`] = `""`;

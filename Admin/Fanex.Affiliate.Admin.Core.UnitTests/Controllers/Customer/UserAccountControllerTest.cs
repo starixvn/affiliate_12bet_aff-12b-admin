@@ -37,6 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Assert
             Assert.Equal(affId, item.AffId);
             Assert.Equal(affId, passedParam);
+            Assert.True(item.HasWebSite);
         }
 
         [Fact]
@@ -151,7 +152,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
             // Assert
             Assert.False(data.IsSuccessful);
-            Assert.Equal("Update is failed!", data.Message);
+            Assert.Equal("", data.Message);
         }
 
         private UserAccountController CreateUserAccountController(

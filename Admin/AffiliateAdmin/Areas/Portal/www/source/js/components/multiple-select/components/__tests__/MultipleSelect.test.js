@@ -159,7 +159,7 @@ describe('MultipleSelect ', () => {
             const dataSource = [];
             multipleSelect._callBackToParent(expectedSelectedItem, dataSource);
 
-            expect(multipleSelect.props.onChange).toHaveBeenCalledWith(expectedSelectedItem, expectedSelectedItemKey);
+            expect(multipleSelect.props.onChange).toHaveBeenCalledWith(expectedSelectedItem, expectedSelectedItemKey, false);
         })
     })
 

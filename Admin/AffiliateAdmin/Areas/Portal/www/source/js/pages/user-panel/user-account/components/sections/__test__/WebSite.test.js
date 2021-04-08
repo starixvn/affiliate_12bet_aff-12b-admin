@@ -36,13 +36,13 @@ describe('user account - components - sections - WebSite', () => {
         Question: "What?",
         Answer: "What?",
         MailOption: false,
+        HasWebSite: true,
         ContactAppList: [{Name: "MSN/YM/QQ", Value: "@123 Lê Văn", Order: 0}]
     };
     const defaultProps = {
         userAccountInfo,
         moreSiteUrlsList: [ "www.sportsbookie.com", "www.gzyyy.com", "www.123.com" ],
         setUserAccountInfo: jest.fn(),
-        hasWriteEditAffClaim: true,
         hasWriteClaim: true,
         setMoreSiteUrlsList: jest.fn()
     }

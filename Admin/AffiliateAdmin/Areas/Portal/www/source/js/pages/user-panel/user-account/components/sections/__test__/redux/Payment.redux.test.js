@@ -22,7 +22,6 @@ describe('user account - Payment - connect', () => {
             userAccountInfo: { affId: 1271808 },
             hasReadClaim: true,
             hasWriteClaim: true,
-            hasWriteEditAffClaim: true,
         };
         const state = {
             edit: {

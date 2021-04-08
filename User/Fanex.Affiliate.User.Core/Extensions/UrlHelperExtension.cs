@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.User.Core.Extensions
 {
     public static class UrlHelperExtension
     {
-        private static IAppSetting appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+        private static readonly IAppSetting appSetting = DependencyResolver.Current.GetService<IAppSetting>();
 
         public static string RenderLink(this UrlHelper urlHelper, string bundleVirtualPath)
         {

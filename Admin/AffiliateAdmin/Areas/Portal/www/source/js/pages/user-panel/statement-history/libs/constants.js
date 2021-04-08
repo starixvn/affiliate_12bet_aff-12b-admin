@@ -1,7 +1,7 @@
 ﻿import { globalResource } from '../../../../modules/globalResource';
-import { selectedAllProduct, maxWidth } from '../../../../modules/constants';
+import { selectedAllProduct, maxWidth, minDate } from '../../../../modules/constants';
 
-export { globalResource, selectedAllProduct, maxWidth }
+export { globalResource, selectedAllProduct, maxWidth, minDate }
 
 export const headerText = {
     Index: globalResource.Index,

@@ -4,11 +4,9 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { resource, searchByList, statusList, globalResource, searchByUserName } from '../libs/constants';
+import { resource, searchByList, statusList, globalResource, searchByUserName, minDate } from '../libs/constants';
 import { getDateRange } from '../../../../modules/utils';
 import { setParam, setIsClickSearch } from '../actions';
-
-const minDate = new Date(2009, 11, 1);
 
 export class Filter extends PureComponent {
     constructor(props) {

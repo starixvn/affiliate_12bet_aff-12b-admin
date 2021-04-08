@@ -15,10 +15,26 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
     public class ViewLogControllerTest
     {
         [Fact]
+        public void GetLogActionList_WhenCall_ExcuteWithCorrectData()
+        {
+            // Arrange
+            var viewLogService = new Mock<IViewLogService>();
+            viewLogService.Setup(s => s.GetLogActionList()).Returns(new List<LogAction> { new LogAction() });
+            var controller = CreateController(viewLogService: viewLogService.Object);
+
+            // Action
+            var result = controller.GetLogActionList() as JsonNetResult;
+            var entityResult = result.Data as List<LogAction>;
+
+            // Assert
+            Assert.Single(entityResult);
+        }
+
+        [Fact]
         public void GetViewLogList_WhenCallWithValidParam_ExcuteWithCorrectData()
         {
             // Arrange
-            var param = new ViewLogParam { AffId = 1271808, LogType = 0, PageIndex = 1, PageSize = 20 };
+            var param = new ViewLogParam { AffId = 1271808, LogActionIds = string.Empty, PageIndex = 1, PageSize = 20 };
             ViewLogParam passedParam = null;
             var viewLogService = new Mock<IViewLogService>();
             viewLogService.Setup(s => s.GetViewLogList(param)).Returns(new EntityResult<ViewLog> { MainData = new List<ViewLog> { new ViewLog() }, TotalItem = 1 }).Callback<ViewLogParam>(p => passedParam = p);

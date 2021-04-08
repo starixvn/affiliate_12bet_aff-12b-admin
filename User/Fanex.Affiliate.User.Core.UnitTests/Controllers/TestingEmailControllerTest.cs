@@ -30,7 +30,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void Index_WhenCallWithIsInvalidUser_ReturnPageNotFound()
         {
             //Arrange
-            var controller = CreateTestingEmailController();
+            UserSession userSession = null;
+            var sessionService = Substitute.For<ISessionService>();
+            sessionService.UserSession.Returns(userSession);
+            var controller = new TestController(sessionService, LanguageService, AppSetting, MailProcessor);
 
             //Action
             var result = controller.Index() as HttpNotFoundResult;

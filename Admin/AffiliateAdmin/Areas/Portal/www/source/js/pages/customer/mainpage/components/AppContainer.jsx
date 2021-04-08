@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Row, Spinner } from 'reactstrap';
+import { Row } from 'reactstrap';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import LeftPanel from '../../left-panel/components/AppContainer';
@@ -36,7 +36,9 @@ export const AppContainer = (props) => {
                                 <div className="user-panel">
                                     {
                                         selectedUserPanel &&
-                                        <UserPanel selectedUserPanel={selectedUserPanel} onClickMenu={props.setSelectedUserPanel} isPending={isPending} />
+                                        <Suspense fallback={null}>
+                                            <UserPanel selectedUserPanel={selectedUserPanel} onClickMenu={props.setSelectedUserPanel} isPending={isPending} />
+                                        </Suspense>
                                     }
                                 </div>
                             </div>

@@ -8,21 +8,23 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Common
         public Stream stream;
         public string contentType;
         public string fileName;
+        public int contentLength;
 
         public MockFile()
         {
         }
 
-        public MockFile(MemoryStream stream, string contentType = "", string fileName = "")
+        public MockFile(MemoryStream stream, string contentType = "", string fileName = "", int contentLength = 0)
         {
             this.stream = stream;
             this.contentType = contentType;
             this.fileName = fileName;
+            this.contentLength = contentLength;
         }
 
         public override int ContentLength
         {
-            get { return (int)stream.Length; }
+            get { return contentLength; }
         }
 
         public override string ContentType

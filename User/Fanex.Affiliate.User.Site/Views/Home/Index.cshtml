@@ -13,6 +13,7 @@
     var shortedLangCode = SystemLanguage.GetShortedCodeForTracking(sessionService.CurrentLanguage);
     var sportBannerFileName = Url.Content("~/www/build/styles/Images/sports-banners/Sports-Banner." + Model.Language);
     var casinoBannerFileName = Url.Content("~/www/build/styles/Images/casino-banners/Casino-Banner." + Model.Language);
+    var euroBannerFileName = Url.Content("~/www/build/styles/Images/euro-banners/Euro-Banner." + Model.Language);
     var advFileName = Url.Content("~/www/build/styles/Images/apply12bet/3step." + Model.Language);
 }
 
@@ -28,20 +29,29 @@
     <div id="mainBanner" class="carousel slide banner-center" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
+                <a id="euroBanner" class="nounderline" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
+                    <picture>
+                        <source srcset="@(euroBannerFileName + ".webp?v=152214")" type="image/webp" />
+                        <source srcset="@(euroBannerFileName + ".png?v=152214")" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(euroBannerFileName + ".png?v=152214")" alt="Euro 2020 Banner" />
+                    </picture>
+                </a>
+            </div>
+            <div class="item">
                 <a id="sportBanner" class="nounderline" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
                     <picture>
-                        <source srcset="@(sportBannerFileName + ".webp?v=146579")" type="image/webp" />
-                        <source srcset="@(sportBannerFileName + ".png?v=146579")" type="image/jpeg" />
-                        <img class="img-item img-responsive" src="@(sportBannerFileName + ".png?v=146579")" alt="Sport Banner" />
+                        <source srcset="@(sportBannerFileName + ".webp?v=152214")" type="image/webp" />
+                        <source srcset="@(sportBannerFileName + ".png?v=152214")" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(sportBannerFileName + ".png?v=152214")" alt="Sport Banner" />
                     </picture>
                 </a>
             </div>
             <div class="item">
                 <a id="casinoBanner" class="nounderline" href="@Url.Content("~/Product/Index")">
                     <picture>
-                        <source srcset="@(casinoBannerFileName + ".webp?v=146579")" type="image/webp" />
-                        <source srcset="@(casinoBannerFileName + ".png?v=146579")" type="image/jpeg" />
-                        <img class="img-item img-responsive" src="@(casinoBannerFileName + ".png?v=146579")" alt="Casino Banner" />
+                        <source srcset="@(casinoBannerFileName + ".webp?v=152214")" type="image/webp" />
+                        <source srcset="@(casinoBannerFileName + ".png?v=152214")" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(casinoBannerFileName + ".png?v=152214")" alt="Casino Banner" />
                     </picture>
                 </a>
             </div>

@@ -19,7 +19,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
 {
     public class PaymentRequestServiceTest
     {
-        private IDependencyResolver _originalResolver;
         private ILifetimeScopeProvider _scopeProvider;
 
         [Fact]
@@ -119,9 +118,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            _scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var paymentRequestRepository = new Mock<IPaymentRequestRepository>();
@@ -150,9 +148,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            _scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var paymentRequestRepository = new Mock<IPaymentRequestRepository>();

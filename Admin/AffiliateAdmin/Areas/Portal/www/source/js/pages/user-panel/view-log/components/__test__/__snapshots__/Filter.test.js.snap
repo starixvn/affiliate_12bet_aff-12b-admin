@@ -14,7 +14,7 @@ exports[`view log - components - Filter render correctly 1`] = `
     >
       <Label
         className="mr-sm-2"
-        for="logType"
+        for="logActionIds"
         tag="label"
         widths={
           Array [
@@ -26,97 +26,25 @@ exports[`view log - components - Filter render correctly 1`] = `
           ]
         }
       >
-        Type
+        Action
       </Label>
       <Input
-        id="logType"
-        name="logType"
+        id="logActionIds"
+        name="logActionIds"
         onChange={[Function]}
         type="select"
-        value={0}
+        value=""
       >
         <option
-          value="0"
+          value=""
         >
           All
         </option>
         <option
-          key="logType-1"
-          value="1"
+          key="logAction-123"
+          value="123"
         >
-          CommissionGroup
-        </option>
-        <option
-          key="logType-2"
-          value="2"
-        >
-          UserInfo
-        </option>
-        <option
-          key="logType-3"
-          value="3"
-        >
-          Transaction
-        </option>
-        <option
-          key="logType-4"
-          value="4"
-        >
-          Payout
-        </option>
-        <option
-          key="logType-6"
-          value="6"
-        >
-          Player
-        </option>
-        <option
-          key="logType-7"
-          value="7"
-        >
-          Banner
-        </option>
-        <option
-          key="logType-8"
-          value="8"
-        >
-          Email
-        </option>
-        <option
-          key="logType-11"
-          value="11"
-        >
-          UserNote
-        </option>
-        <option
-          key="logType-13"
-          value="13"
-        >
-          LoginAffiliate
-        </option>
-        <option
-          key="logType-15"
-          value="15"
-        >
-          LogoutAffiliate
-        </option>
-        <option
-          key="logType-16"
-          value="16"
-        >
-          Password
-        </option>
-        <option
-          key="logType-17"
-          value="17"
-        >
-          Adjustment
-        </option>
-        <option
-          key="logType-18"
-          value="18"
-        >
-          Member
+          Test
         </option>
       </Input>
     </FormGroup>

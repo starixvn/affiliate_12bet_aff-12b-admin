@@ -20,7 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 {
     public class CustomerLeftPanelControllerTest
     {
-        private IDependencyResolver _originalResolver;
         private ILifetimeScopeProvider _scopeProvider;
 
         [Fact]
@@ -37,6 +36,23 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
             // Assert
             Assert.Equal("12BETAFF226", item.AffName);
+        }
+
+        [Fact]
+        public void GetAffiliateInfo_WhenCallWithValidParam_ExcuteWithCorrectDataHasContactApps()
+        {
+            // Arrange
+            var customerLeftPanelService = new Mock<ICustomerLeftPanelService>();
+            customerLeftPanelService.Setup(s => s.GetAffiliateInfoOnLeftPanel(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226", ContactApps = "[{\"Name\":\"MSN/YM/QQ\",\"Value\":\"@123 Lê Văn\",\"Order\":0}]" });
+            var controller = CreateCustomerLeftPanelController(customerLeftPanelService: customerLeftPanelService.Object);
+
+            // Action
+            var result = controller.GetAffiliateInfo("12BETAFF226") as JsonNetResult;
+            var item = result.Data as AffiliateInfoOnLeftPanel;
+
+            // Assert
+            Assert.Equal("12BETAFF226", item.AffName);
+            Assert.Single(item.ContactAppList);
         }
 
         [Fact]
@@ -166,9 +182,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            _scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            this._originalResolver = DependencyResolver.Current;
             DependencyResolver.SetResolver(resolver);
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "Approved" };

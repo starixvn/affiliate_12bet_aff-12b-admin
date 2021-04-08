@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         private const string NEWSLETTER_CONTENT_PATH = "newsletter/getcontent";
 
-        private static Lazy<HttpClient> LazyHttpClient = new Lazy<HttpClient>();
+        private static readonly Lazy<HttpClient> LazyHttpClient = new Lazy<HttpClient>();
         private static HttpClient HttpClient => LazyHttpClient.Value;
         private INewsLetterRepository Repository { get; }
         private ISessionService SessionService { get; }

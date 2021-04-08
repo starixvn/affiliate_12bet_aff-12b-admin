@@ -80,15 +80,78 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         }
 
         [Fact]
-        public void UpdateUserAccount_WhenCallWithInvalid_ReturnError()
+        public void UpdateUserAccount_WhenCallWithInvalidWebSite_ReturnError()
         {
             // Arrange
             var sessionService = new Mock<ISessionService>();
-            sessionService.Setup(s => s.UserClaim).Returns(new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(Function.AffPaymentInfo, "Write") }) }));
+            var service = CreateUserAccountService(sessionService: sessionService.Object);
+
+            // Action
+            var result = service.UpdateUserAccount(new UserAccountParam { HasWebSite = true });
+
+            // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.Equal("Website URL is required", result.Message);
+        }
+
+        [Fact]
+        public void UpdateUserAccount_WhenCallWithInvalidNoSiteDescription_ReturnError()
+        {
+            // Arrange
+            var sessionService = new Mock<ISessionService>();
             var service = CreateUserAccountService(sessionService: sessionService.Object);
 
             // Action
             var result = service.UpdateUserAccount(new UserAccountParam());
+
+            // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.Equal("Please describe how you would like to promote 12Bet if you don't have the URL is required", result.Message);
+        }
+
+        [Fact]
+        public void UpdateUserAccount_WhenCallWithInvalidPaymentMethod_ReturnError()
+        {
+            // Arrange
+            var param = new UserAccountParam
+            {
+                AffId = 1271808,
+                FirstName = "Hinh",
+                LastName = "Lê Văn",
+                Gender = false,
+                Email = "abc@gmail.com",
+                Phone = "01234567899",
+                ContactApps = "[{'Name':'MSN / YM / QQ','Value':'@123 Lê Văn','Order':0}]",
+                Address = "Test",
+                City = "test",
+                State = "700000",
+                Postcode = "700000",
+                Country = "Viet Nam",
+                MoreSiteUrls = "www.sportsbookie.com",
+                SiteUrl = "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+                PreferredPayment = PaymentMethod.Wire,
+                PlayerUsername = "bettingexp",
+                NoSiteDescription = "test",
+                NetellerAccountId = "1",
+                MoneybookersEmail = "abc@gmail.com",
+                BankName = "",
+                BankAddress = "",
+                BankCode = "",
+                BankAccountName = "",
+                BankAccountNumber = "",
+                MailOption = false,
+                ContactAppList = new List<ContactApp> { new ContactApp { Name = "MSN/YM/QQ", Value = "@123 Lê Văn", Order = 0 } }
+            };
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.IsUserHasPermissionOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+
+            var sessionService = new Mock<ISessionService>();
+            sessionService.Setup(s => s.UserClaim).Returns(new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(Function.AffPaymentInfo, "Write") }) }));
+
+            var service = CreateUserAccountService(null, authService.Object, sessionService.Object);
+
+            // Action
+            var result = service.UpdateUserAccount(param);
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -141,7 +204,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
                 MoreSiteUrls = "www.sportsbookie.com",
                 SiteUrl = "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount",
                 PreferredPayment = "Wire",
-                PlayerUsername = "bettingexp",
+                PlayerUsername = PaymentMethod.Wire,
                 NoSiteDescription = "test",
                 NetellerAccountId = "1",
                 MoneybookersEmail = "abc@gmail.com",

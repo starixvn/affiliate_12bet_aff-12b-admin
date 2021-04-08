@@ -16,7 +16,7 @@ export const headerText = {
 
 const now = new Date();
 const firstDate = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-const lastDate = new Date(now.getFullYear(), now.getMonth() + 2, 0); 
+const lastDate = new Date(now.getFullYear(), now.getMonth() + 2, 0);
 
 export const defaultState = {
     fileName: '',
@@ -28,6 +28,7 @@ export const defaultState = {
     isClickedSubmit: false,
     isInsert: true,
     isShowMessage: false,
+    iniatalFileName: "",
     messageNotificationPopup:"",
     isSuccess: true,
     message: ''

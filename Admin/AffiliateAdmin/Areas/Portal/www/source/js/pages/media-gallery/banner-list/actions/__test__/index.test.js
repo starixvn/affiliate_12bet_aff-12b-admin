@@ -193,7 +193,7 @@ describe('banner list actions', () => {
 
         const result = await actions['getBannerDetail'](selectedBannerId)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetBannerDetail', { selectedBannerId: 2485 });
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetBannerDetail', { selectedBannerId });
 
         expect(result).toEqual(expectedResponse.data);
     })
@@ -204,7 +204,7 @@ describe('banner list actions', () => {
 
         const result = await actions['getBannerDetail'](selectedBannerId)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetBannerDetail', { selectedBannerId: 123456 });
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetBannerDetail', { selectedBannerId });
         expect(result).toEqual(null);
     })
 

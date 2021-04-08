@@ -91,7 +91,7 @@ export class PersonalPermissionTable extends PureComponent {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             const { isCreateNew, isEdit } = this.props;
 
             const parentFunction = dataList.filter(s => s.FuncId === s.ParentId);
@@ -153,7 +153,7 @@ export class PersonalPermissionTable extends PureComponent {
     _renderSubChildrenDataSection(dataItem, dataList, isCreateNew, isEdit, isRecursive) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             const parentFunction = dataList.filter(s => s.ParentId === dataItem.FuncId);
             const subFunction = dataList.filter(s => s.ParentId !== dataItem.FuncId);
 

@@ -4,11 +4,11 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { logTypes, headerText, globalResource } from '../libs/constants';
-import { setParam, setShowIdList } from '../actions';
+import { headerText, globalResource, minDate } from '../libs/constants';
+import { setParam, setShowIdList, getLogActionList } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
 
-const minDate = new Date(2009, 11, 1);
+const maxDate = new Date(2021, 2, 24);
 
 export class Filter extends React.Component {
     constructor(props) {
@@ -16,17 +16,29 @@ export class Filter extends React.Component {
 
         const { today } = this.props;
         const now = new Date(today);
+        const isValidNow = now < maxDate;
 
-        this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+        this.nowString = isValidNow ? `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}` : '3/24/2021';
 
-        const sixMonthAgo = new Date(today);
+        const sixMonthAgo = new Date(this.nowString);
         sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
 
         this.state = {
-            logType: 0,
+            logActionIds: '',
             fromDate: `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
             toDate: this.nowString,
+            logActionList: null
         }
+    }
+
+    componentDidMount() {
+        this.handleGetLogActionList();
+    }
+
+    handleGetLogActionList = async () => {
+        var logActionList = await this.props.getLogActionList();
+
+        this.setState({ logActionList });
     }
 
     handleChange = (event) => {
@@ -42,23 +54,25 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        this.props.setParam(this.state);
+        const { logActionIds, fromDate, toDate } = this.state;
+
         this.props.setShowIdList({});
+        this.props.setParam({ logActionIds, fromDate, toDate });
     }
 
     render() {
-        const { logType, fromDate, toDate } = this.state;
+        const { logActionIds, fromDate, toDate, logActionList } = this.state;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mr-sm-2">
-                        <Label for="logType" className="mr-sm-2">{headerText.Type}</Label>
-                        <Input type="select" name="logType" id="logType" value={logType} onChange={this.handleChange}>
-                            <option value="0">{globalResource.All}</option>
+                        <Label for="logActionIds" className="mr-sm-2">{headerText.Action}</Label>
+                        <Input type="select" name="logActionIds" id="logActionIds" value={logActionIds} onChange={this.handleChange}>
+                            <option value="">{globalResource.All}</option>
                             {
-                                Object.keys(logTypes).map(index => {
-                                    return (<option key={`logType-${index}`} value={index}>{logTypes[index]}</option>)
+                                logActionList && logActionList.map(item => {
+                                    return (<option key={`logAction-${item.ActionIds}`} value={item.ActionIds}>{item.ActionName}</option>)
                                 })
                             }
                         </Input>
@@ -91,7 +105,7 @@ function mapStateToProps({ today }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, setShowIdList }, dispatch);
+    return bindActionCreators({ setParam, setShowIdList, getLogActionList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

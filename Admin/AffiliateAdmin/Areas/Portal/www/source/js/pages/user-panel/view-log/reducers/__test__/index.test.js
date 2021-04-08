@@ -13,7 +13,7 @@ const testCaseList = [
     { name: 'param', value: {}, action: { type: types.SET_PARAM, data: { productId: 123, content: 'abc' } }, expectedResult: { productId: 123, content: 'abc' } }
 ]
 
-describe('statement history reducers', () => {
+describe('new log reducers', () => {
     testCaseList.forEach((item) => {
         runTestReducer(item);
     })

@@ -8,7 +8,7 @@ describe('view log - components - Content', () => {
         affId: 1271808,
         pagingOption: defaultPagingOption,
         param: {
-            logType: 0,
+            logAction: 0,
             fromDate: "06/06/2019",
             toDate: "06/06/2019"
         },
@@ -48,7 +48,7 @@ describe('view log - components - Content', () => {
 
     it('render correctly', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData });
 
         expect(result).toMatchSnapshot();
@@ -56,7 +56,7 @@ describe('view log - components - Content', () => {
 
     it('render correctly with have data is empty', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData: [] });
 
         expect(result).toMatchSnapshot();

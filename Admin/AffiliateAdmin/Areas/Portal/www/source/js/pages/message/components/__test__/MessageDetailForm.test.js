@@ -158,7 +158,7 @@ describe('message - components - MessageDetailForm ', () => {
         expect(result.setState).toHaveBeenCalledWith({ isClickedEdit: true });
     });
 
-    it('_handleShowAlert should be call when click button Delete', () => {
+    it('_handleShowAlert should be called when click button Delete', () => {
         const result = shallow(<MessageDetailForm {...defaultProps} />);
         result.instance()._handleShowAlert = jest.fn();
 

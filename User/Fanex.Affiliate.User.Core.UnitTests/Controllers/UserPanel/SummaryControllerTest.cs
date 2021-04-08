@@ -1,6 +1,8 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Controllers.UserPanel;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -106,6 +108,42 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.Equal("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", partialViewResult.ViewName);
             Assert.Equal(param.MonthDate, passedParam.MonthDate);
             Assert.Equal(6, param.SortById);
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void PlayersDetails_WhenCallNotHasTurnOverClaimButIsIndiaLanguage_ReturnCorrectPartialView()
+        {
+            // Arrange
+            var param = new PlayerDetailParam { MonthDate = monthDate };
+            PlayerDetailParam passedParam = null;
+            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
+            accountOverviewRepository.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
+
+            MockingHelper.SetUpEnviroment("[AffTurnover]", false);
+            var session = Mock.Of<ISessionService>(ss =>
+                ss.CaptchaCode == Constant.Captcha &&
+                ss.CurrentLanguage == Constant.DefaultLanguage &&
+                !ss.IsInternal &&
+                ss.UserSession == new UserSession
+                {
+                    AffId = Constant.DefaultAffId,
+                    AffType = Constant.AffTypeAsian,
+                    OnUserId = 1,
+                    PreferredLanguage = SystemLanguage.IndiaLanguageCode,
+                    UserName = Constant.DefaultUserName
+                }
+            );
+            var controller = CreateController(session, accountOverviewRepository: accountOverviewRepository.Object);
+
+            // Action
+            var partialViewResult = controller.PlayersDetails(param) as PartialViewResult;
+            var result = partialViewResult.Model as IEnumerable<PlayerDetail>;
+
+            // Assert
+            Assert.Equal("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", partialViewResult.ViewName);
+            Assert.Equal(param.MonthDate, passedParam.MonthDate);
+            Assert.Equal(1, param.SortById);
             Assert.Single(result);
         }
 

@@ -27,7 +27,7 @@ export class Filter extends PureComponent {
         }
     }
 
-    componentDidMount = async () => {
+    componentDidMount = () => {
         if (!!this.initialGroupId || this.props.param.IsFromHome) {
             this.handleClickSearch();
         }

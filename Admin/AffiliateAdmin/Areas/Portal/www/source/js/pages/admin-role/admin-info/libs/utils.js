@@ -34,21 +34,6 @@ export const getSelectedMarketName = (dataSource) => {
     return selectedItemKey.join(", ");
 }
 
-export const combineArrayObject = (initialArray, updatedArray) => {
-
-    let newArray = deepClone(initialArray);
-
-    initialArray.map((item, index) => {
-        const updatedItem = updatedArray.find(i => i.MarketId === item.MarketId);
-
-        if(updatedItem) {
-            newArray = updateObjectInArray(newArray, index, updatedItem);
-        }
-    })
-
-    return newArray;
-}
-
 export const validateLanguage = (marketListByRole) => {
     const selectedMarket = marketListByRole ? marketListByRole.filter(item => item.HasPermission) : [];
 

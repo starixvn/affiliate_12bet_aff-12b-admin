@@ -6,6 +6,16 @@ var Home = (function ($) {
             _me.initEvent();
         },
         initEvent: function initEvent() {
+            $('#euroBanner').on('click', function (event) {
+                event.preventDefault();
+                var redirectLink = $(this).attr('href');
+                PageTracking.addTrackingForSignUpPage();
+
+                setTimeout(function () {
+                    Site.redirect(redirectLink);
+                }, 10);
+            });
+
             $('#sportBanner').on('click', function (event) {
                 event.preventDefault();
                 var redirectLink = $(this).attr('href');

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`admin list - components - AppContainer render correctly 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <Memo(SubMenu) />
+  <Connect(Filter) />
+  <Connect(Component) />
+  <Connect(Content) />
+  <Connect(PermissionPopup) />
+</AppLayout>
+`;
+
+exports[`admin list - components - AppContainer render correctly with has not permission 1`] = `
+<AppLayout>
+  <Loader
+    show={true}
+  />
+  <Memo(SubMenu) />
+  <Connect(Filter) />
+  <Connect(Content) />
+  <Connect(PermissionPopup) />
+</AppLayout>
+`;

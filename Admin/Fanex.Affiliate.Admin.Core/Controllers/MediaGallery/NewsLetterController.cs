@@ -9,7 +9,6 @@ using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -33,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         public ActionResult Index()
         {
             ViewBag.PreviewUrl = $"{AppSetting.AsianAffSiteUrl}/UserPanel/NewsLetter/Preview";
-            ViewBag.Languages = LanguageService.GetLanguageList();
+            ViewBag.Languages = LanguageService.GetInChangeMarkets();
             return View("~/Areas/Portal/Views/MediaGallery/NewsLetterPageList.cshtml");
         }
 
@@ -50,9 +49,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                     Ip = SessionService.RequestIp,
                     EffectiveFrom = model.FromDate,
                     EffectiveTo = model.ToDate,
-                    FileName = model.FileName,
+                    FileName = Server.HtmlEncode(model.FileName),
                     FileSize = file.ContentLength,
-                    Language = model.Language
+                    Language = Server.HtmlEncode(model.Language)
                 };
 
                 return new JsonNetResult
@@ -85,9 +84,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                     Ip = SessionService.RequestIp,
                     EffectiveFrom = model.FromDate,
                     EffectiveTo = model.ToDate,
-                    FileName = model.FileName,
+                    FileName = Server.HtmlEncode(model.FileName),
                     FileSize = file?.ContentLength ?? model.FileSize,
-                    Language = model.Language
+                    Language = Server.HtmlEncode(model.Language)
                 };
 
                 return new JsonNetResult

@@ -285,7 +285,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            this._scopeProvider = new SimpleLifetimeScopeProvider(container);
+            _scopeProvider = new SimpleLifetimeScopeProvider(container);
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
             DependencyResolver.SetResolver(resolver);
 

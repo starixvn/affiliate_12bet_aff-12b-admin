@@ -129,7 +129,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     BankAccountNumber = Server.HtmlEncode(param.BankAccountNumber),
                     MailOption = param.MailOption,
                     QuestionId = param.QuestionId,
-                    Answer = param.Answer
+                    Answer = param.Answer,
+                    HasWebSite = param.HasWebSite
                 };
 
                 if (param.ContactAppList != null)
@@ -152,7 +153,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = Lang.UpdateIsFailed
+                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                 }
             };
         }

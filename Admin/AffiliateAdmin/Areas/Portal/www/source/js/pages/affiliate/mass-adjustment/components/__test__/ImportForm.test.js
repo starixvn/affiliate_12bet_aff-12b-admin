@@ -62,7 +62,7 @@ describe('mass adjustment - components - ImportForm ', () => {
         expect(instance.setState).not.toHaveBeenCalled();
     });
 
-    it("handleChangeFile - should be call setState", () => {
+    it("handleChangeFile - should call setState", () => {
         const mockedEvent = { target: { files: [{ name: 'abc.xlsx' }] } };
 
         const wrapper = shallow(<ImportForm {...defaultProps} />);
@@ -86,7 +86,7 @@ describe('mass adjustment - components - ImportForm ', () => {
         expect(wrapper.setState).not.toHaveBeenCalled();
     });
 
-    it('handleClickUpload - should be call props when click Upload Button', () => {
+    it('handleClickUpload - should call props when click Upload Button', () => {
         const files = [{ name: 'abc.xlsx' }];
         const props = Object.assign({}, defaultProps, {
             setFile: jest.fn(),

@@ -1,0 +1,1 @@
+﻿export const SET_PARAM = 'NEW_VIEW_LOG/SET_PARAM';

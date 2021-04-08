@@ -66,9 +66,8 @@ describe('message - components - ControlButtons ', () => {
         expect(result).toMatchSnapshot();
     });
 
-    it('fetchData should be call when click button Delete', () => {
+    it('fetchData should be called when click button Delete', () => {
         const fetchData = jest.fn();
-        const setShouldResetScrollPosition = jest.fn();
         const props = Object.assign({}, defaultProps, { fetchData })
         const result = shallow(<ControlButtons {...props} />);
 
@@ -77,7 +76,7 @@ describe('message - components - ControlButtons ', () => {
         expect(props.fetchData).toHaveBeenCalledWith(param);
     });
 
-    it('_handleClickButton should be call when click button Add', () => {
+    it('_handleClickButton should be called when click button Add', () => {
         const setSelectedMessageId = jest.fn();
         const setShouldResetScrollPosition = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedMessageId, setShouldResetScrollPosition })
@@ -89,7 +88,7 @@ describe('message - components - ControlButtons ', () => {
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
     });
 
-    it('_handleClickButton should be call when click button CurrentMessage', () => {
+    it('_handleClickButton should be called when click button CurrentMessage', () => {
         const setSelectedMessageId = jest.fn();
         const setShouldResetScrollPosition = jest.fn();
         const props = Object.assign({}, defaultProps, { setSelectedMessageId, setShouldResetScrollPosition })
@@ -101,7 +100,7 @@ describe('message - components - ControlButtons ', () => {
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
     });
 
-    it('_handleClickButton should be call when click button Add with gridData is empty', () => {
+    it('_handleClickButton should be called when click button Add with gridData is empty', () => {
         const setSelectedMessageId = jest.fn();
         const setShouldResetScrollPosition = jest.fn();
         const props = Object.assign({}, defaultProps, { gridData: [], setSelectedMessageId, setShouldResetScrollPosition })

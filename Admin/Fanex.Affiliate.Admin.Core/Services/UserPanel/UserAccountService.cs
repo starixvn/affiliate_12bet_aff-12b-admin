@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
@@ -32,11 +33,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         public ResultInfo UpdateUserAccount(UserAccountParam param)
         {
+            var validateWebSite = ValidateWebSite(param);
+            if (!validateWebSite.IsSuccessful)
+            {
+                return validateWebSite;
+            }
+
             var isValidPaymentMethod = ValidatePaymentMethod(param);
             var isUserHasPermissionOnAff = AuthService.IsUserHasPermissionOnAff(SessionService.UserId, param.AffId);
             SetNullForPropertiesNotHavePermission(param);
 
-            if (!HasUpdatePaymentMethodPermission() || isValidPaymentMethod || isUserHasPermissionOnAff)
+            if ((!HasUpdatePaymentMethodPermission() || isValidPaymentMethod) && isUserHasPermissionOnAff)
             {
                 return _userAccountRepository.UpdateUserAccount(param);
             }
@@ -50,6 +57,29 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false)
             => _userAccountRepository.GetSecurityQuestions(language, isIncludeOldData);
+
+        private ResultInfo ValidateWebSite(UserAccountParam param)
+        {
+            if (param.HasWebSite && string.IsNullOrEmpty(param.SiteUrl))
+            {
+                return new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Website URL is required"
+                };
+            }
+
+            if (!param.HasWebSite && string.IsNullOrEmpty(param.NoSiteDescription))
+            {
+                return new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = $"Please describe how you would like to promote 12Bet if you don't have the URL is required"
+                };
+            }
+
+            return new ResultInfo();
+        }
 
         private static bool ValidatePaymentMethod(UserAccountParam param)
         {

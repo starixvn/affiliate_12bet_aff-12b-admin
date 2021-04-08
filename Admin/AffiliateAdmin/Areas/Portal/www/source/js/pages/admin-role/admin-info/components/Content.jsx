@@ -211,7 +211,7 @@ export class Content extends PureComponent {
     }
 
     handleChangeMultipleSelected = (initialList, selectedKey) => {
-        const selectedList = typeof (selectedKey) === "string" ? selectedKey.split(',').filter(p => !!p) : selectedKey;
+        const selectedList = selectedKey.split(',').filter(p => !!p);
 
         return initialList && initialList.map(item => {
             const { MarketId, MarketName } = item;
@@ -352,7 +352,7 @@ export class Content extends PureComponent {
     _renderWhenCreateAndEditUser() {
         const { roleList } = this.props;
         const { isClickedSubmit, newUserName, firstName, lastName, newPassword, role, isShowMessage, isSuccess, message,
-            isCreateNew, isEdit, isActive, itemDefault, marketListByRole, isRoleFunctionDefault } = this.state;
+            isCreateNew, isEdit, itemDefault, marketListByRole, isRoleFunctionDefault } = this.state;
 
         const validatedPasswordResult = validateNewPassword(newPassword);
         const validatedUserNameResult = validateUserName(newUserName);

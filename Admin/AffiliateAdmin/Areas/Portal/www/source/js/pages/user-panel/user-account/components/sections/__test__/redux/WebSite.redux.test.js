@@ -26,6 +26,7 @@ describe('user account - WebSite - connect', () => {
         const state = {
             edit: {
                 userAccountInfo: { affId: 1271808 },
+                hasWriteEditAffClaim: true,
                 moreSiteUrlsList: { skype: 'abc' }
             },
             claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },

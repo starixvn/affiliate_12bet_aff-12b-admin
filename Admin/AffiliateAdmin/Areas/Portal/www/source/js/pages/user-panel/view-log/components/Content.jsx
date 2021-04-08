@@ -21,7 +21,7 @@ export class Content extends PureComponent {
     componentDidUpdate(prevProps) {
         const { pagingOption, param } = this.props;
 
-        if (param !== prevProps.param) {
+        if (param && param !== prevProps.param) {
             const newParam = Object.assign({}, param, { pageIndex: 1, pageSize: pagingOption.PageSize });
             this.fetchData(newParam);
         }

@@ -8,7 +8,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 import MyLink from '../../../common/components/MyLink';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { resource, globalResource } from '../libs/constants';
+import { resource, messages } from '../libs/constants';
 import { fetchData, setUserInfo, setCheckedUsers, setParam, setShouldResetScrollPosition, toggleLoader, deleteUsers, redirectToUserDetail } from '../actions';
 
 export class Content extends PureComponent {
@@ -65,7 +65,7 @@ export class Content extends PureComponent {
                 this.setState({ message: result.Message, isConfirmPopup: false });
             }
         } else {
-            this.setState({ messagePopup: globalResource.AnError, isConfirmPopup: false });
+            this.setState({ message: messages.AnError, isConfirmPopup: false });
         }
 
         this.props.toggleLoader(false);
@@ -111,7 +111,7 @@ export class Content extends PureComponent {
         const dataRows = [];
         const { hasWriteAdminRoleClaim } = this.props;
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
                 dataRows.push(this._buildDataRow(dataItem, i + 1, hasWriteAdminRoleClaim));
@@ -119,7 +119,7 @@ export class Content extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan={hasWriteAdminRoleClaim ? "9" : "8"}>{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={hasWriteAdminRoleClaim ? "9" : "8"}>{messages.NoInfo}</Cell>
             </Row>);
         }
 

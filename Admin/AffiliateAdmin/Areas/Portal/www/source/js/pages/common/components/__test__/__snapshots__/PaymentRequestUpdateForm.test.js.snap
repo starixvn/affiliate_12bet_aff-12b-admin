@@ -239,7 +239,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
                 ]
               }
             >
-              Lê Văn
+              L&#234; Văn
             </Label>
           </FormGroup>
         </fieldset>
@@ -780,7 +780,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
                 ]
               }
             >
-              Lê Văn
+              L&#234; Văn
             </Label>
           </FormGroup>
         </fieldset>

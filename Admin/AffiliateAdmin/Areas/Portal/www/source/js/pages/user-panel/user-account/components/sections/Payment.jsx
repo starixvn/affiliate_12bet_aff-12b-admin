@@ -43,13 +43,13 @@ export class Payment extends PureComponent {
     }
 
     _renderPaymentForm(name, label, inputValue, isRequired, changeHandler) {
-        const { hasWriteClaim, hasWriteEditAffClaim } = this.props;
+        const { hasWriteClaim } = this.props;
 
         return (
             <FormGroup row>
                 <Label for={name} sm={3} xl={2} className={isRequired ? "required" : ""}>{label}</Label>
                 <Col sm={5} xl={6}>
-                    <Input type="text" id={name} name={name} value={inputValue} disabled={!hasWriteClaim || !hasWriteEditAffClaim} onChange={changeHandler} />
+                    <Input type="text" id={name} name={name} value={inputValue} disabled={!hasWriteClaim} onChange={changeHandler} />
                 </Col>
             </FormGroup>
         )
@@ -68,13 +68,13 @@ export class Payment extends PureComponent {
     }
 
     _renderPreferedPayment() {
-        const { userAccountInfo, hasWriteClaim, hasWriteEditAffClaim } = this.props;
+        const { userAccountInfo, hasWriteClaim } = this.props;
 
         return (
             <FormGroup row>
                 <Label for="preferredPayment" sm={3} xl={2}>Preferred Payment Method</Label>
                 <Col sm={5} xl={6}>
-                    <Input disabled={!hasWriteClaim || !hasWriteEditAffClaim} type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
+                    <Input disabled={!hasWriteClaim} type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
                         {paymentMethodList.map(item => {
                             return (<option key={item.key} value={item.key}>{item.value}</option>)
                         })}
@@ -105,9 +105,9 @@ export class Payment extends PureComponent {
 function mapStateToProps({ edit, claimsPrincipal }) {
     const { userAccountInfo, hasWriteEditAffClaim } = edit;
     const hasReadClaim = claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo);
-    const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.AffPaymentInfo);
+    const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.AffPaymentInfo) && hasWriteEditAffClaim;
 
-    return Object.assign({}, { userAccountInfo, hasReadClaim, hasWriteClaim, hasWriteEditAffClaim });
+    return Object.assign({}, { userAccountInfo, hasReadClaim, hasWriteClaim });
 }
 
 function mapDispatchToProps(dispatch) {
