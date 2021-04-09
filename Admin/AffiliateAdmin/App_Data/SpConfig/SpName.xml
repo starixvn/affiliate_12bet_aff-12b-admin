@@ -165,7 +165,7 @@
   </Function>
   <Function Name="ViewLog">
     <Setting Key="Aff_Admin_ViewLog_Sel" SpName="Aff_Admin_ViewLog_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_AffiliateLog_Sel" SpName="Aff_Admin_AffiliateLog_Sel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_LogAction_Sel" SpName="Aff_LogAction_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateLog_Sel" SpName="Aff_Admin_AffiliateLog_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_LogAction_Sel" SpName="Aff_LogAction_Sel" DbName="affiliate_12bet" />
   </Function>
 </Functions>
