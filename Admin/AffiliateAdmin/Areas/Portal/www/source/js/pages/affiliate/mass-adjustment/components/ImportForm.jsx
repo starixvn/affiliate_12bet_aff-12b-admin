@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Button, Form, FormGroup, Label } from 'reactstrap';
 import { setFile, setIsClickUpload, setIsShowResult } from '../actions';
-import { InputFile } from '../../../common/components/InputFile';
+import InputFile from '../../../common/components/InputFile';
 
 export class ImportForm extends PureComponent {
     constructor(props) {

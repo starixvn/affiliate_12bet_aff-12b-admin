@@ -62,4 +62,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setIsGeneral, getRoleList, getMarketList }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

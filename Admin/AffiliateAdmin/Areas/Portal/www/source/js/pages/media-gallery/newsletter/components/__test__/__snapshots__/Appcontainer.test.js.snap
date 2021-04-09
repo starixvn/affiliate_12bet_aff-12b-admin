@@ -24,7 +24,7 @@ exports[`news letter - components - AppContainer render correctly 1`] = `
       }
     }
   />
-  <Connect(Component) />
+  <Connect(Content) />
   <Connect(InsertUpdateForm) />
 </AppLayout>
 `;
@@ -34,7 +34,7 @@ exports[`news letter - components - AppContainer render correctly with has not p
   <Loader
     show={true}
   />
-  <Connect(Component) />
+  <Connect(Content) />
   <Connect(InsertUpdateForm) />
 </AppLayout>
 `;

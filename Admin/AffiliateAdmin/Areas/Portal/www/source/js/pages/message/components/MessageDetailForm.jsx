@@ -218,4 +218,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setSelectedMessageId, getMessageDetail, fetchData, insertMessage, updateMessage, toggleLoader, deleteMessages }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(MessageDetailForm));
+export default connect(mapStateToProps, mapDispatchToProps)(MessageDetailForm);

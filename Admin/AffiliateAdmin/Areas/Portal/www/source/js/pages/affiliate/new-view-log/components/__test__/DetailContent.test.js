@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { DetailContent } from '../DetailContent';
 import { shallow } from 'enzyme';
+import MyLink from '../../../../common/components/MyLink';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('new view log - components - DetailContent', () => {
@@ -78,7 +79,7 @@ describe('new view log - components - DetailContent', () => {
         const wrapper = shallow(<DetailContent {...props} />);
         wrapper.instance().setState({ gridData: [] });
 
-        wrapper.find("Button").simulate('click');
+        wrapper.find(MyLink).props().onClick();
 
         expect(props.setSelectedAff).toHaveBeenCalledWith('');
     });

@@ -176,7 +176,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                   ]
                 }
               >
-                <Memo(InputFile)
+                <InputFile
                   accept="image/jpg, image/gif, image/png, image/jpeg"
                   btnName="Choose File"
                   className="border text-danger"
@@ -184,6 +184,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                   handleOnChangeFiles={[Function]}
                   isMultiple={true}
                   lblText="No file choosen"
+                  multiple={false}
                 />
               </Col>
             </FormGroup>
@@ -817,7 +818,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   ]
                 }
               >
-                <Memo(InputFile)
+                <InputFile
                   accept="image/jpg, image/gif, image/png, image/jpeg"
                   btnName="Choose File"
                   className="border text-danger"
@@ -825,6 +826,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   handleOnChangeFiles={[Function]}
                   isMultiple={true}
                   lblText="No file choosen"
+                  multiple={false}
                 />
               </Col>
             </FormGroup>
@@ -1448,7 +1450,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                   ]
                 }
               >
-                <Memo(InputFile)
+                <InputFile
                   accept="image/jpg, image/gif, image/png, image/jpeg"
                   btnName="Choose File"
                   className="border text-danger"
@@ -1456,6 +1458,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                   handleOnChangeFiles={[Function]}
                   isMultiple={false}
                   lblText="No file choosen"
+                  multiple={false}
                 />
               </Col>
             </FormGroup>

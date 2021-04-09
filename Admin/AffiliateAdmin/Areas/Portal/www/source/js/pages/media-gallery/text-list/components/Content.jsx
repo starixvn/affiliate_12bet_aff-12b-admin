@@ -79,7 +79,7 @@ export const Content = (props) => {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={props.checkedTexts[dataItem.TextId] || false}
+                    <input type="checkbox" checked={!!props.checkedTexts[dataItem.TextId]}
                         onChange={(e) => _onCheckItem(e.target.checked, dataItem.TextId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>

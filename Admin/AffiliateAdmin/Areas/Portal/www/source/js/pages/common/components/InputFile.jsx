@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input } from 'reactstrap';
 
-export class InputFile extends React.PureComponent {
+export default class InputFile extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -67,5 +67,3 @@ InputFile.defaultProps = {
     btnName: 'Choosen',
     lblText: 'No file choosen'
 };
-
-export default React.memo(InputFile);

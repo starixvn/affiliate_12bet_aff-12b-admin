@@ -12,6 +12,6 @@ exports[`landing page list - App Should render correctly 1`] = `
     }
   }
 >
-  <Connect(Component) />
+  <Connect(AppContainer) />
 </Provider>
 `;

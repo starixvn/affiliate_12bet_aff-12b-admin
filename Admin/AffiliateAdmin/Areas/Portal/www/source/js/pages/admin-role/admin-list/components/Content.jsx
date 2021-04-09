@@ -142,7 +142,7 @@ export class Content extends PureComponent {
                 {
                     hasWriteAdminRoleClaim && (
                         <Cell className="text-center">
-                            <input type="checkbox" checked={this.props.checkedUsers[userId] || false}
+                            <input type="checkbox" checked={!!this.props.checkedUsers[userId]}
                                 onChange={(e) => this._onCheckItem(e.target.checked, userId)} />
                         </Cell>
                     )

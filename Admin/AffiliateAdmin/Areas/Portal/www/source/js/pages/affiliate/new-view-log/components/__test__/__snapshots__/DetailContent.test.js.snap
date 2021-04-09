@@ -12,16 +12,13 @@ exports[`new view log - components - DetailContent render correctly 1`] = `
     <BreadcrumbItem
       tag="li"
     >
-      <Button
-        color="link"
+      <Memo(MyLink)
         onClick={[Function]}
-        tag="button"
       >
         Aff List
-      </Button>
+      </Memo(MyLink)>
     </BreadcrumbItem>
     <BreadcrumbItem
-      active={true}
       tag="li"
     />
     )
@@ -514,16 +511,13 @@ exports[`new view log - components - DetailContent render correctly with have da
     <BreadcrumbItem
       tag="li"
     >
-      <Button
-        color="link"
+      <Memo(MyLink)
         onClick={[Function]}
-        tag="button"
       >
         Aff List
-      </Button>
+      </Memo(MyLink)>
     </BreadcrumbItem>
     <BreadcrumbItem
-      active={true}
       tag="li"
     />
     )

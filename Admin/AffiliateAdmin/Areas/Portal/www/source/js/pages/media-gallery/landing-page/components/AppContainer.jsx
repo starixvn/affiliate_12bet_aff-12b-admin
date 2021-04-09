@@ -62,4 +62,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ fetchData, toggleLoader, setSelectedLandingPageId, setCheckedLandingPages, deleteLandingPages, setShouldResetScrollPosition }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

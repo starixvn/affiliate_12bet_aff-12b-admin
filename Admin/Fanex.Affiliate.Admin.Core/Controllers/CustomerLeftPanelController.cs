@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var sessionId = Session.SessionID;
             var affiliateInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, accOnId, sessionId);
 
-            if (!string.IsNullOrEmpty(affiliateInfo.ContactApps))
+            if (!string.IsNullOrEmpty(affiliateInfo?.ContactApps))
             {
                 affiliateInfo.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<CensoredContactApp>>(affiliateInfo.ContactApps).OrderBy(p => p.Order);
             }

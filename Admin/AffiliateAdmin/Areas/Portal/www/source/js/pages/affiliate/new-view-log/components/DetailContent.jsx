@@ -1,9 +1,10 @@
 ﻿import React, { Fragment, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import RowDetail from './RowDetail';
+import MyLink from '../../../common/components/MyLink';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
@@ -129,11 +130,11 @@ export class DetailContent extends PureComponent {
             <Fragment>
                 <Breadcrumb className="mt-2">
                     (<BreadcrumbItem>
-                        <Button color="link" onClick={() => this.props.setSelectedAff("")}>
+                        <MyLink onClick={() => this.props.setSelectedAff("")}>
                             Aff List
-                        </Button>
+                        </MyLink>
                     </BreadcrumbItem>
-                    <BreadcrumbItem active>{this.props.selectedAff}</BreadcrumbItem>)
+                    <BreadcrumbItem>{this.props.selectedAff}</BreadcrumbItem>)
                 </Breadcrumb>
                 <div className="data-content new-view-log">
                     <div className="table-responsive table-striped new-view-log-table my-2">
