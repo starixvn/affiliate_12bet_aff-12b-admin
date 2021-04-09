@@ -22,7 +22,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly 1`] 
       >
         <tr>
           <th
-            colSpan="3"
+            colSpan="4"
             rowSpan="2"
           >
             Function
@@ -59,7 +59,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly 1`] 
         >
           <td
             className="pl-2"
-            colSpan="3"
+            colSpan="4"
             title="Home page"
           >
             Home page
@@ -98,7 +98,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly 1`] 
         >
           <td
             className="pl-2"
-            colSpan="3"
+            colSpan="4"
             title="Member Menu"
           >
             Member Menu
@@ -129,7 +129,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly 1`] 
         >
           <td
             className="pl-4"
-            colSpan="3"
+            colSpan="4"
             title="Member"
           >
             Member
@@ -160,7 +160,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly 1`] 
         >
           <td
             className="pl-4"
-            colSpan="3"
+            colSpan="4"
             title="Active member"
           >
             Active member
@@ -183,7 +183,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly 1`] 
         >
           <td
             className="pl-5"
-            colSpan="3"
+            colSpan="4"
             title="isRecursive"
           >
             isRecursive
@@ -260,7 +260,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
       >
         <tr>
           <th
-            colSpan="3"
+            colSpan="4"
             rowSpan="2"
           >
             Function
@@ -297,7 +297,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
         >
           <td
             className="pl-2"
-            colSpan="3"
+            colSpan="4"
             title="Home page"
           >
             Home page
@@ -346,7 +346,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
         >
           <td
             className="pl-2"
-            colSpan="3"
+            colSpan="4"
             title="Member Menu"
           >
             Member Menu
@@ -395,7 +395,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
         >
           <td
             className="pl-4"
-            colSpan="3"
+            colSpan="4"
             title="Member"
           >
             Member
@@ -444,7 +444,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
         >
           <td
             className="pl-4"
-            colSpan="3"
+            colSpan="4"
             title="Active member"
           >
             Active member
@@ -493,7 +493,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
         >
           <td
             className="pl-5"
-            colSpan="3"
+            colSpan="4"
             title="isRecursive"
           >
             isRecursive
@@ -565,7 +565,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
       >
         <tr>
           <th
-            colSpan="3"
+            colSpan="4"
             rowSpan="2"
           >
             Function
@@ -602,7 +602,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
         >
           <td
             className="text-center"
-            colSpan="5"
+            colSpan="6"
           >
             There is no information available
           </td>

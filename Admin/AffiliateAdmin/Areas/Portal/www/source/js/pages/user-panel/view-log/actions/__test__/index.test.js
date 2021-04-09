@@ -60,7 +60,7 @@ describe('view log actions', () => {
 
         const result = await actions['fetchData'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/ViewLog/GetViewLogList', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/ViewLog/GetViewLogList', param);
         expect(result).toEqual(expectedResponse.data);
     })
 
@@ -77,7 +77,7 @@ describe('view log actions', () => {
 
         const result = await actions['fetchData'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/ViewLog/GetViewLogList', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/ViewLog/GetViewLogList', param);
 
         expect(result).toEqual(null);
     })

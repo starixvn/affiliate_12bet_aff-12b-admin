@@ -72,7 +72,7 @@ exports[`admin list - components - PermissionPopup render correctly 1`] = `
             >
               <tr>
                 <th
-                  colSpan="3"
+                  colSpan="4"
                   rowSpan="2"
                 >
                   Function
@@ -109,7 +109,7 @@ exports[`admin list - components - PermissionPopup render correctly 1`] = `
               >
                 <td
                   className="pl-2"
-                  colSpan="3"
+                  colSpan="4"
                   title="Home page"
                 >
                   Home page
@@ -148,7 +148,7 @@ exports[`admin list - components - PermissionPopup render correctly 1`] = `
               >
                 <td
                   className="pl-2"
-                  colSpan="3"
+                  colSpan="4"
                   title="Member Menu"
                 >
                   Member Menu
@@ -179,7 +179,7 @@ exports[`admin list - components - PermissionPopup render correctly 1`] = `
               >
                 <td
                   className="pl-4"
-                  colSpan="3"
+                  colSpan="4"
                   title="Member"
                 >
                   Member
@@ -210,7 +210,7 @@ exports[`admin list - components - PermissionPopup render correctly 1`] = `
               >
                 <td
                   className="pl-4"
-                  colSpan="3"
+                  colSpan="4"
                   title="Active member"
                 >
                   Active member
@@ -233,7 +233,7 @@ exports[`admin list - components - PermissionPopup render correctly 1`] = `
               >
                 <td
                   className="pl-5"
-                  colSpan="3"
+                  colSpan="4"
                   title="isRecursive"
                 >
                   isRecursive
@@ -340,7 +340,7 @@ exports[`admin list - components - PermissionPopup render correctly with data em
             >
               <tr>
                 <th
-                  colSpan="3"
+                  colSpan="4"
                   rowSpan="2"
                 >
                   Function
@@ -377,7 +377,7 @@ exports[`admin list - components - PermissionPopup render correctly with data em
               >
                 <td
                   className="text-center"
-                  colSpan="5"
+                  colSpan="6"
                 >
                   There is no information available
                 </td>
@@ -471,7 +471,7 @@ exports[`admin list - components - PermissionPopup render correctly with data ha
             >
               <tr>
                 <th
-                  colSpan="3"
+                  colSpan="4"
                   rowSpan="2"
                 >
                   Function
@@ -508,7 +508,7 @@ exports[`admin list - components - PermissionPopup render correctly with data ha
               >
                 <td
                   className="pl-2"
-                  colSpan="3"
+                  colSpan="4"
                   title="Home page"
                 >
                   Home page
