@@ -39,12 +39,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         {
             if (file != null && file.ContentLength > 0)
             {
-                byte[] thePictureAsBytes = new byte[file.ContentLength];
-                using (BinaryReader theReader = new BinaryReader(file.InputStream))
-                {
-                    thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
-                }
-                string thePictureDataAsString = Convert.ToBase64String(thePictureAsBytes);
                 var param = new MassAdjustmentParam
                 {
                     UserId = SessionService.UserId,
