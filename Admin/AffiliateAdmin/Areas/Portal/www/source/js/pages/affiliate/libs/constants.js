@@ -5,7 +5,8 @@ export const menuKey = {
     paymentRequest: 'paymentRequest',
     commGroup: 'commGroup',
     emailHistory: 'emailHistory',
-    massAdjustment: 'massAdjustment'
+    massAdjustment: 'massAdjustment',
+    viewLog: 'viewLog'
 }
 
 export const relativePath = {
@@ -13,5 +14,6 @@ export const relativePath = {
     paymentRequest: getVirtualUrl() + 'Portal/PaymentRequest',
     commGroup: getVirtualUrl() + 'Portal/CommissionGroup',
     emailHistory: getVirtualUrl() + 'Portal/EmailHistory',
-    massAdjustment: getVirtualUrl() + 'Portal/Adjustment'
+    massAdjustment: getVirtualUrl() + 'Portal/Adjustment',
+    viewLog: getVirtualUrl() + 'Portal/ViewLog',
 }

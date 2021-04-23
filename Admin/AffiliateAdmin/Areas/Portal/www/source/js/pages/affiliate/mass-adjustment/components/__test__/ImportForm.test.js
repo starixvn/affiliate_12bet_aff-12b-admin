@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { ImportForm } from '../ImportForm';
 import { shallow } from 'enzyme';
-import { InputFile } from '../../../../common/components/InputFile';
+import InputFile from '../../../../common/components/InputFile';
 
 describe('mass adjustment - components - ImportForm ', () => {
     afterAll(() => {

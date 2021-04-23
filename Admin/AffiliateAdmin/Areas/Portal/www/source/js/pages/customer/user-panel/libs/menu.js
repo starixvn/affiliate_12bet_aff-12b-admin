@@ -21,8 +21,6 @@ const TrackingStatistics = React.lazy(() =>
     import( /* webpackChunkName: "trackingStatistics" */ '../../../user-panel/tracking-statistics/components/AppContainer'));
 const Member = React.lazy(() =>
     import( /* webpackChunkName: "member" */ '../../../user-panel/customer-member/components/AppContainer'));
-const NewViewLog = React.lazy(() =>
-    import( /* webpackChunkName: "newViewLog" */ '../../../user-panel/new-view-log/components/AppContainer'));
 const ViewLog = React.lazy(() =>
     import( /* webpackChunkName: "viewLog" */ '../../../user-panel/view-log/components/AppContainer'));
 const ReferrerStatistics = React.lazy(() =>
@@ -40,8 +38,7 @@ export const userPanelMenuList = [
     { key: menuKey.adjustment, name: 'Adjustment', component: withUserPanel(Adjustment, menuKey.adjustment), parent: null, renderClaim: new Claim(claimResource.AffAdjustment, claimResource.WritePermission) },
     { key: menuKey.trackingStatistics, name: 'Tracking Statistics', component: withUserPanel(TrackingStatistics, menuKey.trackingStatistics), parent: null },
     { key: menuKey.member, name: 'Member', component: withUserPanel(Member, menuKey.member), parent: null, renderClaim: new Claim(claimResource.MemberDetail) },
-    { key: menuKey.newViewLog, name: 'View Log', component: withUserPanel(NewViewLog, menuKey.newViewLog), parent: null },
-    { key: menuKey.viewLog, name: 'View Log (Old)', component: withUserPanel(ViewLog, menuKey.viewLog), parent: null },
+    { key: menuKey.viewLog, name: 'View Log (Old)', component: withUserPanel(ViewLog, menuKey.viewLog), parent: null, renderClaim: new Claim(claimResource.ViewLog) },
     { key: menuKey.clickStatistics, name: 'Click Statistics', component: withUserPanel(ReferrerStatistics, menuKey.clickStatistics), parent: null },
     { key: menuKey.landingPageStatistics, name: '', component: withUserPanel(LandingPageStatistics, menuKey.landingPageStatistics), parent: menuKey.clickStatistics }
 ]

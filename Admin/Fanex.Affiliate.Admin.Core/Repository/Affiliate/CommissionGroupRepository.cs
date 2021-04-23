@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                     result.DeductionSettingList = GetDeductionSettingList(reader);
                 }
 
-                param.Nrows = Convert.ToInt32(objectDb.GetParameterValue("Nrows"));
+                param.Nrows = GetTotalRow(objectDb);
             }
 
             return result;

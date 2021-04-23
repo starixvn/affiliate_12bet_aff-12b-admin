@@ -351,7 +351,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2021-03-31T17:00:00.000Z}
+                  selected={2021-04-30T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}
@@ -440,7 +440,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2021-04-29T17:00:00.000Z}
+                  selected={2021-05-30T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}
@@ -831,7 +831,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2021-03-31T17:00:00.000Z}
+                  selected={2021-04-30T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}
@@ -920,7 +920,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2021-04-29T17:00:00.000Z}
+                  selected={2021-05-30T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}
@@ -1322,7 +1322,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2021-03-31T17:00:00.000Z}
+                  selected={2021-04-30T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}
@@ -1411,7 +1411,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2021-04-29T17:00:00.000Z}
+                  selected={2021-05-30T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}

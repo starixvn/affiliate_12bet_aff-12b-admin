@@ -88,6 +88,56 @@ export function getDateRange(selectedFromDate, toDateString) {
     };
 }
 
+export function handleAfterChangeFromDate(selectedFromDate, toDateString, maxRangeDate) {
+    const selectedFromDateString = selectedFromDate.format("MM/DD/YYYY");
+    const fromDate = new Date(selectedFromDateString);
+    const toDate = new Date(toDateString);
+
+    const isOutsideRange = fromDate.getTime() > toDate.getTime();
+    const newToDate = isOutsideRange ? selectedFromDateString : getToDate(toDate, selectedFromDateString, toDateString, maxRangeDate);
+
+    return {
+        fromDate: selectedFromDateString,
+        toDate: newToDate
+    };
+}
+
+function getToDate(toDate, selectedFromDateString, toDateString, maxRangeDate) {
+    if (!maxRangeDate) {
+        return toDateString;
+    }
+
+    const nextSixMonth = new Date(selectedFromDateString);
+    nextSixMonth.setMonth(nextSixMonth.getMonth() + maxRangeDate);
+
+    return toDate > nextSixMonth ? `${nextSixMonth.getMonth() + 1}/${nextSixMonth.getDate()}/${nextSixMonth.getFullYear()}` : toDateString;
+}
+
+export function handleAfterChangeToDate(selectedToDate, fromDateString, maxRangeDate) {
+    const selectedToDateString = selectedToDate.format("MM/DD/YYYY");
+    const fromDate = new Date(fromDateString);
+    const toDate = new Date(selectedToDateString);
+
+    const isOutsideRange = fromDate.getTime() > toDate.getTime();
+    const newFromDate = isOutsideRange ? selectedToDateString : getFromDate(fromDate, selectedToDateString, fromDateString, maxRangeDate);
+
+    return {
+        fromDate: newFromDate,
+        toDate: selectedToDateString
+    };
+}
+
+function getFromDate(fromDate, selectedToDateString, fromDateString, maxRangeDate) {
+    if (!maxRangeDate) {
+        return fromDateString;
+    }
+
+    const sixMonthAgo = new Date(selectedToDateString);
+    sixMonthAgo.setMonth(sixMonthAgo.getMonth() - maxRangeDate);
+
+    return sixMonthAgo < fromDate ? fromDateString : `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`;
+}
+
 export const isValidNumber = (inputValue) => {
     const regex = /^\d*$/;
     return regex.test(inputValue);

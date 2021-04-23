@@ -61,7 +61,7 @@ export class Content extends Component {
         ) : (
                 <div className="d-flex align-items-center">
                     <MyLink className={"btn-link font-weight-bold"} onClick={this.handleClickBreadcrumb}>
-                        AFFILIATE REPORT
+                        AFFILIATE REPORT&nbsp;
                     </MyLink>
                     {reportTitle}
                     {btnExport}
@@ -73,12 +73,10 @@ export class Content extends Component {
         const keys = Object.keys(headerConfig);
         let cols = [];
         keys.forEach(key => {
-            if (!!headerConfig[key].cols)
-            {
+            if (!!headerConfig[key].cols) {
                 cols.push(this._buildAggregateHeaderCol(key, headerConfig[key]));
             }
-            else
-            {
+            else {
                 cols.push(this._buildHeaderCol(key, headerConfig[key]));
             }
         })
@@ -86,13 +84,12 @@ export class Content extends Component {
     }
 
     _buildHeaderCol = (key, item) => {
-        const { claimsPrincipal, currentViewLevel} = this.props;
+        const { claimsPrincipal, currentViewLevel } = this.props;
         const isMainView = currentViewLevel === viewLevel.main;
-        if (!!item.isVisable && typeof item.isVisable === 'function')
-        {
+        if (!!item.isVisable && typeof item.isVisable === 'function') {
             return new SingleHeader(key, item.label, item.isVisable(claimsPrincipal, isMainView));
         }
-        else{
+        else {
             return new SingleHeader(key, item.label, true);
         }
     }
@@ -101,12 +98,10 @@ export class Content extends Component {
         const cols = [];
         const headerCols = header.cols;
         Object.keys(headerCols).forEach(value => {
-            if (!!headerCols[value].cols)
-            {
+            if (!!headerCols[value].cols) {
                 cols.push(this._buildAggregateHeaderCol(value, headerCols[value]));
             }
-            else
-            {
+            else {
                 cols.push(this._buildHeaderCol(value, headerCols[value]));
             }
         })
@@ -119,7 +114,7 @@ export class Content extends Component {
         return (
             <div className="data-content my-2">
                 {reportTitle && <ReportTitle content={this._buildReportTitle()} />}
-                <GridData headerConfig={header}/>
+                <GridData headerConfig={header} />
             </div>
         );
     }

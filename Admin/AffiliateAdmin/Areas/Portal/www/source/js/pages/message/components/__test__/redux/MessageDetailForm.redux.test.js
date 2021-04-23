@@ -58,6 +58,6 @@ describe('message - MessageDetailForm - connect', () => {
     it('returned function of connect should be called with correct parameter', () => {
         const MessageDetailForm = require('../../MessageDetailForm').MessageDetailForm;
 
-        expect(connectMock).toHaveBeenCalledWith(React.memo(MessageDetailForm));
+        expect(connectMock).toHaveBeenCalledWith(MessageDetailForm);
     })
 })

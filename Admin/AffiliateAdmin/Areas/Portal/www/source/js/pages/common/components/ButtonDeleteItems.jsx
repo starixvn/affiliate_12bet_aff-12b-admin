@@ -20,7 +20,7 @@ export default class ButtonDeleteItems extends PureComponent {
     }
 
     _handleOpenNotificationPopup = (message, isConfirmPopup, itemIdList) => {
-        this.setState({ message, isConfirmPopup: isConfirmPopup || false, itemIdList: itemIdList || '' });
+        this.setState({ message, isConfirmPopup: !!isConfirmPopup, itemIdList: itemIdList || '' });
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {

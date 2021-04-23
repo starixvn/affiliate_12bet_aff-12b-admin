@@ -8,6 +8,6 @@ exports[`role permission - components - AppContainer render correctly 1`] = `
   <Memo(SubMenu)
     isSelectedRolePermission={true}
   />
-  <Connect(Component) />
+  <Connect(Content) />
 </AppLayout>
 `;

@@ -136,4 +136,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

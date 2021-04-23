@@ -1,7 +1,7 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../actions/pagingAction';
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
-import { getLogActionList } from '../../new-view-log/actions';
+import { getLogActionList } from '../../../affiliate/new-view-log/actions';
 import { SET_PARAM, SET_SHOW_ID_LIST } from '../actions/types';
 
 export { setPagingOption, toggleLoaderUserPanel, getLogActionList };
@@ -22,7 +22,7 @@ export const setShowIdList = (data) => {
 
 export const fetchData = (param) => async() => {
     const url = 'Portal/UserPanel/ViewLog/GetViewLogList';
-    const response = await post(url, { ...param, IsNewViewLog: false });
+    const response = await post(url, param );
 
     return response && response.status === 200 ? response.data : null;
 }

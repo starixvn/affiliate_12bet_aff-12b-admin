@@ -13,10 +13,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string UpdatedBy { get; set; }
 
-        public string OldData { get; set; }
-
-        public string NewData { get; set; }
-
         public string Description { get; set; }
 
         public string Action { get; set; }

@@ -63,4 +63,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ fetchData, toggleLoader, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, deleteNewsLetterPages, setSelectedPreviewPageId, setShouldResetScrollPosition }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

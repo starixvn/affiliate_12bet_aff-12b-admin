@@ -57,11 +57,15 @@ export default class AutoComplete extends Component {
     }
 
     componentDidMount() {
-        document.addEventListener('click', this._handleDocumentClick)
+        document.addEventListener('click', this._handleDocumentClick);
+
+        if (this.input.current && this.props.value) {
+            this.input.current.value = this.props.value;
+        }
     }
 
     componentWillUnmount() {
-        document.removeEventListener('click', this._handleDocumentClick)
+        document.removeEventListener('click', this._handleDocumentClick);
     }
 
     componentDidUpdate(prevProps) {
