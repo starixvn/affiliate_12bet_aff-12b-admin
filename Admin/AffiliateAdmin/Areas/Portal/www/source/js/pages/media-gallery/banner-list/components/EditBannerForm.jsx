@@ -366,13 +366,15 @@ export class EditBannerForm extends PureComponent {
     }
 
     resetToDefault = () => {
-        const categoryList = this.selectedAll(this.state.categoryList);
-        const subCategoryList = this.selectedAll(this.getSubCategories(categoryList));
-        const currencyList = this.selectedAll(this.state.currencyList);
-        const affTypeList = this.selectedAll(this.state.affTypeList);
-        const deviceTypeList = this.selectedAll(this.state.deviceTypeList);
+        this.setState(prevState => {
+            const categoryList = this.selectedAll(prevState.categoryList);
+            const subCategoryList = this.selectedAll(this.getSubCategories(categoryList));
+            const currencyList = this.selectedAll(prevState.currencyList);
+            const affTypeList = this.selectedAll(prevState.affTypeList);
+            const deviceTypeList = this.selectedAll(prevState.deviceTypeList);
 
-        this.setState({ categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList });
+            return { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList };
+        });
     }
 
     getSubCategories = (categories) => {

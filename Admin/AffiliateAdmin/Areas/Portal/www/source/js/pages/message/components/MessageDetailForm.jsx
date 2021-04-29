@@ -44,19 +44,26 @@ export class MessageDetailForm extends PureComponent {
         const item = await this.props.getMessageDetail(selectedMessageId);
 
         if (item) {
-            const messageContentList = {};
+            this.setState(prevState => {
+                const messageContentList = {};
 
-            Object.keys(this.state.messageContentList).map(key => {
-                messageContentList[key] = htmlDecode(item[key]);
-            })
+                Object.keys(prevState.messageContentList).map(key => {
+                    messageContentList[key] = htmlDecode(item[key]);
+                })
 
-            this.setState({ messageContentList, important: item.Important });
+                return { messageContentList, important: item.Important };
+            });
         }
     }
 
     _handleChangeMessageContent = (event) => {
-        const messageContentList = Object.assign({}, this.state.messageContentList, { [event.target.name]: event.target.value })
-        this.setState({ messageContentList })
+        const { name, value } = event.target;
+
+        this.setState(prevState => {
+            const messageContentList = Object.assign({}, prevState.messageContentList, { [name]: value })
+
+            return { messageContentList };
+        })
     }
 
     _handleFetchData = () => {

@@ -57,11 +57,11 @@ export class Filter extends React.Component {
     }
 
     _handleChangeFromDate = (momentDate) => {
-        this.setState(handleAfterChangeFromDate(momentDate, this.state.toDate, sixMonth));
+        this.setState(prevState => handleAfterChangeFromDate(momentDate, prevState.toDate, sixMonth));
     }
 
     _handleChangeToDate = (momentDate) => {
-        this.setState(handleAfterChangeToDate(momentDate, this.state.fromDate, sixMonth));
+        this.setState(prevState => handleAfterChangeToDate(momentDate, prevState.fromDate, sixMonth));
     }
 
     _handleSearch = () => {

@@ -35,7 +35,13 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     handleChange = (event) => {
-        this.setState({ paymentRequestInfo: Object.assign({}, this.state.paymentRequestInfo, { [event.target.name]: event.target.value }) });
+        const { name, value } = event.target;
+
+        this.setState(prevState => {
+            const paymentRequestInfo = Object.assign({}, prevState.paymentRequestInfo, { [name]: value });
+
+            return { paymentRequestInfo };
+        });
     }
 
     handleGetPaymentRequestInfo = async (transId) => {

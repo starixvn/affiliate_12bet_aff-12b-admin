@@ -46,7 +46,7 @@ export class Filter extends React.Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        this.setState(getDateRange(momentDate, this.state.toDate));
+        this.setState(prevState => getDateRange(momentDate, prevState.toDate));
     }
 
     handleChangeToDate = (momentDate) => {
