@@ -2174,4 +2174,13 @@
   <data name="WhatNewThisMonth" xml:space="preserve">
     <value>이달의 새로운 이벤트?</value>
   </data>
+  <data name="PrefixProduct12Gold" xml:space="preserve">
+    <value>12GOLD</value>
+  </data>
+  <data name="SuffixProduct12GOLD" xml:space="preserve">
+    <value>(SA Gaming)</value>
+  </data>
+  <data name="Product12GOLD" xml:space="preserve">
+    <value>12GOLD (SA GAMING)</value>
+  </data>
 </root>

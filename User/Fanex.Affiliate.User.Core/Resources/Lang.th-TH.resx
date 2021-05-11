@@ -2181,4 +2181,13 @@
   <data name="WhatNewThisMonth" xml:space="preserve">
     <value>ข่าวใหม่ล่าสุดเดือนนี้</value>
   </data>
+  <data name="PrefixProduct12Gold" xml:space="preserve">
+    <value>12GOLD</value>
+  </data>
+  <data name="SuffixProduct12GOLD" xml:space="preserve">
+    <value>(SA Gaming)</value>
+  </data>
+  <data name="Product12GOLD" xml:space="preserve">
+    <value>12GOLD (SA GAMING)</value>
+  </data>
 </root>
