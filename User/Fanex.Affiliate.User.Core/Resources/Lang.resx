@@ -2343,4 +2343,13 @@
   <data name="Product12GOLD" xml:space="preserve">
     <value>12GOLD (SA GAMING)</value>
   </data>
+  <data name="PrefixProduct12JADE" xml:space="preserve">
+    <value>12Jade</value>
+  </data>
+  <data name="SuffixProduct12JADE" xml:space="preserve">
+    <value>(AE Sexy)</value>
+  </data>
+  <data name="Product12JADE" xml:space="preserve">
+    <value>12JADE (AE SEXY)</value>
+  </data>
 </root>

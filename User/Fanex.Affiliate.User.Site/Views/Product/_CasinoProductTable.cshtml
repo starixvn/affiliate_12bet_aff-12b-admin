@@ -1,4 +1,9 @@
-﻿<div class="table table-responsive">
+﻿@{
+    var sessionService = DependencyResolver.Current.GetService<Fanex.Affiliate.User.Core.CoreService.ISessionService>();
+    var curLang = sessionService.CurrentLanguage;
+}
+
+<div class="table table-responsive">
     <table class="casino-table">
         <thead>
             <tr>
@@ -157,15 +162,33 @@
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
             </tr>
+            @if (curLang != "ko-KR")
+            {
+                <tr>
+                    <td>@Lang.Product12GOLD</td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
             <tr>
-                <td>@Lang.Product12GOLD</td>
+                <td>@Lang.Product12JADE</td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td></td>
-                <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
