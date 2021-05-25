@@ -1,7 +1,6 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../actions/pagingAction';
-import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
-import { redirectToDailyEarning } from '../../../customer/user-panel/actions';
+import { toggleLoaderUserPanel, redirectToDailyEarning } from '../../../customer/user-panel/actions';
 import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
 import { SET_PARAM, TRANSACTION_ID } from '../actions/types';
 

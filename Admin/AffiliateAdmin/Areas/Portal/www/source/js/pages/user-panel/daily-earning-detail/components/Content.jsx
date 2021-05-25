@@ -46,6 +46,7 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={100} title={resource.UserName12Bet}>{resource.UserName12Bet}</Cell>
                 <Cell header={true} colWidth={100} title={resource.IbcUserName}>{resource.IbcUserName}</Cell>
                 <Cell header={true} colWidth={100} title={resource.Winlost}>{resource.Winlost}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Turnover}>{resource.Turnover}</Cell>
                 <Cell header={true} colWidth={100} title={resource.Deposit}>{resource.Deposit}</Cell>
                 <Cell header={true} colWidth={100} title={resource.Withdrawal}>{resource.Withdrawal}</Cell>
                 <Cell header={true} colWidth={100} title={resource.Bonus}>{resource.Bonus}</Cell>
@@ -71,7 +72,7 @@ export class Content extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="8">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="9">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -80,6 +81,7 @@ export class Content extends PureComponent {
 
     _buildDataRow(dataItem, rowNumber, productColumnClassName) {
         const winlost = formatDecimal(dataItem.WinLost);
+        const turnover = formatDecimal(dataItem.Turnover);
         const deposit = formatDecimal(dataItem.Deposit);
         const withdrawal = formatDecimal(dataItem.Withdrawal);
         const bonus = formatDecimal(dataItem.Bonus);
@@ -91,6 +93,7 @@ export class Content extends PureComponent {
                 {rowNumber && <Cell className="text-center" title={dataItem.UserName}>{dataItem.UserName}</Cell>}
                 <Cell className="text-center" title={dataItem.IbcUserName} colSpan={!rowNumber && 3}>{dataItem.IbcUserName}</Cell>
                 <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>
+                <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
                 <Cell className="text-right" title={bonus}>{bonus}</Cell>

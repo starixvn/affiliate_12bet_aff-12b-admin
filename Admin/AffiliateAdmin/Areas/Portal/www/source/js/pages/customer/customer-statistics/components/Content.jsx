@@ -19,7 +19,8 @@ export class Content extends PureComponent {
 
         this.state = {
             data: null,
-            isLoading: false
+            isLoading: false,
+            date: new Date(props.today)
         }
     }
 
@@ -82,7 +83,7 @@ export class Content extends PureComponent {
 
     _renderData(monthDate, data) {
         data = data || {};
-        const { isDisplayTurnOver, isDisplayActivePlayer } = this.props;
+        const { isDisplayTurnOver, isDisplayActivePlayer, today } = this.props;
         const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
         const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
         const TurnoverByMonth = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
@@ -92,8 +93,10 @@ export class Content extends PureComponent {
 
         const startMonthString = `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`;
 
+        const date = new Date(today);
         const endMonth = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0);
-        const endMonthString = `${endMonth.getMonth() + 1}/${endMonth.getDate()}/${endMonth.getFullYear()}`;
+        const isCurrentMonth = date.getFullYear() === endMonth.getFullYear() && date.getMonth() === endMonth.getMonth();
+        const endMonthString = `${endMonth.getMonth() + 1}/${isCurrentMonth ? date.getDate() : endMonth.getDate()}/${endMonth.getFullYear()}`;
 
         return (
             <tbody>
@@ -106,7 +109,7 @@ export class Content extends PureComponent {
                     isDisplayActivePlayer && this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
-                                <MyLink onClick={() => this.props.redirectToPlayerDetail({ productId: selectedAllProduct, monthDate: startMonthString, isClickLink: true })}>
+                                <MyLink onClick={() => this.props.redirectToPlayerDetail({ productId: selectedAllProduct, monthDate: endMonthString, isClickLink: true })}>
                                     {format(data.ActivePlayerByMonth)}
                                 </MyLink>
                             ) : format(data.ActivePlayerByMonth)

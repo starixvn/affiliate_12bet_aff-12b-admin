@@ -56,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
         {
             objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
             objectDb.AddInParameter("ProductId", DbType.Byte, param.ProductId);
-            objectDb.AddInParameter("MonthDate", DbType.DateTime, param.MonthDate);
+            objectDb.AddInParameter("MonthDate", DbType.DateTime, param.ToDate);
             objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
             objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
             objectDb.AddInParameter("IsExportExcel", DbType.Boolean, param.IsExportExcel);

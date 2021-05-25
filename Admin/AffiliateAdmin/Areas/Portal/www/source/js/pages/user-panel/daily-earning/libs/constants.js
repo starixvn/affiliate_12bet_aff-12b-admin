@@ -7,6 +7,7 @@ export { selectedAllProduct, maxWidth, userPanelMenuKey, monthNames, globalResou
 export const resource = {
     Date: 'Date',
     Winlost: 'Winlost',
+    Turnover: 'Turnover',
     Deposit: 'Deposit',
     Withdrawal: 'Withdrawal',
     Bonus: 'Bonus',
