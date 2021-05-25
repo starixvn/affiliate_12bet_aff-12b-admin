@@ -8,7 +8,7 @@
         <thead>
             <tr>
                 <th width="20%" rowspan="2"><strong>@Lang.CasinoClubs</strong></th>
-                <th width="40%" colspan="7"><strong>@Lang.LiveCasino</strong></th>
+                <th width="40%" colspan="9"><strong>@Lang.LiveCasino</strong></th>
                 <th width="40%" colspan="5"><strong>@Lang.CasinoGame</strong></th>
             </tr>
             <tr>
@@ -18,6 +18,8 @@
                 <th width="8%">@Lang.Dragon</th>
                 <th width="6%">@Lang.Sicbo</th>
                 <th width="6%">@Lang.CasinoHold</th>
+                <th width="6%">@Lang.AndarBahar</th>
+                <th width="6%">@Lang.Teenpatti</th>
                 <th width="8%">@Lang.Multiplayer</th>
                 <th width="6%">@Lang.SlotGames</th>
                 <th width="6%">@Lang.ProgressiveGames</th>
@@ -35,6 +37,8 @@
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
@@ -56,6 +60,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
                 <td>@Lang.Product12OPAL</td>
@@ -64,6 +70,8 @@
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td></td>
@@ -86,6 +94,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
                 <td>@Lang.Product12TOPAZ</td>
@@ -94,6 +104,8 @@
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
@@ -104,6 +116,8 @@
             </tr>
             <tr>
                 <td>@Lang.Product12RUBY</td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -126,6 +140,8 @@
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td></td>
@@ -141,6 +157,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                 <td></td>
                 <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
@@ -149,6 +167,8 @@
             </tr>
             <tr>
                 <td>@Lang.Product12AMBER</td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -172,6 +192,8 @@
                     <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                     <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                     <td></td>
+                    <td></td>
+                    <td></td>
                     <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                     <td></td>
                     <td></td>
@@ -194,7 +216,66 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
             </tr>
+            @if (curLang.Equals("hi-IN", StringComparison.OrdinalIgnoreCase))
+            {
+                <tr>
+                    <td>@Lang.Product12MOONSTONE</td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
+            @if (!curLang.Equals("ko-KR", StringComparison.OrdinalIgnoreCase))
+            {
+                <tr>
+                    <td>@Lang.Product12SUNSTONE</td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.Product12JASPER</td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
