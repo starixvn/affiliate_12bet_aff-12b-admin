@@ -79,13 +79,13 @@
     let element;
 
     switch('@controllerName') {
-        case 'PaymentRequest': case 'CommissionGroup': case 'EmailHistory': case 'Adjustment':
+        case 'PaymentRequest': case 'CommissionGroup': case 'EmailHistory': case 'Adjustment': case 'ViewLog':
             element = document.getElementById('Affiliate');
             break;
-        case 'ActiveMember':
+        case 'ActiveMember': case 'Registered':
             element = document.getElementById('Member');
             break;
-        case 'TextList': case 'LandingPageList':
+        case 'TextList': case 'LandingPageList': case 'NewsLetter':
             element = document.getElementById('MediaGallery');
             break;
         case 'Department':
