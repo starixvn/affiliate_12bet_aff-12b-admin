@@ -2186,16 +2186,16 @@
     <value>本月精選</value>
   </data>
   <data name="PrefixProduct12Gold" xml:space="preserve">
-    <value>12GOLD</value>
+    <value>黃金廳</value>
   </data>
   <data name="SuffixProduct12GOLD" xml:space="preserve">
     <value>(SA Gaming)</value>
   </data>
   <data name="Product12GOLD" xml:space="preserve">
-    <value>12GOLD (SA GAMING)</value>
+    <value>黃金廳 (SA GAMING)</value>
   </data>
   <data name="Product12JADE" xml:space="preserve">
-    <value>12JADE (AE SEXY)</value>
+    <value>玉石廳 (AE SEXY)</value>
   </data>
   <data name="PrefixProduct12MOONSTONE" xml:space="preserve">
     <value>12MOONSTONE</value>
@@ -2204,10 +2204,10 @@
     <value>(SUPER SPADE GAMES)</value>
   </data>
   <data name="PrefixProduct12SUNSTONE" xml:space="preserve">
-    <value>12SUNSTONE</value>
+    <value>日光廳</value>
   </data>
   <data name="PrefixProduct12JASPER" xml:space="preserve">
-    <value>12JASPER</value>
+    <value>碧玉廳</value>
   </data>
   <data name="SuffixProduct12JASPER" xml:space="preserve">
     <value>(N2 LIVE)</value>
@@ -2219,9 +2219,12 @@
     <value>12MOONSTONE (SUPER SPADE GAMES)</value>
   </data>
   <data name="Product12SUNSTONE" xml:space="preserve">
-    <value>12SUNSTONE (EA GAMING)</value>
+    <value>日光廳 (EA GAMING)</value>
   </data>
   <data name="Product12JASPER" xml:space="preserve">
-    <value>12JASPER (N2 LIVE)</value>
+    <value>碧玉廳 (N2 LIVE)</value>
+  </data>
+  <data name="PrefixProduct12JADE" xml:space="preserve">
+    <value>玉石廳</value>
   </data>
 </root>
