@@ -25,8 +25,7 @@ export class PersonalPermissionTable extends PureComponent {
     _handleChangeChildrenOfItem = (gridData, data, parentId) => {
         const children = gridData.filter(item => item.FuncId != parentId && item.AllParentIds.split(',').includes(parentId.toString()));
 
-        for (let i = 0; i < children.length; i++) {
-            const child = children[i];
+        for (let child of children) {
             const indexItem = gridData.findIndex(item => item.FuncId == child.FuncId);
             const updateItem = Object.assign({}, gridData[indexItem], data);
 
@@ -40,8 +39,7 @@ export class PersonalPermissionTable extends PureComponent {
     _handleChangeParentsOfItem = (gridData, data, funcId, allParentIds, isChecked, isHost) => {
         const parentIds = allParentIds.split(',').filter(parentId => funcId != parentId);
 
-        for (let i = 0; i < parentIds.length; i++) {
-            const parentId = parentIds[i];
+        for (let parentId of parentIds) {
             const hasAnyChildIsCheck = gridData.filter(item => item.FuncId != parentId && item.AllParentIds.split(',').includes(parentId.toString()) && (isHost ? item.IsHost : item.IsRead)).length;
 
             if (isChecked || !hasAnyChildIsCheck) {
@@ -97,8 +95,7 @@ export class PersonalPermissionTable extends PureComponent {
             const parentFunction = dataList.filter(s => s.FuncId === s.ParentId);
             const subFunction = dataList.filter(s => s.FuncId !== s.ParentId);
 
-            for (let i = 0; i < parentFunction.length; i++) {
-                const dataItem = parentFunction[i];
+            for (let dataItem of parentFunction) {
                 dataRows.push(this._buildDataRowChildren(dataItem, subFunction, isCreateNew, isEdit));
             }
         }
@@ -157,8 +154,7 @@ export class PersonalPermissionTable extends PureComponent {
             const parentFunction = dataList.filter(s => s.ParentId === dataItem.FuncId);
             const subFunction = dataList.filter(s => s.ParentId !== dataItem.FuncId);
 
-            for (let i = 0; i < parentFunction.length; i++) {
-                const dataItem = parentFunction[i];
+            for (let dataItem of parentFunction) {
                 dataRows.push(this._buildDataRowSubChildren(dataItem, subFunction, isCreateNew, isEdit, isRecursive));
             }
         }

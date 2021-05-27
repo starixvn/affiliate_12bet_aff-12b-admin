@@ -58,9 +58,8 @@ export const fetchData = (param) => async (dispatch) => {
 
 function _convertCheckedTexts(dataList) {
     const checkedTexts = {};
-    for (let i = 0; i < dataList.length; i++) {
-        const itemId = dataList[i].TextId;
-        checkedTexts[itemId] = false;
+    for (let item of dataList) {
+        checkedTexts[item.TextId] = false;
     }
 
     return checkedTexts;

@@ -13,8 +13,7 @@ export default class App extends React.PureComponent {
     }
 
     render() {
-        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
-        const store = configureStore({claimsPrincipal}, reducer);
+        const store = configureStore({ claimsPrincipal: ClaimPrincipal.currentClaimPrincipal }, reducer);
         return (
             <Provider store={store}>
                 <AppContainer />

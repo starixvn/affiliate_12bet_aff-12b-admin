@@ -270,9 +270,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
 function mapStateToProps({ claimsPrincipal }) {
     const isUpdatable = claimsPrincipal.hasWriteClaim(claimResource.PaymentRequest)
     const isShowEmail = claimsPrincipal.hasReadClaim(claimResource.AffEmail)
-    const isShowFullName = claimsPrincipal.hasReadClaim(claimResource.MemberName)
     const isShowPaymentInfo = claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo)
-    return Object.assign({}, { isUpdatable, isShowEmail, isShowFullName, isShowPaymentInfo });
+    return Object.assign({}, { isUpdatable, isShowEmail, isShowPaymentInfo });
 }
 
 function mapDispatchToProps(dispatch) {

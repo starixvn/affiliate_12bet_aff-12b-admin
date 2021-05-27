@@ -38,9 +38,7 @@ export class PlatformFeeSetting extends Component {
         const rootProductIds = platformFeeList[0].ProductIds.split(',').filter(p => !!p);
         const checkedProductIds = platformFeeList[index].ProductIds.split(',').filter(p => !!p);
 
-        for (let i = 0; i < checkedProductIds.length; i++) {
-            const productId = checkedProductIds[i];
-
+        for (let productId of checkedProductIds) {
             rootProductIds.push(productId);
         }
 

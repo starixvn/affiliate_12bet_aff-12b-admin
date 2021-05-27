@@ -33,8 +33,7 @@ export class Filter extends React.Component {
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
-        for (let i = 0; i < languageList.length; i++) {
-            const languageItem = languageList[i];
+        for (let languageItem of languageList) {
             const shortCode = shortCodeList[languageItem.LanguageCode] || languageItem.LanguageCode;
             shortCodeLanguageList[shortCode] = languageItem.LanguageName;
         }

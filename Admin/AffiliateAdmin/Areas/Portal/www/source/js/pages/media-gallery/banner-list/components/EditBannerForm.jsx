@@ -103,8 +103,8 @@ export class EditBannerForm extends PureComponent {
                 message: ''
             };
 
-            for (let i = 0; i < files.length; i++) {
-                let fileName = files[i].name;
+            for (let file of files) {
+                let fileName = file.name;
                 inputFileNames.push(fileName);
                 let result = validateFileExtension(fileName);
 
@@ -133,8 +133,8 @@ export class EditBannerForm extends PureComponent {
                 message: ''
             };
 
-            for (let i = 0; i < files.length; i++) {
-                let fileName = files[i].name;
+            for (let file of files) {
+                let fileName = file.name;
                 let result = validateFileExtension(fileName);
 
                 if (!result.isOK) {

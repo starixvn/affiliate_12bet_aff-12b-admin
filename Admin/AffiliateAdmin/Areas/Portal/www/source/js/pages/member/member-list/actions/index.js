@@ -1,34 +1,34 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
-import { SET_PARAM, SET_IS_FROM_OTHER_PAGES, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from './types';
+import * as types from './types';
 
 export { toggleLoader, setPagingOption };
 
 export const setParam = (data) => {
     return {
-        type: SET_PARAM,
+        type: types.SET_PARAM,
         data
     }
 }
 
 export const setIsFromOtherPages = (data) => {
     return {
-        type: SET_IS_FROM_OTHER_PAGES,
+        type: types.SET_IS_FROM_OTHER_PAGES,
         data
     }
 }
 
 export const setShouldResetScrollPosition = (data) => {
     return {
-        type: SHOULD_RESET_SCROLL_POSITION,
+        type: types.SHOULD_RESET_SCROLL_POSITION,
         data
     }
 }
 
 export const setGridData = (data) => {
     return {
-        type: SET_GRID_DATA,
+        type: types.SET_GRID_DATA,
         data
     }
 }

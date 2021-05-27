@@ -42,8 +42,7 @@ export class GeneralComponent extends PureComponent {
     _handleChangeChildrenOfItem = (gridData, data, roleId, parentId) => {
         const children = gridData.filter(item => item.RoleId == roleId && item.FuncId != parentId && item.AllParentIds.split(',').includes(parentId.toString()));
 
-        for (let i = 0; i < children.length; i++) {
-            const child = children[i];
+        for (let child of children) {
             const indexItem = gridData.findIndex(item => item.RoleId == roleId && item.FuncId == child.FuncId);
             const updateItem = Object.assign({}, gridData[indexItem], data);
 
@@ -57,8 +56,7 @@ export class GeneralComponent extends PureComponent {
     _handleChangeParentsOfItem = (gridData, data, roleId, funcId, allParentIds, isChecked, isHost) => {
         const parentIds = allParentIds.split(',').filter(parentId => funcId != parentId);
 
-        for (let i = 0; i < parentIds.length; i++) {
-            const parentId = parentIds[i];
+        for (let parentId of parentIds) {
             const hasAnyChildIsCheck = gridData.filter(item => item.RoleId == roleId && item.FuncId != parentId && item.AllParentIds.split(',').includes(parentId.toString()) && (isHost ? item.IsHost : item.IsRead)).length;
 
             if (isChecked || !hasAnyChildIsCheck) {
@@ -143,8 +141,7 @@ export class GeneralComponent extends PureComponent {
         if (dataList.length) {
             const { isEdit, expandedRoleId, gridData } = this.state;
 
-            for (let i = 0; i < dataList.length; i++) {
-                const dataItem = dataList[i];
+            for (let dataItem of dataList) {
                 dataRows.push(this._buildDataRow(dataItem, gridData, expandedRoleId, isEdit));
             }
         }
@@ -209,8 +206,7 @@ export class GeneralComponent extends PureComponent {
             const parentFunction = dataList.filter(s => s.FuncId === s.ParentId);
             const subFunction = dataList.filter(s => s.FuncId !== s.ParentId);
 
-            for (let i = 0; i < parentFunction.length; i++) {
-                const dataItem = parentFunction[i];
+            for (let dataItem of parentFunction) {
                 dataItem && dataRows.push(this._buildDataRowChildren(dataItem, subFunction, isEdit, isExpand));
             }
         }
@@ -271,8 +267,7 @@ export class GeneralComponent extends PureComponent {
             const parentFunction = dataList.filter(s => s.ParentId === dataItem.FuncId);
             const subFunction = dataList.filter(s => s.ParentId !== dataItem.FuncId);
 
-            for (let i = 0; i < parentFunction.length; i++) {
-                const dataItem = parentFunction[i];
+            for (let dataItem of parentFunction) {
                 dataRows.push(this._buildDataRowSubChildren(dataItem, subFunction, isEdit, isExpand, isRecursive));
             }
         }

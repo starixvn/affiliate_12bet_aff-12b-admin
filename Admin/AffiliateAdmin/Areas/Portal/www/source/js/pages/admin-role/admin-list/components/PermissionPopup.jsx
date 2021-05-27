@@ -42,8 +42,7 @@ export class PermissionPopup extends PureComponent {
             const parentFunction = dataList.filter(s => s.FuncId === s.ParentId);
             const subFunction = dataList.filter(s => s.FuncId !== s.ParentId);
 
-            for (let i = 0; i < parentFunction.length; i++) {
-                const dataItem = parentFunction[i];
+            for (let dataItem of parentFunction) {
                 dataRows.push(this._buildDataRowChildren(dataItem, subFunction));
             }
         }
@@ -81,8 +80,7 @@ export class PermissionPopup extends PureComponent {
             const parentFunction = dataList.filter(s => s.ParentId === dataItem.FuncId);
             const subFunction = dataList.filter(s => s.ParentId !== dataItem.FuncId);
 
-            for (let i = 0; i < parentFunction.length; i++) {
-                const dataItem = parentFunction[i];
+            for (let dataItem of parentFunction) {
                 dataRows.push(this._buildDataRowSubChildren(dataItem, subFunction, isRecursive));
             }
         }

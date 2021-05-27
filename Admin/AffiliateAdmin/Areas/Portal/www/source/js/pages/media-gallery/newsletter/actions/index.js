@@ -65,9 +65,8 @@ export const fetchData = (param) => async (dispatch) => {
 
 function _convertCheckedNewsLetterPages(dataList) {
     const checkedNewsLetterPages = {};
-    for (let i = 0; i < dataList.length; i++) {
-        const itemId = dataList[i].NewsLetterId;
-        checkedNewsLetterPages[itemId] = false;
+    for (let item of dataList) {
+        checkedNewsLetterPages[item.NewsLetterId] = false;
     }
 
     return checkedNewsLetterPages;
@@ -82,12 +81,12 @@ export const getNewsLetterPageDetail = (selectedNewsLetterPageId) => async () =>
 
 export const insertNewsLetterPage = (param) => async () => {
     const url = 'Portal/NewsLetter/InsertNewsLetter';
-    return await handleExcute(url, param);
+    return handleExcute(url, param);
 }
 
 export const updateNewsLetterPage = (param) => async () => {
     const url = 'Portal/NewsLetter/UpdateNewsLetter';
-    return await handleExcute(url, param);
+    return handleExcute(url, param);
 
 }
 

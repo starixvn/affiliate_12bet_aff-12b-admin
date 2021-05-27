@@ -58,9 +58,8 @@ export const fetchData = (param) => async (dispatch) => {
 
 function _convertCheckedEmails(dataList) {
     const checkedEmails = {};
-    for (let i = 0; i < dataList.length; i++) {
-        const itemId = dataList[i].EmailId;
-        checkedEmails[itemId] = false;
+    for (let item of dataList) {
+        checkedEmails[item.EmailId] = false;
     }
 
     return checkedEmails;

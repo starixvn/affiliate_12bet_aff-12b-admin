@@ -92,7 +92,7 @@ export class Content extends PureComponent {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             const { pagingOption } = this.props;
 
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
@@ -104,7 +104,7 @@ export class Content extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="9">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={isShowMemberName ? `${6 + Number(isModifiable)}` : `${4 + Number(isModifiable)}`}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 

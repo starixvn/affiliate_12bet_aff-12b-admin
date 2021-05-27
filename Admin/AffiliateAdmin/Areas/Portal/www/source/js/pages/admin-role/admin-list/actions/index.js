@@ -77,9 +77,8 @@ export const deleteUsers = (userIds) => async () => {
 
 function _convertCheckedUsers(dataList) {
     const checkedUsers = {};
-    for (let i = 0; i < dataList.length; i++) {
-        const userId = `${dataList[i].UserId}`;
-        checkedUsers[userId] = false;
+    for (let item of dataList) {
+        checkedUsers[item.UserId] = false;
     }
 
     return checkedUsers;

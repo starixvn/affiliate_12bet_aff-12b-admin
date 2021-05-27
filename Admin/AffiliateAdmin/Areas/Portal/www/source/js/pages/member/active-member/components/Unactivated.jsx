@@ -12,12 +12,13 @@ import { claimResource } from '../../../../modules/claim';
 export const Unactivated = (props) => {
     const { unactivatedGridData, shouldResetScrollPosition, userNames } = props;
 
-    const _handleActive = async (userNames) => {
+    const _handleActive = async (names) => {
         props.setShouldResetScrollPosition(false);
 
-        var data = await props.activeMember({ userNames });
+        var data = await props.activeMember({ userNames: names });
 
-        data ? props.setMessage(data.IsSuccessful ? "Members has been activated successfully!" : data.Message) : props.setMessage("Activate members is failed!");
+        const message = data.IsSuccessful ? "Members has been activated successfully!" : data.Message;
+        data ? props.setMessage(message) : props.setMessage("Activate members is failed!");
     }
 
     function _renderHeader() {
@@ -42,7 +43,7 @@ export const Unactivated = (props) => {
     function _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
                 dataRows.push(_buildDataRow(dataItem, i + 1));

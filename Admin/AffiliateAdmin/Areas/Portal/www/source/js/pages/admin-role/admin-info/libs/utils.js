@@ -1,5 +1,3 @@
-import { deepClone, updateObjectInArray } from '../../../../modules/dataHandler';
-
 export const convertMarketListByRole = (marketListByRole, isInitial) => {
 
     return  marketListByRole.map(item => {
@@ -12,8 +10,7 @@ export const convertMarketListByRole = (marketListByRole, isInitial) => {
 
 export const convertRoleList = (roleList) => {
     const newRoleList = {};
-    for (let i = 0; i < roleList.length; i++) {
-        const item = roleList[i];
+    for (let item of roleList) {
         newRoleList[item.RoleId] = item.RoleName;
     }
 
@@ -23,9 +20,7 @@ export const convertRoleList = (roleList) => {
 export const getSelectedMarketName = (dataSource) => {
     const selectedItemKey = [];
 
-    for (let i = 0; i < dataSource.length; i++) {
-        const item = dataSource[i];
-
+    for (let item of dataSource) {
         if (item.HasPermission) {
             selectedItemKey.push(item.MarketName)
         }

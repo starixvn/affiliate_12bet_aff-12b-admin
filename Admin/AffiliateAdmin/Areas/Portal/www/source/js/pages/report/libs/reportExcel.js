@@ -264,8 +264,7 @@ export default class ReportExcel {
     _createBodyData() {
         const mainData = this.data.MainData;
 
-        for (let i = 0; i < mainData.length; i++) {
-            const item = mainData[i];
+        for (let item of mainData) {
             item.CommissionRate = formatDecimal(item.CommissionRate) + '%';
 
             if (!this.isMainView) {

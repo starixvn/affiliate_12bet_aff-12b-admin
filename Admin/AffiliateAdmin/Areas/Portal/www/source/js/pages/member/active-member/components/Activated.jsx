@@ -27,7 +27,7 @@ export const Activated = (props) => {
     function _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
                 dataRows.push(_buildDataRow(dataItem, i + 1));

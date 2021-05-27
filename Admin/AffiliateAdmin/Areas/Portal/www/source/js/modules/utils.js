@@ -4,12 +4,20 @@ export const resolveClientUrl = (relativeUrl) => {
     return _rootUrl + relativeUrl;
 }
 
+export const getVirtualUrl = () => {
+    if (!window.virtualUrl)
+        return '/';
+    return window.virtualUrl;
+}
+
 export const formatUnit = (value) => {
     return value < 10 ? '0' + value : value;
 }
 
 const formatMilisecond = (value) => {
-    return value < 10 ? '00' + value : value < 100 ? '0' + value : value;
+    const greaterThanTenFormat = value < 100 ? ('0' + value) : value;
+
+    return value < 10 ? ('00' + value) : greaterThanTenFormat;
 }
 
 export const formatDateTime = (dateTimeValue, format) => {
@@ -36,15 +44,14 @@ export const formatDateTime = (dateTimeValue, format) => {
 
     var result = format.replace("MM", formatUnit(month))
         .replace("dd", formatUnit(date))
-        .replace("yyyy", dateTime.getFullYear())
-        .replace("hh", formatUnit(shortedHours))
+        .replace("yyyy", dateTime.getFullYear());
+
+    return result.replace("hh", formatUnit(shortedHours))
         .replace("mm", formatUnit(minutes))
         .replace("ss", formatUnit(seconds))
         .replace("tt", ampm)
         .replace("HH", formatUnit(dateTime.getHours()))
         .replace("SSS", formatMilisecond(miliseconds));
-
-    return result;
 }
 
 export const parseDateTime = (value) => {
@@ -184,12 +191,6 @@ export const validateNewPassword = (newPassword) => {
     }
 
     return result;
-}
-
-export const getVirtualUrl = () => {
-    if(!window.virtualUrl)
-        return '/';
-    return window.virtualUrl;
 }
 
 export const convertArrayToObjectProps = (array, key, value) => {

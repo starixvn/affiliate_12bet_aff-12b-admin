@@ -80,7 +80,7 @@ export class Content extends PureComponent {
         const productColumnClassName = param.productId === selectedAllProduct ? 'text-right' : 'text-right highlight';
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             const { pagingOption, isDisplayTurnOver } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
