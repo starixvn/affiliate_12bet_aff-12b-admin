@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
+import { claimResource } from '../../../../modules/claim';
 import { toggleLoaderUserPanel, fetchData, redirectToDailyEarningDetail } from '../actions';
 import { resource, selectedAllProduct, maxWidth, globalResource } from '../libs/constants';
 
@@ -42,7 +43,7 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={30}>#</Cell>
                 <Cell header={true} colWidth={100} title={resource.Date}>{resource.Date}</Cell>
                 <Cell header={true} colWidth={100} title={resource.Winlost}>{resource.Winlost}</Cell>
-                <Cell header={true} colWidth={100} title={resource.Turnover}>{resource.Turnover}</Cell>
+                {this.props.isDisplayTurnOver && <Cell header={true} colWidth={100} title={resource.Turnover}>{resource.Turnover}</Cell>}
                 <Cell header={true} colWidth={100} title={resource.Deposit}>{resource.Deposit}</Cell>
                 <Cell header={true} colWidth={100} title={resource.Withdrawal}>{resource.Withdrawal}</Cell>
                 <Cell header={true} colWidth={100} title={resource.Bonus}>{resource.Bonus}</Cell>
@@ -68,7 +69,7 @@ export class Content extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="8">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={`${7 + Number(this.props.isDisplayTurnOver)}`}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -96,7 +97,7 @@ export class Content extends PureComponent {
                     }
                 </Cell>
                 <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>
-                <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>
+                {this.props.isDisplayTurnOver && <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>}
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
                 <Cell className="text-right" title={bonus}>{bonus}</Cell>
@@ -125,10 +126,11 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ dailyEarning }) {
+function mapStateToProps({ dailyEarning, claimsPrincipal }) {
     const { param } = dailyEarning;
+    const isDisplayTurnOver = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
 
-    return Object.assign({}, { param });
+    return Object.assign({}, { param, isDisplayTurnOver });
 }
 
 function mapDispatchToProps(dispatch) {
