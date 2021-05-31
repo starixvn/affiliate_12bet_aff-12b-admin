@@ -2221,5 +2221,12 @@
   </data>
   <data name="Product12JASPER" xml:space="preserve">
     <value>12JASPER (N2 LIVE)</value>
+  </data>  <data name="Promotion" xml:space="preserve">
+    <value>KHUYẾN MÃI</value>
   </data>
-</root>
+  <data name="ExtraCommission" xml:space="preserve">
+    <value>THƯỞNG THÊM TIỀN HOA HỒNG LÊN ĐẾN 12%!</value>
+  </data>
+  <data name="BeOurAffThisMonth" xml:space="preserve">
+    <value>Hãy trở thành Đại lý của chúng tôi trong tháng này &amp; Hưởng hoa hồng lên đến 40% + thêm 12%! Chi Tiết!</value>
+  </data></root>

@@ -623,6 +623,10 @@
     <Content Include="www\build\styles\css\pages\payment-request.min.css">
       <DependentUpon>payment-request.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\promotion.css" />
+    <Content Include="www\build\styles\css\promotion.min.css">
+      <DependentUpon>promotion.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\signup.css" />
     <Content Include="www\build\styles\css\signup.min.css">
       <DependentUpon>signup.css</DependentUpon>
@@ -671,6 +675,7 @@
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.zh-TW.jpg" />
     <Content Include="www\build\styles\Images\left-main-banner.jpg" />
+    <Content Include="www\build\styles\Images\promotion\promotion.jpg" />
     <Content Include="www\build\styles\Images\right-main-banner.jpg" />
     <Content Include="www\build\styles\Images\apply12bet\3step.en-US.png" />
     <Content Include="www\build\styles\Images\apply12bet\3step.hi-IN.png" />
@@ -1128,6 +1133,16 @@
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.vi-VN.webp" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.zh-CN.webp" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.zh-TW.webp" />
+    <Content Include="Views\Promotion\_Content.zh-TW.cshtml" />
+    <Content Include="Views\Promotion\_Content.en-US.cshtml" />
+    <Content Include="Views\Promotion\_Content.hi-IN.cshtml" />
+    <Content Include="Views\Promotion\_Content.id-ID.cshtml" />
+    <Content Include="Views\Promotion\_Content.ja-JP.cshtml" />
+    <Content Include="Views\Promotion\_Content.ko-KR.cshtml" />
+    <Content Include="Views\Promotion\_Content.th-TH.cshtml" />
+    <Content Include="Views\Promotion\_Content.vi-VN.cshtml" />
+    <Content Include="Views\Promotion\_Content.zh-CN.cshtml" />
+    <Content Include="www\source\styles\pages\promotion.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

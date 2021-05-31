@@ -692,6 +692,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Be Our Affiliate partner this month &amp; Enjoy commissions up to 40% + Extra 12%! Click for more details!.
+        /// </summary>
+        public static string BeOurAffThisMonth {
+            get {
+                return ResourceManager.GetString("BeOurAffThisMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bermuda .
         /// </summary>
         public static string Bermuda {
@@ -2338,6 +2347,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string EUR {
             get {
                 return ResourceManager.GetString("EUR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXTRA COMMISSION UP TO 12%!.
+        /// </summary>
+        public static string ExtraCommission {
+            get {
+                return ResourceManager.GetString("ExtraCommission", resourceCulture);
             }
         }
         
@@ -4685,6 +4703,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string ProgressiveGames {
             get {
                 return ResourceManager.GetString("ProgressiveGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PROMOTION.
+        /// </summary>
+        public static string Promotion {
+            get {
+                return ResourceManager.GetString("Promotion", resourceCulture);
             }
         }
         

@@ -150,5 +150,9 @@
   {
     "outputFile": "www/build/styles/css/news-letter.css",
     "inputFile": "www/source/styles/pages/news-letter.scss"
+  },
+  {
+    "outputFile": "www/build/styles/css/promotion.css",
+    "inputFile": "www/source/styles/pages/promotion.scss"
   }
 ]
