@@ -141,7 +141,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
                 Earning = Convert.ToDecimal(reader["Earning"]),
                 AffWithdrawal = Convert.ToDecimal(reader["AffWithdrawal"]),
                 AffAdjustment = Convert.ToDecimal(reader["AffAdjustment"]),
-                BalanceBf = Convert.ToDecimal(reader["BFF"])
+                BalanceBf = Convert.ToDecimal(reader["BFF"]),
+                PreferredLanguage = reader.HasColumn("Language") ? Convert.ToString(reader["Language"]) : string.Empty
             };
         }
     }

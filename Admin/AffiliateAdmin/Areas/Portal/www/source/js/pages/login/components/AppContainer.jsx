@@ -48,10 +48,6 @@ export default class AppContainer extends PureComponent {
         !this.state.isClickedLogin && this.setState({ isClickedLogin: true }, this._login);
     }
 
-    testPromise = () => {
-        return new Promise(resolve => window.setTimeout(() => console.log("resolved"), 5000));
-    }
-
     _login = async () => {
         const { userName, password } = this.state;
 

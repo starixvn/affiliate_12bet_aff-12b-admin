@@ -13,13 +13,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
     {
         public EntityResult<RegisteredMemberInfo> GetRegisteredMemberList(MemberParam param)
         {
-            const string Spkey = "Aff_Admin_MemberList_Sel";
+            const string Spkey = "Aff_Admin_RegisteredMember_Sel";
             var result = new EntityResult<RegisteredMemberInfo>();
             var dataList = new List<RegisteredMemberInfo>();
 
             using (var objectDb = GetObjectDb(Spkey))
             {
-                objectDb.AddInParameter("AffUsername", DbType.String, param.AffName);
+                objectDb.AddInParameter("AffName", DbType.String, param.AffName);
                 objectDb.AddInParameter("UserName", DbType.String, param.UserName);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
@@ -32,12 +32,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
                     {
                         dataList.Add(new RegisteredMemberInfo
                         {
-                            MemberId = Convert.ToInt32(reader["IBCCustID"]),
                             UserName = Convert.ToString(reader["UserName"]),
                             FirstName = Convert.ToString(reader["FirstName"]),
                             LastName = Convert.ToString(reader["LastName"]),
                             CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"]),
-                            AffName = Convert.ToString(reader["AffUserName"])
+                            AffName = Convert.ToString(reader["AffName"])
                         });
                     }
                 }

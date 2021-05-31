@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 {
+    [FunctionAuthorize(FunctionName = Function.MemberMenu)]
     public class RegisteredController : ReadOnlySessionBaseController
     {
         private readonly IRegisteredMemberService _registeredMemberService;

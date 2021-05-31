@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -14,7 +14,7 @@ import { claimResource } from "../../../modules/claim";
 import { viewLevel, headerConfig } from '../libs/constants';
 import { SingleHeader, HeaderRow, AggregateHeader } from "../libs/header";
 
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -31,14 +31,14 @@ export class Content extends Component {
 
     handleExportExcel = async () => {
         this.props.toggleLoader(true);
-        const { param, reportTitle, currentViewLevel } = this.props;
+        const { param, reportTitle, currentViewLevel, languageList } = this.props;
         const header = this._buildHeader();
         const isMainView = currentViewLevel === viewLevel.main;
         const url = `Portal/Report/${isMainView ? 'GetMainData' : 'GetDetailData'}`;
         const postData = Object.assign({}, param, { IsExportExcel: true });
         const response = await post(url, postData);
         if (response && response.status === 200) {
-            const reportExcel = new ReportExcel(response.data, reportTitle, header, isMainView);
+            const reportExcel = new ReportExcel(response.data, reportTitle, header, isMainView, languageList);
             reportExcel.export();
         }
         this.props.toggleLoader(false);
@@ -84,10 +84,11 @@ export class Content extends Component {
     }
 
     _buildHeaderCol = (key, item) => {
-        const { claimsPrincipal, currentViewLevel } = this.props;
+        const { claimsPrincipal, currentViewLevel, isCheckedDatePicker } = this.props;
         const isMainView = currentViewLevel === viewLevel.main;
+
         if (!!item.isVisable && typeof item.isVisable === 'function') {
-            return new SingleHeader(key, item.label, item.isVisable(claimsPrincipal, isMainView));
+            return new SingleHeader(key, item.label, item.isVisable(claimsPrincipal, isMainView, isCheckedDatePicker));
         }
         else {
             return new SingleHeader(key, item.label, true);
@@ -111,6 +112,7 @@ export class Content extends Component {
     render() {
         const { reportTitle } = this.props;
         const header = this._buildHeader();
+
         return (
             <div className="data-content my-2">
                 {reportTitle && <ReportTitle content={this._buildReportTitle()} />}
@@ -120,8 +122,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ reportTitle, currentViewLevel, param, claimsPrincipal }) {
-    return Object.assign({}, { reportTitle, currentViewLevel, param, claimsPrincipal });
+function mapStateToProps({ reportTitle, currentViewLevel, param, claimsPrincipal, isCheckedDatePicker, languageList }) {
+    return Object.assign({}, { reportTitle, currentViewLevel, param, claimsPrincipal, isCheckedDatePicker, languageList });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -58,5 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
         public decimal AffAdjustment { get; set; }
 
         public decimal BalanceBf { get; set; }
+
+        public string PreferredLanguage { get; set; }
     }
 }

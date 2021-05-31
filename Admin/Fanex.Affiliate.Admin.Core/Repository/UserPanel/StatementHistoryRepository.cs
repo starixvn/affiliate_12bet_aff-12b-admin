@@ -105,7 +105,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             UserName = Convert.ToString(reader["UserName"]),
                             IbcUserName = Convert.ToString(reader["IBCUsername"]),
                             WinLost = Convert.ToDecimal(reader["Winlost"]),
-                            Turnover = reader.HasColumn("Turnover") ? Convert.ToDecimal(reader["Turnover"]) : 0m,
+                            Turnover = Convert.ToDecimal(reader["Turnover"]),
                             Deposit = Convert.ToDecimal(reader["Deposit"]),
                             Withdrawal = Convert.ToDecimal(reader["Withdrawal"]),
                             Bonus = Convert.ToDecimal(reader["Bonus"]),
@@ -126,7 +126,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 Deposit = Convert.ToDecimal(reader["Deposit"]),
                 Withdrawal = Convert.ToDecimal(reader["Withdrawal"]),
                 MemberWinLost = Convert.ToDecimal(reader["MemberWinLost"]),
-                Turnover = reader.HasColumn("Turnover") ? Convert.ToDecimal(reader["Turnover"]) : 0m,
+                Turnover = Convert.ToDecimal(reader["Turnover"]),
                 Bonus = Convert.ToDecimal(reader["Bonus"]),
                 BankingFee = reader["BankingFee"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["BankingFee"])
             };

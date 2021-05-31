@@ -49,13 +49,14 @@ export class Content extends PureComponent {
 
         if (sortById === selectedId) {
             this._fetchData({ ...postParam, isSortAsc: !isSortAsc });
-            this.props.setSortedParam({ isSortAsc: !isSortAsc });
+            this.props.setSortedParam({ sortById: selectedId, isSortAsc: !isSortAsc });
 
         } else {
             this._fetchData({ ...postParam, isSortAsc: false });
             this.props.setSortedParam({ sortById: selectedId, isSortAsc: false });
         }
     }
+
     _renderHeader() {
         const { isSortAsc, sortById } = this.props.sortedParam;
 
