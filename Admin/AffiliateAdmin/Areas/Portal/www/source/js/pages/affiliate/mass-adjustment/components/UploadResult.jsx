@@ -2,7 +2,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { validateFileExtension } from '../libs/utils';
+import { validExtensions, incorrectFormatMessage } from '../libs/constants';
+import { validateFileExtension } from '../../../../modules/utils';
 import { setIsClickUpload, toggleLoader, handleUploadFile, setFile, setIsShowResult } from '../actions';
 
 export class UploadResult extends PureComponent {
@@ -31,7 +32,7 @@ export class UploadResult extends PureComponent {
     }
 
     validateFile = (file) => {
-        return validateFileExtension(file && file.name);
+        return validateFileExtension(file && file.name, validExtensions, incorrectFormatMessage);
     }
 
     handleUploadFile = async () => {

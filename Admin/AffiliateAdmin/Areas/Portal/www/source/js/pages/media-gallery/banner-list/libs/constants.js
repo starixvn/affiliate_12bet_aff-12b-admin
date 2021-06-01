@@ -10,7 +10,8 @@ const defaultLanguage = 'Chinese Simplified';
 export const Asian = 2;
 export const maxWidthHeight = 501;
 export const maxLength = 50;
-export const regSpecialCharacters  = '[\\\\\/\:\*\?\"\<\>\|\#\%\&\+]';
+export const regSpecialCharacters = '[\\\\\/\:\*\?\"\<\>\|\#\%\&\+]';
+export const validExtensions = ['jpg', 'gif', 'png', 'jpeg'];
 
 export const headerText = {
     Index: globalResource.Index,

@@ -9,7 +9,7 @@ import { setParam, getProductList, exportExcel } from '../actions';
 import ReportExcel from '../libs/reportExcel';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { claimResource } from '../../../../modules/claim';
-import { getDateRange } from '../../../../modules/utils';
+import { getDateRange, formatUnit } from '../../../../modules/utils';
 
 export class Filter extends PureComponent {
     constructor(props) {
@@ -18,19 +18,20 @@ export class Filter extends PureComponent {
         const { today, param } = this.props;
 
         const now = new Date(today);
-        this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+        this.nowString = `${formatUnit(now.getMonth() + 1)}/${formatUnit(now.getDate())}/${now.getFullYear()}`;
 
         const sixMonthAgo = new Date(today);
         sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
 
-        let fromDate = `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`;
+        let fromDate = `${formatUnit(sixMonthAgo.getMonth() + 1)}/${formatUnit(sixMonthAgo.getDate())}/${sixMonthAgo.getFullYear()}`;
         let toDate = this.nowString;
 
         if (param.isClickLink && !!param.monthDate) {
             const date = new Date(param.monthDate);
+            const month = formatUnit(date.getMonth() + 1);
 
-            fromDate = `${date.getMonth() + 1}/1/${date.getFullYear()}`;
-            toDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+            fromDate = `${month}/01/${date.getFullYear()}`;
+            toDate = `${month}/${formatUnit(date.getDate())}/${date.getFullYear()}`;
         }
 
         this.state = {
@@ -54,10 +55,11 @@ export class Filter extends PureComponent {
     componentDidUpdate(prevProps) {
         const { param } = this.props;
         if (param.isClickLink && param !== prevProps.param) {
-            const newMonthDate = new Date(param.monthDate);
+            const newDate = new Date(param.monthDate);
+            const newMonthString = formatUnit(newDate.getMonth() + 1);
 
-            const fromDate = `${newMonthDate.getMonth() + 1}/1/${newMonthDate.getFullYear()}`;
-            const toDate = `${newMonthDate.getMonth() + 1}/${newMonthDate.getDate()}/${newMonthDate.getFullYear()}`;
+            const fromDate = `${newMonthString}/01/${newDate.getFullYear()}`;
+            const toDate = `${newMonthString}/${formatUnit(newDate.getDate())}/${newDate.getFullYear()}`;
 
             this.setState({ fromDate, toDate, isGetAll: false, selectedProduct: selectedAllProduct }, this.handleSearch);
         }

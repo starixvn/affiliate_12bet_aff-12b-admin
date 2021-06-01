@@ -25,5 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
         public int PageSize { get; set; }
 
         public bool IsExportExcel { get; set; }
+
+        public bool IsGetMonthly { get; set; }
     }
 }

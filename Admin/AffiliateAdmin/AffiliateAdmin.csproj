@@ -401,7 +401,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\__test__\redux\UploadResult.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\libs\constants.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\__test__\index.test.js" />

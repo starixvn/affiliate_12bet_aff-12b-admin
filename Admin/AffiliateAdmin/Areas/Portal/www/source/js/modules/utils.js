@@ -117,7 +117,7 @@ function getToDate(toDate, selectedFromDateString, toDateString, maxRangeDate) {
     const nextSixMonth = new Date(selectedFromDateString);
     nextSixMonth.setMonth(nextSixMonth.getMonth() + maxRangeDate);
 
-    return toDate > nextSixMonth ? `${nextSixMonth.getMonth() + 1}/${nextSixMonth.getDate()}/${nextSixMonth.getFullYear()}` : toDateString;
+    return toDate > nextSixMonth ? `${formatUnit(nextSixMonth.getMonth() + 1)}/${formatUnit(nextSixMonth.getDate())}/${nextSixMonth.getFullYear()}` : toDateString;
 }
 
 export function handleAfterChangeToDate(selectedToDate, fromDateString, maxRangeDate) {
@@ -142,7 +142,7 @@ function getFromDate(fromDate, selectedToDateString, fromDateString, maxRangeDat
     const sixMonthAgo = new Date(selectedToDateString);
     sixMonthAgo.setMonth(sixMonthAgo.getMonth() - maxRangeDate);
 
-    return sixMonthAgo < fromDate ? fromDateString : `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`;
+    return sixMonthAgo < fromDate ? fromDateString : `${formatUnit(sixMonthAgo.getMonth() + 1)}/${formatUnit(sixMonthAgo.getDate())}/${sixMonthAgo.getFullYear()}`;
 }
 
 export const isValidNumber = (inputValue) => {
@@ -208,11 +208,12 @@ export const removeUndifineItem = (obj) => {
     return JSON.parse(JSON.stringify(obj));
 }
 
-export const validateFileExtension = (fileName, fileExtensions) => {
+export const validateFileExtension = (fileName, fileExtensions, message) => {
     const result = {
         isOK: false,
-        message: `Sorry! We just support these file types : ${fileExtension.reduce((acc, cur) => {acc + `'.'${cur}`}, "")}`,
+        message: message || `Sorry! We just support these file types : ${fileExtensions.map(item => "'." + item + "'").join(', ')}`,
     }
+
     if (!!fileName) {
         const fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length).toLowerCase();
 

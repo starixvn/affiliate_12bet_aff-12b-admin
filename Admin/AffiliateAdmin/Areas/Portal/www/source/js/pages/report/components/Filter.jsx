@@ -22,8 +22,10 @@ export class Filter extends PureComponent {
 
         this.now = new Date(today);
         const currentMonth = this.now.getMonth() + 1;
+        const currentMonthString = formatUnit(currentMonth);
         const currentYear = this.now.getFullYear();
-        this.nowString = `${currentMonth}/${this.now.getDate()}/${currentYear}`;
+        this.nowString = `${currentMonthString}/${formatUnit(this.now.getDate())}/${currentYear}`;
+
         const defaultMonth = { month: currentMonth, year: currentYear };
 
         this.state = {
@@ -36,7 +38,7 @@ export class Filter extends PureComponent {
             selectedProductList: allProduct,
             isGetAll: false,
             isCheckedDatePicker: false,
-            fromDate: `${currentMonth}/1/${currentYear}`,
+            fromDate: `${currentMonthString}/01/${currentYear}`,
             toDate: this.nowString,
         }
 
@@ -70,6 +72,7 @@ export class Filter extends PureComponent {
                     sortBy: SortType,
                     isSortAscending: SortDirectionType === sortDirectionType.ascending,
                     selectedProductList: ProductIds,
+                    isCheckedDatePicker: false,
                     isGetAll: false
                 },() => this._buildReportTitle(isCheckedAllProduct));
 
@@ -84,7 +87,8 @@ export class Filter extends PureComponent {
                 this.setState({
                     userName: param.UserName,
                     sortBy: month,
-                    isSortAscending: false
+                    isSortAscending: false,
+                    isCheckedDatePicker: false
                 },() => this._buildReportTitle(isCheckedAllProduct));
             }
         }
@@ -112,10 +116,8 @@ export class Filter extends PureComponent {
         this.setState(prevState => {
             const isChecked = prevState.isCheckedDatePicker;
 
-            this.props.setIsCheckedDatePicker(!isChecked);
-
             return { isCheckedDatePicker: !isChecked };
-        },() => this.props.param && this._buildReportTitle(this.isCheckedAllProduct()));
+        });
     }
 
     handleChangeFromDate = (momentDate) => {
@@ -198,6 +200,7 @@ export class Filter extends PureComponent {
 
         const param = {
             UserName: userName,
+            IsGetMonthly: !isCheckedDatePicker,
             FromDate: isCheckedDatePicker ? fromDate : `${fromMonth.month}/1/${fromMonth.year}`,
             ToDate: isCheckedDatePicker ? toDate : `${toMonth.month}/1/${toMonth.year}`,
             PreferredLanguage: selectedLanguage,
@@ -210,6 +213,7 @@ export class Filter extends PureComponent {
         }
 
         if (this._isMainView()) {
+            this.props.setIsCheckedDatePicker(isCheckedDatePicker);
             this.cachedMainReportParam = Object.assign({}, param);
         }
 
@@ -441,10 +445,10 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ productList, pagingOption, languageList, today, currentViewLevel, param, claimsPrincipal, isCheckedDatePicker }) {
+function mapStateToProps({ productList, pagingOption, languageList, today, currentViewLevel, param, claimsPrincipal }) {
     const hasTurnOverPermission = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
     const isShowLangFilter = claimsPrincipal.hasReadClaim(claimResource.LanguageAmendment);
-    return Object.assign({}, { productList, pagingOption, languageList, today, currentViewLevel, param, hasTurnOverPermission, isShowLangFilter, isCheckedDatePicker });
+    return Object.assign({}, { productList, pagingOption, languageList, today, currentViewLevel, param, hasTurnOverPermission, isShowLangFilter });
 }
 
 function mapDispatchToProps(dispatch) {

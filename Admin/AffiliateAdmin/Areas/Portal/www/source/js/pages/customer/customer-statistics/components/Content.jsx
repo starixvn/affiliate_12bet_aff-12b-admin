@@ -19,8 +19,7 @@ export class Content extends PureComponent {
 
         this.state = {
             data: null,
-            isLoading: false,
-            date: new Date(props.today)
+            isLoading: false
         }
     }
 

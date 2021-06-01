@@ -14,8 +14,7 @@ const productList = window.initialState.productList.map(p => {
 
 const languageList = [...window.initialState.languageList];
 const language = {};
-for(let i = 0; i < languageList.length; i++){
-    const languageItem = languageList[i];
+for (let languageItem of languageList){
     language[languageItem.LanguageCode] = languageItem.LanguageName;
 }
 

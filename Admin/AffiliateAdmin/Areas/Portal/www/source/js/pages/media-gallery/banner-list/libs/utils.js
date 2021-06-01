@@ -1,26 +1,10 @@
-﻿import { maxLength } from './constants';
+﻿import { maxLength, validExtensions } from './constants';
+import { validateFileExtension } from '../../../../modules/utils';
 
-export const validateFileExtension = (fileName) => {
-    const result = {
-        isOK: false,
-        message: "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'",
-    }
-    if (!!fileName) {
-        const fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length).toLowerCase();
-
-        const isOK = (fileExtension === "jpg" || fileExtension === "jpeg" || fileExtension === "png" || fileExtension === "gif");
-
-        if (isOK) {
-            result.isOK = isOK
-            result.message = '';
-        }
-    }
-
-    return result;
-}
+export const validateFileExtensionCustom = (fileName) => validateFileExtension(fileName, validExtensions);
 
 export const validateInputFile = (inputFileName) => {
-    const result = validateFileExtension(inputFileName);
+    const result = validateFileExtensionCustom(inputFileName);
 
     if (!!inputFileName && inputFileName.length > maxLength) {
         result.isOK = false;
