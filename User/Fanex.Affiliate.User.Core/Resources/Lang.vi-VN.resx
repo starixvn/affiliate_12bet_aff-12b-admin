@@ -2195,4 +2195,31 @@
   <data name="Product12JADE" xml:space="preserve">
     <value>12JADE (AE SEXY)</value>
   </data>
+  <data name="PrefixProduct12MOONSTONE" xml:space="preserve">
+    <value>12MOONSTONE</value>
+  </data>
+  <data name="SuffixProduct12MOONSTONE" xml:space="preserve">
+    <value>(SUPER SPADE GAMES)</value>
+  </data>
+  <data name="PrefixProduct12SUNSTONE" xml:space="preserve">
+    <value>12SUNSTONE</value>
+  </data>
+  <data name="PrefixProduct12JASPER" xml:space="preserve">
+    <value>12JASPER</value>
+  </data>
+  <data name="SuffixProduct12JASPER" xml:space="preserve">
+    <value>(N2 LIVE)</value>
+  </data>
+  <data name="SuffixProduct12SUNSTONE" xml:space="preserve">
+    <value>(EA GAMING)</value>
+  </data>
+  <data name="Product12MOONSTONE" xml:space="preserve">
+    <value>12MOONSTONE (SUPER SPADE GAMES)</value>
+  </data>
+  <data name="Product12SUNSTONE" xml:space="preserve">
+    <value>12SUNSTONE (EA GAMING)</value>
+  </data>
+  <data name="Product12JASPER" xml:space="preserve">
+    <value>12JASPER (N2 LIVE)</value>
+  </data>
 </root>

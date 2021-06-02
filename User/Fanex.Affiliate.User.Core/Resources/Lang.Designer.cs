@@ -296,6 +296,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Andar Bahar.
+        /// </summary>
+        public static string AndarBahar {
+            get {
+                return ResourceManager.GetString("AndarBahar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to And Post Promotions in Your Websites.
         /// </summary>
         public static string AndPostPromotionsInYourWebsite {
@@ -4437,6 +4446,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12JASPER.
+        /// </summary>
+        public static string PrefixProduct12JASPER {
+            get {
+                return ResourceManager.GetString("PrefixProduct12JASPER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12MOONSTONE.
+        /// </summary>
+        public static string PrefixProduct12MOONSTONE {
+            get {
+                return ResourceManager.GetString("PrefixProduct12MOONSTONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 12ONYX.
         /// </summary>
         public static string PrefixProduct12ONYX {
@@ -4460,6 +4487,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string PrefixProduct12PEARL {
             get {
                 return ResourceManager.GetString("PrefixProduct12PEARL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12SUNSTONE.
+        /// </summary>
+        public static string PrefixProduct12SUNSTONE {
+            get {
+                return ResourceManager.GetString("PrefixProduct12SUNSTONE", resourceCulture);
             }
         }
         
@@ -4545,6 +4581,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12JASPER (N2 LIVE).
+        /// </summary>
+        public static string Product12JASPER {
+            get {
+                return ResourceManager.GetString("Product12JASPER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12MOONSTONE (SUPER SPADE GAMES).
+        /// </summary>
+        public static string Product12MOONSTONE {
+            get {
+                return ResourceManager.GetString("Product12MOONSTONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 12ONYX (ALLBET).
         /// </summary>
         public static string Product12ONYX {
@@ -4586,6 +4640,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Product12RUBY {
             get {
                 return ResourceManager.GetString("Product12RUBY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12SUNSTONE (EA GAMING).
+        /// </summary>
+        public static string Product12SUNSTONE {
+            get {
+                return ResourceManager.GetString("Product12SUNSTONE", resourceCulture);
             }
         }
         
@@ -5463,6 +5526,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (N2 LIVE).
+        /// </summary>
+        public static string SuffixProduct12JASPER {
+            get {
+                return ResourceManager.GetString("SuffixProduct12JASPER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (SUPER SPADE GAMES).
+        /// </summary>
+        public static string SuffixProduct12MOONSTONE {
+            get {
+                return ResourceManager.GetString("SuffixProduct12MOONSTONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (ALLBET).
         /// </summary>
         public static string SuffixProduct12ONYX {
@@ -5486,6 +5567,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SuffixProduct12PEARL {
             get {
                 return ResourceManager.GetString("SuffixProduct12PEARL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (EA GAMING).
+        /// </summary>
+        public static string SuffixProduct12SUNSTONE {
+            get {
+                return ResourceManager.GetString("SuffixProduct12SUNSTONE", resourceCulture);
             }
         }
         
@@ -5567,6 +5657,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Tanzania {
             get {
                 return ResourceManager.GetString("Tanzania", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teenpatti.
+        /// </summary>
+        public static string Teenpatti {
+            get {
+                return ResourceManager.GetString("Teenpatti", resourceCulture);
             }
         }
         

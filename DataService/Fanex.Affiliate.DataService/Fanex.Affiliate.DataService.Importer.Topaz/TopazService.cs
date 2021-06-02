@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.DataService.Importer
             var api = _apiClientFactory.CreateApiClient(url, HttpMethod.Get, header);
             
             var param = GetDataParam(startTime, endTime, page);
-            return  await api.GetResponseAsync(param);
+            return await api.GetResponseAsync(param);
         }
 
         private async Task<IEnumerable<string>> GetRawDataAsync(DateTime startTime, DateTime endTime, string token)
