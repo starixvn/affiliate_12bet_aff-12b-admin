@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { Activated } from '../Activated';
-import { shallow, mount } from 'enzyme';
-import { act } from 'react-dom/test-utils';
+import { shallow } from 'enzyme';
 
 describe('active member - components - Activated ', () => {
     const activatedGridData = [

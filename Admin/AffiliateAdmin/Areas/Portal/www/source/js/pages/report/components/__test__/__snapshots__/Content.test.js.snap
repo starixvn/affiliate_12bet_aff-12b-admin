@@ -38,6 +38,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "visable": false,
           },
           SingleHeader {
+            "key": "PreferredLanguage",
+            "text": "Language",
+            "visable": true,
+          },
+          SingleHeader {
             "key": "TotalClick",
             "text": "Total Click",
             "visable": true,
@@ -208,6 +213,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "key": "MonthDateString",
             "text": "Month",
             "visable": true,
+          },
+          SingleHeader {
+            "key": "PreferredLanguage",
+            "text": "Language",
+            "visable": false,
           },
           SingleHeader {
             "key": "TotalClick",

@@ -22,7 +22,7 @@ describe('registerd member list - components - Filter ', () => {
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ AffName: '12BETAFF226', UserName: '', PageIndex: 1, PageSize: 20 });
+        expect(props.setParam).toHaveBeenCalledWith({ AffName: '', UserName: '', PageIndex: 1, PageSize: 20 });
     });
 
     it('setAffName - should change affName when change affiliate textbox', () => {
@@ -58,7 +58,7 @@ describe('registerd member list - components - Filter ', () => {
         wrapper.find('Input[type="text"][name="affName"]').simulate('keyPress', event);
 
         expect(event.preventDefault).toHaveBeenCalled();
-        expect(props.setParam).toHaveBeenCalledWith({"AffName": "12BETAFF226", "IbcUserName": "", "PageIndex": 1, "PageSize": 20, "UserName": ""});
+        expect(props.setParam).toHaveBeenCalledWith({"AffName": "", "PageIndex": 1, "PageSize": 20, "UserName": ""});
     });
 
     it('_handleKeyPress - should call _handleSearch when press enter in user name textbox', () => {
@@ -72,7 +72,7 @@ describe('registerd member list - components - Filter ', () => {
         wrapper.find('Input[type="text"][name="userName"]').simulate('keyPress', event);
 
         expect(event.preventDefault).toHaveBeenCalled();
-        expect(props.setParam).toHaveBeenCalledWith({"AffName": "12BETAFF226", "IbcUserName": "", "PageIndex": 1, "PageSize": 20, "UserName": ""});
+        expect(props.setParam).toHaveBeenCalledWith({"AffName": "", "PageIndex": 1, "PageSize": 20, "UserName": ""});
     });
 
     it('_handleKeyPress - should not call _handleSearch when press other keys', () => {

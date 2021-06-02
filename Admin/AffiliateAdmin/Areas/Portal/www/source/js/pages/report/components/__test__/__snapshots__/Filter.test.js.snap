@@ -93,6 +93,32 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
       </div>
     </FormGroup>
     <FormGroup
+      check={true}
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Date Picker
+        <Input
+          checked={false}
+          className="ml-1 mr-2"
+          onChange={[Function]}
+          type="checkbox"
+        />
+      </Label>
+    </FormGroup>
+    <FormGroup
       className="mb-2 mr-sm-2 mb-sm-0"
       tag="div"
     >
@@ -257,7 +283,8 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
       <span
         className="oi oi-magnifying-glass"
       />
-       Search
+       
+      Search
     </Button>
   </Form>
 </div>
@@ -516,7 +543,8 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
       <span
         className="oi oi-magnifying-glass"
       />
-       Search
+       
+      Search
     </Button>
   </Form>
 </div>

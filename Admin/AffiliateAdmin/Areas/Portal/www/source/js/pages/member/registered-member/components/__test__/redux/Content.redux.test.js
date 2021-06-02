@@ -13,7 +13,7 @@ describe('registerd member list - Content - connect', () => {
     beforeEach(() => {
         const initialState = {
             param: {},
-            isShowMemberName: false
+            claimsPrincipal: { hasClaim: jest.fn(() => false) }
         };
         store = mockStore(initialState);
         wrapper = shallow(<Content store={store} />).dive();

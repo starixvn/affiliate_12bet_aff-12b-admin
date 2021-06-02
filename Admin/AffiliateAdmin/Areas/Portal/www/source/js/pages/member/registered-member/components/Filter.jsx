@@ -9,7 +9,7 @@ import { headerText } from '../libs/constants';
 export const Filter = (props) => {
     const { pagingOption } = props;
 
-    const [affName, setAffName] = useState(props.affName);
+    const [affName, setAffName] = useState('');
     const [userName, setUserName] = useState('');
 
     const _handleSearch = () => {

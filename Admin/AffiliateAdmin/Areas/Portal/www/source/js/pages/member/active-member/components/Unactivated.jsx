@@ -17,8 +17,8 @@ export const Unactivated = (props) => {
 
         var data = await props.activeMember({ userNames: names });
 
-        const message = data.IsSuccessful ? "Members has been activated successfully!" : data.Message;
-        data ? props.setMessage(message) : props.setMessage("Activate members is failed!");
+        const message = data?.IsSuccessful ? "Members has been activated successfully!" : data?.Message;
+        props.setMessage(data ? message : "Activate members is failed!");
     }
 
     function _renderHeader() {

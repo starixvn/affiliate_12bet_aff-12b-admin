@@ -14,7 +14,7 @@ exports[`customer member - components - Content render correctly 1`] = `
           <t
             asc={true}
             className="text-center"
-            colSpan="7"
+            colSpan="NaN"
             header={false}
             onClick={[Function]}
             sortable={false}

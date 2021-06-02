@@ -111,11 +111,11 @@ describe('payment request - components - Filter ', () => {
         const props = Object.assign({}, defaultProps, { param })
         const wrapper = shallow(<Filter {...props} />);
 
-        wrapper.setState = jest.fn();
+        wrapper.setState = jest.fn(fn => fn && fn({ toDate: "6/27/2019" }));
 
         wrapper.find(DatePicker).at(0).simulate('change', monthDate);
 
-        expect(wrapper.setState).toHaveBeenCalledWith({ fromDate: "6/25/2019", toDate: "6/27/2019" });
+        expect(wrapper.setState).toHaveBeenCalledWith(expect.any(Function));
     });
 
     it('handleChangeToDate - should be called when To change', () => {

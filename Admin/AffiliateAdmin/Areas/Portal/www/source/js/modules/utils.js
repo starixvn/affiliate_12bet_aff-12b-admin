@@ -217,10 +217,10 @@ export const validateFileExtension = (fileName, fileExtensions, message) => {
     if (!!fileName) {
         const fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length).toLowerCase();
 
-        const isOK = fileExtensions.find(val => val === fileExtension);
+        const isOK = fileExtensions.includes(fileExtension);
 
         if (isOK) {
-            result.isOK = isOK
+            result.isOK = true;
             result.message = '';
         }
     }

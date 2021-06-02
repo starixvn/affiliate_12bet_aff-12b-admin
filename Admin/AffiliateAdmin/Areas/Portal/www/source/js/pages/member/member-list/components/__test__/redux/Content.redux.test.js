@@ -12,15 +12,16 @@ describe('member list - Content - connect', () => {
 
     beforeEach(() => {
         const initialState = {
-            param: {},
-            isShowMemberName: false
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => false), hasClaim: jest.fn(() => false) },
+            param: {}
         };
         store = mockStore(initialState);
         wrapper = shallow(<Content store={store} />).dive();
     });
 
     it('should show correct value', () => {
-        expect(wrapper.props().isShowMemberName).toBeFalsy();
+        expect(wrapper.props().isModifiable).toBeFalsy();
+        expect(wrapper.props().isModifiable).toBeFalsy();
     });
 
     it('should call correct action', () => {

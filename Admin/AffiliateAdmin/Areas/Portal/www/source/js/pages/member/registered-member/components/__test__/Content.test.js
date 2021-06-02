@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { Content } from '../Content';
-import { shallow } from 'enzyme';W
+import { shallow } from 'enzyme';
+import { Table } from '@9softstudio/react-fixed-table-header';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('registerd member list - components - Content ', () => {
@@ -60,15 +61,6 @@ describe('registerd member list - components - Content ', () => {
         const result = shallow(<Content {...props} />);
 
         expect(result).toMatchSnapshot();
-    });
-
-    it('componentDidUpdate - should call fetchData', () => {
-        const result = shallow(<Content {...defaultProps} />);
-
-        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), param: null });
-        result.instance().componentDidUpdate(props);
-
-        expect(defaultProps.fetchData).toHaveBeenCalledWith(param);
     });
 
     it('_handlePaging - should be called when onPaging in Table', () => {

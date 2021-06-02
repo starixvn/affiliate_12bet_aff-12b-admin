@@ -1,20 +1,21 @@
 ﻿import React from 'react';
-import Actived from '../../Actived';
+import Activated from '../../Activated';
 import { shallow } from 'enzyme';
 import configureMockStore from 'redux-mock-store';
 
 const mockStore = configureMockStore();
 
-describe('active member list - Actived - connect', () => {
+describe('Activate member list - Activated - connect', () => {
     let wrapper;
     let store;
 
     beforeEach(() => {
         const initialState = {
-            isShowMemberFullname: false
+            claimsPrincipal: { hasReadClaim: jest.fn(() => false) }
         };
+
         store = mockStore(initialState);
-        wrapper = shallow(<Actived store={store} />).dive();
+        wrapper = shallow(<Activated store={store} />).dive();
     });
 
     it('should show correct value', () => {

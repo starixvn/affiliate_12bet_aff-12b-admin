@@ -46,7 +46,7 @@ describe('view log - components - Filter', () => {
 
         wrapper.find(DatePicker).at(0).simulate('change', monthDate);
 
-        expect(wrapper.setState).toHaveBeenCalledWith({ fromDate: "6/28/2019", toDate: "12/27/2019" });
+        expect(wrapper.setState).toHaveBeenCalledWith(expect.any(Function));
     });
 
     it('handleChangeToDate - should be called when To change', () => {

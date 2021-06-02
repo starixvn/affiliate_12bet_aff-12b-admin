@@ -12,7 +12,7 @@ describe('active member list - Content - connect', () => {
 
     beforeEach(() => {
         const initialState = {
-            isShowMemberFullname: false,
+            claimsPrincipal: { hasReadClaim: jest.fn(() => false) },
             shouldResetScrollPosition: true
         };
         store = mockStore(initialState);

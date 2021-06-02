@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { Unactivated } from '../Unactivated';
 import { shallow, mount } from 'enzyme';
-import { act } from 'react-dom/test-utils';
 
 describe('active member - components - Unactivated ', () => {
     const unactivatedGridData = [
@@ -18,6 +17,7 @@ describe('active member - components - Unactivated ', () => {
         unactivatedGridData,
         isShowMemberFullname: false
     };
+
 
     it('render correctly', () => {
         const result = shallow(<Unactivated {...defaultProps} />);

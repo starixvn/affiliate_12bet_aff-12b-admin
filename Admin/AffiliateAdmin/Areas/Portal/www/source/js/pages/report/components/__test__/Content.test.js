@@ -138,7 +138,7 @@ describe('affiliate report - Content ', () => {
             const expectedResponse = { data: ['data 1', 'data 2'], status: 200 };
             ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
-            const reportTitle = 'report title', isMainView = true;
+            const reportTitle = 'report title';
             const props = Object.assign({}, defaultProps, { toggleLoader: jest.fn(), reportTitle: reportTitle });
             const componentInstance = new Content(props);
 
