@@ -734,7 +734,7 @@ exports[`member list - components - Content  render correctly with gridData is e
             <t
               asc={true}
               className="text-center"
-              colSpan="9"
+              colSpan="7"
               header={false}
               onClick={[Function]}
               sortable={false}

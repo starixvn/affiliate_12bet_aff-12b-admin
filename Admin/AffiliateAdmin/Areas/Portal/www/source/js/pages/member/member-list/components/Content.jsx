@@ -103,6 +103,8 @@ export class Content extends PureComponent {
             }
         }
         else {
+            const { isShowMemberName, isModifiable } = this.props;
+
             dataRows.push(<Row>
                 <Cell className="text-center" colSpan={isShowMemberName ? `${6 + Number(isModifiable)}` : `${4 + Number(isModifiable)}`}>{globalResource.NoInfo}</Cell>
             </Row>);

@@ -454,7 +454,7 @@ export class EditBannerForm extends PureComponent {
     render() {
         const { selectedBannerId, languageList } = this.props;
         const { inputFileNames, language, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, categoryList,
-                subCategoryList, currencyList, affTypeList, deviceTypeList, files } = this.state;
+            subCategoryList, currencyList, affTypeList, deviceTypeList, files } = this.state;
         const isShowPopup = selectedBannerId !== null;
         const title = isInsert ? "Add Banner" : "Update Banner";
         const buttonLabel = isInsert ? "Upload" : "Update";

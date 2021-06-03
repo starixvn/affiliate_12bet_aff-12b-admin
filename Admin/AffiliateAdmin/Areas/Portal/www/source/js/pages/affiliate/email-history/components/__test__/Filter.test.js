@@ -99,11 +99,11 @@ describe('email history - components - Filter ', () => {
         const monthDate = { format: jest.fn(() => "6/25/2019")};
         const wrapper = shallow(<Filter {...defaultProps} />);
 
-        wrapper.setState = jest.fn();
+        wrapper.setState = jest.fn(fn => fn && fn({toDate: "6/28/2019" }));
 
         wrapper.find(DatePicker).at(0).simulate('change', monthDate);
 
-        expect(wrapper.setState).toHaveBeenCalledWith({ fromDate: "6/25/2019", toDate: "6/28/2019" });
+        expect(wrapper.setState).toHaveBeenCalledWith(expect.any(Function));
     });
 
     it('should call handleChangeToDate when To change', () => {

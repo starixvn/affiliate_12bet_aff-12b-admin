@@ -9,6 +9,10 @@ describe('affiliate report - GridData ', () => {
     const mainView = 1;
     const monthOnMonth = 2;
     const hasTurnOverPermission = true;
+    const languageList = {
+        'en-US': "English",
+        'vi-VN': 'Vietnamese'
+    }
 
     const defaultProps = {
         pagingOption: {
@@ -20,6 +24,7 @@ describe('affiliate report - GridData ', () => {
         param: {},
         hasTurnOverPermission,
         headerConfig: headerFake,
+        languageList,
         currentViewLevel: mainView
     };
 
@@ -524,6 +529,7 @@ describe('affiliate report - GridData ', () => {
             UserName: "12BETAFF001",
             Winlost: 0,
             Withdrawal: 0,
+            PreferredLanguage: 'en-US'
         },
         {
             ActiveMember: 0,
@@ -551,6 +557,7 @@ describe('affiliate report - GridData ', () => {
             UserName: "12BETAFF002",
             Winlost: 0,
             Withdrawal: 0,
+            PreferredLanguage: 'ABC'
         }
     ];
 

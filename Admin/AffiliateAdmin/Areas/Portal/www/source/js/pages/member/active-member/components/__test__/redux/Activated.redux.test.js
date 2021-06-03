@@ -5,7 +5,7 @@ import configureMockStore from 'redux-mock-store';
 
 const mockStore = configureMockStore();
 
-describe('Activate member list - Activated - connect', () => {
+describe('Active member list - Activated - connect', () => {
     let wrapper;
     let store;
 

@@ -111,7 +111,6 @@ export const Content = (props) => {
     );
 }
 
-
 function mapStateToProps({ pagingOption, param, checkedMessages, shouldResetScrollPosition, gridData }) {
     return Object.assign({}, { pagingOption, param, checkedMessages, shouldResetScrollPosition, gridData });
 }

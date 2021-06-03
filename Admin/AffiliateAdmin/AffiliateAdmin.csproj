@@ -294,6 +294,7 @@
     <Content Include="Areas\Portal\www\source\js\modules\globalResource.js" />
     <Content Include="Areas\Portal\www\source\js\modules\htmlHelper.js" />
     <Content Include="Areas\Portal\www\source\js\modules\reducerRegistry.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\__test__\utils.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\actions\__test__\index.test.js" />
@@ -482,6 +483,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\GridData.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\redux\AppContainer.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\libs\headerFake.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\redux\GridData.redux.test.js" />

@@ -6,13 +6,17 @@ describe('affiliate report - Report Excel ', () => {
     const TITLE_ROW_INDEX = 0;
     const HEADER_ROW_INDEX = 1;
 
-    const INDEX_DEPOSIT_COLUMN = 7;
-    const INDEX_COMM_COLUMN = 16;
+    const INDEX_DEPOSIT_COLUMN = 8;
+    const INDEX_COMM_COLUMN = 17;
 
     const MAIN_SECTION_STYLE = 'mainSectionStyle';
     const TOTAL_SECTION_STYLE = 'totalSectionStyle';
 
     const isMainView = true;
+    const languageList = {
+        'en-US': "English",
+        'vi-VN': 'Vietnamese'
+    }
 
     const itemHaveDescription = {
         ActiveMember: 0,
@@ -40,6 +44,7 @@ describe('affiliate report - Report Excel ', () => {
         UserName: "12BETAFF001",
         Winlost: 0,
         Withdrawal: 0,
+        PreferredLanguage: 'en-US'
     };
     const itemHaveNotDescription = {
         ActiveMember: 0,
@@ -67,30 +72,13 @@ describe('affiliate report - Report Excel ', () => {
         UserName: "12BETAFF002",
         Winlost: 0,
         Withdrawal: 0,
+        PreferredLanguage: 'ABC'
     }
     const data = { MainData: [itemHaveDescription, itemHaveNotDescription], Total: 2 };
     const title = 'Report Excel';
 
-    //it('contrustor - should call _getcolumnConfigs with Main view', () => {
-    //    const instance = new ReportExcel(data, title, headerFake, isMainView);
-    //    instance._getcolumnConfigs = jest.fn();
-
-    //    instance.constructor(data, title, headerFake, isMainView);
-
-    //    expect(instance._getcolumnConfigs).toHaveBeenCalledWith(headerFake, isMainView);
-    //});
-
-    //it('contrustor - should call _getcolumnConfigs with Month on Month view', () => {
-    //    const instance = new ReportExcel(data, title, headerFake, !isMainView);
-    //    instance._getcolumnConfigs = jest.fn();
-
-    //    instance.constructor(data, title, headerFake, !isMainView);
-
-    //    expect(instance._getcolumnConfigs).toHaveBeenCalledWith(headerFake, !isMainView);
-    //});
-
     it('export - should call Excel.process', () => {
-        const instance = new ReportExcel(data, title, headerFake, !isMainView);
+        const instance = new ReportExcel(data, title, headerFake, !isMainView, languageList);
         instance._createTitle = jest.fn();
         instance._createHeader = jest.fn();
         instance._createBodyData = jest.fn();
@@ -113,7 +101,7 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createTitle - should call Excel.getCellAddress', () => {
-        const instance = new ReportExcel(data, title, headerFake, !isMainView);
+        const instance = new ReportExcel(data, title, headerFake, !isMainView, languageList);
         Excel.getCellAddress = jest.fn();
 
         instance._createTitle();
@@ -122,13 +110,13 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createHeader - should call _buildColspanColumn with Main view', () => {
-        const instance = new ReportExcel(data, title, headerFake, isMainView);
+        const instance = new ReportExcel(data, title, headerFake, isMainView, languageList);
         instance._buildColspanColumn = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createHeader();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(7);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(8);
 
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": HEADER_ROW_INDEX });
@@ -147,7 +135,7 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createHeader - should call _buildColspanColumn with Month on Month view', () => {
-        const instance = new ReportExcel(data, title, headerFake, !isMainView);
+        const instance = new ReportExcel(data, title, headerFake, !isMainView, languageList);
         instance._buildColspanColumn = jest.fn();
         Excel.getCellAddress = jest.fn();
 
@@ -164,7 +152,7 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_buildColspanColumn - should call Excel.getCellAddress with headerText not exist column', () => {
-        const instance = new ReportExcel(data, title, headerFake, isMainView);
+        const instance = new ReportExcel(data, title, headerFake, isMainView, languageList);
         instance.columnConfigs.push({
             field: "abc",
             mainSectionStyle: { numFmt: '#,##0.00' },
@@ -175,7 +163,7 @@ describe('affiliate report - Report Excel ', () => {
 
         instance._createHeader();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(23);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(24);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": TITLE_ROW_INDEX, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": TITLE_ROW_INDEX + 1, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": TITLE_ROW_INDEX + 2, "r": HEADER_ROW_INDEX });
@@ -184,7 +172,7 @@ describe('affiliate report - Report Excel ', () => {
         expect(Excel.getCellAddress.mock.calls[5][0]).toEqual({ "c": TITLE_ROW_INDEX + 5, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[6][0]).toEqual({ "c": TITLE_ROW_INDEX + 6, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[7][0]).toEqual({ "c": TITLE_ROW_INDEX + 7, "r": HEADER_ROW_INDEX });
-        expect(Excel.getCellAddress.mock.calls[8][0]).toEqual({ "c": TITLE_ROW_INDEX + 7, "r": HEADER_ROW_INDEX + 1 });
+        expect(Excel.getCellAddress.mock.calls[8][0]).toEqual({ "c": TITLE_ROW_INDEX + 8, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[9][0]).toEqual({ "c": TITLE_ROW_INDEX + 8, "r": HEADER_ROW_INDEX + 1 });
         expect(Excel.getCellAddress.mock.calls[10][0]).toEqual({ "c": TITLE_ROW_INDEX + 9, "r": HEADER_ROW_INDEX + 1 });
         expect(Excel.getCellAddress.mock.calls[11][0]).toEqual({ "c": TITLE_ROW_INDEX + 10, "r": HEADER_ROW_INDEX + 1 });
@@ -212,14 +200,14 @@ describe('affiliate report - Report Excel ', () => {
     //});
 
     it('_createBodyData - should call _buildDataRow, Excel.getCellAddress with Main view', () => {
-        const instance = new ReportExcel(data, title, headerFake, isMainView);
+        const instance = new ReportExcel(data, title, headerFake, isMainView, languageList);
 
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createBodyData();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(42);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(44);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": 2, "r": 3 });
@@ -227,7 +215,7 @@ describe('affiliate report - Report Excel ', () => {
         expect(Excel.getCellAddress.mock.calls[4][0]).toEqual({ "c": 4, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[5][0]).toEqual({ "c": 5, "r": 3 });
 
-        expect(instance._buildDataRow).toHaveBeenCalledTimes(42);
+        expect(instance._buildDataRow).toHaveBeenCalledTimes(44);
         expect(instance._buildDataRow.mock.calls[0][0]).toBe(itemHaveDescription);
         expect(instance._buildDataRow.mock.calls[0][1]).toBe(MAIN_SECTION_STYLE);
         expect(instance._buildDataRow.mock.calls[0][2]).toBe(0);
@@ -238,14 +226,14 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createBodyData - should call _buildDataRow, Excel.getCellAddress with Month on Month view', () => {
-        const instance = new ReportExcel(data, title, headerFake, !isMainView);
+        const instance = new ReportExcel(data, title, headerFake, !isMainView, languageList);
 
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createBodyData();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(42);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(44);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": 2, "r": 3 });
@@ -253,7 +241,7 @@ describe('affiliate report - Report Excel ', () => {
         expect(Excel.getCellAddress.mock.calls[4][0]).toEqual({ "c": 4, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[5][0]).toEqual({ "c": 5, "r": 3 });
 
-        expect(instance._buildDataRow).toHaveBeenCalledTimes(42);
+        expect(instance._buildDataRow).toHaveBeenCalledTimes(44);
         expect(instance._buildDataRow.mock.calls[0][0]).toBe(itemHaveDescription);
         expect(instance._buildDataRow.mock.calls[0][1]).toBe(MAIN_SECTION_STYLE);
         expect(instance._buildDataRow.mock.calls[0][2]).toBe(0);
@@ -265,13 +253,13 @@ describe('affiliate report - Report Excel ', () => {
 
     it('_createTotalRow - should call _buildDataRow, Excel.getCellAddress with Main view', () => {
         const customTotalData = { CommissionRate: "N/A", UserName: "Total (all pages)" };
-        const instance = new ReportExcel(data, title, headerFake, isMainView);
+        const instance = new ReportExcel(data, title, headerFake, isMainView, languageList);
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createTotalRow();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(21);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(22);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": 2, "r": 3 });
@@ -279,7 +267,7 @@ describe('affiliate report - Report Excel ', () => {
         expect(Excel.getCellAddress.mock.calls[4][0]).toEqual({ "c": 4, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[5][0]).toEqual({ "c": 5, "r": 3 });
 
-        expect(instance._buildDataRow).toHaveBeenCalledTimes(21);
+        expect(instance._buildDataRow).toHaveBeenCalledTimes(22);
         expect(instance._buildDataRow.mock.calls[0][0]).toEqual(customTotalData);
         expect(instance._buildDataRow.mock.calls[0][1]).toBe(TOTAL_SECTION_STYLE);
         expect(instance._buildDataRow.mock.calls[0][2]).toBe(0);
@@ -291,13 +279,13 @@ describe('affiliate report - Report Excel ', () => {
 
     it('_createTotalRow - should call _buildDataRow, Excel.getCellAddress with Month on Month view', () => {
         const customTotalData = { CommissionRate: "%", MonthDateString: "Total (all pages)" };
-        const instance = new ReportExcel(data, title, headerFake, !isMainView);
+        const instance = new ReportExcel(data, title, headerFake, !isMainView, languageList);
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
 
         instance._createTotalRow();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(21);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(22);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": 2, "r": 3 });
@@ -305,7 +293,7 @@ describe('affiliate report - Report Excel ', () => {
         expect(Excel.getCellAddress.mock.calls[4][0]).toEqual({ "c": 4, "r": 3 });
         expect(Excel.getCellAddress.mock.calls[5][0]).toEqual({ "c": 5, "r": 3 });
 
-        expect(instance._buildDataRow).toHaveBeenCalledTimes(21);
+        expect(instance._buildDataRow).toHaveBeenCalledTimes(22);
         expect(instance._buildDataRow.mock.calls[0][0]).toEqual(customTotalData);
         expect(instance._buildDataRow.mock.calls[0][1]).toBe(TOTAL_SECTION_STYLE);
         expect(instance._buildDataRow.mock.calls[0][2]).toBe(0);
@@ -316,18 +304,18 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_buildDataRow - should call Excel.getCellType', () => {
-        const instance = new ReportExcel(data, title, headerFake, isMainView);
+        const instance = new ReportExcel(data, title, headerFake, isMainView, languageList);
 
         Excel.getCellType = jest.fn();
 
-        const result = instance._buildDataRow(itemHaveDescription, MAIN_SECTION_STYLE, 1);
+        const result = instance._buildDataRow(itemHaveDescription, MAIN_SECTION_STYLE, 2);
 
         expect(Excel.getCellType).toHaveBeenCalledWith(0);
         expect(result).toEqual({ s: { numFmt: "#,##0" }, t: undefined, v: 0 });
     });
 
     it('_createExcelConfig - should call Excel.getCellAddress', () => {
-        const instance = new ReportExcel(data, title, headerFake, isMainView);
+        const instance = new ReportExcel(data, title, headerFake, isMainView, languageList);
 
         Excel.getCellAddress = jest.fn();
 
@@ -335,12 +323,13 @@ describe('affiliate report - Report Excel ', () => {
 
         expect(Excel.getCellAddress).toHaveBeenCalledTimes(2);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 0 });
-        expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 21, "r": 3 });
+        expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 22, "r": 3 });
     });
 
     it('_getcolumnConfigs - return correct', () => {
         const expectResult = [
             { field: "UserName", mainSectionStyle: { alignment: { horizontal: "left", vertical: "center" } }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } }, wpx: 150 },
+            { field: "PreferredLanguage", mainSectionStyle: { alignment: { horizontal: "right", vertical: "center" } }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } }, wpx: 120 },
             { field: "TotalClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true }, numFmt: "#,##0" }, wpx: 80 },
             { field: "UniqueClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 80 },
             { field: "Signup", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 80 },

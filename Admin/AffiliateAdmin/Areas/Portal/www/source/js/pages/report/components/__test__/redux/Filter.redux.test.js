@@ -1,68 +1,34 @@
-﻿jest.mock('redux');
-jest.mock('react-redux');
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../../actions/index';
+﻿import React from 'react';
+import Filter from '../../Filter';
+import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
+import { SET_REPORT_TITLE } from '../../../actions/types';
 
-describe('affiliate report - Filter - connect', () => {
-    let mapStateToProps, mapDispatchToProps;
-    const connectMock = jest.fn();
+const mockStore = configureMockStore();
 
-    beforeAll(() => {
-        connect.mockImplementationOnce((mapStateToPropsFunc, mapDispatchToPropsFunc) => {
-            mapStateToProps = mapStateToPropsFunc;
-            mapDispatchToProps = mapDispatchToPropsFunc;
-            return connectMock;
-        });
-        require('../../Filter').default;
+describe('Report - components - Filter - connect', () => {
+    let wrapper;
+    let store;
+
+    beforeEach(() => {
+        const initialState = {
+            today: '4/2/2021',
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) }
+        };
+        store = mockStore(initialState);
+        wrapper = shallow(<Filter store={store} />).dive();
     });
 
-    it('props should be mapped correctly', () => {
-        const expectedResult = {
-            languageList: { en: 'English' },
-            productList: { 133: 'New Group' },
-            pagingOption: { PageSize: 1 },
-            param: { abc: 123 },
-            today: '09/24/2019',
-            hasTurnOverPermission: true,
-            isShowLangFilter: true,
-            currentViewLevel: 'abc'
-        };
+    it('should show correct value', () => {
+        expect(wrapper.props().today).toEqual('4/2/2021');
+        expect(wrapper.props().hasTurnOverPermission).toTruthy;
+        expect(wrapper.props().isShowLangFilter).toTruthy;
+    });
 
-        const state = {
-            languageList: { en: 'English' },
-            productList: { 133: 'New Group' },
-            pagingOption: { PageSize: 1 },
-            param: { abc: 123 },
-            today: '09/24/2019',
-            currentViewLevel: 'abc',
-            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
-            anotherProp: "Not included"
-        };
+    it('should call correct action', () => {
+        wrapper.props().setReportTitle(null);
 
-        const result = mapStateToProps(state);
-
-        expect(result).toEqual(expectedResult);
-    })
-
-    it('bindActionCreators should be called with correct parameter', () => {
-        const mockBindAction = jest.fn();
-        bindActionCreators.mockImplementationOnce(mockBindAction);
-        const expectedActionCreator = {
-            setReportTitle: actions['setReportTitle'],
-            setParam: actions['setParam']
-        }
-
-        const dispatch = {};
-        mapDispatchToProps(dispatch);
-
-        expect(mockBindAction).toHaveBeenCalledWith(expectedActionCreator, dispatch);
-    })
-
-    it('returned function of connect should be called with correct parameter', () => {
-        const Filter = require('../../Filter').Filter;
-
-        expect(connectMock).toHaveBeenCalledWith(Filter);
-    })
+        const actions = store.getActions();
+        expect(actions).toEqual([{ type: SET_REPORT_TITLE, data: null }]);
+    });
 })

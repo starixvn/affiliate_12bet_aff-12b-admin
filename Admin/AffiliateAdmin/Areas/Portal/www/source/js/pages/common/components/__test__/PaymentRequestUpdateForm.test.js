@@ -70,8 +70,7 @@ describe('common - components - PaymentRequestUpdateForm', () => {
         const result = shallow(<PaymentRequestUpdateForm />);
         const instance = result.instance();
         instance.setState({ paymentRequestInfo });
-        instance.setState = jest.fn(fn => fn && fn({ paymentRequestInfo }));
-
+        instance.setState = jest.fn(fn => (fn instanceof Function) && fn({ paymentRequestInfo }));
         instance.handleChange({ target: { name: 'LastName', value: 'Lê Văn' } });
 
         expect(instance.setState).toHaveBeenCalledWith(expect.any(Function));

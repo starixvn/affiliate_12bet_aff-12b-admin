@@ -973,18 +973,18 @@ describe('banner list - components - EditBannerForm ', () => {
     });
 
     it('_handleCloseNotificationPopup - should call setState, _getParam and _updateBanner', () => {
-        const bannerInfo = { bannerId: 123 };
+        const banner = { bannerId: 123 };
         const result = shallow(<EditBannerForm {...defaultProps} />);
         const instance = result.instance();
         instance.setState = jest.fn();
-        instance._getParam = jest.fn(() => bannerInfo);
+        instance._getParam = jest.fn(() => banner);
         instance._updateBanner = jest.fn();
 
         instance.handleCloseNotificationPopup(true)
 
         expect(instance.setState).toHaveBeenCalledWith({ messageNotificationPopup: '' });
         expect(instance._getParam).toHaveBeenCalled();
-        expect(instance._updateBanner).toHaveBeenCalledWith(bannerInfo);
+        expect(instance._updateBanner).toHaveBeenCalledWith(banner);
     });
 
     it('_handleCloseNotificationPopup - - should call setState and not call _getParam and _updateBanner', () => {

@@ -72,12 +72,11 @@ describe('left panel - components - general-info - ContactNumber', () => {
 
     it('_toogle - should call setState', async () => {
         const wrapper = shallow(<ContactNumber {...defaultProps} />);
-        wrapper.setState = jest.fn();
-        const instance = wrapper.instance();
+        wrapper.setState = jest.fn(fn => fn && fn({ isOpen: true }));
 
-        await instance._toogle();
+        await wrapper.instance()._toogle();
 
-        expect(wrapper.setState).toHaveBeenCalledWith({ isOpen: true });
+        expect(wrapper.setState).toHaveBeenCalledWith(expect.any(Function));
     });
 
 

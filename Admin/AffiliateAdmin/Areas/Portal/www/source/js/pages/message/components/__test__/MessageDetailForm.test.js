@@ -106,7 +106,6 @@ describe('message - components - MessageDetailForm ', () => {
         expect(result.setState).not.toHaveBeenCalled();
         expect(instance._handleGetMessageDetail).not.toHaveBeenCalled();
     });
-
     it('_handleGetMessageDetail should call getMessageDetail and setState', async () => {
         const MessageId = 37;
         const expectedReponse = {
@@ -117,12 +116,12 @@ describe('message - components - MessageDetailForm ', () => {
         const props = Object.assign({}, defaultProps, { getMessageDetail: jest.fn(() => expectedReponse) });
         const result = shallow(<MessageDetailForm {...props} />);
 
-        result.setState = jest.fn();
+        result.setState = jest.fn(fn => fn && fn({ messageContentList }));
 
         await result.instance()._handleGetMessageDetail(MessageId);
 
         expect(props.getMessageDetail).toHaveBeenCalledWith(MessageId);
-        expect(result.setState).toHaveBeenCalledWith({ messageContentList: { ...messageContentList, MessageId: "37" }, important: false });
+        expect(result.setState).toHaveBeenCalledWith(expect.any(Function));
     });
 
     it('_handleGetMessageDetail should call getMessageDetail but not call setState', async () => {
@@ -175,11 +174,11 @@ describe('message - components - MessageDetailForm ', () => {
             }
         }
         const result = shallow(<MessageDetailForm {...defaultProps} />);
-        result.setState = jest.fn();
+        result.setState = jest.fn(fn => fn && fn({ messageContentList }));
 
         result.find('Input[type="textarea"][name="MessageContentEn"][id="MessageContentEn"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({ messageContentList });
+        expect(result.setState).toHaveBeenCalledWith(expect.any(Function));
     });
 
     it('_validateMessageContent - return false', async () => {

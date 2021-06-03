@@ -98,7 +98,7 @@ describe('referrers - components - Filter', () => {
     it('handleChangeFromDate - should be called when From change', () => {
         const monthDate = { format: jest.fn(() => "6/25/2019")};
         const wrapper = shallow(<Filter {...defaultProps} />);
-        wrapper.setState = jest.fn(fn => fn && fn({ toDate: "7/12/2019" }));
+        wrapper.setState = jest.fn(fn => fn && fn(() => ({ fromDate: "6/25/2019", toDate: "7/12/2019" })));
 
         wrapper.find(DatePicker).at(0).simulate('change', monthDate);
 

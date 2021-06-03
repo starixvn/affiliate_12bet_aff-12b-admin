@@ -8,8 +8,6 @@ import { headerText } from './libs/constants';
 import ClaimPrincipal from '../../../modules/claim';
 import { removeUndifineItem } from '../../../modules/utils';
 
-
-
 export default class App extends Component {
     constructor(props) {
         super(props);

@@ -49,8 +49,12 @@ export const Filter = (props) => {
     )
 }
 
+function mapStateToProps() {
+    return {};
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setMessage, setShowText, fetchData, setUserNames }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(React.memo(Filter));
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

@@ -582,7 +582,6 @@ describe('affiliate report - Filter ', () => {
 
         expect(result).toMatchSnapshot();
     });
-
     it('should call setState when select and input on AutoComplete', () => {
         const props = Object.assign({}, defaultProps, { currentViewLevel: monthOnMonth });
         const wrapper = shallow(<Filter {...props} />);

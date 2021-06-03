@@ -6,7 +6,7 @@ import { SHOULD_RESET_SCROLL_POSITION } from '../../../actions/types';
 
 const mockStore = configureMockStore();
 
-describe('active member list - Content - connect', () => {
+describe('active member list - Unactivated - connect', () => {
     let wrapper;
     let store;
 

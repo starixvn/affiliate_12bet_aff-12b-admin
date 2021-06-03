@@ -147,7 +147,7 @@ describe('players detail - components - Content', () => {
         instance.handleClickHeader(turnover);
 
         expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: true, sortById: turnover, pageIndex: 1, pageSize: 20 });
-        expect(defaultProps.setSortedParam).toHaveBeenCalledWith({ isSortAsc: true });
+        expect(defaultProps.setSortedParam).toHaveBeenCalledWith({ isSortAsc: true, sortById: 5 });
     });
 
     it('handleClickHeader - should call setState and _fetchData when sortingColumn !== selectedColumn', async () => {
