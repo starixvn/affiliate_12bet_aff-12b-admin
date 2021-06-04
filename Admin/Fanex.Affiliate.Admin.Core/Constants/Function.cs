@@ -48,6 +48,8 @@
 
         public const string ActiveMembers = "[ActiveMembers]";
 
+        public const string RegisteredMembers = "[RegisteredMembers]";
+
         public const string MemberName = "[AffMemberName]";
 
         public const string Turnover = "[AffTurnover]";

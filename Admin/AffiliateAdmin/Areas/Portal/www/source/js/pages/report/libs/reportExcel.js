@@ -32,7 +32,7 @@ const colConfig = {
         [COL_WIDTH] : 150
     },
     [fields.PreferredLanguage]: {
-        [MAIN_SECTION_STYLE]: bodyCellStyle.right,
+        [MAIN_SECTION_STYLE]: bodyCellStyle.left,
         [TOTAL_SECTION_STYLE]: totalCellStyle.default,
         [COL_WIDTH]: 120
     },

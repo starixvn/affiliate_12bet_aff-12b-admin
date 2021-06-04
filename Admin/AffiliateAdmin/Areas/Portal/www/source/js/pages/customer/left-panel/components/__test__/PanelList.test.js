@@ -3,8 +3,8 @@ import { PanelList } from '../PanelList';
 import { shallow } from 'enzyme';
 
 describe('left panel - components - PanelList', () => {
-    it('render correctly with affiliateInfo is null', () => {
-        const result = shallow(<PanelList />);
+    it('render correctly with affiliateInfo is empty', () => {
+        const result = shallow(<PanelList affiliateInfo={{}} />);
 
         expect(result).toMatchSnapshot();
     });

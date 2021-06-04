@@ -8,8 +8,8 @@ describe('left panel - components - general-info - ApprovedStatusInfo', () => {
         jest.resetAllMocks();
     });
 
-    it('render correctly has props is null', () => {
-        const result = shallow(<ApprovedStatusInfo />);
+    it('render correctly has props is empty', () => {
+        const result = shallow(<ApprovedStatusInfo affiliateInfo={{}} />);
 
         expect(result).toMatchSnapshot();
     });

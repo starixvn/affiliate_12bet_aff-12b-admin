@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.MemberDetail)]
+        [FunctionAuthorize(FunctionName = Function.RegisteredMembers)]
         public ActionResult GetRegisteredMemberList(MemberParam param)
         {
             return new JsonNetResult

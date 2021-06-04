@@ -3,8 +3,8 @@ import { Content } from '../Content';
 import { shallow } from 'enzyme';
 
 describe('left panel - components - Content', () => {
-    it('render correctly with affiliateInfo is null', () => {
-        const result = shallow(<Content />);
+    it('render correctly with affiliateInfo is empty', () => {
+        const result = shallow(<Content affiliateInfo={{}} />);
 
         expect(result).toMatchSnapshot();
     });

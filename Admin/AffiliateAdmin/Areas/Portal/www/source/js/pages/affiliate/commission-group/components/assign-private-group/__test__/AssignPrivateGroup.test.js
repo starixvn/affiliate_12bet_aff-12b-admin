@@ -28,6 +28,8 @@ describe('commission group - assign private group', () => {
         TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]
     };
 
+    const selectedProductIds = [1, 2, 3, 4, 5, 6];
+
     const defaultProps = {
         selectedGroup: { GroupId: 102 },
         affInfo: {
@@ -54,7 +56,8 @@ describe('commission group - assign private group', () => {
             { ProductId: 4, ProductName: "Number Game" },
             { ProductId: 5, ProductName: "Virtual Sports" },
             { ProductId: 6, ProductName: "Keno" }
-        ]
+        ],
+        selectedProductIds
     };
 
     it('componentDidMount - should call setState and setSelectedGroup', () => {
