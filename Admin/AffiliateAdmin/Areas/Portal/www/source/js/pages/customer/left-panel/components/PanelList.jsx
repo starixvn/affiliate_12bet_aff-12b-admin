@@ -9,9 +9,9 @@ import { claimResource } from '../../../../modules/claim';
 
 export const PanelList = (props) => {
     const { affiliateInfo, claimsPrincipal } = props;
-    const isApproved = affiliateInfo && affiliateInfo.Status && affiliateInfo.Status.toLowerCase() === status.Approved;
+    const isApproved = affiliateInfo.Status && affiliateInfo.Status.toLowerCase() === status.Approved;
 
-    return affiliateInfo && (
+    return (
         <React.Fragment>
             {isApproved && claimsPrincipal.hasReadClaim(claimResource.AssignCommGroup) && <CommissionPanel />}
             {<SettingPanel isApproved={isApproved} />}
@@ -24,6 +24,6 @@ function mapStateToProps({ leftPanel, claimsPrincipal }) {
     const { affiliateInfo } = leftPanel;
 
     return Object.assign({}, { affiliateInfo, claimsPrincipal });
-};
+}
 
 export default connect(mapStateToProps)(React.memo(PanelList));

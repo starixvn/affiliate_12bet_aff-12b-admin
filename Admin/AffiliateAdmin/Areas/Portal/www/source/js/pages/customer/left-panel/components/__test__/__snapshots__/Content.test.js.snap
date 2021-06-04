@@ -8,11 +8,3 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
   <Connect(Component) />
 </div>
 `;
-
-exports[`left panel - components - Content render correctly with affiliateInfo is null 1`] = `
-<div
-  className="left-panel-container"
->
-  <Connect(SearchBox) />
-</div>
-`;
