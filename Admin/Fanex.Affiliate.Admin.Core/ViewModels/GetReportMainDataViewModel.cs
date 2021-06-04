@@ -27,5 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels
         public int PageSize { get; set; }
 
         public bool IsExportExcel { get; set; }
+
+        public bool IsGetMonthly { get; set; }
     }
 }
