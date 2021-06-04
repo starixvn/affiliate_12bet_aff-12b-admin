@@ -42,12 +42,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
 
         private static bool IsValidParam(AffiliateReportMainParam param)
         {
-            return !string.IsNullOrEmpty(param.ProductIds) && IsValidMonthRange(param.FromDate, param.ToDate);
+            return !string.IsNullOrEmpty(param.ProductIds) && IsValidDateRange(param.FromDate, param.ToDate, param.IsGetMonthly);
         }
 
-        private static bool IsValidMonthRange(DateTime from, DateTime to)
+        private static bool IsValidDateRange(DateTime from, DateTime to, bool isGetMonthly = true)
         {
-            var maxMonth = from.AddMonths(5);
+            var maxMonth = from.AddMonths(isGetMonthly ? 5 : 6);
 
             return DateTime.Compare(maxMonth, to) >= 0;
         }
