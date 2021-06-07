@@ -13,6 +13,7 @@ describe('registerd member list - components - Content ', () => {
             CreatedDateText: "07/06/2017 10:24:00",
             FirstName: "",
             LastName: "",
+            Currency: "UUS",
             MemberId: 26522982,
             UserName: "12Bet$wjpwjp"
         },
@@ -22,6 +23,7 @@ describe('registerd member list - components - Content ', () => {
             CreatedDateText: "07/05/2017 18:25:00",
             FirstName: "",
             LastName: "",
+            Currency: "UUS",
             MemberId: 26518302,
             UserName: "12Bet$jingguoan"
         }

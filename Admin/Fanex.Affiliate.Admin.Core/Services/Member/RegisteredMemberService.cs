@@ -36,7 +36,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
                             FirstName = Convert.ToString(reader["FirstName"]),
                             LastName = Convert.ToString(reader["LastName"]),
                             CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"]),
-                            AffName = Convert.ToString(reader["AffName"])
+                            AffName = Convert.ToString(reader["AffName"]),
+                            Currency = Convert.ToString(reader["Currency"])
                         });
                     }
                 }

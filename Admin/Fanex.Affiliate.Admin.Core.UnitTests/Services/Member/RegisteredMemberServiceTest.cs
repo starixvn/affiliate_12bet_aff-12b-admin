@@ -72,6 +72,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
                 ["LastName"] = "Aff",
                 ["CreatedDate"] = new DateTime(2019, 10, 10),
                 ["AffName"] = "12BETAFF226",
+                ["Currency"] = "UUS"
             };
         }
 
@@ -84,6 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
                 ["LastName"] = "Aff",
                 ["CreatedDate"] = DBNull.Value,
                 ["AffName"] = "12BETAFF226",
+                ["Currency"] = "UUS"
             };
         }
     }

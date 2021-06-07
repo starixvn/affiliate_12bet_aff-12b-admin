@@ -8,6 +8,7 @@ export const headerText = {
     UserName: 'User Name',
     FirstName: 'First Name',
     LastName: 'Last Name',
-    CreatedDate: 'Created Date',
+    Currency: 'Currency',
+    RegisteredDate: 'Registered Date',
     Search: globalResource.Search
 }

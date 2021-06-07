@@ -35,7 +35,8 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={120} title={headerText.UserName}>{headerText.UserName}</Cell>
                 { isShowMemberName && <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>}
                 { isShowMemberName && <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>}
-                <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Currency}>{headerText.Currency}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.RegisteredDate}>{headerText.RegisteredDate}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
             </Row>
         );
@@ -54,7 +55,7 @@ export const Content = (props) => {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan={isShowMemberName ? "6" : "4"}>{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={isShowMemberName ? "7" : "5"}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -72,6 +73,7 @@ export const Content = (props) => {
                 <Cell className="text-center" title={userName}>{userName}</Cell>
                 { isShowMemberName && <Cell className="text-center" title={firstName}>{firstName}</Cell>}
                 { isShowMemberName && <Cell className="text-center" title={lastName}>{lastName}</Cell>}
+                <Cell className="text-center" title={dataItem.Currency}>{dataItem.Currency}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
                 <Cell className="text-center" title={dataItem.AffName}>{dataItem.AffName}</Cell>
             </Row>

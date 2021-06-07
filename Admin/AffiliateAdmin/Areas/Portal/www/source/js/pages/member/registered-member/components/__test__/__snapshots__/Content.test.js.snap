@@ -65,6 +65,17 @@ exports[`registerd member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
+              title="UUS"
+            >
+              UUS
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
               title="07/06/2017 10:24:00"
             >
               07/06/2017 10:24:00
@@ -125,6 +136,17 @@ exports[`registerd member list - components - Content  render correctly 1`] = `
               title=""
             >
               
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="UUS"
+            >
+              UUS
             </t>
             <t
               asc={true}
@@ -206,9 +228,20 @@ exports[`registerd member list - components - Content  render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Created Date"
+            title="Currency"
           >
-            Created Date
+            Currency
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Registered Date"
+          >
+            Registered Date
           </t>
           <t
             asc={true}
@@ -266,7 +299,7 @@ exports[`registerd member list - components - Content  render correctly with gri
             <t
               asc={true}
               className="text-center"
-              colSpan="6"
+              colSpan="7"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -332,9 +365,20 @@ exports[`registerd member list - components - Content  render correctly with gri
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Created Date"
+            title="Currency"
           >
-            Created Date
+            Currency
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Registered Date"
+          >
+            Registered Date
           </t>
           <t
             asc={true}
