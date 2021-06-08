@@ -11,12 +11,6 @@ export const userNames = createReducer('', {
     }
 })
 
-export const isShowText = createReducer(false, {
-    [types.SET_SHOW_TEXT](prevState, action) {
-        return action.data;
-    }
-})
-
 export const message = createReducer('', {
     [types.SET_MESSAGE](prevState, action) {
         return action.data;
@@ -49,7 +43,6 @@ export const unactivatedGridData = createReducer('', {
 
 export default combineReducers({
     isShowLoader,
-    isShowText,
     userNames,
     message,
     memberNotExist,

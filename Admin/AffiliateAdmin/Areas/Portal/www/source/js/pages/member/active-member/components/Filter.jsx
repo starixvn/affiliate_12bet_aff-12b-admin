@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { setMessage, setShowText, fetchData, setUserNames } from '../actions';
+import { setMessage, fetchData, setUserNames } from '../actions';
 import { headerText } from '../libs/constants';
 
 export const Filter = (props) => {
@@ -54,7 +54,7 @@ function mapStateToProps() {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setMessage, setShowText, fetchData, setUserNames }, dispatch);
+    return bindActionCreators({ setMessage, fetchData, setUserNames }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

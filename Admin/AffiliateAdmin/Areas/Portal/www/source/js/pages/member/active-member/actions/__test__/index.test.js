@@ -18,7 +18,6 @@ const runTestAction = ({ name, type, data }) => {
 
 const actionList = [
     { name: 'setUserNames', type: types.SET_USER_NAMES, data: "xyl157" },
-    { name: 'setShowText', type: types.SET_SHOW_TEXT, data: true },
     { name: 'setMessage', type: types.SET_MESSAGE, data: "abc" },
     { name: 'setMemberNotExist', type: types.SET_MEMBER_NOT_EXIST, data: "123" },
     { name: 'setShouldResetScrollPosition', type: types.SHOULD_RESET_SCROLL_POSITION, data: false },
@@ -91,7 +90,7 @@ describe('active member actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = { userNames: 'xyl157' };
 
-        const result = await actions['activeMember'](param)();
+        const result = await actions['activeMember'](param)(jest.fn());
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/ActiveMember/ActiveMember', param);
 
@@ -102,9 +101,9 @@ describe('active member actions', () => {
         ajaxRequest.post = jest.fn();
         const param = { userNames: 'abc' };
 
-        const result = await actions['activeMember'](param)();
+        const result = await actions['activeMember'](param)(jest.fn());
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/ActiveMember/ActiveMember', param);
-        expect(result).toEqual(null);
+        expect(result).toEqual({ IsSuccessful: false, Message: "An error occurred while processing your request, please try again later!" });
     })
 });

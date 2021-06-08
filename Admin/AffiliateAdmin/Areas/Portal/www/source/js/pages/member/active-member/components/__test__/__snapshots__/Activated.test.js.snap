@@ -5,7 +5,7 @@ exports[`active member - components - Activated  render correctly 1`] = `
   className="data-content"
 >
   <div
-    className="active-member-content table-responsive table-striped my-2"
+    className="active-member-content table-responsive table-striped mb-4"
   >
     <div
       className="title-text"
@@ -152,7 +152,7 @@ exports[`active member - components - Activated  render correctly with Activated
   className="data-content"
 >
   <div
-    className="active-member-content table-responsive table-striped my-2"
+    className="active-member-content table-responsive table-striped mb-4"
   >
     <div
       className="title-text"
@@ -257,7 +257,7 @@ exports[`active member - components - Activated  render correctly with show full
   className="data-content"
 >
   <div
-    className="active-member-content table-responsive table-striped my-2"
+    className="active-member-content table-responsive table-striped mb-4"
   >
     <div
       className="title-text"

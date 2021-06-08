@@ -128,7 +128,7 @@ describe('user account actions', () => {
             State: "A"
         }
 
-        const result = await actions['updateUserAccount'](param)();
+        const result = await actions['updateUserAccount'](param)(jest.fn());
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/UserAccount/updateUserAccount', param);
 
@@ -168,7 +168,7 @@ describe('user account actions', () => {
             State: "A"
         }
 
-        const result = await actions['updateUserAccount'](param)();
+        const result = await actions['updateUserAccount'](param)(jest.fn());
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/UserAccount/updateUserAccount', param);
         expect(result).toEqual(null);
