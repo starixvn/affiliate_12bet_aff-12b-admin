@@ -113,7 +113,7 @@
     <Setting Key="Aff_Admin_Message_Del" SpName="Aff_Admin_Message_Del" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Member">
-    <Setting Key="Aff_Admin_MemberList_Sel" SpName="Aff_Admin_MemberList_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_MemberList_Sel" SpName="Aff_Admin_MemberList_Sel_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_Member_RemoveStatus_Upd" SpName="Aff_Admin_Member_RemoveStatus_Upd" DbName="affiliate_12bet" />
     <Setting Key="Aff_WriteLog" SpName="Aff_WriteLog" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_ActiveMember_CheckStatus" SpName="Aff_Admin_ActiveMember_CheckStatus" DbName="affiliate_12bet" />
