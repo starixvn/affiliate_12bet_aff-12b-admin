@@ -8,7 +8,7 @@ import { headerText, globalResource, defaultState, Casino, Sportsbook, regSpecia
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import NotificationPopup from '../../../common/components/NotificationPopup';
-import { validateFileExtension, validateInputFile } from '../libs/utils';
+import { validateFileExtensionCustom, validateInputFile } from '../libs/utils';
 import MultipleSelect from '../../../../components/multiple-select';
 import InputFile from '../../../common/components/InputFile';
 
@@ -103,10 +103,10 @@ export class EditBannerForm extends PureComponent {
                 message: ''
             };
 
-            for (let i = 0; i < files.length; i++) {
-                let fileName = files[i].name;
+            for (let file of files) {
+                let fileName = file.name;
                 inputFileNames.push(fileName);
-                let result = validateFileExtension(fileName);
+                let result = validateFileExtensionCustom(fileName);
 
                 if (!result.isOK) {
                     allResults = result;
@@ -133,9 +133,9 @@ export class EditBannerForm extends PureComponent {
                 message: ''
             };
 
-            for (let i = 0; i < files.length; i++) {
-                let fileName = files[i].name;
-                let result = validateFileExtension(fileName);
+            for (let file of files) {
+                let fileName = file.name;
+                let result = validateFileExtensionCustom(fileName);
 
                 if (!result.isOK) {
                     allResults = result;
@@ -366,13 +366,15 @@ export class EditBannerForm extends PureComponent {
     }
 
     resetToDefault = () => {
-        const categoryList = this.selectedAll(this.state.categoryList);
-        const subCategoryList = this.selectedAll(this.getSubCategories(categoryList));
-        const currencyList = this.selectedAll(this.state.currencyList);
-        const affTypeList = this.selectedAll(this.state.affTypeList);
-        const deviceTypeList = this.selectedAll(this.state.deviceTypeList);
+        this.setState(prevState => {
+            const categoryList = this.selectedAll(prevState.categoryList);
+            const subCategoryList = this.selectedAll(this.getSubCategories(categoryList));
+            const currencyList = this.selectedAll(prevState.currencyList);
+            const affTypeList = this.selectedAll(prevState.affTypeList);
+            const deviceTypeList = this.selectedAll(prevState.deviceTypeList);
 
-        this.setState({ categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList });
+            return { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList };
+        });
     }
 
     getSubCategories = (categories) => {
@@ -486,7 +488,7 @@ export class EditBannerForm extends PureComponent {
                                     <FormGroup row className="mb-2">
                                         <Label sm={3} for="file" className={isInsert ? "required" : ""}>File</Label>
                                         <Col sm={9} >
-                                            <InputFile className={`border ${(isInsert && isDisabled) || files.length === 0 ? "text-danger" : "text-success"}`}
+                                            <InputFile className={`border ${isDisabled || files.length === 0 ? "text-danger" : "text-success"}`}
                                                 lblText="No file choosen"
                                                 btnName={globalResource.ChooseFile}
                                                 isMultiple={isInsert} files={files}

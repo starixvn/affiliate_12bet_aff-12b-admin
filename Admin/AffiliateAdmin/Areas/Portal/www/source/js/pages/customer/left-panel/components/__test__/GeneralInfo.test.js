@@ -3,12 +3,6 @@ import { GeneralInfo } from '../GeneralInfo';
 import { shallow } from 'enzyme';
 
 describe('left panel - components - Content', () => {
-    it('render correctly with affiliateInfo is null', () => {
-        const result = shallow(<GeneralInfo claimsPrincipal={{ hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) }} />);
-
-        expect(result).toMatchSnapshot();
-    });
-
     it('render correctly with affiliateInfo', () => {
         const affiliateInfo = {
             AffId: 1271808,
@@ -30,34 +24,6 @@ describe('left panel - components - Content', () => {
             Phone: "abc",
             PreferredLanguage: "vi-VN",
             SiteUrl: "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount",
-            Status: "Approved"
-        }
-        const result = shallow(<GeneralInfo affiliateInfo={affiliateInfo} claimsPrincipal={{ hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) }} />);
-
-        expect(result).toMatchSnapshot();
-    });
-
-    it('render correctly with affiliateInfo not has http in siteurl', () => {
-        const affiliateInfo = {
-            AffId: 927841,
-            AffLink: "http://localhost:55690/Auth/AdminLogin?chalengeStr=640eh6&accKey=3F9ADA82AD&custName=12BETAFF001&accId=1000000026&accOnId=8405",
-            AffName: "12BETAFF001",
-            AffType: 2,
-            BalanceBf: 4953349.1635,
-            CommGroupName: "CG22124",
-            ContactApps: '[{"Name":"MSN/YM/QQ","Value":"@","Order":0}]',
-            FirstName: "媒体册 获取以更新吧！",
-            Gender: false,
-            GroupId: 152,
-            IsClosed: false,
-            LastLoginDateText: "04/12/2019 04:11:00",
-            LastLoginIp: "10.18.200.125",
-            LastName: "媒体册 获取以更新吧！",
-            MoreSiteUrl: "w",
-            NoSiteDescription: "好",
-            Phone: "123456",
-            PreferredLanguage: "en-US",
-            SiteUrl: "www.betwiki.net",
             Status: "Approved"
         }
         const result = shallow(<GeneralInfo affiliateInfo={affiliateInfo} claimsPrincipal={{ hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) }} />);

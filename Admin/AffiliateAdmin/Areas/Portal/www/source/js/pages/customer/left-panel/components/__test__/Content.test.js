@@ -3,12 +3,6 @@ import { Content } from '../Content';
 import { shallow } from 'enzyme';
 
 describe('left panel - components - Content', () => {
-    it('render correctly with affiliateInfo is null', () => {
-        const result = shallow(<Content />);
-
-        expect(result).toMatchSnapshot();
-    });
-
     it('render correctly with affiliateInfo', () => {
         const affiliateInfo = {
             AffId: 1271808,

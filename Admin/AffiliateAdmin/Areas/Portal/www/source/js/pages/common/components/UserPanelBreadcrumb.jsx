@@ -21,12 +21,12 @@ const UserPanelBreadcrumb = (props) => {
         return arrayItem;
     }
 
-    const breadcrumbList = props.breadcrumbList || null;
+    const breadcrumbs = props.breadcrumbList || null;
 
-    return breadcrumbList && (
+    return breadcrumbs && (
         <Breadcrumb>
             {
-                _renderBreadcrumbItem(breadcrumbList)
+                _renderBreadcrumbItem(breadcrumbs)
             }
         </Breadcrumb>
     );

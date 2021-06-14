@@ -89,8 +89,7 @@ export const updateMarketInfoList = (marketInfoList) => async () => {
 
 const _getMarketIdList = (marketList) => {
     const makertIds = {};
-    for (let i = 0; i < marketList.length; i++) {
-        const makertItem = marketList[i];
+    for (let makertItem of marketList) {
         makertIds[makertItem.MarketId] = makertItem.MarketId;
     }
 

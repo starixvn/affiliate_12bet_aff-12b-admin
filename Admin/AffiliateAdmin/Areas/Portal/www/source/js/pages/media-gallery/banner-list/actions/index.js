@@ -3,7 +3,7 @@ import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
 
 import {
-    SET_PARAM, SET_PARAM_FROM_HOME, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID, SET_BANNER_ROOT_URL,
+    SET_PARAM, SET_PARAM_FROM_HOME, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID,
     SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_SIZE_LIST
 } from './types';
 
@@ -98,9 +98,8 @@ export const fetchData = (param) => async (dispatch) => {
 
 function _convertCheckedBanners(dataList) {
     const checkedBanners = {};
-    for (let i = 0; i < dataList.length; i++) {
-        const itemId = dataList[i].BannerId;
-        checkedBanners[itemId] = false;
+    for (let item of dataList) {
+        checkedBanners[item.BannerId] = false;
     }
 
     return checkedBanners;
@@ -116,13 +115,13 @@ export const getBannerDetail = (selectedBannerId) => async () => {
 export const insertBanner = (param) => async () => {
     const url = 'Portal/MediaGallery/insertBanner';
 
-    return await handleExcute(url, param);
+    return handleExcute(url, param);
 }
 
 export const updateBanner = (param) => async () => {
     const url = 'Portal/MediaGallery/UpdateBanner';
 
-    return await handleExcute(url, param);
+    return handleExcute(url, param);
 }
 
 const handleExcute = async (url, param) => {
@@ -134,8 +133,8 @@ const handleExcute = async (url, param) => {
     const files = param['files'];
 
     if(files) {
-        for (let i = 0; i < files.length; i++) {
-            formData.append('files', files[i]);
+        for (let file of files) {
+            formData.append('files', file);
         }
     }
 

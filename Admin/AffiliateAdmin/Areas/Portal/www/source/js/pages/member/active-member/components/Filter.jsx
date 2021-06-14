@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { setMessage, setShowText, fetchData, setUserNames } from '../actions';
+import { setMessage, fetchData, setUserNames } from '../actions';
 import { headerText } from '../libs/constants';
 
 export const Filter = (props) => {
 
-    const [userNames, setUserNames] = useState('');
+    const [userNames, setUsernames] = useState('');
 
     const _handleSearch = () => {
         const userNamesTrim = userNames.replace(/ /g, '');
@@ -24,9 +24,9 @@ export const Filter = (props) => {
         }
     }
 
-    const _handleFetchData = async (userNames) => {
-        props.setUserNames(userNames);
-        await props.fetchData({ userNames });
+    const _handleFetchData = async (names) => {
+        props.setUserNames(names);
+        await props.fetchData({ userNames: names });
     }
 
     const _handlePressEnter = (event) => {
@@ -41,7 +41,7 @@ export const Filter = (props) => {
             <Form inline tag="div">
                 <FormGroup className="mr-sm-3">
                     <Label className="mr-2">{headerText.DepositUserName}</Label>
-                    <Input type="text" className="deposit-user-name" value={userNames} maxLength="4000" onKeyPress={_handlePressEnter} onChange={(e) => setUserNames(e.target.value)} />
+                    <Input type="text" className="deposit-user-name" value={userNames} maxLength="4000" onKeyPress={_handlePressEnter} onChange={(e) => setUsernames(e.target.value)} />
                 </FormGroup>
                 <Button outline color="primary" type="button" onClick={_handleSearch}>{headerText.CheckStatus}</Button>
             </Form>
@@ -49,8 +49,12 @@ export const Filter = (props) => {
     )
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setMessage, setShowText, fetchData, setUserNames }, dispatch);
+function mapStateToProps() {
+    return {};
 }
 
-export default connect(null, mapDispatchToProps)(React.memo(Filter));
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setMessage, fetchData, setUserNames }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

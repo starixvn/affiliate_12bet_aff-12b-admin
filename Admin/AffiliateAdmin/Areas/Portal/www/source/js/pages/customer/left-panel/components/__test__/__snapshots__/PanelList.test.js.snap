@@ -17,5 +17,3 @@ exports[`left panel - components - PanelList render correctly with affiliateInfo
   <Connect(OnlineInfoPanel) />
 </Fragment>
 `;
-
-exports[`left panel - components - PanelList render correctly with affiliateInfo is null 1`] = `""`;

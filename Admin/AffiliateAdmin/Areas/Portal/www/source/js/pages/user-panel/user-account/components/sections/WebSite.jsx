@@ -14,7 +14,7 @@ export class WebSite extends PureComponent {
 
         this.moreSiteUrlRefs = [];
 
-        for (let i = 0; i < this.props.moreSiteUrlsList.length; i++) {
+        for (let _ of this.props.moreSiteUrlsList) {
             this.moreSiteUrlRefs.push(React.createRef());
         }
 

@@ -24,14 +24,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         }
 
         [HttpGet]
-        public ActionResult Index(string affName)
+        public ActionResult Index()
         {
-            var model = new MemberListViewModel
-            {
-                AffName = affName
-            };
-
-            return View("~/Areas/Portal/Views/Member/Index.cshtml", model);
+            return View("~/Areas/Portal/Views/Member/Index.cshtml", new MemberListViewModel());
         }
 
         [HttpPost]

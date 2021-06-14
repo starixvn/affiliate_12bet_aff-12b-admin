@@ -1,40 +1,24 @@
-﻿jest.mock('redux');
-jest.mock('react-redux');
-import React from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../../actions/index';
+﻿import React from 'react';
+import Activated from '../../Activated';
+import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
 
-describe('active member - Content - connect', () => {
-    let mapStateToProps;
-    const connectMock = jest.fn();
+const mockStore = configureMockStore();
 
-    beforeAll(() => {
-        connect.mockImplementationOnce((mapStateToPropsFunc, mapDispatchToPropsFunc) => {
-            mapStateToProps = mapStateToPropsFunc;
-            return connectMock;
-        });
-        require('../../Activated').default;
+describe('Active member list - Activated - connect', () => {
+    let wrapper;
+    let store;
+
+    beforeEach(() => {
+        const initialState = {
+            claimsPrincipal: { hasReadClaim: jest.fn(() => false) }
+        };
+
+        store = mockStore(initialState);
+        wrapper = shallow(<Activated store={store} />).dive();
     });
 
-    it('props should be mapped correctly', () => {
-        const expectedResult = {
-            activatedGridData: [],
-            isShowMemberFullname: true
-        };
-        const state = {
-            activatedGridData: [],
-            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
-            anotherProp: "Not included"
-        };
-
-        const result = mapStateToProps(state);
-
-        expect(result).toEqual(expectedResult);
-    })
-
-    it('returned function of connect should be called with correct parameter', () => {
-        const Activated = require('../../Activated').Activated;
-
-        expect(connectMock).toHaveBeenCalledWith(React.memo(Activated));
-    })
+    it('should show correct value', () => {
+        expect(wrapper.props().isShowMemberFullname).toBeFalsy();
+    });
 })

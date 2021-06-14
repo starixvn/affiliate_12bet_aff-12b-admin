@@ -31,6 +31,11 @@ const colConfig = {
         [TOTAL_SECTION_STYLE]: totalCellStyle.default,
         [COL_WIDTH] : 150
     },
+    [fields.PreferredLanguage]: {
+        [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.default,
+        [COL_WIDTH]: 120
+    },
     [fields.TotalClick]:{
         [MAIN_SECTION_STYLE]: bodyCellStyle.number,
         [TOTAL_SECTION_STYLE]: totalCellStyle.number,
@@ -135,12 +140,13 @@ const colConfig = {
 }
 
 export default class ReportExcel {
-    constructor(data, title, header, isMainView) {
+    constructor(data, title, header, isMainView, languageList) {
         this.worksheet = {};
         this.title = isMainView ? title : 'AFFILIATE REPORT > ' + title;
         this.data = data;
         this.isMainView = isMainView;
         this.header = header;
+        this.languageList = languageList;
 
         this.currentRowIndex = DATA_ROW_INDEX;
         this.mergeConfig = [];
@@ -264,8 +270,7 @@ export default class ReportExcel {
     _createBodyData() {
         const mainData = this.data.MainData;
 
-        for (let i = 0; i < mainData.length; i++) {
-            const item = mainData[i];
+        for (let item of mainData) {
             item.CommissionRate = formatDecimal(item.CommissionRate) + '%';
 
             if (!this.isMainView) {
@@ -312,7 +317,11 @@ export default class ReportExcel {
 
     _buildDataRow(item, sectionStyleName, colIndex) {
         const columnConfig = this.columnConfigs[colIndex];
-        const value = item[columnConfig.field];
+        let value = item[columnConfig.field];
+
+        if (columnConfig.field === fields.PreferredLanguage) {
+            value = this.languageList[value] || '';
+        }
 
         return {
             t: Excel.getCellType(value),

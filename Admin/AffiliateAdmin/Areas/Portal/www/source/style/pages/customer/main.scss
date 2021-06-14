@@ -3,3 +3,12 @@
 @import "../../components/monthpicker";
 @import "leftpanel";
 @import "rightpanel";
+
+.data-content {
+    .btn {
+        &.btn-link {
+            padding: 0;
+            font-size: 12px;
+        }
+    }
+}

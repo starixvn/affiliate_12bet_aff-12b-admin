@@ -294,6 +294,7 @@
     <Content Include="Areas\Portal\www\source\js\modules\globalResource.js" />
     <Content Include="Areas\Portal\www\source\js\modules\htmlHelper.js" />
     <Content Include="Areas\Portal\www\source\js\modules\reducerRegistry.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\__test__\utils.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\admin-role\admin-info\actions\__test__\index.test.js" />
@@ -401,7 +402,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\components\__test__\redux\UploadResult.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\libs\constants.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\__test__\index.test.js" />
@@ -459,6 +459,23 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\__test__\redux\AppContainer.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\actions\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\components\__test__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\components\__test__\redux\AppContainer.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\components\__test__\redux\Filter.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\member\registered-member\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\AppContainer.test.js" />
@@ -466,6 +483,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\GridData.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\redux\AppContainer.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\libs\headerFake.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\components\__test__\redux\GridData.redux.test.js" />
@@ -912,6 +930,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\Filter.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\libs\constants.js" />

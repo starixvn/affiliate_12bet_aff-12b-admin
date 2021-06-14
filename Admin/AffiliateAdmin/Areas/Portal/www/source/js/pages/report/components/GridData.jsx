@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -14,7 +14,7 @@ import { claimResource } from '../../../modules/claim';
 import { globalResource } from '../../../modules/globalResource';
 import { AggregateHeader, HeaderRow } from '../libs/header';
 
-export class GridData extends Component {
+export class GridData extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -76,33 +76,35 @@ export class GridData extends Component {
 
     _renderHeader() {
         const isMainView = this._isMainView();
-        const { headerConfig } = this.props;
+        const { headerConfig, isCheckedDatePicker } = this.props;
 
         if (!(headerConfig instanceof HeaderRow)) {
             return [];
         }
-        const cols = headerConfig.getCols();
-        const firstColName = cols[0].label;
+
+        const firstColName = isCheckedDatePicker ? headerText.UserName : headerText.MonthDateString;
         const h1 = AggregateHeader.convertColsToObject(headerConfig.getHeaderCols(0));
         const h2 = AggregateHeader.convertColsToObject(headerConfig.getHeaderCols(1));
+
         return [
             <Row key="h1">
                 <Cell header={true} colWidth={120} rowSpan="2" title={firstColName}>{firstColName}</Cell>
-                {h1[reportKey.TotalClick].isVisable && <Cell header={true} colWidth={70} rowSpan="2" title={headerText.TotalClick}>{headerText.TotalClick}</Cell>}
-                {h1[reportKey.UniqueClick].isVisable && <Cell header={true} colWidth={70} rowSpan="2" title={headerText.UniqueClick}>{headerText.UniqueClick}</Cell>}
+                {h1[reportKey.PreferredLanguage].isVisable && <Cell header={true} colWidth={80} rowSpan="2" title={headerText.PreferredLanguage}>{headerText.PreferredLanguage}</Cell>}
+                {h1[reportKey.TotalClick].isVisable && <Cell header={true} colWidth={60} rowSpan="2" title={headerText.TotalClick}>{headerText.TotalClick}</Cell>}
+                {h1[reportKey.UniqueClick].isVisable && <Cell header={true} colWidth={60} rowSpan="2" title={headerText.UniqueClick}>{headerText.UniqueClick}</Cell>}
                 {h1[reportKey.Signup].isVisable && <Cell header={true} colWidth={65} rowSpan="2" title={headerText.Signup}>{headerText.Signup}</Cell>}
                 {h1[reportKey.Fdm].isVisable && <Cell header={true} colWidth={50} rowSpan="2" title={headerText.Fdm}>{headerText.Fdm}</Cell>}
                 {h1[reportKey.ActiveMember].isVisable && <Cell header={true} colWidth={60} rowSpan="2" title={headerText.ActiveMember}>{headerText.ActiveMember}</Cell>}
                 {h1[reportKey.QualifiedMember].isVisable && <Cell header={true} colWidth={60} rowSpan="2" title={headerText.QualifiedMember}>{headerText.QualifiedMember}</Cell>}
                 {h1[reportKey.MemberStatistics].isVisable && <Cell header={true} colSpan={h1[reportKey.MemberStatistics].totalVisableCol} title={headerText.MemberStatistics}>{headerText.MemberStatistics}</Cell>}
                 {h1[reportKey.AffiliateStatistics].isVisable && <Cell header={true} colSpan={h1[reportKey.AffiliateStatistics].totalVisableCol} title={headerText.AffiliateStatistics}>{headerText.AffiliateStatistics}</Cell>}
-                {isMainView && (<Cell header={true} colWidth={50} rowSpan="2" title={headerText.MonthOnMonth}>{headerText.MonthOnMonth}</Cell>)}
+                {isMainView && !isCheckedDatePicker && (<Cell header={true} colWidth={50} rowSpan="2" title={headerText.MonthOnMonth}>{headerText.MonthOnMonth}</Cell>)}
             </Row>,
             <Row key="h2">
-                {h2[reportKey.Deposit].isVisable && <Cell header={true} colWidth={75} title={headerText.Deposit}>{headerText.Deposit}</Cell>}
-                {h2[reportKey.Withdrawal].isVisable && <Cell header={true} colWidth={75} title={headerText.Withdrawal}>{headerText.Withdrawal}</Cell>}
-                {h2[reportKey.Turnover].isVisable && <Cell header={true} colWidth={95} title={headerText.Turnover}>{headerText.Turnover}</Cell>}
-                {h2[reportKey.Winlost].isVisable && <Cell header={true} colWidth={95} title={headerText.Winlost}>{headerText.Winlost}</Cell>}
+                {h2[reportKey.Deposit].isVisable && <Cell header={true} colWidth={80} title={headerText.Deposit}>{headerText.Deposit}</Cell>}
+                {h2[reportKey.Withdrawal].isVisable && <Cell header={true} colWidth={80} title={headerText.Withdrawal}>{headerText.Withdrawal}</Cell>}
+                {h2[reportKey.Turnover].isVisable && <Cell header={true} colWidth={80} title={headerText.Turnover}>{headerText.Turnover}</Cell>}
+                {h2[reportKey.Winlost].isVisable && <Cell header={true} colWidth={80} title={headerText.Winlost}>{headerText.Winlost}</Cell>}
                 {h2[reportKey.Bonus].isVisable && <Cell header={true} colWidth={70} title={headerText.Bonus}>{headerText.Bonus}</Cell>}
                 {h2[reportKey.PlatformFee].isVisable && <Cell header={true} colWidth={70} title={headerText.PlatformFee}>{headerText.PlatformFee}</Cell>}
                 {h2[reportKey.OperationalFee].isVisable && <Cell header={true} colWidth={70} title={headerText.OperationalFee}>{headerText.OperationalFee}</Cell>}
@@ -119,10 +121,9 @@ export class GridData extends Component {
 
     _renderDataSection(dataList) {
         const dataRows = [];
-        const { param } = this.props;
 
         if (dataList.length) {
-            const isSelectedAllProducts = param.ProductIds === allProduct;
+            const isSelectedAllProducts = this.props.param.ProductIds === allProduct;
             const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
 
             for (let i = 0; i < dataList.length; i++) {
@@ -135,7 +136,7 @@ export class GridData extends Component {
             const memberStatisticsColumns = header[reportKey.MemberStatistics].isVisable ? header[reportKey.MemberStatistics].childerent.filter(i => i.visable).length : 0;
             const affStatisticsColumns = header[reportKey.AffiliateStatistics].isVisable ? header[reportKey.AffiliateStatistics].childerent.filter(i => i.visable).length : 0;
 
-            const colSpan = singleColums + memberStatisticsColumns + affStatisticsColumns + this._isMainView()
+            const colSpan = singleColums + memberStatisticsColumns + affStatisticsColumns + (this._isMainView() && !this.props.isCheckedDatePicker )
 
             dataRows.push(<Row>
                 <Cell className="text-center" colSpan={colSpan}>{globalResource.NoInfo}</Cell>
@@ -155,9 +156,9 @@ export class GridData extends Component {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={firstColValue}>{firstColValue}</Cell>
-                {this._buildCommonCell(dataItem, productColumnClassName, isTotalRow)}
+                {this._buildCommonCell(dataItem, productColumnClassName, isTotalRow, isMainView)}
                 {
-                    isMainView && (
+                    isMainView && !this.props.isCheckedDatePicker && (
                         <Cell className="text-center">
                             {dataItem.AffId > 0 ? (
                                 <Button color="link" className="p-0"
@@ -172,8 +173,8 @@ export class GridData extends Component {
         return description ? `${monthDate} (${description})` : monthDate;
     }
 
-    _buildCommonCell(dataItem, productColumnClassName, isTotalRow) {
-        const { headerConfig } = this.props;
+    _buildCommonCell(dataItem, productColumnClassName, isTotalRow, isMainView) {
+        const { headerConfig, languageList } = this.props;
         const header = AggregateHeader.convertColsToObject(headerConfig.getCols());
         const totalClick = format(dataItem.TotalClick);
         const uniqueClick = format(dataItem.UniqueClick);
@@ -195,10 +196,12 @@ export class GridData extends Component {
         const affWithdrawal = formatDecimal(dataItem.AffWithdrawal);
         const affAdjustment = formatDecimal(dataItem.AffAdjustment);
         const balanceBf = formatDecimal(dataItem.BalanceBf);
-        const commRate = this._isMainView() && isTotalRow ? 'N/A' : formatDecimal(dataItem.CommissionRate) + '%';
+        const commRate = isMainView && isTotalRow ? 'N/A' : formatDecimal(dataItem.CommissionRate) + '%';
+        const language = isMainView ? languageList[dataItem.PreferredLanguage] : "";
 
         return (
             <React.Fragment>
+                { header[reportKey.PreferredLanguage].isVisable && <Cell className="text-left" title={language}>{language}</Cell>}
                 { header[reportKey.TotalClick].isVisable && <Cell className="text-right" title={totalClick}>{totalClick}</Cell>}
                 { header[reportKey.UniqueClick].isVisable &&  <Cell className="text-right" title={uniqueClick}>{uniqueClick}</Cell>}
                 { header[reportKey.Signup].isVisable && <Cell className="text-right" title={signup}>{signup}</Cell>}
@@ -271,9 +274,9 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, param, currentViewLevel, claimsPrincipal }) {
+function mapStateToProps({ pagingOption, param, currentViewLevel, claimsPrincipal, isCheckedDatePicker, languageList }) {
     const hasTurnOverPermission = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
-    return Object.assign({}, { pagingOption, param, currentViewLevel, hasTurnOverPermission });
+    return Object.assign({}, { pagingOption, param, currentViewLevel, hasTurnOverPermission, isCheckedDatePicker, languageList });
 }
 
 function mapDispatchToProps(dispatch) {

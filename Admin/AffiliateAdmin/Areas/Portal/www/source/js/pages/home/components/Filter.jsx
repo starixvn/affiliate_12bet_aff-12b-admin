@@ -21,7 +21,11 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
-        window.setInterval(this._handleCountDown, 1000);
+        this.internal = window.setInterval(this._handleCountDown, 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     _handleCountDown = () => {

@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { Content } from '../Content';
 import { shallow } from 'enzyme';
-import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('customer member - components - Content', () => {
     const param ={
@@ -52,7 +51,7 @@ describe('customer member - components - Content', () => {
 
     it('render correctly with have data', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData, total, isSelectedAllProducts: false });
 
         expect(result).toMatchSnapshot();

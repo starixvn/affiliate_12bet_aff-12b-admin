@@ -17,6 +17,6 @@ function mapStateToProps({ leftPanel }) {
     const { affiliateInfo } = leftPanel;
 
     return Object.assign({}, { affiliateInfo });
-};
+}
 
 export default connect(mapStateToProps)(React.memo(Content));

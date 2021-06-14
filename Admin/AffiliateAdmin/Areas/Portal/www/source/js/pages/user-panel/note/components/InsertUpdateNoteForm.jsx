@@ -102,7 +102,7 @@ export class InsertUpdateNoteForm extends PureComponent {
     }
 
     render() {
-        const { isShowMessage, isSuccess, message, isClickedSubmit } = this.state;
+        const { isShowMessage, isSuccess, message, isClickedSubmit, noteContent } = this.state;
         const { isShowPopup, noteInfo } = this.props;
 
         const isInsert = noteInfo.noteId === 0;
@@ -125,7 +125,7 @@ export class InsertUpdateNoteForm extends PureComponent {
                                     <Label for="noteContent" sm={3} className="d-flex justify-content-center align-items-center required">Content</Label>
                                     <Col sm={9}>
                                         <Input type="textarea" className="input-required" name="noteContent" id="noteContent" rows="8"
-                                            value={htmlDecode(this.state.noteContent)} onChange={this.handleChange} invalid={isClickedSubmit && !validationResult.isValid} />
+                                            value={htmlDecode(noteContent)} onChange={this.handleChange} invalid={isClickedSubmit && !validationResult.isValid} />
                                 {validationResult.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: validationResult.message }} /></FormFeedback>}
                                     </Col>

@@ -125,9 +125,7 @@ export default class MultipleSelect extends Component {
     _getSelectedItemKey(dataSource) {
         const selectedItemKey = [];
 
-        for (let i = 0; i < dataSource.length; i++) {
-            const item = dataSource[i];
-
+        for (let item of dataSource) {
             if (item.checked) {
                 selectedItemKey.push(item.key)
             }

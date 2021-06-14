@@ -1,7 +1,7 @@
 ﻿import { globalResource } from '../../../../modules/globalResource';
-import { maxWidth, selectedAllProduct, shortedMonthNames, minMonthDate } from '../../../../modules/constants';
+import { maxWidth, selectedAllProduct, minDate } from '../../../../modules/constants';
 
-export { globalResource, maxWidth, selectedAllProduct, shortedMonthNames, minMonthDate };
+export { globalResource, maxWidth, selectedAllProduct, minDate };
 
 export const headerText = {
     Index: globalResource.Index,
@@ -14,13 +14,6 @@ export const headerText = {
     Deposit: 'Deposit',
     Withdrawal: 'Withdrawal',
     BankingFee: 'Banking Fee'
-}
-
-export const resource = {
-    All: globalResource.All,
-    Search: globalResource.Search,
-    Product: globalResource.Product,
-    Month: 'Month'
 }
 
 export const SortByIdList = {

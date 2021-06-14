@@ -167,7 +167,7 @@ describe('customer statistics - components - Content', () => {
         wrapper.setState({ data: dataHasPlayerActive });
 
         wrapper.find(MyLink).at(2).simulate('click');
-        expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 0, fromDate: "7/1/2019", isClickLink: true, toDate: "7/31/2019" });
+        expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 0, fromDate: "7/1/2019", isClickLink: true, toDate: "7/1/2019" });
     });
 
     it('redirectToReferrers - should be called when click at referrers mobile link', () => {
@@ -179,6 +179,6 @@ describe('customer statistics - components - Content', () => {
         wrapper.setState({ data: dataHasPlayerActive });
 
         wrapper.find(MyLink).at(3).simulate('click');
-        expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 1, fromDate: "7/1/2019", isClickLink: true, toDate: "7/31/2019" });
+        expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 1, fromDate: "7/1/2019", isClickLink: true, toDate: "7/1/2019" });
     });
 })

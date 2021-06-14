@@ -3,12 +3,6 @@ import { PanelList } from '../PanelList';
 import { shallow } from 'enzyme';
 
 describe('left panel - components - PanelList', () => {
-    it('render correctly with affiliateInfo is null', () => {
-        const result = shallow(<PanelList />);
-
-        expect(result).toMatchSnapshot();
-    });
-
     it('render correctly with affiliateInfo is not null', () => {
         const affiliateInfo = {
             AffId: 1271808,

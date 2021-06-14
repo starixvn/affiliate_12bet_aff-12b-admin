@@ -239,7 +239,7 @@ describe('banner list - components - EditBannerForm ', () => {
         result.find(InputFile).props().handleOnChangeFiles(event);
 
         expect(result.setState).toHaveBeenCalledWith({"files": [{"name": "abc.pdf"}], "inputFileNames": ["abc.pdf"], "isDisabled": true});
-        expect(result.instance()._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'" );
+        expect(result.instance()._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif', '.png', '.jpeg'" );
     });
 
     it('_handleFile should be called when change file but file name empty', () => {
@@ -257,7 +257,7 @@ describe('banner list - components - EditBannerForm ', () => {
         result.find(InputFile).props().handleOnChangeFiles(event);
 
         expect(result.setState).toHaveBeenCalledWith({"files": [{"name": ""}], "inputFileNames": [""], "isDisabled": true});
-        expect(result.instance()._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'" );
+        expect(result.instance()._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif', '.png', '.jpeg'" );
     });
 
     it('_handleChange should be called when change language select', () => {
@@ -593,7 +593,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
         const result = wrapper.instance()._validateInputFileName();
 
-        expect(result).toEqual({ isOK: false, message: "File Name 1 incorrect.<br />Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'" });
+        expect(result).toEqual({ isOK: false, message: "File Name 1 incorrect.<br />Sorry! We just support these file types : '.jpg', '.gif', '.png', '.jpeg'" });
     });
 
     it('_validateInputFileName - should valid file when insert', async () => {
@@ -638,7 +638,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
         const result = wrapper.instance()._validateInputFileName();
 
-        expect(result).toEqual({ isOK: false, message: "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'" });
+        expect(result).toEqual({ isOK: false, message: "Sorry! We just support these file types : '.jpg', '.gif', '.png', '.jpeg'" });
     });
 
     it('_validateInputFileName - should valid file when update', async () => {
@@ -973,18 +973,18 @@ describe('banner list - components - EditBannerForm ', () => {
     });
 
     it('_handleCloseNotificationPopup - should call setState, _getParam and _updateBanner', () => {
-        const bannerInfo = { bannerId: 123 };
+        const banner = { bannerId: 123 };
         const result = shallow(<EditBannerForm {...defaultProps} />);
         const instance = result.instance();
         instance.setState = jest.fn();
-        instance._getParam = jest.fn(() => bannerInfo);
+        instance._getParam = jest.fn(() => banner);
         instance._updateBanner = jest.fn();
 
         instance.handleCloseNotificationPopup(true)
 
         expect(instance.setState).toHaveBeenCalledWith({ messageNotificationPopup: '' });
         expect(instance._getParam).toHaveBeenCalled();
-        expect(instance._updateBanner).toHaveBeenCalledWith(bannerInfo);
+        expect(instance._updateBanner).toHaveBeenCalledWith(banner);
     });
 
     it('_handleCloseNotificationPopup - - should call setState and not call _getParam and _updateBanner', () => {
@@ -1067,7 +1067,7 @@ describe('banner list - components - EditBannerForm ', () => {
         instance._handleRemoveImageAt(0);
 
         expect(result.setState).toHaveBeenCalledWith({"files": [{name: "file2.pdf"}], "inputFileNames": ["file2.pdf"], "isDisabled": true});
-        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif' , '.png','.jpeg'");
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Sorry! We just support these file types : '.jpg', '.gif', '.png', '.jpeg'");
     });
 
     it('_handleRemoveImageAt - should call setState when success', () => {

@@ -69,12 +69,11 @@ describe('message - components - Content ', () => {
     });
 
     it('_handlePaging - should be called when onPaging in Table', () => {
-        const props = Object.assign({}, defaultProps, { setPagingOption: jest.fn(), setParam: jest.fn() })
+        const props = Object.assign({}, defaultProps, { setParam: jest.fn() })
         const result = shallow(<Content {...props} />);
 
         result.find(Table).props().onPaging(50, 50);
 
-        expect(props.setPagingOption).toHaveBeenCalledWith({ PageIndex: 50, PageSize: 50 });
         expect(props.setParam).toHaveBeenCalledWith({ FromDate: "9/20/2019", Important: null, IsGetAll: true, PageIndex: 50, PageSize: 50, ToDate: "9/20/2019" });
     });
 

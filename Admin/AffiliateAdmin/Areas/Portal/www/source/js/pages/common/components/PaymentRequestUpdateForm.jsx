@@ -35,7 +35,13 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     handleChange = (event) => {
-        this.setState({ paymentRequestInfo: Object.assign({}, this.state.paymentRequestInfo, { [event.target.name]: event.target.value }) });
+        const { name, value } = event.target;
+
+        this.setState(prevState => {
+            const paymentRequestInfo = Object.assign({}, prevState.paymentRequestInfo, { [name]: value });
+
+            return { paymentRequestInfo };
+        });
     }
 
     handleGetPaymentRequestInfo = async (transId) => {
@@ -264,9 +270,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
 function mapStateToProps({ claimsPrincipal }) {
     const isUpdatable = claimsPrincipal.hasWriteClaim(claimResource.PaymentRequest)
     const isShowEmail = claimsPrincipal.hasReadClaim(claimResource.AffEmail)
-    const isShowFullName = claimsPrincipal.hasReadClaim(claimResource.MemberName)
     const isShowPaymentInfo = claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo)
-    return Object.assign({}, { isUpdatable, isShowEmail, isShowFullName, isShowPaymentInfo });
+    return Object.assign({}, { isUpdatable, isShowEmail, isShowPaymentInfo });
 }
 
 function mapDispatchToProps(dispatch) {

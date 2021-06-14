@@ -36,6 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             foreach (var item in rawData)
             {
                 total.WinLost += item.WinLost;
+                total.Turnover += item.Turnover;
                 total.Deposit += item.Deposit;
                 total.Withdrawal += item.Withdrawal;
                 total.Bonus += item.Bonus;

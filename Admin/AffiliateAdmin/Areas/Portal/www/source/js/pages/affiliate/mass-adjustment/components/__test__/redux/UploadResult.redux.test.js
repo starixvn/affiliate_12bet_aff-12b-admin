@@ -1,59 +1,32 @@
-﻿jest.mock('redux');
-jest.mock('react-redux');
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../../actions/index';
+﻿import React from 'react';
+import UploadResult from '../../UploadResult';
+import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
+import { SET_IS_CLICK_UPLOAD } from '../../../actions/types';
 
-describe('mass adjustment - UploadResult - connect', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    })
+const mockStore = configureMockStore();
 
-    let mapStateToProps, mapDispatchToProps;
-    const connectMock = jest.fn();
+describe('mass adjustment - components - ImportForm - connect', () => {
+    let wrapper;
+    let store;
 
-    beforeAll(() => {
-        connect.mockImplementationOnce((mapStateToPropsFunc, mapDispatchToPropsFunc) => {
-            mapStateToProps = mapStateToPropsFunc;
-            mapDispatchToProps = mapDispatchToPropsFunc;
-            return connectMock;
-        });
-        require('../../UploadResult').default;
+    beforeEach(() => {
+        const initialState = {
+            file: { name: 'abc.xlsx' },
+            isClickUpload: true
+        };
+        store = mockStore(initialState);
+        wrapper = shallow(<UploadResult store={store} />).dive();
     });
 
-    it('props should be mapped correctly', () => {
-        const expectedResult = { isClickUpload: true, file: { name: 'abc.xlsx' } };
-        const state = {
-            isClickUpload: true,
-            file: { name: 'abc.xlsx' },
-            anotherProp: "Not included"
-        };
+    it('should show correct value', () => {
+        expect(wrapper.props().file).toEqual({ name: 'abc.xlsx' });
+    });
 
-        const result = mapStateToProps(state);
+    it('should call correct action', () => {
+        wrapper.props().setIsClickUpload(false);
 
-        expect(result).toEqual(expectedResult);
-    })
-
-    it('bindActionCreators should be called with correct parameter', () => {
-        const mockBindAction = jest.fn();
-        bindActionCreators.mockImplementationOnce(mockBindAction);
-        const expectedActionCreator = {
-            setFile: actions['setFile'],
-            setIsClickUpload: actions['setIsClickUpload'],
-            setIsShowResult: actions['setIsShowResult'],
-            toggleLoader: actions['toggleLoader'],
-            handleUploadFile: actions['handleUploadFile']
-        }
-
-        const dispatch = {};
-        mapDispatchToProps(dispatch);
-
-        expect(mockBindAction).toHaveBeenCalledWith(expectedActionCreator, dispatch);
-    })
-
-    it('returned function of connect should be called with correct parameter', () => {
-        const UploadResult = require('../../UploadResult').UploadResult;
-
-        expect(connectMock).toHaveBeenCalledWith(UploadResult);
-    })
+        const actions = store.getActions();
+        expect(actions).toEqual([{ type: SET_IS_CLICK_UPLOAD, data: false }]);
+    });
 })

@@ -35,7 +35,7 @@ describe('common - components - PaymentRequestUpdateForm', () => {
         expect(result).toMatchSnapshot();
     });
 
-    
+
     it('handleClosePopup - should call props.handleClosePopup and setState', () => {
         const props = Object.assign({}, { handleClosePopup: jest.fn() });
         const result = shallow(<PaymentRequestUpdateForm {...props} />);
@@ -70,11 +70,10 @@ describe('common - components - PaymentRequestUpdateForm', () => {
         const result = shallow(<PaymentRequestUpdateForm />);
         const instance = result.instance();
         instance.setState({ paymentRequestInfo });
-        instance.setState = jest.fn();
-
+        instance.setState = jest.fn(fn => (fn instanceof Function) && fn({ paymentRequestInfo }));
         instance.handleChange({ target: { name: 'LastName', value: 'Lê Văn' } });
 
-        expect(instance.setState).toHaveBeenCalledWith({ paymentRequestInfo: { ...paymentRequestInfo, LastName: 'Lê Văn' } });
+        expect(instance.setState).toHaveBeenCalledWith(expect.any(Function));
     });
 
     it('handleGetPaymentRequestInfo - should call getPaymentRequestDetail and setState', async () => {

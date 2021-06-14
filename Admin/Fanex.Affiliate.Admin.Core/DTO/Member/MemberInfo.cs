@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Member
 {
@@ -16,6 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Member
 
         public string CurrentBalance { get; set; }
 
+        [JsonIgnore]
         public DateTime? CreatedDate { get; set; }
 
         public string AffName { get; set; }

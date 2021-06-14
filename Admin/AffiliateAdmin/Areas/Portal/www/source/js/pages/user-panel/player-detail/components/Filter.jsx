@@ -2,25 +2,43 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
-import MonthPicker from '@9softstudio/react-monthpicker';
+import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { resource, selectedAllProduct, shortedMonthNames, minMonthDate } from '../libs/constants';
+import { globalResource, selectedAllProduct, minDate } from '../libs/constants';
 import { setParam, getProductList, exportExcel } from '../actions';
 import ReportExcel from '../libs/reportExcel';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { claimResource } from '../../../../modules/claim';
+import { getDateRange, formatUnit } from '../../../../modules/utils';
 
 export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { today, param, } = this.props;
-        const monthDate = param.isClickLink ? (param.monthDate || today) : today;
-        const newMonthDate = new Date(monthDate);
+        const { today, param } = this.props;
+
+        const now = new Date(today);
+        this.nowString = `${formatUnit(now.getMonth() + 1)}/${formatUnit(now.getDate())}/${now.getFullYear()}`;
+
+        const sixMonthAgo = new Date(today);
+        sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
+
+        let fromDate = `${formatUnit(sixMonthAgo.getMonth() + 1)}/${formatUnit(sixMonthAgo.getDate())}/${sixMonthAgo.getFullYear()}`;
+        let toDate = this.nowString;
+
+        if (param.isClickLink && !!param.monthDate) {
+            const date = new Date(param.monthDate);
+            const month = formatUnit(date.getMonth() + 1);
+
+            fromDate = `${month}/01/${date.getFullYear()}`;
+            toDate = `${month}/${formatUnit(date.getDate())}/${date.getFullYear()}`;
+        }
 
         this.state = {
             selectedProduct: selectedAllProduct,
-            monthDate: newMonthDate,
+            isGetAll: false,
+            fromDate,
+            toDate,
             productList: null
         }
     }
@@ -30,30 +48,26 @@ export class Filter extends PureComponent {
             this.handleGetProductList();
         }
         if (this.props.param.isClickLink) {
-            const { monthDate } = this.state;
-            this.handleSearch(monthDate);
+            this.handleSearch();
         }
     }
 
     componentDidUpdate(prevProps) {
         const { param } = this.props;
         if (param.isClickLink && param !== prevProps.param) {
-            const newMonthDate = new Date(param.monthDate);
+            const newDate = new Date(param.monthDate);
+            const newMonthString = formatUnit(newDate.getMonth() + 1);
 
-            this.setState({ monthDate: newMonthDate, selectedProduct: selectedAllProduct });
-            this.handleSearch(newMonthDate);
+            const fromDate = `${newMonthString}/01/${newDate.getFullYear()}`;
+            const toDate = `${newMonthString}/${formatUnit(newDate.getDate())}/${newDate.getFullYear()}`;
+
+            this.setState({ fromDate, toDate, isGetAll: false, selectedProduct: selectedAllProduct }, this.handleSearch);
         }
     }
 
     handleGetProductList = async () => {
         const productList = await this.props.getProductList();
         this.setState({ productList });
-    }
-
-    handleSelectMonth = (month, year) => {
-        this.setState({
-            monthDate: new Date(year, month - 1)
-        })
     }
 
     handleChangeProduct = (event) => {
@@ -64,30 +78,40 @@ export class Filter extends PureComponent {
         })
     }
 
-    handleFormatMonthPicker = (month, year) => {
-        return `${shortedMonthNames[month - 1]}-${year}`
+    handleChangeFromDate = (momentDate) => {
+        this.setState(prevState => getDateRange(momentDate, prevState.toDate));
     }
 
-    handleSearch = (monthDate) => {
-        const { selectedProduct } = this.state;
+    handleChangeToDate = (momentDate) => {
+        this.setState({ toDate: momentDate.format("MM/DD/YYYY") });
+    }
+
+    handleChecked = (event) => {
+        this.setState({ [event.target.name]: event.target.checked });
+    }
+
+    handleSearch = () => {
+        const { selectedProduct, isGetAll, fromDate, toDate } = this.state;
         const { sortedParam } = this.props;
 
         const param = {
             productId: selectedProduct,
-            monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
+            fromDate: isGetAll ? `${minDate.getMonth() + 1}/${minDate.getDate()}/${minDate.getFullYear()}` : fromDate,
+            toDate: isGetAll ? this.nowString : toDate,
             ...sortedParam
         }
         this.props.setParam(param);
     }
 
     handleExportExcel = async () => {
-        const { selectedProduct, monthDate } = this.state;
+        const { selectedProduct, isGetAll, fromDate, toDate } = this.state;
         const { affId, hasTurnOverPermission, sortedParam } = this.props;
 
         const param = {
             IsExportExcel: true,
             productId: selectedProduct,
-            monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
+            fromDate: isGetAll ? `${minDate.getMonth() + 1}/${minDate.getDate()}/${minDate.getFullYear()}` : fromDate,
+            toDate: isGetAll ? this.nowString : toDate,
             affId,
             ...sortedParam
         }
@@ -102,9 +126,9 @@ export class Filter extends PureComponent {
     }
 
     _getReportTitle() {
-        const { selectedProduct, monthDate } = this.state;
+        const { selectedProduct, isGetAll, fromDate, toDate } = this.state;
         const productTitle = selectedProduct === 0 ? 'All Products' : this._getSelectedProductName(selectedProduct);
-        const selectedMonthTitle = this.handleFormatMonthPicker(monthDate.getMonth() + 1, monthDate.getFullYear());
+        const selectedMonthTitle = isGetAll ? "All Dates" : `From ${fromDate} To ${toDate}`;
 
         return `Player Detail - ${productTitle} - ${selectedMonthTitle}`;
     }
@@ -116,15 +140,15 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        const { productList, selectedProduct, monthDate } = this.state;
+        const { productList, selectedProduct, fromDate, toDate, isGetAll } = this.state;
 
         return productList && (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mr-sm-2">
-                        <Label className="mr-2">{resource.Product}</Label>
+                        <Label className="mr-2">{globalResource.Product}</Label>
                         <Input type="select" name="Product" id="Product" value={selectedProduct} onChange={this.handleChangeProduct}>
-                            <option value="0">{resource.All}</option>
+                            <option value="0">{globalResource.All}</option>
                             {
                                 productList.map(p => {
                                     return (<option value={p.ProductId} key={p.ProductId}>{htmlDecode(p.ProductName)}</option>)
@@ -134,17 +158,30 @@ export class Filter extends PureComponent {
                     </FormGroup>
 
                     <FormGroup className="mr-sm-2">
-                        <Label className="mr-sm-2">{resource.Month}</Label>
-                        <MonthPicker minMonth={minMonthDate.month} minYear={minMonthDate.year}
-                            selectedDropdownYear={monthDate.getFullYear()}
-                            selectedMonth={monthDate.getMonth() + 1}
-                            onSelect={this.handleSelectMonth}
-                            onFormat={this.handleFormatMonthPicker}
-                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
+                        <Label className="mr-sm-2">{globalResource.From}</Label>
+                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!isGetAll}
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                            onChange={this.handleChangeFromDate} />
                     </FormGroup>
 
-                    <Button outline color="primary" type="button" onClick={() => this.handleSearch(monthDate)}>
-                        <span className="oi oi-magnifying-glass"></span> {resource.Search}
+                    <FormGroup className="mr-sm-2">
+                        <Label className="mr-sm-2">{globalResource.To}</Label>
+                        <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!isGetAll}
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                            onChange={this.handleChangeToDate} />
+                    </FormGroup>
+
+                    <FormGroup className="mr-sm-2">
+                        <FormGroup check>
+                            <Label check>
+                                {globalResource.GetAll}
+                                <Input name="isGetAll" className="ml-1 mr-2" type="checkbox" checked={isGetAll} onChange={this.handleChecked} />
+                            </Label>
+                        </FormGroup>
+                    </FormGroup>
+
+                    <Button outline color="primary" type="button" onClick={this.handleSearch}>
+                        <span className="oi oi-magnifying-glass"></span> {globalResource.Search}
                     </Button>
 
                     {

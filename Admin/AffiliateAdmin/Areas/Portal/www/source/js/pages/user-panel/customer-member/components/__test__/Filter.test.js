@@ -55,11 +55,10 @@ describe('customer member - components - Filter', () => {
         const monthDate = { format: jest.fn(() => "6/25/2019")};
         const wrapper = shallow(<Filter {...defaultProps} />);
 
-        wrapper.setState = jest.fn();
-        
+        wrapper.setState = jest.fn(fn => fn && fn(prevState => ({ fromDate: "6/25/2019", toDate: "7/11/2019" })));
         wrapper.find(DatePicker).at(0).simulate('change', monthDate);
 
-        expect(wrapper.setState).toHaveBeenCalledWith({ fromDate: "6/25/2019", toDate: "7/11/2019" });
+        expect(wrapper.setState).toHaveBeenCalledWith(expect.any(Function));
     });
 
     it('handleChangeToDate - should be called when To change', () => {
@@ -67,7 +66,7 @@ describe('customer member - components - Filter', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
 
         wrapper.setState = jest.fn();
-        
+
         wrapper.find(DatePicker).at(1).simulate('change', monthDate);
 
         expect(wrapper.setState).toHaveBeenCalledWith({ toDate: "7/10/2019" });

@@ -14,7 +14,7 @@ exports[`daily earning detail - components - Content render correctly 1`] = `
           <t
             asc={true}
             className="text-center"
-            colSpan="8"
+            colSpan="NaN"
             header={false}
             onClick={[Function]}
             sortable={false}

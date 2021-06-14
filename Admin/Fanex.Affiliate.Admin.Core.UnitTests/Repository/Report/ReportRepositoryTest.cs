@@ -203,6 +203,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
                 ["AffWithdrawal"] = 123,
                 ["AffAdjustment"] = 123,
                 ["BFF"] = 123,
+                ["PreferredLanguage"] = "en-US"
             };
         }
 

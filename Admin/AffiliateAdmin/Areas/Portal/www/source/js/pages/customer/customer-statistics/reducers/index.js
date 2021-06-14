@@ -1,5 +1,5 @@
 ﻿import { combineReducers } from 'redux';
-import { SET_MONTHDATE, TOGGLE_LOADER_CUSTOMER_STATISTICS } from '../actions/types';
+import { SET_MONTHDATE } from '../actions/types';
 
 import createReducer from '../../../../modules/createReducer';
 

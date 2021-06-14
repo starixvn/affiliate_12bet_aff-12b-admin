@@ -82,6 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 FromDate = model.FromDate,
                 IsExportExcel = model.IsExportExcel,
                 IsGetAll = model.IsGetAll,
+                IsGetMonthly = model.IsGetMonthly,
                 PageIndex = model.PageIndex,
                 PageSize = model.PageSize,
                 PreferredLanguages = LanguageHelper.BuildAllowQueryLanguages(model.PreferredLanguage, _languageService.GetInChangeMarkets()),

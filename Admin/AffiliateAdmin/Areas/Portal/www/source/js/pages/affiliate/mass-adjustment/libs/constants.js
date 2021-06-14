@@ -1,4 +1,6 @@
-﻿export const incorrectFormatMessage = `
+﻿export const validExtensions = ['xlsx', 'xls'];
+
+export const incorrectFormatMessage = `
         <div>
             <p>The upload file is not correct format, error shall be one of following list:</p>
             <ol>

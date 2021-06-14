@@ -1,61 +1,33 @@
-﻿jest.mock('redux');
-jest.mock('react-redux');
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../../actions/index';
+﻿import React from 'react';
+import Unactivated from '../../Unactivated';
+import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
+import { SHOULD_RESET_SCROLL_POSITION } from '../../../actions/types';
 
-describe('active member - Content - connect', () => {
-    let mapStateToProps, mapDispatchToProps;
-    const connectMock = jest.fn();
+const mockStore = configureMockStore();
 
-    beforeAll(() => {
-        connect.mockImplementationOnce((mapStateToPropsFunc, mapDispatchToPropsFunc) => {
-            mapStateToProps = mapStateToPropsFunc;
-            mapDispatchToProps = mapDispatchToPropsFunc;
-            return connectMock;
-        });
-        require('../../Unactivated').default;
+describe('active member list - Unactivated - connect', () => {
+    let wrapper;
+    let store;
+
+    beforeEach(() => {
+        const initialState = {
+            claimsPrincipal: { hasReadClaim: jest.fn(() => false) },
+            shouldResetScrollPosition: true
+        };
+        store = mockStore(initialState);
+        wrapper = shallow(<Unactivated store={store} />).dive();
     });
 
-    it('props should be mapped correctly', () => {
-        const expectedResult = {
-            userNames: '12BETAFF226',
-            shouldResetScrollPosition: true,
-            isShowMemberFullname: true,
-            unactivatedGridData: []
-        };
-        const state = {
-            userNames: '12BETAFF226',
-            shouldResetScrollPosition: true,
-            unactivatedGridData: [],
-            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
-            anotherProp: "Not included"
-        };
+    it('should show correct value', () => {
+        expect(wrapper.props().isShowMemberFullname).toBeFalsy();
+        expect(wrapper.props().shouldResetScrollPosition).toBeTruthy();
+    });
 
-        const result = mapStateToProps(state);
+    it('should call correct action', () => {
+        wrapper.props().setShouldResetScrollPosition(false);
 
-        expect(result).toEqual(expectedResult);
-    })
-
-    it('bindActionCreators should be called with correct parameter', () => {
-        const mockBindAction = jest.fn();
-        bindActionCreators.mockImplementationOnce(mockBindAction);
-        const expectedActionCreator = {
-            setMessage: actions['setMessage'],
-            activeMember: actions['activeMember'],
-            setShouldResetScrollPosition: actions['setShouldResetScrollPosition']
-        }
-
-        const dispatch = {};
-        mapDispatchToProps(dispatch);
-
-        expect(mockBindAction).toHaveBeenCalledWith(expectedActionCreator, dispatch);
-    })
-
-    it('returned function of connect should be called with correct parameter', () => {
-        const Unactivated = require('../../Unactivated').Unactivated;
-
-        expect(connectMock).toHaveBeenCalledWith(React.memo(Unactivated));
-    })
+        const actions = store.getActions();
+        expect(actions).toEqual([{ type: SHOULD_RESET_SCROLL_POSITION, data: false }]);
+    });
 })

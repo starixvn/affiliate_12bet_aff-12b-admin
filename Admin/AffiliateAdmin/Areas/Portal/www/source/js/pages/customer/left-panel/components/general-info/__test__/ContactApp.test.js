@@ -1,17 +1,10 @@
 ﻿import React from 'react';
 import { ContactApp } from '../ContactApp';
 import { shallow } from 'enzyme';
-import ChangePasswordForm from '../../../../../common/components/ChangePasswordForm';
 
 describe('left panel - components - general-info - ContactApp', () => {
     afterAll(() => {
         jest.resetAllMocks();
-    });
-
-    it('render correctly has props is null', () => {
-        const result = shallow(<ContactApp />);
-
-        expect(result).toMatchSnapshot();
     });
 
     const affiliateInfo = {

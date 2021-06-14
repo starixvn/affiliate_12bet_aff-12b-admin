@@ -49,13 +49,14 @@ export class Content extends PureComponent {
 
         if (sortById === selectedId) {
             this._fetchData({ ...postParam, isSortAsc: !isSortAsc });
-            this.props.setSortedParam({ isSortAsc: !isSortAsc });
+            this.props.setSortedParam({ sortById: selectedId, isSortAsc: !isSortAsc });
 
         } else {
             this._fetchData({ ...postParam, isSortAsc: false });
             this.props.setSortedParam({ sortById: selectedId, isSortAsc: false });
         }
     }
+
     _renderHeader() {
         const { isSortAsc, sortById } = this.props.sortedParam;
 
@@ -80,7 +81,7 @@ export class Content extends PureComponent {
         const productColumnClassName = param.productId === selectedAllProduct ? 'text-right' : 'text-right highlight';
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             const { pagingOption, isDisplayTurnOver } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 

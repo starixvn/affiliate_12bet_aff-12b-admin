@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`left panel - components - general-info - ApprovedStatusInfo render correctly has props is null 1`] = `<Fragment />`;
-
 exports[`left panel - components - general-info - ApprovedStatusInfo render correctly with affiliateInfo is not null  1`] = `
 <Fragment>
   <Row

@@ -24,6 +24,7 @@ const aggregateHeaderChildrenOfAffiliateStatistics = [
 const cols = [
     new SingleHeader(reportKey.UserName, headerText[reportKey.UserName], true),
     new SingleHeader(reportKey.MonthDateString, '', false),
+    new SingleHeader(reportKey.PreferredLanguage, '', true),
     new SingleHeader(reportKey.TotalClick, headerText[reportKey.TotalClick], true),
     new SingleHeader(reportKey.UniqueClick, headerText[reportKey.UniqueClick], true),
     new SingleHeader(reportKey.Signup, headerText[reportKey.Signup], true),

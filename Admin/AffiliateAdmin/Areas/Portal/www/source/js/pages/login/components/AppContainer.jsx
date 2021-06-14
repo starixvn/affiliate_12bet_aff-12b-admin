@@ -15,7 +15,8 @@ export default class AppContainer extends PureComponent {
             password: '',
             isShowMessage: false,
             message: '',
-            year: now.getFullYear()
+            year: now.getFullYear(),
+            isClickedLogin: false
         }
     }
 
@@ -42,7 +43,12 @@ export default class AppContainer extends PureComponent {
         this._handleShowAlert(false, !isValidUserName ? 'User Name is empty. Please check!' : 'Password is empty. Please check!');
         return false;
     }
-    _handleLogin = async () => {
+
+    _handleLogin = () => {
+        !this.state.isClickedLogin && this.setState({ isClickedLogin: true }, this._login);
+    }
+
+    _login = async () => {
         const { userName, password } = this.state;
 
         const isValidAccount = this._validateAccount(userName, password);
@@ -63,6 +69,8 @@ export default class AppContainer extends PureComponent {
                 this._handleShowAlert(false, "An error occurred while processing your request");
             }
         }
+
+        this.setState({ isClickedLogin: false });
     }
 
     _handlePressEnter = (event) => {

@@ -45,9 +45,7 @@ export class LanguageComponent extends PureComponent {
 
             let newMarketItem = { ...item };
 
-            for (let i = 0; i < marketOfRoleList.length; i++) {
-                const marketItem = marketOfRoleList[i];
-
+            for (let marketItem of marketOfRoleList) {
                 if (marketIdList[marketItem.MarketId]) {
                     newMarketItem = Object.assign({}, newMarketItem, { [marketItem.MarketId]: marketItem.HasPermission });
                 }
@@ -138,8 +136,8 @@ export class LanguageComponent extends PureComponent {
 
         if (marketList && marketList.length) {
 
-            for (let i = 0; i < marketList.length; i++) {
-                const marketName = marketList[i].MarketName;
+            for (let market of marketList) {
+                const marketName = market.MarketName;
 
                 dataRows.push(<Cell key={marketName} header={true} colWidth={80}>{marketName}</Cell>);
             }
@@ -155,8 +153,7 @@ export class LanguageComponent extends PureComponent {
         if (dataList.length) {
             const { isEdit } = this.state;
 
-            for (let i = 0; i < dataList.length; i++) {
-                const dataItem = dataList[i];
+            for (let dataItem of dataList) {
                 dataRows.push(this._buildDataRow(dataItem, marketList, isEdit));
             }
         }
@@ -186,8 +183,7 @@ export class LanguageComponent extends PureComponent {
 
             const isManagement = dataItem.RoleId === management;
 
-            for (let i = 0; i < marketList.length; i++) {
-                const item = marketList[i];
+            for (let item of marketList) {
                 const isChecked = dataItem[item.MarketId];
 
                 dataRows.push(

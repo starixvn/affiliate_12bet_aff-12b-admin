@@ -1,56 +1,31 @@
-﻿jest.mock('redux');
-jest.mock('react-redux');
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../../actions/index';
+﻿import React from 'react';
+import Content from '../../Content';
+import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
 
-describe('daily earning - Content - connect', () => {
-    let mapStateToProps, mapDispatchToProps;
-    const connectMock = jest.fn();
+const mockStore = configureMockStore();
 
-    beforeAll(() => {
-        connect.mockImplementationOnce((mapStateToPropsFunc, mapDispatchToPropsFunc) => {
-            mapStateToProps = mapStateToPropsFunc;
-            mapDispatchToProps = mapDispatchToPropsFunc;
-            return connectMock;
-        });
-        require('../../Content').default;
+describe('daily earning - components - Content - connect', () => {
+    let wrapper;
+    let store;
+
+    beforeEach(() => {
+        const initialState = {
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
+            dailyEarning: { param: null }
+        };
+        store = mockStore(initialState);
+        wrapper = shallow(<Content store={store} />).dive();
     });
 
-    it('props should be mapped correctly', () => {
-        const expectedResult = {
-            param: { abc: 123 },
-        };
-        const state = {
-            dailyEarning: {
-                param: { abc: 123 }
-            },
-            anotherProp: "Not included"
-        };
+    it('should show correct value', () => {
+        expect(wrapper.props().isDisplayTurnOver).toTruthy;
+    });
 
-        const result = mapStateToProps(state);
+    it('should call correct action', () => {
+        wrapper.props().toggleLoaderUserPanel(false);
 
-        expect(result).toEqual(expectedResult);
-    })
-
-    it('bindActionCreators should be called with correct parameter', () => {
-        const mockBindAction = jest.fn();
-        bindActionCreators.mockImplementationOnce(mockBindAction);
-        const expectedActionCreator = {
-            toggleLoaderUserPanel: actions['toggleLoaderUserPanel'],
-            redirectToDailyEarningDetail: actions['redirectToDailyEarningDetail'],
-            fetchData: actions['fetchData']
-        }
-
-        const dispatch = {};
-        mapDispatchToProps(dispatch);
-
-        expect(mockBindAction).toHaveBeenCalledWith(expectedActionCreator, dispatch);
-    })
-
-    it('returned function of connect should be called with correct parameter', () => {
-        const Content = require('../../Content').Content;
-
-        expect(connectMock).toHaveBeenCalledWith(Content);
-    })
+        const actions = store.getActions();
+        expect(actions).toEqual([{ type: "TOGGLE_LOADER_USER_PANEL", data: false }]);
+    });
 })

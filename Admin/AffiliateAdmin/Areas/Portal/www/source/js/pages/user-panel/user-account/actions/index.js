@@ -44,9 +44,13 @@ export const getUserAccountInfo = (affId) => async (dispatch) => {
     dispatch(toggleLoaderUserPanel(false));
 }
 
-export const updateUserAccount = (param) => async () => {
+export const updateUserAccount = (param) => async (dispatch) => {
+    dispatch(toggleLoaderUserPanel(true));
+
     const url = 'Portal/UserPanel/UserAccount/updateUserAccount';
     const response = await post(url, param);
+
+    dispatch(toggleLoaderUserPanel(false));
 
     return response && response.status === 200 ? response.data : null;
 }

@@ -44,7 +44,6 @@ describe('message - Content - connect', () => {
         const expectedActionCreator = {
             setSelectedMessageId: actions['setSelectedMessageId'],
             fetchData: actions['fetchData'],
-            setPagingOption: actions['setPagingOption'],
             setCheckedMessages: actions['setCheckedMessages'],
             setShouldResetScrollPosition: actions['setShouldResetScrollPosition'],
             setParam: actions['setParam']

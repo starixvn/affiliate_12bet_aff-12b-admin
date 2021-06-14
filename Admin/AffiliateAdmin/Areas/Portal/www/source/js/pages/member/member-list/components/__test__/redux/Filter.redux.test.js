@@ -1,58 +1,31 @@
-﻿jest.mock('redux');
-jest.mock('react-redux');
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../../actions/index';
+﻿import React from 'react';
+import Filter from '../../Filter';
+import { shallow } from 'enzyme';
+import configureMockStore from 'redux-mock-store';
+import { SET_PARAM } from '../../../actions/types';
+
+const mockStore = configureMockStore();
 
 describe('member list - Filter - connect', () => {
-    let mapStateToProps, mapDispatchToProps;
-    const connectMock = jest.fn();
+    let wrapper;
+    let store;
 
-    beforeAll(() => {
-        connect.mockImplementationOnce((mapStateToPropsFunc, mapDispatchToPropsFunc) => {
-            mapStateToProps = mapStateToPropsFunc;
-            mapDispatchToProps = mapDispatchToPropsFunc;
-            return connectMock;
-        });
-        require('../../Filter').default;
+    beforeEach(() => {
+        const initialState = {
+            pagingOption: { PageIndex: 1 }
+        };
+        store = mockStore(initialState);
+        wrapper = shallow(<Filter store={store} />).dive();
     });
 
-    it('props should be mapped correctly', () => {
-        const expectedResult = {
-            affName: '12BETAFF226',
-            isFromOtherPages: true,
-            pagingOption: { PageSize: 1, PageIndex: 20 }
-        };
-        const state = {
-            affName: '12BETAFF226',
-            isFromOtherPages: true,
-            pagingOption: { PageSize: 1, PageIndex: 20 },
-            anotherProp: "Not included"
-        };
+    it('should show correct value', () => {
+        expect(wrapper.props().pagingOption.PageIndex).toBe(1);
+    });
 
-        const result = mapStateToProps(state);
+    it('should call correct action', () => {
+        wrapper.props().setParam({});
 
-        expect(result).toEqual(expectedResult);
-    })
-
-    it('bindActionCreators should be called with correct parameter', () => {
-        const mockBindAction = jest.fn();
-        bindActionCreators.mockImplementationOnce(mockBindAction);
-        const expectedActionCreator = {
-            setParam: actions['setParam'],
-            setIsFromOtherPages: actions['setIsFromOtherPages']
-        }
-
-        const dispatch = {};
-        mapDispatchToProps(dispatch);
-
-        expect(mockBindAction).toHaveBeenCalledWith(expectedActionCreator, dispatch);
-    })
-
-    it('returned function of connect should be called with correct parameter', () => {
-        const Filter = require('../../Filter').Filter;
-
-        expect(connectMock).toHaveBeenCalledWith(React.memo(Filter));
-    })
+        const actions = store.getActions();
+        expect(actions).toEqual([{ type: SET_PARAM, data: {} }]);
+    });
 })

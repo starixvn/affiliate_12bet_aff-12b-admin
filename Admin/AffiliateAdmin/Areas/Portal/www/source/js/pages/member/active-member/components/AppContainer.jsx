@@ -11,7 +11,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 import { setMessage } from '../actions';
 
 export const AppContainer = (props) => {
-    const { isShowLoader, isShowText, memberNotExist, message } = props;
+    const { isShowLoader, memberNotExist, message } = props;
 
     return (
         <AppLayout>
@@ -33,8 +33,8 @@ export const AppContainer = (props) => {
     );
 }
 
-function mapStateToProps({ isShowLoader, isShowText, memberNotExist, message }) {
-    return Object.assign({}, { isShowLoader, isShowText, memberNotExist, message });
+function mapStateToProps({ isShowLoader, memberNotExist, message }) {
+    return Object.assign({}, { isShowLoader, memberNotExist, message });
 }
 
 function mapDispatchToProps(dispatch) {

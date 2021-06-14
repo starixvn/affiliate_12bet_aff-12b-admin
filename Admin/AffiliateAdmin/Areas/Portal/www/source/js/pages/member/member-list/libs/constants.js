@@ -12,8 +12,5 @@ export const headerText = {
     CurrentBalance: 'Current Balance Member',
     CreatedDate: 'Created Date',
     Remove: 'Remove',
-    AffType: 'Affiliate Type',
-    Device: 'Device',
-    ImageType: 'Image Type',
     Search: globalResource.Search
 }

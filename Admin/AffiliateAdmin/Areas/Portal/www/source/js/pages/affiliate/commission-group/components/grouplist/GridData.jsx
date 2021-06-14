@@ -18,8 +18,8 @@ export class GridData extends Component {
 
         const { productList } = this.props;
         this.products = {};
-        for (let i = 0; i < productList.length; i++) {
-            this.products[productList[i].ProductId] = productList[i].ProductName;
+        for (let product of productList) {
+            this.products[product.ProductId] = product.ProductName;
         }
 
         this.state = {

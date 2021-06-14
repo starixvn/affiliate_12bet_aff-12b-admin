@@ -4,9 +4,9 @@ export const defaultSortBy = 1;
 export const affiliate = 1;
 export const month = 1;
 export const turnover = 2;
+export const earning = 4;
 export const sortByCommon = {
-    Winloss: 3,
-    Earning: 4
+    Winloss: 3
 }
 
 export const allProduct = '0';
@@ -25,6 +25,7 @@ export const totalText = 'Total (all pages)';
 
 export const reportKey = {
     UserName: 'UserName',
+    PreferredLanguage: 'PreferredLanguage',
     MonthDateString: 'MonthDateString',
     TotalClick: 'TotalClick',
     UniqueClick: 'UniqueClick',
@@ -53,6 +54,7 @@ export const reportKey = {
 
 export const headerText = {
     [reportKey.UserName]: 'Affiliate',
+    [reportKey.PreferredLanguage]: 'Language',
     [reportKey.MonthDateString]: 'Month',
     [reportKey.TotalClick]: 'Total Click',
     [reportKey.UniqueClick]: 'Unique Click',
@@ -82,12 +84,13 @@ export const headerText = {
 export const headerConfig = {
     [reportKey.UserName]: { label: headerText[reportKey.UserName], isVisable: (claimPrincipal, isMainView) => isMainView },
     [reportKey.MonthDateString]: { label: headerText[reportKey.MonthDateString], isVisable: (claimPrincipal, isMainView) => !isMainView },
+    [reportKey.PreferredLanguage]: { label: headerText[reportKey.PreferredLanguage], isVisable: (claimPrincipal, isMainView) => claimPrincipal.hasReadClaim(claimResource.LanguageAmendment) && isMainView },
     [reportKey.TotalClick]: { label: headerText[reportKey.TotalClick] },
     [reportKey.UniqueClick]: { label: headerText[reportKey.UniqueClick] },
     [reportKey.Signup]: { label: headerText[reportKey.Signup] },
     [reportKey.Fdm]: { label: headerText[reportKey.Fdm] },
-    [reportKey.ActiveMember]: { label: headerText[reportKey.ActiveMember], isVisable: (claimPrincipal) => claimPrincipal.hasReadClaim(claimResource.AffPlayerDetail) },
-    [reportKey.QualifiedMember]: { label: headerText[reportKey.QualifiedMember], isVisable: (claimPrincipal) => claimPrincipal.hasReadClaim(claimResource.AffPlayerDetail) },
+    [reportKey.ActiveMember]: { label: headerText[reportKey.ActiveMember], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => claimPrincipal.hasReadClaim(claimResource.AffPlayerDetail) && !isCheckedDatePicker },
+    [reportKey.QualifiedMember]: { label: headerText[reportKey.QualifiedMember], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => claimPrincipal.hasReadClaim(claimResource.AffPlayerDetail) && !isCheckedDatePicker },
     [reportKey.MemberStatistics]: {
         label: headerText[reportKey.MemberStatistics],
         cols: {
@@ -96,22 +99,20 @@ export const headerConfig = {
             [reportKey.Turnover]: { label: headerText[reportKey.Turnover], isVisable: (claimPrincipal) => claimPrincipal.hasReadClaim(claimResource.TurnOver) },
             [reportKey.Winlost]: { label: headerText[reportKey.Winlost] },
             [reportKey.Bonus]: { label: headerText[reportKey.Bonus] },
-            [reportKey.PlatformFee]: { label: headerText[reportKey.PlatformFee] },
-            [reportKey.OperationalFee]: { label: headerText[reportKey.OperationalFee] },
-            [reportKey.BankingFee]: { label: headerText[reportKey.BankingFee] },
-            [reportKey.TotalFee]: { label: headerText[reportKey.TotalFee] },
+            [reportKey.PlatformFee]: { label: headerText[reportKey.PlatformFee], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
+            [reportKey.OperationalFee]: { label: headerText[reportKey.OperationalFee], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
+            [reportKey.BankingFee]: { label: headerText[reportKey.BankingFee], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
+            [reportKey.TotalFee]: { label: headerText[reportKey.TotalFee], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
         }
     },
     [reportKey.AffiliateStatistics]: {
         label: headerText.AffiliateStatistics,
         cols: {
-            [reportKey.CommissionRate]: { label: headerText[reportKey.CommissionRate] },
-            [reportKey.Earning]: { label: headerText[reportKey.Earning] },
+            [reportKey.CommissionRate]: { label: headerText[reportKey.CommissionRate], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
+            [reportKey.Earning]: { label: headerText[reportKey.Earning], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
             [reportKey.AffWithdrawal]: { label: headerText[reportKey.AffWithdrawal] },
             [reportKey.AffAdjustment]: { label: headerText[reportKey.AffAdjustment], isVisable: (claimPrincipal, isMainView) => claimPrincipal.hasReadClaim(claimResource.AffAdjustment) && isMainView },
-            [reportKey.BalanceBf]: { label: headerText[reportKey.BalanceBf] }
+            [reportKey.BalanceBf]: { label: headerText[reportKey.BalanceBf], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker }
         }
     }
-
-
 }

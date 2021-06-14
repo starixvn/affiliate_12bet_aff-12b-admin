@@ -16,6 +16,7 @@ export const claimResource = {
     AssignCommGroup: '[AssignCommGroup]',
     MemberDetail: '[AffMemberDetail]',
     ActiveMembers: '[ActiveMembers]',
+    RegisteredMembers: '[RegisteredMembers]',
     MemberName: '[AffMemberName]',
     TurnOver: '[AffTurnover]',
     Note: '[Note]',

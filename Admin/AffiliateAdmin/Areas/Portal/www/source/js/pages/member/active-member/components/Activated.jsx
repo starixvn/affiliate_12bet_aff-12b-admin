@@ -27,7 +27,7 @@ export const Activated = (props) => {
     function _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
                 dataRows.push(_buildDataRow(dataItem, i + 1));
@@ -64,7 +64,7 @@ export const Activated = (props) => {
 
     return activatedGridData && (
         <div className="data-content">
-            <div className="active-member-content table-responsive table-striped my-2">
+            <div className="active-member-content table-responsive table-striped mb-4">
                 <div className="title-text">Members have been activated already</div>
                 <Table
                     maxWidth={1000}
