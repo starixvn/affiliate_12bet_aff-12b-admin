@@ -251,6 +251,7 @@
     <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Constants\TransType.cs" />
     <Compile Include="Controllers\AuthBaseController.cs" />
+    <Compile Include="Controllers\PromotionController.cs" />
     <Compile Include="Controllers\TestController.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>

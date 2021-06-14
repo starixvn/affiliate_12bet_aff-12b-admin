@@ -1,10 +1,18 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = Lang.Promotion;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
+@model string
+@{
+    var viewName = "~/Views/Promotion/_Content." + Model + ".cshtml";
+}
+<link rel="stylesheet" href="@Url.Content("~/www/build/styles/css/promotion.css")"/>
 
 <div class="content">
-    Need to fill content
-</div>
+    <div class="page-title">
+        <span class="text">@Lang.Promotion</span>
+    </div>
 
+    @{ Html.RenderPartial(viewName); }
+    @RazorHelper.RenderMovingTopButton()
+</div>

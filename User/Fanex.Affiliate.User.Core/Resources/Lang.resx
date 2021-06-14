@@ -2385,4 +2385,12 @@
   <data name="Teenpatti" xml:space="preserve">
     <value>Teenpatti</value>
   </data>
-</root>
+  <data name="Promotion" xml:space="preserve">
+    <value>PROMOTION</value>
+  </data>
+  <data name="ExtraCommission" xml:space="preserve">
+    <value>EXTRA COMMISSION UP TO 12%!</value>
+  </data>
+  <data name="BeOurAffThisMonth" xml:space="preserve">
+    <value>Be Our Affiliate partner this month &amp; Enjoy commissions up to 40% + Extra 12%! Click for more details!</value>
+  </data></root>

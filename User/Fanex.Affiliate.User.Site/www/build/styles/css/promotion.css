@@ -1,0 +1,27 @@
+﻿.banner-promotion {
+  display: block;
+  max-width: 600px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 90px 30px;
+  background-repeat: no-repeat;
+  text-align: left;
+  background-image: url("../Images/promotion/promotion.jpg");
+  background-size: cover;
+  color: white;
+  font-weight: bold;
+  background-position: center; }
+  .banner-promotion .text-content {
+    text-align: left; }
+  .banner-promotion .text-warning {
+    color: #FFF500; }
+
+.header-underline {
+  text-decoration: underline; }
+
+.btn-join-affiliate {
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  display: inline-block; }

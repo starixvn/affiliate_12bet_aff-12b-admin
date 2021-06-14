@@ -2216,4 +2216,13 @@
   <data name="PrefixProduct12JADE" xml:space="preserve">
     <value>12제이드</value>
   </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>이벤트</value>
+  </data>
+  <data name="ExtraCommission" xml:space="preserve">
+    <value> 추가 커미션 최대 12% </value>
+  </data>
+  <data name="BeOurAffThisMonth" xml:space="preserve">
+    <value>최대 40% +12% 추가 커미션을 보장해드립니다! 자세한 내용 클릭!</value>
+  </data>
 </root>

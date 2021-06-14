@@ -2227,4 +2227,13 @@
   <data name="PrefixProduct12JADE" xml:space="preserve">
     <value>玉石廳</value>
   </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>優惠活動</value>
+  </data>
+  <data name="ExtraCommission" xml:space="preserve">
+    <value>合作夥伴12%額外佣金！</value>
+  </data>
+  <data name="BeOurAffThisMonth" xml:space="preserve">
+    <value>立即成為12BET新合作夥伴！每月領取高達40%佣金及12%額外佣金！點擊了解詳情！</value>
+  </data>
 </root>
