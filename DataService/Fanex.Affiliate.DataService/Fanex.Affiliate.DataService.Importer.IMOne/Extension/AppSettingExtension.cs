@@ -10,5 +10,8 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne.Extension
         {
             return appSetting.GetValue("VrLotteryCurrencies").Split(new [] {','}, StringSplitOptions.RemoveEmptyEntries);
         }
+
+        public static IEnumerable<string> GetSupportedIMEsportCurrency(this IAppSettings appSettings)
+            => appSettings.GetValue("IMEsportCurrencies").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
     }
 }

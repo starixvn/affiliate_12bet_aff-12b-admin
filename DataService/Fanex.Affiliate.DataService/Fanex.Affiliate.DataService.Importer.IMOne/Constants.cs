@@ -4,6 +4,8 @@ namespace Fanex.Affiliate.DataService.Importer.IMOne
     public static class Constants
     {
         public static string IMOneDateTimeFormat => "yyyy-MM-dd HH.mm.ss";
+
+        public static string IMEsportDateFormat => "yyyy-MM-dd";
     }
 
     public enum IMoneResponseStatus
