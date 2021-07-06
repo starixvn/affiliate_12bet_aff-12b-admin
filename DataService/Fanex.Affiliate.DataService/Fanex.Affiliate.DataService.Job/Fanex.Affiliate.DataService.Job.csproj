@@ -102,6 +102,8 @@
     <Compile Include="Log\LogWrapperManager.cs" />
     <Compile Include="Modules\BTiJob.cs" />
     <Compile Include="Modules\BTiScheduler.cs" />
+    <Compile Include="Modules\IMEsportJob.cs" />
+    <Compile Include="Modules\IMEsportScheduler.cs" />
     <Compile Include="Modules\KYGamingJob.cs" />
     <Compile Include="Modules\KYGamingScheduler.cs" />
     <Compile Include="NewApiJobBase.cs" />

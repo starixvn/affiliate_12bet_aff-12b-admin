@@ -24,7 +24,7 @@
 
         public const int BTiId = 25;
 
-        public const int IMEsport = 26;
+        public const int IMEsport = 31;
     }
 
     public static class RespositoryResponse
