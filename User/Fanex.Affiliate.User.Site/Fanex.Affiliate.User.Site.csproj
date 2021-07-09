@@ -704,7 +704,6 @@
     <Content Include="www\build\styles\Images\contact-us\india_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\indonesian_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\line.png" />
-    <Content Include="www\build\styles\Images\contact-us\qq_icon.png" />
     <Content Include="www\build\styles\Images\contact-us\skype_icon.png" />
     <Content Include="www\build\styles\Images\contact-us\Support_girl.png" />
     <Content Include="www\build\styles\Images\contact-us\thailand_lang.png" />

@@ -14,20 +14,6 @@
     var appSetting = new AppSetting();
     var mailContact = appSetting.MailContact;
     var isMobile = Request.Browser.IsMobileDevice;
-    var imLink = "tencent://message/?uin=1806412043&Site=qq&Menu=yes";
-
-    if (isMobile)
-    {
-        var userAgent = Request.UserAgent.ToLower();
-        if (userAgent.Contains("android"))
-        {
-            imLink = "https://play.google.com/store/apps/details?id=com.tencent.mobileqqi";
-        }
-        else if (userAgent.Contains("iphone") || userAgent.Contains("ipad") || userAgent.Contains("ipod"))
-        {
-            imLink = "https://itunes.apple.com/cn/app/qq-guo-ji-ban/id710380093?mt=8";
-        }
-    }
 }
 
 @section styles{
@@ -85,9 +71,9 @@
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.ChinaSupport</p>
-                                <a class="contact-info" href="@imLink">
-                                    <img class="im-icon" style="height: 2rem;" src="~/www/build/styles/Images/contact-us/qq_icon.png" />
-                                    <span>1806412043</span>
+                                <a class="contact-info" href="skype:live:china12bet">
+                                    <img class="im-icon" style="height: 2rem;" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
+                                    <span>live:china12bet</span>
                                 </a>
                             </div>
                         </div>
