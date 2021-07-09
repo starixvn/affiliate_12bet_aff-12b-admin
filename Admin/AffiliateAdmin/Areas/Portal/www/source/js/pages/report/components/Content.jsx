@@ -61,7 +61,7 @@ export class Content extends PureComponent {
         ) : (
                 <div className="d-flex align-items-center">
                     <MyLink className={"btn-link font-weight-bold"} onClick={this.handleClickBreadcrumb}>
-                        AFFILIATE REPORT&nbsp;
+                        AFFILIATE REPORT&nbsp;&gt;
                     </MyLink>
                     {reportTitle}
                     {btnExport}

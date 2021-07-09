@@ -2,6 +2,7 @@
 import { Content } from '../Content';
 import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../modules/constants';
+import { sortByCommon } from '../../../../report/libs/constants';
 
 describe('players detail - components - Content', () => {
     const param = { productId: 0, monthDate: "11/1/2019" };
@@ -126,14 +127,14 @@ describe('players detail - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         const instance = wrapper.instance();
         instance.setState = jest.fn();
-        const param = Object.assign({}, defaultProps.param, { productId: 'abc', pageIndex: 1, pageSize: 20 });
-        await instance._fetchData(param);
+        const newParam = Object.assign({}, defaultProps.param, { productId: 'abc', pageIndex: 1, pageSize: 20 });
+        await instance._fetchData(newParam);
 
         expect(props.toggleLoaderUserPanel).toHaveBeenCalledTimes(2);
         expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchData).toHaveBeenCalledWith({ ...param, affId: 1271808 });
+        expect(props.fetchData).toHaveBeenCalledWith({ ...newParam, affId: 1271808 });
         expect(instance.setState).toHaveBeenCalledWith({ data: null });
         expect(props.setPagingOption).toHaveBeenCalledWith({ TotalItem: 0, PageIndex: 1, PageSize: 20 });
     });
@@ -166,7 +167,7 @@ describe('players detail - components - Content', () => {
         const setPagingOption = jest.fn();
         const pageIndex = 2;
         const pageSize = 50;
-        const paramExpect = Object.assign({}, defaultProps.param, { pageIndex, pageSize });
+        const paramExpect = Object.assign({}, defaultProps.param, { pageIndex, pageSize, isSortAsc: false, sortById: 5 });
 
         const props = Object.assign({}, defaultProps, { setPagingOption });
         const wrapper = shallow(<Content {...props} />);

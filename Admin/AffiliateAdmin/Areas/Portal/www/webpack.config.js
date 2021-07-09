@@ -21,7 +21,7 @@ const relativeOutputPath = projectPath.relativeOutputPath;
 
 module.exports = env => {
     env = environment[env] || environment.development;
-    const isDevBuild = !(env === environment.production);
+    const isDevBuild = env !== environment.production;
 
     const sharedConfig = () => ({
         mode: env,
@@ -30,7 +30,7 @@ module.exports = env => {
         output: {
             path: projectPath.rootPath,
             filename: "[name].js",
-            chunkFilename: relativeOutputPath + '/js/dynamic-chunks/[name].chunk.js'
+            chunkFilename: relativeOutputPath + '/js/dynamic-chunks/[name]-[chunkhash].chunk.js'
         },
         module: {
             rules: [{
