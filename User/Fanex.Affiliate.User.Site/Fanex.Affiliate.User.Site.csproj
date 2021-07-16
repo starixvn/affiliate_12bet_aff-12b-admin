@@ -665,6 +665,7 @@
     <Content Include="www\build\styles\Images\account-overview\icon-zalo.png" />
     <Content Include="www\build\styles\Images\account-overview\new-sign-up.png" />
     <Content Include="www\build\styles\Images\account-overview\total-deposit.png" />
+    <Content Include="www\build\styles\Images\contact-us\telegram-icon.png" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.en-US.jpg" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.hi-IN.jpg" />
     <Content Include="www\build\styles\Images\euro-banners\Euro-Banner.id-ID.jpg" />
