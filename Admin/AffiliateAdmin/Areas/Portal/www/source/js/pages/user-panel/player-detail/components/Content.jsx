@@ -126,8 +126,8 @@ export class Content extends PureComponent {
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const { param } = this.props;
-        const newParam = Object.assign({}, param, { pageIndex, pageSize });
+        const { param, sortedParam } = this.props;
+        const newParam = Object.assign({}, param, { pageIndex, pageSize, ...sortedParam });
 
         this._fetchData(newParam);
     }

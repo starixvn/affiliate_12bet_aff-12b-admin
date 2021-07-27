@@ -184,7 +184,7 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
           className="btn-link font-weight-bold"
           onClick={[Function]}
         >
-          AFFILIATE REPORT 
+          AFFILIATE REPORT &gt;
         </Memo(MyLink)>
         Report Title - currentViewLevel is Month on Month view
         <button
@@ -376,7 +376,7 @@ exports[`affiliate report - Content  should render correctly with _buildReportTi
       className="btn-link font-weight-bold"
       onClick={[Function]}
     >
-      AFFILIATE REPORT 
+      AFFILIATE REPORT &gt;
     </Memo(MyLink)>
     <button
       className="ml-auto btn btn-link btn-excel"

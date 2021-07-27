@@ -14,20 +14,6 @@
     var appSetting = new AppSetting();
     var mailContact = appSetting.MailContact;
     var isMobile = Request.Browser.IsMobileDevice;
-    var imLink = "tencent://message/?uin=1806412043&Site=qq&Menu=yes";
-
-    if (isMobile)
-    {
-        var userAgent = Request.UserAgent.ToLower();
-        if (userAgent.Contains("android"))
-        {
-            imLink = "https://play.google.com/store/apps/details?id=com.tencent.mobileqqi";
-        }
-        else if (userAgent.Contains("iphone") || userAgent.Contains("ipad") || userAgent.Contains("ipod"))
-        {
-            imLink = "https://itunes.apple.com/cn/app/qq-guo-ji-ban/id710380093?mt=8";
-        }
-    }
 }
 
 @section styles{
@@ -53,7 +39,7 @@
             <div class="col-sm-3">
                 <div class="date-time">
                     <div class="img-support">
-                        <img class="img-responsive" src="~/www/build/styles/Images/contact-us/Support_girl.png" />
+                        <img class="img-responsive" src="~/www/build/styles/Images/contact-us/Support_girl.png" alt="The support girl" />
                     </div>
                     <div class="date-time-info">
                         <p class="text-center">@Html.Raw(Lang.SupportTime)</p>
@@ -66,13 +52,16 @@
                     <div class="col-sm-6">
                         <div class="languages-item">
                             <div class="single-flag">
-                                <img src="~/www/build/styles/Images/contact-us/english_lang.png" />
+                                <img src="~/www/build/styles/Images/contact-us/english_lang.png" alt="Flag of England" />
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.EnglishSupport</p>
                                 <a class="contact-info" href="skype:affiliate12bet">
-                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" alt="Skype icon" />
                                     <span>affiliate12bet</span>
+                                </a>
+                                <a class="contact-info" href="javascript:void(0)">
+                                    &nbsp;
                                 </a>
                             </div>
                         </div>
@@ -81,13 +70,17 @@
                     <div class="col-sm-6">
                         <div class="languages-item">
                             <div class="single-flag">
-                                <img src="~/www/build/styles/Images/contact-us/China_lang.png" />
+                                <img src="~/www/build/styles/Images/contact-us/China_lang.png" alt="Flag of China" />
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.ChinaSupport</p>
-                                <a class="contact-info" href="@imLink">
-                                    <img class="im-icon" style="height: 2rem;" src="~/www/build/styles/Images/contact-us/qq_icon.png" />
-                                    <span>1806412043</span>
+                                <a class="contact-info" href="skype:live:china12bet">
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" alt="Skype icon" />
+                                    <span>live:china12bet</span>
+                                </a>
+                                <a class="contact-info" href="https://t.me/aff12bzhifeiji">
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/telegram-icon.png" alt="Telegram icon" />
+                                    <span>aff12bzhifeiji</span>
                                 </a>
                             </div>
                         </div>
@@ -98,16 +91,16 @@
                     <div class="col-sm-6">
                         <div class="languages-item">
                             <div class="single-flag">
-                                <img src="~/www/build/styles/Images/contact-us/vietnam_lang.png" />
+                                <img src="~/www/build/styles/Images/contact-us/vietnam_lang.png" alt="Flag of Vietnam" />
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.VietnamSupport</p>
                                 <a class="contact-info" href="skype:crmsupport.1">
-                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" alt="Skype icon" />
                                     <span>crmsupport.1</span>
                                 </a>
                                 <span class="contact-info info-zalo">
-                                    <img class="im-zalo" src="~/www/build/styles/Images/contact-us/zalo.png" />
+                                    <img class="im-zalo" src="~/www/build/styles/Images/contact-us/zalo.png" alt="Zalo icon" />
                                     <span>+63 927 684 2457</span>
                                 </span>
                             </div>
@@ -117,16 +110,16 @@
                     <div class="col-sm-6">
                         <div class="languages-item">
                             <div class="single-flag">
-                                <img src="~/www/build/styles/Images/contact-us/thailand_lang.png" />
+                                <img src="~/www/build/styles/Images/contact-us/thailand_lang.png" alt="Flag of Thailand" />
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.ThailandSupport</p>
                                 <a class="contact-info" href="skype:th.affiliate12bet">
-                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" alt="Skype icon" />
                                     <span>th.affiliate12bet</span>
                                 </a>
                                 <a class="contact-info info-line" href="https://line.me/ti/p/OpW0R6iD7X">
-                                    <img class="im-line" src="~/www/build/styles/Images/contact-us/line.png" />
+                                    <img class="im-line" src="~/www/build/styles/Images/contact-us/line.png" alt="Line icon" />
                                     <span>12aff.thai</span>
                                 </a>
                             </div>
@@ -138,16 +131,16 @@
                     <div class="col-sm-6">
                         <div class="languages-item">
                             <div class="single-flag">
-                                <img src="~/www/build/styles/Images/contact-us/indonesian_lang.png" />
+                                <img src="~/www/build/styles/Images/contact-us/indonesian_lang.png" alt="Flag of Indonesia" />
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.IndonesiaSupport</p>
                                 <a class="contact-info" href="skype:live:aff.12betindo">
-                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" alt="Skype icon" />
                                     <span>live:aff.12betindo</span>
                                 </a>
                                 <a class="contact-info info-whats-app" href="https://api.whatsapp.com/send?phone=639276842457">
-                                    <img class="im-whats-app" src="~/www/build/styles/Images/contact-us/whats_app.png" />
+                                    <img class="im-whats-app" src="~/www/build/styles/Images/contact-us/whats_app.png" alt="WhatsApp icon" />
                                     <span>+63 927 684 2457</span>
                                 </a>
                             </div>
@@ -157,16 +150,16 @@
                     <div class="col-sm-6">
                         <div class="languages-item">
                             <div class="single-flag">
-                                <img src="~/www/build/styles/Images/contact-us/india_lang.png" />
+                                <img src="~/www/build/styles/Images/contact-us/india_lang.png" alt="Flag of India" />
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.IndianSupport</p>
                                 <a class="contact-info" href="skype:aff12csdindia">
-                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" alt="Skype icon" />
                                     <span>aff12csdindia</span>
                                 </a>
                                 <a class="contact-info info-whats-app info-whats-app-indo" href="https://api.whatsapp.com/send?phone=639275512153">
-                                    <img class="im-whats-app" src="~/www/build/styles/Images/contact-us/whats_app.png" />
+                                    <img class="im-whats-app" src="~/www/build/styles/Images/contact-us/whats_app.png" alt="WhatsApp icon" />
                                     <span>+63 927 551 2153</span>
                                 </a>
                             </div>

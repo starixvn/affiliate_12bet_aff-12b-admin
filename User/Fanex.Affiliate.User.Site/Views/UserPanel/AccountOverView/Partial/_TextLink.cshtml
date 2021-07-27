@@ -11,11 +11,11 @@
             <div class="flex-9">
                 <button class="btn-copy-link" data-clipboard-text="@Model[key].Link">Copy Link</button>
                 <button class="btn-copy-qr">Copy QR Code</button>
-                @{ 
+                @{
                     var downloadName = Model[key].Language + "_qrcode";
                 }
                 <button class="btn-save-img" data-image-name="@downloadName">Save QR Code</button>
-                <img class="qr-code" src="@Model[key].QrCode"/>
+                <img class="qr-code" src="@Model[key].QrCode" alt="QR Code icon" />
             </div>
         </div>
     }
