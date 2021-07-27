@@ -118,5 +118,11 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             var form = new BTiForm();
             SetUpServiceForm(form);
         }
+
+        private void btnIMEsport_Click(object sender, EventArgs e)
+        {
+            var form = new IMEsportForm();
+            SetUpServiceForm(form);
+        }
     }
 }

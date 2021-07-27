@@ -265,6 +265,7 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\ebet.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\exchange-summary-transaction.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\gpi-lottery.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\imesport.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\imone-vrlottery.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\importqueue.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\isoftbet.js" />
@@ -468,6 +469,7 @@
     <Content Include="App_Data\EBetConfig.json" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\KyGaming\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Topaz\RawData.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\IMEsport\Index.cshtml" />
     <None Include="Properties\PublishProfiles\ThirdPartyApi.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -36,7 +36,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 {"LB Keno", new LBKenoFileImporter() },
                 {"Ky Gaming", new KYGamingFileImporter() },
                 {"Topaz", new TopazFileImporter() },
-                {"BTi", new BTiFileImporter() }
+                {"BTi", new BTiFileImporter() },
+                {"IMEsport", new IMEsportImporter() }
             };
             return dic;
         }

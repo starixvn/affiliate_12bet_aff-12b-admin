@@ -23,6 +23,8 @@
         public const int KyGamingId = 24;
 
         public const int BTiId = 25;
+
+        public const int IMEsport = 31;
     }
 
     public static class RespositoryResponse
