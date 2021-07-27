@@ -124,8 +124,6 @@ namespace Fanex.Affiliate.DataService.Importer.BTi
 
         private static void FillDataToItem(JObject item, JToken betItem)
         {
-            item.Add("BetID", GetBetID(betItem));
-
             foreach (var pro in GetDataFieldNames())
             {
                 var data = betItem.SelectToken($"$.{pro}");
@@ -137,17 +135,8 @@ namespace Fanex.Affiliate.DataService.Importer.BTi
         private static string[] GetDataFieldNames()
             => new[]
             {
-                "UserName", "TotalStake", "ValidStake",
+                "PurchaseID", "UserName", "TotalStake", "ValidStake",
                 "PL", "BetStatus", "BetSettledDate",
             };
-
-        private static JToken GetBetID(JToken betItem)
-        {
-            var selections = betItem.SelectToken($"$.Selections");
-            var firstSelectionItem = selections.FirstOrDefault();
-            var betID = firstSelectionItem.SelectToken($"$.BetID");
-
-            return betID;
-        }
     }
 }
