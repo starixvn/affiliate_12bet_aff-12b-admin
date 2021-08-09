@@ -10,6 +10,7 @@ export const messageList = {
     Gender: 'Gender is empty, Please Check!',
     Email: 'Email Address is invalid',
     Phone: 'Contact Number is required',
+    ContactApp: 'At least one IM account is required',
     Address: 'Address is required',
     City: 'City is required',
     Postcode: 'Postcode/Zip is required',

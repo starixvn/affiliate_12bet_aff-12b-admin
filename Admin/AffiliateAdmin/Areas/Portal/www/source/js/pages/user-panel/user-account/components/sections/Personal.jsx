@@ -75,7 +75,7 @@ export class Personal extends PureComponent {
                 {
                     this.arrayContactApps && this.arrayContactApps.map(contactApp => {
                         return (
-                            renderInputForm(contactApp.Name, contactApp.Name, contactApp.Value, !hasWriteEditAffClaim, false, this.handleChangeContactApps)
+                            renderInputForm(contactApp.Name, contactApp.Name, contactApp.Value, !hasWriteEditAffClaim, this.arrayContactApps.length === 1, this.handleChangeContactApps)
                         )
                     })
                 }

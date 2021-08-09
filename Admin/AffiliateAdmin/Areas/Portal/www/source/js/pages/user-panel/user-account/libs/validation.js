@@ -61,16 +61,18 @@ export const validateUserAccount = (userAccountInfo, moreSiteUrlsList) => {
     const checkEmail = new RegExp(regexEmail);
     const isValidGender = userAccountInfo.Gender != null;
     const isValidEmail = !userAccountInfo.Email || checkEmail.test(userAccountInfo.Email);
+    const isValidContactAppList = userAccountInfo.ContactAppList && userAccountInfo.ContactAppList.some(c => typeof c.Value === 'string' && !!c.Value.trim());
     const country = countriesList[userAccountInfo.Country] === undefined ? "" : userAccountInfo.Country;
     const selectedField = userAccountInfo.HasWebSite ? 'SiteUrl' : 'NoSiteDescription';
 
     const newRequiredFieldList = [...requiredFieldList, selectedField];
     message = isValidGender ? message : message + messageList.Gender + "<br />";
     message = isValidEmail ? message : message + messageList.Email + "<br />";
+    message = isValidContactAppList ? message : message + messageList.ContactApp + "<br />";
     message += getMessage('Country', country);
     message += newRequiredFieldList.reduce((accumulator, field) => { return accumulator + getMessage(field, userAccountInfo[field]) }, '');
 
-    let isValid = isValidGender && isValidEmail && userAccountInfo.FirstName !== '' && userAccountInfo.LastName !== '' &&
+    let isValid = isValidGender && isValidEmail && isValidContactAppList && userAccountInfo.FirstName !== '' && userAccountInfo.LastName !== '' &&
         userAccountInfo.Phone !== '' && userAccountInfo.Address !== '' && userAccountInfo.City !== '' &&
         userAccountInfo.Postcode !== '' && userAccountInfo.Country !== '' && userAccountInfo[selectedField] !== '';
 

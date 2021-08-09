@@ -4,6 +4,7 @@
 @using Fanex.Affiliate.User.Core.CoreService
 @using Fanex.Affiliate.User.Core.Utilities
 @using Fanex.Affiliate.User.Core.Constants
+@using System.Text;
 @model Fanex.Affiliate.User.Core.DTO.UserPanel.AccountInformation
 
 @{
@@ -129,17 +130,27 @@
                 {
                     var contactAppCount = Model.ContactAppList.Count();
                     var index = 0;
+
                     foreach (var item in Model.ContactAppList)
                     {
-                        var dependentField = $"ContactAppList[{(index == 0 ? 1 : 0)}].Value";
                         <div class="form-group">
                             <label class="col-sm-3 control-label @(contactAppCount == 1 ? "require" : string.Empty)">@item.Name</label>
-                            @if (contactAppCount == 2)
+                            @if (contactAppCount > 1)
                             {
+                                StringBuilder dependentField = new StringBuilder();
+
+                                for(var i = 0; i < contactAppCount; i++)
+                                {
+                                    if(i != index)
+                                    {
+                                        dependentField.Append($"ContactAppList[{i}].Value,");
+                                    }
+                                }
+
                                 <div class="col-sm-4">
                                     <input type="text" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-control"
                                            value="@Html.Raw(item.Value.ReplaceAHalfOfString(hasAffPersonalInfoPermission))"
-                                           data-val="true" data-val-requiredifnullorempty-dependentprop="@dependentField"
+                                           data-val="true" data-val-requiredifnullorempty-dependentprop="@dependentField.ToString()"
                                            data-val-requiredifnullorempty="@Error.RequireIMAccount" />
                                 </div>
                             }
@@ -154,7 +165,7 @@
                             }
                             <div class="col-sm-offset-3 col-sm-9">
                                 <span class="field-validation-valid help-block hide"
-                                      data-valmsg-for="@(contactAppCount == 2 ? dependentField : $"ContactAppList[{index}].Value")"
+                                      data-valmsg-for="ContactAppList[@index].Value"
                                       data-valmsg-replace="true"></span>
                             </div>
                             <input type="hidden" name="ContactAppList[@index].Name" value="@item.Name" />
