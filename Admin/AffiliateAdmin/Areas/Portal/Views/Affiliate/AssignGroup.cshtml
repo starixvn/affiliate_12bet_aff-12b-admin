@@ -12,7 +12,7 @@
         window.initialState = {
             commGroupList: @Html.Raw(Json.Encode(Model.CommGroupList)),
             selectedGroup: @Model.SelectedGroup,
-            affInfo: @Html.Raw(Json.Encode(Model.AffInfo))
+            affInfo: @Html.Raw(Json.Encode(Model.AffInfo)),
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/commission/assign-group.js")"></script>

@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 Param = param
             };
 
-            return View(viewModel);
+            return View("~/Areas/Portal/Views/Affiliate/AffiliateInfo.cshtml", viewModel);
         }
 
         [HttpPost]

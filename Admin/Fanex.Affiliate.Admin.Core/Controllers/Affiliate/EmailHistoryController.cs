@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         public ActionResult Index()
         {
-            return View("~/Areas/Portal/Views/Affiliate/EmailHistory.cshtml");
+            return View();
         }
 
         [HttpPost]

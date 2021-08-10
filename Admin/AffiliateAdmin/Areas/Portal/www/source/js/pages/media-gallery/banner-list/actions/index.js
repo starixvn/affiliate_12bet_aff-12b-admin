@@ -113,7 +113,7 @@ export const getBannerDetail = (selectedBannerId) => async () => {
 }
 
 export const insertBanner = (param) => async () => {
-    const url = 'Portal/MediaGallery/insertBanner';
+    const url = 'Portal/MediaGallery/InsertBanner';
 
     return handleExcute(url, param);
 }

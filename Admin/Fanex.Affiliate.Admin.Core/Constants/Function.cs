@@ -40,6 +40,12 @@
 
         public const string ViewLog = "[ViewLog]";
 
+        public const string ProcessingRequest = "[Affiliate]";
+
+        public const string ProcessingRequestMarketingRole = "[ProcessingRequestMarketingRole]";
+
+        public const string ProcessingRequestManagementRole = "[ProcessingRequestManagementRole]";
+
         public const string CommissionGroup = "[CommissionGroup]";
 
         public const string AssignCommGroup = "[AssignCommGroup]";

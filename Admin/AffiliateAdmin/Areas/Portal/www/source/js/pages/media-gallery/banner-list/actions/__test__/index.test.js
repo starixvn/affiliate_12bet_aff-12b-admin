@@ -218,7 +218,7 @@ describe('banner list actions', () => {
 
         const result = await actions['insertBanner'](param)();
 
-        expect(ajaxRequest.post.mock.calls[0][0]).toEqual('Portal/MediaGallery/insertBanner');
+        expect(ajaxRequest.post.mock.calls[0][0]).toEqual('Portal/MediaGallery/InsertBanner');
 
         expect(result).toEqual(expectedResponse.data);
     })
@@ -231,7 +231,7 @@ describe('banner list actions', () => {
 
         const result = await actions['insertBanner'](param)();
 
-        expect(ajaxRequest.post.mock.calls[0][0]).toEqual('Portal/MediaGallery/insertBanner');
+        expect(ajaxRequest.post.mock.calls[0][0]).toEqual('Portal/MediaGallery/InsertBanner');
         expect(result).toEqual(null);
     })
 

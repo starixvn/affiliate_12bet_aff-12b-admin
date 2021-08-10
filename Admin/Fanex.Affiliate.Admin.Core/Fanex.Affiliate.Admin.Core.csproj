@@ -195,6 +195,7 @@
     <Compile Include="Constants\Menu.cs" />
     <Compile Include="Controllers\Affiliate\MassAdjustmentController.cs" />
     <Compile Include="Controllers\Affiliate\NewViewLogController.cs" />
+    <Compile Include="Controllers\Affiliate\ProcessingRequestController.cs" />
     <Compile Include="Controllers\MediaGallery\NewsLetterController.cs" />
     <Compile Include="Controllers\Member\RegisteredMemberController.cs" />
     <Compile Include="DTO\MassAdjustment\AdjustmentResultInfo.cs" />
