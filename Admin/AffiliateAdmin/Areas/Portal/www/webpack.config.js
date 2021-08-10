@@ -30,7 +30,7 @@ module.exports = env => {
         output: {
             path: projectPath.rootPath,
             filename: "[name].js",
-            chunkFilename: relativeOutputPath + '/js/dynamic-chunks/[name]-[chunkhash].chunk.js'
+            chunkFilename: relativeOutputPath + '/js/dynamic-chunks/[chunkhash].chunk.js'
         },
         module: {
             rules: [{

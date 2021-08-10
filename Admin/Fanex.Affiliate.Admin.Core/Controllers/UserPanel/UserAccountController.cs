@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Newtonsoft.Json;
@@ -133,7 +132,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     HasWebSite = param.HasWebSite
                 };
 
-                if (param.ContactAppList != null)
+                if (param.ContactAppList == null || param.ContactAppList.All(c => string.IsNullOrEmpty(c.Value)))
+                {
+                    return new JsonNetResult
+                    {
+                        Data = new ResultInfo
+                        {
+                            Code = Code.GeneralErrorCode,
+                            Message = "At least one IM account is required!"
+                        }
+                    };
+                } else
                 {
                     userAccountParam.ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
                     {
