@@ -8,6 +8,10 @@
 @model Fanex.Affiliate.User.Core.DTO.UserPanel.AccountInformation
 
 @{
+    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var currentLanguage = sessionService.CurrentLanguage;
+    var isCsLanguage = currentLanguage.Equals("zh-CN");
+
     var hasPhonePermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.PhoneType);
     var hasEmailPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.EmailType);
     var hasWebsiteUrlPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.WebsiteUrlType);
@@ -133,8 +137,9 @@
 
                     foreach (var item in Model.ContactAppList)
                     {
+                        var label = isCsLanguage && item.Name.Equals("Telegram") ? "纸飞机(Telegram)" : item.Name;
                         <div class="form-group">
-                            <label class="col-sm-3 control-label @(contactAppCount == 1 ? "require" : string.Empty)">@item.Name</label>
+                            <label class="col-sm-3 control-label @(contactAppCount == 1 ? "require" : string.Empty)">@label</label>
                             @if (contactAppCount > 1)
                             {
                                 StringBuilder dependentField = new StringBuilder();
@@ -177,8 +182,7 @@
                 }
                 else
                 {
-                    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-                    @RazorHelper.RenderAppContact(sessionService.CurrentLanguage)
+                    @RazorHelper.RenderAppContact(currentLanguage)
                 }
             </div>
         </div>
