@@ -69,11 +69,6 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             await ImportSuitableDataAsync(xmls.Select(xml => xml.ToString()));
         }
 
-        protected virtual XDocument ConvertTimeZone(XDocument xml)
-        {
-            return xml;
-        }
-
         public virtual async Task ImportAsync(string data)
         {
             await _thirdPartyProductRepository.ImportDataAsync(ProductId, data, ImportType);
@@ -88,14 +83,16 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
                 xmls = xmls.Select(xml => ConvertTimeZone(xml));
 
             await ImportSuitableDataAsync(xmls.Select(xml => xml.ToString()));
+        }
 
+        protected virtual XDocument ConvertTimeZone(XDocument xml)
+        {
+            return xml;
         }
 
         private async Task ImportSuitableDataAsync(IEnumerable<string> datas)
         {
             await _thirdPartyProductRepository.ImportDataAsync(ProductId, datas, ImportType);
         }
-
-
     }
 }

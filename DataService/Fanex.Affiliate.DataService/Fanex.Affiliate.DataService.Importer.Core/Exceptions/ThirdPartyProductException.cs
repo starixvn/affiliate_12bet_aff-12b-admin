@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Fanex.Affiliate.DataService.Importer.Core.Exceptions
 {
+    [Serializable]
     public class ThirdPartyProductException : Exception
     {
         public ThirdPartyProductException()

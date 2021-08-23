@@ -124,5 +124,11 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             var form = new IMEsportForm();
             SetUpServiceForm(form);
         }
+
+        private void btnSkywind_Click(object sender, EventArgs e)
+        {
+            var form = new SkywindForm();
+            SetUpServiceForm(form);
+        }
     }
 }
