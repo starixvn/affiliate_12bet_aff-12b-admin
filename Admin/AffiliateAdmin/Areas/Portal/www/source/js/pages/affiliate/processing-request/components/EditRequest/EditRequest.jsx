@@ -120,7 +120,7 @@ export class EditRequest extends React.PureComponent {
 
     _renderFormByMethod(selectedRequest) {
         return {
-            [playerMethod]: this._renderPaymentForm('playerUsername', '12BET User Name', selectedRequest && selectedRequest.PlayerUsername, false, this.handleChange),
+            [playerMethod]: this._renderPaymentForm('Player_UserName', '12BET User Name', selectedRequest && selectedRequest.Player_UserName, false, this.handleChange),
             [wireMethod]: this._renderWireForm(selectedRequest)
         }
     }
@@ -141,11 +141,11 @@ export class EditRequest extends React.PureComponent {
     _renderWireForm(selectedRequest) {
         return (
             <React.Fragment>
-                {this._renderPaymentForm('bankName', 'Bank Name', trimText(selectedRequest && selectedRequest.BankName), false, this.handleChange)}
-                {this._renderPaymentForm('bankAddress', 'Bank Address', trimText(selectedRequest && selectedRequest.BankAddress), false, this.handleChange)}
-                {this._renderPaymentForm('bankCode', 'Bank ABA/Swift/Sort Code', trimText(selectedRequest && selectedRequest.BankCode), false, this.handleChange)}
-                {this._renderPaymentForm('bankAccountName', 'Bank Account Name', trimText(selectedRequest && selectedRequest.BankAccountName), false, this.handleChange)}
-                {this._renderPaymentForm('bankAccountNumber', 'Bank Account Number', trimText(selectedRequest && selectedRequest.BankAccountNumber), false, this.handleChange)}
+                {this._renderPaymentForm('BankName', 'Bank Name', trimText(selectedRequest && selectedRequest.BankName), false, this.handleChange)}
+                {this._renderPaymentForm('BankAddress', 'Bank Address', trimText(selectedRequest && selectedRequest.BankAddress), false, this.handleChange)}
+                {this._renderPaymentForm('SwiftCode', 'Bank ABA/Swift/Sort Code', trimText(selectedRequest && selectedRequest.SwiftCode), false, this.handleChange)}
+                {this._renderPaymentForm('AccountName', 'Bank Account Name', trimText(selectedRequest && selectedRequest.AccountName), false, this.handleChange)}
+                {this._renderPaymentForm('AccountNo', 'Bank Account Number', trimText(selectedRequest && selectedRequest.AccountNo), false, this.handleChange)}
             </React.Fragment>
         )
     }
@@ -199,7 +199,7 @@ export class EditRequest extends React.PureComponent {
                         <FormGroup row>
                             <Label sm={3}>Payment Method</Label>
                             <Col sm={5}>
-                                <Input type='select' name='PreferredPayment' id='preferredPayment' sm={6} onChange={this.handleChangePaymentMethod}>
+                                <Input type='select' name='PreferredPayment' id='preferredPayment' value={selectedRequest && selectedRequest.PreferredPayment} sm={6} onChange={this.handleChangePaymentMethod}>
                                     <option key='no-change' value=''>No change</option>
                                     {paymentMethodList.map(item => {
                                         return (<option key={item.key} value={item.key}>{item.value}</option>)
