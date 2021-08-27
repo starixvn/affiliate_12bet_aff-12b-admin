@@ -61,6 +61,13 @@ export const setProcRequestSummary = (data) => {
     }
 }
 
+export const setOriginalStatus = (data) => {
+    return{
+        type: type.SET_ORGINAL_STATUS,
+        data
+    }
+}
+
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
@@ -83,7 +90,9 @@ export const getProcessingRequestDetail = (param) => async (dispatch) => {
 
     const data = response && response.status === 200 ? response.data : null;
     dispatch(setSelectedRequest(data));
+    dispatch(setOriginalStatus(data.Status));
     dispatch(toggleLoader(false));
+    return data;
 }
 
 export const insertProcessingRequest = (param) => async (dispatch) => {

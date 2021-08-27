@@ -62,6 +62,12 @@ export const languageList = createReducer(null,{
     }
 })
 
+export const originalStatus = createReducer("Draft",{
+    [type.SET_ORGINAL_STATUS](prev, action){
+        return action.data
+    }
+})
+
 export default combineReducers({
     today,
     pagingOption,
@@ -75,5 +81,6 @@ export default combineReducers({
     claimsPrincipal,
     isClickSearch,
     dataSummary,
-    languageList
+    languageList,
+    originalStatus
 });

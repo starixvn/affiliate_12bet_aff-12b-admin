@@ -13,7 +13,7 @@ import { post } from '../../../../modules/ajaxRequest';
 import { claimResource } from '../../../../modules/claim';
 import EditRequest from './EditRequest/EditRequest';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
-import {deleteProcessingRequest, fetchData, setSelectedRequestId} from '../actions/index';
+import {deleteProcessingRequest, fetchData, setSelectedRequestId, getProcessingRequestDetail} from '../actions/index';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -34,14 +34,16 @@ export class Content extends PureComponent {
         });
     }
 
-    handleEditRequest = () => {
+    handleEditRequest = async () => {
+        await this.props.getProcessingRequestDetail(this.props.selectedRequestId);
         this.setState({
             Popup: (<EditRequest onClose={this.handleHide}/>),
             popupTitle: 'Edit Processing Request'
         });
     }
 
-    handleViewRequest = () => {
+    handleViewRequest = async () => {
+        await this.props.getProcessingRequestDetail(this.props.selectedRequestId);
         this.setState({
             Popup : (<EditRequest onClose={this.handleHide} isReadOnly={true} />),
             popupTitle: 'Processing Request Detail'
@@ -169,7 +171,7 @@ function mapStateToProps({ reportTitle, param, claimsPrincipal, isClickSearch, d
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, deleteProcessingRequest, fetchData, setSelectedRequestId }, dispatch);
+    return bindActionCreators({ toggleLoader, deleteProcessingRequest, fetchData, setSelectedRequestId, getProcessingRequestDetail }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

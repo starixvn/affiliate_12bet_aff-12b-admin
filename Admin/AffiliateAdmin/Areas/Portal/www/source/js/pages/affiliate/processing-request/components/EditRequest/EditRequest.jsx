@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert, Col, Form, FormFeedback, FormGroup, Input, Label } from 'reactstrap';
-import { setSelectedRequest, setSelectedRequestId, getProcessingRequestDetail, fetchData, toggleLoader, updateProcessingRequest, insertProcessingRequest } from '../../actions';
+import { setSelectedRequest, setSelectedRequestId, getProcessingRequestDetail, fetchData, toggleLoader, updateProcessingRequest, insertProcessingRequest, setOriginalStatus } from '../../actions';
 import { playerMethod, wireMethod, resource, statusList } from '../../libs/constants';
 import { htmlDecode, trimText } from '../../../../../modules/htmlHelper';
 import { formatDateTime } from '../../../../../modules/utils';
@@ -22,24 +22,22 @@ export class EditRequest extends React.PureComponent {
             isShowMessage: false,
             isSuccess: true,
             message: [],
-            orginStatus: 'Draft'
         }
     }
 
 
     componentDidMount() {
-        this.props.selectedRequestId && this.props.getProcessingRequestDetail({ processId: this.props.selectedRequestId });
-        if (!!this.props.selectedRequestId) {
-
+        if(!this.props.selectedRequestId)
+        {
+            const selectedRequest = Object.assign({}, this.props.selectedRequest, { ['Status']: "Draft" })
+            this.props.setSelectedRequest(selectedRequest);
         }
-
-        const selectedRequest = Object.assign({}, this.props.selectedRequest, { ["Status"]: this.state.orginStatus })
-        this.props.setSelectedRequest(selectedRequest);
     }
 
     componentWillUnmount() {
         this.props.setSelectedRequest(null);
         this.props.setSelectedRequestId(null);
+        this.props.setOriginalStatus("Draft");
     }
 
     handleSave = async () => {
@@ -154,7 +152,7 @@ export class EditRequest extends React.PureComponent {
     }
 
     render() {
-        const { selectedRequest, isReadOnly, languageList } = this.props;
+        const { selectedRequest, isReadOnly, languageList, originalStatus } = this.props;
         const { isShowMessage, isSuccess, message } = this.state;
         const renderFormByMethod = this._renderFormByMethod(selectedRequest);
         const deadline = formatDateTime(trimText(selectedRequest && selectedRequest.Deadline), 'yyyy-MM-dd');
@@ -225,7 +223,7 @@ export class EditRequest extends React.PureComponent {
                             <Col sm={9}>
                                 <Input sm={9} type='select' id="Status" name="Status" onChange={this.handleChange} value={selectedRequest && selectedRequest.Status}>
                                     {Object.keys(statusList).map(key => {
-                                        return statusList[key].shouldShow(selectedRequest && selectedRequest.Status)
+                                        return statusList[key].shouldShow(originalStatus)
                                             ? <option key={key} value={key}>{key}</option>
                                             : '';
                                     })}
@@ -247,12 +245,12 @@ export class EditRequest extends React.PureComponent {
     }
 }
 
-function mapStateToProp({ selectedRequest, selectedRequestId, languageList }) {
-    return { selectedRequest, selectedRequestId, languageList };
+function mapStateToProp({ selectedRequest, selectedRequestId, languageList, originalStatus }) {
+    return { selectedRequest, selectedRequestId, languageList, originalStatus };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedRequest, setSelectedRequestId, getProcessingRequestDetail, fetchData, toggleLoader, updateProcessingRequest, insertProcessingRequest }, dispatch);
+    return bindActionCreators({ setSelectedRequest, setSelectedRequestId, getProcessingRequestDetail, fetchData, toggleLoader, updateProcessingRequest, insertProcessingRequest, setOriginalStatus }, dispatch);
 }
 
 export default connect(mapStateToProp, mapDispatchToProps)(EditRequest);
